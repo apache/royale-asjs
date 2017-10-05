@@ -39,7 +39,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
 		public function Ellipse(cx:Number=0, cy:Number=0, rx:Number=0, ry:Number=0)
 		{
@@ -57,7 +57,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
 		public function get rx():Number
 		{
@@ -77,7 +77,7 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion FlexJS 0.7
+         *  @productversion Royale 0.7
 		 */
 		public function get ry():Number
 		{
@@ -120,9 +120,9 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @flexjsignorecoercion SVGEllipseElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion SVGEllipseElement
          */
         public function drawEllipse(xp:Number, yp:Number):void
         {
@@ -139,7 +139,7 @@ package org.apache.flex.svg
                 var style:String = getStyleStr();
                 if (_ellipse == null) {
                     _ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
-                    _ellipse.flexjs_wrapper = this;
+                    _ellipse.royale_wrapper = this;
                     element.appendChild(_ellipse);
                 }
                 _ellipse.setAttribute('style', style);

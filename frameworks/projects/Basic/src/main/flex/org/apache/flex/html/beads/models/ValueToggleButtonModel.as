@@ -33,7 +33,7 @@ package org.apache.flex.html.beads.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ValueToggleButtonModel extends ToggleButtonModel implements IValueToggleButtonModel
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function ValueToggleButtonModel()
 		{
@@ -58,7 +58,7 @@ package org.apache.flex.html.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get value():Object
 		{
@@ -83,7 +83,7 @@ package org.apache.flex.html.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get groupName():String
 		{
@@ -107,7 +107,7 @@ package org.apache.flex.html.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get selectedValue():Object
 		{

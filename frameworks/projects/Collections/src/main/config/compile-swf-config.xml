@@ -63,7 +63,7 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -80,7 +80,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/royale/basic</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

@@ -30,8 +30,8 @@ package org.apache.flex.utils
     }
     
     /**
-     * @flexjsignoreimport goog.bind
-     * @flexjsignoreimport goog.global
+     * @royaleignoreimport goog.bind
+     * @royaleignoreimport goog.global
      */
     COMPILE::JS
 	public class Language
@@ -147,10 +147,10 @@ package org.apache.flex.utils
             if (rightOperand === Array)
                 return Array.isArray(leftOperand);
 
-			if (leftOperand.FLEXJS_CLASS_INFO === undefined)
+			if (leftOperand.ROYALE_CLASS_INFO === undefined)
 				return false; // could be a function but not an instance
 
-			if (leftOperand.FLEXJS_CLASS_INFO.interfaces)
+			if (leftOperand.ROYALE_CLASS_INFO.interfaces)
 			{
 				if (checkInterfaces(leftOperand, rightOperand))
 				{
@@ -163,9 +163,9 @@ package org.apache.flex.utils
 
 			if (superClass)
 			{
-				while (superClass && superClass.FLEXJS_CLASS_INFO)
+				while (superClass && superClass.ROYALE_CLASS_INFO)
 				{
-					if (superClass.FLEXJS_CLASS_INFO.interfaces)
+					if (superClass.ROYALE_CLASS_INFO.interfaces)
 					{
 						if (checkInterfaces(superClass, rightOperand))
 						{
@@ -187,13 +187,13 @@ package org.apache.flex.utils
         {
             var i:int, interfaces:Array;
             
-            interfaces = leftOperand.FLEXJS_CLASS_INFO.interfaces;
+            interfaces = leftOperand.ROYALE_CLASS_INFO.interfaces;
             for (i = interfaces.length - 1; i > -1; i--) {
                 if (interfaces[i] === rightOperand) {
                     return true;
                 }
                 
-                if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
+                if (interfaces[i].prototype.ROYALE_CLASS_INFO.interfaces) {
                     var isit:Boolean = checkInterfaces(interfaces[i].prototype, rightOperand);
                     if (isit) return true;
                 }

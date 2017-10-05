@@ -3,7 +3,7 @@
     "type": "app",
     "compilerOptions": {
         "debug": false,
-        "js-output-type": "flexjs",
+        "js-output-type": "royale",
         "define": [
             {
                 "name": "COMPILE::SWF",

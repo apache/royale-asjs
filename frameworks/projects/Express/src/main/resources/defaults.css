@@ -17,7 +17,7 @@
 *
 */
 
-@namespace "library://ns.apache.org/flexjs/express";
+@namespace "library://ns.apache.org/royale/express";
 
 /* Global style declaration */
 *
@@ -27,7 +27,7 @@
 	border-width: 1px;
 }
 
-.flexjs *, . flexjs *:before, . flexjs *:after {
+.royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;

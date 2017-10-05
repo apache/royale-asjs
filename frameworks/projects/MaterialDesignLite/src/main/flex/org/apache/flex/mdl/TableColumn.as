@@ -34,7 +34,7 @@ package org.apache.flex.mdl
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class TableColumn extends TableHeader
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function TableColumn()
 		{
@@ -61,7 +61,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function get headerText():String
 		{
@@ -87,7 +87,7 @@ package org.apache.flex.mdl
         protected var textNode:Text;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -106,7 +106,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get ascending():Boolean
         {
@@ -132,7 +132,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get descending():Boolean
         {

@@ -19,14 +19,14 @@
 -->
 
 
-<project name="flexjstest_jquery" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../.."/>
+<project name="royaletest_jquery" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../.."/>
     <property name="example" value="jQuerySample" />
     
-	<property file="${FLEXJS_HOME}/env.properties"/>
+	<property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-	<property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+	<property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
 	
     
     <include file="${basedir}/../build_example.xml" />

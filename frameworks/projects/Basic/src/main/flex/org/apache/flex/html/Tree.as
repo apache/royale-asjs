@@ -28,7 +28,7 @@ package org.apache.flex.html
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class Tree extends List
 	{
@@ -38,7 +38,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function Tree()
 		{
@@ -54,7 +54,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 *  @see org.apache.flex.collections.HierarchicalData.
 		 */
 		override public function get dataProvider():Object

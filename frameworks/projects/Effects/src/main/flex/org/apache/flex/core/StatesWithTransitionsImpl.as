@@ -40,12 +40,12 @@ package org.apache.flex.core
      *  It only supports AddItems and SetProperty and SetEventHandler 
      *  changes at this time.
      *  
-     *  @flexjsignoreimport org.apache.flex.core.IStatesObject
+     *  @royaleignoreimport org.apache.flex.core.IStatesObject
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class StatesWithTransitionsImpl extends EventDispatcher implements IStatesImpl, IBead
 	{
@@ -55,7 +55,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function StatesWithTransitionsImpl()
 		{
@@ -72,7 +72,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {
@@ -83,7 +83,7 @@ package org.apache.flex.core
         
         /**
          *  @private
-         *  @flexjsignorecoercion org.apache.flex.core.IStatesObject
+         *  @royaleignorecoercion org.apache.flex.core.IStatesObject
          */
         private function initialStateHandler(event:org.apache.flex.events.Event):void
         {
@@ -94,7 +94,7 @@ package org.apache.flex.core
      
         /**
          *  @private
-         *  @flexjsignorecoercion org.apache.flex.core.IStatesObject
+         *  @royaleignorecoercion org.apache.flex.core.IStatesObject
          */
         private function stateChangeHandler(event:ValueChangeEvent):void
         {
@@ -169,7 +169,7 @@ package org.apache.flex.core
         
         /**
          *  @private
-         *  @flexjsignorecoercion org.apache.flex.core.IStatesObject
+         *  @royaleignorecoercion org.apache.flex.core.IStatesObject
          */
         private function effectEndHandler(event:Event):void
         {

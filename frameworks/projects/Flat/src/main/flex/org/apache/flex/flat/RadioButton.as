@@ -36,7 +36,7 @@ package org.apache.flex.flat
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
 	public class RadioButton extends org.apache.flex.html.RadioButton
@@ -47,7 +47,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function RadioButton()
 		{
@@ -65,7 +65,7 @@ package org.apache.flex.flat
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -83,10 +83,10 @@ package org.apache.flex.flat
         private var labelFor:HTMLLabelElement;
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion HTMLLabelElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion HTMLLabelElement
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -115,9 +115,9 @@ package org.apache.flex.flat
             typeNames = 'RadioButton';
             
             positioner.style.position = 'relative';
-            (input as WrappedHTMLElement).flexjs_wrapper = this;
-            (radio as WrappedHTMLElement).flexjs_wrapper = this;
-            (textNode as WrappedHTMLElement).flexjs_wrapper = this;
+            (input as WrappedHTMLElement).royale_wrapper = this;
+            (radio as WrappedHTMLElement).royale_wrapper = this;
+            (textNode as WrappedHTMLElement).royale_wrapper = this;
             return element;
         }
         
@@ -161,7 +161,7 @@ package org.apache.flex.flat
         }
         
         /**
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         public function get groupName():String
         {
@@ -208,8 +208,8 @@ package org.apache.flex.flat
         }
         
         /**
-         * @flexjsignorecoercion Array 
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion Array 
+         * @royaleignorecoercion String
          */
         public function get selectedValue():Object
         {
@@ -231,8 +231,8 @@ package org.apache.flex.flat
         }
         
         /**
-         * @flexjsignorecoercion Array
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion String
          */
         public function set selectedValue(value:Object):void
         {
@@ -247,10 +247,10 @@ package org.apache.flex.flat
             for (i = 0; i < n; i++) {
                 if (buttons[i].value === value) {
                     buttons[i].checked = true;
-                    buttons[i].flexjs_wrapper.selected = true;
+                    buttons[i].royale_wrapper.selected = true;
                 }
                 else
-                    buttons[i].flexjs_wrapper.selected = false;
+                    buttons[i].royale_wrapper.selected = false;
             }
         }
     }    

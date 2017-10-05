@@ -49,7 +49,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	[Event(name="enter", type="org.apache.flex.events.Event")]
 
@@ -59,7 +59,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	[Event(name="exit", type="org.apache.flex.events.Event")]
 
@@ -71,7 +71,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	[Event(name="over", type="org.apache.flex.events.Event")]
 
@@ -84,7 +84,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	[Event(name="drop", type="org.apache.flex.events.Event")]
 
@@ -95,7 +95,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	[Event(name="complete", type="org.apache.flex.events.Event")]
 
@@ -109,7 +109,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class SingleSelectionDropTargetBead extends EventDispatcher implements IBead
 	{
@@ -119,7 +119,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function SingleSelectionDropTargetBead()
 		{
@@ -158,7 +158,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		public function get dropDirection():String
 		{

@@ -18,13 +18,13 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-                xmlns:js="library://ns.apache.org/flexjs/basic"
-                xmlns:svg="library://ns.apache.org/flexjs/svg"
+                xmlns:js="library://ns.apache.org/royale/basic"
+                xmlns:svg="library://ns.apache.org/royale/svg"
 				initComplete="setup()" 
 				xmlns:renderers="sample.todo.renderers.*">
 
     <fx:Style>
-        @namespace basic "library://ns.apache.org/flexjs/basic";
+        @namespace basic "library://ns.apache.org/royale/basic";
         @namespace renderers "sample.todo.renderers.*";
 
         renderers|TodoItemRenderer2 {
@@ -154,7 +154,7 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>
 
-    <js:PanelWithControlBar title="FlexJS TODO List" width="600">
+    <js:PanelWithControlBar title="Royale TODO List" width="600">
         <js:beads>
             <js:VerticalLayout/>
         </js:beads>

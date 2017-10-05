@@ -42,7 +42,7 @@ package org.apache.flex.createjs.graphics
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
     
     COMPILE::SWF
@@ -57,8 +57,8 @@ package org.apache.flex.createjs.graphics
         /**
 		 * Creates a CreateJS Shape as the element.
 		 * 
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion createjs.Shape
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion createjs.Shape
          */
         override protected function createElement():WrappedHTMLElement
         {

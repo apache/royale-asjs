@@ -31,7 +31,7 @@ package org.apache.flex.html.beads.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class BinaryImageModel extends ImageModel implements IBinaryImageModel
 	{
@@ -41,7 +41,7 @@ package org.apache.flex.html.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
 		public function BinaryImageModel()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.html.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get binary():BinaryData
 		{

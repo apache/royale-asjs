@@ -24,21 +24,21 @@ package org.apache.flex.states
      *  The State class is one of the classes in the
      *  view states subsystem.  It is used to declare a 
      *  view state in an MXML document.  This is one of the
-     *  few classes in FlexJS that use the same name as
+     *  few classes in Royale that use the same name as
      *  a Flex SDK class because some of the IDEs and
      *  compilers are hard-coded to assume this name.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class State
 	{
         /**
          *  Constructor.
          *  
-         *  @param properties This parameter is not used in FlexJS and exists to make legacy compilers happy.
+         *  @param properties This parameter is not used in Royale and exists to make legacy compilers happy.
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1

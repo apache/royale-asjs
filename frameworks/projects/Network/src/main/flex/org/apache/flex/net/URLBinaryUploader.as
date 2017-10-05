@@ -39,7 +39,7 @@ package org.apache.flex.net
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.9.0
+	 * @productversion Royale 0.9.0
 	 */
 	public class URLBinaryUploader extends URLBinaryLoader
 	{
@@ -53,7 +53,7 @@ package org.apache.flex.net
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.net.URLUploadStream
+		 * @royaleignorecoercion org.apache.flex.net.URLUploadStream
 		 */
 		override protected function setupCallbacks():void
 		{
@@ -72,7 +72,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9.0
+		 *  @productversion Royale 0.9.0
 		 */		
 		public var onUploadProgress:Function;
 
@@ -82,7 +82,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9.0
+		 *  @productversion Royale 0.9.0
 		 */		
 		public function uploadProgress(callback:Function):URLBinaryUploader
 		{

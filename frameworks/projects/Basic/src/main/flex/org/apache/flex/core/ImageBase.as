@@ -32,7 +32,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ImageBase extends UIBase implements IImage
 	{
@@ -42,7 +42,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function ImageBase()
 		{
@@ -55,8 +55,8 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.IImageModel
 		 */
 		public function get src():String
 		{

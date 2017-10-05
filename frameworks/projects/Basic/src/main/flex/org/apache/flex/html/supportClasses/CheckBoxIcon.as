@@ -69,9 +69,9 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLInputElement
-		 * @flexjsignorecoercion Text
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion HTMLInputElement
+		 * @royaleignorecoercion Text
 		 */
 		COMPILE::JS
  		protected function createElement():WrappedHTMLElement

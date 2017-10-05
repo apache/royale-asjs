@@ -20,7 +20,7 @@ under the License.
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.3 http://maven.apache.org/xsd/component-1.1.3.xsd">
   <dependencySets>
     <!--
-          Every lib - except the jx related ones - in the flexjs.compiler namespace
+          Every lib - except the jx related ones - in the royale.compiler namespace
           should go to the lib directory.
     -->
     <dependencySet>
@@ -30,11 +30,11 @@ under the License.
       <!--outputFileNameMapping>${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}</outputFileNameMapping-->
       <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
-        <include>org.apache.flex.flexjs.compiler:*:jar</include>
-        <include>org.apache.flex.flexjs.framework.distribution:*:jar</include>
+        <include>org.apache.royale.compiler:*:jar</include>
+        <include>org.apache.royale.framework.distribution:*:jar</include>
       </includes>
       <excludes>
-        <exclude>org.apache.flex.flexjs.compiler:compiler-jx:jar</exclude>
+        <exclude>org.apache.royale.compiler:compiler-jx:jar</exclude>
       </excludes>
     </dependencySet>
     <!-- Everything else should go to the lib/ext directory -->
@@ -45,7 +45,7 @@ under the License.
         <include>*:jar</include>
       </includes>
       <excludes>
-        <exclude>org.apache.flex.flexjs.compiler:*</exclude>
+        <exclude>org.apache.royale.compiler:*</exclude>
         <exclude>*:args4j:jar</exclude>
         <exclude>*:google-closure-library*:jar</exclude>
         <exclude>*:org.json:jar</exclude>
@@ -56,7 +56,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>externs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.typedefs:*</include>
+        <include>org.apache.royale.typedefs:*</include>
       </includes>
     </dependencySet>
     <!-- Put the framework swcs into the frameworks/libs directory -->
@@ -64,18 +64,18 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/libs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.framework:*:swc</include>
+        <include>org.apache.royale.framework:*:swc</include>
       </includes>
       <excludes>
-        <exclude>org.apache.flex.flexjs.framework:*:swc:typedefs</exclude>
+        <exclude>org.apache.royale.framework:*:swc:typedefs</exclude>
       </excludes>
     </dependencySet>
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>frameworks/js/FlexJS/libs</outputDirectory>
+      <outputDirectory>frameworks/js/Royale/libs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.framework:*:swc:js</include>
+        <include>org.apache.royale.framework:*:swc:js</include>
       </includes>
     </dependencySet>
 
@@ -84,7 +84,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>js/lib</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.compiler:compiler-jx:jar</include>
+        <include>org.apache.royale.compiler:compiler-jx:jar</include>
         <include>*:args4j:jar</include>
         <include>*:commons-io:*</include>
         <include>*:flex-tool-api:*</include>
@@ -97,7 +97,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>js/libs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.typedefs:*:swc</include>
+        <include>org.apache.royale.typedefs:*:swc</include>
       </includes>
     </dependencySet>
 
@@ -107,7 +107,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/fonts</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.framework:Fonts:swf</include>
+        <include>org.apache.royale.framework:Fonts:swf</include>
       </includes>
       <outputFileNameMapping>flat-ui-icons-regular.swf</outputFileNameMapping>
     </dependencySet-->
@@ -116,7 +116,7 @@ under the License.
       <outputDirectory>frameworks/fonts</outputDirectory>
       <unpack>true</unpack>
       <includes>
-        <include>org.apache.flex.flexjs.framework:Fonts:war</include>
+        <include>org.apache.royale.framework:Fonts:war</include>
       </includes>
     </dependencySet>
   </dependencySets>
@@ -168,7 +168,7 @@ under the License.
       <outputDirectory></outputDirectory>
       <includes>
         <include>flex-sdk-description.xml</include>
-        <include>flexjs-sdk-description.xml</include>
+        <include>royale-sdk-description.xml</include>
       </includes>
       <filtered>true</filtered>
     </fileSet>

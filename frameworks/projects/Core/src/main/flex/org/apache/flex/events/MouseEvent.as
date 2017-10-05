@@ -32,7 +32,7 @@ package org.apache.flex.events
 		import org.apache.flex.events.utils.EventUtils;
     }
     
-    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IRoyaleElement;
     import org.apache.flex.geom.Point;
     import org.apache.flex.utils.PointUtils;
     import org.apache.flex.events.IBrowserEvent;
@@ -44,10 +44,10 @@ package org.apache.flex.events
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
 	 */
 	COMPILE::SWF
-	public class MouseEvent extends flash.events.MouseEvent implements IFlexJSEvent
+	public class MouseEvent extends flash.events.MouseEvent implements IRoyaleEvent
 	{
         private static function platformConstant(s:String):String
         {
@@ -75,7 +75,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function MouseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false,
                                    localX:Number = NaN, localY:Number = NaN,
@@ -158,7 +158,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
 		 */
 		public function get deltaX():int
 		{
@@ -179,7 +179,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
 		 */
 		public function get deltaY():int
 		{
@@ -195,9 +195,9 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
-        public function cloneEvent():IFlexJSEvent
+        public function cloneEvent():IRoyaleEvent
         {
             var e:org.apache.flex.events.MouseEvent = new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
                 localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
@@ -215,14 +215,14 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
-		 * @flexjsignorecoercion org.apache.flex.core.IFlexJSElement
+         * @productversion Royale 0.0
+		 * @royaleignorecoercion org.apache.flex.core.IRoyaleElement
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
             if (potentialTarget == target) return true;
-            if (target is IFlexJSElement)
-                if ((target as IFlexJSElement).flexjs_wrapper == potentialTarget) return true;
+            if (target is IRoyaleElement)
+                if ((target as IRoyaleElement).royale_wrapper == potentialTarget) return true;
             return false;
         }
 
@@ -232,7 +232,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
         public function get defaultPrevented():Boolean
         {
@@ -242,7 +242,7 @@ package org.apache.flex.events
 	}
 
 	COMPILE::JS
-	public class MouseEvent extends Event implements IFlexJSEvent, IBrowserEvent
+	public class MouseEvent extends Event implements IRoyaleEvent, IBrowserEvent
 	{
 		private static function platformConstant(s:String):String
 		{
@@ -270,7 +270,7 @@ package org.apache.flex.events
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function MouseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false,
 								   localX:Number = NaN, localY:Number = NaN,
@@ -350,7 +350,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
 		 */
 		public function get delta():int
 		{
@@ -368,7 +368,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
 		 */
 		public function get deltaX():int
 		{
@@ -386,7 +386,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
 		 */
 		public function get deltaY():int
 		{
@@ -409,7 +409,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get target():Object
 		{
@@ -426,7 +426,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get currentTarget():Object
 		{
@@ -450,7 +450,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get clientX():Number
 		{
@@ -475,7 +475,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get clientY():Number
 		{
@@ -501,7 +501,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get screenX():Number
 		{
@@ -517,7 +517,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get screenY():Number
 		{
@@ -542,7 +542,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		override public function preventDefault():void
 		{
@@ -563,7 +563,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get defaultPrevented():Boolean
 		{
@@ -599,7 +599,7 @@ package org.apache.flex.events
 			var outs:Array;
 			var me:window.MouseEvent;
 			var parent:Object;
-			var target:Object = e.target.flexjs_wrapper;
+			var target:Object = e.target.royale_wrapper;
 			if (target == null)
 				return; // probably over the html tag
 			var targets:Array = MouseEvent.targets;
@@ -683,9 +683,9 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
-        override public function cloneEvent():IFlexJSEvent
+        override public function cloneEvent():IRoyaleEvent
         {
             return new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
                 localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
@@ -696,7 +696,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
          */
 		override public function stopImmediatePropagation():void
 		{
@@ -711,7 +711,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
          */
 		override public function stopPropagation():void
 		{

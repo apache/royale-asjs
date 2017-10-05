@@ -48,20 +48,20 @@ COMPILE::SWF
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
     /**
      *  The UIHTMLElementWrapper class is the base class for most Buttons
-     *  and other UI objects in a FlexJS application that do not have children.  
+     *  and other UI objects in a Royale application that do not have children.  
      *  In Flash, these buttons extend SimpleButton and therefore
      *  do not support all of the Sprite APIs.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class UIHTMLElementWrapper extends ElementWrapper implements IStrandWithModel, IEventDispatcher
 	{
@@ -71,7 +71,7 @@ COMPILE::SWF
          *  @langversion 3.
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function UIHTMLElementWrapper()
 		{
@@ -101,8 +101,8 @@ COMPILE::SWF
         protected var _model:Object;
         
         /**
-         * @flexjsignorecoercion Class 
-         * @flexjsignorecoercion org.apache.flex.core.IBeadModel 
+         * @royaleignorecoercion Class 
+         * @royaleignorecoercion org.apache.flex.core.IBeadModel 
          */
         public function get model():Object
         {
@@ -239,8 +239,8 @@ COMPILE::SWF
         
         /**
          * @param value The event containing new style properties.
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.IParent
          */
         public function get parent():IParent
         {
@@ -250,9 +250,9 @@ COMPILE::SWF
             }
             COMPILE::SWF
             {
-                var p:IFlexJSElement = this.$displayObject.parent as IFlexJSElement;
+                var p:IRoyaleElement = this.$displayObject.parent as IRoyaleElement;
             }
-            var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
+            var wrapper:IParent = p ? p.royale_wrapper as IParent : null;
             return wrapper;
         }
         

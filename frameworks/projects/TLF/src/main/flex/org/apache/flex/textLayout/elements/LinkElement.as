@@ -329,7 +329,7 @@ package org.apache.flex.textLayout.elements
 
 		/**
 		 *  @private
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.LinkElement
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.LinkElement
 		 */
 		public override function shallowCopy(startPos:int = 0, endPos:int = -1):IFlowElement
 		{

@@ -50,7 +50,7 @@ package org.apache.flex.createjs
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="initialize", type="org.apache.flex.events.Event")]
 	
@@ -64,7 +64,7 @@ package org.apache.flex.createjs
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="preinitialize", type="org.apache.flex.events.Event")]
 	
@@ -76,7 +76,7 @@ package org.apache.flex.createjs
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="viewChanged", type="org.apache.flex.events.Event")]
 	
@@ -87,12 +87,12 @@ package org.apache.flex.createjs
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="applicationComplete", type="org.apache.flex.events.Event")]
     
 	/**
-	 *  The Application class is the main class and entry point for a FlexJS
+	 *  The Application class is the main class and entry point for a Royale
 	 *  application.  This Application class is different than the
 	 *  Flex SDK's mx:Application or spark:Application in that it does not contain
 	 *  user interface elements.  Those UI elements go in the views (ViewBase).  This
@@ -100,7 +100,7 @@ package org.apache.flex.createjs
 	 *  an initial view.
 	 * 
      * This is the CreateJS Application class which must be used in place of the normal
-	 * FlexJS Application. CreateJS uses the HTML5 &lt;canvas&gt;, rather than the HTML DOM. This
+	 * Royale Application. CreateJS uses the HTML5 &lt;canvas&gt;, rather than the HTML DOM. This
 	 * class sets up the canvas and injects the necessary HTML elements into the index.html
 	 * file to bootstrap CreateJS.
 	 *
@@ -108,7 +108,7 @@ package org.apache.flex.createjs
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	
 	COMPILE::SWF
@@ -126,7 +126,7 @@ package org.apache.flex.createjs
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="initialize", type="org.apache.flex.events.Event")]
     
@@ -140,7 +140,7 @@ package org.apache.flex.createjs
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="preinitialize", type="org.apache.flex.events.Event")]
     
@@ -152,7 +152,7 @@ package org.apache.flex.createjs
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="viewChanged", type="org.apache.flex.events.Event")]
     
@@ -163,7 +163,7 @@ package org.apache.flex.createjs
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
     
@@ -188,10 +188,10 @@ package org.apache.flex.createjs
         
         /**
 		 * @private
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLBodyElement
-         * @flexjsignorecoercion HTMLCanvasElement
-         * @flexjsignorecoercion createjs.Stage
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLBodyElement
+         * @royaleignorecoercion HTMLCanvasElement
+         * @royaleignorecoercion createjs.Stage
          */
 		public function start():void
         {
@@ -203,14 +203,14 @@ package org.apache.flex.createjs
             
             element = document.createElement('canvas') as WrappedHTMLElement;
             canvas = element as HTMLCanvasElement;
-            canvas.id = 'flexjsCanvas';
+            canvas.id = 'royaleCanvas';
             canvas.width = 700;
             canvas.height = 500;
             
             body = document.getElementsByTagName('body')[0] as HTMLBodyElement;
             body.appendChild(this.element);
             
-            stage = new createjs.Stage('flexjsCanvas');
+            stage = new createjs.Stage('royaleCanvas');
 			
 			MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
             
@@ -243,7 +243,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set valuesImpl(value:IValuesImpl):void
 		{
@@ -259,7 +259,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		[Bindable("__NoChangeEvent__")]
 		public var initialView:IApplicationView;
@@ -270,7 +270,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		[Bindable("__NoChangeEvent__")]		
 		private var _model:Object;
@@ -281,7 +281,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		[Bindable("__NoChangeEvent__")]
 		override public function get model():Object
@@ -305,7 +305,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public var controller:Object;
 		
@@ -319,7 +319,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get MXMLDescriptor():Array
 		{
@@ -343,7 +343,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function generateMXMLAttributes(data:Array):void
 		{
@@ -358,7 +358,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public var beads:Array;
 		
@@ -368,9 +368,9 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion createjs.DisplayObject
-         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion createjs.DisplayObject
+         *  @royaleignorecoercion org.apache.flex.core.IUIBase
 		 */
 		public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -384,8 +384,8 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.IUIBase
 		 */
 		public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
@@ -399,14 +399,14 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @flexjsignorecoercion org.apache.flex.core.IChild
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.flex.core.IChild
 		 */
 		public function getElementAt(index:int):IChild
 		{
 			var c:WrappedHTMLElement = stage.getChildAt(index) as WrappedHTMLElement;
-			return c.flexjs_wrapper as IChild;
+			return c.royale_wrapper as IChild;
 		}
 		
 		/**
@@ -415,8 +415,8 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion createjs.DisplayObject
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion createjs.DisplayObject
 		 */
 		public function getElementIndex(c:IChild):int
 		{
@@ -429,7 +429,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -442,7 +442,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get numElements():int
 		{

@@ -39,9 +39,9 @@ package org.apache.flex.svg
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
      *  // TODO (aharui) ignore imports of external linkage interfaces?
-     *  @flexjsignoreimport SVGLocatable
+     *  @royaleignoreimport SVGLocatable
 	 */
 	public class Text extends GraphicShape implements IText, IDrawable
 	{
@@ -51,7 +51,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function Text()
 		{
@@ -86,7 +86,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
         COMPILE::SWF
 		public function get textField() : CSSTextField
@@ -103,11 +103,11 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @flexjsignorecoercion Text
-         *  @flexjsignorecoercion Node
-         *  @flexjsignorecoercion SVGLocatable
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion Text
+         *  @royaleignorecoercion Node
+         *  @royaleignorecoercion SVGLocatable
 		 */
 		public function drawText(value:String, xt:Number, yt:Number):void
 		{
@@ -133,7 +133,7 @@ package org.apache.flex.svg
                 var style:String = this.getStyleStr();
 				if (_textElem == null) {
                 	_textElem = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
-                	_textElem.flexjs_wrapper = this;
+                	_textElem.royale_wrapper = this;
 					element.appendChild(_textElem);
 				}
 				else {

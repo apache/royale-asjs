@@ -311,8 +311,8 @@ package org.apache.flex.textLayout.compose
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITextFlow
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITextFlow
 		 */
 		private function composeBlockElement(elem:IFlowGroupElement, absStart:int, isInTable:Boolean=false, startChildIdx:int = -1):Boolean
 		{	
@@ -1603,7 +1603,7 @@ package org.apache.flex.textLayout.compose
 			}
 		}
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
 		 */
 		protected function composeInlineGraphicElement(inlineGraphic:IInlineGraphicElement, textLine:ITextLine):Boolean
 		{

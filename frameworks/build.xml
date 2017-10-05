@@ -25,7 +25,7 @@
 -->
 <project name="frameworks" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location=".."/>
+    <property name="ROYALE_HOME" location=".."/>
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -55,16 +55,16 @@
         </and>
     </condition>  
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}" />
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}" />
  
     <target name="main" depends="check-compile-env,clean,prepare,compile,fonts"
         description="Clean build of all SWCs"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
-        <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
+        <ant antfile="${ROYALE_HOME}/build.xml" target="check-compile-env" dir="${ROYALE_HOME}"/>
     </target>
 
     <target name="check-playerglobal" description="Check for the required environment variables">
@@ -96,7 +96,7 @@
     </target>
 
     <target name="prepare" depends="thirdparty-downloads">
-        <mkdir dir="${basedir}/js/FlexJS/libs" />
+        <mkdir dir="${basedir}/js/Royale/libs" />
         <mkdir dir="${basedir}/libs" />
         <antcall target="fake-playerglobal" />
         <antcall target="fake-airglobal" />
@@ -141,7 +141,7 @@
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
-        <!--<ant dir="${basedir}/projects/FlexJSUI" target="other.locales"/>-->
+        <!--<ant dir="${basedir}/projects/RoyaleUI" target="other.locales"/>-->
     </target>
     
     <target name="doc" >
@@ -201,7 +201,7 @@
         </delete>
         <delete dir="${basedir}/libs/generated"/>
         <!-- Delete only if it exists and it is empty.  air and swfobject put dirs here. -->
-        <delete dir="${FLEXJS_HOME}/templates" includeemptydirs="true" failonerror="false">
+        <delete dir="${ROYALE_HOME}/templates" includeemptydirs="true" failonerror="false">
             <exclude name="swfobject/index.template.html" />
             <exclude name="swfobject/expressInstall.swf" />
             <exclude name="swfobject/swfobject.js" />

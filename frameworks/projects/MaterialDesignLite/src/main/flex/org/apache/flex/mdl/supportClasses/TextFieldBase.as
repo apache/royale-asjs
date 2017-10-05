@@ -34,7 +34,7 @@ package org.apache.flex.mdl.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */    
 	public class TextFieldBase extends TextInput implements ITextField
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.mdl.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function TextFieldBase()
 		{
@@ -62,7 +62,7 @@ package org.apache.flex.mdl.supportClasses
              *  @langversion 3.0
              *  @playerversion Flash 10.2
              *  @playerversion AIR 2.6
-             *  @productversion FlexJS 0.8
+             *  @productversion Royale 0.8
              */
             public function get textNode():Text
             {
@@ -81,7 +81,7 @@ package org.apache.flex.mdl.supportClasses
              *  @langversion 3.0
              *  @playerversion Flash 10.2
              *  @playerversion AIR 2.6
-             *  @productversion FlexJS 0.8
+             *  @productversion Royale 0.8
              */
             public function get input():HTMLInputElement
             {
@@ -100,7 +100,7 @@ package org.apache.flex.mdl.supportClasses
              *  @langversion 3.0
              *  @playerversion Flash 10.2
              *  @playerversion AIR 2.6
-             *  @productversion FlexJS 0.8
+             *  @productversion Royale 0.8
              */
             public function get label():HTMLLabelElement
             {
@@ -120,7 +120,7 @@ package org.apache.flex.mdl.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		override protected function setClassName(value:String):void
 		{
@@ -135,7 +135,7 @@ package org.apache.flex.mdl.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get floatingLabel():Boolean
         {
@@ -161,7 +161,7 @@ package org.apache.flex.mdl.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get isInvalid():Boolean
         {

@@ -38,7 +38,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class DateFieldMouseController implements IBeadController
 	{
@@ -48,7 +48,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function DateFieldMouseController()
 		{
@@ -62,7 +62,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -141,7 +141,7 @@ package org.apache.flex.html.beads.controllers
             var popup:IUIBase = IUIBase(viewBead.popUp);
             
             COMPILE::SWF {
-                var before:IUIBase = event.targetBeforeBubbling["flexjs_wrapper"] as IUIBase;
+                var before:IUIBase = event.targetBeforeBubbling["royale_wrapper"] as IUIBase;
                 if (before) {
                     while (before != null) {
                         if (before == popup) return;

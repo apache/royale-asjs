@@ -30,14 +30,14 @@ package org.apache.flex.core
 	[DefaultProperty("mxmlContent")]
 	
     /**
-     *  The View class is the class for most views in a FlexJS
+     *  The View class is the class for most views in a Royale
      *  application.  It is generally used as the root tag of MXML
      *  documents and UI controls and containers are added to it.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class View extends ViewBase implements IMXMLDocument
 	{		
@@ -81,7 +81,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get MXMLDescriptor():Array
 		{
@@ -103,7 +103,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function generateMXMLAttributes(data:Array):void
 		{
@@ -116,7 +116,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public var mxmlContent:Array;
     }

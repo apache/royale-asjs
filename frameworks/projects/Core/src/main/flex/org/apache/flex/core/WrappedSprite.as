@@ -26,10 +26,10 @@ package org.apache.flex.core
 	}
 
 	COMPILE::SWF
-	public class WrappedSprite extends Sprite implements IFlexJSElement, IRenderedObject
+	public class WrappedSprite extends Sprite implements IRoyaleElement, IRenderedObject
 	{
 
-        private var _flexjs_wrapper:Object;
+        private var _royale_wrapper:Object;
         
         //--------------------------------------
         //   Property
@@ -41,15 +41,15 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
-        public function get flexjs_wrapper():Object
+        public function get royale_wrapper():Object
         {
-            return _flexjs_wrapper;
+            return _royale_wrapper;
         }
-        public function set flexjs_wrapper(value:Object):void
+        public function set royale_wrapper(value:Object):void
         {
-            _flexjs_wrapper = value;
+            _royale_wrapper = value;
         }
 		
 		public function get $displayObject():DisplayObject

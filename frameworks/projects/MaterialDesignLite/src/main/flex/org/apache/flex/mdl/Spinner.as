@@ -41,7 +41,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class Spinner extends UIBase
     {
@@ -61,7 +61,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get isActive():Boolean
         {
@@ -88,7 +88,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set singleColor(value:Boolean):void
         {
@@ -102,7 +102,7 @@ package org.apache.flex.mdl
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          *
          * @return
          */

@@ -69,7 +69,7 @@
         
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/jquery</uri>
+                <uri>library://ns.apache.org/royale/jquery</uri>
                 <manifest>../../../../../../../projects/JQuery/src/main/resources/jquery-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -94,7 +94,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/jquery</uri>
+        <uri>library://ns.apache.org/royale/jquery</uri>
     </include-namespaces>
         
 

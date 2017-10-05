@@ -29,7 +29,7 @@ package org.apache.flex.charts.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public interface IWedgeItemRenderer extends IChartItemRenderer
 	{
@@ -39,7 +39,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get centerX():Number;
 		function set centerX(value:Number):void;
@@ -50,7 +50,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get centerY():Number;
 		function set centerY(value:Number):void;
@@ -61,7 +61,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get startAngle():Number;
 		function set startAngle(value:Number):void;
@@ -72,7 +72,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get arc():Number;
 		function set arc(value:Number):void;
@@ -83,7 +83,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get radius():Number;
 		function set radius(value:Number):void;
@@ -94,7 +94,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get fill():IFill;
 		function set fill(value:IFill):void;
@@ -105,7 +105,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get stroke():IStroke;
 		function set stroke(value:IStroke):void;

@@ -31,7 +31,7 @@ package org.apache.flex.net
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="complete", type="org.apache.flex.events.Event")]
 	
@@ -41,7 +41,7 @@ package org.apache.flex.net
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="communicationError", type="org.apache.flex.events.Event")]
 	
@@ -51,7 +51,7 @@ package org.apache.flex.net
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
 	
@@ -62,7 +62,7 @@ package org.apache.flex.net
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.7.0
+	 *  @productversion Royale 0.7.0
 	 */
 	public class URLLoader extends EventDispatcher
 	{
@@ -76,7 +76,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */        
 		public var requestStatus:int;
 		
@@ -94,7 +94,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onComplete:Function;
 		
@@ -104,7 +104,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onError:Function;
 		
@@ -114,7 +114,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onProgress:Function;
 		
@@ -124,7 +124,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onStatus:Function;
 		
@@ -134,7 +134,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function complete(callback:Function):URLLoader
 		{
@@ -148,7 +148,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function error(callback:Function):URLLoader
 		{
@@ -162,7 +162,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function progress(callback:Function):URLLoader
 		{
@@ -176,7 +176,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function status(callback:Function):URLLoader
 		{

@@ -438,7 +438,7 @@ package org.apache.flex.textLayout.compose
 
 		/**
 		 *  @private 
-		 * @flexjsignorecoercion org.apache.flex.textLayout.container.ContainerController
+		 * @royaleignorecoercion org.apache.flex.textLayout.container.ContainerController
 		 */
 		public function setController(cont:IContainerController, colNumber:int):void
 		{
@@ -996,7 +996,7 @@ package org.apache.flex.textLayout.compose
 
 		/**
 		 *  @private Regenerate the ITextLine -- called when textLine has been gc'ed 
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IListItemElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IListItemElement
 		 */
 		public function recreateTextLine(textBlock:ITextBlock, previousLine:ITextLine):ITextLine
 		{
@@ -1291,7 +1291,7 @@ package org.apache.flex.textLayout.compose
 		// TODO remove reference to UIBase
 		/**
 		 *  Create a rectangle for selection
-		 * @flexjsignorecoercion org.apache.flex.core.UIBase
+		 * @royaleignorecoercion org.apache.flex.core.UIBase
 		 */
 		static private function createSelectionRect(selObj:ICompoundGraphic, color:uint, x:Number, y:Number, width:Number, height:Number):UIBase
 		{
@@ -1403,8 +1403,8 @@ package org.apache.flex.textLayout.compose
 		}
 
 		/** @private - helper method to calculate all selection blocks within a line.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
 		 */
 		public function calculateSelectionBounds(textLine:ITextLine, rectArray:Array, begIdx:int, endIdx:int, blockProgression:String, heightAndAdj:Array):void
 		{

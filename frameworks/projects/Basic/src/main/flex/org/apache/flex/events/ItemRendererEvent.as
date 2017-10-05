@@ -29,7 +29,7 @@ package org.apache.flex.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
+	 * @productversion Royale 0.0
 	 */
 	public class ItemRendererEvent extends CustomEvent
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
 		public function ItemRendererEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
@@ -73,14 +73,14 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
 		public var itemRenderer:IItemRenderer;
 		
 		/**
 		 * @private
 		 */
-		override public function cloneEvent():IFlexJSEvent
+		override public function cloneEvent():IRoyaleEvent
 		{
 			var newEvent:ItemRendererEvent = new ItemRendererEvent(type);
 			newEvent.itemRenderer = itemRenderer;

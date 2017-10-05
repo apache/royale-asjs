@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
     COMPILE::SWF
-    public interface IFlexJSElement
+    public interface IRoyaleElement
     {
         //--------------------------------------
         //   Property
@@ -31,14 +31,14 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.7
+         *  @productversion Royale 0.7
          */
-        function get flexjs_wrapper():Object;
-        function set flexjs_wrapper(value:Object):void;
+        function get royale_wrapper():Object;
+        function set royale_wrapper(value:Object):void;
     }
 
 	COMPILE::JS
-	public interface IFlexJSElement
+	public interface IRoyaleElement
 	{
 
 		//--------------------------------------
@@ -51,8 +51,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
-		//function get flexjs_wrapper():Object;
+		//function get royale_wrapper():Object;
 	}
 }

@@ -39,7 +39,7 @@ package org.apache.flex.html.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class DataGroup extends ContainerContentArea implements IItemRendererParent
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.html.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function DataGroup()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function addItemRenderer(renderer:IItemRenderer):void
 		{
@@ -86,7 +86,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function removeItemRenderer(renderer:IItemRenderer):void
 		{
@@ -105,7 +105,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function removeAllItemRenderers():void
 		{
@@ -121,7 +121,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function getItemRendererForIndex(index:int):IItemRenderer
 		{
@@ -136,7 +136,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function updateAllItemRenderers():void
 		{

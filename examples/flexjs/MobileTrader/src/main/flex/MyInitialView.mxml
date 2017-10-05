@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:views="views.*" 
 				xmlns:apache="org.apache.flex.html.beads.*"
 				xmlns:html="org.apache.flex.html.*"
@@ -27,7 +27,7 @@ limitations under the License.
 				initComplete="onInitComplete()" xmlns:models="models.*" >
 	
 	<fx:Style>
-		@namespace js  "library://ns.apache.org/flexjs/basic";
+		@namespace js  "library://ns.apache.org/royale/basic";
 		@namespace views  "views.*";
 		
 		js|StackedViewManager {

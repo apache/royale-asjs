@@ -39,7 +39,7 @@ package org.apache.flex.html.accessories
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class TextPromptBead implements IBead
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function TextPromptBead()
 		{
@@ -63,7 +63,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get prompt():String
 		{
@@ -82,9 +82,9 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion HTMLInputElement
-		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.flex.core.UIBase;
 		 */
 		public function set strand(value:IStrand):void
 		{

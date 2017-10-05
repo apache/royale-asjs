@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:mdl="library://ns.apache.org/flexjs/mdl">
+                 xmlns:mdl="library://ns.apache.org/royale/mdl">
     <mdl:Grid>
        <mdl:GridCell column="1">
           <mdl:Spinner isActive="true"/>

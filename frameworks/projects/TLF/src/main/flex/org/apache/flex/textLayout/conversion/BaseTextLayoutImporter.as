@@ -143,7 +143,7 @@ package org.apache.flex.textLayout.conversion
 			}
 
 			var textFlow:TextFlow = importFromXML(xmlTree);
-			// TODO probably does not make sense for FlexJS
+			// TODO probably does not make sense for Royale
 			// if (Configuration.playerEnablesArgoFeatures)
 			// System["disposeXML"](xmlTree);
 			return textFlow;

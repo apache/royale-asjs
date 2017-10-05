@@ -37,7 +37,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	public class LayoutBase implements IBeadLayout
 	{
@@ -47,7 +47,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function LayoutBase()
 		{
@@ -63,7 +63,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
         protected var host:ILayoutChild;
 
@@ -73,10 +73,10 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 * 
-		 * @flexjsignorecoercion org.apache.flex.core.ILayoutChild
-		 * @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.flex.core.ILayoutChild
+		 * @royaleignorecoercion org.apache.flex.events.IEventDispatcher
          */
 		public function set strand(value:IStrand):void
 		{
@@ -100,7 +100,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		protected function handleSizeChange(event:Event):void
 		{
@@ -114,7 +114,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		protected function handleChildrenAdded(event:Event):void
 		{
@@ -148,7 +148,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		protected function childResizeHandler(event:Event):void
 		{
@@ -197,7 +197,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		protected function handleLayoutNeeded(event:Event):void
 		{
@@ -210,7 +210,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		protected function handleInitComplete(event:Event):void
 		{
@@ -243,7 +243,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		protected function childMargins(child:Object, hostWidth:Number, hostHeight:Number):Object
 		{
@@ -276,7 +276,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		protected function childPositions(child:Object):Object
 		{
@@ -294,9 +294,9 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 * 
-		 * @flexjsignorecoercion org.apache.flex.core.ILayoutParent
+		 * @royaleignorecoercion org.apache.flex.core.ILayoutParent
 		 */
 		protected function get layoutView():ILayoutView
 		{
@@ -312,7 +312,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		public function performLayout():void
 		{
@@ -354,7 +354,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function layout():Boolean
 		{

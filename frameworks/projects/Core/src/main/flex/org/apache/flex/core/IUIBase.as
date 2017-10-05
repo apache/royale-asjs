@@ -30,7 +30,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public interface IUIBase extends IStrand, IEventDispatcher, IChild
 	{
@@ -42,7 +42,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		function addedToParent():void;
 		
@@ -52,7 +52,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get alpha():Number;
 		function set alpha(value:Number):void;
@@ -63,7 +63,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get x():Number;
 		function set x(value:Number):void;
@@ -74,7 +74,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get y():Number;
 		function set y(value:Number):void;
@@ -85,7 +85,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get width():Number;
 		function set width(value:Number):void;
@@ -96,7 +96,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get height():Number;
 		function set height(value:Number):void;
@@ -107,7 +107,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function get visible():Boolean;
         function set visible(value:Boolean):void;
@@ -119,7 +119,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function get topMostEventDispatcher():IEventDispatcher;
     }

@@ -33,20 +33,20 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
 
 	[DefaultProperty("mxmlContent")]
 
     /**
-     *  The ViewBase class is the base class for most views in a FlexJS
+     *  The ViewBase class is the base class for most views in a Royale
      *  application.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ViewBase extends GroupBase implements IPopUpHost, IApplicationView
 	{
@@ -56,13 +56,13 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ViewBase()
 		{
 			super();
 
-			className = "flexjs";
+			className = "royale";
 		}
 
 		private var _applicationModel:Object;
@@ -77,7 +77,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get applicationModel():Object
 		{

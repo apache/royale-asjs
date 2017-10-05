@@ -27,7 +27,7 @@ package org.apache.flex.events.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class MouseUtils
 	{
@@ -41,7 +41,7 @@ package org.apache.flex.events.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		static public function eventTarget(event:MouseEvent):Object
 		{
@@ -54,7 +54,7 @@ package org.apache.flex.events.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		static public function localX(event:MouseEvent):Number
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.events.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		static public function localY(event:MouseEvent):Number
 		{
@@ -80,7 +80,7 @@ package org.apache.flex.events.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		static public function globalX(event:MouseEvent):Number
 		{
@@ -93,7 +93,7 @@ package org.apache.flex.events.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		static public function globalY(event:MouseEvent):Number
 		{

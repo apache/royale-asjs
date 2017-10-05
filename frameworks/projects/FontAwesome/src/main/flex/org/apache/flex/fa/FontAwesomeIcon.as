@@ -34,7 +34,7 @@ package org.apache.flex.fa
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
 	 *
 	 *
      */
@@ -46,9 +46,9 @@ package org.apache.flex.fa
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          *
-         *  @flexjsignorecoercion HTMLElement
+         *  @royaleignorecoercion HTMLElement
 		 * <inject_html>
 		 *     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		 * </inject_html>		 
@@ -69,8 +69,8 @@ package org.apache.flex.fa
         protected var _rotation:String;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion Text
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -112,7 +112,7 @@ package org.apache.flex.fa
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          *
          */
         public function get size():String
@@ -144,7 +144,7 @@ package org.apache.flex.fa
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          *
          */
         public function get fixedWidth():Boolean
@@ -167,7 +167,7 @@ package org.apache.flex.fa
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          *
          */
         public function get showBorder():Boolean
@@ -190,7 +190,7 @@ package org.apache.flex.fa
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          *
          */
         COMPILE::JS

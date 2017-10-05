@@ -64,7 +64,7 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/jquery</uri>
+                <uri>library://ns.apache.org/royale/jquery</uri>
                 <manifest>../resources/jquery-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -86,7 +86,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/jquery</uri>
+        <uri>library://ns.apache.org/royale/jquery</uri>
     </include-namespaces>  
         
     <target-player>${playerglobal.version}</target-player>

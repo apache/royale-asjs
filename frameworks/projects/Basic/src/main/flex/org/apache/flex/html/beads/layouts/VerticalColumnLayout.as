@@ -48,7 +48,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class VerticalColumnLayout extends LayoutBase implements IBeadLayout
 	{
@@ -58,7 +58,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function VerticalColumnLayout()
 		{
@@ -74,7 +74,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get numColumns():int
 		{
@@ -87,7 +87,7 @@ package org.apache.flex.html.beads.layouts
 
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
 		override public function layout():Boolean
 		{

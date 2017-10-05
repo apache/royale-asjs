@@ -1041,7 +1041,7 @@ package org.apache.flex.textLayout.elements
 		 * @see ParagraphElement
 		 */
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
 		 */
 		public function getParagraph():IParagraphElement
 		{
@@ -1063,7 +1063,7 @@ package org.apache.flex.textLayout.elements
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 */
 		public function getParentCellElement():ITableCellElement
 		{
@@ -1267,7 +1267,7 @@ package org.apache.flex.textLayout.elements
 
 		/**
 		 *  @private 
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IContainerFormattedElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IContainerFormattedElement
 		 */
 		public function getEnclosingController(relativePos:int):IContainerController
 		{
@@ -1368,7 +1368,7 @@ package org.apache.flex.textLayout.elements
 		/**
 		 *  Support for splitting FlowLeafElements.  Does a quick copy of _characterFormat if necessary.
 		 *  @private 
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.FlowValueHolder
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.FlowValueHolder
 		 */
 		public function quickCloneTextLayoutFormat(sibling:IFlowElement):void
 		{

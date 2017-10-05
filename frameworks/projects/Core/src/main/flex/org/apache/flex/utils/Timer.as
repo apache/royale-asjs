@@ -42,7 +42,7 @@ COMPILE::JS
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 [Event(name="timer", type="org.apache.flex.events.Event")]
 
@@ -53,7 +53,7 @@ COMPILE::JS
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 COMPILE::SWF
 public class Timer extends flash.utils.Timer
@@ -63,7 +63,7 @@ public class Timer extends flash.utils.Timer
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static const TIMER:String = "timer";
     /**
@@ -77,7 +77,7 @@ public class Timer extends flash.utils.Timer
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function Timer(delay:Number, repeatCount:int = 0)
     {
@@ -104,7 +104,7 @@ public class Timer extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static const TIMER:String = "timer";
     /**
@@ -118,7 +118,7 @@ public class Timer extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function Timer(delay:Number, repeatCount:int = 0)
     {

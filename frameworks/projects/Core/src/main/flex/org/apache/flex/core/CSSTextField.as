@@ -39,7 +39,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
 	public class CSSTextField extends TextField implements IRenderedObject
@@ -50,7 +50,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function CSSTextField()
 		{
@@ -65,7 +65,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var styleParent:Object;
 
@@ -76,7 +76,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var styleState:String;
 
@@ -88,7 +88,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var parentDrawsBackground:Boolean;
 
@@ -100,7 +100,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var parentHandlesPadding:Boolean;
 
@@ -110,8 +110,8 @@ package org.apache.flex.core
 		override public function set text(value:String):void
 		{
 			var sp:Object = parent;
-            if (sp is IFlexJSElement)
-                sp = sp.flexjs_wrapper;
+            if (sp is IRoyaleElement)
+                sp = sp.royale_wrapper;
 			if (styleParent)
 				sp = styleParent;
 			sp.addEventListener("classNameChanged", updateStyles);

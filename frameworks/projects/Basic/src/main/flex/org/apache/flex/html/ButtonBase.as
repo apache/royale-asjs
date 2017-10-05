@@ -44,7 +44,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
@@ -54,7 +54,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
 	public class ButtonBase extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase
@@ -65,7 +65,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ButtonBase()
 		{
@@ -77,7 +77,7 @@ package org.apache.flex.html
     public class ButtonBase extends UIBase implements IStrand, IEventDispatcher, IUIBase
     {
         /**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {

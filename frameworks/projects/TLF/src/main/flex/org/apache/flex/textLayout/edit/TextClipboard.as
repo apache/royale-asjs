@@ -254,7 +254,7 @@ package org.apache.flex.textLayout.edit
 							element.setStyle(ConversionConstants.MERGE_TO_NEXT_ON_PASTE, "true");
 					}
 				}
-//TODO probably does not make sense for FlexJS
+//TODO probably does not make sense for Royale
 //				if (Configuration.playerEnablesArgoFeatures)
 //					System["disposeXML"](xmlTree);
 

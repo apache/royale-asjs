@@ -40,7 +40,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
         public function Circle(cx:Number=0, cy:Number=0, r:Number=0)
         {
@@ -73,9 +73,9 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @flexjsignorecoercion SVGCircleElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion SVGCircleElement
          */
         public function drawCircle(cx:Number, cy:Number, radius:Number):void
         {
@@ -93,7 +93,7 @@ package org.apache.flex.svg
 
                 if (_circle == null) {
                     _circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle') as WrappedHTMLElement;
-                    _circle.flexjs_wrapper = this;
+                    _circle.royale_wrapper = this;
                     element.appendChild(_circle);
                 }
                 _circle.setAttribute('style', style);

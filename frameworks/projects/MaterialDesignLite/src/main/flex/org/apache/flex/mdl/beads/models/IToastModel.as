@@ -27,7 +27,7 @@ package org.apache.flex.mdl.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public interface IToastModel extends IBeadModel
     {
@@ -37,7 +37,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         function get message():String;
         function set message(value:String):void;
@@ -48,7 +48,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         function get timeout():int
         function set timeout(value:int):void;
@@ -66,7 +66,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         function get snackbarData():Object;
     }

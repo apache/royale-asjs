@@ -46,7 +46,7 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(_strand).addElement(label);
 		}
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 * @royaleignorecoercion org.apache.flex.core.IUIBase
 		 */
 		public function get host():IUIBase
 		{

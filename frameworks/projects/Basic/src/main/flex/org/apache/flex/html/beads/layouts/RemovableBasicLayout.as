@@ -32,7 +32,7 @@ import org.apache.flex.events.IEventDispatcher;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class RemovableBasicLayout extends BasicLayout implements IBeadLayout {
 
@@ -42,10 +42,10 @@ public class RemovableBasicLayout extends BasicLayout implements IBeadLayout {
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      *
-     * @flexjsignorecoercion org.apache.flex.core.ILayoutChild
-     * @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
+     * @royaleignorecoercion org.apache.flex.core.ILayoutChild
+     * @royaleignorecoercion org.apache.flex.events.IEventDispatcher
      */
     override public function set strand(value:IStrand):void {
         var newHost:ILayoutChild = value as ILayoutChild;

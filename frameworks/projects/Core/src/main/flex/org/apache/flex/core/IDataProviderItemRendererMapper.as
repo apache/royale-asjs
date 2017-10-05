@@ -24,7 +24,7 @@ package org.apache.flex.core
     /**
      *  The IDataProviderItemRendererMapper interface is the interface for beads
      *  that know how to iterate through a dataProvider, generate item renderers,
-     *  and assign items from the dataProvider to those item renderers.  In FlexJS,
+     *  and assign items from the dataProvider to those item renderers.  In Royale,
      *  a wide range of data providers are allowed, from simple Arrays and Vectors
      *  on up to sophisticated data structures that dispatch change events.
      *  Different IDataProviderItemRendererMapper implements are often required to
@@ -33,7 +33,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public interface IDataProviderItemRendererMapper extends IBead
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function get itemRendererFactory():IItemRendererClassFactory;
         function set itemRendererFactory(value:IItemRendererClassFactory):void;

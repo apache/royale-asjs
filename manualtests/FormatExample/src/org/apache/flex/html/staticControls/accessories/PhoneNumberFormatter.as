@@ -34,7 +34,7 @@ package org.apache.flex.html.staticControls.accessories
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class PhoneNumberFormatter extends EventDispatcher implements IBead, IFormatBead
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function PhoneNumberFormatter()
 		{
@@ -58,7 +58,7 @@ package org.apache.flex.html.staticControls.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -94,7 +94,7 @@ package org.apache.flex.html.staticControls.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get propertyName():String
 		{
@@ -115,7 +115,7 @@ package org.apache.flex.html.staticControls.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get eventName():String
 		{
@@ -135,7 +135,7 @@ package org.apache.flex.html.staticControls.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get formattedString():String
 		{

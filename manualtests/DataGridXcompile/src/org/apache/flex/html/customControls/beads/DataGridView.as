@@ -147,7 +147,7 @@ package org.apache.flex.html.customControls.beads
 			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
 		}
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 * @royaleignorecoercion org.apache.flex.core.IUIBase
 		 */
 		public function get host():IUIBase
 		{

@@ -29,12 +29,12 @@ package org.apache.flex.cordova.geolocation
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
-	 * @flexjscordovaplugin cordova-plugin-geolocation
-	 * @flexjsignorecoercion FileEntry
-	 * @flexjsignorecoercion FileWriter
-	 * @flexjsignorecoercion window
-     * @flexjsignorecoercion Blob
+	 * @productversion Royale 0.0
+	 * @royalecordovaplugin cordova-plugin-geolocation
+	 * @royaleignorecoercion FileEntry
+	 * @royaleignorecoercion FileWriter
+	 * @royaleignorecoercion window
+     * @royaleignorecoercion Blob
 	 */
 	public class Geolocation
 	{

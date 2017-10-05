@@ -34,7 +34,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class EasyDataProviderChangeNotifier extends DataProviderChangeNotifier
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function EasyDataProviderChangeNotifier()
 		{
@@ -86,7 +86,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.collections.ArrayList
+		 * @royaleignorecoercion org.apache.flex.collections.ArrayList
 		 */
 		private function setDataProvider():void
 		{
@@ -96,8 +96,8 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.UIBase
-		 * @flexjsignorecoercion org.apache.flex.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.flex.core.UIBase
+		 * @royaleignorecoercion org.apache.flex.core.ISelectionModel
 		 */
 		private function get selectionModel():ISelectionModel
 		{

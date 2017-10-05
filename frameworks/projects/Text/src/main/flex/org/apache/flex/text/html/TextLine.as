@@ -72,7 +72,7 @@ package org.apache.flex.text.html
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -96,7 +96,7 @@ package org.apache.flex.text.html
 		}
 		
 		/**
-		 * @flexjsignorecoercion HTMLElement
+		 * @royaleignorecoercion HTMLElement
 		 */
 		public function get atomCount():int
 		{
@@ -200,7 +200,7 @@ package org.apache.flex.text.html
 		}
 		
 		/**
-		 * @flexjsignorecoercion HTMLElement
+		 * @royaleignorecoercion HTMLElement
 		 */
 		public function get textHeight():Number
 		{
@@ -215,7 +215,7 @@ package org.apache.flex.text.html
 		}
 		
 		/**
-		 * @flexjsignorecoercion HTMLElement
+		 * @royaleignorecoercion HTMLElement
 		 */
 		public function get textWidth():Number
 		{
@@ -326,8 +326,8 @@ package org.apache.flex.text.html
 		}
 		
 		/**
-		 *  @flexjsignorecoercion HTMLCanvasElement
-		 *  @flexjsignorecoercion CanvasRenderingContext2D
+		 *  @royaleignorecoercion HTMLCanvasElement
+		 *  @royaleignorecoercion CanvasRenderingContext2D
 		 */
 		public function getAtomBounds(atomIndex:int):Rectangle
 		{

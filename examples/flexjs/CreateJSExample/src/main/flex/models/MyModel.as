@@ -22,7 +22,7 @@ package models
 	import org.apache.flex.events.EventDispatcher;
 
 	/**
-	 * This model exists to satisfy the requirement that FlexJS apps have
+	 * This model exists to satisfy the requirement that Royale apps have
 	 * models.
 	 */
 	public class MyModel extends EventDispatcher

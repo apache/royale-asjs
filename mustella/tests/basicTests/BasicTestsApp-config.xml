@@ -112,6 +112,6 @@
         <symbol>ExitWhenDone</symbol>
         <symbol>SetShowRTE</symbol>
         <symbol>SendFormattedResultsToLog</symbol>
-        <symbol>FlexJSContext</symbol>
+        <symbol>RoyaleContext</symbol>
     </includes>
 </flex-config>

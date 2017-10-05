@@ -36,7 +36,7 @@ package org.apache.flex.collections
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="collectionChanged", type="org.apache.flex.events.CollectionEvent")]
 
@@ -46,7 +46,7 @@ package org.apache.flex.collections
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="itemAdded", type="org.apache.flex.events.CollectionEvent")]
 
@@ -56,7 +56,7 @@ package org.apache.flex.collections
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="itemRemoved", type="org.apache.flex.events.CollectionEvent")]
 
@@ -66,7 +66,7 @@ package org.apache.flex.collections
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="itemUpdated", type="org.apache.flex.events.CollectionEvent")]
 
@@ -78,7 +78,7 @@ package org.apache.flex.collections
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ArrayList extends EventDispatcher implements IBead, ICollection, IArrayList
 	{
@@ -88,7 +88,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ArrayList(initialSource:Array=null)
 		{
@@ -105,7 +105,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get id():String
 		{
@@ -132,7 +132,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {
@@ -148,7 +148,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get source():Array
 		{
@@ -177,7 +177,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function toArray():Array
 		{
@@ -190,7 +190,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function getItemAt(index:int):Object
         {
@@ -203,7 +203,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function getItemIndex(item:Object):int
 		{
@@ -216,7 +216,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function addItem(item:Object):void
 		{
@@ -229,7 +229,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function addItemAt(item:Object, index:int):void
 		{
@@ -265,7 +265,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function setItemAt(item:Object, index:int):Object
 		{
@@ -293,7 +293,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function removeItem(item:Object):Boolean
 		{
@@ -312,7 +312,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function removeItemAt(index:int):Object
 		{
@@ -349,7 +349,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function removeAll():void
 		{
@@ -367,7 +367,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function itemUpdated(item:Object):void
 		{
@@ -386,7 +386,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function itemUpdatedAt(index:int):void
 		{
@@ -401,7 +401,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get length():int
         {

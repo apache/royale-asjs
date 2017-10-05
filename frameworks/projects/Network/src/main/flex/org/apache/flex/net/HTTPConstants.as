@@ -27,7 +27,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const GET:String = "GET";
         
@@ -38,7 +38,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const POST:String = "POST";
         
@@ -48,7 +48,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const PUT:String = "PUT";
         
@@ -59,7 +59,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const FORM_URL_ENCODED:String = "application/x-www-form-urlencoded";
 
@@ -70,7 +70,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const DELETE:String = "DELETE";
 
@@ -80,7 +80,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const OPEN:String = "open";
 
@@ -90,7 +90,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const COMPLETE:String = "complete";
         
@@ -100,7 +100,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const COMMUNICATION_ERROR:String = "communicationError";
 
@@ -110,7 +110,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const IO_ERROR:String = "ioError";
 
@@ -120,7 +120,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const SECURITY_ERROR:String = "securityError";
 
@@ -130,7 +130,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const STATUS:String = "httpStatus";
         
@@ -146,7 +146,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const RESPONSE_STATUS:String = "httpResponseStatus";
         

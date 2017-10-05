@@ -47,7 +47,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function HorizontalFlexLayout()
 		{
@@ -64,7 +64,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get grow():Number {
 			return _grow;
@@ -84,7 +84,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get shrink():Number {
 			return _shrink;
@@ -99,7 +99,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		COMPILE::SWF
 		override public function layout():Boolean
@@ -242,13 +242,13 @@ package org.apache.flex.html.beads.layouts
 		}
 		/**
 		 * @copy org.apache.flex.core.IBeadLayout#layout
-		 * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
-		 * @flexjsignorecoercion org.apache.flex.core.UIBase
+		 * @royaleignorecoercion org.apache.flex.core.ILayoutHost
+		 * @royaleignorecoercion org.apache.flex.core.UIBase
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		COMPILE::JS
 		override public function layout():Boolean

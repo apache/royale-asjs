@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:local="*"
 				xmlns:models="models.*"
 				initComplete="initControls()" 
@@ -26,7 +26,7 @@ limitations under the License.
 				xmlns:beads="org.apache.flex.html.customControls.beads.*">
 	
 	<fx:Style>
-		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace basic "library://ns.apache.org/royale/basic";
 		@namespace custom "org.apache.flex.html.customControls.*";
 		
 		.boxGrid {

@@ -26,16 +26,16 @@ package {
  */
 internal class MylibClasses
 {
-    import org.example.flexjs.mylib.UniversalClass; UniversalClass;
+    import org.example.royale.mylib.UniversalClass; UniversalClass;
 
 	COMPILE::SWF
 	{
-        import org.example.flexjs.mylib.FlashClass; FlashClass;
+        import org.example.royale.mylib.FlashClass; FlashClass;
 	}
 
 	COMPILE::JS
 	{
-        import org.example.flexjs.mylib.JavaScriptClass; JavaScriptClass;
+        import org.example.royale.mylib.JavaScriptClass; JavaScriptClass;
 	}
 
 }

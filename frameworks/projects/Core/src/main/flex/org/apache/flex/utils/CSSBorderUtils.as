@@ -30,7 +30,7 @@ package org.apache.flex.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
     COMPILE::SWF
 	public class CSSBorderUtils
@@ -57,7 +57,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
          */
         public static function draw(g:Graphics, width:Number, height:Number,
                                     host:Object, state:String = null, 

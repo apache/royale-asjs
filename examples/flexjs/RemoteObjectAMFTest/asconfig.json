@@ -3,7 +3,7 @@
     "compilerOptions": {
         "debug": true,
         "source-map": true,
-        "js-output-type": "flexjs",
+        "js-output-type": "royale",
         "output": "./target/javascript"
     },
     "additionalOptions": "-html-template=src/main/resources/mdl-js-index-template.html -compiler.exclude-defaults-css-files=HTML.swc:defaults.css",

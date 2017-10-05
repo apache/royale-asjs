@@ -1,7 +1,7 @@
 Storage Example
 
 The StorageExample is designed to show you have to read and write simple, but permanent files using
-the FlexJS Storage framework.
+the Royale Storage framework.
 
 Permanent storage is available when the target platform is either Adobe AIR (desktop or mobile device)
 or Apache Cordova (mobile devices).

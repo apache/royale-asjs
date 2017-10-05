@@ -32,7 +32,7 @@ package org.apache.flex.mdl.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class DropDownListController implements IBeadController
 	{
@@ -42,7 +42,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function DropDownListController()
 		{
@@ -54,7 +54,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
          */
 		protected var model:DropDownListModel;
 		protected var _strand:IStrand;
@@ -65,7 +65,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{

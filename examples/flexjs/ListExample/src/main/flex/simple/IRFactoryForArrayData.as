@@ -48,7 +48,7 @@ package simple
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class IRFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
 	{
@@ -58,7 +58,7 @@ package simple
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function IRFactoryForArrayData(target:Object=null)
 		{
@@ -75,7 +75,7 @@ package simple
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function set strand(value:IStrand):void
 		{
@@ -109,7 +109,7 @@ package simple
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
@@ -131,7 +131,7 @@ package simple
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		protected var dataGroup:IItemRendererParent;
 

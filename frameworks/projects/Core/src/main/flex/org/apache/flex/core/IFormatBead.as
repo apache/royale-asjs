@@ -29,7 +29,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public interface IFormatBead extends IBead, IEventDispatcher
 	{
@@ -39,7 +39,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get propertyName():String;
 		function set propertyName(value:String):void;
@@ -51,7 +51,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get eventName():String;
 		function set eventName(value:String):void;
@@ -62,7 +62,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get formattedString():String;
 	}

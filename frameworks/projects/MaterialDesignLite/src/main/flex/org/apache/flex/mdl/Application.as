@@ -22,7 +22,7 @@ package org.apache.flex.mdl
     import org.apache.flex.core.SimpleCSSValuesImpl;
 		
 	/**
-	 * MDL Application holds specific MDL need in a FlexJS Application.
+	 * MDL Application holds specific MDL need in a Royale Application.
 	 *
 	 * This class extends the standard Application and sets up the
 	 * SimpleCSSValuesImpl (implementation) for convenience.
@@ -30,7 +30,7 @@ package org.apache.flex.mdl
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class Application extends org.apache.flex.core.Application
 	{
@@ -40,7 +40,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function Application()
 		{
@@ -58,7 +58,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public static var topLevelApplication:Object;
 	}

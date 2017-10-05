@@ -407,7 +407,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Convenience method for checking if table has merged cells
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 */
 		public function hasMergedCells():Boolean
 		{
@@ -585,7 +585,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Removes the row at the index specified and the cells it contains.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function removeRowWithContentAt(idx:int):Array
 		{
@@ -681,7 +681,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Removes the column at the index specified and the cells it contains. 
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function removeColumnWithContentAt(idx:int):Array
 		{
@@ -716,7 +716,7 @@ package org.apache.flex.textLayout.elements {
 		/**
 		 * @private
 		 * Gets table coordinates which represents the space occupied by cells spanning rows or columns
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		private function getBlockedCoords(inRow:int = -1, inColumn:int = -1):Vector.<CellCoords>{
 			var coords:Vector.<CellCoords> = new Vector.<CellCoords>();
@@ -751,7 +751,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Sets the row and column indices of the cells in the table to match their logical position as described by the table columns and rows
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function normalizeCells():void
 		{
@@ -861,7 +861,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Sizes and positions the cells in the table. 
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function composeCells():void{
 			normalizeCells();
@@ -1042,7 +1042,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns the previous table cell after the supplied table cell
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function getPreviousCell(tableCell:ITableCellElement):ITableCellElement {
 			var cell:ITableCellElement;
@@ -1079,7 +1079,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns the table cell at the row and column specified.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function getCellAt(rowIndex:int, columnIndex:int):ITableCellElement {
 			var cell:ITableCellElement;
@@ -1168,7 +1168,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns a vector of all the damaged cells in the table.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		private function getDamagedCells():Vector.<ITableCellElement>{
 			var cells:Vector.<ITableCellElement> = new Vector.<ITableCellElement>();
@@ -1194,7 +1194,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns a vector of all the table cell elements in the table.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function getCells():Vector.<ITableCellElement> {
 			var cells:Vector.<ITableCellElement> = new Vector.<ITableCellElement>();
@@ -1210,7 +1210,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns an array of all the table cells.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		public function getCellsArray():Array {
 			var cells:Array = [];
@@ -1338,7 +1338,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns the cell at the specified row and column.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 **/
 		private function getCellIndex(rowIdx:int,columnIdx:int):int{
 			if(rowIdx == 0 && columnIdx == 0)

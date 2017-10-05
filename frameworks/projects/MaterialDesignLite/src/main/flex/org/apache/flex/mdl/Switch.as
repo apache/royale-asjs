@@ -44,7 +44,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="textChange", type="org.apache.flex.events.Event")]
     
@@ -54,7 +54,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
@@ -64,7 +64,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -81,7 +81,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class Switch extends TextButton implements IStrand, IEventDispatcher, IUIBase
     {
@@ -91,7 +91,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function Switch()
         {
@@ -109,7 +109,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         override public function get text():String
         {
@@ -136,7 +136,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get selected():Boolean
         {
@@ -167,7 +167,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get ripple():Boolean
         {
@@ -195,10 +195,10 @@ package org.apache.flex.mdl
         private var span:HTMLSpanElement;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLLabelElement
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLSpanElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLLabelElement
+         * @royaleignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLSpanElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -218,8 +218,8 @@ package org.apache.flex.mdl
 
             label.appendChild(span);
 
-            (input as WrappedHTMLElement).flexjs_wrapper = this;
-            (span as WrappedHTMLElement).flexjs_wrapper = this;
+            (input as WrappedHTMLElement).royale_wrapper = this;
+            (span as WrappedHTMLElement).royale_wrapper = this;
 
             element.addEventListener(MouseEvent.CLICK, clickHandler, false);
             return element;

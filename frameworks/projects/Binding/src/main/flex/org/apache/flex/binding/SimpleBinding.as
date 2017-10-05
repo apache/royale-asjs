@@ -33,7 +33,7 @@ import org.apache.flex.core.IBinding;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class SimpleBinding implements IBead, IDocument, IBinding
 {
@@ -43,7 +43,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function SimpleBinding(isStatic:Boolean=false)
 	{
@@ -64,7 +64,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	protected var dispatcher:IEventDispatcher;
 
@@ -75,7 +75,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	protected var source:Object;
 
@@ -92,7 +92,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	protected var document:Object;
 
@@ -103,7 +103,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public var eventName:String;
 
@@ -113,7 +113,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get destination():Object
     {
@@ -131,7 +131,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get sourceID():String
     {
@@ -149,7 +149,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get destinationPropertyName():String
     {
@@ -167,7 +167,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get sourcePropertyName():String
     {
@@ -185,7 +185,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function set strand(value:IStrand):void
 	{
@@ -225,7 +225,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function setDocument(document:Object, id:String = null):void
 	{

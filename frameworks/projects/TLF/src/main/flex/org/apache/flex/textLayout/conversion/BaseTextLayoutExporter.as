@@ -98,7 +98,7 @@ package org.apache.flex.textLayout.conversion
 				XML.ignoreWhitespace = false;
 				XML.prettyPrinting = false;
 				result = xml.toXMLString();
-//TODO probably does not make sense for FlexJS
+//TODO probably does not make sense for Royale
 //				if (Configuration.playerEnablesArgoFeatures)
 //					System["disposeXML"](xml);
 				XML.setSettings(originalSettings);

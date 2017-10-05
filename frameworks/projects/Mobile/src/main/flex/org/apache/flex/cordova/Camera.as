@@ -45,12 +45,12 @@ package org.apache.flex.cordova
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
-	 * @flexjscordovaplugin cordova-plugin-camera
-	 * @flexjsignorecoercion FileEntry
-	 * @flexjsignorecoercion FileWriter
-	 * @flexjsignorecoercion window
-     * @flexjsignorecoercion Blob
+	 * @productversion Royale 0.0
+	 * @royalecordovaplugin cordova-plugin-camera
+	 * @royaleignorecoercion FileEntry
+	 * @royaleignorecoercion FileWriter
+	 * @royaleignorecoercion window
+     * @royaleignorecoercion Blob
 	 */
 	COMPILE::JS
 	public class Camera

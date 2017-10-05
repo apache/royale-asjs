@@ -20,7 +20,7 @@
 
 
 <project name="mapsearch" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../.."/>
+    <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="MapSearch" />
     
     <!-- this project needs AIR 3.4 FP 11.4 -->
@@ -28,9 +28,9 @@
     <property name="playerglobal.version" value="11.4" />
     
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/local.properties"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     
     <property name="AIR_HOME" value="${env.AIR_HOME}"/>
     <property name="config_arg" value="air"/>

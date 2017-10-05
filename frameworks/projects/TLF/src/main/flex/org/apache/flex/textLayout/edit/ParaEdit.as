@@ -214,7 +214,7 @@ package org.apache.flex.textLayout.edit
 		 * @param width	the width of the image
 		 * @param height the height of the image
 		 * @param options none supported
-		 * @flexjsignorecoercion org.apache.flex.textLayout.element.ISpanElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.element.ISpanElement
 		 */
 		public static function createImage(flowBlock:IFlowGroupElement, flowSelBegIdx:int,source:Object, width:Object, height:Object, options:Object, pointFormat:ITextLayoutFormat):IInlineGraphicElement
 		{
@@ -416,7 +416,7 @@ package org.apache.flex.textLayout.edit
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public static function splitElement(elem:IFlowGroupElement, splitPos:int):IFlowGroupElement
 		{
@@ -474,7 +474,7 @@ package org.apache.flex.textLayout.edit
 		}		
 		// TODO: rewrite this method by moving the elements.  This is buggy.
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.element.IParagraphElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.element.IParagraphElement
 		 */
 		public static function mergeParagraphWithNext(para:IParagraphElement):Boolean
 		{

@@ -70,7 +70,7 @@
         
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/express</uri>
+                <uri>library://ns.apache.org/royale/express</uri>
                 <manifest>../../../../../../../projects/Express/src/main/resources/express-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -95,7 +95,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/express</uri>
+        <uri>library://ns.apache.org/royale/express</uri>
     </include-namespaces>
         
 

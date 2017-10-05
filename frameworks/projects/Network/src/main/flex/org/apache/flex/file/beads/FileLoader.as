@@ -41,7 +41,7 @@ package org.apache.flex.file.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	public class FileLoader implements IBead
 	{
@@ -54,7 +54,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		public function load():void
 		{
@@ -90,7 +90,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{

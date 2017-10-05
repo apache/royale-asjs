@@ -25,7 +25,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function get text():String;
 		function set text(value:String):void;
@@ -38,7 +38,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function drawText(value:String, xt:Number, yt:Number):void
 	}

@@ -19,8 +19,8 @@
 
 DESCRIPTION
 
-This sample FlexJS application shows how you can integrate a 3rd party library, such as Google Maps, into the
-world of FlexJS.
+This sample Royale application shows how you can integrate a 3rd party library, such as Google Maps, into the
+world of Royale.
 
 The ActionScript side is an AIR app that uses HTMLLoader to bring in the Google MAP JavaScript API. You could
 also try to use an iFrame with a web application (there are examples of iFrame and Flex scattered around the web).

@@ -27,7 +27,7 @@ package org.apache.flex.html.beads.models
 		
     /**
      *  The TextModel class is most basic data model for a
-     *  component that displays text.  All FlexJS components
+     *  component that displays text.  All Royale components
      *  that display text should also support HTML, although
      *  the Flash Player implementations may only support
      *  a subset of HTML. 
@@ -35,7 +35,7 @@ package org.apache.flex.html.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class TextModel extends EventDispatcher implements IBead, ITextModel
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function TextModel()
 		{
@@ -59,7 +59,7 @@ package org.apache.flex.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function set strand(value:IStrand):void
 		{
@@ -74,7 +74,7 @@ package org.apache.flex.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get text():String
 		{
@@ -103,7 +103,7 @@ package org.apache.flex.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get html():String
 		{

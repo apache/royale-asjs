@@ -40,15 +40,15 @@ package org.apache.flex.core
     
     /**
      *  The SimpleApplication class can be used as the main class and entry point
-     *  for low-level ActionScript-only FlexJS
+     *  for low-level ActionScript-only Royale
      *  applications.  It is not indended for use in MXML applications or most
-     *  of the FlexJS components as they expect a certain application lifecycle
+     *  of the Royale components as they expect a certain application lifecycle
      *  in the org.apache.flex.core.Application class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public class SimpleApplication extends ApplicationBase
     {
@@ -58,7 +58,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function SimpleApplication()
         {
@@ -89,7 +89,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function start():void
 		{

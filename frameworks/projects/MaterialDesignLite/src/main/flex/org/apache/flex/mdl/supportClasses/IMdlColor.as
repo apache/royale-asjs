@@ -28,7 +28,7 @@ package org.apache.flex.mdl.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public interface IMdlColor
     {
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.supportClasses
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
         function get color():String;
         function set color(value:String):void;
@@ -54,7 +54,7 @@ package org.apache.flex.mdl.supportClasses
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
         function get colorWeight():String;
         function set colorWeight(value:String):void;

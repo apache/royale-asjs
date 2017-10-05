@@ -34,7 +34,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
     
@@ -45,7 +45,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class DataContainerBase extends ContainerBase implements IItemRendererParent, IList
 	{
@@ -55,7 +55,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function DataContainerBase()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.core
 		*/
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -122,7 +122,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
@@ -142,7 +142,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get itemRenderer():IFactory
 		{
@@ -161,7 +161,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get hasItemRenderer():Boolean
 		{
@@ -190,7 +190,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function addItemRenderer(renderer:IItemRenderer):void
 		{
@@ -209,7 +209,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function removeItemRenderer(renderer:IItemRenderer):void
 		{
@@ -228,7 +228,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function removeAllItemRenderers():void
 		{
@@ -244,7 +244,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function getItemRendererForIndex(index:int):IItemRenderer
 		{
@@ -259,7 +259,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function updateAllItemRenderers():void
 		{

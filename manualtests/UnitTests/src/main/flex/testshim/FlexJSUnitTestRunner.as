@@ -25,10 +25,10 @@ import org.apache.flex.reflection.TypeDefinition;
 import org.apache.flex.reflection.describeType;
 
 import flexunit.framework.Assert;
-public class FlexJSUnitTestRunner {
+public class RoyaleUnitTestRunner {
 
 
-    public function FlexJSUnitTestRunner(testerClass:Class, notificationReceiver:Function) {
+    public function RoyaleUnitTestRunner(testerClass:Class, notificationReceiver:Function) {
         this.testerClass = testerClass;
         this.callback = notificationReceiver;
         prepare();
@@ -116,7 +116,7 @@ public class FlexJSUnitTestRunner {
         var i:uint=0, l:uint=testMethods.length;
 
         for(;i<l;i++) {
-            runFlexJSTest(_testingName,testInstance,testMethods[i],callback);
+            runRoyaleTest(_testingName,testInstance,testMethods[i],callback);
         }
 
         if (tearDownFunc!=null) {
@@ -130,7 +130,7 @@ public class FlexJSUnitTestRunner {
     }
 
 
-    private function runFlexJSTest(testClass:String,instance:Object,methodDef:MethodDefinition,callback:Function=null):void{
+    private function runRoyaleTest(testClass:String,instance:Object,methodDef:MethodDefinition,callback:Function=null):void{
         var methodName:String = methodDef.name;
         trace('running test in '+testClass+":"+methodName);
         var varianceMetas:Array = methodDef.retrieveMetaDataByName("TestVariance");

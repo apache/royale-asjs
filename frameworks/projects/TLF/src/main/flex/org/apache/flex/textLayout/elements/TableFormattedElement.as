@@ -30,7 +30,7 @@ package org.apache.flex.textLayout.elements
 		/**
 		 * Returns a reference to the table. For this to work we need to set the 
 		 * table to null when it's removed.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableElement
 		 **/
 		public function get table():ITableElement {
 			

@@ -26,7 +26,7 @@ package org.apache.flex.effects
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public interface ICompoundEffect extends IEffect
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.effects
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function addChild(c:IEffect):void;
 		
@@ -63,7 +63,7 @@ package org.apache.flex.effects
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function addChildAt(c:IEffect, index:int):void;
 		
@@ -76,7 +76,7 @@ package org.apache.flex.effects
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function getChildIndex(c:IEffect):int;
 		
@@ -88,7 +88,7 @@ package org.apache.flex.effects
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function removeChild(c:IEffect):void;
 		
@@ -98,7 +98,7 @@ package org.apache.flex.effects
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get numChildren():int;
 		
@@ -110,7 +110,7 @@ package org.apache.flex.effects
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function getChildAt(index:int):IEffect;
 	}

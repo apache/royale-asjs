@@ -27,7 +27,7 @@ package org.apache.flex.textLayout.edit.mementos {
 
 // Use this for operations that undo using copy & paste
 /**
- * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+ * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
  */
 public class DeleteTextMemento extends BaseMemento implements IMemento
 {
@@ -115,7 +115,7 @@ public class DeleteTextMemento extends BaseMemento implements IMemento
 	}
 	
 	/**
-	 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+	 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 	 */
 	public function get commonRoot():IFlowGroupElement
 	{

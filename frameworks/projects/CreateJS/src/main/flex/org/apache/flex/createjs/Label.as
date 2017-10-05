@@ -42,7 +42,7 @@ package org.apache.flex.createjs
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
     
     COMPILE::SWF
@@ -65,7 +65,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get textColor():IFill
 		{
@@ -81,7 +81,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get fontName():String
 		{
@@ -103,7 +103,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get fontName():String
 		{
@@ -121,7 +121,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get text():String
 		{
@@ -135,7 +135,7 @@ package org.apache.flex.createjs
         
         /**
 		 * @private
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -148,7 +148,7 @@ package org.apache.flex.createjs
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion createjs.Text
+		 * @royaleignorecoercion createjs.Text
 		 */
 		override protected function redrawShape():void
 		{

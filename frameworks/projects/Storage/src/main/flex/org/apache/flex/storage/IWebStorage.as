@@ -26,7 +26,7 @@ package org.apache.flex.storage
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public interface IWebStorage
 {
@@ -36,8 +36,8 @@ public interface IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	function storageAvailable() : Boolean;
 
@@ -47,8 +47,8 @@ public interface IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	function setItem(key:String, value:String) : Boolean;
 
@@ -59,8 +59,8 @@ public interface IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	function getItem(key:String) : String;
 
@@ -70,8 +70,8 @@ public interface IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	function removeItem(key:String) : Boolean;
 
@@ -81,8 +81,8 @@ public interface IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	function hasItem(key:String) : Boolean;
 
@@ -92,8 +92,8 @@ public interface IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	function clear() : void;
 }

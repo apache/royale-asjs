@@ -123,7 +123,7 @@ package org.apache.flex.core
         public function set element(value:WrappedHTMLElement):void
         {
             _element = value;
-            _element.flexjs_wrapper = this;
+            _element.royale_wrapper = this;
         }
         
         /**
@@ -132,8 +132,8 @@ package org.apache.flex.core
 		protected var _model:Object;
         
         /**
-         * @flexjsignorecoercion Class 
-         * @flexjsignorecoercion org.apache.flex.core.IBeadModel 
+         * @royaleignorecoercion Class 
+         * @royaleignorecoercion org.apache.flex.core.IBeadModel 
          */
         public function get model():Object
         {

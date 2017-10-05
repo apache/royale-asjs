@@ -53,7 +53,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		static public function performInternal(textFlow:ITextFlow, element1Mark:ElementMark, element2Mark:ElementMark):void {
 			var element1:IFlowGroupElement = element1Mark.findElement(textFlow) as IFlowGroupElement;
@@ -70,7 +70,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function undo():* {
 			_removeParentChain.undo();

@@ -30,9 +30,9 @@ package org.apache.flex.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
+	 * @productversion Royale 0.0
 	 */
-	public interface IFlexJSEvent
+	public interface IRoyaleEvent
 	{
 
 		/**
@@ -41,8 +41,8 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
-		function cloneEvent():IFlexJSEvent;
+		function cloneEvent():IRoyaleEvent;
 	}
 }

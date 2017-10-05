@@ -30,7 +30,7 @@ package org.apache.flex.createjs.core
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IRoyaleElement;
     import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -48,13 +48,13 @@ package org.apache.flex.createjs.core
 	/**
 	 * The CreateJS framework provides its own version of UIBase. CreateJS uses
 	 * the HTML 5 &lt;canvas&gt; for its work and does not use the HTML DOM like the
-	 * most of FlexJS, so this replacement for UIBase allows the CreateJS wrapper
-	 * classes for FlexJS to fit in.
+	 * most of Royale, so this replacement for UIBase allows the CreateJS wrapper
+	 * classes for Royale to fit in.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	
 	COMPILE::SWF
@@ -64,7 +64,7 @@ package org.apache.flex.createjs.core
 	}
         
 	COMPILE::JS
-	public class UIBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IUIBase, IFlexJSElement
+	public class UIBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IUIBase, IRoyaleElement
 	{
 		/**
 		 *  Constructor.
@@ -72,8 +72,8 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion Class
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion Class
 		 */
 		public function UIBase()
 		{
@@ -86,7 +86,7 @@ package org.apache.flex.createjs.core
 		
 		/**
 		 *  @private
-		 *  @flexjsignorecoercion Class
+		 *  @royaleignorecoercion Class
 		 */
 		public function get view():IBeadView
 		{
@@ -125,7 +125,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get id():String
 		{
@@ -154,7 +154,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get style():Object
 		{
@@ -164,7 +164,7 @@ package org.apache.flex.createjs.core
 		/**
 		 *  Style is not supported for CreateJS.
 		 *  @private
-		 *  @flexjsignorecoercion String
+		 *  @royaleignorecoercion String
 		 */
 		public function set style(value:Object):void
 		{
@@ -190,7 +190,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get className():String
 		{
@@ -216,7 +216,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public var beads:Array;
 		
@@ -227,9 +227,9 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion Class
-		 *  @flexjsignorecoercion Number
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion Class
+		 *  @royaleignorecoercion Number
 		 */
 		public function addedToParent():void
 		{
@@ -324,19 +324,19 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher
 		 */
 		public function get topMostEventDispatcher():IEventDispatcher
 		{
 			var e:WrappedHTMLElement = document.body as WrappedHTMLElement;
-			return e.flexjs_wrapper as IEventDispatcher;
+			return e.royale_wrapper as IEventDispatcher;
 		}
 
         /**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
@@ -344,8 +344,8 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
@@ -354,8 +354,8 @@ package org.apache.flex.createjs.core
         
         
         /**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function getElementIndex(c:IChild):int
         {
@@ -364,8 +364,8 @@ package org.apache.flex.createjs.core
         
 
         /**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
@@ -374,9 +374,9 @@ package org.apache.flex.createjs.core
         
 
         /**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
-         * @flexjsignorecoercion org.apache.flex.core.IChild
+         * @royaleignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion org.apache.flex.core.IChild
          */
         public function getElementAt(index:int):IChild
         {
@@ -385,8 +385,8 @@ package org.apache.flex.createjs.core
         
 
         /**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function get numElements():int
         {
@@ -394,8 +394,8 @@ package org.apache.flex.createjs.core
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion createjs.Container
          */
         protected function createElement():WrappedHTMLElement
         {
@@ -413,7 +413,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get explicitWidth():Number
 		{
@@ -446,7 +446,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get explicitHeight():Number
 		{
@@ -482,7 +482,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get percentWidth():Number
 		{
@@ -513,7 +513,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get percentHeight():Number
 		{
@@ -535,7 +535,7 @@ package org.apache.flex.createjs.core
 		private var _x:Number;
         
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function get x():Number
         {
@@ -543,7 +543,7 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function set x(value:Number):void
         {
@@ -558,7 +558,7 @@ package org.apache.flex.createjs.core
 		private var _y:Number;
 
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function get y():Number
         {
@@ -566,7 +566,7 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function set y(value:Number):void
         {
@@ -581,7 +581,7 @@ package org.apache.flex.createjs.core
 		private var _width:Number;
         
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function get width():Number
         {
@@ -589,7 +589,7 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function set width(value:Number):void
         {
@@ -604,7 +604,7 @@ package org.apache.flex.createjs.core
 		private var _height:Number;
 
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function get height():Number
         {
@@ -612,7 +612,7 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function set height(value:Number):void
         {
@@ -625,7 +625,7 @@ package org.apache.flex.createjs.core
         }
 		
         /**
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function get visible():Boolean
         {
@@ -633,7 +633,7 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function set visible(value:Boolean):void
         {
@@ -655,7 +655,7 @@ package org.apache.flex.createjs.core
         }
 
         /**
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function get alpha():Number 
         {
@@ -663,7 +663,7 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion createjs.DisplayObject
          */
         public function set alpha(value:Number):void
         {
@@ -671,15 +671,15 @@ package org.apache.flex.createjs.core
         }
 
 		/**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.DisplayObject
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function get parent():IParent
 		{
 			var pos:createjs.DisplayObject = this.positioner as createjs.DisplayObject;
 			var p:WrappedHTMLElement = pos['parent'] as WrappedHTMLElement;
-			var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
+			var wrapper:IParent = p ? p.royale_wrapper as IParent : null;
 			return wrapper;
 		}
 		

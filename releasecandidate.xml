@@ -18,7 +18,7 @@
 
 -->
 
-<project name="CreateFlexJSReleaseCandidate" default="main" basedir=".">
+<project name="CreateRoyaleReleaseCandidate" default="main" basedir=".">
 
     <!-- use -Dtag=<tag or commit hash> to build from other than the head -->
 
@@ -228,41 +228,41 @@
 		<ant antfile="build.xml" target="sign" />
 		<!--<ant antfile="build.xml" target="doc-create-md5" />-->
 		<!--<ant antfile="build.xml" target="doc-sign" />-->
-		<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries" />
-		<!--<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" />-->
-		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" >
+		<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" />
+		<!--<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/doc" />-->
+		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}" >
 			<fileset dir="${basedir}/out" >
-				<include name="apache-flex-flexjs-${release.version}-src*" />
+				<include name="apache-royale-${release.version}-src*" />
 			</fileset>
 		</copy>
-		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries" >
+		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
 			<fileset dir="${basedir}/out" >
-				<include name="apache-flex-flexjs-${release.version}-bin*" />
+				<include name="apache-royale-${release.version}-bin*" />
 			</fileset>
 		</copy>
-		<!--<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" >
+		<!--<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/doc" >
 			<fileset dir="${basedir}/out" >
-				<include name="apache-flex-flexjs-${release.version}-asdoc*" />
+				<include name="apache-royale-${release.version}-asdoc*" />
 			</fileset>
 		</copy>-->
-		<copy file="${basedir}/README" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/READme" />
-		<copy file="${basedir}/ApproveFlexJS.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml" />
-		<copy file="${basedir}/apache-flex-flexjs-installer-config.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries/apache-flex-flexjs-installer-config.xml" />
+		<copy file="${basedir}/README" tofile="${dist.dev}/royale/${release.version}/rc${rc}/READme" />
+		<copy file="${basedir}/ApproveRoyale.xml" tofile="${dist.dev}/royale/${release.version}/rc${rc}/ApproveRoyale.xml" />
+		<copy file="${basedir}/apache-royale-installer-config.xml" tofile="${dist.dev}/royale/${release.version}/rc${rc}/binaries/apache-royale-installer-config.xml" />
 	</target>
 	
 	<target name="push.rc" >
-		<exec executable="${svn}" dir="${dist.dev}/flex/flexjs" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
 			<arg value="add" />
-			<arg value="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" />
+			<arg value="${dist.dev}/royale/${release.version}/rc${rc}" />
 		</exec>
-		<exec executable="${svn}" dir="${dist.dev}/flex/flexjs" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
 			<arg value="commit" />
 			<arg value="--username" />
 			<arg value="${apache.username}" />
 			<arg value="--password" />
 			<arg value="${apache.password}" />
 			<arg value="-m" />
-			<arg value="rc${rc} of Apache FlexJS ${release.version}" />
+			<arg value="rc${rc} of Apache Royale ${release.version}" />
 		</exec>
         <antcall target="tag_release" />
 		<antcall target="update-installer-config" />
@@ -273,9 +273,9 @@
         <exec executable="${git}" dir="${basedir}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
-            <arg value="apache-flex-flexjs-${release.version}-rc${rc}" />
+            <arg value="apache-royale-${release.version}-rc${rc}" />
             <arg value="-m" />
-            <arg value="&quot;rc${rc} of apache-flex-flexjs-${release.version}&quot;" />
+            <arg value="&quot;rc${rc} of apache-royale-${release.version}&quot;" />
         </exec>
         <exec executable="${git}" dir="${basedir}" failonerror="true" >
             <arg value="push" />
@@ -318,16 +318,16 @@
 			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
 		</exec>
         <replaceregexp byline="true" encoding="UTF-8">
-            <regexp pattern="rc id=&quot;FlexJSRC&quot; version=&quot;.*&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/.*/binaries/&quot; file=&quot;apache-flex-flexjs-.*-bin&quot; dev=&quot;true&quot;"/>
-            <substitution expression="rc id=&quot;FlexJSRC&quot; version=&quot;${release.version} RC${rc}&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; dev=&quot;true&quot;"/>
+            <regexp pattern="rc id=&quot;RoyaleRC&quot; version=&quot;.*&quot; path=&quot;https://dist.apache.org/repos/dist/dev/royale/.*/binaries/&quot; file=&quot;apache-royale-.*-bin&quot; dev=&quot;true&quot;"/>
+            <substitution expression="rc id=&quot;RoyaleRC&quot; version=&quot;${release.version} RC${rc}&quot; path=&quot;https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/binaries/&quot; file=&quot;apache-royale-${release.version}-bin&quot; dev=&quot;true&quot;"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
         </replaceregexp>
 		<!-- un-comment if needed -->
         <replaceregexp byline="true" encoding="UTF-8">
-            <regexp pattern="&lt;!--&lt;rc id=&quot;FlexJSRC&quot;(.*)&gt;--&gt;"/>
-            <substitution expression="&lt;rc id=&quot;FlexJSRC&quot;\1&gt;"/>
+            <regexp pattern="&lt;!--&lt;rc id=&quot;RoyaleRC&quot;(.*)&gt;--&gt;"/>
+            <substitution expression="&lt;rc id=&quot;RoyaleRC&quot;\1&gt;"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
@@ -339,7 +339,7 @@
 			<arg value="--password" />
 			<arg value="${apache.password}" />
 			<arg value="-m" />
-			<arg value="&quot;update sdk-installer-config-4.0 for flexjs ${release.version} rc${rc}&quot;" />
+			<arg value="&quot;update sdk-installer-config-4.0 for royale ${release.version} rc${rc}&quot;" />
 		</exec>
 		<!-- pause to give buildbot chance to react -->
 		<sleep seconds="5" />
@@ -354,31 +354,31 @@
 		</exec>
         <exec executable="${svn}" dir="${site}" failonerror="true" >
             <arg value="update" />
-            <arg value="trunk/content/download-flexjs.cmsPage" />
+            <arg value="trunk/content/download-royale.cmsPage" />
         </exec>
         <exec executable="${svn}" dir="${site}" failonerror="true" >
             <arg value="update" />
             <arg value="trunk/templates" />
         </exec>
         <xmlproperty file="${site}/trunk/content/installer/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
-		<property name="latest.release" value="${config.products.ApacheFlexJS.latestVersion}" />
+		<property name="latest.release" value="${config.products.ApacheRoyale.latestVersion}" />
         <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="ApacheFlexJS(.*)latestVersion=&quot;${latest.release}&quot;(.*)"/>
-            <substitution expression="ApacheFlexJS\1latestVersion=&quot;${release.version}&quot;\2"/>
+            <regexp pattern="ApacheRoyale(.*)latestVersion=&quot;${latest.release}&quot;(.*)"/>
+            <substitution expression="ApacheRoyale\1latestVersion=&quot;${release.version}&quot;\2"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
         </replaceregexp>
         <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="path=&quot;flex/flexjs/${latest.release}/binaries/&quot;(.*)default=&quot;true&quot;"/>
-            <substitution expression="path=&quot;http://archive.apache.org/dist/flex/flexjs${latest.release}/binaries&quot;\1"/>
+            <regexp pattern="path=&quot;royale/${latest.release}/binaries/&quot;(.*)default=&quot;true&quot;"/>
+            <substitution expression="path=&quot;http://archive.apache.org/dist/royale${latest.release}/binaries&quot;\1"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
         </replaceregexp>
         <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="&lt;rc id=&quot;FlexJSRC&quot;(.*)"/>
-            <substitution expression="&lt;VersionX id=&quot;${release.version}&quot; version=&quot;${release.version}&quot; path=&quot;flex/flexjs/${release.version}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; /&gt;&#x0a;    &lt;rc id=&quot;FlexJSRC&quot;\1"/>
+            <regexp pattern="&lt;rc id=&quot;RoyaleRC&quot;(.*)"/>
+            <substitution expression="&lt;VersionX id=&quot;${release.version}&quot; version=&quot;${release.version}&quot; path=&quot;royale/${release.version}/binaries/&quot; file=&quot;apache-royale-${release.version}-bin&quot; /&gt;&#x0a;    &lt;rc id=&quot;RoyaleRC&quot;\1"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
@@ -396,21 +396,21 @@
             <regexp pattern="${latest.release}"/>
             <substitution expression="${release.version}"/>
             <fileset dir="${site}/trunk/content">
-                <include name="download-flexjs.cmsPage"/>
+                <include name="download-royale.cmsPage"/>
             </fileset>
         </replaceregexp>
         <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="this release, available as of .*\.  (.*)"/>
             <substitution expression="this release, available as of ${release.date.full}.  \1"/>
             <fileset dir="${site}/trunk/content">
-                <include name="download-flexjs.cmsPage"/>
+                <include name="download-royale.cmsPage"/>
             </fileset>
         </replaceregexp>
         <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="binaries were published on .*\."/>
             <substitution expression="binaries were published on ${release.date.full}."/>
             <fileset dir="${site}/trunk/content">
-                <include name="download-flexjs.cmsPage"/>
+                <include name="download-royale.cmsPage"/>
             </fileset>
         </replaceregexp>
         <replaceregexp byline="true" flags="g" encoding="UTF-8">
@@ -427,7 +427,7 @@
 			<arg value="--password" />
 			<arg value="${apache.password}" />
 			<arg value="-m" />
-			<arg value="&quot;update sdk-installer-config-4.0 and other files for flexjs ${release.version} rc${rc}&quot;" />
+			<arg value="&quot;update sdk-installer-config-4.0 and other files for royale ${release.version} rc${rc}&quot;" />
 		</exec>
 		<!-- pause to give buildbot chance to react -->
 		<sleep seconds="5" />
@@ -436,9 +436,9 @@
 	</target>
 
 	<target name="check-new-version" description="check if svn folder needs to be added" >
-		<condition property="version.folder" value="${dist.dev}/flex/flexjs/${release.version}" >
+		<condition property="version.folder" value="${dist.dev}/royale/${release.version}" >
 			<not>
-				<available file="${dist.dev}/flex/flexjs/${release.version}" />
+				<available file="${dist.dev}/royale/${release.version}" />
 			</not>
 		</condition>
 		<antcall target="add-version-folder" />
@@ -446,7 +446,7 @@
     
 	<target name="add-version-folder" description="adds svn folder if needed" if="version.folder" >
 		<mkdir dir="${version.folder}" />
-		<exec executable="${svn}" dir="${dist.dev}/flex/flexjs" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
 			<arg value="add" />
 			<arg value="${version.folder}" />
 		</exec>
@@ -471,10 +471,10 @@ ${my.name}
         <!-- try to set line breaks before the vertical line            | -->
         <echo file="${basedir}/votethread.properties">vote.thread.body=Hi,\n\
 \n\
-This is vote for the ${release.version} release of Apache FlexJS.\n\
+This is vote for the ${release.version} release of Apache Royale.\n\
 \n\
 The release candidate can be found here;\n\
-https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/\n\
+https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/\n\
 \n\
 Before voting please review the section,'What are the ASF requirements on\n\
 approving a release?', at:\n\
@@ -493,7 +493,7 @@ source package to compile some of the sample applications.\n\
 \n\
 To use the binary package, unzip it into a folder.  The -js package is\n\
 ready-to-use in an IDE or command-line.  If you need SWF output, use the\n\
--flexjs package and use Apache Ant to run the InstallAdobeSDKs script via:\n\
+-royale package and use Apache Ant to run the InstallAdobeSDKs script via:\n\
   ant -f InstallAdobeSDKs.xml\n\
 \n\
 Please vote to approve this release:\n\
@@ -523,9 +523,9 @@ steps to validate a release.  Instead of individually downloading the\n\
 package and signature files, unzipping, etc, you can instead:\n\
 1) create an empty folder,\n\
 2) download into that folder this file:\n\
-https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml\n\
+https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/ApproveRoyale.xml\n\
 3) run the script:\n\
-   ant -e -f ApproveFlexJS.xml -Drelease.version=${release.version} -Drc=${rc}\n\
+   ant -e -f ApproveRoyale.xml -Drelease.version=${release.version} -Drc=${rc}\n\
 \n\
 You are not required to use this script, and more testing of the packages\n\
 and build results are always encouraged.\n\
@@ -542,7 +542,7 @@ ${my.name}
             <replacefilter token="\n" value="${CRLF}" />
         </replace>
         <property file="${basedir}/votethread.properties" />
-        <echo file="${basedir}/votethread.html">&lt;html&gt;&lt;body&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[DISCUSS]%20Discuss%20Release%20Apache%20FlexJS%20${release.version}%20RC${rc}&amp;body=${discuss.thread.body}&quot;&gt;Click here to review discuss thread&lt;/a&gt;&lt;br/&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[VOTE]%20Release%20Apache%20FlexJS%20${release.version}%20RC${rc}&amp;body=${vote.thread.body}&quot;&gt;Click here to review vote thread&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</echo>
+        <echo file="${basedir}/votethread.html">&lt;html&gt;&lt;body&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[DISCUSS]%20Discuss%20Release%20Apache%20Royale%20${release.version}%20RC${rc}&amp;body=${discuss.thread.body}&quot;&gt;Click here to review discuss thread&lt;/a&gt;&lt;br/&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[VOTE]%20Release%20Apache%20Royale%20${release.version}%20RC${rc}&amp;body=${vote.thread.body}&quot;&gt;Click here to review vote thread&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</echo>
         <makeurl file="${basedir}/votethread.html" property="vote.thread.url" />
         <exec executable="${browser}">
             <arg value="${vote.thread.url}" />
@@ -563,10 +563,10 @@ ${my.name}
 		<exec executable="${svn}" dir="${dist.release}/flex" failonerror="true" >
 			<arg value="update" />
 		</exec>
-		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.release}/royale" failonerror="true" >
 			<arg value="mv" />
-			<arg value="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" />
-            <arg value="${dist.release}/flex/flexjs/${release.version}" />
+			<arg value="${dist.dev}/royale/${release.version}/rc${rc}" />
+            <arg value="${dist.release}/royale/${release.version}" />
 		</exec>
 		<exec executable="${svn}" dir="${dist.release}/.." failonerror="true" >
 			<arg value="commit" />
@@ -575,7 +575,7 @@ ${my.name}
 			<arg value="--password" />
 			<arg value="${apache.password}" />
 			<arg value="-m" />
-			<arg value="Apache FlexJS ${release.version}" />
+			<arg value="Apache Royale ${release.version}" />
 		</exec>
         <antcall target="release.tag" />
 		<exec executable="${git}" dir="${basedir}" failonerror="true" >
@@ -586,7 +586,7 @@ ${my.name}
 	</target>
 
     <target name="release.tag" >
-        <condition property="tag" value="apache-flex-flexjs-${release.version}-rc${rc}">
+        <condition property="tag" value="apache-royale-${release.version}-rc${rc}">
             <not>
                 <isset property="tag" />
             </not>
@@ -600,10 +600,10 @@ ${my.name}
         <exec executable="${git}" dir="${basedir}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
-            <arg value="apache-flex-flexjs-${release.version}" />
+            <arg value="apache-royale-${release.version}" />
             <arg value="${releasehash}" />
             <arg value="-m" />
-            <arg value="&quot;Official release of apache-flex-flexjs-${release.version}&quot;" />
+            <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
         </exec>
     </target>
 </project>

@@ -38,7 +38,7 @@ package org.apache.flex.file.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	public class FileModel extends EventDispatcher implements IBeadModel, IFileModel
 	{
@@ -59,7 +59,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		public function FileModel(data:Object)
 		{
@@ -137,7 +137,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		COMPILE::JS
 		public function get file():File
@@ -150,7 +150,7 @@ package org.apache.flex.file.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.9
+         *  @productversion Royale 0.9
          */
 		public function get blob():BinaryData
 		{

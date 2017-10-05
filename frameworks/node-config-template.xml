@@ -336,7 +336,7 @@
 
    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
    <metadata>
-      <title>Apache FlexJS Application</title>
+      <title>Apache Royale Application</title>
       <description>http://flex.apache.org/</description>
       <publisher>Apache Software Foundation</publisher>
       <creator>unknown</creator>

@@ -32,7 +32,7 @@ import org.apache.flex.events.EventDispatcher;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class HierarchicalData  extends EventDispatcher implements IHierarchicalData
 {
@@ -50,7 +50,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function HierarchicalData(value:Object = null)
     {
@@ -87,7 +87,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get childrenField():String
     {
@@ -120,7 +120,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get source():Object
     {
@@ -149,7 +149,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function canHaveChildren(node:Object):Boolean
     {
@@ -180,7 +180,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function getChildren(node:Object):Object
     {
@@ -215,7 +215,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function hasChildren(node:Object):Boolean
     {
@@ -244,7 +244,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function getData(node:Object):Object
     {
@@ -257,7 +257,7 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function getRoot():Object
     {

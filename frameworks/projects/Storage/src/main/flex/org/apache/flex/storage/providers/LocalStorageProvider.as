@@ -33,8 +33,8 @@ COMPILE::SWF {
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
- *  @flexjsignoreimport window
+ *  @productversion Royale 0.0
+ *  @royaleignoreimport window
  */
 public class LocalStorageProvider implements IWebStorage
 {
@@ -45,14 +45,14 @@ public class LocalStorageProvider implements IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function LocalStorageProvider()
 	{
 		COMPILE::SWF {
 			try {
-				sharedObject = SharedObject.getLocal("flexjs","/",false);
+				sharedObject = SharedObject.getLocal("royale","/",false);
 			} catch(e) {
 				sharedObject = null;
 			}
@@ -68,8 +68,8 @@ public class LocalStorageProvider implements IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function storageAvailable():Boolean
 	{
@@ -96,8 +96,8 @@ public class LocalStorageProvider implements IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function setItem(key:String, value:String) : Boolean
 	{
@@ -122,8 +122,8 @@ public class LocalStorageProvider implements IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function getItem(key:String) : String
 	{
@@ -150,8 +150,8 @@ public class LocalStorageProvider implements IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function removeItem(key:String) : Boolean
 	{
@@ -175,8 +175,8 @@ public class LocalStorageProvider implements IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function hasItem(key:String) : Boolean
 	{
@@ -201,8 +201,8 @@ public class LocalStorageProvider implements IWebStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function clear() : void
 	{

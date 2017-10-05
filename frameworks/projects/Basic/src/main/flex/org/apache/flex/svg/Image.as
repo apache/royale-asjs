@@ -32,7 +32,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
         public function Image()
         {
@@ -40,7 +40,7 @@ package org.apache.flex.svg
        }
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -57,7 +57,7 @@ package org.apache.flex.svg
 		protected var _image:WrappedHTMLElement;
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		protected function addImageElement():void
@@ -66,7 +66,7 @@ package org.apache.flex.svg
 				_image = document.createElementNS('http://www.w3.org/2000/svg', 'image') as WrappedHTMLElement;
 				_image.setAttribute("width", "100%");
 				_image.setAttribute("height", "100%");
-				_image.flexjs_wrapper = this;
+				_image.royale_wrapper = this;
 				element.appendChild(_image);
 			}
 		}

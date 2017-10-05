@@ -38,7 +38,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -48,7 +48,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	[Event(name="input", type="org.apache.flex.events.Event")]
 	
@@ -59,7 +59,7 @@ package org.apache.flex.mdl
 	 *  sits a small, movable disc (the thumb) and, typically, text that clearly communicates
 	 *  a value that will be set when the user moves it.
 	 *  
-	 *  In FlexJS the MDL Slider uses the following bead types:
+	 *  In Royale the MDL Slider uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
@@ -68,7 +68,7 @@ package org.apache.flex.mdl
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class Slider extends UIBase
 	{
@@ -78,7 +78,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function Slider()
 		{
@@ -93,7 +93,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get value():Number
 		{
@@ -110,7 +110,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get minimum():Number
 		{
@@ -127,7 +127,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get maximum():Number
 		{
@@ -145,7 +145,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get stepSize():Number
         {
@@ -172,9 +172,9 @@ package org.apache.flex.mdl
 		}
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLInputElement
-		 * @flexjsignorecoercion HTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion HTMLInputElement
+		 * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -188,7 +188,7 @@ package org.apache.flex.mdl
 			div.appendChild(input);
             
             positioner = div as WrappedHTMLElement;
-            _positioner.flexjs_wrapper = this;
+            _positioner.royale_wrapper = this;
             return element;
         }
         

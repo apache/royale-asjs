@@ -21,7 +21,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
+    <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
@@ -30,20 +30,20 @@
   <version>0.9.0-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <name>Apache Flex - FlexJS: Framework: Libs: GoogleMaps</name>
+  <name>Apache Royale: Framework: Libs: GoogleMaps</name>
 
   <build>
     <sourceDirectory>src/main/flex</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.apache.flex.flexjs.compiler</groupId>
-        <artifactId>flexjs-maven-plugin</artifactId>
-        <version>${flexjs.compiler.version}</version>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>${royale.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
           <namespaces>
             <namespace>
-              <uri>library://ns.apache.org/flexjs/google</uri>
+              <uri>library://ns.apache.org/royale/google</uri>
               <manifest>${project.basedir}/src/main/resources/google-manifest.xml</manifest>
             </namespace>
           </namespaces>
@@ -65,28 +65,28 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-        <groupId>org.apache.flex.flexjs.framework</groupId>
+        <groupId>org.apache.royale.framework</groupId>
         <artifactId>Basic</artifactId>
         <version>0.9.0-SNAPSHOT</version>
         <type>swc</type>
         <classifier>swf</classifier>
     </dependency>
     <dependency>
-        <groupId>org.apache.flex.flexjs.framework</groupId>
+        <groupId>org.apache.royale.framework</groupId>
         <artifactId>Basic</artifactId>
         <version>0.9.0-SNAPSHOT</version>
         <type>swc</type>
@@ -94,9 +94,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.flex.flexjs.typedefs</groupId>
-      <artifactId>flexjs-typedefs-googlemaps</artifactId>
-      <version>${flexjs.typedefs.version}</version>
+      <groupId>org.apache.royale.typedefs</groupId>
+      <artifactId>royale.typedefs-googlemaps</artifactId>
+      <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
       <scope>runtime</scope>

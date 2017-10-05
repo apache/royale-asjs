@@ -25,7 +25,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function get radius():Number;
 		function set radius(value:Number):void;
@@ -35,7 +35,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function drawCircle(cx:Number, cy:Number, radius:Number):void
 	}

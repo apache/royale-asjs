@@ -21,24 +21,24 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-framework-parent</artifactId>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale.framework-parent</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>flexjs-maven-archetypes</artifactId>
+  <artifactId>royale-maven-archetypes</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Framework: Archetypes</name>
-  <description>Maven archetypes for creating flexjs maven projects</description>
+  <name>Apache Royale: Framework: Archetypes</name>
+  <description>Maven archetypes for creating royale maven projects</description>
 
   <modules>
-    <module>flexjs-simple-application-archetype</module>
-    <module>flexjs-simple-application-pure-js-archetype</module>
-    <module>flexjs-simple-application-pure-swf-archetype</module>
-    <module>flexjs-simple-library-archetype</module>
-    <module>flexjs-simple-typedef-archetype</module>
+    <module>royale-simple-application-archetype</module>
+    <module>royale-simple-application-pure-js-archetype</module>
+    <module>royale-simple-application-pure-swf-archetype</module>
+    <module>royale-simple-library-archetype</module>
+    <module>royale-simple-typedef-archetype</module>
   </modules>
 
   <build>

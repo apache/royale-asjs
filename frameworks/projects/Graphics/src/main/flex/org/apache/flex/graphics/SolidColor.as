@@ -74,7 +74,7 @@ package org.apache.flex.graphics
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.3
+	     *  @productversion Royale 0.3
 		 */
 		public function get alpha():Number
 		{
@@ -96,7 +96,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-	     *  @productversion FlexJS 0.3
+	     *  @productversion Royale 0.3
 		 */
 		public function get color():uint
 		{

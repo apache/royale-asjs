@@ -17,9 +17,9 @@
  *
  */
 
-package org.apache.flex.flexjs.examples.helloworld;
+package org.apache.flex.royale.examples.helloworld;
 
-import org.apache.flex.flexjs.examples.AbstractIT;
+import org.apache.flex.royale.examples.AbstractIT;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;

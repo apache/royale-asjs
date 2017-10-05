@@ -33,15 +33,15 @@
     <sourceDirectory>src/main/flex</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.apache.flex.flexjs.compiler</groupId>
-        <artifactId>flexjs-maven-plugin</artifactId>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
         <version>0.9.0-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <namespaces>
             <!-- Make the classes listed in the manifest be available under the given namespace -->
             <namespace>
-              <uri>library://ns.apache.org/flexjs/mylib</uri>
+              <uri>library://ns.apache.org/royale/mylib</uri>
               <manifest>${symbol_dollar}{project.basedir}/src/main/resources/mylib-manifest.xml</manifest>
             </namespace>
           </namespaces>
@@ -54,7 +54,7 @@
         </configuration>
         <dependencies>
           <dependency>
-            <groupId>org.apache.flex.flexjs.compiler</groupId>
+            <groupId>org.apache.royale.compiler</groupId>
             <artifactId>compiler-jx</artifactId>
             <version>0.9.0-SNAPSHOT</version>
           </dependency>
@@ -74,8 +74,8 @@
     </dependency>
     <!-- For JavaScript compilation, we need some other base classes -->
     <dependency>
-      <groupId>org.apache.flex.flexjs.typedefs</groupId>
-      <artifactId>flexjs-typedefs-gcl</artifactId>
+      <groupId>org.apache.royale.typedefs</groupId>
+      <artifactId>royale.typedefs-gcl</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>

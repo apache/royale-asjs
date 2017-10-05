@@ -63,7 +63,7 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set textFill(value:IFill):void
         {
@@ -82,7 +82,7 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set textStroke(value:IStroke):void
         {
@@ -95,7 +95,7 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0.3
+         *  @productversion Royale 0.0.3
          */
         public function removeAllElements():void
         {
@@ -108,7 +108,7 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.7.0
+         *  @productversion Royale 0.7.0
          */
         public function clear():void
         {
@@ -135,8 +135,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0.3
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0.3
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawRect(x:Number, y:Number, width:Number, height:Number):void
         {
@@ -166,8 +166,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0.3
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0.3
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawRoundRect(x:Number, y:Number, width:Number, height:Number, radiusX:Number, radiusY:Number = NaN):void
         {
@@ -187,7 +187,7 @@ package org.apache.flex.svg
 
                 var style:String = getStyleStr();
                 var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
-                rect.flexjs_wrapper = this;
+                rect.royale_wrapper = this;
                 rect.style.left = x + "px";
                 rect.style.top = y + "px";
                 rect.setAttribute('style', style);
@@ -215,8 +215,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0.3
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0.3
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
         {
@@ -231,7 +231,7 @@ package org.apache.flex.svg
             {
                 var style:String = getStyleStr();
                 var ellipse:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
-                ellipse.flexjs_wrapper = this;
+                ellipse.royale_wrapper = this;
                 ellipse.style.left = x + "px";
                 ellipse.style.top = y + "px";
                 ellipse.setAttribute('style', style);
@@ -252,8 +252,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawCircle(x:Number, y:Number, radius:Number):void
         {
@@ -268,7 +268,7 @@ package org.apache.flex.svg
             {
                 var style:String = getStyleStr();
                 var circle:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
-                circle.flexjs_wrapper = this;
+                circle.royale_wrapper = this;
                 circle.style.left = x + "px";
                 circle.style.top = y + "px";
                 circle.setAttribute('style', style);
@@ -288,8 +288,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawPathCommands(data:PathBuilder):void
         {
@@ -309,8 +309,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawStringPath(data:String):void
         {
@@ -327,7 +327,7 @@ package org.apache.flex.svg
             {
                 var style:String = getStyleStr();
                 var path:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
-                path.flexjs_wrapper = this;
+                path.royale_wrapper = this;
                 path.style.left = "0px";
                 path.style.top = "0px";
                 path.setAttribute('style', style);
@@ -508,10 +508,10 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @flexjsignorecoercion Text
-         *  @flexjsignorecoercion Node
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion Text
+         *  @royaleignorecoercion Node
          */
         public function drawText(value:String, x:Number, y:Number):Object
         {
@@ -542,7 +542,7 @@ package org.apache.flex.svg
             {
                 var style:String = getTxtStyleStr();
                 var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
-                text.flexjs_wrapper = this;
+                text.royale_wrapper = this;
                 text.style.left = x + "px";
                 text.style.top = y + "px";
                 text.setAttribute('style', style);

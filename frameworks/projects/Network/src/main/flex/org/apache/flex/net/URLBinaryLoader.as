@@ -33,7 +33,7 @@ package org.apache.flex.net
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.7.0
+	 *  @productversion Royale 0.7.0
 	 */
    public class URLBinaryLoader extends URLLoader
     {
@@ -44,7 +44,7 @@ package org.apache.flex.net
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.7.0
+		*  @productversion Royale 0.7.0
 		*/        
         public var data:BinaryData;
 
@@ -54,7 +54,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */        
 		public var endian:String = Endian.BIG_ENDIAN;
 		
@@ -67,7 +67,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */        
         public var bytesLoaded:uint = 0;
         
@@ -77,7 +77,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */        
         public var bytesTotal:uint = 0;
         
@@ -138,7 +138,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */        
         public function load(request:URLRequest):void
         {
@@ -152,7 +152,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */        
         public function close():void
         {

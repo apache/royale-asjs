@@ -37,7 +37,7 @@ COMPILE::JS
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 {
@@ -48,7 +48,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
     public function BinaryData(bytes:Object = null)
@@ -57,7 +57,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
-    * @flexjsignorecoercion ArrayBuffer
+    * @royaleignorecoercion ArrayBuffer
     */
     COMPILE::JS
     public function BinaryData(bytes:Object = null)
@@ -80,7 +80,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     public static function fromString(str:String):BinaryData
     {
@@ -104,7 +104,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
 
      */
     COMPILE::SWF
@@ -128,7 +128,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     COMPILE::JS
     public function get array():Uint8Array
@@ -153,7 +153,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     public function get endian():String
     {
@@ -194,7 +194,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get data():Object
     {
@@ -209,7 +209,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeBoolean(value:Boolean):void
     {
@@ -232,7 +232,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeByte(byte:int):void
     {
@@ -262,7 +262,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeBytes(source:BinaryData, offset:uint = 0, length:uint = 0):void
     {
@@ -295,7 +295,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeShort(short:int):void
     {
@@ -324,7 +324,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeUnsignedInt(val:uint):void
     {
@@ -353,7 +353,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeInt(val:int):void
     {
@@ -383,7 +383,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeFloat(val:Number):void
     {
@@ -415,7 +415,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeDouble(val:Number):void
     {
@@ -442,7 +442,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 
     public function readBoolean():Boolean
@@ -465,7 +465,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readByte():int
     {
@@ -488,7 +488,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readUnsignedByte():uint {
         COMPILE::SWF
@@ -517,7 +517,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readBytes(destination:BinaryData, offset:uint = 0, length:uint = 0):void
     {
@@ -554,7 +554,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readByteAt(idx:uint):uint
     {
@@ -588,7 +588,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function writeByteAt(idx:uint,byte:int):void
     {
@@ -613,7 +613,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readShort():int
     {
@@ -641,7 +641,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readUnsignedInt():uint
     {
@@ -668,7 +668,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readUnsignedShort():uint {
         COMPILE::SWF
@@ -695,7 +695,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readInt():int
     {
@@ -722,7 +722,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readFloat():Number
     {
@@ -749,7 +749,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function readDouble():Number
     {
@@ -778,7 +778,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     public function get length():int
     {
@@ -829,7 +829,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get bytesAvailable():uint
     {
@@ -854,7 +854,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get position():uint
     {
@@ -897,7 +897,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function growBuffer(extra:uint):void
     {
@@ -923,7 +923,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     public function readUTF():String
     {
@@ -949,7 +949,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     public function readUTFBytes(length:uint):String
     {
@@ -1023,7 +1023,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     public function writeUTF(str:String):void
     {
@@ -1051,7 +1051,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.7.0
+     *  @productversion Royale 0.7.0
      */
     public function writeUTFBytes(str:String):void
     {

@@ -46,9 +46,9 @@ package org.apache.flex.maps.google
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport goog.bind
-	 *  @flexjsignoreimport google.maps.event
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport goog.bind
+	 *  @royaleignoreimport google.maps.event
 	 */
 	public class GoogleMap extends UIBase
 	{

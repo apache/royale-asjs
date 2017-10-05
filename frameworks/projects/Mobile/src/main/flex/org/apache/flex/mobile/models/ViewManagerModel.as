@@ -36,7 +36,7 @@ package org.apache.flex.mobile.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ViewManagerModel extends EventDispatcher implements IBeadModel
 	{
@@ -46,7 +46,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function ViewManagerModel()
 		{
@@ -75,7 +75,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get views():Array
 		{
@@ -97,7 +97,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function pushView(value:IChild):void
 		{
@@ -113,7 +113,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function popView():IChild
 		{
@@ -133,7 +133,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get selectedIndex():Number
 		{
@@ -155,7 +155,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get title():String
 		{
@@ -174,7 +174,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get navigationBarItems():Array
 		{
@@ -193,7 +193,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get navigationBar():NavigationBar
 		{
@@ -212,7 +212,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get toolBarItems():Array
 		{
@@ -231,7 +231,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get toolBar():ToolBar
 		{
@@ -250,7 +250,7 @@ package org.apache.flex.mobile.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get tabBar():TabBar
 		{

@@ -5,7 +5,7 @@
 	"command": "asconfigc",
 	"isShellCommand": true,
 	"args": [
-		"--flexHome=/FlexSDK/FlexJSNightly"
+		"--flexHome=/FlexSDK/RoyaleNightly"
 	],
 	"showOutput": "always"
 }

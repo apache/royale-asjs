@@ -25,7 +25,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function get rx():Number;
 		function set rx(value:Number):void;
@@ -36,7 +36,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function get ry():Number;
 		function set ry(value:Number):void;
@@ -47,7 +47,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function drawRect(xp:Number, yp:Number, width:Number, height:Number):void;
 	}

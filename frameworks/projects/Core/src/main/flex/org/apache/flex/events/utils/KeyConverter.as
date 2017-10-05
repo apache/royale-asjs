@@ -25,7 +25,7 @@ package org.apache.flex.events.utils
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
 	 */
 	public class KeyConverter
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         COMPILE::JS
         public static function convertKey(value:String):String
@@ -62,7 +62,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
          COMPILE::SWF
          public static function convertKey(value:String):String
@@ -76,7 +76,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
          public static function convertKeyCode(code:uint):String
          {
@@ -189,7 +189,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
          public static function convertCharCode(code:uint):String
          {

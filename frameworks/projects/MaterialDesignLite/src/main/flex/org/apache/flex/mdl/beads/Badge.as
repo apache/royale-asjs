@@ -33,7 +33,7 @@ package org.apache.flex.mdl.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class Badge implements IBead
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function Badge()
 		{
@@ -57,7 +57,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get dataBadge():Number
 		{
@@ -76,7 +76,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get noBackground():Boolean
         {
@@ -104,7 +104,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get overlap():Boolean
         {
@@ -133,10 +133,10 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 *  @flexjsignorecoercion HTMLDivElement;
-		 *  @flexjsignorecoercion HTMLSpanElement;
-		 *  @flexjsignorecoercion HTMLElement;
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion HTMLDivElement;
+		 *  @royaleignorecoercion HTMLSpanElement;
+		 *  @royaleignorecoercion HTMLElement;
 		 */
 		public function set strand(value:IStrand):void
 		{

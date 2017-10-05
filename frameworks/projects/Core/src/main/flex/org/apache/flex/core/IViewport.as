@@ -34,7 +34,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
         function get contentView():IUIBase;
 
@@ -46,7 +46,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
 		 */
 		function setPosition(x:Number, y:Number):void;
 
@@ -58,7 +58,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
 		 */
 		function layoutViewportBeforeContentLayout(width:Number, height:Number):void;
 
@@ -72,7 +72,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
         function layoutViewportAfterContentLayout(contentSize:Size):void;
 

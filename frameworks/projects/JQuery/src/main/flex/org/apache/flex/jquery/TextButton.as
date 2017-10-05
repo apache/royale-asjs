@@ -32,7 +32,7 @@ package org.apache.flex.jquery
 		}
 	
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -42,7 +42,7 @@ package org.apache.flex.jquery
 			
 			positioner = element;
 			positioner.style.position = 'relative';
-			element.flexjs_wrapper = this;
+			element.royale_wrapper = this;
 			return element;
 		}
 		

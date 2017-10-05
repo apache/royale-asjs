@@ -181,7 +181,7 @@ package org.apache.flex.textLayout.elements {
 		/**
 		 *  TextFlows are configured with an immutable clone of a Configuration.  Once a TextFlow is create it uses an immutable configuration.
 		 *  @private
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.Configuration
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.Configuration
 		 */
 		public function getImmutableClone():IConfiguration
 		{

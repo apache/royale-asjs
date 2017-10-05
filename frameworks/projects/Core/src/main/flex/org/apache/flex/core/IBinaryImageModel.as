@@ -29,7 +29,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public interface IBinaryImageModel extends IImageModel
 	{
@@ -40,7 +40,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.7
+         *  @productversion Royale 0.7
          */
         function get binary():BinaryData;
         function set binary(value:BinaryData):void;

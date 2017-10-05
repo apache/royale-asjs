@@ -141,71 +141,71 @@
         <!-- namespace declaration for asdoc -->
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Basic/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Binding/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Charts/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Collections/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Core/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/createjs</uri>
+                <uri>library://ns.apache.org/royale/createjs</uri>
                 <manifest>${frameworks_dir}/projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/DragDrop/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Effects/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Formatters/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/google</uri>
+                <uri>library://ns.apache.org/royale/google</uri>
                 <manifest>${frameworks_dir}/projects/GoogleMaps/src/main/resources/google-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Graphics/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/HTML/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/html5</uri>
+                <uri>library://ns.apache.org/royale/html5</uri>
                 <manifest>${frameworks_dir}/projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/jquery</uri>
+                <uri>library://ns.apache.org/royale/jquery</uri>
                 <manifest>${frameworks_dir}/projects/JQuery/src/main/resources/jquery-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Mobile/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Network/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/svg</uri>
+                <uri>library://ns.apache.org/royale/svg</uri>
                 <manifest>${frameworks_dir}/projects/Basic/src/main/resources/svg-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -454,7 +454,7 @@
 
    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
    <metadata>
-      <title>Apache FlexJS Application</title>
+      <title>Apache Royale Application</title>
       <description>http://flex.apache.org/</description>
       <publisher>Apache Software Foundation</publisher>
       <creator>unknown</creator>
@@ -463,7 +463,7 @@
    
    <exclude-classes>
        <class>org.apache.flex.utils.Language</class>
-       <class>org.apache.flex.core.IFlexJSElement</class>
+       <class>org.apache.flex.core.IRoyaleElement</class>
        <class>org.apache.flex.core.WrappedHTMLElement</class>
        <class>org.apache.flex.events.BrowserEvent</class>
        <class>org.apache.flex.html.beads.CSSTextButtonView</class>
@@ -481,11 +481,11 @@
    
             <!-- namespaces to include in asdoc -->
             <doc-namespaces>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <uri>library://ns.apache.org/flexjs/createjs</uri>
-                <uri>library://ns.apache.org/flexjs/google</uri>
-                <uri>library://ns.apache.org/flexjs/html5</uri>
-                <uri>library://ns.apache.org/flexjs/jquery</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <uri>library://ns.apache.org/royale/createjs</uri>
+                <uri>library://ns.apache.org/royale/google</uri>
+                <uri>library://ns.apache.org/royale/html5</uri>
+                <uri>library://ns.apache.org/royale/jquery</uri>
             </doc-namespaces>
             
             <!-- classes to include in asdoc -->

@@ -27,13 +27,13 @@ package org.apache.flex.storage
 
 	/**
 	 * The PermanentStorage class provides the interface to the native
-	 * file system. This classes uses the FlexJS ValuesManager to provide
+	 * file system. This classes uses the Royale ValuesManager to provide
 	 * the actual implementation using the iStorage style.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
 	 */
 	public class PermanentStorage extends EventDispatcher implements IPermanentStorage
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function PermanentStorage()
 		{
@@ -68,7 +68,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function readTextFromDataFile( fileName:String ) : void
 		{
@@ -87,7 +87,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function writeTextToDataFile( fileName:String, text:String ) : void
 		{
@@ -104,7 +104,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function openOutputDataStream( fileName:String ) : void
 		{
@@ -121,7 +121,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function openInputDataStream( fileName:String ) : void
 		{

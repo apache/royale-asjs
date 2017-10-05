@@ -29,7 +29,7 @@ package org.apache.flex.binding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class PropertyWatcher extends WatcherBase
 	{
@@ -46,7 +46,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function PropertyWatcher(document:Object, propertyName:String, eventNames:Object, 
                                             getterFunction:Function)
@@ -66,7 +66,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected var dispatcher:IEventDispatcher;
 		
@@ -76,7 +76,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var document:Object;
         
@@ -86,7 +86,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var source:Object;
         
@@ -96,7 +96,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var propertyName:String;
         
@@ -107,7 +107,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */        
         public var eventNames:Object;
         
@@ -119,7 +119,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */                
         public var getterFunction:Function;
 		
@@ -132,7 +132,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */                
         protected function changeHandler(event:Event):void
         {
@@ -224,7 +224,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         private function updateProperty():void
         {

@@ -55,7 +55,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	COMPILE::JS
 	public class ListView extends DataContainerView
@@ -83,7 +83,7 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.flex.core.ISelectableItemRenderer
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
@@ -101,8 +101,8 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.core.ISelectableItemRenderer
-		 * * @flexjsignorecoercion org.apache.flex.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.flex.core.ISelectableItemRenderer
+		 * * @royaleignorecoercion org.apache.flex.core.IRollOverModel
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
@@ -132,7 +132,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set strand(value:IStrand):void
 		{

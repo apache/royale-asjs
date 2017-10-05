@@ -50,7 +50,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class HorizontalFlowLayout extends LayoutBase implements IBeadLayout
 	{
@@ -60,7 +60,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function HorizontalFlowLayout()
 		{
@@ -79,7 +79,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get columnGap():int
 		{
@@ -96,7 +96,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get rowGap():int
 		{
@@ -117,7 +117,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get defaultColumnCount():Number
 		{
@@ -136,7 +136,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get computedColumnWidth():Number
 		{
@@ -154,7 +154,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get useChildWidth():Boolean
 		{
@@ -257,7 +257,7 @@ package org.apache.flex.html.beads.layouts
 
 				for (i = 0; i < n; i++)
 				{
-					child = children[i].flexjs_wrapper;
+					child = children[i].royale_wrapper;
 					if (!child.visible) continue;
 					children[i].style["position"] = null;
 					

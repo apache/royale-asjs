@@ -39,7 +39,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class EventLoggingBead implements IBead
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function EventLoggingBead()
 		{
@@ -64,9 +64,9 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 *
-		 *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher
          */
         public function set strand(value:IStrand):void
         {
@@ -91,7 +91,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get eventNames():Array
         {

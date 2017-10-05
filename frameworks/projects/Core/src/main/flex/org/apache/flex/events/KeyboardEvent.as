@@ -82,7 +82,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
 		 */
         COMPILE::JS
 		public function get target():Object
@@ -102,7 +102,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
 		 */
         COMPILE::JS
 		public function get currentTarget():Object
@@ -193,7 +193,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
          */
         COMPILE::JS
 		override public function stopImmediatePropagation():void
@@ -209,7 +209,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.9
+         * @productversion Royale 0.9
          */
         COMPILE::JS
 		override public function stopPropagation():void
@@ -223,7 +223,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
         COMPILE::JS
 		override public function preventDefault():void
@@ -246,7 +246,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
         COMPILE::JS
 		public function get defaultPrevented():Boolean
@@ -265,9 +265,9 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
-        override public function cloneEvent():IFlexJSEvent
+        override public function cloneEvent():IRoyaleEvent
         {
             return new KeyboardEvent(type, key, code, shiftKey, altKey, ctrlKey, metaKey, bubbles, cancelable);
         }

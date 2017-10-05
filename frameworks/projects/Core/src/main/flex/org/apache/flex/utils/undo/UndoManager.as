@@ -38,7 +38,7 @@ package org.apache.flex.utils.undo
 	*  @langversion 3.0
 	*  @playerversion Flash 10.2
 	*  @playerversion AIR 2.6
-	*  @productversion FlexJS 0.0
+	*  @productversion Royale 0.0
 	*
 	* @see flashx.textLayout.edit.EditManager
 	*/
@@ -55,7 +55,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/	
 		public function UndoManager()
 		{
@@ -68,7 +68,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/	
 		public function clearAll():void
 		{
@@ -81,7 +81,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function canUndo():Boolean
 		{
@@ -93,7 +93,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function peekUndo():IOperation
 		{
@@ -105,7 +105,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function popUndo():IOperation
 		{
@@ -117,7 +117,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function pushUndo(operation:IOperation):void
 		{
@@ -130,7 +130,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function canRedo():Boolean
 		{
@@ -142,7 +142,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function clearRedo():void
 		{
@@ -154,7 +154,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function peekRedo():IOperation
 		{
@@ -166,7 +166,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function popRedo():IOperation
 		{
@@ -178,7 +178,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function pushRedo(operation:IOperation):void
 		{
@@ -192,7 +192,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function get undoAndRedoItemLimit():int
 		{ return _undoAndRedoItemLimit; }
@@ -209,7 +209,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function undo():void
 		{
@@ -228,7 +228,7 @@ package org.apache.flex.utils.undo
 		*  @langversion 3.0
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.0
+		*  @productversion Royale 0.0
 		*/
 		public function redo():void
 		{

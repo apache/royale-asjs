@@ -70,15 +70,15 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../resources/basic-as-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/svg</uri>
+                <uri>library://ns.apache.org/royale/svg</uri>
                 <manifest>../resources/svg-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -100,8 +100,8 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
-        <uri>library://ns.apache.org/flexjs/svg</uri>
+        <uri>library://ns.apache.org/royale/basic</uri>
+        <uri>library://ns.apache.org/royale/svg</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

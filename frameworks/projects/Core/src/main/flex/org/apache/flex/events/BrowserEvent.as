@@ -54,7 +54,7 @@ package org.apache.flex.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
+	 * @productversion Royale 0.0
 	 */
 	COMPILE::JS
 	public class BrowserEvent implements IBrowserEvent
@@ -84,7 +84,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get altKey():Boolean
 		{
@@ -98,7 +98,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get button():uint
 		{
@@ -113,7 +113,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get charCode():uint
 		{
@@ -127,7 +127,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get clientX():Number
 		{
@@ -146,7 +146,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get clientY():Number
 		{
@@ -164,7 +164,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get ctrlKey():Boolean
 		{
@@ -177,7 +177,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get currentTarget():Object
 		{
@@ -191,7 +191,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get defaultPrevented():Boolean
 		{
@@ -207,7 +207,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function getBrowserEvent():Object
 		{
@@ -232,7 +232,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function isButton(button:int):Boolean
 		{
@@ -250,7 +250,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function isMouseActionButton():Boolean
 		{
@@ -265,7 +265,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get keyCode():uint
 		{
@@ -279,7 +279,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get metaKey():Boolean
 		{
@@ -293,7 +293,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get offsetX():Number
 		{
@@ -307,7 +307,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get offsetY():Number
 		{
@@ -322,7 +322,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get platformModifierKey():Boolean
 		{
@@ -335,7 +335,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function preventDefault():void
 		{
@@ -349,7 +349,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get relatedTarget():Object
 		{
@@ -363,7 +363,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get screenX():Number
 		{
@@ -377,7 +377,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get screenY():Number
 		{
@@ -391,7 +391,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get shiftKey():Boolean
 		{
@@ -406,7 +406,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get state():Object
 		{
@@ -417,7 +417,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
 		public function stopImmediatePropagation():void
 		{
@@ -429,7 +429,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
 		public function stopPropagation():void
 		{
@@ -443,7 +443,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get target():Object
 		{
@@ -456,7 +456,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get timestamp():Date
 		{
@@ -470,7 +470,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
 		 */
 		public function get type():String
 		{

@@ -69,7 +69,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var bytesLoaded:uint = 0;
 		
@@ -79,7 +79,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var bytesTotal:uint = 0;
 
@@ -106,7 +106,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		public function load(urlRequest:org.apache.flex.net.URLRequest):void
 		{
@@ -185,7 +185,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::SWF
 		private function flash_status(event:HTTPStatusEvent):void
@@ -199,7 +199,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::SWF 
 		protected function flash_onIoError(event:IOErrorEvent):void
@@ -218,7 +218,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::SWF
 		private function flash_onSecurityError(event:flash.events.Event):void
@@ -235,7 +235,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::SWF
 		protected function flash_complete(event:flash.events.Event):void
@@ -252,7 +252,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::SWF
 		protected function flash_progress(event:flash.events.ProgressEvent):void
@@ -272,7 +272,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::JS
 		private function xhr_progress(error:Object):void
@@ -292,7 +292,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::JS
 		private function xhr_onreadystatechange(error:*):void
@@ -336,7 +336,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		private function setStatus(value:int):void
 		{
@@ -355,7 +355,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		public function close():void
 		{
@@ -380,7 +380,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var requestStatus:int = 0;
 
@@ -390,7 +390,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var endian:String = Endian.BIG_ENDIAN;
 
@@ -400,7 +400,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		protected function cleanupCallbacks():void
 		{
@@ -416,7 +416,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onComplete:Function;
 		
@@ -426,7 +426,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onError:Function;
 		
@@ -436,7 +436,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onProgress:Function;
 
@@ -446,7 +446,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onStatus:Function;
 
@@ -456,7 +456,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function complete(callback:Function):org.apache.flex.net.URLStream
 		{
@@ -470,7 +470,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function error(callback:Function):org.apache.flex.net.URLStream
 		{
@@ -484,7 +484,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function progress(callback:Function):org.apache.flex.net.URLStream
 		{
@@ -497,7 +497,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function status(callback:Function):org.apache.flex.net.URLStream
 		{

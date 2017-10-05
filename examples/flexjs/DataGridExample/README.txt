@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-The DataGridExample demonstrates the FlexJS DataGrid which is a composite
+The DataGridExample demonstrates the Royale DataGrid which is a composite
 component that is built from a set of List components; each List is a column
 in the DataGrid. The header is provided by the ButtonBar component.
 

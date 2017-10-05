@@ -54,7 +54,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class ButtonBarReorderBead extends EventDispatcher implements IBead
 	{
@@ -64,7 +64,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function ButtonBarReorderBead()
 		{
@@ -82,7 +82,7 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
-		 * @flexjsignoretypecoercion org.apache.flex.events.IEventDispatcher
+		 * @royaleignoretypecoercion org.apache.flex.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{

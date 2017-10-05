@@ -34,7 +34,7 @@ package org.apache.flex.maps.google.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class MapModel extends EventDispatcher implements IBeadModel
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.maps.google.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function MapModel()
 		{
@@ -59,7 +59,7 @@ package org.apache.flex.maps.google.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -86,7 +86,7 @@ package org.apache.flex.maps.google.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get currentCenter():LatLng
 		{
@@ -107,7 +107,7 @@ package org.apache.flex.maps.google.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get selectedMarker():Marker
 		{
@@ -128,7 +128,7 @@ package org.apache.flex.maps.google.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get zoom():Number
 		{
@@ -150,7 +150,7 @@ package org.apache.flex.maps.google.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get searchResults():Array
 		{

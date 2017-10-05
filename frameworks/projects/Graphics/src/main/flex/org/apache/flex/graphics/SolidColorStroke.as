@@ -68,7 +68,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.3
+         *  @productversion Royale 0.3
          */
         public function get alpha():Number
         {
@@ -90,7 +90,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion FlexJS 0.3
+         *  @productversion Royale 0.3
          */
         public function get color():uint
         {
@@ -120,7 +120,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion FlexJS 0.3
+         *  @productversion Royale 0.3
          */
         public function set weight(value:Number):void
         {
@@ -167,7 +167,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.3
+         *  @productversion Royale 0.3
          */        
         public function get lineCap():String
         {
@@ -206,7 +206,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.7
+         *  @productversion Royale 0.7
          */        
         public function get lineJoin():String
         {
@@ -225,7 +225,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.7
+         *  @productversion Royale 0.7
          */        
         public function get miterLimit():Number
         {
@@ -245,7 +245,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.7
+         *  @productversion Royale 0.7
          */        
         public function get lineDash():Array
         {

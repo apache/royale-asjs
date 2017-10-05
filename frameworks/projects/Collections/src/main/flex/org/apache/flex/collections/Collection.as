@@ -26,7 +26,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const COLLECTION_CHANGED:String = "collectionChanged";
 
@@ -35,7 +35,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const ITEM_ADDED:String = "itemAdded";
 
@@ -44,7 +44,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const ITEM_REMOVED:String = "itemRemoved";
 
@@ -53,7 +53,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static const ITEM_UPDATED:String = "itemUpdated";
 

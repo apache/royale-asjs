@@ -33,7 +33,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
          */
         public function PathBuilder(closedPath:Boolean=false)
         {
@@ -47,7 +47,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function clear():void
         {
@@ -60,7 +60,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public function getPathString():String
         {
@@ -78,7 +78,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         COMPILE::SWF
         public function draw(g:Graphics):void
@@ -112,7 +112,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public var closedPath:Boolean;
         
@@ -122,7 +122,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public function lineTo(x:Number, y:Number):void
         {
@@ -135,7 +135,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public function moveTo(x:Number, y:Number):void
         {
@@ -148,7 +148,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public function quadraticCurveTo(controlX:Number, controlY:Number, anchorX:Number, anchorY:Number):void
         {
@@ -161,7 +161,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public function cubicCurveTo(controlX1:Number, controlY1:Number, controlX2:Number, controlY2:Number, anchorX:Number, anchorY:Number):void
         {
@@ -174,7 +174,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public function drawRect(x:Number,y:Number,width:Number,height:Number):void
         {
@@ -191,7 +191,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.6
+		 *  @productversion Royale 0.6
 		 */
         public function drawRoundRectComplex(x:Number, y:Number, 
                                                     width:Number, height:Number, 

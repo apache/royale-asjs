@@ -29,7 +29,7 @@ COMPILE::SWF
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function describeType(value:Object):TypeDefinition
 	{
@@ -49,7 +49,7 @@ COMPILE::SWF
         COMPILE::JS
         {
             var qname:String = getQualifiedClassName(value);
-            return TypeDefinition.getDefinition(qname, value.FLEXJS_CLASS_INFO || value.prototype.FLEXJS_CLASS_INFO);
+            return TypeDefinition.getDefinition(qname, value.ROYALE_CLASS_INFO || value.prototype.ROYALE_CLASS_INFO);
         }
     }
 }

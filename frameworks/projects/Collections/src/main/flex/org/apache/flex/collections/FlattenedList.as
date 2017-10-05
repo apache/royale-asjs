@@ -34,7 +34,7 @@ package org.apache.flex.collections
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class FlattenedList extends ArrayList
 	{
@@ -47,7 +47,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function FlattenedList(hdata:HierarchicalData)
 		{
@@ -63,7 +63,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function reset():void
 		{
@@ -94,7 +94,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function hasChildren(node:Object):Boolean
 		{
@@ -107,7 +107,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function isOpen(node:Object):Boolean
 		{
@@ -120,7 +120,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function openNode(node:Object):void
 		{
@@ -141,7 +141,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function closeNode(node:Object):void
 		{
@@ -173,7 +173,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function getDepth(node:Object):int
 		{

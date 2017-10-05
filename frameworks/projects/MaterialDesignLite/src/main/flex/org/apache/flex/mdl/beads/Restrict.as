@@ -42,7 +42,7 @@ package org.apache.flex.mdl.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class Restrict implements IBead
 	{
@@ -52,7 +52,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function Restrict()
 		{
@@ -66,7 +66,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get pattern():String
 		{
@@ -85,7 +85,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get error():String
         {
@@ -104,10 +104,10 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 *  @flexjsignorecoercion HTMLSpanElement
-		 *  @flexjsignorecoercion Text
-		 *  @flexjsignorecoercion org.apache.flex.mdl.supportClasses.ITextField;
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion HTMLSpanElement
+		 *  @royaleignorecoercion Text
+		 *  @royaleignorecoercion org.apache.flex.mdl.supportClasses.ITextField;
 		 */
 		public function set strand(value:IStrand):void
 		{

@@ -43,7 +43,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class DropDownList extends DataContainer
     {
@@ -53,7 +53,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function DropDownList()
         {
@@ -72,7 +72,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.9
+         *  @productversion Royale 0.9
          */
         public function get prompt():String
         {
@@ -101,7 +101,7 @@ package org.apache.flex.mdl
             protected var _labelDisplay:HTMLLabelElement;
 
             /**
-             * @flexjsignorecoercion HTMLLabelElement
+             * @royaleignorecoercion HTMLLabelElement
              */
             public function get labelDisplay():HTMLLabelElement
             {
@@ -109,7 +109,7 @@ package org.apache.flex.mdl
             }
 
             /**
-             * @flexjsignorecoercion HTMLLabelElement
+             * @royaleignorecoercion HTMLLabelElement
              */
             public function set labelDisplay(value:HTMLLabelElement):void
             {
@@ -124,7 +124,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.9
+         *  @productversion Royale 0.9
          */
         public function get selectedValue():String
         {
@@ -142,7 +142,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get selectedIndex():int
         {
@@ -160,7 +160,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get selectedItem():Object
         {
@@ -199,7 +199,7 @@ package org.apache.flex.mdl
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

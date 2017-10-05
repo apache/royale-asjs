@@ -19,13 +19,13 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
-				xmlns:js="library://ns.apache.org/flexjs/basic" 
+				xmlns:js="library://ns.apache.org/royale/basic" 
 				>
 	
 	
 	
 	<fx:Style>
-		@namespace js  "library://ns.apache.org/flexjs/basic";
+		@namespace js  "library://ns.apache.org/royale/basic";
 		
 		.Repeater {
 			IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
@@ -68,7 +68,7 @@ limitations under the License.
 	
 	
 	<js:VContainer id="output" width="100%" height="100%">
-		<js:Label text="FlexJS Team Page" className="Heading1" />
+		<js:Label text="Royale Team Page" className="Heading1" />
 		<js:Spacer height="20" />
 		
 		<!-- This list does not use selections, so it has a special controller. -->

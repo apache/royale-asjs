@@ -36,13 +36,13 @@ package org.apache.flex.mdl
      *  tab — the one whose content is currently displayed — is always visually distinguished from
      *  the others so the user knows which heading the current content belongs to.
      *
-     *  In FlexJS Tabs consume a dataprovider and uses item renderers to create each item (defaults
+     *  In Royale Tabs consume a dataprovider and uses item renderers to create each item (defaults
      *  to TabBarPanelItemRenderer)
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class Tabs extends org.apache.flex.html.List
 	{
@@ -52,7 +52,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function Tabs()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
         override public function get dataProvider():Object
         {
@@ -87,7 +87,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
 		public function get tabIdField():String
 		{
@@ -107,7 +107,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
         override public function get labelField():String
         {
@@ -127,7 +127,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         override public function set selectedIndex(value:int):void
         {
@@ -135,7 +135,7 @@ package org.apache.flex.mdl
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -152,7 +152,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get ripple():Boolean
         {

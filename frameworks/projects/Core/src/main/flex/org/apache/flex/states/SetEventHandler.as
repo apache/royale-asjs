@@ -25,14 +25,14 @@ package org.apache.flex.states
     
     /**
      *  The SetEventHandler class is one of the classes in the
-     *  view states subsystem.  Note that the FlexJS
+     *  view states subsystem.  Note that the Royale
      *  versions are simply data structures interpreted
      *  by a central States implementation.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class SetEventHandler implements IDocument
 	{

@@ -45,7 +45,7 @@ package org.apache.flex.net
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="complete", type="org.apache.flex.events.Event")]
 	
@@ -55,7 +55,7 @@ package org.apache.flex.net
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="ioError", type="org.apache.flex.events.Event")]
 	
@@ -65,7 +65,7 @@ package org.apache.flex.net
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
 	
@@ -81,7 +81,7 @@ package org.apache.flex.net
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="httpResponseStatus", type="org.apache.flex.events.Event")]
     
@@ -96,7 +96,7 @@ package org.apache.flex.net
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class HTTPService extends HTTPServiceBase implements IStrand, IBead
 	{
@@ -106,8 +106,8 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function HTTPService()
 		{
@@ -127,7 +127,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get contentType():String
 		{
@@ -154,7 +154,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get contentData():String
 		{
@@ -181,7 +181,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get headers():Array
 		{
@@ -210,7 +210,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get method():String
 		{
@@ -237,8 +237,8 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion XMLHttpRequest
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion XMLHttpRequest
          */
 		public function get responseHeaders():Array
 		{
@@ -295,7 +295,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get responseURL():String
 		{
@@ -310,7 +310,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get status():int
 		{
@@ -321,7 +321,7 @@ package org.apache.flex.net
          *
          *  Status text contains more information about the HTTP request made.
          *
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         COMPILE::JS
         public function get statusText():String
@@ -337,7 +337,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get url():String
 		{
@@ -364,7 +364,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get timeout():Number
 		{
@@ -391,7 +391,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get id():String
 		{
@@ -418,7 +418,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {
@@ -438,7 +438,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var beads:Array;
 		
@@ -451,7 +451,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		public function addBead(bead:IBead):void
@@ -468,7 +468,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		public function getBeadByType(classOrInterface:Class):IBead
@@ -487,7 +487,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		public function removeBead(value:IBead):IBead	
@@ -509,7 +509,7 @@ package org.apache.flex.net
          *  Allows Javascript cross-site Access-Control requests to be made
          *  using credentials such as cookies or authorization headers
          *
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         COMPILE::JS
         public function set withCredentials(value:Boolean):void {
@@ -526,8 +526,8 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion XMLHttpRequest
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion XMLHttpRequest
          */
         public function send():void
         {
@@ -643,7 +643,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		protected function statusHandler(event:HTTPStatusEvent):void
@@ -662,7 +662,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		protected function ioErrorHandler(event:IOErrorEvent):void
@@ -676,7 +676,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         protected function completeHandler(event:flash.events.Event):void
@@ -685,7 +685,7 @@ package org.apache.flex.net
         }
         
         /**
-         * @flexjsignorecoercion XMLHttpRequest
+         * @royaleignorecoercion XMLHttpRequest
          */
         COMPILE::JS
         protected function progressHandler():void
@@ -706,8 +706,8 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion XMLHttpRequest
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion XMLHttpRequest
          */
         public function get data():String
         {
@@ -730,7 +730,7 @@ package org.apache.flex.net
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get json():Object
         {

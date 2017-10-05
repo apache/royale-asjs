@@ -25,7 +25,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	public interface ILayoutView
 	{
@@ -36,7 +36,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.8
+	     *  @productversion Royale 0.8
 		 */
 		function get width():Number;
 		
@@ -47,7 +47,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.8
+	     *  @productversion Royale 0.8
 		 */
 		function get height():Number;
 		
@@ -57,7 +57,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.8
+	     *  @productversion Royale 0.8
 		 */
 		function get numElements():int;
 		
@@ -67,7 +67,7 @@ package org.apache.flex.core
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.8
+	     *  @productversion Royale 0.8
 		 */
 		function getElementAt(index:int):IChild;
 		
@@ -78,7 +78,7 @@ package org.apache.flex.core
 		     *  @langversion 3.0
 		     *  @playerversion Flash 10.2
 		     *  @playerversion AIR 2.6
-		     *  @productversion FlexJS 0.8
+		     *  @productversion Royale 0.8
 			 */
 			function get element():WrappedHTMLElement;
 		}

@@ -31,7 +31,7 @@ package org.apache.flex.html
      * 
      *  This is effectively the same as the pattern
      *  <code>
-     *  <basic:Container xmlns:basic="library://ns.apache.org/flexjs/basic">
+     *  <basic:Container xmlns:basic="library://ns.apache.org/royale/basic">
      *    <basic:layout>
      *       <basic:VerticalLayout />
      *    </basic:layout>
@@ -42,7 +42,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */    
 	public class VContainer extends Container
 	{
@@ -52,7 +52,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function VContainer()
 		{

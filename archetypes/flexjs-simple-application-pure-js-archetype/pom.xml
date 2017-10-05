@@ -21,16 +21,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-maven-archetypes</artifactId>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale-maven-archetypes</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>flexjs-simple-application-pure-js-archetype</artifactId>
+  <artifactId>royale-simple-application-pure-js-archetype</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Apache Flex - FlexJS: Framework: Archetypes: Simple FlexJS Pure-JS Application</name>
-  <description>Maven archetype for creating FlexJS Maven project for building a simple FlexJS application with only JavaScript output.</description>
+  <name>Apache Royale: Framework: Archetypes: Simple Royale Pure-JS Application</name>
+  <description>Maven archetype for creating Royale Maven project for building a simple Royale application with only JavaScript output.</description>
 
 </project>

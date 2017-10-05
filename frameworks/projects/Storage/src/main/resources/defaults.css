@@ -17,8 +17,8 @@
  *
  */
 
-@namespace "library://ns.apache.org/flexjs/basic";
-@namespace svg "library://ns.apache.org/flexjs/svg";
+@namespace "library://ns.apache.org/royale/basic";
+@namespace svg "library://ns.apache.org/royale/svg";
 
 LocalStorage
 {

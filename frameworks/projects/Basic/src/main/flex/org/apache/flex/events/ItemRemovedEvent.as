@@ -29,7 +29,7 @@ package org.apache.flex.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
+	 * @productversion Royale 0.0
 	 */
 	public class ItemRemovedEvent extends CustomEvent
 	{
@@ -48,7 +48,7 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
 		public function ItemRemovedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
@@ -71,14 +71,14 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
 		public var item:Object;
 		
 		/**
 		 * @private
 		 */
-		override public function cloneEvent():IFlexJSEvent
+		override public function cloneEvent():IRoyaleEvent
 		{
 			var newEvent:ItemRemovedEvent = new ItemRemovedEvent(type);
 			newEvent.item = item;

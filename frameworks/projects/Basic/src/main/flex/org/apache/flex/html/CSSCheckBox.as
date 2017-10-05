@@ -46,7 +46,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -59,7 +59,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
 	public class CSSCheckBox extends UIButtonBase implements IStrand
@@ -70,7 +70,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function CSSCheckBox()
 		{
@@ -85,7 +85,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get text():String
 		{
@@ -108,7 +108,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get selected():Boolean
 		{
@@ -146,7 +146,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -162,7 +162,7 @@ package org.apache.flex.html
 		private static var _checkNumber:Number = 0;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -178,8 +178,8 @@ package org.apache.flex.html
             _textNode = document.createTextNode('') as WrappedHTMLElement;
             element.appendChild(_textNode);
             //positioner.style.position = 'relative';
-			_icon.element.flexjs_wrapper = this;
-            _styleDiv.flexjs_wrapper = this;
+			_icon.element.royale_wrapper = this;
+            _styleDiv.royale_wrapper = this;
 
             className = 'CSSCheckBox';
             typeNames = 'CSSCheckBox';

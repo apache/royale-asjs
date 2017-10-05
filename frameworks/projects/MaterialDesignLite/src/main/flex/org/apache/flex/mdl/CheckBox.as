@@ -44,7 +44,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	public class CheckBox extends org.apache.flex.html.CheckBox
 	{
@@ -54,7 +54,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function CheckBox()
 		{
@@ -76,11 +76,11 @@ package org.apache.flex.mdl
         protected var label:HTMLLabelElement;
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLLabelElement
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion Text
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLLabelElement
+         * @royaleignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -99,8 +99,8 @@ package org.apache.flex.mdl
             checkbox.className = 'mdl-checkbox__label';
             label.appendChild(checkbox);
             
-            (input as WrappedHTMLElement).flexjs_wrapper = this;
-            (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
+            (input as WrappedHTMLElement).royale_wrapper = this;
+            (checkbox as WrappedHTMLElement).royale_wrapper = this;
             return element;
         }
 
@@ -113,7 +113,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get ripple():Boolean
         {
@@ -133,12 +133,12 @@ package org.apache.flex.mdl
         /**
          *  The text label for the CheckBox.
          *
-         *  @flexjsignorecoercion Text
+         *  @royaleignorecoercion Text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		override public function get text():String
 		{
@@ -180,7 +180,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.9
+         *  @productversion Royale 0.9
          */
         public function get value():String
         {
@@ -218,7 +218,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		override public function get selected():Boolean
 		{

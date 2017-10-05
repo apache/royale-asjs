@@ -34,7 +34,7 @@ package org.apache.flex.html
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class SimpleList extends List
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function SimpleList()
 		{
@@ -52,8 +52,8 @@ package org.apache.flex.html
 		}
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLSelectElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -67,7 +67,7 @@ package org.apache.flex.html
         }
 
         /**
-         * @flexjsignorecoercion HTMLSelectElement
+         * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         protected function changeHandler(event:Event):void

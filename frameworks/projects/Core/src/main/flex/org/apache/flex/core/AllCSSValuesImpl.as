@@ -39,7 +39,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class AllCSSValuesImpl extends EventDispatcher implements IValuesImpl, ICSSImpl
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function AllCSSValuesImpl()
 		{
@@ -66,7 +66,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         public function init(mainClass:Object):void
@@ -148,7 +148,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
@@ -296,7 +296,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var values:Object;
 		
@@ -306,7 +306,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
@@ -391,7 +391,7 @@ package org.apache.flex.core
             }
             COMPILE::JS
             {
-                className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
+                className = thisObject.ROYALE_CLASS_INFO.names[0].qName;
             }
             var thisInstance:Object = thisObject;
 			while (className != "Object")
@@ -428,10 +428,10 @@ package org.apache.flex.core
                 {
                     var constructorAsObject:Object = thisInstance["constructor"];
                     thisInstance = constructorAsObject.superClass_;
-                    if (!thisInstance || !thisInstance.FLEXJS_CLASS_INFO)
+                    if (!thisInstance || !thisInstance.ROYALE_CLASS_INFO)
                         break;
                     
-                    className = thisInstance.FLEXJS_CLASS_INFO.names[0].qName;                    
+                    className = thisInstance.ROYALE_CLASS_INFO.names[0].qName;                    
                 }
 			}
             
@@ -490,7 +490,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
@@ -516,7 +516,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function newInstance(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
@@ -532,8 +532,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion Function
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion Function
          */
         public function getInstance(valueName:String):Object
         {
@@ -565,7 +565,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function convertColor(value:Object):uint
         {
@@ -578,7 +578,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function parseStyles(styles:String):Object
         {
@@ -625,7 +625,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function addRule(ruleName:String, values:Object):void
         {
@@ -652,7 +652,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var inheritingStyles:Object = { 
             "color" : 1,
@@ -709,7 +709,7 @@ package org.apache.flex.core
         /**
          * @param thisObject The object to apply styles to;
          * @param styles The styles.
-         * @flexjsignorecoercion HTMLElement
+         * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         public function applyStyles(thisObject:IUIBase, styles:Object):void

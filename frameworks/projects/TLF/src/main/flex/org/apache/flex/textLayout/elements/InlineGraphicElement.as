@@ -834,7 +834,7 @@ package org.apache.flex.textLayout.elements
 			// TODO fix this
 			/*
 			 * I commented this whole thing out because it has lots of Flash dependencies. 
-			 * It will take time figuring out how to migrate this functionality to FlexJS
+			 * It will take time figuring out how to migrate this functionality to Royale
 			 *  
 			CONFIG::debug { assert(textFlow != null,"ILG:applyDelayedElementUpdate: null textFlow"); }      
 			if (_graphicStatus == InlineGraphicElementStatus.LOAD_PENDING)

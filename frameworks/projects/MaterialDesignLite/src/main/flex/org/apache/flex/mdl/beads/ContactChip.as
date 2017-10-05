@@ -31,7 +31,7 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class ContactChip implements IBead
     {
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function ContactChip()
         {
@@ -56,7 +56,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function set contactText(value:String):void
         {
@@ -73,10 +73,10 @@ package org.apache.flex.mdl.beads
 
         private var _strand:IStrand;
         /**
-         * @flexjsignorecoercion HTMLElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion Text
-         * @flexjsignorecoercion HTMLButtonElement
+         * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion Text
+         * @royaleignorecoercion HTMLButtonElement
          *
          * @param value
          */
@@ -121,7 +121,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         private function loadColorBead():void
         {
@@ -150,7 +150,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         private function loadTextColorBead():void
         {

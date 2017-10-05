@@ -39,7 +39,7 @@ COMPILE::SWF {
  * @langversion 3.0
  * @playerversion Flash 10.2
  * @playerversion AIR 2.6
- * @productversion FlexJS 0.0
+ * @productversion Royale 0.0
  */
 public class DataInputStream extends EventDispatcher implements IDataInput
 {
@@ -53,7 +53,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function DataInputStream(target:IEventDispatcher, fileHandle:Object, fileReader:Object)
 	{
@@ -104,7 +104,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function readText():void
 	{
@@ -129,7 +129,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function close():void
 	{

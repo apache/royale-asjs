@@ -37,7 +37,7 @@ package org.apache.flex.mdl.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class SliderThumbView extends BeadViewBase implements IBeadView
 	{
@@ -47,7 +47,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function SliderThumbView()
 		{
@@ -63,7 +63,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
@@ -84,9 +84,9 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-         *  @flexjsignoreimport org.apache.flex.core.WrappedHTMLElement
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @productversion Royale 0.8
+         *  @royaleignoreimport org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -117,7 +117,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{

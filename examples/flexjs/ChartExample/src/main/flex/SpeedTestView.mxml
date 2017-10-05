@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic">
+				xmlns:js="library://ns.apache.org/royale/basic">
 	<fx:Script>
 		<![CDATA[
 			import models.ProductsModel;
@@ -72,7 +72,7 @@ limitations under the License.
 	
 	<fx:Style>
 		@namespace models "models.*";
-		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		.hsline {
 			IDataGroup: ClassReference("org.apache.flex.charts.optimized.SVGChartDataGroup");

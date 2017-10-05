@@ -22,7 +22,7 @@
 				   xmlns:local="*"
 				   xmlns:models="models.*"
                    xmlns:controllers="controllers.*"
-				   xmlns:js="library://ns.apache.org/flexjs/basic" 
+				   xmlns:js="library://ns.apache.org/royale/basic" 
 				   >
 	<fx:Script>
         <![CDATA[
@@ -39,7 +39,7 @@
     <fx:Style>
         @namespace models "models.*";
         @namespace controllers "controllers.*";
-        @namespace js "library://ns.apache.org/flexjs/basic";
+        @namespace js "library://ns.apache.org/royale/basic";
 
         @media -flex-flash
         {

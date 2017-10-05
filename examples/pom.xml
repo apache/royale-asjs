@@ -21,17 +21,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-framework-parent</artifactId>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale.framework-parent</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.apache.flex.flexjs.examples</groupId>
+  <groupId>org.apache.royale.examples</groupId>
   <artifactId>examples</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Examples</name>
+  <name>Apache Royale: Examples</name>
 
   <properties>
     <compiler.output-dir>${basedir}/target/javascript/bin/js-debug</compiler.output-dir>
@@ -39,7 +39,7 @@
 
   <modules>
     <module>express</module>
-    <module>flexjs</module>
+    <module>royale</module>
     <module>native</module>
     <module>node</module>
 
@@ -67,9 +67,9 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.flex.flexjs.compiler</groupId>
-          <artifactId>flexjs-maven-plugin</artifactId>
-          <version>${flexjs.compiler.version}</version>
+          <groupId>org.apache.royale.compiler</groupId>
+          <artifactId>royale-maven-plugin</artifactId>
+          <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
         </plugin>
         <plugin>

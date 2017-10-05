@@ -46,7 +46,7 @@ package org.apache.flex.mdl.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class SliderMouseController implements IBeadController
 	{
@@ -56,7 +56,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function SliderMouseController()
 		{
@@ -68,7 +68,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
          */
 		private var rangeModel:IRangeModel;
 		
@@ -79,7 +79,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -116,7 +116,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
          */
         COMPILE::JS
         private function handleChange(event:BrowserEvent):void
@@ -129,12 +129,12 @@ package org.apache.flex.mdl.beads.controllers
         }
 
         /**
-         *  Manages the input event to update the range model value and dispatch a input FlexJS event 
+         *  Manages the input event to update the range model value and dispatch a input Royale event 
          *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
          */
         COMPILE::JS
         private function handleInput(event:BrowserEvent):void
@@ -157,7 +157,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         COMPILE::SWF
 		private function thumbDownHandler( event:MouseEvent ) : void
@@ -177,7 +177,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         COMPILE::SWF
 		private function thumbUpHandler( event:MouseEvent ) : void
@@ -194,7 +194,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         COMPILE::SWF
 		private function thumbMoveHandler( event:MouseEvent ) : void
@@ -219,7 +219,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         COMPILE::SWF
 		private function trackClickHandler( event:MouseEvent ) : void

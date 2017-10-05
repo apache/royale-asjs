@@ -29,7 +29,7 @@ package org.apache.flex.utils
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
     public class OSUtils
     {

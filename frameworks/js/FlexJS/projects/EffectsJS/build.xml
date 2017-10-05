@@ -20,12 +20,12 @@
 
 
 <project name="EffectsJS" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../../../.."/>
+    <property name="ROYALE_HOME" location="../../../../.."/>
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
     <property name="target.name" value="${ant.project.name}.swc" />
@@ -39,7 +39,7 @@
     
     <target name="clean">
         <delete failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+            <fileset dir="${ROYALE_HOME}/frameworks/js/Royale/libs">
                 <include name="${target.name}"/>
             </fileset>
         </delete>
@@ -53,12 +53,12 @@
     <target name="compile" depends="check-compiler">
         <echo message="Cross-compiling ${target.name}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <mkdir dir="${basedir}/target/generated-sources/flexjs"/>
+        <mkdir dir="${basedir}/target/generated-sources/royale"/>
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
-            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <jvmarg value="-Dflexlib=${ROYALE_HOME}/frameworks" />
             <arg value="+flexlib=${FLEX_HOME}/frameworks" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSFlex" />
@@ -66,13 +66,13 @@
             <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
         </java>
-        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/js/FlexJS/libs/${target.name}" />
+        <copy file="${basedir}/target/${target.name}" tofile="${ROYALE_HOME}/frameworks/js/Royale/libs/${target.name}" />
     </target>
     
     <target name="copy-js" >
-        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources"/>
-        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources">
-            <fileset dir="${basedir}/target/generated-sources/flexjs">
+        <mkdir dir="${ROYALE_HOME}/frameworks/js/Royale/generated-sources"/>
+        <copy todir="${ROYALE_HOME}/frameworks/js/Royale/generated-sources">
+            <fileset dir="${basedir}/target/generated-sources/royale">
                 <include name="**/**" />
             </fileset>
         </copy>
@@ -95,12 +95,12 @@
         property="FALCON_HOME"
         value="${env.FALCON_HOME}"/>
         
-        <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
+        <available file="${ROYALE_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
-        value="${FLEXJS_HOME}/../flex-falcon/compiler"/>
+        value="${ROYALE_HOME}/../flex-falcon/compiler"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or a FlexJS SDK folder"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or a Royale SDK folder"
         unless="FALCON_HOME"/>
     </target>
     
@@ -114,12 +114,12 @@
         property="FALCONJX_HOME"
         value="${env.FALCONJX_HOME}"/>
         
-        <available file="${FLEXJS_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar"
+        <available file="${ROYALE_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar"
         type="file"
         property="FALCONJX_HOME"
-        value="${FLEXJS_HOME}/../flex-falcon/compiler-jx"/>
+        value="${ROYALE_HOME}/../flex-falcon/compiler-jx"/>
         
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder of a FlexJS SDK"
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder of a Royale SDK"
         unless="FALCONJX_HOME"/>
     </target>
     

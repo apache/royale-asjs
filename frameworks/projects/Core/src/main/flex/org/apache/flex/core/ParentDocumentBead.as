@@ -35,12 +35,12 @@ package org.apache.flex.core
      *  this information.  It is intended to be used
      *  as a bead in the top-level tag of an MXML document.
      *  
-     *  @flexjsignoreimport org.apache.flex.core.IChild
+     *  @royaleignoreimport org.apache.flex.core.IChild
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ParentDocumentBead extends EventDispatcher implements IBead
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ParentDocumentBead()
 		{
@@ -65,7 +65,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {
@@ -82,7 +82,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get id():String
         {
@@ -104,7 +104,7 @@ package org.apache.flex.core
         [Bindable("parentDocumentChange")]
         /**
          *  @private
-         *  @flexjsignorecoercion org.apache.flex.core.IChild
+         *  @royaleignorecoercion org.apache.flex.core.IChild
          */
         public function get parentDocument():Object
         {

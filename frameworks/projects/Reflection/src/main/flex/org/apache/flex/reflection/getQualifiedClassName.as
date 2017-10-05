@@ -29,7 +29,7 @@ COMPILE::SWF
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function getQualifiedClassName(value:*):String
 	{
@@ -39,13 +39,13 @@ COMPILE::SWF
         }
         COMPILE::JS
         {
-            if (value.FLEXJS_CLASS_INFO == null)
+            if (value.ROYALE_CLASS_INFO == null)
             {
-                if (value.prototype.FLEXJS_CLASS_INFO == null)
+                if (value.prototype.ROYALE_CLASS_INFO == null)
                     return null;
                 value = value.prototype;
             }
-            return value.FLEXJS_CLASS_INFO.names[0].qName;
+            return value.ROYALE_CLASS_INFO.names[0].qName;
         }
     }
 }

@@ -24,7 +24,7 @@ package org.apache.flex.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.7.0
+	 *  @productversion Royale 0.7.0
 	 */
 	public class Endian
 	{
@@ -34,7 +34,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		public static const BIG_ENDIAN:String = "bigEndian";
 
@@ -44,7 +44,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		public static const LITTLE_ENDIAN:String = "littleEndian";
 
@@ -62,7 +62,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		public static function get systemEndian():String {
 			COMPILE::SWF {

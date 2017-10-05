@@ -25,18 +25,18 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ListBaseStrandChildren implements IParent
 	{
         /**
          *  Constructor.
          *  
-         *  @flexjsignorecoercion org.apache.flex.core.ListBase
+         *  @royaleignorecoercion org.apache.flex.core.ListBase
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ListBaseStrandChildren(owner:IParent)
 		{

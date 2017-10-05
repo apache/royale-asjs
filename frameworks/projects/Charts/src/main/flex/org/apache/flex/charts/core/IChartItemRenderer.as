@@ -27,7 +27,7 @@ package org.apache.flex.charts.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public interface IChartItemRenderer extends IItemRenderer
 	{
@@ -38,7 +38,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get series():IChartSeries;
 		function set series(value:IChartSeries):void;
@@ -49,7 +49,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get index():int;
 		function set index(value:int):void;
@@ -61,7 +61,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get xField():String;
 		function set xField(value:String):void;
@@ -73,7 +73,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get yField():String;
 		function set yField(value:String):void;
@@ -85,7 +85,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function set x(value:Number):void;
 		function get x():Number;
@@ -97,7 +97,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function set y(value:Number):void;
 		function get y():Number;
@@ -109,7 +109,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function set width(value:Number):void;
 		
@@ -120,7 +120,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function set height(value:Number):void;
 		
@@ -130,7 +130,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function updateRenderer():void;
 	}

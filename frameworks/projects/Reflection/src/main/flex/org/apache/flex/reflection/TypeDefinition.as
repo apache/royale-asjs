@@ -28,7 +28,7 @@ COMPILE::SWF {
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public class TypeDefinition extends DefinitionWithMetaData
 	{
@@ -46,7 +46,7 @@ COMPILE::SWF {
              */
             COMPILE::JS
             internal static function registerClassAlias(aliasName:String, classObject:Class ) :void{
-                var info:* = classObject.prototype.FLEXJS_CLASS_INFO;
+                var info:* = classObject.prototype.ROYALE_CLASS_INFO;
                 if (info) {
                     //a class may have more than one alias point to it, but only the most recently registered
                     //alias is retained for reflection (applying same approach as swf)
@@ -57,10 +57,10 @@ COMPILE::SWF {
                         }
                     }
                     //check for alternate mapping, remove any alternative mapping
-                    //from the other class's FLEXJS_CLASS_INFO
+                    //from the other class's ROYALE_CLASS_INFO
                     var altClass:Class = _aliasMappings[aliasName];
                     if (altClass) {
-                        var altInfo:* = altClass.prototype.FLEXJS_CLASS_INFO;
+                        var altInfo:* = altClass.prototype.ROYALE_CLASS_INFO;
                         delete altInfo.alias;
                     }
                     _aliasMappings[aliasName] = classObject;
@@ -236,7 +236,7 @@ COMPILE::SWF {
                     if (_packageName.length)
                         def = getDefinitionByName(_packageName + "." + _name);
                     else def = getDefinitionByName(_name);
-                    _rawData = def.prototype.FLEXJS_CLASS_INFO;
+                    _rawData = def.prototype.ROYALE_CLASS_INFO;
                 }
             }
             return _rawData;
@@ -289,7 +289,7 @@ COMPILE::SWF {
          * For a "class" kind TypeDefinition, this returns the TypeDefinitions
          * of the base classes (inheritance chain). This may differ between
          * javascript and flash platform targets for some classes.
-         *  @flexjsignorecoercion XML 
+         *  @royaleignorecoercion XML 
          */
         public function get baseClasses():Array
         {
@@ -331,18 +331,18 @@ COMPILE::SWF {
                 var def:Object = getDefinitionByName(qname);
                 var superClass:Object = def.superClass_;
                 if (!superClass) {
-                    //todo: support for when superClass is not a flexjs 'class'
+                    //todo: support for when superClass is not a royale 'class'
                 } else while (superClass)
                 {
-                    if (superClass.FLEXJS_CLASS_INFO !== undefined) {
-                        qname = superClass.FLEXJS_CLASS_INFO.names[0].qName;
+                    if (superClass.ROYALE_CLASS_INFO !== undefined) {
+                        qname = superClass.ROYALE_CLASS_INFO.names[0].qName;
                         results.push(TypeDefinition.getDefinition(qname));
                         def = getDefinitionByName(qname);
                         superClass = def.superClass_;
-                        //todo: support for when superClass is not a flexjs 'class'
+                        //todo: support for when superClass is not a royale 'class'
 
                     } else {
-                        //todo: support for when superClass is not a flexjs 'class'
+                        //todo: support for when superClass is not a royale 'class'
                         superClass = null;
                     }
                 }
@@ -402,13 +402,13 @@ COMPILE::SWF {
                     if ((_kind || kind) == "interface") {
                         //collect.length can expand during the loop below
                         for (i = 0; i < collect.length; i++) {
-                            collect.push.apply(collect, (collect[i].prototype.FLEXJS_CLASS_INFO.interfaces || []));
+                            collect.push.apply(collect, (collect[i].prototype.ROYALE_CLASS_INFO.interfaces || []));
                         }
                     } else {
                         var superClass:Object = def.superClass_;
-                        while (superClass && superClass.FLEXJS_CLASS_INFO !== undefined)
+                        while (superClass && superClass.ROYALE_CLASS_INFO !== undefined)
                         {
-                            data = superClass.FLEXJS_CLASS_INFO;
+                            data = superClass.ROYALE_CLASS_INFO;
                             var latest:Array = data.interfaces;
                             if (latest) {
                                 n = latest.length;
@@ -422,7 +422,7 @@ COMPILE::SWF {
                     n = collect.length;
                     for (i=0;i<n;i++) {
                         var iface:Object = collect[i];
-                        data = iface.prototype.FLEXJS_CLASS_INFO;
+                        data = iface.prototype.ROYALE_CLASS_INFO;
                         results[i] = TypeDefinition.getDefinition(data.names[0].qName,data);
                     }
                 }
@@ -699,7 +699,7 @@ COMPILE::SWF {
            var data:Object = rawData;
            var qname:String = data.names[0].qName;
            var def:Object = getDefinitionByName(qname);
-           var rdata:* =  def.prototype.FLEXJS_REFLECTION_INFO();
+           var rdata:* =  def.prototype.ROYALE_REFLECTION_INFO();
 
            var itemClass:Class = lookups[collection];
 
@@ -709,7 +709,7 @@ COMPILE::SWF {
                //get ancestor items, and record the names for overrides
                var oldNames:Array=[];
                var superClass:Object = def.superClass_;
-               if (superClass) data = superClass.FLEXJS_CLASS_INFO;
+               if (superClass) data = superClass.ROYALE_CLASS_INFO;
                else data = null;
 
                if (data) {

@@ -38,7 +38,7 @@ package org.apache.flex.charts.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class LineChartLinearVsLinearLayout extends ChartBaseLayout implements IBeadLayout, ICartesianChartLayout
 	{

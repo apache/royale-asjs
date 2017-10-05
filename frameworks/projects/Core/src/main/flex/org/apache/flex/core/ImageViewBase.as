@@ -49,7 +49,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ImageViewBase extends BeadViewBase implements IImageView
 	{
@@ -59,7 +59,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function ImageViewBase()
 		{
@@ -84,7 +84,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -103,7 +103,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
-         * @flexjsignorecoercion org.apache.flex.core.IImage
+         * @royaleignorecoercion org.apache.flex.core.IImage
 		 */
 		protected function handleUrlChange(event:Event):void
 		{
@@ -135,7 +135,7 @@ package org.apache.flex.core
         }
 
 		/**
-		*  @flexjsignorecoercion org.apache.flex.core.IImage
+		*  @royaleignorecoercion org.apache.flex.core.IImage
 		*/
 		COMPILE::JS
 		protected function get imageElement():Element
@@ -213,7 +213,7 @@ package org.apache.flex.core
         }
         
         /**
-         * @flexjsignorecoercion HTMLElement
+         * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         protected function sizeChangedHandler(event:Object):void

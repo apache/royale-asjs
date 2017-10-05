@@ -21,14 +21,14 @@
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
 				xmlns:models="models.*"
-				xmlns:js="library://ns.apache.org/flexjs/basic" 
+				xmlns:js="library://ns.apache.org/royale/basic" 
 				xmlns:controller="controller.*"
 				xmlns:views="views.*" 
 				xmlns:beads="org.apache.flex.html.beads.*" xmlns:trial="trial.*"
 				>
 	
 	<fx:Style>
-		@namespace js "library://ns.apache.org/flexjs/basic";
+		@namespace js "library://ns.apache.org/royale/basic";
 		@namespace sample "products.*";
 		
 		/* use className="productList" on the List element in place of itemRenderer if you want to specify

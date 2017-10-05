@@ -41,11 +41,11 @@ package org.apache.flex.storage.providers
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
-	 * @flexjsignorecoercion FileEntry
-	 * @flexjsignorecoercion FileWriter
-	 * @flexjsignorecoercion window
-	 * @flexjsignorecoercion Blob
+	 * @productversion Royale 0.0
+	 * @royaleignorecoercion FileEntry
+	 * @royaleignorecoercion FileWriter
+	 * @royaleignorecoercion window
+	 * @royaleignorecoercion Blob
 	 */
 	public class AirStorageProvider extends EventDispatcher implements IPermanentStorageProvider
 	{
@@ -57,7 +57,7 @@ package org.apache.flex.storage.providers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function AirStorageProvider(target:IEventDispatcher=null)
 		{
@@ -71,7 +71,7 @@ package org.apache.flex.storage.providers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get target():IEventDispatcher
 		{
@@ -98,7 +98,7 @@ package org.apache.flex.storage.providers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function readTextFromDataFile( fileName:String ) : void
 		{
@@ -140,7 +140,7 @@ package org.apache.flex.storage.providers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function openInputDataStream( fileName:String ) : void
 		{
@@ -177,7 +177,7 @@ package org.apache.flex.storage.providers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function writeTextToDataFile( fileName:String, text:String ) : void
 		{
@@ -220,7 +220,7 @@ package org.apache.flex.storage.providers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function openOutputDataStream( fileName:String ) : void
 		{

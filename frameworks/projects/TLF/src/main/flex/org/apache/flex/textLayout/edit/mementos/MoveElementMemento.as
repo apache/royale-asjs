@@ -56,7 +56,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function undo():* {
 			var elem:IFlowElement = _elemAfterMove.findElement(_textFlow);
@@ -66,7 +66,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function redo():* {
 			var target:IFlowGroupElement = _target.findElement(_textFlow) as IFlowGroupElement;

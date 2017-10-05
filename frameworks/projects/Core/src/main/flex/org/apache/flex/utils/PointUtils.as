@@ -35,7 +35,7 @@ package org.apache.flex.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class PointUtils
 	{
@@ -56,8 +56,8 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLElement
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
 		 */
 		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
 		{
@@ -97,8 +97,8 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
          */
         public static function localToGlobal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
         {

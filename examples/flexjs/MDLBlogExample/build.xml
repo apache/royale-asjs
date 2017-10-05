@@ -20,13 +20,13 @@
 
 
 <project name="MDLBlogExample" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../.."/>
+    <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="App" />
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     <property name="opt1_arg" value="-compiler.exclude-defaults-css-files=HTML.swc:defaults.css" />
     <property name="opt2_arg" value="-html-template=${basedir}/src/main/resources/mdl-js-index-template.html" />
 

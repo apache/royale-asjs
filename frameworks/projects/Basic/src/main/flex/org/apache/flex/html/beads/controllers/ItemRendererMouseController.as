@@ -38,13 +38,13 @@ COMPILE::JS {
 	/**
 	 *  The ItemRendererMouseController class can mouse events in itemRenderers. This
 	 *  includes roll-overs, mouse down, and mouse up. These platform-specific events are then
-	 *  re-dispatched as FlexJS events.
+	 *  re-dispatched as Royale events.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport goog.events.Event
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport goog.events.Event
 	 */
 	public class ItemRendererMouseController implements IBeadController
 	{
@@ -54,7 +54,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function ItemRendererMouseController()
 		{
@@ -69,7 +69,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

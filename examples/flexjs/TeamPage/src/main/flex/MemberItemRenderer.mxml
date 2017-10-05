@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <js:MXMLItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 				width="25%" >
 	
 	<fx:Script>

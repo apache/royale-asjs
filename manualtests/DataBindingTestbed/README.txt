@@ -30,7 +30,7 @@ into JavaScript and HTML and run without Flash.
 
 The DataBindingTestbed is primarily for development purposes, but also shows 
 simple examples of a range of binding types that might be useful as examples for
-FlexJS developers to see how things work (or what currently does not work).
+Royale developers to see how things work (or what currently does not work).
 The examples in the code that are commented out are very likely things that need
 attention or fixes. If you encounter any bugs in binding that are not currently
 represented in this example, please contact the dev team via the mailing list 

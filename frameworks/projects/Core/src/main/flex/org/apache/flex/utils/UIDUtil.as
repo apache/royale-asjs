@@ -38,7 +38,7 @@ package org.apache.flex.utils
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class UIDUtil
 {
@@ -90,7 +90,7 @@ public class UIDUtil
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
      */
 	public static function createUID():String
     {
@@ -145,7 +145,7 @@ public class UIDUtil
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
      */
     public static function fromBinary(ba:BinaryData):String
     {
@@ -183,7 +183,7 @@ public class UIDUtil
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
      */
     public static function isUID(uid:String):Boolean
     {
@@ -227,7 +227,7 @@ public class UIDUtil
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
      */
     public static function toBinary(uid:String):BinaryData
     {

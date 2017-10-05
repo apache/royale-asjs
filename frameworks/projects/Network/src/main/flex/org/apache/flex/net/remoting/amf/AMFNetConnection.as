@@ -230,7 +230,7 @@ public class AMFNetConnection
     private var sequence:int = 0;
     
     /**
-     * @flexjsignorecoercion Array
+     * @royaleignorecoercion Array
      */
     COMPILE::JS
     private function onReadyStateChange():void

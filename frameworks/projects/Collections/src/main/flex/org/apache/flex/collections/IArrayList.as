@@ -37,7 +37,7 @@ package org.apache.flex.collections
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public interface IArrayList
 	{
@@ -47,7 +47,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		function get source():Array;
 		function set source(value:Array):void;
@@ -58,7 +58,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		function toArray():Array;
 
@@ -68,7 +68,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function getItemAt(index:int):Object;
 
@@ -78,7 +78,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function getItemIndex(item:Object):int;
 
@@ -88,7 +88,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function addItem(item:Object):void;
 
@@ -98,7 +98,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function addItemAt(item:Object, index:int):void;
 
@@ -109,7 +109,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function setItemAt(item:Object, index:int):Object;
 
@@ -119,7 +119,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function removeItem(item:Object):Boolean;
 
@@ -130,7 +130,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function removeItemAt(index:int):Object;
 
@@ -140,7 +140,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function removeAll():void;
 
@@ -150,7 +150,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function itemUpdated(item:Object):void;
 
@@ -160,7 +160,7 @@ package org.apache.flex.collections
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function itemUpdatedAt(index:int):void;
 
@@ -170,7 +170,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function get length():int;
 

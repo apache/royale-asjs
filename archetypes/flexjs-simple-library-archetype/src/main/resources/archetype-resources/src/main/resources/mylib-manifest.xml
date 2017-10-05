@@ -22,6 +22,6 @@
 -->
 <componentPackage>
 
-    <component id="UniversalClass" class="org.example.flexjs.mylib.UniversalClass"/>
+    <component id="UniversalClass" class="org.example.royale.mylib.UniversalClass"/>
 
 </componentPackage>

@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-The DataGridExample in the Express project demonstrates the FlexJS DataGrid with
+The DataGridExample in the Express project demonstrates the Royale DataGrid with
 the addition of beads that provide drag-and-drop support. 
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)

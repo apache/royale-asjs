@@ -29,12 +29,12 @@ package org.apache.flex.html.accessories
 	/**
 	 * The DateFormatBead class formats the display of a DateField using a format.
 	 *  
-     *  @flexjsignoreimport org.apache.flex.core.IStrandWithModel
+     *  @royaleignoreimport org.apache.flex.core.IStrandWithModel
      * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class SimpleDateFormatBead extends EventDispatcher implements IBead, IFormatBead
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function SimpleDateFormatBead()
 		{
@@ -63,7 +63,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get propertyName():String
 		{
@@ -84,7 +84,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get eventName():String
 		{
@@ -105,7 +105,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get format():String
 		{
@@ -141,7 +141,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get formattedString():String
 		{
@@ -153,12 +153,12 @@ package org.apache.flex.html.accessories
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
-         *  @flexjsignorecoercion org.apache.flex.core.IStrandWithModel
+         *  @royaleignorecoercion org.apache.flex.core.IStrandWithModel
          * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -171,7 +171,7 @@ package org.apache.flex.html.accessories
 		/**
 		 * @private
          * 
-         * @flexjsignorecoercion org.apache.flex.core.IStrandWithModel
+         * @royaleignorecoercion org.apache.flex.core.IStrandWithModel
 		 */
 		private function handleTextChange(event:Event):void
 		{

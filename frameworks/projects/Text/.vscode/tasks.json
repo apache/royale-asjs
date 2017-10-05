@@ -5,11 +5,11 @@
 	"command": "asconfigc",
 	"isShellCommand": true,
 	"args": [
-		"--flexHome=/FlexSDK/FlexJSNightly"
+		"--flexHome=/FlexSDK/RoyaleNightly"
 	],
 	"windows": {
         "args": [
-			"--flexHome=C:\\dev\\flexjs_builds\\nightly_07"
+			"--flexHome=C:\\dev\\royale_builds\\nightly_07"
 		]
     },
 	"showOutput": "always"

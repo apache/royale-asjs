@@ -23,8 +23,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.examples</groupId>
-    <artifactId>examples-flexjs</artifactId>
+    <groupId>org.apache.royale.examples</groupId>
+    <artifactId>examples-royale</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
@@ -32,7 +32,7 @@
   <version>0.9.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: FlexJS: MDLBlogExample</name>
+  <name>Apache Royale: Examples: Royale: MDLBlogExample</name>
 
   <properties>
     <!-- Customize MDL colors using this the tool at : https://getmdl.io/customize/index.html -->
@@ -50,8 +50,8 @@
     </resources>
     <plugins>
       <plugin>
-        <groupId>org.apache.flex.flexjs.compiler</groupId>
-        <artifactId>flexjs-maven-plugin</artifactId>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
@@ -64,7 +64,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>MaterialDesignLite</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>

@@ -59,7 +59,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get textColor():IFill
 		{
@@ -75,7 +75,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get fontName():String
 		{
@@ -94,7 +94,7 @@ package org.apache.flex.createjs
 		private var checkBackground:Shape;
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -141,7 +141,7 @@ package org.apache.flex.createjs
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container
+         * @royaleignorecoercion createjs.Container
          */
         public function set selected(value:Boolean):void
         {
@@ -159,7 +159,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get fontName():String
 		{
@@ -173,7 +173,7 @@ package org.apache.flex.createjs
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion createjs.Container
+		 * @royaleignorecoercion createjs.Container
 		 */
 		override protected function redrawShape():void
 		{

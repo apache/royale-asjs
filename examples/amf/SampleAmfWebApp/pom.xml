@@ -68,7 +68,7 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
           <overlays>
             <overlay>
-              <groupId>org.apache.flex.flexjs.examples</groupId>
+              <groupId>org.apache.royale.examples</groupId>
               <artifactId>RemoteObjectAMFTest</artifactId>
             </overlay>
           </overlays>
@@ -95,7 +95,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>RemoteObjectAMFTest</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>war</type>

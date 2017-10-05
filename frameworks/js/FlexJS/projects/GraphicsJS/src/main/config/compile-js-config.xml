@@ -65,7 +65,7 @@
         
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../../../../../../../projects/Graphics/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -90,7 +90,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/royale/basic</uri>
     </include-namespaces>
         
 

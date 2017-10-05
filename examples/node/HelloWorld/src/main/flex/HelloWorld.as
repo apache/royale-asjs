@@ -21,7 +21,7 @@ package {
 public class HelloWorld {
 
     public function HelloWorld() {
-        console.log("Hello FlexJS World!")
+        console.log("Hello Royale World!")
     }
 
 }

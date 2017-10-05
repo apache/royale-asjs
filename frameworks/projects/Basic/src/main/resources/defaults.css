@@ -17,8 +17,8 @@
  *
  */
 
-@namespace "library://ns.apache.org/flexjs/basic";
-@namespace svg "library://ns.apache.org/flexjs/svg";
+@namespace "library://ns.apache.org/royale/basic";
+@namespace svg "library://ns.apache.org/royale/svg";
 
 /* Global style declaration */
 *
@@ -28,7 +28,7 @@
 	border-width: 1px;
 }
 
-.flexjs *, . flexjs *:before, . flexjs *:after {
+.royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;

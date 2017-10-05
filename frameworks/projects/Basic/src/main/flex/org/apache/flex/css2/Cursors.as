@@ -45,7 +45,7 @@ package org.apache.flex.css2
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public class Cursors
 	{
@@ -83,7 +83,7 @@ package org.apache.flex.css2
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function Cursors()
 		{
@@ -96,7 +96,7 @@ package org.apache.flex.css2
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public static function getCursor(obj:IUIBase):String
 		{

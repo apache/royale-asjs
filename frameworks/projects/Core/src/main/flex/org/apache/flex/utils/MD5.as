@@ -34,7 +34,7 @@ package org.apache.flex.utils
 		 * @return A string containing the hash value of s
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 
 		public static function hash(s:String) :String{
@@ -54,7 +54,7 @@ package org.apache.flex.utils
 		 * @return A string containing the hash value of s
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public static function hashBinary( s:BinaryData ):String {
 			// initialize the md buffers

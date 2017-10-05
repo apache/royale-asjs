@@ -47,7 +47,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
@@ -57,7 +57,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -74,7 +74,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     COMPILE::SWF
 	public class RadioButton extends UIButtonBase implements IStrand
@@ -85,7 +85,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function RadioButton()
 		{
@@ -101,7 +101,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get groupName() : String
 		{
@@ -118,7 +118,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get text():String
 		{
@@ -137,7 +137,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get selected():Boolean
 		{
@@ -167,7 +167,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get value():Object
 		{
@@ -184,7 +184,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get selectedValue():Object
 		{
@@ -244,7 +244,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get ripple():Boolean
         {
@@ -262,7 +262,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="click", type="org.apache.flex.events.MouseEvent")]
     
@@ -272,7 +272,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -285,7 +285,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function RadioButton()
 		{
@@ -309,11 +309,11 @@ package org.apache.flex.mdl
 
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLLabelElement
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion Text
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLLabelElement
+         * @royaleignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -336,9 +336,9 @@ package org.apache.flex.mdl
             label.appendChild(icon);
             label.appendChild(radio);
 
-            (textNode as WrappedHTMLElement).flexjs_wrapper = this;
-            (icon as WrappedHTMLElement).flexjs_wrapper = this;
-            (radio as WrappedHTMLElement).flexjs_wrapper = this;
+            (textNode as WrappedHTMLElement).royale_wrapper = this;
+            (icon as WrappedHTMLElement).royale_wrapper = this;
+            (radio as WrappedHTMLElement).royale_wrapper = this;
 
             return element;
         };
@@ -370,7 +370,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
         public function get ripple():Boolean
         {
@@ -454,7 +454,7 @@ package org.apache.flex.mdl
         }
 
         /**
-         * @flexjsignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLInputElement
          */
         public function set selectedValue(value:Object):void
         {

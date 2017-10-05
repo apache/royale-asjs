@@ -33,7 +33,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
 	 */
 	public class StyleChangeNotifier implements IBead
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{	
@@ -59,8 +59,8 @@ package org.apache.flex.core
 		
 		/**
 		 *  @private
-		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 *  @flexjsignorecoercion org.apache.flex.core.UIHTMLElementWrapper
+		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.flex.core.UIHTMLElementWrapper
 		 */
 		private function handleStyleChange(event:ValueChangeEvent):void
 		{

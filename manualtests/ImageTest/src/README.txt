@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-The ImageTest example is a simple demonstration of the FlexJS Image component.
+The ImageTest example is a simple demonstration of the Royale Image component.
 You can use this test to see if your image loads properly. 
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)

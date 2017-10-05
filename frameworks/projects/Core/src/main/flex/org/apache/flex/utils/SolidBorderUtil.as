@@ -30,7 +30,7 @@ import flash.display.Graphics;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 COMPILE::SWF
 public class SolidBorderUtil
@@ -53,7 +53,7 @@ public class SolidBorderUtil
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public static function drawBorder(g:Graphics, x:Number, y:Number, 
 									  width:Number, height:Number,
@@ -121,7 +121,7 @@ public class SolidBorderUtil
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static function drawDetailedBorder(g:Graphics, x:Number, y:Number, 
                                       width:Number, height:Number,

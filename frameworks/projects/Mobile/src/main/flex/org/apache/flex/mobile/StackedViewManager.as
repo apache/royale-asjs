@@ -42,7 +42,7 @@ package org.apache.flex.mobile
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class StackedViewManager extends ViewManagerBase implements IViewManager
 	{
@@ -52,7 +52,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function StackedViewManager()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get hasToolBar():Boolean
 		{
@@ -80,7 +80,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get toolBarItems():Array
 		{
@@ -97,7 +97,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get toolBar():ToolBar
 		{
@@ -122,7 +122,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function get selectedView():IViewManagerView
 		{
@@ -144,7 +144,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function push(nextView:IViewManagerView):void
 		{
@@ -158,7 +158,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function pop():IChild
 		{

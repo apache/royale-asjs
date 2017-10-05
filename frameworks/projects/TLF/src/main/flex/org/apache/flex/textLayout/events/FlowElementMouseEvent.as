@@ -19,7 +19,7 @@
 package org.apache.flex.textLayout.events
 {
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IFlexJSEvent;
+	import org.apache.flex.events.IRoyaleEvent;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.textLayout.elements.IFlowElement;
 			
@@ -207,7 +207,7 @@ package org.apache.flex.textLayout.events
         }
         
         /** @private */
-        override public function cloneEvent():IFlexJSEvent
+        override public function cloneEvent():IRoyaleEvent
         {
         	return new FlowElementMouseEvent(type, bubbles, cancelable, flowElement, originalEvent);
         }

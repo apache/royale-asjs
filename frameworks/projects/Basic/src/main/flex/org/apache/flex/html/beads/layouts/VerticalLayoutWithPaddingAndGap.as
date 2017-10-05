@@ -48,7 +48,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class VerticalLayoutWithPaddingAndGap extends LayoutBase implements IBeadLayout
 	{
@@ -58,7 +58,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function VerticalLayoutWithPaddingAndGap()
 		{
@@ -76,7 +76,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get paddingTop():Number
 		{
@@ -102,7 +102,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get paddingRight():Number
 		{
@@ -128,7 +128,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get paddingBottom():Number
 		{
@@ -154,7 +154,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get paddingLeft():Number
 		{
@@ -180,7 +180,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get gap():Number
 		{
@@ -201,9 +201,9 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion org.apache.flex.core.ILayoutHost
-		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.flex.core.ILayoutHost
+		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function layout():Boolean
 		{
@@ -309,10 +309,10 @@ package org.apache.flex.html.beads.layouts
 						child.style.marginBottom = '0px';
 					}
 					child.style.marginLeft = _paddingLeft + 'px';
-					child.flexjs_wrapper.setDisplayStyleForLayout('block');
+					child.royale_wrapper.setDisplayStyleForLayout('block');
 					if (child.style.display === 'none')
 					{
-						child.flexjs_wrapper.setDisplayStyleForLayout('block');
+						child.royale_wrapper.setDisplayStyleForLayout('block');
 					}
 					else
 					{
@@ -320,7 +320,7 @@ package org.apache.flex.html.beads.layouts
 						child.style.display = 'inline-block';
 						child.style.display = 'block';
 					}
-					child.flexjs_wrapper.dispatchEvent('sizeChanged');
+					child.royale_wrapper.dispatchEvent('sizeChanged');
 				}
 
 				return true;

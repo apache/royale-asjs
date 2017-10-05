@@ -41,7 +41,7 @@ package org.apache.flex.collections
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="complete", type="org.apache.flex.events.Event")]
     
@@ -71,7 +71,7 @@ package org.apache.flex.collections
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class LazyCollection extends EventDispatcher implements IBead, ICollection
 	{
@@ -81,7 +81,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function LazyCollection()
 		{
@@ -99,7 +99,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get inputParser():IInputParser
 		{
@@ -128,7 +128,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get itemConverter():IItemConverter
         {
@@ -155,7 +155,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get id():String
 		{
@@ -182,7 +182,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {
@@ -203,7 +203,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected var rawData:Array;
 
@@ -214,7 +214,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected var data:Array;
         
@@ -239,7 +239,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function getItemAt(index:int):Object
         {
@@ -256,7 +256,7 @@ package org.apache.flex.collections
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get length():int
         {

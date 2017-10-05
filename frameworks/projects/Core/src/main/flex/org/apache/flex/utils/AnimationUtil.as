@@ -32,7 +32,7 @@ package org.apache.flex.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class AnimationUtil
 	{
@@ -47,7 +47,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public static function requestFrame(callback:Function, element:IUIBase ):String
 		{
@@ -89,7 +89,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public static function cancelFrame(id:String):void
 		{

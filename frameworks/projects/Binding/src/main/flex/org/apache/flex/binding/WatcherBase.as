@@ -26,7 +26,7 @@ package org.apache.flex.binding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public class WatcherBase
     {
@@ -62,7 +62,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected var listeners:Array;
         
@@ -74,7 +74,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected var children:Array;
         
@@ -85,7 +85,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var value:Object;
         
@@ -105,7 +105,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function parentChanged(parent:Object):void
         {
@@ -122,7 +122,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function addChild(child:WatcherBase):void
         {
@@ -145,7 +145,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function addBinding(binding:GenericBinding):void
         {
@@ -165,7 +165,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function updateChildren():void
         {
@@ -230,7 +230,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected function wrapUpdate(wrappedFunction:Function):void
         {
@@ -279,7 +279,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         public static var allowedErrors:Array = [
@@ -308,7 +308,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var allowedErrorTypes:Array = [
             { type: RangeError /*, handler: function(w:WatcherBase, wrappedFunction:Function):Object { return null }*/ }
@@ -321,7 +321,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function notifyListeners():void
         {

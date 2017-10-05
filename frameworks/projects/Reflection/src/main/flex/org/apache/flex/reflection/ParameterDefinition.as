@@ -25,7 +25,7 @@ package org.apache.flex.reflection
      *  @langversion 3.0
      *  @playerversion Flash 10.2S
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public class ParameterDefinition extends DefinitionBase
 	{

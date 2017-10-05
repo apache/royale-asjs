@@ -20,11 +20,11 @@
 
 
 <project name="Basic.test" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../../../../.."/>
+    <property name="ROYALE_HOME" location="../../../../../.."/>
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="target.name" value="Core-${release.version}.swc" />
@@ -38,10 +38,10 @@
 
     <property name="report.dir" value="${basedir}/out" />
     
-    <available file="${FLEXJS_HOME}/in/flexunit"
+    <available file="${ROYALE_HOME}/in/flexunit"
         type="dir"
         property="FLEXUNIT_HOME"
-        value="${FLEXJS_HOME}/in/flexunit" />
+        value="${ROYALE_HOME}/in/flexunit" />
     
     <available file="${env.FLEXUNIT_HOME}"
         type="dir"
@@ -72,7 +72,7 @@
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${basedir}">
-                <include name="FlexUnitFlexJSApplication.swf"/>
+                <include name="FlexUnitRoyaleApplication.swf"/>
             </fileset>
         </delete>
         <delete failonerror="false" includeemptydirs="true">
@@ -87,7 +87,7 @@
     </path>
 
     <target name="compile" description="Compiles FlexUnitApplication.swf">
-        <echo message="Compiling FlexUnitFlexJSApplication.swf"/>
+        <echo message="Compiling FlexUnitRoyaleApplication.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <echo message="FLEXUNIT_HOME: ${FLEXUNIT_HOME}"/>
@@ -100,7 +100,7 @@
             Link in the classes (and their dependencies) for the MXML tags
             listed in this project's manifest.xml.
             Also link the additional classes (and their dependencies)
-            listed in FlexJSUIClasses.as,
+            listed in RoyaleUIClasses.as,
             because these aren't referenced by the manifest classes.
             Keep the standard metadata when compiling.
             Include the appropriate CSS files and assets in the SWC.
@@ -109,10 +109,10 @@
             into the file bundles.properties in this directory.
         -->
         <mxmlc fork="true"
-            file="${basedir}/FlexUnitFlexJSApplication.mxml"
-            output="${basedir}/FlexUnitFlexJSApplication.swf">
+            file="${basedir}/FlexUnitRoyaleApplication.mxml"
+            output="${basedir}/FlexUnitRoyaleApplication.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${ROYALE_HOME}/frameworks" />
             <arg value="-debug" />
             <arg value="-compiler.targets=SWF" />
             <arg value="-compiler.mxml.children-as-data" />
@@ -123,8 +123,8 @@
             <arg value="-define=COMPILE::JS,false" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-source-path+=${FLEXJS_HOME}/frameworks/projects/Basic/src/main/flex" />
-            <arg value="-swf-library-path+=${FLEXJS_HOME}/frameworks/libs" />
+            <arg value="-source-path+=${ROYALE_HOME}/frameworks/projects/Basic/src/main/flex" />
+            <arg value="-swf-library-path+=${ROYALE_HOME}/frameworks/libs" />
             <arg value="${FLEXUNIT_LIBPATH1}" />
             <arg value="${FLEXUNIT_LIBPATH2}" />
         </mxmlc>
@@ -140,15 +140,15 @@
         </taskdef>
 		<mkdir dir="${report.dir}" />
 		<flexunit
-            swf="${basedir}/FlexUnitFlexJSApplication.swf"
+            swf="${basedir}/FlexUnitRoyaleApplication.swf"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"
 			haltonfailure="false"
 			verbose="true"
 			localTrusted="true"
 			timeout="90000">
-            <source dir="${FLEXJS_HOME}/frameworks/projects/Basic/src/main/flex" />
-            <library dir="${FLEXJS_HOME}/frameworks/libs" />
+            <source dir="${ROYALE_HOME}/frameworks/projects/Basic/src/main/flex" />
+            <library dir="${ROYALE_HOME}/frameworks/libs" />
         </flexunit>
         
 		<!-- Generate readable JUnit-style reports -->

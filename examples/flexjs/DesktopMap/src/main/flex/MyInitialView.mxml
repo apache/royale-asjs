@@ -18,8 +18,8 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
-                xmlns:google="library://ns.apache.org/flexjs/google"
+				xmlns:js="library://ns.apache.org/royale/basic"
+                xmlns:google="library://ns.apache.org/royale/google"
 				xmlns:local="*"
 				initComplete="initControls()">
     <fx:Script>
@@ -93,7 +93,7 @@ limitations under the License.
     </fx:Script>
 	
 	<fx:Style>
-		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		.MapPanel {
 			border: 1px solid #555555;

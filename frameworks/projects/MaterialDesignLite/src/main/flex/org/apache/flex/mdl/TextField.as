@@ -43,7 +43,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */    
 	public class TextField extends TextFieldBase
 	{
@@ -54,7 +54,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function TextField()
 		{
@@ -78,11 +78,11 @@ package org.apache.flex.mdl
 		}
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLDivElement
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLLabelElement
-         * @flexjsignorecoercion Text
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLDivElement
+         * @royaleignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLLabelElement
+         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -98,7 +98,7 @@ package org.apache.flex.mdl
             input.setAttribute('type', 'text');
             input.className = "mdl-textfield__input";
             
-            //attach input handler to dispatch flexjs change event when user write in textinput
+            //attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
@@ -112,8 +112,8 @@ package org.apache.flex.mdl
             div.appendChild(label);
 
             positioner = div as WrappedHTMLElement;
-            (label as WrappedHTMLElement).flexjs_wrapper = this;
-            _positioner.flexjs_wrapper = this;
+            (label as WrappedHTMLElement).royale_wrapper = this;
+            _positioner.royale_wrapper = this;
             
             return element;
         }

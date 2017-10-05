@@ -41,7 +41,7 @@ package org.apache.flex.mobile.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ToggleSwitchMouseController implements IBeadController
 	{
@@ -51,7 +51,7 @@ package org.apache.flex.mobile.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function ToggleSwitchMouseController()
 		{
@@ -64,11 +64,11 @@ package org.apache.flex.mobile.beads.controllers
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
-		 *  @flexjsignorecoercion org.apache.flex.html.Spinner
+		 *  @royaleignorecoercion org.apache.flex.html.Spinner
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

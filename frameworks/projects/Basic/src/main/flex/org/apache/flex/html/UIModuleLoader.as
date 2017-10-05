@@ -47,7 +47,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */    
 	public class UIModuleLoader extends UIBase
 	{
@@ -57,7 +57,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function UIModuleLoader()
 		{
@@ -75,7 +75,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get modulePath():String
         {
@@ -120,7 +120,7 @@ package org.apache.flex.html
         
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		private function createLoader():void
 		{
@@ -163,7 +163,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function loadModule():void
 		{

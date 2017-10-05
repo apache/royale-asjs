@@ -29,7 +29,7 @@ package org.apache.flex.binding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ChainBinding implements IBead, IDocument
 	{
@@ -39,7 +39,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ChainBinding()
 		{
@@ -51,7 +51,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var source:Array;
 
@@ -66,7 +66,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected var document:Object;
 
@@ -76,7 +76,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var destination:Object;
         
@@ -87,7 +87,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var watcherChain:Object;
         // TODO: (aharui) handle watcher chain
@@ -100,7 +100,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function set strand(value:IStrand):void
 		{
@@ -182,7 +182,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function setDocument(document:Object, id:String = null):void
 		{

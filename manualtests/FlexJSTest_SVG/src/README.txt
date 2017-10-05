@@ -19,13 +19,13 @@
 
 DESCRIPTION
 
-The FlexJSTest_SVG example shows how to use SVG to skin components when run in
+The RoyaleTest_SVG example shows how to use SVG to skin components when run in
 the HTML/JavaScript environment.
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
 into JavaScript and HTML and run without Flash.
 
-The FlexJSTest_SVG application may be run in ActionScript, which uses standard Flash
+The RoyaleTest_SVG application may be run in ActionScript, which uses standard Flash
 drawing to produce the button skin. When run in JavaScript however, SVG is used to
 make the skin.
 

@@ -66,7 +66,7 @@
         
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/flat</uri>
+                <uri>library://ns.apache.org/royale/flat</uri>
                 <manifest>../../../../../../../projects/Flat/src/main/resources/flat-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -88,7 +88,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/flat</uri>
+        <uri>library://ns.apache.org/royale/flat</uri>
     </include-namespaces>
         
 

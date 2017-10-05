@@ -46,7 +46,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 	
@@ -58,7 +58,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="rollOver", type="org.apache.flex.events.MouseEvent")]
     
@@ -70,7 +70,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="rollOut", type="org.apache.flex.events.MouseEvent")]
     
@@ -82,7 +82,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="mouseDown", type="org.apache.flex.events.MouseEvent")]
     
@@ -94,7 +94,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="mouseUp", type="org.apache.flex.events.MouseEvent")]
     
@@ -106,7 +106,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="mouseMove", type="org.apache.flex.events.MouseEvent")]
     
@@ -118,7 +118,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="mouseOut", type="org.apache.flex.events.MouseEvent")]
     
@@ -130,7 +130,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="mouseOver", type="org.apache.flex.events.MouseEvent")]
 	/**
@@ -141,7 +141,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="mouseWheel", type="org.apache.flex.events.MouseEvent")]
 	
@@ -153,7 +153,7 @@ package org.apache.flex.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="doubleClick", type="org.apache.flex.events.MouseEvent")]
 	
@@ -166,9 +166,9 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
-	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
+	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
 	{
         /**
          *  Constructor.
@@ -176,7 +176,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function UIBase()
 		{
@@ -200,11 +200,11 @@ package org.apache.flex.core
             return this;
         }
         
-        public function get flexjs_wrapper():Object
+        public function get royale_wrapper():Object
         {
             return this;
         }
-        public function set flexjs_wrapper(value:Object):void
+        public function set royale_wrapper(value:Object):void
         {
         }
         
@@ -217,7 +217,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get explicitWidth():Number
 		{
@@ -250,7 +250,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get explicitHeight():Number
 		{
@@ -286,7 +286,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get percentWidth():Number
 		{
@@ -329,7 +329,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get percentHeight():Number
 		{
@@ -374,7 +374,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         override public function get width():Number
@@ -389,7 +389,7 @@ package org.apache.flex.core
         [Bindable("widthChanged")]
         [PercentProxy("percentWidth")]
         /**
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         COMPILE::JS
         public function get width():Number
@@ -445,7 +445,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		public function get $width():Number
@@ -466,7 +466,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		override public function get height():Number
@@ -481,7 +481,7 @@ package org.apache.flex.core
         [Bindable("heightChanged")]
         [PercentProxy("percentHeight")]
         /**
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         COMPILE::JS
         public function get height():Number
@@ -537,7 +537,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		public function get $height():Number
@@ -551,7 +551,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function setHeight(value:Number, noEvent:Boolean = false):void
         {
@@ -573,7 +573,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function setWidth(value:Number, noEvent:Boolean = false):void
         {
@@ -595,7 +595,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void
         {
@@ -628,7 +628,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function isWidthSizedToContent():Boolean
         {
@@ -648,7 +648,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function isHeightSizedToContent():Boolean
         {
@@ -684,7 +684,7 @@ package org.apache.flex.core
         }
 
         /**
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         COMPILE::JS
         public function get x():Number
@@ -702,7 +702,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function setX(value:Number):void
         {
@@ -740,7 +740,7 @@ package org.apache.flex.core
         }
         
         /**
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         COMPILE::JS
         public function get y():Number
@@ -758,7 +758,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function setY(value:Number):void
         {
@@ -795,7 +795,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		COMPILE::JS
 		public function setDisplayStyleForLayout(value:String):void
@@ -837,7 +837,7 @@ package org.apache.flex.core
         
         /**
          * @return The array of children.
-         * @flexjsignorecoercion Array
+         * @royaleignorecoercion Array
          */
         COMPILE::JS
         public function internalChildren():Array
@@ -854,7 +854,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         public function get model():Object
@@ -888,8 +888,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion Class
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion Class
          */
         public function get view():IBeadView
         {
@@ -927,7 +927,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get id():String
 		{
@@ -962,7 +962,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get style():Object
         {
@@ -971,7 +971,7 @@ package org.apache.flex.core
         
         /**
          *  @private
-         *  @flexjsignorecoercion String
+         *  @royaleignorecoercion String
          */
         public function set style(value:Object):void
         {
@@ -1003,7 +1003,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var typeNames:String;
         
@@ -1016,7 +1016,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get className():String
 		{
@@ -1051,10 +1051,10 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
-        public function get element():IFlexJSElement
+        public function get element():IRoyaleElement
         {
             return this;
         }
@@ -1065,7 +1065,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var beads:Array;
 		
@@ -1078,7 +1078,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */        
 		override public function addBead(bead:IBead):void
 		{
@@ -1102,7 +1102,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		public function getBeadByType(classOrInterface:Class):IBead
@@ -1121,7 +1121,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
 		public function removeBead(value:IBead):IBead	
@@ -1145,8 +1145,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
          */
 		public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -1176,8 +1176,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
          */
         public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
@@ -1214,7 +1214,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function getElementAt(index:int):IChild
         {
@@ -1229,7 +1229,7 @@ package org.apache.flex.core
                 {
                     return null;
                 }
-                return children[index].flexjs_wrapper;
+                return children[index].royale_wrapper;
             }
         }        
         
@@ -1239,7 +1239,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function getElementIndex(c:IChild):int
         {
@@ -1269,8 +1269,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion HTMLElement
+         *  @productversion Royale 0.0
+		 *  @royaleignorecoercion HTMLElement
          */
         public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
@@ -1293,7 +1293,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get numElements():int
         {
@@ -1315,9 +1315,9 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion Class
-         *  @flexjsignorecoercion Number
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion Class
+         *  @royaleignorecoercion Number
          */
         public function addedToParent():void
         {
@@ -1421,7 +1421,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get measurementBead() : IMeasurementBead
 		{
@@ -1442,9 +1442,9 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher
          */
 		public function get topMostEventDispatcher():IEventDispatcher
         {
@@ -1461,7 +1461,7 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 var e:WrappedHTMLElement = document.body as WrappedHTMLElement;
-                return e.flexjs_wrapper as IEventDispatcher;
+                return e.royale_wrapper as IEventDispatcher;
             }
         }
         
@@ -1499,7 +1499,7 @@ package org.apache.flex.core
         
         /**
          * @return The actual element to be parented.
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         protected function createElement():WrappedHTMLElement
@@ -1513,7 +1513,7 @@ package org.apache.flex.core
         
         /**
          * The HTMLElement used to position the component.
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         COMPILE::JS
         public function get alpha():Number 
@@ -1541,14 +1541,14 @@ package org.apache.flex.core
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.IParent
          */
         COMPILE::JS
         public function get parent():IParent
         {
             var p:WrappedHTMLElement = this.positioner.parentNode as WrappedHTMLElement;
-            var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
+            var wrapper:IParent = p ? p.royale_wrapper as IParent : null;
             return wrapper;
         }
         
@@ -1562,7 +1562,7 @@ package org.apache.flex.core
         }
         
 		COMPILE::SWF
-		public function get transformElement():IFlexJSElement
+		public function get transformElement():IRoyaleElement
 		{
 			return this;
 		}

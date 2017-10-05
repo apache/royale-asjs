@@ -35,7 +35,7 @@ package org.apache.flex.mdl.beads.views
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	public class TableView extends BeadViewBase implements IListView
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function TableView()
 		{
@@ -58,7 +58,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
@@ -71,7 +71,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		protected var tableModel:ISelectionModel;
 
@@ -83,7 +83,7 @@ package org.apache.flex.mdl.beads.views
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
 		override public function set strand(value:IStrand):void
 		{
@@ -112,7 +112,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		protected function itemsCreatedHandler(event:Event):void
 		{
@@ -125,7 +125,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -138,7 +138,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		protected function performLayout(event:Event):void
 		{

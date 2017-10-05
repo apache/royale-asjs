@@ -47,7 +47,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
@@ -57,7 +57,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -78,7 +78,7 @@ package org.apache.flex.mdl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */    
     public class IconToggle extends TextButton implements IStrand, IEventDispatcher, IUIBase, IMaterialIconProvider
     {
@@ -88,7 +88,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function IconToggle()
         {
@@ -112,7 +112,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get selected():Boolean
         {
@@ -139,7 +139,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get dataMdlFor():String
         {
@@ -167,7 +167,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get ripple():Boolean
         {
@@ -192,7 +192,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get materialIcon():IMaterialIcon
         {
@@ -221,9 +221,9 @@ package org.apache.flex.mdl
         protected var input:HTMLInputElement;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLLabelElement
-         * @flexjsignorecoercion HTMLInputElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLLabelElement
+         * @royaleignorecoercion HTMLInputElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -249,7 +249,7 @@ package org.apache.flex.mdl
                 throw new Error("dataMdlFor need to be specify in order to display IconToggle");
             }
             
-            (input as WrappedHTMLElement).flexjs_wrapper = this;
+            (input as WrappedHTMLElement).royale_wrapper = this;
             element.addEventListener(MouseEvent.CLICK, clickHandler, false);
             return element;
         }

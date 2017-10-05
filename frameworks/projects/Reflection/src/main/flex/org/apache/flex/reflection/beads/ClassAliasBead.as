@@ -43,7 +43,7 @@ package org.apache.flex.reflection.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ClassAliasBead implements IBead
 	{
@@ -53,7 +53,7 @@ package org.apache.flex.reflection.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ClassAliasBead()
 		{
@@ -64,12 +64,12 @@ package org.apache.flex.reflection.beads
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
-         *  @flexjsignorecoercion org.apache.flex.core.IFlexInfo
-         *  @flexjsignorecoercion Class
+         *  @royaleignorecoercion org.apache.flex.core.IFlexInfo
+         *  @royaleignorecoercion Class
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {

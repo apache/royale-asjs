@@ -19,8 +19,8 @@ limitations under the License.
 -->
 <cjs:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:local="*"
-                   xmlns:js="library://ns.apache.org/flexjs/basic" 
-                   xmlns:cjs="library://ns.apache.org/flexjs/createjs"
+                   xmlns:js="library://ns.apache.org/royale/basic" 
+                   xmlns:cjs="library://ns.apache.org/royale/createjs"
                    applicationComplete="seq.play()"
                    >
 

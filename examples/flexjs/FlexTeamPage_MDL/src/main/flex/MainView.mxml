@@ -18,8 +18,8 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:models="models.*"
-      xmlns:mdl="library://ns.apache.org/flexjs/mdl" xmlns:binding="org.apache.flex.binding.*"
-      xmlns:js="library://ns.apache.org/flexjs/basic">
+      xmlns:mdl="library://ns.apache.org/royale/mdl" xmlns:binding="org.apache.flex.binding.*"
+      xmlns:js="library://ns.apache.org/royale/basic">
 
     <js:beads>
         <js:ViewDataBinding />
@@ -30,7 +30,7 @@ limitations under the License.
     </js:model>
 
     <js:Group width="100%" height="100%">
-        <!--<basic:H1 text="FlexJS Team page"></basic:H1>-->
+        <!--<basic:H1 text="Royale Team page"></basic:H1>-->
         <mdl:List labelField="name" className="memberListItemRenderer membersList">
             <mdl:beads>
                 <binding:SimpleBinding

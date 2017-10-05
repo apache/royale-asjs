@@ -77,8 +77,8 @@ package org.apache.flex.svg
          *
          * @param value The IGraphicShape object on which the fill must be added.
          * @return {string}
-         * @flexjsignorecoercion Node
-         * @flexjsignorecoercion HTMLElement
+         * @royaleignorecoercion Node
+         * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         public function addFillAttrib(value:IGraphicShape):String 

@@ -25,8 +25,8 @@ package org.apache.flex.language
         import org.apache.flex.debugging.notNull;
 	}
     /**
-     * @flexjsignorecoercion XML
-     * @flexjsignorecoercion XMLList
+     * @royaleignorecoercion XML
+     * @royaleignorecoercion XMLList
      */
     COMPILE::JS
     public function toXMLList(value:*):XMLList

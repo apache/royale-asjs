@@ -222,7 +222,7 @@ internal class CoreClasses
 	
 	COMPILE::JS
 	{
-	    import org.apache.flex.core.IFlexJSElement; IFlexJSElement;
+	    import org.apache.flex.core.IRoyaleElement; IRoyaleElement;
 	}
 }
 

@@ -98,7 +98,7 @@
       
       <!-- List of SWC files or directories that contain SWC files. -->
       <js-library-path>
-          <path-element>js/FlexJS/libs</path-element>
+          <path-element>js/Royale/libs</path-element>
       </js-library-path>
       
       <allow-subclass-overrides>true</allow-subclass-overrides>
@@ -128,109 +128,109 @@
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->
       <!-- elements.                                                                -->
       <namespace>
-          <uri>library://ns.apache.org/flexjs/basic</uri>
+          <uri>library://ns.apache.org/royale/basic</uri>
           
           <manifest>projects/Binding/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
-          <uri>library://ns.apache.org/flexjs/basic</uri>
+          <uri>library://ns.apache.org/royale/basic</uri>
           
           <manifest>projects/Basic/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
-          <uri>library://ns.apache.org/flexjs/basic</uri>
+          <uri>library://ns.apache.org/royale/basic</uri>
           
           <manifest>projects/Charts/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
-          <uri>library://ns.apache.org/flexjs/basic</uri>
+          <uri>library://ns.apache.org/royale/basic</uri>
           
           <manifest>projects/Collections/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
          <namespace>
-            <uri>library://ns.apache.org/flexjs/basic</uri>
+            <uri>library://ns.apache.org/royale/basic</uri>
             
             <manifest>projects/Core/src/main/resources/basic-manifest.xml</manifest>
          
         </namespace>                                                 
          <namespace>
-             <uri>library://ns.apache.org/flexjs/basic</uri>
+             <uri>library://ns.apache.org/royale/basic</uri>
              
              <manifest>projects/DragDrop/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/basic</uri>
+             <uri>library://ns.apache.org/royale/basic</uri>
              
              <manifest>projects/Effects/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/basic</uri>
+             <uri>library://ns.apache.org/royale/basic</uri>
              
              <manifest>projects/Formatters/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/basic</uri>
+             <uri>library://ns.apache.org/royale/basic</uri>
              
              <manifest>projects/Graphics/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/basic</uri>
+             <uri>library://ns.apache.org/royale/basic</uri>
              
              <manifest>projects/HTML/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/basic</uri>
+             <uri>library://ns.apache.org/royale/basic</uri>
              
              <manifest>projects/Mobile/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/basic</uri>
+             <uri>library://ns.apache.org/royale/basic</uri>
              
              <manifest>projects/Network/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-            <uri>library://ns.apache.org/flexjs/html5</uri>
+            <uri>library://ns.apache.org/royale/html5</uri>
             
             <manifest>projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
          
         </namespace>   
          <namespace>
-             <uri>library://ns.apache.org/flexjs/flat</uri>
+             <uri>library://ns.apache.org/royale/flat</uri>
              
              <manifest>projects/Flat/src/main/resources/flat-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/jquery</uri>
+             <uri>library://ns.apache.org/royale/jquery</uri>
              
              <manifest>projects/JQuery/src/main/resources/jquery-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/google</uri>
+             <uri>library://ns.apache.org/royale/google</uri>
              
              <manifest>projects/GoogleMaps/src/main/resources/google-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/cordova</uri>
+             <uri>library://ns.apache.org/royale/cordova</uri>
              
              <manifest>projects/Mobile/src/main/resources/cordova-manifest.xml</manifest>
              
          </namespace>
          <namespace>
-             <uri>library://ns.apache.org/flexjs/createjs</uri>
+             <uri>library://ns.apache.org/royale/createjs</uri>
              
              <manifest>projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
              
@@ -477,7 +477,7 @@
    
    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
    <metadata>
-      <title>Apache FlexJS Application</title>
+      <title>Apache Royale Application</title>
       <description>http://flex.apache.org/</description>
       <publisher>Apache Software Foundation</publisher>
       <creator>Apache Software Foundation</creator>

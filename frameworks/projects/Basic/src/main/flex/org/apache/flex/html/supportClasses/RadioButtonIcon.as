@@ -33,7 +33,7 @@ package org.apache.flex.html.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class RadioButtonIcon
 	{
@@ -92,9 +92,9 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLInputElement
-		 * @flexjsignorecoercion Text
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion HTMLInputElement
+		 * @royaleignorecoercion Text
 		 */
 		COMPILE::JS
  		protected function createElement():WrappedHTMLElement
@@ -104,7 +104,7 @@ package org.apache.flex.html.supportClasses
 			input.type = 'radio';
 
 			element = input as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
+			element.royale_wrapper = this;
 
 			return element;
 		}

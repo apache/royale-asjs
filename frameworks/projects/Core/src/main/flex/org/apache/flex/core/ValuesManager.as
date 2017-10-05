@@ -20,14 +20,14 @@ package org.apache.flex.core
 {
     /**
      *  The ValuesManager class is one of the few Singleton classes in
-     *  FlexJS.  Instances of other things can be shared via IValuesImpl, but
+     *  Royale.  Instances of other things can be shared via IValuesImpl, but
      *  this class's API is its one static property where you get the
      *  instance of IValuesImpl by which other instances can be shared.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ValuesManager
 	{
@@ -37,7 +37,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ValuesManager()
 		{
@@ -54,7 +54,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public static function get valuesImpl():IValuesImpl
 		{

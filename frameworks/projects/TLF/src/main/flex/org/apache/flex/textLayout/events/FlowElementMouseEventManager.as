@@ -452,7 +452,7 @@ package org.apache.flex.textLayout.events
 		 * @param	startPosition	The starting character position.
 		 * @param	endPosition	The ending character position.
 		 * @param	results		The array to fill with FlowElements that match.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function collectElements(parent:IFlowGroupElement, startPosition:int, endPosition:int, results:Array):void
 		{
@@ -505,7 +505,7 @@ package org.apache.flex.textLayout.events
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ILinkElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ILinkElement
 		 */
 		private function checkCtrlKeyState(curState:Boolean):void
 		{
@@ -641,7 +641,7 @@ package org.apache.flex.textLayout.events
 		 * LinkElements implement several mouse handlers; these are called directly
 		 * so LinkElements do not needs to register themselves with their own 
 		 * event mirror.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ILinkElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ILinkElement
 		 */
 		
 		private function localDispatchEvent(type:String, evt:MouseEvent):void

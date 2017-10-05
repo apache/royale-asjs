@@ -72,7 +72,7 @@ package org.apache.flex.textLayout.utils
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableElement
 		 */
 		public static function collectBlock(_textFlow:ITextFlow, elem:IFlowGroupElement, _parcelList:ParcelList = null, tableComposeNotFromBeginning:Boolean = false, tableOutOfView:Boolean = false):void
 		{

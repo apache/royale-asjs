@@ -49,7 +49,7 @@ package org.apache.flex.html.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class OneFlexibleChildHorizontalLayoutForOverflow extends LayoutBase implements IOneFlexibleChildLayout, IDocument
 	{
@@ -59,7 +59,7 @@ package org.apache.flex.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function OneFlexibleChildHorizontalLayoutForOverflow()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.html.beads.layouts
 		}
 		
         /**
-         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher;
+         *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher;
          */
 		COMPILE::JS
 		override public function set strand(value:IStrand):void
@@ -98,7 +98,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get flexibleChild():String
 		{

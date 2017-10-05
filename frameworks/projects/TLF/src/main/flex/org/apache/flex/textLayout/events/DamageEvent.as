@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.events {
-	import org.apache.flex.events.IFlexJSEvent;
+	import org.apache.flex.events.IRoyaleEvent;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.textLayout.elements.TextFlow;
 	
@@ -54,7 +54,7 @@ package org.apache.flex.textLayout.events {
 		}
 		
       	/** @private */
-		override public function cloneEvent():IFlexJSEvent
+		override public function cloneEvent():IRoyaleEvent
 		{
 			return new DamageEvent(type, bubbles, cancelable, _textFlow, _damageAbsoluteStart, _damageLength);
 		}

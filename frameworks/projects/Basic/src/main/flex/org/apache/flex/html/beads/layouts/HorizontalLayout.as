@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class HorizontalLayout extends LayoutBase implements IBeadLayout
 	{
@@ -61,7 +61,7 @@ package org.apache.flex.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function HorizontalLayout()
 		{
@@ -74,9 +74,9 @@ package org.apache.flex.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLElement
-         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
+         *  @royaleignorecoercion org.apache.flex.core.IUIBase
          */
 		override public function set strand(value:IStrand):void
 		{
@@ -93,8 +93,8 @@ package org.apache.flex.html.beads.layouts
 
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
-         * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.ILayoutHost
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
 		override public function layout():Boolean
 		{
@@ -189,7 +189,7 @@ package org.apache.flex.html.beads.layouts
                 {
                     var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
 					if (child == null) continue;
-					child.flexjs_wrapper.setDisplayStyleForLayout('inline-block');
+					child.royale_wrapper.setDisplayStyleForLayout('inline-block');
 					if (child.style.display !== 'none')
 					{
 						child.style.display = 'inline-block';

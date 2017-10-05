@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-goog.provide('FlexJSTest');
+goog.provide('RoyaleTest');
 
 goog.require('MyController');
 goog.require('MyInitialView');
@@ -31,7 +31,7 @@ goog.require('org.apache.flex.core.Application');
  * @constructor
  * @extends {org.apache.flex.core.Application}
  */
-FlexJSTest = function() {
+RoyaleTest = function() {
     org.apache.flex.core.Application.call(this);
 
     this.controller = org.apache.flex.FlexGlobal.newObject(
@@ -57,7 +57,7 @@ FlexJSTest = function() {
     // this method of logging survives the Closure Compiler
     //window['console']['log'](app);
 };
-goog.inherits(FlexJSTest, org.apache.flex.core.Application);
+goog.inherits(RoyaleTest, org.apache.flex.core.Application);
 
 // Ensures the symbol will be visible after compiler renaming.
-goog.exportSymbol('FlexJSTest', FlexJSTest);
+goog.exportSymbol('RoyaleTest', RoyaleTest);

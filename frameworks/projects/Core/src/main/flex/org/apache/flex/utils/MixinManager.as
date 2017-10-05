@@ -38,7 +38,7 @@ import org.apache.flex.core.IStrand;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class MixinManager implements IBead
 {
@@ -48,7 +48,7 @@ public class MixinManager implements IBead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function MixinManager()
     {
@@ -63,10 +63,10 @@ public class MixinManager implements IBead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     *  @flexjsignorecoercion Array
-     *  @flexjsignorecoercion org.apache.flex.core.IFlexInfo
-     *  @flexjsignoreimport org.apache.flex.core.IFlexInfo
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion Array
+     *  @royaleignorecoercion org.apache.flex.core.IFlexInfo
+     *  @royaleignoreimport org.apache.flex.core.IFlexInfo
      */
     public function set strand(value:IStrand):void
     {

@@ -138,7 +138,7 @@ package flexUnitTests.reflection
 
 
 
-        [TestVariance(variance="JS",description="Variance in test due to current inability for js target to reflect into non-FlexJS base classes or typedefs")]
+        [TestVariance(variance="JS",description="Variance in test due to current inability for js target to reflect into non-Royale base classes or typedefs")]
 		[Test]
         public function testDescribeTypeClass():void
         {
@@ -171,7 +171,7 @@ package flexUnitTests.reflection
 			
         }
 
-        [TestVariance(variance="JS",description="Variance in test due to current inability for js target to reflect into non-FlexJS base classes or typedefs")]
+        [TestVariance(variance="JS",description="Variance in test due to current inability for js target to reflect into non-Royale base classes or typedefs")]
         [Test]
         public function testDescribeTypeInstance():void
         {
@@ -204,7 +204,7 @@ package flexUnitTests.reflection
 
         }
 
-        [TestVariance(variance="JS",description="Variance in baseClasses due to current inability for js target to reflect into non-FlexJS base classes or typedefs")]
+        [TestVariance(variance="JS",description="Variance in baseClasses due to current inability for js target to reflect into non-Royale base classes or typedefs")]
         [Test]
         public function testBaseClasses():void{
             var def:TypeDefinition = describeType(TestClass1);

@@ -45,7 +45,7 @@ package org.apache.flex.svg
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ClipBead implements IBead
 	{
@@ -74,7 +74,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */		
 		public function set strand(value:IStrand):void
 		{
@@ -114,8 +114,8 @@ package org.apache.flex.svg
 			element.mask = mask;
 		}
 		/**
-		 * @flexjsignorecoercion Element
-		 * @flexjsignorecoercion Object
+		 * @royaleignorecoercion Element
+		 * @royaleignorecoercion Object
 		 */
 		COMPILE::JS
 		private function clip():void

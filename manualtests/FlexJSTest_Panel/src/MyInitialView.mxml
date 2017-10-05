@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
@@ -56,7 +56,7 @@ limitations under the License.
     </fx:Script>
 
 	<fx:Style>
-		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		.Alert {
 			background-color: #EEEEEE;

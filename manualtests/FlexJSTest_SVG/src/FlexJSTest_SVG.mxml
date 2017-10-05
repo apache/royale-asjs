@@ -19,13 +19,13 @@ limitations under the License.
 -->
 <js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
-				   xmlns:js="library://ns.apache.org/flexjs/basic" 
+				   xmlns:js="library://ns.apache.org/royale/basic" 
 				   xmlns:models="models.*" 
 				   xmlns:controllers="controllers.*"
 				   initialize="MyModel(model).labelText='Hello SVG'"
 				   >
 	<fx:Style>
-		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		global {
     		IStatesImpl:            ClassReference("org.apache.flex.core.SimpleStatesImpl");

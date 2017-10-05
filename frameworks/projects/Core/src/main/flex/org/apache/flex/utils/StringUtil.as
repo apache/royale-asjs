@@ -29,7 +29,7 @@ package org.apache.flex.utils
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class StringUtil
 	{
@@ -80,7 +80,7 @@ package org.apache.flex.utils
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static function substitute(str:String, ... rest):String
 		{
@@ -122,7 +122,7 @@ package org.apache.flex.utils
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
 		 *  @productversion Flex 4.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static function repeat(str:String, n:int):String
 		{
@@ -154,7 +154,7 @@ package org.apache.flex.utils
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
 		 *  @productversion Flex 4.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static function restrict(str:String, restrict:String):String
 		{
@@ -193,7 +193,7 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function trim(str:String):String
         {
@@ -214,7 +214,7 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function splitAndTrim(value:String, delimiter:String):Array
         {
@@ -235,7 +235,7 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function trimArrayElements(value:String, delimiter:String):String
         {
@@ -254,7 +254,7 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function isWhitespace(character:String):Boolean
         {

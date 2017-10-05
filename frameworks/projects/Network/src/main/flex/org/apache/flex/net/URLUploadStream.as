@@ -35,7 +35,7 @@ package org.apache.flex.net
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.9.0
+	 * @productversion Royale 0.9.0
 	 */
 	public class URLUploadStream extends URLStream
 	{
@@ -58,7 +58,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		COMPILE::JS
 		private function xhr_uploadprogress(progress:Object):void
@@ -78,7 +78,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */
 		override protected function cleanupCallbacks():void
 		{
@@ -92,7 +92,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public var onUploadProgress:Function;
 
@@ -102,7 +102,7 @@ package org.apache.flex.net
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
+		 *  @productversion Royale 0.7.0
 		 */		
 		public function uploadProgress(callback:Function):org.apache.flex.net.URLStream
 		{

@@ -35,7 +35,7 @@ package org.apache.flex.mobile
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ManagerBase extends UIBase
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.mobile
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
 		 */
 		public function ManagerBase()
 		{
@@ -68,7 +68,7 @@ package org.apache.flex.mobile
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -103,7 +103,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get contentArea():UIBase
 		{
@@ -117,7 +117,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function addElement(c:IChild, dispatchEvent:Boolean=true):void
 		{

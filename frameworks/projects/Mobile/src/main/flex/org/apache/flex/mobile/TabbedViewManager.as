@@ -36,7 +36,7 @@ package org.apache.flex.mobile
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class TabbedViewManager extends ViewManagerBase implements IViewManager
 	{
@@ -46,7 +46,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function TabbedViewManager()
 		{
@@ -61,7 +61,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get tabBar():TabBar
 		{
@@ -74,7 +74,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get selectedIndex():Number
 		{

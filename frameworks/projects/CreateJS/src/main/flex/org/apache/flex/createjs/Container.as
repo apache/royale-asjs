@@ -58,7 +58,7 @@ package org.apache.flex.createjs
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	COMPILE::SWF
 	public class Container extends org.apache.flex.html.Container
@@ -79,7 +79,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function Container()
 		{
@@ -93,8 +93,8 @@ package org.apache.flex.createjs
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion createjs.Container
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion createjs.Container
 		 */
 		override protected function createElement():WrappedHTMLElement
 		{
@@ -147,7 +147,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get MXMLDescriptor():Array
 		{
@@ -169,7 +169,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function generateMXMLAttributes(data:Array):void
 		{
@@ -182,7 +182,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public var mxmlContent:Array;
 		
@@ -195,7 +195,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get states():Array
 		{
@@ -204,8 +204,8 @@ package org.apache.flex.createjs
 		
 		/**
 		 *  @private
-		 *  @flexjsignorecoercion Class
-		 *  @flexjsignorecoercion org.apache.flex.core.IBead
+		 *  @royaleignorecoercion Class
+		 *  @royaleignorecoercion org.apache.flex.core.IBead
 		 */
 		public function set states(value:Array):void
 		{
@@ -237,7 +237,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function hasState(state:String):Boolean
 		{
@@ -258,7 +258,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get currentState():String
 		{
@@ -283,7 +283,7 @@ package org.apache.flex.createjs
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get transitions():Array
 		{

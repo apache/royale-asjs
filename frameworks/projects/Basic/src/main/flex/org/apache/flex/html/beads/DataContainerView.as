@@ -53,7 +53,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	COMPILE::JS
 	public class DataContainerView extends ContainerView implements IListView
@@ -69,7 +69,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -82,7 +82,7 @@ package org.apache.flex.html.beads
 		protected var dataModel:IDataProviderModel;
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IItemRendererParent
+		 * @royaleignorecoercion org.apache.flex.core.IItemRendererParent
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
@@ -147,7 +147,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -185,7 +185,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
@@ -222,7 +222,7 @@ package org.apache.flex.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		override protected function resizeHandler(event:Event):void
 		{

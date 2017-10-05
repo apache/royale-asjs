@@ -185,7 +185,7 @@ package org.apache.flex.text.html
 		private var lines:Array = [];
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IParent
+		 * @royaleignorecoercion org.apache.flex.core.IParent
 		 */
 		public function createTextLine(previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine
 		{

@@ -31,7 +31,7 @@ package org.apache.flex.svg
 		/**
 		 * Constructor
 		 *
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
         public function DOMWrapper()
         {
@@ -39,7 +39,7 @@ package org.apache.flex.svg
         }
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

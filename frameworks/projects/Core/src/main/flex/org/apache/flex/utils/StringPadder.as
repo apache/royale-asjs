@@ -29,7 +29,7 @@ package org.apache.flex.utils
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class StringPadder
 	{
@@ -51,7 +51,7 @@ package org.apache.flex.utils
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
 		 *  @productversion Flex 4.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public static function pad(str:String,padChar:String,size:int,padRight:Boolean=false):String
 		{

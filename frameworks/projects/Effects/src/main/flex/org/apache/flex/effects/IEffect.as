@@ -23,12 +23,12 @@ package org.apache.flex.effects
 import org.apache.flex.events.IEventDispatcher;
 
 /**
- *  IEffect is the lowest-level interface for effects in FlexJS.
+ *  IEffect is the lowest-level interface for effects in Royale.
  * 
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public interface IEffect extends IEventDispatcher
 {

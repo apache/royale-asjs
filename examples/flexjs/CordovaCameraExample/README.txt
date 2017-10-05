@@ -1,6 +1,6 @@
 Running the CordovaCameraExample on an Android Device
 
-From Flash Builder or the command line, run the FlexJS cross compiler, FalconJX, to build the HTML/JavaScript version of your app.
+From Flash Builder or the command line, run the Royale cross compiler, FalconJX, to build the HTML/JavaScript version of your app.
 % cd ~/dev/flex-asjs/examples/CordovaCameraExample
 % ant all
 
@@ -21,7 +21,7 @@ EITHER (if still in the Cordova app/CordovaCameraExample directory):
 % cordova run
 
 OR (return to top-level example directory):
-% cd flex-asjs/examples/flexjs/CordovaCameraExample
+% cd flex-asjs/examples/royale/CordovaCameraExample
 % ant run
 
 Or run on the simulator

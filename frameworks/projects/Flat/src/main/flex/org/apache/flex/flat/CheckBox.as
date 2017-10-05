@@ -37,7 +37,7 @@ package org.apache.flex.flat
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
 	public class CheckBox extends org.apache.flex.html.CheckBox
@@ -48,7 +48,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function CheckBox()
 		{
@@ -66,7 +66,7 @@ package org.apache.flex.flat
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -80,11 +80,11 @@ package org.apache.flex.flat
         private var textNode:Text;
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLLabelElement
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion Text
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLLabelElement
+         * @royaleignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -108,8 +108,8 @@ package org.apache.flex.flat
                 typeNames = 'CheckBox';
                 
                 positioner.style.position = 'relative';
-                (input as WrappedHTMLElement).flexjs_wrapper = this;
-                (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
+                (input as WrappedHTMLElement).royale_wrapper = this;
+                (checkbox as WrappedHTMLElement).royale_wrapper = this;
                 return element;
             };
         

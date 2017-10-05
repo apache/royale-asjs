@@ -35,7 +35,7 @@ package org.apache.flex.binding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ConstantBinding implements IBead, IDocument, IBinding
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ConstantBinding()
 		{
@@ -62,7 +62,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		protected var source:Object;
 
@@ -77,7 +77,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		protected var document:Object;
 
@@ -87,7 +87,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get destination():Object
         {
@@ -105,7 +105,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get sourceID():String
         {
@@ -123,7 +123,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get destinationPropertyName():String
         {
@@ -141,7 +141,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get sourcePropertyName():String
         {
@@ -159,7 +159,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function set strand(value:IStrand):void
 		{
@@ -234,7 +234,7 @@ package org.apache.flex.binding
                 {
                     // GCC optimizer only puts exported class constants on
                     // Window and not on the class itself (which got renamed)
-                    var cname:Object = source.FLEXJS_CLASS_INFO;
+                    var cname:Object = source.ROYALE_CLASS_INFO;
                     if (cname) 
                     {
                         cname = cname.names[0].qName;
@@ -256,7 +256,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function setDocument(document:Object, id:String = null):void
 		{

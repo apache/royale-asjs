@@ -45,7 +45,7 @@ package org.apache.flex.html.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
      */
 	public class Viewport implements IBead, IViewport
 	{
@@ -55,7 +55,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
 		 */
 		public function Viewport()
 		{
@@ -69,7 +69,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
 		 */
         public function get contentView():IUIBase
         {
@@ -79,7 +79,7 @@ package org.apache.flex.html.supportClasses
 		protected var _strand:IStrand;
 
         /**
-         * @flexjsignorecoercion Class
+         * @royaleignorecoercion Class
          */
 		COMPILE::SWF
 		public function set strand(value:IStrand):void
@@ -95,7 +95,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		 * @flexjsignorecoercion Class
+		 * @royaleignorecoercion Class
 		 */
 		COMPILE::JS
 		public function set strand(value:IStrand):void
@@ -128,7 +128,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
         public function setPosition(x:Number, y:Number):void
         {
@@ -144,7 +144,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
 		public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
 		{
@@ -162,7 +162,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
 		public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{

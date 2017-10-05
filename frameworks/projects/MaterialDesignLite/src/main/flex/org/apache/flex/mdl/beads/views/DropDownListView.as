@@ -34,7 +34,7 @@ package org.apache.flex.mdl.beads.views
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class DropDownListView extends DataContainerView
     {
@@ -46,12 +46,12 @@ package org.apache.flex.mdl.beads.views
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *
-         *  @flexjsignorecoercion HTMLLabelElement
+         *  @royaleignorecoercion HTMLLabelElement
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         override public function set strand(value:IStrand):void
         {

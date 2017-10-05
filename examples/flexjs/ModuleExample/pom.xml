@@ -21,16 +21,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.examples</groupId>
-    <artifactId>examples-flexjs</artifactId>
+    <groupId>org.apache.royale.examples</groupId>
+    <artifactId>examples-royale</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>examples-flexjs-ModuleExample</artifactId>
+  <artifactId>examples-royale-ModuleExample</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: FlexJS: ModuleExample</name>
+  <name>Apache Royale: Examples: Royale: ModuleExample</name>
 
   <modules>
     <module>MainApp</module>
@@ -53,7 +53,7 @@
             </goals>
             <configuration>
               <dependenciesToScan>
-                <dependency>org.apache.flex.flexjs.examples:examples-tests</dependency>
+                <dependency>org.apache.royale.examples:examples-tests</dependency>
               </dependenciesToScan>
               <systemPropertyVariables>
                 <artifactId>${project.artifactId}</artifactId>
@@ -73,84 +73,84 @@
   <dependencies>
     <!--
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-        <groupId>org.apache.flex.flexjs.framework</groupId>
+        <groupId>org.apache.royale.framework</groupId>
         <artifactId>Graphics</artifactId>
         <version>0.9.0-SNAPSHOT</version>
         <type>swc</type>

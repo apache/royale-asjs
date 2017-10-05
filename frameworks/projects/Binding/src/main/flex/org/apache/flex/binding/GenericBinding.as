@@ -31,7 +31,7 @@ package org.apache.flex.binding
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class GenericBinding implements IBead, IDocument
 	{
@@ -41,7 +41,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function GenericBinding()
 		{
@@ -58,7 +58,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		protected var document:Object;
         
@@ -69,7 +69,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         protected var destination:Object;
 
@@ -81,7 +81,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var source:Object;
         
@@ -93,7 +93,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var destinationData:Object;
 
@@ -105,7 +105,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var destinationFunction:Function;
 
@@ -118,7 +118,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var isStatic:Boolean;
         public var staticRoot:Object
@@ -129,7 +129,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function set strand(value:IStrand):void
 		{
@@ -214,7 +214,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function setDocument(document:Object, id:String = null):void
 		{
@@ -230,7 +230,7 @@ package org.apache.flex.binding
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function valueChanged(value:Object):void
 		{

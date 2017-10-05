@@ -45,7 +45,7 @@ package org.apache.flex.html.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
      */
 	public class OverflowViewport implements IBead, IViewport
 	{
@@ -55,7 +55,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
 		 */
 		public function OverflowViewport()
 		{
@@ -67,8 +67,8 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
-		 * @flexjsignorecoercion org.apache.flex.core.IUIBase
+	     *  @productversion Royale 0.0
+		 * @royaleignorecoercion org.apache.flex.core.IUIBase
 		 */
         public function get contentView():IUIBase
         {
@@ -78,7 +78,7 @@ package org.apache.flex.html.supportClasses
 		protected var _strand:IStrand;
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 * @royaleignorecoercion org.apache.flex.core.IUIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -95,7 +95,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
         public function setPosition(x:Number, y:Number):void
         {
@@ -107,7 +107,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
 		public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
 		{
@@ -119,7 +119,7 @@ package org.apache.flex.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.0
+	     *  @productversion Royale 0.0
          */
 		public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{

@@ -39,14 +39,14 @@ package org.apache.flex.createjs.core
 	}
 	
 	/**
-	 * This is the base class for CreateJS component wrappers used by FlexJS
+	 * This is the base class for CreateJS component wrappers used by Royale
 	 * applications. This class provides standard properties that most of the
-	 * FlexJS CreateJS wrapper classes use, such as a fill color.
+	 * Royale CreateJS wrapper classes use, such as a fill color.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	
 	COMPILE::SWF
@@ -66,7 +66,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get stroke():IStroke
 		{
@@ -86,7 +86,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get fill():IFill
 		{
@@ -106,7 +106,7 @@ package org.apache.flex.createjs.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get textColor():IFill
 		{

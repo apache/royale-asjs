@@ -20,8 +20,8 @@
 -->
 <cordova:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
-				   xmlns:cordova="library://ns.apache.org/flexjs/cordova"
-				   xmlns:js="library://ns.apache.org/flexjs/basic" 
+				   xmlns:cordova="library://ns.apache.org/royale/cordova"
+				   xmlns:js="library://ns.apache.org/royale/basic" 
 				   applicationComplete="MyInitialView(initialView).ready = true">
 	
 	<!-- This application demonstrates how to use the Google MAP API

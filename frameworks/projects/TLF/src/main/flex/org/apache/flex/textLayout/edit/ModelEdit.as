@@ -133,7 +133,7 @@ package org.apache.flex.textLayout.edit
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		private static function checkNormalize(textFlow:ITextFlow, commonRoot:IFlowGroupElement, mementoList:MementoList):void
 		{

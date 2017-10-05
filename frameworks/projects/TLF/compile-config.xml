@@ -25,7 +25,7 @@
             <!--<path-element>typedefs/js.swc</path-element>-->
             <path-element>typedefs/opentype.swc</path-element>
             <path-element>typedefs/opentypejs.swc</path-element>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/player/11.1/playerglobal.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/player/11.1/playerglobal.swc</path-element>
             <!--<path-element>lib/CEP.swc</path-element>-->
         </external-library-path>
         
@@ -47,13 +47,13 @@
         <locale/>
         
         <library-path>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/Core.swc</path-element>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/Graphics.swc</path-element>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/Language.swc</path-element>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/Reflection.swc</path-element>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/Network.swc</path-element>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/HTML.swc</path-element>
-            <path-element>/FlexSDK/FlexJSNightly/frameworks/libs/XML.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/Core.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/Graphics.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/Language.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/Reflection.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/Network.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/HTML.swc</path-element>
+            <path-element>/FlexSDK/RoyaleNightly/frameworks/libs/XML.swc</path-element>
             <path-element>libs/Text.swc</path-element>
         </library-path>
 

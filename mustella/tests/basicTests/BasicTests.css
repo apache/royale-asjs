@@ -20,7 +20,7 @@
 /*
  @namespace "library://ns.adobe.com/flex/spark";
  */
-@namespace mx "library://ns.apache.org/flexjs/basic";
+@namespace mx "library://ns.apache.org/royale/basic";
 @namespace my "shim.*";
 
 .global {

@@ -32,7 +32,7 @@ package org.apache.flex.core
         import flash.events.Event;
         import flash.events.IEventDispatcher;
         import org.apache.flex.events.ElementEvents;
-        import org.apache.flex.events.IFlexJSEvent;
+        import org.apache.flex.events.IRoyaleEvent;
     }
     
     import org.apache.flex.events.Event;
@@ -49,17 +49,17 @@ package org.apache.flex.core
         //   Property
         //--------------------------------------
         
-        protected var _element:IFlexJSElement;
+        protected var _element:IRoyaleElement;
         
-        public function get element():IFlexJSElement
+        public function get element():IRoyaleElement
         {
             return _element;
         }
         
-        public function set element(value:IFlexJSElement):void
+        public function set element(value:IRoyaleElement):void
         {
             _element = value;
-            _element.flexjs_wrapper = this;
+            _element.royale_wrapper = this;
         }
         
         protected var _beads:Vector.<IBead>;
@@ -162,8 +162,8 @@ package org.apache.flex.core
         
         private function forwarder(event:flash.events.Event):void
         {
-            if (event is IFlexJSEvent)
-                event = IFlexJSEvent(event).cloneEvent() as flash.events.Event;
+            if (event is IRoyaleEvent)
+                event = IRoyaleEvent(event).cloneEvent() as flash.events.Event;
             dispatchEvent(event);
         }
     }
@@ -228,7 +228,7 @@ package org.apache.flex.core
         public function set element(value:WrappedHTMLElement):void
         {
             _element = value;
-            _element.flexjs_wrapper = this;
+            _element.royale_wrapper = this;
         }
         
 

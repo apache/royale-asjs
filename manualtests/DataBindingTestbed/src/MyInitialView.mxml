@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:bindables="bindables.*"
 			    initComplete="initControls()">
     
@@ -232,7 +232,7 @@ limitations under the License.
 		]]>
     </fx:Script>
 	<fx:Style>
-		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		.output {
 			font-size: 20px;
@@ -269,7 +269,7 @@ limitations under the License.
         <js:beads>
             <js:VerticalLayout />
         </js:beads>
-		<js:Label id="testExplanation" text="These examples are mostly intended for FlexJS dev team to verify various binding functionality" />
+		<js:Label id="testExplanation" text="These examples are mostly intended for Royale dev team to verify various binding functionality" />
         <js:Label id="expressionTest" text="model expression binding [WORKS](5 sec timer) {MyModel(applicationModel).modelInstanceTime}" />
 		<js:Label text="[WORKS] 2 examples of binding expressions with static vars:"/>
 		<js:Label id="timerDemo2" width="300" text="{'test local static expression '+timerText}" />

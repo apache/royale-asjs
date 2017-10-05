@@ -38,19 +38,19 @@
         </fail>
     </target>
     
-    <target name="convert_project" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS project">
-        <copy file="${basedir}/../../examples/flexjs/HelloWorld/src/main/flex/HelloWorld.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+    <target name="convert_project" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic Royale project">
+        <copy file="${basedir}/../../examples/royale/HelloWorld/src/main/flex/HelloWorld.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
         <antcall target="makeAIRvisible" />
     </target>
 
-    <target name="convert_project_mvc" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS MVC project">
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/DataBindingExample.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/MyInitialView.mxml" tofile="${projectDir}/src/MyInitialView.mxml" overwrite="true" />
+    <target name="convert_project_mvc" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic Royale MVC project">
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/flex/DataBindingExample.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/flex/MyInitialView.mxml" tofile="${projectDir}/src/MyInitialView.mxml" overwrite="true" />
         <mkdir dir="${projectDir}/src/models" />
         <mkdir dir="${projectDir}/src/controllers" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/StockDataJSONItemConverter.as" tofile="${projectDir}/src/StockDataJSONItemConverter.as" overwrite="true" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/models/MyModel.as" tofile="${projectDir}/src/models/MyModel.as" overwrite="true" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/controllers/MyController.as" tofile="${projectDir}/src/controllers/MyController.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/flex/StockDataJSONItemConverter.as" tofile="${projectDir}/src/StockDataJSONItemConverter.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/flex/models/MyModel.as" tofile="${projectDir}/src/models/MyModel.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/flex/controllers/MyController.as" tofile="${projectDir}/src/controllers/MyController.as" overwrite="true" />
         <replace file="${projectDir}/src/controllers/MyController.as" token="DataBindingExample" value="${projectName}" />
         <antcall target="makeAIRvisible" />
     </target>

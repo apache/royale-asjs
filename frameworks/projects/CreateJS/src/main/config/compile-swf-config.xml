@@ -67,7 +67,7 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/createjs</uri>
+                <uri>library://ns.apache.org/royale/createjs</uri>
                 <manifest>../resources/createjs-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -89,7 +89,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/createjs</uri>
+        <uri>library://ns.apache.org/royale/createjs</uri>
     </include-namespaces>  
         
     <target-player>${playerglobal.version}</target-player>

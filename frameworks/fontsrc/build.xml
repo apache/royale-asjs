@@ -25,7 +25,7 @@
 -->
 <project name="fonts" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location="../.."/>
+    <property name="ROYALE_HOME" location="../.."/>
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -55,15 +55,15 @@
         </and>
     </condition>  
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
  
     <target name="main" depends="check-compile-env,compile"
         description="Create font swfs"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
-        <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
+        <ant antfile="${ROYALE_HOME}/build.xml" target="check-compile-env" dir="${ROYALE_HOME}"/>
     </target>
     
     <target name="compile" depends="prepare" description="Builds all font swfs">

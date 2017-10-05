@@ -16,9 +16,9 @@
  *  limitations under the License.
  *
  */
-package org.apache.flex.flexjs.examples.flexjsstore;
+package org.apache.flex.royale.examples.royalestore;
 
-import org.apache.flex.flexjs.examples.AbstractIT;
+import org.apache.flex.royale.examples.AbstractIT;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -29,11 +29,11 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by christoferdutz on 13.01.17.
  */
-public class FlexJSStoreIT extends AbstractIT {
+public class RoyaleStoreIT extends AbstractIT {
 
     @Override
     protected String getContext() {
-        return "FlexJSStore";
+        return "RoyaleStore";
     }
 
     @Test

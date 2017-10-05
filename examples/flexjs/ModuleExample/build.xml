@@ -25,7 +25,7 @@
 -->
 <project name="ModuleExample" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location=".."/>
+    <property name="ROYALE_HOME" location=".."/>
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->

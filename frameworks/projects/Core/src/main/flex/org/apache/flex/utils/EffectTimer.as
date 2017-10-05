@@ -44,7 +44,7 @@ import org.apache.flex.events.ValueEvent;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 [Event(name="update", type="org.apache.flex.events.ValueEvent")]
 
@@ -55,7 +55,7 @@ import org.apache.flex.events.ValueEvent;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class EffectTimer extends EventDispatcher implements IEffectTimer
 {
@@ -70,7 +70,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function EffectTimer()
     {

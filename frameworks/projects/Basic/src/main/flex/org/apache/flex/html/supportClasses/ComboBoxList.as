@@ -31,7 +31,7 @@ package org.apache.flex.html.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -42,7 +42,7 @@ package org.apache.flex.html.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ComboBoxList extends List implements IPopUp
 	{
@@ -52,7 +52,7 @@ package org.apache.flex.html.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ComboBoxList()
 		{

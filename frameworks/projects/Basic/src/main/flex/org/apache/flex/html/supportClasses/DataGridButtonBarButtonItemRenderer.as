@@ -35,7 +35,7 @@ package org.apache.flex.html.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class DataGridButtonBarButtonItemRenderer extends ButtonBarButtonItemRenderer
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function DataGridButtonBarButtonItemRenderer()
 		{
@@ -59,7 +59,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set data(value:Object):void
 		{

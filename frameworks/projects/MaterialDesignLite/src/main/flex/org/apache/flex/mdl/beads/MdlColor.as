@@ -32,7 +32,7 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class MdlColor implements IBead, IMdlColor
     {
@@ -42,7 +42,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function MdlColor()
         {
@@ -56,7 +56,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get color():String
         {
@@ -75,7 +75,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get colorWeight():String
         {
@@ -91,14 +91,14 @@ package org.apache.flex.mdl.beads
         /**
          * @copy org.apache.flex.core.IBead#strand
          * 
-         * @flexjsignorecoercion HTMLElement
+         * @royaleignorecoercion HTMLElement
          *
          * @param value
          *
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
         public function set strand(value:IStrand):void
         {
@@ -120,7 +120,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         private function get hasColor():Boolean
         {
@@ -133,7 +133,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         private function get hasColorWeight():Boolean
         {
@@ -146,7 +146,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function getMdlElementColor():String
         {

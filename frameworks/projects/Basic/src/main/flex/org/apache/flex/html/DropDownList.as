@@ -39,7 +39,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -60,7 +60,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class DropDownList extends Button
 	{
@@ -70,7 +70,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function DropDownList()
 		{
@@ -88,7 +88,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get dataProvider():Object
         {
@@ -97,8 +97,8 @@ package org.apache.flex.html
 
         /**
          *  @private
-         *  @flexjsignorecoercion HTMLOptionElement
-         *  @flexjsignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion HTMLOptionElement
+         *  @royaleignorecoercion HTMLSelectElement
          */
         public function set dataProvider(value:Object):void
         {
@@ -140,7 +140,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get selectedIndex():int
         {
@@ -149,7 +149,7 @@ package org.apache.flex.html
 
         /**
          *  @private
-         *  @flexjsignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion HTMLSelectElement
          */
         public function set selectedIndex(value:int):void
         {
@@ -168,7 +168,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get selectedItem():Object
         {
@@ -177,7 +177,7 @@ package org.apache.flex.html
 
         /**
          *  @private
-         *  @flexjsignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion HTMLSelectElement
          */
         public function set selectedItem(value:Object):void
         {
@@ -195,7 +195,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get labelField():String
         {
@@ -207,8 +207,8 @@ package org.apache.flex.html
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLSelectElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -221,7 +221,7 @@ package org.apache.flex.html
         }
 
         /**
-         * @flexjsignorecoercion HTMLSelectElement
+         * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         protected function changeHandler(event:Event):void

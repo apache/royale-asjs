@@ -55,7 +55,7 @@ package org.apache.flex.html
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
     COMPILE::SWF
 	public class RadioButton extends UIButtonBase implements IStrand
@@ -66,7 +66,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function RadioButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
@@ -85,7 +85,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get groupName() : String
 		{
@@ -102,7 +102,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get text():String
 		{
@@ -121,7 +121,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get selected():Boolean
 		{
@@ -151,7 +151,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get value():Object
 		{
@@ -168,7 +168,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get selectedValue():Object
 		{
@@ -234,10 +234,10 @@ package org.apache.flex.html
         private var icon:RadioButtonIcon;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLLabelElement
-         * @flexjsignorecoercion Text
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLInputElement
+         * @royaleignorecoercion HTMLLabelElement
+         * @royaleignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -251,8 +251,8 @@ package org.apache.flex.html
             labelFor.appendChild(textNode);
 
             element = labelFor as WrappedHTMLElement;
-           (textNode as WrappedHTMLElement).flexjs_wrapper = this;
-			(icon.element as WrappedHTMLElement).flexjs_wrapper = this;
+           (textNode as WrappedHTMLElement).royale_wrapper = this;
+			(icon.element as WrappedHTMLElement).royale_wrapper = this;
 
             className = 'RadioButton';
             typeNames = 'RadioButton, RadioButtonIcon';
@@ -324,7 +324,7 @@ package org.apache.flex.html
         }
 
         /**
-         * @flexjsignorecoercion Array
+         * @royaleignorecoercion Array
          */
         public function set selectedValue(value:Object):void
         {

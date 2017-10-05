@@ -65,7 +65,7 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/google</uri>
+                <uri>library://ns.apache.org/royale/google</uri>
                 <manifest>../resources/google-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -88,7 +88,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/google</uri>
+        <uri>library://ns.apache.org/royale/google</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

@@ -43,7 +43,7 @@ package org.apache.flex.createjs.graphics
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
     
     COMPILE::SWF
@@ -57,7 +57,7 @@ package org.apache.flex.createjs.graphics
     {
 		/**
 		 * @private
-         * @flexjsignorecoercion createjs.Shape
+         * @royaleignorecoercion createjs.Shape
 		 */
 		override protected function redrawShape():void
 		{

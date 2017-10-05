@@ -48,7 +48,7 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="bundle" value="en_US" />
 
-	<property name="flex.properties.url" value="http://flex.apache.org/installer/properties/flexjs/${bundle}.properties" />
+	<property name="flex.properties.url" value="http://flex.apache.org/installer/properties/royale/${bundle}.properties" />
 	<get src="${flex.properties.url}" dest="${basedir}/${bundle}.properties" ignoreerrors="true" />
     <property file="${basedir}/${bundle}.properties"/>
     <property file="${FLEXJS_HOME}/installer.properties/${bundle}.properties"/>
@@ -57,7 +57,7 @@
     
     <property name="air.sdk.version" value="14.0"/>
     <property name="flash.sdk.version" value="14.0"/>
-    <property name="flexjs.version" value="0.8.0"/>
+    <property name="royale.version" value="0.8.0"/>
     <property name="falcon.version" value="0.8.0"/>
 
     <property name="swfobject.url.server" value="https://github.com" />
@@ -177,21 +177,21 @@
         <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version.ref}" />
         <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
         
-        <property name="flexjs.dev.version" value="${config.products.ApacheFlexJS.developmentVersion}" />
+        <property name="royale.dev.version" value="${config.products.ApacheRoyale.developmentVersion}" />
         <property name="falcon.dev.version" value="${config.products.ApacheFlexFalconJX.developmentVersion}" />
         <property name="falcon.latest.version" value="${config.products.ApacheFlexFalconJX.latestVersion}" />
         <property name="falcon.rc" value="${config.products.ApacheFlexFalconJX.rc}" />
-        <!-- if both flexjs and falcon are development versions, then get falcon from the rc server -->
+        <!-- if both royale and falcon are development versions, then get falcon from the rc server -->
         <!-- for nightly builds, we package a nightly.properties that sets these values to the nightly falcon builds -->
         <condition property="falcon.server.url" value="https://dist.apache.org/repos/dist/dev" >
             <and>
-                <equals arg1="${flexjs.dev.version}" arg2="${flexjs.version}" />
+                <equals arg1="${royale.dev.version}" arg2="${royale.version}" />
                 <equals arg1="${falcon.dev.version}" arg2="${falcon.version}" />
             </and>
         </condition>
         <condition property="falcon.folder" value="flex/falcon/${falcon.version}/${falcon.rc}/binaries" >
             <and>
-                <equals arg1="${flexjs.dev.version}" arg2="${flexjs.version}" />
+                <equals arg1="${royale.dev.version}" arg2="${royale.version}" />
                 <equals arg1="${falcon.dev.version}" arg2="${falcon.version}" />
             </and>
         </condition>
@@ -270,14 +270,14 @@
     </target>
 
     <target name="check-binary" description="Make sure this is a binary package">
-        <fail message="${basedir} is not an FlexJS binary package">
+        <fail message="${basedir} is not an Royale binary package">
             <condition>
                 <not>
                     <available file="${basedir}/frameworks/libs/Binding.swc" />
                 </not>
             </condition>
         </fail>
-        <fail message="${basedir} is not an FlexJS binary package and is probably a git repo">
+        <fail message="${basedir} is not an Royale binary package and is probably a git repo">
             <condition>
                 <available file="$[basedir}/.gitignore" />
             </condition>
@@ -381,7 +381,7 @@
         <antcall target="mac-chmod" />
     </target>
     <target name="falcon-install" >
-        <property name="flexjs" value="true" />
+        <property name="royale" value="true" />
         <property name="FLEX_HOME" value="${basedir}" />
         <ant dir="${download.dir}/falcon" antfile="installer.xml" />
     </target>
@@ -969,7 +969,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     
     <target name="setup-launch-configs" description="Creates custom Flash Builder launch configurations">
         <echo>${INFO_INSTALLING_LAUNCH_CONFIG_FILES}</echo>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug and Release Build).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (FalconJX Debug and Release Build).launch">
             <replacefilter
             token="$MXMLC"
             value="${MXMLC}"/>
@@ -977,7 +977,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug Build).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (FalconJX Debug Build).launch">
             <replacefilter
             token="$MXMLC"
             value="${MXMLC}"/>
@@ -985,7 +985,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (JS COMPC).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (JS COMPC).launch">
             <replacefilter
             token="$COMPC"
             value="${COMPC}"/>
@@ -1009,27 +1009,27 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Build).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (Cordova Build).launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run IOS).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (Cordova Run IOS).launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run Android).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (Cordova Run Android).launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS MVC Project.launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to Royale MVC Project.launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS Project.launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to Royale Project.launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
@@ -1047,17 +1047,17 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     </target>
     
     <target name="setup-launch-configs-windows" description="Custom Flash Builder launch configurations for Windows" if="isWindows">
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Build).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (Cordova Build).launch">
         	<replacefilter
         	token="PATH"
         	value="UNIX_PATH" />
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run IOS).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (Cordova Run IOS).launch">
         	<replacefilter
         	token="PATH"
         	value="UNIX_PATH" />
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run Android).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Royale (Cordova Run Android).launch">
             <replacefilter
             token="PATH"
             value="UNIX_PATH" />

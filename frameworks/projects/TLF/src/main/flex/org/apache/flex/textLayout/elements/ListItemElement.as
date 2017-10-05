@@ -81,7 +81,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 *  @private ListItems must begin with zero or more divs with a paragraph
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function normalizeNeedsInitialParagraph():Boolean
 		{

@@ -27,7 +27,7 @@ package org.apache.flex.events
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ValueChangeEvent extends Event
 	{
@@ -37,7 +37,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ValueChangeEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 oldValue:Object = null, newValue:Object = null)
@@ -53,7 +53,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var oldValue:Object;
 
@@ -63,7 +63,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var newValue:Object;
 
@@ -73,7 +73,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var propertyName:String;
 
@@ -83,7 +83,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var source:Object;
 		
@@ -93,7 +93,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public static const VALUE_CHANGE:String = "valueChange";
         
@@ -109,7 +109,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function createUpdateEvent(source:Object, name:String, oldValue:Object, newValue:Object):ValueChangeEvent
         {
@@ -125,9 +125,9 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
-        override public function cloneEvent():IFlexJSEvent
+        override public function cloneEvent():IRoyaleEvent
         {
             return new ValueChangeEvent(type, bubbles, cancelable, oldValue, newValue);
         }

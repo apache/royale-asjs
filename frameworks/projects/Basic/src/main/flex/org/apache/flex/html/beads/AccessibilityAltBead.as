@@ -36,7 +36,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	public class AccessibilityAltBead implements IBead
 	{
@@ -46,7 +46,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		public function AccessibilityAltBead()
 		{
@@ -61,9 +61,9 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
-		 *  @flexjsignorecoercion HTMLInputElement
-		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.flex.core.UIBase;
 		 */
 		public function set strand(value:IStrand):void
 		{	

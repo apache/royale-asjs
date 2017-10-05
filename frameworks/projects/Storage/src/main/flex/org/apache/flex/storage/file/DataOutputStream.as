@@ -39,7 +39,7 @@ COMPILE::SWF {
  * @langversion 3.0
  * @playerversion Flash 10.2
  * @playerversion AIR 2.6
- * @productversion FlexJS 0.0
+ * @productversion Royale 0.0
  */
 public class DataOutputStream extends EventDispatcher implements IDataOutput
 {
@@ -53,7 +53,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function DataOutputStream(target:IEventDispatcher, fileHandle:Object, fileWriter:Object)
 	{
@@ -112,7 +112,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function writeText(text:String):void
 	{
@@ -148,7 +148,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function close():void
 	{

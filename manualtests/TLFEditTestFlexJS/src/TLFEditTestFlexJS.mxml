@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-               xmlns:js="library://ns.apache.org/flexjs/basic"
+               xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:local="*" 
                width="955" height="600"
                applicationComplete="setupEditor()">

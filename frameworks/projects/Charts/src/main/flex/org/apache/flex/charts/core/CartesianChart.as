@@ -25,7 +25,7 @@ package org.apache.flex.charts.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class CartesianChart extends ChartBase
 	{
@@ -35,7 +35,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function CartesianChart()
 		{
@@ -50,7 +50,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get xAxis():IHorizontalAxisBead
 		{
@@ -70,7 +70,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get yAxis():IHorizontalAxisBead
 		{

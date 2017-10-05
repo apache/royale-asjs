@@ -25,7 +25,7 @@ package org.apache.flex.mdl.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public interface ITextField
     {
@@ -37,7 +37,7 @@ package org.apache.flex.mdl.supportClasses
             * @langversion 3.0
             * @playerversion Flash 10.2
             * @playerversion AIR 2.6
-            * @productversion FlexJS 0.8
+            * @productversion Royale 0.8
             */
             function get textNode():Text;
             function set textNode(value:Text):void;
@@ -48,7 +48,7 @@ package org.apache.flex.mdl.supportClasses
             * @langversion 3.0
             * @playerversion Flash 10.2
             * @playerversion AIR 2.6
-            * @productversion FlexJS 0.8
+            * @productversion Royale 0.8
             */
             function get input():HTMLInputElement;
             function set input(value:HTMLInputElement):void;
@@ -59,7 +59,7 @@ package org.apache.flex.mdl.supportClasses
             * @langversion 3.0
             * @playerversion Flash 10.2
             * @playerversion AIR 2.6
-            * @productversion FlexJS 0.8
+            * @productversion Royale 0.8
             */
             function get label():HTMLLabelElement;
             function set label(value:HTMLLabelElement):void;

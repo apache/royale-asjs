@@ -21,17 +21,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-maven-archetypes</artifactId>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale-maven-archetypes</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>flexjs-simple-typedef-archetype</artifactId>
+  <artifactId>royale-simple-typedef-archetype</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
-  <name>Apache Flex - FlexJS: Framework: Archetypes: Simple FlexJS Typedef Library</name>
-  <description>Maven archetype for creating FlexJS Maven project for building a simple FlexJS typedef library.</description>
+  <name>Apache Royale: Framework: Archetypes: Simple Royale Typedef Library</name>
+  <description>Maven archetype for creating Royale Maven project for building a simple Royale typedef library.</description>
 
   <build>
     <extensions>

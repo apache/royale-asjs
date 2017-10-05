@@ -42,7 +42,7 @@ package org.apache.flex.charts.optimized
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class SVGChartDataGroup extends CompoundGraphic implements IItemRendererParent, IContentView, IChartDataGroup
 	{
@@ -52,7 +52,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function SVGChartDataGroup()
 		{
@@ -73,7 +73,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -90,7 +90,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function getItemRendererForIndex(index:int):IItemRenderer
 		{
@@ -105,7 +105,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function getItemRendererForSeriesAtIndex(series:IChartSeries, index:int):IChartItemRenderer
 		{
@@ -128,7 +128,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function removeAllItemRenderers():void
 		{
@@ -143,7 +143,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function addItemRenderer(value:IItemRenderer):void
 		{
@@ -162,7 +162,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function addItemRendererAt(value:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
@@ -182,7 +182,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function removeItemRenderer(renderer:IItemRenderer):void
 		{

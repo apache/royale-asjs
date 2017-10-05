@@ -45,8 +45,8 @@ package org.apache.flex.textLayout.compose.utils
 		/**
 		*
 		* @private Logic to generate and position the ITextLine containing the numbering for a listElement's first line 
-		* @flexjsignorecoercion org.apache.flex.textLayout.elements.ILinkElement
-		* @flexjsignorecoercion org.apache.flex.textLayout.elements.IListElement
+		* @royaleignorecoercion org.apache.flex.textLayout.elements.ILinkElement
+		* @royaleignorecoercion org.apache.flex.textLayout.elements.IListElement
 		 */
 		static public function createNumberLine(listItemElement:IListItemElement, curParaElement:IParagraphElement, swfContext:ISWFContext, totalStartIndent:Number):ITextLine
 		{

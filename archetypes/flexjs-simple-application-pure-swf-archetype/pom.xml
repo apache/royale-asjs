@@ -21,22 +21,22 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-maven-archetypes</artifactId>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale-maven-archetypes</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>flexjs-simple-application-pure-swf-archetype</artifactId>
+  <artifactId>royale-simple-application-pure-swf-archetype</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Apache Flex - FlexJS: Framework: Archetypes: Simple FlexJS Pure-SWF Application</name>
-  <description>Maven archetype for creating FlexJS Maven project for building a simple FlexJS application with only Flash output.</description>
+  <name>Apache Royale: Framework: Archetypes: Simple Royale Pure-SWF Application</name>
+  <description>Maven archetype for creating Royale Maven project for building a simple Royale application with only Flash output.</description>
 
   <!--
-  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-application-archetype -DarchetypeVersion=0.8.0
-  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-pure-js-application-archetype -DarchetypeVersion=0.8.0
-  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-pure-swf-application-archetype -DarchetypeVersion=0.8.0
+  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-application-archetype -DarchetypeVersion=0.8.0
+  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-pure-js-application-archetype -DarchetypeVersion=0.8.0
+  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-pure-swf-application-archetype -DarchetypeVersion=0.8.0
   -->
 
 </project>

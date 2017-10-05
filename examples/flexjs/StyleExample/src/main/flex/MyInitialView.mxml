@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:js="library://ns.apache.org/flexjs/basic"
+		 xmlns:js="library://ns.apache.org/royale/basic"
 		 xmlns:local="org.apache.flex.html.*"
 		 initComplete="onComplete()">
 	<fx:Script>
@@ -39,7 +39,7 @@ limitations under the License.
 	</fx:Script>
 	
 		<fx:Style>
-		@namespace js "library://ns.apache.org/flexjs/basic";
+		@namespace js "library://ns.apache.org/royale/basic";
 		@namespace internal "org.apache.flex.html.supportClasses.*"; 
 		
 		/*

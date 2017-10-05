@@ -37,7 +37,7 @@ package org.apache.flex.charts.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class VerticalCategoryAxisBead extends AxisBaseBead implements IBead, IVerticalAxisBead
 	{
@@ -47,7 +47,7 @@ package org.apache.flex.charts.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function VerticalCategoryAxisBead()
 		{
@@ -64,7 +64,7 @@ package org.apache.flex.charts.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -88,7 +88,7 @@ package org.apache.flex.charts.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get categoryField():String
 		{
@@ -107,7 +107,7 @@ package org.apache.flex.charts.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get axisWidth():Number
 		{
@@ -129,7 +129,7 @@ package org.apache.flex.charts.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get gap():Number
 		{

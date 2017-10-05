@@ -32,7 +32,7 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class MdlTextColor implements IBead, IMdlTextColor
     {
@@ -48,7 +48,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get textColor():String
         {
@@ -67,7 +67,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get textColorWeight():String
         {
@@ -83,14 +83,14 @@ package org.apache.flex.mdl.beads
         /**
          * @copy org.apache.flex.core.IBead#strand
          *
-         * @flexjsignorecoercion HTMLElement
+         * @royaleignorecoercion HTMLElement
          *
          * @param value
          *
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+         * @productversion Royale 0.8
          */
         public function set strand(value:IStrand):void
         {
@@ -112,7 +112,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         private function get hasTextColor():Boolean
         {
@@ -125,7 +125,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         private function get hasTextColorWeight():Boolean
         {
@@ -138,7 +138,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function getMdlElementTextColor():String
         {

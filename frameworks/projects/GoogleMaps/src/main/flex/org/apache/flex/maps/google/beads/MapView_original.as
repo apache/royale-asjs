@@ -48,7 +48,7 @@ package org.apache.flex.maps.google.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	COMPILE::JS
 	public class MapView_original extends BeadViewBase implements IBeadView
@@ -93,7 +93,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function MapView_original()
 		{
@@ -107,7 +107,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -182,7 +182,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function mapit(lat:Number, lng:Number, zoomLevel:Number):void
 		{
@@ -198,7 +198,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function geoCodeAndMarkAddress(address:String):void
 		{
@@ -213,7 +213,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function centerOnAddress(address:String):void
 		{
@@ -228,7 +228,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function markCurrentLocation():void
 		{
@@ -244,7 +244,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function nearbySearch(placeName:String):void
 		{
@@ -259,7 +259,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function removeAllMarkers():void
 		{
@@ -274,7 +274,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function setZoom(zoom:Number):void
 		{
@@ -289,7 +289,7 @@ package org.apache.flex.maps.google.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function setCenter( location:LatLng ):void
 		{

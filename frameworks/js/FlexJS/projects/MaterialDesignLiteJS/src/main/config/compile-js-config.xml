@@ -50,7 +50,7 @@
     <locale/>
     <namespaces>
       <namespace>
-        <uri>library://ns.apache.org/flexjs/mdl</uri>
+        <uri>library://ns.apache.org/royale/mdl</uri>
         <manifest>../../../../../../../projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
       </namespace>
     </namespaces>
@@ -76,6 +76,6 @@
     <class>MDLClasses</class>
   </include-classes>
   <include-namespaces>
-    <uri>library://ns.apache.org/flexjs/mdl</uri>
+    <uri>library://ns.apache.org/royale/mdl</uri>
   </include-namespaces>
 </flex-config>

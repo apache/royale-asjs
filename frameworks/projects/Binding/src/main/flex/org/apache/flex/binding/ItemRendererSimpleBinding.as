@@ -33,7 +33,7 @@ import org.apache.flex.events.ValueChangeEvent;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class ItemRendererSimpleBinding implements IBead, IDocument
 {
@@ -43,7 +43,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function ItemRendererSimpleBinding()
 	{
@@ -57,7 +57,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	protected var source:Object;
 
@@ -74,7 +74,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	protected var document:Object;
 
@@ -87,7 +87,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public var destinationID:String;
 
@@ -98,7 +98,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public var sourcePropertyName:String;
 
@@ -109,7 +109,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public var destinationPropertyName:String;
 
@@ -121,7 +121,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function set strand(value:IStrand):void
 	{
@@ -135,7 +135,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public function setDocument(document:Object, id:String = null):void
 	{

@@ -49,7 +49,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="initialize", type="org.apache.flex.events.Event")]
 
@@ -63,7 +63,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="preinitialize", type="org.apache.flex.events.Event")]
 
@@ -75,7 +75,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="viewChanged", type="org.apache.flex.events.Event")]
 
@@ -86,12 +86,12 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
     
     /**
-     *  The Application class is the main class and entry point for a FlexJS
+     *  The Application class is the main class and entry point for a Royale
      *  application.  This Application class is different than the
      *  Flex SDK's mx:Application or spark:Application in that it does not contain
      *  user interface elements.  Those UI elements go in the views (ViewBase).  This
@@ -102,7 +102,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IRenderedObject
     {
@@ -112,7 +112,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function Application()
         {
@@ -172,7 +172,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         protected function initialize():void
@@ -224,7 +224,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set valuesImpl(value:IValuesImpl):void
         {
@@ -241,7 +241,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get initialView():IApplicationView
         {
@@ -258,7 +258,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         [Bindable("__NoChangeEvent__")]
         COMPILE::SWF
@@ -273,7 +273,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         [Bindable("__NoChangeEvent__")]
         COMPILE::JS
@@ -299,7 +299,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var controller:Object;
 
@@ -313,7 +313,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get MXMLDescriptor():Array
         {
@@ -337,7 +337,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
     	public function generateMXMLAttributes(data:Array):void
         {
@@ -352,7 +352,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var beads:Array;
 
@@ -365,7 +365,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         public function addBead(bead:IBead):void
@@ -382,7 +382,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         public function getBeadByType(classOrInterface:Class):IBead
@@ -401,7 +401,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         COMPILE::SWF
         public function removeBead(value:IBead):IBead
@@ -425,9 +425,9 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
-         *  @flexjsignorecoercion HTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.IUIBase
+         *  @royaleignorecoercion HTMLElement
          */
         public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
@@ -455,8 +455,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.IUIBase
          */
         public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
@@ -492,7 +492,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function getElementAt(index:int):IChild
         {
@@ -501,7 +501,7 @@ package org.apache.flex.core
             }
             COMPILE::JS {
                 var children:NodeList = internalChildren();
-                return children[index].flexjs_wrapper;
+                return children[index].royale_wrapper;
             }
         }
 
@@ -511,7 +511,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function getElementIndex(c:IChild):int
         {
@@ -539,8 +539,8 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
          */
         public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
@@ -563,7 +563,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get numElements():int
         {
@@ -589,7 +589,7 @@ package org.apache.flex.core
 		protected var startupTimer:Timer;
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IBead
+		 * @royaleignorecoercion org.apache.flex.core.IBead
 		 */
 		COMPILE::JS
 		public function start():void
@@ -626,7 +626,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IBead
+		 * @royaleignorecoercion org.apache.flex.core.IBead
 		 */
 		COMPILE::JS
 		protected function initialize():void

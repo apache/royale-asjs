@@ -28,7 +28,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function get stroke():IStroke;
 		function set stroke(value:IStroke):void;
@@ -39,7 +39,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function get fill():IFill;
 		function set fill(value:IFill):void;

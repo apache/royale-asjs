@@ -35,7 +35,7 @@ package org.apache.flex.charts.optimized
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class SVGBoxItemRenderer extends GraphicsItemRenderer implements IChartItemRenderer
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function SVGBoxItemRenderer()
 		{
@@ -61,7 +61,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get series():IChartSeries
 		{
@@ -80,7 +80,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get yField():String
 		{
@@ -99,7 +99,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get xField():String
 		{
@@ -116,7 +116,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set data(value:Object):void
 		{
@@ -130,7 +130,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set width(value:Number):void
 		{
@@ -144,7 +144,7 @@ package org.apache.flex.charts.optimized
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function set height(value:Number):void
 		{

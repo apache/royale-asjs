@@ -590,7 +590,7 @@ package org.apache.flex.textLayout.container
 		}
 		/**
 		 *  @private
-		 * @flexjsignorecoercion org.apache.flex.textLayout.container.ContainerController
+		 * @royaleignorecoercion org.apache.flex.textLayout.container.ContainerController
 		 */
 		public function setTextLengthOnly(numChars:int):void
 		{ 
@@ -2388,7 +2388,7 @@ package org.apache.flex.textLayout.container
 		
 		/**
 		 *  @private
-		 *  @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
 		 */
 		public function getContainerController(container:IParentIUIBase):IContainerController
 		{
@@ -2423,7 +2423,7 @@ package org.apache.flex.textLayout.container
 		 *
 		 * @see org.apache.flex.events.FocusEvent#KEY_FOCUS_CHANGE FocusEvent.KEY_FOCUS_CHANGE
 		 * @see org.apache.flex.events.FocusEvent#MOUSE_FOCUS_CHANGE FocusEvent.MOUSE_FOCUS_CHANGE
-		 *  @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
 		 */
 		public function focusChangeHandler(event:Event):void
 		{
@@ -2767,7 +2767,7 @@ package org.apache.flex.textLayout.container
 			if (!blinkTimer)
 				blinkTimer = new Timer(blinkInterval,0);
 			blinkObject = obj;
-//It was using weak references which FlexJS does not support
+//It was using weak references which Royale does not support
 			// blinkTimer.addEventListener(Timer.TIMER,blinkTimerHandler, false, 0, true);
 			blinkTimer.addEventListener(Timer.TIMER,blinkTimerHandler);
 			blinkTimer.start();
@@ -3213,7 +3213,7 @@ package org.apache.flex.textLayout.container
 		/**
 		 *  Add DisplayObjects that were created by composition to the container.
 		 *  @private 
-		 * @flexjsignorecoercion org.apache.flex.textLayout.compose.ITextFlowTableBlock
+		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowTableBlock
 		 */
 		public function updateCompositionShapes():void
 		{
@@ -3467,8 +3467,8 @@ package org.apache.flex.textLayout.container
 		
 		
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
-		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
 		 */		
 		public function updateGraphics(updateStart:int):void
 		{
@@ -4837,8 +4837,8 @@ package org.apache.flex.textLayout.container
 		
 		/** @private 
 		 * @returns -1 BEFORE visible, ITextLine visible, 1 AFTER visible, 2 AFTER visible by auto-size image(bug #2988852)
-		 * @flexjsignorecoercion org.apache.flex.textLayout.compose.ITextFlowTableBlock
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowTableBlock
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
 		 * */
 		public function testLineVisible(wmode:String, scrollXTW:int, scrollYTW:int, scrollWidthTW:int, scrollHeightTW:int, textFlowLine:ITextFlowLine, textLine:ITextLine):*
 		{
@@ -4980,8 +4980,8 @@ package org.apache.flex.textLayout.container
 
 				
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
+		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
 		 */
 		private function computeLineBoundsWithGraphics(line:ITextFlowLine, textLine:ITextLine, boundsRect:Rectangle):Rectangle
 		{
@@ -5086,7 +5086,7 @@ package org.apache.flex.textLayout.container
 					/*addTextLine(textLine,0);
 					curBounds = textLine.getBounds(_container);
 					removeTextLine(textLine); */
-//TODO see if there's a better way to do this when we actually implement it in FlexJS.
+//TODO see if there's a better way to do this when we actually implement it in Royale.
 					tempLineHolder.addElementAt(textLine,0);
 					curBounds = BoundsUtil.getBounds(textLine, tempLineHolder);// textLine.getBounds(tempLineHolder);
 					tempLineHolder.removeElement(textLine);

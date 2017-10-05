@@ -40,7 +40,7 @@
 	     
 	-->
 	
-	<target name="main" depends="find.cordova.mac,create,copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
+	<target name="main" depends="find.cordova.mac,create,copyfiles" description="Creates the Cordova app if needed, compiles the Royale app, copies the results to Cordova app">
 	</target>
 	
 	<!-- Set up properties and conditions -->

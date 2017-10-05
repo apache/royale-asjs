@@ -27,7 +27,7 @@ package org.apache.flex.jquery
 	}
 
 	/**
-	 * @flexjsignorecoercion HTMLInputElement
+	 * @royaleignorecoercion HTMLInputElement
 	 */
 	COMPILE::JS
 	public class RadioButton extends org.apache.flex.html.RadioButton

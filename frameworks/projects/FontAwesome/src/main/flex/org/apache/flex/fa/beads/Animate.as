@@ -28,7 +28,7 @@ public class Animate implements IBead {
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function Animate() {
     }
@@ -44,7 +44,7 @@ public class Animate implements IBead {
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get spin():Boolean
     {
@@ -64,7 +64,7 @@ public class Animate implements IBead {
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function get pulse():Boolean
     {
@@ -80,7 +80,7 @@ public class Animate implements IBead {
     }
 
     /**
-     * @flexjsignorecoercion HTMLElement
+     * @royaleignorecoercion HTMLElement
      *
      * @param value
      */

@@ -69,7 +69,7 @@ package org.apache.flex.textLayout.elements
 
 		/**
 		 *  @private 
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public override function deepCopy(startPos:int = 0, endPos:int = -1):IFlowElement
 		{

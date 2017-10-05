@@ -35,7 +35,7 @@ package renderers
 			if (!isNaN(n1)) {
 				n1 = Math.round(n1*100)/100.0;
 				
-				// something to keep in mind when using FlexJS for cross-platform
+				// something to keep in mind when using Royale for cross-platform
 				// use: make sure that public properties are used versus protected
 				// functions or properties. in most cases, internal vars and functions
 				// will be platform-specific whereas public properties and function

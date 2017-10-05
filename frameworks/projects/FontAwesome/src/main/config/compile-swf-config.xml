@@ -67,11 +67,11 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/fa</uri>
+                <uri>library://ns.apache.org/royale/fa</uri>
                 <manifest>../resources/fa-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/fa</uri>
+                <uri>library://ns.apache.org/royale/fa</uri>
                 <manifest>../resources/fa-as-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -95,7 +95,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/fa</uri>
+        <uri>library://ns.apache.org/royale/fa</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

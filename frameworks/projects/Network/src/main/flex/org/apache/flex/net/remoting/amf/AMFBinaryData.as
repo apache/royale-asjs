@@ -442,9 +442,9 @@ public class AMFBinaryData
     };
     
     /**
-     * @flexjsignorecoercion Class
-     * @flexjsignorecoercion String
-     * @flexjsignorecoercion Number
+     * @royaleignorecoercion Class
+     * @royaleignorecoercion String
+     * @royaleignorecoercion Number
      */
     public function writeObject(v:Object):void
     {
@@ -508,7 +508,7 @@ public class AMFBinaryData
     };
     
     /**
-     * @flexjsignorecoercion Class
+     * @royaleignorecoercion Class
      */
     private function writeTraits(v:Object):Array
     {
@@ -517,8 +517,8 @@ public class AMFBinaryData
         var externalizable:Boolean = false; // some day: v is IExternalizable;
         var dynamic:Boolean = false; // some day v.getClassInfo().isDynamic;
         
-        var classInfo:Object = v.FLEXJS_CLASS_INFO;
-        var reflectionInfo:Object = v.FLEXJS_REFLECTION_INFO();
+        var classInfo:Object = v.ROYALE_CLASS_INFO;
+        var reflectionInfo:Object = v.ROYALE_REFLECTION_INFO();
         var c:Object = v;
         var t:String;
         var traitsInfo:Object;
@@ -541,8 +541,8 @@ public class AMFBinaryData
             }
             if (!c.constructor.superClass_)
                 break;
-            classInfo = c.constructor.superClass_.FLEXJS_CLASS_INFO;
-            reflectionInfo = c.constructor.superClass_.FLEXJS_REFLECTION_INFO();
+            classInfo = c.constructor.superClass_.ROYALE_CLASS_INFO;
+            reflectionInfo = c.constructor.superClass_.ROYALE_REFLECTION_INFO();
             c = c.constructor.superClass_;
         }
         traits = traits.concat(vars);
@@ -919,7 +919,7 @@ public class AMFBinaryData
     };
     
     /**
-     * @flexjsignorecoercion Array
+     * @royaleignorecoercion Array
      */
     public function readArray():Array
     {
@@ -992,7 +992,7 @@ public class AMFBinaryData
     };
     
     /**
-     * @flexjsignorecoercion Array
+     * @royaleignorecoercion Array
      */
     public function readDate():Date
     {

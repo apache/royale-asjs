@@ -22,10 +22,10 @@ package org.apache.flex.events
     {
         if (obj)
 			{
-				if (obj.flexjs_wrapper)
-					return obj.flexjs_wrapper;
-				if (obj.parentNode && obj.parentNode.flexjs_wrapper)
-				    return obj.parentNode.flexjs_wrapper;
+				if (obj.royale_wrapper)
+					return obj.royale_wrapper;
+				if (obj.parentNode && obj.parentNode.royale_wrapper)
+				    return obj.parentNode.royale_wrapper;
 			}
 		return obj;
     }

@@ -276,7 +276,7 @@ package org.apache.flex.textLayout.compose
  		}
  			
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.compose.IFlowComposer
+		 *  @royaleignorecoercion org.apache.flex.textLayout.compose.IFlowComposer
 		 */
 		protected override function endTableBlock(block:ITextFlowTableBlock):void
 		{

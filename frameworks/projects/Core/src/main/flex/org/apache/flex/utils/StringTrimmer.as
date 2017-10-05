@@ -26,7 +26,7 @@ package org.apache.flex.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class StringTrimmer
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
          */
 		COMPILE::SWF
         public static function trim(str:String):String
@@ -92,7 +92,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
          */
         public static function splitAndTrim(value:String, delimiter:String):Array
         {
@@ -125,7 +125,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
          */
         public static function trimArrayElements(value:String, delimiter:String):String
         {
@@ -153,7 +153,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
          */
         public static function isWhitespace(character:String):Boolean
         {

@@ -19,8 +19,8 @@
 
 DESCRIPTION
 
-The FlexJSTest_Panel application demonstrates some FlexJS common components,
-incuding Panel. The application uses a Panel to contain a sub-set of FlexJS
+The RoyaleTest_Panel application demonstrates some Royale common components,
+incuding Panel. The application uses a Panel to contain a sub-set of Royale
 components, listed below.
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)

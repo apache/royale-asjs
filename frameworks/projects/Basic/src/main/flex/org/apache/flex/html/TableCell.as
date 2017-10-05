@@ -26,14 +26,14 @@ package org.apache.flex.html
 	
 	/**
 	 *  The TableCell class defines a table data cell in the Table component. This element
-	 *  may have nearly any type of FlexJS component as children.
+	 *  may have nearly any type of Royale component as children.
      *  
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class TableCell extends Group
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function TableCell()
 		{
@@ -53,7 +53,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

@@ -24,7 +24,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const MITER:String = "miter";
         /**
@@ -32,7 +32,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const ROUND:String = "round";
         /**
@@ -40,7 +40,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const BEVEL:String = "bevel";
         /**
@@ -48,7 +48,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const BUTT:String = "butt";
         /**
@@ -56,7 +56,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const SQUARE:String = "square";
     }

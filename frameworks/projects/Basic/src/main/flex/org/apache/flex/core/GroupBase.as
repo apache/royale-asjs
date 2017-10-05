@@ -43,7 +43,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
     
@@ -53,7 +53,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="initComplete", type="org.apache.flex.events.Event")]
     
@@ -63,19 +63,19 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
     
     /**
      *  The GroupBase class is the base class for most simple containers
-     *  in FlexJS.  It is usable as the root tag of MXML
+     *  in Royale.  It is usable as the root tag of MXML
      *  documents and UI controls and containers are added to it.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
 	public class GroupBase extends UIBase implements IStatesObject, IContainer, ILayoutParent, ILayoutView, IContentViewHost
 	{
@@ -85,7 +85,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
 		public function GroupBase()
 		{
@@ -93,7 +93,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -139,7 +139,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		public function layoutNeeded():void
 		{
@@ -156,7 +156,7 @@ package org.apache.flex.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function getLayoutHost():ILayoutHost
 		{
@@ -169,7 +169,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
 		 */
 		public function get strandChildren():IParent
 		{
@@ -185,7 +185,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get states():Array
         {
@@ -194,8 +194,8 @@ package org.apache.flex.core
 
         /**
          *  @private
-         *  @flexjsignorecoercion Class
-         *  @flexjsignorecoercion org.apache.flex.core.IBead
+         *  @royaleignorecoercion Class
+         *  @royaleignorecoercion org.apache.flex.core.IBead
          */
         public function set states(value:Array):void
         {
@@ -231,7 +231,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function hasState(state:String):Boolean
         {
@@ -252,7 +252,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get currentState():String
         {
@@ -277,7 +277,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get transitions():Array
         {

@@ -24,7 +24,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.CSSTextField;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IRoyaleElement;
     import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
@@ -44,9 +44,9 @@ package org.apache.flex.html.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
-	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase, IFlexJSElement
+	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase, IRoyaleElement
 	{
 		/**
 		 *  constructor.
@@ -54,7 +54,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function TextFieldItemRenderer()
 		{
@@ -71,11 +71,11 @@ package org.apache.flex.html.supportClasses
 		
 		private var _explicitWidth:Number;
 		
-        public function get flexjs_wrapper():Object
+        public function get royale_wrapper():Object
         {
             return this;
         }
-        public function set flexjs_wrapper(value:Object):void
+        public function set royale_wrapper(value:Object):void
         {
             
         }
@@ -87,7 +87,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get explicitWidth():Number
 		{
@@ -128,7 +128,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get explicitHeight():Number
 		{
@@ -172,7 +172,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get percentWidth():Number
 		{
@@ -207,7 +207,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get percentHeight():Number
 		{
@@ -313,7 +313,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
         public function get data():Object
         {
@@ -332,7 +332,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 	public function get listData():Object
 	{
@@ -363,7 +363,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
         public function get index():int
         {
@@ -382,7 +382,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
         public function get hovered():Boolean
         {
@@ -402,7 +402,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
         public function get selected():Boolean
         {
@@ -422,7 +422,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
         public function get down():Boolean
         {
@@ -443,7 +443,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get itemRendererParent():Object
 		{
@@ -471,7 +471,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-        public function get element():IFlexJSElement
+        public function get element():IRoyaleElement
         {
             return this;
         }
@@ -558,7 +558,7 @@ package org.apache.flex.html.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get topMostEventDispatcher():IEventDispatcher
         {

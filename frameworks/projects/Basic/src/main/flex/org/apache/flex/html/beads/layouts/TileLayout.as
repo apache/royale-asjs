@@ -43,7 +43,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class TileLayout extends LayoutBase implements IBeadLayout
 	{
@@ -53,7 +53,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function TileLayout()
 		{
@@ -70,7 +70,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get numColumns():Number
 		{
@@ -89,7 +89,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get columnWidth():Number
 		{
@@ -108,7 +108,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get rowHeight():Number
 		{
@@ -214,7 +214,7 @@ package org.apache.flex.html.beads.layouts
 				var realN:int = n;
 				for (i = 0; i < n; i++)
 				{
-					child = children[i].flexjs_wrapper;
+					child = children[i].royale_wrapper;
 					if (!child.visible) realN--;
 				}
 
@@ -235,7 +235,7 @@ package org.apache.flex.html.beads.layouts
 
 				for (i = 0; i < n; i++)
 				{
-					child = children[i].flexjs_wrapper;
+					child = children[i].royale_wrapper;
 					if (!child.visible) continue;
 					child.setDisplayStyleForLayout('inline-block');
 					child.width = useWidth;

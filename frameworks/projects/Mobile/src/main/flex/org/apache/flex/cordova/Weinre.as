@@ -33,7 +33,7 @@ package org.apache.flex.cordova
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class Weinre implements IBead
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.cordova
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -63,9 +63,9 @@ package org.apache.flex.cordova
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLScriptElement
-         *  @flexjsignorecoercion HTMLHeadElement
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLScriptElement
+         *  @royaleignorecoercion HTMLHeadElement
 		 */
 		public function set guid(value:String):void
 		{

@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic" 
+				xmlns:js="library://ns.apache.org/royale/basic" 
 			   >
     
 	<js:TextButton id="btn" text="Click me" x="100" y="100" />

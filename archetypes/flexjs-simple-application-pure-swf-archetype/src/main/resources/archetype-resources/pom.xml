@@ -31,9 +31,9 @@
     <sourceDirectory>src/main/flex</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.apache.flex.flexjs.compiler</groupId>
-        <artifactId>flexjs-maven-plugin</artifactId>
-        <version>${flexjs.compiler.version}</version>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>${royale.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
@@ -41,9 +41,9 @@
         </configuration>
         <dependencies>
           <dependency>
-            <groupId>org.apache.flex.flexjs.compiler</groupId>
+            <groupId>org.apache.royale.compiler</groupId>
             <artifactId>compiler-jx</artifactId>
-            <version>${flexjs.compiler.version}</version>
+            <version>${royale.compiler.version}</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -52,7 +52,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>

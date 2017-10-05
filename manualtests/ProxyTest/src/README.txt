@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-The FormExample application demonstrates several FlexJS components and how they
+The FormExample application demonstrates several Royale components and how they
 can be aligned in a column, much like you would see in a form. 
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)

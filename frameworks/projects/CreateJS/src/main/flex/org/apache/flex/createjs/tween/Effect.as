@@ -145,8 +145,8 @@ package org.apache.flex.createjs.tween
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
-		 *  @flexjsignorecoercion createjs.Shape
-		 *  @flexjsignorecoercion org.apache.flex.createjs.core.CreateJSBase
+		 *  @royaleignorecoercion createjs.Shape
+		 *  @royaleignorecoercion org.apache.flex.createjs.core.CreateJSBase
 		 */
 		public function play():void
 		{

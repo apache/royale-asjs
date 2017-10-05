@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-This is an example of using the CreateJS framework in FlexJS. The example follows the first
+This is an example of using the CreateJS framework in Royale. The example follows the first
 demo on the CreateJS/EaselJS site, drawing a simple circle.
 
 This example shows how CreateJS can be used with MXML, supplying the object and some of its

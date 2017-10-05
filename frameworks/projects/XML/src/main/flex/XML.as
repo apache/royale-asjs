@@ -61,7 +61,7 @@ package
 		 * Method to free up references to shared QName objects.
 		 * Probably only worth doing if most or all XML instances can be garbage-collected.
 		 * @langversion 3.0
-		 * @productversion FlexJS 0.9
+		 * @productversion Royale 0.9
 		 */
 		static public function clearQNameCache():void
 		{
@@ -2720,21 +2720,21 @@ Moved this logic (partially) into the other replace method
 		// Number methods
 		
         /**
-         * @flexjsignorecoercion Number
+         * @royaleignorecoercion Number
         */
 		public function toExponential(fractionDigits:*=undefined):Number
 		{
 			return v().toExponential(fractionDigits) as Number;
 		}
         /**
-         * @flexjsignorecoercion Number
+         * @royaleignorecoercion Number
         */
 		public function toFixed(digits:*=undefined):Number
 		{
 			return v().toFixed(digits) as Number;
 		}
         /**
-         * @flexjsignorecoercion Number
+         * @royaleignorecoercion Number
         */
 		public function toPrecision(precision:*=undefined):Number
 		{

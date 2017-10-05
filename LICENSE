@@ -203,9 +203,9 @@
 
 --------------------------------------------------------------------------------
 
-APACHE FLEXJS SUBCOMPONENTS:
+APACHE ROYALE SUBCOMPONENTS:
 
-The Apache FlexJS SDK includes a number of subcomponents with
+The Apache Royale SDK includes a number of subcomponents with
 separate copyright notices and license terms. Your use of the source
 code for the these subcomponents is subject to the terms and
 conditions of the following licenses. 
@@ -235,7 +235,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE.  
 
-The map image in examples/flexjs/FlexJSStore/src/assets/427px-Bayarea_map.png
+The map image in examples/royale/RoyaleStore/src/assets/427px-Bayarea_map.png
 was placed into the Public Domain by its author.  See:
 https://commons.wikimedia.org/wiki/File:Bayarea_map.png
 

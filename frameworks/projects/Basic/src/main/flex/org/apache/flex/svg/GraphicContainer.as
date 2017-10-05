@@ -19,7 +19,7 @@ package org.apache.flex.svg
 {
     import org.apache.flex.core.GroupBase;
     import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IRoyaleElement;
     import org.apache.flex.core.ITransformHost;
 
 	COMPILE::JS
@@ -52,7 +52,7 @@ package org.apache.flex.svg
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override protected function createElement():org.apache.flex.core.WrappedHTMLElement
 		{
@@ -85,7 +85,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function getElementAt(index:int):IChild
 		{
@@ -98,7 +98,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -113,7 +113,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
@@ -128,7 +128,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -143,7 +143,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function getElementIndex(c:IChild):int
 		{
@@ -157,7 +157,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		override public function get numElements():int
 		{
@@ -188,7 +188,7 @@ import org.apache.flex.core.GroupBase;
 class GraphicGroup extends GroupBase
 {
 	/**
-	 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+	 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 	 */
 	COMPILE::JS
 	override protected function createElement():org.apache.flex.core.WrappedHTMLElement

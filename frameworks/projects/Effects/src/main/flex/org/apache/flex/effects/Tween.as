@@ -27,7 +27,7 @@ import org.apache.flex.events.Event;
 import org.apache.flex.events.EventDispatcher;
 
 /**
- *  Tween is the underlying animation class for the effects in FlexJS.
+ *  Tween is the underlying animation class for the effects in Royale.
  *
  *  The Tween class defines a tween, a property animation performed
  *  on a target object over a period of time.
@@ -44,7 +44,7 @@ import org.apache.flex.events.EventDispatcher;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class Tween extends Effect
 {
@@ -220,7 +220,7 @@ public class Tween extends Effect
     }
 
     /**
-     *  @flexjsignorecoercion org.apache.flex.effects.Tween
+     *  @royaleignorecoercion org.apache.flex.effects.Tween
      *  @private
      */
     private static function updateHandler(event:ValueEvent):void

@@ -67,11 +67,11 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/cordova</uri>
+                <uri>library://ns.apache.org/royale/cordova</uri>
                 <manifest>../resources/cordova-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -93,8 +93,8 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
-        <uri>library://ns.apache.org/flexjs/cordova</uri>
+        <uri>library://ns.apache.org/royale/basic</uri>
+        <uri>library://ns.apache.org/royale/cordova</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

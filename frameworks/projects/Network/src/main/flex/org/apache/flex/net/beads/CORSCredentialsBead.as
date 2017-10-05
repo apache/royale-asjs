@@ -39,7 +39,7 @@ import org.apache.flex.events.IEventDispatcher;
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.9
+     *  @productversion Royale 0.9
      */
     COMPILE::JS
     public class CORSCredentialsBead implements IBead {
@@ -58,7 +58,7 @@ import org.apache.flex.events.IEventDispatcher;
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function set strand(value:IStrand):void {
             _strand = value;
@@ -73,7 +73,7 @@ import org.apache.flex.events.IEventDispatcher;
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         protected function preSendHandler(event:Event):void {
             (event.target.element as XMLHttpRequest).withCredentials = withCredentials;
@@ -85,7 +85,7 @@ import org.apache.flex.events.IEventDispatcher;
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         protected function postSendHandler(event:Event):void {
             IEventDispatcher(_strand).removeEventListener("preSend", preSendHandler);
@@ -100,7 +100,7 @@ import org.apache.flex.events.IEventDispatcher;
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function get withCredentials():Boolean {
             return _withCredentials;

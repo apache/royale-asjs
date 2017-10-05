@@ -20,12 +20,12 @@
 
 
 <project name="HTML" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../.."/>
+    <property name="ROYALE_HOME" location="../../.."/>
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
@@ -33,7 +33,7 @@
     </target>
     
     <target name="compile-js">
-        <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" >
+        <ant dir="${ROYALE_HOME}/frameworks/js/Royale/projects/${ant.project.name}JS/" inheritAll="false" >
             <property name="FALCON_HOME" value="${FALCON_HOME}"/>
             <property name="FALCONJX_HOME" value="${FALCONJX_HOME}"/>
             <property name="FLEX_HOME" value="${FLEX_HOME}"/>
@@ -41,7 +41,7 @@
     </target>
     
     <target name="copy-swc" if="env.AIR_HOME">
-        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
+        <copy file="${basedir}/target/${target.name}" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
     </target>
     
     <target name="check-for-tests" >
@@ -58,7 +58,7 @@
     
     <target name="clean">
         <delete failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/libs">
+            <fileset dir="${ROYALE_HOME}/frameworks/libs">
                 <include name="${target.name}"/>
             </fileset>
         </delete>
@@ -92,7 +92,7 @@
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
-            <arg value="-js-load-config+=${basedir}/../../js/FlexJS/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
+            <arg value="-js-load-config+=${basedir}/../../js/Royale/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
     </target>
     
@@ -106,24 +106,24 @@
     <target name="check-falcon-home"
         description="Set FALCON_HOME to point at the compiler.">
         
-        <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar"
+        <available file="${ROYALE_HOME}/lib/falcon-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
-        value="${FLEXJS_HOME}"/>
+        value="${ROYALE_HOME}"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or the root of a FlexJS SDK"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or the root of a Royale SDK"
         unless="FALCON_HOME"/>
     </target>
     
     <target name="check-falconjx-home"
         description="Set FALCONJX_HOME to point at the cross-compiler.">
         
-        <available file="${FLEXJS_HOME}/js/lib/jsc.jar"
+        <available file="${ROYALE_HOME}/js/lib/jsc.jar"
         type="file"
         property="FALCONJX_HOME"
-        value="${FLEXJS_HOME}/js"/>
+        value="${ROYALE_HOME}/js"/>
         
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder of a FlexJS SDK"
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder of a Royale SDK"
         unless="FALCONJX_HOME"/>
     </target>
     

@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:VView xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/express"
+				xmlns:js="library://ns.apache.org/royale/express"
 			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
@@ -69,7 +69,7 @@ limitations under the License.
 		]]>
     </fx:Script>
 	<fx:Style>
-		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		.output {
 			font-size: 20px;

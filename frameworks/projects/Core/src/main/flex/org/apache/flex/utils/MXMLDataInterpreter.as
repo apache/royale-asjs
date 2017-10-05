@@ -47,8 +47,8 @@ COMPILE::JS
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
- *  @flexjsignoreimport goog.bind
+ *  @productversion Royale 0.0
+ *  @royaleignoreimport goog.bind
  */
 public class MXMLDataInterpreter
 {
@@ -58,7 +58,7 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function MXMLDataInterpreter()
     {
@@ -77,7 +77,7 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static function generateMXMLObject(document:Object, data:Array):Object
     {
@@ -146,7 +146,7 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static function generateMXMLArray(document:Object, parent:IParent, data:Array):Array
     {
@@ -167,8 +167,8 @@ public class MXMLDataInterpreter
     }
     
     /**
-     * @flexjsignorecoercion Function 
-     * @flexjsignorecoercion org.apache.flex.core.IChild 
+     * @royaleignorecoercion Function 
+     * @royaleignorecoercion org.apache.flex.core.IChild 
      */
     private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
     {
@@ -257,7 +257,7 @@ public class MXMLDataInterpreter
         
         COMPILE::SWF
         {
-            // flexjs on the JS side won't have effects in here, they are regular properties
+            // royale on the JS side won't have effects in here, they are regular properties
             // but falcon provides this set for SWFs for future compatibility with
             // the older flex-sdk.
             m = data[i++]; // num effects
@@ -333,7 +333,7 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static function generateMXMLInstances(document:Object, parent:IParent, data:Array):void
     {
@@ -359,8 +359,8 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     *  @flexjsignorecoercion Function
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion Function
      */
     public static function generateMXMLProperties(host:Object, data:Array):void
     {
@@ -426,7 +426,7 @@ public class MXMLDataInterpreter
         
         COMPILE::SWF 
         {
-            // flexjs on the JS side won't have effects in here, they are regular properties
+            // royale on the JS side won't have effects in here, they are regular properties
             // but falcon provides this set for SWFs for future compatibility with
             // the older flex-sdk.
             m = data[i++]; // num effects

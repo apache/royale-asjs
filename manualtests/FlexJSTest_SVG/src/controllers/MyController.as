@@ -30,12 +30,12 @@ package controllers
 		{
 			if (app)
 			{
-				this.app = app as FlexJSTest_SVG;
+				this.app = app as RoyaleTest_SVG;
 				app.addEventListener("viewChanged", viewChangeHandler);
 			}
 		}
 		
-		private var app:FlexJSTest_SVG;
+		private var app:RoyaleTest_SVG;
 		
 		private function viewChangeHandler(event:Event):void
 		{
@@ -44,7 +44,7 @@ package controllers
         
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.app = document as FlexJSTest_SVG;
+			this.app = document as RoyaleTest_SVG;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 

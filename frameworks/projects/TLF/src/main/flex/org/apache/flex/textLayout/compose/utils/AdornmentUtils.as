@@ -90,8 +90,8 @@ package org.apache.flex.textLayout.compose.utils
 			
 		}
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
-		 * @flexjsignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
+		 * @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
 		 */
 		static private function calculateGraphicStrikeThrough(element:IInlineGraphicElement, textLine:ITextLine, blockProgression:String, metrics:FontMetrics):Number
 		{
@@ -202,7 +202,7 @@ package org.apache.flex.textLayout.compose.utils
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
 		 */
 		static private function updateAdornmentsOnBounds(element:IFlowLeafElement, tLine:ITextLine, blockProgression:String, spanBounds:Rectangle):void
 		{
@@ -376,7 +376,7 @@ package org.apache.flex.textLayout.compose.utils
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
+		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
 		 */
 		public static function updateIMEAdornments(element:IFlowLeafElement,tLine:ITextLine, blockProgression:String, imeStatus:String):void
 		{
@@ -516,7 +516,7 @@ package org.apache.flex.textLayout.compose.utils
 	
 	        /**
          *  @private 
-         *  @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
+         *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
          */
         static private function calculateGraphicUnderlineOffset(element:IInlineGraphicElement, stOffset:Number, blockProgression:String, metrics:FontMetrics, tLine:ITextLine):Number
         {
@@ -636,8 +636,8 @@ package org.apache.flex.textLayout.compose.utils
 		
 				/**
 		 *  @private
-		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowLeafElement
+		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowLeafElement
 		 */
 		static public function calculateAdornmentBounds(spg:ISubParagraphGroupElementBase, tLine:ITextLine, blockProgression:String, spgRect:Rectangle):void
 		{

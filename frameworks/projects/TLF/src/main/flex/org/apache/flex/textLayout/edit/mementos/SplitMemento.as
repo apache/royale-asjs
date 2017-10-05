@@ -52,8 +52,8 @@ package org.apache.flex.textLayout.edit.mementos
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IListItemElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IListItemElement
 		 */
 		static private function testValidLeadingParagraph(elem:IFlowGroupElement):Boolean {
 			// listitems have to have the very first item as a paragraph
@@ -66,7 +66,7 @@ package org.apache.flex.textLayout.edit.mementos
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		static public function performInternal(textFlow:ITextFlow, target:ElementMark, mementoList:Array):FlowGroupElement {
 			// split all the way up the chain and then do a move

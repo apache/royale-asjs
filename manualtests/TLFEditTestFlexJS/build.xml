@@ -19,16 +19,16 @@
 -->
 
 
-<project name="TLFEditTestFlexJS" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="TLFEditTestFlexJS" />
+<project name="TLFEditTestRoyale" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../.."/>
+    <property name="example" value="TLFEditTestRoyale" />
 	
     <property name="swf.version" value="20" />
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-	<property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+	<property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     <property name="optional_arg" value="-remove-circulars" />
 	
     

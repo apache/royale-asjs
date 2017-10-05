@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
-    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IRoyaleElement;
 
     COMPILE::SWF {
         import flash.events.Event;
@@ -39,10 +39,10 @@ package org.apache.flex.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
+	 * @productversion Royale 0.0
 	 */
 	COMPILE::SWF
-	public class Event extends flash.events.Event implements IFlexJSEvent
+	public class Event extends flash.events.Event implements IRoyaleEvent
 	{
 
 		//--------------------------------------
@@ -65,7 +65,7 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
 		public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
@@ -94,9 +94,9 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
-		public function cloneEvent():IFlexJSEvent
+		public function cloneEvent():IRoyaleEvent
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}
@@ -109,14 +109,14 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
-		 * @flexjsignorecoercion org.apache.flex.core.IFlexJSElement
+         * @productversion Royale 0.0
+		 * @royaleignorecoercion org.apache.flex.core.IRoyaleElement
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
             if (potentialTarget == target)
 				return true;
-            if (target is IFlexJSElement && (target as IFlexJSElement).flexjs_wrapper == potentialTarget)
+            if (target is IRoyaleElement && (target as IRoyaleElement).royale_wrapper == potentialTarget)
 				return true;
             return false;
         }
@@ -127,7 +127,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
         public function get defaultPrevented():Boolean
         {
@@ -137,7 +137,7 @@ package org.apache.flex.events
 	}
 
     COMPILE::JS
-    public class Event extends goog.events.Event implements IFlexJSEvent {
+    public class Event extends goog.events.Event implements IRoyaleEvent {
 
 		public static const CHANGE:String = "change";
 		public static const COMPLETE:String = "complete";
@@ -163,7 +163,7 @@ package org.apache.flex.events
 			throw new Error("stopImmediatePropagation");
 		}
 		
-		public function cloneEvent():IFlexJSEvent
+		public function cloneEvent():IRoyaleEvent
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}
@@ -181,14 +181,14 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
-         * @flexjsignorecoercion Object
+         * @productversion Royale 0.0
+         * @royaleignorecoercion Object
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
             if (potentialTarget === target)
 				return true;
-            if (target is IFlexJSElement && (target as Object).flexjs_wrapper === potentialTarget)
+            if (target is IRoyaleElement && (target as Object).royale_wrapper === potentialTarget)
 				return true;
             return false;
         }

@@ -59,7 +59,7 @@ package org.apache.flex.textLayout.elements
 
 		/**
 		 *  @private
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
 		 */
 		public override function mergeToPreviousIfPossible():Boolean
 		{

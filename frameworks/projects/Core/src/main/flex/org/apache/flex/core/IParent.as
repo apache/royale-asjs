@@ -26,7 +26,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public interface IParent
 	{
@@ -39,7 +39,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function addElement(c:IChild, dispatchEvent:Boolean = true):void;
 
@@ -53,7 +53,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void;
         
@@ -66,7 +66,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         function getElementIndex(c:IChild):int;
 
@@ -79,7 +79,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
        function removeElement(c:IChild, dispatchEvent:Boolean = true):void;
        
@@ -89,7 +89,7 @@ package org.apache.flex.core
         *  @langversion 3.0
         *  @playerversion Flash 10.2
         *  @playerversion AIR 2.6
-        *  @productversion FlexJS 0.0
+        *  @productversion Royale 0.0
         */
        function get numElements():int;
 
@@ -101,7 +101,7 @@ package org.apache.flex.core
         *  @langversion 3.0
         *  @playerversion Flash 10.2
         *  @playerversion AIR 2.6
-        *  @productversion FlexJS 0.0
+        *  @productversion Royale 0.0
         */
        function getElementAt(index:int):IChild;
 

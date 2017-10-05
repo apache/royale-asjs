@@ -24,14 +24,14 @@ import org.apache.flex.events.IEventDispatcher;
 /**
  *  The IHierarchicalData interface defines the interface
  *  used to represent hierarchical data as the data provider for
- *  a FlexJS component.
+ *  a Royale component.
  *  Hierarchical data is data in a structure of parent
  *  and child data items.
  *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public interface IHierarchicalData extends IEventDispatcher
 {
@@ -56,7 +56,7 @@ public interface IHierarchicalData extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     function canHaveChildren(node:Object):Boolean;
 
@@ -70,7 +70,7 @@ public interface IHierarchicalData extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     function hasChildren(node:Object):Boolean;
 
@@ -85,7 +85,7 @@ public interface IHierarchicalData extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     function getChildren(node:Object):Object;
 
@@ -99,7 +99,7 @@ public interface IHierarchicalData extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     function getData(node:Object):Object;
 
@@ -111,7 +111,7 @@ public interface IHierarchicalData extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     function getRoot():Object;
 }

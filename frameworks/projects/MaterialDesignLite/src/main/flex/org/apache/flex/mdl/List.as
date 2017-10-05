@@ -30,18 +30,18 @@ package org.apache.flex.mdl
 	 *  List in MDL are customizable scrollable lists. Lists present multiple line 
 	 *  items vertically as a single continuous element.
 	 *  
-	 *  In FlexJS MDL relies on an itemRenderer factory to produce its children components
+	 *  In Royale MDL relies on an itemRenderer factory to produce its children components
 	 *  and on a layout to arrange them. This is the only UI element aside from the itemRenderers.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */ 
 	public class List extends org.apache.flex.html.List
 	{
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

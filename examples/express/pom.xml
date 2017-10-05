@@ -21,7 +21,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
@@ -30,7 +30,7 @@
   <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: Express</name>
+  <name>Apache Royale: Examples: Express</name>
 
   <modules>
     <module>DataBindingExample</module>
@@ -52,7 +52,7 @@
             <configuration>
               <!-- Run the tests from the 'examples-tests' artifact -->
               <dependenciesToScan>
-                <dependency>org.apache.flex.flexjs.examples:examples-tests</dependency>
+                <dependency>org.apache.royale.examples:examples-tests</dependency>
               </dependenciesToScan>
               <systemPropertyVariables>
                 <artifactId>${project.artifactId}</artifactId>
@@ -69,42 +69,42 @@
 
   <dependencies>
   <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Effects</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Effects</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Express</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Express</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
@@ -113,7 +113,7 @@
 
     <!-- Import the shared unit-tests we want to run on all examples -->
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>examples-tests</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <scope>test</scope>

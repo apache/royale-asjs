@@ -17,7 +17,7 @@
  *
  */
 
-@namespace "library://ns.apache.org/flexjs/flat";
+@namespace "library://ns.apache.org/royale/flat";
 
 @font-face {
   font-family: 'Flat-UI-Icons';
@@ -34,7 +34,7 @@
     color: #34495e;
 }
 
-.flexjs *, . flexjs *:before, . flexjs *:after {
+.royale *, . royale *:before, . royale *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;

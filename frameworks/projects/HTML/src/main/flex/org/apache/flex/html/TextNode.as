@@ -35,7 +35,7 @@ package org.apache.flex.html
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class TextNode extends ContainerBase
 	{
@@ -45,7 +45,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function TextNode()
 		{
@@ -60,7 +60,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function get text():String
 		{
@@ -82,7 +82,7 @@ package org.apache.flex.html
         private var textNode:Text;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -92,7 +92,7 @@ package org.apache.flex.html
             element = textNode as WrappedHTMLElement;
 
             positioner = element;
-            element.flexjs_wrapper = this;
+            element.royale_wrapper = this;
             
             return element;
         }

@@ -36,7 +36,7 @@ package org.apache.flex.storage
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class LocalStorage
 {
@@ -47,8 +47,8 @@ public class LocalStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function LocalStorage()
 	{
@@ -66,8 +66,8 @@ public class LocalStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function storageAvailable():Boolean
 	{
@@ -80,8 +80,8 @@ public class LocalStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function setItem(key:String, value:Object) : Boolean
 	{
@@ -99,8 +99,8 @@ public class LocalStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function getItem(key:String) : Object
 	{
@@ -118,8 +118,8 @@ public class LocalStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function removeItem(key:String) : Boolean
 	{
@@ -132,8 +132,8 @@ public class LocalStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function hasItem(key:String) : Boolean
 	{
@@ -146,8 +146,8 @@ public class LocalStorage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 *  @flexjsignoreimport window
+	 *  @productversion Royale 0.0
+	 *  @royaleignoreimport window
 	 */
 	public function clear() : void
 	{

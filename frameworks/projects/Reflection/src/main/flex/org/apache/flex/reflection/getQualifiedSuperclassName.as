@@ -29,7 +29,7 @@ COMPILE::SWF
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public function getQualifiedSuperclassName(value:*):String
 	{
@@ -41,9 +41,9 @@ COMPILE::SWF
         {
             var constructorAsObject:Object = value["constructor"];
             value = constructorAsObject.superClass_;
-            if (value == null || value.FLEXJS_CLASS_INFO == null)
+            if (value == null || value.ROYALE_CLASS_INFO == null)
                 return null;
-            return value.FLEXJS_CLASS_INFO.names[0].qName;
+            return value.ROYALE_CLASS_INFO.names[0].qName;
         }
     }
 }

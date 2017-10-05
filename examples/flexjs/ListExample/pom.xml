@@ -25,8 +25,8 @@
   -->
 
   <parent>
-    <groupId>org.apache.flex.flexjs.examples</groupId>
-    <artifactId>examples-flexjs</artifactId>
+    <groupId>org.apache.royale.examples</groupId>
+    <artifactId>examples-royale</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
@@ -34,13 +34,13 @@
   <version>0.9.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: FlexJS: ListExample</name>
+  <name>Apache Royale: Examples: Royale: ListExample</name>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.flex.flexjs.compiler</groupId>
-        <artifactId>flexjs-maven-plugin</artifactId>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
           <mainClass>ListExample.mxml</mainClass>
@@ -52,21 +52,21 @@
   <dependencies>
     <!-- Already added in parent -->
     <!--dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency-->
     
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>

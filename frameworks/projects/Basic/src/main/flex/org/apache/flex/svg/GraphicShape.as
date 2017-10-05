@@ -31,7 +31,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IRoyaleElement;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IStroke;
@@ -54,7 +54,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set stroke(value:IStroke):void
 		{
@@ -71,7 +71,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function set fill(value:IFill):void
 		{
@@ -81,7 +81,7 @@ package org.apache.flex.svg
 		/**
 		 * Constructor
 		 *
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
         public function GraphicShape()
         {
@@ -89,7 +89,7 @@ package org.apache.flex.svg
         }
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -101,7 +101,7 @@ package org.apache.flex.svg
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion SVGRect
+		 * @royaleignorecoercion SVGRect
 		 */
 		COMPILE::JS
 		protected function getBBox(svgElement:WrappedHTMLElement):Object

@@ -30,7 +30,7 @@ package org.apache.flex.storage.events
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class FileErrorEvent extends Event
 	{
@@ -40,7 +40,7 @@ package org.apache.flex.storage.events
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function FileErrorEvent(type:String)
 		{
@@ -53,7 +53,7 @@ package org.apache.flex.storage.events
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public var stream:IDataStream;
 		
@@ -63,7 +63,7 @@ package org.apache.flex.storage.events
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public var errorMessage:String;
 		
@@ -73,7 +73,7 @@ package org.apache.flex.storage.events
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public var errorCode:Number;
 	}

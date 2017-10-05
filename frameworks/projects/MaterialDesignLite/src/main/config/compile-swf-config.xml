@@ -69,11 +69,11 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/mdl</uri>
+                <uri>library://ns.apache.org/royale/mdl</uri>
                 <manifest>../resources/mdl-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/mdl</uri>
+                <uri>library://ns.apache.org/royale/mdl</uri>
                 <manifest>../resources/mdl-as-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -97,7 +97,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/mdl</uri>
+        <uri>library://ns.apache.org/royale/mdl</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

@@ -33,7 +33,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ScrollBarMouseControllerBase implements IBeadController
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ScrollBarMouseControllerBase()
 		{
@@ -55,7 +55,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		protected var sbModel:IScrollBarModel;
 
@@ -65,7 +65,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		protected var sbView:IScrollBarView;
 		
@@ -85,7 +85,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function set strand(value:IStrand):void
 		{
@@ -109,7 +109,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */	
 		protected function snap(value:Number):Number
 		{
@@ -133,7 +133,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */	
 		protected function decrementClickHandler(event:Event):void
 		{
@@ -147,7 +147,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */	
 		protected function incrementClickHandler(event:Event):void
 		{
@@ -161,7 +161,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */	
 		protected function trackClickHandler(event:MouseEvent):void
 		{
@@ -174,7 +174,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */	
 		protected function thumbMouseDownHandler(event:MouseEvent):void
 		{

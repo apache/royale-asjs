@@ -23,12 +23,12 @@ package org.apache.flex.effects
 import org.apache.flex.events.EventDispatcher;
 
 /**
- *  Effect is the base class for effects in FlexJS.
+ *  Effect is the base class for effects in Royale.
  * 
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class Effect extends EventDispatcher implements IEffect
 {

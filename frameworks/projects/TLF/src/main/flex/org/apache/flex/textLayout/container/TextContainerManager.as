@@ -2503,7 +2503,7 @@ package org.apache.flex.textLayout.container
 	
 }
 
-import org.apache.flex.events.IFlexJSEvent;
+import org.apache.flex.events.IRoyaleEvent;
 import org.apache.flex.events.MouseEvent;
 import org.apache.flex.geom.Point;
 import org.apache.flex.utils.PointUtils;

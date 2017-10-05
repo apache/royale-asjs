@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-The FlexJSTest_basic demonstrates a number of the common components in the FlexJS
+The RoyaleTest_basic demonstrates a number of the common components in the Royale
 SDK (listed below).
 
 This Flex application may be run either as an ActionScript SWF or cross-compiled

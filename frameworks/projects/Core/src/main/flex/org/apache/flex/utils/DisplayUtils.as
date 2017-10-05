@@ -41,7 +41,7 @@ package org.apache.flex.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.7
+	 *  @productversion Royale 0.7
 	 */
 	public class DisplayUtils
 	{
@@ -54,9 +54,9 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLElement
-         *  @flexjsignorecoercion ITransformHost
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
+         *  @royaleignorecoercion ITransformHost
 		 */
 		public static function getScreenBoundingRect(obj:IUIBase, boundsBeforeTransform:Rectangle=null):Rectangle
 		{
@@ -103,9 +103,9 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion HTMLElement
-		 *  @flexjsignorecoercion ITransformHost
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion HTMLElement
+		 *  @royaleignorecoercion ITransformHost
 		 */
 		public static function getTransormMatrix(obj:IUIBase):org.apache.flex.geom.Matrix
 		{
@@ -133,8 +133,8 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLElement
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
 		 */
 		public static function objectsOverlap(obj1:IUIBase,obj2:IUIBase):Boolean
 		{
@@ -167,8 +167,8 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion HTMLElement
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
 		 */
 		public static function hitTestPoint(x:Number, y:Number, obj:IUIBase):Boolean
 		{

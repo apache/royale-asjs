@@ -133,7 +133,7 @@ package org.apache.flex.textLayout.operations {
 		
 		/**
 		 *  @private
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public override function doOperation():Boolean
 		{

@@ -91,8 +91,8 @@ package org.apache.flex.textLayout.edit
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
 		 */
 		private static function deleteRangeInternal(element:IFlowGroupElement, relativeStart:int, numToDelete:int):void
 		{
@@ -598,7 +598,7 @@ package org.apache.flex.textLayout.edit
 		 * if <code>splitSubBlockContents</code> equals false, result is:
 		 * 
 		 * <spg><span>ABC</span></spg><spg><span>DEF</span></spg>
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
 		 */
 		public static function splitElement(elem:IFlowElement, splitPos:int, splitSubBlockContents:Boolean):void
 		{
@@ -995,7 +995,7 @@ package org.apache.flex.textLayout.edit
 		 * @param startPos The index value of the first position of the range in the ITextFlow to test.
 		 * @param endPos The index value following the end position of the range in the ITextFlow to test.
 		 * @param blockClass Class the class of the fbe we intend to insert.
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public static function canInsertSPBlock(theFlow:ITextFlow, startPos:int, endPos:int, blockClass:String):Boolean
 		{
@@ -1048,7 +1048,7 @@ package org.apache.flex.textLayout.edit
 		 * as themselves, recursion is only needed for spg's of a class other than that of spgClass.
 		 * 
 		 * example: subPB = <b>bar<a>other</a><b> extending an <a> element to include all of "other"
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */ 
 		public static function flushSPBlock(subPB:ISubParagraphGroupElementBase, spgClass:String):void
 		{

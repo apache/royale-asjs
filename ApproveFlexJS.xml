@@ -18,7 +18,7 @@
 
 -->
 
-<project name="ApproveApacheFlexJS" default="main" basedir=".">
+<project name="ApproveApacheRoyale" default="main" basedir=".">
 
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
@@ -154,12 +154,12 @@
         </not>
     </condition>
 
-	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}" />
-	<property name="package.url.name" value="apache-flex-flexjs-${release.version}-src" />
+	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}" />
+	<property name="package.url.name" value="apache-royale-${release.version}-src" />
     <property name="bin.package.url.path" value="${package.url.path}/binaries" />
-    <property name="bin.package.url.name" value="apache-flex-flexjs-${release.version}-bin" />
+    <property name="bin.package.url.name" value="apache-royale-${release.version}-bin" />
     <property name="doc.package.url.path" value="${package.url.path}/doc" />
-    <property name="doc.package.url.name" value="apache-flex-flexjs-${release.version}-asdocs" />
+    <property name="doc.package.url.name" value="apache-royale-${release.version}-asdocs" />
 	
     <condition property="zip.package">
         <equals arg1="zip" arg2="${package.suffix}" />
@@ -406,7 +406,7 @@
                 <exclude name="js/lib/google/**"/>
                 <!--          compiled output     -->
                 <exclude name="frameworks/projects/*/target/**"/>
-                <exclude name="frameworks/js/FlexJS/projects/*/target/**"/>
+                <exclude name="frameworks/js/Royale/projects/*/target/**"/>
                 <!--          swcs     -->
                 <exclude name="frameworks/libs/Basic.swc"/>
                 <exclude name="frameworks/libs/Binding.swc"/>
@@ -432,30 +432,30 @@
                 <exclude name="frameworks/libs/Reflection.swc"/>
                 <exclude name="frameworks/libs/Storage.swc"/>
                 <exclude name="frameworks/libs/XML.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/BasicJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/BindingJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/ChartsJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/CollectionsJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/CoreJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/CreateJSJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/DragDropJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/EffectsJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/ExpressJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/FlatJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/FontAwesomeJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/FormattersJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/GoogleMapsJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/GraphicsJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/HTMLJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/HTML5JS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/jQueryJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/LanguageJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/MaterialDesignLiteJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/MobileJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/NetworkJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/ReflectionJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/StorageJS.swc"/>
-                <exclude name="frameworks/js/FlexJS/libs/XMLJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/BasicJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/BindingJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/ChartsJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/CollectionsJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/CoreJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/CreateJSJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/DragDropJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/EffectsJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/ExpressJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/FlatJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/FontAwesomeJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/FormattersJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/GoogleMapsJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/GraphicsJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/HTMLJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/HTML5JS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/jQueryJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/LanguageJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/MaterialDesignLiteJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/MobileJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/NetworkJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/ReflectionJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/StorageJS.swc"/>
+                <exclude name="frameworks/js/Royale/libs/XMLJS.swc"/>
             </fileset>
         </rat:report>
         

@@ -20,7 +20,7 @@ package org.apache.flex.core
 {
     /**
      *  The IBead interface is the basic interface for plug-ins known as Beads.
-     *  In FlexJS, the recommended pattern is to break out optional functionality
+     *  In Royale, the recommended pattern is to break out optional functionality
      *  into small plug-ins that can be re-used in other components, or replaced with
      *  different implementations optimized for different things such as size,
      *  performance, advanced features, debugging, etc.
@@ -30,7 +30,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public interface IBead
 	{
@@ -40,7 +40,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		function set strand(value:IStrand):void
 	}

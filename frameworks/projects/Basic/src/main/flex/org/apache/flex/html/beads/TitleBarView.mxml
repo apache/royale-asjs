@@ -23,10 +23,10 @@ limitations under the License.
  @langversion 3.0
  @playerversion Flash 10.2
  @playerversion AIR 2.6
- @productversion FlexJS 0.0
+ @productversion Royale 0.0
 -->
 <js:MXMLBeadView xmlns:fx="http://ns.adobe.com/mxml/2009"
-                     xmlns:js="library://ns.apache.org/flexjs/basic">
+                     xmlns:js="library://ns.apache.org/royale/basic">
 				  
     <fx:Script>
         <![CDATA[

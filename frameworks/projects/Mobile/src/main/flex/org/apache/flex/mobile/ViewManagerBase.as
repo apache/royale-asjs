@@ -32,7 +32,7 @@ package org.apache.flex.mobile
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="viewChanged")]
 	
@@ -42,7 +42,7 @@ package org.apache.flex.mobile
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class ViewManagerBase extends Group implements IViewManager
 	{
@@ -63,7 +63,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get title():String
 		{
@@ -85,7 +85,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get hasNavigationBar():Boolean
 		{
@@ -98,7 +98,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get navigationBarItems():Array
 		{
@@ -115,7 +115,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get navigationBar():NavigationBar
 		{
@@ -129,7 +129,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get views():Array
 		{
@@ -165,7 +165,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get selectedView():IViewManagerView
 		{
@@ -184,7 +184,7 @@ package org.apache.flex.mobile
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get viewManager():IViewManager
 		{

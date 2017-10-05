@@ -28,7 +28,7 @@ package org.apache.flex.mdl.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.9
+     *  @productversion Royale 0.9
      */
     public class DropDownListModel extends ArraySelectionModel implements IDropDownListModel
     {
@@ -45,7 +45,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.9
+         *  @productversion Royale 0.9
          */
         public function get selectedValue():String
         {

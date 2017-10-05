@@ -20,22 +20,22 @@
 
 
 <project name="mobilestocks" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../.."/>
+    <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="MobileStocks" />
     
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     <property name="opt1_arg" value="-remove-circulars" />
     
     <include file="${basedir}/../../build_example.xml" />
 
-    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" >
+    <condition property="extlib_arg" value="-external-library-path=${ROYALE_HOME}/js/libs/js.swc" >
         <and>
             <not>
                 <isset property="extlib_arg" />
             </not>
-            <available file="${FLEXJS_HOME}/js/libs/js.swc" type="file" />
+            <available file="${ROYALE_HOME}/js/libs/js.swc" type="file" />
         </and>
     </condition>
     <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/js.swc" >

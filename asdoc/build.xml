@@ -30,8 +30,8 @@
     <property name="doc_output" location="${basedir}/../asdoc-output"   />
     <property name="project_home" location="${basedir}/../frameworks/projects"/>
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
-	<property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
+	<property file="${ROYALE_HOME}/build.properties"/>
 	
 	<echo message="FLEX_HOME = ${FLEX_HOME}" />
 	<echo message="flexlib = ${flexlib}" />
@@ -68,7 +68,7 @@
         
 		<!-- Call asdoc to generate dita xml files -->
 		<asdoc output="${doc_output}" lenient="true" failonerror="true" warnings="false" strict="false" locale="en_US" fork="true" keep-xml="true"
-               window-title="Apache FlexJS API Reference"
+               window-title="Apache Royale API Reference"
                main-title="${release.name} ${release.version} API Reference "
                footer="${manifest.Implementation-Vendor}" >
                <arg line="+frameworks_dir=${flexlib}" />
@@ -79,7 +79,7 @@
             <external-library-path dir="${env.AIR_HOME}/frameworks/libs/air">
                 <include name="airglobal.swc"/>
             </external-library-path>
-            <external-library-path dir="${FLEXJS_HOME}/js/libs">
+            <external-library-path dir="${ROYALE_HOME}/js/libs">
                 <include name="google_maps.swc"/>
             </external-library-path>
             

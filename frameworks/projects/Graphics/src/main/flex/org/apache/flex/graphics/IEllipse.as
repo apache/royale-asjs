@@ -26,7 +26,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
 		function get rx():Number;
 		function set rx(value:Number):void;
@@ -36,7 +36,7 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion FlexJS 0.7
+         *  @productversion Royale 0.7
 		 */
 		function get ry():Number;
 		function set ry(value:Number):void;
@@ -48,7 +48,7 @@ package org.apache.flex.graphics
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		function drawEllipse(xp:Number, yp:Number):void;
 		

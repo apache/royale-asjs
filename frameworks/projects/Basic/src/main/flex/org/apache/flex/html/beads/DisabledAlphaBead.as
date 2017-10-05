@@ -44,7 +44,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.9
+	 *  @productversion Royale 0.9
 	 */
 	public class DisabledAlphaBead implements IBead
 	{
@@ -54,7 +54,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		public function DisabledAlphaBead()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
          */
 		public var enabledAplha:Number = 1.0;
 
@@ -76,7 +76,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
          */
         public var disabledAlpha:Number = 0.5;
 		
@@ -86,7 +86,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @productversion Royale 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{	
@@ -102,7 +102,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         * @flexjsignorecoercion org.apache.flex.core.IUIBase
+         * @royaleignorecoercion org.apache.flex.core.IUIBase
          */
 		private function get host():IUIBase
 		{

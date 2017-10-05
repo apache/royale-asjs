@@ -25,7 +25,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.9
+     *  @productversion Royale 0.9
      */
     COMPILE::JS
     public class UIElement extends UIBase
@@ -36,7 +36,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.9
+         *  @productversion Royale 0.9
          */
         public function UIElement(htmlElement:WrappedHTMLElement)
         {

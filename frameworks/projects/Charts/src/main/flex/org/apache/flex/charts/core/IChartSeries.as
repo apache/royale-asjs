@@ -27,7 +27,7 @@ package org.apache.flex.charts.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public interface IChartSeries
 	{
@@ -37,7 +37,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get xField():String;
 		function set xField(value:String):void;
@@ -48,7 +48,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get yField():String;
 		function set yField(value:String):void;
@@ -61,7 +61,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function get itemRenderer():IFactory;
 		function set itemRenderer(value:IFactory):void;

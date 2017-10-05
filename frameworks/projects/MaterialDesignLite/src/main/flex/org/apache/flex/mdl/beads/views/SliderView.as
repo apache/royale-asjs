@@ -39,7 +39,7 @@ package org.apache.flex.mdl.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class SliderView extends BeadViewBase implements ISliderView, IBeadView
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function SliderView()
 		{
@@ -66,7 +66,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get track():IUIBase
 		{
@@ -79,7 +79,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function get thumb():IUIBase
 		{
@@ -92,7 +92,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -135,7 +135,7 @@ package org.apache.flex.mdl.beads.views
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.8
+		 * @productversion Royale 0.8
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{

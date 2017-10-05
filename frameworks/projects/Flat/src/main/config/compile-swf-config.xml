@@ -67,11 +67,11 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/flat</uri>
+                <uri>library://ns.apache.org/royale/flat</uri>
                 <manifest>../resources/flat-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/flat</uri>
+                <uri>library://ns.apache.org/royale/flat</uri>
                 <manifest>../resources/flat-as-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -96,7 +96,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/flat</uri>
+        <uri>library://ns.apache.org/royale/flat</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

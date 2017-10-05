@@ -33,7 +33,7 @@ package org.apache.flex.mdl.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class ExpandableSearch implements IBead
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function ExpandableSearch()
 		{
@@ -61,8 +61,8 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 *  @flexjsignorecoercion org.apache.flex.mdl.TextInput;
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.flex.mdl.TextInput;
 		 */
 		public function set strand(value:IStrand):void
 		{

@@ -34,7 +34,7 @@ package org.apache.flex.flat.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class DropDownListStringItemRenderer extends StringItemRenderer
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.flat.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function DropDownListStringItemRenderer()
 		{

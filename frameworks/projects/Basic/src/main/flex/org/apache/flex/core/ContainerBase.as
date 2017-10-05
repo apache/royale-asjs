@@ -32,7 +32,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
     
@@ -42,7 +42,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="initComplete", type="org.apache.flex.events.Event")]
     
@@ -52,19 +52,19 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
     
     /**
      *  The ContainerBase class is the base class for most containers
-     *  in FlexJS.  It is usable as the root tag of MXML
+     *  in Royale.  It is usable as the root tag of MXML
      *  documents and UI controls and containers are added to it.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ContainerBase extends GroupBase implements IStrandPrivate
 	{
@@ -74,7 +74,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ContainerBase()
 		{

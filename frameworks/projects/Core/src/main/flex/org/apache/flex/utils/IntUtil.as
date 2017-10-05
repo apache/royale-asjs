@@ -29,7 +29,7 @@ package org.apache.flex.utils {
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 9.0
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public static function rol ( x:int, n:int ):int {
 			return ( x << n ) | ( x >>> ( 32 - n ) );
@@ -40,7 +40,7 @@ package org.apache.flex.utils {
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 9.0
-		 * @productversion FlexJS 0.8
+		 * @productversion Royale 0.8
 		 */
 		public static function ror ( x:int, n:int ):uint {
 			var nn:int = 32 - n;
@@ -60,7 +60,7 @@ package org.apache.flex.utils {
 		 *		hex representation of n ( minus the leading "0x" )
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 9.0
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public static function toHex( n:int, bigEndian:Boolean = false ):String {
 			var s:String = "";

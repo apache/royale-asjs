@@ -75,8 +75,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawPathCommands(xp:Number,yp:Number,data:PathBuilder):void
         {
@@ -96,8 +96,8 @@ package org.apache.flex.svg
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         public function drawStringPath(xp:Number,yp:Number,data:String):void
         {
@@ -119,7 +119,7 @@ package org.apache.flex.svg
                 var style:String = getStyleStr();
                 if (_path == null) {
                     _path = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
-                    _path.flexjs_wrapper = this;
+                    _path.royale_wrapper = this;
                     element.appendChild(_path);
                 }
                 _path.setAttribute('style', style);

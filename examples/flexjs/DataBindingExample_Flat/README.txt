@@ -28,7 +28,7 @@ into JavaScript and HTML and run without Flash.
 
 The DataBindingTest example also shows how the model-view-controller (MVC) pattern
 can be used to separate the parts of the application. This is facilitated by
-the use of FlexJS beads added to the main application that provide the
+the use of Royale beads added to the main application that provide the
 data connection (via HTTPService) and interacting with the rest of the application
 via events.
 

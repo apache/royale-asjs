@@ -39,7 +39,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
 		public function Rect(x:Number=0, y:Number=0, width:Number=0, height:Number=0,rx:Number=NaN,ry:Number=NaN)
 		{
@@ -62,7 +62,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 */
 		public function get rx():Number
 		{
@@ -82,7 +82,7 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7
+		 *  @productversion Royale 0.7
 		 * 
 		 */
 		public function get ry():Number
@@ -105,8 +105,8 @@ package org.apache.flex.svg
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		public function drawRect(xp:Number, yp:Number, width:Number, height:Number):void
 		{
@@ -131,7 +131,7 @@ package org.apache.flex.svg
 				
 				if (_rect == null) {
                 	_rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
-                	_rect.flexjs_wrapper = this;
+                	_rect.royale_wrapper = this;
 					element.appendChild(_rect);
 				}
                 _rect.setAttribute('style', style);

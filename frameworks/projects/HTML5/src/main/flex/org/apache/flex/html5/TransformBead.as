@@ -24,7 +24,7 @@ package org.apache.flex.html5
 	public class TransformBead extends TransformBeadBase
 	{
 		/**
-		 * @flexjsignorecoercion HTMLElement
+		 * @royaleignorecoercion HTMLElement
 		 */
 		COMPILE::JS
 		override public function transform():void

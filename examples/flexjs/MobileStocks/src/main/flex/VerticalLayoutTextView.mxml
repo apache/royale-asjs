@@ -18,11 +18,11 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 			 >
 	
 	<fx:Style>
-		@namespace js  "library://ns.apache.org/flexjs/basic";
+		@namespace js  "library://ns.apache.org/royale/basic";
 		@namespace views  "views.*";
 		
 		.TopContainer {

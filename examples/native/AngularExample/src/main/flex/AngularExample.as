@@ -56,7 +56,7 @@ package {
 			container.appendChild(div);
 			
 			//App children
-			div.innerHTML = '<h1>FlexJS + Angular + Angular Material Demo</h1>';
+			div.innerHTML = '<h1>Royale + Angular + Angular Material Demo</h1>';
 			div.innerHTML += '<span flex />';
 			div.innerHTML += '<md-button id="myBtn" class="md-primary md-raised" ng-click="handleBtnClick()">{{btnLabelStr}}</md-button>';
 //			div.innerHTML += '<md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>';

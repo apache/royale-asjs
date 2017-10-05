@@ -182,7 +182,7 @@ package org.apache.flex.textLayout.elements
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
+		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
 		 */
 		private function releaseTextBlockInternal(tb:ITextBlock):void
 		{
@@ -359,7 +359,7 @@ package org.apache.flex.textLayout.elements
 		
 		/**
 		*  @private
-		*  @flexjsemitcoercion org.apache.flex.text.engine.GroupElement
+		*  @royaleemitcoercion org.apache.flex.text.engine.GroupElement
 		*/
 		public override function createContentAsGroup(pos:int=0):GroupElement
 		{
@@ -640,7 +640,7 @@ package org.apache.flex.textLayout.elements
 		}
 		/**
 		 *  @private
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
 		 */
 		public function ensureTerminatorAfterReplace():void
 		{
@@ -773,7 +773,7 @@ package org.apache.flex.textLayout.elements
 	 	 * @langversion 3.0
 	 	 * 
 	 	 * @see #getPreviousParagraph()
-		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.ParagraphElement
+		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.ParagraphElement
 		 */
 		public function getNextParagraph():IParagraphElement
 		{

@@ -40,19 +40,19 @@ package org.apache.flex.html
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	[Event(name="locationChanged", type="org.apache.flex.events.Event")]
 
 	/**
 	 * The WebBrowser provides a space in which to display a web page within
-	 * a FlexJS application. Use the url property to change the location of
+	 * a Royale application. Use the url property to change the location of
 	 * the web page being displayed.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	COMPILE::SWF
 	public class WebBrowser extends UIBase implements IHandlesOriginalEvent
@@ -63,7 +63,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function WebBrowser()
 		{
@@ -77,7 +77,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get url():String
 		{
@@ -99,7 +99,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function WebBrowser()
 		{
@@ -107,8 +107,8 @@ package org.apache.flex.html
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion org.apache.flex.core.HTMLIFrameElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.HTMLIFrameElement
 		 */
 		override protected function createElement():WrappedHTMLElement
 		{
@@ -126,7 +126,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get url():String
 		{

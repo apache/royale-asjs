@@ -21,7 +21,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
@@ -30,7 +30,7 @@
   <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: NodeJS</name>
+  <name>Apache Royale: Examples: NodeJS</name>
 
   <modules>
     <module>HelloWorld</module>
@@ -38,22 +38,22 @@
 
   <dependencies>
     <!--
-     By declaring this dependency here, we force the flexjs-externs-js to be
+     By declaring this dependency here, we force the royale-externs-js to be
      added to the external library path of all modules. Without this it would
      have gone to the library path.
      -->
     <dependency>
-      <groupId>org.apache.flex.flexjs.typedefs</groupId>
-      <artifactId>flexjs-typedefs-js</artifactId>
-      <version>${flexjs.typedefs.version}</version>
+      <groupId>org.apache.royale.typedefs</groupId>
+      <artifactId>royale.typedefs-js</artifactId>
+      <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.typedefs</groupId>
-      <artifactId>flexjs-typedefs-node</artifactId>
-      <version>${flexjs.typedefs.version}</version>
+      <groupId>org.apache.royale.typedefs</groupId>
+      <artifactId>royale.typedefs-node</artifactId>
+      <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
       <scope>runtime</scope>

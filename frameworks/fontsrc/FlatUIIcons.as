@@ -23,7 +23,7 @@ import flash.text.Font;
 
 /**
  *  This mini-application is used to generate a font swf that can be used
- *  in FlexJS applications.  Unlike the output of the fontswf utility,
+ *  in Royale applications.  Unlike the output of the fontswf utility,
  *  this swf registers the font.
  */
 public class FlatUIIcons extends Sprite

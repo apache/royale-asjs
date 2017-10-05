@@ -21,8 +21,8 @@ limitations under the License.
 					  xmlns:local="*"
 					  xmlns:models="models.*"
 					  xmlns:views="views.*"
-					  xmlns:js="library://ns.apache.org/flexjs/basic" 
-				      xmlns:cordova="library://ns.apache.org/flexjs/cordova"
+					  xmlns:js="library://ns.apache.org/royale/basic" 
+				      xmlns:cordova="library://ns.apache.org/royale/cordova"
 					  >
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->

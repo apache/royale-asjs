@@ -66,7 +66,7 @@
         
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/html5</uri>
+                <uri>library://ns.apache.org/royale/html5</uri>
                 <manifest>../../../../../../../projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -88,7 +88,7 @@
     </include-classes>
 
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/html5</uri>
+        <uri>library://ns.apache.org/royale/html5</uri>
     </include-namespaces>
         
 

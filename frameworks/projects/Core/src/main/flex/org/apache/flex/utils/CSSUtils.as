@@ -26,7 +26,7 @@ package org.apache.flex.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class CSSUtils
 	{
@@ -65,7 +65,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
          */
         public static function toNumber(str:String, reference:Number = 0):Number
         {
@@ -93,7 +93,7 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function toColor(value:Object):uint
         {
@@ -110,8 +110,8 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion String
+		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion String
          */
         public static function toColorWithAlpha(value:Object):uint
         {
@@ -176,8 +176,8 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion String
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion String
          */
         public static function getTopValue(value:Object, values:Object, reference:Number = NaN):Number
         {
@@ -196,8 +196,8 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion String
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion String
          */
         public static function getRightValue(value:Object, values:Object, reference:Number = NaN):Number
         {
@@ -216,8 +216,8 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion String
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion String
          */
         public static function getBottomValue(value:Object, values:Object, reference:Number = NaN):Number
         {
@@ -236,8 +236,8 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion String
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion String
          */
         public static function getLeftValue(value:Object, values:Object, reference:Number = NaN):Number
         {
@@ -257,8 +257,8 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion String
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion String
          */
         public static function getSideValue(value:Object, values:Object, side:int, reference:Number = NaN):Number
         {
@@ -290,7 +290,7 @@ package org.apache.flex.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         private static function getArrayValue(arr:Array,side:int):Object
         {
@@ -317,7 +317,7 @@ package org.apache.flex.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
          */
         public static const colorMap:Object = {
             transparent:   0,

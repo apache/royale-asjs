@@ -36,7 +36,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		static public function perform(textFlow:ITextFlow, elemToAdd:IFlowElement, parent:IFlowGroupElement, index:int, createMemento:Boolean):* {
 			var elem:IFlowElement = elemToAdd;
@@ -53,7 +53,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function undo():* {
 			var target:IFlowGroupElement = _target.findElement(_textFlow) as IFlowGroupElement;
@@ -61,7 +61,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function redo():* {
 			var parent:IFlowGroupElement = _target.findElement(_textFlow) as IFlowGroupElement;

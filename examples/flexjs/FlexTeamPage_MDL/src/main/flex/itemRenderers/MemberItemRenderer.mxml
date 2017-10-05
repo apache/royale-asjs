@@ -18,10 +18,10 @@ limitations under the License.
 
 -->
 <mdl:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                      xmlns:js="library://ns.apache.org/flexjs/basic"
-                      xmlns:mdl="library://ns.apache.org/flexjs/mdl"
+                      xmlns:js="library://ns.apache.org/royale/basic"
+                      xmlns:mdl="library://ns.apache.org/royale/mdl"
                       xmlns="http://www.w3.org/1999/xhtml"
-                      xmlns:materialIcon="materialIcon.*" xmlns:fa="library://ns.apache.org/flexjs/fa">
+                      xmlns:materialIcon="materialIcon.*" xmlns:fa="library://ns.apache.org/royale/fa">
 
     <fx:Script>
 		<![CDATA[

@@ -26,7 +26,7 @@ package org.apache.flex.events
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class StyleChangeEvent extends ValueChangeEvent
 	{
@@ -36,7 +36,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function StyleChangeEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 oldValue:Object = null, newValue:Object = null)
@@ -50,7 +50,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public static const STYLE_CHANGE:String = "styleChange";
         
@@ -66,7 +66,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function createChangeEvent(source:Object, name:String, oldValue:Object, newValue:Object):StyleChangeEvent
         {

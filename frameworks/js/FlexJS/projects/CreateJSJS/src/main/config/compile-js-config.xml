@@ -56,7 +56,7 @@
         
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/createjs</uri>
+                <uri>library://ns.apache.org/royale/createjs</uri>
                 <manifest>../../../../../../../projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -87,7 +87,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/createjs</uri>
+        <uri>library://ns.apache.org/royale/createjs</uri>
     </include-namespaces>
     
 

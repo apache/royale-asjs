@@ -19,7 +19,7 @@
 -->
 <project name="marmotinni" default="main" basedir=".">
 
-	<property name="test.file" value="FlexJS/framework/org/apache/flex/html/TextButton/TextButton.mxml" />
+	<property name="test.file" value="Royale/framework/org/apache/flex/html/TextButton/TextButton.mxml" />
 	<property name="test.class" value="org.apache.flex.html.textButton.TextButton" />
 	
 	<property file="build.properties" />
@@ -230,9 +230,9 @@
 	<target name="run" depends="run_setup">
 		<antcall target="mxmlc">
 			<param name="param.file" value="${project.main}"/>
-			<param name="param.js.sdk" value="${flexjs.lib}"/>
-			<param name="param.type" value="FLEXJS"/>
-			<param name="param.lib" value="${flexjs.ui.swc}"/>
+			<param name="param.js.sdk" value="${royale.lib}"/>
+			<param name="param.type" value="ROYALE"/>
+			<param name="param.lib" value="${royale.ui.swc}"/>
 		</antcall>
 		
 		<move file="${output.js.intermediate.dir}/deps.js" tofile="${output.js.intermediate.dir}/${output.goog.dir.name}/closure/goog/deps.js" />
@@ -306,7 +306,7 @@
 		<copy file="${goog.closure.lib}/closure/goog/deps.js" tofile="${output.js.root.dir}/deps-orig.js" overwrite="true"/>
 		
 		<copy todir="${output.js.intermediate.dir}/${output.sdk.dir.name}">
-			<fileset dir="${flexjs.lib}">
+			<fileset dir="${royale.lib}">
 				<include name="**/*" />
 			</fileset>
 		</copy>

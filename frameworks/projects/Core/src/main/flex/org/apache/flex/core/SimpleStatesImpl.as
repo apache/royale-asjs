@@ -40,7 +40,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class SimpleStatesImpl extends EventDispatcher implements IStatesImpl, IBead
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function SimpleStatesImpl()
 		{
@@ -67,7 +67,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {
@@ -84,7 +84,7 @@ package org.apache.flex.core
         }		
      
         /**
-         * @flexjsignorecoercion org.apache.flex.core.IStatesObject 
+         * @royaleignorecoercion org.apache.flex.core.IStatesObject 
          */
         private function stateChangeHandler(event:ValueChangeEvent):void
         {
@@ -113,7 +113,7 @@ package org.apache.flex.core
         }
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion org.apache.flex.core.IParent
          */
         private function revert(s:State):void
         {
@@ -158,9 +158,9 @@ package org.apache.flex.core
         }
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.IChild 
-         * @flexjsignorecoercion org.apache.flex.core.IParent
-         * @flexjsignorecoercion Array
+         * @royaleignorecoercion org.apache.flex.core.IChild 
+         * @royaleignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion Array
          */
         private function apply(s:State):void
         {

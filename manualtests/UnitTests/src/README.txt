@@ -20,7 +20,7 @@
 DESCRIPTION
 
 The GenericTests application is a very basic form of unit testing primarily
-intended for FlexJS framework developers. It is a 'lite' version of a small portion of 
+intended for Royale framework developers. It is a 'lite' version of a small portion of 
 Flexunit code to support basic assertion tests.
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
@@ -30,7 +30,7 @@ There is a convenience html page for hosting the tests side-by-side that permits
 to refresh the test builds simultaneously and compare results in the browser, including the 
 ability to toggle between JS-Debug and JS-Release builds.
 While this is primarily intended for framework developers, it may be useful as a starting point
-for cross-compiled unit testing (during development only) in regular FlexJS projects.
+for cross-compiled unit testing (during development only) in regular Royale projects.
 
 FRAMEWORK DEVELOPER NOTES
 To add new tests, follow the examples inside the flexUnitTests package, and add any new Test

@@ -28,7 +28,7 @@ package org.apache.flex.cordova
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class Application extends org.apache.flex.core.AirApplication implements IFlexInfo
 	{

@@ -20,13 +20,13 @@
 
 
 <project name="asdoc" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../.."/>
+    <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="ASDoc" />
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
 
     <condition property="config.path" value="&quot;${basedir}/src/main/config/asdoc-config.xml&quot;">
         <os family="windows" />
@@ -54,20 +54,20 @@
         <java jar="${FALCONJX_HOME}/lib/asdoc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <jvmarg line="-Dflexlib=${ROYALE_HOME}/frameworks}"/>
+            <arg value="+flexlib=${ROYALE_HOME}/frameworks" />
             <arg value="-external-library-path=${env.AIR_HOME}/frameworks/libs/air/airglobal.swc" />
-            <arg value="-external-library-path+=${FLEXJS_HOME}/js/libs/google_maps.swc" />
-            <arg value="+frameworks_dir=${FLEXJS_HOME}/frameworks" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
+            <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
             <arg value="-load-config=${config.path}" />
             <arg value="-debug=true" />
             <arg value="-output=${basedir}/bin-debug" />
-            <arg value="-window-title=Apache FlexJS API Reference" />
-            <arg value="-main-title=Apache FlexJS 0.8.0 API Reference " />
+            <arg value="-window-title=Apache Royale API Reference" />
+            <arg value="-main-title=Apache Royale 0.8.0 API Reference " />
             <arg value="-footer=The Apache Software Foundation" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
         </java>
         <copy todir="${basedir}/bin/js-debug">

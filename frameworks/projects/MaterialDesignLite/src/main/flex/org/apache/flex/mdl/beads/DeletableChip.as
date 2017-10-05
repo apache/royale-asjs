@@ -31,7 +31,7 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     public class DeletableChip implements IBead
     {
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
+         *  @productversion Royale 0.8
          */
         public function DeletableChip()
         {
@@ -54,9 +54,9 @@ package org.apache.flex.mdl.beads
         /**
          * @copy org.apache.flex.core.IBead#strand
          * 
-         * @flexjsignorecoercion HTMLElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion HTMLButtonElement
+         * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion HTMLButtonElement
          *
          * @param value
          */
@@ -85,7 +85,7 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * @flexjsignorecoercion HTMLElement
+         * @royaleignorecoercion HTMLElement
          *
          * @return Button represents cancel icon
          */

@@ -148,7 +148,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
-	 	 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITextFlow
+	 	 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITextFlow
 		 */
 		public function setRootElement(newRootElement:IContainerFormattedElement):void
 		{
@@ -542,7 +542,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
-	 	 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+	 	 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 	 	 *
 		 */
 		 

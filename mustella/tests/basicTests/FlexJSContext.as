@@ -20,9 +20,9 @@ package
 {
 
 [Mixin]
-public class FlexJSContext
+public class RoyaleContext
 {
-	public function FlexJSContext()
+	public function RoyaleContext()
 	{
 		super();
     }

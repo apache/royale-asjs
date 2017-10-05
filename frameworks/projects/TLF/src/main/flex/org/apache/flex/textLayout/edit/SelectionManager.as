@@ -303,7 +303,7 @@ package org.apache.flex.textLayout.edit
 
 		/**
 		 * Selects the table rows provided
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableRowElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableRowElement
 		 **/
 		public function selectRows(rows:Array):void
 		{
@@ -1758,7 +1758,7 @@ package org.apache.flex.textLayout.edit
 		}
 
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
 		 */
 		static private function checkForDisplayed(container:IParentIUIBase):Boolean
 		{
@@ -1985,7 +1985,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
 		 */
 		public function mouseDownHandler(event:MouseEvent):void
 		{

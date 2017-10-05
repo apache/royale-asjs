@@ -41,7 +41,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="dragEnter", type="org.apache.flex.events.DragEvent")]
 
@@ -52,7 +52,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="dragOver", type="org.apache.flex.events.DragEvent")]
 
@@ -63,7 +63,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="dragExit", type="org.apache.flex.events.DragEvent")]
 
@@ -73,7 +73,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion Royale 0.8
      */
     [Event(name="dragDrop", type="org.apache.flex.events.DragEvent")]
 
@@ -81,12 +81,12 @@ package org.apache.flex.html.beads.controllers
 	 *  The DropMouseController bead handles mouse events on the
 	 *  a component, looking for events from a drag/drop operation.
 	 *
-     *  @flexjsignoreimport org.apache.flex.core.IDragInitiator
+     *  @royaleignoreimport org.apache.flex.core.IDragInitiator
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class DropMouseController extends EventDispatcher implements IBead
 	{
@@ -96,7 +96,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function DropMouseController()
 		{
@@ -110,7 +110,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -141,7 +141,7 @@ package org.apache.flex.html.beads.controllers
 
         /**
          *  @private
-		 * @flexjsignorecoercion org.apache.flex.events.MouseEvent
+		 * @royaleignorecoercion org.apache.flex.events.MouseEvent
          */
         private function dragMoveHandler(event:DragEvent):void
         {
@@ -181,7 +181,7 @@ package org.apache.flex.html.beads.controllers
         }
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.events.MouseEvent
+		 * @royaleignorecoercion org.apache.flex.events.MouseEvent
 		 */
         private function dragEndHandler(event:DragEvent):void
         {

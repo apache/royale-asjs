@@ -37,7 +37,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
 	public class ApplicationBase extends Sprite implements IFlexInfo
@@ -48,7 +48,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function ApplicationBase()
 		{
@@ -64,7 +64,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function info():Object
         {
@@ -88,7 +88,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function ApplicationBase()
         {
@@ -104,7 +104,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function info():Object
         {
@@ -116,7 +116,7 @@ package org.apache.flex.core
         [Bindable("widthChanged")]
         [PercentProxy("percentWidth")]
         /**
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         public function get width():Number
         {
@@ -154,7 +154,7 @@ package org.apache.flex.core
         [Bindable("heightChanged")]
         [PercentProxy("percentHeight")]
         /**
-         * @flexjsignorecoercion String
+         * @royaleignorecoercion String
          */
         public function get height():Number
         {
@@ -193,7 +193,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function setHeight(value:Number, noEvent:Boolean = false):void
         {
@@ -212,7 +212,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function setWidth(value:Number, noEvent:Boolean = false):void
         {
@@ -234,7 +234,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get explicitWidth():Number
         {
@@ -267,7 +267,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get explicitHeight():Number
         {
@@ -303,7 +303,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get percentWidth():Number
         {
@@ -334,7 +334,7 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get percentHeight():Number
         {

@@ -27,7 +27,7 @@ package org.apache.flex.storage
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public interface IPermanentStorage extends IEventDispatcher
 	{	
@@ -41,7 +41,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function readTextFromDataFile( fileName:String ) : void;
 		
@@ -56,7 +56,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function writeTextToDataFile( fileName:String, text:String ) : void;
 		
@@ -70,7 +70,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function openOutputDataStream( fileName:String ) : void;
 		
@@ -84,7 +84,7 @@ package org.apache.flex.storage
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		function openInputDataStream( fileName:String ) : void;
 	}

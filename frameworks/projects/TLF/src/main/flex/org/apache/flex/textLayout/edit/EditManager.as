@@ -267,7 +267,7 @@ package org.apache.flex.textLayout.edit
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.textLayout.element.IListItemElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.element.IListItemElement
 		 */
 		public override function keyDownHandler(event:KeyboardEvent):void
 		{

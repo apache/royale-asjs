@@ -37,7 +37,7 @@ package org.apache.flex.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.0
+	 * @productversion Royale 0.0
 	 */
 	COMPILE::SWF
 	public class EventDispatcher extends flash.events.EventDispatcher implements org.apache.flex.events.IEventDispatcher
@@ -48,7 +48,7 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
 		public function EventDispatcher(target:org.apache.flex.events.IEventDispatcher = null)
 		{

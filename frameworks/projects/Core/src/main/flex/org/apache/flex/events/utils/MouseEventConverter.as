@@ -33,7 +33,7 @@ package org.apache.flex.events.utils
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
 	 */
     COMPILE::SWF
 	public class MouseEventConverter
@@ -45,7 +45,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static const UNCONVERTED_EVENTS:Object = {};
         
@@ -57,7 +57,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var convert:Function = flashConvert;
         
@@ -105,7 +105,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var allConvertedEvents:Array = [
 			flash.events.MouseEvent.CLICK,
@@ -129,7 +129,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var perInstanceConvertedEvents:Array = [
             flash.events.MouseEvent.MOUSE_UP,
@@ -143,7 +143,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var eventHandler:Function = mouseEventConverter;
         
@@ -153,7 +153,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function setupAllConverters(target:IEventDispatcher, capture:Boolean = true):void
         {
@@ -167,7 +167,7 @@ package org.apache.flex.events.utils
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static function setupInstanceConverters(target:IEventDispatcher):void
         {

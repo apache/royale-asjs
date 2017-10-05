@@ -51,14 +51,14 @@ package org.apache.flex.express
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{			
 			element = document.createElement('span') as WrappedHTMLElement;
 			positioner = element;
-			element.flexjs_wrapper = this;
+			element.royale_wrapper = this;
 			element.style.whiteSpace = "pre-line";
 			element.style.cursor = "default";
 			element.style.pointerEvents = "none";

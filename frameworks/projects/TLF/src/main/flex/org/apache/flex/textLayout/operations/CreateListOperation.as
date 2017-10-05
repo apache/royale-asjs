@@ -70,7 +70,7 @@ package org.apache.flex.textLayout.operations
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function get parent():IFlowGroupElement
 		{
@@ -78,7 +78,7 @@ package org.apache.flex.textLayout.operations
 		}
 		
 		/**
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public function set parent(value:IFlowGroupElement):void
 		{
@@ -129,7 +129,7 @@ package org.apache.flex.textLayout.operations
 		
 		/**
 		 *  @private
-		 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 		 */
 		public override function doOperation():Boolean
 		{

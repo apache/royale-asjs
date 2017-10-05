@@ -16,7 +16,7 @@
  *  limitations under the License.
  *
  */
-@namespace jq "library://ns.apache.org/flexjs/jquery";
+@namespace jq "library://ns.apache.org/royale/jquery";
 
 @media -flex-flash
 {

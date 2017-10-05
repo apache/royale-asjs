@@ -43,7 +43,7 @@ package org.apache.flex.flat
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     COMPILE::SWF
 	public class DropDownList extends org.apache.flex.html.DropDownList
@@ -54,7 +54,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function DropDownList()
 		{
@@ -72,7 +72,7 @@ package org.apache.flex.flat
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -85,7 +85,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function DropDownList()
         {
@@ -99,10 +99,10 @@ package org.apache.flex.flat
         private var menu:HTMLUListElement;
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLButtonElement
-         * @flexjsignorecoercion HTMLDivElement
-         * @flexjsignorecoercion HTMLSpanElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion HTMLButtonElement
+         * @royaleignorecoercion HTMLDivElement
+         * @royaleignorecoercion HTMLSpanElement
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -128,16 +128,16 @@ package org.apache.flex.flat
             // dismiss the pop-up should it be visible.
             goog.events.listen(document, 'click', dismissPopup);
             
-            (button as WrappedHTMLElement).flexjs_wrapper = this;
-            (label as WrappedHTMLElement).flexjs_wrapper = this;
-            (caret as WrappedHTMLElement).flexjs_wrapper = this;
+            (button as WrappedHTMLElement).royale_wrapper = this;
+            (label as WrappedHTMLElement).royale_wrapper = this;
+            (caret as WrappedHTMLElement).royale_wrapper = this;
             return element;
         }
         
         
         /**
          * @param event The event.
-         * @flexjsignorecoercion org.apache.flex.core.UIBase 
+         * @royaleignorecoercion org.apache.flex.core.UIBase 
          */
         private function selectChanged(event:Event):void
         {
@@ -170,11 +170,11 @@ package org.apache.flex.flat
         
         /**
          * @param event The event.
-         * @flexjsignorecoercion Array
-         * @flexjsignorecoercion HTMLButtonElement
-         * @flexjsignorecoercion HTMLUListElement
-         * @flexjsignorecoercion HTMLLIElement
-         * @flexjsignorecoercion HTMLAnchorElement
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion HTMLButtonElement
+         * @royaleignorecoercion HTMLUListElement
+         * @royaleignorecoercion HTMLLIElement
+         * @royaleignorecoercion HTMLAnchorElement
          */
         private function buttonClicked(event:Event):void
         {
@@ -280,7 +280,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         override public function get dataProvider():Object
         {
@@ -289,8 +289,8 @@ package org.apache.flex.flat
         
         /**
          *  @private
-         *  @flexjsignorecoercion HTMLOptionElement
-         *  @flexjsignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion HTMLOptionElement
+         *  @royaleignorecoercion HTMLSelectElement
          */
         override public function set dataProvider(value:Object):void
         {
@@ -304,7 +304,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         override public function get labelField():String
         {
@@ -322,7 +322,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         override public function get selectedIndex():int
         {
@@ -331,8 +331,8 @@ package org.apache.flex.flat
         
         /**
          *  @private
-         *  @flexjsignorecoercion HTMLSelectElement
-         *  @flexjsignorecoercion String
+         *  @royaleignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion String
          */
         override public function set selectedIndex(value:int):void
         {
@@ -352,7 +352,7 @@ package org.apache.flex.flat
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         override public function get selectedItem():Object
         {
@@ -361,8 +361,8 @@ package org.apache.flex.flat
         
         /**
          *  @private
-         *  @flexjsignorecoercion HTMLSelectElement
-         *  @flexjsignorecoercion String
+         *  @royaleignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion String
          */
         override public function set selectedItem(value:Object):void
         {

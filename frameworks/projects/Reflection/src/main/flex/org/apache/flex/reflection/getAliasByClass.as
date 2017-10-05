@@ -38,7 +38,7 @@ COMPILE::SWF {
         }
 
         COMPILE::JS {
-            var info:* = classObject.prototype.FLEXJS_CLASS_INFO;
+            var info:* = classObject.prototype.ROYALE_CLASS_INFO;
             if (info) {
                 ret = info.alias;
                 if (ret == '') ret = null;

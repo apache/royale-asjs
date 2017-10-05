@@ -66,7 +66,7 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class SingleSelectionDragImageBead extends EventDispatcher implements IBead
 	{
@@ -76,7 +76,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		public function SingleSelectionDragImageBead()
 		{
@@ -101,11 +101,11 @@ package org.apache.flex.html.beads
 		 * @param ir IItemRenderer The itemRenderer to be used as a template.
 		 * @return UIBase The "dragImage" to use.
 		 *
-		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		protected function createDragImage(ir:IItemRenderer):UIBase
 		{

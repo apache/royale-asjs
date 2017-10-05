@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.text.events
 {
-    import org.apache.flex.events.IFlexJSEvent;
+    import org.apache.flex.events.IRoyaleEvent;
     import org.apache.flex.events.Event;
     import org.apache.flex.text.ime.IIMEClient;
 
@@ -40,9 +40,9 @@ package org.apache.flex.text.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
-		override public function cloneEvent():IFlexJSEvent
+		override public function cloneEvent():IRoyaleEvent
 		{
 			return new IMEEvent(type, bubbles, cancelable, text, imeClient);
 		}

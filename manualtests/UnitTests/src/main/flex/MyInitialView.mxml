@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:js="library://ns.apache.org/flexjs/basic"
+		 xmlns:js="library://ns.apache.org/royale/basic"
 		 xmlns:local="*"
 		 xmlns:acc="org.apache.flex.html.accessories.*"
 		 initComplete="runTests()"
@@ -43,7 +43,7 @@ limitations under the License.
 		import org.apache.flex.reflection.describeType;
 		import org.apache.flex.reflection.TypeDefinition;
 
-		import testshim.FlexJSUnitTestRunner;
+		import testshim.RoyaleUnitTestRunner;
 		import testshim.TestResult;
 
 
@@ -77,7 +77,7 @@ limitations under the License.
 					passes = [];
 					variances = [];
 					warnings = [];
-					var runner:FlexJSUnitTestRunner = new FlexJSUnitTestRunner(testClass, onTestResult);
+					var runner:RoyaleUnitTestRunner = new RoyaleUnitTestRunner(testClass, onTestResult);
 					runner.runTests();
 					label = new Label();
 

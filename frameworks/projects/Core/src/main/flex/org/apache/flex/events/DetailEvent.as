@@ -26,7 +26,7 @@ package org.apache.flex.events
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class DetailEvent extends Event
 	{
@@ -36,7 +36,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function DetailEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 									detail:String = null)
@@ -52,7 +52,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public var detail:String;
 
@@ -62,9 +62,9 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
+		 * @productversion Royale 0.0
 		 */
-		override public function cloneEvent():IFlexJSEvent
+		override public function cloneEvent():IRoyaleEvent
 		{
 			return new DetailEvent(type, bubbles, cancelable, detail);
 		}

@@ -22,12 +22,12 @@ package org.apache.flex.core
 	
     /**
      *  The ByteArrayAsset represents an arbitrary sequence of byte data
-	 *  that can be embedded in a FlexJS swf class.
+	 *  that can be embedded in a Royale swf class.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class ByteArrayAsset extends ByteArray
 	{

@@ -45,7 +45,7 @@ package org.apache.flex.html.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class OneFlexibleChildHorizontalLayout extends HorizontalLayout implements IOneFlexibleChildLayout, IDocument
 	{
@@ -55,7 +55,7 @@ package org.apache.flex.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function OneFlexibleChildHorizontalLayout()
 		{
@@ -79,7 +79,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get flexibleChild():String
 		{
@@ -102,7 +102,7 @@ package org.apache.flex.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get maxWidth():Number
         {
@@ -125,7 +125,7 @@ package org.apache.flex.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function get maxHeight():Number
         {

@@ -50,7 +50,7 @@ package org.apache.flex.html
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion Royale 0.0
 	 */
 	public class Panel extends Group
 	{
@@ -60,7 +60,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function Panel()
 		{
@@ -90,7 +90,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get title():String
 		{
@@ -107,7 +107,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get htmlTitle():String
 		{
@@ -133,7 +133,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -144,7 +144,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
@@ -155,7 +155,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function getElementIndex(c:IChild):int
 		{
@@ -165,7 +165,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -175,7 +175,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function get numElements():int
 		{
@@ -185,7 +185,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function getElementAt(index:int):IChild
 		{

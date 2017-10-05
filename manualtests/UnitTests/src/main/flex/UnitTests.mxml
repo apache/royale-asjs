@@ -22,10 +22,10 @@
 				   xmlns:local="*"
 				   xmlns:models="models.*"
                    xmlns:controllers="controllers.*"
-				   xmlns:js="library://ns.apache.org/flexjs/basic" 		   
+				   xmlns:js="library://ns.apache.org/royale/basic" 		   
 				   >
 	<fx:Style>
-		@namespace js "library://ns.apache.org/flexjs/basic";
+		@namespace js "library://ns.apache.org/royale/basic";
 		js|Application {
 			background-color:#ffffff ;
 		}

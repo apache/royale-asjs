@@ -40,7 +40,7 @@ package org.apache.flex.events
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
 	 */
 	public class DragEvent extends DragEventBase
 	{
@@ -250,7 +250,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var dragInitiator:IDragInitiator;
         
@@ -261,7 +261,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public static var dragSource:Object;
 		
@@ -323,7 +323,7 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function DragEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
@@ -347,10 +347,10 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.events.DragEvent
-         *  @flexjsignorecoercion window.Event
-         *  @flexjsignorecoercion Event
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.events.DragEvent
+         *  @royaleignorecoercion window.Event
+         *  @royaleignorecoercion Event
          */
         public static function createDragEvent(type:String, event:MouseEvent):DragEvent
         {
@@ -401,10 +401,10 @@ package org.apache.flex.events
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
-         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
-         *  @flexjsignorecoercion window.Event
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.flex.core.IUIBase
+         *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher
+         *  @royaleignorecoercion window.Event
          */
         public static function dispatchDragEvent(event:DragEvent, target:Object):void
         {
@@ -459,10 +459,10 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion Royale 0.0
          */
         COMPILE::SWF
-        override public function cloneEvent():IFlexJSEvent
+        override public function cloneEvent():IRoyaleEvent
         {
             return createDragEvent(type, this);
         }

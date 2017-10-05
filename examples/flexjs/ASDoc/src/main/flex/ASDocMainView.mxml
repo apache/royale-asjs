@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 			    width="100%" height="100%"
 			    >
     <fx:Script>
@@ -65,7 +65,7 @@ limitations under the License.
         <js:beads>
             <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="title" />
         </js:beads>
-        <js:Label text="FlexJS ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
+        <js:Label text="Royale ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
         <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
         <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
     </js:Group>

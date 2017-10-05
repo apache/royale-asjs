@@ -40,7 +40,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
     
@@ -50,7 +50,7 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="initComplete", type="org.apache.flex.events.Event")]
     
@@ -60,19 +60,19 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
     
     /**
      *  The UIModule class is the base class for modules of user
-     *  interface controls in FlexJS.  It is usable as the root tag of MXML
+     *  interface controls in Royale.  It is usable as the root tag of MXML
      *  documents and UI controls and containers are added to it.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class UIModule extends Group implements IFlexInfo, IModule
 	{
@@ -82,7 +82,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function UIModule()
 		{
@@ -98,7 +98,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function info():Object
         {
@@ -128,7 +128,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set valuesImpl(value:IValuesImpl):void
         {

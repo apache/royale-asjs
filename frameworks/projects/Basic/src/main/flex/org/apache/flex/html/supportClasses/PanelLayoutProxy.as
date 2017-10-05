@@ -40,7 +40,7 @@ package org.apache.flex.html.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class PanelLayoutProxy implements ILayoutView
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.html.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function PanelLayoutProxy(host:Object)
 		{
@@ -66,39 +66,39 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.flex.html.Panel
 		 *  The width of the bounding box.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get width():Number {
 			return (host as Panel).width;
 		}
 
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.flex.html.Panel
 		 * The height of the bounding box.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get height():Number {
 			return (host as Panel).height;
 		}
 
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.flex.html.Panel
 		 *  The number of elements in the parent.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function get numElements():int
 		{
@@ -106,7 +106,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.flex.html.Panel
 		 *  Get a component from the parent.
 		 *
 		 *  @param c The index of the subcomponent.
@@ -114,7 +114,7 @@ package org.apache.flex.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function getElementAt(index:int):IChild
 		{
@@ -122,7 +122,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.html.Panel
+		 * @royaleignorecoercion org.apache.flex.html.Panel
 		 */
 		COMPILE::JS
 		public function get somethingelse():WrappedHTMLElement
@@ -131,7 +131,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @flexjsignorecoercion org.apache.flex.html.Panel
+		 * @royaleignorecoercion org.apache.flex.html.Panel
 		 */
 		COMPILE::JS
 		public function get element():WrappedHTMLElement
@@ -140,14 +140,14 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @flexjsignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.flex.html.Panel
 		 *  The display style is used for both visible
 		 *  and layout so is managed as a special case.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion Royale 0.0
 		 */
 		COMPILE::JS
 		public function setDisplayStyleForLayout(value:String):void

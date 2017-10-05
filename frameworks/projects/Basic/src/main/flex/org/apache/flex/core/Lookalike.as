@@ -33,7 +33,7 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.9
+     *  @productversion Royale 0.9
      */
     
     public class Lookalike extends UIBase
@@ -41,11 +41,11 @@ package org.apache.flex.core
         /**
          *  Constructor.
          *  
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.9
+         *  @productversion Royale 0.9
          */
         public function Lookalike(original:IRenderedObject)
         {

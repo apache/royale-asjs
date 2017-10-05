@@ -48,7 +48,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function clone():Matrix
 		{
@@ -61,7 +61,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function concat(m:Matrix):Matrix
 		{
@@ -84,7 +84,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function determinant():Number
 		{
@@ -97,7 +97,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function invert():Matrix
 		{
@@ -137,7 +137,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function identity():Matrix
 		{
@@ -152,7 +152,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function rotate(angle:Number):Matrix
 		{
@@ -179,7 +179,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function translate(x:Number, y:Number):Matrix
 		{
@@ -194,7 +194,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function scale(x:Number, y:Number):Matrix
 		{
@@ -213,7 +213,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function deltaTransformPoint(point:Point):Point
 		{
@@ -226,7 +226,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function transformPoint(point:Point):Point
 		{
@@ -238,7 +238,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function toString():String
 		{
@@ -251,7 +251,7 @@ package org.apache.flex.geom
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.7
+	     *  @productversion Royale 0.7
 		 */
 		public function copyFrom(source:Matrix):Matrix
 		{

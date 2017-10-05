@@ -39,7 +39,7 @@ package org.apache.flex.html.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class SimpleTableLayout extends LayoutBase implements IBeadLayout
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function SimpleTableLayout()
 		{
@@ -58,8 +58,8 @@ package org.apache.flex.html.beads.layouts
 
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
-		 * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
-		 * @flexjsignorecoercion org.apache.flex.core.UIBase
+		 * @royaleignorecoercion org.apache.flex.core.ILayoutHost
+		 * @royaleignorecoercion org.apache.flex.core.UIBase
          */
 		override public function layout():Boolean
 		{

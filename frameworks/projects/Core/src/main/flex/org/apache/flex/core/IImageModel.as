@@ -29,19 +29,19 @@ package org.apache.flex.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public interface IImageModel extends IEventDispatcher, IBeadModel
 	{
         /**
          *  The source URL for the image.  Embedding images is not
-         *  recommended for FlexJS as there is no embedding support
+         *  recommended for Royale as there is no embedding support
          *  in the browsers.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		function get url():String;
 		function set url(value:String):void;

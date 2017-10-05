@@ -27,23 +27,23 @@ package org.apache.flex.events.utils
 	}
 	
 	/**
-	 *  Converts low level keyboard events to FlexJS KeyboardEvents
+	 *  Converts low level keyboard events to Royale KeyboardEvents
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.8
+	 *  @productversion Royale 0.8
 	 */
 	public class KeyboardEventConverter
 	{
 		
 		/**
-		 *  Converts Flash keyboard events to FlexJS ones.
+		 *  Converts Flash keyboard events to Royale ones.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		COMPILE::SWF
 		public static function convert(oldEvent:flash.events.KeyboardEvent):org.apache.flex.events.KeyboardEvent
@@ -60,12 +60,12 @@ package org.apache.flex.events.utils
 		}
 		
 		/**
-		 *  Converts JS keyboard events to FlexJS ones.
+		 *  Converts JS keyboard events to Royale ones.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion Royale 0.8
 		 */
 		COMPILE::JS
 		public static function convert(nativeEvent:Object):KeyboardEvent

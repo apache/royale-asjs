@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/express">
+				xmlns:js="library://ns.apache.org/royale/express">
     <fx:Script>
         <![CDATA[
 		 import org.apache.flex.express.DataGrid;
@@ -36,7 +36,7 @@ limitations under the License.
     </fx:Script>
 	
 	<fx:Style>
-		@namespace js "library://ns.apache.org/flexjs/basic";
+		@namespace js "library://ns.apache.org/royale/basic";
 		
 		/* These border lines currently show only on HTML */
 		.opt_org-apache-flex-html-DataGrid_ListArea .middle {

@@ -28,7 +28,7 @@ import org.apache.flex.geom.Rectangle;
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
+ *  @productversion Royale 0.0
  */
 public class CSSContainerUtils
 {
@@ -42,7 +42,7 @@ public class CSSContainerUtils
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public static function getBorderMetrics(object:Object, quick:Boolean = false):Rectangle
 	{
@@ -145,7 +145,7 @@ public class CSSContainerUtils
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static function getPaddingMetrics(object:Object):Rectangle
     {
@@ -179,7 +179,7 @@ public class CSSContainerUtils
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public static function getBorderAndPaddingMetrics(object:Object):Rectangle
     {

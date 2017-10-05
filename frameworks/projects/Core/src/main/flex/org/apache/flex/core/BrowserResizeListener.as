@@ -32,7 +32,7 @@ COMPILE::SWF
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
 	public class BrowserResizeListener implements IBead
 	{
@@ -42,7 +42,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function BrowserResizeListener()
 		{
@@ -56,7 +56,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var minHeight:Number;
         
@@ -66,7 +66,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public var minWidth:Number;
         
@@ -76,7 +76,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
         public function set strand(value:IStrand):void
         {
@@ -110,7 +110,7 @@ COMPILE::SWF
         }
         
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.ILayoutChild
+		 * @royaleignorecoercion org.apache.flex.core.ILayoutChild
 		 */
         private function resizeHandler(event:Event):void
         {

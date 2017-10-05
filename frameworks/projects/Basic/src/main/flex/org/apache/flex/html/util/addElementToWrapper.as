@@ -25,7 +25,7 @@ package org.apache.flex.html.util
     }
 
     /**
-     * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+     * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
      */
     COMPILE::JS
     public function addElementToWrapper(wrapper:UIBase,type:String):WrappedHTMLElement

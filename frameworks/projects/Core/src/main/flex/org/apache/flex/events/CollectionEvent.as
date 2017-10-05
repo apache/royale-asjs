@@ -26,7 +26,7 @@ package org.apache.flex.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion FlexJS 0.8.0
+	 * @productversion Royale 0.8.0
 	 */
 	public class CollectionEvent extends Event
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.8.0
+		 * @productversion Royale 0.8.0
 		 */
 		public function CollectionEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
@@ -62,7 +62,7 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8.0
+         * @productversion Royale 0.8.0
          */
         public var item:Object;
 
@@ -72,11 +72,11 @@ package org.apache.flex.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8.0
+         * @productversion Royale 0.8.0
          */
 		public var items:Array;
 
-        override public function cloneEvent():IFlexJSEvent
+        override public function cloneEvent():IRoyaleEvent
         {
             var collectionEvent:CollectionEvent = new CollectionEvent(type, bubbles, cancelable);
 			collectionEvent.item = item;

@@ -65,7 +65,7 @@ package org.apache.flex.textLayout.edit.mementos {
 	}
 	
 	/**
-	 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+	 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 	 */
 	static public function performInternal(textFlow:ITextFlow, target:ElementMark):*
 	{
@@ -98,7 +98,7 @@ package org.apache.flex.textLayout.edit.mementos {
 	}
 	
 	/**
-	 * @flexjsignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+	 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
 	 */
 	public function undo():*
 	{ 

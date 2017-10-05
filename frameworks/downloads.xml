@@ -19,16 +19,16 @@
 -->
 
 <project name="downloads" default="main" basedir=".">
-	<property name="FLEXJS_HOME" location="../.."/>
+	<property name="ROYALE_HOME" location="../.."/>
 
 	<!-- properties -->
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/local.properties"/>
-	<property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+	<property file="${ROYALE_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
 
-	<property name="download.dir" value="${FLEXJS_HOME}/in"/>
+	<property name="download.dir" value="${ROYALE_HOME}/in"/>
     <property name="pixelbender.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
     <property name="pixelbender.folder" value="flex/pixelbender/1.0/binaries" />
     <property name="pixelbender.bin.zip" value="apache-flex-sdk-pixel-bender-1.0.0-bin.zip" />
@@ -53,7 +53,7 @@
 	    <!-- pixelbender files (Version 1.0) -->
     <!-- Because this requires a network connection it downloads only if it doesn't already exist. -->
     <target name="pixelbender-check" description="Checks if PixelBender files have been downloaded.">
-        <available file="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses/ColorBurn.pbj" property="pixelbender.pbj.present"/>
+        <available file="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses/ColorBurn.pbj" property="pixelbender.pbj.present"/>
     </target>
     
     <target name="pixelbender-download" depends="pixelbender-check" unless="pixelbender.pbj.present"
@@ -67,7 +67,7 @@
             <param name="dest" value="${download.dir}/${pixelbender.bin.zip}" />
         </antcall>
         
-        <unzip src="${download.dir}/${pixelbender.bin.zip}" dest="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses/">
+        <unzip src="${download.dir}/${pixelbender.bin.zip}" dest="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses/">
             <patternset>
                 <include name="frameworks/projects/framework/src/mx/graphics/shaderClasses/*.pbj"/>
             </patternset>
@@ -79,7 +79,7 @@
 
     <target name="pixelbender-clean" description="Deletes pbj files.">
 	    <delete failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses">
+            <fileset dir="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses">
                 <include name="*.pbj"/>
             </fileset>
         </delete>
@@ -87,7 +87,7 @@
 
     <!-- Because this requires a network connection it downloads only if it doesn't already exist. -->
     <target name="flexunit-check" description="Checks if FlexUnit files have been downloaded.">
-        <available file="${FLEXJS_HOME}/in/flexunit" property="flexunit.present"/>
+        <available file="${ROYALE_HOME}/in/flexunit" property="flexunit.present"/>
     </target>
 
     <target name="flexunit-download" depends="flexunit-check" unless="flexunit.present"
@@ -101,17 +101,17 @@
             <param name="dest" value="${download.dir}/${flexunit.bin.zip}" />
         </antcall>
         
-        <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${FLEXJS_HOME}/in/flexunit" />
+        <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${ROYALE_HOME}/in/flexunit" />
     </target>
 
     <target name="flexunit-clean" description="Deletes flexunit files.">
-        <delete dir="${FLEXJS_HOME}/in/flexunit" failonerror="false" />
+        <delete dir="${ROYALE_HOME}/in/flexunit" failonerror="false" />
     </target>
 
     <!-- swfobject.js (Version 2.2) -->
     <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
     <target name="swfobject-check" description="Checks if SWFObject has been downloaded.">
-        <available file="${FLEXJS_HOME}/templates/swfobject/swfobject.js" property="swfobject.js.present"/>
+        <available file="${ROYALE_HOME}/templates/swfobject/swfobject.js" property="swfobject.js.present"/>
     </target>
 
     <target name="swfobject-download" depends="swfobject-check" unless="swfobject.js.present" 
@@ -129,7 +129,7 @@
             <param name="filename" value="swfobject_2_2.zip" />
         </antcall>
         
-        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates/swfobject">
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${ROYALE_HOME}/templates/swfobject">
             <patternset>
                 <include name="swfobject-2.2/swfobject/expressInstall.swf"/>
                 <include name="swfobject-2.2/swfobject/swfobject.js"/>
@@ -137,9 +137,9 @@
             <flattenmapper />
         </unzip>
         <antcall target="swfobject-double-check" />
-        <mkdir dir="${FLEXJS_HOME}/templates/swfobject/history"/>
-        <copy toDir="${FLEXJS_HOME}/templates/swfobject/history" >
-            <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
+        <mkdir dir="${ROYALE_HOME}/templates/swfobject/history"/>
+        <copy toDir="${ROYALE_HOME}/templates/swfobject/history" >
+            <fileset dir="${ROYALE_HOME}/templates/swfobject/history">
                 <include name="**"/>
             </fileset>
         </copy>
@@ -147,7 +147,7 @@
 
     <target name="swfobject-clean" description="Deletes templates swfobject code.">
         <delete failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/templates/swfobject">
+            <fileset dir="${ROYALE_HOME}/templates/swfobject">
                 <include name="**/**"/>
                 <exclude name="index.template.html"/>
                 <exclude name="history/**"/>
@@ -158,13 +158,13 @@
     <target name="have-swfobject" >
         <condition property="still-no-swfobject">
             <not>
-                <available file="${FLEXJS_HOME}/templates/swfobject/swfobject.js" />
+                <available file="${ROYALE_HOME}/templates/swfobject/swfobject.js" />
             </not>
         </condition>
     </target>
     
     <target name="swfobject-double-check" depends="have-swfobject" if="still-no-swfobject" description="some SWFObject zips have a different folder structure so if the first unzip doesn't work, try this one">
-        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates/swfobject">
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${ROYALE_HOME}/templates/swfobject">
             <patternset>
                 <include name="swfobject/expressInstall.swf"/>
                 <include name="swfobject/swfobject.js"/>
@@ -176,7 +176,7 @@
     <!-- flat ui fonts  -->
     <!-- Because this requires a network connection it downloads Flat UI fonts only if it doesn't already exist. -->
     <target name="flat-ui-check" description="Checks if Flat UI fonts have been downloaded.">
-        <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat.donot.ask"/>
+        <available file="${ROYALE_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat.donot.ask"/>
         <condition property="flat.donot.ask">
             <isset property="build.noprompt"/>
         </condition>
@@ -189,7 +189,7 @@
         description="Prompt the user before downloading Flat fonts">
         
         <property name="flat.prompt.text"
-        value="Apache FlexJS includes an optional component set that
+        value="Apache Royale includes an optional component set that
         ${line.separator}uses fonts from designmodo.com.
         ${line.separator}The font files are subject to and governed by the
         ${line.separator}Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported license:
@@ -226,8 +226,8 @@
             <param name="destDir" value="${download.dir}" />
         </antcall>
         
-        <mkdir dir="${FLEXJS_HOME}/frameworks/fonts"/>
-        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
+        <mkdir dir="${ROYALE_HOME}/frameworks/fonts"/>
+        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${ROYALE_HOME}/frameworks/fonts">
             <patternset>
                 <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.eot"/>
                 <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.ttf"/>
@@ -236,7 +236,7 @@
             </patternset>
             <flattenmapper />
         </unzip>
-        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
+        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${ROYALE_HOME}/frameworks/fonts">
             <patternset>
                 <include name="Flat-UI-2.2.2/README.md"/>
             </patternset>
@@ -246,7 +246,7 @@
     
     <target name="flat-ui-clean" description="Deletes flat-ui fonts.">
         <delete failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/fonts">
+            <fileset dir="${ROYALE_HOME}/frameworks/fonts">
                 <include name="**"/>
             </fileset>
         </delete>
@@ -268,11 +268,11 @@
             <param name="destDir" value="${download.dir}" />
         </antcall>
         
-    	<mkdir dir="${FLEXJS_HOME}/js/lib/google/closure-library"/>
-    	<unzip src="${download.dir}/google-closure-library-master.zip" dest="${FLEXJS_HOME}/js/lib/google/closure-library">
+    	<mkdir dir="${ROYALE_HOME}/js/lib/google/closure-library"/>
+    	<unzip src="${download.dir}/google-closure-library-master.zip" dest="${ROYALE_HOME}/js/lib/google/closure-library">
     		<cutdirsmapper dirs="1" />
     	</unzip>
-        <property name="GOOG_DIR" value="${FLEXJS_HOME}/js/lib/google/closure-library" />
+        <property name="GOOG_DIR" value="${ROYALE_HOME}/js/lib/google/closure-library" />
         <antcall target="subset-goog" />
     </target>
 	
@@ -324,7 +324,7 @@
     </target>
     <target name="gcl-clean" description="Deletes Google Closure Library">
     	<echo message="Deleting Google Closure Library"/>
-        <delete dir="${FLEXJS_HOME}/js/lib" failonerror="false" />
+        <delete dir="${ROYALE_HOME}/js/lib" failonerror="false" />
     </target>
 	
     <target name="check-goog-home" description="Check that GOOG_HOME is a directory">

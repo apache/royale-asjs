@@ -26,7 +26,7 @@ package org.apache.flex.reflection
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion Royale 0.0
      */
     public class DefinitionWithMetaData extends DefinitionBase
 	{
@@ -67,7 +67,7 @@ package org.apache.flex.reflection
                 {
                     var name:String = data.names[0].qName;
                     var def:Object = getDefinitionByName(name);
-                    rdata = def.prototype.FLEXJS_REFLECTION_INFO();
+                    rdata = def.prototype.ROYALE_REFLECTION_INFO();
                 }
                 else
                     rdata = data;
