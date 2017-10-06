@@ -56,11 +56,11 @@
 
         <!-- overwrite the default library-path setting -->
         <library-path>
-          <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
+          <path-element>../../../../../../../js/libs/GCL.swc</path-element>
         </library-path>
         
         <source-path>
-          <path-element>../../../../../../../projects/Language/src/main/royale</path-element>
+          <path-element>../../../../../../projects/Language/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>

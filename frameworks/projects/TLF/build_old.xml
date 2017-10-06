@@ -98,12 +98,12 @@
     </target>
     
     <target name="check-js">
-        <uptodate property="js-not-needed" targetfile="${ROYALE_HOME}/frameworks/js/Royale/projects/${ant.project.name}JS/target/${ant.project.name}JS.swc">
+        <uptodate property="js-not-needed" targetfile="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/target/${ant.project.name}JS.swc">
             <srcfiles dir="${basedir}/src/main/royale" includes="**/**"/>
         </uptodate>
     </target>
     <target name="js-if-needed" depends="check-js" unless="js-not-needed">
-        <ant dir="${ROYALE_HOME}/frameworks/js/Royale/projects/${ant.project.name}JS/" inheritAll="false" />
+        <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" />
     </target>
     
     <target name="check-for-tests" >

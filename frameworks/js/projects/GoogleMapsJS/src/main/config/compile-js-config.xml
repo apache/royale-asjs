@@ -29,7 +29,7 @@
         <strict-xml>true</strict-xml>
 
         <external-library-path append="true">
-            <path-element>../../../../../../../../js/libs/google_maps.swc</path-element>
+            <path-element>../../../../../../../js/libs/google_maps.swc</path-element>
         </external-library-path>
 
 		<mxml>
@@ -60,7 +60,7 @@
         
         <!-- overwrite the default library-path setting -->
         <library-path>
-            <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
+            <path-element>../../../../../../../js/libs/GCL.swc</path-element>
             <!-- asjscompc won't 'link' these classes in, but will list their requires
              if these swcs are on the external-library-path then their requires
              will not be listed -->
@@ -71,12 +71,12 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/google</uri>
-                <manifest>../../../../../../../projects/GoogleMaps/src/main/resources/google-manifest.xml</manifest>
+                <manifest>../../../../../../projects/GoogleMaps/src/main/resources/google-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../../../../../../../projects/GoogleMaps/src/main/royale</path-element>
+            <path-element>../../../../../../projects/GoogleMaps/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -84,7 +84,7 @@
 
     <include-file>
         <name>defaults.css</name>
-        <path>../../../../../../../projects/GoogleMaps/src/main/resources/defaults.css</path>
+        <path>../../../../../../projects/GoogleMaps/src/main/resources/defaults.css</path>
     </include-file>
 
     <include-classes>

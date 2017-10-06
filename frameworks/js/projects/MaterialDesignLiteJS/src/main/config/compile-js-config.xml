@@ -51,7 +51,7 @@
     <namespaces>
       <namespace>
         <uri>library://ns.apache.org/royale/mdl</uri>
-        <manifest>../../../../../../../projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
+        <manifest>../../../../../../projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
       </namespace>
     </namespaces>
     <library-path>
@@ -63,13 +63,13 @@
       <path-element>../../../../../libs/BasicJS.swc</path-element>
     </library-path>
     <source-path>
-      <path-element>../../../../../../../projects/MaterialDesignLite/src/main/royale</path-element>
+      <path-element>../../../../../../projects/MaterialDesignLite/src/main/royale</path-element>
     </source-path>
     <warn-no-constructor>false</warn-no-constructor>
   </compiler>
   <include-file>
     <name>defaults.css</name>
-    <path>../../../../../../../projects/MaterialDesignLite/src/main/resources/defaults.css</path>
+    <path>../../../../../../projects/MaterialDesignLite/src/main/resources/defaults.css</path>
   </include-file>
   <include-lookup-only>true</include-lookup-only>
   <include-classes>

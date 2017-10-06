@@ -96,7 +96,7 @@
     </target>
 
     <target name="prepare" depends="thirdparty-downloads">
-        <mkdir dir="${basedir}/js/Royale/libs" />
+        <mkdir dir="${basedir}/js/libs" />
         <mkdir dir="${basedir}/libs" />
         <antcall target="fake-playerglobal" />
         <antcall target="fake-airglobal" />

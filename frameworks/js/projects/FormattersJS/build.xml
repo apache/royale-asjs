@@ -20,7 +20,7 @@
 
 
 <project name="FormattersJS" default="main" basedir=".">
-    <property name="ROYALE_HOME" location="../../../../.."/>
+    <property name="ROYALE_HOME" location="../../../.."/>
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
@@ -38,7 +38,7 @@
     
     <target name="clean">
         <delete failonerror="false">
-            <fileset dir="${ROYALE_HOME}/frameworks/js/Royale/libs">
+            <fileset dir="${ROYALE_HOME}/frameworks/js/libs">
                 <include name="${target.name}"/>
             </fileset>
         </delete>
@@ -65,12 +65,12 @@
             <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
         </java>
-        <copy file="${basedir}/target/${target.name}" tofile="${ROYALE_HOME}/frameworks/js/Royale/libs/${target.name}" />
+        <copy file="${basedir}/target/${target.name}" tofile="${ROYALE_HOME}/frameworks/js/libs/${target.name}" />
     </target>
     
     <target name="copy-js" >
-        <mkdir dir="${ROYALE_HOME}/frameworks/js/Royale/generated-sources"/>
-        <copy todir="${ROYALE_HOME}/frameworks/js/Royale/generated-sources">
+        <mkdir dir="${ROYALE_HOME}/frameworks/js/generated-sources"/>
+        <copy todir="${ROYALE_HOME}/frameworks/js/generated-sources">
             <fileset dir="${basedir}/target/generated-sources/royale">
                 <include name="**/**" />
             </fileset>

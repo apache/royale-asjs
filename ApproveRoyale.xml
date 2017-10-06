@@ -406,7 +406,7 @@
                 <exclude name="js/lib/google/**"/>
                 <!--          compiled output     -->
                 <exclude name="frameworks/projects/*/target/**"/>
-                <exclude name="frameworks/js/Royale/projects/*/target/**"/>
+                <exclude name="frameworks/js/projects/*/target/**"/>
                 <!--          swcs     -->
                 <exclude name="frameworks/libs/Basic.swc"/>
                 <exclude name="frameworks/libs/Binding.swc"/>
@@ -432,30 +432,30 @@
                 <exclude name="frameworks/libs/Reflection.swc"/>
                 <exclude name="frameworks/libs/Storage.swc"/>
                 <exclude name="frameworks/libs/XML.swc"/>
-                <exclude name="frameworks/js/Royale/libs/BasicJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/BindingJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/ChartsJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/CollectionsJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/CoreJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/CreateJSJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/DragDropJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/EffectsJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/ExpressJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/FlatJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/FontAwesomeJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/FormattersJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/GoogleMapsJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/GraphicsJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/HTMLJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/HTML5JS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/jQueryJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/LanguageJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/MaterialDesignLiteJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/MobileJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/NetworkJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/ReflectionJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/StorageJS.swc"/>
-                <exclude name="frameworks/js/Royale/libs/XMLJS.swc"/>
+                <exclude name="frameworks/js/libs/BasicJS.swc"/>
+                <exclude name="frameworks/js/libs/BindingJS.swc"/>
+                <exclude name="frameworks/js/libs/ChartsJS.swc"/>
+                <exclude name="frameworks/js/libs/CollectionsJS.swc"/>
+                <exclude name="frameworks/js/libs/CoreJS.swc"/>
+                <exclude name="frameworks/js/libs/CreateJSJS.swc"/>
+                <exclude name="frameworks/js/libs/DragDropJS.swc"/>
+                <exclude name="frameworks/js/libs/EffectsJS.swc"/>
+                <exclude name="frameworks/js/libs/ExpressJS.swc"/>
+                <exclude name="frameworks/js/libs/FlatJS.swc"/>
+                <exclude name="frameworks/js/libs/FontAwesomeJS.swc"/>
+                <exclude name="frameworks/js/libs/FormattersJS.swc"/>
+                <exclude name="frameworks/js/libs/GoogleMapsJS.swc"/>
+                <exclude name="frameworks/js/libs/GraphicsJS.swc"/>
+                <exclude name="frameworks/js/libs/HTMLJS.swc"/>
+                <exclude name="frameworks/js/libs/HTML5JS.swc"/>
+                <exclude name="frameworks/js/libs/jQueryJS.swc"/>
+                <exclude name="frameworks/js/libs/LanguageJS.swc"/>
+                <exclude name="frameworks/js/libs/MaterialDesignLiteJS.swc"/>
+                <exclude name="frameworks/js/libs/MobileJS.swc"/>
+                <exclude name="frameworks/js/libs/NetworkJS.swc"/>
+                <exclude name="frameworks/js/libs/ReflectionJS.swc"/>
+                <exclude name="frameworks/js/libs/StorageJS.swc"/>
+                <exclude name="frameworks/js/libs/XMLJS.swc"/>
             </fileset>
         </rat:report>
         

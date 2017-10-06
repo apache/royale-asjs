@@ -99,7 +99,7 @@
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <js-library-path>
-          <path-element>js/Royale/libs</path-element>
+          <path-element>js/libs</path-element>
       </js-library-path>
 
       <allow-subclass-overrides>true</allow-subclass-overrides>

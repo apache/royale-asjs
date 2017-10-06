@@ -56,7 +56,7 @@
         
         <!-- overwrite the default library-path setting -->
         <library-path>
-            <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
+            <path-element>../../../../../../../js/libs/GCL.swc</path-element>
             <!-- asjscompc won't 'link' these classes in, but will list their requires
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
@@ -69,16 +69,16 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
-                <manifest>../../../../../../../projects/Basic/src/main/resources/basic-manifest.xml</manifest>
+                <manifest>../../../../../../projects/Basic/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/svg</uri>
-                <manifest>../../../../../../../projects/Basic/src/main/resources/svg-manifest.xml</manifest>
+                <manifest>../../../../../../projects/Basic/src/main/resources/svg-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../../../../../../../projects/Basic/src/main/royale</path-element>
+            <path-element>../../../../../../projects/Basic/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -86,7 +86,7 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>../../../../../../../projects/Basic/src/main/resources/defaults.css</path>
+        <path>../../../../../../projects/Basic/src/main/resources/defaults.css</path>
     </include-file>
     
     <include-sources>

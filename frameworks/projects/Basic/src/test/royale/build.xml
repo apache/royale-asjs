@@ -58,7 +58,7 @@
         type="dir"
         property="FLEXUNIT_LIBPATH2"
         value="-swf-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
-        <property name="FLEXUNIT_LIBPATH2" value="-define=CONFIG::dummy,false" />
+    <property name="FLEXUNIT_LIBPATH2" value="-define=CONFIG::dummy,false" />
 
     <available file="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target"
         type="dir"
@@ -112,18 +112,10 @@
             file="${basedir}/FlexUnitRoyaleApplication.mxml"
             output="${basedir}/FlexUnitRoyaleApplication.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="-debug" />
             <arg value="-compiler.targets=SWF" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.royale.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.royale.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="-define=COMPILE::SWF,true" />
-            <arg value="-define=COMPILE::JS,false" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-source-path+=${ROYALE_HOME}/frameworks/projects/Basic/src/main/royale" />
             <arg value="-swf-library-path+=${ROYALE_HOME}/frameworks/libs" />
             <arg value="${FLEXUNIT_LIBPATH1}" />
             <arg value="${FLEXUNIT_LIBPATH2}" />

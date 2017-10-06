@@ -73,7 +73,7 @@ under the License.
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>frameworks/js/Royale/libs</outputDirectory>
+      <outputDirectory>frameworks/js/libs</outputDirectory>
       <includes>
         <include>org.apache.royale.framework:*:swc:js</include>
       </includes>

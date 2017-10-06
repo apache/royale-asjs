@@ -29,7 +29,7 @@
         <strict-xml>true</strict-xml>
 
         <external-library-path append="true">
-            <path-element>../../../../../../../../js/libs/cordova.swc</path-element>
+            <path-element>../../../../../../../js/libs/cordova.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -60,7 +60,7 @@
         
         <!-- overwrite the default library-path setting -->
         <library-path>
-            <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
+            <path-element>../../../../../../../js/libs/GCL.swc</path-element>
             <!-- asjscompc won't 'link' these classes in, but will list their requires
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
@@ -70,12 +70,12 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
-                <manifest>../../../../../../../projects/Storage/src/main/resources/basic-manifest.xml</manifest>
+                <manifest>../../../../../../projects/Storage/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../../../../../../../projects/Storage/src/main/royale</path-element>
+            <path-element>../../../../../../projects/Storage/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -83,7 +83,7 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>../../../../../../../projects/Storage/src/main/resources/defaults.css</path>
+        <path>../../../../../../projects/Storage/src/main/resources/defaults.css</path>
     </include-file>
     
     <include-sources>

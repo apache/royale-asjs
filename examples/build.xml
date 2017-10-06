@@ -87,8 +87,8 @@
         <ant dir="${basedir}/royale/DateControlsExample"/>
         <ant dir="${basedir}/royale/DesktopMap"/>
         <ant dir="${basedir}/royale/DragAndDropExample"/>
-        <ant dir="${basedir}/royale/FlexTeamPage_MDL"/>
-        <ant dir="${basedir}/royale/FlexWebsiteStatsViewer"/>
+        <ant dir="${basedir}/royale/RoyaleTeamPage_MDL"/>
+        <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer"/>
         <ant dir="${basedir}/royale/RoyaleStore"/>
         <ant dir="${basedir}/royale/RoyaleStore_jquery"/>
         <ant dir="${basedir}/royale/HelloWorld"/>
@@ -135,8 +135,8 @@
         <ant dir="${basedir}/royale/DateControlsExample" target="clean"/>
         <ant dir="${basedir}/royale/DesktopMap" target="clean"/>
         <ant dir="${basedir}/royale/DragAndDropExample" target="clean"/>
-        <ant dir="${basedir}/royale/FlexTeamPage_MDL" target="clean"/>
-        <ant dir="${basedir}/royale/FlexWebsiteStatsViewer" target="clean"/>
+        <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="clean"/>
+        <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleStore" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleStore_jquery" target="clean"/>
         <ant dir="${basedir}/royale/HelloWorld" target="clean"/>
@@ -173,8 +173,8 @@
         <ant dir="${basedir}/royale/DateControlsExample" target="examine"/>
         <ant dir="${basedir}/royale/DesktopMap" target="examine"/>
         <ant dir="${basedir}/royale/DragAndDropExample" target="examine"/>
-        <ant dir="${basedir}/royale/FlexTeamPage_MDL" target="examine"/>
-        <ant dir="${basedir}/royale/FlexWebsiteStatsViewer" target="examine"/>
+        <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="examine"/>
+        <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="examine"/>
         <ant dir="${basedir}/royale/RoyaleStore" target="examine"/>
         <ant dir="${basedir}/royale/RoyaleStore_jquery" target="examine"/>
         <ant dir="${basedir}/royale/HelloWorld" target="examine"/>

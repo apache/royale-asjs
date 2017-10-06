@@ -53,7 +53,7 @@
 	    <!-- pixelbender files (Version 1.0) -->
     <!-- Because this requires a network connection it downloads only if it doesn't already exist. -->
     <target name="pixelbender-check" description="Checks if PixelBender files have been downloaded.">
-        <available file="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/royale/org/apache.royale/graphics/utils/shaderClasses/ColorBurn.pbj" property="pixelbender.pbj.present"/>
+        <available file="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/ColorBurn.pbj" property="pixelbender.pbj.present"/>
     </target>
     
     <target name="pixelbender-download" depends="pixelbender-check" unless="pixelbender.pbj.present"
@@ -67,7 +67,7 @@
             <param name="dest" value="${download.dir}/${pixelbender.bin.zip}" />
         </antcall>
         
-        <unzip src="${download.dir}/${pixelbender.bin.zip}" dest="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/royale/org/apache.royale/graphics/utils/shaderClasses/">
+        <unzip src="${download.dir}/${pixelbender.bin.zip}" dest="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/">
             <patternset>
                 <include name="frameworks/projects/framework/src/mx/graphics/shaderClasses/*.pbj"/>
             </patternset>
@@ -79,7 +79,7 @@
 
     <target name="pixelbender-clean" description="Deletes pbj files.">
 	    <delete failonerror="false">
-            <fileset dir="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/royale/org/apache.royale/graphics/utils/shaderClasses">
+            <fileset dir="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses">
                 <include name="*.pbj"/>
             </fileset>
         </delete>

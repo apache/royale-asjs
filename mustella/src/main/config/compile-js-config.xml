@@ -66,7 +66,7 @@
         <!-- overwrite the default library-path setting -->
         <library-path>
           <path-element>../../../../js/libs/GCL.swc</path-element>
-          <path-element>../../../../frameworks/js/Royale/libs/CoreJS.swc</path-element>
+          <path-element>../../../../frameworks/js/libs/CoreJS.swc</path-element>
         </library-path>
         
         <source-path>

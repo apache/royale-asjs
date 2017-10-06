@@ -33,7 +33,7 @@
     </target>
     
     <target name="compile-js">
-        <ant dir="${ROYALE_HOME}/frameworks/js/Royale/projects/${ant.project.name}JS/" inheritAll="false" >
+        <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" >
             <property name="FALCON_HOME" value="${FALCON_HOME}"/>
             <property name="FALCONJX_HOME" value="${FALCONJX_HOME}"/>
             <property name="FLEX_HOME" value="${FLEX_HOME}"/>
@@ -92,7 +92,7 @@
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
-            <arg value="-js-load-config+=${basedir}/../../js/Royale/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
+            <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
     </target>
 

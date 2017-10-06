@@ -57,17 +57,17 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
-                <manifest>../../../../../../../projects/Core/src/main/resources/basic-manifest.xml</manifest>
+                <manifest>../../../../../../projects/Core/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
 
         <!-- overwrite the default library-path setting -->
         <library-path>
-          <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
+          <path-element>../../../../../../../js/libs/GCL.swc</path-element>
         </library-path>
         
         <source-path>
-            <path-element>../../../../../../../projects/Core/src/main/royale</path-element>
+            <path-element>../../../../../../projects/Core/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>

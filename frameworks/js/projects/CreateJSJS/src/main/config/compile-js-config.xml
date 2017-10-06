@@ -57,12 +57,12 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/createjs</uri>
-                <manifest>../../../../../../../projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
+                <manifest>../../../../../../projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../../../../../../../projects/CreateJS/src/main/royale</path-element>
+            <path-element>../../../../../../projects/CreateJS/src/main/royale</path-element>
         </source-path>
         
         <library-path>
@@ -76,7 +76,7 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>../../../../../../../projects/CreateJS/src/main/resources/defaults.css</path>
+        <path>../../../../../../projects/CreateJS/src/main/resources/defaults.css</path>
     </include-file>
     
     <include-sources>
