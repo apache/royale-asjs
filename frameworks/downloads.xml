@@ -31,10 +31,10 @@
 	<property name="download.dir" value="${ROYALE_HOME}/in"/>
     <property name="pixelbender.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
     <property name="pixelbender.folder" value="flex/pixelbender/1.0/binaries" />
-    <property name="pixelbender.bin.zip" value="apache.royale-sdk-pixel-bender-1.0.0-bin.zip" />
+    <property name="pixelbender.bin.zip" value="apache-flex-sdk-pixel-bender-1.0.0-bin.zip" />
     <property name="flexunit.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
-    <property name="flexunit.folder" value="flex/royaleunit/4.2.0/binaries" />
-    <property name="flexunit.bin.zip" value="apache.royale-flexunit-4.2.0-4.12.0-bin.zip" />
+    <property name="flexunit.folder" value="flex/flexunit/4.2.0/binaries" />
+    <property name="flexunit.bin.zip" value="apache-flex-flexunit-4.2.0-4.12.0-bin.zip" />
    
     <!--
        To clean these you must call thirdparty-clean or super-clean to clean everything.  
@@ -87,7 +87,7 @@
 
     <!-- Because this requires a network connection it downloads only if it doesn't already exist. -->
     <target name="flexunit-check" description="Checks if FlexUnit files have been downloaded.">
-        <available file="${ROYALE_HOME}/in/royaleunit" property="flexunit.present"/>
+        <available file="${ROYALE_HOME}/in/flexunit" property="flexunit.present"/>
     </target>
 
     <target name="flexunit-download" depends="flexunit-check" unless="flexunit.present"
@@ -101,11 +101,11 @@
             <param name="dest" value="${download.dir}/${flexunit.bin.zip}" />
         </antcall>
         
-        <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${ROYALE_HOME}/in/royaleunit" />
+        <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${ROYALE_HOME}/in/flexunit" />
     </target>
 
     <target name="flexunit-clean" description="Deletes flexunit files.">
-        <delete dir="${ROYALE_HOME}/in/royaleunit" failonerror="false" />
+        <delete dir="${ROYALE_HOME}/in/flexunit" failonerror="false" />
     </target>
 
     <!-- swfobject.js (Version 2.2) -->

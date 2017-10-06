@@ -38,10 +38,10 @@
 	
     <property name="report.dir" value="${basedir}/out" />
     
-    <available file="${ROYALE_HOME}/in/royaleunit"
+    <available file="${ROYALE_HOME}/in/flexunit"
         type="dir"
         property="FLEXUNIT_HOME"
-        value="${ROYALE_HOME}/in/royaleunit" />
+        value="${ROYALE_HOME}/in/flexunit" />
 	
     <available file="${env.FLEXUNIT_HOME}"
         type="dir"
@@ -51,8 +51,8 @@
     <available file="${FLEXUNIT_HOME}/FlexUnit4/target"
         type="dir"
         property="FLEXUNIT_LIBPATH1"
-        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/royaleunit-4.3.0-20140410-as3_4.12.0.swc" />
-    <property name="FLEXUNIT_LIBPATH1" value="-library-path+=${FLEXUNIT_HOME}/royaleunit" />
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc" />
+    <property name="FLEXUNIT_LIBPATH1" value="-library-path+=${FLEXUNIT_HOME}/flexunit" />
         
     <available file="${FLEXUNIT_HOME}/FlexUnit4CIListener/target"
         type="dir"
@@ -64,7 +64,7 @@
         type="dir"
         property="FLEXUNIT_CLASSPATH"
         value="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target" />
-    <property name="FLEXUNIT_CLASSPATH" value="${FLEXUNIT_HOME}/royaleunit" />
+    <property name="FLEXUNIT_CLASSPATH" value="${FLEXUNIT_HOME}/flexunit" />
         
     <target name="main" depends="clean,compile,test" description="Clean test of ${target.name}">
     </target>
@@ -143,7 +143,7 @@
 			timeout="90000">
             <source dir="${ROYALE_HOME}/frameworks/projects/Core/src/main/royale" />
             <library dir="${ROYALE_HOME}/frameworks/libs" />
-        </royaleunit>
+        </flexunit>
         
 		<!-- Generate readable JUnit-style reports -->
 		<junitreport todir="${report.dir}">

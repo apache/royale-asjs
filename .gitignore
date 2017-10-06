@@ -65,6 +65,7 @@ frameworks/flex-config.xml
 frameworks/jquery-config.xml
 frameworks/js-config.xml
 frameworks/node-config.xml
+frameworks/royale-config.xml
 env.properties
 local.properties
 /flex-sdk-description.xml
