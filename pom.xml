@@ -60,7 +60,7 @@
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
     <royale.debug>true</royale.debug>
-    <flex.version>4.15.0</royale.version>
+    <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
@@ -85,7 +85,7 @@
 
   <issueManagement>
     <system>Jira</system>
-    <url>https://github.com/apache/royale-asjs/issues/url>
+    <url>https://github.com/apache/royale-asjs/issues</url>
   </issueManagement>
 
   <mailingLists>

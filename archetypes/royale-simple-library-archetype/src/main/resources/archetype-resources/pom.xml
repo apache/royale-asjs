@@ -75,7 +75,7 @@
     <!-- For JavaScript compilation, we need some other base classes -->
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-gcl</artifactId>
+      <artifactId>royale-typedefs-gcl</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>

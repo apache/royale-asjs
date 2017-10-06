@@ -93,7 +93,7 @@
     </dependency>
     <dependency>
         <groupId>org.apache.royale.typedefs</groupId>
-        <artifactId>royale.typedefs-googlemaps</artifactId>
+        <artifactId>royale-typedefs-googlemaps</artifactId>
         <version>${royale.typedefs.version}</version>
         <type>swc</type>
         <classifier>typedefs</classifier>

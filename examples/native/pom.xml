@@ -49,7 +49,7 @@
        -->
       <dependency>
           <groupId>org.apache.royale.typedefs</groupId>
-          <artifactId>royale.typedefs-js</artifactId>
+          <artifactId>royale-typedefs-js</artifactId>
           <version>${royale.typedefs.version}</version>
           <type>swc</type>
           <classifier>typedefs</classifier>

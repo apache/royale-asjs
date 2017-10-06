@@ -34,7 +34,7 @@
 
   <properties>
     <!-- TODO: This is a fix till we release this via Maven -->
-    <pixelbender.download-url>http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/royale/pixelbender/1.0/binaries/apache.royale-sdk-pixel-bender-1.0.0-bin.zip</pixelbender.download-url>
+    <pixelbender.download-url>http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/flex/pixelbender/1.0/binaries/apache-flex-sdk-pixel-bender-1.0.0-bin.zip</pixelbender.download-url>
   </properties>
 
   <build>
@@ -48,7 +48,7 @@
         <includes>
           <include>*.pbj</include>
         </includes>
-        <targetPath>${project.build.directory}/generated-resources/pixelbender/org/apache.royale/graphics/utils/shaderClasses</targetPath>
+        <targetPath>${project.build.directory}/generated-resources/pixelbender/org/apache/royale/graphics/utils/shaderClasses</targetPath>
       </resource>
     </resources>
     <plugins>

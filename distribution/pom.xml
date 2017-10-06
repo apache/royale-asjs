@@ -383,56 +383,56 @@
     <!-- Add dependencies to the externs from the compiler module -->
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-cordova</artifactId>
+      <artifactId>royale-typedefs-cordova</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-createjs</artifactId>
+      <artifactId>royale-typedefs-createjs</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-gcl</artifactId>
+      <artifactId>royale-typedefs-gcl</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-googlemaps</artifactId>
+      <artifactId>royale-typedefs-googlemaps</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-jasmine</artifactId>
+      <artifactId>royale-typedefs-jasmine</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-jquery</artifactId>
+      <artifactId>royale-typedefs-jquery</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-js</artifactId>
+      <artifactId>royale-typedefs-js</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale.typedefs-node</artifactId>
+      <artifactId>royale-typedefs-node</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
