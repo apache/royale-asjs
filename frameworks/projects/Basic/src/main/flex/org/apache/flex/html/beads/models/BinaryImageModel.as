@@ -78,7 +78,7 @@ package org.apache.flex.html.beads.models
 			if (value != _binary) {
 				_binary = value;
 				if(value)
-					url = "";
+					_url = "";
 				dispatchEvent( new Event("binaryChanged") );
 			}
 		}

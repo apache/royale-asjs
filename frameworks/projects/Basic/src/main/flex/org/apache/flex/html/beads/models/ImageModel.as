@@ -62,7 +62,7 @@ package org.apache.flex.html.beads.models
 			_strand = value;
 		}
 		
-		private var _url:String;
+		protected var _url:String;
 		
 		/**
 		 *  The source of the image.
