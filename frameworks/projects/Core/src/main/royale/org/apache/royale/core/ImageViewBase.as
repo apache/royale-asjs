@@ -142,15 +142,20 @@ package org.apache.royale.core
 		{
 			return (_strand as IImage).imageElement;
 		}
-			
+		
+        COMPILE::JS
+        private var _sizeHandlerSet:Boolean;
         COMPILE::JS
 		public function setupLoader():void
         {
             var host:IUIBase = _strand as IUIBase;
-            imageElement.addEventListener('load',
-                loadHandler, false);
-            host.addEventListener('sizeChanged',
-                sizeChangedHandler);
+            imageElement.addEventListener('load', loadHandler);
+            //only do this once. We don't want multiple event listeners
+            if(!_sizeHandlerSet)
+            {
+                host.addEventListener('sizeChanged', sizeChangedHandler);
+                _sizeHandlerSet = true;
+            }
         }
 		
 		/**
@@ -159,6 +164,7 @@ package org.apache.royale.core
         COMPILE::SWF
 		private function onComplete(event:Object):void
 		{
+            loader.contentLoaderInfo.removeEventListener("complete",onComplete);
             var host:ILayoutChild = ILayoutChild(_strand);
 			var hostSprite:Sprite = (host as IRenderedObject).$displayObject as Sprite;
 			
@@ -208,6 +214,7 @@ package org.apache.royale.core
         COMPILE::JS
         protected function loadHandler(event:Object):void
         {
+            imageElement.removeEventListener('load', loadHandler);
             var host:IUIBase = _strand as IUIBase;
 			host.dispatchEvent(new Event("layoutNeeded"));
         }
