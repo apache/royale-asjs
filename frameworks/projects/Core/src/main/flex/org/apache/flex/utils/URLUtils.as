@@ -45,8 +45,8 @@ package org.apache.flex.utils
 			win = win || window;
 			if(win["URL"])
 				return win["URL"].createObjectURL(blobOrFile);
-			if(win.webkitURL)
-				return win.webkitURL.createObjectURL(blobOrFile);
+			else if(win["webkitURL"])
+				return win["webkitURL"].createObjectURL(blobOrFile);
 
 			return "";
 		}
@@ -56,8 +56,8 @@ package org.apache.flex.utils
 			win = win || window;
 			if(win["URL"])
 				win["URL"].revokeObjectURL(objectURL);
-			if(win.webkitURL)
-				win.webkitURL.revokeObjectURL(objectURL);
+			else if(win["webkitURL"])
+				win["webkitURL"].revokeObjectURL(objectURL);
 		}
 		
 		public static function getFullPath(host:Object, url:String):String
