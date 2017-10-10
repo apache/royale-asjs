@@ -87,7 +87,7 @@ Width and height are hard-coded in the root tag to help the Design view.
                         <js:style>
                             <js:SimpleCSSStyles left="10" top="10" />                        
                         </js:style>
-						<js:Label text="Flex Experts That Can Help You" className="sectionHeader"/>
+						<js:Label text="Royale Experts That Can Help You" className="sectionHeader"/>
 						<js:HRule height="5" width="187" style="marginLeft:0"/>
 						<js:Label text="General" className="homeProgramHeader"/>
 						<js:Label text="BlazeDS Experts" style="fontSize:9"/>

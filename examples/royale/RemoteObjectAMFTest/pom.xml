@@ -55,7 +55,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <targets>SWF,JSFlex</targets>
+          <targets>SWF,JSRoyale</targets>
           <!--<htmlTemplate>${basedir}/target/javascript/bin/js-debug/mdl-js-index-template.html</htmlTemplate>-->
           <!--<additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-0.9.0-SNAPSHOT.swc:defaults.css</additionalCompilerOptions>-->
         </configuration>

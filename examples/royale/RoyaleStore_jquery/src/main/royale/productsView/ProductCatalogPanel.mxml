@@ -30,9 +30,9 @@ limitations under the License.
     >
     
     <fx:Metadata>
-        [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
-        [Event(name="compare", type="samples.flexstore.ProductThumbEvent")]
-        [Event(name="details", type="samples.flexstore.ProductThumbEvent")]
+        [Event(name="purchase", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="details", type="samples.royalestore.ProductThumbEvent")]
     </fx:Metadata>
     
     <fx:Script>
@@ -47,10 +47,10 @@ limitations under the License.
             import org.apache.royale.events.Event;
             import org.apache.royale.collections.LazyCollection;
             
-            import samples.flexstore.Product;
-            import samples.flexstore.ProductFilter;
-            import samples.flexstore.ProductFilterEvent;
-            import samples.flexstore.ProductThumbEvent;
+            import samples.royalestore.Product;
+            import samples.royalestore.ProductFilter;
+            import samples.royalestore.ProductFilterEvent;
+            import samples.royalestore.ProductThumbEvent;
        
      
         private var accepted:Object = new Object();

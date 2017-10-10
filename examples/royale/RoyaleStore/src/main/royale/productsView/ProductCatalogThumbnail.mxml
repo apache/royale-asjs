@@ -43,9 +43,9 @@ limitations under the License.
                                borderColor="#FFFFFF" backgroundColor="#FFFFFF"/>
     </js:style>
     <fx:Metadata>
-        [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
-        [Event(name="compare", type="samples.flexstore.ProductThumbEvent")]
-        [Event(name="details", type="samples.flexstore.ProductThumbEvent")]
+        [Event(name="purchase", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="details", type="samples.royalestore.ProductThumbEvent")]
     </fx:Metadata>
 
     <fx:Script>
@@ -54,8 +54,8 @@ limitations under the License.
 		import org.apache.royale.events.*;
         import org.apache.royale.utils.PointUtils;
             
-        import samples.flexstore.Product;
-        import samples.flexstore.ProductThumbEvent;
+        import samples.royalestore.Product;
+        import samples.royalestore.ProductThumbEvent;
         
         public static const COL_WIDTH_4:int = 162;
         public static const COL_HEIGHT_4:int = 122;

@@ -20,17 +20,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!--
-        TODO:
-        Flash Version:
-          - Radio Buttons are not clickable.
-          - If Flash-Frame is resized and then the calendar is clicked:
-             TypeError: Error #1034: Type Coercion failed: cannot convert org.apache.royale.events::MouseEvent@3d5032523b81 to org.apache.royale.events.Event.
-	              at flash.events::EventDispatcher/dispatchEventFunction()
-	              at flash.events::EventDispatcher/dispatchEvent()
-	              at org.apache.royale.events.utils::MouseEventConverter$/mouseEventConverter()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/Core/src/main/royale/org/apache.royale/events/utils/MouseEventConverter.as:92]
-  -->
-
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>

@@ -20,7 +20,7 @@ limitations under the License.
 <js:VContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
                   xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:productsView="productsView.*"
-    xmlns:flexstore="samples.flexstore.*"
+    xmlns:royalestore="samples.royalestore.*"
     height="100%" 
     currentState="showingThumbnails"
     initComplete="series.selectedIndex = 0">
@@ -34,7 +34,7 @@ limitations under the License.
     </js:style>
     
     <fx:Metadata>
-       [Event(name="filter", type="samples.flexstore.ProductFilterEvent")] 
+       [Event(name="filter", type="samples.royalestore.ProductFilterEvent")] 
        [Event("compare")]
     </fx:Metadata>
     
@@ -42,7 +42,7 @@ limitations under the License.
         <![CDATA[
         import org.apache.royale.html.Slider;
         import org.apache.royale.html.SimpleAlert; 
-        import samples.flexstore.ProductFilterEvent;
+        import samples.royalestore.ProductFilterEvent;
            
         private var thumbBeingPressed:Boolean;
            
@@ -90,14 +90,14 @@ limitations under the License.
         ]]>
     </fx:Script>
     <fx:Declarations>
-        <flexstore:ProductFilter id="filter">
-            <flexstore:experience>{series.selectedItem}</flexstore:experience>
-            <flexstore:minPrice>{loPrice.value}</flexstore:minPrice>
-            <flexstore:maxPrice>{hiPrice.value}</flexstore:maxPrice>
-            <flexstore:blazeds>{cbBlazeDS.selected}</flexstore:blazeds>
-            <flexstore:mobile>{cbMobile.selected}</flexstore:mobile>
-            <flexstore:video>{cbVideo.selected}</flexstore:video>
-        </flexstore:ProductFilter>
+        <royalestore:ProductFilter id="filter">
+            <royalestore:experience>{series.selectedItem}</royalestore:experience>
+            <royalestore:minPrice>{loPrice.value}</royalestore:minPrice>
+            <royalestore:maxPrice>{hiPrice.value}</royalestore:maxPrice>
+            <royalestore:blazeds>{cbBlazeDS.selected}</royalestore:blazeds>
+            <royalestore:mobile>{cbMobile.selected}</royalestore:mobile>
+            <royalestore:video>{cbVideo.selected}</royalestore:video>
+        </royalestore:ProductFilter>
         
         <js:CurrencyFormatter currencySymbol="$" id="cf"/>    
         

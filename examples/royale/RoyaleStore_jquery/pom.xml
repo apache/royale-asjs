@@ -20,20 +20,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!--
-        TODO:
-        Flash Version:
-          - Missing CSS and Resources
-          - Error #2044: Unhandled IOErrorEvent:. text=Error #2036: Load Never Completed.
-
-        JavaScript Version:
-          Got these warnings in the build:
-            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/royale-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
-            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/royale-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
-            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/royale-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
-
-  -->
-
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>

@@ -23,7 +23,7 @@ The DebuggingExample shows how to use the debugging package.
 
 The debugging functions will only be called in the debug build and will do nothing in the release build.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using Falcon JX)
 into JavaScript and HTML and run without Flash.
 
 

@@ -23,7 +23,7 @@ The TableExample demonstrates the use of the Table component. Using Table, you
 can build column by row structured grids. When cross compiled to JavaScript, the
 Table component produces an HTML <table> structure.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using Falcon JX)
 into JavaScript and HTML and run without Flash.
 
 COMPONENTS and BEADS

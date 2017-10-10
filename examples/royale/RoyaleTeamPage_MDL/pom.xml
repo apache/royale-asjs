@@ -26,11 +26,11 @@
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>FlexTeamPage_MDL</artifactId>
+  <artifactId>RoyaleTeamPage_MDL</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: FlexTeamPage_MDL</name>
+  <name>Apache Royale: Examples: Royale: RoyaleTeamPage_MDL</name>
 
   <properties>
     <!-- Customize MDL colors using this the tool at : https://getmdl.io/customize/index.html -->
@@ -53,7 +53,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <targets>JSFlex</targets>
+          <targets>JSRoyale</targets>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/mdl-js-index-template.html</htmlTemplate>
           <additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-0.9.0-SNAPSHOT-js.swc:defaults.css</additionalCompilerOptions>
         </configuration>

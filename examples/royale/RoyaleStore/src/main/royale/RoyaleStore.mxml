@@ -21,7 +21,7 @@ limitations under the License.
                 xmlns:js="library://ns.apache.org/royale/basic" 
                 xmlns="*"
                 initialize="startService()"
-			    pageTitle="FlexStore">
+			    pageTitle="RoyaleStore">
 	
 	<fx:Script>
 		<![CDATA[	

@@ -23,7 +23,7 @@ The DateControlsExample demonstrates the DateChooser and DateField components. T
 DataChooser displays a calendar in place while the DateField displays a calendar
 in a pop-up.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using Falcon JX)
 into JavaScript and HTML and run without Flash.
 
 Selecting a date from the DateChooser sets the date in the DateField.

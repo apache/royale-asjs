@@ -47,7 +47,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>TabsExample.mxml</mainClass>
-          <targets>JSFlex</targets>
+          <targets>JSRoyale</targets>
           <removeCirculars>true</removeCirculars>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/mdl-js-index-template.html</htmlTemplate>
           <additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-0.9.0-SNAPSHOT-js.swc:defaults.css</additionalCompilerOptions>

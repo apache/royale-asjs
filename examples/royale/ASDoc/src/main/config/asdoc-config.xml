@@ -294,7 +294,7 @@
           -->
 
           <!-- Compiler font manager classes, in policy resolution order -->
-          <!-- NOTE: For Apache Flex -->
+          <!-- NOTE: For Apache Royale -->
           <!-- AFEFontManager and CFFFontManager both use proprietary technology.  -->
           <!-- You must install the optional font jars if you wish to use embedded fonts  -->
           <!-- directly or you can use fontswf to precompile the font as a swf.  -->

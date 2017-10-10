@@ -19,9 +19,9 @@
 -->
 
 
-<project name="FlexWebsiteStatsViewer" default="main" basedir=".">
+<project name="RoyaleWebsiteStatsViewer" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="FlexWebsiteStatsViewer" />
+    <property name="example" value="RoyaleWebsiteStatsViewer" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

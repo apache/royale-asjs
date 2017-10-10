@@ -19,12 +19,12 @@
 
 DESCRIPTION
 
-The DataBindingExample shows a Flex application that can communicate with
+The DataBindingExample shows a Royale application that can communicate with
 a third-party data source (in this case, yahoo.finance) and display the values
 returned using data binding. It also demonstrates that you can use “states” to
 control the UI.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using Falcon JX)
 into JavaScript and HTML and run without Flash.
 
 The DataBindingExample  also shows how the model-view-controller (MVC) pattern

@@ -22,7 +22,7 @@ limitations under the License.
                 xmlns:jquery="library://ns.apache.org/royale/jquery"
                 xmlns="*"
                 initialize="startService()"
-			    pageTitle="FlexStore">
+			    pageTitle="RoyaleStore">
 	
 	<fx:Script>
 		<![CDATA[	

@@ -37,8 +37,8 @@ limitations under the License.
         
         import org.apache.royale.html.SimpleAlert;
         
-        import samples.flexstore.Product;
-        import samples.flexstore.ProductListEvent;
+        import samples.royalestore.Product;
+        import samples.royalestore.ProductListEvent;
         
         [Bindable]
         public var numProducts:int=0;

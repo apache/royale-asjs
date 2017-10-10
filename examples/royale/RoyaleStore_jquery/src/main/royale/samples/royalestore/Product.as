@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package samples.flexstore
+package samples.royalestore
 {
 
 [Bindable]

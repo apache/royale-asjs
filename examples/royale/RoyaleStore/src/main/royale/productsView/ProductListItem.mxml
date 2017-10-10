@@ -24,15 +24,15 @@ limitations under the License.
     <!--automationName="{product.name}">-->
 
     <fx:Metadata>
-       [Event(name="productQtyChange", type="samples.flexstore.ProductListEvent")]
-       [Event(name="removeProduct", type="samples.flexstore.ProductListEvent")]
+       [Event(name="productQtyChange", type="samples.royalestore.ProductListEvent")]
+       [Event(name="removeProduct", type="samples.royalestore.ProductListEvent")]
     </fx:Metadata>
     
     <fx:Script>
     <![CDATA[
     
-        import samples.flexstore.Product;
-        import samples.flexstore.ProductListEvent;
+        import samples.royalestore.Product;
+        import samples.royalestore.ProductListEvent;
         
         private static var idCounter:int = 0;
         public var uid:String = (idCounter++).toString();

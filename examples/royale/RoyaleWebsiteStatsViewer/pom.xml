@@ -26,11 +26,11 @@
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>FlexWebsiteStatsViewer</artifactId>
+  <artifactId>RoyaleWebsiteStatsViewer</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: FlexWebsiteStatsViewer</name>
+  <name>Apache Royale: Examples: Royale: RoyaleWebsiteStatsViewer</name>
 
   <build>
     <plugins>
@@ -39,7 +39,7 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>FlexWebsiteStatsViewer.mxml</mainClass>
+          <mainClass>RoyaleWebsiteStatsViewer.mxml</mainClass>
           <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>

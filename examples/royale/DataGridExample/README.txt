@@ -23,7 +23,7 @@ The DataGridExample demonstrates the Royale DataGrid which is a composite
 component that is built from a set of List components; each List is a column
 in the DataGrid. The header is provided by the ButtonBar component.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using Falcon JX)
 into JavaScript and HTML and run without Flash.
 
 The data for the DataGrid is found in the application's model and is connected

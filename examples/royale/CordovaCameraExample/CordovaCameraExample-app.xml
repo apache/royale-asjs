@@ -137,10 +137,10 @@
 	<supportedProfiles>extendedDesktop desktop mobileDevice</supportedProfiles>
 
 	<!-- The subpath of the standard default installation location to use. Optional. -->
-	<installFolder>Apache Flex</installFolder>
+	<installFolder>Apache Royale</installFolder>
 
 	<!-- The subpath of the Programs menu to use. (Ignored on operating systems without a Programs menu.) Optional. -->
-	<programMenuFolder>Apache Flex</programMenuFolder>
+	<programMenuFolder>Apache Royale</programMenuFolder>
 
 	<!-- The icon the system uses for the application. For at least one resolution,
 	specify the path to a PNG file included in the AIR package. Optional. -->

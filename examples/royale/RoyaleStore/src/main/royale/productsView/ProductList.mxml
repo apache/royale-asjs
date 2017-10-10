@@ -26,10 +26,10 @@ limitations under the License.
     <!-- need a background color for drag and drop but can set alpha to 0 -->
     
     <fx:Metadata>
-       [Event(name="addProduct", type="samples.flexstore.ProductListEvent")]
-       [Event(name="duplicateProduct", type="samples.flexstore.ProductListEvent")]
-       [Event(name="productQtyChange", type="samples.flexstore.ProductListEvent")]
-       [Event(name="removeProduct", type="samples.flexstore.ProductListEvent")]
+       [Event(name="addProduct", type="samples.royalestore.ProductListEvent")]
+       [Event(name="duplicateProduct", type="samples.royalestore.ProductListEvent")]
+       [Event(name="productQtyChange", type="samples.royalestore.ProductListEvent")]
+       [Event(name="removeProduct", type="samples.royalestore.ProductListEvent")]
     </fx:Metadata>
 
     <fx:Script>
@@ -41,8 +41,8 @@ limitations under the License.
         import org.apache.royale.core.IUIBase;
         import org.apache.royale.events.DragEvent;
         
-        import samples.flexstore.Product;
-        import samples.flexstore.ProductListEvent;
+        import samples.royalestore.Product;
+        import samples.royalestore.ProductListEvent;
         
         public var items:Array;
         

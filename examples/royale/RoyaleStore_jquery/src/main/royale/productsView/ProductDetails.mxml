@@ -26,16 +26,16 @@ limitations under the License.
     </js:beads>
 
     <fx:Metadata>
-        [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
-        [Event(name="compare", type="samples.flexstore.ProductThumbEvent")]
-        [Event(name="browse", type="samples.flexstore.ProductThumbEvent")]
+        [Event(name="purchase", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="browse", type="samples.royalestore.ProductThumbEvent")]
     </fx:Metadata>
 
     <fx:Script>
         <![CDATA[
 
-		import samples.flexstore.Product;
-		import samples.flexstore.ProductThumbEvent;
+		import samples.royalestore.Product;
+		import samples.royalestore.ProductThumbEvent;
 
         private var _product:Product;
         

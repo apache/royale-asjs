@@ -117,7 +117,7 @@ The width and height are hard-coded in the root tag to help the Design view.
                                 <js:DataItemRenderer className="listItem" width="100%">
                                     <fx:Script>
                                         <![CDATA[
-                                            import samples.flexstore.Product;
+                                            import samples.royalestore.Product;
                                             [Bindable("__NoChangeEvent__")]
                                             private function get product():Product
                                             {

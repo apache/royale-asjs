@@ -20,7 +20,7 @@ package
 {
     import org.apache.royale.collections.converters.JSONItemConverter;
     
-    import samples.flexstore.Product;
+    import samples.royalestore.Product;
     
     public class ProductJSONItemConverter extends JSONItemConverter
     {

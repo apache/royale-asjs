@@ -31,14 +31,14 @@ package controllers
 		{
 			if (a)
 			{
-				this.app = a as FlexWebsiteStatsViewer;
+				this.app = a as RoyaleWebsiteStatsViewer;
 				this.app.addEventListener("viewChanged", viewChangeHandler);
 			}
 		}
 		
         private var lastThirtyDaysUsers:String = 'https://apache.royale-dashboard.appspot.com/query?id=ahdzfmFwYWNoZS1mbGV4LWRhc2hib2FyZHIVCxIIQXBpUXVlcnkYgICAgICAgAoM&format=json'
 		
-		private var app:FlexWebsiteStatsViewer;
+		private var app:RoyaleWebsiteStatsViewer;
 		
 		private function viewChangeHandler(event:Event):void
 		{
@@ -69,7 +69,7 @@ package controllers
         
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.app = document as FlexWebsiteStatsViewer;
+			this.app = document as RoyaleWebsiteStatsViewer;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 

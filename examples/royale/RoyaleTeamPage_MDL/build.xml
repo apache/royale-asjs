@@ -19,7 +19,7 @@
 -->
 
 
-<project name="FlexTeamPage_MDL" default="main" basedir=".">
+<project name="RoyaleTeamPage_MDL" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="App" />
     
