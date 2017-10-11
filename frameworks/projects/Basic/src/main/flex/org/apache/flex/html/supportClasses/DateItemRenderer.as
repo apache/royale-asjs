@@ -86,5 +86,20 @@ package org.apache.flex.html.supportClasses
 			super.height = value;
 			element.style["line-height"] = String(value)+"px";
 		}
+		
+		/**
+		 *  Don't highlight or select dates that are blank.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+		 */
+		override public function updateRenderer():void
+		{
+			if (text != "") {
+				super.updateRenderer();
+			}
+		}
 	}
 }
