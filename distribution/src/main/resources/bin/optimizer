@@ -20,7 +20,7 @@
 ################################################################################
 
 #
-# foptimizer shell script to launch the optimizer from falcon-optimizer.jar on
+# foptimizer shell script to launch the optimizer from compiler-optimizer.jar on
 # OSX, Unix, or Cygwin. In Windows Command Prompt, use foptimizer.bat instead.
 #
 
@@ -59,4 +59,4 @@ fi
 
 VMARGS="-Xms32m -Xmx512m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${FALCON_HOME}/lib/falcon-optimizer.jar" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${FALCON_HOME}/lib/compiler-optimizer.jar" "$@"

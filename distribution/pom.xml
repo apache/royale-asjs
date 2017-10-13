@@ -44,7 +44,7 @@
     <module>jars/compiler-asc</module>
     <module>jars/compiler-compc</module>
     <module>jars/compiler-mxmlc</module>
-    <module>jars/falcon-optimizer</module>
+    <module>jars/compiler-optimizer</module>
     <module>jars/falcon-swfdump</module>
     <module>jars/mxmlc</module>
   </modules>
@@ -488,7 +488,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
-      <artifactId>falcon-optimizer</artifactId>
+      <artifactId>compiler-optimizer</artifactId>
       <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
