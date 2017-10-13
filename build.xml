@@ -278,6 +278,8 @@
             property="FALCON_REPO"
             value="${basedir}/../royale-compiler/compiler"/>
 
+        <echo message="FALCON_REPO is ${FALCON_REPO}"/>
+        
         <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
             unless="FALCON_REPO"/>
     </target>
@@ -299,6 +301,8 @@
             property="FALCONJX_REPO"
             value="${basedir}/../royale-compiler/compiler-jx"/>
 
+        <echo message="FALCONJX_REPO is ${FALCONJX_REPO}"/>
+        
         <fail message="FALCONJX_REPO must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder if it has been converted into an FB-compatible SDK"
             unless="FALCONJX_REPO"/>
     </target>
