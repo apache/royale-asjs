@@ -20,7 +20,7 @@
 ################################################################################
 
 #
-# acompc shell script to launch falcon-compc.jar on OSX, Unix, or Cygwin to
+# acompc shell script to launch compiler-compc.jar on OSX, Unix, or Cygwin to
 # compile SWC libraries for Adobe AIR.
 # In Windows Command Prompt, use acompc.bat instead.
 #

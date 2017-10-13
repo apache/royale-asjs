@@ -18,7 +18,7 @@ rem limitations under the License.
 rem
 
 rem
-rem compc.bat script to launch falcon-compc.jar in Windows Command Prompt.
+rem compc.bat script to launch compiler-compc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the compc shell script instead.
 rem
 
