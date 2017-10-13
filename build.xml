@@ -273,10 +273,14 @@
             
         <echo message="FALCON_REPO is ${FALCON_REPO}"/>
 
-        <available file="${basedir}/../royale-compiler/compiler/lib/falcon-mxmlc.jar"
-            type="file"
-            property="FALCON_REPO"
-            value="${basedir}/../royale-compiler/compiler"/>
+        <condition property="FALCON_REPO" value="${basedir}/../royale-compiler/compiler">
+            <and>
+                <available file="${basedir}/../royale-compiler/compiler/lib/falcon-mxmlc.jar" type="file" />
+                <not>
+                    <isset property="FALCON_REPO" />
+                </not>
+            </and>
+        </condition>
 
         <echo message="FALCON_REPO is ${FALCON_REPO}"/>
         
@@ -296,10 +300,14 @@
 
         <echo message="FALCONJX_REPO is ${FALCONJX_REPO}"/>
         
-        <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar"
-            type="file"
-            property="FALCONJX_REPO"
-            value="${basedir}/../royale-compiler/compiler-jx"/>
+        <condition property="FALCONJX_REPO" value="${basedir}/../royale-compiler/compiler-jx">
+            <and>
+                <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
+                <not>
+                    <isset property="FALCON_REPO" />
+                </not>
+            </and>
+        </condition>
 
         <echo message="FALCONJX_REPO is ${FALCONJX_REPO}"/>
         
