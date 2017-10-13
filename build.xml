@@ -304,7 +304,7 @@
             <and>
                 <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
                 <not>
-                    <isset property="FALCON_REPO" />
+                    <isset property="FALCONJX_REPO" />
                 </not>
             </and>
         </condition>
