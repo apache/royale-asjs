@@ -45,7 +45,7 @@
     <module>jars/compiler-compc</module>
     <module>jars/compiler-mxmlc</module>
     <module>jars/compiler-optimizer</module>
-    <module>jars/falcon-swfdump</module>
+    <module>jars/compiler-swfdump</module>
     <module>jars/mxmlc</module>
   </modules>
 
@@ -493,7 +493,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
-      <artifactId>falcon-swfdump</artifactId>
+      <artifactId>compiler-swfdump</artifactId>
       <version>0.9.0-SNAPSHOT</version>
     </dependency>
   </dependencies>

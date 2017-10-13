@@ -59,4 +59,4 @@ fi
 
 VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${FALCON_HOME}/lib/falcon-swfdump.jar" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${FALCON_HOME}/lib/compiler-swfdump.jar" "$@"
