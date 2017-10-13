@@ -41,7 +41,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateChooserMouseController implements IBeadController
+	public class DateChooserMouseController extends CalendarNavigation implements IBeadController
 	{
 		/**
 		 *  constructor.
@@ -79,9 +79,12 @@ package org.apache.flex.html.beads.controllers
         private function listHandler(event:Event):void
         {
             var list:DateChooserList = event.target as DateChooserList;
-            var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
-            model.selectedDate = list.selectedItem as Date;
-            IEventDispatcher(_strand).dispatchEvent( new Event("change") );
+            var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+			var newDate:Date  = list.selectedItem as Date;
+			if (newDate != null && model.selectedDate != newDate) {
+				model.selectedDate = newDate;
+				IEventDispatcher(_strand).dispatchEvent( new Event("change") );
+			}
         }
 
 		/**
@@ -90,16 +93,9 @@ package org.apache.flex.html.beads.controllers
 		private function prevMonthClickHandler(event:MouseEvent):void
 		{
             event.preventDefault();
-            
+
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			var month:Number = model.displayedMonth - 1;
-			var year:Number  = model.displayedYear;
-			if (month < 0) {
-				month = 11;
-				year--;
-			}
-			model.displayedMonth = month;
-			model.displayedYear = year;
+			nextMonth(model);
 		}
 		
 		/**
@@ -110,14 +106,7 @@ package org.apache.flex.html.beads.controllers
             event.preventDefault();
             
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			var month:Number = model.displayedMonth + 1;
-			var year:Number  = model.displayedYear;
-			if (month >= 12) {
-				month = 0;
-				year++;
-			}
-			model.displayedMonth = month;
-			model.displayedYear = year;
+			previousMonth(model);
 		}
 		
 	}
