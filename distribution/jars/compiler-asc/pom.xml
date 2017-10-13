@@ -28,7 +28,7 @@
   </parent>
 
   <groupId>org.apache.royale.framework.distribution</groupId>
-  <artifactId>falcon-asc</artifactId>
+  <artifactId>compiler-asc</artifactId>
   <version>0.9.0-SNAPSHOT</version>
 
   <build>

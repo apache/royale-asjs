@@ -20,7 +20,7 @@
 ################################################################################
 
 #
-# fasc shell script to launch falcon-asc.jar on OSX, Unix, or Cygwin.
+# fasc shell script to launch compiler-asc.jar on OSX, Unix, or Cygwin.
 # In Windows Command Prompt, use fasc.bat instead.
 #
 

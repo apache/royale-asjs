@@ -41,7 +41,7 @@
 
   <modules>
     <module>jars/compc</module>
-    <module>jars/falcon-asc</module>
+    <module>jars/compiler-asc</module>
     <module>jars/falcon-compc</module>
     <module>jars/falcon-mxmlc</module>
     <module>jars/falcon-optimizer</module>
@@ -473,7 +473,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
-      <artifactId>falcon-asc</artifactId>
+      <artifactId>compiler-asc</artifactId>
       <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
