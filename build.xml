@@ -264,12 +264,14 @@
     <target name="check-falcon-home" unless="FALCON_REPO"
         description="Check FALCON_REPO is a directory.">
         
-        <echo message="FALCON_REPO is ${env.FALCON_REPO}"/>
+        <echo message="env.FALCON_REPO is ${env.FALCON_REPO}"/>
 
         <available file="${env.FALCON_REPO}/lib/falcon-mxmlc.jar" 
             type="file" 
             property="FALCON_REPO"
             value="${env.FALCON_REPO}"/>
+            
+        <echo message="FALCON_REPO is ${FALCON_REPO}"/>
 
         <available file="${basedir}/../royale-compiler/compiler/lib/falcon-mxmlc.jar"
             type="file"
@@ -283,13 +285,15 @@
     <target name="check-falconjx-home" unless="FALCONJX_REPO"
         description="Check FALCONJX_REPO is a directory.">
         
-        <echo message="FALCONJX_REPO is ${env.FALCONJX_REPO}"/>
+        <echo message="env.FALCONJX_REPO is ${env.FALCONJX_REPO}"/>
 
         <available file="${env.FALCONJX_REPO}/lib/jsc.jar" 
             type="file" 
             property="FALCONJX_REPO"
             value="${env.FALCONJX_REPO}"/>
 
+        <echo message="FALCONJX_REPO is ${FALCONJX_REPO}"/>
+        
         <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar"
             type="file"
             property="FALCONJX_REPO"
