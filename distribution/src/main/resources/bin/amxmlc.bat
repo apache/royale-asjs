@@ -18,7 +18,7 @@ rem limitations under the License.
 rem
 
 rem
-rem amxmlc.bat script to launch falcon-mxmlc.jar in Windows Command Prompt to
+rem amxmlc.bat script to launch compiler-mxmlc.jar in Windows Command Prompt to
 rem compile SWF applications for Adobe AIR.
 rem On OSX, Unix, or Cygwin, use the amxmlc shell script instead.
 rem

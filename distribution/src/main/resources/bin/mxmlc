@@ -20,7 +20,7 @@
 ################################################################################
 
 #
-# mxmlc shell script to launch falcon-mxmlc.jar on OSX, Unix, or Cygwin.
+# mxmlc shell script to launch compiler-mxmlc.jar on OSX, Unix, or Cygwin.
 # In Windows Command Prompt, use mxmlc.bat instead.
 #
 
@@ -68,4 +68,4 @@ fi
 
 VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -Dflexcompiler="$FALCON_HOME" -Dflexlib="$FLEX_HOME/frameworks" -jar "${FALCON_HOME}/lib/falcon-mxmlc.jar" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -Dflexcompiler="$FALCON_HOME" -Dflexlib="$FLEX_HOME/frameworks" -jar "${FALCON_HOME}/lib/compiler-mxmlc.jar" "$@"

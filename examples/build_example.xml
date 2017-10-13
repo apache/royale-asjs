@@ -25,7 +25,7 @@
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${env.FALCON_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
@@ -34,7 +34,7 @@
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
@@ -43,7 +43,7 @@
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 

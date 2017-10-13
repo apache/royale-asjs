@@ -89,17 +89,17 @@
         
         <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
         
-        <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar"
+        <available file="${env.FALCON_HOME}/lib/compiler-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
         value="${env.FALCON_HOME}"/>
         
-        <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/falcon-mxmlc.jar"
+        <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/compiler-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
         value="${ROYALE_HOME}/../royale-falcon/compiler"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
         unless="FALCON_HOME"/>
     </target>
     

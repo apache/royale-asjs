@@ -106,12 +106,12 @@
     <target name="check-falcon-home"
         description="Set FALCON_HOME to point at the compiler.">
         
-        <available file="${ROYALE_HOME}/lib/falcon-mxmlc.jar"
+        <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
         value="${ROYALE_HOME}"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or the root of a Royale SDK"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or the root of a Royale SDK"
         unless="FALCON_HOME"/>
     </target>
 

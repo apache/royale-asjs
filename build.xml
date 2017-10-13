@@ -266,7 +266,7 @@
         
         <echo message="env.FALCON_REPO is ${env.FALCON_REPO}"/>
 
-        <available file="${env.FALCON_REPO}/lib/falcon-mxmlc.jar" 
+        <available file="${env.FALCON_REPO}/lib/compiler-mxmlc.jar"
             type="file" 
             property="FALCON_REPO"
             value="${env.FALCON_REPO}"/>
@@ -275,7 +275,7 @@
 
         <condition property="FALCON_REPO" value="${basedir}/../royale-compiler/compiler">
             <and>
-                <available file="${basedir}/../royale-compiler/compiler/lib/falcon-mxmlc.jar" type="file" />
+                <available file="${basedir}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
                 <not>
                     <isset property="FALCON_REPO" />
                 </not>
@@ -284,7 +284,7 @@
 
         <echo message="FALCON_REPO is ${FALCON_REPO}"/>
         
-        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
+        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
             unless="FALCON_REPO"/>
     </target>
 
@@ -439,8 +439,8 @@
             </fileset>
         </copy>
         <!-- needed to make Flash Builder accept folder as a Flex SDK -->
-        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
-        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
+        <copy file="${FALCON_REPO}/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
+        <copy file="${FALCON_REPO}/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
     
     <target name="check_jquery" >
