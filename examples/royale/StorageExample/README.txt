@@ -26,7 +26,7 @@ This is a somewhat complex process. The JavaScript and HTML files that were buil
 need to be moved into a Cordova project. Once there, the application can be deployed to a device
 or run in an emulator.
 
-1. In a clean directory, outside of the flex-asjs directories, use the cordova command line
+1. In a clean directory, outside of the royale-asjs directories, use the cordova command line
 interface to build an empty application:
 
 cordova create filetest org.apache.flex "FileTest"

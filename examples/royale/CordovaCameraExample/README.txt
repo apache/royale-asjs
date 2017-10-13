@@ -1,7 +1,7 @@
 Running the CordovaCameraExample on an Android Device
 
 From Flash Builder or the command line, run the Royale cross compiler, FalconJX, to build the HTML/JavaScript version of your app.
-% cd ~/dev/flex-asjs/examples/CordovaCameraExample
+% cd ~/dev/royale-asjs/examples/CordovaCameraExample
 % ant all
 
 The ANT script will build the application and then create the Cordova template in the app/CordovaCameraExample directory.
@@ -21,7 +21,7 @@ EITHER (if still in the Cordova app/CordovaCameraExample directory):
 % cordova run
 
 OR (return to top-level example directory):
-% cd flex-asjs/examples/royale/CordovaCameraExample
+% cd royale-asjs/examples/royale/CordovaCameraExample
 % ant run
 
 Or run on the simulator

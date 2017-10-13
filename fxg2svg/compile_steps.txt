@@ -1,4 +1,4 @@
-C:\p\flex_os\workspace\flexroot\git\flex-falcon\compiler\generated\dist\sdk\bin>
-mxmlc -closure-lib="C:\p\flex_os\workspace\googleclosure" -sdk-js-lib="C:\p\flex_os\workspace\flexroot\git\flex-asjs\frameworks\js\Royale\src" -library-path+="C:\p\flex_os\workspace\flexroot\git\flex-asjs\frameworks\as\libs" "C:\p\flex_os\workspace\flexroot\git\flex-asjs\examples\RoyaleTest_SVG\src\RoyaleTest_again.mxml"
+C:\p\flex_os\workspace\flexroot\git\royale-compiler\compiler\generated\dist\sdk\bin>
+mxmlc -closure-lib="C:\p\flex_os\workspace\googleclosure" -sdk-js-lib="C:\p\flex_os\workspace\flexroot\git\royale-asjs\frameworks\js\Royale\src" -library-path+="C:\p\flex_os\workspace\flexroot\git\royale-asjs\frameworks\as\libs" "C:\p\flex_os\workspace\flexroot\git\royale-asjs\examples\RoyaleTest_SVG\src\RoyaleTest_again.mxml"
 
-mxmlc -sdk-js-lib="C:\p\flex_os\workspace\flexroot\git\flex-asjs\frameworks\js\Royale\src" -library-path+="C:\p\flex_os\workspace\flexroot\git\flex-asjs\frameworks\as\libs" "C:\p\flex_os\workspace\flexroot\git\flex-asjs\examples\RoyaleTest_SVG\src\RoyaleTest_again.mxml"
+mxmlc -sdk-js-lib="C:\p\flex_os\workspace\flexroot\git\royale-asjs\frameworks\js\Royale\src" -library-path+="C:\p\flex_os\workspace\flexroot\git\royale-asjs\frameworks\as\libs" "C:\p\flex_os\workspace\flexroot\git\royale-asjs\examples\RoyaleTest_SVG\src\RoyaleTest_again.mxml"
