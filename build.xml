@@ -403,6 +403,7 @@
     
     <target name="copy-compiler" depends="check-falcon-home, check-falconjx-home" description="Copy compiler jars to where they are supposed to go">
         <mkdir dir="${basedir}/lib" />
+        <echo>Copying Compiler from ${FALCON_REPO}</echo>
         <copy todir="${basedir}/lib">
             <fileset dir="${FALCON_REPO}/lib">
                 <include name="**"/>
@@ -415,6 +416,7 @@
             </fileset>
         </copy>
         <mkdir dir="${basedir}/js/lib" />
+        <echo>Copying Transpiler from ${FALCONJX_REPO}</echo>
         <copy todir="${basedir}/js/lib">
             <fileset dir="${FALCONJX_REPO}/lib">
                 <include name="**"/>
