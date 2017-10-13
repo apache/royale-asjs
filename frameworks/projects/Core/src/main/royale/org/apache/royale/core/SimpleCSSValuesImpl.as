@@ -37,7 +37,7 @@ package org.apache.royale.core
      *  CSS lookup rules that is sufficient for most applications
 	 *  and is easily implemented for SWFs.
      *  It does not support attribute selectors or descendant selectors
-     *  or id selectors.  It will filter on a custom -flex-flash
+     *  or id selectors.  It will filter on a custom -royale-swf
      *  media query but not other media queries.  It can be
      *  replaced with other implementations that handle more complex
      *  selector lookups.
@@ -266,7 +266,7 @@ package org.apache.royale.core
             if (mq == null)
                 return true;
             
-            if (mq == "-flex-flash")
+            if (mq == "-royale-swf")
                 return true;
             
             // TODO: (aharui) other media query

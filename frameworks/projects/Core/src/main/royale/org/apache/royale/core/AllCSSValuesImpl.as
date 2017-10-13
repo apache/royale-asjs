@@ -255,7 +255,7 @@ package org.apache.royale.core
             if (mq == null)
                 return true;
             
-            if (mq == "-flex-flash")
+            if (mq == "-royale-swf")
                 return true;
             
             // TODO: (aharui) other media query

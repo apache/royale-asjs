@@ -37,7 +37,7 @@ package org.apache.royale.html.beads
 	 * 
 	 *  Note that this bead is for ActionScript only since CSS/HTML allows this just by specifying
 	 *  a background image in the style selector. To use this bead, place a ClassReference to it
-	 *  within @media -flex-flash { } group in the CSS declarations.
+	 *  within @media -royale-swf { } group in the CSS declarations.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
