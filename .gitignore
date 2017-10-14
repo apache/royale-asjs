@@ -69,6 +69,7 @@ frameworks/royale-config.xml
 env.properties
 local.properties
 /flex-sdk-description.xml
+/royale-sdk-description.xml
 
 #OS junk files
 [Tt]humbs.db
