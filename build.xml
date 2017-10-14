@@ -851,7 +851,7 @@
         <antcall target="inject-asf-header" />
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
-        <copy todir="${basedir}/out" file="${basedir}/apache-royale-installer-config.xml" />
+        <!--<copy todir="${basedir}/out" file="${basedir}/apache-royale-installer-config.xml" />-->
     </target>
 
 	<target name="copy-gcl-from-goog-home" if="GOOG_HOME">
