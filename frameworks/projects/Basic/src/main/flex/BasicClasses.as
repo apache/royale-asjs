@@ -188,6 +188,7 @@ internal class BasicClasses
 	import org.apache.flex.html.beads.controllers.CalendarNavigation; CalendarNavigation;
 	import org.apache.flex.html.beads.controllers.DateChooserMouseController; DateChooserMouseController;
 	import org.apache.flex.html.beads.controllers.DateChooserKeyboardController; DateChooserKeyboardController;
+	import org.apache.flex.html.beads.controllers.DateChooserMouseKeyboardController; DateChooserMouseKeyboardController;
 	import org.apache.flex.html.beads.controllers.DateFieldMouseController; DateFieldMouseController;
 	import org.apache.flex.html.beads.controllers.RangeStepperMouseController; RangeStepperMouseController;
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;

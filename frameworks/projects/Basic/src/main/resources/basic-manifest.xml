@@ -151,6 +151,7 @@
     <component id="DateChooserHeader" class="org.apache.flex.html.supportClasses.DateChooserHeader" />
     <component id="DateChooserMouseController" class="org.apache.flex.html.beads.controllers.DateChooserMouseController" />
     <component id="DateChooserKeyboardController" class="org.apache.flex.html.beads.controllers.DateChooserKeyboardController" />
+    <component id="DateChooserMouseKeyboardController" class="org.apache.flex.html.beads.controllers.DateChooserMouseKeyboardController" />
     <component id="DateField" class="org.apache.flex.html.DateField"/>
     <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
 
