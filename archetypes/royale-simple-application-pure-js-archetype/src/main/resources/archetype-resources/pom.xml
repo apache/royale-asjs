@@ -42,7 +42,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <debug>\${compiler.debug}</debug>
-          <targets>JSFlex</targets>
+          <targets>JSRoyale</targets>
         </configuration>
         <dependencies>
           <dependency>

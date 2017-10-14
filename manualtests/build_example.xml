@@ -180,7 +180,7 @@
             type="file"
             property="optional_arg" value="-load-config+=&quot;${srcDir}/../config/compile-app-config.xml&quot;" />
 
-		<condition property="targets" value="SWF,JSFlex" else="SWF">
+		<condition property="targets" value="SWF,JSRoyale" else="SWF">
 			<not>
 				<isset property="no.js"/>
 			</not>
@@ -330,7 +330,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="js.release.target" value="JSFlex" />
+        <property name="js.release.target" value="JSRoyale" />
 		<property name="extlib_arg" value="-define=CONFIG::extlib,false" />
 		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/royale">
 			<not>

@@ -41,7 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <targets>SWF,JSFlex</targets>
+          <targets>SWF,JSRoyale</targets>
         </configuration>
         <dependencies>
           <dependency>

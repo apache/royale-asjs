@@ -195,7 +195,7 @@
     </target>
     
     <target name="compile-js-release">
-        <property name="js.release.target" value="JSFlex" />
+        <property name="js.release.target" value="JSRoyale" />
         <mxmlc fork="true"
             debug="false"
             configname="${config_arg}"

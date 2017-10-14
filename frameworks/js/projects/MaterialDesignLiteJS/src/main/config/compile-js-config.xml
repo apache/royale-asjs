@@ -22,7 +22,7 @@
     <!-- build both SWF and JS. -->
     <targets>
         <target>SWF</target>
-        <target>JSFlex</target>
+        <target>JSRoyale</target>
     </targets>
     <strict-xml>true</strict-xml>
 

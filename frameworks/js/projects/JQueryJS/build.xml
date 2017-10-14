@@ -60,7 +60,7 @@
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+royalelib=${FLEX_HOME}/frameworks" />
             <arg value="-compiler.strict-xml=true" />
-            <arg value="-compiler.targets=SWF,JSFlex" />
+            <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${FLEX_HOME}/frameworks/jquery-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />

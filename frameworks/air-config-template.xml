@@ -31,7 +31,7 @@
       <!-- build both SWF and JS. -->
       <targets>
           <target>SWF</target>
-          <target>JSFlex</target>
+          <target>JSRoyale</target>
       </targets>
 
       <define><name>COMPILE::SWF</name><value>AUTO</value></define>

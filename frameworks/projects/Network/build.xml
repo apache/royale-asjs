@@ -88,7 +88,7 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
-            <arg value="-compiler.targets=SWF,JSFlex" />
+            <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${FLEX_HOME}/frameworks/js-config.xml" />

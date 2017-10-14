@@ -69,7 +69,7 @@
 							<goal>compile-app</goal>
 						</goals>
 						<configuration>
-							<targets>JSFlex</targets>
+							<targets>JSRoyale</targets>
 							<mainClass>${project.artifactId}.mxml</mainClass>
 							<debug>false</debug>
 							<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>

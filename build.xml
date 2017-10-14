@@ -1133,7 +1133,7 @@
             closure-lib="${env.GOOG_HOME}"
             file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <targets>JSFlex</targets>
+            <targets>JSRoyale</targets>
             <library-path dir="${ROYALE_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
             </library-path>

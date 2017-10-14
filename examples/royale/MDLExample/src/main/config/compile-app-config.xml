@@ -18,7 +18,7 @@
 -->
 <royale-config>
     <compiler>
-        <targets><target>JSFlex</target></targets>
+        <targets><target>JSRoyale</target></targets>
         <exclude-defaults-css-files>
             <filename>Basic.swc:defaults.css</filename>
         </exclude-defaults-css-files>

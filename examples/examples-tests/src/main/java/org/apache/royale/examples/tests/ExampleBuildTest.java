@@ -67,7 +67,7 @@ public class ExampleBuildTest {
     ///////////////////////////////////////////////////////////////////
 
     protected boolean isSwfProject() {
-        String targets = System.getProperty("targets", "SWF,JSFlex");
+        String targets = System.getProperty("targets", "SWF,JSRoyale");
         if (!targets.contains("SWF"))
             return false;
         String type = System.getProperty("type", "jar");
