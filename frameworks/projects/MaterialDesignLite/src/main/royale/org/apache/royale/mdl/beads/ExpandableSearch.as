@@ -23,7 +23,6 @@ package org.apache.royale.mdl.beads
 	import org.apache.royale.core.UIBase;
 
     import org.apache.royale.mdl.TextField;
-	import org.apache.royale.mdl.materialIcons.MaterialIconType;
 	import org.apache.royale.mdl.materialIcons.MaterialIcon;
 	
 	/**
