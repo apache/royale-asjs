@@ -81,6 +81,7 @@ package org.apache.royale.mdl.supportClasses
 			COMPILE::JS
     		{
 				element.classList.toggle("mdl-card--border", _border);
+				typeNames = element.className;
 			}
         }
 
@@ -106,6 +107,7 @@ package org.apache.royale.mdl.supportClasses
 			COMPILE::JS
     		{
 				element.classList.toggle("mdl-card--expand", _expand);
+				typeNames = element.className;
 			}
         }
 	}
