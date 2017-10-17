@@ -83,7 +83,7 @@ package org.apache.royale.mdl.beads
                     label.setAttribute('for', searchId);
                     
                     var searchIcon:MaterialIcon = new MaterialIcon();
-					searchIcon.text = MaterialIconType.SEARCH;
+					searchIcon.text = "search";
 					label.appendChild(searchIcon.element);
                     
                     host.positioner.appendChild(label);
