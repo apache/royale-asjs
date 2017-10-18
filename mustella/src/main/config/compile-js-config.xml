@@ -16,7 +16,7 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
 
     <compiler>
         <accessible>false</accessible>
@@ -24,15 +24,15 @@
         <!-- build both SWF and JS. -->
         <targets>
             <target>SWF</target>
-            <target>JSFlex</target>
+            <target>JSRoyale</target>
         </targets>
         <strict-xml>true</strict-xml>
 
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
-		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
-		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+		<binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+		<binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
         <define>
@@ -57,7 +57,7 @@
         <namespaces>
             <!--
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../../../../../../../projects/Core/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
              -->
@@ -66,11 +66,11 @@
         <!-- overwrite the default library-path setting -->
         <library-path>
           <path-element>../../../../js/libs/GCL.swc</path-element>
-          <path-element>../../../../frameworks/js/FlexJS/libs/CoreJS.swc</path-element>
+          <path-element>../../../../frameworks/js/libs/CoreJS.swc</path-element>
         </library-path>
         
         <source-path>
-            <path-element>../flex</path-element>
+            <path-element>../royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -160,4 +160,4 @@
          -->
     </include-classes>
     
-</flex-config>
+</royale-config>

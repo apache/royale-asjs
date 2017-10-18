@@ -1,9 +1,9 @@
 {
-    "config": "flex",
+    "config": "royale",
     "type": "app",
     "compilerOptions": {
         "debug": false,
-        "js-output-type": "flexjs",
+        "js-output-type": "royale",
         "define": [
             {
                 "name": "COMPILE::SWF",
@@ -25,6 +25,6 @@
     },
     "files":
     [
-        "src/main/flex/TLFClasses.as"
+        "src/main/royale/TLFClasses.as"
     ]
 }

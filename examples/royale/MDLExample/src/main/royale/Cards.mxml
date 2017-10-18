@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns="http://www.w3.org/1999/xhtml">
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
+
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+
+    <mdl:Grid className="center-items">
+        
+            <mdl:Card id="mycard" shadow="2" className="demo-card-wide">
+                <mdl:CardTitle>
+                    <mdl:CardTitleText text="Welcome"/>
+                </mdl:CardTitle>
+                <mdl:CardSupportingText>
+                    <mdl:beads>
+                        <js:InnerHTML>
+                            <![CDATA[Lorem ipsum dolor sit <b>amet</b>, consectetur <i>adipiscing elit</i>. Mauris sagittis pellentesque lacus eleifend lacinia...]]>
+                        </js:InnerHTML>
+                    </mdl:beads>
+                </mdl:CardSupportingText>
+                <mdl:CardActions border="true">
+                    <mdl:Button text="Get Started" ripple="true" colored="true"/>
+                </mdl:CardActions>
+                <mdl:CardMenu>
+                    <mdl:Button icon="true" ripple="true">
+                        <mdl:materialIcon>
+                            <mdl:MaterialIcon text="{MaterialIconType.SHARE}"/>
+                        </mdl:materialIcon>
+                    </mdl:Button>
+                </mdl:CardMenu>
+            </mdl:Card>
+
+            <mdl:Card className="demo-card-square" shadow="2">
+                <mdl:CardTitle expand="true">
+                    <mdl:CardTitleText text="Update"/>
+                </mdl:CardTitle>
+                <mdl:CardSupportingText>
+                    <js:TextNode text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
+                </mdl:CardSupportingText>
+                <mdl:CardActions border="true">
+                    <mdl:Button colored="true" ripple="true" text="View Updates"/>
+                </mdl:CardActions>
+            </mdl:Card>
+        
+            <mdl:Card width="256" height="256" shadow="2" style="background: url('assets/image_card.jpg') center / cover">
+                <mdl:CardTitle expand="true"/>
+                <mdl:CardActions style="height: 52px; padding: 16px; background: rgba(0, 0, 0, 0.2);">
+                    <js:Span text="Image.jpg" style="color: #fff; font-size: 14px; font-weight: 500;"/>
+                </mdl:CardActions>
+            </mdl:Card>
+
+            <mdl:Card className="demo-card-event" shadow="2">
+                <mdl:CardTitle expand="true">
+                    <mdl:CardTitleText text="Welcome">
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[<h4>Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
+                            </js:InnerHTML>
+                        </mdl:beads>
+                    </mdl:CardTitleText>
+                </mdl:CardTitle>
+                <mdl:CardActions border="true">
+                    <mdl:Button colored="true" ripple="true" text="Add to Calendar"/>
+                    <mdl:Spacer/>
+                    <mdl:MaterialIcon text="{MaterialIconType.EVENT}"/>
+                </mdl:CardActions>
+            </mdl:Card>
+        
+    </mdl:Grid>
+    
+</mdl:TabBarPanel>

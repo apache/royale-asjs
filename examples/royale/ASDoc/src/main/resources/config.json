@@ -1,0 +1,13 @@
+{  "tagNames": { "see": "See also:",
+                 "langversion": "Language version:",
+                 "playerversion": "Runtime version:",
+                 "productversion": "Product version:",
+                 "toplevel": "Top Level Component",
+                 "bead": "Bead",
+                 "viewbead": "View Bead",
+                 "controllerbead": "Controller Bead",
+                 "modelbead": "Model Bead",
+                 "layoutbead": "Layout Bead"
+
+  }
+}

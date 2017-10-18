@@ -18,23 +18,23 @@ limitations under the License.
 
 -->
 <js:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
-				 xmlns:js="library://ns.apache.org/flexjs/basic"
+				 xmlns:js="library://ns.apache.org/royale/basic"
 				 xmlns:local="*"
 				 className="LoginDialog"
 				 width="280" height="90" title="Login">
 	
 	<!-- fx:Metadata is not recognized by FalconJX -->
 	<!--<fx:Metadata>
-		[Event(name="close", type="org.apache.flex.events.Event")]
+		[Event(name="close", type="org.apache.royale.events.Event")]
 	</fx:Metadata>-->
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.flex.events.Event;
+			import org.apache.royale.events.Event;
 			
 			private function cancelLogin():void
 			{
-				dispatchEvent( new org.apache.flex.events.Event("close") );
+				dispatchEvent( new org.apache.royale.events.Event("close") );
 			}
 		]]>
 	</fx:Script>

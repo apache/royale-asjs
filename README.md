@@ -1,18 +1,18 @@
 # Apache Royale&trade;
 
-The Apache Royale project is working on a next-generation Flex SDK: FlexJS&trade;. FlexJS has the goal of allowing applications developed in MXML and ActionScript to not only run in the Flash/AIR runtimes, but also to run natively in the browser without Flash, on mobile devices as a PhoneGap/Cordova application, and in embedded JS environments such as Chromium Embedded Framework. FlexJS has the potential to allow your MXML and ActionScript code to run in even more places than Flash currently does.
+The Apache Royale project is developing a next-generation of the Apache Flex&trade; SDK: . Royale has the goal of allowing applications developed in MXML and ActionScript to not only run in the Flash/AIR runtimes, but also to run natively in the browser without Flash, on mobile devices as a PhoneGap/Cordova application, and in embedded JS environments such as Chromium Embedded Framework. Royale has the potential to allow your MXML and ActionScript code to run in even more places than Flash currently does.
 
-For detailed information about FlexJS, visit:
+For detailed information about using Royale, visit:
 
-<https://cwiki.apache.org/confluence/display/FLEX/FlexJS>
+<https://apache.github.io/royale-docs/>
 
-For more information about Apache Royale, visit:
+For more information about the Apache Royale project, visit:
 
 <http://royale.apache.org>
 
-# Getting FlexJS
+# Getting Royale
 
-Getting the source code from GitHub is the recommended way to get FlexJS. You can check out the source via git using the following commands:
+Getting the source code from GitHub is the recommended way to get Royale. You can check out the source via git using the following commands:
 
 ```bash
 git clone https://github.com/apache/royale-asjs.git royale-asjs
@@ -20,17 +20,17 @@ cd royale-asjs
 git checkout develop
 ```
 
-You may also use a precompiled binary convenience package to develop FlexJS applications using your favorite IDE. In addition to that, FlexJS is available as Maven artifacts and through Node Package Manager (NPM).
+You may also use a precompiled binary convenience package to develop Royale applications using your favorite IDE. In addition to that, Royale is available as Maven artifacts and through Node Package Manager (NPM).
 
-# Building FlexJS
+# Building Royale
 
 ## Prerequisites
 
-Before building FlexJS you must install the following software and set the corresponding environment variables using absolute file paths (relative paths will result in build errors). The set of prerequisites is different depending on whether you want to compile your projects to SWF or not.
+Before building Royale you must install the following software and set the corresponding environment variables using absolute file paths (relative paths will result in build errors). The set of prerequisites is different depending on whether you want to compile your projects to SWF or not.
 
 ### Java
 
-FlexJS requires Java SDK 1.6 or greater to be installed on your computer. For more information on installing the Java SDK, see:
+Royale requires Java SDK 1.6 or greater to be installed on your computer. For more information on installing the Java SDK, see:
 
 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
@@ -54,7 +54,7 @@ FlexJS requires Java SDK 1.6 or greater to be installed on your computer. For mo
 
 ### Ant
 
-FlexJS requires Ant 1.7.1 or greater to be installed on your computer.
+Royale requires Ant 1.7.1 or greater to be installed on your computer.
 
 Note: if you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8 or greater. If you use Java 1.7 with Ant 1.7 you will get compile errors.
 
@@ -96,7 +96,7 @@ Next, rename the downloaded SWC to '*playerglobal.swc*' and place it in the abov
 
   Set **PLAYERGLOBAL_HOME** environment variable to the absolute path of the player directory, not including the version subdirectory (i.e. '*[root directory]/player*').
 
-Other, more recent versions of Adobe Flash Player *playerglobal.swc* can be downloaded from http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]\_[version.minor].swc (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>). These versions can be used with FlexJS, but not all have been fully tested.
+Other, more recent versions of Adobe Flash Player *playerglobal.swc* can be downloaded from http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]\_[version.minor].swc (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>). These versions can be used with Royale, but not all have been fully tested.
 
 
 ### Flash Player Content Debugger
@@ -105,7 +105,7 @@ The Flash Player Content Debugger can be found here:
 
 <http://www.adobe.com/support/flashplayer/downloads.html>
 
-This version of FlexJS was certified for use with Flash Player 11.1, and is compatible with version 10.2 and up. It has been tested with version 16.0 on Windows and Mac. It has been compiled, but not fully tested, with other Flash Player versions. It has not been fully tested on Linux.
+This version of Royale was certified for use with Flash Player 11.1, and is compatible with version 10.2 and up. It has been tested with version 16.0 on Windows and Mac. It has been compiled, but not fully tested, with other Flash Player versions. It has not been fully tested on Linux.
 
 - **Environment variable**
 
@@ -117,7 +117,7 @@ This version of FlexJS was certified for use with Flash Player 11.1, and is comp
 
 ### Adobe AIR Integration Kit (optional, for SWF output only)
 
-This version of Apache FlexJS was certified for use with Adobe AIR 16 and is compatible with version 3.1 and up. The Adobe AIR integration kit can be downloaded from:
+This version of Apache Royale was certified for use with Adobe AIR 16 and is compatible with version 3.1 and up. The Adobe AIR integration kit can be downloaded from:
 
 Windows: <http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip>
 
@@ -133,11 +133,11 @@ After you download the AIR SDK, unzip it and place it in a directory of your cho
 
 ## Building the source
 
-FlexJS is a large project. It requires some build tools, such as Google Closure Tools, which must be installed prior to building the SDK. Some of these may have different licenses. You will be prompted during the build to acknowledge these licenses.
+Royale is a large project. It requires some build tools, such as Google Closure Tools, which must be installed prior to building the SDK. Some of these may have different licenses. You will be prompted during the build to acknowledge these licenses.
 
 Linux support is currently experimental and while it is possible to compile the SDK it has not been fully tested.
 
-FlexJS requires code from several other Apache Royale git repositories. To get these repositories, change to the repository root ('*royale-asjs*') and run:
+Royale requires code from several other Apache Royale git repositories. To get these repositories, change to the repository root ('*royale-asjs*') and run:
 
 ```bash
 ant all
@@ -180,11 +180,11 @@ If you are not interested in SWF output, the binary distribution can just be unz
 If you want SWF output, use NPM. Run:
 
 ```bash
-sudo npm install flexjs -g
+sudo npm install royale -g
 ```
 
-# Using FlexJS
+# Using Royale
 
-In order to get started using FlexJS, you are invited to follow along with the [Quick Start Guide](https://github.com/apache/royale-asjs/wiki/Quick-Start).
+In order to get started using Royale, you are invited to follow along with the [Quick Start Guide](https://github.com/apache/royale-asjs/wiki/Quick-Start).
 
 ### Thanks for using [Apache Royale](http://royale.apache.org). Enjoy!

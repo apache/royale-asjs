@@ -17,12 +17,12 @@
  *
  */
 
-@namespace g "library://ns.apache.org/flexjs/google";
+@namespace g "library://ns.apache.org/royale/google";
 
 g|Map
 {
-    IBeadView: ClassReference("org.apache.flex.maps.google.beads.GoogleMapView");
-	IBeadModel: ClassReference("org.apache.flex.maps.google.models.MapModel");
+    IBeadView: ClassReference("org.apache.royale.maps.google.beads.GoogleMapView");
+	IBeadModel: ClassReference("org.apache.royale.maps.google.models.MapModel");
 }
 
 

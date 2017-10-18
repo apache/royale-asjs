@@ -20,7 +20,7 @@
 
 
 <project name="GenericTests" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../.."/>
+    <property name="ROYALE_HOME" location="../.."/>
     <property name="example" value="UnitTests" />
 
     <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
@@ -28,10 +28,10 @@
     <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
     <property name="extlib_arg" value="-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta" />
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-	<property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+	<property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
 	
 	<!-- make ant src and output consistent with maven -->
 	<property name="maven_compat" value="true"/>

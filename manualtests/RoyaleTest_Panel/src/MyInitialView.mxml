@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+			    initComplete="initControls()">
+    <fx:Script>
+        <![CDATA[
+			import org.apache.royale.html.Alert;
+			import org.apache.royale.html.SimpleAlert;
+			
+			private function initControls():void
+			{
+			}
+			
+			private function onButtonClick() : void
+			{
+				Alert.show("This is an Alert! I want to see all of this text.",
+					this,
+					"Testing",
+					Alert.OK|Alert.CANCEL);
+
+			}
+			
+			private function spinnerChanged(control:Object):void
+			{
+				spinMe.text = "Spin: "+String(control.value);
+			}
+			
+			private function showSimpleAlert() : void
+			{
+				SimpleAlert.show("A Simple Alert", this);
+			}
+			
+			private function sliderChanged(control:Object):void
+			{
+				slideMe.text = "Slider: "+String(control.value);
+			}
+		]]>
+    </fx:Script>
+
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/royale/basic";
+		
+		.Alert {
+			background-color: #EEEEEE;
+			border-style: solid;
+			border-color: #0000FF;
+			border-thickness: 5;
+		}
+		
+		.Alert #titleBar #title {
+			font-weight: bold;
+			color: #EEEEEE;
+		}
+		
+		.SimpleAlert {
+			background-color: #99FF00;
+			border-style: solid;
+			border-color: #FF9900;
+			border-thickness: 5;
+			padding: 5px;
+		}
+		
+		.TitleBar {
+			color: #FFFFFF;
+			font-weight: bold;
+			text-align: center;
+			background-color: #444444;
+		}
+		
+		.panel1 {
+			padding: 1px;
+			background-color: #EEEEEE;
+			border-color: #000000;
+			border-thickness: 1;
+		}
+		
+		.numStepper {
+			border-style: solid;
+			border-color: #000000;
+			border-thickness: 1;
+			background-color: #FFFFCC;
+		}
+		
+		.SliderThumb {
+			background-color: #EEEEEE;
+			border-style: solid;
+			border-color: #000000;
+			border-thickness: 1;
+		}
+		
+		.SliderTrack {
+			background-color: #999999;
+			border-style: solid;
+			border-color: #000000;
+			border-thickness: 1;
+		}
+		
+        @media -royale-swf
+        {
+            .TitleBar {
+                iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+            }
+            
+            .panel1 {
+                iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+            }
+            
+            .numStepper {
+                iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+            }
+            
+        }
+	</fx:Style>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	<js:Panel title="Example" x="300" width="300" y="50" height="250" className="panel1" showCloseButton="true">
+		<js:beads>
+			<js:VerticalLayout />
+		</js:beads>
+		<js:Label text="Displays a SimpleAlert that has an OK button." />
+		<js:TextButton text="Show Simple Alert" click="showSimpleAlert()" />
+		<js:Label text="Displays an Alert which can have multiple buttons." />
+		<js:TextButton text="Push Me" click="onButtonClick()" />
+		<js:Spacer height="10" />
+		<js:Label id="spinMe" text="stepper value" />
+		<js:NumericStepper id="stepper" 
+							  valueChange="spinnerChanged(stepper)" 
+							  className="numStepper"
+							  stepSize="10"/>
+		<js:Spacer height="10" />
+		<js:Label id="slideMe" text="slider value" />
+		<js:Label id="slideMe2" text="{slider.value}" />
+		<js:Slider id="slider" width="200"
+					  valueChange="sliderChanged(slider)"
+					  minimum="0"
+					  maximum="100"
+					  stepSize="1" />
+		
+		<js:Spacer height="10" />
+	</js:Panel>
+
+	
+</js:View>

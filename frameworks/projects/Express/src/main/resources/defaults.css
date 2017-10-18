@@ -17,7 +17,7 @@
 *
 */
 
-@namespace "library://ns.apache.org/flexjs/express";
+@namespace "library://ns.apache.org/royale/express";
 
 /* Global style declaration */
 *
@@ -27,15 +27,15 @@
 	border-width: 1px;
 }
 
-.flexjs *, . flexjs *:before, . flexjs *:after {
+.royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 global {
-    IStatesImpl:            ClassReference("org.apache.flex.core.StatesWithTransitionsImpl");
-	IEffectTimer: 			ClassReference("org.apache.flex.utils.EffectTimer");
+    IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
+	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
 }
 
 Application
@@ -45,15 +45,15 @@ Application
 }
 
 DataGridButtonBar {
-	IBeadView: ClassReference("org.apache.flex.html.beads.DataGridButtonBarViewForMovableColumns");
+	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridButtonBarViewForMovableColumns");
 }
 
 Container
 {	
-	IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
-	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
-	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	
 	background-color: #FFFFFF;
 }
@@ -68,7 +68,7 @@ TextInput
 
 View
 {
-	IBeadView: ClassReference("org.apache.flex.html.beads.GroupView");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
+	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 }
 

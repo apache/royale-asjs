@@ -16,10 +16,10 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <js-output-optimization>
         <optimization>skipFunctionCoercions</optimization>
     </js-output-optimization>
     <compiler>
     </compiler>
-</flex-config>
+</royale-config>

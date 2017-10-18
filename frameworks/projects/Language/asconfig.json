@@ -1,8 +1,8 @@
 {
-    "config": "flex",
+    "config": "royale",
     "compilerOptions": {
         "debug": true,
-        "js-output-type": "flexjs",
+        "js-output-type": "royale",
         "define": [
             {
                 "name": "COMPILE::SWF",
@@ -16,6 +16,6 @@
     },
     "files":
     [
-        "src/main/flex/LanguageClasses.as"
+        "src/main/royale/LanguageClasses.as"
     ]
 }

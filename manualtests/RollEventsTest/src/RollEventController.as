@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
 	
 	[Event("rollEvent")]
 	

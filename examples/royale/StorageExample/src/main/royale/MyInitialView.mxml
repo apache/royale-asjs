@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+				xmlns:local="*"
+				initComplete="startup()">
+    <fx:Script>
+        <![CDATA[			
+			import org.apache.royale.storage.PermanentStorage;
+			import org.apache.royale.storage.events.FileEvent;
+			import org.apache.royale.storage.events.FileErrorEvent;
+			import org.apache.royale.storage.file.IDataInput;
+			import org.apache.royale.storage.file.IDataOutput;
+			
+			private function startup():void
+			{
+				trace("Starting up");
+			}
+			
+			public function set ready(value:Boolean):void
+			{
+				status.text = "Now Ready";
+			}
+			
+			// READING - PLAIN
+			
+			private function onRead():void
+			{
+				var storage:PermanentStorage = new PermanentStorage();
+				
+				var useFile:String = readFileNameField.text;
+				
+				storage.addEventListener("READ", handleRead);
+				storage.addEventListener("ERROR", handleRead);
+				storage.readTextFromDataFile( useFile );
+			}
+			
+			private function handleRead(event:FileEvent):void
+			{
+				trace(event.data);
+				status.text = "Read Success!";
+				readContent.text = String(event.data);
+			}
+			
+			private function handleReadError(event:FileErrorEvent):void
+			{
+				status.text = "Error: "+event.errorMessage;
+				readContent.text = "";
+			}
+			
+			// READING - STREAM
+			
+			private function onReadStream():void
+			{
+				var storage:PermanentStorage = new PermanentStorage();
+				var useFile:String = readFileNameField.text;
+				
+				storage.addEventListener("READY", handleReadStreamReady);
+				storage.addEventListener("READ", handleReadStreamData);
+				storage.addEventListener("COMPLETE", handleReadStreamComplete);
+				storage.addEventListener("ERROR", handleReadStreamError);
+				storage.openInputDataStream(useFile);
+			}
+			
+			private function handleReadStreamReady(event:FileEvent):void
+			{
+				trace("INPUT STREAM READY");
+				
+				status.text = "Input stream ready";
+				
+				var stream:IDataInput = event.stream as IDataInput;
+				stream.readText();
+			}
+			
+			private function handleReadStreamData(event:FileEvent):void
+			{
+				trace("INPUT STREAM DATA.");
+				var stream:IDataInput = event.stream as IDataInput;
+				
+				status.text = "Input stream reading";
+				readContent.text = String(event.data);
+			}
+			
+			private function handleReadStreamComplete(event:FileEvent):void
+			{
+				trace("INPUT STREAM CLOSED");
+				status.text = "Input stream closed";
+			}
+			
+			private function handleReadStreamError(event:FileErrorEvent):void
+			{
+				status.text = event.errorMessage;
+			}
+			
+			// SAVING - PLAIN
+			
+			private function onSave():void
+			{
+				var storage:PermanentStorage = new PermanentStorage();
+				var today:Date = new Date();
+				
+				var useFile:String = writeFileNameField.text;
+				var useContent:String = today.toString() + " " + contentField.text;
+				
+				storage.addEventListener("WRITE", handleSave);
+				storage.addEventListener("ERROR", handleSaveError);
+				storage.writeTextToDataFile(useFile, useContent);
+			}
+			
+			private function handleSave(event:FileEvent):void
+			{
+				status.text = "Write Success!";
+			}
+			
+			private function handleSaveError(event:FileErrorEvent):void
+			{
+				status.text = "Error: "+event.errorMessage;
+			}
+			
+			// SAVING - STREAM
+						
+			private var writeCount:Number = 0;
+			
+			private function onSaveStream():void
+			{
+				var storage:PermanentStorage = new PermanentStorage();
+				var useFile:String = writeFileNameField.text;
+				
+				storage.addEventListener("READY", handleSaveStreamReady);
+				storage.addEventListener("WRITE", handleSaveStreamData);
+				storage.addEventListener("COMPLETE", handleSaveStreamComplete);
+				storage.addEventListener("ERROR", handleSaveStreamError);
+				storage.openOutputDataStream(useFile);
+			}
+			
+			private function handleSaveStreamReady(event:FileEvent):void
+			{
+				writeCount = 3;
+				trace("OUTPUT STREAM READY");
+				
+				status.text = "Output stream ready";
+				var today:Date = new Date();
+				var useContent:String = "("+String(writeCount)+") "+today.toString() + " " + contentField.text + "\n";
+				
+				var stream:IDataOutput = event.stream as IDataOutput;
+				stream.writeText(useContent);
+			}
+			
+			private function handleSaveStreamData(event:FileEvent):void
+			{
+				trace("OUTPUT STREAM DATA. Count = "+writeCount);
+				var stream:IDataOutput = event.stream as IDataOutput;
+				
+				if (--writeCount == 0) {
+					stream.close();
+				}
+				else {
+					status.text = "Output stream writing";
+					var today:Date = new Date();
+					var useContent:String = "("+String(writeCount)+") "+today.toString() + " " + contentField.text + "\n";
+					stream.writeText(useContent);
+				}
+			}
+			
+			private function handleSaveStreamComplete(event:FileEvent):void
+			{
+				trace("OUTPUT STREAM CLOSED");
+				status.text = "Output stream closed";
+			}
+			
+			private function handleSaveStreamError(event:FileErrorEvent):void
+			{
+				status.text = event.errorMessage;
+			}
+		]]>
+    </fx:Script>
+	
+	<fx:Style>
+	
+	.labelStyle {
+		color: #9999FF;
+	}
+	
+	.contentStyle {
+		font-size: 18pt;
+	}
+	
+	</fx:Style>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	
+	<js:VGroup>
+		<js:Label text="Storage Example" width="100%" />
+		<js:Spacer height="20" />
+		
+		<js:HGroup>
+			<js:Label text="Write File Name:" className="labelStyle" />
+			<js:TextInput id="writeFileNameField" text="testfile.txt" />
+		</js:HGroup>
+		<js:HGroup>
+			<js:Label text="Content:" className="labelStyle" />
+			<js:TextInput id="contentField" />
+		</js:HGroup>
+		<js:HGroup>
+			<js:TextButton text="SAVE" click="onSave()" />
+			<js:Spacer width="10" />
+			<js:TextButton text="SAVE STREAM" click="onSaveStream()" />
+		</js:HGroup>
+		<js:Spacer height="20" />
+		
+		<js:Label id="status" text="** APP STATUS HERE **" />
+		<js:Spacer height="20" />
+		
+		<js:HGroup>
+			<js:Label text="Read File Name:" className="labelStyle" />
+			<js:TextInput id="readFileNameField" text="testfile.txt" />
+		</js:HGroup>
+		<js:HGroup>
+			<js:TextButton text="READ" click="onRead()" />
+			<js:Spacer width="10" />
+			<js:TextButton text="READ STREAM" click="onReadStream()" />
+		</js:HGroup>
+		<js:HGroup>
+			<js:Label text="Content:" className="labelStyle" />
+		</js:HGroup>
+		<js:HGroup>
+			<js:Label id="readContent" className="contentStyle" />
+		</js:HGroup>
+	</js:VGroup>
+		
+
+</js:View>

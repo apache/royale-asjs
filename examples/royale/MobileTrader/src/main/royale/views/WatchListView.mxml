@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:TitleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 title="Watch List"
+		 xmlns:js="library://ns.apache.org/royale/basic"
+		 xmlns:controller="controller.*"
+		 xmlns:local="*"
+		 className="WatchListView"
+		 xmlns:renderers="renderers.*">
+	
+	<fx:Script>
+		<![CDATA[						
+			import controller.WatchListController;
+			
+			import models.ProductsModel;
+			import models.Stock;
+			
+			import org.apache.royale.binding.SimpleBinding;
+			import org.apache.royale.core.IBeadController;
+			import org.apache.royale.core.IBeadModel;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.mobile.IViewManager;
+			import org.apache.royale.mobile.StackedViewManager;
+			
+			public function set dataModel(value:IBeadModel):void
+			{
+				var cm:IBeadController = controller;
+				(cm as WatchListController).model = value;
+			}
+			public function get dataModel():IBeadModel
+			{
+				var cm:IBeadController = controller;
+				return (cm as WatchListController).model;
+			}
+			
+			private function onSelectStock():void
+			{
+				var stockView:StockView = new StockView();
+				var svm:IViewManager = viewManager;
+				(viewManager as StackedViewManager).push(stockView);
+			}
+			
+			private function addSymbol():void
+			{
+				dispatchEvent(new org.apache.royale.events.Event("addSymbol"));
+			}
+			
+			public var selectedStockIndex:Number;
+			
+			private function selectRow():void
+			{
+				selectedStockIndex = dataGrid.selectedIndex;
+				dispatchEvent(new org.apache.royale.events.Event("stockSelected"));
+			}
+			
+			public function showStockDetails(stock:Stock):StockView
+			{
+				var stockView:StockView = new StockView();
+				stockView.stock = stock;
+				(viewManager as StackedViewManager).push(stockView);
+				
+				var cm:IBeadController = controller;
+				
+				return stockView;
+			}
+			
+			public function popView():void
+			{
+				(viewManager as StackedViewManager).pop();
+			}
+		]]>
+	</fx:Script>
+	
+	<js:beads>
+		<js:VerticalFlexLayout />
+	</js:beads>
+	
+	<js:Group width="100%" className="WatchListInputArea" >
+		<js:beads>
+			<js:HorizontalLayout />
+		</js:beads>
+		<js:Label text="Symbol:" />
+		<js:TextInput id="symbolName" />
+		<js:TextButton text="Add" click="addSymbol()" />
+	</js:Group>
+	
+	<js:Spacer height="10" />
+		
+	<js:DataGrid id="dataGrid" width="100%" change="selectRow()" className="WatchListDataGrid">
+		<js:beads>
+			<js:DataGridPercentageView />
+			<js:SimpleBinding
+				eventName="update"
+				sourceID="dataModel"
+				sourcePropertyName="watchList"
+				destinationPropertyName="dataProvider" />
+			<js:DataProviderCollectionChangeNotifier 
+				destinationPropertyName="dataProvider" 
+				sourceID="dataModel" 
+				propertyName="watchList" 
+				changeEventName="itemUpdated" />
+		</js:beads>
+		<js:columns>
+			<js:DataGridColumn label="Symbol" dataField="symbol" columnWidth="20">
+				<js:itemRenderer>
+					<fx:Component>
+						<js:StringItemRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Open" dataField="open" columnWidth="20">
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Last" dataField="last" columnWidth="20" >
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="High" dataField="high" columnWidth="20" >
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Low" dataField="low" columnWidth="20" >
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+		</js:columns>
+	</js:DataGrid>
+	
+</js:TitleView>

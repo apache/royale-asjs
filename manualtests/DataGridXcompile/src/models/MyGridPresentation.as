@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.html.customControls.beads.models.DataGridPresentationModel;
+	import org.apache.royale.html.customControls.beads.models.DataGridPresentationModel;
 	
 	public class MyGridPresentation extends DataGridPresentationModel
 	{

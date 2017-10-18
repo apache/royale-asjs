@@ -25,25 +25,25 @@
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${env.FALCON_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler">
+    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${FLEXJS_HOME}">
+    <condition property="FALCON_HOME" value="${ROYALE_HOME}">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
@@ -56,21 +56,21 @@
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/js">
+    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/js">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/js/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler-jx">
+    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler-jx">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler-jx/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
@@ -83,12 +83,12 @@
         </and>
     </condition>
 
-    <condition property="GOOG_HOME" value="${FLEXJS_HOME}/js/lib/google/closure-library">
+    <condition property="GOOG_HOME" value="${ROYALE_HOME}/js/lib/google/closure-library">
         <and>
             <not>
                 <isset property="GOOG_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js" type="file" />
+            <available file="${ROYALE_HOME}/js/lib/google/closure-library/closure/goog/base.js" type="file" />
         </and>
     </condition>
 
@@ -151,7 +151,7 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-royaleTasks.jar"/>
       <fileset dir="${FALCONJX_HOME}/lib" includes="jsc.jar"/>
     </path>
     
@@ -175,7 +175,7 @@
                configname="${config_arg}"
                swf-version="${swf.version}"
                closure-lib="${GOOG_HOME}"
-               file="${basedir}/src/main/flex/${example}.${file_suffix}"
+               file="${basedir}/src/main/royale/${example}.${file_suffix}"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
@@ -195,13 +195,13 @@
     </target>
     
     <target name="compile-js-release">
-        <property name="js.release.target" value="JSFlex" />
+        <property name="js.release.target" value="JSRoyale" />
         <mxmlc fork="true"
             debug="false"
             configname="${config_arg}"
             swf-version="${swf.version}"
             closure-lib="${GOOG_HOME}"
-            file="${basedir}/src/main/flex/${example}.${file_suffix}"
+            file="${basedir}/src/main/royale/${example}.${file_suffix}"
             output="${basedir}/bin-release/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
@@ -243,14 +243,14 @@
         <attribute name="output"/>
             <sequential>
                 <copy toFile="@{output}/@{name}.html" 
-                    file="${FLEXJS_HOME}/templates/swfobject/index.template.html" />
+                    file="${ROYALE_HOME}/templates/swfobject/index.template.html" />
                 <copy toDir="@{output}/history">
-                    <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
+                    <fileset dir="${ROYALE_HOME}/templates/swfobject/history">
                         <include name="**"/>
                     </fileset>
                 </copy>
                 <copy toDir="@{output}">
-                    <fileset dir="${FLEXJS_HOME}/templates/swfobject">
+                    <fileset dir="${ROYALE_HOME}/templates/swfobject">
                         <include name="*"/>
                         <exclude name="index.template.html"/>
                     </fileset>
@@ -385,17 +385,17 @@
 
     <target name="compile.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
         <property name="mobile.platform" value="android" />
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="main" >
+        <ant antfile="${ROYALE_HOME}/cordova-build.xml" target="main" >
             <property name="projectdir" value="${basedir}" />
         </ant>
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="load-platform.${mobile.platform}" >
+        <ant antfile="${ROYALE_HOME}/cordova-build.xml" target="load-platform.${mobile.platform}" >
             <property name="projectdir" value="${basedir}" />
         </ant>
     </target>
 
     <target name="run.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
         <property name="mobile.platform" value="android" />
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="run.${mobile.platform}" >
+        <ant antfile="${ROYALE_HOME}/cordova-build.xml" target="run.${mobile.platform}" >
             <property name="projectdir" value="${basedir}" />
         </ant>
     </target>

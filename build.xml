@@ -20,7 +20,7 @@
 
 <project name="asjs" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location="${basedir}"/>
+    <property name="ROYALE_HOME" location="${basedir}"/>
     
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -34,21 +34,21 @@
         </and>
     </condition>
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/local.properties"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
 
     <property name="debug" value="true"/>
     <property name="strict" value="true"/>
     <property name="javac.src" value="1.5"/>
     
-    <condition property="kit.prefix" value="apache-flex-jsonly-${release.version}">
+    <condition property="kit.prefix" value="apache.royale-jsonly-${release.version}">
         <not>
             <isset property="env.AIR_HOME" />
         </not>
     </condition>
-    <property name="kit.prefix" value="apache-flex-flexjs-${release.version}"/>
+    <property name="kit.prefix" value="apache-royale-${release.version}"/>
     <property name="source.kit" value="${kit.prefix}-src"/>
     <property name="binary.kit" value="${kit.prefix}-bin"/>
       
@@ -149,11 +149,11 @@
     
     <target name="release"
         depends="block-flat-fonts,check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home,source-release,binary-release,rat-check"
-        description="Creates source and binary kits for Apache FlexJS."/>
+        description="Creates source and binary kits for Apache Royale."/>
         
     <target name="release-jenkins" 
         depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home,source-release,binary-release-jenkins,rat-check"
-        description="Creates source and binary kits for Apache FlexJS."/>
+        description="Creates source and binary kits for Apache Royale."/>
   
     <target name="source-release" 
         depends="super-clean,create-description,create-config,source-package" 
@@ -264,69 +264,85 @@
     <target name="check-falcon-home" unless="FALCON_REPO"
         description="Check FALCON_REPO is a directory.">
         
-        <echo message="FALCON_REPO is ${env.FALCON_REPO}"/>
+        <echo message="env.FALCON_REPO is ${env.FALCON_REPO}"/>
 
-        <available file="${env.FALCON_REPO}/lib/falcon-mxmlc.jar" 
+        <available file="${env.FALCON_REPO}/lib/compiler-mxmlc.jar"
             type="file" 
             property="FALCON_REPO"
             value="${env.FALCON_REPO}"/>
+            
+        <echo message="FALCON_REPO is ${FALCON_REPO}"/>
 
-        <available file="${basedir}/../royale-compiler/compiler/lib/falcon-mxmlc.jar"
-            type="file"
-            property="FALCON_REPO"
-            value="${basedir}/../royale-compiler/compiler"/>
+        <condition property="FALCON_REPO" value="${basedir}/../royale-compiler/compiler">
+            <and>
+                <available file="${basedir}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
+                <not>
+                    <isset property="FALCON_REPO" />
+                </not>
+            </and>
+        </condition>
 
-        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
+        <echo message="FALCON_REPO is ${FALCON_REPO}"/>
+        
+        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
             unless="FALCON_REPO"/>
     </target>
 
     <target name="check-falconjx-home" unless="FALCONJX_REPO"
         description="Check FALCONJX_REPO is a directory.">
         
-        <echo message="FALCONJX_REPO is ${env.FALCONJX_REPO}"/>
+        <echo message="env.FALCONJX_REPO is ${env.FALCONJX_REPO}"/>
 
         <available file="${env.FALCONJX_REPO}/lib/jsc.jar" 
             type="file" 
             property="FALCONJX_REPO"
             value="${env.FALCONJX_REPO}"/>
 
-        <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar"
-            type="file"
-            property="FALCONJX_REPO"
-            value="${basedir}/../royale-compiler/compiler-jx"/>
+        <echo message="FALCONJX_REPO is ${FALCONJX_REPO}"/>
+        
+        <condition property="FALCONJX_REPO" value="${basedir}/../royale-compiler/compiler-jx">
+            <and>
+                <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
+                <not>
+                    <isset property="FALCONJX_REPO" />
+                </not>
+            </and>
+        </condition>
 
+        <echo message="FALCONJX_REPO is ${FALCONJX_REPO}"/>
+        
         <fail message="FALCONJX_REPO must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder if it has been converted into an FB-compatible SDK"
             unless="FALCONJX_REPO"/>
     </target>
 
-    <target name="check-typedefs-home" unless="FLEXJS_TYPEDEFS_HOME"
-        description="Check FLEXJS_TYPEDEFS_HOME is a directory.">
+    <target name="check-typedefs-home" unless="ROYALE_TYPEDEFS_HOME"
+        description="Check ROYALE_TYPEDEFS_HOME is a directory.">
         
-        <echo message="FLEXJS_TYPEDEFS_HOME is ${env.FLEXJS_TYPEDEFS_HOME}"/>
+        <echo message="ROYALE_TYPEDEFS_HOME is ${env.ROYALE_TYPEDEFS_HOME}"/>
         
-        <available file="${env.FLEXJS_TYPEDEFS_HOME}/js/target/js.swc"
+        <available file="${env.ROYALE_TYPEDEFS_HOME}/js/target/js.swc"
         type="file"
-        property="FLEXJS_TYPEDEFS_HOME"
-        value="${env.FLEXJS_TYPEDEFS_HOME}"/>
+        property="ROYALE_TYPEDEFS_HOME"
+        value="${env.ROYALE_TYPEDEFS_HOME}"/>
         
         <available file="${basedir}/../royale-typedefs/js/target/js.swc"
         type="file"
-        property="FLEXJS_TYPEDEFS_HOME"
+        property="ROYALE_TYPEDEFS_HOME"
         value="${basedir}/../royale-typedefs"/>
         
         <available file="${basedir}/js/target/js.swc"
         type="file"
-        property="FLEXJS_TYPEDEFS_HOME"
+        property="ROYALE_TYPEDEFS_HOME"
         value="${basedir}"/>
         
         <echo>basedir is ${basedir}</echo>
         <available file="${basedir}/../falconjx/js/libs/js.swc"
         type="file"
-        property="FLEXJS_TYPEDEFS_HOME"
+        property="ROYALE_TYPEDEFS_HOME"
         value="${basedir}/../falconjx/js/libs"/>
         
-        <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the royale-typedefs repo"
-        unless="FLEXJS_TYPEDEFS_HOME"/>
+        <fail message="ROYALE_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the royale-typedefs repo"
+        unless="ROYALE_TYPEDEFS_HOME"/>
     </target>
 
     <target name="create-description" description="Generate flex-sdk-description.xml" unless="airsdk.found">
@@ -334,7 +350,7 @@
         	<format property="build.number.date" pattern="yyyyMMdd" />
         </tstamp>
         <echo message="build.number is ${build.number.date}"/>
-        <echo file="${basedir}/flex-sdk-description.xml">&lt;?xml version="1.0"?&gt;
+        <echo file="${basedir}/royale-sdk-description.xml">&lt;?xml version="1.0"?&gt;
 &lt;!--
 
   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -357,20 +373,20 @@
 &lt;name&gt;${release.name} ${release.version} FP${playerglobal.version} AIR${air.version} ${locale}&lt;/name&gt;
 &lt;version&gt;${fb.release.version}&lt;/version&gt;
 &lt;build&gt;${build.number.date}&lt;/build&gt;
-&lt;/flex-sdk-description&gt;
+&lt;/royale-sdk-description&gt;
         </echo>
     </target>
 	
     <target name="create-config" description="Create flex config file" unless="airsdk.found">
-        <ant dir="${basedir}/frameworks" target="flex-config" />
+        <ant dir="${basedir}/frameworks" target="royale-config" />
         <ant dir="${basedir}/frameworks" target="air-config" />
         <ant dir="${basedir}/frameworks" target="js-config" />
         <ant dir="${basedir}/frameworks" target="jquery-config" />
         <ant dir="${basedir}/frameworks" target="createjs-config" />
         <ant dir="${basedir}/frameworks" target="node-config" />
         <!-- hack to keep compiler happy -->
-        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Spark" />
-        <echo file="${FLEXJS_HOME}/frameworks/themes/Spark/spark.css">/*
+        <mkdir dir="${ROYALE_HOME}/frameworks/themes/Spark" />
+        <echo file="${ROYALE_HOME}/frameworks/themes/Spark/spark.css">/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -394,7 +410,7 @@
     <target name="copy-externs" depends="check-typedefs-home" description="Copy extern swcs into this folder">
         <mkdir dir="${basedir}/js/libs" />
         <copy todir="${basedir}/js/libs" flatten="true">
-            <fileset dir="${FLEXJS_TYPEDEFS_HOME}">
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}">
                 <include name="**/*.swc"/>
             </fileset>
         </copy>
@@ -403,6 +419,7 @@
     
     <target name="copy-compiler" depends="check-falcon-home, check-falconjx-home" description="Copy compiler jars to where they are supposed to go">
         <mkdir dir="${basedir}/lib" />
+        <echo>Copying Compiler from ${FALCON_REPO}</echo>
         <copy todir="${basedir}/lib">
             <fileset dir="${FALCON_REPO}/lib">
                 <include name="**"/>
@@ -415,14 +432,15 @@
             </fileset>
         </copy>
         <mkdir dir="${basedir}/js/lib" />
+        <echo>Copying Transpiler from ${FALCONJX_REPO}</echo>
         <copy todir="${basedir}/js/lib">
             <fileset dir="${FALCONJX_REPO}/lib">
                 <include name="**"/>
             </fileset>
         </copy>
         <!-- needed to make Flash Builder accept folder as a Flex SDK -->
-        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
-        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
+        <copy file="${FALCON_REPO}/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
+        <copy file="${FALCON_REPO}/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
     
     <target name="check_jquery" >
@@ -460,20 +478,20 @@
         </delete>
         <delete dir="${basedir}/lib" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/js/lib" failonerror="false" includeEmptyDirs="true"/>
-        <delete dir="${FLEXJS_HOME}/frameworks/libs/player" failonerror="false" includeEmptyDirs="true"/>
-        <delete dir="${FLEXJS_HOME}/frameworks/libs/air" failonerror="false" includeEmptyDirs="true"/>
-        <delete dir="${FLEXJS_HOME}/frameworks/locale" failonerror="false" includeEmptyDirs="true"/>
-        <delete dir="${FLEXJS_HOME}/frameworks/mx" failonerror="false" includeEmptyDirs="true"/>
-        <delete dir="${FLEXJS_HOME}/frameworks/rsls" failonerror="false" includeEmptyDirs="true"/>
-        <delete dir="${FLEXJS_HOME}/frameworks/themes/Halo" failonerror="false" includeEmptyDirs="true"/>
-        <delete dir="${FLEXJS_HOME}/frameworks/themes/Spark" failonerror="false" includeEmptyDirs="true"/>
-        <delete file="${FLEXJS_HOME}/frameworks/airmobile-config.xml" failonerror="false"/>
-        <delete file="${FLEXJS_HOME}/frameworks/macfonts.ser" failonerror="false"/>
-        <delete file="${FLEXJS_HOME}/frameworks/winfonts.ser" failonerror="false"/>
-        <delete file="${FLEXJS_HOME}/frameworks/localfonts.ser" failonerror="false"/>
-        <delete file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
-        <delete file="${FLEXJS_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
-        <delete file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
+        <delete dir="${ROYALE_HOME}/frameworks/libs/player" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${ROYALE_HOME}/frameworks/libs/air" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${ROYALE_HOME}/frameworks/locale" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${ROYALE_HOME}/frameworks/mx" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${ROYALE_HOME}/frameworks/rsls" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${ROYALE_HOME}/frameworks/themes/Halo" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${ROYALE_HOME}/frameworks/themes/Spark" failonerror="false" includeEmptyDirs="true"/>
+        <delete file="${ROYALE_HOME}/frameworks/airmobile-config.xml" failonerror="false"/>
+        <delete file="${ROYALE_HOME}/frameworks/macfonts.ser" failonerror="false"/>
+        <delete file="${ROYALE_HOME}/frameworks/winfonts.ser" failonerror="false"/>
+        <delete file="${ROYALE_HOME}/frameworks/localfonts.ser" failonerror="false"/>
+        <delete file="${ROYALE_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
+        <delete file="${ROYALE_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
+        <delete file="${ROYALE_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
     </target>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
@@ -486,7 +504,7 @@
     <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
         description="Full clean excluding thirdparty downloads">
         
-        <delete file="${basedir}/flex-sdk-description.xml" failonerror="false"/>
+        <delete file="${basedir}/royale-sdk-description.xml" failonerror="false"/>
         <delete file="${basedir}/rat.report" failonerror="false"/>
         
         <delete dir="${basedir}/examples" failonerror="false">
@@ -511,7 +529,7 @@
 
     <target name="frameworks-clean">
         <ant dir="${basedir}/frameworks" target="clean"/>
-        <ant dir="${basedir}/frameworks/js/FlexJS" target="clean"/>
+        <ant dir="${basedir}/frameworks/js" target="clean"/>
     </target>
 
     <target name="package-clean">
@@ -559,13 +577,13 @@
                     <include name="flex-compiler-oem.jar"/>
                 </fileset>
             </classpath>
-            <fileset dir="${basedir}/modules/compiler/src/java/flex2/tools/oem">
+            <fileset dir="${basedir}/modules/compiler/src/java/royale2/tools/oem">
                 <include name="*.java"/>
                 <exclude name="**/*.properties"/>
             </fileset>
         </javadoc>
         <mkdir dir="${basedir}/out"/>
-        <zip destfile="${basedir}/out/${kit.prefix}-compiler-api-javadocs.zip" basedir="${FLEXJS_HOME}/javadoc"/>
+        <zip destfile="${basedir}/out/${kit.prefix}-compiler-api-javadocs.zip" basedir="${ROYALE_HOME}/javadoc"/>
         <delete dir="${basedir}/javadoc" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
@@ -575,7 +593,7 @@
     
     <target name="post-build" depends="ide" description="Handle post-build activities" unless="airsdk.found">
         <!-- fake a bunch of files to make the folder appear like a valid Flex SDK to Flash Builder -->
-        <echo file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml">&lt;?xml version="1.0"?&gt;
+        <echo file="${ROYALE_HOME}/ide/flashbuilder/flashbuilder-config.xml">&lt;?xml version="1.0"?&gt;
     &lt;!--
     
     Licensed to the Apache Software Foundation (ASF) under one or more
@@ -598,7 +616,7 @@
     &lt;express-install-swf&gt;expressInstall.swf&lt;/express-install-swf&gt;
     &lt;/flashbuilder-config&gt;
 </echo>
-        <echo file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
+        <echo file="${ROYALE_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
     &lt;!--
     
     Licensed to the Apache Software Foundation (ASF) under one or more
@@ -620,7 +638,7 @@
     &lt;componentPackage&gt;
     &lt;/componentPackage&gt;
 </echo>
-        <echo file="${FLEXJS_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
+        <echo file="${ROYALE_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
     &lt;!--
     
     Licensed to the Apache Software Foundation (ASF) under one or more
@@ -642,18 +660,18 @@
     &lt;componentPackage&gt;
     &lt;/componentPackage&gt;
 </echo>
-        <mkdir dir="${FLEXJS_HOME}/frameworks/locale" />
-        <mkdir dir="${FLEXJS_HOME}/frameworks/mx" />
-        <mkdir dir="${FLEXJS_HOME}/frameworks/projects" />
-        <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
-        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
-        <copy file="${FLEXJS_HOME}/js/libs/js.swc"
-        tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
-        <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
-        tofile="${FLEXJS_HOME}/frameworks/airmobile-config.xml" />
-        <touch file="${FLEXJS_HOME}/frameworks/macfonts.ser" />
-        <touch file="${FLEXJS_HOME}/frameworks/winfonts.ser" />
-        <touch file="${FLEXJS_HOME}/frameworks/localfonts.ser" />
+        <mkdir dir="${ROYALE_HOME}/frameworks/locale" />
+        <mkdir dir="${ROYALE_HOME}/frameworks/mx" />
+        <mkdir dir="${ROYALE_HOME}/frameworks/projects" />
+        <mkdir dir="${ROYALE_HOME}/frameworks/rsls" />
+        <mkdir dir="${ROYALE_HOME}/frameworks/themes/Halo" />
+        <copy file="${ROYALE_HOME}/js/libs/js.swc"
+        tofile="${ROYALE_HOME}/frameworks/themes/Halo/Halo.swc" />
+        <copy file="${ROYALE_HOME}/frameworks/air-config.xml"
+        tofile="${ROYALE_HOME}/frameworks/airmobile-config.xml" />
+        <touch file="${ROYALE_HOME}/frameworks/macfonts.ser" />
+        <touch file="${ROYALE_HOME}/frameworks/winfonts.ser" />
+        <touch file="${ROYALE_HOME}/frameworks/localfonts.ser" />
     </target>
 
     <!--
@@ -702,7 +720,7 @@
                 <exclude name="local.properties"/>
                 <exclude name="nightly.properties"/>
                 <exclude name="releasecandidate.xml"/>
-                <exclude name="ApproveFlexJS.xml"/>
+                <exclude name="ApproveRoyale.xml"/>
                 <exclude name=".DS_Store"/>
                 <exclude name="**/.DS_Store"/>
                 <exclude name=".git/**"/>
@@ -718,7 +736,7 @@
                 <exclude name="fxg2svg/**"/>
                 <exclude name="temp/**"/>
                 <exclude name="vf2js/**"/>
-                <exclude name="**/FlexJSTest_again/**" />
+                <exclude name="**/RoyaleTest_again/**" />
                 <exclude name="**/VanillaSDK_POC/**" />
                 <exclude name="**/.plxarc"/>
                 <exclude name="**/.settings/**"/>
@@ -738,8 +756,8 @@
         <!-- now that config xml files are in temp, fix them up for release. -->
         <echo message="Updating config file air-config.xml with version ${build.version}"/>
         <fix-config-file file="${basedir}/temp/frameworks/air-config-template.xml" version="${build.version}" />
-        <echo message="Updating config file flex-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/flex-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file royale-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/royale-config-template.xml" version="${build.version}" />
         <echo message="Updating config file js-config.xml with version ${build.version}"/>
         <fix-config-file file="${basedir}/temp/frameworks/js-config-template.xml" version="${build.version}" />
         <echo message="Updating config file jquery-config.xml with version ${build.version}"/>
@@ -799,7 +817,7 @@
             </fileset>
         </delete>
         <delete includeemptydirs="true">
-            <fileset dir="${basedir}/temp/frameworks/js/FlexJS/projects">
+            <fileset dir="${basedir}/temp/frameworks/js/projects">
                 <and>
                     <size value="0"/>
                     <type type="dir"/>
@@ -833,7 +851,7 @@
         <antcall target="inject-asf-header" />
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
-        <copy todir="${basedir}/out" file="${basedir}/apache-flex-flexjs-installer-config.xml" />
+        <!--<copy todir="${basedir}/out" file="${basedir}/apache-royale-installer-config.xml" />-->
     </target>
 
 	<target name="copy-gcl-from-goog-home" if="GOOG_HOME">
@@ -937,16 +955,16 @@
                 </or>
             </condition>
         </fail>
-        <replace file="${FLEXJS_HOME}/build.properties"
+        <replace file="${ROYALE_HOME}/build.properties"
             token="${old-version}"
             value="${new-version}" />
-        <replace file="${FLEXJS_HOME}/nightly.properties"
+        <replace file="${ROYALE_HOME}/nightly.properties"
             token="${old-version}"
             value="${new-version}" />
-        <replace file="${FLEXJS_HOME}/installer.xml"
+        <replace file="${ROYALE_HOME}/installer.xml"
             token="${old-version}"
             value="${new-version}" />
-        <replace dir="${FLEXJS_HOME}/examples"
+        <replace dir="${ROYALE_HOME}/examples"
             token="&lt;versionNumber&gt;${old-version}&lt;/versionNumber&gt;"
             value="&lt;versionNumber&gt;${new-version}&lt;/versionNumber&gt;" >
             <include name="**/*-app.xml"/>
@@ -982,7 +1000,7 @@
         <replaceregexp>
             <regexp pattern='"[0-9].[0-9].[0-9].[0-9]";'/>
             <substitution expression='"${release.version}.${build.number.date}";'/>
-            <fileset dir="${FLEXJS_HOME}/temp/frameworks/projects">
+            <fileset dir="${ROYALE_HOME}/temp/frameworks/projects">
                 <include name="**/Version.as"/>
             </fileset>
         </replaceregexp>		
@@ -1104,8 +1122,8 @@
     </target>
     
     <target name="basictests-compile-js" depends="load-task" unless="env.AIR_HOME">
-        <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-        <property name="FALCONJX_HOME" value="${FLEXJS_HOME}/js"/>
+        <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
+        <property name="FALCONJX_HOME" value="${ROYALE_HOME}/js"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
@@ -1115,20 +1133,20 @@
             closure-lib="${env.GOOG_HOME}"
             file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <targets>JSFlex</targets>
-            <library-path dir="${FLEXJS_HOME}" append="true">
+            <targets>JSRoyale</targets>
+            <library-path dir="${ROYALE_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
             </library-path>
             <js-external-library-path dir="${basedir}">
                 <include name="js/libs/js.swc"/>
             </js-external-library-path>
             <js-library-path dir="${basedir}" >
-                <include name="frameworks/js/FlexJS/libs"/>
+                <include name="frameworks/js/libs"/>
             </js-library-path>
-            <js-library-path dir="${FLEXJS_HOME}" append="true">
+            <js-library-path dir="${ROYALE_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
             </js-library-path>
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
+            <arg value="-sdk-js-lib=${ROYALE_HOME}/mustella/js" />
         </mxmlc>
     </target>
     
@@ -1248,7 +1266,7 @@
     <target name="load-task" depends="runtime-setup">
         <!-- load the <mxmlc> task; we can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail -->
-        <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/falcon-flexTasks.jar"/>
+        <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/falcon-royaleTasks.jar"/>
     </target>
 
     <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME">
@@ -1265,12 +1283,12 @@
                 <include name="js/libs/js.swc"/>
             </js-external-library-path>
             <js-library-path dir="${basedir}" >
-                <include name="frameworks/js/FlexJS/libs"/>
+                <include name="frameworks/js/libs"/>
             </js-library-path>
             <js-library-path dir="${FLEX_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
             </js-library-path>
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
+            <arg value="-sdk-js-lib=${ROYALE_HOME}/mustella/js" />
         </mxmlc>
         <mkdir dir="${basedir}/mustella/tests/basicTests/fonts" />
         <copy todir="${basedir}/mustella/tests/basicTests/fonts" >
@@ -1307,7 +1325,7 @@
         <java classname="mustella.MustellaResultsParser" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
-                <pathelement location="${FLEXJS_HOME}/mustella/target/classes"/>
+                <pathelement location="${ROYALE_HOME}/mustella/target/classes"/>
             </classpath>
         </java>
     </target>
@@ -1505,7 +1523,7 @@
     
     <target name="ask-about-downloading-repos" depends="ask-or-fail, download-all" if="airsdk.found" />
     <target name="ask-or-fail" if="airsdk.found" >
-        <echo>This folder appears to be an IDE-compatible FlexJS SDK.</echo>
+        <echo>This folder appears to be an IDE-compatible Royale SDK.</echo>
         <input
         message="Do you want to download and setup the build environment?"
         validargs="y,n"
@@ -1526,10 +1544,10 @@
     </target>
     
     <target name="get-download-folder" depends="check-git" if="airsdk.found">
-        <condition property="defaultPath" value="${env.HOME}/git/apache/flex">
+        <condition property="defaultPath" value="${env.HOME}/git/apache.royale">
             <os family="mac" />
         </condition>
-        <property name="defaultPath" value="c:\git\apache\flex" />
+        <property name="defaultPath" value="c:\git\apache.royale" />
         <input
         message="Enter absolute path to a folder.  The folder will be created if it doesn't exist."
         defaultvalue="${defaultPath}"
@@ -1667,13 +1685,13 @@
         <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <jvmarg line="-Droyalelib=${ROYALE_HOME}/frameworks}"/>
+            <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="-debug" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
-            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/js.swc" />
+            <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-remove-circulars" />
             <arg value="-define=COMPILE::SWF,false" />
@@ -1687,12 +1705,12 @@
         <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <jvmarg line="-Droyalelib=${ROYALE_HOME}/frameworks}"/>
+            <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
-            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/js.swc" />
+            <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-remove-circulars" />
             <arg value="-define=COMPILE::SWF,false" />

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:productsView="productsView.*"
+    >
+    <js:style>
+        <js:SimpleCSSStyles 
+                               paddingTop="8"
+                               paddingBottom="8"
+                               paddingRight="4"
+                               paddingLeft="4" />
+    </js:style>
+    <js:beads>
+        <js:ContainerDataBinding />
+        <js:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="productList" />
+    </js:beads>
+    <fx:Script>
+        <![CDATA[
+        
+        import org.apache.royale.html.SimpleAlert;
+        
+        import samples.royalestore.Product;
+        import samples.royalestore.ProductListEvent;
+        
+        [Bindable]
+        public var numProducts:int=0;
+        
+        [Bindable]
+        private var total:Number = 0;
+
+        private const SHIPPING:Number = 1.99;
+        
+        private function productListEventHandler(event:ProductListEvent):void
+        {
+            switch (event.type)
+            {
+                case ProductListEvent.ADD_PRODUCT:
+                    event.product.qty = 0;  
+                    //fall through into the same logic as dup          
+                case ProductListEvent.DUPLICATE_PRODUCT:
+                    event.product.qty++;
+                    //total += event.product.price;
+                    total = total + event.product.price;
+                    numProducts++;
+                    break;            
+                case ProductListEvent.PRODUCT_QTY_CHANGE:
+                case ProductListEvent.REMOVE_PRODUCT:
+                    var items:Array = productList.items;
+                    total = 0; 
+                    numProducts = 0;
+                    for (var i:int=0; i < items.length; i++)
+                    {
+                        var product:Product = items[i].product;
+                        //total += product.qty * product.price;
+                        //numProducts += product.qty;
+                        total = total + product.qty * product.price;
+                        numProducts = numProducts + product.qty;
+                    }       
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+    </fx:Declarations>
+    
+    <js:Label width="100%" text="Your Shopping Cart" className="sectionHeader"/>
+        
+    <productsView:ProductList id="productList" width="100%"
+        newItemStartX="-100" newItemStartY="-100" 
+        addProduct="productListEventHandler(event)"
+        duplicateProduct="productListEventHandler(event)"
+        productQtyChange="productListEventHandler(event)"
+        removeProduct="productListEventHandler(event)"
+        showQuantity="true" />
+    
+    <js:Container style="right:0" id="totalContainer" width="100%" height="60">
+        <js:beads>
+            <js:VerticalColumnLayout numColumns="2" />
+        </js:beads>
+        <js:Label text="Total:" />
+        <js:Label width="70" text="{cf.format(total)}" id="lblTotal" style="textAlign:'right'"/>
+
+        <js:Label text="Service Fee:" />
+        <js:Label width="70" text="{cf.format(numProducts * SHIPPING)}" id="lblFee" style="textAlign:'right'"/>
+
+        <js:Label text="Grand Total:" style="fontWeight:'bold'" />
+        <js:Label width="70" text="{cf.format(total + (numProducts * SHIPPING))}" id="lblGrandTotal" style="textAlign:'right'"/>
+
+    </js:Container>
+
+    <js:TextButton text="Submit Order" click="SimpleAlert.show('This feature is not implemented in this sample', 'Submit Order')"
+                   style="right:0"/>
+
+</js:Container>

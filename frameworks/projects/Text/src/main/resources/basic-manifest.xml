@@ -20,5 +20,5 @@
 
 
 <componentPackage>
-    <!--<component id="Application" class="org.apache.flex.core.Application"/>-->
+    <!--<component id="Application" class="org.apache.royale.core.Application"/>-->
 </componentPackage>

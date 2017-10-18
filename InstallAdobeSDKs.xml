@@ -20,7 +20,7 @@
 
 <project name="InstallAdobeSDKs" default="install" basedir=".">
 
-    <property name="FLEXJS_HOME" location="${basedir}"/>
+    <property name="ROYALE_HOME" location="${basedir}"/>
     
 	<!-- this script supports the usingDownloadCache property and
 	     downloadCacheFolder property to cache downloads in the
@@ -41,14 +41,14 @@
         </and>
     </condition>
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/local.properties"/>
-    <property file="${FLEXJS_HOME}/nightly.properties"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/nightly.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
     <property name="bundle" value="en_US" />
-    <property file="${FLEXJS_HOME}/InstallAdobeSDKs.properties/${bundle}.properties"/>
-    <property file="${FLEXJS_HOME}/InstallAdobeSDKs.properties/en_US.properties"/>
+    <property file="${ROYALE_HOME}/InstallAdobeSDKs.properties/${bundle}.properties"/>
+    <property file="${ROYALE_HOME}/InstallAdobeSDKs.properties/en_US.properties"/>
 
     <condition property="platform" value="mac">
         <os family="mac" />
@@ -110,7 +110,7 @@
     <target name="air-setup-win" if="isWindows">
         <unzip src="${download.dir}/${air.sdk.name}" dest="${temp.dir}/airsdk" />
         <echo>${INFO_FINISHED_UNZIPPING} ${temp.dir}/${air.sdk.name}</echo>
-        <copy todir="${FLEXJS_HOME}" overwrite="true">
+        <copy todir="${ROYALE_HOME}" overwrite="true">
             <fileset dir="${temp.dir}/airsdk">
                 <include name="AIR SDK license.pdf" />
                 <include name="AIR SDK Readme.txt" />
@@ -179,7 +179,7 @@
     
     <target name="copyFromMount" unless="shouldUnzip">
         <echo message="Copying AIR SDK from mounted volume"/>
-        <exec executable="rsync" dir="${FLEXJS_HOME}">
+        <exec executable="rsync" dir="${ROYALE_HOME}">
             <arg value="--archive" />
             <arg value="--ignore-existing" />
             <arg value="--force" />
@@ -204,95 +204,95 @@
         <antcall target="mac-copy-file">
             <param name="srcdir" value="." />
             <param name="filename" value="AIR SDK license.pdf"/>
-            <param name="destdir" value="${FLEXJS_HOME}" />
+            <param name="destdir" value="${ROYALE_HOME}" />
         </antcall>
         <antcall target="mac-copy-file">
             <param name="srcdir" value="." />
             <param name="filename" value="AIR SDK Readme.txt"/>
-            <param name="destdir" value="${FLEXJS_HOME}" />
+            <param name="destdir" value="${ROYALE_HOME}" />
         </antcall>
         <antcall target="mac-copy-file">
             <param name="srcdir" value="." />
             <param name="filename" value="airsdk.xml"/>
-            <param name="destdir" value="${FLEXJS_HOME}" />
+            <param name="destdir" value="${ROYALE_HOME}" />
         </antcall>
         <antcall target="mac-copy-file">
             <param name="srcdir" value="bin" />
             <param name="filename" value="adl"/>
-            <param name="destdir" value="${FLEXJS_HOME}/bin" />
+            <param name="destdir" value="${ROYALE_HOME}/bin" />
         </antcall>
         <antcall target="mac-copy-file">
             <param name="srcdir" value="bin" />
             <param name="filename" value="adt"/>
-            <param name="destdir" value="${FLEXJS_HOME}/bin" />
+            <param name="destdir" value="${ROYALE_HOME}/bin" />
         </antcall>
         <antcall target="mac-copy-file">
             <param name="srcdir" value="lib" />
             <param name="filename" value="adt.jar"/>
-            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
         </antcall>
         <antcall target="mac-copy-file">
             <param name="srcdir" value="samples" />
             <param name="filename" value="descriptor-sample.xml"/>
-            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+            <param name="destdir" value="${ROYALE_HOME}/samples" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="frameworks/libs/air" />
-            <param name="destdir" value="${FLEXJS_HOME}/frameworks/libs" />
+            <param name="destdir" value="${ROYALE_HOME}/frameworks/libs" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="frameworks/projects/air" />
-            <param name="destdir" value="${FLEXJS_HOME}/frameworks/projects" />
+            <param name="destdir" value="${ROYALE_HOME}/frameworks/projects" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="include" />
-            <param name="destdir" value="${FLEXJS_HOME}" />
+            <param name="destdir" value="${ROYALE_HOME}" />
         </antcall>
         <antcall target="mac-copy-dir-if-exists">
             <param name="srcdir" value="install/android" />
-            <param name="destdir" value="${FLEXJS_HOME}/install" />
+            <param name="destdir" value="${ROYALE_HOME}/install" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="lib/android" />
-            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="lib/aot" />
-            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="lib/nai" />
-            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="runtimes" />
-            <param name="destdir" value="${FLEXJS_HOME}" />
+            <param name="destdir" value="${ROYALE_HOME}" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="samples/badge" />
-            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+            <param name="destdir" value="${ROYALE_HOME}/samples" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="samples/icons" />
-            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+            <param name="destdir" value="${ROYALE_HOME}/samples" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="templates/air" />
-            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+            <param name="destdir" value="${ROYALE_HOME}/templates" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="templates/extensions" />
-            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+            <param name="destdir" value="${ROYALE_HOME}/templates" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="templates/sdk" />
-            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+            <param name="destdir" value="${ROYALE_HOME}/templates" />
         </antcall>
     </target>
     
     <target name="mac-copy-file" description="copies a file">
         <mkdir dir="${destdir}" />
-        <exec executable="cp" dir="${FLEXJS_HOME}">
+        <exec executable="cp" dir="${ROYALE_HOME}">
             <arg value="-p" />
             <arg value="${temp.dir}/airsdk/${srcdir}/${filename}"/>
             <arg value="${destdir}" />
@@ -304,7 +304,7 @@
         <property file="${basedir}/maccopy.properties" />
         <delete file="${basedir}/maccopy.properties" />
         <echo>${mac.copy.echo}</echo>
-        <exec executable="rsync" dir="${FLEXJS_HOME}">
+        <exec executable="rsync" dir="${ROYALE_HOME}">
             <arg value="--archive" />
             <arg value="--ignore-existing" />
             <arg value="--force" />
@@ -317,7 +317,7 @@
         <echo file="${basedir}/maccopy.properties">mac.copy.echo=${mac.copy.echo.pattern}</echo>
         <property file="${basedir}/maccopy.properties" />
         <echo>${mac.copy.echo}</echo>
-        <exec executable="rsync" dir="${FLEXJS_HOME}">
+        <exec executable="rsync" dir="${ROYALE_HOME}">
             <arg value="--archive" />
             <arg value="--ignore-existing" />
             <arg value="--force" />
@@ -343,53 +343,53 @@
             <regexpmapper from="playerglobal([0-9]*)_([0-9]*)\.swc" to="\1.\2" />
         </pathconvert>
         
-        <copy todir="${FLEXJS_HOME}/frameworks/libs/player" overwrite="true">
+        <copy todir="${ROYALE_HOME}/frameworks/libs/player" overwrite="true">
             <fileset dir="${download.dir}">
                 <include name="playerglobal*.swc" />
             </fileset>
             <regexpmapper from="playerglobal([0-9]*)_([0-9]*)\.swc" to="\1.\2/playerglobal.swc" />
         </copy>
         
-        <replaceregexp file="${FLEXJS_HOME}/flex-sdk-description.xml"
+        <replaceregexp file="${ROYALE_HOME}/royale-sdk-description.xml"
             match="FP.*AIR"
             replace="FP${fpversion} AIR" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/flex-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/flex-config-template.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/air-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/air-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/air-config-template.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/air-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/airmobile-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/airmobile-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/js-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/js-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/js-config-template.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/js-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/node-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/node-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/node-config-template.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/node-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/jquery-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/jquery-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/jquery-config-template.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/jquery-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/createjs-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/createjs-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${FLEXJS_HOME}/frameworks/createjs-config-template.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/createjs-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
             

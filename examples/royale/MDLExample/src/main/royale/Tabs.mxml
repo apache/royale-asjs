@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:models="models.*">
+
+    <mdl:model>
+        <models:TabsModel id="tabsModel"/>
+    </mdl:model>
+
+    <mdl:Grid>
+        <mdl:GridCell column="12">
+            <mdl:Tabs width="400" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabBarPanelItemRenderer">
+                <mdl:beads>
+                    <js:ConstantBinding
+                            sourceID="tabsModel"
+                            sourcePropertyName="tabs"
+                            destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:Tabs>
+        </mdl:GridCell>
+       <mdl:GridCell column="12">
+            <mdl:NavigationLayout width="600">
+                <mdl:Header>
+                    <mdl:TabBar selectedIndex="0" tabIdField="tabId" labelField="label" className="customTabBarSetup">
+                        <mdl:beads>
+                            <js:ConstantBinding
+                                    sourceID="tabsModel"
+                                    sourcePropertyName="tabsLayout"
+                                    destinationPropertyName="dataProvider" />
+                        </mdl:beads>
+                    </mdl:TabBar>
+                </mdl:Header>
+
+                <mdl:NavigationLayoutContent>
+                    <mdl:TabBarPanel id="starks_panel" isActive="true">
+                        <js:Ul>
+                            <js:Li><mdl:beads><js:InnerHTML text="Eddard"/></mdl:beads></js:Li>
+                            <js:Li><js:Label text="Catelyn"/></js:Li>
+                            <js:Li><js:Label text="Robb"/></js:Li>
+                            <js:Li><js:Label text="Sansa"/></js:Li>
+                            <js:Li><js:Label text="Brandon"/></js:Li>
+                            <js:Li><js:Label text="Arya"/></js:Li>
+                            <js:Li><js:Label text="Rickon"/></js:Li>
+                        </js:Ul>
+                    </mdl:TabBarPanel>
+
+                    <mdl:TabBarPanel id="lannisters_panel">
+                        <js:Ul>
+                            <js:Li><js:Label text="Tywin"/></js:Li>
+                            <js:Li><js:Label text="Cersei"/></js:Li>
+                            <js:Li><js:Label text="Jamie"/></js:Li>
+                            <js:Li><js:Label text="Tyrion"/></js:Li>
+                        </js:Ul>
+                    </mdl:TabBarPanel>
+
+                    <mdl:TabBarPanel id="targaryens_panel">
+                        <js:Ul>
+                            <js:Li><js:Label text="Viserys"/></js:Li>
+                            <js:Li><js:Label text="Daenerys"/></js:Li>
+                        </js:Ul>
+                    </mdl:TabBarPanel>
+                </mdl:NavigationLayoutContent>
+            </mdl:NavigationLayout>
+        </mdl:GridCell>
+    </mdl:Grid>
+</mdl:TabBarPanel>

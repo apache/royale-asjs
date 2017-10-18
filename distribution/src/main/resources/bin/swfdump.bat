@@ -18,9 +18,9 @@ rem limitations under the License.
 rem
 
 rem
-rem fasc.bat script to launch falcon-asc.jar in Windows Command Prompt.
+rem fasc.bat script to launch compiler-asc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the fasc shell script instead.
 rem
 
-@java -Dsun.io.useCanonCaches=false -Dapplication.home="%~dp0.." -Xms32m -Xmx512m -jar "%~dp0..\lib\falcon-swfdump.jar" %*
+@java -Dsun.io.useCanonCaches=false -Dapplication.home="%~dp0.." -Xms32m -Xmx512m -jar "%~dp0..\lib\compiler-swfdump.jar" %*
 

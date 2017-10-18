@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+			    initComplete="initControls()">
+    <fx:Script>
+        <![CDATA[
+			import models.MyModel;
+			
+			import org.apache.royale.events.CustomEvent;
+			
+			private var _symbol:String;
+			
+            public function get symbol():String
+            {
+                return _symbol;
+            }
+			
+			public function get requestedField():String
+			{
+				return radio1.selectedValue as String;
+			}
+			
+            [Bindable]
+            public var fieldText:String = "symbol data";
+            
+			private function radioChanged(e:org.apache.royale.events.Event):void
+			{
+				dispatchEvent(new CustomEvent("radioClicked"));
+				fieldText = RadioButton(e.target).text;
+			}
+			
+			private function initControls():void
+			{
+				list.selectedItem = MyModel(applicationModel).stockSymbol;
+				radio1.selectedValue = MyModel(applicationModel).requestedField;
+				if (radio1.selected)
+					fieldText = radio1.text;
+				else if (radio2.selected)
+					fieldText = radio2.text;
+				else if (radio3.selected)
+					fieldText = radio3.text;
+				else if (radio4.selected)
+					fieldText = radio4.text;
+				
+			}
+            
+            private function setState():void
+            {
+                currentState = showAllData.selected ? "showAll" : "hideAll";    
+            }
+		]]>
+    </fx:Script>
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/royale/basic";
+		
+		global {
+    		IStatesImpl:            ClassReference("org.apache.royale.core.SimpleStatesImpl");
+		}
+
+		.inner {
+			width: 400px;
+		}
+		
+		.output {
+			font-size: 20px;
+		}
+
+        .topContainer {
+            backgroundColor: white;
+        }
+		
+        .leftSide {
+			flex-grow: 1;
+			margin: 6px;
+        }
+		
+		.symbolInput {
+		}
+        
+        .rightSide {
+			flex-grow: 1;
+			margin: 6px;
+        }
+        
+        .quoteButton {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+	</fx:Style>
+    <js:states>
+        <js:State name="hideAll" />        
+        <js:State name="showAll" />        
+    </js:states>
+	
+    <js:beads>
+        <js:ViewDataBinding />
+		<js:VerticalFlexLayout />
+    </js:beads>
+		
+    <js:Label text="Enter Stock Symbol or choose from list:" />
+	
+	<js:Group className="inner" width="400">
+		<js:beads>
+			<js:HorizontalFlexLayout />
+		</js:beads>
+		
+		<js:Group className="leftSide">
+			<js:beads>
+				<js:VerticalFlexLayout />
+			</js:beads>
+			<js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" className="symbolInput" width="50%" />
+			<js:TextButton text="Get Quote" className="quoteButton" width="50%"
+						   click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
+			<js:Label id="field" text="{fieldText}"/>
+			<js:Label className="output" height="24" text="{MyModel(applicationModel).responseText}" />
+		</js:Group>
+		
+		<js:Group className="rightSide">
+			<js:beads>
+				<js:VerticalFlexLayout />
+			</js:beads>
+			<js:DropDownList id="list" width="50%"
+							 change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))"
+							 dataProvider="{MyModel(applicationModel).strings}" />
+			<js:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
+			<js:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
+			<js:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
+			<js:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
+			<js:CheckBox id="showAllData" text="Show All Data" change="setState()" />
+		</js:Group>
+	</js:Group>
+	
+	<js:Label id="bindtest" text="{fieldText + ' expression binding'}" />
+	<js:Label width="300" text.showAll="110" includeIn="showAll" />
+	<js:TextArea id="ta" width="300" height="100" height.showAll="110" 
+				 includeIn="showAll"
+				 text="{MyModel(applicationModel).allData}" />
+</js:View>

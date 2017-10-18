@@ -18,10 +18,10 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
-				xmlns:acc="org.apache.flex.html.staticControls.accessories.*">
+				xmlns:acc="org.apache.royale.html.staticControls.accessories.*">
 	
 	<fx:Style>
 		.title {
@@ -35,9 +35,9 @@ limitations under the License.
 		<![CDATA[
 			import dialogs.LoginDialog;
 			
-			import org.apache.flex.core.IPopUpHost;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.utils.UIUtils;
+			import org.apache.royale.core.IPopUpHost;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.utils.UIUtils;
 			
 			
 			private function showLogin():void
@@ -50,7 +50,7 @@ limitations under the License.
 				dialog.addEventListener("close",closeDialog);
 			}
 			
-			private function closeDialog(event:org.apache.flex.events.Event):void
+			private function closeDialog(event:org.apache.royale.events.Event):void
 			{
 				var dialog:LoginDialog = event.currentTarget as LoginDialog;
 				UIUtils.removePopUp(dialog);

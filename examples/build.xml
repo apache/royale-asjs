@@ -25,7 +25,7 @@
 -->
 <project name="examples" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location=".."/>
+    <property name="ROYALE_HOME" location=".."/>
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -55,15 +55,15 @@
         </and>
     </condition>  
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
  
     <target name="main" depends="check-compile-env,clean,prepare,compile" 
         description="Clean build of all examples"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
-        <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
+        <ant antfile="${ROYALE_HOME}/build.xml" target="check-compile-env" dir="${ROYALE_HOME}"/>
     </target>
 
     
@@ -76,37 +76,37 @@
     <target name="compile" description="Compile Examples" >
         <ant dir="${basedir}/express/DataBindingExample"/>
         <ant dir="${basedir}/express/DataGridExample"/>
-        <ant dir="${basedir}/flexjs/ASDoc"/>
-        <ant dir="${basedir}/flexjs/CordovaCameraExample"/>
-        <ant dir="${basedir}/flexjs/CreateJSExample"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample_as"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample_Flat"/>
-        <ant dir="${basedir}/flexjs/DataBindingExampleWithFlexLayout"/>
-        <ant dir="${basedir}/flexjs/DataGridExample"/>
-        <ant dir="${basedir}/flexjs/DateControlsExample"/>
-        <ant dir="${basedir}/flexjs/DesktopMap"/>
-        <ant dir="${basedir}/flexjs/DragAndDropExample"/>
-        <ant dir="${basedir}/flexjs/FlexTeamPage_MDL"/>
-        <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer"/>
-        <ant dir="${basedir}/flexjs/FlexJSStore"/>
-        <ant dir="${basedir}/flexjs/FlexJSStore_jquery"/>
-        <ant dir="${basedir}/flexjs/HelloWorld"/>
-        <ant dir="${basedir}/flexjs/ListExample"/>
-        <ant dir="${basedir}/flexjs/MapSearch"/>
-        <ant dir="${basedir}/flexjs/MDLExample"/>
-        <ant dir="${basedir}/flexjs/MobileMap"/>
-        <ant dir="${basedir}/flexjs/MobileStocks"/>
-        <ant dir="${basedir}/flexjs/MobileTrader"/>
-        <ant dir="${basedir}/flexjs/ModuleExample"/>
-        <ant dir="${basedir}/flexjs/ChartExample"/>
-        <ant dir="${basedir}/flexjs/RemoteObjectAMFTest"/>
-        <ant dir="${basedir}/flexjs/StorageExample"/>
-        <ant dir="${basedir}/flexjs/StyleExample"/>
-        <ant dir="${basedir}/flexjs/TableExample"/>
-        <ant dir="${basedir}/flexjs/TodoListSampleApp"/>
-        <ant dir="${basedir}/flexjs/TeamPage"/>
-        <ant dir="${basedir}/flexjs/TreeExample"/>
+        <ant dir="${basedir}/royale/ASDoc"/>
+        <ant dir="${basedir}/royale/CordovaCameraExample"/>
+        <ant dir="${basedir}/royale/CreateJSExample"/>
+        <ant dir="${basedir}/royale/DataBindingExample"/>
+        <ant dir="${basedir}/royale/DataBindingExample_as"/>
+        <ant dir="${basedir}/royale/DataBindingExample_Flat"/>
+        <ant dir="${basedir}/royale/DataBindingExampleWithFlexLayout"/>
+        <ant dir="${basedir}/royale/DataGridExample"/>
+        <ant dir="${basedir}/royale/DateControlsExample"/>
+        <ant dir="${basedir}/royale/DesktopMap"/>
+        <ant dir="${basedir}/royale/DragAndDropExample"/>
+        <ant dir="${basedir}/royale/RoyaleTeamPage_MDL"/>
+        <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer"/>
+        <ant dir="${basedir}/royale/RoyaleStore"/>
+        <ant dir="${basedir}/royale/RoyaleStore_jquery"/>
+        <ant dir="${basedir}/royale/HelloWorld"/>
+        <ant dir="${basedir}/royale/ListExample"/>
+        <ant dir="${basedir}/royale/MapSearch"/>
+        <ant dir="${basedir}/royale/MDLExample"/>
+        <ant dir="${basedir}/royale/MobileMap"/>
+        <ant dir="${basedir}/royale/MobileStocks"/>
+        <ant dir="${basedir}/royale/MobileTrader"/>
+        <ant dir="${basedir}/royale/ModuleExample"/>
+        <ant dir="${basedir}/royale/ChartExample"/>
+        <ant dir="${basedir}/royale/RemoteObjectAMFTest"/>
+        <ant dir="${basedir}/royale/StorageExample"/>
+        <ant dir="${basedir}/royale/StyleExample"/>
+        <ant dir="${basedir}/royale/TableExample"/>
+        <ant dir="${basedir}/royale/TodoListSampleApp"/>
+        <ant dir="${basedir}/royale/TeamPage"/>
+        <ant dir="${basedir}/royale/TreeExample"/>
         <ant dir="${basedir}/native/ButtonExample"/>
         <ant dir="${basedir}/native/USStatesMap"/>
     </target>
@@ -124,37 +124,37 @@
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/express/DataGridExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/ASDoc" target="clean"/>
-        <ant dir="${basedir}/flexjs/CordovaCameraExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/CreateJSExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample_as" target="clean"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="clean"/>
-        <ant dir="${basedir}/flexjs/DataBindingExampleWithFlexLayout" target="clean"/>
-        <ant dir="${basedir}/flexjs/DataGridExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/DateControlsExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/DesktopMap" target="clean"/>
-        <ant dir="${basedir}/flexjs/DragAndDropExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/FlexTeamPage_MDL" target="clean"/>
-        <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer" target="clean"/>
-        <ant dir="${basedir}/flexjs/FlexJSStore" target="clean"/>
-        <ant dir="${basedir}/flexjs/FlexJSStore_jquery" target="clean"/>
-        <ant dir="${basedir}/flexjs/HelloWorld" target="clean"/>
-        <ant dir="${basedir}/flexjs/ListExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/MapSearch" target="clean"/>
-        <ant dir="${basedir}/flexjs/MDLExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/MobileTrader" target="clean"/>
-        <ant dir="${basedir}/flexjs/MobileStocks" target="clean"/>
-        <ant dir="${basedir}/flexjs/MobileMap" target="clean"/>
-        <ant dir="${basedir}/flexjs/ModuleExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/ChartExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/RemoteObjectAMFTest" target="clean"/>
-        <ant dir="${basedir}/flexjs/StorageExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/StyleExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/TableExample" target="clean"/>
-        <ant dir="${basedir}/flexjs/TodoListSampleApp" target="clean"/>
-        <ant dir="${basedir}/flexjs/TeamPage" target="clean"/>
-        <ant dir="${basedir}/flexjs/TreeExample" target="clean"/>
+        <ant dir="${basedir}/royale/ASDoc" target="clean"/>
+        <ant dir="${basedir}/royale/CordovaCameraExample" target="clean"/>
+        <ant dir="${basedir}/royale/CreateJSExample" target="clean"/>
+        <ant dir="${basedir}/royale/DataBindingExample" target="clean"/>
+        <ant dir="${basedir}/royale/DataBindingExample_as" target="clean"/>
+        <ant dir="${basedir}/royale/DataBindingExample_Flat" target="clean"/>
+        <ant dir="${basedir}/royale/DataBindingExampleWithFlexLayout" target="clean"/>
+        <ant dir="${basedir}/royale/DataGridExample" target="clean"/>
+        <ant dir="${basedir}/royale/DateControlsExample" target="clean"/>
+        <ant dir="${basedir}/royale/DesktopMap" target="clean"/>
+        <ant dir="${basedir}/royale/DragAndDropExample" target="clean"/>
+        <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="clean"/>
+        <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="clean"/>
+        <ant dir="${basedir}/royale/RoyaleStore" target="clean"/>
+        <ant dir="${basedir}/royale/RoyaleStore_jquery" target="clean"/>
+        <ant dir="${basedir}/royale/HelloWorld" target="clean"/>
+        <ant dir="${basedir}/royale/ListExample" target="clean"/>
+        <ant dir="${basedir}/royale/MapSearch" target="clean"/>
+        <ant dir="${basedir}/royale/MDLExample" target="clean"/>
+        <ant dir="${basedir}/royale/MobileTrader" target="clean"/>
+        <ant dir="${basedir}/royale/MobileStocks" target="clean"/>
+        <ant dir="${basedir}/royale/MobileMap" target="clean"/>
+        <ant dir="${basedir}/royale/ModuleExample" target="clean"/>
+        <ant dir="${basedir}/royale/ChartExample" target="clean"/>
+        <ant dir="${basedir}/royale/RemoteObjectAMFTest" target="clean"/>
+        <ant dir="${basedir}/royale/StorageExample" target="clean"/>
+        <ant dir="${basedir}/royale/StyleExample" target="clean"/>
+        <ant dir="${basedir}/royale/TableExample" target="clean"/>
+        <ant dir="${basedir}/royale/TodoListSampleApp" target="clean"/>
+        <ant dir="${basedir}/royale/TeamPage" target="clean"/>
+        <ant dir="${basedir}/royale/TreeExample" target="clean"/>
         <ant dir="${basedir}/native/ButtonExample" target="clean"/>
         <ant dir="${basedir}/native/USStatesMap" target="clean"/>
     </target>
@@ -162,37 +162,37 @@
     <target name="examine" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="examine"/>
         <ant dir="${basedir}/express/DataGridExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/ASDoc" target="examine"/>
-        <ant dir="${basedir}/flexjs/CordovaCameraExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/CreateJSExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample_as" target="examine"/>
-        <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="examine"/>
-        <ant dir="${basedir}/flexjs/DataBindingExampleWithFlexLayout" target="examine"/>
-        <ant dir="${basedir}/flexjs/DataGridExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/DateControlsExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/DesktopMap" target="examine"/>
-        <ant dir="${basedir}/flexjs/DragAndDropExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/FlexTeamPage_MDL" target="examine"/>
-        <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer" target="examine"/>
-        <ant dir="${basedir}/flexjs/FlexJSStore" target="examine"/>
-        <ant dir="${basedir}/flexjs/FlexJSStore_jquery" target="examine"/>
-        <ant dir="${basedir}/flexjs/HelloWorld" target="examine"/>
-        <ant dir="${basedir}/flexjs/ListExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/MapSearch" target="examine"/>
-        <ant dir="${basedir}/flexjs/MDLExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/MobileTrader" target="examine"/>
-        <ant dir="${basedir}/flexjs/MobileStocks" target="examine"/>
-        <ant dir="${basedir}/flexjs/MobileMap" target="examine"/>
-        <ant dir="${basedir}/flexjs/ModuleExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/ChartExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/RemoteObjectAMFTest" target="clean"/>
-        <ant dir="${basedir}/flexjs/StorageExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/StyleExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/TableExample" target="examine"/>
-        <ant dir="${basedir}/flexjs/TodoListSampleApp" target="examine"/>
-        <ant dir="${basedir}/flexjs/TeamPage" target="examine"/>
-        <ant dir="${basedir}/flexjs/TreeExample" target="examine"/>
+        <ant dir="${basedir}/royale/ASDoc" target="examine"/>
+        <ant dir="${basedir}/royale/CordovaCameraExample" target="examine"/>
+        <ant dir="${basedir}/royale/CreateJSExample" target="examine"/>
+        <ant dir="${basedir}/royale/DataBindingExample" target="examine"/>
+        <ant dir="${basedir}/royale/DataBindingExample_as" target="examine"/>
+        <ant dir="${basedir}/royale/DataBindingExample_Flat" target="examine"/>
+        <ant dir="${basedir}/royale/DataBindingExampleWithFlexLayout" target="examine"/>
+        <ant dir="${basedir}/royale/DataGridExample" target="examine"/>
+        <ant dir="${basedir}/royale/DateControlsExample" target="examine"/>
+        <ant dir="${basedir}/royale/DesktopMap" target="examine"/>
+        <ant dir="${basedir}/royale/DragAndDropExample" target="examine"/>
+        <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="examine"/>
+        <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="examine"/>
+        <ant dir="${basedir}/royale/RoyaleStore" target="examine"/>
+        <ant dir="${basedir}/royale/RoyaleStore_jquery" target="examine"/>
+        <ant dir="${basedir}/royale/HelloWorld" target="examine"/>
+        <ant dir="${basedir}/royale/ListExample" target="examine"/>
+        <ant dir="${basedir}/royale/MapSearch" target="examine"/>
+        <ant dir="${basedir}/royale/MDLExample" target="examine"/>
+        <ant dir="${basedir}/royale/MobileTrader" target="examine"/>
+        <ant dir="${basedir}/royale/MobileStocks" target="examine"/>
+        <ant dir="${basedir}/royale/MobileMap" target="examine"/>
+        <ant dir="${basedir}/royale/ModuleExample" target="examine"/>
+        <ant dir="${basedir}/royale/ChartExample" target="examine"/>
+        <ant dir="${basedir}/royale/RemoteObjectAMFTest" target="clean"/>
+        <ant dir="${basedir}/royale/StorageExample" target="examine"/>
+        <ant dir="${basedir}/royale/StyleExample" target="examine"/>
+        <ant dir="${basedir}/royale/TableExample" target="examine"/>
+        <ant dir="${basedir}/royale/TodoListSampleApp" target="examine"/>
+        <ant dir="${basedir}/royale/TeamPage" target="examine"/>
+        <ant dir="${basedir}/royale/TreeExample" target="examine"/>
         <ant dir="${basedir}/native/ButtonExample" target="examine"/>
         <ant dir="${basedir}/native/USStatesMap" target="examine"/>
     </target>

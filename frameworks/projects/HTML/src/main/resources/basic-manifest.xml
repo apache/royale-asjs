@@ -21,29 +21,29 @@
 
 <componentPackage>
 
-    <component id="A" class="org.apache.flex.html.A" />
-    <component id="H1" class="org.apache.flex.html.H1" />
-    <component id="H2" class="org.apache.flex.html.H2" />
-    <component id="H3" class="org.apache.flex.html.H3" />
-    <component id="H4" class="org.apache.flex.html.H4" />
-    <component id="H5" class="org.apache.flex.html.H5" />
-    <component id="H6" class="org.apache.flex.html.H6" />
-    <component id="Ol" class="org.apache.flex.html.Ol" />
-    <component id="P" class="org.apache.flex.html.P" />
-    <component id="Span" class="org.apache.flex.html.Span" />
-    <component id="Div" class="org.apache.flex.html.Div" />
-    <component id="I" class="org.apache.flex.html.I" />
-    <component id="Input" class="org.apache.flex.html.Input" />
-    <component id="Ul" class="org.apache.flex.html.Ul" />
-    <component id="Li" class="org.apache.flex.html.Li" />
-    <component id="Select" class="org.apache.flex.html.Select"/>
-    <component id="Option" class="org.apache.flex.html.Option"/>
+    <component id="A" class="org.apache.royale.html.A" />
+    <component id="H1" class="org.apache.royale.html.H1" />
+    <component id="H2" class="org.apache.royale.html.H2" />
+    <component id="H3" class="org.apache.royale.html.H3" />
+    <component id="H4" class="org.apache.royale.html.H4" />
+    <component id="H5" class="org.apache.royale.html.H5" />
+    <component id="H6" class="org.apache.royale.html.H6" />
+    <component id="Ol" class="org.apache.royale.html.Ol" />
+    <component id="P" class="org.apache.royale.html.P" />
+    <component id="Span" class="org.apache.royale.html.Span" />
+    <component id="Div" class="org.apache.royale.html.Div" />
+    <component id="I" class="org.apache.royale.html.I" />
+    <component id="Input" class="org.apache.royale.html.Input" />
+    <component id="Ul" class="org.apache.royale.html.Ul" />
+    <component id="Li" class="org.apache.royale.html.Li" />
+    <component id="Select" class="org.apache.royale.html.Select"/>
+    <component id="Option" class="org.apache.royale.html.Option"/>
 
-    <component id="Td" class="org.apache.flex.html.Td" />
-    <component id="Th" class="org.apache.flex.html.Th" />
+    <component id="Td" class="org.apache.royale.html.Td" />
+    <component id="Th" class="org.apache.royale.html.Th" />
 
-    <component id="InnerHTML" class="org.apache.flex.html.beads.InnerHTML" />
-    <component id="TextNode" class="org.apache.flex.html.TextNode" />
-    <component id="HTMLText" class="org.apache.flex.html.HTMLText"/>
+    <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML" />
+    <component id="TextNode" class="org.apache.royale.html.TextNode" />
+    <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
 
 </componentPackage>

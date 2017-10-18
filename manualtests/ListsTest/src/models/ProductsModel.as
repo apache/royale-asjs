@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.events.EventDispatcher;
 	
 	public class ProductsModel extends EventDispatcher
 	{

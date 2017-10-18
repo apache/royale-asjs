@@ -18,7 +18,7 @@ rem limitations under the License.
 rem
 
 rem
-rem mxmlc.bat script to launch falcon-mxmlc.jar in Windows Command Prompt.
+rem mxmlc.bat script to launch compiler-mxmlc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the mxmlc shell script instead.
 rem
 

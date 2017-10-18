@@ -23,14 +23,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.apache.flex.flexjs.manualtests</groupId>
+		<groupId>org.apache.royale.manualtests</groupId>
 		<artifactId>manualtests</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>UnitTests</artifactId>
 	<version>0.9.0-SNAPSHOT</version>
 	<packaging>swf</packaging>
-	<name>Apache Flex - FlexJS: ManualTests: UnitTests</name>
+	<name>Apache Royale: ManualTests: UnitTests</name>
 	
 	<properties> 
 		<title>${project.artifactId}</title>
@@ -50,8 +50,8 @@
 		<defaultGoal>compile</defaultGoal>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.flex.flexjs.compiler</groupId>
-				<artifactId>flexjs-maven-plugin</artifactId>
+				<groupId>org.apache.royale.compiler</groupId>
+				<artifactId>royale-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
 					<targets>SWF</targets>
@@ -69,7 +69,7 @@
 							<goal>compile-app</goal>
 						</goals>
 						<configuration>
-							<targets>JSFlex</targets>
+							<targets>JSRoyale</targets>
 							<mainClass>${project.artifactId}.mxml</mainClass>
 							<debug>false</debug>
 							<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
@@ -93,7 +93,7 @@
 							<includeEmptyDirs>true</includeEmptyDirs>
 							<resources>
 								<resource>
-									<directory>${FLEXJS_HOME}/templates/swfobject</directory>
+									<directory>${ROYALE_HOME}/templates/swfobject</directory>
 									<filtering>true</filtering>									
 								</resource>
 							</resources>
@@ -154,14 +154,14 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.flex.flexjs.framework</groupId>
+			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
 			<version>0.9.0-SNAPSHOT</version>
 			<type>swc</type>
 			<classifier>swf</classifier>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.flex.flexjs.framework</groupId>
+			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
 			<version>0.9.0-SNAPSHOT</version>
 			<type>swc</type>

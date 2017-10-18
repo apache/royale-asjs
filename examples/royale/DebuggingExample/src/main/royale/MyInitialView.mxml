@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+			    initComplete="init()">
+    <fx:Script>
+        <![CDATA[
+			import org.apache.royale.debugging.assert;
+			import org.apache.royale.debugging.assertType;
+			import org.apache.royale.debugging.check;
+			// import org.apache.royale.debugging.conditionalBreak;
+			import org.apache.royale.debugging.notNull;
+			import org.apache.royale.utils.callLater;
+
+			import org.apache.royale.html.TextButton;
+
+			[Bindable]private var taText:String = "Some Text Area Text";
+			private function init():void
+			{
+				callLater(assert1);
+				callLater(assert2);
+				callLater(assertType1);
+				callLater(assertType2);
+				callLater(check1);
+				callLater(check2);
+			}
+			private function assert1():void{
+				assert(ta.text == taText,"Text doesn't match!");
+				
+				
+			}
+			private function assert2():void{
+				assert(ta.text != taText,"Text matches!");
+				
+			}
+			private function assertType1():void{
+				assertType(ta,TextArea,"ta is not a TextArea!");
+				
+			}
+			private function assertType2():void{
+				assertType(ta,TextButton,"ta is not a TextButton!");
+				
+			}
+			private function check1():void{
+				check(ta is TextArea,"ta is a TextArea!");
+				
+			}
+			private function check2():void{
+				check(!(ta is TextArea),"ta is not a TextArea!");
+				
+			}
+			private function notNull1():void{
+				notNull(ta);
+				
+			}
+			private function notNull2():void{
+				notNull(null);				
+			}
+			private function notNull3():void{
+				notNull(undefined);				
+			}
+            
+		]]>
+    </fx:Script>
+	<fx:Style>
+	</fx:Style>
+	
+    <js:beads>
+        <js:ViewDataBinding />
+		<js:VerticalLayout />
+    </js:beads>
+		
+    <js:Label text="Just a Label" />
+	
+	<js:TextArea id="ta" width="300" height="100" 
+				 text="{taText}" />
+	<js:TextButton width="150" text="assert() pass" click="assert1()"/>
+	<js:TextButton width="150" text="assert() fail" click="assert2()"/>
+	<js:TextButton width="150" text="assertType() pass" click="assertType1()"/>
+	<js:TextButton width="150" text="assertType() fail" click="assertType2()"/>
+	<js:TextButton width="150" text="check() pass" click="check1()"/>
+	<js:TextButton width="150" text="check() fail" click="check2()"/>
+	<js:TextButton width="150" text="notNull() pass" click="notNull1()"/>
+	<js:TextButton width="150" text="notNull() fail null" click="notNull2()"/>
+	<js:TextButton width="150" text="notNull() fail undefined" click="notNull3()"/>
+</js:View>

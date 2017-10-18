@@ -23,20 +23,20 @@
         type="dir"
         property="FLEX_HOME"
         value="${basedir}/../../sdk" />
-	<property name="FLEX_HOME" value="${basedir}/../../flex-sdk"/>
+	<property name="FLEX_HOME" value="${basedir}/../../royale-sdk"/>
 	<property name="lenient" value="true"/>
-	<property name="flexlib" location="${basedir}/../frameworks"/>
+	<property name="royalelib" location="${basedir}/../frameworks"/>
 
     <property name="doc_output" location="${basedir}/../asdoc-output"   />
     <property name="project_home" location="${basedir}/../frameworks/projects"/>
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
-	<property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
+	<property file="${ROYALE_HOME}/build.properties"/>
 	
 	<echo message="FLEX_HOME = ${FLEX_HOME}" />
-	<echo message="flexlib = ${flexlib}" />
+	<echo message="royalelib = ${royalelib}" />
 	<echo message="doc_output = ${doc_output}" />
-    <echo message="compiler.source-path = ${project_home}/*/src/main/flex" />
+    <echo message="compiler.source-path = ${project_home}/*/src/main/royale" />
 
 	<target name="main" depends="clean,doc" description="Clean build of all ASDocs"/>
 
@@ -60,26 +60,26 @@
 
         <path id="flexTasks.path">
             <fileset dir="${FLEX_HOME}">
-                <include name="lib/flexTasks.jar" />
-                <include name="ant/lib/flexTasks.jar" />
+                <include name="lib/royaleTasks.jar" />
+                <include name="ant/lib/royaleTasks.jar" />
             </fileset>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="flexTasks.path"/>
         
 		<!-- Call asdoc to generate dita xml files -->
 		<asdoc output="${doc_output}" lenient="true" failonerror="true" warnings="false" strict="false" locale="en_US" fork="true" keep-xml="true"
-               window-title="Apache FlexJS API Reference"
+               window-title="Apache Royale API Reference"
                main-title="${release.name} ${release.version} API Reference "
                footer="${manifest.Implementation-Vendor}" >
-               <arg line="+frameworks_dir=${flexlib}" />
-            <load-config filename="${flexlib}/asdoc-config.xml" />
+               <arg line="+frameworks_dir=${royalelib}" />
+            <load-config filename="${royalelib}/asdoc-config.xml" />
             
             <jvmarg line="${asdoc.jvm.args}"/>
             
             <external-library-path dir="${env.AIR_HOME}/frameworks/libs/air">
                 <include name="airglobal.swc"/>
             </external-library-path>
-            <external-library-path dir="${FLEXJS_HOME}/js/libs">
+            <external-library-path dir="${ROYALE_HOME}/js/libs">
                 <include name="google_maps.swc"/>
             </external-library-path>
             

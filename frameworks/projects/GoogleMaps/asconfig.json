@@ -1,8 +1,8 @@
 {
-  "config": "flex",
+  "config": "royale",
   "compilerOptions": {
     "debug": true,
-    "js-output-type": "flexjs",
+    "js-output-type": "royale",
     "define": [
       {
         "name": "COMPILE::SWF",
@@ -15,7 +15,7 @@
     ]
   },
   "files": [
-    "src/main/flex/GoogleMapsClasses.as",
-    "src/main/flex/GoogleStubClasses.as"
+    "src/main/royale/GoogleMapsClasses.as",
+    "src/main/royale/GoogleStubClasses.as"
   ]
 }

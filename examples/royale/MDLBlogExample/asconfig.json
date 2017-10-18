@@ -1,0 +1,14 @@
+{
+    "config": "royale",
+    "compilerOptions": {
+        "debug": true,
+        "source-map": true,
+        "js-output-type": "royale",
+        "output": "./target/javascript"
+    },
+    "additionalOptions": "-html-template=src/main/resources/mdl-js-index-template.html",
+    "files":
+    [
+        "src/main/royale/App.mxml"
+    ]
+}

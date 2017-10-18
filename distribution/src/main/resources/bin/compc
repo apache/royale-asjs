@@ -20,7 +20,7 @@
 ################################################################################
 
 #
-# compc shell script to launch falcon-compc.jar on OSX, Unix, or Cygwin.
+# compc shell script to launch compiler-compc.jar on OSX, Unix, or Cygwin.
 # In Windows Command Prompt, use compc.bat instead.
 #
 
@@ -68,4 +68,4 @@ fi
 
 VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -Dflexcompiler="$FALCON_HOME" -Dflexlib="$FLEX_HOME/frameworks" -jar "${FALCON_HOME}/lib/falcon-compc.jar" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -Dflexcompiler="$FALCON_HOME" -Dflexlib="$FLEX_HOME/frameworks" -jar "${FALCON_HOME}/lib/compiler-compc.jar" "$@"

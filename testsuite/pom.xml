@@ -21,8 +21,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-framework-parent</artifactId>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale.framework-parent</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
@@ -30,7 +30,7 @@
   <version>0.9.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Apache Flex - FlexJS: Testsuite</name>
+  <name>Apache Royale: Testsuite</name>
 
   <build>
     <plugins>
@@ -57,10 +57,10 @@
           <filterProperties>
             <flash.version>${flash.version}</flash.version>
             <air.version>${air.version}</air.version>
-            <flexjs.compiler.version>${flexjs.compiler.version}</flexjs.compiler.version>
-            <flexjs.typedefs.version>${flexjs.typedefs.version}</flexjs.typedefs.version>
-            <flexjs.framework.version>${project.version}</flexjs.framework.version>
-            <flexjs.build-tools.version>${flexjs.build-tools.version}</flexjs.build-tools.version>
+            <royale.compiler.version>${royale.compiler.version}</royale.compiler.version>
+            <royale.typedefs.version>${royale.typedefs.version}</royale.typedefs.version>
+            <royale.framework.version>${project.version}</royale.framework.version>
+            <royale.build-tools.version>${royale.build-tools.version}</royale.build-tools.version>
           </filterProperties>
 
           <!-- Name of the verify script used to check if a test is successfull -->

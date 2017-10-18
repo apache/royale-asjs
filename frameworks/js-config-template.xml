@@ -20,7 +20,7 @@
 -->
 
 
-<flex-config>
+<royale-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
    <target-player>@playerversion@</target-player>
 
@@ -81,24 +81,24 @@
       <mxml>
           <children-as-data>true</children-as-data>
           <imports>
-            <implicit-import>org.apache.flex.events.*</implicit-import>
-            <implicit-import>org.apache.flex.geom.*</implicit-import>
-            <implicit-import>org.apache.flex.core.ClassFactory</implicit-import>
-            <implicit-import>org.apache.flex.core.IFactory</implicit-import>
+            <implicit-import>org.apache.royale.events.*</implicit-import>
+            <implicit-import>org.apache.royale.geom.*</implicit-import>
+            <implicit-import>org.apache.royale.core.ClassFactory</implicit-import>
+            <implicit-import>org.apache.royale.core.IFactory</implicit-import>
         </imports>
       </mxml>
-      <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
-      <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+      <binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+      <binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
       <binding-value-change-event-type>valueChange</binding-value-change-event-type>
-      <binding-event-handler-event>org.apache.flex.events.Event</binding-event-handler-event>
-      <binding-event-handler-class>org.apache.flex.events.EventDispatcher</binding-event-handler-class>
-      <binding-event-handler-interface>org.apache.flex.events.IEventDispatcher</binding-event-handler-interface>
-      <states-class>org.apache.flex.states.State</states-class>
-      <states-instance-override-class>org.apache.flex.states.AddItems</states-instance-override-class>
-      <states-property-override-class>org.apache.flex.states.SetProperty</states-property-override-class>
-      <states-event-override-class>org.apache.flex.states.SetEventHandler</states-event-override-class>
-      <component-factory-class>org.apache.flex.core.ClassFactory</component-factory-class>
-      <component-factory-interface>org.apache.flex.core.IFactory</component-factory-interface>
+      <binding-event-handler-event>org.apache.royale.events.Event</binding-event-handler-event>
+      <binding-event-handler-class>org.apache.royale.events.EventDispatcher</binding-event-handler-class>
+      <binding-event-handler-interface>org.apache.royale.events.IEventDispatcher</binding-event-handler-interface>
+      <states-class>org.apache.royale.states.State</states-class>
+      <states-instance-override-class>org.apache.royale.states.AddItems</states-instance-override-class>
+      <states-property-override-class>org.apache.royale.states.SetProperty</states-property-override-class>
+      <states-event-override-class>org.apache.royale.states.SetEventHandler</states-event-override-class>
+      <component-factory-class>org.apache.royale.core.ClassFactory</component-factory-class>
+      <component-factory-interface>org.apache.royale.core.IFactory</component-factory-interface>
         
       <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->
@@ -335,11 +335,11 @@
 
    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
    <metadata>
-      <title>Apache FlexJS Application</title>
-      <description>http://flex.apache.org/</description>
+      <title>Apache Royale Application</title>
+      <description>http://royale.apache.org/</description>
       <publisher>Apache Software Foundation</publisher>
       <creator>unknown</creator>
       <language>EN</language>
    </metadata>
    
-</flex-config>
+</royale-config>

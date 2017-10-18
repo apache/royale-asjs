@@ -17,8 +17,8 @@
   limitations under the License.
 
 -->
-<flexjs-sdk-description>
-  <name>Apache Flex: FlexJS ${project.version} FP${flash.version} AIR${air.version} en_US</name>
+<royale-sdk-description>
+  <name>Apache Flex: Royale ${project.version} FP${flash.version} AIR${air.version} en_US</name>
   <version>${project.version}</version>
   <build>${timestamp}</build>
   <flavor>default</flavor>
@@ -29,4 +29,4 @@
   <air>
     <version>${air.version}</version>
   </air>
-</flexjs-sdk-description>
+</royale-sdk-description>

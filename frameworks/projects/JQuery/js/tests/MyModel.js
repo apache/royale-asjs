@@ -16,7 +16,7 @@ goog.provide('MyModel');
 
 goog.require('flash.events.EventDispatcher');
 
-goog.require('org.apache.flex.FlexGlobal');
+goog.require('org.apache.royale.FlexGlobal');
 
 /**
  * @constructor
@@ -52,7 +52,7 @@ MyModel.prototype.set_labelText = function(value) {
         this.labelText_ = value;
 
         this.dispatchEvent(
-            org.apache.flex.FlexGlobal.newObject(
+            org.apache.royale.FlexGlobal.newObject(
                 flash.events.Event, ['labelTextChanged']
             )
         );

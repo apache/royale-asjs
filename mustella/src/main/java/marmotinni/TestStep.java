@@ -102,7 +102,7 @@ public class TestStep {
 	protected void insertTargetScript(StringBuilder sb, String target)
 	{
 		sb.append("var target = document.getElementsByTagName('body')[0];");
-		sb.append("target = target.flexjs_wrapper;");
+		sb.append("target = target.royale_wrapper;");
 		sb.append("target = target.initialView;");
 		if (target == null || target.length() == 0)
 		{

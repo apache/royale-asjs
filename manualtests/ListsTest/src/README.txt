@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-The ListsTests example demonstrates the FlexJS List component using custom data
+The ListsTests example demonstrates the Royale List component using custom data
 and a custom itemRenderer. 
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)

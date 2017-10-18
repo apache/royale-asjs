@@ -25,25 +25,25 @@
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${env.FALCON_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler">
+    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${FLEXJS_HOME}">
+    <condition property="FALCON_HOME" value="${ROYALE_HOME}">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
@@ -56,21 +56,21 @@
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/js">
+    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/js">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/js/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler-jx">
+    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler-jx">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler-jx/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
@@ -83,12 +83,12 @@
         </and>
     </condition>
 
-    <condition property="GOOG_HOME" value="${FLEXJS_HOME}/js/lib/google/closure-library">
+    <condition property="GOOG_HOME" value="${ROYALE_HOME}/js/lib/google/closure-library">
         <and>
             <not>
                 <isset property="GOOG_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js" type="file" />
+            <available file="${ROYALE_HOME}/js/lib/google/closure-library/closure/goog/base.js" type="file" />
         </and>
     </condition>
 
@@ -151,7 +151,7 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-royaleTasks.jar"/>
       <fileset dir="${FALCONJX_HOME}/lib" includes="jsc.jar"/>
     </path>
 	
@@ -161,7 +161,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/royale">
 			<not>
 				<isset property="maven_compat"/>
 			</not>
@@ -180,7 +180,7 @@
             type="file"
             property="optional_arg" value="-load-config+=&quot;${srcDir}/../config/compile-app-config.xml&quot;" />
 
-		<condition property="targets" value="SWF,JSFlex" else="SWF">
+		<condition property="targets" value="SWF,JSRoyale" else="SWF">
 			<not>
 				<isset property="no.js"/>
 			</not>
@@ -232,7 +232,7 @@
     <target name="compileair" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/royale">
 			<not>
 				<isset property="maven_compat"/>
 			</not>
@@ -251,19 +251,19 @@
             file="${srcDir}/${example}.mxml"
             output="${destDir}/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${basedir}/frameworks" />
+            <arg value="+royalelib=${basedir}/frameworks" />
             <arg value="+configname=air" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
             <arg value="-target-player=${playerglobal.version}" />
             <arg value="-swf-version=${swfVersion}" />
             <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event=org.apache.royale.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-kind=org.apache.royale.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-            <arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-            <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
+            <arg value="-compiler.binding-event-handler-interface=org.apache.royale.events.IEventDispatcher" />
+            <arg value="-compiler.binding-event-handler-class=org.apache.royale.events.EventDispatcher" />
+            <arg value="-compiler.binding-event-handler-event=org.apache.royale.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="-closure-lib=${GOOG_HOME}" />
@@ -284,7 +284,7 @@
     <target name="compileas" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+        <condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/royale">
 			<not>
 				<isset property="maven_compat"/>
 			</not>
@@ -302,18 +302,18 @@
             file="${srcDir}/${example}.as"
             output="${destDir}/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${basedir}/frameworks" />
+            <arg value="+royalelib=${basedir}/frameworks" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
             <arg value="-define=CONFIG::as_only,true" />
             <arg value="-define=CONFIG::js_only,false" />
             <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event=org.apache.royale.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-kind=org.apache.royale.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-            <arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-            <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
+            <arg value="-compiler.binding-event-handler-interface=org.apache.royale.events.IEventDispatcher" />
+            <arg value="-compiler.binding-event-handler-class=org.apache.royale.events.EventDispatcher" />
+            <arg value="-compiler.binding-event-handler-event=org.apache.royale.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="-closure-lib=${GOOG_HOME}" />
@@ -330,9 +330,9 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="js.release.target" value="JSFlex" />
+        <property name="js.release.target" value="JSRoyale" />
 		<property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/royale">
 			<not>
 				<isset property="maven_compat"/>
 			</not>
@@ -400,14 +400,14 @@
         <attribute name="output"/>
         <sequential>
             <copy toFile="@{output}/@{name}.html"
-            file="${FLEXJS_HOME}/templates/swfobject/index.template.html" />
+            file="${ROYALE_HOME}/templates/swfobject/index.template.html" />
             <copy toDir="@{output}/history">
-                <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
+                <fileset dir="${ROYALE_HOME}/templates/swfobject/history">
                     <include name="**"/>
                 </fileset>
             </copy>
             <copy toDir="@{output}">
-                <fileset dir="${FLEXJS_HOME}/templates/swfobject">
+                <fileset dir="${ROYALE_HOME}/templates/swfobject">
                     <include name="*"/>
                     <exclude name="index.template.html"/>
                 </fileset>
@@ -542,17 +542,17 @@
 
     <target name="compile.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
         <property name="mobile.platform" value="android" />
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="main" >
+        <ant antfile="${ROYALE_HOME}/cordova-build.xml" target="main" >
             <property name="projectdir" value="${basedir}" />
         </ant>
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="load-platform.${mobile.platform}" >
+        <ant antfile="${ROYALE_HOME}/cordova-build.xml" target="load-platform.${mobile.platform}" >
             <property name="projectdir" value="${basedir}" />
         </ant>
     </target>
 
     <target name="run.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
         <property name="mobile.platform" value="android" />
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="run.${mobile.platform}" >
+        <ant antfile="${ROYALE_HOME}/cordova-build.xml" target="run.${mobile.platform}" >
             <property name="projectdir" value="${basedir}" />
         </ant>
     </target>

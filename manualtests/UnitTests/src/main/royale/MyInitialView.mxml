@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:js="library://ns.apache.org/royale/basic"
+		 xmlns:local="*"
+		 xmlns:acc="org.apache.royale.html.accessories.*"
+		 initComplete="runTests()"
+>
+
+	<fx:Style>
+		.title {
+			font-size: 16px;
+			font-weight: bold;
+		}
+		.body {
+			left:10px;
+			right:10px;
+		}
+	</fx:Style>
+
+	<fx:Script>
+		<![CDATA[
+		import org.apache.royale.html.Label;
+		import org.apache.royale.reflection.VariableDefinition;
+		import org.apache.royale.reflection.getDefinitionByName;
+		import org.apache.royale.reflection.describeType;
+		import org.apache.royale.reflection.TypeDefinition;
+
+		import testshim.RoyaleUnitTestRunner;
+		import testshim.TestResult;
+
+
+
+		private var _tests:Array;
+
+		public function runTests():void {
+			var label:Label;
+			var groups:Array = TestClasses.testClasses;
+			var spaces:String = PLATFORM == "JS" ? "&nbsp;&nbsp;&nbsp;" : "   ";
+			while (groups.length) {
+				var testGroupClass:Class = groups.shift() as Class;
+				var td:TypeDefinition = describeType(testGroupClass);
+				label = new Label();
+				label.text = "Running " + td.name + " Tests";
+				output.addElement(label);
+				var testClasses:Array = td.variables;
+				testClasses.sortOn("name");
+				var i:uint = 0, l:uint = testClasses.length;
+				if (l == 0) {
+					label = new Label();
+					label.text = spaces+ "[Zero tests detected]";
+					output.addElement(label);
+					continue;
+				}
+				for (; i < l; i++) {
+					var varDef:VariableDefinition = testClasses[i];
+
+					var testClass:Class = getDefinitionByName(varDef.type.qualifiedName) as Class;
+					fails = [];
+					passes = [];
+					variances = [];
+					warnings = [];
+					var runner:RoyaleUnitTestRunner = new RoyaleUnitTestRunner(testClass, onTestResult);
+					runner.runTests();
+					label = new Label();
+
+					label.text = "TEST: " + runner.testingName + spaces + "Passed:" + runner.successCount + ", Failed:" + runner.failCount + ", assertions made:" + runner.successfulAssertions;
+					label.style = {color: runner.failCount == 0 ? "green" : "red"};
+					output.addElement(label);
+					if (runner.failCount > 0 || fails.length) {
+						//show any failing test details
+						appendTestResults(fails);
+					}
+					if (variances.length) {
+						appendTestResults(variances);
+					}
+					if (warnings.length) {
+						appendTestResults(warnings);
+					}
+				}
+			}
+
+		}
+
+
+		private var fails:Array;
+		private var passes:Array;
+		private var variances:Array;
+		private var warnings:Array;
+		public function onTestResult(result:TestResult):void {
+			if (result.pass) passes.push(result);
+			else fails.push(result);
+
+			if (result.hasVariance && result.pass) {
+				if (result.varianceTarget.indexOf(PLATFORM) != -1) {
+					//variance applies to this target
+					variances.push(result);
+				}
+			}
+
+			if (result.warning!=null && result.pass && !result.hasVariance) {
+				// a test result that would otherwise indicate a pass, but has a warning
+				warnings.push(result);
+			}
+		}
+
+		public function appendTestResults(array:Array):void {
+			array = array.slice();
+			var spaces:String = "   ";
+			var newline:String = "\n" ;
+			while (array.length) {
+				var result:TestResult = array.shift();
+				var label:Label = new Label();
+				//label.x=10; <- fails in js, using 'spaces' below instead
+				var message:String = spaces + result.toString(newline +spaces);
+
+				if (result.hasVariance)
+					message = spaces + "VARIANCE:" + result.varianceDescription + newline + message ;
+				if (result.warning != null) {
+					message =  spaces + result.warning +newline +message;
+				}
+				if (PLATFORM == "JS") {
+					message = escapeForHtml(message);
+					var jsSpaces:String = spaces.split(" ").join("&nbsp;");
+					message = message.split(spaces).join(jsSpaces);
+				}
+
+				label.text = message;
+
+				if (result.pass) {
+					var showOrange:Boolean = false;
+					if (result.hasVariance || result.warning!=null) showOrange = true;
+					label.style = {color: showOrange ? 0xFFA500 : "green"};
+				} else label.style = {color: "red"};
+				output.addElement(label);
+			}
+		}
+
+		private static function escapeForHtml( string : String ) : String {
+			return  string.split("<").join("&lt;").split(">").join("&gt;").split("\n").join("<br/>");
+		}
+
+
+		private static function getPlatform():String {
+			try {
+				var check:* = getDefinitionByName("flash.system.Capabilities");
+			} catch (e:Error) {
+				return "JS";
+			}
+			//if this next reference to 'check' is not included, then the above try/catch code
+			// appears to be optimized away in js-release mode
+			//[this issue was added to ObservedBugs Tests]
+			if (check == null) {
+				return "JS";
+			}
+			return "SWF";
+		}
+
+		public static const PLATFORM:String = getPlatform();
+		]]>
+	</fx:Script>
+	<js:beads>
+		<js:ViewDataBinding/>
+	</js:beads>
+	<js:Group id="cont" height="50" className="body">
+		<js:Label text="{PLATFORM} Cross-compiled Unit Tests" className="title" />
+	</js:Group>
+	<js:Group id="output" height="700" y="50" className="body">
+		<js:beads>
+			<js:VerticalFlexLayout />
+		</js:beads>
+	</js:Group>
+</js:View>

@@ -21,33 +21,33 @@
 
 <componentPackage>
 
-    <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
-    <component id="AllCSSValuesImpl" class="org.apache.flex.core.AllCSSValuesImpl"/>
-    <component id="CSSFontFaceBead" class="org.apache.flex.core.CSSFontFaceBead" />
-    <component id="EventLoggingBead" class="org.apache.flex.core.EventLoggingBead" />
-    <component id="BrowserScroller" class="org.apache.flex.core.BrowserScroller"/>
-    <component id="BrowserResizeHandler" class="org.apache.flex.core.BrowserResizeListener"/>
-    <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
-    <component id="SimpleStatesImpl" class="org.apache.flex.core.SimpleStatesImpl"/>
-    <component id="MXMLDragInitiator" class="org.apache.flex.core.MXMLDragInitiator" />
-    <component id="CallLaterBead" class="org.apache.flex.core.CallLaterBead" />
+    <component id="SimpleCSSValuesImpl" class="org.apache.royale.core.SimpleCSSValuesImpl"/>
+    <component id="AllCSSValuesImpl" class="org.apache.royale.core.AllCSSValuesImpl"/>
+    <component id="CSSFontFaceBead" class="org.apache.royale.core.CSSFontFaceBead" />
+    <component id="EventLoggingBead" class="org.apache.royale.core.EventLoggingBead" />
+    <component id="BrowserScroller" class="org.apache.royale.core.BrowserScroller"/>
+    <component id="BrowserResizeHandler" class="org.apache.royale.core.BrowserResizeListener"/>
+    <component id="SimpleValuesImpl" class="org.apache.royale.core.SimpleValuesImpl"/>
+    <component id="SimpleStatesImpl" class="org.apache.royale.core.SimpleStatesImpl"/>
+    <component id="MXMLDragInitiator" class="org.apache.royale.core.MXMLDragInitiator" />
+    <component id="CallLaterBead" class="org.apache.royale.core.CallLaterBead" />
 
-    <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
-    <component id="BindableCSSStylesWithFlex" class="org.apache.flex.core.BindableCSSStylesWithFlex"/>
-    <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
-    <component id="SimpleCSSStylesWithFlex" class="org.apache.flex.core.SimpleCSSStylesWithFlex"/>
-    <component id="AllCSSStyles" class="org.apache.flex.core.AllCSSStyles"/>
-    <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
-    <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
-    <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption" />
-    <component id="TransformModel" class="org.apache.flex.core.TransformModel" />
-    <component id="TransformRotateModel" class="org.apache.flex.core.TransformRotateModel" />
-    <component id="TransformCompoundModel" class="org.apache.flex.core.TransformCompoundModel" />
-    <component id="TransformMoveXModel" class="org.apache.flex.core.TransformMoveXModel" />
-    <component id="TransformMoveYModel" class="org.apache.flex.core.TransformMoveYModel" />
-    <component id="TransformScaleModel" class="org.apache.flex.core.TransformScaleModel" />
+    <component id="BindableCSSStyles" class="org.apache.royale.core.BindableCSSStyles"/>
+    <component id="BindableCSSStylesWithFlex" class="org.apache.royale.core.BindableCSSStylesWithFlex"/>
+    <component id="SimpleCSSStyles" class="org.apache.royale.core.SimpleCSSStyles"/>
+    <component id="SimpleCSSStylesWithFlex" class="org.apache.royale.core.SimpleCSSStylesWithFlex"/>
+    <component id="AllCSSStyles" class="org.apache.royale.core.AllCSSStyles"/>
+    <component id="ParentDocumentBead" class="org.apache.royale.core.ParentDocumentBead"/>
+    <component id="MixinManager" class="org.apache.royale.utils.MixinManager" />
+    <component id="ViewSourceContextMenuOption" class="org.apache.royale.utils.ViewSourceContextMenuOption" />
+    <component id="TransformModel" class="org.apache.royale.core.TransformModel" />
+    <component id="TransformRotateModel" class="org.apache.royale.core.TransformRotateModel" />
+    <component id="TransformCompoundModel" class="org.apache.royale.core.TransformCompoundModel" />
+    <component id="TransformMoveXModel" class="org.apache.royale.core.TransformMoveXModel" />
+    <component id="TransformMoveYModel" class="org.apache.royale.core.TransformMoveYModel" />
+    <component id="TransformScaleModel" class="org.apache.royale.core.TransformScaleModel" />
     
-    <component id="StyleChangeNotifier" class="org.apache.flex.core.StyleChangeNotifier"/>
+    <component id="StyleChangeNotifier" class="org.apache.royale.core.StyleChangeNotifier"/>
     
-    <component id="State" class="org.apache.flex.states.State"/>
+    <component id="State" class="org.apache.royale.states.State"/>
 </componentPackage>

@@ -21,15 +21,15 @@
 
 <componentPackage>
 
-    <component id="RemoteObject" class="org.apache.flex.net.RemoteObject"/>
-    <component id="HTTPService" class="org.apache.flex.net.HTTPService"/>
-    <component id="BinaryUploader" class="org.apache.flex.net.BinaryUploader"/>
-    <component id="CORSCredentialsBead" class="org.apache.flex.net.beads.CORSCredentialsBead"/>
-    <component id="FileProxy" class="org.apache.flex.file.FileProxy"/>
-    <component id="FileBrowser" class="org.apache.flex.file.beads.FileBrowser"/>
-    <component id="FileBrowserWithFilter" class="org.apache.flex.file.beads.FileBrowserWithFilter"/>
-    <component id="FileLoader" class="org.apache.flex.file.beads.FileLoader"/>
-    <component id="FileUploader" class="org.apache.flex.file.beads.FileUploader"/>
-    <component id="FileUploaderWithResponseData" class="org.apache.flex.file.beads.FileUploaderWithResponseData"/>
-    <component id="FileLoaderAndUploader" class="org.apache.flex.file.beads.FileLoaderAndUploader"/>
+    <component id="RemoteObject" class="org.apache.royale.net.RemoteObject"/>
+    <component id="HTTPService" class="org.apache.royale.net.HTTPService"/>
+    <component id="BinaryUploader" class="org.apache.royale.net.BinaryUploader"/>
+    <component id="CORSCredentialsBead" class="org.apache.royale.net.beads.CORSCredentialsBead"/>
+    <component id="FileProxy" class="org.apache.royale.file.FileProxy"/>
+    <component id="FileBrowser" class="org.apache.royale.file.beads.FileBrowser"/>
+    <component id="FileBrowserWithFilter" class="org.apache.royale.file.beads.FileBrowserWithFilter"/>
+    <component id="FileLoader" class="org.apache.royale.file.beads.FileLoader"/>
+    <component id="FileUploader" class="org.apache.royale.file.beads.FileUploader"/>
+    <component id="FileUploaderWithResponseData" class="org.apache.royale.file.beads.FileUploaderWithResponseData"/>
+    <component id="FileLoaderAndUploader" class="org.apache.royale.file.beads.FileLoaderAndUploader"/>
 </componentPackage>

@@ -18,10 +18,10 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
-				xmlns:acc="org.apache.flex.html.accessories.*">
+				xmlns:acc="org.apache.royale.html.accessories.*">
 	
 	<fx:Style>
 		.title {

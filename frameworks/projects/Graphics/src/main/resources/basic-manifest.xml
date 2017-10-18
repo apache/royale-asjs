@@ -20,8 +20,8 @@
 
 
 <componentPackage>
-    <component id="GradientEntry" class="org.apache.flex.graphics.GradientEntry" />
-    <component id="SolidColor" class="org.apache.flex.graphics.SolidColor" />
-    <component id="SolidColorStroke" class="org.apache.flex.graphics.SolidColorStroke" />
-    <component id="BlendBead" class="org.apache.flex.graphics.beads.BlendBead"/>
+    <component id="GradientEntry" class="org.apache.royale.graphics.GradientEntry" />
+    <component id="SolidColor" class="org.apache.royale.graphics.SolidColor" />
+    <component id="SolidColorStroke" class="org.apache.royale.graphics.SolidColorStroke" />
+    <component id="BlendBead" class="org.apache.royale.graphics.beads.BlendBead"/>
 </componentPackage>

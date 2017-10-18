@@ -21,6 +21,6 @@
 
 <componentPackage>
 
-    <component id="DropDownListList" class="org.apache.flex.flat.supportClasses.DropDownListList" />
+    <component id="DropDownListList" class="org.apache.royale.flat.supportClasses.DropDownListList" />
 
 </componentPackage>

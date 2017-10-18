@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+                xmlns:google="library://ns.apache.org/royale/google"
+				xmlns:local="*">
+	<fx:Script>
+		<![CDATA[		
+			import models.MyModel;			
+			import org.apache.royale.events.Event;
+			
+			import google.maps.places.PlaceResult;
+			import google.maps.Marker;
+			
+			/**
+			 * Called when the map is ready for use. This function adds a variety of event
+			 * listners, some of which will trigger a new search.
+			 */
+			private function onMapReady() : void
+			{
+				map.addEventListener("centered", onMapCenteredOrChanged);
+				map.addEventListener("boundsChanged", onMapCenteredOrChanged);
+				map.addEventListener("zoomChanged", onMapCenteredOrChanged);
+				map.addEventListener("dragEnd", onMapCenteredOrChanged);
+				map.addEventListener("markerClicked", onMarkerClicked);
+				
+				// Listen for changes to the search results on the map's model.
+				map.model.addEventListener("searchResultsChanged", onSearchResults);
+			}
+			
+			private var selectedCity:String;
+			
+			/**
+			 * Triggered by a change in the drop list with a new city selected. This
+			 * will also update the input fields.
+			 */
+			private function changeCity(event:org.apache.royale.events.Event) : void
+			{
+				var index:int = list.selectedIndex;
+				mapLocation.text = MyModel(applicationModel).cities[index];
+				codeAddress();
+			}
+			
+			private function codeAddress() : void
+			{
+				map.markAddress(mapLocation.text);
+			}
+			
+			private function searchOnMap() : void
+			{
+				map.nearbySearch(search.text);
+			}
+			
+			private function clearSearchResults() : void
+			{
+				map.clearSearchResults();
+			}
+			
+			private function orientMap() : void
+			{
+				map.centerOnAddress(mapLocation.text);
+			}
+			
+			/**
+			 * Called when the map has been re-centered or moved. The search results are
+			 * cleared and a new search is triggered.
+			 */
+			private function onMapCenteredOrChanged(event:org.apache.royale.events.Event):void
+			{
+				clearSearchResults();
+				if (search.text) searchOnMap();
+			}
+			
+			/**
+			 * Called when search results are available in the map's model. This function
+			 * transfers those results to the application's model which is bound to the
+			 * List component.
+			 */
+			private function onSearchResults(event:org.apache.royale.events.Event):void
+			{
+				var searchResults:Array = map.searchResults;
+				MyModel(applicationModel).searchResults = searchResults;
+			}
+			
+			/**
+			 * Called when a marker on the map has been selected. This function centers
+			 * the map on the marker and, if necessary, zooms the map in for closer
+			 * inspection.
+			 */
+			private function onMarkerClicked(event:org.apache.royale.events.Event):void
+			{
+				var marker:Marker = map.selectedMarker as Marker;
+				map.setZoom(12);
+				map.setCenter(marker.getPosition());
+			}
+			
+		]]>
+	</fx:Script>
+	
+		<fx:Style>
+		@namespace basic "library://ns.apache.org/royale/basic";
+			
+		.TopContainer {
+			backgroundColor: darkgray;
+			margin-left: auto;
+			margin-right: auto;
+			border: 1px solid #555555;
+		}
+			
+		.InnerBox {
+			padding: 10px;
+			flex-grow: 0;
+		}
+			
+		.MainMap {
+			flex-grow: 2;
+		}
+			
+		.Results {
+			backgroundColor: lightgray;
+			flex-grow: 0;
+			height: 200px;
+			min-height: 200px;
+			border: 1px solid #555555;
+			/*margin-left: 10px;
+			margin-right: 10px;
+			margin-bottom: 10px;*/
+		}
+			
+		.ResultPlaceName {
+			font-weight: bold;
+			font-size: 12;
+		}
+		.ResultPlaceAddress {
+			font-weight: normal;
+			font-size: 10;
+		}
+		
+		.FormLabel {
+			font-weight: bold;
+			font-size: 12;
+			height: 22px;
+		}
+		
+		.FormButton {
+			font-weight: bold;
+			font-size: 12;
+			color: #000000;
+			background-color: #FFFFFF;
+			border-style: solid;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		
+		.FormInput {
+			font-weight: normal;
+			font-size: 14;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+	</fx:Style>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	
+	<js:Group id="topContainer" className="TopContainer" width="100%" height="100%">
+		<js:beads>
+			<js:VerticalFlexLayout />
+		</js:beads>
+		
+		<js:Group className="InnerBox">
+			<js:beads>
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="mapLocation" />
+			</js:beads>
+			<js:Label id="label1" text="Location:" className="FormLabel"  />
+			<js:TextInput id="mapLocation" className="FormInput" />
+			<js:TextButton text="Go" id="goButton" click="orientMap()" className="FormButton" />
+			<js:Spacer width="5" />
+			
+			<js:DropDownList id="list" width="100"
+							 change="changeCity(event)"
+							 dataProvider="{MyModel(applicationModel).cities}" />
+		</js:Group>
+		
+		<google:Map id="map" className="MainMap"
+					token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" 
+					ready="onMapReady()"/>
+		
+		<js:Group className="InnerBox">
+			<js:beads>
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="search" />
+			</js:beads>
+			<js:Label id="label2" text="Search on Map:" className="FormLabel" />
+			<js:TextInput id="search" className="FormInput" />
+			<js:TextButton text="Find" click="searchOnMap()" className="FormButton" />
+			<js:TextButton text="Clear"click="clearSearchResults()" className="FormButton" />
+		</js:Group>
+		
+		<js:List id="resultsList" className="Results" itemRenderer="SearchResultItemRenderer" rowHeight="40">
+			<js:beads>
+				<js:SimpleBinding
+					sourceID="applicationModel"
+					sourcePropertyName="searchResults"
+					eventName="searchResultsChanged"
+					destinationPropertyName="dataProvider" />
+				<js:ScrollingViewport />
+			</js:beads>
+		</js:List>
+		
+	</js:Group>
+	
+</js:View>

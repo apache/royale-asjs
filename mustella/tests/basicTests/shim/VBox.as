@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package shim
 {	
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.beads.layouts.VerticalLayout;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.beads.layouts.VerticalLayout;
 	
 	[DefaultProperty("mxmlContent")]
     
@@ -34,7 +34,7 @@ package shim
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
          */
 		public function VBox()
 		{

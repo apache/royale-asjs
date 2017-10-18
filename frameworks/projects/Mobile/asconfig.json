@@ -1,8 +1,8 @@
 {
-  "config": "flex",
+  "config": "royale",
   "compilerOptions": {
     "debug": true,
-    "js-output-type": "flexjs",
+    "js-output-type": "royale",
     "define": [
       {
         "name": "COMPILE::SWF",
@@ -15,7 +15,7 @@
     ]
   },
   "files": [
-    "src/main/flex/MobileClasses.as",
-    "src/main/flex/CordovaClasses.as"
+    "src/main/royale/MobileClasses.as",
+    "src/main/royale/CordovaClasses.as"
   ]
 }

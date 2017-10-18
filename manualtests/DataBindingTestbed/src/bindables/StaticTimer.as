@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package bindables
 {
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.Event;
 
-				import org.apache.flex.utils.Timer;
+				import org.apache.royale.utils.Timer;
 	public class StaticTimer
 	{
 	

@@ -20,7 +20,7 @@ package mx.styles
 {
 
 // this is a stub to prevent some other regular Flex SDK classes from being
-// linked into FlexJS tests 
+// linked into Royale tests 
 public class StyleManager
 {
 	public function StyleManager()

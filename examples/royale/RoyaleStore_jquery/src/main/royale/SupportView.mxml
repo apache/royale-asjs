@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<!--
+This component is primarily static and is only meant to show what other
+pages of the store could look like.
+
+Note that this page was put together in the Design view so you'll see more
+hard coded locations and sizes.
+
+We did not have sizing issues here as much so you'll see more hardcoded 
+"y" values rather than "top."
+
+The width and height are hard-coded in the root tag to help the Design view.
+-->
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/royale/basic" 
+                 xmlns="*" alpha="1.0"
+    >
+	
+	<fx:Script>
+	    <![CDATA[
+	       import org.apache.royale.html.SimpleAlert;
+	    ]]>
+	</fx:Script>
+	
+    <fx:Declarations>
+        <fx:Array id="locations">
+            <fx:Object image="assets/support_mapmarker_a.png" name="601 Townsend St" /> 
+            <fx:Object image="assets/support_mapmarker_b.png" name="Location B" />
+            <fx:Object image="assets/support_mapmarker_c.png" name="Location C" />	   	   
+        </fx:Array>   
+        
+    </fx:Declarations>
+	
+	<js:HContainer x="0" y="0" width="100%" height="100%" className="colorPanel">
+	
+		<js:VContainer width="32%" height="100%">
+			<js:Container width="100%" height="420">
+			
+				<js:Label y="10" text="Check Location" className="sectionHeader" x="20"/>
+				
+				<js:Container height="200" width="100%" y="64" style="margin:auto">
+                    <js:beads>
+                        <js:VerticalColumnLayout numColumns="2" />
+                    </js:beads>
+					<js:Label text="Address:"/>
+					<js:TextInput id="address"/>
+					
+					<js:Label text="City:" style="marginTop:20"/>
+					<js:TextInput id="city" style="marginTop:20"/>						
+					
+					<js:Label text="State:" style="marginTop:20"/>
+					<js:DropDownList id="state" style="marginTop:20">
+						<js:dataProvider>
+                            <fx:Array>
+                                <fx:String>California</fx:String>
+                                <fx:String>Nevada</fx:String>
+                                <fx:String>Oregon</fx:String>
+                                <fx:String>Washington</fx:String>
+                            </fx:Array>                                    
+            			</js:dataProvider>
+					</js:DropDownList>
+					
+					<js:Label text="ZIP Code:" style="marginTop:20"/>
+					<js:TextInput id="zip" style="marginTop:20"/>
+					
+				</js:Container>
+				
+				<js:Label y="38" text="Option1: Enter Address" style="margin:auto" className="instructions"/>
+				
+				<js:TextButton y="297" text="Locate" click="SimpleAlert.show('This feature is not implemented in this sample', 'Locate')" 
+                                  style="margin:auto"/>
+				
+				<js:HContainer y="327" height="20" >
+                    <js:style>
+                        <js:SimpleCSSStyles margin="auto" verticalAlign="middle" />
+                    </js:style>
+					<js:HRule width="60" />
+					<js:Label text="OR"/>
+                    <js:HRule width="60" />
+				</js:HContainer>
+				
+				<js:Label y="355" text="Option 2: Drag this marker into the map" style="margin:auto" className="instructions"/>
+				
+				<js:Image y="380" style="margin:auto" src="assets/support_mapmarker_plus.png"/>
+				
+				<js:HRule y="415" style="margin:auto" width="200" alpha="0.6"/>
+				
+			</js:Container>
+			
+			<js:Container width="100%" height="130">
+				<js:VContainer width="80%" height="90%" >
+                    <js:style>
+                        <js:SimpleCSSStyles margin="auto" top="0"/>
+                    </js:style>
+					<js:Label text="Location" className="instructions"/>
+					<js:List width="100%" dataProvider="{locations}">
+                        <js:itemRenderer>
+                            <fx:Component>
+                                <js:DataItemRenderer className="listItem" width="100%">
+                                    <fx:Script>
+                                        <![CDATA[
+                                            import samples.royalestore.Product;
+                                            [Bindable("__NoChangeEvent__")]
+                                            private function get product():Product
+                                            {
+                                                return data as Product;
+                                            }
+                                        ]]>
+                                    </fx:Script>
+                                    <js:Image width="21" height="25" src="{product.image}" />
+                                    <js:Label width="100%" text="{product.name}" />
+                                </js:DataItemRenderer>                                                            
+                            </fx:Component>
+                        </js:itemRenderer>
+					</js:List>
+				</js:VContainer>
+			</js:Container>
+			
+		</js:VContainer>
+		
+		<js:Container width="68%" height="100%">
+			<js:Image src="assets/427px-Bayarea_map.png">
+                <js:style>
+                    <js:SimpleCSSStyles left="12" top="12"/>
+                </js:style>
+            </js:Image>
+		</js:Container>
+		
+	</js:HContainer>
+	
+</js:Container>

@@ -20,7 +20,7 @@
 ################################################################################
 
 #
-# amxmlc shell script to launch falcon-mxmlc.jar on OSX, Unix, or Cygwin to
+# amxmlc shell script to launch compiler-mxmlc.jar on OSX, Unix, or Cygwin to
 # compile SWF applications for Adobe AIR.
 # In Windows Command Prompt, use amxmlc.bat instead.
 #

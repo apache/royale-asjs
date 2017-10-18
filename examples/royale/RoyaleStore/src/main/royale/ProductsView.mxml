@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<!-- width and height hard-coded in the root tag to better support the 
+     Design view in FlexBuilder since we know the width and height from the 
+     settings in royalestore.mxml -->
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:productsView="productsView.*"
+    currentState="showFilter"
+    >
+
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.events.Event;
+        import org.apache.royale.collections.LazyCollection;
+        import samples.royalestore.Product;
+                
+        private var _catalog:LazyCollection;
+        
+        [Bindable("catalogChange")]
+        public function get catalog():LazyCollection
+        {
+            return _catalog;
+        }
+        
+        public function set catalog(c:LazyCollection):void
+        {
+            _catalog = c;
+            if (filterPanel != null)
+            {
+                filterPanel.filter.count = c.length;
+            }
+            dispatchEvent(new org.apache.royale.events.Event("catalogChange"));
+        }
+        
+        public function addToCompare(product:Product):void
+        {
+            //setting the state before adding the product avoids jumpiness in the transition, not sure why
+            currentState = 'showFilter';
+            filterPanel.productList.addProduct(product);
+        }
+        
+        public function addToCart(product:Product):void
+        {
+            //setting the state before adding the product avoids jumpiness in the transition, not sure why
+            currentState = 'showCart'; 
+            cartPanel.productList.addProduct(product);
+        }
+        
+        
+        ]]>
+    </fx:Script>
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
+    <js:Container 
+        className="colorPanel"
+        height="100%" width="100%" 
+        >
+        <js:beads>
+            <js:OneFlexibleChildHorizontalLayout flexibleChild="spacer" />
+        </js:beads>
+        <productsView:Grip id="filterGrip" gripIcon="assets/icon_magnifier.png" 
+            gripTip="Show filter panel" click="currentState = 'showFilter'"/>
+    
+        <productsView:ProductFilterPanel x="{filterGrip.width}" y="0" id="filterPanel" width="265" height="100%"
+            filter="catalogPanel.filter(event.filter, event.live)"
+            compare="catalogPanel.compare(filterPanel.productList.getProducts())"
+            initComplete="if (catalog) filterPanel.filter.count = catalog.length"/>
+    
+        <js:Spacer id="spacer" />
+        
+        <productsView:ProductCart id="cartPanel" width="265" height="100%" />
+
+        <productsView:Grip id="cartGrip" gripIcon="assets/icon_cart_empty.png"
+            gripTip="Show cart" click="currentState = 'showCart'" />
+    
+    </js:Container>
+        
+    <productsView:ProductCatalogPanel id="catalogPanel" y="4" width="685" height="540"
+                                      x.showFilter="288" x.showCart="0"
+        catalog="{catalog}"
+        compare="addToCompare(event.product)"
+        purchase="addToCart(event.product)"
+        cartCount="{cartPanel.numProducts}">
+    </productsView:ProductCatalogPanel>
+    
+    <js:states>
+       <js:State name="showFilter" />
+       <js:State name="showCart" />
+    </js:states>
+    
+    <!-- 
+      make sure to use transitions here instead of applying a Move effect
+      to the Panel itself which will result in odd behavior
+    -->
+    <js:transitions>
+       <js:Transition fromState="*" toState="*">
+          <js:Move target="catalogPanel" />
+       </js:Transition>
+    </js:transitions>
+        
+</js:Container>

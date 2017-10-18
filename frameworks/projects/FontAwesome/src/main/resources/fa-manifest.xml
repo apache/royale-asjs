@@ -20,6 +20,6 @@
 
 
 <componentPackage>
-    <component id="FontAwesomeIcon" class="org.apache.flex.fa.FontAwesomeIcon"/>
-    <component id="Animate" class="org.apache.flex.fa.beads.Animate"/>
+    <component id="FontAwesomeIcon" class="org.apache.royale.fa.FontAwesomeIcon"/>
+    <component id="Animate" class="org.apache.royale.fa.beads.Animate"/>
 </componentPackage>

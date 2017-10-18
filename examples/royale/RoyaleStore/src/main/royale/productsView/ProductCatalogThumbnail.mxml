@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:js="library://ns.apache.org/royale/basic" 
+    width="{COL_WIDTH_4}" height="{COL_HEIGHT_4}" height.compare="502"
+    width.x4cols="{COL_WIDTH_4}" height.x4cols="{COL_HEIGHT_4}"
+    width.x3cols="{COL_WIDTH_3}" height.x3cols="{COL_HEIGHT_3}"
+    width.x2cols="{COL_WIDTH_2}" height.x2cols="{COL_HEIGHT_2}"
+    rollOver="rollOverHandler(event)"
+    rollOut="rollOutHandler(event)"
+    mouseDown="mouseDownHandler(event)"
+    mouseMove="mouseMoveHandler(event)"
+    mouseUp="mouseUpHandler(event)"
+    click="clickHandler(event)"
+    currentState="x4cols"
+    >
+    <!-- automationName="{product.name}" -->
+    <js:beads>
+        <js:ContainerDataBinding />
+        <js:LayoutChangeNotifier watchedProperty="{borderStyles.borderColor}" initialValue="#FFFFFF" />
+        <js:LayoutChangeNotifier watchedProperty="{buttons.visible}" initialValue="false" />
+        <js:StyleChangeNotifier />
+    </js:beads>
+    <js:style>
+        <js:BindableCSSStyles id="borderStyles" borderStyle="solid" borderWidth="1"
+                               borderColor="#FFFFFF" backgroundColor="#FFFFFF"/>
+    </js:style>
+    <fx:Metadata>
+        [Event(name="purchase", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="details", type="samples.royalestore.ProductThumbEvent")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+
+		import org.apache.royale.events.*;
+        import org.apache.royale.utils.PointUtils;
+            
+        import samples.royalestore.Product;
+        import samples.royalestore.ProductThumbEvent;
+        
+        public static const COL_WIDTH_4:int = 162;
+        public static const COL_HEIGHT_4:int = 122;
+        public static const COL_WIDTH_3:int = 217;
+        public static const COL_HEIGHT_3:int = 165;
+        public static const COL_WIDTH_2:int = 327;
+        public static const COL_HEIGHT_2:int = 250;
+        public static const COMPARE_WIDTH:int = 162;
+        public static const HORIZONTAL_GAP:int = 2;
+        public static const VERTICAL_GAP:int = 3;
+
+        [Bindable]
+        public var product:Product;
+
+        private function rollOverHandler(event:MouseEvent):void
+		{
+            borderStyles.borderColor = "#CCCCCC";
+            //style["dropShadowEnabled"] = true;
+            buttons.visible = true;
+        }
+
+        private function rollOutHandler(event:MouseEvent):void
+		{
+            borderStyles.borderColor = "#FFFFFF";
+            //style["dropShadowEnabled"] = false;
+			buttons.visible = false;
+        }
+
+        private var dragStartPoint:Point;
+
+        public function mouseDownHandler(event:MouseEvent):void
+        {
+            if (event.target != purchase &&
+                event.target != compare &&
+                event.target != details)
+            {
+                dragStartPoint = new Point(event.clientX, event.clientY);
+            }
+        }
+
+        public function mouseMoveHandler(event:MouseEvent):void
+        {
+            if (dragStartPoint != null)
+            {
+                var dragEvent:DragEvent = new DragEvent(DragEvent.DRAG_START, true);
+                dragEvent.clientX = dragStartPoint.x;
+                dragEvent.clientY = dragStartPoint.y;
+                dispatchEvent(dragEvent);
+
+                rollOutHandler(event);
+
+                dragStartPoint = null;
+            }
+        }
+
+        public function mouseUpHandler(event:MouseEvent):void
+        {
+            if (dragStartPoint != null)
+            {
+                dragStartPoint = null;
+            }
+        }
+
+        public function clickHandler(event:org.apache.royale.events.MouseEvent):void
+        {
+            if (event.target != purchase &&
+                event.target != compare &&
+                event.target != details)
+            {
+                dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product));
+            }
+        }
+
+	]]>
+    </fx:Script>
+    <fx:Declarations>
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+    </fx:Declarations>
+
+    <js:VContainer id="vb" width="100%" height="100%">
+        <js:style>
+            <js:SimpleCSSStyles paddingLeft="6" paddingTop="4" paddingRight="8" paddingBottom="4" />
+                                 <!--  gap="0">  -->
+        </js:style>
+        
+
+        <js:Label text="{product.name}" style="fontWeight:bold"/>
+
+        <js:HContainer width="100%" >
+            <js:style>
+                <js:SimpleCSSStyles paddingTop="0" /> <!-- gap="4 -->"
+            </js:style>
+
+            <js:Image id="img" height="45" width="45" 
+                     width.x3cols="60" height.x3cols="60"
+                     width.x2cols="60" height.x2cols="60"
+                     src="{product.image}" />
+
+            <js:VContainer id="descr" height="100%" >
+                <js:style>
+                    <js:SimpleCSSStyles paddingTop="0" right="0" /> <!--  gap="0"  -->
+                </js:style>
+                <js:MultilineLabel text="{product.featureString}" width="60" height="48" />
+                <js:Label text="{cf.format(product.price)}" style="fontWeight:bold"/>
+				<js:Spacer height="4"/>
+                <js:Label text="{product.highlight1}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
+                <js:Label text="{product.highlight2}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
+            </js:VContainer>
+
+        </js:HContainer>
+
+        <js:Spacer height="8"/>
+
+        <js:Label id="compYears" text="Years: {product.experience}" includeIn="compare"/>
+        <js:Label id="compBlaze" text="BlazeDS: {product.blazeds}" includeIn="compare"/>
+        <js:Label id="compMobile" text="Mobile: {product.mobile}" includeIn="compare"/>
+        <js:Label id="compVideo" text="Video: {product.video}" includeIn="compare"/>
+        <js:Label id="compHigh1" text="Highlight: {product.highlight1}" includeIn="compare"/>
+        <js:Label id="compHigh2" text="Highlight: {product.highlight2}" includeIn="compare"/>
+        <js:Label text="Description:" includeIn="compare"/>
+        <js:MultilineLabel id="compDesc" text="{product.description}" width="100%" includeIn="compare"/>
+    </js:VContainer>
+
+
+    <js:VContainer id="buttons" visible="false" width="30">
+        <js:style>
+            <js:SimpleCSSStyles paddingRight="8" right="8" top="12" /> <!-- gap="4" -->
+        </js:style>
+        <js:ImageButton id="purchase" src="assets/button_cart_empty.png" className="hoverButton"
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" 
+            width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to cart"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="compare" src="assets/button_compare.png" className="hoverButton"
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" 
+            width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to compare list"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="details" src="assets/button_details.png" className="hoverButton"
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product))" 
+            width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Show details"/>
+            </js:beads>
+        </js:ImageButton>
+    </js:VContainer>
+
+    <js:states>
+
+        <js:State name="compare" />
+
+        <js:State name="x4cols" />
+
+        <js:State name="x3cols" />
+
+        <js:State name="x2cols"/>
+    </js:states>
+
+</js:Container>

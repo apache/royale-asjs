@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic">
+	<fx:Script>
+		<![CDATA[
+			import models.ProductsModel;
+			
+			import org.apache.royale.events.Event;
+			
+			private var startTime:Date;
+			private var endTime:Date;
+			
+			private function startTimingSVG():void
+			{
+				var n:Number = Number(numPoints.text);
+				
+				var m:ProductsModel = applicationModel as ProductsModel;
+				m.generateWaves(n);
+				
+				trace("Will start timing");
+				startTime = new Date();
+				svgChart.addEventListener("layoutComplete",wave1Complete);
+				svgChart.dataProvider = m.wave1;
+			}
+			
+			private function wave1Complete(event:org.apache.royale.events.Event):void
+			{
+				endTime = new Date();
+				var diff:Number = endTime.getTime() - startTime.getTime();
+				svgChartResults.text = diff+" msecs";
+			}
+			
+			private function startTimingReg():void
+			{
+				var n:Number = Number(numPoints.text);
+				
+				var m:ProductsModel = applicationModel as ProductsModel;
+				m.generateWaves(n);
+				
+				trace("Will start timing");
+				startTime = new Date();
+				regChart.addEventListener("layoutComplete",wave2Complete);
+				regChart.dataProvider = m.wave1;
+			}
+			
+			private function wave2Complete(event:org.apache.royale.events.Event):void
+			{
+				endTime = new Date();
+				var diff:Number = endTime.getTime() - startTime.getTime();
+				regChartResults.text = diff+" msecs";
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Style>
+		@namespace models "models.*";
+		@namespace basic "library://ns.apache.org/royale/basic";
+		
+		.hsline {
+			IDataGroup: ClassReference("org.apache.royale.charts.optimized.SVGChartDataGroup");
+			IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.optimized.SVGChartAxisGroup");
+			IVerticalAxisGroup: ClassReference("org.apache.royale.charts.optimized.SVGChartAxisGroup");
+		}
+	</fx:Style>
+	
+	<js:Container x="20" y="20">
+		<js:beads>
+			<js:HorizontalLayout />
+		</js:beads>
+		<js:Label text="Points:" />
+		<js:TextInput id="numPoints" text="300" />
+	</js:Container>
+	
+	<!-- SVG Line Chart -->
+	
+	<js:Label text="SVG Chart" x="250" y="80" />
+	
+	<js:LineChart id="svgChart" x="21" y="100" width="400" height="200" className="hsline">
+		<js:beads>
+			<!--<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="wave"
+				destinationPropertyName="dataProvider" />-->
+			<js:HorizontalLinearAxisBead valueField="x" />
+			<js:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
+			<js:LineChartLinearVsLinearLayout />
+		</js:beads>
+		<js:series>
+			<js:LineSeries xField="x" yField="sin">
+				<js:itemRenderer>
+					<fx:Component>
+						<js:SVGBoxItemRenderer>
+							<js:fill>
+								<js:SolidColor color="#FF44FF" alpha="1" />
+							</js:fill>  
+						</js:SVGBoxItemRenderer>
+					</fx:Component>
+				</js:itemRenderer>
+				<js:lineSegmentRenderer>
+					<fx:Component>
+						<js:SVGLineSegmentItemRenderer>
+							<js:stroke>
+								<js:SolidColorStroke color="#964DFF" weight="2" alpha="1" />
+							</js:stroke>
+						</js:SVGLineSegmentItemRenderer>                        
+					</fx:Component>
+				</js:lineSegmentRenderer>
+			</js:LineSeries>
+		</js:series>
+	</js:LineChart>
+	
+	<!-- Regular Line Chart -->
+	
+	<js:Label text="Reg Chart" x="650" y="80" />
+	
+	<js:LineChart id="regChart" x="500" y="100" width="400" height="200">
+		<js:beads>
+			<!--<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="wave2"
+				destinationPropertyName="dataProvider" />-->
+			<js:HorizontalLinearAxisBead valueField="x" />
+			<js:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
+			<js:LineChartLinearVsLinearLayout />
+		</js:beads>
+		<js:series>
+			<js:LineSeries xField="x" yField="sin">
+				<js:itemRenderer>
+					<fx:Component>
+						<js:BoxItemRenderer>
+							<js:fill>
+								<js:SolidColor color="#99FF99" alpha="1" />
+							</js:fill>  
+						</js:BoxItemRenderer>
+					</fx:Component>
+				</js:itemRenderer>
+				<js:lineSegmentRenderer>
+					<fx:Component>
+						<js:LineSegmentItemRenderer>
+							<js:stroke>
+								<js:SolidColorStroke color="#33DD33" weight="2" alpha="1" />
+							</js:stroke>
+						</js:LineSegmentItemRenderer>                        
+					</fx:Component>
+				</js:lineSegmentRenderer>
+			</js:LineSeries>
+		</js:series>
+	</js:LineChart>
+	
+	<js:Container x="150" y="325">
+		<js:beads>
+			<js:HorizontalLayout />
+		</js:beads>
+		<js:TextButton text="SVG Go" click="startTimingSVG()" />
+		<js:Label text="  (results)" id="svgChartResults" />
+	</js:Container>
+	
+	<js:Container x="650" y="325">
+		<js:beads>
+			<js:HorizontalLayout />
+		</js:beads>
+		<js:TextButton text="Reg Go" click="startTimingReg()" />
+		<js:Label text="  (results)" id="regChartResults" />
+	</js:Container>
+	
+</js:View>

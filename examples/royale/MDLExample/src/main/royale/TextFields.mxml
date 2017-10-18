@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns="http://www.w3.org/1999/xhtml">
+    
+    <mdl:Grid>
+        <mdl:style>
+            <js:AllCSSStyles maxWidth="300"/>
+        </mdl:style>
+        <mdl:GridCell column="12">
+            <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
+            <js:Form action="#">
+
+                <mdl:TextField id="mdlti" change="mdlfloatingti.text = mdlti.text" width="100%">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Normal Text Field..."/>
+                        <mdl:Tooltip text="A simple tooltip in a TextField"/>
+                    </mdl:beads>
+                </mdl:TextField>
+
+                <mdl:TextField width="100%">
+                    <mdl:beads>
+                        <mdl:Disabled/>
+                        <mdl:TextPrompt prompt="Disabled..."/>
+                    </mdl:beads>
+                </mdl:TextField>
+
+                <mdl:TextField id="mdlfloatingti" floatingLabel= "true" width="100%">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Floating Label"/>
+                    </mdl:beads>
+                </mdl:TextField>
+
+                <mdl:TextField width="100%">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Letters and spaces..."/>
+                        <mdl:Restrict pattern="[A-Z,a-z, ]*" error="Letters and spaces only"/>
+                    </mdl:beads>
+                </mdl:TextField>
+
+                <mdl:TextField floatingLabel="true" width="100%">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Numbers..."/>
+                        <mdl:Restrict pattern="-?[0-9]*(\.[0-9]+)?" error="Input is not a number!"/>
+                    </mdl:beads>
+                </mdl:TextField>
+
+                <mdl:TextField width="100%">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Expandible..."/>
+                        <mdl:ExpandableSearch/>
+                    </mdl:beads>
+                </mdl:TextField>
+
+                <mdl:TextField floatingLabel="true" width="100%">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Floating and Expandible..."/>
+                        <mdl:ExpandableSearch/>
+                    </mdl:beads>
+                </mdl:TextField>
+
+                <mdl:TextArea width="100%">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Text lines..."/>
+                    </mdl:beads>
+                </mdl:TextArea>
+
+                <mdl:TextArea floatingLabel="true" width="100%" rows="5" maxrows="8" isInvalid="true">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Floating, maxrows 8, invalid on load"/>
+                    </mdl:beads>
+                </mdl:TextArea>
+            </js:Form>
+        </mdl:GridCell>
+    </mdl:Grid>
+
+</mdl:TabBarPanel>

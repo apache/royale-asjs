@@ -20,7 +20,7 @@
 ################################################################################
 
 #
-# fasc shell script to launch falcon-asc.jar on OSX, Unix, or Cygwin.
+# fasc shell script to launch compiler-asc.jar on OSX, Unix, or Cygwin.
 # In Windows Command Prompt, use fasc.bat instead.
 #
 
@@ -59,4 +59,4 @@ fi
 
 VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${FALCON_HOME}/lib/falcon-swfdump.jar" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${FALCON_HOME}/lib/compiler-swfdump.jar" "$@"

@@ -25,7 +25,7 @@
 -->
 <project name="examples" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location=".."/>
+    <property name="ROYALE_HOME" location=".."/>
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -55,15 +55,15 @@
         </and>
     </condition>  
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
  
     <target name="main" depends="check-compile-env,clean,prepare,compile" 
         description="Clean build of all examples"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
-        <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
+        <ant antfile="${ROYALE_HOME}/build.xml" target="check-compile-env" dir="${ROYALE_HOME}"/>
     </target>
 
     
@@ -79,12 +79,12 @@
 		<ant dir="${basedir}/CursorTest"/>
 		<ant dir="${basedir}/DateChooserExample"/>
         <ant dir="${basedir}/EffectsExample"/>
-        <ant dir="${basedir}/FlexJSTest_basic"/>
-        <ant dir="${basedir}/FlexJSTest_createjs"/>
-        <ant dir="${basedir}/FlexJSTest_HTML5"/>
-        <ant dir="${basedir}/FlexJSTest_jquery"/>
-        <ant dir="${basedir}/FlexJSTest_Panel"/>
-        <ant dir="${basedir}/FlexJSTest_SVG"/>
+        <ant dir="${basedir}/RoyaleTest_basic"/>
+        <ant dir="${basedir}/RoyaleTest_createjs"/>
+        <ant dir="${basedir}/RoyaleTest_HTML5"/>
+        <ant dir="${basedir}/RoyaleTest_jquery"/>
+        <ant dir="${basedir}/RoyaleTest_Panel"/>
+        <ant dir="${basedir}/RoyaleTest_SVG"/>
         <ant dir="${basedir}/FormExample"/>
         <ant dir="${basedir}/ImageTest"/>
         <ant dir="${basedir}/LanguageTests"/>
@@ -92,7 +92,7 @@
 		<ant dir="${basedir}/ProxyTest"/>
 		<ant dir="${basedir}/ReflectionTest"/>
         <ant dir="${basedir}/RollEventsTest"/>
-        <ant dir="${basedir}/TLFEditTestFlexJS"/>
+        <ant dir="${basedir}/TLFEditTestRoyale"/>
 		<ant dir="${basedir}/UnitTests" />
         <ant dir="${basedir}/XMLTest"/>
     </target>
@@ -113,12 +113,12 @@
 		<ant dir="${basedir}/CursorTest" target="clean"/>
 		<ant dir="${basedir}/DateChooserExample" target="clean"/>
         <ant dir="${basedir}/EffectsExample" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_basic" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_createjs" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_HTML5" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_jquery" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_Panel" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_SVG" target="clean"/>
+        <ant dir="${basedir}/RoyaleTest_basic" target="clean"/>
+        <ant dir="${basedir}/RoyaleTest_createjs" target="clean"/>
+        <ant dir="${basedir}/RoyaleTest_HTML5" target="clean"/>
+        <ant dir="${basedir}/RoyaleTest_jquery" target="clean"/>
+        <ant dir="${basedir}/RoyaleTest_Panel" target="clean"/>
+        <ant dir="${basedir}/RoyaleTest_SVG" target="clean"/>
         <ant dir="${basedir}/FormExample" target="clean"/>
         <ant dir="${basedir}/ImageTest" target="clean"/>
         <ant dir="${basedir}/LanguageTests" target="clean"/>
@@ -126,7 +126,7 @@
 		<ant dir="${basedir}/ProxyTest" target="clean"/>
 		<ant dir="${basedir}/ReflectionTest" target="clean"/>
         <ant dir="${basedir}/RollEventsTest" target="clean"/>
-        <ant dir="${basedir}/TLFEditTestFlexJS" target="clean"/>
+        <ant dir="${basedir}/TLFEditTestRoyale" target="clean"/>
 		<ant dir="${basedir}/UnitTests" target="clean"/>
         <ant dir="${basedir}/XMLTest" target="clean"/>
     </target>

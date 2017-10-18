@@ -21,13 +21,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-framework-parent</artifactId>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale.framework-parent</artifactId>
     <version>0.9.0-SNAPSHOT</version>
 	<relativePath />
   </parent>
   
-  <groupId>org.apache.flex.flexjs.manualtests</groupId>
+  <groupId>org.apache.royale.manualtests</groupId>
   <artifactId>manualtests</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -35,7 +35,7 @@
   <properties>
     <compiler.output-dir>${basedir}/target/javascript/bin/js-debug</compiler.output-dir>
   </properties>
-  <name>Apache Flex - FlexJS: ManualTests</name>
+  <name>Apache Royale: ManualTests</name>
 
   <modules>
     <module>UnitTests</module> 
@@ -43,7 +43,7 @@
 
   <build>
   <defaultGoal>compile</defaultGoal>
-  <sourceDirectory>src/main/flex</sourceDirectory>
+  <sourceDirectory>src/main/royale</sourceDirectory>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
@@ -62,9 +62,9 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.flex.flexjs.compiler</groupId>
-          <artifactId>flexjs-maven-plugin</artifactId>
-          <version>${flexjs.compiler.version}</version>
+          <groupId>org.apache.royale.compiler</groupId>
+          <artifactId>royale-maven-plugin</artifactId>
+          <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
         </plugin>
       </plugins>
@@ -74,84 +74,84 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
-        <groupId>org.apache.flex.flexjs.framework</groupId>
+        <groupId>org.apache.royale.framework</groupId>
         <artifactId>Graphics</artifactId>
         <version>0.9.0-SNAPSHOT</version>
         <type>swc</type>

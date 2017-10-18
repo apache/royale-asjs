@@ -18,7 +18,7 @@ rem limitations under the License.
 rem
 
 rem
-rem mxmlc.bat script to launch falcon-mxmlc.jar in Windows Command Prompt.
+rem mxmlc.bat script to launch compiler-mxmlc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the mxmlc shell script instead.
 rem
 
@@ -26,4 +26,4 @@ if "x%FALCON_HOME%"=="x"  (set "FALCON_HOME=%~dp0..\..") else echo Using Falcon 
 
 if "x%FLEX_HOME%"=="x" (set "FLEX_HOME=%~dp0..\..") else echo Using Flex SDK: %FLEX_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Dflexcompiler="%FALCON_HOME%" -Dflexlib="%FLEX_HOME%\frameworks" -jar "%FALCON_HOME%\js\lib\mxmlc.jar" -js-output-type=jsc +configname=jquery %*
+@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Droyalecompiler="%FALCON_HOME%" -Droyalelib="%FLEX_HOME%\frameworks" -jar "%FALCON_HOME%\js\lib\mxmlc.jar" -js-output-type=jsc +configname=jquery %*
