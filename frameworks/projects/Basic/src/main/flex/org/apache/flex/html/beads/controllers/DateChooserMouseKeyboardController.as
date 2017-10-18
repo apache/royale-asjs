@@ -18,18 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import org.apache.flex.html.beads.DateChooserView;
-	import org.apache.flex.html.beads.models.DateChooserModel;
-	import org.apache.flex.html.supportClasses.DateChooserButton;
-    import org.apache.flex.html.supportClasses.DateChooserList;
-
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.IEventDispatcher;
 
 	/**
 	 *  The DateChooserMouseKeyboardController combines both the mouse
