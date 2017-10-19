@@ -66,7 +66,7 @@
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
     <swf.version>31</swf.version>
 
-    <selenium.version>3.1.0</selenium.version>
+    <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
 
     <!-- URL of the ASF SonarQube server -->
