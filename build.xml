@@ -1718,4 +1718,10 @@
             <arg value="${file}" />
         </java>
     </target>
+    
+    <target name="print.geckodriver.version" >
+        <exec executable="${webdriver.gecko.driver}" failonerror="true">
+            <arg value="--version"/>
+        </exec>
+    </target>
 </project>
