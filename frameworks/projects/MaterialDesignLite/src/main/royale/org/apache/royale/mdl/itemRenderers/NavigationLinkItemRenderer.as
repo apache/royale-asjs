@@ -22,6 +22,7 @@ package org.apache.royale.mdl.itemRenderers
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
     }
 
 	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
@@ -148,7 +149,16 @@ package org.apache.royale.mdl.itemRenderers
 				textNode = document.createTextNode('') as Text;
 				a.appendChild(textNode);
 			}
+
+            controller = new ItemRendererMouseController();
+            controller.strand = this;
+
             return element;
+        }
+
+        override public function updateRenderer():void
+        {
+		   //updateRenderer colorize links, let's  leave that action to MDL engine
         }
 	}
 }

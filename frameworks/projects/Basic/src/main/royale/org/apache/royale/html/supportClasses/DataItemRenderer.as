@@ -113,7 +113,7 @@ package org.apache.royale.html.supportClasses
 		}
 
 		COMPILE::JS
-		private var controller:ItemRendererMouseController;
+        protected var controller:ItemRendererMouseController;
 
 
 		/**
