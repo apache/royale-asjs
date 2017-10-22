@@ -22,7 +22,7 @@ package org.apache.royale.mdl.itemRenderers
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
+        import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
     }
 
 	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
