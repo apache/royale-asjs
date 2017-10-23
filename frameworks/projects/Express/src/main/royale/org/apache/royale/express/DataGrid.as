@@ -30,6 +30,24 @@ package org.apache.royale.express
 	/**
 	 * This class extends DataGrid and adds beads for drag and drop and
 	 * column reordering.
+	 *
+	 * @flexcomponent spark.components.DataGrid
+	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/DataGrid.html
+	 * @commentary The Royale DataGrid is very similar to the Flex DataGrid. You define the DataGrid using DataGridColumn, assigning to each column a field in the data provider and an itemRenderer to display the data.
+	 * @commentary The Royale Express DataGrid is packaged with support for drag-and-drop and column re-ordering.
+	 * @example &lt;js:DataGrid width=\"300\" height=\"400\"&gt;
+	 * @example &nbsp;&nbsp;&lt;js:beads&gt;
+	 * @example &nbsp;&nbsp;&nbsp;&lt;js:ConstantBinding
+	 * @example &nbsp;&nbsp;&nbsp;&nbsp;sourceID=\"applicationModel\"
+	 * @example &nbsp;&nbsp;&nbsp;&nbsp;sourcePropertyName=\"productList\"
+	 * @example &nbsp;&nbsp;&nbsp;&nbsp;destinationPropertyName=\"dataProvider\" /&gt;
+	 * @example &nbsp;&nbsp;&lt;/js:beads&gt;
+	 * @example &nbsp;&nbsp;&lt;js:columns&gt;
+	 * @example &nbsp;&nbsp;&nbsp;&lt;js:DataGridColumn label=\"Image\" dataField=\"image\" columnWidth=\"50\" itemRenderer=\"products.ProductItemRenderer\" /&gt;
+	 * @example &nbsp;&nbsp;&nbsp;&lt;js:DataGridColumn label=\"Title\" dataField=\"title\" columnWidth=\"150\" /&gt;
+	 * @example &nbsp;&nbsp;&nbsp;&lt;js:DataGridColumn label=\"Sales\" dataField=\"sales\" columnWidth=\"100\" /&gt;
+	 * @example &nbsp;&nbsp;&lt;/js:columns&gt;
+	 * @example &lt;/js:DataGrid&gt;
 	 */
 	public class DataGrid extends org.apache.royale.html.DataGrid
 	{

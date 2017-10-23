@@ -20,17 +20,23 @@ package org.apache.royale.express
 {
 	import org.apache.royale.binding.ViewDataBinding;
 	import org.apache.royale.core.View;
-	
+
 	/**
 	 * This View extends the standard View and adds the ViewDataBinding bead
 	 * for convenience.
+	 *
+	 * @flexcomponent spark.components.Application
+	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/Application.html
+	 * @commentary Unlike Flex, the Royale Application has no visual aspect. Instead, Royale application's extend the View class which is most often the base class for application MXML components.
+	 * @commentary The Royale Express View includes data binding. For convenience, Royale Express also provides HView (horizontal layout) and VView (vertical layout).
+	 *
 	 */
 	public class View extends org.apache.royale.core.View
 	{
 		public function View()
 		{
 			super();
-			
+
 			addBead(new ViewDataBinding());
 		}
 	}

@@ -23,13 +23,19 @@ package org.apache.royale.express
 	/**
 	 * This class extends Container and adds the VerticalLayout bead
 	 * for convenience.
+	 *
+	 * @flexcomponent spark.components.VGroup
+	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/Group.html
+	 * @commentary In the Royale Express package, data binding is prepackaged into the VContainer component.
+	 * @commentary Royale Express VContainer also includes support for scrolling.
+	 * @commentary Royale Express also provides Container (basic layout) and HContainer (horizontal layout) for convenience.
 	 */
 	public class VContainer extends Container
 	{
 		public function VContainer()
 		{
 			super();
-			
+
 			addBead(new VerticalLayout());
 		}
 	}
