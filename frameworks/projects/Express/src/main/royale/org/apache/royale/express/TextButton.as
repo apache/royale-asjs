@@ -26,6 +26,11 @@ package org.apache.royale.express
 	/**
 	 * This class extends TextButton and adds the toolTip bead
 	 * as a convenience.
+	 *
+	 * @flexcomponent spark.components.Button
+	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/Button.html
+	 * @commentary The Royale Express TextButton is pre-packaged with beads to do:
+	 * @commentary <ul><li>enabled: Boolean</li><li>toolTip: String</li><li>secure: Boolean</li></ul>See also the Royale Express ImageButton and the Royale Express ImageAndTextButton.
 	 */
 	public class TextButton extends org.apache.royale.html.TextButton
 	{
@@ -33,11 +38,11 @@ package org.apache.royale.express
 		{
 			super();
 		}
-		
+
 		private var _disableBead:DisableBead;
 		private var _enabled:Boolean = true;
 		private var _toolTipBead:ToolTipBead = null;
-		
+
 		[Bindable("enabledChanged")]
 		/**
 		 * Can enable or disable interaction with the control.
@@ -51,19 +56,19 @@ package org.apache.royale.express
 		public function set enabled(value:Boolean):void
 		{
 			_enabled = value;
-			
+
 			_disableBead = getBeadByType(DisableBead) as DisableBead;
-			
+
 			if (_disableBead == null) {
 				_disableBead = new DisableBead();
 				addBead(_disableBead);
 			}
-			
+
 			_disableBead.disabled = !value;
-				
+
 			dispatchEvent(new Event("enabledChanged"));
 		}
-		
+
 		[Bindable("enabledChanged")]
 		/**
 		 * Can enable or disable interaction with the control.
@@ -77,14 +82,14 @@ package org.apache.royale.express
 		override public function set enabled(value:Boolean):void
 		{
 			_enabled = value;
-			
+
 			if (_disableBead == null) {
 				_disableBead = new DisableBead();
 				addBead(_disableBead);
 			}
-			
+
 			_disableBead.disabled = !value;
-				
+
 			dispatchEvent(new Event("enabledChanged"));
 		}
 
@@ -104,13 +109,13 @@ package org.apache.royale.express
 		public function set toolTip(value:String):void
 		{
 			_toolTipBead = getBeadByType(ToolTipBead) as ToolTipBead;
-			
+
 			if (_toolTipBead == null) {
 				_toolTipBead = new ToolTipBead();
 				addBead(_toolTipBead);
 			}
 			_toolTipBead.toolTip = value;
-			
+
 			dispatchEvent(new Event("toolTipChanged"));
 		}
 	}
