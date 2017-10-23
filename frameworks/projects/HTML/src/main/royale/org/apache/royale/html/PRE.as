@@ -25,7 +25,7 @@ package org.apache.royale.html
     }
 
 	/**
-	 *  The P class represents an HTML <p> element
+	 *  The PRE class represents an HTML <pre> element
      *
 	 *
      *  @toplevel
@@ -34,7 +34,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class P extends Group
+	public class PRE extends Group
 	{
 		/**
 		 *  constructor.
@@ -44,7 +44,7 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function P()
+		public function PRE()
 		{
 			super();
 		}
@@ -52,7 +52,7 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The text of the p
+         *  The text of the pre
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -87,7 +87,7 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion Royale 0.0
 		 */
 		public function get html():String
 		{
@@ -107,12 +107,12 @@ package org.apache.royale.html
         protected var textNode:Text;
 
         /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'p');
+			return addElementToWrapper(this,'pre');
         }
     }
 }

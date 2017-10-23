@@ -30,6 +30,7 @@
     <component id="H6" class="org.apache.royale.html.H6" />
     <component id="Ol" class="org.apache.royale.html.Ol" />
     <component id="P" class="org.apache.royale.html.P" />
+    <component id="PRE" class="org.apache.royale.html.PRE" />
     <component id="Span" class="org.apache.royale.html.Span" />
     <component id="Div" class="org.apache.royale.html.Div" />
     <component id="I" class="org.apache.royale.html.I" />
