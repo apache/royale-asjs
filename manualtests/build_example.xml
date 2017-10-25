@@ -188,7 +188,7 @@
 		 <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <property name="config_arg" value="flex" />
+        <property name="config_arg" value="royale" />
         <property name="file_suffix" value="mxml" />
         <property name="optional_arg" value="-define+=CONFIG::dummy,true" />
         <!-- this is a dummy var placeholder in case some example needs to define a theme

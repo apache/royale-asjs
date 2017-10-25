@@ -108,6 +108,12 @@ limitations under the License.
 				xml3.foo.@boo = "boo";
 				trace("baz? " + xml3.bar.baz);
 				trace("boo? " + xml3.foo.@boo);
+				var ampXML:XML = new XML("<Content>Bat & Ball</Content>");
+				var amp2XML:XML = new XML("<Content>Bat &amp; Ball</Content>");
+				trace(ampXML.toXMLString());
+				trace(amp2XML.toXMLString());
+				trace("escaped ampersands should be equal? " + (ampXML.toXMLString() == amp2XML.toXMLString()));
+        trace("ampersand should not be escaped: " + ampXML.toString());
         var child:XML = <pop><child name="Sam"/></pop>;
         xml1.appendChild(child);
         child = <pop><child name="George"/></pop>;

@@ -379,6 +379,8 @@ package
 		private static var errorNS:String;
 		private function parseXMLStr(xml:String):void
 		{
+			//escape ampersands
+			xml = xml.replace(/&(?![\w]+;)/g,"&amp;");
 			var parser:DOMParser = new DOMParser();
 			if(errorNS == null)
 			{

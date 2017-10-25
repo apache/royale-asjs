@@ -21,10 +21,15 @@ package org.apache.royale.express
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.ImageButton;
 	import org.apache.royale.html.accessories.ToolTipBead;
-	
+
 	/**
 	 * This class extends ImageButton and adds the toolTip bead
 	 * as a convenience.
+	 *
+	 * @flexcomponent spark.components.Button
+	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/Button.html
+	 * @commentary In Royale, buttons that uses images should either be an ImageButton or a ImageAndTextButton.
+	 * @commentary This class includes <ul><li>toolTip: String</li><li>enabled: Boolean</li></ul> properties.
 	 */
 	public class ImageButton extends org.apache.royale.html.ImageButton
 	{
@@ -32,9 +37,9 @@ package org.apache.royale.express
 		{
 			super();
 		}
-		
+
 		private var _toolTipBead:ToolTipBead = null;
-		
+
 		[Bindable("toolTipChanged")]
 		/**
 		 * Displays a hint when the mouse hovers over the button
@@ -51,13 +56,13 @@ package org.apache.royale.express
 		public function set toolTip(value:String):void
 		{
 			_toolTipBead = getBeadByType(ToolTipBead) as ToolTipBead;
-			
+
 			if (_toolTipBead == null) {
 				_toolTipBead = new ToolTipBead();
 				addBead(_toolTipBead);
 			}
 			_toolTipBead.toolTip = value;
-			
+
 			dispatchEvent(new Event("toolTipChanged"));
 		}
 	}

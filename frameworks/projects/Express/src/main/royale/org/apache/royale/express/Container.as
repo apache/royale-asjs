@@ -21,34 +21,40 @@ package org.apache.royale.express
 	import org.apache.royale.binding.ContainerDataBinding;
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.supportClasses.ScrollingViewport;
-	
+
 	import org.apache.royale.core.BindableCSSStyles;
 	import org.apache.royale.core.StyleChangeNotifier;
-	
+
 	COMPILE::SWF {
 		import org.apache.royale.html.beads.SolidBackgroundWithChangeListenerBead;
 		import org.apache.royale.html.beads.SingleLineBorderWithChangeListenerBead;
 	}
-	
+
 	/**
 	 * This class extends the standard Container and adds the
 	 * ContainerDataBinding bead and ScrollingViewport beads for
 	 * convenience.
+	 *
+	 * @flexcomponent spark.components.Group
+	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/Group.html
+	 * @commentary In the Royale Express package, data binding is prepackaged into the Container component.
+	 * @commentary Royale Express Container also includes support for scrolling.
+	 * @commentary Royale Express also provides HContainer (horizontal layout) and VContainer (vertical layout) for convenience.
 	 */
 	public class Container extends org.apache.royale.html.Container
 	{
 		public function Container()
 		{
 			super();
-			
+
 			var wasStyle:Object = style;
-			
+
 			style = new BindableCSSStyles();
-			
+
 			addBead(new ContainerDataBinding());
 			addBead(new ScrollingViewport());
 			addBead(new StyleChangeNotifier());
-			
+
 			COMPILE::SWF {
 				addBead(new SolidBackgroundWithChangeListenerBead());
 				addBead(new SingleLineBorderWithChangeListenerBead());

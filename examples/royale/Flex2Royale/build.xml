@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="flex2royale" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../../.."/>
+    <property name="example" value="Flex2Royale" />
+    
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
+
+    <condition property="config.path" value="&quot;${basedir}/src/main/config/asdoc-config.xml&quot;">
+        <os family="windows" />
+    </condition>
+    <property name="config.path" value="${basedir}/src/main/config/asdoc-config.xml"/>
+
+    <include file="${basedir}/../../build_example.xml" />
+    
+    <target name="main" depends="build_example.compile" description="Clean build of ${example}">
+        <available file="${basedir}/bin-debug/classes.json"
+        type="file"
+        property="json.exists"/>
+        <antcall target="json" />
+    </target>
+    
+    <target name="clean">
+        <delete dir="${basedir}/bin" failonerror="false" />
+        <delete dir="${basedir}/bin-debug" failonerror="false" />
+        <delete dir="${basedir}/bin-release" failonerror="false" />
+        <delete dir="${basedir}/target" failonerror="false" />
+    </target>
+
+    <target name="json" unless="json.exists" >
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/asdoc.jar" resultProperty="errorCode"
+            fork="true">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <jvmarg line="-Droyalelib=${ROYALE_HOME}/frameworks}"/>
+            <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
+            <arg value="-external-library-path=${env.AIR_HOME}/frameworks/libs/air/airglobal.swc" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
+            <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
+            <arg value="-load-config=${config.path}" />
+            <arg value="-debug=true" />
+            <arg value="-output=${basedir}/bin-debug" />
+            <arg value="-window-title=Apache Royale API Reference" />
+            <arg value="-main-title=Apache Royale 0.8.0 API Reference " />
+            <arg value="-footer=The Apache Software Foundation" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-js-output-type=ROYALE" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
+        </java>
+        <copy todir="${basedir}/bin/js-debug">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin/js-release">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+
+    </target>
+    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="View ASDoc."/>
+        <exec executable="${browser}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="${basedir}/bin-${which}/${example}.html"/>
+        </exec>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
+</project>

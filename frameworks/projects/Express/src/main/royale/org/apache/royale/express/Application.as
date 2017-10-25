@@ -21,17 +21,27 @@ package org.apache.royale.express
 	import org.apache.royale.binding.ApplicationDataBinding;
 	import org.apache.royale.core.Application;
 	import org.apache.royale.core.AllCSSValuesImpl;
-	
+
 	/**
 	 * This class extends the standard Application and sets up the
 	 * SimpleCSSValuesImpl (implementation) for convenience.
+	 *
+	 * @flexcomponent spark.components.Application
+	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/Application.html
+	 * @commentary Unlike Flex Application, Royale Application does not provide a user interface container. Instead, you create an instance of org.apache.royale.express.View as the Application's initialView property.
+	 * @commentary The Express version of Application pre-packages some additional beads.
+	 * @example &lt;js:Application&gt;
+	 * @example &nbsp;&nbsp;&lt;js:initialView&gt;
+	 * @example &nbsp;&nbsp;&nbsp;&nbsp;&lt;local:MyInitialView /&gt;
+	 * @example &nbsp;&nbsp;&lt;/js:initialView&gt;
+	 * @example &lt;/js:Application&gt;
 	 */
 	public class Application extends org.apache.royale.core.Application
 	{
 		public function Application()
 		{
 			super();
-			
+
 			this.valuesImpl = new AllCSSValuesImpl();
 			addBead(new ApplicationDataBinding());
 		}
