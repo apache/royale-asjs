@@ -87,10 +87,6 @@ package org.apache.royale.html.beads.models
 				_maximum = value;
 				dispatchEvent(new Event("maximumChange"));
 			}
-			if (this.value > _maximum)
-			{
-				this.value = _maximum;
-			}
 		}
 		
 		private var _minimum:Number = 0;
@@ -116,10 +112,6 @@ package org.apache.royale.html.beads.models
 			{
 				_minimum = value;
 				dispatchEvent(new Event("minimumChange"));
-			}
-			if (this.value < _minimum)
-			{
-				this.value = _minimum;
 			}
 		}
 
