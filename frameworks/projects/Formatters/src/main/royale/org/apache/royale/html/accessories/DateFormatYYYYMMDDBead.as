@@ -21,7 +21,7 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.html.accessories.SimpleDateFormatBead;
 	
 	/**
-	 * The DateFormatBead class formats the display of a DateField using YYYY-MM-DD format.
+	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.
      * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
