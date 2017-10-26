@@ -121,7 +121,7 @@ package org.apache.royale.html.beads.models
 			if (value != _displayedYear) {
 				_displayedYear = value;
                 updateCalendar();
-				dispatchEvent( new Event("displayedYearChanged") );
+				dispatchEvent( new Event("yearChanged") );
 			}
 		}
 		
@@ -142,7 +142,7 @@ package org.apache.royale.html.beads.models
 			if (_displayedMonth != value) {
 				_displayedMonth = value;
                 updateCalendar();
-				dispatchEvent( new Event("displayedMonthChanged") );
+				dispatchEvent( new Event("monthChanged") );
 			}
 		}
 		
