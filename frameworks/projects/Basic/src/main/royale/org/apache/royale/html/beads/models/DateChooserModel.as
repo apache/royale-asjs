@@ -220,27 +220,27 @@ package org.apache.royale.html.beads.models
          */
         private function updateCalendar():void
         {       
-            var firstDay:Date = new Date(displayedYear,displayedMonth,1);
-            
-            _days = new Array(42);
-            
-            // blank out the labels for the first firstDay.day-1 entries.
-            for(var i:int=0; i < firstDay.getDay(); i++) {
-                _days[i] = null;
-            }
-            
-            // renumber to the last day of the month
-            var dayNumber:int = 1;
-            var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
-            
-            for(; i < _days.length && dayNumber <= numDays; i++) {
-                _days[i] = new Date(displayedYear, displayedMonth, dayNumber++);
-            }
-            
-            // blank out the rest
-            for(; i < _days.length; i++) {
-                _days[i] = null;
-            }
+			var firstDay:Date = new Date(displayedYear,displayedMonth,1);
+			var startMonth:int = firstDay.getDay();
+			var maxDays:int = _days.length;
+
+			// blank out the labels before the 1st of the month
+			for(var i:int=0; i < startMonth; i++) {
+			   _days[i] = null;
+			}
+
+			// renumber to the last day of the month
+			var dayNumber:int = 1;
+			var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
+
+			for(; i < maxDays && dayNumber <= numDays; i++) {
+			   _days[i] = new Date(displayedYear, displayedMonth, dayNumber++);
+			}
+
+			// blank out the rest
+			for(; i < maxDays; i++) {
+			   _days[i] = null;
+		   }
         }
         
         /**
