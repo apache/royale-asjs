@@ -103,8 +103,7 @@ package org.apache.royale.mdl.itemRenderers
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-
-            var text:String;
+			
 			if (labelField || dataField) {
                 text = String(value[labelField]);
             } else {
@@ -113,20 +112,20 @@ package org.apache.royale.mdl.itemRenderers
             
 			COMPILE::JS
 			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-				}
-
-                if (a != null)
+                if(textNode != null)
                 {
-                    (a as HTMLElement).setAttribute('href', href);
+                    textNode.nodeValue = text;
+                }
+
+                if (link != null)
+                {
+                    (link as HTMLElement).setAttribute('href', href);
                 }
 			}
 		}
 
-		COMPILE::JS
-        private var a:HTMLElement;
+        COMPILE::JS
+        private var link:HTMLElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -136,18 +135,18 @@ package org.apache.royale.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'li');
-            
-			var a:HTMLElement = document.createElement('a') as HTMLElement;
-            a.setAttribute('href', href);
+            addElementToWrapper(this,'li');
 
-			element.appendChild(a);
+            link = document.createElement('a') as HTMLElement;
+            link.setAttribute('href', href);
 
-			if(MXMLDescriptor == null)
-			{
-				textNode = document.createTextNode('') as Text;
-				a.appendChild(textNode);
-			}
+            element.appendChild(link);
+
+            if(MXMLDescriptor == null)
+            {
+                textNode = document.createTextNode('') as Text;
+                link.appendChild(textNode);
+            }
             return element;
         }
 	}
