@@ -222,6 +222,7 @@ package org.apache.royale.html.beads.models
         {       
 			var firstDay:Date = new Date(displayedYear,displayedMonth,1);
 			var startMonth:int = firstDay.getDay();
+			_days = new Array(42);
 			var maxDays:int = _days.length;
 
 			// blank out the labels before the 1st of the month
