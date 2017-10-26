@@ -20,6 +20,7 @@ package org.apache.royale.html
 {
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.html.Group;
+	import org.apache.royale.events.Event;
 
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
@@ -48,11 +49,12 @@ package org.apache.royale.html
 		public function DateChooser()
 		{
 			super();
-			
+
 			// default to today
 			selectedDate = new Date();
 		}
 
+		[Bindable("selectedDateChanged")]
 		/**
 		 *  The currently selected date (or null if no date has been selected).
 		 *
