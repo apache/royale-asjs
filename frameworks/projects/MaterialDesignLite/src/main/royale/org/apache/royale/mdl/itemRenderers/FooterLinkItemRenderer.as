@@ -85,11 +85,6 @@ package org.apache.royale.mdl.itemRenderers
 		public function set href(value:String):void
 		{
             _href = value;
-            
-            COMPILE::JS
-            {
-                (a as HTMLElement).setAttribute('href', value);
-            }
 		}
 
 		COMPILE::JS
@@ -121,7 +116,12 @@ package org.apache.royale.mdl.itemRenderers
 				if(textNode != null)
 				{
 					textNode.nodeValue = text;
-				}	
+				}
+
+                if (a != null)
+                {
+                    (a as HTMLElement).setAttribute('href', href);
+                }
 			}
 		}
 
