@@ -78,13 +78,14 @@ package org.apache.royale.html
                     addBead(bead);
                 }
             }
-			
+
 			dispatchEvent(new Event("initComplete"));
 		}
-		
+
+		[Bindable("selectedDateChanged")]
 		/**
 		 *  The currently selected date (or null if no date has been selected).
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

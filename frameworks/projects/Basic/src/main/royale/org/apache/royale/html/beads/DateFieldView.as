@@ -17,9 +17,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
-{	
+{
     import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IFormatBead;
 	import org.apache.royale.core.IParent;
@@ -35,12 +36,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.DateChooser;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TextInput;
-	
+
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
-	 * input and button controls. This class also handles the pop-up 
+	 * input and button controls. This class also handles the pop-up
 	 * mechanics.
-	 *  
+	 *
 	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,7 +52,7 @@ package org.apache.royale.html.beads
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -60,13 +61,13 @@ package org.apache.royale.html.beads
 		public function DateFieldView()
 		{
 		}
-		
+
 		private var _textInput:TextInput;
 		private var _button:TextButton;
-		
+
 		/**
 		 *  The TextButton that triggers the display of the DateChooser pop-up.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -76,10 +77,10 @@ package org.apache.royale.html.beads
 		{
 			return _button;
 		}
-		
+
 		/**
 		 *  The TextInput that displays the date selected.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -89,51 +90,54 @@ package org.apache.royale.html.beads
 		{
 			return _textInput;
 		}
-		
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
 		override public function set strand(value:IStrand):void
-		{	
+		{
 			super.strand = value;
-			
+
 			_textInput = new TextInput();
 			UIBase(_strand).addElement(_textInput);
 			_textInput.width = 100;
 			_textInput.height = 18;
-			
+
 			_button = new TextButton();
 			_button.text = "⬇︎";
 			UIBase(_strand).addElement(_button);
-			
+
 			COMPILE::SWF {
 				_button.x = _textInput.width;
 				_button.y = _textInput.y;
 			}
-			
+
 			IEventDispatcher(_strand).addEventListener("initComplete",handleInitComplete);
 		}
-		
+
 		private function handleInitComplete(event:Event):void
 		{
 			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
 			formatter.addEventListener("formatChanged",handleFormatChanged);
 			_textInput.height = _button.height;
+
+			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
-		
+
 		private function handleFormatChanged(event:Event):void
 		{
 			var formatter:IFormatBead = event.target as IFormatBead;
 			_textInput.text = formatter.formattedString;
 		}
-		
+
 		private var _popUp:DateChooser;
-		
+
 		/**
 		 *  The pop-up component that holds the selection list.
 		 *
@@ -146,9 +150,9 @@ package org.apache.royale.html.beads
 		{
 			return _popUp;
 		}
-		
+
 		private var _popUpVisible:Boolean;
-		
+
 		/**
 		 *  This property is true if the pop-up selection list is currently visible.
 		 *
@@ -174,10 +178,10 @@ package org.apache.royale.html.beads
 						_popUp.width = 210;
 						_popUp.height = 230;
 					}
-					
+
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
-					
+
 					var host:IPopUpHost = UIUtils.findPopUpHost(UIBase(_strand));
 					var point:Point = new Point(_textInput.width, _button.height);
 					var p2:Point = PointUtils.localToGlobal(point, _strand);
@@ -187,7 +191,7 @@ package org.apache.royale.html.beads
 					COMPILE::JS {
 						_popUp.element.style.position = "absolute";
 					}
-					
+
 					host.addElement(_popUp);
 				}
 				else
@@ -195,6 +199,14 @@ package org.apache.royale.html.beads
 					UIUtils.removePopUp(_popUp);
 				}
 			}
+		}
+
+		/**
+		 * @private
+		 */
+		private function selectionChangeHandler(event:Event):void
+		{
+			IEventDispatcher(_strand).dispatchEvent(new Event("selectedDateChanged"));
 		}
 	}
 }
