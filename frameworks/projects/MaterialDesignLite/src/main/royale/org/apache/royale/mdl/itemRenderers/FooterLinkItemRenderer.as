@@ -112,15 +112,8 @@ package org.apache.royale.mdl.itemRenderers
             
 			COMPILE::JS
 			{
-                if(textNode != null)
-                {
-                    textNode.nodeValue = text;
-                }
-
-                if (link != null)
-                {
-                    (link as HTMLElement).setAttribute('href', href);
-                }
+				textNode.nodeValue = text;
+				(link as HTMLElement).setAttribute('href', href);
 			}
 		}
 
