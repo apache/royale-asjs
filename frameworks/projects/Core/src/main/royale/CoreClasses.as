@@ -69,6 +69,7 @@ internal class CoreClasses
     import org.apache.royale.core.IContentView; IContentView;
 	import org.apache.royale.core.IContentViewHost; IContentViewHost;
     import org.apache.royale.core.IDataProviderItemRendererMapper; IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IDataProviderNotifier; IDataProviderNotifier;
     import org.apache.royale.core.IBinaryImageModel; IBinaryImageModel;
     import org.apache.royale.core.IDocument; IDocument;
 	import org.apache.royale.core.IDragInitiator; IDragInitiator;

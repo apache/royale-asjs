@@ -16,19 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.express
 {
-	import org.apache.royale.core.IDateChooserModel;
-	import org.apache.royale.html.Group;
-	import org.apache.royale.events.Event;
+    import org.apache.royale.html.NumericStepper;
 
 	/**
-	 * The change event is dispatched when the selectedDate is changed.
-	 */
-	[Event(name="change", type="org.apache.royale.events.Event")]
-
-	/**
-	 *  The DateChooser class is a component that displays a calendar.
+	 *  The NumericStepper class is a component that displays a numeric
+	 *  value and up/down controls (using a org.apache.royale.html.Spinner) to
+	 *  increase and decrease the value by specific amounts. The NumericStepper uses the following beads:
+	 *
+	 *  org.apache.royale.core.IBeadModel: the data model for the component of type org.apache.royale.core.IRangeModel.
+	 *  org.apache.royale.core.IBeadView: constructs the parts of the component.
+	 *  org.apache.royale.core.IBeadController: handles the input events.
 	 *
      *  @toplevel
 	 *  @langversion 3.0
@@ -36,7 +35,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateChooser extends Group
+	public class NumericStepper extends org.apache.royale.html.NumericStepper
 	{
 		/**
 		 *  constructor.
@@ -46,30 +45,17 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function DateChooser()
+		public function NumericStepper()
 		{
 			super();
-
-			// default to today
-			selectedDate = new Date();
 		}
 
-		[Bindable("selectedDateChanged")]
-		/**
-		 *  The currently selected date (or null if no date has been selected).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get selectedDate():Date
+		override public function set minimum(value:Number):void
 		{
-			return IDateChooserModel(model).selectedDate;
+            super.minimum = value;
+            if(value > this.value)
+                this.value = value;
 		}
-		public function set selectedDate(value:Date):void
-		{
-			IDateChooserModel(model).selectedDate = value;
-		}
+
 	}
 }
