@@ -70,8 +70,8 @@ package org.apache.royale.html.beads
 			if (model == null) {
 				model = new (ValuesManager.valuesImpl.getValue(_strand,"iBeadModel")) as DateChooserModel;
 			}
-			model.addEventListener("displayedMonthChanged",handleModelChange);
-			model.addEventListener("displayedYearChanged",handleModelChange);
+			model.addEventListener("monthChanged",handleModelChange);
+			model.addEventListener("yearChanged",handleModelChange);
 			
 			createChildren();
 			updateDisplay();
@@ -243,6 +243,7 @@ package org.apache.royale.html.beads
 		private function handleModelChange(event:Event):void
 		{
 			updateDisplay();
+			IEventDispatcher(_strand).dispatchEvent( new Event("monthChanged") );
 		}
 	}
 }
