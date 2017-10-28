@@ -20,6 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IDataProviderNotifier;
 	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -36,7 +37,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataProviderNotifierBase implements IBead, IDocument
+	public class DataProviderNotifierBase implements IBead, IDocument, IDataProviderNotifier
 	{
 		/**
 		 *  constructor.

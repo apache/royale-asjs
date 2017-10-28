@@ -43,6 +43,20 @@ Application
 	padding: 0px;
 	margin: 0px;
 }
+DataGrid
+{
+	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+	IDataProviderNotifier: ClassReference("org.apache.royale.html.beads.EasyDataProviderChangeNotifier");
+	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #222222;
+	border-width: 1px;
+}
+
 
 DataGridButtonBar {
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridButtonBarViewForMovableColumns");
@@ -72,3 +86,11 @@ View
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 }
 
+@media -royale-swf
+{
+	DataGrid {
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+	}
+
+}
