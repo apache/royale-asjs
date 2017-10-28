@@ -39,6 +39,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DateHeaderButton;
 	import org.apache.royale.html.supportClasses.DateChooserHeader;
 	import org.apache.royale.html.supportClasses.DateChooserList;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser. This class
@@ -65,11 +66,9 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
-			model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			if (model == null) {
-				model = new (ValuesManager.valuesImpl.getValue(_strand,"iBeadModel")) as DateChooserModel;
-			}
+
+			model = loadBeadFromValuesManager(IBeadModel, "iBeadModel", _strand) as DateChooserModel;
+
 			model.addEventListener("displayedMonthChanged",handleModelChange);
 			model.addEventListener("displayedYearChanged",handleModelChange);
 			
