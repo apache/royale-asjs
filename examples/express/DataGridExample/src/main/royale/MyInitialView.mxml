@@ -42,6 +42,12 @@ limitations under the License.
 			];
 
 		 }
+		 private function addToProvider():void{
+			 var num:Number = Number((Math.random()*1000).toFixed());
+			 provider.addItem(
+				 new Product("ps" + num,"Weejets",35,num,"assets/smallorangerect.jpg")
+			);
+		 }
 		
 		 [Bindable]
 		 private var nameList:Array = ["Bob", "Joe", "Frank", "Sally", "Mike", "Amy", "Karen", "Will", "Grace", "Jack"];
@@ -63,6 +69,8 @@ limitations under the License.
 	<js:Label id="output" x="450" y="30"/>
 	
 	<js:TextButton text="Set Provider" click="setProvider()"/>
+	<js:TextButton text="Add to Provider" click="addToProvider()" x="120"/>
+
 	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="200" change="dataGridChange(dataGrid)" rowHeight="40">
 		<js:beads>
 			<js:ConstantBinding
