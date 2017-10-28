@@ -84,6 +84,7 @@ package org.apache.royale.html.beads.models
          */
 		public function set dataProvider(value:Object):void
 		{
+            if (value == _dataProvider) return;
 
             _dataProvider = value as IArrayList;
 			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
