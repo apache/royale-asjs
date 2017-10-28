@@ -218,23 +218,25 @@ package org.apache.royale.html.beads
 		{
 			monthLabel.text = model.monthNames[model.displayedMonth] + " " +
 				String(model.displayedYear);
-			
+
 			dayNamesContainer.dataProvider = model.dayNames;
-			
+
 			daysContainer.dataProvider = model.days;
 		}
-		
+
 		/**
 		 * @private
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{
 			updateDisplay();
-			
+
 			var index:Number = model.getIndexForSelectedDate();
 			daysContainer.selectedIndex = index;
+
+			IEventDispatcher(_strand).dispatchEvent(new Event("selectedDateChanged"));
 		}
-		
+
 		/**
 		 * @private
 		 */
