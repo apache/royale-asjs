@@ -26,7 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Accordion;
 	import org.apache.royale.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.royale.html.supportClasses.ICollapsible;
-	import org.apache.royale.utils.StrandUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	public class AccordionCollapseBead implements IAccordionCollapseBead
 	{
@@ -81,7 +81,7 @@ package org.apache.royale.html.beads
 		{
 			if (!_layout)
 			{
-				_layout = StrandUtils.loadBead(IOneFlexibleChildLayout, "iBeadLayout", _strand) as IOneFlexibleChildLayout;
+				_layout = loadBeadFromValuesManager(IOneFlexibleChildLayout, "iBeadLayout", _strand) as IOneFlexibleChildLayout;
 			}
 			return _layout;
 		}

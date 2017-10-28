@@ -21,7 +21,7 @@ package org.apache.royale.mdl.beads
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.html.Span;
-    import org.apache.royale.utils.StrandUtils;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.core.UIBase;
 
     /**
@@ -125,7 +125,7 @@ package org.apache.royale.mdl.beads
          */
         private function loadColorBead():void
         {
-            var mdlColorBead:MdlColor = StrandUtils.loadBead(MdlColor, "MdlColor", _strand) as MdlColor;
+            var mdlColorBead:MdlColor = loadBeadFromValuesManager(MdlColor, "MdlColor", _strand) as MdlColor;
 
             if (mdlColorBead != null)
             {
@@ -154,7 +154,7 @@ package org.apache.royale.mdl.beads
          */
         private function loadTextColorBead():void
         {
-            var mdlTextColorBead:MdlTextColor = StrandUtils.loadBead(MdlTextColor, "MdlTextColor", _strand)
+            var mdlTextColorBead:MdlTextColor = loadBeadFromValuesManager(MdlTextColor, "MdlTextColor", _strand)
                     as MdlTextColor;
 
             if (mdlTextColorBead != null)

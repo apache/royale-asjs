@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.express
 {
+	import org.apache.royale.core.IDataProviderNotifier;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.beads.DataGridColumnReorderView;
 	import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
@@ -63,5 +65,19 @@ package org.apache.royale.express
 			addBead(new DataGridDrawingLayerBead());
 			addBead(new DataGridColumnReorderView());
 		}
+		override public function addedToParent():void
+		{
+			if (!dataNotifier) {
+				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataProviderNotifier");
+				if (c) {
+					dataNotifier = new c() as IDataProviderNotifier;
+					if (dataNotifier) {
+						addBead(dataNotifier);
+					}
+				}
+			}
+			super.addedToParent();
+		}
+		public var dataNotifier:IDataProviderNotifier;
 	}
 }
