@@ -93,25 +93,27 @@ package org.apache.royale.html.beads
 			COMPILE::JS {
 				_track = new Button();
 				_track.className = "SliderTrack";
-				UIBase(_strand).addElement(_track);
+				host.addElement(_track);
 				
 				_thumb = new TextButton();
 				_thumb.className = "SliderThumb";
 				_thumb.text = '\u2B0C';
-				UIBase(_strand).addElement(_thumb);
+				host.addElement(_thumb);
 			}
 			
-			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
+			host.addEventListener("widthChanged",sizeChangeHandler);
+			host.addEventListener("heightChanged",sizeChangeHandler);
 			
 			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+
+			var rm:IEventDispatcher = rangeModel as IEventDispatcher;
 			
 			// listen for changes to the model and adjust the UI accordingly.
-			IEventDispatcher(rangeModel).addEventListener("valueChange",modelChangeHandler);
-			IEventDispatcher(rangeModel).addEventListener("minimumChange",modelChangeHandler);
-			IEventDispatcher(rangeModel).addEventListener("maximumChange",modelChangeHandler);
-			IEventDispatcher(rangeModel).addEventListener("stepSizeChange",modelChangeHandler);
-			IEventDispatcher(rangeModel).addEventListener("snapIntervalChange",modelChangeHandler);
+			rm.addEventListener("valueChange",modelChangeHandler);
+			rm.addEventListener("minimumChange",modelChangeHandler);
+			rm.addEventListener("maximumChange",modelChangeHandler);
+			rm.addEventListener("stepSizeChange",modelChangeHandler);
+			rm.addEventListener("snapIntervalChange",modelChangeHandler);
 			
 			sizeChangeHandler(null);
 		}
@@ -147,11 +149,17 @@ package org.apache.royale.html.beads
 		}
 		
 		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		private function get host():UIBase
+		{
+			return _strand as UIBase;
+		}
+		/**
 		 * @private
 		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{
-			var host:UIBase = UIBase(_strand);
 			var w:Number = host.width;
 			var h:Number = host.height;
 			

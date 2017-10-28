@@ -107,6 +107,9 @@ package org.apache.royale.html.beads
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
+			if(!_itemRendererFactory)
+    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
+            
             return _itemRendererFactory
         }
         
