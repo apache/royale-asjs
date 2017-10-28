@@ -16,54 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 package org.apache.royale.utils
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ValuesManager;
-	
+
 	/**
-	 *  The StrandUtils class is an all-static class
-	 *  with methods for working with strands and beads.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public class StrandUtils
+	*  @return Loaded Bead.
+	*  
+	*  @langversion 3.0
+	*  @playerversion Flash 9
+	*  @playerversion AIR 1.1
+	*  @productversion Flex 3
+	*/
+	public function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
 	{
-		
-		//--------------------------------------------------------------------------
-		//
-		//  Class methods
-		//
-		//--------------------------------------------------------------------------
-		
-		/**
-		 *  @return Loaded Bead.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public static function loadBead(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
+		var result:IBead = strand.getBeadByType(classOrInterface);
+		if (result == null) 
 		{
-			var result:IBead = strand.getBeadByType(classOrInterface);
-			if (result == null) 
+			var c:Class = ValuesManager.valuesImpl.getValue(strand, classOrInterfaceName) as Class;
+			if (c)
 			{
-				var c:Class = ValuesManager.valuesImpl.getValue(strand, classOrInterfaceName) as Class;
-				if (c)
-				{
-					result = new c() as IBead;
-					if (result)
-						strand.addBead(result);
-				}
+				result = new c() as IBead;
+				if (result)
+					strand.addBead(result);
 			}
-			return result;
-		} 
+		}
+		return result;
 	}
-	
 }
