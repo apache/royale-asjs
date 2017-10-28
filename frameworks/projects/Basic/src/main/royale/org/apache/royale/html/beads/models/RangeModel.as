@@ -139,13 +139,15 @@ package org.apache.royale.html.beads.models
 				_snapInterval = value;
 				dispatchEvent(new Event("snapIntervalChange"));
 			}
-			if(value < 1)
+			if(("" + value).indexOf(".") == -1)
+			{
+				_decimals = 0;
+			}
+			else
 			{
 				var str:String = "" + value;
 				_decimals = str.substr(str.indexOf(".")+1).length;
 			}
-			else
-				_decimals = 0;
 		}
 		private var _decimals:int;
 		
