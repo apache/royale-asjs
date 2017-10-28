@@ -144,8 +144,10 @@ package org.apache.royale.html.beads.models
 				var str:String = "" + value;
 				_decimals = str.substr(str.indexOf(".")+1).length;
 			}
+			else
+				_decimals = 0;
 		}
-		private var _decimals:int = 0;
+		private var _decimals:int;
 		
 		private var _stepSize:Number = 1;
 		
