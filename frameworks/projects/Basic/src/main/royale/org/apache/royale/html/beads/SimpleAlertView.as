@@ -34,6 +34,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.Label;
     import org.apache.royale.html.TextButton;
     import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The SimpleAlertView class creates the visual elements of the 
@@ -60,6 +61,14 @@ package org.apache.royale.html.beads
 		
 		private var messageLabel:Label;
 		private var okButton:TextButton;
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		private function get host():UIBase
+		{
+			return _strand as UIBase;
+		}
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -77,8 +86,7 @@ package org.apache.royale.html.beads
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
 			{
-				if (value.getBeadByType(IBackgroundBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
+				loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
 			}
 			
 			var borderStyle:String;
@@ -93,8 +101,7 @@ package org.apache.royale.html.beads
 			}
 			if (borderStyle != null && borderStyle != "none")
 			{
-				if (value.getBeadByType(IBorderBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
+				loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
 			}
 			
 			var model:IAlertModel = _strand.getBeadByType(IAlertModel) as IAlertModel;
@@ -104,11 +111,11 @@ package org.apache.royale.html.beads
             messageLabel = new Label();
 			messageLabel.text = model.message;
 			messageLabel.html = model.htmlMessage;
-			IParent(_strand).addElement(messageLabel);
+			host.addElement(messageLabel);
 			
 			okButton = new TextButton();
 			okButton.text = model.okLabel;
-			IParent(_strand).addElement(okButton);
+			host.addElement(okButton);
 			okButton.addEventListener("click",handleOK);
 			
 			handleMessageChange(null);
@@ -123,7 +130,7 @@ package org.apache.royale.html.beads
 			if( ruler == null ) {
 				messageLabel.addBead(ruler = new (ValuesManager.valuesImpl.getValue(messageLabel, "iMeasurementBead")) as IMeasurementBead);
 			}
-			var maxWidth:Number = Math.max(UIBase(_strand).width,ruler.measuredWidth);
+			var maxWidth:Number = Math.max(host.width,ruler.measuredWidth);
 			
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 			
@@ -134,8 +141,8 @@ package org.apache.royale.html.beads
 			okButton.x = (maxWidth - okButton.width)/2;
 			okButton.y = messageLabel.y + messageLabel.height + 20;
 			
-			UIBase(_strand).width = maxWidth + metrics.left + metrics.right;
-			UIBase(_strand).height = okButton.y + okButton.height + metrics.bottom;
+			host.width = maxWidth + metrics.left + metrics.right;
+			host.height = okButton.y + okButton.height + metrics.bottom;
 		}
 		
 		/**
@@ -144,7 +151,7 @@ package org.apache.royale.html.beads
 		private function handleOK(event:MouseEvent):void
 		{
 			var newEvent:Event = new Event("close");
-			IEventDispatcher(_strand).dispatchEvent(newEvent);
+			host.dispatchEvent(newEvent);
 		}
 	}
 }

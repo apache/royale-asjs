@@ -31,6 +31,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	COMPILE::SWF {
 		import org.apache.royale.geom.Size;
@@ -307,11 +308,7 @@ package org.apache.royale.html.beads
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
 			{
-				if (host.getBeadByType(IBackgroundBead) == null)
-					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBackgroundBead");
-				if (c) {
-					host.addBead( new c() as IBead );
-				}
+				loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", _strand);
 			}
 			
 			if (setupForBorder(host, "border")) return;
@@ -338,13 +335,7 @@ package org.apache.royale.html.beads
 			}
 			if (borderStyle != null && borderStyle != "none")
 			{
-				if (host.getBeadByType(IBorderBead) == null) {
-					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBorderBead");
-					if (c) {
-						host.addBead( new c() as IBead );
-						result = true;
-					}
-				}
+				loadBeadFromValuesManager(IBorderBead, "iBorderBead", _strand);
 			}
 			
 			return result;

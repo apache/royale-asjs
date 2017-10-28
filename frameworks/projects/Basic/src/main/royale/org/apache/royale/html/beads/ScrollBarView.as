@@ -33,6 +33,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.events.Event;
 	import org.apache.royale.html.Button;
 	import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
      *  The ScrollBarView class is the default view for
@@ -109,7 +110,6 @@ package org.apache.royale.html.beads
                 addBead(bead);
                         
 			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
-            sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel;
             sbModel.addEventListener("maximumChange", changeHandler);
             sbModel.addEventListener("minimumChange", changeHandler);
             sbModel.addEventListener("snapIntervalChange", changeHandler);
@@ -117,10 +117,7 @@ package org.apache.royale.html.beads
             sbModel.addEventListener("pageSizeChange", changeHandler);
             sbModel.addEventListener("valueChange", changeHandler);
             
-            if( _strand.getBeadByType(IBeadLayout) == null ) {
-                layout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-                _strand.addBead(layout);
-            }
+			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand);
 		}
 						
         protected function changeHandler(event:Event):void
