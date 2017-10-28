@@ -139,7 +139,13 @@ package org.apache.royale.html.beads.models
 				_snapInterval = value;
 				dispatchEvent(new Event("snapIntervalChange"));
 			}
+			if(value < 1)
+			{
+				var str:String = "" + value;
+				_decimals = str.substr(str.indexOf(".")+1).length;
+			}
 		}
+		private var _decimals:int = 0;
 		
 		private var _stepSize:Number = 1;
 		
@@ -208,6 +214,8 @@ package org.apache.royale.html.beads.models
 		{
 			var si:Number = snapInterval;
 			var n:Number = Math.round((value - minimum) / si) * si + minimum;
+			if(_decimals)
+				n = Number(n.toFixed(_decimals));
 			if (value > 0)
 			{
 				if (value - n < n + si - value)
