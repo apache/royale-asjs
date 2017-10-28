@@ -159,8 +159,8 @@ package org.apache.royale.html.beads
 
 				createLists();
 
-				//var columnLabels:Array = new Array();
-				var buttonWidths:Array = new Array();
+				//var columnLabels:Array = [];
+				var buttonWidths:Array = [];
 
 				var marginBorderOffset:int = 0;
 				COMPILE::SWF {
