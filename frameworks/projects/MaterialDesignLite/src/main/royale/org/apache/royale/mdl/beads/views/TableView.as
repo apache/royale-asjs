@@ -25,9 +25,9 @@ package org.apache.royale.mdl.beads.views
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.html.beads.IListView;
-
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 *  TableView makes sure the itemRendererFactory and the layout beads are installed.
@@ -88,15 +88,8 @@ package org.apache.royale.mdl.beads.views
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-
-			var mapper:IDataProviderItemRendererMapper = _strand.getBeadByType(IDataProviderItemRendererMapper) as IDataProviderItemRendererMapper;
-			if (mapper == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(host, "iDataProviderItemRendererMapper");
-				if (c) {
-					mapper = new c() as IDataProviderItemRendererMapper;
-					_strand.addBead(mapper);
-				}
-			}
+    		
+			loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", _strand);
 
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 
@@ -132,6 +125,15 @@ package org.apache.royale.mdl.beads.views
 			performLayout(event);
 		}
 
+		private var _layout:IBeadLayout;
+		private function get layout():IBeadLayout
+		{
+			if(!_layout)
+				_layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand) as IBeadLayout;
+			
+			return _layout;
+		}
+
 		/**
 		 *  @private
 		 *
@@ -142,15 +144,6 @@ package org.apache.royale.mdl.beads.views
 		 */
 		protected function performLayout(event:Event):void
 		{
-			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layout == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-				if (c) {
-					layout = new c() as IBeadLayout;
-					_strand.addBead(layout);
-				}
-			}
-
 			if (layout) {
 				layout.layout();
 			}

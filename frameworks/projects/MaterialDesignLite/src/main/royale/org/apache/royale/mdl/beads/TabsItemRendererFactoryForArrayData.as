@@ -34,6 +34,7 @@ package org.apache.royale.mdl.beads
     import org.apache.royale.mdl.beads.models.ITabModel;
     import org.apache.royale.events.Event;
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -111,14 +112,9 @@ package org.apache.royale.mdl.beads
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
-			if (_itemRendererFactory == null) {
-				var factory:IItemRendererClassFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-				if (factory == null) {
-					factory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-					_strand.addBead(factory);
-				}
-				_itemRendererFactory = factory;
-			}
+			if(!_itemRendererFactory)
+    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
+            
             return _itemRendererFactory;
         }
 
