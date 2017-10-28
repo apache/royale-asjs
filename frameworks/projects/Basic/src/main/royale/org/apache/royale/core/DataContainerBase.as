@@ -27,6 +27,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.states.State;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -96,18 +97,8 @@ package org.apache.royale.core
 			// Even though super.addedToParent dispatched "beadsAdded", DataContainer still needs its data mapper
 			// and item factory beads. These beads are added after super.addedToParent is called in case substitutions
 			// were made; these are just defaults extracted from CSS.
-			
-			if (getBeadByType(IDataProviderItemRendererMapper) == null)
-			{
-				var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
-				addBead(mapper);
-			}
-			var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-			if (!itemRendererFactory)
-			{
-				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-				addBead(itemRendererFactory);
-			}
+			loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", this);
+			loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", this);
 			
 			dispatchEvent(new Event("initComplete"));
 		}

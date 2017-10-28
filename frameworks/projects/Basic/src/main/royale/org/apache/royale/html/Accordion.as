@@ -22,7 +22,7 @@ package org.apache.royale.html
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IAccordionCollapseBead;
-	
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The Accordion class used to display a list of collapsible components
@@ -67,25 +67,9 @@ package org.apache.royale.html
 		
 		public function get accordionCollapseBead():IAccordionCollapseBead
 		{
-			if (_collapseBead == null)
-			{
-				_collapseBead = getBeadByType(IAccordionCollapseBead) as IAccordionCollapseBead;
-				if (_collapseBead == null)
-				{
-					var c:Class = ValuesManager.valuesImpl.getValue(this, "iAccordionCollapseBead") as Class;
-					if (c)
-					{
-						if (c)
-						{
-							_collapseBead = (new c()) as IAccordionCollapseBead;
-						}
-					}
-				}
-				if (_collapseBead)
-				{
-					addBead(_collapseBead);
-				}
-			}
+			if (!_collapseBead)
+				_collapseBead = loadBeadFromValuesManager(IAccordionCollapseBead, "iAccordionCollapseBead", this) as IAccordionCollapseBead;
+			
 			return _collapseBead;
 		}
 		

@@ -32,6 +32,7 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.geom.Size;
 	import org.apache.royale.html.beads.models.ScrollBarModel;
     import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	COMPILE::SWF
 	{
 		import flash.geom.Rectangle;
@@ -85,13 +86,7 @@ package org.apache.royale.html.supportClasses
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            contentArea = _strand.getBeadByType(IContentView) as UIBase;
-            if (!contentArea)
-            {
-                var c:Class = ValuesManager.valuesImpl.getValue(_strand, 'iContentView') as Class;
-                contentArea = new c() as UIBase;
-				_strand.addBead(contentArea as IBead);
-            }
+            contentArea = loadBeadFromValuesManager(IContentView, "iContentView", _strand) as UIBase;
 		}
 		
 		/**
@@ -102,22 +97,10 @@ package org.apache.royale.html.supportClasses
 		{
 			_strand = value;
 			
-			contentArea = _strand.getBeadByType(IContentView) as UIBase;
-			if (!contentArea)
-			{
-				var c:Class = ValuesManager.valuesImpl.getValue(_strand, 'iContentView') as Class;
-				if (c != null) {
-					var result:Object = new c();
-					if (result != null) {
-						contentArea = result as UIBase;
-						_strand.addBead(contentArea as IBead);
-					}
-				}
-			}
+			contentArea = loadBeadFromValuesManager(IContentView, "iContentView", _strand) as UIBase;
 			
-			if (contentArea == null) {
+			if (!contentArea)
 				contentArea = value as UIBase;
-			}
 			
 			contentArea.element.style.overflow = "hidden";
 		}

@@ -24,6 +24,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
@@ -70,14 +71,7 @@ package org.apache.royale.html
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-
-			if (getBeadByType(IFormatBead) == null) {
-                var klass:* = ValuesManager.valuesImpl.getValue(this, "iFormatBead");
-                var bead:IBead = new klass() as IBead;
-                if (bead) {
-                    addBead(bead);
-                }
-            }
+			loadBeadFromValuesManager(IFormatBead, "iFormatBead", this);
 
 			dispatchEvent(new Event("initComplete"));
 		}

@@ -37,6 +37,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TitleBar;
 	import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The AlertView class creates the visual elements of the org.apache.royale.html.Alert
@@ -86,8 +87,7 @@ package org.apache.royale.html.beads
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
 			{
-				if (value.getBeadByType(IBackgroundBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
+				loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
 			}
 			
 			var borderStyle:String;
@@ -102,8 +102,7 @@ package org.apache.royale.html.beads
 			}
 			if (borderStyle != null && borderStyle != "none")
 			{
-				if (value.getBeadByType(IBorderBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
+				loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
 			}
 			
 			var flags:uint = IAlertModel(UIBase(_strand).model).flags;

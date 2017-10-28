@@ -48,6 +48,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.ContainerContentArea;
 	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 * This class creates and manages the contents of a Container. On the ActionScript
@@ -180,30 +181,12 @@ package org.apache.royale.html.beads
 		 */
 		protected function createViewport():void
 		{
-            var c:Class;
-			if (viewportModel == null) {
-                _viewportModel = _strand.getBeadByType(IViewportModel) as IViewportModel;
-                if (viewportModel == null) {
-                    c = ValuesManager.valuesImpl.getValue(host, "iViewportModel");
-                    if (c)
-                    {
-                        _viewportModel = new c() as IViewportModel;
-                        _strand.addBead(_viewportModel);
-                    }
-                }
-			}
+			if(!_viewportModel)
+				_viewportModel = loadBeadFromValuesManager(IViewportModel, "iViewportModel", _strand) as IViewportModel;
+				
+			if(!_viewport)
+				_viewport = loadBeadFromValuesManager(IViewport, "iViewport", _strand) as IViewport;
 
-			if (viewport == null) {
-				_viewport = _strand.getBeadByType(IViewport) as IViewport;
-				if (viewport == null) {
-					c = ValuesManager.valuesImpl.getValue(host, "iViewport");
-					if (c)
-					{
-						_viewport = new c() as IViewport;
-						_strand.addBead(viewport);
-					}
-				}
-			}
 		}
 
 		/**
