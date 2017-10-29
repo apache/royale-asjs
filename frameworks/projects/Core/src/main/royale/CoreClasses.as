@@ -227,6 +227,14 @@ internal class CoreClasses
 	import org.apache.royale.debugging.throwError; throwError;
 
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
+
+	import org.apache.royale.utils.date.addDays; addDays;
+	import org.apache.royale.utils.date.addHours; addHours;
+	import org.apache.royale.utils.date.addMinutes; addMinutes;
+	import org.apache.royale.utils.date.addMonths; addMonths;
+	import org.apache.royale.utils.date.addSeconds; addSeconds;
+	import org.apache.royale.utils.date.addYears; addYears;
+
 }
 
 }
