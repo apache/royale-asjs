@@ -109,7 +109,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function itemsCreatedHandler(event:Event):void
 		{
-			trace("DataContainerView: itemsCreatedHandler");
+			// trace("DataContainerView: itemsCreatedHandler");
 			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
@@ -118,7 +118,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			trace("DataContainerView: dataProviderChangeHandler");
+			// trace("DataContainerView: dataProviderChangeHandler");
 			performLayout(event);
 		}
 	}

@@ -224,7 +224,10 @@ package org.apache.royale.html.beads
 				{
 					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
 					var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
-					listModel.dataProvider = sharedModel.dataProvider;
+					if(listModel.dataProvider == sharedModel.dataProvider)
+						listModel.dispatchEvent(new Event("rerender"));
+					else
+						listModel.dataProvider = sharedModel.dataProvider;
 				}
 
 				host.dispatchEvent(new Event("layoutNeeded"));

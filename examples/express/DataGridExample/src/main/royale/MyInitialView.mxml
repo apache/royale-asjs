@@ -71,7 +71,8 @@ limitations under the License.
 	<js:TextButton text="Set Provider" click="setProvider()"/>
 	<js:TextButton text="Add to Provider" click="addToProvider()" x="120"/>
 
-	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="200" change="dataGridChange(dataGrid)" rowHeight="40">
+	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="200" dragEnabled="true" dropEnabled="true"
+	 change="dataGridChange(dataGrid)" rowHeight="40">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
