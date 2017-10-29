@@ -33,7 +33,7 @@ package org.apache.royale.utils
 	public function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
 	{
 		var result:IBead = strand.getBeadByType(classOrInterface);
-		if (result == null) 
+		if (!result) 
 		{
 			var c:Class = ValuesManager.valuesImpl.getValue(strand, classOrInterfaceName) as Class;
 			if (c)

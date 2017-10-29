@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
     import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -88,12 +89,7 @@ package org.apache.royale.html.beads
 			// already have been loaded by DataContainerBase.addedToParent function.
             if (!itemRendererFactory)
             {
-				_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-				if (!_itemRendererFactory)
-				{
-	                _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-    	            _strand.addBead(_itemRendererFactory);
-				}
+    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
             }
 
 			dataProviderChangeHandler(null);
@@ -111,6 +107,9 @@ package org.apache.royale.html.beads
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
+			if(!_itemRendererFactory)
+    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
+            
             return _itemRendererFactory
         }
 

@@ -37,6 +37,7 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.geom.Rectangle;
     import org.apache.royale.html.beads.ITextItemRenderer;
     import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.royale.html.TextField as an itemRenderer.
@@ -539,17 +540,7 @@ package org.apache.royale.html.supportClasses
             // renderer has a default model (the 'data' property)
             // and it is essentially a view of that model, so it
             // only needs an assignable controller
-            
-            if (getBeadByType(IBeadController) == null) 
-            {
-                c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
-                if (c)
-                {
-                    var controller:IBeadController = new c as IBeadController;
-                    if (controller)
-                        addBead(controller);
-                }
-            }
+            loadBeadFromValuesManager(IBeadController, "iBeadController", this);
         }
         
         /**

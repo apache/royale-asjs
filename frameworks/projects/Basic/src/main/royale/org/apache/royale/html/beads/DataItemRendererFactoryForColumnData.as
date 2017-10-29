@@ -83,11 +83,8 @@ package org.apache.royale.html.beads
 			
 			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
 			// already have been loaded by DataContainerBase.addedToParent function.
-			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-			if (itemRendererFactory == null) {
-				_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-				_strand.addBead(_itemRendererFactory);
-			}
+			if(!_itemRendererFactory)
+    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
 			
 			dataProviderChangeHandler(null);
 		}
@@ -104,6 +101,9 @@ package org.apache.royale.html.beads
 		 */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
+			if(!_itemRendererFactory)
+    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
+			
 			return _itemRendererFactory
 		}
 		public function set itemRendererFactory(value:IItemRendererClassFactory):void

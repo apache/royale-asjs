@@ -27,6 +27,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.states.State;
 	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     COMPILE::JS
     {
@@ -106,15 +107,7 @@ package org.apache.royale.core
 			super.addedToParent();
 			
 			// Load the layout bead if it hasn't already been loaded.
-			var layout:IBeadLayout = getBeadByType(IBeadLayout) as IBeadLayout;
-			if (!layout)
-			{
-				var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadLayout") as Class;
-				if (c) {
-					layout = new c() as IBeadLayout;
-					addBead(layout);
-				}
-			}
+			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
 		}
 		
 		/*
@@ -203,12 +196,7 @@ package org.apache.royale.core
             _currentState = _states[0].name;
             
 			try{
-				if (getBeadByType(IStatesImpl) == null)
-                {
-                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iStatesImpl") as Class;
-                    var b:Object = new c();
-					addBead(b as IBead);
-                }
+    			loadBeadFromValuesManager(IStatesImpl, "iStatesImpl", this);
 			}
 			//TODO:  Need to handle this case more gracefully
 			catch(e:Error)

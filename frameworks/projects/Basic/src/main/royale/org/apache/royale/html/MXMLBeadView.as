@@ -31,6 +31,7 @@ package org.apache.royale.html
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     [DefaultProperty("mxmlContent")]
 
@@ -159,8 +160,7 @@ package org.apache.royale.html
             _currentState = _states[0].name;
 
             try{
-                if (getBeadByType(IStatesImpl) == null)
-                    addBead(new (ValuesManager.valuesImpl.getValue(this, "iStatesImpl")) as IBead);
+    			loadBeadFromValuesManager(IStatesImpl, "iStatesImpl", this);
             }
             //TODO:  Need to handle this case more gracefully
             catch(e:Error)

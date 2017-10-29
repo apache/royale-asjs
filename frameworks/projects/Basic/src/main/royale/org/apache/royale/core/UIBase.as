@@ -30,6 +30,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.utils.StringUtil;
 
     COMPILE::JS
@@ -893,17 +894,8 @@ package org.apache.royale.core
          */
         public function get view():IBeadView
         {
-            // JS undefined AS null
-            if (_view == null)
-            {
-                var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                // JS undefined AS null
-                if (c)
-                {
-                    _view = (new c()) as IBeadView;
-                    addBead(_view);
-                }
-            }
+            if(!_view)
+                _view = loadBeadFromValuesManager(IBeadView, "iBeadView", this) as IBeadView;
             return _view;
         }
         
@@ -1082,16 +1074,20 @@ package org.apache.royale.core
          */        
 		override public function addBead(bead:IBead):void
 		{
+            var isView:Boolean;
 			if (!_beads)
 				_beads = new Vector.<IBead>;
 			_beads.push(bead);
 			if (bead is IBeadModel)
 				_model = bead as IBeadModel;
             else if (bead is IBeadView)
+            {
                 _view = bead as IBeadView;
+                isView = true
+            }
 			bead.strand = this;
 			
-			if (bead is IBeadView) {
+			if (isView) {
 				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));
 			}
 		}
@@ -1378,43 +1374,13 @@ package org.apache.royale.core
             for each (var bead:IBead in beads)
                 addBead(bead);
                 
-            if (getBeadByType(IBeadModel) == null)
-            {
-                c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
-                // JS undefined AS null
-                if (c != null)
-                {
-                    var model:IBeadModel = new c as IBeadModel;
-                    if (model)
-                        addBead(model);
-                }
-            }
-            // view JS undefined AS null
-            if (_view == null && getBeadByType(IBeadView) == null)
-            {
-                c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                // JS undefined AS null
-                if (c != null)
-                {
-                    var view:IBeadView = new c as IBeadView;
-                    if (view)
-                        addBead(view);                        
-                }
-            }
-            if (getBeadByType(IBeadController) == null)
-            {
-                c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
-                // JS undefined AS null
-                if (c != null)
-                {
-                    var controller:IBeadController = new c as IBeadController;
-                    if (controller)
-                        addBead(controller);
-                }
-            }
+			loadBeadFromValuesManager(IBeadModel, "iBeadModel", this);
+            loadBeadFromValuesManager(IBeadView, "iBeadView", this);
+			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
             dispatchEvent(new Event("beadsAdded"));
         }
-        		
+
+        private var _measurementBead:IMeasurementBead;
         /**
          *  A measurement bead, if one exists.
          * 
@@ -1425,12 +1391,11 @@ package org.apache.royale.core
          */
 		public function get measurementBead() : IMeasurementBead
 		{
-			var measurementBead:IMeasurementBead = getBeadByType(IMeasurementBead) as IMeasurementBead;
-			if( measurementBead == null ) {
-				addBead(measurementBead = new (ValuesManager.valuesImpl.getValue(this, "iMeasurementBead")) as IMeasurementBead);
-			}
-			
-			return measurementBead;
+            if(!_measurementBead)
+            {
+			    _measurementBead = loadBeadFromValuesManager(IMeasurementBead, "iMeasurementBead", this) as IMeasurementBead;
+            }
+            return _measurementBead;
 		}
         
         COMPILE::SWF

@@ -22,6 +22,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IChrome;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -71,11 +72,7 @@ package org.apache.royale.html
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
-			if( getBeadByType(IBeadLayout) == null ) {
-				var layout:IBeadLayout = new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBeadLayout;
-				addBead(layout);
-			}
+			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
 		}
 
         /**

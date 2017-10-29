@@ -81,18 +81,10 @@ package org.apache.royale.html.beads
 		{
 			if (!_layout)
 			{
-				_layout = _strand.getBeadByType(IOneFlexibleChildLayout) as IOneFlexibleChildLayout;
-				if (!_layout) {
-					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-					if (c) {
-						_layout = new c() as IOneFlexibleChildLayout;
-					}
-				}
+				_layout = loadBeadFromValuesManager(IOneFlexibleChildLayout, "iBeadLayout", _strand) as IOneFlexibleChildLayout;
 				if (_layout)
-				{
-					_strand.addBead(_layout);
 					IDocument(_layout).setDocument(elements);
-				}
+				
 			}
 			return _layout;
 		}

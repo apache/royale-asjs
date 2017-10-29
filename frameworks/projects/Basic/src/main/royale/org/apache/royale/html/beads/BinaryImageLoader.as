@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     COMPILE::JS
     {
@@ -60,17 +61,13 @@ package org.apache.royale.html.beads
         private var _objectURL:String;
         private var _strand:IStrand;
 		
+		private var _model:IBinaryImageModel;
 		private function get model():IBinaryImageModel
 		{
-			var result:IBinaryImageModel = _strand.getBeadByType(IBinaryImageModel) as IBinaryImageModel;
-			if (!result && _strand)
-			{
-				var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadModel") as Class;
-				var model:IBinaryImageModel = new c as IBinaryImageModel;
-				_strand.addBead(model);
-				result = model;
-			}
-			return result;
+			if(!_model)
+				_model = loadBeadFromValuesManager(IBinaryImageModel, "iBeadModel", _strand) as IBinaryImageModel;
+			
+			return _model;
 		}
 		
 		/**

@@ -23,6 +23,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IChrome;
 	import org.apache.royale.core.ITitleBarModel;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -121,9 +122,7 @@ package org.apache.royale.html
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
-			if( getBeadByType(IBeadLayout) == null )
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBead);
+			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
 		}
         
         /**
