@@ -72,6 +72,7 @@
     <component id="LayoutTitle" class="org.apache.royale.mdl.LayoutTitle"/>
     <component id="Navigation" class="org.apache.royale.mdl.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.mdl.itemRenderers.NavigationLinkItemRenderer"/>
+    <component id="NavigationLinkItemMouseRenderer" class="org.apache.royale.mdl.itemRenderers.NavigationLinkItemMouseRenderer"/>
     <component id="NavigationLink" class="org.apache.royale.mdl.NavigationLink"/>
     <component id="Header" class="org.apache.royale.mdl.Header"/>
     <component id="HeaderRow" class="org.apache.royale.mdl.HeaderRow"/>
@@ -115,6 +116,7 @@
     <component id="FooterLogo" class="org.apache.royale.mdl.FooterLogo"/>
     <component id="FooterLinkList" class="org.apache.royale.mdl.FooterLinkList"/>
     <component id="FooterLinkItemRenderer" class="org.apache.royale.mdl.itemRenderers.FooterLinkItemRenderer"/>
+    <component id="FooterLinkItemMouseRenderer" class="org.apache.royale.mdl.itemRenderers.FooterLinkItemMouseRenderer"/>
     <component id="FooterSocialButton" class="org.apache.royale.mdl.FooterSocialButton"/>
     <component id="FooterHeading" class="org.apache.royale.mdl.FooterHeading"/>
     <component id="UpgradeElement" class="org.apache.royale.mdl.beads.UpgradeElement"/>
