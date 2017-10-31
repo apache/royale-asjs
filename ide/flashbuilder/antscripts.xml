@@ -22,8 +22,35 @@
 
 	<property environment="env"/>
     
+    <!-- get absolute path to SDK folder -->
+    <pathconvert property="sdk" dirsep="/">
+        <path location="${basedir}/../.."/>
+    </pathconvert>
+    
     <condition property="isWindows" value="windows">
         <os family="windows" />
+    </condition>
+
+    <condition property="COMPC" value="compc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="COMPC" value="compc" />
+    <condition property="MXMLC" value="mxmlc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="MXMLC" value="mxmlc" />
+    <condition property="ASJSC" value="asjsc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="ASJSC" value="asjsc" />
+
+    <condition property="java.home" value="${env.JAVA_HOME}" >
+        <and>
+            <available file="${env.JAVA_HOME}" type="dir" />
+            <not>
+                <equals arg1="" arg2="${env.JAVA_HOME}" />
+            </not>
+        </and>
     </condition>
 
     <target name="check_params" >
@@ -72,4 +99,31 @@
         <replace file="${projectDir}/src/${projectName}-app.xml" token="&lt;visible&gt;false&lt;/visible&gt;" value="&lt;visible&gt;true&lt;/visible&gt;" />
     </target>
     
+    <target name="setup" depends="setup-windows" description="Custom Flash Builder launch configurations">
+        <replace>
+            <fileset dir="${basedir}" includes="**/*.launch"/>
+            <replacefilter
+            token="$MXMLC"
+            value="${MXMLC}"/>
+            <replacefilter
+            token="$COMPC"
+            value="${COMPC}"/>
+            <replacefilter
+            token="$ASJSC"
+            value="${ASJSC}"/>
+            <replacefilter
+            token="$ROYALE_HOME"
+            value="${sdk}"/>
+        </replace>
+    </target>
+    
+    <target name="setup-windows" description="Custom Flash Builder launch configurations for Windows" if="isWindows">
+        <replace>
+            <fileset dir="${basedir}" includes="**/*.launch"/>
+            <replacefilter
+            token="PATH"
+            value="UNIX_PATH" />
+        </replace>
+    </target>
+
 </project>
