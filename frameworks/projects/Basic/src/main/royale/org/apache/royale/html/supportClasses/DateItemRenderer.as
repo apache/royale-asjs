@@ -72,11 +72,23 @@ package org.apache.royale.html.supportClasses
 
 			if (value is Date) {
 				this.text = String( (value as Date).getDate() );
+
+				COMPILE::SWF {
+					mouseEnabled = true;
+					mouseChildren = true;
+				}
+
 				COMPILE::JS {
-					element.style["pointer-events"] = "auto";
+					element.style["pointer-events"] = "";
 				}
 			} else {
 				this.text = "";
+
+				COMPILE::SWF {
+					mouseEnabled = false;
+					mouseChildren = false;
+				}
+
 				COMPILE::JS {
 				  element.style["pointer-events"] = "none";
 				}
