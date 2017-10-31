@@ -218,14 +218,6 @@ package org.apache.royale.html.beads
 			 */
 			private function handleDataProviderChanged(event:Event):void
 			{
-				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-
-				for (var i:int=0; i < _lists.length; i++)
-				{
-					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
-					var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
-					listModel.dataProvider = sharedModel.dataProvider;
-				}
 
 				host.dispatchEvent(new Event("layoutNeeded"));
 			}
