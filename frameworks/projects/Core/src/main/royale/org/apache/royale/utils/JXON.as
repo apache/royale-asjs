@@ -257,7 +257,7 @@ package org.apache.royale.utils
 					throw new TypeError("Unknown XML node type!");
 					break;
 			}
-			return xml;
+			return null;
 		}		
 	}
 }
