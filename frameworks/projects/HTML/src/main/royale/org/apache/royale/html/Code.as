@@ -88,8 +88,7 @@ package org.apache.royale.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'code');
-            return element;
+			return addElementToWrapper(this,'code');
         }
     }
 }
