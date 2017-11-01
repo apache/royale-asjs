@@ -250,6 +250,11 @@ DateItemRenderer
 	text-align: center;
 	flex-shrink: 0;
 	flex-grow: 1;
+	cursor: pointer;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
 
 DayNameItemRenderer

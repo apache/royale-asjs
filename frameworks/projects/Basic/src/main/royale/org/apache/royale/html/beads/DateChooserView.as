@@ -86,6 +86,13 @@ package org.apache.royale.html.beads
 		private var daysContainer:DateChooserList;
 		
 		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		private function getHost():UIBase
+		{
+			return _strand as UIBase;
+		}
+		/**
 		 *  The button that causes the previous month to be displayed by the DateChooser.
 		 *
 		 *  @langversion 3.0
@@ -171,7 +178,7 @@ package org.apache.royale.html.beads
 			_nextMonthButton.style.flexGrow = 0;
 			monthButtonsContainer.addElement(_nextMonthButton);
 			
-			UIBase(_strand).addElement(monthButtonsContainer, false);
+			getHost().addElement(monthButtonsContainer, false);
 			
 			// DAY NAMES
 			
@@ -188,7 +195,7 @@ package org.apache.royale.html.beads
 			COMPILE::SWF {
 				dayNamesContainer.percentWidth = 100;
 			}
-			UIBase(_strand).addElement(dayNamesContainer, false);
+			getHost().addElement(dayNamesContainer, false);
 			
 			// DAYS
 			
@@ -203,7 +210,7 @@ package org.apache.royale.html.beads
 			COMPILE::SWF {
 				daysContainer.percentWidth = 100;
 			}
-			UIBase(_strand).addElement(daysContainer, false);
+			getHost().addElement(daysContainer, false);
 			
 			
 			IEventDispatcher(daysContainer).dispatchEvent( new Event("itemsCreated") );
@@ -233,7 +240,8 @@ package org.apache.royale.html.beads
 			var index:Number = model.getIndexForSelectedDate();
 			daysContainer.selectedIndex = index;
 
-			IEventDispatcher(_strand).dispatchEvent(new Event("selectedDateChanged"));
+			getHost().dispatchEvent(new Event("selectedDateChanged"));
+			getHost().dispatchEvent( new Event("change") );
 		}
 
 		/**

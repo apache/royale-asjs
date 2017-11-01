@@ -47,9 +47,9 @@ DataGrid
 {
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IDataProviderNotifier: ClassReference("org.apache.royale.html.beads.EasyDataProviderChangeNotifier");
-	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridColumnReorderView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.DataGridWithDrawingLayerLayout");
 	
 	background-color: #FFFFFF;
 	border-style: solid;

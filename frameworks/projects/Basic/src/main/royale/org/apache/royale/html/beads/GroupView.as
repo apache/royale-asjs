@@ -221,7 +221,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function performLayout(event:Event):void
 		{
-			trace("CALLING performLayout !!!!");
+			// trace("CALLING performLayout !!!!");
 		}
 
 		/**

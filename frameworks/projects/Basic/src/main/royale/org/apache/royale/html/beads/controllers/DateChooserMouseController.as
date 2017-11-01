@@ -81,7 +81,6 @@ package org.apache.royale.html.beads.controllers
             var list:DateChooserList = event.target as DateChooserList;
             var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
             model.selectedDate = list.selectedItem as Date;
-            IEventDispatcher(_strand).dispatchEvent( new Event("change") );
         }
 
 		/**

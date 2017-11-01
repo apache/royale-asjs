@@ -38,7 +38,7 @@ public class LocalFile
 		_handle = handle as flash.filesystem.File;
 	}
 
-	private var _handle::flash.filesystem.File;
+	private var _handle:flash.filesystem.File;
 
 	public function get handle():flash.filesystem.File {
 		return _handle;

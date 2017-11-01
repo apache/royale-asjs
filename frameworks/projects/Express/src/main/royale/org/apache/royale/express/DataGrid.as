@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.express
 {
+	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IDataProviderNotifier;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.html.DataGrid;
@@ -28,6 +29,7 @@ package org.apache.royale.express
 	import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
 	import org.apache.royale.html.beads.DataGridWithDrawingLayerLayout;
 	import org.apache.royale.html.beads.DataGridDrawingLayerBead;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 * This class extends DataGrid and adds beads for drag and drop and
@@ -56,28 +58,71 @@ package org.apache.royale.express
 		public function DataGrid()
 		{
 			super();
-
-			addBead(new SingleSelectionDragSourceBead());
-			addBead(new SingleSelectionDragImageBead());
-			addBead(new SingleSelectionDropTargetBead());
-			addBead(new SingleSelectionDropIndicatorBead());
-			addBead(new DataGridWithDrawingLayerLayout());
-			addBead(new DataGridDrawingLayerBead());
-			addBead(new DataGridColumnReorderView());
 		}
 		override public function addedToParent():void
 		{
 			if (!dataNotifier) {
-				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataProviderNotifier");
-				if (c) {
-					dataNotifier = new c() as IDataProviderNotifier;
-					if (dataNotifier) {
-						addBead(dataNotifier);
-					}
-				}
+				dataNotifier = loadBeadFromValuesManager(IDataProviderNotifier, "iDataProviderNotifier", this) as IDataProviderNotifier;
 			}
 			super.addedToParent();
+			if(getBeadByType(IBeadLayout) is DataGridWithDrawingLayerLayout)
+			{
+				addBead(new DataGridDrawingLayerBead());
+			}
 		}
 		public var dataNotifier:IDataProviderNotifier;
+
+		private var _dragEnabled:Boolean = false;
+		/**
+		 *  Allows list items to be dragged
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function get dragEnabled():Boolean
+		{
+			return _dragEnabled;
+		}
+		public function set dragEnabled(value:Boolean):void
+		{
+			if(value == _dragEnabled)
+				return;
+			_dragEnabled = value;
+			if(value)
+			{
+				addBead(new SingleSelectionDragSourceBead());
+				addBead(new SingleSelectionDragImageBead());
+			}
+		}
+		
+		private var _dropEnabled:Boolean;
+		/**
+		 *  Allows items to be dropped in the list (such as reordering items)
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function get dropEnabled():Boolean
+		{
+			return _dropEnabled;
+		}
+		public function set dropEnabled(value:Boolean):void
+		{
+			if(value == _dropEnabled)
+				return;
+			_dropEnabled = value;
+			if(value)
+			{
+				addBead(new SingleSelectionDropTargetBead());
+				addBead(new SingleSelectionDropIndicatorBead());
+			}
+		}
+		
+
+		
 	}
 }

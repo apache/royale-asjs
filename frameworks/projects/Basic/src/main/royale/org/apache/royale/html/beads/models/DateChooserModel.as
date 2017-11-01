@@ -272,15 +272,16 @@ package org.apache.royale.html.beads.models
          */
         public function getIndexForSelectedDate():Number
         {
-            var d:Date = _selectedDate;
-            if (d == null) return -1;
-            
+            if (!_selectedDate) return -1;
+
+            var str:String = _selectedDate.toDateString();
+
             for(var i:int=0; i < _days.length; i++) {
                 var test:Date = _days[i] as Date;
-                if (test != null) {
-                    if (test.getMonth() == d.getMonth() && test.getDate() == d.getDate() && test.getFullYear())
-                        return i;
-			    }
+				
+				if (test && test.toDateString() == str)
+					return i;
+
             }
             return -1;
 		}

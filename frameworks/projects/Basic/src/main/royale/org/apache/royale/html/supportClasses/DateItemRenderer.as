@@ -22,8 +22,8 @@ package org.apache.royale.html.supportClasses
 	{
 		import flash.text.TextFieldAutoSize;
 		import flash.text.TextFieldType;
-		
-		import org.apache.royale.core.CSSTextField;            
+
+		import org.apache.royale.core.CSSTextField;
 	}
 	import org.apache.royale.events.Event;
 
@@ -48,13 +48,13 @@ package org.apache.royale.html.supportClasses
 		public function DateItemRenderer()
 		{
 			super();
-			
+
 			className = "DateItemRenderer";
 		}
-		
+
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
-		 * 
+		 *
 		 *  @param Object data The object being displayed by the itemRenderer instance.
 		 *
 		 *  @langversion 3.0
@@ -65,18 +65,36 @@ package org.apache.royale.html.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-			
+
 			COMPILE::SWF {
 				textField.autoSize = TextFieldAutoSize.CENTER;
 			}
-			
+
 			if (value is Date) {
 				this.text = String( (value as Date).getDate() );
+
+				COMPILE::SWF {
+					mouseEnabled = true;
+					mouseChildren = true;
+				}
+
+				COMPILE::JS {
+					element.style["pointer-events"] = "";
+				}
 			} else {
 				this.text = "";
+
+				COMPILE::SWF {
+					mouseEnabled = false;
+					mouseChildren = false;
+				}
+
+				COMPILE::JS {
+				  element.style["pointer-events"] = "none";
+				}
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */

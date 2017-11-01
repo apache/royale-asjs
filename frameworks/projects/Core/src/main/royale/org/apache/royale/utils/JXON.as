@@ -31,6 +31,12 @@ package org.apache.royale.utils
 		public function JXON()
 		{
 		}
+
+		/**
+		 * Static flag to ignore whitespace text nodes
+		 */
+		 public static var ignoreWhiteSpace:Boolean = true;
+
 		/**
 		 * The tag name of the element
 		 */
@@ -204,7 +210,8 @@ package org.apache.royale.utils
 			for(i=0;i<node.childNodes.length;i++)
 			{
 				var child:Object = fromNode(node.childNodes[i]);
-				xml.children.push(child);
+				if(child)
+					xml.children.push(child);
 			}
 		}
 		/**
@@ -227,7 +234,10 @@ package org.apache.royale.utils
 				//case 2:break;// ATTRIBUTE_NODE (handled separately)
 				case 3:
 					//TEXT_NODE
-					return data;
+					if(ignoreWhiteSpace)
+						return data.replace(/(^\s*)|(\s*$)/g, "");
+					else
+						return data;
 				case 4:
 					//CDATA_SECTION_NODE
 					break;
@@ -247,7 +257,7 @@ package org.apache.royale.utils
 					throw new TypeError("Unknown XML node type!");
 					break;
 			}
-			return xml;
+			return null;
 		}		
 	}
 }

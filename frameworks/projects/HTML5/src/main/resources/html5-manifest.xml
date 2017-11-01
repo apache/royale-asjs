@@ -25,5 +25,6 @@
 	<component id="DropDownList" class="org.apache.royale.html5.DropDownList" />
 	<component id="ComboBox" class="org.apache.royale.html5.ComboBox" />
 	<component id="TransformBead" class="org.apache.royale.html5.TransformBead" />
+	<component id="DateField" class="org.apache.royale.html5.DateField" />
 
 </componentPackage>
