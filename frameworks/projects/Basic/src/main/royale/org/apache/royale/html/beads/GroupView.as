@@ -109,7 +109,6 @@ package org.apache.royale.html.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
 			super.strand = value;
 
 			COMPILE::SWF {
