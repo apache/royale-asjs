@@ -18,17 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.accessories
 {
-	import org.apache.royale.html.accessories.SimpleDateFormatBead;
 	
 	/**
-	 * The DateFormatBead class formats the display of a DateField using DD/MM/YYYY format.
+	 * The DateFormatDDMMYYYY class formats the display of a DateField using DD/MM/YYYY format.
      * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class DateFormatDDMMYYYYBead extends SimpleDateFormatBead
+	public class DateFormatDDMMYYYY extends SimpleDateFormatter
 	{
 		/**
 		 * constructor.
@@ -38,7 +37,7 @@ package org.apache.royale.html.accessories
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function DateFormatDDMMYYYYBead()
+		public function DateFormatDDMMYYYY()
 		{
 			format = "DD/MM/YYYY";
 		}
