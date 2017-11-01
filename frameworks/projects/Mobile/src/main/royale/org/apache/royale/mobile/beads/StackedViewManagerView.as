@@ -57,20 +57,18 @@ package org.apache.royale.mobile.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
 		/*
 		 * Children
 		 */
 		
 		public function get toolBar():ToolBar
 		{
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			return model.toolBar;
 		}
 		public function set toolBar(value:ToolBar):void
 		{
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.toolBar = value;
 		}
 		
@@ -78,13 +76,8 @@ package org.apache.royale.mobile.beads
 		 * ViewBead
 		 */
 		
-		override public function get strand():IStrand
-		{
-			return _strand;
-		}
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
 			super.strand = value;
 			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
@@ -98,16 +91,16 @@ package org.apache.royale.mobile.beads
 			}
 		}
 		
-		override protected function handleInitComplete(event:Event):void
+		override protected function addViewElements():void
 		{			
-			super.handleInitComplete(event);
+			super.addViewElements();
 			
 			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
-			IEventDispatcher(model).addEventListener("viewPushed", handlePushEvent);
-			IEventDispatcher(model).addEventListener("viewPopped", handlePopEvent);
+			model.addEventListener("viewPushed", handlePushEvent);
+			model.addEventListener("viewPopped", handlePopEvent);
 			
 			if (toolBar) {
-				UIBase(_strand).addElement(toolBar);
+				getHost().addElement(toolBar);
 			}
 			
 			showViewByIndex(0);
@@ -149,12 +142,12 @@ package org.apache.royale.mobile.beads
 			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			if (_topView != null) {
-				UIBase(_strand).removeElement(_topView);
+				getHost().removeElement(_topView);
 			}
 			_topView = model.views[index] as IViewManagerView;
 			_topView.viewManager = _strand as IViewManager;
 			
-			UIBase(_strand).addElementAt(_topView,(navigationBar == null ? 0 : 1));
+			getHost().addElementAt(_topView,(navigationBar == null ? 0 : 1));
 			
 			COMPILE::JS {
 				if (_topView) {
@@ -170,7 +163,7 @@ package org.apache.royale.mobile.beads
 			}
 			
 			// Now that a view has changed, refresh the layout for this component.
-			UIBase(_strand).dispatchEvent(new Event("layoutNeeded"));
+			getHost().dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }
