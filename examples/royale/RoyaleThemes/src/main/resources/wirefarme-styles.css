@@ -50,7 +50,7 @@ font-size: 12px;
 color: #646D7A;
 }
 
-/*js|TextButton:hover {
+js|TextButton:hover {
     background-color: #CFCFCF;
     vertical-align: middle;
     border: none;
@@ -60,4 +60,4 @@ color: #646D7A;
 js|TextButton:active {
     background-color: #77CEFF;
     color: #FFFFFF;
-}*/
+}
