@@ -71,6 +71,7 @@ package org.apache.royale.html.beads
 
 			model.addEventListener("displayedMonthChanged",handleModelChange);
 			model.addEventListener("displayedYearChanged",handleModelChange);
+			model.addEventListener("firstDayOfWeekChanged",handleModelChange);
 			
 			createChildren();
 			updateDisplay();

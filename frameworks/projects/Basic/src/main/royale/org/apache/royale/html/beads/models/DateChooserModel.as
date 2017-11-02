@@ -38,9 +38,9 @@ package org.apache.royale.html.beads.models
 		public function DateChooserModel()
 		{
 			// default displayed year and month to "today"
-//			var today:Date = new Date();
-//			displayedYear = today.getFullYear();
-//			displayedMonth = today.getMonth();
+			//var today:Date = new Date();
+			//displayedYear = today.getFullYear();
+			//displayedMonth = today.getMonth();
 		}
 		
 		private var _strand:IStrand;
@@ -57,8 +57,9 @@ package org.apache.royale.html.beads.models
 		{
 			_strand = value;
 		}
-		
-		private var _dayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+		private var _originalDayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+		private var _dayNames:Array   = _originalDayNames;
 		private var _monthNames:Array = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
         private var _days:Array;
 		private var _displayedYear:Number;
@@ -82,6 +83,7 @@ package org.apache.royale.html.beads.models
 		public function set dayNames(value:Array):void
 		{
 			_dayNames = value;
+			updateCalendar();
 			dispatchEvent( new Event("dayNamesChanged") );
 		}
 		
@@ -162,6 +164,16 @@ package org.apache.royale.html.beads.models
 		{
 			if (value != _firstDayOfWeek) {
 				_firstDayOfWeek = value;
+				var length:int = _originalDayNames.length;
+				var j:int = 0;
+				var newDays:Array = [];
+				for (var i:int = _firstDayOfWeek; i < length; i++) {
+					newDays[j++] = _originalDayNames[i];
+				}
+				for (i = 0; i < _firstDayOfWeek; i++) {
+					newDays[j++] = _originalDayNames[i];
+				}
+				dayNames = newDays;
 				dispatchEvent( new Event("firstDayOfWeekChanged") );
 			}
 		}
@@ -220,12 +232,16 @@ package org.apache.royale.html.beads.models
          */
         private function updateCalendar():void
         {       
-            var firstDay:Date = new Date(displayedYear,displayedMonth,1);
-            
+            var firstDay:Date = new Date(displayedYear, displayedMonth, 1);
+
             _days = new Array(42);
-            
+
             // skip to the first day and renumber to the last day of the month
-			var i:int = firstDay.getDay();
+			var i:int = firstDay.getDay() - _firstDayOfWeek;
+
+			if (i < 0)
+				i += 7;
+			
             var dayNumber:int = 1;
             var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
             
