@@ -61,3 +61,19 @@ js|TextButton:active {
     background-color: #77CEFF;
     color: #FFFFFF;
 }
+
+/*
+* TextInput
+*/
+
+js|TextInput {
+    padding: 5px;
+    border: solid 1px #666666;
+    border-radius: 6px;
+    color: #333333;
+}
+
+js|TextInput:hover {
+    padding: 5px;
+    background-color: #DFDFDF;
+}
