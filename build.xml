@@ -1117,10 +1117,10 @@
     
     <target name="basictests-compile-js" depends="load-task" unless="env.AIR_HOME">
         <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
-        <property name="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/js"/>
+        <property name="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
-        <echo message="ROYALE_TRANSPILER_HOME: ${ROYALE_TRANSPILER_HOME}"/>
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <delete dir="${basedir}/mustella/tests/basicTests/bin" failonerror="false" />
         <mxmlc fork="true" debug="true"
