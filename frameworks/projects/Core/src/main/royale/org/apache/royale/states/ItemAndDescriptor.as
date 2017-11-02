@@ -39,7 +39,7 @@ package org.apache.royale.states
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
 		public function ItemAndDescriptor()
 		{
@@ -52,7 +52,7 @@ package org.apache.royale.states
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public var items:Object;
         
@@ -62,7 +62,7 @@ package org.apache.royale.states
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public var descriptor:Array;     
         

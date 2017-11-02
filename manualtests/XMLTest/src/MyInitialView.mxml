@@ -157,7 +157,6 @@ limitations under the License.
         list4[0] = <a id="1"/>;
         list4[1] = <a id="2"/>;
         list4[2] = <a id="3"/>;
-        //JIRA https://issues.apache.org/jira/browse/FLEX-35072
         list1 += list4
         //list1.concat(list4);
         trace("after concat");

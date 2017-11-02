@@ -171,7 +171,7 @@ package org.apache.royale.createjs
 	public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher
 	{
         /**
-         * FalconJX will inject html into the index.html file.  Surround with
+         * The Royale Compiler will inject html into the index.html file.  Surround with
          * "inject_html" tag as follows:
          *
          * <inject_html>

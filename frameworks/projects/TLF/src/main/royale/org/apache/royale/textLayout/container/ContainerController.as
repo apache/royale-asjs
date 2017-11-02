@@ -5269,7 +5269,7 @@ class PsuedoMouseEvent extends org.apache.royale.events.MouseEvent
 	{
 		super(type,bubbles,cancelable,localX,localY,relatedObject,ctrlKey,altKey,shiftKey,buttonDown);
 	}
-//TODO FalconJX did not like these overrides
+//TODO The Royale Compiler did not like these overrides
 	// public override function get currentTarget():Object
 	// { return relatedObject; }
 	// public override function get target():Object

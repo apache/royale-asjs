@@ -20,61 +20,61 @@
 
 
 <project name="opentypejs" default="main" basedir=".">
-    <property name="ROYALE_HOME" location="/FlexSDK/RoyaleNightly"/>
+    <property name="ROYALE_HOME" location="/RoyaleSDK/RoyaleNightly"/>
     <!--<property name="ROYALE_HOME" location="{env.ROYALE_HOME}"/>-->
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
-    <condition property="FALCON_HOME" value="${env.FALCON_HOME}">
+    <condition property="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}">
         <and>
             <not>
-                <isset property="FALCON_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
-            <available file="${env.FALCON_HOME}/lib/compiler-mxmlc.jar" type="file" />
+            <available file="${env.ROYALE_COMPILER_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
-    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler">
         <and>
             <not>
-                <isset property="FALCON_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/compiler-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
-    <condition property="FALCON_HOME" value="${ROYALE_HOME}">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}">
         <and>
             <not>
-                <isset property="FALCON_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
-    <condition property="FALCONJX_HOME" value="${env.FALCONJX_HOME}">
+    <condition property="ROYALE_TRANSPILER_HOME" value="${env.ROYALE_TRANSPILER_HOME}">
         <and>
             <not>
-                <isset property="FALCONJX_HOME" />
+                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
-            <available file="${env.FALCONJX_HOME}/lib/jsc.jar" type="file" />
+            <available file="${env.ROYALE_TRANSPILER_HOME}/lib/jsc.jar" type="file" />
         </and>
     </condition>
-    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/js">
+    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/js">
         <and>
             <not>
-                <isset property="FALCONJX_HOME" />
+                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
-    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler-jx">
+    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler-jx">
         <and>
             <not>
-                <isset property="FALCONJX_HOME" />
+                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../royale-falcon/compiler-jx/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
         </and>
     </condition>
     <condition property="GOOG_HOME" value="${env.GOOG_HOME}">
@@ -138,8 +138,8 @@
     
     <target name="compile" description="Compiles .as files into .swc">
         <echo message="Compiling libs/${ant.project.name}.swc"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <!-- make JS output folder now so include-file doesn't error -->
         <mkdir dir="${basedir}/target/generated-sources/royale" />
 
@@ -154,9 +154,9 @@
         </compc>
     </target>
 
-    <target name="check-compiler" depends="check-falcon-home">
+    <target name="check-compiler" depends="check-compiler-home">
         <path id="lib.path">
-            <fileset dir="${FALCON_HOME}/lib" includes="falcon-royaleTasks.jar"/>
+            <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
@@ -164,23 +164,23 @@
         <copy file="target/opentypejs.swc" todir="../projects/Text/libs"/>
     </target>
     
-    <target name="check-falcon-home" unless="FALCON_HOME"
-        description="Check FALCON_HOME is a directory.">
+    <target name="check-compiler-home" unless="ROYALE_COMPILER_HOME"
+        description="Check ROYALE_COMPILER_HOME is a directory.">
         
-        <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
+        <echo message="ROYALE_COMPILER_HOME is ${env.ROYALE_COMPILER_HOME}"/>
         
-        <available file="${env.FALCON_HOME}/lib/compiler-mxmlc.jar"
+        <available file="${env.ROYALE_COMPILER_HOME}/lib/compiler-mxmlc.jar"
         type="file"
-        property="FALCON_HOME"
-        value="${env.FALCON_HOME}"/>
+        property="ROYALE_COMPILER_HOME"
+        value="${env.ROYALE_COMPILER_HOME}"/>
         
-        <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/compiler-mxmlc.jar"
+        <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar"
         type="file"
-        property="FALCON_HOME"
-        value="${ROYALE_HOME}/../royale-falcon/compiler"/>
+        property="ROYALE_COMPILER_HOME"
+        value="${ROYALE_HOME}/../royale-compiler/compiler"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
-        unless="FALCON_HOME"/>
+        <fail message="ROYALE_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
+        unless="ROYALE_COMPILER_HOME"/>
     </target>
 
 </project>

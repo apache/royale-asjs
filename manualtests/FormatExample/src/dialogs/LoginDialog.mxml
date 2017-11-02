@@ -23,10 +23,9 @@ limitations under the License.
 				 className="LoginDialog"
 				 width="280" height="90" title="Login">
 	
-	<!-- fx:Metadata is not recognized by FalconJX -->
-	<!--<fx:Metadata>
+	<fx:Metadata>
 		[Event(name="close", type="org.apache.royale.events.Event")]
-	</fx:Metadata>-->
+	</fx:Metadata>
 	
 	<fx:Script>
 		<![CDATA[

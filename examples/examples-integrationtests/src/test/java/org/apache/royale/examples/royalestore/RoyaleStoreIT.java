@@ -16,9 +16,9 @@
  *  limitations under the License.
  *
  */
-package org.apache.flex.royale.examples.royalestore;
+package org.apache.royale.examples.royalestore;
 
-import org.apache.flex.royale.examples.AbstractIT;
+import org.apache.royale.examples.AbstractIT;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

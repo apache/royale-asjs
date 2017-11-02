@@ -50,7 +50,7 @@ public interface IEffect extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     function get duration():Number;
     function set duration(value:Number):void;
@@ -63,7 +63,7 @@ public interface IEffect extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     function reverse():void;
     
@@ -73,7 +73,7 @@ public interface IEffect extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     function pause():void;
 
@@ -84,7 +84,7 @@ public interface IEffect extends IEventDispatcher
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	function play():void;
 	
@@ -95,7 +95,7 @@ public interface IEffect extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     function stop():void;
     
@@ -106,7 +106,7 @@ public interface IEffect extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     function resume():void;
 
@@ -117,7 +117,7 @@ public interface IEffect extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     function captureStartValues():void;
 
@@ -128,7 +128,7 @@ public interface IEffect extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     function captureEndValues():void;
 }

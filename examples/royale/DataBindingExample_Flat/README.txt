@@ -23,7 +23,7 @@ The DataBindingTest example shows a Royale application that can communicate with
 a third-party data source (in this case, yahoo.finance) and display the values
 returned using data binding. 
 
-This Royale application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using the Royale Compiler)
 into JavaScript and HTML and run without Flash.
 
 The DataBindingTest example also shows how the model-view-controller (MVC) pattern
@@ -49,4 +49,4 @@ from the remote server calls.
 NOTES
 
 The cross-compilation to JavaScript often results in non-fatal warnings. Some of these warnings
-should be addressed in future releases of the Falcon JX compiler.
+should be addressed in future releases of the the Royale Compiler compiler.

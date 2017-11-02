@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.flex.amfsamples.valueobjects;
+package org.apache.royale.amfsamples.valueobjects;
 
 /**
  * The server side object used by AMFConnectionTestService. There is a 

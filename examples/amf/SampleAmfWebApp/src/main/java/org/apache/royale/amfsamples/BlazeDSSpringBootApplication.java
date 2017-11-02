@@ -17,14 +17,14 @@
  *
  */
 
-package org.apache.flex.amfsamples;
+package org.apache.royale.amfsamples;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@ServletComponentScan("org.apache.flex.amfsamples")
+@ServletComponentScan("org.apache.royale.amfsamples")
 public class BlazeDSSpringBootApplication {
 
     public static void main(String[] args) {

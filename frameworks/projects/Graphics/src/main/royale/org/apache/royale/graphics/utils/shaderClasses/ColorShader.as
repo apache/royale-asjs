@@ -34,7 +34,7 @@ import flash.display.Shader;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  *  
  *  @includeExample examples/ColorShaderExample.mxml
  */
@@ -49,7 +49,7 @@ public class ColorShader extends flash.display.Shader
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 1.0.0
      */
     public function ColorShader()
     {

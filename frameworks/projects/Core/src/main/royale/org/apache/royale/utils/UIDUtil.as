@@ -22,14 +22,14 @@ package org.apache.royale.utils
 
 /**
  *  The UIDUtil class is an all-static class
- *  with methods for working with UIDs (unique identifiers) within Flex.
+ *  with methods for working with UIDs (unique identifiers) within Royale.
  *  You do not create instances of UIDUtil;
  *  instead you simply call static methods such as the
  *  <code>UIDUtil.createUID()</code> method.
  * 
  *  <p><b>Note</b>: If you have a dynamic object that has no [Bindable] properties 
- *  (which force the object to implement the IUID interface), Flex  adds an 
- *  <code>mx_internal_uid</code> property that contains a UID to the object. 
+ *  (which force the object to implement the IUID interface), Royale adds an 
+ *  internal property that contains a UID to the object. 
  *  To avoid having this field 
  *  in your dynamic object, make it [Bindable], implement the IUID interface
  *  in the object class, or set a <coded>uid</coded> property with a value.</p>
@@ -37,7 +37,7 @@ package org.apache.royale.utils
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 1.0.0
  *  @productversion Royale 0.0
  */
 public class UIDUtil
@@ -89,7 +89,7 @@ public class UIDUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
 	 *  @productversion Royale 0.0
      */
 	public static function createUID():String
@@ -144,7 +144,7 @@ public class UIDUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
 	 *  @productversion Royale 0.0
      */
     public static function fromBinary(ba:BinaryData):String
@@ -182,7 +182,7 @@ public class UIDUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
 	 *  @productversion Royale 0.0
      */
     public static function isUID(uid:String):Boolean
@@ -226,7 +226,7 @@ public class UIDUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
 	 *  @productversion Royale 0.0
      */
     public static function toBinary(uid:String):BinaryData

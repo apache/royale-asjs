@@ -82,7 +82,7 @@
     </target>
 
     <target name="prepare">
-        <property name="FLEX_SDK_HOME" value="${env.FLEX_HOME}" />
+        <property name="FLEX_SDK_HOME" value="${env.ROYALE_HOME}" />
     </target>
     
     <target name="clean">

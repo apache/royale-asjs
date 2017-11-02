@@ -37,7 +37,7 @@ import flash.display.Shader;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  *  
  *  @includeExample examples/LuminosityMaskShaderExample.mxml
  */
@@ -53,7 +53,7 @@ public class LuminosityMaskShader extends Shader
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
     public function LuminosityMaskShader()
     {
@@ -79,7 +79,7 @@ public class LuminosityMaskShader extends Shader
 	 *  @langversion 3.0
  	 *  @playerversion Flash 10
  	 *  @playerversion AIR 1.5
- 	 *  @productversion Flex 4
+ 	 *  @productversion Royale 1.0.0
      */
     public function get mode():int
     {

@@ -31,7 +31,7 @@ package org.apache.royale.graphics.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	public class CompoundTransform
 	{
@@ -46,7 +46,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function CompoundTransform()
 		{
@@ -163,7 +163,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set x(value:Number):void
 		{
@@ -188,7 +188,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set y(value:Number):void
 		{
@@ -214,7 +214,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set z(value:Number):void
 		{
@@ -243,7 +243,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set rotationX(value:Number):void
 		{
@@ -273,7 +273,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set rotationY(value:Number):void
 		{
@@ -303,7 +303,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set rotationZ(value:Number):void
 		{
@@ -336,7 +336,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set scaleX(value:Number):void
 		{
@@ -362,7 +362,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set scaleY(value:Number):void
 		{
@@ -389,7 +389,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set scaleZ(value:Number):void
 		{
@@ -428,7 +428,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set transformX(value:Number):void
 		{
@@ -454,7 +454,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set transformY(value:Number):void
 		{
@@ -479,7 +479,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set transformZ(value:Number):void
 		{
@@ -597,7 +597,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function translateBy(x:Number,y:Number,z:Number = 0):void
 		{
@@ -631,7 +631,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get matrix():Matrix
 		{
@@ -734,7 +734,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get matrix3D():Matrix3D
 		{

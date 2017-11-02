@@ -69,7 +69,7 @@ class PathSegmentsCollection
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function PathSegmentsCollection(value:String)
 	{
@@ -588,7 +588,7 @@ import flash.geom.Rectangle;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  */
 class PathSegment extends Object
 {
@@ -609,7 +609,7 @@ class PathSegment extends Object
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function PathSegment(_x:Number = 0, _y:Number = 0)
 	{
@@ -636,7 +636,7 @@ class PathSegment extends Object
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var x:Number = 0;
 	
@@ -652,7 +652,7 @@ class PathSegment extends Object
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var y:Number = 0;
 	
@@ -672,7 +672,7 @@ class PathSegment extends Object
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
 	{
@@ -691,7 +691,7 @@ class PathSegment extends Object
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */    
 	public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number, m:Matrix, rect:Rectangle):Rectangle
 	{
@@ -735,7 +735,7 @@ import flash.geom.Rectangle;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  */
 class LineSegment extends PathSegment
 {
@@ -758,7 +758,7 @@ class LineSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function LineSegment(x:Number = 0, y:Number = 0)
 	{
@@ -777,7 +777,7 @@ class LineSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	override public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
 	{
@@ -790,7 +790,7 @@ class LineSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	override public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number, m:Matrix, rect:Rectangle):Rectangle
 	{
@@ -847,7 +847,7 @@ import flash.display.GraphicsPath;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  */
 class MoveSegment extends PathSegment
 {
@@ -868,7 +868,7 @@ class MoveSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function MoveSegment(x:Number = 0, y:Number = 0)
 	{
@@ -890,7 +890,7 @@ class MoveSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	override public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
 	{
@@ -927,7 +927,7 @@ import org.apache.royale.graphics.utils.MatrixUtil;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  */
 class CubicBezierSegment extends PathSegment
 {
@@ -962,7 +962,7 @@ class CubicBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function CubicBezierSegment(
 		_control1X:Number = 0, _control1Y:Number = 0,
@@ -1002,7 +1002,7 @@ class CubicBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var control1X:Number = 0;
 	
@@ -1016,7 +1016,7 @@ class CubicBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var control1Y:Number = 0;
 	
@@ -1030,7 +1030,7 @@ class CubicBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var control2X:Number = 0;
 	
@@ -1044,7 +1044,7 @@ class CubicBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var control2Y:Number = 0;
 	
@@ -1064,7 +1064,7 @@ class CubicBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	override public function draw(graphicsPath:GraphicsPath, dx:Number, dy:Number, sx:Number, sy:Number, prev:PathSegment):void
 	{
@@ -1082,7 +1082,7 @@ class CubicBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	override public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number,
 											m:Matrix, rect:Rectangle):Rectangle
@@ -1247,7 +1247,7 @@ import flash.geom.Point;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  */
 class QuadraticPoints
 {
@@ -1266,7 +1266,7 @@ class QuadraticPoints
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function QuadraticPoints()
 	{
@@ -1297,7 +1297,7 @@ import org.apache.royale.graphics.utils.MatrixUtil;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  */
 class QuadraticBezierSegment extends PathSegment
 {
@@ -1327,7 +1327,7 @@ class QuadraticBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function QuadraticBezierSegment(
 		_control1X:Number = 0, _control1Y:Number = 0, 
@@ -1355,7 +1355,7 @@ class QuadraticBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var control1X:Number = 0;
 	
@@ -1369,7 +1369,7 @@ class QuadraticBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public var control1Y:Number = 0;
 	
@@ -1392,7 +1392,7 @@ class QuadraticBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	override public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
 	{
@@ -1457,7 +1457,7 @@ class QuadraticBezierSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	override public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number,
 											m:Matrix, rect:Rectangle):Rectangle
@@ -1487,7 +1487,7 @@ class QuadraticBezierSegment extends PathSegment
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 1.0.0
  */
 class EllipticalArcSegment extends PathSegment
 {
@@ -1526,7 +1526,7 @@ class EllipticalArcSegment extends PathSegment
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	public function EllipticalArcSegment(rx:Number, ry:Number, angle:Number, largeArcFlag:Boolean, sweepFlag:Boolean, endX:Number, endY:Number)
 	{

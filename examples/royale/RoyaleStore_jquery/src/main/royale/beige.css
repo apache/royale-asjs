@@ -131,9 +131,9 @@ Application
     highlightAlphas:        .5, .25;
     fontWeight:             "normal";
     /** need to port to ButtonView 
-    selectedOverSkin:       ClassReference("samples.flexstore.ButtonBarButtonSkin");
-    selectedUpSkin:         ClassReference("samples.flexstore.ButtonBarButtonSkin");
-    overSkin:               ClassReference("samples.flexstore.ButtonBarButtonSkin");
+    selectedOverSkin:       ClassReference("samples.royalestore.ButtonBarButtonSkin");
+    selectedUpSkin:         ClassReference("samples.royalestore.ButtonBarButtonSkin");
+    overSkin:               ClassReference("samples.royalestore.ButtonBarButtonSkin");
     **/
 }
 

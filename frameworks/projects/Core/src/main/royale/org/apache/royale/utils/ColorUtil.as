@@ -22,7 +22,7 @@ package org.apache.royale.utils
 	
 	/**
 	 *  The ColorUtil class is an all-static class
-	 *  with methods for working with RGB colors within Flex.
+	 *  with methods for working with RGB colors within Royale.
 	 *  You do not create instances of ColorUtil;
 	 *  instead you simply call static methods such as 
 	 *  the <code>ColorUtil.adjustBrightness()</code> method.
@@ -61,7 +61,7 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function adjustBrightness(rgb:uint, brite:Number):uint
 		{
@@ -91,7 +91,7 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function adjustBrightness2(rgb:uint, brite:Number):uint
 		{
@@ -144,7 +144,7 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function rgbMultiply(rgb1:uint, rgb2:uint):uint
 		{

@@ -20,57 +20,57 @@
 
 <project name="build_example" basedir=".">
 
-    <condition property="FALCON_HOME" value="${env.FALCON_HOME}">
+    <condition property="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}">
         <and>
             <not>
-                <isset property="FALCON_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
-            <available file="${env.FALCON_HOME}/lib/compiler-mxmlc.jar" type="file" />
+            <available file="${env.ROYALE_COMPILER_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler">
         <and>
             <not>
-                <isset property="FALCON_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/compiler-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${ROYALE_HOME}">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}">
         <and>
             <not>
-                <isset property="FALCON_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${env.FALCONJX_HOME}">
+    <condition property="ROYALE_TRANSPILER_HOME" value="${env.ROYALE_TRANSPILER_HOME}">
         <and>
             <not>
-                <isset property="FALCONJX_HOME" />
+                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
-            <available file="${env.FALCONJX_HOME}/lib/jsc.jar" type="file" />
+            <available file="${env.ROYALE_TRANSPILER_HOME}/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/js">
+    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/js">
         <and>
             <not>
-                <isset property="FALCONJX_HOME" />
+                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler-jx">
+    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler-jx">
         <and>
             <not>
-                <isset property="FALCONJX_HOME" />
+                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../royale-falcon/compiler-jx/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
@@ -151,14 +151,14 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-royaleTasks.jar"/>
-      <fileset dir="${FALCONJX_HOME}/lib" includes="jsc.jar"/>
+      <fileset dir="${ROYALE_TRANSPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+      <fileset dir="${ROYALE_TRANSPILER_HOME}/lib" includes="jsc.jar"/>
     </path>
     
     <target name="compile" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_TRANSPILER_HOME: ${ROYALE_TRANSPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <available file="${basedir}/src/main/config/compile-app-config.xml"
             type="file"
@@ -186,7 +186,7 @@
         
         <antcall target="build_example.copy-resources" />
         <copy todir="${basedir}/bin-debug/fonts">
-            <fileset dir="${FLEX_HOME}/frameworks/fonts">
+            <fileset dir="${ROYALE_HOME}/frameworks/fonts">
                 <include name="**/*.swf" />
             </fileset>
         </copy>

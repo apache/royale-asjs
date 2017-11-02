@@ -31,7 +31,7 @@
   <packaging>pom</packaging>
 
   <name>Apache Royale: Distribution</name>
-  <description>The Apache Flex: Royale distribution, source and binary, in zip and tar.gz formats.</description>
+  <description>The Apache Royale: Royale distribution, source and binary, in zip and tar.gz formats.</description>
 
   <properties>
     <distributionFileName>apache-royale-${project.version}</distributionFileName>

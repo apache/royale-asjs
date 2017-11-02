@@ -46,7 +46,7 @@ package org.apache.royale.createjs.tween
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
      */
 	public class Sequence extends Effect implements IDocument
 	{
@@ -56,7 +56,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
         public function Sequence(target:Object=null)
 		{
@@ -127,7 +127,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion createjs.Shape
 		 *  @royaleignorecoercion org.apache.royale.createjs.core.CreateJSBase
 		 */

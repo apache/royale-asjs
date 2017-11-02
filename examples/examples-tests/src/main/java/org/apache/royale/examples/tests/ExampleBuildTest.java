@@ -17,7 +17,7 @@
  *
  */
 
-package org.apache.flex.royale.examples.tests;
+package org.apache.royale.examples.tests;
 
 import org.junit.Assert;
 import org.junit.Assume;

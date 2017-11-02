@@ -25,7 +25,7 @@
     
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     <property name="opt1_arg" value="-remove-circulars" />
     
     <include file="${basedir}/../../build_example.xml" />
@@ -38,15 +38,15 @@
             <available file="${ROYALE_HOME}/js/libs/js.swc" type="file" />
         </and>
     </condition>
-    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/js.swc" >
+    <condition property="extlib_arg" value="-external-library-path=${ROYALE_TRANSPILER_HOME}/../js/libs/js.swc" >
         <and>
             <not>
                 <isset property="extlib_arg" />
             </not>
-            <available file="${FALCONJX_HOME}/../js/libs/js.swc" type="file" />
+            <available file="${ROYALE_TRANSPILER_HOME}/../js/libs/js.swc" type="file" />
         </and>
     </condition>
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
+    <property name="extlib_arg" value="-external-library-path=${ROYALE_TRANSPILER_HOME}/../externs/js/out/bin/js.swc"/>
 
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
     </target>

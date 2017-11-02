@@ -36,7 +36,7 @@ package org.apache.royale.graphics.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	public class AdvancedLayoutFeatures implements IAssetLayoutFeatures
 	{
@@ -51,7 +51,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function AdvancedLayoutFeatures()
 		{
@@ -75,7 +75,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var depth:Number = 0;
 		
@@ -202,7 +202,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutX(value:Number):void
 		{
@@ -224,7 +224,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutY(value:Number):void
 		{
@@ -247,7 +247,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutZ(value:Number):void
 		{
@@ -355,7 +355,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutRotationX(value:Number):void
 		{
@@ -378,7 +378,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutRotationY(value:Number):void
 		{
@@ -401,7 +401,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutRotationZ(value:Number):void
 		{
@@ -427,7 +427,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutScaleX(value:Number):void
 		{
@@ -450,7 +450,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutScaleY(value:Number):void
 		{
@@ -474,7 +474,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set layoutScaleZ(value:Number):void
 		{
@@ -544,7 +544,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get is3D():Boolean
 		{
@@ -557,7 +557,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get layoutIs3D():Boolean
 		{
@@ -573,7 +573,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set postLayoutTransformOffsets(value:TransformOffsets):void
 		{
@@ -710,7 +710,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get computedMatrix():Matrix
 		{
@@ -765,7 +765,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get computedMatrix3D():Matrix3D
 		{
@@ -888,7 +888,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4
+		 *  @productversion Royale 1.0.0
 		 */
 		public function transformPointToParent(propertyIs3D:Boolean,
 											   localPosition:Vector3D, position:Vector3D,

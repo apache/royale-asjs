@@ -19,7 +19,7 @@
 -->
 <project name="marmotinni" default="main" basedir=".">
 
-	<property name="test.file" value="Royale/framework/org/apache.royale/html/TextButton/TextButton.mxml" />
+	<property name="test.file" value="Royale/framework/org/apache/royale/html/TextButton/TextButton.mxml" />
 	<property name="test.class" value="org.apache.royale.html.textButton.TextButton" />
 	
 	<property file="build.properties" />
@@ -31,7 +31,7 @@
 	</condition>
 	
 	<!-- Constants -->
-	<property name="mxmlc.dir" value="../../royale-falcon/compiler.jx/bin" />
+	<property name="mxmlc.dir" value="../../royale-compiler/compiler.jx/bin" />
 	<property name="player.version" value="11.1" />
 	<property name="sdk.dir" value="../../royale-sdk" />
 	
@@ -239,7 +239,7 @@
 		
 		<antcall target="test">
 			<param name="param.test.class" value="${test.class}"/>
-			<param name="param.test.url" value="file://localhost/Users/erik/Documents/ApacheFlex/git/royale-asjs/marmotinni/temp/bin/js-release/index.html"/>
+			<param name="param.test.url" value="file://localhost/Users/erik/Documents/ApacheRoyale/git/royale-asjs/marmotinni/temp/bin/js-release/index.html"/>
 		</antcall>
 		
 		<antcall target="run_teardown" />

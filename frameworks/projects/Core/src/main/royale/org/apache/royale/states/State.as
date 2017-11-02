@@ -23,10 +23,7 @@ package org.apache.royale.states
     /**
      *  The State class is one of the classes in the
      *  view states subsystem.  It is used to declare a 
-     *  view state in an MXML document.  This is one of the
-     *  few classes in Royale that use the same name as
-     *  a Flex SDK class because some of the IDEs and
-     *  compilers are hard-coded to assume this name.
+     *  view state in an MXML document.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -42,7 +39,7 @@ package org.apache.royale.states
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
 		public function State(properties:Object = null)
 		{
@@ -55,7 +52,7 @@ package org.apache.royale.states
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
 		public var name:String;
         
@@ -66,7 +63,7 @@ package org.apache.royale.states
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public var stateGroups:String;
         
@@ -76,7 +73,7 @@ package org.apache.royale.states
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public var overrides:Array;
 	}

@@ -25,7 +25,7 @@ public class ButtonExample
 	{
 		var button:Element = document.createElement("button");
         button.onclick = function ():void {
-            alert("Hello browser from FalconJX!");
+            alert("Hello browser from Royale!");
         };
         button.textContent = "Say Hello";
         document.body.appendChild(button);
