@@ -30,11 +30,10 @@
 	<js:initialView>
 		<js:View width="100%" height="100%" className="page-content">
 			<js:beads>
-					<js:VerticalLayout />
-				</js:beads>
-				<local:ButtonPlayGround/>
-				<local:TextInputPlayGround/>
-			
+				<js:VerticalLayout />
+			</js:beads>
+			<local:ButtonPlayGround/>
+			<local:TextInputPlayGround/>
         </js:View>
 	</js:initialView>
 </js:Application>
