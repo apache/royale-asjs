@@ -29,7 +29,12 @@
 	</js:valuesImpl>
 	<js:initialView>
 		<js:View width="100%" height="100%" className="page-content">
-            <local:ButtonPlayGround/>
+			<js:beads>
+					<js:VerticalLayout />
+				</js:beads>
+				<local:ButtonPlayGround/>
+				<local:TextInputPlayGround/>
+			
         </js:View>
 	</js:initialView>
 </js:Application>
