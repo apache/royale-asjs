@@ -26,6 +26,8 @@ package org.apache.royale.html
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.html.beads.models.DataGridPresentationModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IChangePropagator;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
@@ -164,6 +166,7 @@ package org.apache.royale.html
 		
 		override public function addedToParent():void
 		{
+			loadBeadFromValuesManager(IChangePropagator, "iChangePropagator", this);
 			super.addedToParent();
 			dispatchEvent(new Event("initComplete"));
 		}
