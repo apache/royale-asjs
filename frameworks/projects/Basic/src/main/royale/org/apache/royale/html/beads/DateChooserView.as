@@ -228,6 +228,8 @@ package org.apache.royale.html.beads
 			dayNamesContainer.dataProvider = model.dayNames;
 
 			daysContainer.dataProvider = model.days;
+
+			daysContainer.selectedIndex = model.getIndexForSelectedDate()
 		}
 
 		/**
@@ -236,9 +238,6 @@ package org.apache.royale.html.beads
 		private function selectionChangeHandler(event:Event):void
 		{
 			updateDisplay();
-
-			var index:Number = model.getIndexForSelectedDate();
-			daysContainer.selectedIndex = index;
 
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
 			getHost().dispatchEvent( new Event("change") );

@@ -36,6 +36,11 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.DateChooser;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TextInput;
+	COMPILE::SWF
+	{
+		import org.apache.royale.html.beads.TextInputView;
+		import flash.text.TextFieldType;
+	}
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -92,6 +97,14 @@ package org.apache.royale.html.beads
 		}
 
 		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		 protected function getHost():UIBase
+		 {
+			 return _strand as UIBase;
+		 }
+
+		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
@@ -104,20 +117,28 @@ package org.apache.royale.html.beads
 			super.strand = value;
 
 			_textInput = new TextInput();
-			UIBase(_strand).addElement(_textInput);
+			getHost().addElement(_textInput);
 			_textInput.width = 100;
 			_textInput.height = 18;
 
 			_button = new TextButton();
 			_button.text = "⬇︎";
-			UIBase(_strand).addElement(_button);
+			getHost().addElement(_button);
 
 			COMPILE::SWF {
 				_button.x = _textInput.width;
 				_button.y = _textInput.y;
+				var view:TextInputView = _strand.getBeadByType(IBeadView) as TextInputView;
+				if(view)
+					view.textField.type = TextFieldType.DYNAMIC;
 			}
 
-			IEventDispatcher(_strand).addEventListener("initComplete",handleInitComplete);
+			COMPILE::JS
+			{
+				_textInput.element.setAttribute('readonly', 'true');
+			}
+
+			getHost().addEventListener("initComplete",handleInitComplete);
 		}
 
 		private function handleInitComplete(event:Event):void
@@ -182,7 +203,7 @@ package org.apache.royale.html.beads
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
 
-					var host:IPopUpHost = UIUtils.findPopUpHost(UIBase(_strand));
+					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());
 					var point:Point = new Point(_textInput.width, _button.height);
 					var p2:Point = PointUtils.localToGlobal(point, _strand);
 					var p3:Point = PointUtils.globalToLocal(p2, host);
@@ -206,7 +227,7 @@ package org.apache.royale.html.beads
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{
-			IEventDispatcher(_strand).dispatchEvent(new Event("selectedDateChanged"));
+			getHost().dispatchEvent(new Event("selectedDateChanged"));
 		}
 	}
 }

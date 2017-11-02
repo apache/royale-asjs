@@ -58,20 +58,18 @@ package org.apache.royale.mobile.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
 		/*
 		 * Children
 		 */
 		
 		public function get tabBar():TabBar
 		{
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			return model.tabBar;
 		}
 		public function set tabBar(value:TabBar):void
 		{
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.tabBar = value;
 		}
 		
@@ -79,13 +77,8 @@ package org.apache.royale.mobile.beads
 		 * ViewBead
 		 */
 		
-		override public function get strand():IStrand
-		{
-			return _strand;
-		}
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
 			super.strand = value;
 			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
@@ -98,12 +91,12 @@ package org.apache.royale.mobile.beads
 			tabBar = tbar;
 		}
 		
-		override protected function handleInitComplete(event:Event):void
+		override protected function addViewElements():void
 		{			
-			super.handleInitComplete(event);
+			super.addViewElements();
 			
 			if (tabBar) {
-				UIBase(_strand).addElement(tabBar);
+				getHost().addElement(tabBar);
 			}
 			
 			showViewByIndex(0);
@@ -116,17 +109,17 @@ package org.apache.royale.mobile.beads
 			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			if (_currentView != null) {
-				UIBase(_strand).removeElement(_currentView);
+				getHost().removeElement(_currentView);
 			}
 			_currentView = model.views[index] as IViewManagerView;
 			_currentView.viewManager = _strand as IViewManager;
-			UIBase(_strand).addElementAt(_currentView,(navigationBar == null ? 0 : 1));
+			insertCurrentView(_currentView);
 			
 			COMPILE::JS {
 				if (_currentView) {
 					UIBase(_currentView).element.style["flex-grow"] = "1";
 				}
-				UIBase(_strand).dispatchEvent(new Event("layoutNeeded"));
+				getHost().dispatchEvent(new Event("layoutNeeded"));
 			}
 			COMPILE::SWF {
 				if (UIBase(_currentView).style == null) {
@@ -137,16 +130,18 @@ package org.apache.royale.mobile.beads
 			}
 			
 			// Now that the view has changed, refresh the layout on this component.
-			UIBase(_strand).dispatchEvent(new Event("layoutNeeded"));
+			getHost().dispatchEvent(new Event("layoutNeeded"));
 		}
-		
+		protected function insertCurrentView(view:IViewManagerView):void{
+			getHost().addElementAt(view,(navigationBar ? 1 : 0));
+		}
 		/**
 		 * @private
 		 */		
 		private function handleButtonBarChange(event:Event):void
 		{
 			var newIndex:Number = tabBar.selectedIndex;
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			// doing this will trigger the selectedIndexChanged event which will
 			// tell the strand to switch views

@@ -267,10 +267,16 @@ package org.apache.royale.html
             icon.element.id = value;
         }
 
+		/**
+		 * @royaleignorecoercion HTMLInputElement
+		 */
         public function get groupName():String
         {
             return (icon.element as HTMLInputElement).name as String;
         }
+		/**
+		 * @royaleignorecoercion HTMLInputElement
+		 */
         public function set groupName(value:String):void
         {
             (icon.element as HTMLInputElement).name = value;
@@ -285,25 +291,40 @@ package org.apache.royale.html
             textNode.nodeValue = value;
         }
 
-        /** @export */
+		/**
+		 * @royaleignorecoercion HTMLInputElement
+		 * @export
+		 */
         public function get selected():Boolean
         {
             return (icon.element as HTMLInputElement).checked;
         }
+		/**
+		 * @royaleignorecoercion HTMLInputElement
+		 */
         public function set selected(value:Boolean):void
         {
             (icon.element as HTMLInputElement).checked = value;
         }
 
-        public function get value():Object
+		/**
+		 * @royaleignorecoercion HTMLInputElement
+		 */
+        public function get value():String
         {
             return (icon.element as HTMLInputElement).value;
         }
-        public function set value(v:Object):void
+		/**
+		 * @royaleignorecoercion HTMLInputElement
+		 */
+        public function set value(v:String):void
         {
-            (icon.element as HTMLInputElement).value = v as String;
+            (icon.element as HTMLInputElement).value = "" + v;
         }
 
+		/**
+		 * @royaleignorecoercion HTMLInputElement
+		 */
         public function get selectedValue():Object
         {
             var buttons:NodeList;
@@ -311,7 +332,7 @@ package org.apache.royale.html
             var i:int;
             var n:int;
 
-            groupName = (icon.element as HTMLInputElement).name as String;
+            groupName = (icon.element as HTMLInputElement).name;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
 
@@ -325,6 +346,7 @@ package org.apache.royale.html
 
         /**
          * @royaleignorecoercion Array
+		 * @royaleignorecoercion HTMLInputElement
          */
         public function set selectedValue(value:Object):void
         {
@@ -333,7 +355,7 @@ package org.apache.royale.html
             var i:int;
             var n:int;
 
-            groupName = (icon.element as HTMLInputElement).name as String;
+            groupName = (icon.element as HTMLInputElement).name;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
             for (i = 0; i < n; i++) {
