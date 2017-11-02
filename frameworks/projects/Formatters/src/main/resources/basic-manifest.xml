@@ -20,6 +20,10 @@
 
 
 <componentPackage>
+    <component id="DateFormatter" class="org.apache.royale.html.accessories.SimpleDateFormatter"/>
+    <component id="DateFormatDDMMYYYY" class="org.apache.royale.html.accessories.DateFormatDDMMYYYY"/>
+    <component id="DateFormatMMDDYYYY" class="org.apache.royale.html.accessories.DateFormatMMDDYYYY"/>
+    <component id="DateFormatYYYYMMDD" class="org.apache.royale.html.accessories.DateFormatYYYYMMDD"/>
     <component id="NumberFormatter" class="org.apache.royale.html.accessories.NumberFormatter"/>
     <component id="CurrencyFormatter" class="org.apache.royale.html.accessories.CurrencyFormatter"/>
 </componentPackage>

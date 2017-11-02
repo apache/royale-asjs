@@ -27,7 +27,7 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.events.EventDispatcher;
 	
 	/**
-	 * The DateFormatBead class formats the display of a DateField using a format.
+	 * The DateFormatter class formats the display of a DateField using a format.
 	 *  
      *  @royaleignoreimport org.apache.royale.core.IStrandWithModel
      * 
@@ -36,7 +36,7 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class SimpleDateFormatBead extends EventDispatcher implements IBead, IFormatBead
+	public class SimpleDateFormatter extends EventDispatcher implements IBead, IFormatBead
 	{
 		/**
 		 * constructor.
@@ -46,7 +46,7 @@ package org.apache.royale.html.accessories
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function SimpleDateFormatBead()
+		public function SimpleDateFormatter()
 		{
 		}
 

@@ -29,10 +29,6 @@ internal class FormattersClasses
 {	
 	import org.apache.royale.core.FormatBase; FormatBase;
 	
-	import org.apache.royale.html.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
-	import org.apache.royale.html.accessories.DateFormatDDMMYYYYBead; DateFormatDDMMYYYYBead;
-	import org.apache.royale.html.accessories.DateFormatYYYYMMDDBead; DateFormatYYYYMMDDBead;
-	import org.apache.royale.html.accessories.SimpleDateFormatBead; SimpleDateFormatBead;
 	COMPILE::SWF
 	{
     	import org.apache.royale.html.beads.FormatableLabelView; FormatableLabelView;
