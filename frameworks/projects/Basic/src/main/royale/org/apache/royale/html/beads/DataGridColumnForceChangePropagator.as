@@ -32,8 +32,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.core.IStrand;
 	/**
-	 *  The DataGridChangePropagator picks up the dataProviderChanged event
-	 *  and lets the data grid columns know about it.
+	 *  The DataGridColumnForceChangePropagator picks up the dataProviderChanged event
+	 *  and lets the data grid columns know about it, whether or not the data provider object was changed.
 	 *
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -41,12 +41,12 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DataGridChangePropagator implements IChangePropagator
+	public class DataGridColumnForceChangePropagator implements IChangePropagator
 	{
 		
 		private var _strand:IStrand;
 		
-		public function DataGridChangePropagator()
+		public function DataGridColumnForceChangePropagator()
 		{
 		}
 		
@@ -66,7 +66,13 @@ package org.apache.royale.html.beads
 			{
 				var list:DataGridColumnList = lists[i] as DataGridColumnList;
 				var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
-				listModel.dataProvider = sharedModel.dataProvider;
+				if (listModel.dataProvider != sharedModel.dataProvider)
+				{
+					listModel.dataProvider = sharedModel.dataProvider;
+				} else
+				{
+					(listModel as IEventDispatcher).dispatchEvent(new Event('dataProviderChanged'));
+				}
 			}
 		}
 	}

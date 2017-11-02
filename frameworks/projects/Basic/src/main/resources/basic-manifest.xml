@@ -80,8 +80,8 @@
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
     <component id="AccessibilityAltBead" class="org.apache.royale.html.beads.AccessibilityAltBead" />
-    <component id="DataGridChangePropagator" class="org.apache.royale.html.beads.DataGridChangePropagator" />
-    <component id="DataGridForceChangePropagator" class="org.apache.royale.html.beads.DataGridForceChangePropagator" />
+    <component id="DataGridColumnChangePropagator" class="org.apache.royale.html.beads.DataGridColumnChangePropagator" />
+    <component id="DataGridColumnForceChangePropagator" class="org.apache.royale.html.beads.DataGridColumnForceChangePropagator" />
     <!--<component id="MultilineTextFieldView" class="org.apache.royale.html.beads.MultilineTextFieldView"/>-->
 
     <component id="SimpleAlert" class="org.apache.royale.html.SimpleAlert"/>
