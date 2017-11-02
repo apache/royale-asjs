@@ -1,3 +1,4 @@
+/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -16,33 +17,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.accessories
-{
-	import org.apache.royale.html.accessories.SimpleDateFormatBead;
+*/
 
-	/**
-	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.
-     *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 */
-	public class DateFormatMMDDYYYYBead extends SimpleDateFormatBead
-	{
-		/**
-		 * constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function DateFormatMMDDYYYYBead()
-		{
-			format = "MM/DD/YYYY";
-		}
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace js "library://ns.apache.org/royale/basic";
 
-	}
+.royale *, . royale *:before, . royale *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
+.page-content
+{
+	padding: 10px;
+	margin: 10px;
+}
+
+/*
+* TextButton
+*/
+
+js|TextButton {
+    /* Background: */
+background: #D8D8D8;
+border: 1px solid #979797;
+border-radius: 3px;
+
+/* TextField: */
+font-family: HelveticaNeue;
+font-size: 12px;
+color: #646D7A;
+}
+
+js|TextButton:hover {
+    background-color: #CFCFCF;
+    vertical-align: middle;
+    border: none;
+    border-radius: 6px;
+}
+
+js|TextButton:active {
+    background-color: #77CEFF;
+    color: #FFFFFF;
+}

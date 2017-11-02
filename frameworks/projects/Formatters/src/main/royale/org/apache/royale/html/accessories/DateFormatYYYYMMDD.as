@@ -16,25 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.royale.html.accessories
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class FormattersClasses
-{	
-	import org.apache.royale.core.FormatBase; FormatBase;
 	
-	COMPILE::SWF
+	/**
+	 * The DateFormatYYYYMMDD class formats the display of a DateField using YYYY-MM-DD format.
+     * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.8
+	 */
+	public class DateFormatYYYYMMDD extends SimpleDateFormatter
 	{
-    	import org.apache.royale.html.beads.FormatableLabelView; FormatableLabelView;
-	    import org.apache.royale.html.beads.FormatableTextInputView; FormatableTextInputView;
-	}
+        /**
+         * constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         */
+        public function DateFormatYYYYMMDD()
+		{
+            format = "YYYY-MM-DD";
+        }
+    }
 }
-
-}
-

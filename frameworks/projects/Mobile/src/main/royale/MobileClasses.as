@@ -35,6 +35,7 @@ internal class MobileClasses
 	import org.apache.royale.mobile.ViewManagerBase; ViewManagerBase;
 	import org.apache.royale.mobile.beads.StackedViewManagerView; StackedViewManagerView;
 	import org.apache.royale.mobile.beads.TabbedViewManagerView; TabbedViewManagerView;
+	import org.apache.royale.mobile.beads.TopTabbedViewManagerView; TopTabbedViewManagerView;
 	import org.apache.royale.mobile.beads.ViewManagerViewBase; ViewManagerViewBase;
 	import org.apache.royale.mobile.beads.ToggleSwitchView; ToggleSwitchView;
 	import org.apache.royale.mobile.beads.controllers.ToggleSwitchMouseController; ToggleSwitchMouseController;

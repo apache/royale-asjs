@@ -1,4 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
+<?xml version="1.0" encoding="utf-8"?>
+<!---
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -16,25 +17,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
-{
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:js="library://ns.apache.org/royale/basic"
+				   xmlns:local="*">
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class FormattersClasses
-{	
-	import org.apache.royale.core.FormatBase; FormatBase;
+	<fx:Style source="../../main/resources/wirefarme-styles.css"/>
 	
-	COMPILE::SWF
-	{
-    	import org.apache.royale.html.beads.FormatableLabelView; FormatableLabelView;
-	    import org.apache.royale.html.beads.FormatableTextInputView; FormatableTextInputView;
-	}
-}
-
-}
-
+	<js:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</js:valuesImpl>
+	<js:initialView>
+		<js:View width="100%" height="100%" className="page-content">
+            <local:ButtonPlayGround/>
+        </js:View>
+	</js:initialView>
+</js:Application>

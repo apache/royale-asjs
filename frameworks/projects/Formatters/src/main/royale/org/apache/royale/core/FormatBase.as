@@ -22,6 +22,15 @@ package org.apache.royale.core
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	
+	/**
+	 * The FormatBase class serves as a base class for custom formatters.
+	 * It cannot be used as a base for an MXML document.
+     * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.8
+	 */
 	public class FormatBase extends EventDispatcher implements IFormatBead
 	{
 		public function FormatBase()

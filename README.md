@@ -109,7 +109,7 @@ This version of Royale was certified for use with Flash Player 11.1, and is comp
 
 - **Environment variable**
 
-  On Windows, set **FLASHPLAYER_DEBUGGER** to the absolute path including the filename of the Flash Player Content Debugger executable (e.g. '*FlashPlayerDebugger.exe*'). Note: the filename of Flash Player Content Debugger can differ slightly between versions. Adjust your path accordingly.
+  On Windows, set **FLASHPLAYER_DEBUGGER** to the absolute path including the filename of the Flash Player Projector Content Debugger executable (e.g. '*FlashPlayerDebugger.exe*'). Note: the filename of Flash Player Content Debugger can differ slightly between versions. Adjust your path accordingly.
 
   On the Mac, set **FLASHPLAYER_DEBUGGER** to the absolute path of '*Flash Player.app/Contents/MacOS/Flash Player Debugger*'
 

@@ -16,25 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
-{
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class FormattersClasses
-{	
-	import org.apache.royale.core.FormatBase; FormatBase;
-	
-	COMPILE::SWF
-	{
-    	import org.apache.royale.html.beads.FormatableLabelView; FormatableLabelView;
-	    import org.apache.royale.html.beads.FormatableTextInputView; FormatableTextInputView;
-	}
-}
+DESCRIPTION
 
-}
+The RoyaleThemes is demo app to customize styles on Royale components
 
+Right now this is a starter project with only a button to start developing styles

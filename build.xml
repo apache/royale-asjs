@@ -1660,11 +1660,12 @@
     </target>
 
     <target name="compile" depends="check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
-        
         <property name="FLEX_HOME" value="${basedir}" />
+        <property name="FALCONJX_HOME" value="${basedir}/js" />
         <mxmlc fork="true" debug="true"
             file="${file}">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-define=COMPILE::SWF,true" />
             <arg value="-define=COMPILE::JS,false" />
         </mxmlc>

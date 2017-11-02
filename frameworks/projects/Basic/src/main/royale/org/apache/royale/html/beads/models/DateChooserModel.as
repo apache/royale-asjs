@@ -224,23 +224,15 @@ package org.apache.royale.html.beads.models
             
             _days = new Array(42);
             
-            // blank out the labels for the first firstDay.day-1 entries.
-            for(var i:int=0; i < firstDay.getDay(); i++) {
-                _days[i] = null;
-            }
-            
-            // renumber to the last day of the month
+            // skip to the first day and renumber to the last day of the month
+			var i:int = firstDay.getDay();
             var dayNumber:int = 1;
             var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
             
-            for(; i < _days.length && dayNumber <= numDays; i++) {
-                _days[i] = new Date(displayedYear, displayedMonth, dayNumber++);
+            while(dayNumber <= numDays) {
+                _days[i++] = new Date(displayedYear, displayedMonth, dayNumber++);
             }
             
-            // blank out the rest
-            for(; i < _days.length; i++) {
-                _days[i] = null;
-            }
         }
         
         /**

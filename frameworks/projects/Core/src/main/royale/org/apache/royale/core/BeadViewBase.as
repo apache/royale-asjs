@@ -61,7 +61,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public var _strand:IStrand;
+        protected var _strand:IStrand;
         
         /**
          *  Get the strand for this bead

@@ -42,7 +42,7 @@ package org.apache.royale.mobile.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ViewManagerViewBase extends GroupView implements IBeadView
+	public class ViewManagerViewBase extends GroupView
 	{
 		/**
 		 * Constructor.
@@ -61,14 +61,23 @@ package org.apache.royale.mobile.beads
 		 * Children
 		 */
 		
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
+		protected function getHost():UIBase
+		{
+			return _strand as UIBase;
+		}
+
 		public function get navigationBar():NavigationBar
 		{
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			return model.navigationBar;
 		}
 		public function set navigationBar(value:NavigationBar):void
 		{
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.navigationBar = value;
 		}
 		
@@ -76,15 +85,9 @@ package org.apache.royale.mobile.beads
 		 * ViewBead
 		 */
 		
-		private var _strand:IStrand;
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_strand = value;
 			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
 //			model.addEventListener("selectedIndexChanged", viewsChangedHandler);
@@ -101,9 +104,12 @@ package org.apache.royale.mobile.beads
 		override protected function handleInitComplete(event:Event):void
 		{
 			super.handleInitComplete(event);
-			
+			addViewElements();
+		}
+		protected function addViewElements():void
+		{
 			if (navigationBar) {
-				UIBase(_strand).addElement(navigationBar);
+				getHost().addElement(navigationBar);
 			}
 		}
 		
