@@ -324,10 +324,13 @@
 
     <target name="tweak-for-jsonly" unless="env.AIR_HOME">
         <replace file="${basedir}/${configname}-config.xml"
-            token="{playerglobalhome}" value="libs/player" />
+            token="{playerglobalHome}" value="libs/player" />
         <replace file="${basedir}/${configname}-config.xml"
             token="&lt;path-element&gt;libs&lt;/path-element&gt;"
             value="&lt;path-element&gt;js/libs&lt;/path-element&gt;" />
+            <replace file="${basedir}/${configname}-config.xml"
+            token="&lt;target&gt;SWF&lt;/target&gt;"
+            value="" />
     </target>
     
 	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the -config file">
