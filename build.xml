@@ -547,6 +547,7 @@
         <ant dir="${basedir}/frameworks">
             <property name="locale" value="${locale}"/>
         </ant>
+        <antcall target="tweak-for-jsonly"/>
     </target>
 
     <target name="sample-themes" description="Build the sample themes">
@@ -833,9 +834,8 @@
     	<antcall target="copy-gcl-from-downloaded"/>
         
         <antcall target="inject-asf-header" />
-        <antcall target="binary-package-zip"/>        
+        <antcall target="binary-package-zip"/>
         <antcall target="binary-package-tgz"/>
-        <antcall target="tweak-for-jsonly"/>
         <!--<copy todir="${basedir}/out" file="${basedir}/apache-royale-installer-config.xml" />-->
     </target>
 
