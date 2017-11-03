@@ -148,11 +148,11 @@
     </target>
     
     <target name="release"
-        depends="block-flat-fonts,check-compile-env,check-runtime-env,check-compiler-home,check-transpiler-home,source-release,binary-release,rat-check"
+        depends="block-flat-fonts,check-compile-env,check-runtime-env,check-compiler-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache Royale."/>
         
     <target name="release-jenkins" 
-        depends="check-compile-env,check-runtime-env,check-compiler-home,check-transpiler-home,source-release,binary-release-jenkins,rat-check"
+        depends="check-compile-env,check-runtime-env,check-compiler-home,source-release,binary-release-jenkins,rat-check"
         description="Creates source and binary kits for Apache Royale."/>
   
     <target name="source-release" 
@@ -199,7 +199,7 @@
     <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs,copy-compiler"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
-    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-compiler-home,check-transpiler-home" unless="airsdk.found"
+    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-compiler-home" unless="airsdk.found"
         description="Check for the required environment variables for compilation.">
             <echo>OS: ${os.name} / ${os.version} / ${os.arch}</echo>
             <echo>VM: ${java.vm.name} / ${java.vm.version}</echo>
@@ -266,14 +266,14 @@
         
         <echo message="env.ROYALE_COMPILER_REPO is ${env.ROYALE_COMPILER_REPO}"/>
 
-        <available file="${env.ROYALE_COMPILER_REPO}/lib/compiler-mxmlc.jar"
+        <available file="${env.ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar"
             type="file" 
             property="ROYALE_COMPILER_REPO"
             value="${env.ROYALE_COMPILER_REPO}"/>
             
         <echo message="ROYALE_COMPILER_REPO is ${ROYALE_COMPILER_REPO}"/>
 
-        <condition property="ROYALE_COMPILER_REPO" value="${basedir}/../royale-compiler/compiler">
+        <condition property="ROYALE_COMPILER_REPO" value="${basedir}/../royale-compiler">
             <and>
                 <available file="${basedir}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
                 <not>
@@ -284,35 +284,8 @@
 
         <echo message="ROYALE_COMPILER_REPO is ${ROYALE_COMPILER_REPO}"/>
         
-        <fail message="ROYALE_COMPILER_REPO must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
+        <fail message="ROYALE_COMPILER_REPO must be set to a folder with a compiler/lib sub-folder containing compiler-mxmlc.jar such as the top-level folder in royale-compiler repo"
             unless="ROYALE_COMPILER_REPO"/>
-    </target>
-
-    <target name="check-transpiler-home" unless="ROYALE_TRANSPILER_REPO"
-        description="Check ROYALE_TRANSPILER_REPO is a directory.">
-        
-        <echo message="env.ROYALE_TRANSPILER_REPO is ${env.ROYALE_TRANSPILER_REPO}"/>
-
-        <available file="${env.ROYALE_TRANSPILER_REPO}/lib/jsc.jar" 
-            type="file" 
-            property="ROYALE_TRANSPILER_REPO"
-            value="${env.ROYALE_TRANSPILER_REPO}"/>
-
-        <echo message="ROYALE_TRANSPILER_REPO is ${ROYALE_TRANSPILER_REPO}"/>
-        
-        <condition property="ROYALE_TRANSPILER_REPO" value="${basedir}/../royale-compiler/compiler-jx">
-            <and>
-                <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
-                <not>
-                    <isset property="ROYALE_TRANSPILER_REPO" />
-                </not>
-            </and>
-        </condition>
-
-        <echo message="ROYALE_TRANSPILER_REPO is ${ROYALE_TRANSPILER_REPO}"/>
-        
-        <fail message="ROYALE_TRANSPILER_REPO must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder if it has been converted into an FB-compatible SDK"
-            unless="ROYALE_TRANSPILER_REPO"/>
     </target>
 
     <target name="check-typedefs-home" unless="ROYALE_TYPEDEFS_HOME"
@@ -374,12 +347,27 @@
     </target>
 	
     <target name="create-config" description="Create config files" unless="airsdk.found">
-        <ant dir="${basedir}/frameworks" target="royale-config" />
-        <ant dir="${basedir}/frameworks" target="air-config" />
-        <ant dir="${basedir}/frameworks" target="js-config" />
-        <ant dir="${basedir}/frameworks" target="jquery-config" />
-        <ant dir="${basedir}/frameworks" target="createjs-config" />
-        <ant dir="${basedir}/frameworks" target="node-config" />
+        <ant dir="${basedir}/frameworks" target="create-config">
+            <property name="configname" value="royale" />
+        </ant>
+        <ant dir="${basedir}/frameworks" target="create-config">
+            <property name="configname" value="air" />
+        </ant>
+        <ant dir="${basedir}/frameworks" target="create-config">
+            <property name="configname" value="js" />
+        </ant>
+        <ant dir="${basedir}/frameworks" target="create-config">
+            <property name="configname" value="jquery" />
+        </ant>
+        <ant dir="${basedir}/frameworks" target="create-config">
+            <property name="configname" value="createjs" />
+        </ant>
+        <ant dir="${basedir}/frameworks" target="create-config">
+            <property name="configname" value="node" />
+        </ant>
+        <ant dir="${basedir}/frameworks" target="create-config">
+            <property name="configname" value="flex" />
+        </ant>
         <!-- hack to keep compiler happy -->
         <mkdir dir="${ROYALE_HOME}/frameworks/themes/Spark" />
         <echo file="${ROYALE_HOME}/frameworks/themes/Spark/spark.css">/*
@@ -413,30 +401,30 @@
         <antcall target="rename_jquery" />
     </target>
     
-    <target name="copy-compiler" depends="check-compiler-home, check-transpiler-home" description="Copy compiler jars to where they are supposed to go">
+    <target name="copy-compiler" depends="check-compiler-home" description="Copy compiler jars to where they are supposed to go">
         <mkdir dir="${basedir}/lib" />
         <echo>Copying Compiler from ${ROYALE_COMPILER_REPO}</echo>
         <copy todir="${basedir}/lib">
-            <fileset dir="${ROYALE_COMPILER_REPO}/lib">
+            <fileset dir="${ROYALE_COMPILER_REPO}/compiler/lib">
                 <include name="**"/>
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin" />
         <copy todir="${basedir}/bin">
-            <fileset dir="${ROYALE_COMPILER_REPO}/src/assembly/scripts">
+            <fileset dir="${ROYALE_COMPILER_REPO}/compiler/src/assembly/scripts">
                 <include name="**"/>
             </fileset>
         </copy>
         <mkdir dir="${basedir}/js/lib" />
-        <echo>Copying Transpiler from ${ROYALE_TRANSPILER_REPO}</echo>
+        <echo>Copying Transpiler from ${ROYALE_COMPILER_REPO}</echo>
         <copy todir="${basedir}/js/lib">
-            <fileset dir="${ROYALE_TRANSPILER_REPO}/lib">
+            <fileset dir="${ROYALE_COMPILER_REPO}/compiler-jx/lib">
                 <include name="**"/>
             </fileset>
         </copy>
         <!-- needed to make Flash Builder accept folder as a Flex SDK -->
-        <copy file="${ROYALE_COMPILER_REPO}/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
-        <copy file="${ROYALE_COMPILER_REPO}/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
+        <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
+        <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
     
     <target name="check_jquery" >
@@ -847,6 +835,7 @@
         <antcall target="inject-asf-header" />
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
+        <antcall target="tweak-for-jsonly"/>
         <!--<copy todir="${basedir}/out" file="${basedir}/apache-royale-installer-config.xml" />-->
     </target>
 
@@ -870,7 +859,12 @@
 		</copy>
 	</target>
 	
-    <!-- 
+    <target name="tweak-for-jsonly" unless="env.AIR_HOME" description="do a few more things so the JSOnly package works">
+        <copy file="${ROYALE_HOME}/js/libs/js.swc"
+        tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" />
+    </target>
+    
+    <!--
         Packages the binary distribution with ZIP. 
     -->
     <target name="binary-package-zip" unless="no.zip"
@@ -1264,7 +1258,7 @@
     </target>
 
     <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME">
-        <property name="ROYALE_TRANSPILER_HOME" value="${basedir}/js" />
+        <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
                closure-lib="${env.GOOG_HOME}"
@@ -1487,7 +1481,6 @@
         <!-- these keep the main target from doing other checks -->
         <property name="mxmlc.jar.exists" value="set" />
         <property name="ROYALE_COMPILER_REPO" value="set" />
-        <property name="ROYALE_TRANSPILER_REPO" value="set" />
     </target>
     
     <target name="ask-about-downloading-repos" depends="ask-or-fail, download-all" if="airsdk.found" />
@@ -1628,7 +1621,7 @@
         <echo>Please change directory to ${base.folder.name}/royale-asjs and run ant to complete build</echo>
     </target>
 
-    <target name="compile" depends="check-compiler-home,check-transpiler-home,check-goog-home,load-task" description="compile for SWF">
+    <target name="compile" depends="check-compiler-home,check-goog-home,load-task" description="compile for SWF">
         
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
@@ -1639,7 +1632,7 @@
         </mxmlc>
     </target>
     
-    <target name="compile-release" depends="check-compiler-home,check-transpiler-home,check-goog-home,load-task" description="compile for SWF">
+    <target name="compile-release" depends="check-compiler-home,check-goog-home,load-task" description="compile for SWF">
         
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="false"
@@ -1649,7 +1642,7 @@
         </mxmlc>
     </target>
     
-    <target name="compile-js" depends="check-compiler-home,check-transpiler-home,check-goog-home" description="compile for JS">
+    <target name="compile-js" depends="check-compiler-home,check-goog-home" description="compile for JS">
         <property name="ROYALE_HOME" value="${basedir}" />
         <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
@@ -1669,7 +1662,7 @@
         </java>
     </target>
     
-    <target name="compile-js-release" depends="check-compiler-home,check-transpiler-home,check-goog-home" description="compile for JS">
+    <target name="compile-js-release" depends="check-compiler-home,check-goog-home" description="compile for JS">
         <property name="ROYALE_HOME" value="${basedir}" />
         <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">

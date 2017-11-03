@@ -109,13 +109,9 @@
     <fail message="The FLASHPLAYER_DEBUGGER property is not set in environment or command-line."
         unless="FLASHPLAYER_DEBUGGER"/>
     
-    <available file="${env.ROYALE_COMPILER_HOME}"
+    <available file="${env.ROYALE_COMPILER_REPO}"
         type="dir"
-        property="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}" />
-    
-    <available file="${env.ROYALE_TRANSPILER_HOME}"
-        type="dir"
-        property="ROYALE_TRANSPILER_HOME" value="${env.ROYALE_TRANSPILER_HOME}" />
+        property="ROYALE_COMPILER_REPO" value="${env.ROYALE_COMPILER_REPO}" />
     
     <available file="${env.FLEXUNIT_HOME}"
         type="dir"
@@ -679,7 +675,7 @@
         <condition property="compiler.nightly">
             <and>
                 <not>
-                    <isset property="ROYALE_COMPILER_HOME" />
+                    <isset property="ROYALE_COMPILER_REPO" />
                 </not>
                 <not>
                     <isset property="rc" />
@@ -689,13 +685,13 @@
         <condition property="compiler.rc">
             <and>
                 <not>
-                    <isset property="ROYALE_COMPILER_HOME" />
+                    <isset property="ROYALE_COMPILER_REPO" />
                 </not>
                 <isset property="rc" />
             </and>
         </condition>
     </target>
-    <target name="get.compiler.if.needed" depends="get.compiler.nightly,get.compiler.rc" unless="ROYALE_COMPILER_HOME" />
+    <target name="get.compiler.if.needed" depends="get.compiler.nightly,get.compiler.rc" unless="ROYALE_COMPILER_REPO" />
     <target name="get.compiler.nightly" if="compiler.nightly">
         <property name="kit.jx.prefix" value="apache.royale-compilerjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
@@ -712,8 +708,7 @@
         <fail message="MD5 checksum did not match" if="CompilerMD5Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/compiler" />
         <ant dir="${basedir}/compiler/compiler/src/main/resources" antfile="downloads.xml" />
-        <property name="ROYALE_COMPILER_HOME" value="${basedir}/compiler/compiler" />
-        <property name="ROYALE_TRANSPILER_HOME" value="${basedir}/compiler/js" />
+        <property name="ROYALE_COMPILER_REPO" value="${basedir}/compiler" />
         <ant dir="${basedir}/compiler/compiler-jx" antfile="${basedir}/compiler/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
     <target name="get.compiler.rc" if="compiler.rc">
@@ -732,8 +727,7 @@
         <fail message="MD5 checksum did not match" if="CompilerMD5Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/compiler" />
         <ant dir="${basedir}/compiler/compiler/src/main/resources" antfile="downloads.xml" />
-        <property name="ROYALE_COMPILER_HOME" value="${basedir}/compiler/compiler" />
-        <property name="ROYALE_TRANSPILER_HOME" value="${basedir}/compiler/js" />
+        <property name="ROYALE_COMPILER_REPO" value="${basedir}/compiler" />
         <ant dir="${basedir}/compiler/compiler-jx" antfile="${basedir}/compiler/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
     <target name="get.flexunit.if.needed" unless="FLEXUNIT_HOME" >

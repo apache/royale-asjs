@@ -25,50 +25,23 @@
             <not>
                 <isset property="ROYALE_COMPILER_HOME" />
             </not>
-            <available file="${env.ROYALE_COMPILER_HOME}/lib/compiler-mxmlc.jar" type="file" />
+            <available file="${env.ROYALE_COMPILER_HOME}/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js">
         <and>
             <not>
                 <isset property="ROYALE_COMPILER_HOME" />
-            </not>
-            <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
-        </and>
-    </condition>
-
-    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}">
-        <and>
-            <not>
-                <isset property="ROYALE_COMPILER_HOME" />
-            </not>
-            <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
-        </and>
-    </condition>
-
-    <condition property="ROYALE_TRANSPILER_HOME" value="${env.ROYALE_TRANSPILER_HOME}">
-        <and>
-            <not>
-                <isset property="ROYALE_TRANSPILER_HOME" />
-            </not>
-            <available file="${env.ROYALE_TRANSPILER_HOME}/lib/jsc.jar" type="file" />
-        </and>
-    </condition>
-
-    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/js">
-        <and>
-            <not>
-                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
-    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler-jx">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler-jx">
         <and>
             <not>
-                <isset property="ROYALE_TRANSPILER_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
         </and>
@@ -151,14 +124,14 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${ROYALE_TRANSPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
-      <fileset dir="${ROYALE_TRANSPILER_HOME}/lib" includes="jsc.jar"/>
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="jsc.jar"/>
     </path>
     
     <target name="compile" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
-        <echo message="ROYALE_TRANSPILER_HOME: ${ROYALE_TRANSPILER_HOME}"/>
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <available file="${basedir}/src/main/config/compile-app-config.xml"
             type="file"

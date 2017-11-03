@@ -311,66 +311,25 @@
         <ant dir="${basedir}/projects/TLF"/>
     </target>
 
-	<target name="royale-config" depends="playerglobal-setswfversion" description="Copy the royale config template to royale-config.xml and inject version numbers">
-		<copy file="${basedir}/royale-config-template.xml" tofile="${basedir}/royale-config.xml" overwrite="true">
-			<filterset>
-				<filter token="playerversion" value="${playerglobal.version}"/>
-				<filter token="swfversion" value="${playerglobal.swfversion}"/>
-				<filter token="locale" value="${locale}"/>
-			</filterset>
-		</copy>
-	</target>
-		
-	<target name="air-config" depends="playerglobal-setswfversion" description="Copy the air config template to air-config.xml and inject version numbers">
-		<copy file="${basedir}/air-config-template.xml" tofile="${basedir}/air-config.xml" overwrite="true">
-			<filterset>
-				<filter token="playerversion" value="${playerglobal.version}"/>
-				<filter token="swfversion" value="${playerglobal.swfversion}"/>
-				<filter token="locale" value="${locale}"/>
-			</filterset>
-		</copy>
-	</target>
-
-    <target name="js-config" depends="playerglobal-setswfversion" description="Copy the js config template to js-config.xml and inject version numbers">
-        <copy file="${basedir}/js-config-template.xml" tofile="${basedir}/js-config.xml" overwrite="true">
+    <target name="create-config" depends="playerglobal-setswfversion" description="Copy the config template and inject version numbers">
+        <copy file="${basedir}/${configname}-config-template.xml" tofile="${basedir}/${configname}-config.xml" overwrite="true">
             <filterset>
                 <filter token="playerversion" value="${playerglobal.version}"/>
                 <filter token="swfversion" value="${playerglobal.swfversion}"/>
                 <filter token="locale" value="${locale}"/>
             </filterset>
         </copy>
+        <antcall target="tweak-for-jsonly" />
     </target>
 
-    <target name="jquery-config" depends="playerglobal-setswfversion" description="Copy the jquery config template to jquery-config.xml and inject version numbers">
-        <copy file="${basedir}/jquery-config-template.xml" tofile="${basedir}/jquery-config.xml" overwrite="true">
-            <filterset>
-                <filter token="playerversion" value="${playerglobal.version}"/>
-                <filter token="swfversion" value="${playerglobal.swfversion}"/>
-                <filter token="locale" value="${locale}"/>
-            </filterset>
-        </copy>
+    <target name="tweak-for-jsonly" unless="env.AIR_HOME">
+        <replace file="${basedir}/${configname}-config.xml"
+            token="{playerglobalhome}" value="libs/player" />
+        <replace file="${basedir}/${configname}-config.xml"
+            token="&lt;path-element&gt;libs&lt;/path-element&gt;"
+            value="&lt;path-element&gt;js/libs&lt;/path-element&gt;" />
     </target>
-
-    <target name="createjs-config" depends="playerglobal-setswfversion" description="Copy the createjs config template to createjs-config.xml and inject version numbers">
-        <copy file="${basedir}/createjs-config-template.xml" tofile="${basedir}/createjs-config.xml" overwrite="true">
-            <filterset>
-                <filter token="playerversion" value="${playerglobal.version}"/>
-                <filter token="swfversion" value="${playerglobal.swfversion}"/>
-                <filter token="locale" value="${locale}"/>
-            </filterset>
-        </copy>
-    </target>
-
-    <target name="node-config" depends="playerglobal-setswfversion" description="Copy the node config template to node-config.xml and inject version numbers">
-        <copy file="${basedir}/node-config-template.xml" tofile="${basedir}/node-config.xml" overwrite="true">
-            <filterset>
-                <filter token="playerversion" value="${playerglobal.version}"/>
-                <filter token="swfversion" value="${playerglobal.swfversion}"/>
-                <filter token="locale" value="${locale}"/>
-            </filterset>
-        </copy>
-    </target>
-
+    
 	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the -config file">
 		<condition property="playerglobal.swfversion" value="11">
 			<equals arg1="${playerglobal.version}" arg2="10.2" />

@@ -34,8 +34,8 @@
     
     <target name="compile-js">
         <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" >
+            <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
             <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
-            <property name="ROYALE_TRANSPILER_HOME" value="${ROYALE_TRANSPILER_HOME}"/>
             <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
         </ant>
     </target>
@@ -77,10 +77,10 @@
     <target name="compile" description="Compiles .as files into .swc" if="env.AIR_HOME">
         <echo message="Compiling libs/${ant.project.name}.swc"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
-        <echo message="ROYALE_TRANSPILER_HOME: ${ROYALE_TRANSPILER_HOME}"/>
 
-        <java jar="${ROYALE_TRANSPILER_HOME}/lib/compc.jar" fork="true" >
+        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
@@ -98,33 +98,33 @@
 
     <target name="check-compiler" depends="check-compiler-home,check-transpiler-home">
         <path id="lib.path">
-            <fileset dir="${ROYALE_TRANSPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+            <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
     
     <target name="check-compiler-home"
-        description="Set ROYALE_COMPILER_HOME to point at the compiler.">
+        description="Set ROYALE_SWF_COMPILER_HOME to point at the compiler.">
         
         <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar"
         type="file"
-        property="ROYALE_COMPILER_HOME"
+        property="ROYALE_SWF_COMPILER_HOME"
         value="${ROYALE_HOME}"/>
         
-        <fail message="ROYALE_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or the root of a Royale SDK"
-        unless="ROYALE_COMPILER_HOME"/>
+        <fail message="ROYALE_SWF_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or the root of a Royale SDK"
+        unless="ROYALE_SWF_COMPILER_HOME"/>
     </target>
 
     <target name="check-transpiler-home"
-        description="Set ROYALE_TRANSPILER_HOME to point at the cross-compiler.">
+        description="Set ROYALE_COMPILER_HOME to point at the cross-compiler.">
         
         <available file="${ROYALE_HOME}/js/lib/jsc.jar"
         type="file"
-        property="ROYALE_TRANSPILER_HOME"
+        property="ROYALE_COMPILER_HOME"
         value="${ROYALE_HOME}/js"/>
         
-        <fail message="ROYALE_TRANSPILER_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder of a Royale SDK"
-        unless="ROYALE_TRANSPILER_HOME"/>
+        <fail message="ROYALE_COMPILER_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder of a Royale SDK"
+        unless="ROYALE_COMPILER_HOME"/>
     </target>
 
 </project>

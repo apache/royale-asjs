@@ -38,15 +38,6 @@
             <available file="${ROYALE_HOME}/js/libs/js.swc" type="file" />
         </and>
     </condition>
-    <condition property="extlib_arg" value="-external-library-path=${ROYALE_TRANSPILER_HOME}/../js/libs/js.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${ROYALE_TRANSPILER_HOME}/../js/libs/js.swc" type="file" />
-        </and>
-    </condition>
-    <property name="extlib_arg" value="-external-library-path=${ROYALE_TRANSPILER_HOME}/../externs/js/out/bin/js.swc"/>
 
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
     </target>

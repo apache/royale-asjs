@@ -29,50 +29,50 @@
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
+    <condition property="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}">
+        <and>
+            <not>
+                <isset property="ROYALE_SWF_COMPILER_HOME" />
+            </not>
+            <available file="${env.ROYALE_SWF_COMPILER_HOME}/lib/compiler-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+    <condition property="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler">
+        <and>
+            <not>
+                <isset property="ROYALE_SWF_COMPILER_HOME" />
+            </not>
+            <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+    <condition property="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_HOME}">
+        <and>
+            <not>
+                <isset property="ROYALE_SWF_COMPILER_HOME" />
+            </not>
+            <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
+        </and>
+    </condition>
     <condition property="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}">
         <and>
             <not>
                 <isset property="ROYALE_COMPILER_HOME" />
             </not>
-            <available file="${env.ROYALE_COMPILER_HOME}/lib/compiler-mxmlc.jar" type="file" />
+            <available file="${env.ROYALE_COMPILER_HOME}/lib/jsc.jar" type="file" />
         </and>
     </condition>
-    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js">
         <and>
             <not>
                 <isset property="ROYALE_COMPILER_HOME" />
-            </not>
-            <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar" type="file" />
-        </and>
-    </condition>
-    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}">
-        <and>
-            <not>
-                <isset property="ROYALE_COMPILER_HOME" />
-            </not>
-            <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar" type="file" />
-        </and>
-    </condition>
-    <condition property="ROYALE_TRANSPILER_HOME" value="${env.ROYALE_TRANSPILER_HOME}">
-        <and>
-            <not>
-                <isset property="ROYALE_TRANSPILER_HOME" />
-            </not>
-            <available file="${env.ROYALE_TRANSPILER_HOME}/lib/jsc.jar" type="file" />
-        </and>
-    </condition>
-    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/js">
-        <and>
-            <not>
-                <isset property="ROYALE_TRANSPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
-    <condition property="ROYALE_TRANSPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler-jx">
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler-jx">
         <and>
             <not>
-                <isset property="ROYALE_TRANSPILER_HOME" />
+                <isset property="ROYALE_COMPILER_HOME" />
             </not>
             <available file="${ROYALE_HOME}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
         </and>
@@ -139,7 +139,7 @@
     <target name="compile" description="Compiles .as files into .swc">
         <echo message="Compiling libs/${ant.project.name}.swc"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
-        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
+        <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <!-- make JS output folder now so include-file doesn't error -->
         <mkdir dir="${basedir}/target/generated-sources/royale" />
 
@@ -156,7 +156,7 @@
 
     <target name="check-compiler" depends="check-compiler-home">
         <path id="lib.path">
-            <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+            <fileset dir="${ROYALE_SWF_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
@@ -164,23 +164,23 @@
         <copy file="target/opentypejs.swc" todir="../projects/Text/libs"/>
     </target>
     
-    <target name="check-compiler-home" unless="ROYALE_COMPILER_HOME"
-        description="Check ROYALE_COMPILER_HOME is a directory.">
+    <target name="check-compiler-home" unless="ROYALE_SWF_COMPILER_HOME"
+        description="Check ROYALE_SWF_COMPILER_HOME is a directory.">
         
-        <echo message="ROYALE_COMPILER_HOME is ${env.ROYALE_COMPILER_HOME}"/>
+        <echo message="ROYALE_SWF_COMPILER_HOME is ${env.ROYALE_SWF_COMPILER_HOME}"/>
         
-        <available file="${env.ROYALE_COMPILER_HOME}/lib/compiler-mxmlc.jar"
+        <available file="${env.ROYALE_SWF_COMPILER_HOME}/lib/compiler-mxmlc.jar"
         type="file"
-        property="ROYALE_COMPILER_HOME"
-        value="${env.ROYALE_COMPILER_HOME}"/>
+        property="ROYALE_SWF_COMPILER_HOME"
+        value="${env.ROYALE_SWF_COMPILER_HOME}"/>
         
         <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar"
         type="file"
-        property="ROYALE_COMPILER_HOME"
+        property="ROYALE_SWF_COMPILER_HOME"
         value="${ROYALE_HOME}/../royale-compiler/compiler"/>
         
-        <fail message="ROYALE_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
-        unless="ROYALE_COMPILER_HOME"/>
+        <fail message="ROYALE_SWF_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
+        unless="ROYALE_SWF_COMPILER_HOME"/>
     </target>
 
 </project>
