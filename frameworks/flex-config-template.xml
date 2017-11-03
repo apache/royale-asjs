@@ -20,7 +20,7 @@
 -->
 
 
-<royale-config>
+<flex-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
    <target-player>@playerversion@</target-player>
 
@@ -521,4 +521,4 @@
       <language>EN</language>
    </metadata>
    
-</royale-config>
+</flex-config>
