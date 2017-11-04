@@ -1,0 +1,19 @@
+{
+	"config": "node",
+	"compilerOptions": {
+		"debug": true,
+		"keep-as3-metadata": [
+			"Test",
+			"Before",
+			"After"
+		],
+		"source-map": true,
+		"source-path": [
+			"source",
+			"../source"
+		]
+	},
+	"files":[
+		"source/Tests.as"
+	]
+}
