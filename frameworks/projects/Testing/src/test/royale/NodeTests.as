@@ -6,9 +6,9 @@ package
 	import tests.ScopeTests;
 	import tests.DetectMetadataTests;
 
-	public class Tests
+	public class NodeTests
 	{
-		public function Tests()
+		public function NodeTests()
 		{
 			this._runner = new TestRunner();
 			new TraceListener(this._runner);
