@@ -16,11 +16,11 @@
  *  limitations under the License.
  *
  */
-package org.apache.royale.test.listeners
+package org.apache.royale.test
 {
 	import org.apache.royale.test.TestRunner;
-	import org.apache.royale.test.events.TestEvent;
-	import org.apache.royale.test.errors.AssertionError;
+	import org.apache.royale.test.TestEvent;
+	import org.apache.royale.test.AssertionError;
 
 	public class TraceListener
 	{

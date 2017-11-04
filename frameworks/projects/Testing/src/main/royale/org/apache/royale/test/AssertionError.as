@@ -16,14 +16,17 @@
  *  limitations under the License.
  *
  */
-package org.apache.royale.test.errors
+package org.apache.royale.test
 {
 	public class AssertionError extends Error
 	{
 		public function AssertionError(message:String)
 		{
 			this.message = message;
-			this.stack = (new Error()).stack;
+			COMPILE::JS
+			{
+				this.stack = (new Error()).stack;
+			}
 		}
 	}
 }

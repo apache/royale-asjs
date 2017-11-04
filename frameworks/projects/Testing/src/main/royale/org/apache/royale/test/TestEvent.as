@@ -16,7 +16,7 @@
  *  limitations under the License.
  *
  */
-package org.apache.royale.test.events
+package org.apache.royale.test
 {
 	public class TestEvent
 	{

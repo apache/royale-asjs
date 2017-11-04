@@ -18,7 +18,7 @@
  */
 package org.apache.royale.test
 {
-	import org.apache.royale.test.errors.AssertionError;
+	import org.apache.royale.test.AssertionError;
 
 	public class Assert
 	{

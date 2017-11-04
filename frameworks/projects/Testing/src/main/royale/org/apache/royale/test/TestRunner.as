@@ -18,8 +18,8 @@
  */
 package org.apache.royale.test
 {
-	import org.apache.royale.test.errors.AssertionError;
-	import org.apache.royale.test.events.TestEvent;
+	import org.apache.royale.test.AssertionError;
+	import org.apache.royale.test.TestEvent;
 
 	/**
 	 * Dispatched at the start of an individual test.
