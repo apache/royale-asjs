@@ -28,8 +28,8 @@
     <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
-    
-    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
+    <!-- test needs to be run after Basic is built -->
+    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="compile-js">
@@ -52,7 +52,7 @@
         </condition>
     </target>
     
-    <target name="test" depends="check-for-tests" unless="skip-tests">
+    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
     </target>
     

@@ -1,21 +1,21 @@
 {
     "config": "royale",
+    "type": "lib",
     "compilerOptions": {
         "debug": true,
-        "js-output-type": "royale",
-        "define": [
-            {
-                "name": "COMPILE::SWF",
-                "value": true
-            },
-            {
-                "name": "COMPILE::JS",
-                "value": false
-            }
-        ]
-    },
-    "files":
-    [
-        "src/main/royale/TestingClasses.as"
-    ]
+        "targets": [
+            "SWF",
+            "JSRoyale"
+        ],
+        "include-classes": [
+            "TestingClasses"
+        ],
+        "include-sources": [
+            "src/main/royale"
+        ],
+        "library-path": [
+			"../../../../flex-flexunit/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc"
+		],
+        "output": "target/Testing.swc"
+    }
 }

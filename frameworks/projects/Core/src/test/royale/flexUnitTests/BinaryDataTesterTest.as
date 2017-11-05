@@ -20,7 +20,7 @@ package flexUnitTests {
 
 
     import org.apache.royale.utils.Endian;
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     import org.apache.royale.utils.BinaryData
 
 
@@ -72,21 +72,21 @@ package flexUnitTests {
         {
             var ba:BinaryData = new BinaryData();
 
-            Assert.assertEquals("new Instance, position", ba.position, 0);
-            Assert.assertEquals("new Instance, length", ba.length, 0);
+            assertEquals(ba.position, 0, "new Instance, position");
+            assertEquals(ba.length, 0, "new Instance, length");
 
             ba.position=100;
-            Assert.assertEquals("position change, position", ba.position,100);
-            Assert.assertEquals("position change, length", ba.length, 0);
-            Assert.assertEquals("position change, length", ba.bytesAvailable, 0);
+            assertEquals(ba.position,100, "position change, position");
+            assertEquals(ba.length, 0, "position change, length");
+            assertEquals(ba.bytesAvailable, 0, "position change, length");
 
             ba.length=100;
-            Assert.assertEquals("length change, position", ba.position,100);
-            Assert.assertEquals("length change, length", ba.length, 100);
+            assertEquals(ba.position,100, "length change, position");
+            assertEquals(ba.length, 100, "length change, length");
 
             ba.length=50;
-            Assert.assertEquals("length change, position", ba.position,50);
-            Assert.assertEquals("length change, length", ba.length, 50);
+            assertEquals(ba.position,50, "length change, position");
+            assertEquals(ba.length, 50, "length change, length");
 
 
         }
@@ -100,18 +100,18 @@ package flexUnitTests {
             ba.length=100;
 
             ba.writeByteAt(49,255);
-            Assert.assertEquals("writeByteAt does not affect position", ba.position,100);
-            Assert.assertEquals("writeByteAt (internal) does not affect length", ba.length,100);
+            assertEquals(ba.position,100, "writeByteAt does not affect position");
+            assertEquals(ba.length,100, "writeByteAt (internal) does not affect length");
 
             ba.readByteAt(48);
-            Assert.assertEquals("readByteAt does not affect position", ba.position,100);
-            Assert.assertEquals("readByteAt does not affect length", ba.length,100);
+            assertEquals(ba.position,100, "readByteAt does not affect position");
+            assertEquals(ba.length,100, "readByteAt does not affect length");
 
             ba.writeByteAt(199,255);
-            Assert.assertEquals("writeByteAt (beyond length) does affect length", ba.length,200);
-            Assert.assertEquals("writeByteAt (beyond length) does not affect position", ba.position,100);
+            assertEquals(ba.length, 200, "writeByteAt (beyond length) does affect length");
+            assertEquals(ba.position,100, "writeByteAt (beyond length) does not affect position");
 
-            Assert.assertStrictlyEquals("out of range byte read request",ba.readByteAt(205),0);
+            assertStrictlyEquals(ba.readByteAt(205),0, "out of range byte read request");
 
         }
 
@@ -122,16 +122,16 @@ package flexUnitTests {
             var ba:BinaryData = new BinaryData();
             ba.writeUTF('This is a test');
             //writeUTF
-            Assert.assertEquals("basic post-writeUTF position", ba.position, 16);
+            assertEquals(ba.position, 16, "basic post-writeUTF position");
             ba=new BinaryData();
             ba.writeUTFBytes('This is a test');
             //writeUTFBytes
-            Assert.assertEquals("basic post-writeUTFBytes position", ba.position, 14);
+            assertEquals(ba.position, 14, "basic post-writeUTFBytes position");
 
             //overlapping
             ba.position=5;
             ba.writeUTFBytes('This is a test');
-            Assert.assertEquals("Advanced post-writeUTFBytes position (overlap)", ba.position, 19);
+            assertEquals(ba.position, 19, "Advanced post-writeUTFBytes position (overlap)");
 
         }
 
@@ -142,8 +142,8 @@ package flexUnitTests {
             ba.writeBoolean(true);
             ba.writeBoolean(false);
             ba.position = 0;
-            Assert.assertTrue(ba.readBoolean());
-            Assert.assertFalse(ba.readBoolean());
+            assertTrue(ba.readBoolean());
+            assertFalse(ba.readBoolean());
         }
 
         [Test]
@@ -162,15 +162,15 @@ package flexUnitTests {
             ba.position = 0;
 
 
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), -1);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), 0);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), 0);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), -1);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), -128);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), -128);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), 127);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), -50);
-            Assert.assertEquals("Error testing post writeByte/readByte round-tripping", ba.readByte(), 50);
+            assertEquals(ba.readByte(), -1, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), 0, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), 0, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), -1, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), -128, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), -128, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), 127, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), -50, "Error testing post writeByte/readByte round-tripping");
+            assertEquals(ba.readByte(), 50, "Error testing post writeByte/readByte round-tripping");
         }
 
 
@@ -190,15 +190,15 @@ package flexUnitTests {
             ba.position = 0;
             //check read values
 
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 255);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 0);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 0);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 255);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 128);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 128);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 127);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 206);
-            Assert.assertEquals("Error testing post writeByte/readUnsignedByte round-tripping", ba.readUnsignedByte(), 50);
+            assertEquals(ba.readUnsignedByte(), 255, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 0, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 0, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 255, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 128, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 128, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 127, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 206, "Error testing post writeByte/readUnsignedByte round-tripping");
+            assertEquals(ba.readUnsignedByte(), 50, "Error testing post writeByte/readUnsignedByte round-tripping");
         }
 
 
@@ -208,7 +208,7 @@ package flexUnitTests {
 
             var systemEndian:String = Endian.systemEndian;
             //check we have a decisive systemEndian detection
-            Assert.assertNotNull(systemEndian );
+            assertNotNull(systemEndian );
 
 
             var ba:BinaryData = new BinaryData();
@@ -222,21 +222,21 @@ package flexUnitTests {
             for each(var byte:uint in bytes) ba.writeByte(byte);
             ba.position = 0;
 
-            Assert.assertEquals("testing endian:"+defaultEndian, ba.readUnsignedInt(), expected[defaultEndian]);
+            assertEquals(ba.readUnsignedInt(), expected[defaultEndian], "testing endian:"+defaultEndian);
 
             ba.position = 0;
             ba.endian = alternateEndian;
             var result:uint =  ba.readUnsignedInt();
 
-            Assert.assertEquals("testing endian:"+alternateEndian, result, expected[alternateEndian]);
+            assertEquals(result, expected[alternateEndian], "testing endian:"+alternateEndian);
 
             ba.position = 0;
             ba.endian = defaultEndian;
-            Assert.assertEquals("testing endian:"+defaultEndian, ba.readInt(), int(expected[defaultEndian]));
+            assertEquals(ba.readInt(), int(expected[defaultEndian]), "testing endian:"+defaultEndian);
 
             ba.position = 0;
             ba.endian = alternateEndian;
-            Assert.assertEquals("testing endian:"+alternateEndian, ba.readInt(), int(expected[alternateEndian]));
+            assertEquals(ba.readInt(), int(expected[alternateEndian]), "testing endian:"+alternateEndian);
 
             var leBA:BinaryData = new BinaryData();
             leBA.endian = Endian.LITTLE_ENDIAN;
@@ -246,12 +246,12 @@ package flexUnitTests {
             beBA.writeInt(-500);
             leBA.writeInt(-500);
             //check they represent reversed byte sequence
-            Assert.assertTrue(reversedBytesMatch(beBA,leBA,4));
+            assertTrue(reversedBytesMatch(beBA,leBA,4));
             beBA.position=0;
             leBA.position=0;
             //check they each read back to the same uint value
-            Assert.assertEquals('big endian',beBA.readUnsignedInt(),4294966796);
-            Assert.assertEquals('little endian',leBA.readUnsignedInt(),4294966796);
+            assertEquals(beBA.readUnsignedInt(),4294966796, 'big endian');
+            assertEquals(leBA.readUnsignedInt(),4294966796, 'little endian');
 
             beBA.position=0;
             leBA.position=0;
@@ -259,20 +259,20 @@ package flexUnitTests {
             beBA.writeUnsignedInt(4294966796);
             leBA.writeUnsignedInt(4294966796);
             //check they represent reversed byte sequence
-            Assert.assertTrue(reversedBytesMatch(beBA,leBA,4));
+            assertTrue(reversedBytesMatch(beBA,leBA,4));
             beBA.position=0;
             leBA.position=0;
             //check they each read back to the same uint value
-            Assert.assertEquals('big endian',beBA.readUnsignedInt(),4294966796);
-            Assert.assertEquals('little endian',leBA.readUnsignedInt(),4294966796);
+            assertEquals(beBA.readUnsignedInt(),4294966796, 'big endian');
+            assertEquals(leBA.readUnsignedInt(),4294966796, 'little endian');
 
 
             beBA.position=0;
             leBA.position=0;
 
             //check they each read back to the same int value
-            Assert.assertEquals('big endian',beBA.readInt(),-500);
-            Assert.assertEquals('little endian',leBA.readInt(),-500);
+            assertEquals(beBA.readInt(),-500, 'big endian');
+            assertEquals(leBA.readInt(),-500, 'little endian');
 
 
             beBA.position=0;
@@ -282,20 +282,20 @@ package flexUnitTests {
             beBA.writeShort(-500);
             leBA.writeShort(-500);
             //check they represent reversed byte sequence
-            Assert.assertTrue(reversedBytesMatch(beBA,leBA,2));
+            assertTrue(reversedBytesMatch(beBA,leBA,2));
             beBA.position=0;
             leBA.position=0;
             //check they each read back to the same uint value
-            Assert.assertEquals('big endian',beBA.readUnsignedShort(),65036);
-            Assert.assertEquals('little endian',leBA.readUnsignedShort(),65036);
+            assertEquals(beBA.readUnsignedShort(),65036, 'big endian');
+            assertEquals(leBA.readUnsignedShort(),65036, 'little endian');
 
 
             beBA.position=0;
             leBA.position=0;
 
             //check they each read back to the same int value
-            Assert.assertEquals('big endian',beBA.readShort(),-500);
-            Assert.assertEquals('little endian',leBA.readShort(),-500);
+            assertEquals(beBA.readShort(),-500, 'big endian');
+            assertEquals(leBA.readShort(),-500, 'little endian');
 
         }
 
@@ -309,18 +309,18 @@ package flexUnitTests {
             ba.endian = Endian.BIG_ENDIAN;
             ba.writeUTF('This is a test');
             //writeUTF
-            Assert.assertEquals("basic post-writeUTF position", ba.position, 16);
+            assertEquals(ba.position, 16, "basic post-writeUTF position");
             ba.position = 0;
-            Assert.assertEquals("utf big endian round-tripping", ba.readUTF(), 'This is a test');
+            assertEquals(ba.readUTF(), 'This is a test', "utf big endian round-tripping");
 
             ba = new BinaryData();
             //test little-endian round-tripping
             ba.endian = Endian.LITTLE_ENDIAN;
             ba.writeUTF('This is a test');
             //writeUTF
-            Assert.assertEquals("basic post-writeUTF position", ba.position, 16);
+            assertEquals(ba.position, 16, "basic post-writeUTF position");
             ba.position = 0;
-            Assert.assertEquals("utf big endian round-tripping", ba.readUTF(), 'This is a test');
+            assertEquals(ba.readUTF(), 'This is a test', "utf big endian round-tripping");
 
         }
 
@@ -336,10 +336,10 @@ package flexUnitTests {
             ba.writeShort(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.length, 6);
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.readShort(), 255);
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.readShort(), -50);
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.readShort(), 50);
+            assertEquals(ba.length, 6, "Error testing post writeShort/readShort round-tripping");
+            assertEquals(ba.readShort(), 255, "Error testing post writeShort/readShort round-tripping");
+            assertEquals(ba.readShort(), -50, "Error testing post writeShort/readShort round-tripping");
+            assertEquals(ba.readShort(), 50, "Error testing post writeShort/readShort round-tripping");
 
             //test BIG_ENDIAN round-tripping
 
@@ -350,10 +350,10 @@ package flexUnitTests {
             ba.writeShort(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.length, 6);
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.readShort(), 255);
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.readShort(), -50);
-            Assert.assertEquals("Error testing post writeShort/readShort round-tripping", ba.readShort(), 50);
+            assertEquals(ba.length, 6, "Error testing post writeShort/readShort round-tripping");
+            assertEquals(ba.readShort(), 255, "Error testing post writeShort/readShort round-tripping");
+            assertEquals(ba.readShort(), -50, "Error testing post writeShort/readShort round-tripping");
+            assertEquals(ba.readShort(), 50, "Error testing post writeShort/readShort round-tripping");
         }
 
 
@@ -368,10 +368,10 @@ package flexUnitTests {
             ba.writeShort(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.length, 6);
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.readUnsignedShort(), 255);
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.readUnsignedShort(), 65486);
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.readUnsignedShort(), 50);
+            assertEquals(ba.length, 6, "Error testing post unsigned writeShort/readShort round-tripping");
+            assertEquals(ba.readUnsignedShort(), 255, "Error testing post unsigned writeShort/readShort round-tripping");
+            assertEquals(ba.readUnsignedShort(), 65486, "Error testing post unsigned writeShort/readShort round-tripping");
+            assertEquals(ba.readUnsignedShort(), 50, "Error testing post unsigned writeShort/readShort round-tripping");
 
             //test BIG_ENDIAN round-tripping
 
@@ -382,10 +382,10 @@ package flexUnitTests {
             ba.writeShort(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.length, 6);
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.readUnsignedShort(), 255);
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.readUnsignedShort(), 65486);
-            Assert.assertEquals("Error testing post unsigned writeShort/readShort round-tripping", ba.readUnsignedShort(), 50);
+            assertEquals(ba.length, 6, "Error testing post unsigned writeShort/readShort round-tripping");
+            assertEquals(ba.readUnsignedShort(), 255, "Error testing post unsigned writeShort/readShort round-tripping");
+            assertEquals(ba.readUnsignedShort(), 65486, "Error testing post unsigned writeShort/readShort round-tripping");
+            assertEquals(ba.readUnsignedShort(), 50, "Error testing post unsigned writeShort/readShort round-tripping");
         }
 
         [Test]
@@ -399,10 +399,10 @@ package flexUnitTests {
             ba.writeInt(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.length, 12);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readInt(), 65536);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readInt(), -50);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readInt(), 50);
+            assertEquals(ba.length, 12, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readInt(), 65536, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readInt(), -50, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readInt(), 50, "Error testing post writeInt/readInt round-tripping");
 
             //test BIG_ENDIAN round-tripping
 
@@ -413,10 +413,10 @@ package flexUnitTests {
             ba.writeInt(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.length, 12);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readInt(), 65536);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readInt(), -50);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readInt(), 50);
+            assertEquals(ba.length, 12, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readInt(), 65536, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readInt(), -50, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readInt(), 50, "Error testing post writeInt/readInt round-tripping");
         }
 
 
@@ -431,10 +431,10 @@ package flexUnitTests {
             ba.writeUnsignedInt(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.length, 12);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readUnsignedInt(),65536);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readUnsignedInt(), 4294967246);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readUnsignedInt(), 50);
+            assertEquals(ba.length, 12, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readUnsignedInt(),65536, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readUnsignedInt(), 4294967246, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readUnsignedInt(), 50, "Error testing post writeInt/readInt round-tripping");
 
             //test BIG_ENDIAN round-tripping
 
@@ -445,10 +445,10 @@ package flexUnitTests {
             ba.writeUnsignedInt(50);
             ba.position = 0;
 
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.length, 12);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readUnsignedInt(),65536);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readUnsignedInt(), 4294967246);
-            Assert.assertEquals("Error testing post writeInt/readInt round-tripping", ba.readUnsignedInt(), 50);
+            assertEquals(ba.length, 12, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readUnsignedInt(),65536, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readUnsignedInt(), 4294967246, "Error testing post writeInt/readInt round-tripping");
+            assertEquals(ba.readUnsignedInt(), 50, "Error testing post writeInt/readInt round-tripping");
         }
 
         [Test]
@@ -460,10 +460,10 @@ package flexUnitTests {
             ble.writeFloat(86.54);
 
 
-            Assert.assertEquals("Error testing post writeFloat/readFloat round-tripping", ble.length, 4);
-            Assert.assertEquals("Error testing post writeFloat/readFloat round-tripping", ble.position, 4);
+            assertEquals(ble.length, 4, "Error testing post writeFloat/readFloat round-tripping");
+            assertEquals(ble.position, 4, "Error testing post writeFloat/readFloat round-tripping");
             //check bytes to account for precision loss between double and float comparisons
-            Assert.assertTrue("Error testing post writeFloat/readFloat round-tripping", bytesMatchExpectedData(ble,[123,20,173,66]));
+            assertTrue(bytesMatchExpectedData(ble,[123,20,173,66]), "Error testing post writeFloat/readFloat round-tripping");
 
             var bbe:BinaryData = new BinaryData();
             //test BIG_ENDIAN round-tripping
@@ -471,10 +471,10 @@ package flexUnitTests {
             bbe.writeFloat(86.54);
 
 
-            Assert.assertEquals("Error testing post writeFloat/readFloat round-tripping", bbe.length, 4);
-            Assert.assertEquals("Error testing post writeFloat/readFloat round-tripping", bbe.position, 4);
+            assertEquals(bbe.length, 4, "Error testing post writeFloat/readFloat round-tripping");
+            assertEquals(bbe.position, 4, "Error testing post writeFloat/readFloat round-tripping");
             //check bytes to account for precision loss between double and float comparisons
-            Assert.assertTrue("Error testing post writeFloat/readFloat round-tripping", bytesMatchExpectedData(bbe,[66,173,20,123]));
+            assertTrue(bytesMatchExpectedData(bbe,[66,173,20,123]), "Error testing post writeFloat/readFloat round-tripping");
 
 
         }
@@ -490,11 +490,11 @@ package flexUnitTests {
         ble.writeDouble(86.54);
 
 
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", ble.length, 8);
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", ble.position, 8);
+        assertEquals(ble.length, 8, "Error testing post writeDouble/readDouble round-tripping");
+        assertEquals(ble.position, 8, "Error testing post writeDouble/readDouble round-tripping");
 
         //check bytes
-        Assert.assertTrue("Error testing post writeDouble/readDouble round-tripping", bytesMatchExpectedData(ble,[195,245,40,92,143,162,85,64]));
+        assertTrue(bytesMatchExpectedData(ble,[195,245,40,92,143,162,85,64]), "Error testing post writeDouble/readDouble round-tripping");
 
         var bbe:BinaryData = new BinaryData();
         //test BIG_ENDIAN round-tripping
@@ -502,20 +502,20 @@ package flexUnitTests {
         bbe.writeDouble(86.54);
 
 
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", bbe.length, 8);
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", bbe.position, 8);
+        assertEquals(bbe.length, 8, "Error testing post writeDouble/readDouble round-tripping");
+        assertEquals(bbe.position, 8, "Error testing post writeDouble/readDouble round-tripping");
         //check bytes
 
-        Assert.assertTrue("Error testing post writeDouble/readDouble round-tripping", bytesMatchExpectedData(bbe,[64,85,162,143,92,40,245,195]));
+        assertTrue(bytesMatchExpectedData(bbe,[64,85,162,143,92,40,245,195]), "Error testing post writeDouble/readDouble round-tripping");
 
 
         ble.position = 0;
         bbe.position = 0;
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", bbe.readDouble(), 86.54);
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", ble.readDouble(), 86.54);
+        assertEquals(bbe.readDouble(), 86.54, "Error testing post writeDouble/readDouble round-tripping");
+        assertEquals(ble.readDouble(), 86.54, "Error testing post writeDouble/readDouble round-tripping");
 
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", bbe.position, 8);
-        Assert.assertEquals("Error testing post writeDouble/readDouble round-tripping", ble.position, 8);
+        assertEquals(bbe.position, 8, "Error testing post writeDouble/readDouble round-tripping");
+        assertEquals(ble.position, 8, "Error testing post writeDouble/readDouble round-tripping");
 
     }
 
@@ -531,11 +531,11 @@ package flexUnitTests {
         var newBa:BinaryData = new BinaryData();
         newBa.writeBytes(ba);
 
-        Assert.assertEquals("BinaryData writeBytes: length", 50, newBa.length);
-        Assert.assertEquals("BinaryData writeBytes: position", 50, newBa.position);
+        assertEquals(50, newBa.length, "BinaryData writeBytes: length");
+        assertEquals(50, newBa.position, "BinaryData writeBytes: position");
 
         for (i=0;i<50;i++) {
-            Assert.assertEquals("BinaryData writeBytes: content check", i, newBa.array[i]);
+            assertEquals(i, newBa.array[i], "BinaryData writeBytes: content check");
         }
 
 
@@ -551,12 +551,12 @@ package flexUnitTests {
         var newBa:BinaryData = new BinaryData();
 
         ba.readBytes(newBa,5,10);
-        Assert.assertEquals("BinaryData readBytes: position", 10, ba.position);
-        Assert.assertEquals("BinaryData readBytes: length", 15, newBa.length);
-        Assert.assertEquals("BinaryData readBytes: position", 0, newBa.position);
+        assertEquals(10, ba.position, "BinaryData readBytes: position");
+        assertEquals(15, newBa.length, "BinaryData readBytes: length");
+        assertEquals(0, newBa.position, "BinaryData readBytes: position");
         var expected:Array = [0,0,0,0,0,0,1,2,3,4,5,6,7,8,9];
         for (i=5;i<15;i++) {
-            Assert.assertEquals("BinaryData readBytes: content check", expected[i], newBa.array[i]);
+            assertEquals(expected[i], newBa.array[i], "BinaryData readBytes: content check");
         }
     }
 

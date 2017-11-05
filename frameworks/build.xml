@@ -109,11 +109,13 @@
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
         <antcall target="Language"/>
+        <antcall target="Testing"/>
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
         <antcall target="Basic"/>
+        <antcall target="CoreTest"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
         <antcall target="Flat"/>
@@ -160,6 +162,7 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
+        <ant dir="${basedir}/projects/Testing" target="clean"/>
         <ant dir="${basedir}/projects/Binding" target="clean"/>
         <ant dir="${basedir}/projects/Charts" target="clean"/>
         <ant dir="${basedir}/projects/Collections" target="clean"/>
@@ -210,6 +213,10 @@
         </delete>
     </target>
     
+    <target name="Testing" description="Clean build of Testing.swc">
+        <ant dir="${basedir}/projects/Testing"/>
+    </target>
+
     <target name="Binding" description="Clean build of Binding.swc">
         <ant dir="${basedir}/projects/Binding"/>
     </target>
@@ -220,6 +227,10 @@
 
     <target name="Core" description="Clean build of Core.swc">
         <ant dir="${basedir}/projects/Core"/>
+    </target>
+
+    <target name="CoreTest" description="Test of Core.swc">
+        <ant dir="${basedir}/projects/Core" target="test"/>
     </target>
 
     <target name="Collections" description="Clean build of Collections.swc">
