@@ -25,10 +25,10 @@ package org.apache.royale.utils.date
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-    public function addYears(date:Date):Date
+    public function addYears(date:Date, years:int=1):Date
     {
 		var newDate:Date = new Date(date.valueOf());
-		newDate.setDate(date.getDate()+1);
+		newDate.setFullYear(date.getFullYear() + years);
 		return newDate;
     }
 }

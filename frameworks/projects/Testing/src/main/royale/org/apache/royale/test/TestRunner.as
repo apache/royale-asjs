@@ -280,7 +280,7 @@ package org.apache.royale.test
 		 */
 		private function collectMethodWithMetadataTag(target:Object, tagName:String):Function
 		{
-			var reflection:Object = target["FLEXJS_REFLECTION_INFO"]();
+			var reflection:Object = target["ROYALE_REFLECTION_INFO"]();
 			var methods:Object = reflection.methods();
 			for(var methodName:String in methods)
 			{
@@ -310,7 +310,7 @@ package org.apache.royale.test
 		private function collectTests(target:Object):Vector.<TestInfo>
 		{
 			var tests:Vector.<TestInfo> = new <TestInfo>[];
-			var reflection:Object = target["FLEXJS_REFLECTION_INFO"]();
+			var reflection:Object = target["ROYALE_REFLECTION_INFO"]();
 			var methods:Object = reflection.methods();
 			for(var methodName:String in methods)
 			{
