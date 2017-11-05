@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-    import flexunit.framework.Assert;
-    
     import org.apache.royale.html.supportClasses.DataGridColumn;
-    
-    public class DataGridColumnTesterTest
+    import org.apache.royale.test.asserts.*;
+
+    public class DataGridColumnTest
     {		
         [Before]
         public function setUp():void
@@ -49,7 +48,7 @@ package flexUnitTests
         {
             var column:DataGridColumn = new DataGridColumn();
             column.label = "foo";
-            Assert.assertEquals("Error testing DataGridColumn.label", column.label, "foo");
+            assertEquals(column.label, "foo", "Error testing DataGridColumn.label");
         }        
     }
 }

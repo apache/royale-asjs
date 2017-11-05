@@ -22,6 +22,6 @@ package flexUnitTests
     [RunWith("org.flexunit.runners.Suite")]
     public class DataGridColumnTester
     {
-        public var dataGridColumnTesterTest:DataGridColumnTesterTest;
+        public var dataGridColumnTest:DataGridColumnTest;
     }
 }
