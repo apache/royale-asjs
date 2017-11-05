@@ -471,10 +471,10 @@
     </exclude-classes>
    
    <exclude-sources>
-       <path-element>${frameworks_dir}/projects/Language/src/main/royale/org/apache.royale/utils/Language.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache.royale/core/WrappedHTMLElement.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache.royale/events/BrowserEvent.as</path-element>
-       <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/org/apache.royale/maps/google/beads/MapView_original.as</path-element>
+       <path-element>${frameworks_dir}/projects/Language/src/main/royale/org/apache/royale/utils/Language.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/WrappedHTMLElement.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/events/BrowserEvent.as</path-element>
+       <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/org/apache/royale/maps/google/beads/MapView_original.as</path-element>
     </exclude-sources>
    
    <!-- source path for asdoc -->
