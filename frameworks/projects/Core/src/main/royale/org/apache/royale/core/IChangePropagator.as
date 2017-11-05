@@ -1,4 +1,3 @@
-/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,63 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-*/
-
-@namespace "http://www.w3.org/1999/xhtml";
-@namespace js "library://ns.apache.org/royale/basic";
-
-.royale *, . royale *:before, . royale *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.page-content
+package org.apache.royale.core
 {
-	padding: 10px;
-	margin: 10px;
-}
+    /**
+     *  The IChangePropagator is a marker interface
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9
+     */
+	public interface IChangePropagator extends IBead
+	{
 
-/*
-* TextButton
-*/
-
-js|TextButton {
-    /* Background: */
-background: #D8D8D8;
-border: 1px solid #979797;
-border-radius: 3px;
-
-/* TextField: */
-font-family: HelveticaNeue;
-font-size: 12px;
-color: #646D7A;
-}
-
-js|TextButton:hover {
-    background-color: #CFCFCF;
-    vertical-align: middle;
-    border: none;
-    border-radius: 6px;
-}
-
-js|TextButton:active {
-    background-color: #77CEFF;
-    color: #FFFFFF;
-}
-
-/*
-* TextInput
-*/
-
-js|TextInput {
-    padding: 5px;
-    border: solid 1px #666666;
-    border-radius: 6px;
-    color: #333333;
-}
-
-js|TextInput:hover {
-    padding: 5px;
-    background-color: #DFDFDF;
+	}
 }

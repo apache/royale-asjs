@@ -96,7 +96,6 @@ package org.apache.royale.html.beads
 		{			
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			dataProviderModel.addEventListener("rerender", dataProviderChangeHandler);
 			labelField = dataProviderModel.labelField;
 
             dataFieldProvider = _strand.getBeadByType(DataFieldProviderBead) as DataFieldProviderBead;
