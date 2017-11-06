@@ -18,10 +18,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class DataGridColumnTester
-    {
-        public var dataGridColumnTest:DataGridColumnTest;
+    import org.apache.royale.html.supportClasses.DataGridColumn;
+    import org.apache.royale.test.asserts.*;
+
+    public class DataGridColumnTest
+    {		
+        [Before]
+        public function setUp():void
+        {
+        }
+        
+        [After]
+        public function tearDown():void
+        {
+        }
+        
+        [BeforeClass]
+        public static function setUpBeforeClass():void
+        {
+        }
+        
+        [AfterClass]
+        public static function tearDownAfterClass():void
+        {
+        }
+        
+        [Test]
+        public function testLabelProperty():void
+        {
+            var column:DataGridColumn = new DataGridColumn();
+            column.label = "foo";
+            assertEquals(column.label, "foo", "Error testing DataGridColumn.label");
+        }        
     }
 }

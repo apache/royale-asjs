@@ -19,7 +19,7 @@
 -->
 
 
-<project name="Core.test" default="main" basedir=".">
+<project name="Testing.test" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../../../../.."/>
     
     <property file="${ROYALE_HOME}/env.properties"/>
@@ -29,6 +29,12 @@
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="target.name" value="Core-${release.version}.swc" />
 
+    <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
+    <property name="theme_arg" value="-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta" />
+    <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
+    <property name="extlib_arg" value="-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta" />
+
+
 	<condition property="browser" value="C:/Program Files/Internet Explorer/iexplore.exe">
 		<os family="windows"/>
     </condition>
@@ -36,7 +42,7 @@
         <os family="mac"/>
     </condition>
 
-    <property name="report.dir" value="${basedir}/out" />
+    <property name="report.dir" value="${basedir}/flexunit" />
     
     <available file="${ROYALE_HOME}/in/flexunit"
         type="dir"
@@ -139,7 +145,7 @@
 			verbose="true"
 			localTrusted="true"
 			timeout="90000">
-            <source dir="${ROYALE_HOME}/frameworks/projects/Core/src/main/royale" />
+            <source dir="${ROYALE_HOME}/frameworks/projects/Basic/src/main/royale" />
             <library dir="${ROYALE_HOME}/frameworks/libs" />
         </flexunit>
         
@@ -152,4 +158,8 @@
 		</junitreport>
         
     </target>
+
+    <target name="node" description="test of ${target.name} using node.js">
+    </target>
+
 </project>

@@ -24,5 +24,6 @@ package flexUnitTests
     {
         public var strandTesterTest:StrandTesterTest;
 		public var binaryDataTesterTest:BinaryDataTesterTest;
+		public var dateUtilsTest:DateUtilsTest;
     }
 }

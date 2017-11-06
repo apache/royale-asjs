@@ -16,12 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package
 {
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class DataGridColumnTester
-    {
-        public var dataGridColumnTest:DataGridColumnTest;
-    }
+
+/**
+ *  @private
+ *  This class is used to link additional classes into rpc.swc
+ *  beyond those that are found by dependency analysis starting
+ *  from the classes specified in manifest.xml.
+ */
+internal class TestingClasses
+{
+	import org.apache.royale.test.Assert; Assert;
+	import org.apache.royale.test.asserts.assertDefined; assertDefined;
+	import org.apache.royale.test.asserts.assertEquals; assertEquals;
+	import org.apache.royale.test.asserts.assertFalse; assertFalse;
+	import org.apache.royale.test.asserts.assertNotNull; assertNotNull;
+	import org.apache.royale.test.asserts.assertNull; assertNull;
+	import org.apache.royale.test.asserts.assertStrictlyEquals; assertStrictlyEquals;
+	import org.apache.royale.test.asserts.assertTrue; assertTrue;
+	import org.apache.royale.test.asserts.assertUndefined; assertUndefined;
+	import org.apache.royale.test.asserts.fail; fail;
+
+	import org.apache.royale.test.TraceListener; TraceListener;
+
 }
+
+}
+

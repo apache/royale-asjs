@@ -16,40 +16,46 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package tests
 {
-    import flexunit.framework.Assert;
-    
-    import org.apache.royale.html.supportClasses.DataGridColumn;
-    
-    public class DataGridColumnTesterTest
-    {		
-        [Before]
-        public function setUp():void
-        {
-        }
-        
-        [After]
-        public function tearDown():void
-        {
-        }
-        
-        [BeforeClass]
-        public static function setUpBeforeClass():void
-        {
-        }
-        
-        [AfterClass]
-        public static function tearDownAfterClass():void
-        {
-        }
-        
-        [Test]
-        public function testLabelProperty():void
-        {
-            var column:DataGridColumn = new DataGridColumn();
-            column.label = "foo";
-            Assert.assertEquals("Error testing DataGridColumn.label", column.label, "foo");
-        }        
-    }
+	import org.apache.royale.test.TestRunner;
+	import org.apache.royale.test.Assert;
+
+	public class DetectMetadataTests
+	{
+		[Test]
+		public function testBeforeTestAfterMetadata():void
+		{
+			var runner:TestRunner = new TestRunner();
+			runner.run(new <Class>[TestClass]);
+			Assert.true(TestClass.before);
+			Assert.true(TestClass.test);
+			Assert.true(TestClass.after);
+		}
+	}
+}
+
+class TestClass
+{
+	public static var before:Boolean = false;
+	public static var after:Boolean = false;
+	public static var test:Boolean = false;
+
+	[Before]
+	public function testBeforeMetadata():void
+	{
+		TestClass.before = true;
+	}
+
+	[After]
+	public function testAfterMetadata():void
+	{
+		TestClass.after = true;
+	}
+
+	[Test]
+	public function testTestMetadata():void
+	{
+		TestClass.test = true;
+	}
 }

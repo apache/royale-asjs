@@ -24,7 +24,6 @@ limitations under the License.
                    >
     <fx:Script>
         <![CDATA[
-            import flexUnitTests.DataGridColumnTesterTest;
             import flexUnitTests.DataGridColumnTester;
             
             import org.flexunit.listeners.CIListener;

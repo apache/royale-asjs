@@ -19,7 +19,7 @@
 -->
 
 
-<project name="Core" default="main" basedir=".">
+<project name="Testing" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     
     <property file="${ROYALE_HOME}/env.properties"/>
@@ -28,8 +28,36 @@
     <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
-    <!-- test needs to be run after Basic is built -->
-    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc" description="Full build of ${ant.project.name}.swc">
+
+    <available file="${ROYALE_HOME}/in/flexunit"
+        type="dir"
+        property="FLEXUNIT_HOME"
+        value="${ROYALE_HOME}/in/flexunit" />
+	
+    <available file="${env.FLEXUNIT_HOME}"
+        type="dir"
+        property="FLEXUNIT_HOME"
+        value="${env.FLEXUNIT_HOME}"/>
+    
+    <available file="${FLEXUNIT_HOME}/FlexUnit4/target"
+        type="dir"
+        property="FLEXUNIT_LIBPATH1"
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc" />
+    <property name="FLEXUNIT_LIBPATH1" value="-library-path+=${FLEXUNIT_HOME}/flexunit" />
+        
+    <available file="${FLEXUNIT_HOME}/FlexUnit4CIListener/target"
+        type="dir"
+        property="FLEXUNIT_LIBPATH2"
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
+    <property name="FLEXUNIT_LIBPATH2" value="-define=CONFIG::dummy,false" />
+        
+    <available file="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target"
+        type="dir"
+        property="FLEXUNIT_CLASSPATH"
+        value="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target" />
+    <property name="FLEXUNIT_CLASSPATH" value="${FLEXUNIT_HOME}/flexunit" />
+     
+    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="compile-js">
@@ -50,15 +78,10 @@
                 <available file="${basedir}/src/test/royale/build.xml" />
             </not>
         </condition>
-        <condition property="skip-tests" >
-            <not>
-                <isset property="env.AIR_HOME" />
-            </not>
-        </condition>
     </target>
     
-    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
-        <ant dir="src/test/royale" />
+    <target name="test" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/royale" target="node"/>
     </target>
     
     <target name="clean">
@@ -84,12 +107,14 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <echo message="FLEXUNIT_HOME: ${FLEXUNIT_HOME}"/>
         
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${FLEX_HOME}/frameworks" />
             <arg value="+royalelib=${FLEX_HOME}/frameworks" />
+            <arg value="${FLEXUNIT_LIBPATH1}" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />

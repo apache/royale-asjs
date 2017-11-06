@@ -217,6 +217,7 @@ internal class CoreClasses
 	
 	COMPILE::JS
 	{
+		import org.apache.royale.core.WrappedHTMLElement ;WrappedHTMLElement;
 	    import org.apache.royale.core.IRoyaleElement; IRoyaleElement;
 	}
 	//Package Level Functions
