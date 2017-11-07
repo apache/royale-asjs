@@ -41,9 +41,9 @@ package org.apache.royale.express
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 1.0.0
 		 */
 		public function NumericStepper()
 		{

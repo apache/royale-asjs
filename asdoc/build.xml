@@ -21,9 +21,9 @@
     <property environment="env"/>
     <available file="${basedir}/../../sdk"
         type="dir"
-        property="FLEX_HOME"
+        property="ROYALE_HOME"
         value="${basedir}/../../sdk" />
-	<property name="FLEX_HOME" value="${basedir}/../../royale-sdk"/>
+	<property name="ROYALE_HOME" value="${basedir}/../../royale-sdk"/>
 	<property name="lenient" value="true"/>
 	<property name="royalelib" location="${basedir}/../frameworks"/>
 
@@ -33,7 +33,7 @@
     <property file="${ROYALE_HOME}/env.properties"/>
 	<property file="${ROYALE_HOME}/build.properties"/>
 	
-	<echo message="FLEX_HOME = ${FLEX_HOME}" />
+	<echo message="ROYALE_HOME = ${ROYALE_HOME}" />
 	<echo message="royalelib = ${royalelib}" />
 	<echo message="doc_output = ${doc_output}" />
     <echo message="compiler.source-path = ${project_home}/*/src/main/royale" />
@@ -59,7 +59,7 @@
 	    </condition>
 
         <path id="flexTasks.path">
-            <fileset dir="${FLEX_HOME}">
+            <fileset dir="${ROYALE_HOME}">
                 <include name="lib/royaleTasks.jar" />
                 <include name="ant/lib/royaleTasks.jar" />
             </fileset>

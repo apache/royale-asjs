@@ -4,7 +4,7 @@ The app itself is very simple: it has a label for status and a map. The applicat
 
 The app uses the Cordova Geolocation plugin to get the device's current location. The map is displayed using the Royale Google Maps wrapper component.
 
-To get this example to work, you must first make sure you have all of the necessary Royale SDK and associated parts (eg, ANT, Falcon) downloaded and installed. If you have pulled this example from the examples directory of the Royale SDK, you probably have it all set up now.
+To get this example to work, you must first make sure you have all of the necessary Royale SDK and associated parts (eg, ANT, the Royale Compiler) downloaded and installed. If you have pulled this example from the examples directory of the Royale SDK, you probably have it all set up now.
 
 You will also need Apache Cordova. You can about the Royale Cordova connection on these Wiki pages which will direct you to the page with instructions for getting Cordova onto your system:
 

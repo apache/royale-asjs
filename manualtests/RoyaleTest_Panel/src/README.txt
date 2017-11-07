@@ -23,7 +23,7 @@ The RoyaleTest_Panel application demonstrates some Royale common components,
 incuding Panel. The application uses a Panel to contain a sub-set of Royale
 components, listed below.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using the Royale Compiler)
 into JavaScript and HTML and run without Flash.
 
 COMPONENTS and BEADS

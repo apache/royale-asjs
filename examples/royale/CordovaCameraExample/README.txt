@@ -1,6 +1,6 @@
 Running the CordovaCameraExample on an Android Device
 
-From Flash Builder or the command line, run the Royale cross compiler, FalconJX, to build the HTML/JavaScript version of your app.
+From Flash Builder or the command line, run the Royale Compiler, to build the HTML/JavaScript version of your app.
 % cd ~/dev/royale-asjs/examples/CordovaCameraExample
 % ant all
 

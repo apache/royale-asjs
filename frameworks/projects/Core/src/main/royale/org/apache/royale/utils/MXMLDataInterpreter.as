@@ -257,9 +257,9 @@ public class MXMLDataInterpreter
         
         COMPILE::SWF
         {
-            // royale on the JS side won't have effects in here, they are regular properties
-            // but falcon provides this set for SWFs for future compatibility with
-            // the older flex-sdk.
+            // Royale on the JS side won't have effects in here, they are regular properties
+            // but the Royale Compiler provides this set for SWFs for future compatibility with
+            // Apache Flex.
             m = data[i++]; // num effects
             for (j = 0; j < m; j++)
             {
@@ -426,9 +426,9 @@ public class MXMLDataInterpreter
         
         COMPILE::SWF 
         {
-            // royale on the JS side won't have effects in here, they are regular properties
-            // but falcon provides this set for SWFs for future compatibility with
-            // the older flex-sdk.
+            // Royale on the JS side won't have effects in here, they are regular properties
+            // but the Royale Compiler provides this set for SWFs for future compatibility with
+            // Apache Flex.
             m = data[i++]; // num effects
             for (j = 0; j < m; j++)
             {

@@ -24,12 +24,12 @@
 # OSX, Unix, or Cygwin. In Windows Command Prompt, use foptimizer.bat instead.
 #
 
-if [ "x${FALCON_HOME}" = "x" ]
+if [ "x${ROYALE_COMPILER_HOME}" = "x" ]
 then
     SCRIPT_HOME=`dirname "$0"`
-    FALCON_HOME=${SCRIPT_HOME}/..
+    ROYALE_COMPILER_HOME=${SCRIPT_HOME}/..
 else
-    echo Using Falcon codebase: $FALCON_HOME
+    echo Using Royale Compiler codebase: $ROYALE_COMPILER_HOME
 fi
 
 case `uname` in
@@ -44,7 +44,7 @@ D32=''
 
 if [ $OS = "Windows" ]; then
 
-	FALCON_HOME=`cygpath -m $FALCON_HOME`
+	ROYALE_COMPILER_HOME=`cygpath -m $ROYALE_COMPILER_HOME`
 
 elif [ $OS = "Unix" ]; then
 
@@ -59,4 +59,4 @@ fi
 
 VMARGS="-Xms32m -Xmx512m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${FALCON_HOME}/lib/compiler-optimizer.jar" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -jar "${ROYALE_COMPILER_HOME}/lib/compiler-optimizer.jar" "$@"

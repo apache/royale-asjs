@@ -2531,7 +2531,7 @@ class RemappedMouseEvent extends org.apache.royale.events.MouseEvent
 	}
 
 	// override methods/getters for things we couldn't set in the base class	
-//TODO FalconJX did not like these overrides
+//TODO The Royale Compiler did not like these overrides
 	// public override function get target():Object
 	// { return _event.currentTarget; }
 	

@@ -49,13 +49,13 @@ limitations under the License.
                 </js:beads>
             </js:Span>
 
-            <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
+            <js:A id="badge1" text="Badge Normal" href="http://royale.apache.org">
                 <js:beads>
                     <mdl:Badge dataBadge="1"/>
                 </js:beads>
             </js:A>
 
-            <js:A text="Badge No Background" href="http://flex.apache.org">
+            <js:A text="Badge No Background" href="http://royale.apache.org">
                 <js:beads>
                     <mdl:Badge dataBadge="5" noBackground="true"/>
                 </js:beads>

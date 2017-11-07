@@ -68,7 +68,7 @@ package org.apache.royale.events
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public static const DRAG_START:String = "dragStart";
         
@@ -96,7 +96,7 @@ package org.apache.royale.events
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public static const DRAG_MOVE:String = "dragMove";
 
@@ -124,7 +124,7 @@ package org.apache.royale.events
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public static const DRAG_END:String = "dragEnd";
 
@@ -152,7 +152,7 @@ package org.apache.royale.events
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public static const DRAG_ENTER:String = "dragEnter";
         
@@ -180,7 +180,7 @@ package org.apache.royale.events
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public static const DRAG_OVER:String = "dragOver";
         
@@ -208,7 +208,7 @@ package org.apache.royale.events
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public static const DRAG_EXIT:String = "dragExit";
         
@@ -236,7 +236,7 @@ package org.apache.royale.events
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @productversion Royale 1.0.0
          */
         public static const DRAG_DROP:String = "dragDrop";
         

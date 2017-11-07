@@ -17,7 +17,7 @@
  *
  */
 
-package org.apache.flex.html.textButton;
+package org.apache.royale.html.textButton;
 
 import java.util.HashMap;
 import java.util.Map;

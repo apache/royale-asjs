@@ -62,7 +62,7 @@ public class Effect extends EventDispatcher implements IEffect
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	public static const EFFECT_END:String = "effectEnd";
 	
@@ -90,7 +90,7 @@ public class Effect extends EventDispatcher implements IEffect
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	public static const EFFECT_START:String = "effectStart";
 	
@@ -118,7 +118,7 @@ public class Effect extends EventDispatcher implements IEffect
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	public static const EFFECT_STOP:String = "effectStop";
 	
@@ -136,7 +136,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function Effect()
     {        
@@ -159,7 +159,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function get duration():Number
     {
@@ -178,7 +178,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function reverse():void
     {
@@ -190,7 +190,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function pause():void
     {
@@ -203,7 +203,7 @@ public class Effect extends EventDispatcher implements IEffect
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	public function play():void
 	{
@@ -216,7 +216,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function stop():void
     {
@@ -229,7 +229,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function resume():void
     {
@@ -241,7 +241,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function captureStartValues():void
     {
@@ -253,7 +253,7 @@ public class Effect extends EventDispatcher implements IEffect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function captureEndValues():void
     {

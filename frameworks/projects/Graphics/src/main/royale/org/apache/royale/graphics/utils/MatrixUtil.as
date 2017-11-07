@@ -182,7 +182,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function rectUnion(left:Number, top:Number, right:Number, bottom:Number,
 										 rect:Rectangle):Rectangle
@@ -218,7 +218,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */ 
 		public static function getEllipseBoundingBox(cx:Number, cy:Number,
 													 rx:Number, ry:Number,
@@ -299,7 +299,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */	
 		static public function getQBezierSegmentBBox(x0:Number, y0:Number,
 													 x1:Number, y1:Number,
@@ -373,7 +373,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function transformSize(width:Number, height:Number, matrix:Matrix):Point
 		{
@@ -423,7 +423,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function transformBounds(width:Number, height:Number, matrix:Matrix, topLeft:Point = null):Point
 		{
@@ -483,7 +483,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function projectBounds(bounds:Rectangle,
 											 matrix:Matrix3D, 
@@ -528,7 +528,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function isDeltaIdentity(matrix:Matrix):Boolean
 		{
@@ -579,7 +579,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */ 
 		public static function fitBounds(width:Number, height:Number, matrix:Matrix,
 										 explicitWidth:Number, explicitHeight:Number,
@@ -714,7 +714,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */    
 		private static function fitTBoundsWidth(width:Number, matrix:Matrix,
 												explicitWidth:Number, explicitHeight:Number,
@@ -799,7 +799,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */    
 		private static function fitTBoundsHeight(height:Number, matrix:Matrix,
 												 explicitWidth:Number, explicitHeight:Number,
@@ -864,7 +864,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */        
 		static public function calcUBoundsToFitTBoundsHeight(h:Number,
 															 matrix:Matrix,
@@ -1037,7 +1037,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */        
 		static public function calcUBoundsToFitTBoundsWidth(w:Number,
 															matrix:Matrix,
@@ -1198,7 +1198,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */        
 		static private function solveEquation(a:Number,
 											  c:Number,
@@ -1348,7 +1348,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		static public function calcUBoundsToFitTBounds(w:Number, 
 													   h:Number,
@@ -1520,7 +1520,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function isEqual(m1:Matrix, m2:Matrix):Boolean
 		{
@@ -1542,7 +1542,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public static function isEqual3D(m1:Matrix3D, m2:Matrix3D):Boolean
 		{
@@ -1586,7 +1586,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		static private function solveSystem(a:Number, 
 											c:Number, 

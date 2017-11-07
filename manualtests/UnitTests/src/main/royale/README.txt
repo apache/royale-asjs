@@ -23,7 +23,7 @@ The GenericTests application is a very basic form of unit testing primarily
 intended for Royale framework developers. It is a 'lite' version of a small portion of 
 Flexunit code to support basic assertion tests.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using the Royale Compiler)
 into JavaScript and HTML and run without Flash.
 
 There is a convenience html page for hosting the tests side-by-side that permits developers
@@ -58,4 +58,4 @@ is intended to use test classes that are compatible with the flexunit tests that
 used in the full framework build. Future versions may include more advanced features.
 
 The cross-compilation to JavaScript often results in non-fatal warnings. Some of these warnings
-should be addressed in future releases of the Falcon JX compiler.
+should be addressed in future releases of the the Royale Compiler compiler.

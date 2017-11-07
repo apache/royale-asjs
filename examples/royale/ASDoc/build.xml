@@ -26,7 +26,7 @@
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
 
     <condition property="config.path" value="&quot;${basedir}/src/main/config/asdoc-config.xml&quot;">
         <os family="windows" />
@@ -50,8 +50,8 @@
     </target>
 
     <target name="json" unless="json.exists" >
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <java jar="${FALCONJX_HOME}/lib/asdoc.jar" resultProperty="errorCode"
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
+        <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Droyalelib=${ROYALE_HOME}/frameworks}"/>

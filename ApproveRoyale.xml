@@ -60,7 +60,7 @@
 	<property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
     <property name="apache.rat.tasks.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
 	   
-    <property file="${basedir}/approvefalcon.properties"/>
+    <property file="${basedir}/approveroyale.properties"/>
     
 	<property name="mac.text.display" value="cat" />
 	<property name="win.text.display" value="type" />
@@ -109,21 +109,17 @@
     <fail message="The FLASHPLAYER_DEBUGGER property is not set in environment or command-line."
         unless="FLASHPLAYER_DEBUGGER"/>
     
-    <available file="${env.FALCON_HOME}"
+    <available file="${env.ROYALE_COMPILER_REPO}"
         type="dir"
-        property="FALCON_HOME" value="${env.FALCON_HOME}" />
-    
-    <available file="${env.FALCONJX_HOME}"
-        type="dir"
-        property="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
+        property="ROYALE_COMPILER_REPO" value="${env.ROYALE_COMPILER_REPO}" />
     
     <available file="${env.FLEXUNIT_HOME}"
         type="dir"
         property="FLEXUNIT_HOME" value="${env.FLEXUNIT_HOME}" />
     
-    <available file="${env.FLEX_HOME}"
+    <available file="${env.ROYALE_HOME}"
         type="dir"
-        property="FLEX_SDK_HOME" value="${env.FLEX_HOME}" />
+        property="FLEX_SDK_HOME" value="${env.ROYALE_HOME}" />
     
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
@@ -655,7 +651,7 @@
         description="Prompt the user before downloading BlaseDS">
         
         <property name="font.prompt.text"
-        value="Apache Flex can optionally integrate with Adobe's embedded font support.
+        value="Apache Royale can optionally integrate with Adobe's embedded font support.
         ${line.separator}This feature requires a few font jars from the Adobe Flex SDK.
         ${line.separator}The Adobe SDK license agreement for Adobe Flex 4.6 applies to these jars.
         ${line.separator}This license is not compatible with the Apache v2 license.
@@ -673,68 +669,66 @@
         <property name="font.donot.ask" value="set"/>
     </target>
     
-    <!--<target name="get.dependencies" depends="set.falcon.flags,get.falcon.if.needed,get.sdk.if.needed,get.flexunit.if.needed" />-->
-    <target name="get.dependencies" depends="set.falcon.flags,get.falcon.if.needed,get.flexunit.if.needed" />
-    <target name="set.falcon.flags" >
-        <condition property="falcon.nightly">
+    <!--<target name="get.dependencies" depends="set.compiler.flags,get.compiler.if.needed,get.sdk.if.needed,get.flexunit.if.needed" />-->
+    <target name="get.dependencies" depends="set.compiler.flags,get.compiler.if.needed,get.flexunit.if.needed" />
+    <target name="set.compiler.flags" >
+        <condition property="compiler.nightly">
             <and>
                 <not>
-                    <isset property="FALCON_HOME" />
+                    <isset property="ROYALE_COMPILER_REPO" />
                 </not>
                 <not>
                     <isset property="rc" />
                 </not>
             </and>
         </condition>
-        <condition property="falcon.rc">
+        <condition property="compiler.rc">
             <and>
                 <not>
-                    <isset property="FALCON_HOME" />
+                    <isset property="ROYALE_COMPILER_REPO" />
                 </not>
                 <isset property="rc" />
             </and>
         </condition>
     </target>
-    <target name="get.falcon.if.needed" depends="get.falcon.nightly,get.falcon.rc" unless="FALCON_HOME" />
-    <target name="get.falcon.nightly" if="falcon.nightly">
-        <property name="kit.jx.prefix" value="apache.royale-falconjx-${release.version}"/>
+    <target name="get.compiler.if.needed" depends="get.compiler.nightly,get.compiler.rc" unless="ROYALE_COMPILER_REPO" />
+    <target name="get.compiler.nightly" if="compiler.nightly">
+        <property name="kit.jx.prefix" value="apache.royale-compilerjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-falcon%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-falcon%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.md5"
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.md5"
              dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
-        <condition property="FalconMD5Invalid">
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="compiler.md5.ok" />
+        <condition property="CompilerMD5Invalid">
             <not>
-                <equals arg1="${falcon.md5.ok}" arg2="true" />
+                <equals arg1="${compiler.md5.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
-        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
-        <ant dir="${basedir}/falconjx/compiler/src/main/resources" antfile="downloads.xml" />
-        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler" />
-        <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
-        <ant dir="${basedir}/falconjx/compiler-jx" antfile="${basedir}/falconjx/compiler-jx/src/main/resources/downloads.xml"/>
+        <fail message="MD5 checksum did not match" if="CompilerMD5Invalid" />
+        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/compiler" />
+        <ant dir="${basedir}/compiler/compiler/src/main/resources" antfile="downloads.xml" />
+        <property name="ROYALE_COMPILER_REPO" value="${basedir}/compiler" />
+        <ant dir="${basedir}/compiler/compiler-jx" antfile="${basedir}/compiler/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
-    <target name="get.falcon.rc" if="falcon.rc">
-        <property name="kit.jx.prefix" value="apache.royale-falconjx-${release.version}"/>
+    <target name="get.compiler.rc" if="compiler.rc">
+        <property name="kit.jx.prefix" value="apache.royale-compilerjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="https://dist.apache.org/repos/dist/dev/royale/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip"
+        <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip"
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://dist.apache.org/repos/dist/dev/royale/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip.md5"
+        <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip.md5"
         dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
-        <condition property="FalconMD5Invalid">
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="compiler.md5.ok" />
+        <condition property="CompilerMD5Invalid">
             <not>
-                <equals arg1="${falcon.md5.ok}" arg2="true" />
+                <equals arg1="${compiler.md5.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
-        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
-        <ant dir="${basedir}/falconjx/compiler/src/main/resources" antfile="downloads.xml" />
-        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler" />
-        <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
-        <ant dir="${basedir}/falconjx/compiler-jx" antfile="${basedir}/falconjx/compiler-jx/src/main/resources/downloads.xml"/>
+        <fail message="MD5 checksum did not match" if="CompilerMD5Invalid" />
+        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/compiler" />
+        <ant dir="${basedir}/compiler/compiler/src/main/resources" antfile="downloads.xml" />
+        <property name="ROYALE_COMPILER_REPO" value="${basedir}/compiler" />
+        <ant dir="${basedir}/compiler/compiler-jx" antfile="${basedir}/compiler/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
     <target name="get.flexunit.if.needed" unless="FLEXUNIT_HOME" >
         <property name="binary.flexunit.kit" value="apache.royale-flexunit-4.2.0-4.12.0-bin"/>

@@ -31,7 +31,7 @@ package org.apache.royale.graphics.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4.1
+	 *  @productversion Royale 1.0.0.1
 	 */
 	public interface IAssetLayoutFeatures
 	{
@@ -43,7 +43,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutX(value:Number):void;
 		
@@ -59,7 +59,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutY(value:Number):void;
 		
@@ -75,7 +75,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutZ(value:Number):void;
 		
@@ -90,7 +90,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get layoutWidth():Number;
 		
@@ -107,7 +107,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set transformX(value:Number):void;
 		/**
@@ -121,7 +121,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set transformY(value:Number):void;
 		
@@ -136,7 +136,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set transformZ(value:Number):void;
 		
@@ -154,7 +154,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutRotationX(value:Number):void;
 		
@@ -170,7 +170,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutRotationY(value:Number):void;
 		
@@ -186,7 +186,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutRotationZ(value:Number):void;
 		
@@ -204,7 +204,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutScaleX(value:Number):void;
 		
@@ -220,7 +220,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutScaleY(value:Number):void;
 		
@@ -236,7 +236,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutScaleZ(value:Number):void;
 		
@@ -251,7 +251,7 @@ package org.apache.royale.graphics.utils
 		 *   @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutMatrix(value:Matrix):void;
 		
@@ -266,7 +266,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function set layoutMatrix3D(value:Matrix3D):void;
 		
@@ -281,7 +281,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get is3D():Boolean;
 		
@@ -291,7 +291,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get layoutIs3D():Boolean;
 		
@@ -308,7 +308,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get mirror():Boolean;
 		
@@ -325,7 +325,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get stretchX():Number;
 		
@@ -341,7 +341,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get stretchY():Number;
 		
@@ -358,7 +358,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get computedMatrix():Matrix;
 		
@@ -368,7 +368,7 @@ package org.apache.royale.graphics.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 */
 		function get computedMatrix3D():Matrix3D;
 	}

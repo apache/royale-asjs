@@ -33,7 +33,7 @@ package org.apache.royale.cordova
 	public class Application extends org.apache.royale.core.AirApplication implements IFlexInfo
 	{
 		/**
-		 * FalconJX will inject html into the index.html file.  Surround with
+		 * The Royale Compiler will inject html into the index.html file.  Surround with
 		 * "inject_html" tag as follows:
 		 *
 		 * <inject_html>

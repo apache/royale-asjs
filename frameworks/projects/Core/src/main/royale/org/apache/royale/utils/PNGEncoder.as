@@ -32,7 +32,7 @@ import flash.utils.ByteArray;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 1.0.0
  */
 COMPILE::SWF
 public class PNGEncoder
@@ -64,7 +64,7 @@ public class PNGEncoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function PNGEncoder()
     {
@@ -103,7 +103,7 @@ public class PNGEncoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function get contentType():String
     {
@@ -127,7 +127,7 @@ public class PNGEncoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function encode(bitmapData:BitmapData):ByteArray
     {
@@ -162,7 +162,7 @@ public class PNGEncoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function encodeByteArray(byteArray:ByteArray, width:int, height:int,
 									transparent:Boolean = true):ByteArray

@@ -19,9 +19,9 @@
 
 DESCRIPTION
 
-The EffectsExample demonstrates the Move and Fade effects. This Flex application
+The EffectsExample demonstrates the Move and Fade effects. This Royale application
 can be run as an ActionScript SWF or cross-compiled into a JavaScript/HTML
-application using the Falcon JX compiler.
+application using the the Royale Compiler compiler.
 
 COMPONENTS and BEADS
 

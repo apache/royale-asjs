@@ -29,7 +29,7 @@ package org.apache.royale.createjs.tween
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
      */
 	public class Ease
 	{
@@ -39,7 +39,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
         public function Ease()
 		{	
@@ -51,7 +51,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		static public function get(value:Number) : Function
 		{
@@ -69,7 +69,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		static public function getPowIn(value:Number) : Function
 		{
@@ -87,7 +87,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		static public function getPowOut(value:Number) : Function
 		{
@@ -105,7 +105,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		static public function getPowInOut(value:Number) : Function
 		{
@@ -126,7 +126,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quadIn() : Function
 		{
@@ -142,7 +142,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quadOut() : Function
 		{
@@ -158,7 +158,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quadInOut() : Function
 		{
@@ -174,7 +174,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function cubicIn() : Function
 		{
@@ -190,7 +190,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function cubicOut() : Function
 		{
@@ -206,7 +206,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function cubicInOut() : Function
 		{
@@ -222,7 +222,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quartIn() : Function
 		{
@@ -238,7 +238,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quartOut() : Function
 		{
@@ -254,7 +254,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quartInOut() : Function
 		{
@@ -270,7 +270,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quintIn() : Function
 		{
@@ -286,7 +286,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quintOut() : Function
 		{
@@ -302,7 +302,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function quintInOut() : Function
 		{
@@ -318,7 +318,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function sineIn(t:Number):Number {
 			return 1-Math.cos(t*Math.PI/2);
@@ -333,7 +333,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function sineOut(t:Number):Number {
 			return Math.sin(t*Math.PI/2);
@@ -349,7 +349,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function sineInOut(t:Number):Number {
 			return -0.5*(Math.cos(Math.PI*t) - 1);
@@ -365,7 +365,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function getBackIn(amount:Number):Function {
 			return function(t:Number):Number {
@@ -382,7 +382,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function backIn():Function {
 			return getBackIn(1.7);
@@ -398,7 +398,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function getBackOut(amount:Number):Function {
 			return function(t:Number):Number {
@@ -415,7 +415,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function backOut():Function {
 			return getBackOut(1.7);
@@ -432,7 +432,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function getBackInOut(amount:Number):Function {
 			amount *= 1.525;
@@ -451,7 +451,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function backInOut():Function {
 			return getBackInOut(1.7);
@@ -466,7 +466,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function circIn(t:Number):Number {
 			return -(Math.sqrt(1-t*t)-1);
@@ -481,7 +481,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function circOut(t:Number):Number {
 			return Math.sqrt(1-(--t)*t);
@@ -496,7 +496,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function circInOut(t:Number):Number {
 			if ((t*=2) < 1) return -0.5*(Math.sqrt(1-t*t)-1);
@@ -512,7 +512,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function bounceIn(t:Number):Number {
 			return 1-bounceOut(1-t);
@@ -527,7 +527,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		public static function bounceOut(t:Number):Number {
 			if (t < 1/2.75) {
@@ -550,7 +550,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function bounceInOut(t:Number):Number
 		{
@@ -569,7 +569,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function getElasticIn(amplitude:Number,period:Number):Function {
 			var pi2:Number = Math.PI*2;
@@ -589,7 +589,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function elasticIn():Function {
 			return getElasticIn(1,0.3);
@@ -606,7 +606,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function getElasticOut(amplitude:Number,period:Number):Function {
 			var pi2:Number = Math.PI*2;
@@ -626,7 +626,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function elasticOut():Function {
 			return getElasticOut(1,0.3);
@@ -643,7 +643,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function getElasticInOut(amplitude:Number,period:Number):Function {
 			var pi2:Number = Math.PI*2;
@@ -663,7 +663,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 **/
 		static public function elasticInOut():Function {
 			return getElasticInOut(1,0.3*1.5);
