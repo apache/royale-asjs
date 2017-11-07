@@ -31,6 +31,7 @@
     <component id="SimpleStatesImpl" class="org.apache.royale.core.SimpleStatesImpl"/>
     <component id="MXMLDragInitiator" class="org.apache.royale.core.MXMLDragInitiator" />
     <component id="CallLaterBead" class="org.apache.royale.core.CallLaterBead" />
+    <component id="SimpleLocalizedValuesImpl" class="org.apache.royale.core.SimpleLocalizedValuesImpl"/>
 
     <component id="BindableCSSStyles" class="org.apache.royale.core.BindableCSSStyles"/>
     <component id="BindableCSSStylesWithFlex" class="org.apache.royale.core.BindableCSSStylesWithFlex"/>
