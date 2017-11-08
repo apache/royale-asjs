@@ -18,6 +18,7 @@ package
 			[
 				DetectMetadataTests,
 				ScopeTests,
+				AssertTests
 			]);
 		}
 
