@@ -133,10 +133,29 @@ package org.apache.royale.html.beads
 
             var host:UIBase = UIBase(value);
 
+			// Look for a layout and/or viewport bead on the host's beads list. If one
+			// is found, pull it off so it will not be added permanently
+			// to the strand.
+            var beads: Array = host.beads;
+            var transferLayoutBead: IBeadLayout;
+            var transferViewportBead: IViewport;
+			if (host.beads != null) {
+				for(var i:int=host.beads.length-1; i >= 0; i--) {
+					if (host.beads[i] is IBeadLayout) {
+						transferLayoutBead = host.beads[i] as IBeadLayout;
+						host.beads.splice(i, 1);
+					}
+					else if (host.beads[i] is IViewport) {
+						transferViewportBead = host.beads[i] as IViewport
+						host.beads.splice(i, 1);
+					}
+				}
+			}
+
             if (!_titleBar) {
                 _titleBar = new TitleBar();
 			}
-			
+
 			_titleBar.id = "panelTitleBar";
 
 			COMPILE::SWF {
@@ -153,7 +172,7 @@ package org.apache.royale.html.beads
 				_titleBar.element.style["flex-grow"] = "0";
 				_titleBar.element.style["order"] = "1";
 			}
-			
+
 			_titleBar.addEventListener("close", handleClose);
 
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
@@ -167,7 +186,13 @@ package org.apache.royale.html.beads
 			if (!_contentArea) {
 				_contentArea = new Container();
 				_contentArea.id = "panelContent";
-				_contentArea.className = "PanelContent";
+				_contentArea.typeNames = "PanelContent";
+
+				// add the layout bead to the content area.
+				if (transferLayoutBead) _contentArea.addBead(transferLayoutBead);
+
+				// add the viewport bead to the content area.
+				if (transferViewportBead) _contentArea.addBead(transferViewportBead);
 
 				COMPILE::SWF {
 					_contentArea.percentWidth = 100;
@@ -195,31 +220,12 @@ package org.apache.royale.html.beads
 
             super.strand = value;
 
-			// If the Panel was given a layout, transfer it to the content area.
-			var layoutBead:IBeadLayout = value.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layoutBead) {
-				value.removeBead(layoutBead);
-
-				var contentLayout:IBeadLayout = _contentArea.getBeadByType(IBeadLayout) as IBeadLayout;
-				if (contentLayout) {
-					_contentArea.removeBead(contentLayout);
-				}
-				_contentArea.addBead(layoutBead);
-			}
-
-			// If the Panel was given a viewport, transfer it to the content area.
-			var viewportBead:IViewport = value.getBeadByType(IViewport) as IViewport;
-			if (viewportBead) {
-				value.removeBead(viewportBead);
-				_contentArea.addBead(viewportBead);
-			}
-
 			if (contentArea.parent == null) {
 				(_strand as Panel).$addElement(contentArea as IChild);
 			}
 
 			// Now give the Panel its own layout
-			layoutBead = new VerticalFlexLayout();
+			var layoutBead:IBeadLayout = new VerticalFlexLayout();
 			value.addBead(layoutBead);
 		}
 
@@ -247,7 +253,7 @@ package org.apache.royale.html.beads
 		override protected function completeSetup():void
 		{
 			super.completeSetup();
-			
+
 			performLayout(null);
 		}
 
@@ -266,11 +272,11 @@ package org.apache.royale.html.beads
 			_contentArea.dispatchEvent(new Event("layoutNeeded"));
 			performLayout(event);
 		}
-		
+
 		private function handleClose(event:Event):void
 		{
 			IEventDispatcher(_strand).dispatchEvent(new Event("close"));
 		}
-		
+
 	}
 }
