@@ -72,11 +72,17 @@ package org.apache.royale.events.utils
 		{
 			var type:String = nativeEvent["type"];
 			var key:String = nativeEvent["key"];
+			//Safari has to be different...
+			if(key == null)
+				key = nativeEvent["keyIdentifier"];
+			
 			if (key == null)
 				key = KeyConverter.convertCharCode(nativeEvent['charCode']);
+			
 			var code:String = nativeEvent["code"];
 			if (code == null)
 				code = KeyConverter.convertKeyCode(nativeEvent['keyCode']);
+			
 			var newEvent:KeyboardEvent = new KeyboardEvent(type, key, code, nativeEvent["shiftKey"]);
 			newEvent.altKey = nativeEvent["altKey"];
 			newEvent.ctrlKey = nativeEvent["ctrlKey"];
