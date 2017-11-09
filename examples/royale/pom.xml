@@ -33,6 +33,7 @@
   <name>Apache Royale: Examples: Royale</name>
 
   <modules>
+    <module>AccordionExample</module>
     <module>ASDoc</module>
     <module>ChartExample</module>
     <module>CordovaCameraExample</module>
