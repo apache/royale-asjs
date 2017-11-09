@@ -23,9 +23,9 @@
         "targets": ["JSRoyale","SWF"],
         "source-map": true
     },
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions -html-template=src/main/resources/mdl-js-index-template.html -compiler.exclude-defaults-css-files=HTML.swc:defaults.css",
+    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "src/main/royale/MDLExample.mxml"
+        "src/main/royale/RoyaleStore.mxml"
     ]
 }

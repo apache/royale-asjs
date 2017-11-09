@@ -1,0 +1,67 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+{
+    "config": "royale",
+    "compilerOptions": {
+        "debug": false,
+        "targets": ["SWF","JSRoyale"],
+        "source-map": true
+    },
+    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
+    "files":
+    [
+        "ASDoc/src/main/royale/ASDoc.mxml",
+        "ChartExample/src/main/royale/ChartExample.mxml",
+        "CordovaCameraExample/src/main/royale/CordovaCameraExample.mxml",
+        "CreateJSExample/src/main/royale/CreateJSExample.mxml",
+        "DataBindingExample/src/main/royale/DataBindingExample.mxml",
+        "DataBindingExample_as/src/main/royale/DataBindingExample.as",
+        "DataBindingExample_Flat/src/main/royale/DataBindingExample.mxml",
+        "DataBindingExampleWithFlexLayout/src/main/royale/DataBindingExampleWithFlexLayout.mxml",
+        "DataGridExample/src/main/royale/DataGridExample.mxml",
+        "DateControlsExample/src/main/royale/DateControlsExample.mxml",
+        "DebuggingExample/src/main/royale/DebuggingExample.mxml",
+        "DesktopMap/src/main/royale/DesktopMap.mxml",
+        "DragAndDropExample/src/main/royale/DragAndDropExample.mxml",
+        "Flex2Royale/src/main/royale/Flex2Royale.mxml",
+        "HelloWorld/src/main/royale/HelloWorld.mxml",
+        "ListExample/src/main/royale/ListExample.mxml",
+        "MapSearch/src/main/royale/MapSearch.mxml",
+        "MDLBlogExample/src/main/royale/MDLBlogExample.mxml",
+        "MDLDynamicTableExample/src/main/royale/MDLDynamicTableExample.mxml",
+        "MDLDynamicTabsExample/src/main/royale/MDLDynamicTabsExample.mxml",
+        "MDLExample/src/main/royale/MDLExample.mxml",
+        "MobileMap/src/main/royale/MobileMap.mxml",
+        "MobileStocks/src/main/royale/MobileStocks.mxml",
+        "MobileTrader/src/main/royale/MobileTrader.mxml",
+        "ModuleExample/src/main/royale/ModuleExample.mxml",
+        "RemoteObjectAMFTest/src/main/royale/RemoteObjectAMFTest.mxml",
+        "RoyaleStore/src/main/royale/RoyaleStore.mxml",
+        "RoyaleStore_jquery/src/main/royale/RoyaleStore_jquery.mxml",
+        "RoyaleTeamPage_MDL/src/main/royale/RoyaleTeamPage_MDL.mxml",
+        "RoyaleThemes/src/main/royale/RoyaleThemes.mxml",
+        "RoyaleWebsiteStatsViewer/src/main/royale/RoyaleWebsiteStatsViewer.mxml",
+        "StorageExample/src/main/royale/StorageExample.mxml",
+        "StyleExample/src/main/royale/StyleExample.mxml",
+        "TableExample/src/main/royale/TableExample.mxml",
+        "TeamPage/src/main/royale/TeamPage.mxml",
+        "TodoListSampleApp/src/main/royale/TodoListSampleApp.mxml",
+        "TreeExample/src/main/royale/TreeExample.mxml"
+    ]
+}
