@@ -19,6 +19,16 @@
     "type": "lib",
     "compilerOptions": {
         "debug": true,
+        "define": [
+            {
+                "name": "CONFIG::release",
+                "value": true
+            },
+            {
+                "name": "CONFIG::debug",
+                "value": false
+            }
+        ],
         "targets": [
             "SWF",
             "JSRoyale"
