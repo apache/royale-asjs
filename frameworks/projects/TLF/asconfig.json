@@ -30,8 +30,8 @@
             }
         ],
         "targets": [
-            "SWF",
-            "JSRoyale"
+            "JSRoyale",
+            "SWF"
         ],
         "include-classes": [
             "TLFClasses"

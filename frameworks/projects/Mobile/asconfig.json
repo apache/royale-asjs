@@ -23,9 +23,12 @@
           "SWF",
           "JSRoyale"
       ],
+      "external-library-path": [
+        "../../../../frameworks/libs/air/airglobal.swc"
+      ],
       "include-classes": [
-          "MobileClasses",
-          "CordovaClasses"
+        "MobileClasses",
+        "CordovaClasses"
       ],
       "include-sources": [
           "src/main/royale"

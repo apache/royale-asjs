@@ -20,7 +20,6 @@
     "compilerOptions": {
         "debug": true,
         "targets": [
-            "SWF",
             "JSRoyale"
         ],
         "include-classes": [

@@ -18,9 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.beads.views
 {
-	import flash.display.Graphics;
-	import flash.display.Shape;
-	import flash.display.SimpleButton;
+	COMPILE::SWF{
+		import flash.display.Graphics;
+		import flash.display.Shape;
+		import flash.display.SimpleButton;
+	}
 
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadView;
@@ -39,6 +41,7 @@ package org.apache.royale.mdl.beads.views
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
+	COMPILE::SWF
 	public class SliderThumbView extends BeadViewBase implements IBeadView
 	{
 		/**

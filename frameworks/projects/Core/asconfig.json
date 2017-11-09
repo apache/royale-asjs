@@ -23,6 +23,9 @@
             "SWF",
             "JSRoyale"
         ],
+        "external-library-path": [
+            "../../../../frameworks/libs/air/airglobal.swc"
+        ],
         "include-classes": [
             "CoreClasses"
         ],
