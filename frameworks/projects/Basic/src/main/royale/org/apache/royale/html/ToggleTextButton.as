@@ -85,6 +85,10 @@ package org.apache.royale.html
             {
                 addEventListener(MouseEvent.CLICK, internalMouseHandler);
             }
+            COMPILE::JS
+            {
+                this.typeNames = 'toggleTextButton';
+            }
 		}
 
         private var _selected:Boolean = false;
