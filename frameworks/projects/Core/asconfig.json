@@ -30,7 +30,8 @@
             "CoreClasses"
         ],
         "include-sources": [
-            "src/main/royale"
+            "src/main/royale",
+            "src/test/royale/flexUnitTests"
         ],
         "output": "target/Core.swc"
     }

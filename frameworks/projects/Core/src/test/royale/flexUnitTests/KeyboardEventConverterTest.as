@@ -62,7 +62,7 @@ package flexUnitTests
                 oEv = new flash.events.KeyboardEvent("keyDown");
                 oEv.keyCode = 66;
                 oEv.charCode = 66;
-                var nEv:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(oEv);
+                nEv = KeyboardEventConverter.convert(oEv);
                 assertEquals("keyDown", nEv.type);
             }
             COMPILE::JS{
