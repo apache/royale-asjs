@@ -76,7 +76,7 @@ package org.apache.royale.events.utils
 			if(key == null)
 				key = nativeEvent["keyIdentifier"];
 			
-			if (key == null)
+			if (!key)
 				key = KeyConverter.convertCharCode(nativeEvent['charCode']);
 			
 			var code:String = nativeEvent["code"];

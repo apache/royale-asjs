@@ -26,5 +26,6 @@ package flexUnitTests
 		public var binaryDataTesterTest:BinaryDataTesterTest;
 		public var dateUtilsTest:DateUtilsTest;
         public var keyConverterTest:KeyConverterTest;
+        public var keyboardEventConverterTest:KeyboardEventConverterTest;
     }
 }
