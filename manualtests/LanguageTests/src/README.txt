@@ -19,8 +19,7 @@
 
 DESCRIPTION
 
-The LanguageTests example is used to test the ActionScript and cross-compiler,
-FalconJX. 
+The LanguageTests example is used to test the ActionScript and the Royale Compiler. 
 
 Compile the project using ANT and the build.xml script and then run the resulting
 index.html file in browser.

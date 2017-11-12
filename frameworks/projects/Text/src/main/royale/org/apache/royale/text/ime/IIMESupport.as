@@ -29,7 +29,7 @@ package org.apache.royale.text.ime
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 1.0.0
  */
 public interface IIMESupport
 {
@@ -57,7 +57,7 @@ public interface IIMESupport
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
+	 *  @productversion Royale 1.0.0
 	 */
 	function get enableIME():Boolean;
 
@@ -71,7 +71,7 @@ public interface IIMESupport
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 */
 	function get imeMode():String;
 

@@ -243,16 +243,16 @@ The map coordinates in examples/native/USStatesMap/src/MapCoords.as
 were placed into the Public Domain by its author.  See:
 https://en.wikipedia.org/wiki/File:USA_CIA_Map.svg#file
 
-Most of the .as files in frameworks/projects/Network/src/main/flex/ in the
-package org.apache.flex.net.remoting.amf are derived from
+Most of the .as files in frameworks/projects/Network/src/main/royyale/ in the
+package org.apache.royale.net.remoting.amf are derived from
 https://github.com/emilkm/amfjs/blob/master/amf.js which is available under 
 Apache License 2.0.
 
-Most of the .as files in frameworks/projects/GoogleMaps/src/main/flex/google 
+Most of the .as files in frameworks/projects/GoogleMaps/src/main/royale/google 
 are derived from the google_maps_api_v3_11.js externs file in the 
 Google Closure Library which are available under Apache License 2.0.
 
-The file frameworks/projects/Core/src/main/flex/org/apache/flex/geom/Matrix.as
+The file frameworks/projects/Core/src/main/royale/org/apache/royale/geom/Matrix.as
 is derived from OpenFL (https://github.com/openfl) which is available under an
 MIT License.
 

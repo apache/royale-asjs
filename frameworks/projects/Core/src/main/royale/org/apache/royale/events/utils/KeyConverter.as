@@ -112,6 +112,8 @@ package org.apache.royale.events.utils
                     return "ShiftLeft";
                 case 17:
                     return "ControlLeft";
+                case 18:
+                    return "AltLeft";
                 case 20:
                     return "CapsLock";
                 case 27:
@@ -138,6 +140,11 @@ package org.apache.royale.events.utils
                     return "Insert";
                 case 46:
                     return "Delete";
+                case 91:
+                    return "MetaLeft";
+                case 92:
+                case 93://both 92 and 93 can be MetaRight depending on the platform
+                    return "MetaRight";
                 case 144:
                     return "NumLock";
                 case 145:

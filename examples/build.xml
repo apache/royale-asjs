@@ -76,6 +76,7 @@
     <target name="compile" description="Compile Examples" >
         <ant dir="${basedir}/express/DataBindingExample"/>
         <ant dir="${basedir}/express/DataGridExample"/>
+        <ant dir="${basedir}/royale/AccordionExample"/>
         <ant dir="${basedir}/royale/ASDoc"/>
         <ant dir="${basedir}/royale/CordovaCameraExample"/>
         <ant dir="${basedir}/royale/CreateJSExample"/>
@@ -124,6 +125,7 @@
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/express/DataGridExample" target="clean"/>
+        <ant dir="${basedir}/royale/AccordionExample" target="clean"/>
         <ant dir="${basedir}/royale/ASDoc" target="clean"/>
         <ant dir="${basedir}/royale/CordovaCameraExample" target="clean"/>
         <ant dir="${basedir}/royale/CreateJSExample" target="clean"/>
@@ -162,6 +164,7 @@
     <target name="examine" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="examine"/>
         <ant dir="${basedir}/express/DataGridExample" target="examine"/>
+        <ant dir="${basedir}/royale/AccordionExample" target="examine"/>
         <ant dir="${basedir}/royale/ASDoc" target="examine"/>
         <ant dir="${basedir}/royale/CordovaCameraExample" target="examine"/>
         <ant dir="${basedir}/royale/CreateJSExample" target="examine"/>

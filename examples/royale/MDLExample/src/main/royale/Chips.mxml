@@ -81,7 +81,7 @@ limitations under the License.
             <mdl:Chip text="Contact Link Chip">
                 <mdl:beads>
                     <mdl:ContactImageChip />
-                    <mdl:DeletableLinkChip href="http://flex.apache.org/"/>
+                    <mdl:DeletableLinkChip href="http://royale.apache.org/"/>
                 </mdl:beads>
                 <mdl:materialIcon>
                     <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>

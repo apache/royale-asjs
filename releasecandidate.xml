@@ -265,7 +265,7 @@
 			<arg value="rc${rc} of Apache Royale ${release.version}" />
 		</exec>
         <antcall target="tag_release" />
-		<antcall target="update-installer-config" />
+		<antcall target="update-website" />
 		<antcall target="mail" />
     </target>
 
@@ -347,92 +347,7 @@
 		<delete file="${basedir}/getresult.txt" />
 	</target>
 	
-	<target name="update-installer-config-release" depends="credentials">
-		<exec executable="${svn}" dir="${site}" failonerror="true" >
-			<arg value="update" />
-			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
-		</exec>
-        <exec executable="${svn}" dir="${site}" failonerror="true" >
-            <arg value="update" />
-            <arg value="trunk/content/download-royale.cmsPage" />
-        </exec>
-        <exec executable="${svn}" dir="${site}" failonerror="true" >
-            <arg value="update" />
-            <arg value="trunk/templates" />
-        </exec>
-        <xmlproperty file="${site}/trunk/content/installer/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
-		<property name="latest.release" value="${config.products.ApacheRoyale.latestVersion}" />
-        <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="ApacheRoyale(.*)latestVersion=&quot;${latest.release}&quot;(.*)"/>
-            <substitution expression="ApacheRoyale\1latestVersion=&quot;${release.version}&quot;\2"/>
-            <fileset dir="${site}/trunk/content/installer">
-                <include name="sdk-installer-config-4.0.xml"/>
-            </fileset>
-        </replaceregexp>
-        <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="path=&quot;royale/${latest.release}/binaries/&quot;(.*)default=&quot;true&quot;"/>
-            <substitution expression="path=&quot;http://archive.apache.org/dist/royale${latest.release}/binaries&quot;\1"/>
-            <fileset dir="${site}/trunk/content/installer">
-                <include name="sdk-installer-config-4.0.xml"/>
-            </fileset>
-        </replaceregexp>
-        <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="&lt;rc id=&quot;RoyaleRC&quot;(.*)"/>
-            <substitution expression="&lt;VersionX id=&quot;${release.version}&quot; version=&quot;${release.version}&quot; path=&quot;royale/${release.version}/binaries/&quot; file=&quot;apache-royale-${release.version}-bin&quot; /&gt;&#x0a;    &lt;rc id=&quot;RoyaleRC&quot;\1"/>
-            <fileset dir="${site}/trunk/content/installer">
-                <include name="sdk-installer-config-4.0.xml"/>
-            </fileset>
-        </replaceregexp>
-		<tstamp>
-			<format pattern="yyyy-MM-dd" property="release.date" />
-		</tstamp>
-		<tstamp>
-			<format pattern="MMMM yyyy" property="release.date.month" />
-		</tstamp>
-		<tstamp>
-			<format pattern="dd MMMM yyyy" property="release.date.full" />
-		</tstamp>
-        <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="${latest.release}"/>
-            <substitution expression="${release.version}"/>
-            <fileset dir="${site}/trunk/content">
-                <include name="download-royale.cmsPage"/>
-            </fileset>
-        </replaceregexp>
-        <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="this release, available as of .*\.  (.*)"/>
-            <substitution expression="this release, available as of ${release.date.full}.  \1"/>
-            <fileset dir="${site}/trunk/content">
-                <include name="download-royale.cmsPage"/>
-            </fileset>
-        </replaceregexp>
-        <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="binaries were published on .*\."/>
-            <substitution expression="binaries were published on ${release.date.full}."/>
-            <fileset dir="${site}/trunk/content">
-                <include name="download-royale.cmsPage"/>
-            </fileset>
-        </replaceregexp>
-        <replaceregexp byline="true" flags="g" encoding="UTF-8">
-            <regexp pattern="${latest.release}(.*)\)"/>
-            <substitution expression="${release.version} (${release.date.month})"/>
-            <fileset dir="${site}/trunk/templates">
-                <include name="flex-v2-footer.html"/>
-            </fileset>
-        </replaceregexp>
-		<exec executable="${svn}" dir="${site}" failonerror="true" >
-			<arg value="commit" />
-			<arg value="--username" />
-			<arg value="${apache.username}" />
-			<arg value="--password" />
-			<arg value="${apache.password}" />
-			<arg value="-m" />
-			<arg value="&quot;update sdk-installer-config-4.0 and other files for royale ${release.version} rc${rc}&quot;" />
-		</exec>
-		<!-- pause to give buildbot chance to react -->
-		<sleep seconds="5" />
-		<get src="https://cms.apache.org/royale/publish" username="${apache.username}" password="${apache.password}" dest="${basedir}/getresult.txt" />
-		<delete file="${basedir}/getresult.txt" />
+	<target name="update-website" depends="credentials">
 	</target>
 
 	<target name="check-new-version" description="check if svn folder needs to be added" >
@@ -488,7 +403,7 @@ At a minimum you would be expected to check that:\n\
 \n\
 The source package is set up the same way as the repo.  This means that\n\
 the results of the build are not the same as an IDE-compatible SDK.  The\n\
-compiled source package can be used in combination with the FalconJX\n\
+compiled source package can be used in combination with the Royale Transpiler\n\
 source package to compile some of the sample applications.\n\
 \n\
 To use the binary package, unzip it into a folder.  The -js package is\n\
@@ -542,7 +457,7 @@ ${my.name}
             <replacefilter token="\n" value="${CRLF}" />
         </replace>
         <property file="${basedir}/votethread.properties" />
-        <echo file="${basedir}/votethread.html">&lt;html&gt;&lt;body&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[DISCUSS]%20Discuss%20Release%20Apache%20Royale%20${release.version}%20RC${rc}&amp;body=${discuss.thread.body}&quot;&gt;Click here to review discuss thread&lt;/a&gt;&lt;br/&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[VOTE]%20Release%20Apache%20Royale%20${release.version}%20RC${rc}&amp;body=${vote.thread.body}&quot;&gt;Click here to review vote thread&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</echo>
+        <echo file="${basedir}/votethread.html">&lt;html&gt;&lt;body&gt;&lt;a href=&quot;mailto:dev@royale.apache.org?subject=[DISCUSS]%20Discuss%20Release%20Apache%20Royale%20${release.version}%20RC${rc}&amp;body=${discuss.thread.body}&quot;&gt;Click here to review discuss thread&lt;/a&gt;&lt;br/&gt;&lt;a href=&quot;mailto:dev@royale.apache.org?subject=[VOTE]%20Release%20Apache%20Royale%20${release.version}%20RC${rc}&amp;body=${vote.thread.body}&quot;&gt;Click here to review vote thread&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</echo>
         <makeurl file="${basedir}/votethread.html" property="vote.thread.url" />
         <exec executable="${browser}">
             <arg value="${vote.thread.url}" />

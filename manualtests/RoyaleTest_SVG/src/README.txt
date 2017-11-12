@@ -22,7 +22,7 @@ DESCRIPTION
 The RoyaleTest_SVG example shows how to use SVG to skin components when run in
 the HTML/JavaScript environment.
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using the Royale Compiler)
 into JavaScript and HTML and run without Flash.
 
 The RoyaleTest_SVG application may be run in ActionScript, which uses standard Flash
@@ -30,7 +30,7 @@ drawing to produce the button skin. When run in JavaScript however, SVG is used 
 make the skin.
 
 To make the skin, a new classification of TextButton was created in the 
-org.apache.flex.svg package. On the ActionScript side, the svg.TextButton simply
+org.apache.royale.svg package. On the ActionScript side, the svg.TextButton simply
 extends the normal TextButton. On the JavaScript side, the svg.TextButton class
 uses an SVG file (svg.assets.TextButton_skin.svg).
 

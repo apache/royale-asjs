@@ -49,7 +49,7 @@ public class Fade extends Tween implements IDocument
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function Fade(target:IUIBase = null)
     {

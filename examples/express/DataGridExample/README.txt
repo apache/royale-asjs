@@ -22,7 +22,7 @@ DESCRIPTION
 The DataGridExample in the Express project demonstrates the Royale DataGrid with
 the addition of beads that provide drag-and-drop support. 
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using the Royale Compiler)
 into JavaScript and HTML and run without Flash.
 
 The data for the DataGrid is found in the application's model and is connected

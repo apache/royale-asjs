@@ -54,7 +54,7 @@ public class PlatformWiper
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function PlatformWiper()
     {
@@ -85,7 +85,7 @@ public class PlatformWiper
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function set target(value:IUIBase):void
     {
@@ -117,7 +117,7 @@ public class PlatformWiper
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function set visibleRect(value:org.apache.royale.geom.Rectangle):void
     {

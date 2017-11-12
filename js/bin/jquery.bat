@@ -22,8 +22,8 @@ rem mxmlc.bat script to launch compiler-mxmlc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the mxmlc shell script instead.
 rem
 
-if "x%FALCON_HOME%"=="x"  (set "FALCON_HOME=%~dp0..\..") else echo Using Falcon codebase: %FALCON_HOME%
+if "x%ROYALE_COMPILER_HOME%"=="x"  (set "ROYALE_COMPILER_HOME=%~dp0..\..") else echo Using Royale Compiler codebase: %ROYALE_COMPILER_HOME%
 
-if "x%FLEX_HOME%"=="x" (set "FLEX_HOME=%~dp0..\..") else echo Using Flex SDK: %FLEX_HOME%
+if "x%ROYALE_HOME%"=="x" (set "ROYALE_HOME=%~dp0..\..") else echo Using Royale SDK: %ROYALE_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Droyalecompiler="%FALCON_HOME%" -Droyalelib="%FLEX_HOME%\frameworks" -jar "%FALCON_HOME%\js\lib\mxmlc.jar" -js-output-type=jsc +configname=jquery %*
+@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Droyalecompiler="%ROYALE_COMPILER_HOME%" -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\js\lib\mxmlc.jar" -js-output-type=jsc +configname=jquery %*

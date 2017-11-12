@@ -25,7 +25,7 @@ package org.apache.royale.jquery
 	public class Application extends org.apache.royale.core.Application implements IFlexInfo
 	{
 		/**
-		 * FalconJX will inject html into the index.html file.  Surround with
+		 * The Royale Compiler will inject html into the index.html file.  Surround with
 		 * "inject_html" tag as follows:
 		 *
 		 * <inject_html>

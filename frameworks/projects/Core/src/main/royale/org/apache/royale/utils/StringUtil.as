@@ -28,7 +28,7 @@ package org.apache.royale.utils
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
 	 *  @productversion Royale 0.0
 	 */
 	public class StringUtil
@@ -79,7 +79,7 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 *  @productversion Royale 0.0
 		 */
 		public static function substitute(str:String, ... rest):String
@@ -121,7 +121,7 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 *  @productversion Royale 0.0
 		 */
 		public static function repeat(str:String, n:int):String
@@ -153,7 +153,7 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
-		 *  @productversion Flex 4.1
+		 *  @productversion Royale 1.0.0.1
 		 *  @productversion Royale 0.0
 		 */
 		public static function restrict(str:String, restrict:String):String

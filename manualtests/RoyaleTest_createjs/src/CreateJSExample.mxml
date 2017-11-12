@@ -32,7 +32,7 @@
 	shows only a label and button, you can extend the pattern to include other
 	controls.
 	
-	Once you have compiled the application into JavaScript using Falcon JX, you
+	Once you have compiled the application into JavaScript using the Royale Compiler, you
 	must do two more things to make the example work:
 	
 	1. Copy the CreateJS easeljs JavaScript library into the js-debug or js-release directory

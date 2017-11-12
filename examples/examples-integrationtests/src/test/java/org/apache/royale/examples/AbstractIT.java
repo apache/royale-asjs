@@ -16,7 +16,7 @@
  *  limitations under the License.
  *
  */
-package org.apache.flex.royale.examples;
+package org.apache.royale.examples;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

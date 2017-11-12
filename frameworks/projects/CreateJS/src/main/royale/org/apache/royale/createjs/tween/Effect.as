@@ -36,7 +36,7 @@ package org.apache.royale.createjs.tween
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
      */
 	public class Effect extends EventDispatcher
 	{
@@ -46,7 +46,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
         public function Effect(target:CreateJSBase=null)
 		{
@@ -64,7 +64,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get target():String
 		{
@@ -89,7 +89,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var duration:Number = 1000;
 		
@@ -100,7 +100,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var loop:Boolean = false;
 		
@@ -110,7 +110,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		//public var easing:Function = null;
 		private var _easing:Function = null;
@@ -129,7 +129,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public function createTweenOptions():Object
 		{
@@ -144,7 +144,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion createjs.Shape
 		 *  @royaleignorecoercion org.apache.royale.createjs.core.CreateJSBase
 		 */

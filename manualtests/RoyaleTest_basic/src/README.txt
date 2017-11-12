@@ -22,8 +22,8 @@ DESCRIPTION
 The RoyaleTest_basic demonstrates a number of the common components in the Royale
 SDK (listed below).
 
-This Flex application may be run either as an ActionScript SWF or cross-compiled
-into JavsScript/HTML using the Falcon JX compiler and run without using the
+This Royale application may be run either as an ActionScript SWF or cross-compiled
+into JavsScript/HTML using the the Royale Compiler compiler and run without using the
 Flash Player.
 
 This application also uses the same financial data as the DataBindingTest,

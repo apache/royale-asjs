@@ -83,7 +83,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public static const TWEEN_END:String = "tweenEnd";
 
@@ -113,7 +113,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public static const TWEEN_START:String = "tweenStart";
 
@@ -143,7 +143,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public static const TWEEN_UPDATE:String = "tweenUpdate";
 
@@ -251,7 +251,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function Tween()
     {
@@ -329,7 +329,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public var listener:Object;
 
@@ -417,15 +417,12 @@ public class Tween extends Effect
      *  The return value is the interpolated value for the current time
      *  (usually a value between the initial value and the ending value).</p>
      *
-     *  <p>Flex includes a set of easing functions
-     *  in the mx.effects.easing package.</p>
-     *
      *  @param easingFunction Function that implements the easing equation.
      *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function set easingFunction(value:Function):void
     {
@@ -439,7 +436,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function endTween():void
     {
@@ -558,7 +555,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     public function seek(playheadTime:Number):void
     {
@@ -585,7 +582,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     override public function reverse():void
     {
@@ -607,7 +604,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     override public function pause():void
     {
@@ -621,7 +618,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     override public function play():void
     {
@@ -639,7 +636,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     override public function stop():void
     {
@@ -657,7 +654,7 @@ public class Tween extends Effect
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 1.0.0
      */
     override public function resume():void
     {

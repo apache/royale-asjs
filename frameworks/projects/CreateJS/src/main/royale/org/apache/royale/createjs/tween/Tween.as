@@ -45,7 +45,7 @@ package org.apache.royale.createjs.tween
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 1.0.0
      */
 	public class Tween extends Effect implements IDocument
 	{
@@ -55,7 +55,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
         public function Tween(target:Object=null)
 		{
@@ -72,7 +72,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var xFrom:Number;
 		
@@ -82,7 +82,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var xTo:Number;
 		
@@ -92,7 +92,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var yFrom:Number;
 		
@@ -102,7 +102,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var yTo:Number;
 		
@@ -112,7 +112,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var alphaFrom:Number;
 		
@@ -122,7 +122,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 */
 		public var alphaTo:Number;
 		
@@ -209,7 +209,7 @@ package org.apache.royale.createjs.tween
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion createjs.Shape
 		 *  @royaleignorecoercion createjs.Tween
 		 *  @royaleignorecoercion org.apache.royale.createjs.core.CreateJSBase

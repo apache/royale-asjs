@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.textLayout.accessibility
 {
-	import flash.accessibility.Accessibility;
-	import flash.accessibility.AccessibilityImplementation;
-	import flash.accessibility.AccessibilityProperties;
-	import flash.display.DisplayObject;
+	COMPILE::SWF{
+		import flash.accessibility.Accessibility;
+		import flash.accessibility.AccessibilityImplementation;
+		import flash.accessibility.AccessibilityProperties;
+		import flash.display.DisplayObject;
+	}
 	import org.apache.royale.events.Event;
 	
 	import org.apache.royale.textLayout.edit.EditingMode;
@@ -66,6 +68,7 @@ package org.apache.royale.textLayout.accessibility
 	 * The TextAccImpl class adds accessibility for text components.
 	 * This hooks into DisplayObjects when TextFlow.container is set.
 	 */
+	COMPILE::SWF
 	public class TextAccImpl extends AccessibilityImplementation
 	{
 	    //TODO might want to put these constants in a new class if they are

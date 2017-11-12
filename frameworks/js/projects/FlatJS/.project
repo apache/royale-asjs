@@ -26,20 +26,20 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<name>com.adobe.royalebuilder.project.royalebuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.adobe.flexbuilder.project.flexlibnature</nature>
-		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+		<nature>com.adobe.royalebuilder.project.royalelibnature</nature>
+		<nature>com.adobe.royalebuilder.project.actionscriptnature</nature>
 	</natures>
 	<linkedResources>
 		<link>
-			<name>[source path] flex</name>
+			<name>[source path] royale</name>
 			<type>2</type>
-			<locationURI>FLEX_ASJS/frameworks/projects/Flat/src/main/flex</locationURI>
+			<locationURI>ROYALE_ASJS/frameworks/projects/Flat/src/main/royale</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

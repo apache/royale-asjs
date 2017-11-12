@@ -48,7 +48,7 @@ limitations under the License.
 	</fx:Style>
 	
 	
-	<js:Label text="Number of users on flex.apache.org for last 30 days" x="10" y="10" />
+	<js:Label text="Number of users on royale.apache.org for last 30 days" x="10" y="10" />
 	<js:TextButton id="refreshButton" text="Refresh" x="300" y="10" click="onRefreshBtnClick(event)"/>
 	
 	<js:ColumnChart id="columnChart" x="40" y="40" width="2000" height="768" className="AllCharts">

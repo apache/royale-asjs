@@ -58,7 +58,7 @@
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${ROYALE_HOME}" />
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}" />
  
     <target name="main" depends="check-compile-env,clean,prepare,compile"
         description="Clean build of all SWCs"/>
@@ -244,76 +244,5 @@
     <target name="TLF" description="Clean build of TLFJS.swc">
         <ant dir="${basedir}/projects/TLFJS"/>
     </target>
-
-	<target name="royale-config" depends="playerglobal-setswfversion" description="Copy the flex config template to royale-config.xml and inject version numbers">
-		<copy file="${basedir}/royale-config-template.xml" tofile="${basedir}/royale-config.xml" overwrite="true">
-			<filterset>
-				<filter token="playerversion" value="${playerglobal.version}"/>
-				<filter token="swfversion" value="${playerglobal.swfversion}"/>
-				<filter token="locale" value="${locale}"/>
-			</filterset>
-		</copy>
-	</target>
-		
-	<target name="air-config" depends="playerglobal-setswfversion" description="Copy the air config template to air-config.xml and inject version numbers">
-		<copy file="${basedir}/air-config-template.xml" tofile="${basedir}/air-config.xml" overwrite="true">
-			<filterset>
-				<filter token="playerversion" value="${playerglobal.version}"/>
-				<filter token="swfversion" value="${playerglobal.swfversion}"/>
-				<filter token="locale" value="${locale}"/>
-			</filterset>
-		</copy>
-	</target>
-
-	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the flex config file">
-		<condition property="playerglobal.swfversion" value="11">
-			<equals arg1="${playerglobal.version}" arg2="10.2" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="12">
-			<equals arg1="${playerglobal.version}" arg2="10.3" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="13">
-			<equals arg1="${playerglobal.version}" arg2="11.0" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="14">
-			<equals arg1="${playerglobal.version}" arg2="11.1" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="15">
-			<equals arg1="${playerglobal.version}" arg2="11.2" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="16">
-			<equals arg1="${playerglobal.version}" arg2="11.3" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="17">
-			<equals arg1="${playerglobal.version}" arg2="11.4" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="18">
-			<equals arg1="${playerglobal.version}" arg2="11.5" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="19">
-			<equals arg1="${playerglobal.version}" arg2="11.6" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="20">
-			<equals arg1="${playerglobal.version}" arg2="11.7" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="21">
-			<equals arg1="${playerglobal.version}" arg2="11.8" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="22">
-			<equals arg1="${playerglobal.version}" arg2="11.9" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="23">
-			<equals arg1="${playerglobal.version}" arg2="12.0" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="24">
-			<equals arg1="${playerglobal.version}" arg2="13.0" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="25">
-			<equals arg1="${playerglobal.version}" arg2="14.0" />
-		</condition>
-		<condition property="playerglobal.swfversion" value="26">
-			<equals arg1="${playerglobal.version}" arg2="15.0" />
-		</condition>
-	</target>	
 
 </project>

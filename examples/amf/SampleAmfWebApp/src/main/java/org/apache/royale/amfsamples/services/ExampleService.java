@@ -17,10 +17,10 @@
  *
  */
 
-package org.apache.flex.amfsamples.services;
+package org.apache.royale.amfsamples.services;
 
-import org.apache.flex.amfsamples.valueobjects.ServerCustomType;
-import org.apache.flex.amfsamples.valueobjects.Product;
+import org.apache.royale.amfsamples.valueobjects.ServerCustomType;
+import org.apache.royale.amfsamples.valueobjects.Product;
 import org.springframework.flex.remoting.RemotingDestination;
 import org.springframework.stereotype.Service;
 
