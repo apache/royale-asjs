@@ -734,7 +734,7 @@ package org.apache.royale.net
          */
         public function get json():Object
         {
-            if (!_json)
+            if (status > 0)
                 _json = JSON.parse(data);
             return _json;
         }
