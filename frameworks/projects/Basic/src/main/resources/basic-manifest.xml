@@ -108,6 +108,8 @@
      <component id="HRuleView" class="org.apache.royale.html.beads.HRuleView" />
      <component id="VRuleView" class="org.apache.royale.html.beads.VRuleView" />
      -->
+
+    <component id="GetScrollbarWidth" class="org.apache.royale.html.beads.GetScrollbarWidth"/>
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />

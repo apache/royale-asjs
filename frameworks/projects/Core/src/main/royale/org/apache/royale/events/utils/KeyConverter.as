@@ -93,10 +93,11 @@ package org.apache.royale.events.utils
              // Numpad 0 to 9
              if(code > 95 && code < 106)
              {
-                 return "Numpad" + String.fromCharCode(code);
+                 // convert the value to digit equivalent
+                 return "Numpad" + String.fromCharCode(code - 48);
              }
              // Fn keys
-             if(code > 111 && code < 106)
+             if(code > 111 && code < 135)
              {
                  return "F" + (code - 111);
              }

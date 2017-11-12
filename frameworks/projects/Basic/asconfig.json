@@ -29,6 +29,9 @@
         "include-sources": [
             "src/main/royale"
         ],
+        "external-library-path": [
+            "../../../../frameworks/libs/air/airglobal.swc"
+        ],
         "output": "target/Basic.swc"
     }
 }
