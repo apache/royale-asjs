@@ -34,6 +34,7 @@ package org.apache.royale.net
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
     import org.apache.royale.net.HTTPConstants;
+    import org.apache.royale.debugging.assert;
 	
     //--------------------------------------
     //  Events
@@ -734,7 +735,8 @@ package org.apache.royale.net
          */
         public function get json():Object
         {
-            if (!_json && data)
+            assert(data,"data must exist before calling json getter!");
+            if (!_json)
                 _json = JSON.parse(data);
             return _json;
         }
