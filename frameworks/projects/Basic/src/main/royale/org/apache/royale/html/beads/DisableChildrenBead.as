@@ -74,7 +74,7 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-			updateHost();
+			(_strand as IEventDispatcher).addEventListener("childrenAdded",childrenAddedHandler);
 		}
 		
 		public function get disabled():Boolean
@@ -96,7 +96,7 @@ package org.apache.royale.html.beads
 			}
 		}
 
-		private function disabledChangeHandler(e:Event):void
+		private function childrenAddedHandler(e:Event):void
 		{
 			updateHost();
 		}
