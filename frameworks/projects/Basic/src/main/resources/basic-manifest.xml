@@ -117,6 +117,7 @@
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />
     <component id="PasswordInputRemovableBead" class="org.apache.royale.html.accessories.PasswordInputRemovableBead" />
     <component id="TextPromptBead" class="org.apache.royale.html.accessories.TextPromptBead" />
+    <component id="TextOverflow" class="org.apache.royale.html.beads.TextOverflow" />
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
