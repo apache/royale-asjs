@@ -32,6 +32,7 @@ package org.apache.royale.html.beads
 
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.core.HTMLElementWrapper;
 	}
 	/**
 	 *  The DisableBead class is a specialty bead that can be used with
@@ -83,11 +84,17 @@ package org.apache.royale.html.beads
 		
 		/**
 		 *  @private
+		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 		 */
 		public function set disabled(value:Boolean):void
 		{
 			if (value != _disabled)
 			{
+				COMPILE::JS
+				{
+					if(value && _strand)
+						_lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+				}
 				_disabled = value;
 				updateHost();
 				throwChangeEvent();
@@ -103,7 +110,13 @@ package org.apache.royale.html.beads
 		{
 			return _strand as IUIBase;
 		}
-
+		
+		COMPILE::JS
+		private var _lastTabVal:String;
+		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+		 */
 		private function updateHost():void
 		{
 			if(!_strand)//bail out
@@ -114,7 +127,14 @@ package org.apache.royale.html.beads
 			}
 			
 			COMPILE::JS {
-				(_strand as Object).element.style.pointerEvents = disabled ? "none" : "";
+				var elem:HTMLElement = (_strand as HTMLElementWrapper).element;
+				elem.style["pointerEvents"] = disabled ? "none" : "";
+				if(disabled)
+					elem.setAttribute("tabindex", "-1");
+				else
+					_lastTabVal ?
+						elem.setAttribute("tabindex", _lastTabVal) :
+						elem.removeAttribute("tabindex");
 			}
 				
 		}
