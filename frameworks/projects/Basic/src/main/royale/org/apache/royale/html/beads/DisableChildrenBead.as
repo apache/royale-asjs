@@ -35,8 +35,8 @@ package org.apache.royale.html.beads
 		import org.apache.royale.core.HTMLElementWrapper;
 	}
 	/**
-	 *  The DisableBead class is a specialty bead that can be used with
-	 *  any UIBase. When disabled is true, the bead prevents interaction with the component.
+	 *  The DisableChildrenBead class is a specialty bead that can be used with
+	 *  any UIBase. When disabled is true, the bead prevents interaction with the component and its children.
 	 *  The appearance of the component when disabled is controlled by a separate bead.
 	 *  
 	 *  @langversion 3.0
