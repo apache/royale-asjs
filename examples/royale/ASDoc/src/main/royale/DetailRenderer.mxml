@@ -37,7 +37,9 @@ limitations under the License.
         <js:VerticalFlexLayout />
         <js:ItemRendererDataBinding />
     </js:beads>
-    <js:Label width="100%" height="30" style="fontWeight:bold" text="{obj.qname}" >
-    </js:Label>
-    <js:MultilineLabel id="description" width="100%" text="{obj.description}" />
+    <js:Spacer height="2"/>
+    <js:Label width="100%" style="fontWeight:bold;text-indent:10px" text="{obj.qname}"/>
+    <js:Spacer height="2"/>
+    <js:MultilineLabel id="description" width="100%" text="{obj.description}" style="text-indent:5px"/>
+    <js:Spacer height="7"/>
 </js:MXMLItemRenderer>

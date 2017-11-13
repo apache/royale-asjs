@@ -56,6 +56,13 @@ limitations under the License.
 		]]>
     </fx:Script>
 	<fx:Style>
+        .sectionLabel{
+            font-size: 16px;
+            font-weight: bold;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
 	</fx:Style>
     <js:beads>
         <js:ViewDataBinding />
@@ -95,19 +102,19 @@ limitations under the License.
 	            <js:Label id="inheritance" text="{ASDocModel(applicationModel).inheritance}" width="100%"/>
 	            <js:MultilineLabel id="attributes" text="{ASDocModel(applicationModel).attributes}" width="100%"/>
 	            <js:MultilineLabel id="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
-	            <js:Label text="Public Properties" />
+	            <js:Label text="Public Properties" className="sectionLabel"/>
 	            <js:List id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
 	                     itemRenderer="SummaryRenderer" width="100%"/>
-	            <js:Label text="Public Methods" />
+	            <js:Label text="Public Methods" className="sectionLabel"/>
 	            <js:List id="publicMethodList" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
 	                     itemRenderer="SummaryRenderer" width="100%"/>
-	            <js:Label text="Property Details" />
+	            <js:Label text="Property Details" className="sectionLabel"/>
 	            <js:DataContainer id="propertyDetails" dataProvider="{ASDocModel(applicationModel).publicProperties}" 
 	                              itemRenderer="DetailRenderer" width="100%"/>
-	            <js:Label text="Constructor Details" />
+	            <js:Label text="Constructor Details" className="sectionLabel"/>
 	            <js:DataContainer id="constructorDetails" dataProvider="{ASDocModel(applicationModel).constructorList}" 
 	                              itemRenderer="DetailRenderer" width="100%"/>
-	            <js:Label text="Method Details" />
+	            <js:Label text="Method Details" className="sectionLabel"/>
 	            <js:DataContainer id="MethodDetails" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
 	                              itemRenderer="DetailRenderer" width="100%"/>
 	        </js:Group>
