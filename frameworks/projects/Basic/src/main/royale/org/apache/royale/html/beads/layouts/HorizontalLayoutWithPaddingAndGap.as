@@ -172,6 +172,22 @@ package org.apache.royale.html.beads.layouts
 		}
 
 		/**
+		 *  Set all padding values.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function set padding(value:Number):void
+		{
+			_paddingLeft = value;
+			_paddingRight = value;
+			_paddingTop = value;
+			_paddingBottom = value;
+		}
+
+		/**
 		 *  @private
 		 */
 		private var _gap:Number = 0;
