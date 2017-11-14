@@ -127,7 +127,7 @@ package org.apache.royale.html
             titleBar = new TitleBar();
             addElement(titleBar);
             titleBar.element.id = 'titleBar';
-            titleBar.percentWidth = 100;
+            titleBar.percentWidth = 98; // so doesn't go over RHS border
             titleBar.height = 24;
             titleBar.element.style.top = "0px";
             titleBar.element.style.right = "0px";
@@ -147,7 +147,7 @@ package org.apache.royale.html
             
             // add a place for the buttons
             buttonArea = new Container();
-            buttonArea.percentWidth = 100;
+            buttonArea.percentWidth = 98; // so doesn't go over RHS border
             buttonArea.height = 28;
             addElement(buttonArea);
             buttonArea.element.style.marginTop = "6px";

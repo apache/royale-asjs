@@ -155,12 +155,12 @@ package org.apache.royale.html.beads
 			var titleMeasure:IMeasurementBead = _titleBar.measurementBead;
 			var ctrlMeasure:IMeasurementBead  = _controlBar.measurementBead;
 			var maxWidth:Number = Math.max(titleMeasure.measuredWidth, ctrlMeasure.measuredWidth, labelMeasure.measuredWidth);
-			
+			var border:Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 
-			_titleBar.x = 0;
-			_titleBar.y = 0;
-			_titleBar.width = maxWidth;
+			_titleBar.x = border.left;
+			_titleBar.y = border.top;
+			_titleBar.width = maxWidth - border.left - border.right;
 			_titleBar.height = 25;
 			_titleBar.dispatchEvent(new Event("layoutNeeded"));
 			
