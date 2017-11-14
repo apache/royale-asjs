@@ -148,7 +148,7 @@ package org.apache.royale.html
             // add a place for the buttons
             buttonArea = new Container();
             buttonArea.percentWidth = 100;
-            buttonArea.height = 28;
+            buttonArea.height = 30;
             addElement(buttonArea);
             buttonArea.element.style.marginTop = "6px";
             buttonArea.element.style.marginBottom = "6px";

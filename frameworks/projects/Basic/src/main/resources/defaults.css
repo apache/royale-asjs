@@ -28,7 +28,7 @@
 	border-width: 1px;
 }
 
-.royale *, . royale *:before, . royale *:after {
+.Application *, .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
