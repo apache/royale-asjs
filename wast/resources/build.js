@@ -19,7 +19,7 @@
 
 'use strict';
 
-let args, cmd, exec, fs, playerVersion, royaleHome, wastc;
+let args, cmd, exec, fs, playerHome, playerVersion, royaleHome, wastc;
 
 
 
@@ -63,6 +63,17 @@ if (!fs.existsSync(wastc)) {
   process.exit();
 }
 
+playerHome = args['playerglobal-home'];
+if (!playerHome || '' === playerHome) {
+  playerHome = process.env.PLAYERGLOBAL_HOME;
+  if (!playerHome || '' === playerHome) {
+    console.log('PLAYERGLOBAL_HOME is not defined. Create an environment variable (PLAYERGLOBAL_HOME) and point it to the skd dir, or use \'npm run build -- -playerglobal-home=[playerglobal dir]\'.');
+
+    process.exit();
+  }
+}
+console.log('PLAYERGLOBAL_HOME is ' + playerHome);
+
 playerVersion = args['player-version'];
 if (!playerVersion || '' === playerVersion) {
   playerVersion = process.env.PLAYERGLOBAL_VERSION;
@@ -75,13 +86,13 @@ if (!playerVersion || '' === playerVersion) {
   console.log('PLAYERGLOBAL_VERSION is ' + playerVersion + '.');
 }
 
-if (!fs.existsSync(royaleHome + '/frameworks/libs/player/' + playerVersion + '/playerglobal.swc')) {
-  console.log('\'playerglobal.swc\' could not be found. Make sure you have set ROYALE_HOME to a fully built sdk.');
+if (!fs.existsSync(playerHome + '/' + playerVersion + '/playerglobal.swc')) {
+  console.log('\'playerglobal.swc\' could not be found. Make sure you have set PLAYERGLOBAL_HOME to a correctly downloaded and stored playerglobal.swc');
 
   process.exit();
 }
 
-cmd = `/usr/bin/java -Xmx384m -Dsun.io.useCanonCaches=false -jar "${wastc}" -external-library-path="${royaleHome}/frameworks/libs/player/${playerVersion}/playerglobal.swc" ${args['src']}`;
+cmd = `/usr/bin/java -Xmx384m -Dsun.io.useCanonCaches=false -jar "${wastc}" -external-library-path="${playerHome}/${playerVersion}/playerglobal.swc" ${args['src']}`;
 
 exec(cmd, function (error, stdout, stderr) {
   console.log(stdout);
