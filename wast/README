@@ -1,0 +1,15 @@
+To create a new Royale WAST project, use:
+
+npm run create-project -- -dir=[root dir] -name=[project name]
+
+This will create the following project structure:
+
+[root dir]
+  |
+  /src
+  |  |
+  |  - [project name].as
+  |
+  - build.js
+  - package.json
+  - README
