@@ -427,6 +427,24 @@
         <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
     
+    <target name="copy-wast" depends="copy-compiler" description="Copy relevant jars for WAST to where they are supposed to go">
+        <mkdir dir="${basedir}/wast/lib" />
+        <echo>Copying WAST Transpiler and related jars from 'js/lib'</echo>
+        <copy file="${basedir}/js/lib/wastc.jar" tofile="${basedir}/wast/lib/wastc.jar" />
+        <copy file="${basedir}/lib/compiler.jar" tofile="${basedir}/wast/lib/compiler.jar" />
+        <mkdir dir="${basedir}/wast/lib/external" />
+        <copy todir="${basedir}/wast/lib/external">
+          <fileset dir="${basedir}/lib/external">
+              <include name="antlr*" />
+              <include name="commons-cli*" />
+              <include name="commons-io*" />
+              <include name="flex-tool-api*" />
+              <include name="guava*" />
+              <include name="lzma-sdk*" />
+          </fileset>
+        </copy>
+    </target>
+    
     <target name="check_jquery" >
         <condition property="jquery_exists">
             <available file="${basedir}/js/libs/jquery.swc" />
@@ -528,6 +546,10 @@
 
     <target name="player-clean">
         <delete dir="${basedir}/in/player" failonerror="false" includeEmptyDirs="true"/>
+    </target>
+
+    <target name="wast-clean">
+        <delete dir="${basedir}/wast/lib" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <!--
