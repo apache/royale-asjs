@@ -356,7 +356,13 @@
         <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/flex-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
         <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/flex-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
         <replaceregexp file="${ROYALE_HOME}/frameworks/air-config.xml"
