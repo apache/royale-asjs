@@ -2053,14 +2053,33 @@ package
 			var len:int;
 			var chld:XML;
 			var retVal:Object = elements;
+			var chldrn:XMLList;
+			var childIdx:int;
 
 			// I'm not sure that this a strict interpretation of the spec but I think this does the "right thing".
 			var childType:String = typeof elements;
 			if(childType != "object")
 			{
 				var stringable:XML = xmlFromStringable(elements);
-				elements = new XML("<" + elementName + "/>");
-				elements.appendChild(stringable);
+				chldrn = this.child(elementName);
+				childIdx = children().length() -1;
+				if(chldrn.length())
+					childIdx = chldrn[0].childIndex()-1;
+				else
+				{
+					chld = new XML("<" + elementName + "/>");
+					chld.appendChild(stringable);
+					prependChild(chld);
+					return chld;
+				}
+				len = chldrn.length() -1;
+				for (i= len; i > 0;  i--)
+				{
+					removeChild(chldrn[i]);
+				}
+				chld = chldrn[i];
+				chld.appendChild(stringable);
+				return chld;
 			}
 			
 			if(elements is XML)
@@ -2071,8 +2090,8 @@ package
 			}
 			if(elements is XMLList)
 			{
-				var chldrn:XMLList = this.child(elementName);
-				var childIdx:int = children().length() -1;
+				chldrn = this.child(elementName);
+				childIdx = children().length() -1;
 				if(chldrn.length())
 					childIdx = chldrn[0].childIndex()-1;
 				

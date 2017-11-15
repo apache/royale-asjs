@@ -114,6 +114,12 @@ limitations under the License.
 				trace(amp2XML.toXMLString());
 				trace("escaped ampersands should be equal? " + (ampXML.toXMLString() == amp2XML.toXMLString()));
         trace("ampersand should not be escaped: " + ampXML.toString());
+        var newContent:XML = <Content/>
+        newContent.Properties.Leading.@type="string";
+				newContent.Properties.Leading = 36;
+				trace("Leading should be @type=string: " + (newContent.Properties.Leading.@type=="string"));
+				trace("Leading should be 36: " + newContent.Properties.Leading);
+
         var child:XML = <pop><child name="Sam"/></pop>;
         xml1.appendChild(child);
         child = <pop><child name="George"/></pop>;

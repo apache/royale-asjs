@@ -790,10 +790,17 @@ package
 		private function xmlFromProperty():XML
 		{
 			var xmlStr:String = "<";
-			if(_targetProperty.prefix)
-				xmlStr += _targetProperty.prefix + "::";
+			if(_targetProperty is QName)
+			{
+				if(_targetProperty.prefix)
+					xmlStr += _targetProperty.prefix + "::";
 
-			xmlStr += _targetProperty.localName + "/>";
+				xmlStr += _targetProperty.localName + "/>";
+			}
+			else
+			{
+				xmlStr += _targetProperty + "/>";
+			}
 			return new XML(xmlStr);
 		}
 		public function setAttribute(attr:*,value:String):String
