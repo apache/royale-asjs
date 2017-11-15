@@ -17,8 +17,13 @@
  *
  */
 
-function fetchAndInstantiate(url, importObject) {
-  return fetch(url).then(response =>
+'use strict';
+
+// eslint-disable-next-line no-unused-vars
+let fetchAndInstantiate;
+
+fetchAndInstantiate = function (url, importObject) {
+  return window.fetch(url).then(response =>
     response.arrayBuffer()
   )
   .then(bytes =>
@@ -27,4 +32,4 @@ function fetchAndInstantiate(url, importObject) {
   .then(results =>
     results.instance
   );
-}
+};
