@@ -2078,7 +2078,7 @@ package
 					removeChild(chldrn[i]);
 				}
 				chld = chldrn[i];
-				chld.appendChild(stringable);
+				chld.setChildren(stringable);
 				return chld;
 			}
 			

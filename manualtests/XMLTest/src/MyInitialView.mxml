@@ -119,6 +119,8 @@ limitations under the License.
 				newContent.Properties.Leading = 36;
 				trace("Leading should be @type=string: " + (newContent.Properties.Leading.@type=="string"));
 				trace("Leading should be 36: " + newContent.Properties.Leading);
+				newContent.Properties.Leading = 72;
+				trace("Leading should be 72: " + newContent.Properties.Leading);
 
         var child:XML = <pop><child name="Sam"/></pop>;
         xml1.appendChild(child);
