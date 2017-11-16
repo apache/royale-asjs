@@ -102,19 +102,27 @@ package org.apache.royale.mdl.itemRenderers
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;
-			
-			if (labelField || dataField) {
+            super.data = value;
+
+            if (labelField)
+            {
                 text = String(value[labelField]);
-            } else {
+            }
+            else
+            {
                 text = String(value);
             }
-            
-			COMPILE::JS
-			{
-				textNode.nodeValue = text;
-				(link as HTMLElement).setAttribute('href', href);
-			}
+
+            if (dataField)
+            {
+                href = String(value[dataField]);
+            }
+
+            COMPILE::JS
+            {
+                textNode.nodeValue = text;
+                (link as HTMLElement).setAttribute('href', href);
+            }
 		}
 
         COMPILE::JS
@@ -133,13 +141,11 @@ package org.apache.royale.mdl.itemRenderers
             link = document.createElement('a') as HTMLElement;
             link.setAttribute('href', href);
 
+            textNode = document.createTextNode('') as Text;
+            link.appendChild(textNode);
+
             element.appendChild(link);
 
-            if(MXMLDescriptor == null)
-            {
-                textNode = document.createTextNode('') as Text;
-                link.appendChild(textNode);
-            }
             return element;
         }
 	}
