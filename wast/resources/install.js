@@ -19,11 +19,12 @@
 
 'use strict';
 
-let args, cmd, exec, playerHome, playerVersion, wastcJar;
+let args, cmd, exec, fs;
 
 
 
 exec = require('child_process').exec;
+fs = require('fs');
 
 
 
@@ -44,22 +45,18 @@ process.argv.slice(2).forEach(function (value) {
   }
 });
 
-wastcJar = args['wastc-jar'];
+if (!fs.existsSync('./node_modules/http-server/bin/http-server')) {
+  cmd = 'npm install';
 
-playerHome = args['playerglobal-home'];
+  exec(cmd, function (error, stdout, stderr) {
+    console.log(stdout);
 
-playerVersion = args['playerglobal-version'];
+    if (stderr && '' !== stderr) {
+      console.log('stderr: ' + stderr);
+    }
 
-cmd = `/usr/bin/java -Xmx384m -Dsun.io.useCanonCaches=false -jar "${wastcJar}" -external-library-path="${playerHome}/${playerVersion}/playerglobal.swc" ${args['src']}`;
-
-exec(cmd, function (error, stdout, stderr) {
-  console.log(stdout);
-
-  if (stderr && '' !== stderr) {
-    console.log('stderr: ' + stderr);
-  }
-
-  if (error) {
-    console.log('exec error: ' + error);
-  }
-});
+    if (error) {
+      console.log('exec error: ' + error);
+    }
+  });
+}
