@@ -336,10 +336,10 @@ package org.apache.royale.textLayout.elements
 			COMPILE::JS
 			{
 				var metrics:FontMetrics = ef.getFontMetrics();
-				metrics.underlineOffset *= ef.fontSize;
-				metrics.underlineThickness *= ef.fontSize;
-				metrics.strikethroughOffset *= ef.fontSize;
-				metrics.strikethroughThickness *= ef.fontSize;
+				metrics.underlineOffset *= ef.fontSize * ef.yScale;
+				metrics.underlineThickness *= ef.fontSize * ef.yScale;
+				metrics.strikethroughOffset *= ef.fontSize * ef.yScale;
+				metrics.strikethroughThickness *= ef.fontSize * ef.yScale;
 				return metrics;
 			}
 		}
@@ -414,10 +414,12 @@ package org.apache.royale.textLayout.elements
 			return GeometricElementUtils.getCSSInlineBoxHelper(computedFormat, getComputedFontMetrics(), textLine, para);
 		}
 
-		/** Returns the fontSize from this element's properties.  @private */
+		/** Returns the fontSize from this element's properties.
+		 * We multiply by yScale because the important dimension of the font size is the vertical size.
+		 * @private */
 		public function getEffectiveFontSize():Number
 		{
-			return Number(computedFormat.fontSize);
+			return Number(computedFormat.fontSize * computedFormat.yScale);
 		}
 		/** @private */
 		CONFIG::debug

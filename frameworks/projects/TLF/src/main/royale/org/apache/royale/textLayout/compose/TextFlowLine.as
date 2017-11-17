@@ -1194,7 +1194,7 @@ package org.apache.royale.textLayout.compose
 				// for lines that contain only a float (which can otherwise recurse infinitely), and TCY spans in vertical text.
 				var elemLeading:Number = elem.getEffectiveLineHeight(bp);
 				if (!elemLeading && elem.textLength == this.textLength)
-					elemLeading = TextLayoutFormat.lineHeightProperty.computeActualPropertyValue(elem.computedFormat.lineHeight, elem.computedFormat.fontSize);
+					elemLeading = TextLayoutFormat.lineHeightProperty.computeActualPropertyValue(elem.computedFormat.lineHeight, elem.computedFormat.fontSize * elem.computedFormat.yScale);
 				totalLeading = Math.max(totalLeading, elemLeading);
 				elemStart += elem.textLength;
 				if (elemStart >= endPos)

@@ -148,6 +148,26 @@ package org.apache.royale.textLayout.formats
 		}
 
 		/** @private */
+		static private var _xScaleProperty:Property;
+
+		static public function get xScaleProperty():Property
+		{
+			if (!_xScaleProperty)
+				_xScaleProperty = PropertyFactory.number("xScale", 1, true, Vector.<String>([Category.CHARACTER]), 0.01, 100);
+			return _xScaleProperty;
+		}
+
+		/** @private */
+		static private var _yScaleProperty:Property;
+
+		static public function get yScaleProperty():Property
+		{
+			if (!_yScaleProperty)
+				_yScaleProperty = PropertyFactory.number("yScale", 1, true, Vector.<String>([Category.CHARACTER]), 0.01, 100);
+			return _yScaleProperty;
+		}
+
+		/** @private */
 		static private var _baselineShiftProperty:Property;
 
 		static public function get baselineShiftProperty():Property
@@ -1741,6 +1761,50 @@ package org.apache.royale.textLayout.formats
 		public function set fontSize(value:*):void
 		{
 			setStyleByProperty(TextLayoutFormat.fontSizeProperty, value);
+		}
+
+		/**
+		 * The horizontal scale of the text as a multiplier.
+		 * <p>Legal values are numbers from 0.01 to 100 and FormatValue.INHERIT.</p>
+		 * <p>Default value is undefined indicating not set.</p>
+		 * <p>If undefined during the cascade this property will inherit its value from an ancestor. If no ancestor has set this property, it will have a value of 1.</p>
+		 * 
+		 * @throws RangeError when set value is not within range for this property
+		 * 
+		 * @playerversion Flash 10
+		 * @playerversion AIR 1.5
+		 * @langversion 3.0
+		 */
+		public function get xScale():*
+		{
+			return _styles.xScale;
+		}
+
+		public function set xScale(value:*):void
+		{
+			setStyleByProperty(TextLayoutFormat.xScaleProperty, value);
+		}
+
+		/**
+		 * The vertical scale of the text as a multiplier.
+		 * <p>Legal values are numbers from 0.01 to 100 and FormatValue.INHERIT.</p>
+		 * <p>Default value is undefined indicating not set.</p>
+		 * <p>If undefined during the cascade this property will inherit its value from an ancestor. If no ancestor has set this property, it will have a value of 1.</p>
+		 * 
+		 * @throws RangeError when set value is not within range for this property
+		 * 
+		 * @playerversion Flash 10
+		 * @playerversion AIR 1.5
+		 * @langversion 3.0
+		 */
+		public function get yScale():*
+		{
+			return _styles.yScale;
+		}
+
+		public function set yScale(value:*):void
+		{
+			setStyleByProperty(TextLayoutFormat.yScaleProperty, value);
 		}
 
 		/**
