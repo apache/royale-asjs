@@ -44,7 +44,7 @@ process.argv.slice(2).forEach(function (value) {
   }
 });
 
-cmd = `/usr/bin/java -Xmx384m -Dsun.io.useCanonCaches=false -jar "lib/compiler/wastc.jar" -external-library-path="lib/player/${args['playerglobal-version']}.0/playerglobal.swc" ${args['src']}`;
+cmd = `/usr/bin/java -Xmx384m -Dsun.io.useCanonCaches=false -jar "lib/compiler/wastc.jar" -external-library-path="lib/player/playerglobal.swc" ${args['src']}`;
 exec(cmd, function (error, stdout, stderr) {
   console.log(stdout);
 

@@ -85,7 +85,7 @@ prompt.get(schema, function (err, result) {
       if(200 !== response.statusCode) {
         console.log(`Download failed with status code: ${response.statusCode}`);
       } else {
-        let destination = `lib/player/${fileData.version}.0/`;
+        let destination = 'lib/player/';
 
         if (!fs.existsSync('lib')) {
           fs.mkdirSync('lib');
