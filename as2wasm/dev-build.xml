@@ -17,9 +17,10 @@
   limitations under the License.
 
 -->
+
 <project name="royale" default="main" basedir=".">
 
-  <target name="main" depends="compiler.jx,wast.jars" description="Full build"/>
+  <target name="main" depends="compiler.jx,as2wasm.jars" description="Full build"/>
 
   <target name="compiler.jx" description="Builds Royale JS Transpiler jars">
     <ant dir="../../royale-compiler/compiler-jx">
@@ -28,10 +29,10 @@
     </ant>
   </target>
 
-  <target name="wast.jars" description="Copies Royale JS Transpiler jars for WAST">
+  <target name="as2wasm.jars" description="Copies Royale JS Transpiler jars for 'as2wasm'">
     <ant dir="../">
-      <target name="wast-clean" />
-      <target name="copy-wast" />
+      <target name="as2wasm-clean" />
+      <target name="copy-as2wasm" />
     </ant>
   </target>
 

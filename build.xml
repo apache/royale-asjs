@@ -21,7 +21,7 @@
 <project name="asjs" default="main" basedir=".">
 
     <property name="ROYALE_HOME" location="${basedir}"/>
-    
+
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
     <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
@@ -42,7 +42,7 @@
     <property name="debug" value="true"/>
     <property name="strict" value="true"/>
     <property name="javac.src" value="1.5"/>
-    
+
     <condition property="kit.prefix" value="apache-royale-jsonly-${release.version}">
         <not>
             <isset property="env.AIR_HOME" />
@@ -51,7 +51,7 @@
     <property name="kit.prefix" value="apache-royale-${release.version}"/>
     <property name="source.kit" value="${kit.prefix}-src"/>
     <property name="binary.kit" value="${kit.prefix}-bin"/>
-      
+
     <condition property="isMac" value="mac">
         <os family="mac" />
     </condition>
@@ -77,10 +77,10 @@
             <isset property="env.AIR_HOME" />
         </not>
     </condition>
-    
+
     <!--
         Optional jars but should be in place for a real release build.
-        
+
         For <grep> put AntelopeTasks_*.jar in this path.
         See version-update.
 
@@ -97,7 +97,7 @@
            <include name=".ant/lib/**/apache-rat*.jar"/>
         </fileset>
     </path>
-    
+
     <!--
         Notes: If you're running the main target, then there is no need to call clean first.
         Each of the main targets for the modules will call clean themselves before proceeding.
@@ -142,55 +142,55 @@
         <echo>copying last flashlog.txt from ${FLASHLOG}</echo>
         <copy file="${FLASHLOG}" tofile="${basedir}/lastflashlog.txt" />
     </target>
-    
+
     <target name="block-flat-fonts">
         <property name="flat.donot.ask" value="true" />
     </target>
-    
+
     <target name="release"
         depends="block-flat-fonts,check-compile-env,check-runtime-env,check-compiler-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache Royale."/>
-        
-    <target name="release-jenkins" 
+
+    <target name="release-jenkins"
         depends="check-compile-env,check-runtime-env,check-compiler-home,source-release,binary-release-jenkins,rat-check"
         description="Creates source and binary kits for Apache Royale."/>
-  
-    <target name="source-release" 
-        depends="super-clean,create-description,create-config,source-package" 
+
+    <target name="source-release"
+        depends="super-clean,create-description,create-config,source-package"
         description="Packages the source release kit which is the official Apache release."/>
-        
-    <target name="binary-release" 
+
+    <target name="binary-release"
         depends="setup-binary-release,main,sample-themes,checkintests,check-goog-home,binary-package"
-        description="Builds and packages the binary kit which is provided as a convenience."/>    
+        description="Builds and packages the binary kit which is provided as a convenience."/>
 
-    <target name="binary-release-jenkins" 
+    <target name="binary-release-jenkins"
         depends="setup-binary-release,main-jenkins,sample-themes,binary-package"
-        description="Builds and packages the binary kit which is provided as a convenience."/>    
+        description="Builds and packages the binary kit which is provided as a convenience."/>
 
-    <target name="source-release-noclean" 
-        depends="create-description,create-config,source-package" 
+    <target name="source-release-noclean"
+        depends="create-description,create-config,source-package"
         description="Packages the source release kit which is the official Apache release."/>
-        
-    <target name="binary-release-noclean" 
-        depends="main,sample-themes,checkintests,binary-package"
-        description="Builds and packages the binary kit which is provided as a convenience."/>    
 
-    <target name="doc-packages" 
+    <target name="binary-release-noclean"
+        depends="main,sample-themes,checkintests,binary-package"
+        description="Builds and packages the binary kit which is provided as a convenience."/>
+
+    <target name="doc-packages"
         depends="asdoc-package,javadocs"
         description="Build and package the asdocs for the framework clases and the javadocs."/>
-                
+
     <target name="help">
         <echo message="run ant -projecthelp to see the available targets"/>
     </target>
-    
-    <!-- 
-       To clean these you must call thirdparty-clean or super-clean to clean everything.  
+
+    <!--
+       To clean these you must call thirdparty-clean or super-clean to clean everything.
        clean does not remove these since they don't change often and the downloads take time.
     -->
     <target name="thirdparty-downloads" description="Downloads all the required thirdparty code." unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="thirdparty-downloads"/>
         <!-- <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/> -->
-        <!-- don't ask again about these since we just did if these weren't already set -->	    
+        <!-- don't ask again about these since we just did if these weren't already set -->
 	    <property name="build.noprompt" value="set" />
         <!-- this flag is used by frameworks/build.xml to prevent a second download -->
         <property name="no.thirdparty-downloads" value="set" />
@@ -213,29 +213,29 @@
         <echo message="PLAYERGLOBAL_HOME is ${env.PLAYERGLOBAL_HOME}"/>
         <echo message="playerglobal.version is ${playerglobal.version}"/>
 
-        <available file="${env.PLAYERGLOBAL_HOME}" 
-            type="dir" 
+        <available file="${env.PLAYERGLOBAL_HOME}"
+            type="dir"
             property="PLAYERGLOBAL_HOME.set"/>
 
-        <fail message="The environment variable PLAYERGLOBAL_HOME is not set to a directory" 
+        <fail message="The environment variable PLAYERGLOBAL_HOME is not set to a directory"
             unless="PLAYERGLOBAL_HOME.set"/>
 
-        <property name="playerglobal.swc" 
+        <property name="playerglobal.swc"
             value="${env.PLAYERGLOBAL_HOME}/${playerglobal.version}/playerglobal.swc"/>
 
-        <available file="${playerglobal.swc}" 
-            type="file" 
+        <available file="${playerglobal.swc}"
+            type="file"
             property="playerglobal.swc.exists"/>
-        
-        <fail message="The file ${playerglobal.swc} does not exist" 
+
+        <fail message="The file ${playerglobal.swc} does not exist"
             unless="playerglobal.swc.exists"/>
-            
+
         <echo message="playerglobal.swc is ${playerglobal.swc}"/>
     </target>
-    
+
     <target name="check-air-home" if="env.AIR_HOME"
         description="Check that AIR_HOME is a directory">
-        
+
         <echo message="AIR_HOME is ${env.AIR_HOME}"/>
 
         <condition property="AIR_HOME.set">
@@ -245,32 +245,32 @@
                 <!--available file="${env.AIR_HOME}/bin/adt" type="file"/-->
             </and>
         </condition>
-        
-        <fail message="The environment variable AIR_HOME must be set to the AIR SDK Kit directory" 
+
+        <fail message="The environment variable AIR_HOME must be set to the AIR SDK Kit directory"
             unless="AIR_HOME.set"/>
     </target>
-    
+
     <target name="check-goog-home" unless="GOOG_HOME"
         description="Check that GOOG_HOME is a directory">
-        
+
         <echo message="GOOG_HOME is ${env.GOOG_HOME}"/>
 
-        <available file="${env.GOOG_HOME}" 
-            type="dir" 
+        <available file="${env.GOOG_HOME}"
+            type="dir"
             property="GOOG_HOME"
             value="${env.GOOG_HOME}" />
     </target>
-    
+
     <target name="check-compiler-home" unless="ROYALE_COMPILER_REPO"
         description="Check ROYALE_COMPILER_REPO is a directory.">
-        
+
         <echo message="env.ROYALE_COMPILER_REPO is ${env.ROYALE_COMPILER_REPO}"/>
 
         <available file="${env.ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar"
-            type="file" 
+            type="file"
             property="ROYALE_COMPILER_REPO"
             value="${env.ROYALE_COMPILER_REPO}"/>
-            
+
         <echo message="ROYALE_COMPILER_REPO is ${ROYALE_COMPILER_REPO}"/>
 
         <condition property="ROYALE_COMPILER_REPO" value="${basedir}/../royale-compiler">
@@ -283,33 +283,33 @@
         </condition>
 
         <echo message="ROYALE_COMPILER_REPO is ${ROYALE_COMPILER_REPO}"/>
-        
+
         <fail message="ROYALE_COMPILER_REPO must be set to a folder with a compiler/lib sub-folder containing compiler-mxmlc.jar such as the top-level folder in royale-compiler repo"
             unless="ROYALE_COMPILER_REPO"/>
     </target>
 
     <target name="check-typedefs-home" unless="ROYALE_TYPEDEFS_HOME"
         description="Check ROYALE_TYPEDEFS_HOME is a directory.">
-        
+
         <echo message="ROYALE_TYPEDEFS_HOME is ${env.ROYALE_TYPEDEFS_HOME}"/>
-        
+
         <available file="${env.ROYALE_TYPEDEFS_HOME}/js/target/js.swc"
         type="file"
         property="ROYALE_TYPEDEFS_HOME"
         value="${env.ROYALE_TYPEDEFS_HOME}"/>
-        
+
         <available file="${basedir}/../royale-typedefs/js/target/js.swc"
         type="file"
         property="ROYALE_TYPEDEFS_HOME"
         value="${basedir}/../royale-typedefs"/>
-        
+
         <available file="${basedir}/js/target/js.swc"
         type="file"
         property="ROYALE_TYPEDEFS_HOME"
         value="${basedir}"/>
-        
+
         <echo>basedir is ${basedir}</echo>
-        
+
         <fail message="ROYALE_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the royale-typedefs repo"
         unless="ROYALE_TYPEDEFS_HOME"/>
     </target>
@@ -345,7 +345,7 @@
 &lt;/flex-sdk-description&gt;
         </echo>
     </target>
-	
+
     <target name="create-config" description="Create config files" unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="royale" />
@@ -390,7 +390,7 @@
  /* generated by build script */
 </echo>
     </target>
-	
+
     <target name="copy-externs" depends="check-typedefs-home" description="Copy extern swcs into this folder">
         <mkdir dir="${basedir}/js/libs" />
         <copy todir="${basedir}/js/libs" flatten="true">
@@ -400,7 +400,7 @@
         </copy>
         <antcall target="rename_jquery" />
     </target>
-    
+
     <target name="copy-compiler" depends="check-compiler-home" description="Copy compiler jars to where they are supposed to go">
         <mkdir dir="${basedir}/lib" />
         <echo>Copying Compiler from ${ROYALE_COMPILER_REPO}</echo>
@@ -426,14 +426,14 @@
         <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
         <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
-    
-    <target name="copy-wast" depends="copy-compiler" description="Copy relevant jars for WAST to where they are supposed to go">
-        <mkdir dir="${basedir}/wast/lib" />
-        <echo>Copying WAST Transpiler and related jars from 'js/lib'</echo>
-        <copy file="${basedir}/js/lib/wastc.jar" tofile="${basedir}/wast/lib/wastc.jar" />
-        <copy file="${basedir}/lib/compiler.jar" tofile="${basedir}/wast/lib/compiler.jar" />
-        <mkdir dir="${basedir}/wast/lib/external" />
-        <copy todir="${basedir}/wast/lib/external">
+
+    <target name="copy-as2wasm" depends="copy-compiler" description="Copy relevant jars for 'as2wasm' to where they are supposed to go">
+        <mkdir dir="${basedir}/as2wasm/lib" />
+        <echo>Copying 'as2wasm' transpiler and related jars from 'js/lib'</echo>
+        <copy file="${basedir}/js/lib/wastc.jar" tofile="${basedir}/as2wasm/lib/wastc.jar" />
+        <copy file="${basedir}/lib/compiler.jar" tofile="${basedir}/as2wasm/lib/compiler.jar" />
+        <mkdir dir="${basedir}/as2wasm/lib/external" />
+        <copy todir="${basedir}/as2wasm/lib/external">
           <fileset dir="${basedir}/lib/external">
               <include name="antlr*" />
               <include name="commons-cli*" />
@@ -444,34 +444,34 @@
           </fileset>
         </copy>
     </target>
-    
+
     <target name="check_jquery" >
         <condition property="jquery_exists">
             <available file="${basedir}/js/libs/jquery.swc" />
         </condition>
     </target>
-    
+
     <target name="rename_jquery" depends="check_jquery" unless="jquery_exists" >
         <move file="${basedir}/js/libs/jquery-1.9.swc" tofile="${basedir}/js/libs/jquery.swc" />
     </target>
-    
+
     <target name="setup-binary-release" depends="thirdparty-clean"
-        description="Set properties needed to turn on features for release sdk">       
-	    <!-- 
-	        For a release build, download everything fresh.  
+        description="Set properties needed to turn on features for release sdk">
+	    <!--
+	        For a release build, download everything fresh.
 	        Build changes to the downloads, might not be caught by the refresh logic.
-	        thirdparty-clean should leave this directory empty but just in case...  
+	        thirdparty-clean should leave this directory empty but just in case...
 	    -->
 	    <delete dir="${basedir}/in" failonerror="false" includeEmptyDirs="true" />
-        
+
         <!-- generate localized compiler message jars -->
 	    <property name="localized.jars" value="true" />
     </target>
-    
+
     <!--
         Cleanup
     -->
-    
+
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
         <delete dir="${basedir}/bin" failonerror="false">
@@ -505,10 +505,10 @@
 
     <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
         description="Full clean excluding thirdparty downloads">
-        
+
         <delete file="${basedir}/royale-sdk-description.xml" failonerror="false"/>
         <delete file="${basedir}/rat.report" failonerror="false"/>
-        
+
         <delete dir="${basedir}/examples" failonerror="false">
             <include name="**/*.swc"/>
             <include name="**/*.swf"/>
@@ -548,8 +548,8 @@
         <delete dir="${basedir}/in/player" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
-    <target name="wast-clean">
-        <delete dir="${basedir}/wast/lib" failonerror="false" includeEmptyDirs="true"/>
+    <target name="as2wasm-clean">
+        <delete dir="${basedir}/as2wasm/lib" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <!--
@@ -597,27 +597,27 @@
 	<target name="ide" description="Build any ide specific files" unless="airsdk.found">
         <!--<ant dir="${basedir}/ide/flashbuilder" />-->
     </target>
-    
+
     <target name="post-build" depends="ide" description="Handle post-build activities" unless="airsdk.found">
         <!-- fake a bunch of files to make the folder appear like a valid Flex SDK to Flash Builder -->
         <echo file="${ROYALE_HOME}/ide/flashbuilder/flashbuilder-config.xml">&lt;?xml version="1.0"?&gt;
     &lt;!--
-    
+
     Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with
     this work for additional information regarding copyright ownership.
     The ASF licenses this file to You under the Apache License, Version 2.0
     (the "License"); you may not use this file except in compliance with
     the License.  You may obtain a copy of the License at
-    
+
     http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
+
     --&gt;
     &lt;flashbuilder-config&gt;
     &lt;express-install-swf&gt;expressInstall.swf&lt;/express-install-swf&gt;
@@ -625,44 +625,44 @@
 </echo>
         <echo file="${ROYALE_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
     &lt;!--
-    
+
     Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with
     this work for additional information regarding copyright ownership.
     The ASF licenses this file to You under the Apache License, Version 2.0
     (the "License"); you may not use this file except in compliance with
     the License.  You may obtain a copy of the License at
-    
+
     http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
+
     --&gt;
     &lt;componentPackage&gt;
     &lt;/componentPackage&gt;
 </echo>
         <echo file="${ROYALE_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
     &lt;!--
-    
+
     Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with
     this work for additional information regarding copyright ownership.
     The ASF licenses this file to You under the Apache License, Version 2.0
     (the "License"); you may not use this file except in compliance with
     the License.  You may obtain a copy of the License at
-    
+
     http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
+
     --&gt;
     &lt;componentPackage&gt;
     &lt;/componentPackage&gt;
@@ -690,17 +690,17 @@
 
     <!--
         Package up the Apache Royale sources.  Do not include empty directories.
-        
+
         Note: even if cleaned, this will package up unversioned files that happen
         to be in the tree.
-        
+
         FixMe: clean needs to clean - add code to detect unversioned files
     -->
     <target name="source-package" depends="stage-source,source-package-zip,source-package-tgz"
         description="Package source files required to build in zip and tar-gzip file">
     </target>
 
-    <!-- 
+    <!--
         Packages the source distribution with ZIP.
     -->
     <target name="source-package-zip" unless="no.zip">
@@ -708,7 +708,7 @@
         <zip destfile="${basedir}/out/${source.kit}.zip" basedir="${basedir}/temp"/>
     </target>
 
-    <!-- 
+    <!--
         Packages the source distribution with TAR-GZIP.
     -->
     <target name="source-package-tgz" unless="no.zip">
@@ -720,7 +720,7 @@
         <antcall target="clean-temp"/>
         <sleep seconds="3" />
         <mkdir dir="${basedir}/temp"/>
-       
+
         <copy todir="${basedir}/temp" includeEmptyDirs="true">
             <fileset dir="${basedir}">
                 <include name="**"/>
@@ -754,12 +754,12 @@
                 <exclude name="**/*.iml"/>
             </fileset>
         </copy>
-        
+
         <tstamp>
             <format property="build.number.date" pattern="yyyyMMdd" />
         </tstamp>
         <property name="build.version" value="${release.version}.${build.number.date}" />
-        
+
         <!-- now that config xml files are in temp, fix them up for release. -->
         <echo message="Updating config file air-config.xml with version ${build.version}"/>
         <fix-config-file file="${basedir}/temp/frameworks/air-config-template.xml" version="${build.version}" />
@@ -773,22 +773,22 @@
         <fix-config-file file="${basedir}/temp/frameworks/createjs-config-template.xml" version="${build.version}" />
         <echo message="Updating config file node-config.xml with version ${build.version}"/>
         <fix-config-file file="${basedir}/temp/frameworks/node-config-template.xml" version="${build.version}" />
-        
-        
+
+
         <fixcrlf srcdir="${basedir}/temp/js/bin" eol="crlf" fixlast="false">
             <include name="**/*.bat"/>
         </fixcrlf>
-        
+
         <!-- Unix shell scripts need the correct line endings. -->
         <fixcrlf srcdir="${basedir}/temp/js/bin" eol="unix" fixlast="false">
             <exclude name="**/*.bat"/>
         </fixcrlf>
-        
+
         <chmod dir="${basedir}/temp/js/bin" excludes="**/*.bat" perm="+x" />
-        
+
         <!--
              Source files have Windows line endings.  Most UNIX editors can handle
-             either type of line endings but the converse is often not true.             
+             either type of line endings but the converse is often not true.
         -->
         <fixcrlf srcdir="${basedir}/temp/frameworks" eol="crlf" fixlast="false">
             <exclude name="bin/**"/>
@@ -804,16 +804,16 @@
             <exclude name="**/*.swf"/>
             <exclude name="**/*.swc"/>
         </fixcrlf>
-               
-        <!-- 
-            Unix shell scripts need the correct line endings. 
+
+        <!--
+            Unix shell scripts need the correct line endings.
             The bin directory is handled in stage-bin.
-        -->      
-        <fixcrlf srcdir="${basedir}/temp" eol="unix" fixlast="false">  
+        -->
+        <fixcrlf srcdir="${basedir}/temp" eol="unix" fixlast="false">
             <include name="**.sh"/>
             <exclude name="bin/**"/>
         </fixcrlf>
-        
+
         <!-- delete any left-over empty directories -->
         <delete includeemptydirs="true">
             <fileset dir="${basedir}/temp/frameworks/projects">
@@ -846,15 +846,15 @@
         description="Package binary files in zip and tar-gzip file.">
 
         <antcall target="stage-source"/>
-                
+
         <!-- concat the license file with the binary license file for the 3rd party deps -->
         <concat destfile="${basedir}/temp/LICENSE">
             <filelist dir="${basedir}" files="LICENSE,LICENSE.bin"/>
         </concat>
-        
+
     	<antcall target="copy-gcl-from-goog-home"/>
     	<antcall target="copy-gcl-from-downloaded"/>
-        
+
         <antcall target="inject-asf-header" />
         <antcall target="binary-package-zip"/>
         <antcall target="binary-package-tgz"/>
@@ -870,7 +870,7 @@
             </fileset>
 		</copy>
 	</target>
-	
+
 	<target name="copy-gcl-from-downloaded" unless="GOOG_HOME">
 		<echo message="Copying GCL from ${basedir}/temp/js/lib/google/closure-library"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
@@ -880,28 +880,28 @@
             </fileset>
 		</copy>
 	</target>
-	
+
     <target name="tweak-for-jsonly" unless="env.AIR_HOME" description="do a few more things so the JSOnly package works">
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
         tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" />
     </target>
-    
+
     <!--
-        Packages the binary distribution with ZIP. 
+        Packages the binary distribution with ZIP.
     -->
     <target name="binary-package-zip" unless="no.zip"
         description="Zips up the files in the temp directory into the binary zipfile.">
-        
+
         <mkdir dir="${basedir}/out"/>
         <zip destfile="${basedir}/out/${binary.kit}.zip" basedir="${basedir}/temp"/>
     </target>
-       
-    <!-- 
-        Packages the binary distribution with TAR-GZIP.         
+
+    <!--
+        Packages the binary distribution with TAR-GZIP.
     -->
     <target name="binary-package-tgz" unless="no.zip"
         description="Tar-Gzip up the files in the temp directory into the binary tgz file.">
-        
+
         <tar-gzip name="${binary.kit}" />
     </target>
 
@@ -921,17 +921,17 @@
     </macrodef>
 
     <!--
-        tar with gzip compression, the temp directory and put it in the out directory.  
-        The shell scripts in the bin directory (no extension) and other .sh files have 
+        tar with gzip compression, the temp directory and put it in the out directory.
+        The shell scripts in the bin directory (no extension) and other .sh files have
         mode set to execute.
-        
+
         name - the basename name of the kit in out directory, without the .tar.gz extension
     -->
     <macrodef name="tar-gzip">
         <attribute name="name"/>
             <sequential>
-                <mkdir dir="${basedir}/out"/>        
-                <tar destfile="${basedir}/out/@{name}.tar.gz" 
+                <mkdir dir="${basedir}/out"/>
+                <tar destfile="${basedir}/out/@{name}.tar.gz"
                     compression="gzip"
                     longfile="gnu">
                     <tarfileset dir="${basedir}/temp" prefix="@{name}">
@@ -949,8 +949,8 @@
                     </tarfileset>
                 </tar>
         </sequential>
-    </macrodef>	
-    
+    </macrodef>
+
     <!--
 	    Update various files for a new release version.
      -->
@@ -983,11 +983,11 @@
         </replace>
         <echo>Don't forget to update JIRA to indicate current version is released and add new version</echo>
     </target>
-    
+
 	<!--
-	    Update all frameworks Version.as files in the kit stagging area with the 
+	    Update all frameworks Version.as files in the kit stagging area with the
 	    latest version build number info.
-	    
+
 	    You need to place the AntelopeTasks_*.jar jar file in the anttask.classpath
 	    in order to do this.  If the jar isn't found, the update is skipped.
 	-->
@@ -995,19 +995,19 @@
 	    description="Update all frameworks/Version.as files">
 
         <available property="have.greptask"
-            classname="ise.antelope.tasks.Find" 
+            classname="ise.antelope.tasks.Find"
             classpathref="anttask.classpath"/>
-        
+
         <antcall target="have-greptask"/>
         <antcall target="no-greptask"/>
     </target>
 
     <target name="have-greptask" if="have.greptask">
 		<taskdef name="grep" classname="ise.antelope.tasks.Find"
-                 classpathref="anttask.classpath"/>                 
+                 classpathref="anttask.classpath"/>
 
         <echo message="Updating all frameworks/projects/**/Version.as files with version ${release.version}.${build.number.date}"/>
-		
+
         <!-- Update all Version.as files in the kit frameworks directory-->
         <replaceregexp>
             <regexp pattern='"[0-9].[0-9].[0-9].[0-9]";'/>
@@ -1015,15 +1015,15 @@
             <fileset dir="${ROYALE_HOME}/temp/frameworks/projects">
                 <include name="**/Version.as"/>
             </fileset>
-        </replaceregexp>		
+        </replaceregexp>
     </target>
 
     <target name="no-greptask" unless="have.greptask">
         <echo message="Version files not updated."/>
         <echo message="AntelopeTasks_*.jar not found in anttask.classpath"/>
-    </target>   
-    
-    <target name="asdoc-package" description="Package the asdocs">      
+    </target>
+
+    <target name="asdoc-package" description="Package the asdocs">
         <antcall target="clean-temp"/>
         <antcall target="asdoc"/>
         <property name="doc_output" value="${basedir}/asdoc-output" />
@@ -1045,11 +1045,11 @@
     -->
 
     <target name="checkintests" depends="checkintests-clean,basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" />
-    
+
     <!--
      Tests: Marmotinni checkintests
      -->
-    
+
     <target name="basictests-marmotinni" depends="marmotinni-setup,basictests-js"/>
 
     <target name="marmotinni-setup"  description="download and set up marmotinni">
@@ -1058,9 +1058,9 @@
         </subant>
         <ant dir="${basedir}/mustella"/>
     </target>
-    
+
     <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" />
-    
+
     <target name="basictests-run-js" >
         <property name="profile_arg" value="dummy=false" />
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
@@ -1130,7 +1130,7 @@
 		</java>
 
     </target>
-    
+
     <target name="basictests-compile-js" depends="load-task" unless="env.AIR_HOME">
         <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
         <property name="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js"/>
@@ -1159,7 +1159,7 @@
             <arg value="-sdk-js-lib=${ROYALE_HOME}/mustella/js" />
         </mxmlc>
     </target>
-    
+
     <target name="basictests-compile-java" depends="marmotinni-setup">
         <delete dir="${basedir}/mustella/java/bin"/><!-- the old folder-->
         <delete dir="${basedir}/mustella/target/classes"/>
@@ -1221,7 +1221,7 @@
             </classpath>
         </javac>
     </target>
-    
+
     <!--
         Tests: Mustella checkintests
     -->
@@ -1244,21 +1244,21 @@
     -->
     <target name="check-runtime-env" depends="check-air-home" if="env.AIR_HOME"
         description="Check for the required runtime environment variables for the checkintests">
-        
+
         <available file="${env.FLASHPLAYER_DEBUGGER}" property="FLASHPLAYER_DEBUGGER.set"/>
-        <fail message="FLASHPLAYER_DEBUGGER is ${env.FLASHPLAYER_DEBUGGER} which is not an Adobe Flash Player content debugger" 
+        <fail message="FLASHPLAYER_DEBUGGER is ${env.FLASHPLAYER_DEBUGGER} which is not an Adobe Flash Player content debugger"
             unless="FLASHPLAYER_DEBUGGER.set"/>
     </target>
-    
+
     <target name="runtime-setup" depends="check-runtime-env" unless="runtime.setup"
-        description="Set flash.player and adl properties"> 
-        
+        description="Set flash.player and adl properties">
+
         <!-- Paths to the debug standalone flashplayer. -->
         <!-- (windows) path to FlashPlayerDebugger.exe -->
         <!-- (mac) path to Flash Player Debugger.app/Contents/MacOS/Flash Player Debugger -->
         <!-- (linux) path to flashplayerdebugger -->
         <property name="flash.player" value="${env.FLASHPLAYER_DEBUGGER}"/>
-    
+
         <!-- Paths to the adl. -->
         <condition property="adl" value="${env.AIR_HOME}/bin/adl.exe">
             <os family="windows"/>
@@ -1269,7 +1269,7 @@
         <condition property="adl" value="${env.AIR_HOME}/bin/adl">
             <os family="unix"/>
         </condition>
-        
+
         <property name="runtime.setup" value="done"/>
     </target>
 
@@ -1343,22 +1343,22 @@
 	<!--
 	    Run the Apache Rat audit tool against the source in the source kit.
 	    The report is written to rat.report.
-	    
+
 	    To check a subset of files run with -Drat.dir=<dir>.
-	    
-	    You need to place apache-rat-tasks-0.8.jar and apache-rat-0.8.jar in the 
+
+	    You need to place apache-rat-tasks-0.8.jar and apache-rat-0.8.jar in the
 	    anttask.classpath in order to do this.  If the jar isn't found, the report
 	    will not be generated.
-	--> 
+	-->
     <target name="rat-check" depends="rat-taskdef" if="have.rattasks"
         description="Report on licenses in source kit.">
-    
+
         <property name="rat.dir" value="${basedir}/temp"/>
         <antcall target="rat-unzip" />
-        
+
         <property name="rat.report" value="${basedir}/rat.report"/>
         <echo message="Checking files at ${rat.dir}, report is ${rat.report}"/>
-             
+
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
                 <exclude name="LICENSE.bin"/>
@@ -1387,10 +1387,10 @@
         <antcall target="clean-temp" />
         <unzip src="${basedir}/out/${source.kit}.zip" dest="${rat.dir}"/>
     </target>
-    
-    <target name="rat-taskdef" description="Rat taskdef"> 
-        <available property="have.rattasks" 
-            resource="org/apache/rat/anttasks/antlib.xml" 
+
+    <target name="rat-taskdef" description="Rat taskdef">
+        <available property="have.rattasks"
+            resource="org/apache/rat/anttasks/antlib.xml"
             classpathref="anttask.classpath"/>
 
         <antcall target="have-rattasks"/>
@@ -1400,26 +1400,26 @@
     <target name="have-rattasks" if="have.rattasks">
         <typedef resource="org/apache/rat/anttasks/antlib.xml"
                  uri="antlib:org.apache.rat.anttasks"
-                 classpathref="anttask.classpath"/>                 
+                 classpathref="anttask.classpath"/>
     </target>
-    
+
     <target name="no-rattasks" unless="have.rattasks">
         <echo message="Rat report not generated."/>
         <echo message="rat jars (apache-rat-*.jar, apache-rat-tasks-*.jar)"/>
         <echo message="not found in anttask.classpath"/>
     </target>
-    
+
     <target name="rat-check-mustella" depends="rat-taskdef" if="have.rattasks"
         description="Report on licenses in mustella directory.">
-    
+
         <ant dir="${basedir}/mustella" target="clean"/>
-        
+
         <property name="rat.mustella.dir" value="${basedir}/mustella"/>
         <property name="rat.mustella.report" value="rat.mustella.report"/>
-                
+
         <echo message="Checking files at ${rat.mustella.dir}, report is ${basedir}/${rat.mustella.report}"/>
-             
-        <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" 
+
+        <rat:report xmlns:rat="antlib:org.apache.rat.anttasks"
             reportFile="${basedir}/${rat.mustella.report}">
             <fileset dir="${rat.mustella.dir}">
                 <!--          Start of binary files           -->
@@ -1435,7 +1435,7 @@
             </fileset>
         </rat:report>
     </target>
-	
+
 	<target name="create-md5" >
 		<echo message="Generating MD5 hashes for release artifacts"/>
 		<checksum algorithm="md5" file="${basedir}/out/${binary.kit}.tar.gz" forceOverwrite="yes"/>
@@ -1452,7 +1452,7 @@
             <arg value="--detach-sig" />
             <arg value="${basedir}/out/${source.kit}.zip" />
         </exec>
-        
+
         <exec executable="gpg">
             <arg value="--armor" />
             <arg value="--output" />
@@ -1460,7 +1460,7 @@
             <arg value="--detach-sig" />
             <arg value="${basedir}/out/${source.kit}.tar.gz" />
         </exec>
-        
+
         <exec executable="gpg">
             <arg value="--armor" />
             <arg value="--output" />
@@ -1468,7 +1468,7 @@
             <arg value="--detach-sig" />
             <arg value="${basedir}/out/${binary.kit}.zip" />
         </exec>
-        
+
         <exec executable="gpg">
             <arg value="--armor" />
             <arg value="--output" />
@@ -1477,12 +1477,12 @@
             <arg value="${basedir}/out/${binary.kit}.tar.gz" />
         </exec>
     </target>
-        
+
 	<target name="doc-create-md5" >
 		<echo message="Generating MD5 hashes for doc artifacts"/>
 		<checksum algorithm="md5" file="${basedir}/out/${kit.prefix}-asdocs.zip" forceOverwrite="yes"/>
 	</target>
-	
+
     <target name="doc-sign" >
         <exec executable="gpg">
             <arg value="--armor" />
@@ -1492,7 +1492,7 @@
             <arg value="${basedir}/out/${kit.prefix}-asdocs.zip" />
         </exec>
 	</target>
-	
+
     <target name="check-if-ide" depends="check-for-airsdk, ask-about-downloading-repos, block-main" />
     <target name="check-for-airsdk" >
         <available file="${basedir}/airsdk.xml"
@@ -1504,7 +1504,7 @@
         <property name="mxmlc.jar.exists" value="set" />
         <property name="ROYALE_COMPILER_REPO" value="set" />
     </target>
-    
+
     <target name="ask-about-downloading-repos" depends="ask-or-fail, download-all" if="airsdk.found" />
     <target name="ask-or-fail" if="airsdk.found" >
         <echo>This folder appears to be an IDE-compatible Royale SDK.</echo>
@@ -1519,14 +1519,14 @@
         <fail message="Cancelling build.  Builds are not supported in ide-compatible configurations."
         unless="do.all.download"/>
     </target>
-    
+
     <target name="check-git">
         <echo>Checking for Git...</echo>
         <exec executable="git" failonerror="true" >
             <arg value="version" />
         </exec>
     </target>
-    
+
     <target name="get-download-folder" depends="check-git" if="airsdk.found">
         <condition property="defaultPath" value="${env.HOME}/git/apache.royale">
             <os family="mac" />
@@ -1537,7 +1537,7 @@
         defaultvalue="${defaultPath}"
         addproperty="base.folder.name"/>
     </target>
-    
+
     <target name="download-all" depends="get-download-folder" if="base.folder.name" >
         <echo>Using folder ${base.folder.name}</echo>
         <mkdir dir="${base.folder.name}" />
@@ -1553,13 +1553,13 @@
         message="This script will clone 6 repos.  This will take several minutes.  Then it will ask you a few questions then take several more minutes to download more files and compile them.  Press the enter key to continue."
         />
     </target>
-    
+
     <target name="check-royale-asjs">
         <available file="${base.folder.name}/royale-asjs"
         type="dir"
         property="royale-asjs-exists"/>
     </target>
-    
+
     <target name="clone-royale-asjs" depends="check-royale-asjs" unless="royale-asjs-exists">
         <echo>cloning royale-asjs repo into ${base.folder.name}/royale-asjs</echo>
         <exec executable="git" failonerror="true" dir="${base.folder.name}">
@@ -1621,12 +1621,12 @@
         <ant dir="${base.folder.name}/royale-compiler" target="main" />
         <ant dir="${base.folder.name}/royale-typedefs" />
     </target>
-    
+
     <target name="all" depends="set.base.folder, download-all, main" />
     <target name="set.base.folder" >
         <property name="base.folder.name" value="${basedir}/.." />
     </target>
-    
+
     <!-- may not work on windows -->
     <target name="inject-asf-header" >
         <replaceregexp match="${generated.by.match}"
@@ -1638,13 +1638,13 @@
             </fileset>
         </replaceregexp>
     </target>
-    
+
     <target name="last-message-if-airsdk" if="airsdk.found" >
         <echo>Please change directory to ${base.folder.name}/royale-asjs and run ant to complete build</echo>
     </target>
 
     <target name="compile" depends="check-compiler-home,check-goog-home,load-task" description="compile for SWF">
-        
+
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
             file="${file}">
@@ -1654,9 +1654,9 @@
             <arg value="-define=COMPILE::JS,false" />
         </mxmlc>
     </target>
-    
+
     <target name="compile-release" depends="check-compiler-home,check-goog-home,load-task" description="compile for SWF">
-        
+
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="false"
             file="${file}">
@@ -1664,7 +1664,7 @@
             <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
     </target>
-    
+
     <target name="compile-js" depends="check-compiler-home,check-goog-home" description="compile for JS">
         <property name="ROYALE_HOME" value="${basedir}" />
         <java jar="${basedir}/js/lib/mxmlc.jar"
@@ -1684,7 +1684,7 @@
             <arg value="${file}" />
         </java>
     </target>
-    
+
     <target name="compile-js-release" depends="check-compiler-home,check-goog-home" description="compile for JS">
         <property name="ROYALE_HOME" value="${basedir}" />
         <java jar="${basedir}/js/lib/mxmlc.jar"
@@ -1703,7 +1703,7 @@
             <arg value="${file}" />
         </java>
     </target>
-    
+
     <target name="print.geckodriver.version" >
         <exec executable="${webdriver.gecko.driver}" failonerror="true">
             <arg value="--version"/>
