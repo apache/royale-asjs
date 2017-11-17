@@ -2110,7 +2110,7 @@ package org.apache.royale.textLayout.compose
 				
 			// adjust for the NumberLine
 			if (effectiveListMarkerFormat)
-				_curLineLeading = Math.max(_curLineLeading,TextLayoutFormat.lineHeightProperty.computeActualPropertyValue(effectiveListMarkerFormat.lineHeight, effectiveListMarkerFormat.fontSize));
+				_curLineLeading = Math.max(_curLineLeading,TextLayoutFormat.lineHeightProperty.computeActualPropertyValue(effectiveListMarkerFormat.lineHeight, effectiveListMarkerFormat.fontSize * effectiveListMarkerFormat.yScale));
 			
 			return 0;
 		}

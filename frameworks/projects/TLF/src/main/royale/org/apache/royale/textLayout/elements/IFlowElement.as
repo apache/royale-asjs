@@ -106,6 +106,8 @@ package org.apache.royale.textLayout.elements
 		function set listMarkerFormat(listMarkerFormat:*):void;
 		function calculateComputedFormat():ITextLayoutFormat;
 		function set fontSize(value:*):void;
+		function set xScale(value:*):void;
+		function set yScale(value:*):void;
 		function set columnWidth(columnWidthValue:*):void;
 	}
 }

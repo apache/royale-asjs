@@ -80,7 +80,7 @@ package org.apache.royale.textLayout.elements.utils
 			var ascent:Number 		= -emBox.top;
 			var descent:Number 		= emBox.bottom;
 			var textHeight:Number	= emBox.height;
-			
+			//TODO deal with horizontalScale and verticalScale
 			var fontSize:Number 	= computedFormat.fontSize;
 			var lineHeight:Number 	= TextLayoutFormat.lineHeightProperty.computeActualPropertyValue(computedFormat.lineHeight, fontSize);
 			var halfLeading:Number	= (lineHeight - textHeight) / 2;
@@ -144,8 +144,11 @@ package org.apache.royale.textLayout.elements.utils
 			format.digitWidth			= computedFormat.digitWidth;
 			format.ligatureLevel		= computedFormat.ligatureLevel;
 			format.fontSize				= Number(computedFormat.fontSize);
+			format.xScale				= Number(computedFormat.xScale);
+			format.yScale				= Number(computedFormat.yScale);
 			format.kerning				= computedFormat.kerning;
 			format.locale				= computedFormat.locale;
+			//TODO adjust tracking based on xScale? Maybe it can be handled downstream.
 			format.trackingLeft			= TextLayoutFormat.trackingLeftProperty.computeActualPropertyValue(computedFormat.trackingLeft,format.fontSize);
 			format.trackingRight		= TextLayoutFormat.trackingRightProperty.computeActualPropertyValue(computedFormat.trackingRight,format.fontSize);
 			format.textRotation			= computedFormat.textRotation;
@@ -219,6 +222,7 @@ package org.apache.royale.textLayout.elements.utils
 			//Since getFontMetrics returns the value of blockElement.elementFormat.getFontMetrics(), we cannot call this
 			//until after the element has been set. Watson 1820571 - gak 06.11.08
 			// Adjust format for superscript/subscript
+			//TODO adjust for x/y scale too? Not sure...
 			if (computedFormat.baselineShift == BaselineShift.SUPERSCRIPT || 
 				computedFormat.baselineShift == BaselineShift.SUBSCRIPT)
 			{

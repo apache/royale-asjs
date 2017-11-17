@@ -187,6 +187,34 @@ package org.apache.royale.textLayout.formats
 		function get fontSize():*;
 
 		/**
+		 * The horizontal scale of the text as a multiplier.
+		 * <p>Legal values are numbers from 0.01 to 100 and FormatValue.INHERIT.</p>
+		 * <p>Default value is undefined indicating not set.</p>
+		 * <p>If undefined during the cascade this property will inherit its value from an ancestor. If no ancestor has set this property, it will have a value of 1.</p>
+		 * 
+		 * @throws RangeError when set value is not within range for this property
+		 * 
+		 * @playerversion Flash 10
+		 * @playerversion AIR 1.5
+		 * @langversion 3.0
+		 */
+		function get xScale():*;
+
+		/**
+		 * The vertical scale of the text as a multiplier.
+		 * <p>Legal values are numbers from 0.01 to 100 and FormatValue.INHERIT.</p>
+		 * <p>Default value is undefined indicating not set.</p>
+		 * <p>If undefined during the cascade this property will inherit its value from an ancestor. If no ancestor has set this property, it will have a value of 1.</p>
+		 * 
+		 * @throws RangeError when set value is not within range for this property
+		 * 
+		 * @playerversion Flash 10
+		 * @playerversion AIR 1.5
+		 * @langversion 3.0
+		 */
+		function get yScale():*;
+
+		/**
 		 * Amount to shift the baseline from the <code>dominantBaseline</code> value. Units are in pixels, or a percentage of <code>fontSize</code> (in which case, enter a string value, like 140%).  Positive values shift the line up for horizontal text (right for vertical) and negative values shift it down for horizontal (left for vertical). 
 		 * <p>Legal values are BaselineShift.SUPERSCRIPT, BaselineShift.SUBSCRIPT, FormatValue.INHERIT.</p>
 		 * <p>Legal values as a number are from -1000 to 1000.</p>
