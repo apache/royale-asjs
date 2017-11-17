@@ -23,7 +23,7 @@
   <target name="main" depends="compiler.jx,as2wasm.jars" description="Full build"/>
 
   <target name="compiler.jx" description="Builds Royale JS Transpiler jars">
-    <ant dir="../../royale-compiler/compiler-jx">
+    <ant dir="./lib/resources/royale-compiler/compiler-jx">
       <target name="clean" />
       <target name="main" />
     </ant>

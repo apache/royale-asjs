@@ -51,7 +51,6 @@ playerHome = args['playerglobal-home'];
 playerVersion = args['playerglobal-version'];
 
 cmd = `/usr/bin/java -Xmx384m -Dsun.io.useCanonCaches=false -jar "${wastcJar}" -external-library-path="${playerHome}/${playerVersion}/playerglobal.swc" ${args['src']}`;
-
 exec(cmd, function (error, stdout, stderr) {
   console.log(stdout);
 
