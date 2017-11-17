@@ -24,7 +24,7 @@ Adobe Flash Player\'s playerglobal.swc is a required component.\n\
 \n\
 Do you want to download and install the playerglobal.swc? (y/n)';
 
-let fs, fileData, prompt, request, schema;
+let args, fs, fileData, prompt, request, schema;
 
 
 
@@ -34,11 +34,28 @@ request = require('request');
 
 
 
+args = {};
+process.argv.slice(2).forEach(function (value) {
+  let valueArray;
+
+  valueArray = value.split('=');
+  if (1 < valueArray.length) {
+    let name, value;
+
+    name = valueArray[0].substr(1);
+    value = valueArray[1];
+
+    args[name] = value;
+
+    console.log('Set arg \'' + name + '\' to \'' + value + '\'');
+  }
+});
+
 fileData = {
   fileName: 'playerglobal',
   fileExtension: '.swc',
   url: 'http://download.macromedia.com/get/flashplayer/updaters',
-  version: '25'
+  version: args['playerglobal-version']
 };
 
 

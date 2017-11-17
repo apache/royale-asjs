@@ -10,7 +10,7 @@
   "name": "as2wasm",
   "scripts": {
     "as2wasm-jars": "ant -f ./dev-build.xml",
-    "build": "npm install; npm run build-wat2wasm; npm run build-compiler; npm run as2wasm-jars; node download.js",
+    "build": "npm install; npm run build-wat2wasm; npm run build-compiler; npm run as2wasm-jars; node download.js -playerglobal-version=25",
     "build-compiler": "npm run build-compiler-clone; npm run build-compiler-build",
     "build-compiler-build": "cd lib/resources/royale-compiler; git checkout feature/as2wasm; git pull; ant sdk",
     "build-compiler-clone": "mkdir -p lib/resources ; git clone https://github.com/apache/royale-compiler.git lib/resources/royale-compiler",

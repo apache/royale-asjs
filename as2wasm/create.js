@@ -19,14 +19,18 @@
 
 'use strict';
 
-let args, createFile, dir, fs, playerHome, playerVersion, projectName,
-    projectPath, projectSrcPath, royaleHome, wastcJar;
+let args, copyFile, createFile, dir, fs, playerGlobalVersion, projectName,
+    projectPath, projectSrcPath, royaleHome, tgtDir;
 
 
 
 fs = require('fs');
 
 
+
+copyFile = function (file, srcDir, tgtDir) {
+  fs.createReadStream(srcDir + file).pipe(fs.createWriteStream(tgtDir + file));
+};
 
 createFile = function (file, content) {
   fs.writeFile(file, content, function(error) {
@@ -59,43 +63,8 @@ process.argv.slice(2).forEach(function (value) {
 
 royaleHome = process.argv[1].split('/');
 royaleHome.pop(); // remove 'create.js'
-royaleHome.pop(); // remove 'wast'
+royaleHome.pop(); // remove 'as2wasm'
 royaleHome = royaleHome.join('/');
-
-wastcJar = royaleHome + '/wast/lib/wastc.jar';
-if (!fs.existsSync(wastcJar)) {
-  console.log('Transpiler \'wastc\' not found. This sdk appears not to be an sdk that is compatible with this project.');
-
-  process.exit();
-}
-
-playerHome = args['playerglobal-home'];
-if (!playerHome || '' === playerHome) {
-  playerHome = process.env.PLAYERGLOBAL_HOME;
-  if (!playerHome || '' === playerHome) {
-    console.log('PLAYERGLOBAL_HOME is not defined. Create an environment variable (PLAYERGLOBAL_HOME) and point it to the skd dir, or use \'npm run build -- -playerglobal-home=[playerglobal dir]\'.');
-
-    process.exit();
-  }
-}
-
-playerVersion = args['player-version'];
-if (!playerVersion || '' === playerVersion) {
-  playerVersion = process.env.PLAYERGLOBAL_VERSION;
-}
-if (!playerVersion || '' === playerVersion) {
-  playerVersion = '11.1';
-
-  console.log('PLAYERGLOBAL_VERSION was undefined. It is now set to \'11.1\'. To override this default, create an environment variable (PLAYERGLOBAL_VERSION) and set it to required version, or use \'npm run build -- -player-version=[version]\'.');
-} else {
-  console.log('PLAYERGLOBAL_VERSION is ' + playerVersion + '.');
-}
-
-if (!fs.existsSync(playerHome + '/' + playerVersion + '/playerglobal.swc')) {
-  console.log('\'playerglobal.swc\' could not be found. Make sure you have set PLAYERGLOBAL_HOME to a correctly downloaded and stored playerglobal.swc');
-
-  process.exit();
-}
 
 dir = args['dir'];
 if (!fs.existsSync(dir)) {
@@ -110,22 +79,51 @@ if (!fs.existsSync(projectPath)) {
   fs.mkdirSync(projectPath);
 }
 
-projectSrcPath = projectPath + '/src';
-if (!fs.existsSync(projectSrcPath)) {
-  fs.mkdirSync(projectSrcPath);
+playerGlobalVersion = args['playerglobal-version'];
+if (!playerGlobalVersion || '' === playerGlobalVersion) {
+  playerGlobalVersion = process.env.PLAYERGLOBAL_VERSION;
 }
+if (!playerGlobalVersion || '' === playerGlobalVersion) {
+  playerGlobalVersion = '25';
+
+  console.log(`PLAYERGLOBAL_VERSION was undefined. It is now set to '${playerGlobalVersion}'. To override this default, create an environment variable (PLAYERGLOBAL_VERSION) and set it to required version, or use 'npm run build -- -player-version=[version]'.`);
+} else {
+  console.log('PLAYERGLOBAL_VERSION is ' + playerGlobalVersion + '.');
+}
+
+
+fs.mkdirSync(projectPath + '/lib/');
+
+tgtDir = projectPath + 'lib/compiler/';
+fs.mkdirSync(tgtDir);
+copyFile('wastc.jar', royaleHome + '/as2wasm/lib/', tgtDir);
+copyFile('compiler.jar', royaleHome + '/as2wasm/lib/', tgtDir);
+
+tgtDir = projectPath + 'lib/compiler/external/';
+fs.mkdirSync(tgtDir);
+copyFile('antlr-LICENSE.html', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('antlr.jar', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('commons-cli.jar', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('commons-io.jar', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('flex-tool-api-LICENSE.html', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('flex-tool-api.jar', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('guava-LICENSE.html', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('guava.jar', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('lzma-sdk-LICENSE.html', royaleHome + '/as2wasm/lib/external/', tgtDir);
+copyFile('lzma-sdk.jar', royaleHome + '/as2wasm/lib/external/', tgtDir);
+
+tgtDir = projectPath + 'lib/player/';
+fs.mkdirSync(tgtDir);
+copyFile('playerglobal.swc', royaleHome + '/as2wasm/lib/player/25.0/', tgtDir);
+
+copyFile('build.js', royaleHome + '/as2wasm/resources/', projectPath);
+copyFile('install.js', royaleHome + '/as2wasm/resources/', projectPath);
 
 createFile(projectPath + '/README', `To build and run this project, use:
 
 cd [project dir]
 npm run build
 `);
-
-fs.createReadStream('resources/build.js')
-.pipe(fs.createWriteStream(projectPath + '/build.js'));
-
-fs.createReadStream('resources/install.js')
-.pipe(fs.createWriteStream(projectPath + '/install.js'));
 
 createFile(projectPath + '/package.json', `{
 
@@ -134,12 +132,16 @@ createFile(projectPath + '/package.json', `{
   },
   
   "scripts": {
-    "build": "node install.js; node build.js -wastc-jar=${wastcJar} -playerglobal-home=${playerHome} -playerglobal-version=${playerVersion} -src=src/${projectName}.as; http-server ./bin -o -a localhost -p 1337 -c-1"
+    "build": "node install.js; node build.js -playerglobal-version=${playerGlobalVersion} -src=src/${projectName}.as; http-server ./bin -o -a localhost -p 1337 -c-1"
   }
 
 }
 `);
 
+projectSrcPath = projectPath + '/src';
+if (!fs.existsSync(projectSrcPath)) {
+  fs.mkdirSync(projectSrcPath);
+}
 createFile(projectSrcPath + '/' + projectName + '.as', `package {
 
   public class ${projectName} {
