@@ -108,6 +108,7 @@ createDirectory(tgtDir);
 copyFile('playerglobal.swc', royaleHome + 'as2wasm/lib/player/', tgtDir);
 
 copyFile('build.js', royaleHome + 'as2wasm/resources/', projectPath);
+copyFile('glue.js', royaleHome + 'as2wasm/resources/', projectPath);
 copyFile('install.js', royaleHome + 'as2wasm/resources/', projectPath);
 
 createFile(projectPath + 'README', `To build and run this project, use:
