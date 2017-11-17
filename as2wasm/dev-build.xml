@@ -20,20 +20,32 @@
 
 <project name="royale" default="main" basedir=".">
 
-  <target name="main" depends="compiler.jx,as2wasm.jars" description="Full build"/>
+    <property name="compiler.home" value="${basedir}/resources/royale-compiler"/>
 
-  <target name="compiler.jx" description="Builds Royale JS Transpiler jars">
-    <ant dir="./resources/royale-compiler/compiler-jx">
-      <target name="clean" />
-      <target name="main" />
-    </ant>
-  </target>
+    <target name="main" depends="compiler.jx,as2wasm.jars" description="Full build"/>
 
-  <target name="as2wasm.jars" description="Copies Royale JS Transpiler jars for 'as2wasm'">
-    <ant dir="../">
-      <target name="as2wasm-clean" />
-      <target name="copy-as2wasm" />
-    </ant>
-  </target>
+    <target name="compiler.jx" description="Builds Royale JS Transpiler jars">
+        <ant dir="./resources/royale-compiler/compiler-jx">
+            <target name="clean" />
+            <target name="main" />
+        </ant>
+    </target>
+
+    <target name="as2wasm.jars" description="Copies Royale JS Transpiler jars for 'as2wasm'">
+        <mkdir dir="${basedir}/lib/external" />
+        <echo>Copying 'as2wasm' transpiler and related jars from compiler build dir</echo>
+        <copy file="${compiler.home}/compiler-jx/lib/wastc.jar" tofile="${basedir}/lib/wastc.jar" />
+        <copy file="${compiler.home}/compiler/lib/compiler.jar" tofile="${basedir}/lib/compiler.jar" />
+        <copy todir="${compiler.home}/lib/external">
+            <fileset dir="${basedir}/lib/external">
+                <include name="antlr*" />
+                <include name="commons-cli*" />
+                <include name="commons-io*" />
+                <include name="flex-tool-api*" />
+                <include name="guava*" />
+                <include name="lzma-sdk*" />
+            </fileset>
+        </copy>
+    </target>
 
 </project>
