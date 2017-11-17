@@ -36,8 +36,8 @@
         <echo>Copying 'as2wasm' transpiler and related jars from compiler build dir</echo>
         <copy file="${compiler.home}/compiler-jx/lib/wastc.jar" tofile="${basedir}/lib/wastc.jar" />
         <copy file="${compiler.home}/compiler/lib/compiler.jar" tofile="${basedir}/lib/compiler.jar" />
-        <copy todir="${compiler.home}/compiler/lib/external">
-            <fileset dir="${basedir}/lib/external">
+        <copy todir="${basedir}/lib/external">
+            <fileset dir="${compiler.home}/compiler/lib/external">
                 <include name="antlr*" />
                 <include name="commons-cli*" />
                 <include name="commons-io*" />
