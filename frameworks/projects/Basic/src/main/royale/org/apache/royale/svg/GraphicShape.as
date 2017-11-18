@@ -251,5 +251,19 @@ package org.apache.royale.svg
             element.style.left = xOffset + "px";
             element.style.top = yOffset + "px";
         }
+		COMPILE::JS
+		override public function set x(value:Number):void
+		{
+			super.x = value;
+			// Needed for SVG inside SVG
+			element.setAttribute("x", value);
+		}
+		COMPILE::JS
+		override public function set y(value:Number):void
+		{
+			super.y = value;
+			// Needed for SVG inside SVG
+			element.setAttribute("y", value);
+		}
 	}
 }
