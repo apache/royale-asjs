@@ -19,6 +19,7 @@
 package sample.todo.models {
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
+    import sample.todo.vo.ToDoVO;
 
     public class TodoListModel extends EventDispatcher {
         public function TodoListModel() {
@@ -26,9 +27,9 @@ package sample.todo.models {
 			_filterFunction();
         }
 
-        private var _todos:Array = [{title:"Get something", selected:true},
-			{title:"Do this", selected:true},
-			{title:"Do that", selected:false}];
+        private var _todos:Array = [new ToDoVO("Get something", true),
+			new ToDoVO("Do this", true),
+			new ToDoVO("Do that", false)];
 		
 		private var _filteredList:Array = [];
 		private var _filterFunction:Function = showAllTodos;

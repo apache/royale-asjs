@@ -25,9 +25,15 @@ limitations under the License.
 
 	<fx:Script>
 		<![CDATA[
-		
 			import org.apache.royale.events.Event;
 			import org.apache.royale.events.MouseEvent;
+			import sample.todo.vo.ToDoVO;
+			
+			[Bindable("dataChange")]
+            public function get todo():ToDoVO
+            {
+                return data as ToDoVO;
+            }
 			
 			private function checkBoxChange():void
 			{
@@ -46,8 +52,8 @@ limitations under the License.
 		<js:ItemRendererDataBinding />
 	</js:beads>
 
-	<js:CheckBox text="{data.title}" 
-	             selected="{data.selected}" 
+	<js:CheckBox text="{todo.title}" 
+	             selected="{todo.selected}" 
 	             className="RendererText"
 	             change="checkBoxChange()"
 				 />
