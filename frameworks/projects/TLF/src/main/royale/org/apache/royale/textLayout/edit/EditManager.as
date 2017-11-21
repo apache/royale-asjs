@@ -357,7 +357,7 @@ package org.apache.royale.textLayout.edit
 								_imeSession.compositionAbandoned();
 							
 							//a discretionary hyphen is being inserted. 
-							var discretionaryHyphenString:String = String.fromCharCode(0x000000AD);
+							var discretionaryHyphenString:String = String.fromCharCode(0x00AD);
 							overwriteMode ? overwriteText(discretionaryHyphenString) : insertText(discretionaryHyphenString);
 							event.preventDefault();
 						}
