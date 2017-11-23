@@ -672,7 +672,10 @@ package org.apache.royale.textLayout.edit
 			if (operation)			// don't finalize if operation was cancelled
 				finalizeDo(operation);
 		}
-
+		
+		/**
+		 * @royaleemitcoercion org.apache.royale.textLayout.operations.FlowOperation
+		 */
 		private function finalizeDo(op:FlowOperation):void
 		{
 			// Handle operation if we're in a beginCompositeOperation/endCompositeOperation context
