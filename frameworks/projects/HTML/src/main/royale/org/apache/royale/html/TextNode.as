@@ -64,7 +64,14 @@ package org.apache.royale.html
          */
 		public function get text():String
 		{
-            return _text;
+			COMPILE::SWF
+			{
+	            return _text;
+			}
+			COMPILE::JS
+			{
+	            return element ? element.nodeValue : _text;
+			}
 		}
 
 		public function set text(value:String):void
@@ -73,24 +80,19 @@ package org.apache.royale.html
 
 			COMPILE::JS
 			{
-                textNode.nodeValue = text;	
+				if(element)
+                	element.nodeValue = text;
 			}
 
 		}
 		
         COMPILE::JS
-        private var textNode:Text;
-
-        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			textNode = document.createTextNode('') as Text;
-
-            element = textNode as WrappedHTMLElement;
-
-            positioner = element;
-            element.royale_wrapper = this;
-            
+			//We're actually lying a bit about the type considering that Text
+			// inherits from CharacterData and not HTMLElement, but the important
+			// bit from our perspective is that it's a Node and has a royale_wrapper.
+			element = document.createTextNode(_text) as WrappedHTMLElement;
             return element;
         }
     }
