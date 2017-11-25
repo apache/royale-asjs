@@ -43,7 +43,7 @@
         <configuration>
           <namespaces>
             <namespace>
-              <uri>library://ns.apache.org/royale/basic</uri>
+              <uri>library://ns.apache.org/royale/html</uri>
               <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
           </namespaces>
