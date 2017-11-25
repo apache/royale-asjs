@@ -38,6 +38,7 @@
     <component id="ToggleTextButton" class="org.apache.royale.html.ToggleTextButton"/>
     <component id="TextInput" class="org.apache.royale.html.TextInput"/>
     <component id="TextArea" class="org.apache.royale.html.TextArea"/>
+    <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
     <component id="DataContainer" class="org.apache.royale.html.DataContainer"/>
     <component id="List" class="org.apache.royale.html.List"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>

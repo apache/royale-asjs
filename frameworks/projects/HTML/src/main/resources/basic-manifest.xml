@@ -46,6 +46,5 @@
 
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML" />
     <component id="TextNode" class="org.apache.royale.html.TextNode" />
-    <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
 
 </componentPackage>
