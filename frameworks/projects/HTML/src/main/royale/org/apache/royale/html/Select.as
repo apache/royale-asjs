@@ -51,10 +51,6 @@ package org.apache.royale.html
 			super();
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion HTMLSelectElement
-         */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {

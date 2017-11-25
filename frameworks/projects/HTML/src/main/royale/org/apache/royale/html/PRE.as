@@ -106,9 +106,6 @@ package org.apache.royale.html
         COMPILE::JS
         protected var textNode:Text;
 
-        /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {

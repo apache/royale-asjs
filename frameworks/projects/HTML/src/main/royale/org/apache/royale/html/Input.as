@@ -54,14 +54,14 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The text of the element
+         *  The current value of the control
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
-		public function get text():String
+		public function get value():String
 		{
             COMPILE::SWF
             {
@@ -69,11 +69,11 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                return textNode.nodeValue;
+                return (element as HTMLInputElement).value;
             }
 		}
 
-		public function set text(value:String):void
+		public function set value(value:String):void
 		{
             COMPILE::SWF
             {
@@ -81,11 +81,19 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                textNode.nodeValue = value;
+                (element as HTMLInputElement).value = value;
             }
 		}
 		
         private var _type:String;
+        /**
+         *  The input type
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
         public function get type():String
         {
             return _type;
@@ -101,22 +109,11 @@ package org.apache.royale.html
         }
         
         COMPILE::JS
-        private var textNode:Text;
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion HTMLElement
-         */
-        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'input');
             if(_type)
                 element.setAttribute('type', _type);
-            
-            textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode);
-            
             return element;
         }
     }

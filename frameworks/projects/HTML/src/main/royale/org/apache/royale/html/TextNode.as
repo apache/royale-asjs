@@ -81,9 +81,6 @@ package org.apache.royale.html
         COMPILE::JS
         private var textNode:Text;
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
