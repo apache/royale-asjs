@@ -20,12 +20,13 @@ limitations under the License.
 <mdl:Dialog xmlns:fx="http://ns.adobe.com/mxml/2009"
             xmlns:js="library://ns.apache.org/royale/basic"
             xmlns:mdl="library://ns.apache.org/royale/mdl"
+            xmlns:html="library://ns.apache.org/royale/html"
             xmlns="http://www.w3.org/1999/xhtml">
     
     <mdl:DialogTitle text="Allow data collection?"/>
     
     <mdl:DialogContent>
-        <js:P text="This is an example of the Material Design Lite dialog component. Please use responsibly."/>
+        <html:P text="This is an example of the Material Design Lite dialog component. Please use responsibly."/>
     </mdl:DialogContent>
     
     <mdl:DialogActions>
