@@ -68,7 +68,7 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/royale/basic</uri>
+                <uri>library://ns.apache.org/royale/html</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -85,7 +85,7 @@
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/royale/basic</uri>
+        <uri>library://ns.apache.org/royale/html</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>
