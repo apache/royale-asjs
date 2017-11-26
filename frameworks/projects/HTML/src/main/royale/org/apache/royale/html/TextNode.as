@@ -81,7 +81,7 @@ package org.apache.royale.html
 			COMPILE::JS
 			{
 				if(element)
-                	element.nodeValue = text;
+                	element.nodeValue = value;
 			}
 
 		}
