@@ -16,29 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package flexUnitTests.core
 {
-	import flexUnitTests.core.*
-
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class CoreTester
-    {
-        public function CoreTester()
+    import flexunit.framework.Assert;
+    
+    import org.apache.royale.utils.MD5;
+    
+    public class MD5Test
+    {		
+        [Before]
+        public function setUp():void
         {
-            // for JS, force-link these classes in the output
-            var arr:Array = [StrandTesterTest, BinaryDataTesterTest,MD5Test];
         }
         
-        // in JS, using a class as a type won't include the class in
-        // the output since types are not chcked in JS.  It is when
-        // the actual class is referenced that it will be included
-        // in the output.
-        // Is there a reason to use reflection to gather the set
-        // of tests?  I would think an array of tests would wokr
-        // better and allow you to define order.
-        public var strandTesterTest:StrandTesterTest;
-		public var binaryDataTesterTest:BinaryDataTesterTest;
-		public var md5Test:MD5Test;
+        [After]
+        public function tearDown():void
+        {
+        }
+        
+        [BeforeClass]
+        public static function setUpBeforeClass():void
+        {
+        }
+        
+        [AfterClass]
+        public static function tearDownAfterClass():void
+        {
+        }
+        
+        [Test]
+        public function testHash():void
+        {
+            Assert.assertEquals("Error testing foobaz", "80338e79d2ca9b9c090ebaaa2ef293c7",MD5.hash("foobaz"));
+            Assert.assertEquals("Error testing bazfoo", "b6a013d5e2c00f894584ad577249dbc7",MD5.hash("bazfoo"));
+            Assert.assertEquals("Error testing password1234", "bdc87b9c894da5168059e00ebffb9077",MD5.hash("password1234"));
+        }        
     }
 }
