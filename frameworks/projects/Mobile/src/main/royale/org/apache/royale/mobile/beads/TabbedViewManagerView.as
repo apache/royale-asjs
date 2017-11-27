@@ -104,6 +104,11 @@ package org.apache.royale.mobile.beads
 		
 		private var _currentView:IViewManagerView;
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.mobile.IViewManagerView
+		 * @royaleignorecoercion org.apache.royale.mobile.IViewManager
+		 */
 		protected function showViewByIndex(index:int):void
 		{
 			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
@@ -117,9 +122,8 @@ package org.apache.royale.mobile.beads
 			
 			COMPILE::JS {
 				if (_currentView) {
-					UIBase(_currentView).element.style["flex-grow"] = "1";
+					(_currentView as UIBase).element.style["flex-grow"] = "1";
 				}
-				getHost().dispatchEvent(new Event("layoutNeeded"));
 			}
 			COMPILE::SWF {
 				if (UIBase(_currentView).style == null) {
@@ -131,6 +135,7 @@ package org.apache.royale.mobile.beads
 			
 			// Now that the view has changed, refresh the layout on this component.
 			getHost().dispatchEvent(new Event("layoutNeeded"));
+			getHost().dispatchEvent(new Event("viewChanged"));
 		}
 		protected function insertCurrentView(view:IViewManagerView):void{
 			getHost().addElementAt(view,(navigationBar ? 1 : 0));
