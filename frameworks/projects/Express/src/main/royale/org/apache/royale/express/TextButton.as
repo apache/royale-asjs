@@ -21,6 +21,8 @@ package org.apache.royale.express
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.beads.DisableBead;
+	import org.apache.royale.html.beads.IFocusBead;
+	import org.apache.royale.html.beads.FocusBead;
 	import org.apache.royale.html.accessories.ToolTipBead;
 
 	/**
@@ -30,7 +32,7 @@ package org.apache.royale.express
 	 * @flexcomponent spark.components.Button
 	 * @flexdocurl https://flex.apache.org/asdoc/spark/components/Button.html
 	 * @commentary The Royale Express TextButton is pre-packaged with beads to do:
-	 * @commentary <ul><li>enabled: Boolean</li><li>toolTip: String</li><li>secure: Boolean</li></ul>See also the Royale Express ImageButton and the Royale Express ImageAndTextButton.
+	 * @commentary <ul><li>enabled: Boolean</li><li>toolTip: String</li><li>secure: Boolean</li><li>focus</li></ul>See also the Royale Express ImageButton and the Royale Express ImageAndTextButton.
 	 */
 	public class TextButton extends org.apache.royale.html.TextButton
 	{
@@ -117,6 +119,36 @@ package org.apache.royale.express
 			_toolTipBead.toolTip = value;
 
 			dispatchEvent(new Event("toolTipChanged"));
+		}
+
+		/**
+		 * Return the focus bead and create it if needed
+		 */
+		protected function get focusBead():IFocusBead
+		{
+			var focusBead:IFocusBead = getBeadByType(IFocusBead) as IFocusBead;
+
+			if (focusBead == null) {
+				focusBead = new FocusBead();
+				addBead(focusBead);
+			}
+
+			return focusBead;
+		}
+		/**
+		 * Give the button focus
+		 */
+		public function focus():void
+		{
+			focusBead.focus();
+		}
+
+		/**
+		 *  Remove focus from the button
+		 */
+		public function blur():void
+		{
+			focusBead.focus();
 		}
 	}
 }
