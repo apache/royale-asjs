@@ -144,7 +144,8 @@ package org.apache.royale.html.beads
 		 */
 		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
-
+			ir.data = data;
+			ir.index = index;
 		}
 		
 		/**
@@ -186,7 +187,7 @@ package org.apache.royale.html.beads
 					dataItemRenderer.dataField = dataField;
 				}
 
-                ir.data = data;
+				setData(ir, data, i);
 
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 				newEvent.itemRenderer = ir;
