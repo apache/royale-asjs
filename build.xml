@@ -189,6 +189,11 @@
     -->
     <target name="thirdparty-downloads" description="Downloads all the required thirdparty code." unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="thirdparty-downloads"/>
+        <condition property="env.GOOG_HOME" value="${basedir}/js/lib/google/closure-library">
+            <not>
+                <isset property="env.GOOG_HOME" />
+            </not>
+        </condition>
         <!-- <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/> -->
         <!-- don't ask again about these since we just did if these weren't already set -->	    
 	    <property name="build.noprompt" value="set" />
@@ -425,6 +430,8 @@
         <!-- needed to make Flash Builder accept folder as a Flex SDK -->
         <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
         <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
+        <!-- compc used to come from flex-compiler-oem, hopefull this one is ok as well -->
+        <copy file="${ROYALE_COMPILER_REPO}/compiler/lib/compiler-compc.jar" tofile="${basedir}/lib/compc.jar" />
     </target>
     
     <target name="check_jquery" >
@@ -857,6 +864,8 @@
                 <exclude name="closure/goog/crypt/**" />
             </fileset>
 		</copy>
+        <property name="GOOG_HOME" value="${basedir}/temp/js/lib/google/closure-library" />
+        <property name="env.GOOG_HOME" value="${basedir}/temp/js/lib/google/closure-library" />
 	</target>
 	
     <target name="tweak-for-jsonly" unless="env.AIR_HOME" description="do a few more things so the JSOnly package works">
