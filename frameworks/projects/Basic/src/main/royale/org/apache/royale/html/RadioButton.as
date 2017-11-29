@@ -244,7 +244,7 @@ package org.apache.royale.html
             icon = new RadioButtonIcon()
             icon.id = '_radio_' + RadioButton.radioCounter++;
 
-            textNode = document.createTextNode('radio button') as Text;
+            textNode = document.createTextNode('') as Text;
 
             labelFor = document.createElement('label') as HTMLLabelElement;
             labelFor.appendChild(icon.element);
