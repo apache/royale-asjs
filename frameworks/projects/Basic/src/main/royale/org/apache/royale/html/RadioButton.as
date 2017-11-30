@@ -23,23 +23,22 @@ package org.apache.royale.html
         import flash.display.DisplayObject;
         import flash.events.MouseEvent;
         import flash.utils.Dictionary;
-    }
-
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IValueToggleButtonModel;
-    COMPILE::SWF
-    {
         import org.apache.royale.core.UIButtonBase;
     }
+
     COMPILE::JS
     {
         import org.apache.royale.core.UIBase;
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.supportClasses.RadioButtonIcon;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
+	
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IValueToggleButtonModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.core.IUIBase;
 
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -246,16 +245,14 @@ package org.apache.royale.html
 
             textNode = document.createTextNode('') as Text;
 
-            labelFor = document.createElement('label') as HTMLLabelElement;
+            labelFor = addElementToWrapper(this,'label') as HTMLLabelElement;
             labelFor.appendChild(icon.element);
             labelFor.appendChild(textNode);
 
-            element = labelFor as WrappedHTMLElement;
            (textNode as WrappedHTMLElement).royale_wrapper = this;
 			(icon.element as WrappedHTMLElement).royale_wrapper = this;
 
-            className = 'RadioButton';
-            typeNames = 'RadioButton, RadioButtonIcon';
+            typeNames = 'RadioButton';
 
             return element;
         }
