@@ -68,7 +68,7 @@ package org.apache.royale.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ToggleTextButton extends TextButton implements IStrand, IEventDispatcher, IUIBase
+	public class ToggleTextButton extends TextButton implements IToggleButton
 	{
         /**
          *  Constructor.
