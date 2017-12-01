@@ -1605,7 +1605,7 @@
             message="This script will now download and compile lots of files.  This can take several minutes.   No interaction should be required.  Press the enter key to continue."
             />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/royale-compiler" target="all" />
+        <ant dir="${base.folder.name}/royale-compiler" />
         <ant dir="${base.folder.name}/royale-typedefs" />
     </target>
     
