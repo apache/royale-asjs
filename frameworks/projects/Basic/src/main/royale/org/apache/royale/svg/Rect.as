@@ -151,7 +151,8 @@ package org.apache.royale.svg
 				if(height)
 					_rect.setAttribute('height', height);
                 
-				resize(x, y, getBBox(_rect));
+				// resize(x, y, getBBox(_rect));
+				resize(x, y);
             }
 		}
 		

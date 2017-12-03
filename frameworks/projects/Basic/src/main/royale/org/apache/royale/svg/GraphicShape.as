@@ -103,15 +103,15 @@ package org.apache.royale.svg
 		 * @private
 		 * @royaleignorecoercion SVGRect
 		 */
-		COMPILE::JS
-		protected function getBBox(svgElement:WrappedHTMLElement):Object
-		{
-			try {
-				return svgElement['getBBox']();
-			} catch (err) {
-				return {x: 0, y:0, width:this.width, height:this.height};
-			}
-		}
+		// COMPILE::JS
+		// protected function getBBox(svgElement:WrappedHTMLElement):Object
+		// {
+		// 	try {
+		// 		return svgElement['getBBox']();
+		// 	} catch (err) {
+		// 		return {x: 0, y:0, width:this.width, height:this.height};
+		// 	}
+		// }
 
 
         COMPILE::SWF
@@ -202,24 +202,36 @@ package org.apache.royale.svg
          * @param bbox The bounding box of the svg element.
          */
         COMPILE::JS
-        public function resize(x:Number, y:Number, bbox:Object):void
+        public function resize(x:Number, y:Number):void
         {
-            var useWidth:Number = Math.max(this.width, bbox.width);
-            var useHeight:Number = Math.max(this.height, bbox.height);
+            // var useWidth:Number = Math.max(this.width, bbox.width);
+            // var useHeight:Number = Math.max(this.height, bbox.height);
+            var useWidth:Number = explicitWidth;
+            var useHeight:Number = explicitHeight;
 
             element.style.position = 'absolute';
-            if (!isNaN(x)) element.style.top = x + "px";
-            if (!isNaN(y)) element.style.left = y + "px";
-			// element.setAttribute("width", useWidth);
-			// element.setAttribute("height", useHeight);
-            element.style.width = useWidth;
-            element.style.height = useHeight;
-			// Needed for SVG inside SVG
-			element.setAttribute("x", x);
-			element.setAttribute("y", y);
-			//Needed for SVG inside DOM elements
-            element.style.left = x + "px";
-            element.style.top = y + "px";
+			//style needed for SVG inside DOM elements
+			// attributes for SVG inside SVG
+            if (!isNaN(x))
+			{
+				element.style.top = x + "px";
+				element.setAttribute("x", x);
+			} 
+            if (!isNaN(y))
+			{
+				element.style.left = y + "px";
+				element.setAttribute("y", y);
+			}
+			if(!isNaN(useWidth))
+			{
+				element.style.width = useWidth + "px";
+				element.setAttribute("width", useWidth);
+			}
+			if(!isNaN(useHeight))
+			{
+				element.style.height = useHeight + "px";
+				element.setAttribute("height", useHeight);
+			}
         }
 
         COMPILE::JS
