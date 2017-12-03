@@ -16,24 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The Code class represents an HTML <code> element
+	 *  The Span class represents an HTML <span> element
      *  
-	 *
+	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.0
 	 */
-	public class Code extends Group
+	public class Span extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -41,9 +43,9 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.0
 		 */
-		public function Code()
+		public function Span()
 		{
 			super();
 		}
@@ -51,18 +53,18 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The text in pre
+         *  The text of the span
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.0
          */
 		public function get text():String
 		{
-            return _text;            
+            return _text;
 		}
-        public function set text(value:String):void
+		public function set text(value:String):void
 		{
             _text = value;
 
@@ -77,14 +79,14 @@ package org.apache.royale.html
                 textNode.nodeValue = value;	
 			}
 		}
-
+		
         COMPILE::JS
         protected var textNode:Text;
-		
+
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'code');
+			return addElementToWrapper(this,'span');
         }
     }
 }

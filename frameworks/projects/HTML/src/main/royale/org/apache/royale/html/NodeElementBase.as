@@ -18,41 +18,42 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
+    import org.apache.royale.core.UIBase;
 
-	/**
-	 *  The Ul class represents an HTML <ul> element
-     *  
-	 *  
-     *  @toplevel
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public class Ol extends Group
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function Ol()
-		{
-			super();
-		}
-		
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
+    public class NodeElementBase extends UIBase
+    {
+        public function NodeElementBase()
         {
-			return addElementToWrapper(this,'ul');
+            super();
         }
+
+        COMPILE::SWF
+        {
+            private var _nodeValue:String;
+        }
+		public function get nodeValue():String
+		{
+            COMPILE::SWF
+            {
+                return _nodeValue;
+            }
+            COMPILE::JS
+            {
+    			return element ? element.nodeValue : "";
+            }
+		}
+
+		public function set nodeValue(value:String):void
+		{
+            COMPILE::SWF
+            {
+                _nodeValue = value;
+            }
+            COMPILE::JS
+            {
+    			element.nodeValue = value;
+            }
+			
+		}
     }
 }

@@ -16,27 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
-	import org.apache.royale.core.UIBase;
-
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The H6 class represents an HTML <h6> element
+	 *  The Code class represents an HTML <code> element
      *  
-	 *  
-     *  @toplevel
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
-	public class H6 extends UIBase
+	public class Code extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -44,9 +42,9 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
-		public function H6()
+		public function Code()
 		{
 			super();
 		}
@@ -54,49 +52,40 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text in pre
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get text():String
 		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
+            return _text;            
+		}
+        public function set text(value:String):void
+		{
+            _text = value;
+
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
 		}
 
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
-		}
-		
         COMPILE::JS
         protected var textNode:Text;
 		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h6');
-            
-            textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode); 
-
-            return element;
+			return addElementToWrapper(this,'code');
         }
     }
 }

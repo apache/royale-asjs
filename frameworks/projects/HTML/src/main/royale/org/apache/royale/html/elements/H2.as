@@ -16,16 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
+	import org.apache.royale.core.UIBase;
+
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The Ul class represents an HTML <ul> element
+	 *  The H2 class represents an HTML <h2> element
      *  
 	 *  
      *  @toplevel
@@ -34,7 +37,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Ul extends Group
+	public class H2 extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -44,15 +47,57 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function Ul()
+		public function H2()
 		{
 			super();
 		}
 		
+        private var _text:String = "";
+
+        /**
+         *  The text of the heading
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function get text():String
+		{
+            COMPILE::SWF
+            {
+                return _text;
+            }
+            COMPILE::JS
+            {
+                return textNode.nodeValue;
+            }
+		}
+
+		public function set text(value:String):void
+		{
+            COMPILE::SWF
+            {
+                _text = value;
+            }
+            COMPILE::JS
+            {
+                textNode.nodeValue = value;
+            }
+		}
+		
+        COMPILE::JS
+        protected var textNode:Text;
+		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'ul');
+			addElementToWrapper(this,'h2');
+            
+            textNode = document.createTextNode('') as Text;
+            element.appendChild(textNode); 
+
+            return element;
         }
     }
 }

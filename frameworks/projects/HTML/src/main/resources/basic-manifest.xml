@@ -21,4 +21,5 @@
 
 <componentPackage>
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML" lookupOnly="true"/>
+    <component id="TextNode" class="org.apache.royale.html.TextNode" lookupOnly="true"/>
 </componentPackage>

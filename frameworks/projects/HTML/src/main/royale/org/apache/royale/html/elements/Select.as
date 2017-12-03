@@ -16,25 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
+	import org.apache.royale.core.UIBase;
+
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The Th class represents an HTML <th> element
+	 *  The Select class represents an HTML <select> element
      *  
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
-	public class Th extends Group
+	public class Select extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -42,50 +45,17 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
-		public function Th()
+		public function Select()
 		{
 			super();
 		}
-		
-        private var _text:String = "";
-
-        /**
-         *  The text of the th
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-		public function set text(value:String):void
-		{
-            _text = value;
-
-			COMPILE::JS
-			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-                
-                textNode.nodeValue = value;	
-			}
-		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
 
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'th');
+			return addElementToWrapper(this,'select');
         }
     }
 }
