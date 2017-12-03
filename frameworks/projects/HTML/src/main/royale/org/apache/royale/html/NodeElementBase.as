@@ -20,7 +20,7 @@ package org.apache.royale.html
 {
     import org.apache.royale.core.UIBase;
 
-    public class NodeElementBase extends UIBase
+    public class NodeElementBase extends Group
     {
         public function NodeElementBase()
         {
