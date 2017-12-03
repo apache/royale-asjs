@@ -44,7 +44,7 @@
     <component id="Td" class="org.apache.royale.html.elements.Td" />
     <component id="Th" class="org.apache.royale.html.elements.Th" />
 
-    <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML" />
+    <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
     <component id="TextNode" class="org.apache.royale.html.TextNode" />
 
 </componentPackage>
