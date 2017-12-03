@@ -18,15 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.beads.views
 {
-	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
-	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -37,116 +34,11 @@ package org.apache.royale.mdl.beads.views
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	public class TableView extends BeadViewBase implements IListView
+	public class TableView extends ListView
 	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
 		public function TableView()
 		{
 			super();
-		}
-
-		/**
-		 *  data group
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get dataGroup():IItemRendererParent
-		{
-			return _strand as IItemRendererParent;
-		}
-
-		/**
-		 *  table model
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		protected var tableModel:ISelectionModel;
-
-        /**
-         * @copy org.apache.royale.core.BeadViewBase#strand
-         *
-         * @param value
-		 *
-		 * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.8
-         */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-    		
-			loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", _strand);
-
-			host.addEventListener("itemsCreated", itemsCreatedHandler);
-
-			tableModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			tableModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-
-			performLayout(null);
-		}
-		
-		/**
-		 *  @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		protected function itemsCreatedHandler(event:Event):void
-		{
-			performLayout(event);
-		}
-
-		/**
-		 *  @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		protected function dataProviderChangeHandler(event:Event):void
-		{
-			performLayout(event);
-		}
-
-		private var _layout:IBeadLayout;
-		private function get layout():IBeadLayout
-		{
-			if(!_layout)
-				_layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand) as IBeadLayout;
-			
-			return _layout;
-		}
-
-		/**
-		 *  @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		protected function performLayout(event:Event):void
-		{
-			if (layout) {
-				layout.layout();
-			}
 		}
 	}
 }

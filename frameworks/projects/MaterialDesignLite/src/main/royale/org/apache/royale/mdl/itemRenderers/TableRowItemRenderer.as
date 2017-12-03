@@ -24,6 +24,7 @@ package org.apache.royale.mdl.itemRenderers
 		import org.apache.royale.html.util.addElementToWrapper;
     }
 
+	import org.apache.royale.html.TableRow;
 	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
     
 	/**
@@ -48,7 +49,9 @@ package org.apache.royale.mdl.itemRenderers
 		{
 			super();
 		}
-		
+
+		protected var row:TableRow;
+
 		private var _text:String = "";
 
         /**
@@ -98,7 +101,7 @@ package org.apache.royale.mdl.itemRenderers
 				if(textNode != null)
 				{
 					textNode.nodeValue = text;
-				}	
+				}
 			}
 		}
 		COMPILE::JS
@@ -123,9 +126,11 @@ package org.apache.royale.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+            row = new TableRow();
+
             if(MXMLDescriptor == null)
 			{
-                positioner = document.createElement('tr') as WrappedHTMLElement;
+                positioner = row.element;
 				
 				addElementToWrapper(this,'td');
                 element.classList.add("mdl-data-table__cell--non-numeric");
@@ -136,9 +141,11 @@ package org.apache.royale.mdl.itemRenderers
 				element.appendChild(textNode);
                 positioner.royale_wrapper = this;
                 return positioner;
-			} else {
-				addElementToWrapper(this,'tr');
-                positioner = element;
+			}
+			else
+			{
+                positioner = row.element;
+				element = row.element;
                 return element;
             }
         }

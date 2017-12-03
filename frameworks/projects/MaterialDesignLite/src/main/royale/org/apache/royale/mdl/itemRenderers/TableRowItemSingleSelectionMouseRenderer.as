@@ -25,14 +25,14 @@ package org.apache.royale.mdl.itemRenderers
     }
     
 	/**
-	 *  The TableRowItemMouseRenderer defines the basic Item Renderer for a MDL Table Component and handles mouse events, notifying about them host component.
+	 *  The TableRowItemSingleSelectionMouseRenderer defines the basic Item Renderer for a MDL Table Component and handles mouse events, notifying about them host component.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class TableRowItemMouseRenderer extends TableRowItemRenderer
+	public class TableRowItemSingleSelectionMouseRenderer extends TableRowItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -42,7 +42,7 @@ package org.apache.royale.mdl.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function TableRowItemMouseRenderer()
+		public function TableRowItemSingleSelectionMouseRenderer()
 		{
 			super();
 		}
@@ -63,7 +63,17 @@ package org.apache.royale.mdl.itemRenderers
 
         override public function updateRenderer():void
         {
-
+            COMPILE::JS
+            {
+                if (selected)
+                {
+                    row.element.classList.add("is-selected");
+                }
+                else
+                {
+                    row.element.classList.remove("is-selected");
+                }
+            }
         }
 	}
 }
