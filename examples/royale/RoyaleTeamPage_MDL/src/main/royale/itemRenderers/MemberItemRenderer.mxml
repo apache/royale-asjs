@@ -19,6 +19,7 @@ limitations under the License.
 -->
 <mdl:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
                       xmlns:js="library://ns.apache.org/royale/basic"
+                      xmlns:html="library://ns.apache.org/royale/html"
                       xmlns:mdl="library://ns.apache.org/royale/mdl"
                       xmlns="http://www.w3.org/1999/xhtml"
                       xmlns:materialIcon="materialIcon.*" xmlns:fa="library://ns.apache.org/royale/fa">
@@ -53,7 +54,7 @@ limitations under the License.
     <mdl:Card className="demo-card-wide" shadow="8">
         <mdl:CardTitle>
             <mdl:CardTitleText text="{member.name}"/>
-            <js:H6 text="{member.apacheID}"></js:H6>
+            <html:H6 text="{member.apacheID}"></html:H6>
         </mdl:CardTitle>
         <mdl:CardSupportingText>
             <js:Group className="cardRow1">

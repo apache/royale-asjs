@@ -22,23 +22,28 @@
 <componentPackage>
 
     <component id="A" class="org.apache.royale.html.elements.A" />
+    <component id="Em" class="org.apache.royale.html.elements.Em" />
     <component id="H1" class="org.apache.royale.html.elements.H1" />
     <component id="H2" class="org.apache.royale.html.elements.H2" />
     <component id="H3" class="org.apache.royale.html.elements.H3" />
     <component id="H4" class="org.apache.royale.html.elements.H4" />
     <component id="H5" class="org.apache.royale.html.elements.H5" />
     <component id="H6" class="org.apache.royale.html.elements.H6" />
+    <component id="Hr" class="org.apache.royale.html.elements.Hr" />
     <component id="Ol" class="org.apache.royale.html.elements.Ol" />
     <component id="P" class="org.apache.royale.html.elements.P" />
     <component id="Pre" class="org.apache.royale.html.elements.Pre" />
     <component id="Code" class="org.apache.royale.html.elements.Code" />
+    <component id="S" class="org.apache.royale.html.elements.S" />
+    <component id="Select" class="org.apache.royale.html.elements.Select"/>
+    <component id="Small" class="org.apache.royale.html.elements.Small"/>
     <component id="Span" class="org.apache.royale.html.elements.Span" />
+    <component id="Strong" class="org.apache.royale.html.elements.Strong" />
     <component id="Div" class="org.apache.royale.html.elements.Div" />
     <component id="I" class="org.apache.royale.html.elements.I" />
     <component id="Input" class="org.apache.royale.html.elements.Input" />
     <component id="Ul" class="org.apache.royale.html.elements.Ul" />
     <component id="Li" class="org.apache.royale.html.elements.Li" />
-    <component id="Select" class="org.apache.royale.html.elements.Select"/>
     <component id="Option" class="org.apache.royale.html.elements.Option"/>
 
     <component id="Td" class="org.apache.royale.html.elements.Td" />

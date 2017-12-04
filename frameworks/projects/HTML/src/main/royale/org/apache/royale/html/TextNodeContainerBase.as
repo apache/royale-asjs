@@ -59,5 +59,41 @@ package org.apache.royale.html
 		
         COMPILE::JS
         protected var textNode:Text;
+
+        COMPILE::SWF
+		private var _html:String = "";
+
+        /**
+         *  Sets the HTML of the Div
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+		 */
+		public function get innerHTML():String
+		{
+            COMPILE::SWF
+            {
+    			return _html;
+            }
+			COMPILE::JS
+			{
+				return element.innerHTML;
+			}
+		}
+		public function set innerHTML(value:String):void
+		{
+            COMPILE::SWF
+            {
+    			_html = value;
+            }
+
+			COMPILE::JS
+			{
+				element.innerHTML = value;
+			}
+		}
+
     }
 }
