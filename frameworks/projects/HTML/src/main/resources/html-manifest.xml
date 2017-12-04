@@ -39,6 +39,7 @@
     <component id="I" class="org.apache.royale.html.elements.I" />
     <component id="Img" class="org.apache.royale.html.elements.Img" />
     <component id="Input" class="org.apache.royale.html.elements.Input" />
+    <component id="Label" class="org.apache.royale.html.elements.Label" />
     <component id="Li" class="org.apache.royale.html.elements.Li" />
     <component id="Ol" class="org.apache.royale.html.elements.Ol" />
     <component id="Option" class="org.apache.royale.html.elements.Option"/>
