@@ -39,7 +39,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-    			return element ? element.nodeValue : "";
+    			return element.nodeValue;
             }
 		}
 
