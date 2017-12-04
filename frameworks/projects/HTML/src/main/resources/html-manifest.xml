@@ -23,6 +23,10 @@
 
     <component id="A" class="org.apache.royale.html.elements.A" />
     <component id="Button" class="org.apache.royale.html.elements.Button" />
+    <component id="Code" class="org.apache.royale.html.elements.Code" />
+    <component id="Col" class="org.apache.royale.html.elements.Col" />
+    <component id="Colgroup" class="org.apache.royale.html.elements.Colgroup" />
+    <component id="Div" class="org.apache.royale.html.elements.Div" />
     <component id="Em" class="org.apache.royale.html.elements.Em" />
     <component id="H1" class="org.apache.royale.html.elements.H1" />
     <component id="H2" class="org.apache.royale.html.elements.H2" />
@@ -31,25 +35,19 @@
     <component id="H5" class="org.apache.royale.html.elements.H5" />
     <component id="H6" class="org.apache.royale.html.elements.H6" />
     <component id="Hr" class="org.apache.royale.html.elements.Hr" />
+    <component id="I" class="org.apache.royale.html.elements.I" />
+    <component id="Img" class="org.apache.royale.html.elements.Img" />
+    <component id="Input" class="org.apache.royale.html.elements.Input" />
+    <component id="Li" class="org.apache.royale.html.elements.Li" />
     <component id="Ol" class="org.apache.royale.html.elements.Ol" />
+    <component id="Option" class="org.apache.royale.html.elements.Option"/>
     <component id="P" class="org.apache.royale.html.elements.P" />
     <component id="Pre" class="org.apache.royale.html.elements.Pre" />
-    <component id="Code" class="org.apache.royale.html.elements.Code" />
-    <component id="Col" class="org.apache.royale.html.elements.Col" />
-    <component id="Colgroup" class="org.apache.royale.html.elements.Colgroup" />
     <component id="S" class="org.apache.royale.html.elements.S" />
     <component id="Select" class="org.apache.royale.html.elements.Select"/>
     <component id="Small" class="org.apache.royale.html.elements.Small"/>
     <component id="Span" class="org.apache.royale.html.elements.Span" />
     <component id="Strong" class="org.apache.royale.html.elements.Strong" />
-    <component id="Div" class="org.apache.royale.html.elements.Div" />
-    <component id="I" class="org.apache.royale.html.elements.I" />
-    <component id="Img" class="org.apache.royale.html.elements.Img" />
-    <component id="Input" class="org.apache.royale.html.elements.Input" />
-    <component id="Ul" class="org.apache.royale.html.elements.Ul" />
-    <component id="Li" class="org.apache.royale.html.elements.Li" />
-    <component id="Option" class="org.apache.royale.html.elements.Option"/>
-
     <component id="Table" class="org.apache.royale.html.elements.Table" />
     <component id="Tbody" class="org.apache.royale.html.elements.Tbody" />
     <component id="Td" class="org.apache.royale.html.elements.Td" />
@@ -57,6 +55,7 @@
     <component id="Th" class="org.apache.royale.html.elements.Th" />
     <component id="Thead" class="org.apache.royale.html.elements.Thead" />
     <component id="Tr" class="org.apache.royale.html.elements.Tr" />
+    <component id="Ul" class="org.apache.royale.html.elements.Ul" />
 
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
     <component id="TextNode" class="org.apache.royale.html.TextNode" />

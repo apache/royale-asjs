@@ -196,9 +196,9 @@
           
       </namespace>
       <namespace>
-          <uri>library://ns.apache.org/royale/svg</uri>
+          <uri>library://ns.apache.org/royale/html</uri>
           
-          <manifest>projects/HTML/src/main/resources/svg-manifest.xml</manifest>
+          <manifest>projects/HTML/src/main/resources/html-manifest.xml</manifest>
           
       </namespace>
       <namespace>
