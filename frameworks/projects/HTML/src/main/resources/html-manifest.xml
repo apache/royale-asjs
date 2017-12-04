@@ -34,6 +34,8 @@
     <component id="P" class="org.apache.royale.html.elements.P" />
     <component id="Pre" class="org.apache.royale.html.elements.Pre" />
     <component id="Code" class="org.apache.royale.html.elements.Code" />
+    <component id="Col" class="org.apache.royale.html.elements.Col" />
+    <component id="Colgroup" class="org.apache.royale.html.elements.Colgroup" />
     <component id="S" class="org.apache.royale.html.elements.S" />
     <component id="Select" class="org.apache.royale.html.elements.Select"/>
     <component id="Small" class="org.apache.royale.html.elements.Small"/>
