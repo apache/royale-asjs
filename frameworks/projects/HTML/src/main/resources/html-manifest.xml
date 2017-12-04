@@ -47,8 +47,13 @@
     <component id="Li" class="org.apache.royale.html.elements.Li" />
     <component id="Option" class="org.apache.royale.html.elements.Option"/>
 
+    <component id="Table" class="org.apache.royale.html.elements.Table" />
+    <component id="Tbody" class="org.apache.royale.html.elements.Tbody" />
     <component id="Td" class="org.apache.royale.html.elements.Td" />
+    <component id="Tfoot" class="org.apache.royale.html.elements.Tfoot" />
     <component id="Th" class="org.apache.royale.html.elements.Th" />
+    <component id="Thead" class="org.apache.royale.html.elements.Thead" />
+    <component id="Tr" class="org.apache.royale.html.elements.Tr" />
 
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
     <component id="TextNode" class="org.apache.royale.html.TextNode" />

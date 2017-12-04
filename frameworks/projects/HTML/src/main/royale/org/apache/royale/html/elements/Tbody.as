@@ -26,7 +26,7 @@ package org.apache.royale.html.elements
 	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The Ol class represents an HTML <ol> element
+	 *  The Tbody class represents an HTML <tbody> element
      *  
 	 *  
      *  @toplevel
@@ -35,7 +35,7 @@ package org.apache.royale.html.elements
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Ol extends NodeElementBase
+	public class Tbody extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -45,7 +45,7 @@ package org.apache.royale.html.elements
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function Ol()
+		public function Tbody()
 		{
 			super();
 		}
@@ -53,7 +53,7 @@ package org.apache.royale.html.elements
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'ol');
+			return addElementToWrapper(this,'tbody');
         }
     }
 }
