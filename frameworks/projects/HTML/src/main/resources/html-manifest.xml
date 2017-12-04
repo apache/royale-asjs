@@ -22,7 +22,9 @@
 <componentPackage>
 
     <component id="A" class="org.apache.royale.html.elements.A" />
+    <component id="B" class="org.apache.royale.html.elements.B" />
     <component id="Button" class="org.apache.royale.html.elements.Button" />
+    <component id="Caption" class="org.apache.royale.html.elements.Caption" />
     <component id="Code" class="org.apache.royale.html.elements.Code" />
     <component id="Col" class="org.apache.royale.html.elements.Col" />
     <component id="Colgroup" class="org.apache.royale.html.elements.Colgroup" />
@@ -53,10 +55,12 @@
     <component id="Table" class="org.apache.royale.html.elements.Table" />
     <component id="Tbody" class="org.apache.royale.html.elements.Tbody" />
     <component id="Td" class="org.apache.royale.html.elements.Td" />
+    <component id="Textarea" class="org.apache.royale.html.elements.Textarea" />
     <component id="Tfoot" class="org.apache.royale.html.elements.Tfoot" />
     <component id="Th" class="org.apache.royale.html.elements.Th" />
     <component id="Thead" class="org.apache.royale.html.elements.Thead" />
     <component id="Tr" class="org.apache.royale.html.elements.Tr" />
+    <component id="U" class="org.apache.royale.html.elements.U" />
     <component id="Ul" class="org.apache.royale.html.elements.Ul" />
 
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
