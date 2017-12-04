@@ -25,7 +25,7 @@ package org.apache.royale.html.elements
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.html.NodeElementBase;
+    import org.apache.royale.html.TextNodeContainerBase;
 
 	/**
 	 *  The Option class represents an HTML <option> element
@@ -37,7 +37,7 @@ package org.apache.royale.html.elements
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class Option extends NodeElementBase
+	public class Option extends TextNodeContainerBase
 	{
 		/**
 		 *  constructor.
@@ -52,52 +52,10 @@ package org.apache.royale.html.elements
 			super();
 		}
 		
-        private var _text:String = "";
-
-        /**
-         *  The text of the heading
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-		public function get text():String
-		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
-		}
-
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
-		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
-		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'option');
-            
-            textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode);
-
-            return element;
+			return addElementToWrapper(this,'option');
         }
     }
 }

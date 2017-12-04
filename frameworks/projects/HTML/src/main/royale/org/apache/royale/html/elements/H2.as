@@ -25,7 +25,7 @@ package org.apache.royale.html.elements
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.html.NodeElementBase;
+    import org.apache.royale.html.TextNodeContainerBase;
 
 	/**
 	 *  The H2 class represents an HTML <h2> element
@@ -37,7 +37,7 @@ package org.apache.royale.html.elements
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class H2 extends NodeElementBase
+	public class H2 extends TextNodeContainerBase
 	{
 		/**
 		 *  constructor.
@@ -45,59 +45,17 @@ package org.apache.royale.html.elements
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function H2()
 		{
 			super();
 		}
 		
-        private var _text:String = "";
-
-        /**
-         *  The text of the heading
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get text():String
-		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
-		}
-
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
-		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
-		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h2');
-            
-            textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode); 
-
-            return element;
+			return addElementToWrapper(this,'h2');
         }
     }
 }

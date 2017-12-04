@@ -16,44 +16,48 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.elements
+package org.apache.royale.html
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-	import org.apache.royale.html.TextNodeContainerBase;
+    import org.apache.royale.core.UIBase;
 
-	/**
-	 *  The Li class represents an HTML <li> element
-     *  
-	 *  
-     *  @toplevel
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public class Li extends TextNodeContainerBase
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function Li()
+    public class TextNodeContainerBase extends NodeElementBase
+    {
+        public function TextNodeContainerBase()
+        {
+            super();
+        }
+
+        private var _text:String = "";
+
+        /**
+         *  The text of the element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function get text():String
 		{
-			super();
+            return _text;
+		}
+		public function set text(value:String):void
+		{
+            _text = value;
+
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
 		}
 		
         COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this,'li');
-        }
+        protected var textNode:Text;
     }
 }

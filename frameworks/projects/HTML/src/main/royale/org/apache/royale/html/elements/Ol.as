@@ -43,7 +43,7 @@ package org.apache.royale.html.elements
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function Ol()
 		{
@@ -53,7 +53,7 @@ package org.apache.royale.html.elements
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'ul');
+			return addElementToWrapper(this,'ol');
         }
     }
 }

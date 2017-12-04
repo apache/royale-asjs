@@ -23,7 +23,7 @@ package org.apache.royale.html.elements
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.html.NodeElementBase;
+	import org.apache.royale.html.TextNodeContainerBase;
 
 	/**
 	 *  The Span class represents an HTML <span> element
@@ -33,9 +33,9 @@ package org.apache.royale.html.elements
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
-	public class Span extends NodeElementBase
+	public class Span extends TextNodeContainerBase
 	{
 		/**
 		 *  constructor.
@@ -50,39 +50,6 @@ package org.apache.royale.html.elements
 			super();
 		}
 		
-        private var _text:String = "";
-
-        /**
-         *  The text of the span
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-		public function set text(value:String):void
-		{
-            _text = value;
-
-			COMPILE::JS
-			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-                
-                textNode.nodeValue = value;	
-			}
-		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
-
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {

@@ -23,6 +23,7 @@ package org.apache.royale.html.elements
         import org.apache.royale.core.WrappedHTMLElement;            
     }
 	import org.apache.royale.html.NodeElementBase;
+	import org.apache.royale.html.TextNodeContainerBase;
 
 	/**
 	 *  The Div class represents an HTML <div> element
@@ -34,7 +35,7 @@ package org.apache.royale.html.elements
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Div extends NodeElementBase
+	public class Div extends TextNodeContainerBase
 	{
 		/**
 		 *  constructor.
@@ -48,38 +49,30 @@ package org.apache.royale.html.elements
 		{
 			super();
 		}
-		
-        private var _text:String = "";
+
+		private var _html:String = "";
 
         /**
-         *  The text of the div
-         *  
+         *  Sets the HTML of the Div
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get text():String
+         *  @productversion Royale 0.9
+		 */
+		public function get html():String
 		{
-            return _text;
+			return _html;
 		}
-		public function set text(value:String):void
+		public function set html(value:String):void
 		{
-            _text = value;
+			_html = value;
 
 			COMPILE::JS
 			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-                
-                textNode.nodeValue = value;	
+				element.innerHTML = value;
 			}
 		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
+
     }
 }
