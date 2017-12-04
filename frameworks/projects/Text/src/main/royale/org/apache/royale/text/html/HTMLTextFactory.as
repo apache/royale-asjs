@@ -22,7 +22,7 @@ package org.apache.royale.text.html
     import org.apache.royale.text.engine.ITextBlock;
     import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IParentIUIBase;
-    import org.apache.royale.html.Div;
+    import org.apache.royale.html.elements.Div;
     import org.apache.royale.text.engine.IFontLoader;
 
     public class HTMLTextFactory implements ITextFactory
