@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="A" class="org.apache.royale.html.elements.A" />
+    <component id="Button" class="org.apache.royale.html.elements.Button" />
     <component id="Em" class="org.apache.royale.html.elements.Em" />
     <component id="H1" class="org.apache.royale.html.elements.H1" />
     <component id="H2" class="org.apache.royale.html.elements.H2" />
