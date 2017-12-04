@@ -28,6 +28,7 @@
     <component id="Colgroup" class="org.apache.royale.html.elements.Colgroup" />
     <component id="Div" class="org.apache.royale.html.elements.Div" />
     <component id="Em" class="org.apache.royale.html.elements.Em" />
+    <component id="Form" class="org.apache.royale.html.elements.Form" />
     <component id="H1" class="org.apache.royale.html.elements.H1" />
     <component id="H2" class="org.apache.royale.html.elements.H2" />
     <component id="H3" class="org.apache.royale.html.elements.H3" />
