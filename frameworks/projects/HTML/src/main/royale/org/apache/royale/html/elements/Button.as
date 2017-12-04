@@ -126,8 +126,6 @@ package org.apache.royale.html.elements
             }
         }
 
-		COMPILE::SWF
-        private var _name:String;
         /**
          *  The button name
          *  
@@ -136,28 +134,15 @@ package org.apache.royale.html.elements
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9
          */
+        COMPILE::JS
         public function get name():String
         {
-            COMPILE::SWF
-            {
-                return _name;
-            }
-
-            COMPILE::JS
-            {
-                return button.name;
-            }
+            return button.name;
         }
+        COMPILE::JS
         public function set name(value:String):void
         {
-            COMPILE::SWF
-            {
-                _name = value;
-            }
-            COMPILE::JS
-            {
-                button.name = value;
-            }
+            button.name = value;
         }
 
 		COMPILE::SWF

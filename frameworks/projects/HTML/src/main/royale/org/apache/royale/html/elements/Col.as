@@ -63,7 +63,7 @@ package org.apache.royale.html.elements
         {
             COMPILE::SWF
             {
-                return _src;
+                return _span;
             }
             COMPILE::JS
             {
@@ -74,7 +74,7 @@ package org.apache.royale.html.elements
         {
             COMPILE::SWF
             {
-                _src = value;
+                _span = value;
             }
 
             COMPILE::JS

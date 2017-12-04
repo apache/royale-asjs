@@ -93,8 +93,6 @@ package org.apache.royale.html.elements
             }
         }
 
-		COMPILE::SWF
-        private var _name:String;
         /**
          *  The form name
          *  
@@ -103,28 +101,15 @@ package org.apache.royale.html.elements
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9
          */
+        COMPILE::JS
         public function get name():String
         {
-            COMPILE::SWF
-            {
-                return _name;
-            }
-
-            COMPILE::JS
-            {
-                return form.name;
-            }
+            return form.name;
         }
+        COMPILE::JS
         public function set name(value:String):void
         {
-            COMPILE::SWF
-            {
-                _name = value;
-            }
-            COMPILE::JS
-            {
-                form.name = value;
-            }
+            form.name = value;
         }
 
 		COMPILE::SWF

@@ -126,8 +126,6 @@ package org.apache.royale.html.elements
             }
         }
 
-		COMPILE::SWF
-        private var _name:String;
         /**
          *  The input name
          *  
@@ -136,28 +134,15 @@ package org.apache.royale.html.elements
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9
          */
+        COMPILE::JS
         public function get name():String
         {
-            COMPILE::SWF
-            {
-                return _name;
-            }
-
-            COMPILE::JS
-            {
-                return input.name;
-            }
+            return input.name;
         }
+        COMPILE::JS
         public function set name(value:String):void
         {
-            COMPILE::SWF
-            {
-                _name = value;
-            }
-            COMPILE::JS
-            {
-                input.name = value;
-            }
+            input.name = value;
         }
 
 		COMPILE::SWF
