@@ -52,7 +52,184 @@ package org.apache.royale.html.elements
 			super();
 		}
 		
-        private var _text:String = "";
+        COMPILE::JS
+        private function get input():HTMLInputElement
+        {
+            return element as HTMLInputElement;
+        }
+
+		COMPILE::SWF
+        private var _autofocus:Boolean;
+        /**
+         *  Whether the input is autofocused
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function get autofocus():Boolean
+        {
+            COMPILE::SWF
+            {
+                return _autofocus;
+            }
+
+            COMPILE::JS
+            {
+                return input.autofocus;
+            }
+        }
+        public function set autofocus(value:Boolean):void
+        {
+            COMPILE::SWF
+            {
+                _autofocus = value;
+            }
+            COMPILE::JS
+            {
+                input.autofocus = value;
+            }
+        }
+
+		COMPILE::SWF
+        private var _disabled:Boolean;
+        /**
+         *  Whether the input is disabled
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function get disabled():Boolean
+        {
+            COMPILE::SWF
+            {
+                return _disabled;
+            }
+
+            COMPILE::JS
+            {
+                return input.disabled;
+            }
+        }
+        public function set disabled(value:Boolean):void
+        {
+            COMPILE::SWF
+            {
+                _disabled = value;
+            }
+            COMPILE::JS
+            {
+                input.disabled = value;
+            }
+        }
+
+		COMPILE::SWF
+        private var _name:String;
+        /**
+         *  The input name
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function get name():String
+        {
+            COMPILE::SWF
+            {
+                return _name;
+            }
+
+            COMPILE::JS
+            {
+                return input.name;
+            }
+        }
+        public function set name(value:String):void
+        {
+            COMPILE::SWF
+            {
+                _name = value;
+            }
+            COMPILE::JS
+            {
+                input.name = value;
+            }
+        }
+
+		COMPILE::SWF
+        private var _required:Boolean;
+        /**
+         *  Whether the input is required
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function get required():Boolean
+        {
+            COMPILE::SWF
+            {
+                return _required;
+            }
+
+            COMPILE::JS
+            {
+                return input.required;
+            }
+        }
+        public function set required(value:Boolean):void
+        {
+            COMPILE::SWF
+            {
+                _required = value;
+            }
+            COMPILE::JS
+            {
+                input.required = value;
+            }
+        }
+
+		COMPILE::SWF
+        private var _type:String;
+        /**
+         *  The input type
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function get type():String
+        {
+            COMPILE::SWF
+            {
+                return _type;
+            }
+
+            COMPILE::JS
+            {
+                return input.type;
+            }
+        }
+        public function set type(value:String):void
+        {
+            COMPILE::SWF
+            {
+                _type = value;
+            }
+            COMPILE::JS
+            {
+                input.type = value;
+            }
+        }
+
+        COMPILE::SWF
+        private var _value:String = "";
 
         /**
          *  The current value of the control
@@ -66,11 +243,11 @@ package org.apache.royale.html.elements
 		{
             COMPILE::SWF
             {
-                return _text;
+                return _value;
             }
             COMPILE::JS
             {
-                return (element as HTMLInputElement).value;
+                return input.value;
             }
 		}
 
@@ -78,44 +255,19 @@ package org.apache.royale.html.elements
 		{
             COMPILE::SWF
             {
-                _text = value;
+                _value = value;
             }
             COMPILE::JS
             {
-                (element as HTMLInputElement).value = value;
+                input.value = value;
             }
 		}
-		
-        private var _type:String;
-        /**
-         *  The input type
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-        public function get type():String
-        {
-            return _type;
-        }
-        public function set type(value:String):void
-        {
-            _type = value;
-            COMPILE::JS
-            {
-                if(element)
-                    element.setAttribute('type', value);
-            }
-        }
+
         
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'input');
-            if(_type)
-                element.setAttribute('type', _type);
-            return element;
+			return addElementToWrapper(this,'input');
         }
     }
 }
