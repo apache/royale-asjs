@@ -41,6 +41,7 @@
     <component id="Strong" class="org.apache.royale.html.elements.Strong" />
     <component id="Div" class="org.apache.royale.html.elements.Div" />
     <component id="I" class="org.apache.royale.html.elements.I" />
+    <component id="Img" class="org.apache.royale.html.elements.Img" />
     <component id="Input" class="org.apache.royale.html.elements.Input" />
     <component id="Ul" class="org.apache.royale.html.elements.Ul" />
     <component id="Li" class="org.apache.royale.html.elements.Li" />
