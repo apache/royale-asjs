@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+
+    <component id="A" class="org.apache.royale.html.elements.A" />
+    <component id="H1" class="org.apache.royale.html.elements.H1" />
+    <component id="H2" class="org.apache.royale.html.elements.H2" />
+    <component id="H3" class="org.apache.royale.html.elements.H3" />
+    <component id="H4" class="org.apache.royale.html.elements.H4" />
+    <component id="H5" class="org.apache.royale.html.elements.H5" />
+    <component id="H6" class="org.apache.royale.html.elements.H6" />
+    <component id="Ol" class="org.apache.royale.html.elements.Ol" />
+    <component id="P" class="org.apache.royale.html.elements.P" />
+    <component id="Pre" class="org.apache.royale.html.elements.Pre" />
+    <component id="Code" class="org.apache.royale.html.elements.Code" />
+    <component id="Span" class="org.apache.royale.html.elements.Span" />
+    <component id="Div" class="org.apache.royale.html.elements.Div" />
+    <component id="I" class="org.apache.royale.html.elements.I" />
+    <component id="Input" class="org.apache.royale.html.elements.Input" />
+    <component id="Ul" class="org.apache.royale.html.elements.Ul" />
+    <component id="Li" class="org.apache.royale.html.elements.Li" />
+    <component id="Select" class="org.apache.royale.html.elements.Select"/>
+    <component id="Option" class="org.apache.royale.html.elements.Option"/>
+
+    <component id="Td" class="org.apache.royale.html.elements.Td" />
+    <component id="Th" class="org.apache.royale.html.elements.Th" />
+
+    <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
+    <component id="TextNode" class="org.apache.royale.html.TextNode" />
+
+</componentPackage>

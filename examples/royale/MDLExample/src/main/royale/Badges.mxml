@@ -20,6 +20,7 @@ limitations under the License.
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/royale/basic"
                  xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns:html="library://ns.apache.org/royale/html"
                  xmlns="http://www.w3.org/1999/xhtml">
 
     <fx:Script>
@@ -37,29 +38,29 @@ limitations under the License.
             <js:AllCSSStyles maxWidth="500"/>
         </mdl:style>
         <mdl:GridCell column="12">
-            <js:Div style="color: rgba(0, 0, 0, 0.24);" className="material-icons" text="{MaterialIconType.ACCOUNT_BOX}">
+            <html:Div style="color: rgba(0, 0, 0, 0.24);" className="material-icons" text="{MaterialIconType.ACCOUNT_BOX}">
                 <js:beads>
                     <mdl:Badge dataBadge="2" overlap="true"/>
                 </js:beads>
-            </js:Div>
+            </html:Div>
 
-            <js:Span text="Inbox" style="color: rgba(0, 0, 0, 0.24);" className="mdl-badge">
+            <html:Span text="Inbox" style="color: rgba(0, 0, 0, 0.24);" className="mdl-badge">
                 <js:beads>
                     <mdl:Badge dataBadge="4"/>
                 </js:beads>
-            </js:Span>
+            </html:Span>
 
-            <js:A id="badge1" text="Badge Normal" href="http://royale.apache.org">
+            <html:A id="badge1" text="Badge Normal" href="http://royale.apache.org">
                 <js:beads>
                     <mdl:Badge dataBadge="1"/>
                 </js:beads>
-            </js:A>
+            </html:A>
 
-            <js:A text="Badge No Background" href="http://royale.apache.org">
+            <html:A text="Badge No Background" href="http://royale.apache.org">
                 <js:beads>
                     <mdl:Badge dataBadge="5" noBackground="true"/>
                 </js:beads>
-            </js:A>
+            </html:A>
         </mdl:GridCell>
     </mdl:Grid>
 

@@ -20,33 +20,34 @@ limitations under the License.
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/royale/basic"
                  xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns:html="library://ns.apache.org/royale/html"
                  xmlns="http://www.w3.org/1999/xhtml">
-    <js:Div className="demo-grid">
+    <html:Div className="demo-grid">
         <mdl:Grid>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="1"><mdl:beads><html:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
 
-            <mdl:GridCell column="4"><mdl:beads><js:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="4"><mdl:beads><js:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="4"><mdl:beads><js:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="4"><mdl:beads><html:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="4"><mdl:beads><html:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="4"><mdl:beads><html:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
 
-            <mdl:GridCell column="6"><mdl:beads><js:InnerHTML text="6"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="4"><mdl:beads><js:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="2"><mdl:beads><js:InnerHTML text="2"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="6"><mdl:beads><html:InnerHTML text="6"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="4"><mdl:beads><html:InnerHTML text="4"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="2"><mdl:beads><html:InnerHTML text="2"/></mdl:beads></mdl:GridCell>
 
-            <mdl:GridCell column="6" columnTablet="8"><mdl:beads><js:InnerHTML text="6 (8 Tablet)"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="4" columnTablet="6"><mdl:beads><js:InnerHTML text="4 (6 Tablet)"/></mdl:beads></mdl:GridCell>
-            <mdl:GridCell column="2" columnPhone="4"><mdl:beads><js:InnerHTML text="2 (4 Phone)"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="6" columnTablet="8"><mdl:beads><html:InnerHTML text="6 (8 Tablet)"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="4" columnTablet="6"><mdl:beads><html:InnerHTML text="4 (6 Tablet)"/></mdl:beads></mdl:GridCell>
+            <mdl:GridCell column="2" columnPhone="4"><mdl:beads><html:InnerHTML text="2 (4 Phone)"/></mdl:beads></mdl:GridCell>
         </mdl:Grid>
-    </js:Div>
+    </html:Div>
 </mdl:TabBarPanel>

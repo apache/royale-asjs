@@ -16,25 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.mdl
+package org.apache.royale.html.elements
 {
-	import org.apache.royale.html.elements.A;
-    
+	import org.apache.royale.core.UIBase;
+
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
-    
+    import org.apache.royale.html.NodeElementBase;
+
 	/**
-	 *  The TabBarButton class is a link button component used in Tabs
-	 *
+	 *  The Input class represents an HTML <input> element
+     *  
+	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
+	 *  @productversion Royale 0.0
 	 */
-	public class TabBarButton extends A
+	public class Input extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -42,78 +45,77 @@ package org.apache.royale.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.0
 		 */
-		public function TabBarButton()
+		public function Input()
 		{
 			super();
-
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
-		private var _isActive:Boolean = false;
+        private var _text:String = "";
 
         /**
-         *  Marks this Button as the active one in the TabBar
+         *  The current value of the control
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
+         *  @productversion Royale 0.9
          */
-		public function get isActive():Boolean
+		public function get value():String
 		{
-            return _isActive;   
-		}
-
-		public function set isActive(value:Boolean):void
-		{
-            _isActive = value;
-            
-			COMPILE::JS
+            COMPILE::SWF
             {
-                element.classList.toggle("is-active", _isActive);
-				typeNames = element.className;
+                return _text;
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
             }
 		}
 
+		public function set value(value:String):void
+		{
+            COMPILE::SWF
+            {
+                _text = value;
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+            }
+		}
+		
+        private var _type:String;
         /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			var a:HTMLAnchorElement = addElementToWrapper(this,'a') as HTMLAnchorElement;
-            a.href = href;
-            return element;
-        }
-
-		/**
-         *  If TabBarButton is used in a TabBar that is
-		 *  inside a Tabs component use a different config
+         *  The input type
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-        */ 
-		COMPILE::JS
-		override public function addedToParent():void
+         *  @productversion Royale 0.9
+         */
+        public function get type():String
         {
-			super.addedToParent();
-
-			if(parent is TabBar)
-			{
-				var parentTabBar:TabBar = parent as TabBar;
-				if(parentTabBar.parent is Tabs)
-				{
-					typeNames = "mdl-tabs__tab";
-				} else {
-					typeNames = "mdl-layout__tab";
-				}
-
-				element.classList.add(typeNames);
-			}
+            return _type;
         }
-	}
+        public function set type(value:String):void
+        {
+            _type = value;
+            COMPILE::JS
+            {
+                if(element)
+                    element.setAttribute('type', value);
+            }
+        }
+        
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			addElementToWrapper(this,'input');
+            if(_type)
+                element.setAttribute('type', _type);
+            return element;
+        }
+    }
 }

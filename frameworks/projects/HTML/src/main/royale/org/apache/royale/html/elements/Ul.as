@@ -16,25 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The PRE class represents an HTML <pre> element
-     *
-	 *
+	 *  The Ul class represents an HTML <ul> element
+     *  
+	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class PRE extends Group
+	public class Ul extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -44,72 +45,15 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function PRE()
+		public function Ul()
 		{
 			super();
 		}
-
-        private var _text:String = "";
-
-        /**
-         *  The text of the pre
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-		public function set text(value:String):void
-		{
-            _text = value;
-
-			COMPILE::JS
-			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-
-                textNode.nodeValue = value;
-			}
-		}
-
-		private var _html:String = "";
-
-        /**
-         *  Sets the HTML of the PRE
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 */
-		public function get html():String
-		{
-			return _html;
-		}
-		public function set html(value:String):void
-		{
-			_html = value;
-
-			COMPILE::JS
-			{
-				element.innerHTML = value;
-			}
-		}
-
-        COMPILE::JS
-        protected var textNode:Text;
-
+		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'pre');
+			return addElementToWrapper(this,'ul');
         }
     }
 }

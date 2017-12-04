@@ -16,29 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.mdl
+package org.apache.royale.html.elements
 {
-	import org.apache.royale.html.elements.H1;
+	import org.apache.royale.core.UIBase;
 
-	COMPILE::JS
+    COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
-	
+    import org.apache.royale.html.NodeElementBase;
+
 	/**
-	 *  The FooterHeading class is an extended H1 heading used in MDL footer
-	 *  drop down section.
+	 *  The H2 class represents an HTML <h2> element
+     *  
 	 *  
-	 *  (This is implemented as a class H4 and not as a bead that decorates other html text
-	 *  classes since MDL generate the same visuals for all of them)
-	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
+	 *  @productversion Royale 0.0
 	 */
-	public class FooterHeading extends H1
+	public class H2 extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -46,28 +45,59 @@ package org.apache.royale.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.0
 		 */
-		public function FooterHeading()
+		public function H2()
 		{
 			super();
+		}
+		
+        private var _text:String = "";
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+        /**
+         *  The text of the heading
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function get text():String
+		{
+            COMPILE::SWF
+            {
+                return _text;
+            }
+            COMPILE::JS
+            {
+                return textNode.nodeValue;
+            }
 		}
 
-		/**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion Text
-         */
+		public function set text(value:String):void
+		{
+            COMPILE::SWF
+            {
+                _text = value;
+            }
+            COMPILE::JS
+            {
+                textNode.nodeValue = value;
+            }
+		}
+		
+        COMPILE::JS
+        protected var textNode:Text;
+		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-mega-footer__heading";
-
-			addElementToWrapper(this,'h1');
+			addElementToWrapper(this,'h2');
+            
             textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode);
+            element.appendChild(textNode); 
+
             return element;
-		}
-	}
+        }
+    }
 }

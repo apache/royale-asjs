@@ -16,16 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The Td class represents an HTML <td> element
+	 *  The Li class represents an HTML <li> element
      *  
 	 *  
      *  @toplevel
@@ -34,7 +35,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Td extends Group
+	public class Li extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -44,48 +45,15 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function Td()
+		public function Li()
 		{
 			super();
 		}
 		
-        private var _text:String = "";
-
-        /**
-         *  The text of the td
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-		public function set text(value:String):void
-		{
-            _text = value;
-
-			COMPILE::JS
-			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-                
-                textNode.nodeValue = value;	
-			}
-		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
-
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'td');
+			return addElementToWrapper(this,'li');
         }
     }
 }

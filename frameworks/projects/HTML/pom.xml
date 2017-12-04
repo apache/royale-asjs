@@ -46,6 +46,10 @@
               <uri>library://ns.apache.org/royale/basic</uri>
               <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
+            <namespace>
+              <uri>library://ns.apache.org/royale/html</uri>
+              <manifest>${project.basedir}/src/main/resources/html-manifest.xml</manifest>
+            </namespace>
           </namespaces>
           <includeClasses>
             <includeClass>HTMLClasses</includeClass>

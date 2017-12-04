@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
 	import org.apache.royale.core.UIBase;
 
@@ -25,9 +25,10 @@ package org.apache.royale.html
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The Input class represents an HTML <input> element
+	 *  The H4 class represents an HTML <h4> element
      *  
 	 *  
      *  @toplevel
@@ -36,7 +37,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Input extends UIBase
+	public class H4 extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -46,7 +47,7 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function Input()
+		public function H4()
 		{
 			super();
 		}
@@ -54,14 +55,14 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The current value of the control
+         *  The text of the heading
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.0
          */
-		public function get value():String
+		public function get text():String
 		{
             COMPILE::SWF
             {
@@ -69,11 +70,11 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                return (element as HTMLInputElement).value;
+                return textNode.nodeValue;
             }
 		}
 
-		public function set value(value:String):void
+		public function set text(value:String):void
 		{
             COMPILE::SWF
             {
@@ -81,39 +82,21 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                (element as HTMLInputElement).value = value;
+                textNode.nodeValue = value;
             }
 		}
 		
-        private var _type:String;
-        /**
-         *  The input type
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-        public function get type():String
-        {
-            return _type;
-        }
-        public function set type(value:String):void
-        {
-            _type = value;
-            COMPILE::JS
-            {
-                if(element)
-                    element.setAttribute('type', value);
-            }
-        }
-        
+        COMPILE::JS
+        protected var textNode:Text;
+		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'input');
-            if(_type)
-                element.setAttribute('type', _type);
+			addElementToWrapper(this,'h4');
+            
+            textNode = document.createTextNode('') as Text;
+            element.appendChild(textNode); 
+
             return element;
         }
     }

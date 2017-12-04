@@ -16,43 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-
-	/**
-	 *  The Ul class represents an HTML <ul> element
-     *  
-	 *  
-     *  @toplevel
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public class Ol extends Group
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function Ol()
-		{
-			super();
-		}
-		
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this,'ul');
-        }
-    }
+    "config": "royale",
+    "compilerOptions": {
+        "debug": false,
+        "targets": ["JSRoyale","SWF"],
+        "source-map": true
+    },
+    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
+    "files":
+    [
+        "src/main/royale/HTMLElements.mxml"
+    ]
 }

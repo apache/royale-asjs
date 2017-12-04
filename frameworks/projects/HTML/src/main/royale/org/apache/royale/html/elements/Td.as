@@ -16,16 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The A(Anchor) class represents an HTML <a> anchor element
+	 *  The Td class represents an HTML <td> element
      *  
 	 *  
      *  @toplevel
@@ -34,7 +35,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class A extends Group
+	public class Td extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -44,7 +45,7 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function A()
+		public function Td()
 		{
 			super();
 		}
@@ -52,7 +53,7 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The text of the link
+         *  The text of the td
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -61,9 +62,9 @@ package org.apache.royale.html
          */
 		public function get text():String
 		{
-            return _text;            
+            return _text;
 		}
-        public function set text(value:String):void
+		public function set text(value:String):void
 		{
             _text = value;
 
@@ -78,39 +79,14 @@ package org.apache.royale.html
                 textNode.nodeValue = value;	
 			}
 		}
-        
-        private var _href:String = "#";
-        /**
-         *  the link url
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get href():String
-		{
-            return _href;   
-		}
-		public function set href(value:String):void
-		{
-            _href = value;
-            
-            COMPILE::JS
-            {
-                (element as HTMLElement).setAttribute('href', value);
-            }
-		}
 		
         COMPILE::JS
         protected var textNode:Text;
-		
+
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'a');
-            element.setAttribute('href', href);
-            return element;
+			return addElementToWrapper(this,'td');
         }
     }
 }

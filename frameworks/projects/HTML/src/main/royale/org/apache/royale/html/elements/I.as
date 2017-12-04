@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
 	import org.apache.royale.core.UIBase;
 
@@ -25,9 +25,10 @@ package org.apache.royale.html
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The H3 class represents an HTML <h3> element
+	 *  The I(Italic) class represents an HTML <i> anchor element
      *  
 	 *  
      *  @toplevel
@@ -36,7 +37,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class H3 extends UIBase
+	public class I extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -46,7 +47,7 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function H3()
+		public function I()
 		{
 			super();
 		}
@@ -54,7 +55,7 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text of the element
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -86,16 +87,16 @@ package org.apache.royale.html
 		}
 		
         COMPILE::JS
-        protected var textNode:Text;
+        private var textNode:Text;
 		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h3');
+			addElementToWrapper(this,'i');
             
             textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode); 
-
+            element.appendChild(textNode);
+            
             return element;
         }
     }

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
 	import org.apache.royale.core.UIBase;
 
@@ -25,9 +25,10 @@ package org.apache.royale.html
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The H5 class represents an HTML <h5> element
+	 *  The H6 class represents an HTML <h6> element
      *  
 	 *  
      *  @toplevel
@@ -36,7 +37,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class H5 extends UIBase
+	public class H6 extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -46,7 +47,7 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function H5()
+		public function H6()
 		{
 			super();
 		}
@@ -91,7 +92,7 @@ package org.apache.royale.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h5');
+			addElementToWrapper(this,'h6');
             
             textNode = document.createTextNode('') as Text;
             element.appendChild(textNode); 

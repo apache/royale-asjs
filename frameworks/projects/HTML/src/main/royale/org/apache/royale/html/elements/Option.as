@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
 	import org.apache.royale.core.UIBase;
 
@@ -25,18 +25,19 @@ package org.apache.royale.html
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The H2 class represents an HTML <h2> element
+	 *  The Option class represents an HTML <option> element
      *  
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
-	public class H2 extends UIBase
+	public class Option extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -44,9 +45,9 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
-		public function H2()
+		public function Option()
 		{
 			super();
 		}
@@ -59,7 +60,7 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get text():String
 		{
@@ -91,10 +92,10 @@ package org.apache.royale.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h2');
+			addElementToWrapper(this,'option');
             
             textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode); 
+            element.appendChild(textNode);
 
             return element;
         }

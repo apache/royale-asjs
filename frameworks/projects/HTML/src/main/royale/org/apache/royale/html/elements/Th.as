@@ -16,18 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.elements
 {
-	import org.apache.royale.core.UIBase;
-
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.NodeElementBase;
 
 	/**
-	 *  The H1 class represents an HTML <h1> element
+	 *  The Th class represents an HTML <th> element
      *  
 	 *  
      *  @toplevel
@@ -36,7 +35,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class H1 extends UIBase
+	public class Th extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -46,7 +45,7 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function H1()
+		public function Th()
 		{
 			super();
 		}
@@ -54,7 +53,7 @@ package org.apache.royale.html
         private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text of the th
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -63,40 +62,31 @@ package org.apache.royale.html
          */
 		public function get text():String
 		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
+            return _text;
 		}
-
 		public function set text(value:String):void
 		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
+            _text = value;
+
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
 		}
 		
         COMPILE::JS
         protected var textNode:Text;
-		
+
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h1');
-            
-            textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode); 
-
-            return element;
+			return addElementToWrapper(this,'th');
         }
     }
 }
