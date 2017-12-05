@@ -166,8 +166,8 @@
                 <manifest>${frameworks_dir}/projects/Network/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/royale/svg</uri>
-                <manifest>${frameworks_dir}/projects/HTML/src/main/resources/svg-manifest.xml</manifest>
+                <uri>library://ns.apache.org/royale/html</uri>
+                <manifest>${frameworks_dir}/projects/HTML/src/main/resources/html-manifest.xml</manifest>
             </namespace>
         </namespaces>
 

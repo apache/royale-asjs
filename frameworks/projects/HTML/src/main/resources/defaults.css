@@ -17,5 +17,5 @@
 *
 */
 
-@namespace "library://ns.apache.org/royale/basic";
-@namespace svg "library://ns.apache.org/royale/svg";
+@namespace "library://ns.apache.org/royale/html";
+@namespace basic "library://ns.apache.org/royale/basic";

@@ -145,8 +145,8 @@ package org.apache.royale.svg
 				var textNode:Text = document.createTextNode(value) as Text;
 				_textElem.appendChild(textNode as Node);
 
-                //resize(x, y, (_textElem as SVGLocatable).getBBox());
-                resize(x, y, getBBox(_textElem));
+                // resize(x, y, getBBox(_textElem));
+                resize(x, y);
 
             }
 		}

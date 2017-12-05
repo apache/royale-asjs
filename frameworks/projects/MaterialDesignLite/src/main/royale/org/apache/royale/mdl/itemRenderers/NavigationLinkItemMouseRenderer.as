@@ -48,8 +48,7 @@ package org.apache.royale.mdl.itemRenderers
 		}
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion Text
+         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

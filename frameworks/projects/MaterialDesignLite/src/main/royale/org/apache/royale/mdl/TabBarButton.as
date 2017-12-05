@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl
 {
-	import org.apache.royale.html.A;
+	import org.apache.royale.html.elements.A;
     
     COMPILE::JS
     {

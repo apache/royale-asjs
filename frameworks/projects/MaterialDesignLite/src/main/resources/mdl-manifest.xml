@@ -60,7 +60,7 @@
     <component id="THead" class="org.apache.royale.mdl.THead"/>
     <component id="TableColumn" class="org.apache.royale.mdl.TableColumn"/>
     <component id="TableRowItemRenderer" class="org.apache.royale.mdl.itemRenderers.TableRowItemRenderer"/>
-    <component id="TableRowItemMouseRenderer" class="org.apache.royale.mdl.itemRenderers.TableRowItemMouseRenderer"/>
+    <component id="TableRowItemSingleSelectionMouseRenderer" class="org.apache.royale.mdl.itemRenderers.TableRowItemSingleSelectionMouseRenderer"/>
     <component id="TableCell" class="org.apache.royale.mdl.TableCell"/>
     <component id="TableView" class="org.apache.royale.mdl.beads.views.TableView"/>
     <component id="TableNumericCellEnable" class="org.apache.royale.mdl.beads.TableNumericEnable"/>

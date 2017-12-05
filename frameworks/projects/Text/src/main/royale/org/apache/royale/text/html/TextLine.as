@@ -39,7 +39,7 @@ package org.apache.royale.text.html
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.html.Div;
+	import org.apache.royale.html.elements.Div;
 	
 	public class TextLine extends Div implements ITextLine
 	{

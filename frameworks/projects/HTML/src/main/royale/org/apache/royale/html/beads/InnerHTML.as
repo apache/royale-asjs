@@ -97,8 +97,7 @@ package org.apache.royale.html.beads
             {
                 COMPILE::JS
                 {
-                    var e:HTMLElement = host.element as HTMLElement;
-                    e.innerHTML = _text;
+                    host.element.innerHTML = _text;
                 }
             }
 		}

@@ -20,7 +20,7 @@ package org.apache.royale.mdl.beads
 {
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.html.Span;
+    import org.apache.royale.html.elements.Span;
     import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.core.UIBase;
 

@@ -110,8 +110,8 @@ package org.apache.royale.svg
 
                 _circle.setAttribute('r', radius);
 
-                //resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
-                resize(x-radius, y-radius, getBBox(_circle));
+                // resize(x-radius, y-radius, getBBox(_circle));
+                resize(x-radius, y-radius);
 
             }
         }
