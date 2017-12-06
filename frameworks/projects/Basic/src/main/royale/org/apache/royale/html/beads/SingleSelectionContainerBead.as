@@ -21,12 +21,25 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ISelectable;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.array.rangeCheck;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.debugging.assert;
+
+	/**
+	 * The change event is dispatched whenever the selection changes.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9
+	 */
+    [Event(name="change", type="org.apache.royale.events.Event")]
 	
 	/**
 	 * Use SingleSelectionContainerBead is a bead which manages selection state of a component
@@ -39,8 +52,8 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class SingleSelectionContainerBead implements IBead
-	{		
+	public class SingleSelectionContainerBead extends EventDispatcher implements IBead
+	{
 		/**
 		 * Constructor.
 		 *
@@ -56,9 +69,9 @@ package org.apache.royale.html.beads
 		
 		protected var _strand:IStrand;
 		
-		private function get host():IUIBase
+		private function get host():IParentIUIBase
 		{
-			return _strand as IUIBase;
+			return _strand as IParentIUIBase;
 		}
 		
 		
@@ -73,6 +86,7 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			_elements = [];
 			host.addEventListener("childrenAdded",handleItemAdded);
 			host.addEventListener("childrenRemoved",handleItemRemoved);
 			addListenersToChildren();
@@ -82,12 +96,82 @@ package org.apache.royale.html.beads
 		{
 			var parent:IParent = _strand as IParent;
 			var numElements:int = parent.numElements;
+			_elements = [];
 			for(var i:int = 0; i < numElements ; i++)
 			{
 				var elem:ISelectable = parent.getElementAt(i) as ISelectable;
 				if(elem)
+				{
 					(elem as IEventDispatcher).addEventListener("change",handleChange);
+					_elements.push(elem);
+				}
 			}
+			normalizeSelection();
+		}
+
+		private var _selectedIndex:int = -1;
+		/**
+		 *  The index of the currently selected item. Changing this value
+		 *  also changes the selectedItem property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		[Bindable("change")]
+        public function get selectedIndex():int
+		{
+			return rangeCheck(_selectedIndex,_elements) ? _selectedIndex : -1;
+		}
+		public function set selectedIndex(value:int):void
+		{
+			// The selectedIndex can be set before it's added to the strand (i.e. in mxml)
+			if(!_elements)
+			{
+				_selectedIndex = value;
+				return;
+			}
+			assert(!_selectionRequired || rangeCheck(value,_elements), "When selectionRequired is true, a valid index must be set");
+			assert(value < _elements.length,"index is out of range");
+			if(value < 0)
+			{
+				_selectedIndex = -1;
+				normalizeSelection();
+			}
+			else if(value != _selectedIndex)
+			{
+				var elem:ISelectable = _elements[value];
+				elem.selected = true;
+			}
+		}
+
+		/**
+		 *  The item currently selected. Changing this value also
+		 *  changes the selectedIndex property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		[Bindable("change")]
+		public function get selectedItem():ISelectable
+		{
+			// var selection:ISelectable;
+			// if(rangeCheck(_selectedIndex,_elements))
+			// 	return _elements[_selectedIndex];
+			
+			// normalizeSelection();
+			return rangeCheck(_selectedIndex,_elements) ? _elements[_selectedIndex] : null;
+			
+		}
+		public function set selectedItem(value:ISelectable):void
+		{
+			var idx:int = _elements.indexOf(value);
+			assert(idx != -1,"The specified element is not valid");
+			if(idx != _selectedIndex)
+				value.selected = true;
 		}
 
 		/**
@@ -110,6 +194,8 @@ package org.apache.royale.html.beads
 			_selectionRequired = value;
 		}
 
+		private var _elements:Array;
+
 		private var _handlingChange:Boolean;
 		/**
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -121,24 +207,30 @@ package org.apache.royale.html.beads
 				return;
 			
 			_handlingChange = true;
-			var component:IUIBase = event.target as IUIBase;
+			_selectedIndex = -1;
+			var component:IParentIUIBase = event.target as IParentIUIBase;
+			var elem:ISelectable = component as ISelectable;
+			var isSelected:Boolean = elem.selected;
 			var parent:IParent = _strand as IParent;
-			var numElements:int = parent.numElements;
+			var numElements:int = _elements.length;
 			for(var i:int = 0; i < numElements ; i++)
 			{
-				var elem:ISelectable = parent.getElementAt(i) as ISelectable;
+				elem = _elements[i] as ISelectable;
 				if(elem)
 				{
 					if(elem == component)
 					{
 						if(selectionRequired)
 							elem.selected = true;
+						if(elem.selected)
+							_selectedIndex = i;
 					}
-					else
+					else if(isSelected)
 						elem.selected = false;
 				}
 			}
 			_handlingChange = false;
+			dispatchEvent(new Event("change"));
 		}
 
 		/**
@@ -147,7 +239,18 @@ package org.apache.royale.html.beads
 		private function handleItemAdded(ev:ValueEvent):void
 		{
 			if(ev.value)
-				(ev.value as IEventDispatcher).addEventListener("change",handleChange);
+			{
+				var elem:ISelectable = ev.value as ISelectable;
+				if(elem)
+				{
+					(elem as IEventDispatcher).addEventListener("change",handleChange);
+					normalizeElements();
+					if(elem.selected)
+						selectedItem = elem;
+					else
+						normalizeSelection();
+				}
+			}
 			else
 				addListenersToChildren();
 		}
@@ -157,6 +260,56 @@ package org.apache.royale.html.beads
 		private function handleItemRemoved(ev:ValueEvent):void
 		{
 			(ev.value as IEventDispatcher).removeEventListener("change",handleChange);
+			normalizeElements();
+			normalizeSelection();
+		}
+
+		private function normalizeElements():void
+		{
+			var i:int;
+			_elements = [];
+			COMPILE::SWF
+			{
+
+			}
+
+			COMPILE::JS
+			{
+				// optimized so we don't have to get an array each step of the loop.
+				var internalChildren:Array = host.internalChildren();
+				for(i = 0; i < internalChildren.length; i++){
+					if(internalChildren[i] is ISelectable)
+						_elements.push(internalChildren[i]);
+				}
+
+			}
+		}
+
+		private function normalizeSelection():void
+		{
+			var idx:int = -1;
+			var i:int;
+			var elem:ISelectable;
+			for(i=0;i<_elements.length;i++)
+			{
+				elem = _elements[i];
+				if(idx != -1)
+					elem.selected = false;
+				else if(elem.selected)
+				{
+					idx = _selectedIndex = i;
+				}
+			}
+			if(idx == -1 && _selectionRequired && _elements.length)
+			{
+				if(rangeCheck(_selectedIndex,_elements))
+				{
+					elem = _elements[_selectedIndex];
+					elem.selected = true;
+				}
+				else
+					selectedIndex = 0;
+			}
 		}
 		
 	}
