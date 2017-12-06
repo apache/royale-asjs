@@ -204,7 +204,7 @@ package org.apache.royale.core
 		 */
 		public function removeItemRenderer(renderer:IItemRenderer):void
 		{
-			removeElement(renderer, true);
+			removeElement(renderer);
 			
 			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
 			newEvent.item = renderer;
