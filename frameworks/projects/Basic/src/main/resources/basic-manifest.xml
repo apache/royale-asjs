@@ -83,6 +83,7 @@
     <component id="AccessibilityAltBead" class="org.apache.royale.html.beads.AccessibilityAltBead" />
     <component id="DataGridColumnChangePropagator" class="org.apache.royale.html.beads.DataGridColumnChangePropagator" />
     <component id="DataGridColumnForceChangePropagator" class="org.apache.royale.html.beads.DataGridColumnForceChangePropagator" />
+    <component id="SingleSelectionContainerBead" class="org.apache.royale.html.beads.SingleSelectionContainerBead" />
     <!--<component id="MultilineTextFieldView" class="org.apache.royale.html.beads.MultilineTextFieldView"/>-->
 
     <component id="SimpleAlert" class="org.apache.royale.html.SimpleAlert"/>

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-
+    import org.apache.royale.core.ISelectable;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.core.IUIBase;
@@ -62,7 +62,7 @@ package org.apache.royale.html
      *  @productversion Royale 0.0
      */
     COMPILE::SWF
-	public class CheckBox extends UIButtonBase implements IStrand
+	public class CheckBox extends UIButtonBase implements IStrand, ISelectable
 	{
         /**
          *  Constructor.

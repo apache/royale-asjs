@@ -18,15 +18,41 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class CoreTester
-    {
-        public var strandTesterTest:StrandTesterTest;
-		public var binaryDataTesterTest:BinaryDataTesterTest;
-		public var arrayUtilsTest:ArrayUtilsTest;
-		public var dateUtilsTest:DateUtilsTest;
-        public var keyConverterTest:KeyConverterTest;
-        public var keyboardEventConverterTest:KeyboardEventConverterTest;
+    import org.apache.royale.utils.array.*;
+    import org.apache.royale.core.Strand;
+    import org.apache.royale.test.asserts.*;
+    
+    public class ArrayUtilsTest
+    {		
+        [Before]
+        public function setUp():void
+        {
+        }
+        
+        [After]
+        public function tearDown():void
+        {
+        }
+        
+        [BeforeClass]
+        public static function setUpBeforeClass():void
+        {
+        }
+        
+        [AfterClass]
+        public static function tearDownAfterClass():void
+        {
+        }
+        
+        [Test]
+        public function testRangeCheck():void
+        {
+            var arr:Array = [1,2,3,"a","b","c"];
+            assertTrue(rangeCheck(0,arr),"0 should be valid");
+            assertTrue(rangeCheck(5,arr),"5 should be valid");
+            assertTrue(rangeCheck(-1,arr) == false,"-1 should not be valid");
+            assertTrue(rangeCheck(6,arr) == false,"6 should not be valid");
+        }
+
     }
 }

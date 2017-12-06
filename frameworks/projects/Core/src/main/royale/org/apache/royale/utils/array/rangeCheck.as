@@ -16,17 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package org.apache.royale.utils.array
 {
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class CoreTester
+	/**
+	 *  Checks that an index falls within the allowable range of an array.
+	 *  Returns true if it's valid, false if not.
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9
+	 */
+    public function rangeCheck(index:int, arr:Array):Boolean
     {
-        public var strandTesterTest:StrandTesterTest;
-		public var binaryDataTesterTest:BinaryDataTesterTest;
-		public var arrayUtilsTest:ArrayUtilsTest;
-		public var dateUtilsTest:DateUtilsTest;
-        public var keyConverterTest:KeyConverterTest;
-        public var keyboardEventConverterTest:KeyboardEventConverterTest;
+        return index >= 0 && index < arr.length;
     }
 }

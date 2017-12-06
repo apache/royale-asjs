@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
+	import org.apache.royale.core.ISelectable;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.core.IUIBase;
@@ -68,7 +69,7 @@ package org.apache.royale.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ToggleTextButton extends TextButton implements IStrand, IEventDispatcher, IUIBase
+	public class ToggleTextButton extends TextButton implements ISelectable
 	{
         /**
          *  Constructor.

@@ -16,17 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package org.apache.royale.core
 {
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class CoreTester
-    {
-        public var strandTesterTest:StrandTesterTest;
-		public var binaryDataTesterTest:BinaryDataTesterTest;
-		public var arrayUtilsTest:ArrayUtilsTest;
-		public var dateUtilsTest:DateUtilsTest;
-        public var keyConverterTest:KeyConverterTest;
-        public var keyboardEventConverterTest:KeyboardEventConverterTest;
-    }
+    /**
+     *  The ISelectable interface is a marker interface for indicating a class has a selected property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9
+     */
+	public interface ISelectable
+	{
+
+        /**
+         *  <code>true</code> if the item is selected.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		function get selected():Boolean;
+		function set selected(value:Boolean):void;
+        
+	}
 }

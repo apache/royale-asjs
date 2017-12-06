@@ -25,6 +25,7 @@ package org.apache.royale.core
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
+    import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.states.State;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -119,7 +120,7 @@ package org.apache.royale.core
          */
         public function childrenAdded():void
         {
-            dispatchEvent(new Event("childrenAdded"));
+            dispatchEvent(new ValueEvent("childrenAdded"));
         }
 		
 		/*
@@ -283,23 +284,32 @@ package org.apache.royale.core
 		/**
 		 * @private
 		 */
-		COMPILE::SWF
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			super.addElement(c, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new Event("childrenAdded"));
+                this.dispatchEvent(new ValueEvent("childrenAdded", c));
 		}
 		
 		/**
 		 * @private
 		 */
-		COMPILE::SWF
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
 			super.addElementAt(c, index, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new Event("childrenAdded"));
+                this.dispatchEvent(new ValueEvent("childrenAdded", c));
+		}
+
+		/**
+		 * @private
+		 */
+		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			super.removeElement(c, dispatchEvent);
+			//TODO This should possibly be ultimately refactored to be more PAYG
+            if (dispatchEvent)
+                this.dispatchEvent(new ValueEvent("childrenRemoved", c));
 		}
 
     }

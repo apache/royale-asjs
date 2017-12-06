@@ -39,6 +39,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IValueToggleButtonModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.core.ISelectable;
 
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -57,7 +58,7 @@ package org.apache.royale.html
 	 *  @productversion Royale 0.0
 	 */
     COMPILE::SWF
-	public class RadioButton extends UIButtonBase implements IStrand
+	public class RadioButton extends UIButtonBase implements IStrand, ISelectable
 	{
 		/**
 		 *  constructor.
@@ -224,7 +225,7 @@ package org.apache.royale.html
     [Event(name="change", type="org.apache.royale.events.Event")]
     
     COMPILE::JS
-    public class RadioButton extends UIBase
+    public class RadioButton extends UIBase implements ISelectable
     {
         public static var radioCounter:int = 0;
 

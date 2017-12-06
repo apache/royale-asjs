@@ -16,66 +16,66 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads.layouts {
-import org.apache.royale.core.IStrand;
-import org.apache.royale.core.IBeadLayout;
-import org.apache.royale.core.ILayoutChild;
-import org.apache.royale.events.IEventDispatcher;
-
-/**
- *  The RemovableBasicLayout class is a simple layout
- *  bead.  It takes the set of children and lays them out
- *  as specified by CSS properties like left, right, top
- *  and bottom. It correctly handles removal and replacement between
- *  different strands, and null strand assignment
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-public class RemovableBasicLayout extends BasicLayout implements IBeadLayout {
+package org.apache.royale.html.beads.layouts
+{
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.events.IEventDispatcher;
 
     /**
-     *  @copy org.apache.royale.core.IBead#strand
+     *  The RemovableBasicLayout class is a simple layout
+     *  bead.  It takes the set of children and lays them out
+     *  as specified by CSS properties like left, right, top
+     *  and bottom. It correctly handles removal and replacement between
+     *  different strands, and null strand assignment
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     *
-     * @royaleignorecoercion org.apache.royale.core.ILayoutChild
-     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     *  @productversion Royale 0.0
      */
-    override public function set strand(value:IStrand):void {
-        var newHost:ILayoutChild = value as ILayoutChild;
-        var oldHost:ILayoutChild = host;
-        if (newHost != oldHost) {
-            var sizeChange:Function = handleSizeChange;
-            var childrenAdded:Function = handleChildrenAdded;
-            var initComplete:Function = handleInitComplete;
-            var layoutNeeded:Function = handleLayoutNeeded;
-            if (oldHost) {
-                IEventDispatcher(oldHost).removeEventListener("widthChanged", sizeChange);
-                IEventDispatcher(oldHost).removeEventListener("heightChanged", sizeChange);
-                IEventDispatcher(oldHost).removeEventListener("sizeChanged", sizeChange);
-                IEventDispatcher(oldHost).removeEventListener("childrenAdded", childrenAdded);
-                IEventDispatcher(oldHost).removeEventListener("initComplete", initComplete);
-                IEventDispatcher(oldHost).removeEventListener("layoutNeeded", layoutNeeded);
-            }
+    public class RemovableBasicLayout extends BasicLayout implements IBeadLayout {
 
-            host = newHost;
-            if (newHost) {
-                //note, could call super.strand = newHost here, to avoid DRY
-                //but not doing so, because it will be slower with the repeated closure lookups in js
-                IEventDispatcher(newHost).addEventListener("widthChanged", sizeChange);
-                IEventDispatcher(newHost).addEventListener("heightChanged", sizeChange);
-                IEventDispatcher(newHost).addEventListener("sizeChanged", sizeChange);
-                IEventDispatcher(newHost).addEventListener("childrenAdded", childrenAdded);
-                IEventDispatcher(newHost).addEventListener("initComplete", initComplete);
-                IEventDispatcher(newHost).addEventListener("layoutNeeded", layoutNeeded);
+        /**
+         *  @copy org.apache.royale.core.IBead#strand
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *
+         * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+         */
+        override public function set strand(value:IStrand):void {
+            var newHost:ILayoutChild = value as ILayoutChild;
+            var oldHost:ILayoutChild = host;
+            if (newHost != oldHost) {
+                var sizeChange:Function = handleSizeChange;
+                var childrenAdded:Function = handleChildrenAdded;
+                var initComplete:Function = handleInitComplete;
+                var layoutNeeded:Function = handleLayoutNeeded;
+                if (oldHost) {
+                    oldHost.removeEventListener("widthChanged", sizeChange);
+                    oldHost.removeEventListener("heightChanged", sizeChange);
+                    oldHost.removeEventListener("sizeChanged", sizeChange);
+                    oldHost.removeEventListener("childrenAdded", childrenAdded);
+                    oldHost.removeEventListener("initComplete", initComplete);
+                    oldHost.removeEventListener("layoutNeeded", layoutNeeded);
+                }
+
+                host = newHost;
+                if (newHost) {
+                    //note, could call super.strand = newHost here, to avoid DRY
+                    //but not doing so, because it will be slower with the repeated closure lookups in js
+                    newHost.addEventListener("widthChanged", sizeChange);
+                    newHost.addEventListener("heightChanged", sizeChange);
+                    newHost.addEventListener("sizeChanged", sizeChange);
+                    newHost.addEventListener("childrenAdded", childrenAdded);
+                    newHost.addEventListener("initComplete", initComplete);
+                    newHost.addEventListener("layoutNeeded", layoutNeeded);
+                }
             }
         }
     }
-}
 }

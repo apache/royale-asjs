@@ -99,6 +99,7 @@ internal class CoreClasses
 	    import org.apache.royale.core.IScrollBarModel; IScrollBarModel;
 	}
     import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
+    import org.apache.royale.core.ISelectable; ISelectable;
     import org.apache.royale.core.ISelectionModel; ISelectionModel;
     import org.apache.royale.core.IStrand; IStrand;
 	import org.apache.royale.core.IStrandPrivate; IStrandPrivate;
@@ -230,6 +231,7 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
 
+	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 	import org.apache.royale.utils.date.addDays; addDays;
 	import org.apache.royale.utils.date.addHours; addHours;
 	import org.apache.royale.utils.date.addMinutes; addMinutes;
