@@ -38,8 +38,8 @@ package org.apache.royale.events
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function ValueEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
-										 value:Object = null)
+		public function ValueEvent(type:String, value:Object = null, bubbles:Boolean=false,
+                                    cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
             
@@ -66,7 +66,7 @@ package org.apache.royale.events
 		 */
 		override public function cloneEvent():IRoyaleEvent
 		{
-			return new ValueEvent(type, bubbles, cancelable, value);
+			return new ValueEvent(type, value, bubbles, cancelable);
 		}
 	}
 }

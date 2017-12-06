@@ -126,14 +126,14 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
     private function timerHandler(event:flash.events.TimerEvent):void
     {
         event.updateAfterEvent();
-        dispatchEvent(new ValueEvent("update", false, false, getTimer()));
+        dispatchEvent(new ValueEvent("update", getTimer()));
     }
 
     COMPILE::JS
     private function timerHandler():void
     {
         var d:Date = new Date();
-        dispatchEvent(new ValueEvent('update', false, false, d.getTime()));
+        dispatchEvent(new ValueEvent('update', d.getTime()));
     }
 }
 }
