@@ -231,6 +231,7 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
 
+	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 	import org.apache.royale.utils.date.addDays; addDays;
 	import org.apache.royale.utils.date.addHours; addHours;
 	import org.apache.royale.utils.date.addMinutes; addMinutes;
