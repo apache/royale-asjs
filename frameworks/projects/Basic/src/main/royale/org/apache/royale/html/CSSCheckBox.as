@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
+    import org.apache.royale.core.ISelectable;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.core.IUIBase;
@@ -62,7 +63,7 @@ package org.apache.royale.html
      *  @productversion Royale 0.0
      */
     COMPILE::SWF
-	public class CSSCheckBox extends UIButtonBase implements IStrand
+	public class CSSCheckBox extends UIButtonBase implements IStrand, ISelectable
 	{
         /**
          *  Constructor.
@@ -151,7 +152,7 @@ package org.apache.royale.html
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
     COMPILE::JS
-    public class CSSCheckBox extends UIBase
+    public class CSSCheckBox extends UIBase implements ISelectable
     {
 
 		private var _label:WrappedHTMLElement;
