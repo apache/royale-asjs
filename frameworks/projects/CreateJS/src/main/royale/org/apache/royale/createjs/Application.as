@@ -175,8 +175,8 @@ package org.apache.royale.createjs
          * "inject_html" tag as follows:
          *
          * <inject_html>
-         * <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
-		 * <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+         * <script src="//code.createjs.com/easeljs-0.8.1.min.js"></script>
+		 * <script src="//code.createjs.com/tweenjs-0.6.2.min.js"></script>
          * </inject_html>
          */
 		public function Application()
