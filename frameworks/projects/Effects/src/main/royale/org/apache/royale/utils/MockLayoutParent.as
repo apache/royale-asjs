@@ -169,6 +169,8 @@ package org.apache.royale.utils
 		{
 			// TODO Auto Generated method stub
 		}
+		public function registerBead(bead:IBead):void{}
+		public function addBeads():void{}
 
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
