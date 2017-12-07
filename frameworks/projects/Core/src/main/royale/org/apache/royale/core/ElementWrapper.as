@@ -62,7 +62,7 @@ package org.apache.royale.core
             _element.royale_wrapper = this;
         }
 
-        private var beads:Array;
+        public var beads:Array;
 
         
         protected var _beads:Vector.<IBead>;
