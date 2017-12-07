@@ -142,15 +142,13 @@ package org.apache.royale.utils
 			return null;
 		}
 
-		public function registerBead(bead:IBead):void
-		{
-		}
 
 		public function addBead(bead:IBead):void
 		{
 			// TODO Auto Generated method stub
 
 		}
+		public function registerBead(bead:IBead):void{}
 		public function addBeads():void{}
 
 		public function getBeadByType(classOrInterface:Class):IBead
