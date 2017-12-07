@@ -211,16 +211,6 @@ package org.apache.royale.createjs.core
 		}
 		
 		/**
-		 *  @copy org.apache.royale.core.Application#beads
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public var beads:Array;
-		
-		/**
 		 *  The method called when added to a parent.  This is a good
 		 *  time to set up beads.
 		 * 
@@ -281,9 +271,7 @@ package org.apache.royale.createjs.core
 						_height = _explicitHeight = value as Number;
 				}
 			}
-				
-			for each (var bead:IBead in beads)
-				addBead(bead);
+			addBeads(false);
 			
 			if (getBeadByType(IBeadModel) == null) 
 			{

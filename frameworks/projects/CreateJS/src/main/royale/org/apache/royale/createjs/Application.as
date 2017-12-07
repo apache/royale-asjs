@@ -216,11 +216,7 @@ package org.apache.royale.createjs
             
             dispatchEvent('initialize');
 			
-			for (var index:int in beads) {
-				addBead(beads[index]);
-			}
-			
-			dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
+			addBeads();
             
             initialView.applicationModel = this.model;
             addElement(initialView);
@@ -349,19 +345,7 @@ package org.apache.royale.createjs
 		{
 			MXMLDataInterpreter.generateMXMLProperties(this, data);
 		}
-		
-		/**
-		 *  The array property that is used to add additional
-		 *  beads to an MXML tag.  From ActionScript, just
-		 *  call addBead directly.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public var beads:Array;
-		
+				
 		/**
 		 *  @copy org.apache.royale.core.IParent#addElement()
 		 *

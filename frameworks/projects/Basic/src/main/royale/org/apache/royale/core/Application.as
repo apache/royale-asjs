@@ -403,9 +403,9 @@ package org.apache.royale.core
          *  @productversion Royale 0.9
          */
         COMPILE::SWF
-        public function addBeads():void
+        public function addBeads(dispatch:Boolean=true):void
         {
-            addBeadsToStrand(this,beads);
+            addBeadsToStrand(this,beads,dispatch);
         }
 
         /**

@@ -70,7 +70,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9
          */
-		function addBeads():void;
+		function addBeads(dispatch:Boolean=true):void;
         
         /**
          *  Find a bead on the strand.
