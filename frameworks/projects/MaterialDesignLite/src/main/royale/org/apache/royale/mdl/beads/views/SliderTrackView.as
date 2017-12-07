@@ -42,7 +42,7 @@ package org.apache.royale.mdl.beads.views
 	 *  @productversion Royale 0.8
 	 */
 	COMPILE::SWF
-	public class SliderTrackView extends BeadViewBase implements IBeadView
+	public class SliderTrackView extends BeadViewBase
 	{
 		/**
 		 *  constructor.

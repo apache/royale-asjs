@@ -77,7 +77,7 @@ package org.apache.royale.mdl
      *  @productversion Royale 0.8
      */
     COMPILE::SWF
-	public class RadioButton extends UIButtonBase implements IStrand
+	public class RadioButton extends UIButtonBase
 	{
         /**
 		 *  constructor.
