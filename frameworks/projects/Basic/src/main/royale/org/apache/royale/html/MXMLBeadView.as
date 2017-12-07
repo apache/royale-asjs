@@ -19,7 +19,7 @@
 package org.apache.royale.html
 {
 	import org.apache.royale.states.State;
-
+    import org.apache.royale.core.addBeadsToStrand;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.ILayoutHost;
     import org.apache.royale.core.IParent;
@@ -78,10 +78,7 @@ package org.apache.royale.html
 
             dispatchEvent(new Event("strandChanged"));
 
-            for each (var bead:IBead in beads)
-                addBead(bead);
-
-            dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
+            addBeads();
 
             MXMLDataInterpreter.generateMXMLInstances(this, IParent(value), MXMLDescriptor);
 
@@ -257,6 +254,22 @@ package org.apache.royale.html
         private var _beads:Array;
 
         /**
+         *  @copy org.apache.royale.core.IStrand#registerBead()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function registerBead(bead:IBead):void
+        {
+            if(beads)
+                beads.push(bead);
+            else
+                beads = [bead];
+        }
+
+        /**
          *  @copy org.apache.royale.core.IStrand#addBead()
          *
          *  @langversion 3.0
@@ -270,6 +283,19 @@ package org.apache.royale.html
                 _beads = [];
             _beads.push(bead);
             bead.strand = this;
+        }
+
+        /**
+         *  @copy org.apache.royale.core.IStrand#addBeads()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function addBeads():void
+        {
+            addBeadsToStrand(this,beads);
         }
 
         /**

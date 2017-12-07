@@ -23,6 +23,7 @@ package org.apache.royale.html.beads
 	import flash.events.IEventDispatcher;
 	import flash.text.TextFieldType;
 	
+	import org.apache.royale.core.addBeadsToStrand;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IScrollBarModel;
@@ -104,8 +105,7 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 			
-            for each (var bead:IBead in beads)
-                addBead(bead);
+            addBeads();
             
 			// add a border to this
 			_border = new Border();
@@ -204,6 +204,22 @@ package org.apache.royale.html.beads
 		private var _beads:Vector.<IBead>;
 
         /**
+         *  @copy org.apache.royale.core.IStrand#registerBead()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function registerBead(bead:IBead):void
+        {
+            if(beads)
+                beads.push(bead);
+            else
+                beads = [bead];
+        }
+
+        /**
          *  @copy org.apache.royale.core.UIBase#addBead()
          *  
          *  @langversion 3.0
@@ -218,6 +234,19 @@ package org.apache.royale.html.beads
 			_beads.push(bead);
 			bead.strand = this;
 		}
+
+        /**
+         *  @copy org.apache.royale.core.IStrand#addBeads()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function addBeads():void
+        {
+            addBeadsToStrand(this,beads);
+        }
 		
         /**
          *  @copy org.apache.royale.core.UIBase#getBeadByType()

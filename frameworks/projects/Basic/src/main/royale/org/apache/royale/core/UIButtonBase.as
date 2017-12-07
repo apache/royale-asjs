@@ -21,6 +21,7 @@ package org.apache.royale.core
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
 	
+    import org.apache.royale.core.addBeadsToStrand;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IMeasurementBead;
@@ -730,6 +731,22 @@ package org.apache.royale.core
 		private var strand:Vector.<IBead>;
 
         /**
+         *  @copy org.apache.royale.core.IStrand#registerBead()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function registerBead(bead:IBead):void
+        {
+            if(beads)
+                beads.push(bead);
+            else
+                beads = [bead];
+        }
+
+        /**
          *  @copy org.apache.royale.core.UIBase#addBead()
          *  
          *  @langversion 3.0
@@ -749,6 +766,19 @@ package org.apache.royale.core
 			bead.strand = this; // super.addBead already did this!
 		}
 		
+        /**
+         *  @copy org.apache.royale.core.IStrand#addBeads()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function addBeads():void
+        {
+            addBeadsToStrand(this,beads);
+        }
+
         /**
          *  @copy org.apache.royale.core.UIBase#getBeadByType()
          *  

@@ -33,6 +33,7 @@ package org.apache.royale.core
         import flash.events.Event;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
+        import org.apache.royale.core.addBeadsToStrand
         import org.apache.royale.events.utils.MouseEventConverter;
     }
 
@@ -346,18 +347,35 @@ package org.apache.royale.core
 
         /**
          *  The array property that is used to add additional
-         *  beads to an MXML tag.  From ActionScript, just
-         *  call addBead directly.
+         *  beads to an MXML tag.  From ActionScript, use registerBead().
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
+        COMPILE::SWF
         public var beads:Array;
 
         COMPILE::SWF
         private var _beads:Vector.<IBead>;
+
+        /**
+         *  @copy org.apache.royale.core.IStrand#registerBead()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        COMPILE::SWF
+        public function registerBead(bead:IBead):void
+        {
+            if(beads)
+                beads.push(bead);
+            else
+                beads = [bead];
+        }
 
         /**
          *  @copy org.apache.royale.core.IStrand#addBead()
@@ -374,6 +392,20 @@ package org.apache.royale.core
                 _beads = new Vector.<IBead>;
             _beads.push(bead);
             bead.strand = this;
+        }
+
+        /**
+         *  @copy org.apache.royale.core.IStrand#addBeads()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        COMPILE::SWF
+        public function addBeads():void
+        {
+            addBeadsToStrand(this,beads);
         }
 
         /**
