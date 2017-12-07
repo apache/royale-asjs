@@ -61,12 +61,32 @@ package org.apache.royale.core
             _element = value;
             _element.royale_wrapper = this;
         }
+
+        private var beads:Array;
+
         
         protected var _beads:Vector.<IBead>;
         
         //--------------------------------------
         //   Function
         //--------------------------------------
+
+
+        /**
+         *  @copy org.apache.royale.core.IStrand#registerBead()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function registerBead(bead:IBead):void
+        {
+            if(beads)
+                beads.push(bead);
+            else
+                beads = [bead];
+        }
         
         /**
          * @param bead The new bead.
@@ -80,6 +100,20 @@ package org.apache.royale.core
             
             _beads.push(bead);
             bead.strand = this;
+        }
+
+
+        /**
+         *  @copy org.apache.royale.core.IStrand#addBeads()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function addBeads():void
+        {
+            addBeadsToStrand(this,beads);
         }
         
         /**
@@ -231,12 +265,29 @@ package org.apache.royale.core
             _element.royale_wrapper = this;
         }
         
+        private var beads:Array;
 
 		protected var _beads:Vector.<IBead>;
         
 		//--------------------------------------
 		//   Function
 		//--------------------------------------
+
+         /**
+         *  @copy org.apache.royale.core.IStrand#registerBead()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function registerBead(bead:IBead):void
+        {
+            if(beads)
+                beads.push(bead);
+            else
+                beads = [bead];
+        }
 
         /**
          * @param bead The new bead.
@@ -251,6 +302,19 @@ package org.apache.royale.core
 			_beads.push(bead);
 			bead.strand = this;
 		}
+
+         /**
+         *  @copy org.apache.royale.core.IStrand#addBeads()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function addBeads():void
+        {
+            addBeadsToStrand(this,beads);
+        }
 
         /**
          * @param classOrInterface The requested bead type.

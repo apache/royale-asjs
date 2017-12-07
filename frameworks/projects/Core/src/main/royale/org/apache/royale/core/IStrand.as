@@ -37,6 +37,18 @@ package org.apache.royale.core
 	public interface IStrand
 	{
         /**
+         *  Registers a bead to be add to the strand.
+         *
+         *  @param bead The bead to be added.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+		function registerBead(bead:IBead):void;
+
+        /**
          *  Add a bead to the strand.
          *
          *  @param bead The bead to be added.
@@ -47,6 +59,18 @@ package org.apache.royale.core
          *  @productversion Royale 0.0
          */
 		function addBead(bead:IBead):void;
+
+        /**
+         *  Add the beads registered to the strand.
+         *
+         *  @param bead The bead to be added.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+		function addBeads():void;
         
         /**
          *  Find a bead on the strand.

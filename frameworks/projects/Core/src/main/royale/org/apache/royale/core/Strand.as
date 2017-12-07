@@ -120,6 +120,22 @@ package org.apache.royale.core
 		private var _beads:Vector.<IBead>;
 
         /**
+         *  @copy org.apache.royale.core.IStrand#registerBead()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function registerBead(bead:IBead):void
+        {
+            if(beads)
+                beads.push(bead);
+            else
+                beads = [bead];
+        }
+
+        /**
          *  @copy org.apache.royale.core.IStrand#addBead()
          *  
          *  @langversion 3.0
@@ -136,6 +152,19 @@ package org.apache.royale.core
 				_model = bead as IBeadModel;
 			bead.strand = this;
 		}
+
+        /**
+         *  @copy org.apache.royale.core.IStrand#addBeads()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function addBeads():void
+        {
+            addBeadsToStrand(this,beads);
+        }
 		
         /**
          *  @copy org.apache.royale.core.IStrand#getBeadByType()

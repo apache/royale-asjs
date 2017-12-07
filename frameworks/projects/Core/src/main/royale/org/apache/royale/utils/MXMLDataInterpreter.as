@@ -191,8 +191,8 @@ public class MXMLDataInterpreter
             else if (simple == false)
                 value = generateMXMLObject(document, value as Array);
             comp[name] = value;
-            if (value is IBead && comp is IStrand)
-                IStrand(comp).addBead(value as IBead);
+            // if (value is IBead && comp is IStrand)
+            //     IStrand(comp).addBead(value as IBead);
         }
         var beadOffset:int = i + (m - 1) * 3;
         //if (beadOffset >= -1)
