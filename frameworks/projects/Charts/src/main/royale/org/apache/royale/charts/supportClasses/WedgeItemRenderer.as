@@ -50,16 +50,6 @@ package org.apache.royale.charts.supportClasses
 			super();
 		}
 		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-		}
-		
-		override public function addBead(bead:IBead):void
-		{
-			super.addBead(bead);
-		}
-		
 		private var _series:IChartSeries;
 		
 		/**
