@@ -80,6 +80,25 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		/**
+		 * @copy org.apache.royale.core.IItemRendererParent#addItemRendererAt()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
+		{
+			addElementAt(renderer, index, true);
+			
+			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
+			newEvent.item = renderer;
+			
+			(host as IEventDispatcher).dispatchEvent(newEvent);
+		}
+		
+		/**
 		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
 		 * @private
 		 *

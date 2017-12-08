@@ -18,13 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
@@ -32,11 +33,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.supportClasses.TreeListData;
-	import org.apache.royale.collections.FlattenedList;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -52,7 +52,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataItemRendererFactoryForHierarchicalData extends DataItemRendererFactoryForArrayList
+	public class DataItemRendererFactoryForHierarchicalData extends DynamicItemsRendererFactoryForArrayListData
 	{
         /**
          *  Constructor.

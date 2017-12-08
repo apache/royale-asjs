@@ -21,18 +21,16 @@ package org.apache.royale.charts.optimized
 	import org.apache.royale.charts.core.IChartDataGroup;
 	import org.apache.royale.charts.core.IChartItemRenderer;
 	import org.apache.royale.charts.core.IChartSeries;
-    import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContentView;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.svg.CompoundGraphic;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IChild;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.svg.CompoundGraphic;
 	
 	/**
 	 *  The SVGChartDataGroup serves as the drawing canvas for SVG itemRenderers. Rather than having
@@ -157,22 +155,22 @@ package org.apache.royale.charts.optimized
 		
 		/**
 		 *  Overrides the addElementAt function to set the element into an internal
-		 *  list.
+		 *  list at a specific location.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
-		public function addItemRendererAt(value:IChild, index:int, dispatchEvent:Boolean = true):void
+		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
-			if (index >= _children.length) _children.push(value);
-			else _children.splice(index, 0, value);
+			if (index >= _children.length) _children.push(renderer);
+			else _children.splice(index, 0, renderer);
 			
-			var base:UIBase = value as UIBase;
+			var base:UIBase = renderer as UIBase;
 			base.addedToParent();
 			
-			super.addElementAt(value, index, dispatchEvent);
+			super.addElementAt(renderer, index, true);
 		}
 		
 		/**
