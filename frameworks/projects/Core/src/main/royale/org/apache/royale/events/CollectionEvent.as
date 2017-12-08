@@ -19,7 +19,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.events
 {
-
 	/**
 	 * The CollectionEvent class is used for dispatching an collection events
 	 *
@@ -55,6 +54,16 @@ package org.apache.royale.events
 		{
             super(type, bubbles, cancelable);                    
 		}
+		
+		/**
+		 * The index of the item added, removed, or changed
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
+		 */
+		public var index:int;
 
         /**
          * The item being removed/added/updated
@@ -81,6 +90,7 @@ package org.apache.royale.events
             var collectionEvent:CollectionEvent = new CollectionEvent(type, bubbles, cancelable);
 			collectionEvent.item = item;
 			collectionEvent.items = items;
+			collectionEvent.index = index;
 
 			return collectionEvent;
         }

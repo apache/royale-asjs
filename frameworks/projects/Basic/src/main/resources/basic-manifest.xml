@@ -149,6 +149,7 @@
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayList" />
     <component id="DynamicItemsRendererFactoryForArrayListData" class="org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData" />
+    <component id="DynamicRemoveItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveItemRendererForArrayListData" />
     <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />

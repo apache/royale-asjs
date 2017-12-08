@@ -41,17 +41,47 @@ limitations under the License.
 			height: 30px;
 		}
 	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import models.ProductsModel;
+			
+			private function addState():void
+			{
+				(applicationModel as ProductsModel).states.addItemAt("New Jersey", 2);
+			}
+			
+			private function removeState():void
+			{
+				(applicationModel as ProductsModel).states.removeItemAt(2);
+			}
+			
+			private function addFuzzies():void
+			{
+				(applicationModel as ProductsModel).productNames.addItemAt("Fuzzies", 2);
+			}
+		]]>
+	</fx:Script>
 
 	<js:Label x="20" y="20" text="A Royale List" />
 	
-	<js:List x="20" y="40" width="400" height="300">
+	<js:List id="list" x="20" y="40" width="400" height="300">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
-				sourcePropertyName="productNames"
+				sourcePropertyName="states"
 				destinationPropertyName="dataProvider" />
+			<!-- Use this dynamic itemRenderer factory when the data is an ArrayList and
+			     you want to insert items programmatically. -->
+			<js:DynamicItemsRendererFactoryForArrayListData />
+			<!-- If you need to dynamically remove items from the ArrayList, include this
+			     bead which removes the corresponding itemRenderer. -->
+			<js:DynamicRemoveItemRendererForArrayListData />
 		</js:beads>
 	</js:List>
+	
+	<js:TextButton text="Add New Jersey" x="20" y="350" click="addState()" />
+	<js:TextButton text="Remove Item 0" x="200" y="350" click="removeState()" />
 
 	
 	<js:Label x="500" y="20" text="A local list using DataContainer" />
@@ -62,7 +92,12 @@ limitations under the License.
 				sourceID="applicationModel"
 				sourcePropertyName="productNames"
 				destinationPropertyName="dataProvider" />
+			<!-- you also add this itemRendererFactory if your DataContainer list
+			     is using an ArrayList as its dataProvider -->
+			<js:DynamicItemsRendererFactoryForArrayListData />
 		</gen:beads>
 	</gen:GenericList>
+	
+	<js:TextButton text="Add Fuzzies" x="500" y="350" click="addFuzzies()" />
 
 </js:View>
