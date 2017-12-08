@@ -714,7 +714,7 @@
     -->
     <target name="source-package-zip" unless="no.zip">
         <mkdir dir="${basedir}/out"/>
-        <zip destfile="${basedir}/out/${source.kit}.zip" basedir="${staging-dir}"/>
+        <zip destfile="${basedir}/out/${source.kit}.zip" basedir="${basedir}/temp"/>
     </target>
 
     <!-- 
@@ -904,7 +904,7 @@
         description="Zips up the files in the temp directory into the binary zipfile.">
         
         <mkdir dir="${basedir}/out"/>
-        <zip destfile="${basedir}/out/${binary.kit}.zip" basedir="${staging-dir}"/>
+        <zip destfile="${basedir}/out/${binary.kit}.zip" basedir="${basedir}/temp"/>
     </target>
        
     <!-- 
@@ -945,15 +945,15 @@
                 <tar destfile="${basedir}/out/@{name}.tar.gz" 
                     compression="gzip"
                     longfile="gnu">
-                    <tarfileset dir="${staging-dir}" prefix="@{name}">
+                    <tarfileset dir="${basedir}/temp" prefix="@{name}">
                         <include name="**" />
                         <exclude name="bin/**" />
                         <exclude name="**/*.sh" />
                     </tarfileset>
-                    <tarfileset dir="${staging-dir}" prefix="@{name}">
+                    <tarfileset dir="${basedir}/temp" prefix="@{name}">
                         <include name="bin/*.bat" />
                     </tarfileset>
-                    <tarfileset dir="${staging-dir}" prefix="@{name}" mode="755">
+                    <tarfileset dir="${basedir}/temp" prefix="@{name}" mode="755">
                         <include name="bin/*" />
                         <include name="**/*.sh" />
                         <exclude name="bin/*.bat" />
@@ -1372,8 +1372,12 @@
              
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
+                <exclude name="README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
+                <exclude name="royale-asjs/README.md"/>
+                <exclude name="royale-asjs/LICENSE.bin"/>
+                <exclude name="royale-asjs/LICENSE.base"/>
                 <!--          Start of binary files           -->
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>
@@ -1390,6 +1394,15 @@
                 <exclude name="**/META-INF/DEPENDENCIES" />
                 <!--          ide files     -->
                 <exclude name="**/.vscode/**"/>
+                <!--          royale-compiler -->
+                <exclude name="**/org.apache.royale.tools.RoyaleToolGroup"/>
+                <exclude name="**/debugger/META-INF/MANIFEST.MF"/>
+                <exclude name="**/*.patch"/>
+                <exclude name="royale-compiler/LICENSE.bin"/>
+                <exclude name="royale-compiler/README_MAVEN.txt"/>
+                <exclude name="royale-compiler/NOTICE.base"/>
+                <exclude name="royale-compiler/NOTICE.fdb"/>
+                <exclude name="royale-compiler/NOTICE.oem"/>
             </fileset>
         </rat:report>
     </target>
