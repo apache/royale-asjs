@@ -161,7 +161,7 @@
         description="Packages the source release kit which is the official Apache release."/>
         
     <target name="binary-release" 
-        depends="setup-binary-release,set.base.folder,build-all,main,sample-themes,checkintests,check-goog-home,binary-package"
+        depends="setup-binary-release,set.base.folder,build-all,main,sample-themes,checkintests,check-goog-home,binary-package,jsonly-package"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="binary-release-jenkins" 
@@ -851,6 +851,58 @@
 
     </target>
 
+    <target name="jsonly-package" if="env.AIR_HOME"
+        description="subset binary package to be a js-only package if AIR_HOME is set and we built a SWF+JS package">
+        <!-- assumes temp folder contains the binary package with SWF stuff in it -->
+        <delete dir="${basedir}/temp/royale-asjs/frameworks/libs" failonerror="false" includeEmptyDirs="true" />
+        <mkdir dir="${basedir}/temp/royale-asjs/frameworks/libs" />
+        <copy file="${ROYALE_HOME}/js/libs/js.swc"
+                tofile="${basedir}/temp/royale-asjs/frameworks/libs/KeepsFBFromHanging.swc" />
+        <mkdir dir="${basedir}/temp/royale-asjs/frameworks/libs/player/${playerglobal.version}"/>
+        <copy file="${ROYALE_HOME}/js/libs/js.swc" tofile="${basedir}/temp/royale-asjs/frameworks/libs/player/${playerglobal.version}/playerglobal.swc" />
+        <mkdir dir="${basedir}/temp/royale-asjs/frameworks/libs/air"/>
+        <copy file="${ROYALE_HOME}/js/libs/js.swc" tofile="${basedir}/temp/royale-asjs/frameworks/libs/air/airglobal.swc" />
+        <replace token="{playerglobalHome}" value="libs/player" >
+            <fileset dir="${staging-dir}/frameworks">
+                <include name="air-config.xml"/>
+                <include name="airmobile-config.xml"/>
+                <include name="createjs-config.xml"/>
+                <include name="flex-config.xml"/>
+                <include name="jquery-config.xml"/>
+                <include name="js-config.xml"/>
+                <include name="node-config.xml"/>
+                <include name="royale-config.xml"/>
+            </fileset>
+        </replace>
+        <replace token="&lt;path-element&gt;libs&lt;/path-element&gt;"
+                    value="&lt;path-element&gt;js/libs&lt;/path-element&gt;" >
+            <fileset dir="${staging-dir}/frameworks">
+                <include name="air-config.xml"/>
+                <include name="airmobile-config.xml"/>
+                <include name="createjs-config.xml"/>
+                <include name="flex-config.xml"/>
+                <include name="jquery-config.xml"/>
+                <include name="js-config.xml"/>
+                <include name="node-config.xml"/>
+                <include name="royale-config.xml"/>
+            </fileset>
+        </replace>
+        <replace token="&lt;target&gt;SWF&lt;/target&gt;" value="" >
+            <fileset dir="${staging-dir}/frameworks">
+                <include name="air-config.xml"/>
+                <include name="airmobile-config.xml"/>
+                <include name="createjs-config.xml"/>
+                <include name="flex-config.xml"/>
+                <include name="jquery-config.xml"/>
+                <include name="js-config.xml"/>
+                <include name="node-config.xml"/>
+                <include name="royale-config.xml"/>
+            </fileset>
+        </replace>
+        <zip destfile="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" basedir="${basedir}/temp"/>
+        <tar-gzip name="apache-royale-jsonly-${release.version}-bin" />
+    </target>
+    
     <target name="binary-package"
         description="Package binary files in zip and tar-gzip file.">
 
@@ -1467,6 +1519,12 @@
 		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.tar.gz" forceOverwrite="yes"/>
 		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes"/>
 	</target>
+
+    <target name="create-md5-jsonly" if="env.AIR_HOME" >
+        <echo message="Generating MD5 hashes for release artifacts"/>
+        <checksum algorithm="md5" file="${basedir}/out/apache-royale-jsonly-${release.version}-bin.tar.gz" forceOverwrite="yes"/>
+        <checksum algorithm="md5" file="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" forceOverwrite="yes"/>
+    </target>
 
     <target name="sign" >
         <exec executable="gpg">
