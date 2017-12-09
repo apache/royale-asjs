@@ -689,9 +689,12 @@
     </target>
 
     <target name="stage-compiler" >
-        <ant dir="${basedir}/../royale-compiler" target="wipe-all" />
+        <ant dir="${basedir}/../royale-compiler" target="wipe-all" >
+            <property name="env.ASJS_HOME" value="${basedir}" />
+        </ant>
         <ant dir="${basedir}/../royale-compiler" target="stage-all" >
             <property name="staging-dir" value="${basedir}/temp/royale-compiler" />
+            <property name="env.ASJS_HOME" value="${basedir}" />
         </ant>
     </target>
     
