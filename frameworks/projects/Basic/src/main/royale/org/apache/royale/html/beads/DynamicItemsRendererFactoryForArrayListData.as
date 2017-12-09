@@ -91,14 +91,9 @@ package org.apache.royale.html.beads
             var listView:IListView = _strand.getBeadByType(IListView) as IListView;
             dataGroup = listView.dataGroup;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			labelField = dataProviderModel.labelField;
 			
-			// also listen for individual items being added to the dataProvider itself.
-			var dataProvider:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
-            dataProvider.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-
-            labelField = dataProviderModel.labelField;
-
-            dataProviderChangeHandler(null);
+			dataProviderChangeHandler(null);
         }
 		
 		protected var _dataProviderModel:ISelectionModel;
@@ -163,6 +158,9 @@ package org.apache.royale.html.beads
             if (!dp)
                 return;
 
+			// listen for individual items being added in the future.
+			(dp as IEventDispatcher).addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			
             dataGroup.removeAllItemRenderers();
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
