@@ -20,7 +20,7 @@ package org.apache.royale.core
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-
+    import org.apache.royale.core.registerBeadOnStrand;
     /**
      *  The Strand class is the base class for non-display object
      *  that implement a strand.
@@ -129,10 +129,7 @@ package org.apache.royale.core
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 
         /**

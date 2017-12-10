@@ -22,6 +22,7 @@ package org.apache.royale.html.supportClasses
     import flash.text.TextFieldType;
     
 	import org.apache.royale.core.addBeadsToStrand;
+    import org.apache.royale.core.registerBeadOnStrand;
     import org.apache.royale.core.CSSTextField;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadController;
@@ -494,10 +495,7 @@ package org.apache.royale.html.supportClasses
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 		
 		/**

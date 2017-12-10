@@ -228,7 +228,7 @@ package org.apache.royale.utils
 		{
 		}
 		public function registerBead(bead:IBead):void{}
-		public function addBeads():void{}
+		public function addBeads(dispatch:Boolean=true):void{}
 		
 		public function getBeadByType(classOrInterface:Class):IBead
 		{

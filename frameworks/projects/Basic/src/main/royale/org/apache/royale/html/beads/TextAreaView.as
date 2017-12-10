@@ -24,6 +24,7 @@ package org.apache.royale.html.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.royale.core.addBeadsToStrand;
+    import org.apache.royale.core.registerBeadOnStrand;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IScrollBarModel;
@@ -213,10 +214,7 @@ package org.apache.royale.html.beads
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 
         /**

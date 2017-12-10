@@ -22,6 +22,7 @@ package org.apache.royale.core
 	import flash.display.SimpleButton;
 	
     import org.apache.royale.core.addBeadsToStrand;
+    import org.apache.royale.core.registerBeadOnStrand;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IMeasurementBead;
@@ -740,10 +741,7 @@ package org.apache.royale.core
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 
         /**

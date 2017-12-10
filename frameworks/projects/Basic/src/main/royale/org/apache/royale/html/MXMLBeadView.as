@@ -20,6 +20,7 @@ package org.apache.royale.html
 {
 	import org.apache.royale.states.State;
     import org.apache.royale.core.addBeadsToStrand;
+    import org.apache.royale.core.registerBeadOnStrand;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.ILayoutHost;
     import org.apache.royale.core.IParent;
@@ -263,10 +264,7 @@ package org.apache.royale.html
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 
         /**

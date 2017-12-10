@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net
 {
+    import org.apache.royale.core.addBeadsToStrand;
+    import org.apache.royale.core.registerBeadOnStrand;
 	import org.apache.royale.core.IStrand;
     COMPILE::SWF
     {
         import org.apache.royale.events.EventDispatcher;
-        import org.apache.royale.core.addBeadsToStrand;
         import org.apache.royale.core.IBead;
     }
     COMPILE::JS
@@ -74,10 +75,7 @@ package org.apache.royale.net
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 
         /**
@@ -104,9 +102,9 @@ package org.apache.royale.net
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9
          */
-        public function addBeads():void
+        public function addBeads(dispatch:Boolean=true):void
         {
-            addBeadsToStrand(this,beads);
+            addBeadsToStrand(this, beads, dispatch);
         }
 		
         /**

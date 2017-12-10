@@ -27,6 +27,7 @@ package {
 internal class CoreClasses
 {
 	import org.apache.royale.core.addBeadsToStrand; addBeadsToStrand;
+	import org.apache.royale.core.registerBeadOnStrand; registerBeadOnStrand;
     import org.apache.royale.core.BeadViewBase; BeadViewBase;
     import org.apache.royale.core.ImageViewBase; ImageViewBase;
     import org.apache.royale.core.BrowserWindow; BrowserWindow;

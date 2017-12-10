@@ -37,6 +37,7 @@ package org.apache.royale.core
     
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.core.registerBeadOnStrand;
 
     COMPILE::SWF
     public class ElementWrapper extends EventDispatcher implements IStrand
@@ -82,10 +83,7 @@ package org.apache.royale.core
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
         
         /**
@@ -265,7 +263,7 @@ package org.apache.royale.core
             _element.royale_wrapper = this;
         }
         
-        private var beads:Array;
+        public var beads:Array;
 
 		protected var _beads:Vector.<IBead>;
         
@@ -283,10 +281,7 @@ package org.apache.royale.core
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 
         /**

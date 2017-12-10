@@ -19,6 +19,7 @@
 package org.apache.royale.core
 {
     import org.apache.royale.core.addBeadsToStrand;
+    import org.apache.royale.core.registerBeadOnStrand;
     
     COMPILE::SWF
     {
@@ -67,12 +68,12 @@ package org.apache.royale.core
         {            
         }
         
+        /**
+         * "abstract" method so we can override in JS
+         * @param bead The new bead.
+         */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
         }
     }
     
@@ -215,10 +216,7 @@ package org.apache.royale.core
          */
         public function registerBead(bead:IBead):void
         {
-            if(beads)
-                beads.push(bead);
-            else
-                beads = [bead];
+            registerBeadOnStrand(bead, this);
         }
 
         /**
