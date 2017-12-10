@@ -148,12 +148,12 @@ package org.apache.royale.html.beads.layouts
 					if (testChild == null || !testChild.visible) realN--;
 				}
 
-				if (isNaN(useWidth)) useWidth = Math.ceil(adjustedWidth / numColumns); // + gap
+				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / numColumns); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.floor(realN/numColumns);
+					var numRows:Number = Math.ceil(realN/numColumns);
 					if (host.isHeightSizedToContent()) useHeight = 30; // default height
-					else useHeight = Math.ceil(adjustedHeight / numRows);
+					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
 
 				var maxWidth:Number = useWidth;
@@ -228,7 +228,7 @@ package org.apache.royale.html.beads.layouts
 				}
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.floor(realN / numColumns);
+					var numRows:Number = Math.ceil(realN / numColumns);
 					if (host.isHeightSizedToContent()) useHeight = 30; // default height
 					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
