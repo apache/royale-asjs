@@ -31,7 +31,6 @@ internal class GraphicsClasses
 	import org.apache.royale.graphics.SolidColor; SolidColor;
 	import org.apache.royale.graphics.SolidColorStroke; SolidColorStroke;
 	import org.apache.royale.svg.TransformBead; TransformBead;
-	import org.apache.royale.svg.ClipBead; ClipBead;
 	import org.apache.royale.svg.LinearGradient; LinearGradient;
 	import org.apache.royale.graphics.CubicCurve; CubicCurve;
 	import org.apache.royale.graphics.LineStyle; LineStyle;
