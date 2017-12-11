@@ -449,6 +449,9 @@
                 <exclude name="royale-asjs/frameworks/libs/Network.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Reflection.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Storage.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/TLF.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Testing.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Text.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/XML.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/BasicJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/BindingJS.swc"/>
@@ -473,7 +476,66 @@
                 <exclude name="royale-asjs/frameworks/js/libs/NetworkJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/ReflectionJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/StorageJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/TLFJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/TestingJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/TextJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/XMLJS.swc"/>
+                <exclude name="royale-asjs/frameworks/themes/Halo.swc"/>
+                
+                <exclude name="royale-asjs/frameworks/localfonts.ser"/>
+                <exclude name="royale-asjs/frameworks/macfonts.ser"/>
+                <exclude name="royale-asjs/frameworks/winfonts.ser"/>
+                
+                <exclude name="royale-asjs/js/libs/GCL.swc"/>
+                <exclude name="royale-asjs/js/libs/cordova.swc"/>
+                <exclude name="royale-asjs/js/libs/createjs.swc"/>
+                <exclude name="royale-asjs/js/libs/google_maps.swc"/>
+                <exclude name="royale-asjs/js/libs/jasmine.swc"/>
+                <exclude name="royale-asjs/js/libs/jquery.swc"/>
+                <exclude name="royale-asjs/js/libs/js.swc"/>
+                <exclude name="royale-asjs/js/libs/node.swc"/>
+
+                <exclude name="royale-asjs/js/lib/args4j.jar"/>
+                <exclude name="royale-asjs/js/lib/asdoc.jar"/>
+                <exclude name="royale-asjs/js/lib/commons-io.jar"/>
+                <exclude name="royale-asjs/js/lib/compc.jar"/>
+                <exclude name="royale-asjs/js/lib/compiler-royaleTasks.jar"/>
+                <exclude name="royale-asjs/js/lib/externc.jar"/>
+                <exclude name="royale-asjs/js/lib/flex-tool-api.jar"/>
+                <exclude name="royale-asjs/js/lib/guava.jar"/>
+                <exclude name="royale-asjs/js/lib/jsc.jar"/>
+                <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
+                <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
+                <exclude name="royale-asjs/lib/adt.jar"/>
+                <exclude name="royale-asjs/lib/compc.jar"/>
+                <exclude name="royale-asjs/lib/compiler-asc.jar"/>
+                <exclude name="royale-asjs/lib/compiler-common.jar"/>
+                <exclude name="royale-asjs/lib/compiler-compc.jar"/>
+                <exclude name="royale-asjs/lib/compiler-mxmlc.jar"/>
+                <exclude name="royale-asjs/lib/compiler-optimizer.jar"/>
+                <exclude name="royale-asjs/lib/compiler-swfdump.jar"/>
+                <exclude name="royale-asjs/lib/compiler.jar"/>
+                <exclude name="royale-asjs/lib/fdb.jar"/>
+                <exclude name="royale-asjs/lib/flex-compiler-oem.jar"/>
+                <exclude name="royale-asjs/lib/mxmlc.jar"/>
+                <exclude name="royale-asjs/lib/swfutils.jar"/>
+                <exclude name="royale-asjs/lib/external/antlr-LICENSE.html"/>
+                <exclude name="royale-asjs/lib/external/jflex-COPYRIGHT"/>
+                <exclude name="royale-asjs/lib/external/lzma-sdk-LICENSE.html"/>
+                <exclude name="royale-asjs/lib/external/antlr.jar"/>
+                <exclude name="royale-asjs/lib/external/commons-cli.jar"/>
+                <exclude name="royale-asjs/lib/external/commons-compress-1.10.jar"/>
+                <exclude name="royale-asjs/lib/external/commons-io.jar"/>
+                <exclude name="royale-asjs/lib/external/commons-lang-2.6.jar"/>
+                <exclude name="royale-asjs/lib/external/commons-lang3-3.4.jar"/>
+                <exclude name="royale-asjs/lib/external/flex-tool-api.jar"/>
+                <exclude name="royale-asjs/lib/external/guava.jar"/>
+                <exclude name="royale-asjs/lib/external/jburg.jar"/>
+                <exclude name="royale-asjs/lib/external/jflex.jar"/>
+                <exclude name="royale-asjs/lib/external/junit-4.10.jar"/>
+                <exclude name="royale-asjs/lib/external/lzma-sdk.jar"/>
+                
+                <exclude name="royale-asjs/templates/swfobject/swfobject.js"/>
             </fileset>
         </rat:report>
         
