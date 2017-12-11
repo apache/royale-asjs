@@ -89,6 +89,28 @@ package org.apache.royale.mdl
 			}
         }
 
+        /**
+         *  @copy org.apache.royale.core.IParent#getElementAt()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+		override public function getElementAt(index:int):IChild
+		{
+			var element:IChild;
+
+			COMPILE::JS
+            {
+                if (_isTbodyAddedToParent)
+                {
+                    element = tbody.getElementAt(index);
+                }
+            }
+			
+			return element;
+		}
 
         /**
          *  @copy org.apache.royale.core.IParent#addElement()
@@ -97,7 +119,6 @@ package org.apache.royale.mdl
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -110,17 +131,50 @@ package org.apache.royale.mdl
             }
 		}
 
+        /**
+         *  @copy org.apache.royale.core.IParent#addElementAt()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+		{
+            if (!_isTbodyAddedToParent) return;
+
+            COMPILE::JS
+            {
+				tbody.addElementAt(c, index, dispatchEvent);
+            }
+		}
+
+        /**
+         *  @copy org.apache.royale.core.IParent#removeElement()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
         override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
+			if (!_isTbodyAddedToParent) return;
+
 			COMPILE::JS
             {
-                if (_isTbodyAddedToParent)
-                {
-                    tbody.removeElement(c);
-                }
+				tbody.removeElement(c, dispatchEvent);
             }
         }
 
+        /**
+         *  @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
         override public function removeAllItemRenderers():void
         {
 			if (!_isTbodyAddedToParent) return;
@@ -135,9 +189,36 @@ package org.apache.royale.mdl
             }
         }
 
+        /**
+         *  @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+		override public function removeItemRenderer(renderer:IItemRenderer):void
+		{
+            if (!_isTbodyAddedToParent) return;
+
+            COMPILE::JS
+            {
+                removeElement(renderer);
+            }
+		}
+
+        /**
+         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
         override public function getItemRendererForIndex(index:int):IItemRenderer
         {
 			if (!_isTbodyAddedToParent) return null;
+			var itemRenderer:IItemRenderer;
 
             COMPILE::JS
             {
@@ -146,10 +227,10 @@ package org.apache.royale.mdl
 					return null;
                 }
 
-                return tbody.getElementAt(index) as IItemRenderer;
+                itemRenderer = tbody.getElementAt(index) as IItemRenderer;
             }
 
-			return null;
+			return itemRenderer;
         }
 
         COMPILE::JS

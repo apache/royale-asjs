@@ -18,14 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.beads.views
 {
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IDataProviderItemRendererMapper;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-
 	/**
 	 *  TableView makes sure the itemRendererFactory and the layout beads are installed.
 	 * 

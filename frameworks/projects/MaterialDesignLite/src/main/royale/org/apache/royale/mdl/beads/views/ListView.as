@@ -18,17 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.beads.views
 {
-	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IDataProviderItemRendererMapper;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.ListView;
-
-	import org.apache.royale.events.Event;
 
 	/**
 	 *  ListView makes sure the itemRendererFactory and the layout beads are installed.
