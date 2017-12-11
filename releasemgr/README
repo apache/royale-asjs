@@ -11,6 +11,10 @@ For more information about the Apache Royale project, visit:
 
 <http://royale.apache.org>
 
+This README file is used for the top-level source and binary packages.  The 
+individual folders (royale-compiler, royale-typedefs, royale-asjs) each have their own
+README file specific to the contents of those folders.
+
 Getting Royale
 ==============
 

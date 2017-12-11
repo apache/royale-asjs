@@ -5,3 +5,77 @@ Below are the licenses for components included in the binary distribution.
 This product bundles a subset of Google Closure Library available 
 under Apache License 2.0.  For details see 
 https://developers.google.com/closure/library/
+
+
+This product bundles SWFObject under the MIT License.  For details see 
+royale-asjs/templates/swfobject/swfobject.js
+
+
+flex-typedefs/js/target/downloads/svg.js
+
+This product bundles svg.js from closureidl.googlecode.com available 
+under the BSD 3-Clause license.
+
+Copyright (c) 2012, Denis Zawada
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the <organization> nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+This product bundles ANTLR 3 under the BSD License.  For details see 
+royale-asjs/lib/external/antlr-LICENSE.html
+
+
+This product bundles the 7-Zip LZMA SDK which has been placed in the public domain.  For
+details see royale-asjs/lib/external/lzma-sdk-LICENSE.html
+
+
+This product bundles args4J under the MIT License.  For
+details see royale-asjs/js/lib/args4j-LICENSE.html
+
+
+This product bundles the Google Closure Compiler available 
+under Apache License 2.0.  For details see 
+https://developers.google.com/closure/compiler/
+
+
+Google Closure Compiler bundles Rhino under MPL 1.1.  For details see:
+https://github.com/google/closure-compiler/blob/master/README.md.  Rhino is
+available at https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino
+
+
+Google Closure Compiler bundles args4j under the MIT License.  For details see:
+https://github.com/google/closure-compiler/blob/master/README.md
+
+
+Google Closure Compiler bundles a subset of JSR 305 under the BSD License.  
+For details see: https://github.com/google/closure-compiler/blob/master/README.md.  The
+README.md is confusing as clicking the link takes you to a project that is LGPL, but
+that project is distributing the original JSR 305 artifact that is BSD.  See:
+https://github.com/findbugsproject/findbugs/blob/3.0.1/findbugs/licenses/LICENSE-jsr305.txt.  In JSR 305, the GuardedBy.class appears to be CC-BY-2.5.
+
+
+Google Closure Compiler bundles Protocol Buffer under a BSD License.  For details see:
+https://github.com/google/closure-compiler/blob/master/README.md
+
+
