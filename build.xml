@@ -714,6 +714,9 @@
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
             <fileset dir="${basedir}/releasemgr" includes="**" />
         </copy>
+        <!-- use royale-asjs LICENSE at top-level as well for now
+             since it doesn't really need to be different -->
+        <copy file="${basedir}/LICENSE" todir="${basedir}/temp" />
     </target>
     
     <!--
@@ -916,7 +919,7 @@
         <antcall target="stage-source"/>
                 
         <!-- concat the license file with the binary license file for the 3rd party deps -->
-        <concat destfile="${staging-dir}/LICENSE">
+        <concat destfile="${basedir}/temp/LICENSE">
             <filelist dir="${basedir}" files="LICENSE,LICENSE.bin"/>
         </concat>
         
