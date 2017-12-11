@@ -17,7 +17,7 @@
   limitations under the License.
 
 -->
-<flex-sdk-description>
+<royale-sdk-description>
   <name>Apache Royale ${project.version} FP${flash.version} AIR${air.version} en_US</name>
   <!--version>${project.version}</version-->
   <!-- This is a hack to trick the FlashBuilder in accepting this version -->

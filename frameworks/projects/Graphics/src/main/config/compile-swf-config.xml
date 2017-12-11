@@ -91,6 +91,7 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/royale/basic</uri>
+        <uri>library://ns.apache.org/royale/svg</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

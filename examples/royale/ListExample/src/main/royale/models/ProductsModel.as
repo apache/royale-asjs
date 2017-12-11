@@ -18,15 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
+	import org.apache.royale.collections.ArrayList;
+
 	public class ProductsModel
 	{
 		/**
 		 * Used for the GenericList example.
 		 */
-		private var _productNames:Array = ["Widgets", "Thingys", "Sprockets", "Doohickies", "Weejets"];
-		public function get productNames():Array
+		private var _productNames:ArrayList = new ArrayList(["Widgets", "Thingys", "Sprockets", "Doohickies", "Weejets"]);
+		public function get productNames():ArrayList
 		{
 			return _productNames;
+		}
+		
+		private var _states:ArrayList = new ArrayList([
+				"Massachusetts", "Vermont", "New Hampshire", "Maine", "Rhode Island", "Conneticutt"]);
+		
+		public function get states():ArrayList
+		{
+			return _states;
 		}
 	}
 }

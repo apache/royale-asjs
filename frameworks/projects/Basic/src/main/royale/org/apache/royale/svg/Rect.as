@@ -20,6 +20,7 @@ package org.apache.royale.svg
 {
     import org.apache.royale.graphics.IDrawable;
 	import org.apache.royale.graphics.IRect;
+	import org.apache.royale.core.ITransformHost;
 
     COMPILE::SWF
     {
@@ -31,7 +32,7 @@ package org.apache.royale.svg
         import org.apache.royale.core.WrappedHTMLElement;
     }
 
-	public class Rect extends GraphicShape implements IRect, IDrawable
+	public class Rect extends GraphicShape implements IRect, IDrawable, ITransformHost
 	{
 		/**
 		 *  constructor.
@@ -150,7 +151,8 @@ package org.apache.royale.svg
 				if(height)
 					_rect.setAttribute('height', height);
                 
-				resize(x, y, getBBox(_rect));
+				// resize(x, y, getBBox(_rect));
+				resize(x, y);
             }
 		}
 		

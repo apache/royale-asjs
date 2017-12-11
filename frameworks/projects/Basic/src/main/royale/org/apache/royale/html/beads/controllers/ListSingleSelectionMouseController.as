@@ -128,6 +128,7 @@ package org.apache.royale.html.beads.controllers
 		protected function selectedHandler(event:ItemClickedEvent):void
         {
             listModel.selectedIndex = event.index;
+			listModel.selectedItem = event.data;
             listView.host.dispatchEvent(new Event("change"));
         }
 		

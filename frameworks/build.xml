@@ -339,7 +339,7 @@
         <replace file="${basedir}/${configname}-config.xml"
             token="&lt;path-element&gt;libs&lt;/path-element&gt;"
             value="&lt;path-element&gt;js/libs&lt;/path-element&gt;" />
-            <replace file="${basedir}/${configname}-config.xml"
+        <replace file="${basedir}/${configname}-config.xml"
             token="&lt;target&gt;SWF&lt;/target&gt;"
             value="" />
     </target>

@@ -151,8 +151,8 @@ package org.apache.royale.html.beads.layouts
 				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / numColumns); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.floor(realN/numColumns);
-					if (host.isHeightSizedToContent) useHeight = 30; // default height
+					var numRows:Number = Math.ceil(realN/numColumns);
+					if (host.isHeightSizedToContent()) useHeight = 30; // default height
 					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
 
@@ -228,8 +228,8 @@ package org.apache.royale.html.beads.layouts
 				}
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.floor(realN / numColumns);
-					if (host.isHeightSizedToContent) useHeight = 30; // default height
+					var numRows:Number = Math.ceil(realN / numColumns);
+					if (host.isHeightSizedToContent()) useHeight = 30; // default height
 					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
 

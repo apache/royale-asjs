@@ -1,0 +1,20 @@
+Apache Royale 0.9.0
+===================
+
+Apache Royale is an SDK that provides the capability to cross-compile MXML 
+and ActionScript applications to HTML/JS/CSS so they can run in a browser
+without Flash.
+
+Apache Royale was previously released by the Apache Flex project.  You can
+see RELEASE_NOTES for earlier releases in the Apache Flex releases.
+
+This RELEASE_NOTES file is used for the top-level source and binary package.  The
+individual folders (royale-compiler, royals-typedefs, royale-asjs) each have their own
+RELEASE_NOTES file specific to the contents of those folders.
+
+Please report new issues to our bugbase at:
+
+    https://github.com/apache/royale-asjs/issues
+
+                                          The Apache Royale Project
+                                          <http://royale.apache.org/>

@@ -46,6 +46,7 @@ package org.apache.royale.core
          *  @productversion Royale 0.0
          */
 		function addItemRenderer(renderer:IItemRenderer):void;
+		function addItemRendererAt(renderer:IItemRenderer, index:int):void;
 		function removeItemRenderer(renderer:IItemRenderer):void;
 		function getItemRendererForIndex(index:int):IItemRenderer;
 		function removeAllItemRenderers():void;

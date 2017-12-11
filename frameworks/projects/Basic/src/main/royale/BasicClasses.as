@@ -152,7 +152,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.layouts.RemovableBasicLayout; RemovableBasicLayout;
 	import org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayout; OneFlexibleChildHorizontalLayout;
 	import org.apache.royale.html.beads.layouts.OneFlexibleChildVerticalLayout; OneFlexibleChildVerticalLayout;
-	
+
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
@@ -163,6 +163,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
     import org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData; DynamicItemsRendererFactoryForArrayListData;
+    import org.apache.royale.html.beads.DynamicRemoveItemRendererForArrayListData; DynamicRemoveItemRendererForArrayListData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.royale.html.supportClasses.DataGroup; DataGroup;
@@ -200,7 +201,7 @@ internal class BasicClasses
 
 	import org.apache.royale.html.beads.WebBrowserView; WebBrowserView;
 	import org.apache.royale.html.beads.models.WebBrowserModel; WebBrowserModel;
-	
+
 	import org.apache.royale.core.ListBase; ListBase;
 	import org.apache.royale.core.Lookalike; Lookalike;
 	import org.apache.royale.core.FilledRectangle; FilledRectangle;
@@ -212,7 +213,7 @@ internal class BasicClasses
     import org.apache.royale.core.SimpleApplication; SimpleApplication;
 	import org.apache.royale.svg.GraphicContainer; GraphicContainer;
 	import org.apache.royale.svg.DOMWrapper; DOMWrapper;
-	
+
 	import org.apache.royale.svg.GraphicShape; GraphicShape;
 	import org.apache.royale.svg.Rect; Rect;
 	import org.apache.royale.svg.Ellipse; Ellipse;
@@ -233,9 +234,9 @@ internal class BasicClasses
 		import org.apache.royale.html.beads.VRuleView; VRuleView;
 		import org.apache.royale.html.beads.MultilineTextFieldView; MultilineTextFieldView;
 	}
-	
+
 	import org.apache.royale.html.SubAppLoader; SubAppLoader;
-	
+
 	import org.apache.royale.html.Table; Table;
 	import org.apache.royale.html.TableRow; TableRow;
 	import org.apache.royale.html.TableCell; TableCell;
@@ -244,7 +245,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.layouts.SimpleTableLayout; SimpleTableLayout;
 	import org.apache.royale.html.beads.layouts.TableCellLayout; TableCellLayout;
 	import org.apache.royale.html.beads.layouts.TableHeaderLayout; TableHeaderLayout;
-    
+
     import org.apache.royale.css2.Cursors; Cursors;
     COMPILE::SWF
     {

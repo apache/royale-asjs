@@ -26,11 +26,11 @@ You may also use a precompiled binary convenience package to develop Royale appl
 
 ## Prerequisites
 
-Before building Royale you must install the following software and set the corresponding environment variables using absolute file paths (relative paths will result in build errors). The set of prerequisites is different depending on whether you want to compile your projects to SWF or not.
+Before building Royale you must install the following software and set the corresponding environment variables using absolute file paths (relative paths will result in build errors). The set of prerequisites is different depending on whether you want to compile your projects to SWF or not.  If you want SWF output, set up the environment variables per the instructions below, then skip to the next section (Additional Prerequisites For SWF Output)
 
 ### Java
 
-Royale requires Java SDK 1.6 or greater to be installed on your computer. For more information on installing the Java SDK, see:
+Royale requires Java SDK 1.7 or greater to be installed on your computer. For more information on installing the Java SDK, see:
 
 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
@@ -79,6 +79,8 @@ For more information on installing Ant, see:
   ```bash
   export PATH="$PATH:$ANT_HOME/bin"
   ```
+
+## Additional Prerequisites For SWF Output
 
 ### *playerglobal.swc*
 
@@ -132,8 +134,6 @@ After you download the AIR SDK, unzip it and place it in a directory of your cho
   Set **AIR_HOME** to the absolute path of the AIR SDK directory.
 
 ## Building the source
-
-Royale is a large project. It requires some build tools, such as Google Closure Tools, which must be installed prior to building the SDK. Some of these may have different licenses. You will be prompted during the build to acknowledge these licenses.
 
 Linux support is currently experimental and while it is possible to compile the SDK it has not been fully tested.
 

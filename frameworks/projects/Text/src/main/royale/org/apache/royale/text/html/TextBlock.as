@@ -28,7 +28,7 @@ package org.apache.royale.text.html
 	import org.apache.royale.text.engine.TextElement;
 	import org.apache.royale.text.engine.ElementFormat;
 	import org.apache.royale.text.html.TextLine;
-	import org.apache.royale.html.Span;
+	import org.apache.royale.html.elements.Span;
 	
 	import org.apache.royale.core.IParent;
 	

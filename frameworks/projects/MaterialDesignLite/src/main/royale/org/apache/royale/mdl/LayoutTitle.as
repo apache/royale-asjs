@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl
 {
-	import org.apache.royale.html.Span;
+	import org.apache.royale.html.elements.Span;
 
 	COMPILE::JS
     {

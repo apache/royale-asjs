@@ -23,7 +23,7 @@ package org.apache.royale.mdl
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.ItemAddedEvent;
     import org.apache.royale.html.DataContainer;
-    import org.apache.royale.html.Select;
+    import org.apache.royale.html.elements.Select;
     import org.apache.royale.mdl.beads.UpgradeElement;
     import org.apache.royale.mdl.beads.models.IDropDownListModel;
 

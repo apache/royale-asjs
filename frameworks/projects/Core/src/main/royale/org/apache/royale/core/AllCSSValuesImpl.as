@@ -85,7 +85,7 @@ package org.apache.royale.core
 			c = mainClass.constructor as Class;
             generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
             if (hasEventListener("init"))
-                dispatchEvent(new ValueEvent("init", false, false, c["fontFaces"]));
+                dispatchEvent(new ValueEvent("init", c["fontFaces"]));
             
             var i:int = 1;
             while (true)
@@ -96,7 +96,7 @@ package org.apache.royale.core
                     break;
                 generateCSSStyleDeclarations(c[ffName], c["data" + i.toString()]);
                 if (hasEventListener("init"))
-                    dispatchEvent(new ValueEvent("init", false, false, c["fontFaces" + i.toString()]));
+                    dispatchEvent(new ValueEvent("init", c["fontFaces" + i.toString()]));
                 i++;
             }
         }

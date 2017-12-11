@@ -357,7 +357,7 @@ package org.apache.royale.textLayout.edit
 								_imeSession.compositionAbandoned();
 							
 							//a discretionary hyphen is being inserted. 
-							var discretionaryHyphenString:String = String.fromCharCode(0x000000AD);
+							var discretionaryHyphenString:String = String.fromCharCode(0x00AD);
 							overwriteMode ? overwriteText(discretionaryHyphenString) : insertText(discretionaryHyphenString);
 							event.preventDefault();
 						}
@@ -672,7 +672,10 @@ package org.apache.royale.textLayout.edit
 			if (operation)			// don't finalize if operation was cancelled
 				finalizeDo(operation);
 		}
-
+		
+		/**
+		 * @royaleemitcoercion org.apache.royale.textLayout.operations.FlowOperation
+		 */
 		private function finalizeDo(op:FlowOperation):void
 		{
 			// Handle operation if we're in a beginCompositeOperation/endCompositeOperation context

@@ -74,7 +74,7 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-			(_strand as IEventDispatcher).addEventListener("childrenAdded",childrenAddedHandler);
+			host.addEventListener("childrenAdded",childrenAddedHandler);
 		}
 		
 		public function get disabled():Boolean

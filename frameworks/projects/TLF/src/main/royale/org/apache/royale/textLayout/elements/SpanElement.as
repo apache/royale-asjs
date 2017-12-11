@@ -553,7 +553,7 @@ package org.apache.royale.textLayout.elements
 						}
 					}
 
-					if (sib == null)
+					if (!(sib is SpanElement))
 						return false;
 					
 					

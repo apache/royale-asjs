@@ -38,6 +38,7 @@
     <component id="ToggleTextButton" class="org.apache.royale.html.ToggleTextButton"/>
     <component id="TextInput" class="org.apache.royale.html.TextInput"/>
     <component id="TextArea" class="org.apache.royale.html.TextArea"/>
+    <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
     <component id="DataContainer" class="org.apache.royale.html.DataContainer"/>
     <component id="List" class="org.apache.royale.html.List"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
@@ -82,6 +83,7 @@
     <component id="AccessibilityAltBead" class="org.apache.royale.html.beads.AccessibilityAltBead" />
     <component id="DataGridColumnChangePropagator" class="org.apache.royale.html.beads.DataGridColumnChangePropagator" />
     <component id="DataGridColumnForceChangePropagator" class="org.apache.royale.html.beads.DataGridColumnForceChangePropagator" />
+    <component id="SingleSelectionContainerBead" class="org.apache.royale.html.beads.SingleSelectionContainerBead" />
     <!--<component id="MultilineTextFieldView" class="org.apache.royale.html.beads.MultilineTextFieldView"/>-->
 
     <component id="SimpleAlert" class="org.apache.royale.html.SimpleAlert"/>
@@ -147,6 +149,7 @@
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayList" />
     <component id="DynamicItemsRendererFactoryForArrayListData" class="org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData" />
+    <component id="DynamicRemoveItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveItemRendererForArrayListData" />
     <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />

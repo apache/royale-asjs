@@ -156,8 +156,8 @@ package org.apache.royale.svg
                 _ellipse.setAttribute('rx', rx);
                 _ellipse.setAttribute('ry', ry);
 
-                //resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
-                resize(x, y, getBBox(_ellipse));
+                // resize(x, y, getBBox(_ellipse));
+                resize(x, y);
 
             }
         }

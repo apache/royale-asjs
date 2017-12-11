@@ -27,7 +27,7 @@ package flexUnitTests
         public function CoreTester()
         {
             // for JS, force-link these classes in the output
-            var arr:Array = [StrandTesterTest, BinaryDataTesterTest];
+            var arr:Array = [StrandTesterTest, BinaryDataTesterTest,MD5Test];
         }
         
         // in JS, using a class as a type won't include the class in
@@ -39,5 +39,6 @@ package flexUnitTests
         // better and allow you to define order.
         public var strandTesterTest:StrandTesterTest;
 		public var binaryDataTesterTest:BinaryDataTesterTest;
+		public var md5Test:MD5Test;
     }
 }

@@ -21,22 +21,22 @@ package org.apache.royale.html.beads
     import org.apache.royale.collections.IArrayList;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererParent;
     import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.CollectionEvent;
-
+    import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IListView;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.core.ISelectableItemRenderer;
-    import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -56,8 +56,6 @@ package org.apache.royale.html.beads
         {
             super(target);
         }
-
-        protected var dataProviderModel:ISelectionModel;
 
         protected var labelField:String;
 
@@ -89,19 +87,32 @@ package org.apache.royale.html.beads
         {
             IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
-            dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var listView:IListView = _strand.getBeadByType(IListView) as IListView;
             dataGroup = listView.dataGroup;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-            dataProviderModel.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-
-            labelField = dataProviderModel.labelField;
-
-            dataProviderChangeHandler(null);
+			labelField = dataProviderModel.labelField;
+			
+			dataProviderChangeHandler(null);
         }
+		
+		protected var _dataProviderModel:ISelectionModel;
+		
+		/**
+		 * The model holding the dataProvider.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+		 */
+		public function get dataProviderModel():IDataProviderModel
+		{
+			return _dataProviderModel;
+		}
 
         private var _itemRendererFactory:IItemRendererClassFactory;
-
+		
         /**
          *  The org.apache.royale.core.IItemRendererClassFactory used
          *  to generate instances of item renderers.
@@ -138,12 +149,18 @@ package org.apache.royale.html.beads
          */
         protected var dataGroup:IItemRendererParent;
 
+		/**
+		 * @private
+		 */
         protected function dataProviderChangeHandler(event:Event):void
         {
             var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
             if (!dp)
                 return;
 
+			// listen for individual items being added in the future.
+			(dp as IEventDispatcher).addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			
             dataGroup.removeAllItemRenderers();
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
@@ -159,28 +176,39 @@ package org.apache.royale.html.beads
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
         }
 
+		/**
+		 * @private
+		 */
         protected function itemAddedHandler(event:CollectionEvent):void
         {
             var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
             if (!dp)
                 return;
+			
+			if (dataProviderModel is ISelectionModel) {
+				var model:ISelectionModel = dataProviderModel as ISelectionModel;				
+				model.selectedIndex = -1;
+			}
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
             var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 
-            fillRenderer(dp.length - 1, event.item, ir, presentationModel);
+            fillRenderer(event.index, event.item, ir, presentationModel);
 
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
+			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
         }
 
+		/**
+		 * @private
+		 */
         protected function fillRenderer(index:int,
                                       item:Object,
                                       itemRenderer:ISelectableItemRenderer,
                                       presentationModel:IListPresentationModel):void
         {
-            dataGroup.addItemRenderer(itemRenderer);
+			dataGroup.addItemRendererAt(itemRenderer, index);
 
-            itemRenderer.index = index;
             itemRenderer.labelField = labelField;
 
             if (presentationModel) {
@@ -190,7 +218,17 @@ package org.apache.royale.html.beads
                 UIBase(itemRenderer).height = presentationModel.rowHeight;
                 UIBase(itemRenderer).percentWidth = 100;
             }
-            itemRenderer.data = item;
+			
+			setData(itemRenderer, item, index);
         }
+		
+		/**
+		 * @private
+		 */
+		protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+		{
+			itemRenderer.index = index;
+			itemRenderer.data = data;
+		}
     }
 }

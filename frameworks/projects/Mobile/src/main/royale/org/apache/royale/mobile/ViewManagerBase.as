@@ -34,7 +34,7 @@ package org.apache.royale.mobile
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="viewChanged")]
+	[Event(name="viewChanged",type="org.apache.royale.events.Event")]
 	
 	/**
 	 * Base class for mobile navigation controls.

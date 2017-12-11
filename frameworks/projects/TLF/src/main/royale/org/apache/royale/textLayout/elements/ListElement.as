@@ -142,14 +142,14 @@ package org.apache.royale.textLayout.elements
 		 * @private
 		 */
 		public static const constantListStyles:Object = {
-			none:	"",
-			disc:	"\u2022",	// black bullet
-			circle:	"\u25e6",	// white bullet
-			square:	"\u25a0",	// black square
-			box:	"\u25a1",	// white square
-			check:	"\u2713",	// check mark
-			diamond:"\u25c6",	// black diamond
-			hyphen:	"\u2043"	// hyphen bullet
+			"none":	"",
+			"disc":	"\u2022",	// black bullet
+			"circle":	"\u25e6",	// white bullet
+			"square":	"\u25a0",	// black square
+			"box":	"\u25a1",	// white square
+			"check":	"\u2713",	// check mark
+			"diamond":"\u25c6",	// black diamond
+			"hyphen":	"\u2043"	// hyphen bullet
 		};
 
 		private static const romanDigitFunction:Vector.<Function> = Vector.<Function>([
@@ -477,73 +477,73 @@ package org.apache.royale.textLayout.elements
 		
 		/** @private */
 		public static const algorithmicListStyles:Object = {
-			upperRoman:upperRomanString,
-			lowerRoman:lowerRomanString
+			"upperRoman":upperRomanString,
+			"lowerRoman":lowerRomanString
 		};
 		
 		/** @private */
 		public static const numericListStyles:Object = {
-			arabicIndic:arabicIndicString,
-			bengali:bengaliString,				
-			decimal:decimalString,
-			decimalLeadingZero:decimalLeadingZeroString,
-			devanagari:devanagariString,
-			gujarati:gujaratiString,
-			gurmukhi:gurmukhiString,
-			kannada:kannadaString,
-			persian:persianString,
-			thai:thaiString,
-			urdu:urduString
+			"arabicIndic":arabicIndicString,
+			"bengali":bengaliString,				
+			"decimal":decimalString,
+			"decimalLeadingZero":decimalLeadingZeroString,
+			"devanagari":devanagariString,
+			"gujarati":gujaratiString,
+			"gurmukhi":gurmukhiString,
+			"kannada":kannadaString,
+			"persian":persianString,
+			"thai":thaiString,
+			"urdu":urduString
 		};
 		
 		/** @private */
 		public static const alphabeticListStyles:Object = {
-			upperAlpha:upperAlphaString,
-			lowerAlpha:lowerAlphaString,
-			cjkEarthlyBranch:cjkEarthlyBranchString,
-			cjkHeavenlyStem:cjkHeavenlyStemString,
-			hangul:hangulString,
-			hangulConstant:hangulConstantString,
-			hiragana:hiraganaString,
-			hiraganaIroha:hiraganaIrohaString,
-			katakana:katakanaString,
-			katakanaIroha:katakanaIrohaString,
-			lowerGreek:lowerGreekString,
-			lowerLatin:lowerLatinString,
-			upperGreek:upperGreekString,
-			upperLatin:upperLatinString			
+			"upperAlpha":upperAlphaString,
+			"lowerAlpha":lowerAlphaString,
+			"cjkEarthlyBranch":cjkEarthlyBranchString,
+			"cjkHeavenlyStem":cjkHeavenlyStemString,
+			"hangul":hangulString,
+			"hangulConstant":hangulConstantString,
+			"hiragana":hiraganaString,
+			"hiraganaIroha":hiraganaIrohaString,
+			"katakana":katakanaString,
+			"katakanaIroha":katakanaIrohaString,
+			"lowerGreek":lowerGreekString,
+			"lowerLatin":lowerLatinString,
+			"upperGreek":upperGreekString,
+			"upperLatin":upperLatinString			
 		};
 
 		// they're all "." right now.  could remove this till its needed
 		/** @private */
 		public static const listSuffixes:Object = {
-			upperAlpha:"\u002E",
-			lowerAlpha:"\u002E",
-			upperRoman:"\u002E",
-			lowerRoman:"\u002E",
-			arabicIndic:"\u002E",
-			bengali:"\u002E",
-			decimal:"\u002E",
-			decimalLeadingZero:"\u002E",
-			devanagari:"\u002E",
-			gujarati:"\u002E",
-			gurmukhi:"\u002E",
-			kannada:"\u002E",
-			persian:"\u002E",
-			thai:"\u002E",
-			urdu:"\u002E",
-			cjkEarthlyBranch:"\u002E",
-			cjkHeavenlyStem:"\u002E",
-			hangul:"\u002E",
-			hangulConstant:"\u002E",
-			hiragana:"\u002E",
-			hiraganaIroha:"\u002E",
-			katakana:"\u002E",
-			katakanaIroha:"\u002E",
-			lowerGreek:"\u002E",
-			lowerLatin:"\u002E",
-			upperGreek:"\u002E",
-			upperLatin:"\u002E"
+			"upperAlpha":"\u002E",
+			"lowerAlpha":"\u002E",
+			"upperRoman":"\u002E",
+			"lowerRoman":"\u002E",
+			"arabicIndic":"\u002E",
+			"bengali":"\u002E",
+			"decimal":"\u002E",
+			"decimalLeadingZero":"\u002E",
+			"devanagari":"\u002E",
+			"gujarati":"\u002E",
+			"gurmukhi":"\u002E",
+			"kannada":"\u002E",
+			"persian":"\u002E",
+			"thai":"\u002E",
+			"urdu":"\u002E",
+			"cjkEarthlyBranch":"\u002E",
+			"cjkHeavenlyStem":"\u002E",
+			"hangul":"\u002E",
+			"hangulConstant":"\u002E",
+			"hiragana":"\u002E",
+			"hiraganaIroha":"\u002E",
+			"katakana":"\u002E",
+			"katakanaIroha":"\u002E",
+			"lowerGreek":"\u002E",
+			"lowerLatin":"\u002E",
+			"upperGreek":"\u002E",
+			"upperLatin":"\u002E"
 		};
 
 		/** @private This function returns the string representing the list item's marker text */

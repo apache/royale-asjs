@@ -109,18 +109,6 @@
     <fail message="The FLASHPLAYER_DEBUGGER property is not set in environment or command-line."
         unless="FLASHPLAYER_DEBUGGER"/>
     
-    <available file="${env.ROYALE_COMPILER_REPO}"
-        type="dir"
-        property="ROYALE_COMPILER_REPO" value="${env.ROYALE_COMPILER_REPO}" />
-    
-    <available file="${env.FLEXUNIT_HOME}"
-        type="dir"
-        property="FLEXUNIT_HOME" value="${env.FLEXUNIT_HOME}" />
-    
-    <available file="${env.ROYALE_HOME}"
-        type="dir"
-        property="FLEX_SDK_HOME" value="${env.ROYALE_HOME}" />
-    
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
         property="apache.rat.found"/>
@@ -132,7 +120,7 @@
     unless="release.version"/>
 
     <condition property="package.url.path"
-        value="http://apacheflexbuild.cloudapp.net:8080/job/royale-asjs_release_branch/lastSuccessfulBuild/artifact/out">
+        value="http://apacheflexbuild.cloudapp.net:8080/job/royale-asjs/lastSuccessfulBuild/artifact/out">
         <not>
             <isset property="rc" />
         </not>
@@ -154,8 +142,10 @@
 	<property name="package.url.name" value="apache-royale-${release.version}-src" />
     <property name="bin.package.url.path" value="${package.url.path}/binaries" />
     <property name="bin.package.url.name" value="apache-royale-${release.version}-bin" />
+    <!--
     <property name="doc.package.url.path" value="${package.url.path}/doc" />
     <property name="doc.package.url.name" value="apache-royale-${release.version}-asdocs" />
+     -->
 	
     <condition property="zip.package">
         <equals arg1="zip" arg2="${package.suffix}" />
@@ -339,21 +329,37 @@
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks"
             reportFile="${src.rat.report}">
             <fileset dir="${basedir}/${package.url.name}">
+                <exclude name="README.md"/>
+                <exclude name="LICENSE.bin"/>
+                <exclude name="LICENSE.base"/>
+                <exclude name="royale-asjs/README.md"/>
+                <exclude name="royale-asjs/LICENSE.bin"/>
+                <exclude name="royale-asjs/LICENSE.base"/>
+                <!--          Start of binary files           -->
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>
                 <exclude name="**/*.gif"/>
                 <exclude name="**/*.jpg"/>
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
+                <!--          End of binary files           -->
                 <!--          JSON doesn't really have a comment format     -->
                 <exclude name="**/*.json"/>
                 <!--          JSHint properties file           -->
                 <exclude name="frameworks/js/jshint.properties"/>
                 <exclude name="frameworks/js/.jshintrc"/>
-                <!--          fragments           -->
-                <exclude name="LICENSE.bin"/>
-                <exclude name="LICENSE.base"/>
                 <exclude name="**/META-INF/DEPENDENCIES" />
+                <!--          ide files     -->
+                <exclude name="**/.vscode/**"/>
+                <!--          royale-compiler -->
+                <exclude name="**/org.apache.royale.tools.RoyaleToolGroup"/>
+                <exclude name="**/debugger/META-INF/MANIFEST.MF"/>
+                <exclude name="**/*.patch"/>
+                <exclude name="royale-compiler/LICENSE.bin"/>
+                <exclude name="royale-compiler/README_MAVEN.txt"/>
+                <exclude name="royale-compiler/NOTICE.base"/>
+                <exclude name="royale-compiler/NOTICE.fdb"/>
+                <exclude name="royale-compiler/NOTICE.oem"/>
             </fileset>
         </rat:report>
 		<antcall target="display-text" >
@@ -383,75 +389,91 @@
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks"
             reportFile="${bin.rat.report}">
             <fileset dir="${basedir}/${bin.package.url.name}">
+                <exclude name="README.md"/>
+                <exclude name="LICENSE.bin"/>
+                <exclude name="LICENSE.base"/>
+                <exclude name="royale-asjs/README.md"/>
+                <exclude name="royale-asjs/LICENSE.bin"/>
+                <exclude name="royale-asjs/LICENSE.base"/>
+                <!--          Start of binary files           -->
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>
                 <exclude name="**/*.gif"/>
                 <exclude name="**/*.jpg"/>
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
+                <!--          End of binary files           -->
                 <!--          JSON doesn't really have a comment format     -->
                 <exclude name="**/*.json"/>
                 <!--          JSHint properties file           -->
                 <exclude name="frameworks/js/jshint.properties"/>
                 <exclude name="frameworks/js/.jshintrc"/>
-                <!--          fragments           -->
-                <exclude name="LICENSE.bin"/>
-                <exclude name="LICENSE.base"/>
                 <exclude name="**/META-INF/DEPENDENCIES" />
+                <!--          ide files     -->
+                <exclude name="**/.vscode/**"/>
+                <!--          royale-compiler -->
+                <exclude name="**/org.apache.royale.tools.RoyaleToolGroup"/>
+                <exclude name="**/debugger/META-INF/MANIFEST.MF"/>
+                <exclude name="**/*.patch"/>
+                <exclude name="royale-compiler/LICENSE.bin"/>
+                <exclude name="royale-compiler/README_MAVEN.txt"/>
+                <exclude name="royale-compiler/NOTICE.base"/>
+                <exclude name="royale-compiler/NOTICE.fdb"/>
+                <exclude name="royale-compiler/NOTICE.oem"/>
                 <!--          Google Closure Library     -->
-                <exclude name="js/lib/google/**"/>
+                <exclude name="royale-asjs/js/lib/google/**"/>
                 <!--          compiled output     -->
-                <exclude name="frameworks/projects/*/target/**"/>
-                <exclude name="frameworks/js/projects/*/target/**"/>
+                <exclude name="royale-asjs/frameworks/projects/*/target/**"/>
+                <exclude name="royale-asjs/frameworks/js/projects/*/target/**"/>
                 <!--          swcs     -->
-                <exclude name="frameworks/libs/Basic.swc"/>
-                <exclude name="frameworks/libs/Binding.swc"/>
-                <exclude name="frameworks/libs/Charts.swc"/>
-                <exclude name="frameworks/libs/Collections.swc"/>
-                <exclude name="frameworks/libs/Core.swc"/>
-                <exclude name="frameworks/libs/CreateJS.swc"/>
-                <exclude name="frameworks/libs/DragDrop.swc"/>
-                <exclude name="frameworks/libs/Effects.swc"/>
-                <exclude name="frameworks/libs/Express.swc"/>
-                <exclude name="frameworks/libs/Flat.swc"/>
-                <exclude name="frameworks/libs/FontAwesome.swc"/>
-                <exclude name="frameworks/libs/Formatters.swc"/>
-                <exclude name="frameworks/libs/GoogleMaps.swc"/>
-                <exclude name="frameworks/libs/Graphics.swc"/>
-                <exclude name="frameworks/libs/HTML.swc"/>
-                <exclude name="frameworks/libs/HTML5.swc"/>
-                <exclude name="frameworks/libs/jQuery.swc"/>
-                <exclude name="frameworks/libs/Language.swc"/>
-                <exclude name="frameworks/libs/MaterialDesignLite.swc"/>
-                <exclude name="frameworks/libs/Mobile.swc"/>
-                <exclude name="frameworks/libs/Network.swc"/>
-                <exclude name="frameworks/libs/Reflection.swc"/>
-                <exclude name="frameworks/libs/Storage.swc"/>
-                <exclude name="frameworks/libs/XML.swc"/>
-                <exclude name="frameworks/js/libs/BasicJS.swc"/>
-                <exclude name="frameworks/js/libs/BindingJS.swc"/>
-                <exclude name="frameworks/js/libs/ChartsJS.swc"/>
-                <exclude name="frameworks/js/libs/CollectionsJS.swc"/>
-                <exclude name="frameworks/js/libs/CoreJS.swc"/>
-                <exclude name="frameworks/js/libs/CreateJSJS.swc"/>
-                <exclude name="frameworks/js/libs/DragDropJS.swc"/>
-                <exclude name="frameworks/js/libs/EffectsJS.swc"/>
-                <exclude name="frameworks/js/libs/ExpressJS.swc"/>
-                <exclude name="frameworks/js/libs/FlatJS.swc"/>
-                <exclude name="frameworks/js/libs/FontAwesomeJS.swc"/>
-                <exclude name="frameworks/js/libs/FormattersJS.swc"/>
-                <exclude name="frameworks/js/libs/GoogleMapsJS.swc"/>
-                <exclude name="frameworks/js/libs/GraphicsJS.swc"/>
-                <exclude name="frameworks/js/libs/HTMLJS.swc"/>
-                <exclude name="frameworks/js/libs/HTML5JS.swc"/>
-                <exclude name="frameworks/js/libs/jQueryJS.swc"/>
-                <exclude name="frameworks/js/libs/LanguageJS.swc"/>
-                <exclude name="frameworks/js/libs/MaterialDesignLiteJS.swc"/>
-                <exclude name="frameworks/js/libs/MobileJS.swc"/>
-                <exclude name="frameworks/js/libs/NetworkJS.swc"/>
-                <exclude name="frameworks/js/libs/ReflectionJS.swc"/>
-                <exclude name="frameworks/js/libs/StorageJS.swc"/>
-                <exclude name="frameworks/js/libs/XMLJS.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Basic.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Binding.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Charts.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Collections.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Core.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/CreateJS.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/DragDrop.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Effects.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Express.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Flat.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/FontAwesome.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Formatters.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/GoogleMaps.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Graphics.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/HTML.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/HTML5.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/jQuery.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Language.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/MaterialDesignLite.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Mobile.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Network.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Reflection.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Storage.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/XML.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/BasicJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/BindingJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/ChartsJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/CollectionsJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/CoreJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/CreateJSJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/DragDropJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/EffectsJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/ExpressJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/FlatJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/FontAwesomeJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/FormattersJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/GoogleMapsJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/GraphicsJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/HTMLJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/HTML5JS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/jQueryJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/LanguageJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/MaterialDesignLiteJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/MobileJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/NetworkJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/ReflectionJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/StorageJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/XMLJS.swc"/>
             </fileset>
         </rat:report>
         
@@ -670,7 +692,8 @@
     </target>
     
     <!--<target name="get.dependencies" depends="set.compiler.flags,get.compiler.if.needed,get.sdk.if.needed,get.flexunit.if.needed" />-->
-    <target name="get.dependencies" depends="set.compiler.flags,get.compiler.if.needed,get.flexunit.if.needed" />
+    <target name="get.dependencies" />
+    <!--
     <target name="set.compiler.flags" >
         <condition property="compiler.nightly">
             <and>
@@ -746,7 +769,6 @@
         <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/flexunit" />
         <property name="FLEXUNIT_HOME" value="${basedir}/flexunit" />
     </target>
-    <!--
     <target name="get.sdk.if.needed" depends="get.sdk" unless="FLEX_SDK_HOME" />
     <target name="get.sdk">
         <property name="kit.sdk.prefix" value="apache.royale-sdk-4.15.0"/>

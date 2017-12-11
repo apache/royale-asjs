@@ -20,6 +20,7 @@ limitations under the License.
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/royale/basic"
                  xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns:html="library://ns.apache.org/royale/html"
                  xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:models="models.*">
 
@@ -53,31 +54,31 @@ limitations under the License.
 
                 <mdl:NavigationLayoutContent>
                     <mdl:TabBarPanel id="starks_panel" isActive="true">
-                        <js:Ul>
-                            <js:Li><mdl:beads><js:InnerHTML text="Eddard"/></mdl:beads></js:Li>
-                            <js:Li><js:Label text="Catelyn"/></js:Li>
-                            <js:Li><js:Label text="Robb"/></js:Li>
-                            <js:Li><js:Label text="Sansa"/></js:Li>
-                            <js:Li><js:Label text="Brandon"/></js:Li>
-                            <js:Li><js:Label text="Arya"/></js:Li>
-                            <js:Li><js:Label text="Rickon"/></js:Li>
-                        </js:Ul>
+                        <html:Ul>
+                            <html:Li><mdl:beads><html:InnerHTML text="Eddard"/></mdl:beads></html:Li>
+                            <html:Li><js:Label text="Catelyn"/></html:Li>
+                            <html:Li><js:Label text="Robb"/></html:Li>
+                            <html:Li><js:Label text="Sansa"/></html:Li>
+                            <html:Li><js:Label text="Brandon"/></html:Li>
+                            <html:Li><js:Label text="Arya"/></html:Li>
+                            <html:Li><js:Label text="Rickon"/></html:Li>
+                        </html:Ul>
                     </mdl:TabBarPanel>
 
                     <mdl:TabBarPanel id="lannisters_panel">
-                        <js:Ul>
-                            <js:Li><js:Label text="Tywin"/></js:Li>
-                            <js:Li><js:Label text="Cersei"/></js:Li>
-                            <js:Li><js:Label text="Jamie"/></js:Li>
-                            <js:Li><js:Label text="Tyrion"/></js:Li>
-                        </js:Ul>
+                        <html:Ul>
+                            <html:Li><js:Label text="Tywin"/></html:Li>
+                            <html:Li><js:Label text="Cersei"/></html:Li>
+                            <html:Li><js:Label text="Jamie"/></html:Li>
+                            <html:Li><js:Label text="Tyrion"/></html:Li>
+                        </html:Ul>
                     </mdl:TabBarPanel>
 
                     <mdl:TabBarPanel id="targaryens_panel">
-                        <js:Ul>
-                            <js:Li><js:Label text="Viserys"/></js:Li>
-                            <js:Li><js:Label text="Daenerys"/></js:Li>
-                        </js:Ul>
+                        <html:Ul>
+                            <html:Li><js:Label text="Viserys"/></html:Li>
+                            <html:Li><js:Label text="Daenerys"/></html:Li>
+                        </html:Ul>
                     </mdl:TabBarPanel>
                 </mdl:NavigationLayoutContent>
             </mdl:NavigationLayout>

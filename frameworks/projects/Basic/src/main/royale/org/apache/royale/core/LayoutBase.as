@@ -82,13 +82,13 @@ package org.apache.royale.core
 		{
             host = value as ILayoutChild;
             var sizeChange:Function = handleSizeChange;
-            IEventDispatcher(value).addEventListener("widthChanged", sizeChange);
-            IEventDispatcher(value).addEventListener("heightChanged", sizeChange);
-            IEventDispatcher(value).addEventListener("sizeChanged", sizeChange);
+            (value as IEventDispatcher).addEventListener("widthChanged", sizeChange);
+            (value as IEventDispatcher).addEventListener("heightChanged", sizeChange);
+            (value as IEventDispatcher).addEventListener("sizeChanged", sizeChange);
 
-            IEventDispatcher(value).addEventListener("childrenAdded", handleChildrenAdded);
-            IEventDispatcher(value).addEventListener("initComplete", handleInitComplete);
-            IEventDispatcher(value).addEventListener("layoutNeeded", handleLayoutNeeded);
+            (value as IEventDispatcher).addEventListener("childrenAdded", handleChildrenAdded);
+            (value as IEventDispatcher).addEventListener("initComplete", handleInitComplete);
+            (value as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 
 		}
 		

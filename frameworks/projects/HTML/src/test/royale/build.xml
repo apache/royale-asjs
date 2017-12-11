@@ -58,7 +58,7 @@
         type="dir"
         property="FLEXUNIT_LIBPATH2"
         value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
-        <property name="FLEXUNIT_LIBPATH2" value="-define=CONFIG::dummy,false" />
+        <property name="FLEXUNIT_LIBPATH2" value="-define+=CONFIG::dummy,false" />
 
     <available file="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target"
         type="dir"

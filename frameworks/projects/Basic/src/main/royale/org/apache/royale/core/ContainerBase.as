@@ -21,6 +21,7 @@ package org.apache.royale.core
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.events.ValueEvent;
 
     /**
      *  Indicates that the state change has completed.  All properties
@@ -97,7 +98,7 @@ package org.apache.royale.core
 		/*
 		 * The following functions are for the SWF-side only and re-direct element functions
 		 * to the content area, enabling scrolling and clipping which are provided automatically
-		 * in the JS-side.
+		 * in the JS-side. GroupBase handles event dispatching if necessary.
 		 */
 		
 		/**
@@ -106,11 +107,10 @@ package org.apache.royale.core
 		COMPILE::SWF
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
+			var contentView:IParent = getLayoutHost().contentView as IParent;
 			contentView.addElement(c, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new Event("childrenAdded"));
+                this.dispatchEvent(new ValueEvent("childrenAdded", c));
 		}
 		
 		/**
@@ -119,11 +119,10 @@ package org.apache.royale.core
 		COMPILE::SWF
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
+			var contentView:IParent = getLayoutHost().contentView as IParent;
 			contentView.addElementAt(c, index, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new Event("childrenAdded"));
+                this.dispatchEvent(new ValueEvent("childrenAdded", c));
 		}
 		
 		/**
@@ -146,6 +145,9 @@ package org.apache.royale.core
 			var layoutHost:ILayoutHost = view as ILayoutHost;
 			var contentView:IParent = layoutHost.contentView as IParent;
 			contentView.removeElement(c, dispatchEvent);
+			//TODO This should possibly be ultimately refactored to be more PAYG
+			if(dispatchEvent)
+				this.dispatchEvent(new ValueEvent("childrenRemoved", c));
 		}
 		
 		/**

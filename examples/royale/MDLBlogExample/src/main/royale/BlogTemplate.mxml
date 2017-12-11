@@ -20,6 +20,7 @@ limitations under the License.
 <mdl:NavigationLayout xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/royale/basic"
                  xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns:html="library://ns.apache.org/royale/html"
                  xmlns:models="models.*"
                  className="demo-blog has-drawer">
 
@@ -46,9 +47,9 @@ limitations under the License.
                 </mdl:beads>
                 <mdl:CardMedia>
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[<h3><a href="entry.html">Coffee Pic</a></h3>]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
                     </mdl:beads>
                 </mdl:CardMedia>
@@ -56,14 +57,14 @@ limitations under the License.
                     <mdl:beads>
                         <mdl:MdlTextColor textColor="grey-600"/>
                     </mdl:beads>
-                    <js:Div className="minilogo"/>
-                    <js:Div>
+                    <html:Div className="minilogo"/>
+                    <html:Div>
                         <mdl:beads>
-                            <js:InnerHTML>
+                            <html:InnerHTML>
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
-                            </js:InnerHTML>
+                            </html:InnerHTML>
                         </mdl:beads>
-                    </js:Div>
+                    </html:Div>
                 </mdl:CardSupportingText>
             </mdl:Card>
             
@@ -80,9 +81,9 @@ limitations under the License.
                         </mdl:MaterialIcon>
                     </mdl:materialIcon>-->
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[<i class="material-icons mdl-color-text--white" role="presentation">add</i><span class="visuallyhidden">add</span>]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                     </mdl:beads>
                 </mdl:Button>
                 <mdl:CardMedia>
@@ -91,19 +92,19 @@ limitations under the License.
                         <mdl:MdlTextColor textColor="grey-600"/>
                     </mdl:beads>
                     <js:Image src="images/logo.png"/>
-                    <js:TextNode text="+1,337"/>
+                    <html:TextNode text="+1,337"/>
                 </mdl:CardMedia>
                 <mdl:CardSupportingText className="meta meta-fill">
                     <mdl:beads>
                         <mdl:MdlTextColor textColor="grey-600"/>
                     </mdl:beads>
-                    <js:Div>
+                    <html:Div>
                         <mdl:beads>
-                            <js:InnerHTML>
+                            <html:InnerHTML>
                                 <![CDATA[<strong>The Newist</strong>]]>
-                            </js:InnerHTML>
+                            </html:InnerHTML>
                         </mdl:beads>
-                    </js:Div>
+                    </html:Div>
                     <mdl:Menu dataMdlFor="menubtn" ripple="true" bottom="true" left="false"
                             labelField="label" className="customMenuItemRenderer">
                         <mdl:beads>
@@ -115,9 +116,9 @@ limitations under the License.
                     </mdl:Menu>
                     <mdl:Button id="menubtn" icon="true" ripple="true">
                         <mdl:beads>
-                            <js:InnerHTML>
+                            <html:InnerHTML>
                                 <![CDATA[<i class="material-icons mdl-color-text--white" role="presentation">more_vert</i><span class="visuallyhidden">show menu</span>]]>
-                            </js:InnerHTML>
+                            </html:InnerHTML>
                         </mdl:beads>
                     </mdl:Button>
                 </mdl:CardSupportingText>
@@ -129,29 +130,29 @@ limitations under the License.
                 </mdl:beads>
                 <mdl:CardMedia>
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[<h3><a href="entry.html">On the road again</a></h3>]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
                     </mdl:beads>
                 </mdl:CardMedia>
                 <mdl:CardSupportingText>
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-600"/>
                     </mdl:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardSupportingText className="meta">
-                    <js:Div className="minilogo"/>
-                    <js:Div>
+                    <html:Div className="minilogo"/>
+                    <html:Div>
                         <mdl:beads>
-                            <js:InnerHTML>
+                            <html:InnerHTML>
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
-                            </js:InnerHTML>
+                            </html:InnerHTML>
                         </mdl:beads>
-                    </js:Div>
+                    </html:Div>
                 </mdl:CardSupportingText>
             </mdl:Card>
 
@@ -161,29 +162,29 @@ limitations under the License.
                 </mdl:beads>
                 <mdl:CardTitle>
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[<h3 class="quote"><a href="entry.html">I couldn’t take any pictures but this was an amazing thing…</a></h3>]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
                     </mdl:beads>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-600"/>
                     </mdl:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardSupportingText className="meta">
-                    <js:Div className="minilogo"/>
-                    <js:Div>
+                    <html:Div className="minilogo"/>
+                    <html:Div>
                         <mdl:beads>
-                            <js:InnerHTML>
+                            <html:InnerHTML>
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
-                            </js:InnerHTML>
+                            </html:InnerHTML>
                         </mdl:beads>
-                    </js:Div>
+                    </html:Div>
                 </mdl:CardSupportingText>
             </mdl:Card>
 
@@ -193,29 +194,29 @@ limitations under the License.
                 </mdl:beads>
                 <mdl:CardMedia>
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[<h3><a href="entry.html">Shopping</a></h3>]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
                     </mdl:beads>
                 </mdl:CardMedia>
                 <mdl:CardSupportingText>
                     <mdl:beads>
-                        <js:InnerHTML>
+                        <html:InnerHTML>
                             <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
-                        </js:InnerHTML>
+                        </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-600"/>
                     </mdl:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardSupportingText className="meta">
-                    <js:Div className="minilogo"/>
-                    <js:Div>
+                    <html:Div className="minilogo"/>
+                    <html:Div>
                         <mdl:beads>
-                            <js:InnerHTML>
+                            <html:InnerHTML>
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
-                            </js:InnerHTML>
+                            </html:InnerHTML>
                         </mdl:beads>
-                    </js:Div>
+                    </html:Div>
                 </mdl:CardSupportingText>
             </mdl:Card>
             
@@ -226,17 +227,17 @@ limitations under the License.
                 <mdl:FooterLeftSection>
                     <mdl:FooterSocialButton className="social-btn social-btn__twitter">
                         <mdl:beads>
-                            <js:InnerHTML><![CDATA[<span class="visuallyhidden">Twitter</span>]]></js:InnerHTML>
+                            <html:InnerHTML><![CDATA[<span class="visuallyhidden">Twitter</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
                     <mdl:FooterSocialButton className="social-btn social-btn__blogger">
                         <mdl:beads>
-                            <js:InnerHTML><![CDATA[<span class="visuallyhidden">Facebook</span>]]></js:InnerHTML>
+                            <html:InnerHTML><![CDATA[<span class="visuallyhidden">Facebook</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
                     <mdl:FooterSocialButton className="social-btn social-btn__gplus">
                         <mdl:beads>
-                            <js:InnerHTML><![CDATA[<span class="visuallyhidden">Google Plus</span>]]></js:InnerHTML>
+                            <html:InnerHTML><![CDATA[<span class="visuallyhidden">Google Plus</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
                 </mdl:FooterLeftSection>
@@ -244,7 +245,7 @@ limitations under the License.
                 <mdl:FooterRightSection>
                     <mdl:FooterSocialButton className="social-btn social-btn__share">
                         <mdl:beads>
-                            <js:InnerHTML><![CDATA[<i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share</span>]]></js:InnerHTML>
+                            <html:InnerHTML><![CDATA[<i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
                 </mdl:FooterRightSection>

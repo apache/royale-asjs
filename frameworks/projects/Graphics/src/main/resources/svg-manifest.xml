@@ -22,6 +22,7 @@
 <componentPackage>
 	<component id="TransformBead" class="org.apache.royale.svg.TransformBead" />
 	<component id="ClipBead" class="org.apache.royale.svg.ClipBead" />
+	<component id="DisableClipBead" class="org.apache.royale.svg.DisableClipBead" />
 	<component id="LinearGradient" class="org.apache.royale.svg.LinearGradient" />
 	
 </componentPackage>

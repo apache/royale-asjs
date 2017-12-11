@@ -21,6 +21,7 @@ package org.apache.royale.svg
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IRoyaleElement;
     import org.apache.royale.core.ITransformHost;
+	import org.apache.royale.events.ValueEvent;
 
 	COMPILE::JS
 	{
@@ -104,7 +105,7 @@ package org.apache.royale.svg
 		{
 			graphicGroup.addElement(c, dispatchEvent);
 			if (dispatchEvent)
-				this.dispatchEvent(new Event("childrenAdded"));
+				this.dispatchEvent(new ValueEvent("childrenAdded", c));
 		}
 
 		/**
@@ -119,7 +120,7 @@ package org.apache.royale.svg
 		{
 			graphicGroup.addElementAt(c, index, dispatchEvent);
 			if (dispatchEvent)
-				this.dispatchEvent(new Event("childrenAdded"));
+				this.dispatchEvent(new ValueEvent("childrenAdded", c));
 		}
 
 		/**
@@ -134,7 +135,7 @@ package org.apache.royale.svg
 		{
 			graphicGroup.removeElement(c, dispatchEvent);
 			if (dispatchEvent)
-				this.dispatchEvent(new Event("childrenRemoved"));
+				this.dispatchEvent(new ValueEvent("childrenRemoved", c));
 		}
 
 		/**

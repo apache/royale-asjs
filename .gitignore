@@ -108,6 +108,7 @@ obj/
 [Dd]ebug/
 [Rr]elease*/
 Ankh.NoLoad
+!releasemgr
 
 #Tooling
 _ReSharper*/

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	import org.apache.royale.core.ContainerBase;
 
     COMPILE::JS
     {
@@ -37,7 +36,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TextNode extends ContainerBase
+	public class TextNode extends NodeElementBase
 	{
 		/**
 		 *  constructor.
@@ -52,8 +51,6 @@ package org.apache.royale.html
 			super();
 		}
 		
-        private var _text:String = "";
-
         /**
          *  The text of the heading
          *  
@@ -64,36 +61,21 @@ package org.apache.royale.html
          */
 		public function get text():String
 		{
-            return _text;
+			return nodeValue;
 		}
 
 		public function set text(value:String):void
 		{
-            _text = value;
-
-			COMPILE::JS
-			{
-                textNode.nodeValue = text;	
-			}
-
+            nodeValue = value;
 		}
 		
         COMPILE::JS
-        private var textNode:Text;
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			textNode = document.createTextNode('') as Text;
-
-            element = textNode as WrappedHTMLElement;
-
-            positioner = element;
-            element.royale_wrapper = this;
-            
+			//We're actually lying a bit about the type considering that Text
+			// inherits from CharacterData and not HTMLElement, but the important
+			// bit from our perspective is that it's a Node and has a royale_wrapper.
+			element = document.createTextNode("") as WrappedHTMLElement;
             return element;
         }
     }

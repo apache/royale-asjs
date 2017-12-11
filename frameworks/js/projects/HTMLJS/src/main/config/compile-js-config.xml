@@ -72,6 +72,10 @@
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../../../../../../projects/HTML/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/html</uri>
+                <manifest>../../../../../../projects/HTML/src/main/resources/html-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -95,6 +99,7 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/royale/basic</uri>
+        <uri>library://ns.apache.org/royale/html</uri>
     </include-namespaces>
         
 

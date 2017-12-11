@@ -255,6 +255,7 @@ package org.apache.royale.collections
 
 			var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_ADDED);
 			collectionEvent.item = item;
+			collectionEvent.index = index;
 			dispatchEvent(collectionEvent);
 		}
 
@@ -278,6 +279,7 @@ package org.apache.royale.collections
 
                 var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
                 collectionEvent.item = item;
+				collectionEvent.index = index;
 				dispatchEvent(collectionEvent);
 			}
 			else {
@@ -338,6 +340,7 @@ package org.apache.royale.collections
 
             var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_REMOVED);
             collectionEvent.item = removed;
+			collectionEvent.index = index;
             dispatchEvent(collectionEvent);
 
 			return removed;
@@ -376,6 +379,7 @@ package org.apache.royale.collections
 			{
                 var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
                 collectionEvent.item = item;
+				collectionEvent.index = index;
                 dispatchEvent(collectionEvent);
 			}
 		}
@@ -392,6 +396,7 @@ package org.apache.royale.collections
 		{
             var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
             collectionEvent.item = getItemAt(index);
+			collectionEvent.index = index;
             dispatchEvent(collectionEvent);
 		}
 
