@@ -29,6 +29,17 @@ limitations under the License.
 		{
 			usersListModel.users.addItem(new UserVO("piotrz", "Piotr", "Zarzycki", "piotrz@apache.org"));
 		}
+
+		private function onRemoveEmployeeClick(event:MouseEvent):void
+		{
+			usersListModel.users.removeItemAt(usersListModel.users.length - 1);
+		}		
+		
+		private function onTblChange(event:Event):void
+		{
+			var selIndex:int = tblUsers.selectedIndex;
+			var selItem:Object = tblUsers.selectedItem;
+		}
         ]]>
     </fx:Script>
 
@@ -42,7 +53,7 @@ limitations under the License.
 
 	<mdl:GridCell column="12">
 		<mdl:Table id="tblUsers" shadow="2"
-				   dataProvider="{usersListModel.users}" className="customTableStyle">
+				   dataProvider="{usersListModel.users}" className="customTableStyle" change="onTblChange(event)">
 			<mdl:columns>
 				<mdl:TableColumn headerText="Username" />
 				<mdl:TableColumn headerText="First Name"/>
@@ -50,16 +61,15 @@ limitations under the License.
 				<mdl:TableColumn headerText="Email"/>
 			</mdl:columns>
 			<mdl:beads>
-				<!--Bead for listening changes of collection source-->
-				<js:DataProviderCollectionChangeNotifier sourceID="usersListModel" propertyName="users"
-														 destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
-				<!--Bead for listening items events changes-->
-				<js:DataProviderItemsChangeNotifier sourceID="usersListModel" propertyName="users"
-													destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
+				<js:DynamicItemsRendererFactoryForArrayListData />
+				<js:DynamicRemoveItemRendererForArrayListData />
 			</mdl:beads>
 		</mdl:Table>
 	</mdl:GridCell>
 	<mdl:GridCell>
 		<mdl:Button text="Add Employee" width="100" click="onAddEmployeeClick(event)"/>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Remove Last Employee" width="100" click="onRemoveEmployeeClick(event)"/>
 	</mdl:GridCell>
 </mdl:Grid>
