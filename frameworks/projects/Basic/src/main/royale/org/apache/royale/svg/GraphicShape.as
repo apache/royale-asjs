@@ -214,12 +214,12 @@ package org.apache.royale.svg
 			// attributes for SVG inside SVG
             if (!isNaN(x))
 			{
-				element.style.top = x + "px";
+				element.style.left = x + "px";
 				element.setAttribute("x", x);
 			} 
             if (!isNaN(y))
 			{
-				element.style.left = y + "px";
+				element.style.top = y + "px";
 				element.setAttribute("y", y);
 			}
 			if(!isNaN(useWidth))
