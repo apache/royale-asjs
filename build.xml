@@ -413,6 +413,9 @@
         <copy todir="${basedir}/lib">
             <fileset dir="${ROYALE_COMPILER_REPO}/compiler/lib">
                 <include name="**"/>
+                <exclude name="external/jburg.jar"/>
+                <exclude name="external/jflex*"/>
+                <exclude name="external/junit*"/>
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin" />
@@ -426,6 +429,7 @@
         <copy todir="${basedir}/js/lib">
             <fileset dir="${ROYALE_COMPILER_REPO}/compiler-jx/lib">
                 <include name="**"/>
+                <exclude name="junit*"/>
             </fileset>
         </copy>
         <!-- needed to make Flash Builder accept folder as a Flex SDK -->
@@ -913,7 +917,7 @@
                 
         <!-- concat the license file with the binary license file for the 3rd party deps -->
         <concat destfile="${staging-dir}/LICENSE">
-            <filelist dir="${basedir}" files="LICENSE,LICENSE.bin"/>
+            <filelist dir="${basedir}" files="${basedir}/releasemgr/LICENSE,${basedir}/releasemgr/LICENSE.bin"/>
         </concat>
         
     	<antcall target="copy-gcl-from-goog-home"/>

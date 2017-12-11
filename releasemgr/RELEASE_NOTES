@@ -9,7 +9,7 @@ Apache Royale was previously released by the Apache Flex project.  You can
 see RELEASE_NOTES for earlier releases in the Apache Flex releases.
 
 This RELEASE_NOTES file is used for the top-level source and binary package.  The
-individual folders (royale-compiler, royals-typedefs, royale-asjs) each have their own
+individual folders (royale-compiler, royale-typedefs, royale-asjs) each have their own
 RELEASE_NOTES file specific to the contents of those folders.
 
 Please report new issues to our bugbase at:
