@@ -917,7 +917,7 @@
                 
         <!-- concat the license file with the binary license file for the 3rd party deps -->
         <concat destfile="${staging-dir}/LICENSE">
-            <filelist dir="${basedir}" files="${basedir}/releasemgr/LICENSE,${basedir}/releasemgr/LICENSE.bin"/>
+            <filelist dir="${basedir}" files="LICENSE,LICENSE.bin"/>
         </concat>
         
     	<antcall target="copy-gcl-from-goog-home"/>
