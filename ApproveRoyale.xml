@@ -312,6 +312,7 @@
         <delete dir="${basedir}/${doc.package.url.name}" failonerror="false" />-->
 	</target>
 	
+    <!-- untar does not restore file permissions so don't bother checking --->
     <target name="untar-file" unless="zip.package" description="Untars zipFile">
         <untar src="${basedir}/${package.url.name}.${package.suffix}"
                 dest="${basedir}" compression="gzip"/>

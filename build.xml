@@ -424,6 +424,7 @@
                 <include name="**"/>
             </fileset>
         </copy>
+        <chmod dir="${basedir}/bin" excludes="**/*.bat" perm="+x" />
         <mkdir dir="${basedir}/js/lib" />
         <echo>Copying Transpiler from ${ROYALE_COMPILER_REPO}</echo>
         <copy todir="${basedir}/js/lib">
@@ -804,6 +805,7 @@
         </fixcrlf>
         
         <chmod dir="${staging-dir}/js/bin" excludes="**/*.bat" perm="+x" />
+        <chmod dir="${staging-dir}/bin" excludes="**/*.bat" perm="+x" />
         
         <!--
              Source files have Windows line endings.  Most UNIX editors can handle
@@ -1009,16 +1011,20 @@
                     longfile="gnu">
                     <tarfileset dir="${basedir}/temp" prefix="@{name}">
                         <include name="**" />
-                        <exclude name="bin/**" />
+                        <exclude name="royale-asjs/bin/**" />
+                        <exclude name="royale-asjs/js/bin/**" />
                         <exclude name="**/*.sh" />
                     </tarfileset>
                     <tarfileset dir="${basedir}/temp" prefix="@{name}">
-                        <include name="bin/*.bat" />
+                        <include name="royale-asjs/bin/*.bat" />
+                        <include name="royale-asjs/js/bin/*.bat" />
                     </tarfileset>
-                    <tarfileset dir="${basedir}/temp" prefix="@{name}" mode="755">
-                        <include name="bin/*" />
+                    <tarfileset dir="${basedir}/temp" prefix="@{name}" filemode="755">
+                        <include name="royale-asjs/bin/*" />
+                        <include name="royale-asjs/js/bin/*" />
                         <include name="**/*.sh" />
-                        <exclude name="bin/*.bat" />
+                        <exclude name="royale-asjs/bin/*.bat" />
+                        <exclude name="royale-asjs/js/bin/*.bat" />
                     </tarfileset>
                 </tar>
         </sequential>
