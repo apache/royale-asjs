@@ -72,10 +72,12 @@
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
     <component id="VerticalFlexLayout" class="org.apache.royale.html.beads.layouts.VerticalFlexLayout"/>
+    <component id="VerticalSliderLayout" class="org.apache.royale.html.beads.layouts.VerticalSliderLayout" />
     <component id="HorizontalLayout" class="org.apache.royale.html.beads.layouts.HorizontalLayout"/>
     <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.HorizontalLayoutWithPaddingAndGap"/>
     <component id="HorizontalFlexLayout" class="org.apache.royale.html.beads.layouts.HorizontalFlexLayout"/>
     <component id="HorizontalFlowLayout" class="org.apache.royale.html.beads.layouts.HorizontalFlowLayout" />
+    <component id="HorizontalSliderLayout" class="org.apache.royale.html.beads.layouts.HorizontalSliderLayout" />
     <component id="TileLayout" class="org.apache.royale.html.beads.layouts.TileLayout"/>
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>

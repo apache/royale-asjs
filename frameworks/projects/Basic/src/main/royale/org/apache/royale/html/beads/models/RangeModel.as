@@ -85,6 +85,7 @@ package org.apache.royale.html.beads.models
 			if (value != _maximum)
 			{
 				_maximum = value;
+				if (_value > _maximum) _value = _maximum;
 				dispatchEvent(new Event("maximumChange"));
 			}
 		}
@@ -111,6 +112,7 @@ package org.apache.royale.html.beads.models
 			if (value != _minimum)
 			{
 				_minimum = value;
+				if (_value < _minimum) _value = _minimum;
 				dispatchEvent(new Event("minimumChange"));
 			}
 		}

@@ -482,8 +482,16 @@ SimpleList
 Slider
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
-	iBeadView:  ClassReference("org.apache.royale.html.beads.SliderView");
-	iBeadController: ClassReference("org.apache.royale.html.beads.controllers.SliderMouseController");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.SliderView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.SliderMouseController");
+	position: relative;
+}
+.SliderTrack {
+	position: absolute;
+}
+.SliderThumb {
+	position: absolute;
 }
 
 Spinner

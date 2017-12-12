@@ -72,6 +72,8 @@ internal class BasicClasses
     import org.apache.royale.html.beads.PanelView; PanelView;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
     import org.apache.royale.html.beads.SliderView; SliderView;
+	import org.apache.royale.html.beads.layouts.HorizontalSliderLayout; HorizontalSliderLayout;
+	import org.apache.royale.html.beads.layouts.VerticalSliderLayout; VerticalSliderLayout;
     import org.apache.royale.html.beads.PanelWithControlBarView; PanelWithControlBarView;
     import org.apache.royale.html.beads.AccordionItemRendererView; AccordionItemRendererView;
 	COMPILE::SWF

@@ -24,18 +24,19 @@ package org.apache.royale.html.beads
 	}
 	
     import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IRangeModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Button;
-	import org.apache.royale.html.TextButton;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IRangeModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.Button;
+    import org.apache.royale.html.TextButton;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.royale.html.Slider 
@@ -75,6 +76,12 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 			
+			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
+			if (layout == null) {
+				var klass:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout");
+				_strand.addBead(new klass() as IBead);
+			}
+			
 			COMPILE::SWF {
 				var s:UIBase = UIBase(_strand);
 				
@@ -101,9 +108,6 @@ package org.apache.royale.html.beads
 				host.addElement(_thumb);
 			}
 			
-			host.addEventListener("widthChanged",sizeChangeHandler);
-			host.addEventListener("heightChanged",sizeChangeHandler);
-			
 			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 
 			var rm:IEventDispatcher = rangeModel as IEventDispatcher;
@@ -115,7 +119,7 @@ package org.apache.royale.html.beads
 			rm.addEventListener("stepSizeChange",modelChangeHandler);
 			rm.addEventListener("snapIntervalChange",modelChangeHandler);
 			
-			sizeChangeHandler(null);
+			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 		
 		private var _track:Button;
@@ -155,48 +159,13 @@ package org.apache.royale.html.beads
 		{
 			return _strand as UIBase;
 		}
-		/**
-		 * @private
-		 */
-		private function sizeChangeHandler( event:Event ) : void
-		{
-			var w:Number = host.width;
-			var h:Number = host.height;
-			
-			_thumb.width = 20;
-			_thumb.height = host.height;
-		
-			// the track is inset 1/2 of the thumbwidth so the thumb can
-			// overlay the track on either end with the thumb center being
-			// on the track's edge
-			_track.width = host.width - _thumb.width;
-			_track.height = 5;
-			_track.x = _thumb.width/2;
-			_track.y = (host.height - _track.height)/2;
-			
-			setThumbPositionFromValue(rangeModel.value);
-		}
 		
 		/**
 		 * @private
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{
-			setThumbPositionFromValue(rangeModel.value);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function setThumbPositionFromValue( value:Number ) : void
-		{
-			var p:Number = (value-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
-			var xloc:Number = (p*_track.width); 
-			COMPILE::JS
-			{
-				_thumb.element.style.position = 'absolute';
-			}
-			_thumb.x = xloc;
+			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }
