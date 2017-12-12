@@ -187,6 +187,10 @@ You can use NPM to get a pre-built package.  To do so run:
   sudo npm install royale -g
 
 
+Using Royale
+============
+
+In order to get started using Royale, you are invited to follow along with the Quick Start Guide at https://github.com/apache/royale-asjs/wiki/Quick-Start.
 
 Thanks for using Apache Royale.  Enjoy!
 
