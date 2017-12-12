@@ -911,6 +911,8 @@
                 <include name="royale-config.xml"/>
             </fileset>
         </replace>
+        <!-- replace npm descriptor with js-only descriptor -->
+        <copy file="${basedir}/npm/package.json" tofile="${basedir}/temp" />
         <zip destfile="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" basedir="${basedir}/temp"/>
         <tar-gzip name="apache-royale-jsonly-${release.version}-bin" />
     </target>
