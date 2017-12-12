@@ -274,7 +274,7 @@ package org.apache.royale.html.beads.controllers
         private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
         {
             var host:Slider = _strand as Slider;
-            var deltaX:Number = (useOffset ? event.offsetX : event.clientX) - origin;
+            var deltaX:Number = (event.offsetX && useOffset ? event.offsetX : event.clientX) - origin;
             var thumbW:int = parseInt(thumb.element.style.width, 10) / 2;
             var newX:Number = position + deltaX;
             
