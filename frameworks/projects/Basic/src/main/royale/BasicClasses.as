@@ -253,6 +253,10 @@ internal class BasicClasses
 		import org.apache.royale.css2.DragMove; DragMove;
 		import org.apache.royale.css2.DragReject; DragReject;
     }
+
+	import org.apache.royale.html.beads.IFocusBead; IFocusBead;
+	import org.apache.royale.html.beads.FocusBead; FocusBead;
+
 }
 
 }
