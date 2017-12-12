@@ -253,6 +253,13 @@ internal class BasicClasses
 		import org.apache.royale.css2.DragMove; DragMove;
 		import org.apache.royale.css2.DragReject; DragReject;
     }
+	
+	import org.apache.royale.html.TreeGrid; TreeGrid;
+	import org.apache.royale.html.supportClasses.TreeGridColumn; TreeGridColumn;
+	import org.apache.royale.html.supportClasses.TreeGridControlItemRenderer; TreeGridControlItemRenderer;
+	import org.apache.royale.html.beads.models.TreeGridModel; TreeGridModel;
+	import org.apache.royale.html.beads.layouts.TreeGridLayout; TreeGridLayout;
+	import org.apache.royale.html.beads.TreeGridView; TreeGridView;
 }
 
 }

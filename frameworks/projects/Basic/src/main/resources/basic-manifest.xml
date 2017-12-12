@@ -185,5 +185,8 @@
 
     <component id="UIModule" class="org.apache.royale.html.UIModule"/>
     <component id="UIModuleLoader" class="org.apache.royale.html.UIModuleLoader"/>
+    
+    <component id="TreeGrid" class="org.apache.royale.html.TreeGrid" />
+    <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
 
 </componentPackage>

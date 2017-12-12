@@ -416,6 +416,17 @@ Tree
 	border-color: #222222;
 }
 
+TreeGrid
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeGridModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.TreeGridView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.TreeGridLayout");
+}
+
+.TreeGridContentArea .List {
+	display: inline-block;
+}
+
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
