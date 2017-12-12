@@ -33,7 +33,7 @@
     
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     	<mkdir dir="${basedir}/bin/js-debug/fonts" />
-        <copy todir="${basedir}/bin/js-debug/fonts" >
+        <copy todir="${basedir}/bin/js-debug/fonts" failonerror="false">
             <fileset dir="${ROYALE_HOME}/frameworks/fonts">
                 <include name="flat-ui-icons-regular.svg" />
                 <include name="flat-ui-icons-regular.ttf" />
@@ -41,7 +41,7 @@
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin/js-release/fonts" />
-        <copy todir="${basedir}/bin/js-release/fonts" >
+        <copy todir="${basedir}/bin/js-release/fonts" failonerror="false">
             <fileset dir="${ROYALE_HOME}/frameworks/fonts">
                 <include name="flat-ui-icons-regular.svg" />
                 <include name="flat-ui-icons-regular.ttf" />
