@@ -35,6 +35,11 @@ limitations under the License.
 			usersListModel.users.removeItemAt(usersListModel.users.length - 1);
 		}		
 		
+		private function onRemoveAllClick(event:MouseEvent):void
+		{
+			usersListModel.users.removeAll();	
+		}		
+		
 		private function onTblChange(event:Event):void
 		{
 			var selIndex:int = tblUsers.selectedIndex;
@@ -63,6 +68,7 @@ limitations under the License.
 			<mdl:beads>
 				<js:DynamicItemsRendererFactoryForArrayListData />
 				<js:DynamicRemoveItemRendererForArrayListData />
+				<js:DynamicRemoveAllItemRendererForArrayListData />
 			</mdl:beads>
 		</mdl:Table>
 	</mdl:GridCell>
@@ -71,5 +77,8 @@ limitations under the License.
 	</mdl:GridCell>
 	<mdl:GridCell>
 		<mdl:Button text="Remove Last Employee" width="100" click="onRemoveEmployeeClick(event)"/>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Remove All" width="130" click="onRemoveAllClick(event)"/>
 	</mdl:GridCell>
 </mdl:Grid>

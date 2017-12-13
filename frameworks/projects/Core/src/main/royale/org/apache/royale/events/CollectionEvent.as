@@ -31,6 +31,7 @@ package org.apache.royale.events
 	{
 		public static const ITEM_ADDED:String = "itemAdded";
 		public static const ITEM_REMOVED:String = "itemRemoved";
+        public static const ALL_ITEMS_REMOVED:String = "allItemsRemoved";
 		public static const ITEM_UPDATED:String = "itemUpdated";
 		public static const COLLECTION_CHANGED:String = "collectionChanged";
 
