@@ -27,6 +27,12 @@ package org.apache.royale.html
 	 */
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
+
+	/**
+	 * The change event is dispatched when the displayed month is changed.
+	 */
+	[Event(name="monthChanged", type="org.apache.royale.events.Event")]
+
 	/**
 	 *  The DateChooser class is a component that displays a calendar.
 	 *
