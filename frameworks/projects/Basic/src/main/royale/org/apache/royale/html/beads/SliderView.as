@@ -91,7 +91,7 @@ package org.apache.royale.html.beads
 				s.addElement(_track);
 				
 				_thumb = new TextButton();
-				_thumb.text = '\u2B0C';
+				_thumb.text = '\u29BF';
 				_thumb.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
 				_thumb.className = "SliderThumb";
 				s.addElement(_thumb);
@@ -104,7 +104,7 @@ package org.apache.royale.html.beads
 				
 				_thumb = new TextButton();
 				_thumb.className = "SliderThumb";
-				_thumb.text = '\u2B0C';
+				_thumb.text = '\u29BF';
 				host.addElement(_thumb);
 			}
 			
