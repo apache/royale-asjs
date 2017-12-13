@@ -101,6 +101,7 @@ internal class BasicClasses
     	import org.apache.royale.html.beads.TextInputView; TextInputView;
 	    import org.apache.royale.html.beads.TextInputWithBorderView; TextInputWithBorderView;
 	}
+	import org.apache.royale.html.beads.TextOverflow; TextOverflow;
 	import org.apache.royale.html.beads.models.AlertModel; AlertModel;
 	import org.apache.royale.html.beads.models.ArraySelectionModel; ArraySelectionModel;
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
