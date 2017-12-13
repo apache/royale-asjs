@@ -136,7 +136,8 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
-    import org.apache.royale.html.beads.controllers.SliderMouseController; SliderMouseController;
+    import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;
+	import org.apache.royale.html.beads.controllers.VSliderMouseController; VSliderMouseController;
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
