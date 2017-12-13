@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+				xmlns:gen="simple.*"
+				className="MainView">
+		
+	<fx:Style>
+		@namespace gen "simple.*";
+		@namespace js "library://ns.apache.org/royale/basic";
+		
+		
+		.MainView {
+			backgroundColor: #FFFFFF;
+		}
+		
+		.TitleLabel {
+			fontSize: 18pt;
+			fontWeight: bold;
+		}
+		
+		.FootNote {
+			fontSize: 14pt;
+			fontWeight: normal;
+			color: #666666;
+		}
+		
+		.DragImage {
+		    backgroundColor: #DDDDDD;
+		    opacity: 0.80;
+		}
+		
+		.DragDropList
+		{
+			IBeadView: ClassReference("org.apache.royale.html.beads.DragDropListView");
+			IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+			border: solid 1px black;
+		}
+		
+		/*
+		 * These style selectors allow the DataGrid's ButtonBar header to be re-organized
+		 * and change the order of the columns.
+		 */
+		 
+		js|DataGridButtonBar {
+			IBeadView: ClassReference("org.apache.royale.html.beads.DataGridButtonBarViewForMovableColumns");
+		}
+		
+		js|DataGrid {
+			IBeadView: ClassReference("org.apache.royale.html.beads.DataGridColumnReorderView");
+		}
+	</fx:Style>
+	
+	<js:Label className="TitleLabel" text="Drag and Drop Example" x="20" y="20" />
+	
+	<!--
+	Use SingleSelectionDragSourceBead with DataGrid or List to enable dragging an item in
+	the grid or list. Set dragType="copy" if you do not want the grid or list to remove the
+	item being dragged once it has been dropped.
+	
+	Use SingleSelectionDragImageBead (or your own derivative) to provide feedback during the
+	drag operation.
+	-->
+	<js:DataGrid id="dataGrid" x="20" y="50" width="400" height="300" rowHeight="40">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="productList"
+				destinationPropertyName="dataProvider" />
+			<js:SingleSelectionDragSourceBead dragType="copy" />
+			<js:SingleSelectionDragImageBead />
+		</js:beads>
+		<js:columns>
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="50" itemRenderer="products.ProductItemRenderer" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="250" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+		</js:columns>
+	</js:DataGrid>
+	
+	<js:Label className="FootNote" text="Drag items from here..." x="20" y="360" />
+	
+	<!--
+	Use SingleSelectionDropTargetBead with DataGrid or List to indicate that the
+	component can be the recipient of a drag operation. The dropped item will be incorporated
+	into the data model of the list or grid.
+	
+	Use SingleSelectionDropIndicatorBead with the component that is a drop target to 
+	draw an indication of where the drop will be accepted. You can create your own drop
+	indicator by subclassing this bead.
+	-->
+	<js:List x="500" y="50" width="400" height="300" rowHeight="40"  className="DragDropList">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="stateNames"
+				destinationPropertyName="dataProvider" />
+			<js:SingleSelectionDropTargetBead />
+			<js:SingleSelectionDropIndicatorBead />
+		</js:beads>
+	</js:List>
+	
+	<js:Label className="FootNote" text="...and drop here" x="500" y="360" />
+
+</js:View>

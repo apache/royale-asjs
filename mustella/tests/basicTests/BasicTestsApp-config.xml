@@ -17,7 +17,7 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <compiler>
 	    <debug>true</debug>
     </compiler>
@@ -112,6 +112,6 @@
         <symbol>ExitWhenDone</symbol>
         <symbol>SetShowRTE</symbol>
         <symbol>SendFormattedResultsToLog</symbol>
-        <symbol>FlexJSContext</symbol>
+        <symbol>RoyaleContext</symbol>
     </includes>
-</flex-config>
+</royale-config>

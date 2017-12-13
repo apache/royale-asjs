@@ -18,15 +18,15 @@ rem limitations under the License.
 rem
 
 rem
-rem compc.bat script to launch falcon-compc.jar in Windows Command Prompt.
+rem compc.bat script to launch compiler-compc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the compc shell script instead.
 rem
 
 setlocal
 
-if "x%FALCON_HOME%"=="x"  (set FALCON_HOME=%~dp0..) else echo Using Falcon codebase: %FALCON_HOME%
+if "x%ROYALE_COMPILER_HOME%"=="x"  (set ROYALE_COMPILER_HOME=%~dp0..) else echo Using Royale Compiler codebase: %ROYALE_COMPILER_HOME%
 
-if "x%FLEX_HOME%"=="x" (set FLEX_HOME=%~dp0..) else echo Using Flex SDK: %FLEX_HOME%
+if "x%ROYALE_HOME%"=="x" (set ROYALE_HOME=%~dp0..) else echo Using Royale SDK: %ROYALE_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Dflexcompiler="%FALCON_HOME%" -Dflexlib="%FLEX_HOME%/frameworks" -jar "%FALCON_HOME%\lib\falcon-compc.jar" %*
+@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m  -Droyalelib="%ROYALE_HOME%/frameworks" -jar "%ROYALE_COMPILER_HOME%\lib\compiler-compc.jar" %*
 

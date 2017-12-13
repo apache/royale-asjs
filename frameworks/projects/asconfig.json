@@ -1,45 +1,72 @@
-{
-    "config": "flex",
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ {
+    "config": "royale",
+    "type": "lib",
     "compilerOptions": {
         "debug": true,
-        "js-output-type": "flexjs",
         "define": [
             {
-                "name": "COMPILE::SWF",
+                "name": "CONFIG::release",
                 "value": true
             },
             {
-                "name": "COMPILE::JS",
+                "name": "CONFIG::debug",
                 "value": false
             }
+        ],
+        "targets": [
+            "SWF",
+            "JSRoyale"
+        ],
+        "external-library-path": [
+            "../../../frameworks/libs/air/airglobal.swc"
+        ],
+        "include-classes": [
+            "BasicClasses"
+        ],
+        "include-sources": [
+            "Basic/src/main/royale",
+            "Binding/src/main/royale",
+            "Charts/src/main/royale",
+            "Collections/src/main/royale",
+            "Core/src/main/royale",
+            "CreateJS/src/main/royale",
+            "DragDrop/src/main/royale",
+            "Effects/src/main/royale",
+            "Express/src/main/royale",
+            "Flat/src/main/royale",
+            "FontAwesome/src/main/royale",
+            "Formatters/src/main/royale",
+            "GoogleMaps/src/main/royale",
+            "Graphics/src/main/royale",
+            "HTML/src/main/royale",
+            "HTML5/src/main/royale",
+            "JQuery/src/main/royale",
+            "Language/src/main/royale",
+            "MaterialDesignLite/src/main/royale",
+            "Mobile/src/main/royale",
+            "Network/src/main/royale",
+            "Reflection/src/main/royale",
+            "Storage/src/main/royale",
+            "Testing/src/main/royale",
+            "Text/src/main/royale",
+            "TLF/src/main/royale",
+            "XML/src/main/royale"
         ]
-    },
-    "files":
-    [
-        "Basic/src/main/flex/BasicClasses.as",
-        "Binding/src/main/flex/BindingClasses.as",
-        "Charts/src/main/flex/ChartsClasses.as",
-        "Collections/src/main/flex/CollectionsClasses.as",
-        "Core/src/main/flex/CoreClasses.as",
-        "CreateJS/src/main/flex/CreateJSClasses.as",
-        "DragDrop/src/main/flex/DragDropClasses.as",
-        "Effects/src/main/flex/EffectsClasses.as",
-        "Express/src/main/flex/ExpressClasses.as",
-        "Flat/src/main/flex/FlatClasses.as",
-        "FontAwesome/src/main/flex/FAClasses.as",
-        "Formatters/src/main/flex/FormattersClasses.as",
-        "GoogleMaps/src/main/flex/GoogleMapsClasses.as",
-        "GoogleMaps/src/main/flex/GoogleStubClasses.as",
-        "Graphics/src/main/flex/GraphicsClasses.as",
-        "HTML/src/main/flex/HTMLClasses.as",
-        "HTML5/src/main/flex/HTML5Classes.as",
-        "JQuery/src/main/flex/JQueryClasses.as",
-        "Language/src/main/flex/LanguageClasses.as",
-        "MaterialDesignLite/src/main/flex/MDLClasses.as",
-        "Mobile/src/main/flex/MobileClasses.as",
-        "Mobile/src/main/flex/CordovaClasses.as",
-        "Network/src/main/flex/NetworkClasses.as",
-        "Storage/src/main/flex/StorageClasses.as",
-        "XML/src/main/flex/XMLClasses.as"
-    ]
+    }
 }

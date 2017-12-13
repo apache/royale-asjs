@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                 xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:productsView="productsView.*"
+    >
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
+
+    <fx:Metadata>
+        [Event(name="purchase", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="browse", type="samples.royalestore.ProductThumbEvent")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+
+		import samples.royalestore.Product;
+		import samples.royalestore.ProductThumbEvent;
+
+        private var _product:Product;
+        
+        [Bindable]
+        public function get product():Product
+        {
+            return _product;
+        }
+        
+        public function set product(p:Product):void
+        {
+            _product = p;
+            tn.selectedIndex = 0;
+        }
+        
+	]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+    </fx:Declarations>
+
+    <js:states>
+        <js:State name="Features" />
+        <js:State name="Support" />
+    </js:states>
+    
+    <js:transitions>
+        <js:Transition>
+            <js:Fade />
+        </js:Transition>
+    </js:transitions>
+    
+    <js:ButtonBar id="tn" width="100%" change="currentState = tn.selectedItem as String">
+        <js:dataProvider>
+            <fx:Array>
+                <fx:String>Features</fx:String>
+                <fx:String>Support</fx:String>
+            </fx:Array>
+        </js:dataProvider>
+    </js:ButtonBar>
+    <js:Container >
+        <js:style>
+            <js:SimpleCSSStyles left="4" right="8" top="34" bottom="4" />
+        </js:style>
+                    
+
+        <js:VContainer includeIn="Features" >
+            <js:style>
+                <!--<js:SimpleCSSStyles gap="8"-->
+                <js:SimpleCSSStyles
+                    left="8" top="8" right="8" bottom="8"/>
+            </js:style>
+            <js:Container style="left:0px;right:0px">
+
+                <js:Image id="img" width="101" height="101" src="{product.image}"/>
+
+                <js:VContainer id="descr" >
+                    <js:style>
+                        <js:SimpleCSSStyles top="0" left="105" right="0" bottom="20" />
+                        <!--<js:SimpleCSSStyles paddingTop="0" gap="4" />-->
+                    </js:style>
+                    
+                    <js:Label text="{product.name}" style="fontSize:11;fontWeight:'bold'"/>
+
+	                <js:Label text="{product.featureString}" width="80" height="48" />
+
+                    <js:Label text="{product.highlight1}" style="color:#EE8D0C"/>
+
+                    <js:Label text="{product.highlight2}" style="color:#EE8D0C"/>
+
+                    <js:Label text="{cf.format(product.price)}" style="fontWeight:'bold'"/>
+
+                </js:VContainer>
+            </js:Container>
+
+            <js:Label id="descriptionText" style="left:0px;right:0px;bottom:0px" text="{product.description}"/>
+
+        </js:VContainer>
+
+        <productsView:ProductSupport width="100%" height="100%" includeIn="Support" />
+
+    </js:Container>
+
+    <js:VContainer>
+        <js:style>
+            <js:SimpleCSSStyles marginTop="4" right="16" top="36" />
+        </js:style>
+        <js:Spacer width="100%"/>
+        <js:ImageButton id="purchase" src="assets/button_cart_empty.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to cart"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="compare" src="assets/button_compare.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to compare list"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="tiles" src="assets/button_tiles.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.BROWSE, product));" width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Back to thumbnail view"/>
+            </js:beads>
+        </js:ImageButton>
+    </js:VContainer>
+
+</js:Container>

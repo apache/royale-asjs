@@ -17,45 +17,45 @@
  *
  */
 
-@namespace createjs "library://ns.apache.org/flexjs/createjs";
+@namespace createjs "library://ns.apache.org/royale/createjs";
 
 global
 {
-	IEffectTimer: ClassReference("org.apache.flex.utils.EffectTimer");
+	IEffectTimer: ClassReference("org.apache.royale.utils.EffectTimer");
 	effectTimerInterval: 10;
 }
 
 createjs|TextButton
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 }
 
 createjs|Label
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 }
 
 createjs|CheckBox
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
 }
 
-@media -flex-flash
+@media -royale-swf
 {
 
 createjs|TextButton
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.TextButtonView");
+    IBeadView: ClassReference("org.apache.royale.html.beads.TextButtonView");
 }
 
 createjs|Label
 {
-	IBeadView: ClassReference("org.apache.flex.html.beads.TextFieldView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
 }
 
 createjs|CheckBox
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.CheckBoxView");
+    IBeadView: ClassReference("org.apache.royale.html.beads.CheckBoxView");
 }
 
 }

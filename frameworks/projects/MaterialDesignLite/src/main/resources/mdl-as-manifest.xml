@@ -21,6 +21,6 @@
 
 <componentPackage>
 
-    <!--<component id="DropDownListList" class="org.apache.flex.mdl.supportClasses.DropDownListList" />-->
+    <!--<component id="DropDownListList" class="org.apache.royale.mdl.supportClasses.DropDownListList" />-->
 
 </componentPackage>

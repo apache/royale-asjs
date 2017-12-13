@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:mdl="library://ns.apache.org/royale/mdl"
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:models="models.*">
+    
+    <mdl:model>
+        <models:TablesModel/>
+	</mdl:model>
+
+    <mdl:Grid className="center-items">
+        <mdl:style>
+            <js:AllCSSStyles maxWidth="450"/>
+        </mdl:style>
+       <mdl:GridCell column="12">
+           <mdl:Table shadow="2" selectable="true" className="customTableRowItemRenderer">
+                <mdl:columns>
+                    <mdl:TableColumn headerText="Material"/>
+                    <mdl:TableColumn headerText="Quantity">
+                        <mdl:beads>
+                            <mdl:TableNumericColumnEnable />
+                        </mdl:beads>
+                    </mdl:TableColumn>
+                    <mdl:TableColumn headerText="Unit price">
+                        <mdl:beads>
+                            <mdl:TableNumericColumnEnable />
+                        </mdl:beads>
+                    </mdl:TableColumn>
+                </mdl:columns>
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="materials"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:Table>
+
+            <mdl:Card shadow="2" width="450">
+                <mdl:CardTitle expand="true">
+                    <mdl:CardTitleText text="Card Header"/>
+                </mdl:CardTitle>
+
+                <mdl:Table className="customTableRowItemRenderer" width="100%">
+                    <mdl:columns>
+                        <mdl:TableColumn headerText="Material"/>
+                        <mdl:TableColumn headerText="Quantity">
+                            <mdl:beads>
+                                <mdl:TableNumericColumnEnable />
+                            </mdl:beads>
+                        </mdl:TableColumn>
+                        <mdl:TableColumn headerText="Unit price">
+                            <mdl:beads>
+                                <mdl:TableNumericColumnEnable />
+                            </mdl:beads>
+                        </mdl:TableColumn>
+                    </mdl:columns>
+                    <mdl:beads>
+                        <js:ConstantBinding
+                            sourceID="model"
+                            sourcePropertyName="materials"
+                            destinationPropertyName="dataProvider" />
+                    </mdl:beads>
+                </mdl:Table>
+
+                <mdl:CardActions style="display:flex; ">
+                    <mdl:Spacer/>
+                    <mdl:Button text="Get Started" ripple="true" colored="true"/>
+                </mdl:CardActions>
+            </mdl:Card>
+
+            <mdl:Table shadow="8" className="tableRowItemRendererWithIcons">
+                <mdl:columns>
+                    <mdl:TableColumn headerText="Material"/>
+                    <mdl:TableColumn headerText="Quantity">
+                        <mdl:beads>
+                            <mdl:TableNumericColumnEnable />
+                        </mdl:beads>
+                    </mdl:TableColumn>
+                    <mdl:TableColumn headerText="Unit price">
+                        <mdl:beads>
+                            <mdl:TableNumericColumnEnable />
+                        </mdl:beads>
+                    </mdl:TableColumn>
+                    <mdl:TableColumn headerText="Mood">
+                        <mdl:beads>
+                            <mdl:TableNumericColumnEnable />
+                        </mdl:beads>
+                    </mdl:TableColumn>
+                </mdl:columns>
+
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="materials"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:Table>
+       </mdl:GridCell>
+    </mdl:Grid>
+    
+</mdl:TabBarPanel>

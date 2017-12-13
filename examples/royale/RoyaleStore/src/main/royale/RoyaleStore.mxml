@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:js="library://ns.apache.org/royale/basic" 
+                xmlns="*"
+                initialize="startService()"
+			    pageTitle="RoyaleStore">
+	
+	<fx:Script>
+		<![CDATA[	
+            import org.apache.royale.core.ValuesManager;
+            
+            /*
+			private var currentTheme:String = "beige";
+			
+			private function toggleTheme():void
+			{
+				if (currentTheme == "beige")
+				{
+					currentTheme = "blue";
+				}
+				else
+				{
+					currentTheme = "beige";
+				}
+				
+				loadStyle();
+			}
+			*/
+            
+			private function startService():void
+			{
+				productService.send();
+			}
+			
+			private function loadStyle():void
+			{
+                /* load css not implemented yet
+				var eventDispatcher:IEventDispatcher =
+					styleManager.loadStyleDeclarations(currentTheme + ".swf");
+				eventDispatcher.addEventListener(StyleEvent.COMPLETE, completeHandler);
+                */
+			}
+			
+			private function completeHandler(event:Event):void
+			{
+				image.src = ValuesManager.valuesImpl.getValue(acb, "storeLogo");
+                /*
+				super.initialized = true;
+                */
+                callLater.callLater(prebake);
+			}
+			
+            /*
+			override public function set initialized(value:Boolean):void
+			{
+				// Hold off until the Runtime CSS SWF is done loading.
+			}
+            */
+            
+            private var stateChain:Array;
+            
+            private function headHome():void
+            {
+                homeButton.selected = true;
+                if (initialView.currentState == "ProductsState")
+                {
+                    productsButton.selected = false;
+                    stateChain = ["ProductsWipeUp", "HomeWipeDown", "HomeState"];
+                    initialView.currentState = "ProductsWipeUp";
+                }
+                else if (initialView.currentState == "SupportState")
+                {
+                    supportButton.selected = false;
+                    stateChain = ["SupportWipeUp", "HomeWipeDown", "HomeState"];
+                    initialView.currentState = "SupportWipeUp";                    
+                }
+            }
+            
+            private function headToProducts():void
+            {
+                productsButton.selected = true;
+                if (initialView.currentState == "SupportState")
+                {
+                    supportButton.selected = false;
+                    stateChain = ["SupportWipeUp", "ProductsWipeDown", "ProductsState"];
+                    initialView.currentState = "SupportWipeUp";                    
+                }
+                if (initialView.currentState == "HomeState")
+                {
+                    homeButton.selected = false;
+                    stateChain = ["HomeWipeUp", "ProductsWipeDown", "ProductsState"];
+                    initialView.currentState = "HomeWipeUp";                    
+                }
+            }
+            
+            private function headToSupport():void
+            {
+                supportButton.selected = true;
+                if (initialView.currentState == "ProductsState")
+                {
+                    productsButton.selected = false;
+                    stateChain = ["ProductsWipeUp", "SupportWipeDown", "SupportState"];
+                    initialView.currentState = "ProductsWipeUp";                    
+                }
+                if (initialView.currentState == "HomeState")
+                {
+                    homeButton.selected = false;
+                    stateChain = ["HomeWipeUp", "SupportWipeDown", "SupportState"];
+                    initialView.currentState = "HomeWipeUp";                    
+                }
+            }
+            
+            private function prebake():void
+            {
+                callLater.callLater(prebake2);
+            }
+            
+            private function prebake2():void
+            {
+                trace("prebake2");
+                stateChain = ["ProductsPreBake", "HomeState"];
+                initialView.currentState = "ProductsPreBake";
+            }
+                
+            private function chainStatesIfNeeded():void
+            {
+                if (stateChain != null)
+                {
+                    if (initialView.currentState == stateChain[0])
+                    {
+                        callLater.callLater(nextState);
+                    }
+                }
+            }
+            
+            private function nextState():void
+            {
+                stateChain.shift();
+                if (stateChain.length)
+                    initialView.currentState = stateChain[0];
+                else
+                    stateChain = null;
+            }
+		]]>
+	</fx:Script>
+	
+	<fx:Style source="main.css"/>
+    <fx:Style source="beige.css"/>
+	
+    <fx:Declarations>
+        <js:HTTPService id="productService" url="data/catalog.json">
+            <js:LazyCollection id="catalog" complete="if (pView) pView.catalog = catalog">
+                <js:inputParser>
+                    <js:JSONInputParser />
+                </js:inputParser>
+                <js:itemConverter>
+                    <ProductJSONItemConverter />
+                </js:itemConverter> 
+            </js:LazyCollection>
+        </js:HTTPService>        
+    </fx:Declarations>
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </js:valuesImpl>
+	<js:beads>
+        <js:ViewSourceContextMenuOption />
+        <js:CallLaterBead id="callLater" />
+        <js:ApplicationDataBinding />
+    </js:beads>
+    <js:initialView>
+        <js:View	width="990" height="585"
+                        initComplete="completeHandler(null)"
+                        stateChangeComplete="chainStatesIfNeeded()">
+            <js:states>
+                <js:State name="HomeState" stateGroups="['Home']" />
+                <js:State name="HomeWipeUp" stateGroups="['Home']" />
+                <js:State name="HomeWipeDown" stateGroups="['Home']" />
+                <js:State name="ProductsPreBake" stateGroups="['Home', 'Products']" />
+                <js:State name="ProductsState" stateGroups="['Products']" />
+                <js:State name="ProductsWipeUp" stateGroups="['Products']" />
+                <js:State name="ProductsWipeDown" stateGroups="['Products']" />
+                <js:State name="SupportState" stateGroups="['Support']" />
+                <js:State name="SupportWipeUp" stateGroups="['Support']" />
+                <js:State name="SupportWipeDown" stateGroups="['Support']" />
+            </js:states>
+            
+            <js:transitions>
+                <js:Transition fromState="HomeState" toState="HomeWipeUp">
+                    <js:Wipe direction="up" target="homeView" />
+                </js:Transition>
+                <js:Transition fromState="HomeWipeDown" toState="HomeState">
+                    <js:Wipe direction="down" target="homeView" />
+                </js:Transition>
+                <js:Transition fromState="ProductsState" toState="ProductsWipeUp">
+                    <js:Wipe direction="up" target="pView" />
+                </js:Transition>
+                <js:Transition fromState="ProductsWipeDown" toState="ProductsState">
+                    <js:Wipe direction="down" target="pView" />
+                </js:Transition>
+                <js:Transition fromState="SupportState" toState="SupportWipeUp">
+                    <js:Wipe direction="up" target="supportView" />
+                </js:Transition>
+                <js:Transition fromState="SupportWipeDown" toState="SupportState">
+                    <js:Wipe direction="down" target="supportView" />
+                </js:Transition>
+            </js:transitions>
+            <js:beads>
+                <js:VerticalLayout />
+            </js:beads>
+            <js:ControlBar id="acb" width="100%" className="storeControlBar" >
+                <js:beads>
+                    <js:HorizontalLayout />
+                </js:beads>
+                <js:Image id="image" />
+                         <!-- click="toggleTheme()" -->
+                         <!-- toolTip="Change Theme"/ -->
+                <js:ToggleTextButton id="homeButton"
+                                text="Home"
+                                height="100%"
+                                selected="true"
+                                className="storeButtonBar"
+                                click="headHome()" />
+                <js:ToggleTextButton id="productsButton"
+                                text="Products"
+                                height="100%"
+                                className="storeButtonBar"
+                                click="headToProducts()"/>
+                <js:ToggleTextButton id="supportButton"
+                                text="Support"
+                                height="100%"
+                                className="storeButtonBar"
+                                click="headToSupport()"/>            
+            </js:ControlBar>
+            <js:Group width="990" id="viewholder">
+			    <js:beads>
+					<js:BasicLayout />
+			    </js:beads>
+                <js:style>
+                    <js:SimpleCSSStyles paddingLeft="0" paddingRight="0"/>
+                </js:style>
+                        
+                <HomeView id="homeView" width="100%" height="550" includeIn="Home"
+                          />
+                <ProductsView id="pView" includeIn="Products" visible.ProductsPreBake="false"
+                              width="100%" height="550" initComplete="if (catalog.length) pView.catalog = catalog"
+                              />
+                <SupportView id="supportView" includeIn="Support"
+                             width="100%" height="550"
+                             />
+            </js:Group>
+        </js:View>        
+    </js:initialView>    
+</js:Application>

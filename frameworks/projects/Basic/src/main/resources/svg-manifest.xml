@@ -20,13 +20,13 @@
 
 
 <componentPackage>
-    <component id="Circle" class="org.apache.flex.svg.Circle" />
-    <component id="Ellipse" class="org.apache.flex.svg.Ellipse" />
-    <component id="Path" class="org.apache.flex.svg.Path" />
-    <component id="Rect" class="org.apache.flex.svg.Rect" />
-    <component id="CompoundGraphic" class="org.apache.flex.svg.CompoundGraphic" />
-    <component id="GraphicContainer" class="org.apache.flex.svg.GraphicContainer" />
-    <component id="Image" class="org.apache.flex.svg.Image"/>
-    <component id="BinaryImage" class="org.apache.flex.svg.BinaryImage"/>
-    <component id="TextButton" class="org.apache.flex.svg.TextButton"/>
+    <component id="Circle" class="org.apache.royale.svg.Circle" />
+    <component id="Ellipse" class="org.apache.royale.svg.Ellipse" />
+    <component id="Path" class="org.apache.royale.svg.Path" />
+    <component id="Rect" class="org.apache.royale.svg.Rect" />
+    <component id="CompoundGraphic" class="org.apache.royale.svg.CompoundGraphic" />
+    <component id="GraphicContainer" class="org.apache.royale.svg.GraphicContainer" />
+    <component id="Image" class="org.apache.royale.svg.Image"/>
+    <component id="BinaryImage" class="org.apache.royale.svg.BinaryImage"/>
+    <component id="TextButton" class="org.apache.royale.svg.TextButton"/>
 </componentPackage>

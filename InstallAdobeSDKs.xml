@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="InstallAdobeSDKs" default="install" basedir=".">
+
+    <property name="ROYALE_HOME" location="${basedir}"/>
+    
+	<!-- this script supports the usingDownloadCache property and
+	     downloadCacheFolder property to cache downloads in the
+		 folder specified by downloadCacheFolder.  This can make
+		 a huge difference in future runs although there is some
+		 risk around caching bad downloads and/or needing to
+		 clean up the cache -->
+
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>  
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/nightly.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="bundle" value="en_US" />
+    <property file="${ROYALE_HOME}/InstallAdobeSDKs.properties/${bundle}.properties"/>
+    <property file="${ROYALE_HOME}/InstallAdobeSDKs.properties/en_US.properties"/>
+
+    <condition property="platform" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="platform" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="platform" value="linux">
+        <os family="unix" />
+    </condition>
+    <condition property="isMac" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="isLinux" value="linux">
+        <os family="unix" />
+    </condition>
+    <condition property="download.dir" value="${env.HOME}/Downloads">
+        <os family="mac" />
+    </condition>
+    <condition property="download.dir" value="${env.HOMEDRIVE}/${env.HOMEPATH}/Downloads">
+        <os family="windows" />
+    </condition>
+    <property name="temp.dir" value="${basedir}/in" />
+    
+    <target name="install" depends="flash-install,air-install,delete-temp-dir" >
+    </target>
+    
+    <target name="air-sdk-name" description="Determines name of AIR SDK.">
+        <available file="${download.dir}/AdobeAIRSDK.zip" property="air.sdk.name" value="AdobeAIRSDK.zip"/>
+        <available file="${download.dir}/AIRSDK_Compiler.zip" property="air.sdk.name" value="AIRSDK_Compiler.zip"/>
+        <available file="${download.dir}/AdobeAIRSDK.tbz2" property="air.sdk.name" value="AdobeAIRSDK.tbz2"/>
+        <available file="${download.dir}/AdobeAIRSDK.dmg" property="air.sdk.name" value="AdobeAIRSDK.dmg"/>
+        <fail message="${ERROR_ADOBE_AIR_SDK_NOT_FOUND}">
+            <condition>
+                <not>
+                    <isset property="air.sdk.name" />
+                </not>
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="ask-air" >
+        <property name="air.prompt.text" value="Hit any key when download complete" />
+        <input
+        message="${air.prompt.text}" />
+    </target>
+    
+    <target name="air-install" depends="ask-air, air-sdk-name"
+        description="Copies downloaded AIR SDK to correct locations" >
+        <echo>${INFO_USING_AIR} ${air.sdk.name}</echo>
+        
+        <antcall target="air-setup-win" />
+        <antcall target="air-setup-mac-if-mac" />
+        
+    </target>
+
+    <target name="air-setup-win" if="isWindows">
+        <unzip src="${download.dir}/${air.sdk.name}" dest="${temp.dir}/airsdk" />
+        <echo>${INFO_FINISHED_UNZIPPING} ${temp.dir}/${air.sdk.name}</echo>
+        <copy todir="${ROYALE_HOME}" overwrite="true">
+            <fileset dir="${temp.dir}/airsdk">
+                <include name="AIR SDK license.pdf" />
+                <include name="AIR SDK Readme.txt" />
+                <include name="airsdk.xml" />
+                <include name="bin/adl.exe" />
+                <include name="bin/adt.bat" />
+                <include name="frameworks/libs/air/**" />
+                <include name="frameworks/projects/air/**" />
+                <include name="include/**" />
+                <include name="install/android/**" />
+                <include name="lib/adt.jar" />
+                <include name="lib/android/**" />
+                <include name="lib/aot/**" />
+                <include name="lib/nai/**" />
+                <include name="lib/win/**" />
+                <include name="runtimes/**" />
+                <include name="samples/badge/**" />
+                <include name="samples/descriptor-sample.xml" />
+                <include name="samples/icons/**" />
+                <include name="templates/air/**" />
+                <include name="templates/extensions/**" />
+                <include name="templates/sdk/**" />
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="unzipOrMountDMG" description="Check for file extension and decide if we should unzip or mount">
+        
+        <mkdir dir="${temp.dir}/airsdk" />
+        <copy file="${download.dir}/${air.sdk.name}" tofile="${temp.dir}/airsdk/${air.sdk.name}" />
+        
+        <condition property="shouldUnzip" value="true">
+            <matches pattern="tbz2" string="${air.sdk.name}"/>
+        </condition>
+        <echo message="Should unzip: ${shouldUnzip}"/>
+    </target>
+    
+    <target name="unzipAIRSDK" if="shouldUnzip">
+        <echo message="Unzipping"/>
+        
+        <!--The tbz2 contains symlinks which Ant does not preserve
+         <untar compression="bzip2" src="${temp.dir}/${air.sdk.name}" dest="${temp.dir}/airsdk" />-->
+        
+        <exec executable="bunzip2" dir="${temp.dir}/airsdk">
+            <arg value="${air.sdk.name}" />
+        </exec>
+        <echo file="${basedir}/airtar.properties">air.tar.name=${air.sdk.name}</echo>
+        <replace file="${basedir}/airtar.properties" token="tbz2" value="tar" />
+        <property file="${basedir}/airtar.properties" />
+        <exec executable="tar" dir="${temp.dir}/airsdk">
+            <arg value="-xvf" />
+            <arg value="${air.tar.name}" />
+        </exec>
+        <echo>${INFO_FINISHED_UNTARING} ${temp.dir}/airsdk/${air.tar.name}</echo>
+        <delete file="${basedir}/airtar.properties" />
+    </target>
+    
+    <target name="mountAIRSDK" unless="shouldUnzip">
+        <echo message="Mounting dmg"/>
+        <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+            <arg value="attach"/>
+            <arg value="-nobrowse"/>
+            <arg value="${temp.dir}/airsdk/${air.sdk.name}"/>
+        </exec>
+    </target>
+    
+    <target name="copyFromMount" unless="shouldUnzip">
+        <echo message="Copying AIR SDK from mounted volume"/>
+        <exec executable="rsync" dir="${ROYALE_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="/Volumes/AIR SDK/"/>
+            <arg value="${temp.dir}/airsdk" />
+        </exec>
+    </target>
+    
+    <target name="unmountAIRSDK" unless="shouldUnzip">
+        <echo message="Unmounting AIR SDK"/>
+        <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="false">
+            <arg value="unmount"/>
+            <arg value="/Volumes/AIR SDK"/>
+        </exec>
+    </target>
+    
+    <target name="air-setup-mac-if-mac" unless="isWindows">
+        <antcall target="air-setup-mac" />
+    </target>
+    
+    <target name="air-setup-mac" depends="unzipOrMountDMG,unzipAIRSDK,mountAIRSDK,copyFromMount,unmountAIRSDK" unless="isWindows">
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="AIR SDK license.pdf"/>
+            <param name="destdir" value="${ROYALE_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="AIR SDK Readme.txt"/>
+            <param name="destdir" value="${ROYALE_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="airsdk.xml"/>
+            <param name="destdir" value="${ROYALE_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="bin" />
+            <param name="filename" value="adl"/>
+            <param name="destdir" value="${ROYALE_HOME}/bin" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="bin" />
+            <param name="filename" value="adt"/>
+            <param name="destdir" value="${ROYALE_HOME}/bin" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="lib" />
+            <param name="filename" value="adt.jar"/>
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="samples" />
+            <param name="filename" value="descriptor-sample.xml"/>
+            <param name="destdir" value="${ROYALE_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="frameworks/libs/air" />
+            <param name="destdir" value="${ROYALE_HOME}/frameworks/libs" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="frameworks/projects/air" />
+            <param name="destdir" value="${ROYALE_HOME}/frameworks/projects" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="include" />
+            <param name="destdir" value="${ROYALE_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-dir-if-exists">
+            <param name="srcdir" value="install/android" />
+            <param name="destdir" value="${ROYALE_HOME}/install" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/android" />
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/aot" />
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/nai" />
+            <param name="destdir" value="${ROYALE_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="runtimes" />
+            <param name="destdir" value="${ROYALE_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="samples/badge" />
+            <param name="destdir" value="${ROYALE_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="samples/icons" />
+            <param name="destdir" value="${ROYALE_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/air" />
+            <param name="destdir" value="${ROYALE_HOME}/templates" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/extensions" />
+            <param name="destdir" value="${ROYALE_HOME}/templates" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/sdk" />
+            <param name="destdir" value="${ROYALE_HOME}/templates" />
+        </antcall>
+    </target>
+    
+    <target name="mac-copy-file" description="copies a file">
+        <mkdir dir="${destdir}" />
+        <exec executable="cp" dir="${ROYALE_HOME}">
+            <arg value="-p" />
+            <arg value="${temp.dir}/airsdk/${srcdir}/${filename}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
+    
+    <target name="mac-copy-dir" description="copies a directory using exec and rsync so that symbolic links are preserved">
+        <echo file="${basedir}/maccopy.properties">mac.copy.echo=${mac.copy.echo.pattern}</echo>
+        <property file="${basedir}/maccopy.properties" />
+        <delete file="${basedir}/maccopy.properties" />
+        <echo>${mac.copy.echo}</echo>
+        <exec executable="rsync" dir="${ROYALE_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="${temp.dir}/airsdk/${srcdir}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
+
+    <target name="mac-copy-dir-if-exists" depends="mac-check-exists" if="${srcdir}.exists" description="copies a directory using exec and rsync so that symbolic links are preserved">
+        <echo file="${basedir}/maccopy.properties">mac.copy.echo=${mac.copy.echo.pattern}</echo>
+        <property file="${basedir}/maccopy.properties" />
+        <echo>${mac.copy.echo}</echo>
+        <exec executable="rsync" dir="${ROYALE_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="${temp.dir}/airsdk/${srcdir}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
+
+    <target name="mac-check-exists">
+        <available file="${temp.dir}/airsdk/${srcdir}" type="dir" property="${srcdir}.exists" />
+    </target>
+
+    <target name="flash-install"
+        description="Copies downloaded Flash SDK to correct locations" >
+        <property name="flash.prompt.text" value="Hit any key when download complete" />
+        <input
+        message="${flash.prompt.text}" />
+        
+        <pathconvert property="fpversion">
+            <fileset dir="${download.dir}">
+                <include name="playerglobal*.swc"/>
+            </fileset>
+            <regexpmapper from="playerglobal([0-9]*)_([0-9]*)\.swc" to="\1.\2" />
+        </pathconvert>
+        
+        <copy todir="${ROYALE_HOME}/frameworks/libs/player" overwrite="true">
+            <fileset dir="${download.dir}">
+                <include name="playerglobal*.swc" />
+            </fileset>
+            <regexpmapper from="playerglobal([0-9]*)_([0-9]*)\.swc" to="\1.\2/playerglobal.swc" />
+        </copy>
+        
+        <replaceregexp file="${ROYALE_HOME}/royale-sdk-description.xml"
+            match="FP.*AIR"
+            replace="FP${fpversion} AIR" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/flex-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/flex-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/air-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/air-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/airmobile-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/js-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/js-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/node-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/node-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/jquery-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/jquery-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/createjs-config.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+        <replaceregexp file="${ROYALE_HOME}/frameworks/createjs-config-template.xml"
+            match="target-player.*target-player"
+            replace="target-player&gt;${fpversion}&lt;/target-player" />
+            
+        <echo>${INFO_COPIED_FLASH} ${fpversion}</echo>
+        
+    </target>
+    
+	<target name="delete-temp-dir">
+		<delete dir="${temp.dir}"/>
+	</target>
+</project>

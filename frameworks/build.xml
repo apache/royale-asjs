@@ -25,7 +25,7 @@
 -->
 <project name="frameworks" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location=".."/>
+    <property name="ROYALE_HOME" location=".."/>
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -55,22 +55,51 @@
         </and>
     </condition>  
 
-    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${FLEXJS_HOME}" />
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}" />
  
     <target name="main" depends="check-compile-env,clean,prepare,compile,fonts"
         description="Clean build of all SWCs"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
-        <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
+        <ant antfile="${ROYALE_HOME}/build.xml" target="check-compile-env" dir="${ROYALE_HOME}"/>
     </target>
 
-    
+    <target name="check-playerglobal" description="Check for the required environment variables">
+        <condition property="playerglobal.notneeded">
+            <available file="${basedir}/libs/player/${playerglobal.version}/playerglobal.swc" />
+        </condition>
+        <condition property="playerglobal.notneeded">
+            <isset property="env.PLAYERGLOBAL_HOME" />
+        </condition>
+    </target>
+
+    <target name="check-airglobal" description="Check for the required environment variables">
+        <condition property="airglobal.notneeded">
+            <available file="${basedir}/libs/air/airglobal.swc" />
+        </condition>
+        <condition property="airglobal.notneeded">
+            <isset property="env.AIR_HOME" />
+        </condition>
+    </target>
+
+    <target name="fake-playerglobal" description="copy js.swc as playerglobal.swc if needed" depends="check-playerglobal" unless="playerglobal.notneeded">
+        <mkdir dir="${basedir}/libs/player/${playerglobal.version}"/>
+        <copy file="${ROYALE_HOME}/js/libs/js.swc" tofile="${basedir}/libs/player/${playerglobal.version}/playerglobal.swc" />
+    </target>
+
+    <target name="fake-airglobal" description="copy js.swc as airglobal.swc if needed" depends="check-airglobal" unless="airglobal.notneeded">
+        <mkdir dir="${basedir}/libs/air"/>
+        <copy file="${ROYALE_HOME}/js/libs/js.swc" tofile="${basedir}/libs/air/airglobal.swc" />
+    </target>
+
     <target name="prepare" depends="thirdparty-downloads">
-        <mkdir dir="${basedir}/js/FlexJS/libs" />
+        <mkdir dir="${basedir}/js/libs" />
         <mkdir dir="${basedir}/libs" />
+        <antcall target="fake-playerglobal" />
+        <antcall target="fake-airglobal" />
     </target>
 
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
@@ -80,11 +109,13 @@
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
         <antcall target="Language"/>
+        <antcall target="Testing"/>
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
         <antcall target="Basic"/>
+        <antcall target="CoreTest"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
         <antcall target="Flat"/>
@@ -96,10 +127,12 @@
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
-        <antcall target="Network"/>
         <antcall target="Reflection"/>
+        <antcall target="Network"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
+        <antcall target="Text"/>
+        <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
 		<antcall target="FontAwesome"/>
 		<antcall target="Express"/>
@@ -110,7 +143,7 @@
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
-        <!--<ant dir="${basedir}/projects/FlexJSUI" target="other.locales"/>-->
+        <!--<ant dir="${basedir}/projects/RoyaleUI" target="other.locales"/>-->
     </target>
     
     <target name="doc" >
@@ -129,6 +162,7 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
+        <ant dir="${basedir}/projects/Testing" target="clean"/>
         <ant dir="${basedir}/projects/Binding" target="clean"/>
         <ant dir="${basedir}/projects/Charts" target="clean"/>
         <ant dir="${basedir}/projects/Collections" target="clean"/>
@@ -149,10 +183,12 @@
         <ant dir="${basedir}/projects/Language" target="clean"/>
 		<ant dir="${basedir}/projects/MaterialDesignLite" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
-        <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
+        <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
+        <ant dir="${basedir}/projects/Text" target="clean"/>
+        <ant dir="${basedir}/projects/TLF" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
@@ -168,7 +204,7 @@
         </delete>
         <delete dir="${basedir}/libs/generated"/>
         <!-- Delete only if it exists and it is empty.  air and swfobject put dirs here. -->
-        <delete dir="${FLEXJS_HOME}/templates" includeemptydirs="true" failonerror="false">
+        <delete dir="${ROYALE_HOME}/templates" includeemptydirs="true" failonerror="false">
             <exclude name="swfobject/index.template.html" />
             <exclude name="swfobject/expressInstall.swf" />
             <exclude name="swfobject/swfobject.js" />
@@ -177,6 +213,10 @@
         </delete>
     </target>
     
+    <target name="Testing" description="Clean build of Testing.swc">
+        <ant dir="${basedir}/projects/Testing"/>
+    </target>
+
     <target name="Binding" description="Clean build of Binding.swc">
         <ant dir="${basedir}/projects/Binding"/>
     </target>
@@ -187,6 +227,10 @@
 
     <target name="Core" description="Clean build of Core.swc">
         <ant dir="${basedir}/projects/Core"/>
+    </target>
+
+    <target name="CoreTest" description="Test of Core.swc">
+        <ant dir="${basedir}/projects/Core" target="test"/>
     </target>
 
     <target name="Collections" description="Clean build of Collections.swc">
@@ -271,68 +315,36 @@
     <target name="XML" description="Clean build of XML.swc">
         <ant dir="${basedir}/projects/XML"/>
     </target>
+    <target name="Text" description="Clean build of Text.swc">
+        <ant dir="${basedir}/projects/Text"/>
+    </target>
+    <target name="TLF" description="Clean build of TLF.swc">
+        <ant dir="${basedir}/projects/TLF"/>
+    </target>
 
-	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
-		<copy file="${basedir}/flex-config-template.xml" tofile="${basedir}/flex-config.xml" overwrite="true">
-			<filterset>
-				<filter token="playerversion" value="${playerglobal.version}"/>
-				<filter token="swfversion" value="${playerglobal.swfversion}"/>
-				<filter token="locale" value="${locale}"/>
-			</filterset>
-		</copy>
-	</target>
-		
-	<target name="air-config" depends="playerglobal-setswfversion" description="Copy the air config template to air-config.xml and inject version numbers">
-		<copy file="${basedir}/air-config-template.xml" tofile="${basedir}/air-config.xml" overwrite="true">
-			<filterset>
-				<filter token="playerversion" value="${playerglobal.version}"/>
-				<filter token="swfversion" value="${playerglobal.swfversion}"/>
-				<filter token="locale" value="${locale}"/>
-			</filterset>
-		</copy>
-	</target>
-
-    <target name="js-config" depends="playerglobal-setswfversion" description="Copy the js config template to js-config.xml and inject version numbers">
-        <copy file="${basedir}/js-config-template.xml" tofile="${basedir}/js-config.xml" overwrite="true">
+    <target name="create-config" depends="playerglobal-setswfversion" description="Copy the config template and inject version numbers">
+        <copy file="${basedir}/${configname}-config-template.xml" tofile="${basedir}/${configname}-config.xml" overwrite="true">
             <filterset>
                 <filter token="playerversion" value="${playerglobal.version}"/>
                 <filter token="swfversion" value="${playerglobal.swfversion}"/>
                 <filter token="locale" value="${locale}"/>
             </filterset>
         </copy>
+        <antcall target="tweak-for-jsonly" />
     </target>
 
-    <target name="jquery-config" depends="playerglobal-setswfversion" description="Copy the jquery config template to jquery-config.xml and inject version numbers">
-        <copy file="${basedir}/jquery-config-template.xml" tofile="${basedir}/jquery-config.xml" overwrite="true">
-            <filterset>
-                <filter token="playerversion" value="${playerglobal.version}"/>
-                <filter token="swfversion" value="${playerglobal.swfversion}"/>
-                <filter token="locale" value="${locale}"/>
-            </filterset>
-        </copy>
+    <target name="tweak-for-jsonly" unless="env.AIR_HOME">
+        <replace file="${basedir}/${configname}-config.xml"
+            token="{playerglobalHome}" value="libs/player" />
+        <replace file="${basedir}/${configname}-config.xml"
+            token="&lt;path-element&gt;libs&lt;/path-element&gt;"
+            value="&lt;path-element&gt;js/libs&lt;/path-element&gt;" />
+        <replace file="${basedir}/${configname}-config.xml"
+            token="&lt;target&gt;SWF&lt;/target&gt;"
+            value="" />
     </target>
-
-    <target name="createjs-config" depends="playerglobal-setswfversion" description="Copy the createjs config template to createjs-config.xml and inject version numbers">
-        <copy file="${basedir}/createjs-config-template.xml" tofile="${basedir}/createjs-config.xml" overwrite="true">
-            <filterset>
-                <filter token="playerversion" value="${playerglobal.version}"/>
-                <filter token="swfversion" value="${playerglobal.swfversion}"/>
-                <filter token="locale" value="${locale}"/>
-            </filterset>
-        </copy>
-    </target>
-
-    <target name="node-config" depends="playerglobal-setswfversion" description="Copy the node config template to node-config.xml and inject version numbers">
-        <copy file="${basedir}/node-config-template.xml" tofile="${basedir}/node-config.xml" overwrite="true">
-            <filterset>
-                <filter token="playerversion" value="${playerglobal.version}"/>
-                <filter token="swfversion" value="${playerglobal.swfversion}"/>
-                <filter token="locale" value="${locale}"/>
-            </filterset>
-        </copy>
-    </target>
-
-	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the flex config file">
+    
+	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the -config file">
 		<condition property="playerglobal.swfversion" value="11">
 			<equals arg1="${playerglobal.version}" arg2="10.2" />
 		</condition>
@@ -381,6 +393,42 @@
 		<condition property="playerglobal.swfversion" value="26">
 			<equals arg1="${playerglobal.version}" arg2="15.0" />
 		</condition>
-	</target>	
+        <condition property="playerglobal.swfversion" value="27">
+            <equals arg1="${playerglobal.version}" arg2="16.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="28">
+            <equals arg1="${playerglobal.version}" arg2="17.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="29">
+            <equals arg1="${playerglobal.version}" arg2="18.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="30">
+            <equals arg1="${playerglobal.version}" arg2="19.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="31">
+            <equals arg1="${playerglobal.version}" arg2="20.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="32">
+            <equals arg1="${playerglobal.version}" arg2="21.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="33">
+            <equals arg1="${playerglobal.version}" arg2="22.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="34">
+            <equals arg1="${playerglobal.version}" arg2="23.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="35">
+            <equals arg1="${playerglobal.version}" arg2="24.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="36">
+            <equals arg1="${playerglobal.version}" arg2="25.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="37">
+            <equals arg1="${playerglobal.version}" arg2="26.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="38">
+            <equals arg1="${playerglobal.version}" arg2="27.0" />
+        </condition>
+	</target>
 
 </project>

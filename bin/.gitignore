@@ -1,0 +1,22 @@
+
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Files we copy from compiler
+acompc
+acompc.bat
+amxmlc
+amxmlc.bat
+compc
+compc.bat
+fdb
+fdb.bat
+mxmlc
+mxmlc.bat
+optimizer
+optimizer.bat
+swcdepends
+swcdepends.bat
+swfdump
+swfdump.bat

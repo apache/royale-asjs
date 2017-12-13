@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:local="*"
+				xmlns:js="library://ns.apache.org/royale/basic"
+				xmlns:views="views.*" 
+				xmlns:apache="org.apache.royale.html.beads.*"
+				xmlns:html="org.apache.royale.html.*"
+				xmlns:controller="controller.*"
+				initComplete="onInitComplete()" xmlns:models="models.*" >
+	
+	<fx:Style>
+		@namespace js  "library://ns.apache.org/royale/basic";
+		@namespace views  "views.*";
+		
+		js|StackedViewManager {
+			background-color: #FFFFFF;
+		}
+		
+		js|TabbedViewManager {
+			background-color: #FFFFFF;
+		}
+		
+		.StringItemRenderer {
+			padding-left: 4px;
+			padding-top: 2px;
+		}
+		
+		.NavigationBar {
+			background-image: url("assets/background.png");
+			height: 55px;
+			min-height: 55px;
+			flex-grow: 0;
+			IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
+		}
+		
+		.TabBar {
+			height: 40px;
+			vertical-align: middle;
+			line-height: 40px;
+			min-height: 40px;
+			flex-grow: 0;
+		}
+		
+		.BackButton:hover {
+			background-image: url('assets/arrow_left_24.png');
+		}
+		
+		.BackButton:active {
+			background-image: url('assets/arrow_left_24.png');
+		}
+		
+		.BackButton {
+			background-image: url('assets/arrow_left_24.png');
+		}
+		
+		/* Assets
+		*/
+		
+		views|AssetsView {
+			padding: 10px;
+			background-color: aliceblue;
+		}
+		
+		.AssetsInner {
+			padding-top: 5px;
+			background-color: #FFFFFF;
+		}
+		
+		.AssetsViewTitle {
+			flex-grow: 0;
+			height: 30px;
+			min-height: 30px;
+		}
+		
+		.AssetsViewGrid {
+			flex-grow: 0;
+			min-height: 150px;
+			border: solid 1px #333333;
+		}
+		
+		.AssetsViewGrid .midde .DataGridColumnList {
+			border-right: solid 1px #333333;
+			border-left: solid 1px #333333;
+		}
+		
+		.AssetsViewChart {
+			flex-grow: 1;
+		}
+		
+		/* WatchList
+		*/
+		
+		views|WatchListView {
+			padding: 10px;
+			background-color: aliceblue;
+			IBeadController:ClassReference('controller.WatchListController');
+		}
+		
+		.WatchListInputArea {
+			flex-grow: 0;
+			height: 40px;
+			min-height: 40px;
+		}
+		
+		.WatchListDataGrid {
+			flex-grow: 1;
+			backgroundColor: #FFFFFF;
+			border: solid 1px #333333;
+		}
+		
+		.WatchListDataGrid .midde .DataGridColumnList {
+			border-right: solid 1px #333333;
+			border-left: solid 1px #333333;
+		}
+		
+		/* Alerts
+		*/
+		
+		views|AlertsView {
+			padding: 10px;
+			background-color: aliceblue;
+			IBeadController:ClassReference('controller.AlertsViewController');
+		}
+		
+		.AlertsInput {
+			flex-grow: 0;
+			height: 40px;
+			min-height: 40px;
+			backgroundColor: aliceblue;
+		}
+		
+		.AlertsDataGrid {
+			flex-grow: 1;
+			backgroundColor: #FFFFFF;
+			border: solid 1px #333333;
+		}
+		
+		.AlertsDataGrid .midde .DataGridColumnList {
+			border-right: solid 1px #333333;
+			border-left: solid 1px #333333;
+		}
+		
+		/* Supplements
+		 */
+		
+		.redCell {
+			color: #FF0000;
+		}
+		
+		.greenCell {
+			color: #00FF00;
+		}
+		
+		.ViewTitle {
+			font-size: 18pt;
+			font-weight: bold;
+			padding: 10pt;
+		}
+		
+		.StockName {
+			font-size: 14pt;
+			font-weight: normal;
+			padding: 10pt;
+		}
+		
+		.StockDetailArea {
+			padding: 10pt;
+		}
+		
+		.StockLabel {
+			font-size: 18pt;
+			font-weight: normal;
+			color: #2255DD;
+		}
+		
+		.StockRemoveButton {
+			background-color: #FF5522;
+			font-size: 16pt;
+			font-weight: bold;
+			color: #FFFFFF;
+			width: 200px;
+			height: 50px;
+		}
+		
+		.StockRemoveButton:hover {
+			background-color: #DD3300;
+		}
+		
+		.StockValue {
+			font-size: 18pt;
+			font-weight: normal;
+			color: #999999;
+		}
+		
+		@media -royale-swf
+		{
+			.NavigationBar {
+				IBackgroundBead: ClassReference("org.apache.royale.html.beads.BackgroundImageBead");
+			}
+		}
+		
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.core.IBeadController;
+			import org.apache.royale.core.IBeadModel;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.mobile.IViewManagerView;
+			import org.apache.royale.mobile.IViewManager;
+			import org.apache.royale.mobile.chrome.NavigationBar;
+			
+			private function onInitComplete():void
+			{
+				
+			}
+			
+			private function onAssetsNext():void
+			{
+				
+			}
+			
+			private function tabbedViewChanged(event:org.apache.royale.events.Event):void
+			{
+				var manager:IViewManager = event.currentTarget as IViewManager;
+				trace("TabbedViewChanged for "+manager);
+			}
+			
+			private function watchListStackChanged(event:org.apache.royale.events.Event):void
+			{
+				trace("watchlist stack changed");
+//				var manager:StackedViewManager = event.currentTarget as StackedViewManager;
+//				
+//				var currentView:IViewManagerView = manager.selectedView;
+//				backButton.visible = manager.views.length > 1;
+			}
+			
+			private function goBack(event:org.apache.royale.events.MouseEvent):void
+			{
+//				if (navController.selectedIndex == 1) {
+//					watchListStack.pop();
+//				}
+			}
+		]]>
+	</fx:Script>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	
+	<js:TabbedViewManager id="navController" width="100%" height="100%" x="0" y="0" viewChanged="tabbedViewChanged(event)">
+		<js:navigationBarItems>
+			<js:TextButton id="backButton" width="45" height="45" className="BackButton" visible="false" click="goBack(event)">
+				<js:beads>
+					<apache:ImageButtonView />
+				</js:beads>
+			</js:TextButton>
+			<js:Image src="assets/logo.png" width="218" height="55" />
+		</js:navigationBarItems>
+		<js:views>
+			<js:StackedViewManager title="Assets">
+				<js:views>
+					<views:AssetsView id="assetsView" title="Assets" next="onAssetsNext()" />
+				</js:views>
+			</js:StackedViewManager>
+			
+			<js:StackedViewManager id="watchListStack" title="Watch List" viewChanged="watchListStackChanged(event)">
+				<js:views>
+					<views:WatchListView id="watchListView" dataModel="{applicationModel}"/>
+				</js:views>
+			</js:StackedViewManager>
+			
+			<views:AlertsView id="alertsView" title="Alerts" dataModel="{applicationModel}" />
+		</js:views>
+	</js:TabbedViewManager>
+	
+</js:View>

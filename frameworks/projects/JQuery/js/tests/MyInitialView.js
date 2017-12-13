@@ -14,36 +14,36 @@
 
 goog.provide('MyInitialView');
 
-goog.require('org.apache.flex.FlexGlobal');
+goog.require('org.apache.royale.FlexGlobal');
 
-goog.require('org.apache.flex.core.ViewBase');
-goog.require('org.apache.flex.html.Label');
-goog.require('org.apache.flex.html.TextButton');
+goog.require('org.apache.royale.core.ViewBase');
+goog.require('org.apache.royale.html.Label');
+goog.require('org.apache.royale.html.TextButton');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.ViewBase}
+ * @extends {org.apache.royale.core.ViewBase}
  */
 MyInitialView = function() {
-    org.apache.flex.core.ViewBase.call(this);
+    org.apache.royale.core.ViewBase.call(this);
 };
-goog.inherits(MyInitialView, org.apache.flex.core.ViewBase);
+goog.inherits(MyInitialView, org.apache.royale.core.ViewBase);
 
 /**
  * @override
- * @this {org.apache.flex.core.ViewBase}
+ * @this {org.apache.royale.core.ViewBase}
  * @return {Array} The array of UI element descriptors.
  */
 MyInitialView.prototype.get_uiDescriptors = function() {
     return [
-        org.apache.flex.html.Label,
+        org.apache.royale.html.Label,
             null,
             'lbl',
             2, 'x', 100, 'y', 25,
             0,
             0,
             1, 'text', 0, 'model', 'labelText', 'labelTextChanged',
-        org.apache.flex.html.TextButton,
+        org.apache.royale.html.TextButton,
             null,
             null,
             3, 'text', 'OK', 'x', 100, 'y', 75,
@@ -59,7 +59,7 @@ MyInitialView.prototype.get_uiDescriptors = function() {
 MyInitialView.prototype.clickHandler = function(event) {
     this.dispatchEvent(
         /** @type {flash.events.Event} */ (
-            org.apache.flex.FlexGlobal.newObject(
+            org.apache.royale.FlexGlobal.newObject(
                 flash.events.Event, ['buttonClicked']
             )
         )

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<Graphic version="2.0" ATE:version="1.0.0" flm:version="1.0.0" d:using="" 
+	xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" 
+	xmlns:flm="http://ns.adobe.com/flame/2008"
+	xmlns:afx="http://ns.apache.org/flex/2012" afx:className="org.apache.flex.css2.DragMove" afx:baseClassName="flash.display.Sprite" >
+  <Library>
+    <Definition name="Drag_Cursors_Elements_Cursor" flm:originalName="Drag Cursors/Elements/Cursor">
+      <Group>
+        <Group d:type="layer" d:userLabel="Layer 1">
+          <Path data="M265.85 158 264.85 158 264.85 157 263.85 157 263.85 168 264.85 168 264.85 169 263.85 169 263.85 170 262.85 170 262.85 155 263.85 155 263.85 156 264.85 156 264.85 157 265.85 157 265.85 158 266.85 158 266.85 159 267.85 159 267.85 160 266.85 160
+ 266.85 159 265.85 159 265.85 158M269.85 162 268.85 162 268.85 161 267.85 161 267.85 160 268.85 160 268.85 161 269.85 161 269.85 162 270.85 162 270.85 163 271.85 163 271.85 164 270.85 164 270.85 163 269.85 163 269.85 162M266.85 167 265.85 167
+ 265.85 168 264.85 168 264.85 167 265.85 167 265.85 166 266.85 166 266.85 167 267.85 167 267.85 169 268.85 169 268.85 171 270.85 171 270.85 169 269.85 169 269.85 167 268.85 167 268.85 165 271.85 165 271.85 164 272.85 164 272.85 165 273.85 165
+ 273.85 166 269.85 166 269.85 167 270.85 167 270.85 169 271.85 169 271.85 172 268.85 172 268.85 171 267.85 171 267.85 169 266.85 169 266.85 167">
+            <fill>
+              <SolidColor color="#FFFFFF"/>
+            </fill>
+          </Path>
+          <Path data="M270.85 169 270.85 171 268.85 171 268.85 169 267.85 169 267.85 167 266.85 167 266.85 166 265.85 166 265.85 167 264.85 167 264.85 168 263.85 168 263.85 157 264.85 157 264.85 158 265.85 158 265.85 159 266.85 159 266.85 160 267.85 160 267.85 161
+ 268.85 161 268.85 162 269.85 162 269.85 163 270.85 163 270.85 164 271.85 164 271.85 165 268.85 165 268.85 167 269.85 167 269.85 169 270.85 169">
+            <fill>
+              <SolidColor/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Definition>
+  </Library>
+          <Drag_Cursors_Elements_Cursor x="-263.85" y="-157"/>
+  <Private/>
+</Graphic>

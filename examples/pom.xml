@@ -17,22 +17,21 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-framework-parent</artifactId>
-    <version>0.8.0</version>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale.framework-parent</artifactId>
+    <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.apache.flex.flexjs.examples</groupId>
+  <groupId>org.apache.royale.examples</groupId>
   <artifactId>examples</artifactId>
-  <version>0.8.0</version>
+  <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Examples</name>
+  <name>Apache Royale: Examples</name>
 
   <properties>
     <compiler.output-dir>${basedir}/target/javascript/bin/js-debug</compiler.output-dir>
@@ -40,15 +39,16 @@
 
   <modules>
     <module>express</module>
-    <module>flexjs</module>
+    <module>royale</module>
     <module>native</module>
+    <module>node</module>
 
     <module>examples-tests</module>
     <module>examples-integrationtests</module>
   </modules>
 
   <build>
-    <sourceDirectory>src/main/flex</sourceDirectory>
+    <sourceDirectory>src/main/royale</sourceDirectory>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
@@ -67,9 +67,9 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.flex.flexjs.compiler</groupId>
-          <artifactId>flexjs-maven-plugin</artifactId>
-          <version>${flexjs.compiler.version}</version>
+          <groupId>org.apache.royale.compiler</groupId>
+          <artifactId>royale-maven-plugin</artifactId>
+          <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
         </plugin>
         <plugin>
@@ -88,7 +88,7 @@
         <configuration>
           <ignorePackaging>true</ignorePackaging>
           <port>8081</port>
-          <warSourceDirectory>${build.directory}/${artifactId}-${version}</warSourceDirectory>
+          <warSourceDirectory>${project.build.directory}/${project.artifactId}-${project.version}</warSourceDirectory>
         </configuration>
       </plugin>
     </plugins>

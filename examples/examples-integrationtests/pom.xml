@@ -17,22 +17,20 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>examples-integrationtests</artifactId>
-  <version>0.8.0</version>
+  <version>0.9.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: Integrationtests</name>
+  <name>Apache Royale: Examples: Integrationtests</name>
 
   <properties>
     <tomcat.version>8.5.13</tomcat.version>
@@ -109,127 +107,127 @@
               </configuration>
               <deployables>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>ASDoc</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>ChartExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>CreateJSExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>DataBindingExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>DataBindingExample_as</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>DataBindingExample_Flat</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>DataGridExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>DateControlsExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>DesktopMap</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
-                  <artifactId>FlexJSStore</artifactId>
+                  <groupId>org.apache.royale.examples</groupId>
+                  <artifactId>RoyaleStore</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
-                  <artifactId>FlexJSStore_jquery</artifactId>
+                  <groupId>org.apache.royale.examples</groupId>
+                  <artifactId>RoyaleStore_jquery</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
-                  <artifactId>FlexTeamPage_MDL</artifactId>
+                  <groupId>org.apache.royale.examples</groupId>
+                  <artifactId>RoyaleTeamPage_MDL</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
-                  <artifactId>FlexWebsiteStatsViewer</artifactId>
+                  <groupId>org.apache.royale.examples</groupId>
+                  <artifactId>RoyaleWebsiteStatsViewer</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>HelloWorld</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>ListExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>MapSearch</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>MDLExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>MobileMap</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>MobileStocks</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>MobileTrader</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>StorageExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>StyleExample</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>TeamPage</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>TodoListSampleApp</artifactId>
                   <type>war</type>
                 </deployable>
                 <deployable>
-                  <groupId>org.apache.flex.flexjs.examples</groupId>
+                  <groupId>org.apache.royale.examples</groupId>
                   <artifactId>TreeExample</artifactId>
                   <type>war</type>
                 </deployable>
@@ -244,153 +242,153 @@
   <dependencies>
     <!-- Applications we want to deploy -->
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>ASDoc</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>ChartExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>CreateJSExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataBindingExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataBindingExample_as</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataBindingExample_Flat</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataGridExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>DateControlsExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>DesktopMap</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
-      <artifactId>FlexJSStore</artifactId>
-      <version>0.8.0</version>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RoyaleStore</artifactId>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
-      <artifactId>FlexJSStore_jquery</artifactId>
-      <version>0.8.0</version>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RoyaleStore_jquery</artifactId>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
-      <artifactId>FlexTeamPage_MDL</artifactId>
-      <version>0.8.0</version>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RoyaleTeamPage_MDL</artifactId>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
-      <artifactId>FlexWebsiteStatsViewer</artifactId>
-      <version>0.8.0</version>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RoyaleWebsiteStatsViewer</artifactId>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>HelloWorld</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>ListExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>MapSearch</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>MDLExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>MobileMap</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>MobileStocks</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>MobileTrader</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>StorageExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>StyleExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>TeamPage</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>TodoListSampleApp</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <groupId>org.apache.royale.examples</groupId>
       <artifactId>TreeExample</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
 

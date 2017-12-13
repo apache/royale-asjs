@@ -21,13 +21,13 @@
 
 <componentPackage>
 
-    <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
-    <component id="ItemRendererSimpleBinding" class="org.apache.flex.binding.ItemRendererSimpleBinding"/>
-    <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
-    <component id="ViewDataBinding" class="org.apache.flex.binding.ViewDataBinding"/>
-    <component id="MXMLBeadViewDataBinding" class="org.apache.flex.binding.MXMLBeadViewDataBinding"/>
-    <component id="ApplicationDataBinding" class="org.apache.flex.binding.ApplicationDataBinding"/>
-    <component id="ContainerDataBinding" class="org.apache.flex.binding.ContainerDataBinding"/>
-    <component id="ItemRendererDataBinding" class="org.apache.flex.binding.ItemRendererDataBinding"/>
+    <component id="ConstantBinding" class="org.apache.royale.binding.ConstantBinding"/>
+    <component id="ItemRendererSimpleBinding" class="org.apache.royale.binding.ItemRendererSimpleBinding"/>
+    <component id="SimpleBinding" class="org.apache.royale.binding.SimpleBinding"/>
+    <component id="ViewDataBinding" class="org.apache.royale.binding.ViewDataBinding"/>
+    <component id="MXMLBeadViewDataBinding" class="org.apache.royale.binding.MXMLBeadViewDataBinding"/>
+    <component id="ApplicationDataBinding" class="org.apache.royale.binding.ApplicationDataBinding"/>
+    <component id="ContainerDataBinding" class="org.apache.royale.binding.ContainerDataBinding"/>
+    <component id="ItemRendererDataBinding" class="org.apache.royale.binding.ItemRendererDataBinding"/>
 
 </componentPackage>

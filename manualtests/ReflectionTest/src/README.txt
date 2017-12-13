@@ -19,10 +19,10 @@
 
 DESCRIPTION
 
-The FormExample application demonstrates several FlexJS components and how they
+The FormExample application demonstrates several Royale components and how they
 can be aligned in a column, much like you would see in a form. 
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using the Royale Compiler)
 into JavaScript and HTML and run without Flash.
 
 The components are placed into a Container with a VerticalColumnLayout bead. This bead
@@ -42,4 +42,4 @@ COMPONENTS and BEADS
 NOTES
 
 The cross-compilation to JavaScript often results in non-fatal warnings. Some of these warnings
-should be addressed in future releases of the Falcon JX compiler.
+should be addressed in future releases of the the Royale Compiler compiler.
