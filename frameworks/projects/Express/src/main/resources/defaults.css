@@ -72,6 +72,31 @@ Container
 	background-color: #FFFFFF;
 }
 
+HSlider
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.SliderView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
+	position: relative;
+}
+
+VSlider
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.SliderView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalSliderLayout");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.VSliderMouseController");
+	position: relative;
+}
+
+.SliderTrack {
+	position: absolute;
+}
+.SliderThumb {
+	position: absolute;
+}
+
 TextInput
 {
 	border: 1px solid #808080;
