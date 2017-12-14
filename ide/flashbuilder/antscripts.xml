@@ -43,7 +43,8 @@
         <os family="windows" />
     </condition>
     <property name="ASJSC" value="asjsc" />
-
+    <property file="src.properties" />
+    
     <condition property="java.home" value="${env.JAVA_HOME}" >
         <and>
             <available file="${env.JAVA_HOME}" type="dir" />
@@ -68,6 +69,7 @@
     <target name="convert_project" depends="check_params, cutpath"  description="Replaces the files in a new Royale project folder with a basic Royale project">
         <copy file="${basedir}/../../examples/royale/HelloWorld/src/main/royale/HelloWorld.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
         <antcall target="makeAIRvisible" />
+        <antcall target="addSourceAttachments" />
     </target>
 
     <target name="convert_project_mvc" depends="check_params, cutpath"  description="Replaces the files in a new Royale project folder with a basic Royale MVC project">
@@ -80,6 +82,7 @@
         <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/royale/controllers/MyController.as" tofile="${projectDir}/src/controllers/MyController.as" overwrite="true" />
         <replace file="${projectDir}/src/controllers/MyController.as" token="DataBindingExample" value="${projectName}" />
         <antcall target="makeAIRvisible" />
+        <antcall target="addSourceAttachments" />
     </target>
 
     <target name="cutpath" >
@@ -97,6 +100,22 @@
     </target>
     <target name="replaceVisibleInAppXML" if="isAIR">
         <replace file="${projectDir}/src/${projectName}-app.xml" token="&lt;visible&gt;false&lt;/visible&gt;" value="&lt;visible&gt;true&lt;/visible&gt;" />
+    </target>
+    
+    <target name="addSourceAttachments">
+        <available file="${basedir}/../../frameworks/libs/Core.swc"
+            property="hasSWCSupport" />
+        <antcall target="addSWFSourceAttachments" />
+        <antcall target="addJSSourceAttachments" />
+    </target>
+    
+    <target name="addSWFSourceAttachments" if="hasSWCSupport">
+        <replace file="${projectDir}/.actionScriptProperties" token="&lt;sourceAttachmentPath/&gt;"
+            value="${SWFSourceAttachments}" />
+    </target>
+    <target name="addJSSourceAttachments" unless="hasSWCSupport">
+        <replace file="${projectDir}/.actionScriptProperties" token="&lt;sourceAttachmentPath/&gt;"
+            value="${JSSourceAttachments}" />
     </target>
     
     <target name="setup" depends="setup-windows" description="Custom Flash Builder launch configurations">

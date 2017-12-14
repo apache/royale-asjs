@@ -802,7 +802,8 @@ Slider
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
     iBeadView:  ClassReference("org.apache.royale.html.beads.SliderView");
-    iBeadController: ClassReference("org.apache.royale.html.beads.controllers.SliderMouseController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
+    iBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
     iThumbView: ClassReference("org.apache.royale.html.beads.SliderThumbView");
     iTrackView: ClassReference("org.apache.royale.html.beads.SliderTrackView");
 }
