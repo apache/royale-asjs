@@ -279,9 +279,7 @@ package org.apache.royale.html.beads.controllers
 		private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
 		{
 			var deltaY:Number = (useOffset ? event.offsetY : event.clientY) - mouseOrigin;
-			var thumbH:int = parseInt(thumb.element.style.height, 10) / 2;
-			var newY:Number = thumbOrigin + deltaY;
-			var newPointY:Number = newY + thumbH; // center of the thumb which represents the value
+			var newPointY:Number = thumbOrigin + deltaY;
 			
 			var useHeight:Number = parseInt(track.element.style.height,10) * 1.0;
 			var p:Number = newPointY / useHeight;
