@@ -29,15 +29,14 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 
 	/**
-	 * Handles the removal of all itemRenderers once the all items has been removed
-	 * from the IDataProviderModel.
+	 * Handles the removal of all itemRenderers once data source is being set to null.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.0
 	 */
-	public class DynamicRemoveAllItemRendererForArrayListData implements IBead
+	public class DynamicRemoveAllByNullItemRendererForArrayListData implements IBead
 	{
 		/**
 		 * Constructor
@@ -47,7 +46,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
 		 */
-		public function DynamicRemoveAllItemRendererForArrayListData()
+		public function DynamicRemoveAllByNullItemRendererForArrayListData()
 		{
 		}
 
@@ -92,32 +91,19 @@ package org.apache.royale.html.beads
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+
 			if (!dp)
-				return;
-			
-			// listen for all items being removed in the future.
-			dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
-		}
+            {
+                if (dataProviderModel is ISelectionModel)
+                {
+                    var model:ISelectionModel = dataProviderModel as ISelectionModel;
+                    model.selectedIndex = -1;
+                    model.selectedItem = null;
+                }
 
-		/**
-		 * Handles the itemRemoved event by removing the item.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-		 */
-		protected function handleAllItemsRemoved(event:CollectionEvent):void
-		{
-			if (dataProviderModel is ISelectionModel)
-			{
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-				model.selectedItem = null;
-			}
-
-			itemRendererParent.removeAllItemRenderers();
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+                itemRendererParent.removeAllItemRenderers();
+                (_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+            }
 		}
 
 		private var _dataProviderModel: IDataProviderModel;
