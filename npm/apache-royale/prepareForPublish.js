@@ -17,10 +17,21 @@
  *
  */
 
-//Define all constants here
-module.exports =
-{
-    DOWNLOADS_FOLDER : './downloads/',
-    ROYALE_FOLDER: './',
-    NODE_MODULES_FOLDER: './node_modules/'
-};
+var pjson = require('./package.json');
+var request = require('request');
+var fs = require('fs');
+
+var royaleDownloadURL = pjson.org_apache_royale.royale_binary_url;
+var royaleFileName = pjson.org_apache_royale.royale_binary_file_name;
+
+downloadApacheRoyale();
+
+function downloadApacheRoyale() {
+    request
+        .get(royaleDownloadURL + royaleFileName)
+        .pipe(fs.createWriteStream(royaleFileName)
+            .on('close', function(){
+                console.log('Apache Royale download complete');
+            })
+        );
+}
