@@ -913,7 +913,7 @@
             </fileset>
         </replace>
         <!-- replace npm descriptor with js-only descriptor -->
-        <copy file="${basedir}/npm/package.json" todir="${basedir}/temp" overwrite="true"/>
+        <copy file="${basedir}/npm/apache-royale/package.json" todir="${basedir}/temp" overwrite="true"/>
         <zip destfile="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" basedir="${basedir}/temp"/>
         <tar-gzip name="apache-royale-jsonly-${release.version}-bin" />
     </target>
