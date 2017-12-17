@@ -114,6 +114,7 @@
      -->
 
     <component id="GetScrollbarWidth" class="org.apache.royale.html.beads.GetScrollbarWidth"/>
+    <component id="ThrottleBead" class="org.apache.royale.html.beads.ThrottleBead"/>
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
