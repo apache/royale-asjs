@@ -18,19 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.ClassFactory;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
-	import org.apache.royale.html.Container;
+	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
@@ -271,7 +274,8 @@ package org.apache.royale.html.beads
 				for (var i:int=0; i < sharedModel.columns.length; i++) {
 					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 
-					var list:DataGridColumnList = new DataGridColumnList();
+					//var list:DataGridColumnList = new DataGridColumnList();
+					var list:List = dataGridColumn.createList() as List;
 					list.id = "dataGridColumn"+String(i);
 					list.dataProvider = sharedModel.dataProvider;
 					list.itemRenderer = dataGridColumn.itemRenderer;
@@ -280,11 +284,11 @@ package org.apache.royale.html.beads
 					list.addBead(presentationModel);
 
 					if (i == 0) {
-						list.className = "first";
+						list.typeNames = "first";
 					} else if (i == sharedModel.columns.length-1) {
-						list.className = "last";
+						list.typeNames = "last";
 					} else {
-						list.className = "middle";
+						list.typeNames = "middle";
 					}
 
 					_listArea.addElement(list);

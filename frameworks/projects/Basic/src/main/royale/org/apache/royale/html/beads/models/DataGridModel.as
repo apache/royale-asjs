@@ -31,7 +31,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridModel extends ArrayListSelectionModel implements IDataGridModel
+	public class DataGridModel extends SingleSelectionCollectionViewModel implements IDataGridModel
 	{
 		/**
 		 *  constructor.

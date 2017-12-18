@@ -16,51 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.beads.models
 {
-//	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
 	import org.apache.royale.collections.TreeData;
-	import org.apache.royale.html.beads.models.TreeModel;
 
 	/**
-	 *  The Tree component displays structured data. The Tree uses a HierarchicalData
-	 *  object as its data provider. 
-	 * 
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 * The TreeModel is used by Tree
 	 */
-	public class Tree extends List
+	public class TreeModel extends SingleSelectionCollectionViewModel
 	{
-		/**
-		 * Constructor.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function Tree()
+		public function TreeModel()
 		{
 			super();
 		}
 		
+		private var _hierarchicalData: HierarchicalData;
+		
 		/**
-		 * The dataProvider for a Tree is TreeData which is created
-		 * from HierarchicalData. You can set the dataProvider with
-		 * TreeData or HierarchicalData and it will create a TreeData
-		 * from that.
+		 * Setting the hierarchicalData in this model is a convenience. The actual
+		 * dataProvider is TreeData; this will create that and set it as the
+		 * dataProvider. THIS COULD BE REMOVED AS NOTHING SHOULD BE SETTING THIS PROPERTY.
 		 */
-		override public function set dataProvider(value:Object):void
+		public function set hierarchicalData(value:HierarchicalData):void
 		{
-			if (value is HierarchicalData) {
-				var treeData:TreeData = new TreeData(value as HierarchicalData);
-				super.dataProvider = treeData;
-			} else {
-				super.dataProvider = value;
-			}
+			_hierarchicalData = value;
+			var treeData:TreeData = new TreeData(_hierarchicalData);
+			dataProvider = treeData;
+		}
+		public function get hierarchicalData():HierarchicalData
+		{
+			return _hierarchicalData;
 		}
 	}
 }

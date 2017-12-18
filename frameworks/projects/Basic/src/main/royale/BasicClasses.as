@@ -104,6 +104,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.AlertModel; AlertModel;
 	import org.apache.royale.html.beads.models.ArraySelectionModel; ArraySelectionModel;
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
+	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
+	import org.apache.royale.html.beads.models.TreeModel; TreeModel;
     import org.apache.royale.html.beads.models.RangeModel; RangeModel;
     import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
 	import org.apache.royale.html.beads.models.ComboBoxModel; ComboBoxModel;
@@ -169,6 +171,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.DynamicRemoveItemRendererForArrayListData; DynamicRemoveItemRendererForArrayListData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
+	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView; DataItemRendererFactoryForCollectionView;
 	import org.apache.royale.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.royale.html.supportClasses.Viewport; Viewport;
 	import org.apache.royale.html.supportClasses.ScrollingViewport; ScrollingViewport;

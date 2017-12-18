@@ -90,7 +90,7 @@ package org.apache.royale.collections
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ArrayList extends EventDispatcher implements IBead, ICollection, IArrayList
+	public class ArrayList extends EventDispatcher implements IBead, ICollectionView, IArrayList
 	{
         /**
          *  Constructor.

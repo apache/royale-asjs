@@ -16,24 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.royale.collections
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class CollectionsClasses
-{
-    import org.apache.royale.collections.ArrayList; ArrayList;
-	import org.apache.royale.collections.FlattenedList; FlattenedList;
-	import org.apache.royale.collections.HierarchicalData; HierarchicalData;
-	import org.apache.royale.collections.LazyCollection; LazyCollection;
-	import org.apache.royale.collections.Collection; Collection;
-	import org.apache.royale.collections.TreeData; TreeData;
+	/**
+	 * The ICollectionView interface is implemented by classes that provide
+	 * collection data.
+	 */
+	public interface ICollectionView extends ICollection
+	{
+		function get length():int;
+		function getItemIndex(item:Object):int;
+		function addItem(item:Object):void;
+		function addItemAt(item:Object, index:int):void;
+		function setItemAt(item:Object, index:int):Object;
+		function removeItem(item:Object):Boolean;
+		function removeItemAt(index:int):Object;
+		function removeAll():void;
+		function itemUpdated(item:Object):void;
+		function itemUpdatedAt(index:int):void;
+	}
 }
-
-}
-

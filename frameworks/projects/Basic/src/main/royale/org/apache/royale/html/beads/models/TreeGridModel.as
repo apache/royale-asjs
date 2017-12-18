@@ -21,19 +21,21 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.ObjectMap;
 
 	/**
 	 * The data model for the TreeGrid. This contains the list of TreeGridColumn
-	 * definitions, the HierarchicalData used to populate the TreeGrid, and
-	 * the FlattendList of the HD which is actually displayed.
+	 * definitions.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class TreeGridModel extends ArrayListSelectionModel
+	public class TreeGridModel extends TreeModel implements IDataGridModel
 	{
 		/**
 		 * Constructor.
@@ -67,33 +69,35 @@ package org.apache.royale.html.beads.models
 			_columns = value;
 		}
 		
-		private var _hierarchicalData:HierarchicalData;
+		// IDataGridModel
+		
+		private var _headerModel:IBeadModel;
 		
 		/**
-		 * @private
+		 * The model to use for the DataGrid's header.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
 		 */
-		override public function get dataProvider():Object
+		public function get headerModel():IBeadModel
 		{
-			return _hierarchicalData;
+			return _headerModel;
 		}
-		override public function set dataProvider(value:Object):void
+		public function set headerModel(value:IBeadModel):void
 		{
-			if (value == _hierarchicalData) return;
-			
-			_hierarchicalData = value as HierarchicalData;
-			
-			_flatList = new FlattenedList(_hierarchicalData);
-			super.dataProvider = _flatList;
+			if (_headerModel != value) {
+				_headerModel = value;
+				dispatchEvent(new Event("headerModelChanged"));
+				
+				_headerModel.addEventListener("dataProviderChanged", handleHeaderModelChange);
+			}
 		}
 		
-		private var _flatList:FlattenedList;
-		
-		/**
-		 * @private
-		 */
-		public function get flatList():FlattenedList
+		private function handleHeaderModelChange(event:Event):void
 		{
-			return _flatList;
+			dispatchEvent(new Event("headerModelChanged"));
 		}
 	}
 }

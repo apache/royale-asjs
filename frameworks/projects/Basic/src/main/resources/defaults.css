@@ -194,7 +194,7 @@ DataGridColumnList {
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayList");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
@@ -403,7 +403,7 @@ TableCell
 
 Tree
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListSelectionModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
@@ -419,9 +419,11 @@ Tree
 TreeGrid
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeGridModel");
+}
+/*
 	IBeadView: ClassReference("org.apache.royale.html.beads.TreeGridView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.TreeGridLayout");
-}
+	*/
 
 .TreeGridContentArea .List {
 	display: inline-block;

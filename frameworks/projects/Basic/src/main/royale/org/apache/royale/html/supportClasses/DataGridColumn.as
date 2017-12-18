@@ -19,6 +19,7 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.UIBase;
 
 	/**
 	 *  The DataGridColumn class is the collection of properties that describe
@@ -64,6 +65,16 @@ package org.apache.royale.html.supportClasses
 		public function set itemRenderer(value:IFactory):void
 		{
 			_itemRenderer = value;
+		}
+		
+		private var _columnClass:IFactory;
+		public function get columnClass():IFactory
+		{
+			return _columnClass;
+		}
+		public function set columnClass(value:IFactory):void
+		{
+			_columnClass = value;
 		}
 		
 		private var _columnWidth:Number = Number.NaN;
@@ -122,6 +133,11 @@ package org.apache.royale.html.supportClasses
 		public function set dataField(value:String):void
 		{
 			_dataField = value;
+		}
+		
+		public function createList():UIBase
+		{
+			return new DataGridColumnList();
 		}
 	}
 }
