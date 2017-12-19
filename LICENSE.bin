@@ -11,7 +11,7 @@ This product bundles SWFObject under the MIT License.  For details see
 royale-asjs/templates/swfobject/swfobject.js
 
 
-flex-typedefs/js/target/downloads/svg.js
+royale-typedefs/js/target/downloads/svg.js
 
 This product bundles svg.js from closureidl.googlecode.com available 
 under the BSD 3-Clause license.

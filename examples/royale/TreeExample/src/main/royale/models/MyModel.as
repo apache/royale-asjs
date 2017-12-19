@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
+	import org.apache.royale.collections.HierarchicalData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.collections.HierarchicalData;
 
 	public class MyModel extends EventDispatcher
 	{
@@ -28,6 +28,9 @@ package models
 		{
 			treeData = new HierarchicalData(store);
 			treeData.childrenField = "children";
+			
+			gridData = new HierarchicalData(process);
+			gridData.childrenField = "children";
 		}
 
 		public var treeData:HierarchicalData;
@@ -67,6 +70,20 @@ package models
         						]}
         				]}
         		]};
+		
+		public var gridData:HierarchicalData;
+		
+		private var process:Object = {title:"Projects",
+									  children:[
+										  {title:"Layout Branch", status:"in progress", hours:120, children:[
+											  {title:"Accordion", status:"finalized", hours:42},
+											  {title:"Multiview", status:"finalized", hours:34}
+										  ]},
+										  {title:"Data branch", status:"in progress", hours:150, children:[
+											  {title:"List", status:"finalized", hours:50}
+										  ]},
+										  {title:"Calendar", status:"planning", hours:0}
+									  ]};
 
 	}
 }

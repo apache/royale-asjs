@@ -23,7 +23,6 @@ package org.apache.royale.html
 
     COMPILE::JS
     {
-        import org.apache.royale.html.beads.controllers.SliderMouseController;
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }

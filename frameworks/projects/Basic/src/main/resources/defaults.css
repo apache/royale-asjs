@@ -416,6 +416,17 @@ Tree
 	border-color: #222222;
 }
 
+TreeGrid
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeGridModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.TreeGridView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.TreeGridLayout");
+}
+
+.TreeGridContentArea .List {
+	display: inline-block;
+}
+
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
@@ -471,8 +482,16 @@ SimpleList
 Slider
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
-	iBeadView:  ClassReference("org.apache.royale.html.beads.SliderView");
-	iBeadController: ClassReference("org.apache.royale.html.beads.controllers.SliderMouseController");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.SliderView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
+	position: relative;
+}
+.SliderTrack {
+	position: absolute;
+}
+.SliderThumb {
+	position: absolute;
 }
 
 Spinner

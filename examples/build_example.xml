@@ -158,7 +158,7 @@
         <antcall target="build_example.wrapper" />
         
         <antcall target="build_example.copy-resources" />
-        <copy todir="${basedir}/bin-debug/fonts">
+        <copy todir="${basedir}/bin-debug/fonts" failonerror="false">
             <fileset dir="${ROYALE_HOME}/frameworks/fonts">
                 <include name="**/*.swf" />
             </fileset>

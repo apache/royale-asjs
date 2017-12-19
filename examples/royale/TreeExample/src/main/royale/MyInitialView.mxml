@@ -19,6 +19,16 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/royale/basic">
+	
+	<fx:Style>
+		@namespace js "library://ns.apache.org/royale/basic";
+		
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+		]]>
+	</fx:Script>
     
     <js:beads>
         <js:ViewDataBinding />
@@ -29,9 +39,23 @@ limitations under the License.
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
-				sourcePropertyName="treeData"
+				sourcePropertyName="gridData"
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 	</js:Tree>
+	
+	<js:TreeGrid id="treeGrid" x="450" y="30" width="400" height="300">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="gridData"
+				destinationPropertyName="dataProvider" />
+		</js:beads>
+		<js:columns>
+			<js:TreeGridColumn dataField="title" label="Title" columnWidth="200" />
+			<js:TreeGridColumn dataField="status" label="Status" columnWidth="125" />
+			<js:TreeGridColumn dataField="hours" label="Hours" columnWidth="75" />
+		</js:columns>
+	</js:TreeGrid>
 
 </js:View>

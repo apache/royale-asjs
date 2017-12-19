@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
+	import org.apache.royale.collections.parsers.JSONInputParser;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IRangeModel;
@@ -42,17 +43,18 @@ package org.apache.royale.html.beads.controllers
     }
 	
 	/**
-	 *  The SliderMouseController class bead handles mouse events on the 
+	 *  The HSliderMouseController class bead handles mouse events on the 
 	 *  org.apache.royale.html.Slider's component parts (thumb and track) and 
 	 *  dispatches change events on behalf of the Slider (as well as co-ordinating visual 
-	 *  changes (such as moving the thumb when the track has been tapped or clicked).
+	 *  changes (such as moving the thumb when the track has been tapped or clicked). Use
+	 *  this controller for horizontally oriented Sliders.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class SliderMouseController implements IBead, IBeadController
+	public class HSliderMouseController implements IBead, IBeadController
 	{
 		/**
 		 *  constructor.
@@ -62,7 +64,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function SliderMouseController()
+		public function HSliderMouseController()
 		{
 		}
 		
@@ -192,61 +194,66 @@ package org.apache.royale.html.beads.controllers
 		}
         
         /**
+		 * @royaleignorecoercion org.apache.royale.events.BrowserEvent
          */
         COMPILE::JS
-        private function handleTrackClick(event:BrowserEvent):void
+        private function handleTrackClick(event:MouseEvent):void
         {
+			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
-            var xloc:Number = event.clientX;
-            var p:Number = Math.min(1, xloc / parseInt(track.element.style.width, 10));
-            var n:Number = p * (host.maximum - host.minimum) +
-                host.minimum;
+            var xloc:Number = bevent.offsetX;
+			var useWidth:Number = parseInt(track.element.style.width, 10) * 1.0;
+            var p:Number = xloc / useWidth;
+			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
             
-			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", host.value, n);
-            host.value = n;
-            
-            origin = parseInt(thumb.element.style.left, 10);
-            position = parseInt(thumb.element.style.left, 10);
-            
-            calcValFromMousePosition(event, true);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
+            rangeModel.value = n;
             
             host.dispatchEvent(vce);
         }
         
         
         /**
+		 * @royaleignorecoercion org.apache.royale.events.BrowserEvent
          */
         COMPILE::JS
-        private function handleThumbDown(event:BrowserEvent):void
+        private function handleThumbDown(event:MouseEvent):void
         {
+			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
             goog.events.listen(host.element, goog.events.EventType.MOUSEUP,
                 handleThumbUp, false, this);
             goog.events.listen(host.element, goog.events.EventType.MOUSEMOVE,
                 handleThumbMove, false, this);
+			goog.events.listen(host.element, goog.events.EventType.MOUSELEAVE,
+				handleThumbLeave, false, this);
             
-            origin = event.clientX;
-            position = parseInt(thumb.element.style.left, 10);
+            mouseOrigin = bevent.clientX;
+            thumbOrigin = parseInt(thumb.element.style.left, 10);
             oldValue = rangeModel.value;
         }
         
         COMPILE::JS
-        private var origin:Number;
+        private var mouseOrigin:Number;
         COMPILE::JS
-        private var position:int;
+        private var thumbOrigin:int;
         
         /**
+		 * @royaleignorecoercion org.apache.royale.events.BrowserEvent
          */
         COMPILE::JS
-        private function handleThumbUp(event:BrowserEvent):void
+        private function handleThumbUp(event:MouseEvent):void
         {
+			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
             goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
                 handleThumbUp, false, this);
             goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,
                 handleThumbMove, false, this);
+			goog.events.unlisten(host.element, goog.events.EventType.MOUSELEAVE,
+				handleThumbLeave, false, this);
             
-            calcValFromMousePosition(event, false);
+            calcValFromMousePosition(bevent, false);
             var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
             
             host.dispatchEvent(vce);
@@ -254,18 +261,32 @@ package org.apache.royale.html.beads.controllers
         
         
         /**
+		 * @royaleignorecoercion org.apache.royale.events.BrowserEvent
          */
         COMPILE::JS
-        private function handleThumbMove(event:BrowserEvent):void
+        private function handleThumbMove(event:MouseEvent):void
         {
+			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
             var lastValue:Number = rangeModel.value;
-            calcValFromMousePosition(event, false);
+            calcValFromMousePosition(bevent, false);
             
             var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", lastValue, rangeModel.value);
             
             host.dispatchEvent(vce);
         }
+		
+		COMPILE::JS
+		private function handleThumbLeave(event:MouseEvent):void
+		{
+			var host:Slider = _strand as Slider;
+			goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
+				handleThumbUp, false, this);
+			goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,
+				handleThumbMove, false, this);
+			goog.events.unlisten(host.element, goog.events.EventType.MOUSELEAVE,
+				handleThumbLeave, false, this);
+		}
         
         
         /**
@@ -273,26 +294,16 @@ package org.apache.royale.html.beads.controllers
         COMPILE::JS
         private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
         {
-            var host:Slider = _strand as Slider;
-            var deltaX:Number = (useOffset ? event.offsetX : event.clientX) - origin;
+            var deltaX:Number = (useOffset ? event.offsetX : event.clientX) - mouseOrigin;
             var thumbW:int = parseInt(thumb.element.style.width, 10) / 2;
-            var newX:Number = position + deltaX;
+            var newX:Number = thumbOrigin + deltaX;
+			var newPointX:Number = newX + thumbW; // center of the thumb which represents the value
+			
+			var useWidth:Number = parseInt(track.element.style.width,10) * 1.0;
+			var p:Number = newPointX / useWidth;
+			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
             
-            var p:Number = newX / parseInt(track.element.style.width, 10);
-            var n:Number = p * (host.maximum - host.minimum) +
-                host.minimum;
-            n = host.snap(n);
-            if (n < host.minimum) n = host.minimum;
-            else if (n > host.maximum) n = host.maximum;
-            
-            p = (n - host.minimum) / (host.maximum -
-                host.minimum);
-            newX = p * parseInt(track.element.style.width, 10);
-            
-            thumb.element.style.left = String(newX -
-                parseInt(thumb.element.style.width, 10) / 2) + 'px';
-            
-            host.value = n;
+			rangeModel.value = n;
         }
     }
 }

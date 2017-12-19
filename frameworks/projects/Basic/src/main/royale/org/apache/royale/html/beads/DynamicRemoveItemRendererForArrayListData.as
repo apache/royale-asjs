@@ -66,11 +66,39 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
-			var dataProvider:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
-			if (dataProvider) {
-				dataProvider.addEventListener("itemRemoved", handleItemRemoved);
-			}
+			IEventDispatcher(value).addEventListener("initComplete", initComplete);
+		}
+		
+		/**
+		 *  finish setup
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		protected function initComplete(event:Event):void
+		{
+			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
+			
+			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
+			
+			// invoke now in case "dataProviderChanged" has already been dispatched.
+			dataProviderChangeHandler(null);
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function dataProviderChangeHandler(event:Event):void
+		{
+			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if (!dp)
+				return;
+			
+			// listen for individual items being added in the future.
+			dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 		}
 
 		/**

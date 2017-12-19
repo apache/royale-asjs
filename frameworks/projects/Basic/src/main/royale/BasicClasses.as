@@ -72,6 +72,8 @@ internal class BasicClasses
     import org.apache.royale.html.beads.PanelView; PanelView;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
     import org.apache.royale.html.beads.SliderView; SliderView;
+	import org.apache.royale.html.beads.layouts.HorizontalSliderLayout; HorizontalSliderLayout;
+	import org.apache.royale.html.beads.layouts.VerticalSliderLayout; VerticalSliderLayout;
     import org.apache.royale.html.beads.PanelWithControlBarView; PanelWithControlBarView;
     import org.apache.royale.html.beads.AccordionItemRendererView; AccordionItemRendererView;
 	COMPILE::SWF
@@ -134,7 +136,8 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
-    import org.apache.royale.html.beads.controllers.SliderMouseController; SliderMouseController;
+    import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;
+	import org.apache.royale.html.beads.controllers.VSliderMouseController; VSliderMouseController;
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
@@ -253,6 +256,13 @@ internal class BasicClasses
 		import org.apache.royale.css2.DragMove; DragMove;
 		import org.apache.royale.css2.DragReject; DragReject;
     }
+	
+	import org.apache.royale.html.TreeGrid; TreeGrid;
+	import org.apache.royale.html.supportClasses.TreeGridColumn; TreeGridColumn;
+	import org.apache.royale.html.supportClasses.TreeGridControlItemRenderer; TreeGridControlItemRenderer;
+	import org.apache.royale.html.beads.models.TreeGridModel; TreeGridModel;
+	import org.apache.royale.html.beads.layouts.TreeGridLayout; TreeGridLayout;
+	import org.apache.royale.html.beads.TreeGridView; TreeGridView;
 }
 
 }

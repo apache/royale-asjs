@@ -32,6 +32,7 @@ internal class ExpressClasses
     import org.apache.royale.express.Container; Container;
     import org.apache.royale.express.DataGrid; DataGrid;
     import org.apache.royale.express.HContainer; HContainer;
+	import org.apache.royale.express.HSlider; HSlider;
     import org.apache.royale.express.HView; HView;
 	import org.apache.royale.express.ImageAndTextButton; ImageAndTextButton;
 	import org.apache.royale.express.ImageButton; ImageButton;
@@ -42,6 +43,7 @@ internal class ExpressClasses
 	import org.apache.royale.express.TextInput; TextInput;
     import org.apache.royale.express.VContainer; VContainer;
     import org.apache.royale.express.View; View;
+	import org.apache.royale.express.VSlider; VSlider;
     import org.apache.royale.express.VView; VView;
 }
 

@@ -25,7 +25,8 @@
 
 .customTableStyle
 {
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayList");
     IItemRenderer: ClassReference("itemRenderers.CustomTableRowItemRenderer");
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 }
 

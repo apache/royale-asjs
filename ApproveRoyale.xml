@@ -192,10 +192,10 @@
         classpathref="anttask.classpath"/>
     </target>
 
-    <target name="main" depends="install-rat,download,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,build,approve" description="Perform required release approval steps">
+    <target name="main" depends="write-out-jars-list,install-rat,download,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
     </target>
     
-    <target name="main-no-download" depends="install-rat,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,build,approve" description="Perform required release approval steps">
+    <target name="main-no-download" depends="write-out-jars-list,install-rat,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
     </target>
 	
     <target name="test" >
@@ -203,6 +203,16 @@
 		<replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="" byline="true"/>
     </target>
 	
+    <target name="write-out-jars-list" >
+        <delete file="jars.txt" />
+        <!-- this is a comma-delimited, no spaces, no-line-breaks list used to decide which jars
+         to skip in the rat-check of the binaries and which jars to examine before approval -->
+        <property name="jars-list" value="lib/compc.jar,lib/compiler.jar,lib/compiler-asc.jar,lib/compiler-common.jar,lib/compiler-compc.jar,lib/compiler-mxmlc.jar,lib/compiler-optimizer.jar,lib/compiler-swfdump.jar,lib/swfutils.jar,lib/fdb.jar,lib/flex-compiler-oem.jar,js/lib/asdoc.jar,js/lib/compiler-royaleTasks.jar,js/lib/compc.jar,js/lib/externc.jar,js/lib/jsc.jar,js/lib/mxmlc.jar"/>
+        <echo file="${basedir}/jars.txt" message="${jars-list}"/>
+        <echo file="${basedir}/jarexcludes.txt" message="${jars-list}"/>
+        <replaceregexp file="${basedir}/jarexcludes.txt" match="," flags="g" replace="${line.separator}" />
+    </target>
+    
 	<target name="display-text" >
 		<antcall target="display-text-mac" />
 		<antcall target="display-text-win" />
@@ -302,6 +312,7 @@
         <delete dir="${basedir}/${doc.package.url.name}" failonerror="false" />-->
 	</target>
 	
+    <!-- untar does not restore file permissions so don't bother checking --->
     <target name="untar-file" unless="zip.package" description="Untars zipFile">
         <untar src="${basedir}/${package.url.name}.${package.suffix}"
                 dest="${basedir}" compression="gzip"/>
@@ -480,7 +491,11 @@
                 <exclude name="royale-asjs/frameworks/js/libs/TestingJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TextJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/XMLJS.swc"/>
-                <exclude name="royale-asjs/frameworks/themes/Halo.swc"/>
+                <exclude name="royale-asjs/frameworks/themes/Halo/Halo.swc"/>
+                
+                <exclude name="royale-asjs/frameworks/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/*.pbj"/>
+                <exclude name="royale-asjs/frameworks/projects/Basic/src/test/royale/FlexUnitRoyaleApplication.swf"/>
+                <exclude name="royale-asjs/frameworks/projects/Core/src/test/royale/FlexUnitRoyaleApplication.swf"/>
                 
                 <exclude name="royale-asjs/frameworks/localfonts.ser"/>
                 <exclude name="royale-asjs/frameworks/macfonts.ser"/>
@@ -536,6 +551,7 @@
                 <exclude name="royale-asjs/lib/external/lzma-sdk.jar"/>
                 
                 <exclude name="royale-asjs/templates/swfobject/swfobject.js"/>
+                <exclude name="royale-asjs/templates/swfobject/expressInstall.swf"/>
             </fileset>
         </rat:report>
         
@@ -712,15 +728,15 @@
 
     <target name="ask.build">
         <input
-        message="The final step is to run the build and any tests the build script runs.  This can take several minutes.  You will be asked to accept the Adobe license for the font jars.  Press y to start the build."
+        message="The final step is to run the build and any tests the build script runs.  This can take several minutes.  Press y to start the build."
         validargs="y"
         defaultvalue="y" />
     </target>
 
     <target name="build" depends="ask.build,ask-font,get.dependencies,copy.downloads">
         <property name="no.lint" value="true" />
-        <ant dir="${basedir}/${package.url.name}" target="main" />
-        <ant dir="${basedir}/${package.url.name}" target="examples" />
+        <ant dir="${basedir}/${package.url.name}/royale-asjs" target="all" />
+        <ant dir="${basedir}/${package.url.name}/royale-asjs" target="examples" />
     </target>
 
     <target name="copy.downloads" if="${do.copy.downloads}" description="instead of actually downloading all of the dependencies, you can save lots of time by just copying from some other folder in some other SDK.">
@@ -732,25 +748,26 @@
     
     <!-- Prompt before downloading.  -->
     <target name="ask-font" unless="font.donot.ask"
-        description="Prompt the user before downloading BlaseDS">
+        description="Prompt the user before downloading Flat Fonts">
         
         <property name="font.prompt.text"
-        value="Apache Royale can optionally integrate with Adobe's embedded font support.
-        ${line.separator}This feature requires a few font jars from the Adobe Flex SDK.
-        ${line.separator}The Adobe SDK license agreement for Adobe Flex 4.6 applies to these jars.
+        value="Apache Royale includes an optional component set that
+        ${line.separator}uses fonts from designmodo.com.
+        ${line.separator}The font files are subject to and governed by the
+        ${line.separator}Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported license:
+        ${line.separator}http://creativecommons.org/licenses/by-nc-nd/3.0/
         ${line.separator}This license is not compatible with the Apache v2 license.
-        ${adobe.flex.license}
-        ${line.separator}Do you want to install these jars from the Adobe Flex SDK?"/>
+        ${line.separator}Do you want to install the designmodo fonts?"/>
         <input
         message="${font.prompt.text}"
         validargs="y,n"
         defaultvalue="n"
         addproperty="input.font.download"/>
-        <condition property="do.font.install">
+        <condition property="do.flat.install">
             <equals arg1="y" arg2="${input.font.download}"/>
         </condition>
         <!-- Only ask once per ant run.  -->
-        <property name="font.donot.ask" value="set"/>
+        <property name="flat.donot.ask" value="set"/>
     </target>
     
     <!--<target name="get.dependencies" depends="set.compiler.flags,get.compiler.if.needed,get.sdk.if.needed,get.flexunit.if.needed" />-->
@@ -851,6 +868,107 @@
         <property name="FLEX_SDK_HOME" value="${basedir}/sdk" />
     </target>
     -->
+    
+    <!-- how to do tar and sort on Windows? -->
+    <target name="examine-jars" if="isMac">
+        <!-- comma delimited list, no spaces, not one file per line -->
+        <copy file="jars.txt" tofile="loop.txt" />
+        <ant antfile="ApproveRoyale.xml" target="loopOnce" inheritAll="false" />
+    </target>
+    <target name="loopOnce" >
+        <!-- make a copy of the list so we can munge it to
+         get the first item in the list -->
+        <delete file="loop1.txt" />
+        <copy file="loop.txt" tofile="loop1.txt" />
+        <loadfile srcFile="loop.txt" property="checkiflast" />
+        <condition property="islast" value="true">
+            <not>
+                <contains string="${checkiflast}" substring="," />
+            </not>
+        </condition>
+        <antcall target="notlast" />
+        <antcall target="lastone" />
+    </target>
+    <target name="notlast" unless="islast">
+        <loadfile srcFile="loop1.txt" property="echoFile" />
+        <replaceregexp file="loop1.txt" match="^(.*),(.*)" replace="\2" />
+        <loadfile srcFile="loop1.txt" property="thisFile" />
+        <antcall target="jar-check" />
+        <replaceregexp file="loop.txt" match="^(.*),(.*)" replace="\1" />
+        <ant antfile="ApproveRoyale.xml" target="loopOnce" inheritAll="false"/>
+    </target>
+    <target name="lastone" if="islast">
+        <loadfile srcFile="loop1.txt" property="thisFile" />
+        <antcall target="jar-check" />
+        <delete file="loop.txt" />
+        <delete file="loop1.txt" />
+    </target>
+    
+    <target name="jar-check" >
+        <delete dir="${basedir}/jar" failonerror="false" />
+        <mkdir dir="${basedir}/jar" />
+        <unjar src="${basedir}/${bin.package.url.name}/royale-asjs/${thisFile}" dest="${basedir}/jar" />
+        <exec executable="tar" output="${basedir}/jarclasses.txt">
+            <arg value="tf" />
+            <arg value="${basedir}/${bin.package.url.name}//royale-asjs/${thisFile}" />
+        </exec>
+        <replaceregexp file="${basedir}/jarclasses.txt" match="(.*)/(.*)" replace="\1" flags="m" byline="true"/>
+        <exec executable="sort" output="${basedir}/jarpaths.txt">
+            <arg value="-u" />
+            <arg value="${basedir}/jarclasses.txt" />
+        </exec>
+        <antcall target="display-text" >
+            <param name="file" value="${basedir}/jarpaths.txt" />
+        </antcall>
+        <input
+        message="Above is the list of folders in this ${thisFile}.&#xA;Folder names can sometimes indicate presence of third-party content that needs to be in LICENSE and/or NOTICE files.&#xA;Press the Enter key to see the LICENSE for this jar."/>
+        
+        <fail message="LICENSE not in ${basedir}/${bin.package.url.name}/royale-asjs/${thisFile}">
+            <condition>
+                <not>
+                    <available file="${basedir}/jar/META-INF/LICENSE" />
+                </not>
+            </condition>
+        </fail>
+        <fail message="NOTICE not in ${basedir}/${bin.package.url.name}/royale-asjs/${thisFile}">
+            <condition>
+                <not>
+                    <available file="${basedir}/jar/META-INF/NOTICE" />
+                </not>
+            </condition>
+        </fail>
+        <antcall target="display-text" >
+            <param name="file" value="${basedir}/jar/META-INF/LICENSE" />
+        </antcall>
+        <input
+        message="Check the LICENSE for the Apache License and third-party licenses. Is it ok?"
+        validargs="y,n"
+        defaultvalue="y"
+        addproperty="jar.license.ok"/>
+        <fail message="LICENSE for ${basedir}/${bin.package.url.name}/royale-asjs/${thisFile} not correct">
+            <condition>
+                <not>
+                    <equals arg1="${jar.license.ok}" arg2="y" />
+                </not>
+            </condition>
+        </fail>
+        <antcall target="display-text" >
+            <param name="file" value="${basedir}/jar/META-INF/NOTICE" />
+        </antcall>
+        <input
+        message="Check the NOTICE for required notices from third-parties. Is it ok?"
+        validargs="y,n"
+        defaultvalue="y"
+        addproperty="jar.notice.ok"/>
+        <fail message="NOTICE for ${basedir}/${bin.package.url.name}/royale-asjs/${thisFile} not correct">
+            <condition>
+                <not>
+                    <equals arg1="${jar.notice.ok}" arg2="y" />
+                </not>
+            </condition>
+        </fail>
+        
+    </target>
     
 	<target name="approve" >
 		<condition property="vote" value="+1">

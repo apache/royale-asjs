@@ -81,6 +81,7 @@
     
     <target name="air-sdk-name" description="Determines name of AIR SDK.">
         <available file="${download.dir}/AdobeAIRSDK.zip" property="air.sdk.name" value="AdobeAIRSDK.zip"/>
+        <available file="${download.dir}/AIRSDK_Compiler.zip" property="air.sdk.name" value="AIRSDK_Compiler.zip"/>
         <available file="${download.dir}/AdobeAIRSDK.tbz2" property="air.sdk.name" value="AdobeAIRSDK.tbz2"/>
         <available file="${download.dir}/AdobeAIRSDK.dmg" property="air.sdk.name" value="AdobeAIRSDK.dmg"/>
         <fail message="${ERROR_ADOBE_AIR_SDK_NOT_FOUND}">

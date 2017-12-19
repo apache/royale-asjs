@@ -60,6 +60,16 @@ package org.apache.royale.collections
 	 */
 	[Event(name="itemRemoved", type="org.apache.royale.events.CollectionEvent")]
 
+    /**
+     *  Dispatched when the collection has updated an item.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="allItemsRemoved", type="org.apache.royale.events.CollectionEvent")]
+
 	/**
 	 *  Dispatched when the collection has updated an item.
 	 *
@@ -358,8 +368,9 @@ package org.apache.royale.collections
 		{
 			if (length > 0)
 			{
-                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_REMOVED);
+                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ALL_ITEMS_REMOVED);
                 collectionEvent.items = source.splice(0, length);
+				collectionEvent.index = -1;
                 dispatchEvent(collectionEvent);
 			}
 		}

@@ -72,10 +72,12 @@
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
     <component id="VerticalFlexLayout" class="org.apache.royale.html.beads.layouts.VerticalFlexLayout"/>
+    <component id="VerticalSliderLayout" class="org.apache.royale.html.beads.layouts.VerticalSliderLayout" />
     <component id="HorizontalLayout" class="org.apache.royale.html.beads.layouts.HorizontalLayout"/>
     <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.HorizontalLayoutWithPaddingAndGap"/>
     <component id="HorizontalFlexLayout" class="org.apache.royale.html.beads.layouts.HorizontalFlexLayout"/>
     <component id="HorizontalFlowLayout" class="org.apache.royale.html.beads.layouts.HorizontalFlowLayout" />
+    <component id="HorizontalSliderLayout" class="org.apache.royale.html.beads.layouts.HorizontalSliderLayout" />
     <component id="TileLayout" class="org.apache.royale.html.beads.layouts.TileLayout"/>
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
@@ -112,6 +114,7 @@
      -->
 
     <component id="GetScrollbarWidth" class="org.apache.royale.html.beads.GetScrollbarWidth"/>
+    <component id="ThrottleBead" class="org.apache.royale.html.beads.ThrottleBead"/>
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
@@ -120,6 +123,7 @@
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />
     <component id="PasswordInputRemovableBead" class="org.apache.royale.html.accessories.PasswordInputRemovableBead" />
     <component id="TextPromptBead" class="org.apache.royale.html.accessories.TextPromptBead" />
+    <component id="TextOverflow" class="org.apache.royale.html.beads.TextOverflow" />
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
@@ -151,6 +155,8 @@
     <component id="DynamicItemsRendererFactoryForArrayListData" class="org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData" />
     <component id="DynamicRemoveItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveItemRendererForArrayListData" />
     <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData" />
+    <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllItemRendererForArrayListData" />
+    <component id="DynamicRemoveAllByNullItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllByNullItemRendererForArrayListData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
 
@@ -185,5 +191,8 @@
 
     <component id="UIModule" class="org.apache.royale.html.UIModule"/>
     <component id="UIModuleLoader" class="org.apache.royale.html.UIModuleLoader"/>
+    
+    <component id="TreeGrid" class="org.apache.royale.html.TreeGrid" />
+    <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
 
 </componentPackage>
