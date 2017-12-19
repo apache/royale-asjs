@@ -146,3 +146,4 @@ manualtests/FlexJSTest_SVG/bin
 #NPM
 node_modules
 /as2wasm/package-lock.json
+/as2wasm/resources/royale-compiler
