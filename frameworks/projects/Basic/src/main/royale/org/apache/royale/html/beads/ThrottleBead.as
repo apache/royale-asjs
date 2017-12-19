@@ -47,7 +47,7 @@ package org.apache.royale.html.beads
      *  @productversion Royale 0.9
      */
 
-    [Event(name="finishedTrottle", type="org.apache.royale.events.Event")]
+    [Event(name="finishedThrottle", type="org.apache.royale.events.Event")]
 	/**
 	 *  The ThrottleBead class allows you to listen to an event only after a timeout
 	 *  has been reached. This can be useful in situations where events are thrown repeatedly
@@ -114,7 +114,7 @@ package org.apache.royale.html.beads
 		{
 			clearTimeout(timeoutId);
 			timeoutId = NaN;
-			dispatchEvent(new Event("finishedTrottle"));
+			dispatchEvent(new Event("finishedThrottle"));
 		}
 
 		
