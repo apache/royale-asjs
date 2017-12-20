@@ -1651,7 +1651,7 @@
 
     <target name="warn-before-clone" depends="check-royale-asjs" unless="royale-asjs-exists">
         <input
-        message="This script will clone 6 repos.  This will take several minutes.  Then it will ask you a few questions then take several more minutes to download more files and compile them.  Press the enter key to continue."
+        message="This script will clone 2 repos.  This will take several minutes.  Then it will ask you a few questions then take several more minutes to download more files and compile them.  Press the enter key to continue."
         />
     </target>
     
