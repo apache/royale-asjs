@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns="library://ns.apache.org/royale/html"
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:rs="library://ns.apache.org/royale/site"
+                 xmlns:local="*">
+
+    <fx:Script>
+        <![CDATA[
+            
+        ]]>
+    </fx:Script>
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </js:valuesImpl>
+    
+    <js:initialView>
+        <js:View width="100%" height="100%" className="page">
+            <Div className="topbar">
+                <Img src="http://royale.codeoscopic.com/wp-content/uploads/2017/11/apache-royale-tm-logo-default.png" />
+                <rs:TopMenu>
+                    <rs:TopMenuButton href="features.html">FEATURES</rs:TopMenuButton>
+                    <rs:TopMenuButton href="tryitnow/index.html">TRY IT NOW</rs:TopMenuButton>
+                    <rs:TopMenuButton href="download.html">DOWNLOAD</rs:TopMenuButton>
+                    <rs:TopMenuButton href="documentation.html">DOCS</rs:TopMenuButton>
+                    <rs:TopMenuButton href="blog.html">BLOG</rs:TopMenuButton>
+                    <rs:TopMenuButton href="github.html">GITHUB</rs:TopMenuButton>
+                </rs:TopMenu>
+                <rs:SocialButtons />
+            </Div>
+            <H3>Designed for the future</H3>
+            <H2>Code Once.  Run Everywhere.</H2>
+            <P className="intro">
+                Apache Royale™ is a productive open source frontend application technology that allows you to code in MXML &amp; AS3 and output to different formats.
+            </P>
+            <Div className="big-buttons">
+                <rs:BigButton className="red-button" href="getstarted.html">GET STARTED</rs:BigButton>
+                <rs:BigButton className="blue-button" href="tryitnow/index.html">TRY IT NOW</rs:BigButton>
+            </Div>
+            <rs:CurvedTop>
+                <rs:ResponsiveTable>
+                    <rs:ResponsiveTableTile icon1="fa-university" title="Enterprise Class Level">
+                        Design &amp; Code in enterprise level languages and tools to ensure the level of quality your applications and clients demand
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-desktop" icon2="fa-mobile" title="Multiple Targets &amp; Devices">
+                        Maintain your knowledge and workflows intact for years to come and let Royale provide you with the right output you need.
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-clock-o" title="Fast Performance &amp; Lightweight">
+                        Royale Apps are light and performant thanks to the PAYG (Pay as you go) philosophy combined with their Composition architecture (Strands &amp; Beads).
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-code" title="OOP &amp; Declarative Programming">
+                        Code in a robust OOP language (AS3) and build your interfaces in a fast declarative XML language (MXML).
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-exchange" title="Advanced Communications">
+                        Royale support AMF communications a performant way to share object graphs with your backend of choice.
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-users" title="Supported by Apache">
+                        A great Open Source Foundation ensures long term evolution with the technologies you choose far beyond market &amp; corporate trends
+                    </rs:ResponsiveTableTile>
+                </rs:ResponsiveTable>
+            </rs:CurvedTop>
+            <Div className="orange-box">
+                <H1 className="npm-title">Install Apache Royale via npm</H1>
+                <H2 className="npm-command">npm install royale -g</H2>
+                <P className="fa orange-box-text">After global installation, the following compiler tools will be available for you to use: mxmlc, compc, asjsc, asjscompc, asnodec, and externc.</P>
+                <P className="fa orange-box-text">Usage:</P>
+                <P className="orange-box-code">mxmlc &lt;path to main.mxml file&gt;<br />
+                asjsc &lt;path to main.as file&gt;</P>
+                <Div className="centerButton">
+                    <rs:BigButton icon="fa-external-link" className="white-border-button"
+                        href="tryitnow/index.html">LEARN MORE ABOUT</rs:BigButton>
+                </Div>
+            </Div>
+            <Div className="footer">
+                <Div className="footer-column">
+                    <rs:TitledAnchorList title="APACHE ROYALE" titleClassName="apacheroyale">
+                        <rs:AnchorListData href="index.html">Home</rs:AnchorListData>
+                        <rs:AnchorListData href="features.html">Features</rs:AnchorListData>
+                        <rs:AnchorListData href="tryitnow/index.html">Try it now</rs:AnchorListData>
+                        <rs:AnchorListData href="download.html">Download</rs:AnchorListData>
+                        <rs:AnchorListData href="showcase.html">Showcase</rs:AnchorListData>
+                        <rs:AnchorListData href="blog.html">Blog</rs:AnchorListData>
+                        <rs:AnchorListData href="team.html">Team</rs:AnchorListData>
+                        <rs:AnchorListData href="royalenpm.html">Royale in npm</rs:AnchorListData>
+                        <rs:AnchorListData href="license.html">License</rs:AnchorListData>
+                    </rs:TitledAnchorList>
+                </Div>
+                <Div className="footer-column">
+                    <rs:TitledAnchorList title="DOCUMENTATION" titleClassName="documentation">
+                        <rs:AnchorListData href="index.html">Getting Started</rs:AnchorListData>
+                        <rs:AnchorListData href="docs.html">Docs</rs:AnchorListData>
+                        <rs:AnchorListData href="reference/index.html">Reference</rs:AnchorListData>
+                        <rs:AnchorListData href="wiki.html">Wiki</rs:AnchorListData>
+                    </rs:TitledAnchorList>
+                    <rs:TitledAnchorList title="COMMUNITY" titleClassName="community">
+                        <rs:AnchorListData href="contribute.html">Get Involved</rs:AnchorListData>
+                        <rs:AnchorListData href="mailinglists.html">MailingLists</rs:AnchorListData>
+                        <rs:AnchorListData href="faq.html">FAQ</rs:AnchorListData>
+                    </rs:TitledAnchorList>
+                </Div>
+                <Div className="footer-column">
+                    <rs:TitledAnchorList title="DEVELOPMENT" titleClassName="development">
+                        <rs:AnchorListData href="github.html">Github</rs:AnchorListData>
+                        <rs:AnchorListData href="source.html">Source Code</rs:AnchorListData>
+                        <rs:AnchorListData href="issues.html">Issues</rs:AnchorListData>
+                    </rs:TitledAnchorList>
+                    <rs:TitledAnchorList title="APACHE" titleClassName="apache">
+                        <rs:AnchorListData href="http://www.apache.org/">Apache</rs:AnchorListData>
+                        <rs:AnchorListData href="http://www.apache.org/donations.html">Donations</rs:AnchorListData>
+                        <rs:AnchorListData href="http://www.apache.org/thanks.html">Sponsorship</rs:AnchorListData>
+                        <rs:AnchorListData href="http://www.apache.org/thanks.html">Thanks</rs:AnchorListData>
+                    </rs:TitledAnchorList>
+                </Div>
+                <Div className="aboutusdiv" >
+                    <P className="aboutus">ABOUT US</P>
+                    <P><img class="aboutus-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/apache-royale-logo-footer-circle-grey.svg"/>Apache Royale™ is a highly productive open source application technology for building expressive frontend applications that outputs to different formats and deploy consistently on all major browsers, desktops and devices.</P>
+                    <P><img class="aboutus-apache-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/Apache_PoweredBy.svg" />
+                    Apache Royale™, Apache™ and the Apache feather logo™ are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners. Read more about our privacy policy on our Privacy Policy page.</P>
+                </Div>
+            </Div>
+            <rs:ASFCopyrightAttributionAndLinks />
+        </js:View>
+    </js:initialView>
+</js:Application>
