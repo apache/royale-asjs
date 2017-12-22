@@ -18,15 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.beads.views
 {
+    import org.apache.royale.core.IBead;
     import org.apache.royale.core.IContentViewHost;
-    import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrandWithModel;
     import org.apache.royale.events.Event;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.mdl.TabBar;
     import org.apache.royale.mdl.TabBarPanel;
-    import org.apache.royale.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData;
+    import org.apache.royale.mdl.beads.DynamicTabsAddItemRendererForArrayListData;
+    import org.apache.royale.mdl.beads.DynamicTabsAddItemRendererForArrayListData;
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
 
     /**
@@ -94,10 +95,13 @@ package org.apache.royale.mdl.beads.views
             }
 
             _tabBar.model = (value as IStrandWithModel).model;
-            
-            if (!isTabsDynamic())
+
+            var dynamicTabsAddBead:DynamicTabsAddItemRendererForArrayListData = _strand.getBeadByType(DynamicTabsAddItemRendererForArrayListData) as DynamicTabsAddItemRendererForArrayListData;
+            if (dynamicTabsAddBead)
             {
-                _tabBar.addEventListener("itemsCreated", tabBarItemsCreatedHandler);
+                
+                _tabBar.addBead(new DynamicTabsAddItemRendererForArrayListData() as IBead);
+                _tabBar.addEventListener("layoutNeeded", tabBarLayoutNeededHandler);
             }
         }
 
@@ -108,7 +112,7 @@ package org.apache.royale.mdl.beads.views
             completeTabBarSetup();
         }
 
-        private function tabBarItemsCreatedHandler(event:Event):void
+        private function tabBarLayoutNeededHandler(event:Event):void
         {
             forceUpgradeTabs();
         }
@@ -149,7 +153,8 @@ package org.apache.royale.mdl.beads.views
 
         private function forceUpgradeTabs():void
         {
-            if (!isTabsDynamic()) return;
+            var dynamicTabsAddBead:DynamicTabsAddItemRendererForArrayListData = _strand.getBeadByType(DynamicTabsAddItemRendererForArrayListData) as DynamicTabsAddItemRendererForArrayListData;
+            if (!dynamicTabsAddBead) return;
             
             COMPILE::JS
             {
@@ -162,13 +167,6 @@ package org.apache.royale.mdl.beads.views
                     componentHandler["upgradeElement"](host.element);
                 }
             }
-        }
-
-        public function isTabsDynamic():Boolean
-        {
-            var arrayListMapper:TabsDynamicItemsRendererFactoryForArrayListData =
-                    _strand.getBeadByType(IDataProviderItemRendererMapper) as TabsDynamicItemsRendererFactoryForArrayListData;
-            return arrayListMapper != null;
         }
     }
 }

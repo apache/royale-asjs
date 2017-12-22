@@ -106,6 +106,7 @@
     <component id="TabBarPanel" class="org.apache.royale.mdl.TabBarPanel"/>
     <component id="TabsView" class="org.apache.royale.mdl.beads.views.TabsView"/>
     <component id="Tabs" class="org.apache.royale.mdl.Tabs"/>
+    <component id="DynamicTabsAddItemRendererForArrayListData" class="org.apache.royale.mdl.beads.DynamicTabsAddItemRendererForArrayListData"/>
     <component id="MaterialIcon" class="org.apache.royale.mdl.materialIcons.MaterialIcon"/>
     <component id="Footer" class="org.apache.royale.mdl.Footer"/>
     <component id="FooterMiddleSection" class="org.apache.royale.mdl.FooterMiddleSection"/>
