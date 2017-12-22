@@ -26,11 +26,11 @@
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>MDLExample</artifactId>
+  <artifactId>RoyaleWebsite</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: MDLExample</name>
+  <name>Apache Royale: Examples: Royale: RoyaleWebsite</name>
 
   <properties>
     <!-- Customize MDL colors using this the tool at : https://getmdl.io/customize/index.html -->
@@ -52,9 +52,9 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>App.mxml</mainClass>
+          <mainClass>RoyaleWebsite.mxml</mainClass>
           <targets>JSRoyale</targets>
-          <htmlTemplate>${basedir}/target/javascript/bin/js-debug/mdl-js-index-template.html</htmlTemplate>
+          <htmlTemplate>${basedir}/target/javascript/bin/js-debug/royale-index-template.html</htmlTemplate>
           <additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-0.9.0-SNAPSHOT-js.swc:defaults.css</additionalCompilerOptions>
         </configuration>
       </plugin>
@@ -64,7 +64,7 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>MaterialDesignLite</artifactId>
+      <artifactId>RoyaleSite</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
