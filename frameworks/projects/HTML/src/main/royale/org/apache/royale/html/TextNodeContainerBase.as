@@ -20,6 +20,8 @@ package org.apache.royale.html
 {
     import org.apache.royale.core.UIBase;
 
+    [DefaultProperty("mxmlContent|textContent")]
+    
     public class TextNodeContainerBase extends NodeElementBase
     {
         public function TextNodeContainerBase()
@@ -57,6 +59,31 @@ package org.apache.royale.html
 			}
 		}
 		
+        private var _textContent:String = "";
+        
+        /**
+         *  The innerHTML of the element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get textContent():String
+        {
+            // textContent is special cased in the compiler
+            return _textContent;
+        }
+        public function set textContent(value:String):void
+        {
+            _textContent = value;
+            
+            COMPILE::JS
+            {
+                element.innerHTML = value;
+            }
+        }
+        
         COMPILE::JS
         protected var textNode:Text;
 
