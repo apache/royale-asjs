@@ -21,30 +21,24 @@ package org.apache.royale.mdl.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.html.elements.Span;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.elements.Span;
+    import org.apache.royale.mdl.TextField;
     import org.apache.royale.mdl.supportClasses.ITextField;
-	
-	/**
-	 *  The Restrict bead class is a specialty bead that can be used with
-	 *  any MDL TextField control. The bead uses a reg exp pattern to validate
-	 *  input from user. A text property allows to configure error text.
-	 *  
-	 *  use examples:
-	 *  Numeric pattern = -?[0-9]*(\.[0-9]+)?
-	 *  error text = "Input is not a number!"
-	 *
-	 *  Letters and spaces only pattern = [A-Z,a-z, ]*
-	 *  error text = "Letters and spaces only";
-	 *
-	 *  Digits only = [0-9]*
-	 *  error text = "Digits only";
+    import org.apache.royale.utils.StringTrimmer;
+
+    /**
+	 *  The NonEmptyTextField bead should be used only with MDL TextField
+	 *  It checks whether TextField contains non empty string.
+	 *  If it is empty bead display message assigned to "error" property.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
+	 *  @productversion Royale 0.9
 	 */
-	public class Restrict implements IBead
+	public class NonEmptyTextField implements IBead
 	{
 		/**
 		 *  constructor.
@@ -52,39 +46,10 @@ package org.apache.royale.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9
 		 */
-		public function Restrict()
+		public function NonEmptyTextField()
 		{
-		}
-		
-		private var _pattern:String = "";
-		
-		/**
-		 *  The string to use as numeric pattern.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get pattern():String
-		{
-			return _pattern;
-		}
-		public function set pattern(value:String):void
-		{
-			_pattern = value;
-			updatePattern();
-		}
-
-		private function updatePattern():void
-		{
-			COMPILE::JS
-			{
-                var mdlTi:ITextField = _strand as ITextField;
-                mdlTi.input.setAttribute('pattern', pattern);
-			}
 		}
 
 		private var _spanError:Span;
@@ -96,7 +61,7 @@ package org.apache.royale.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9
 		 */
         public function get error():String
         {
@@ -120,6 +85,7 @@ package org.apache.royale.mdl.beads
         }
 
 		private var _strand:IStrand;
+		private var _host:TextField;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -127,22 +93,39 @@ package org.apache.royale.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			_host = value as TextField;
 
+			IEventDispatcher(value).addEventListener("change", onTextFieldChange);
 			COMPILE::JS
 			{
-                _spanError = new Span();
-                _spanError.element.classList.add("mdl-textfield__error");
-				
-                UIBase(value).positioner.appendChild(_spanError.element);
+				_spanError = new Span();
+				_spanError.element.classList.add("mdl-textfield__error");
+
+				_host.positioner.appendChild(_spanError.element);
 
 				updateError();
-				updatePattern();
 			}
 		}
+
+        private function onTextFieldChange(event:Event):void
+        {
+			COMPILE::JS
+            {
+                if (!StringTrimmer.trim(_host.text))
+                {
+                    _host.element.setAttribute("required", "required");
+					_host.isInvalid = true;
+                }
+                else
+                {
+                    _host.element.removeAttribute("required");
+                }
+            }
+        }
 	}
 }

@@ -25,13 +25,14 @@
     <component id="Button" class="org.apache.royale.mdl.Button"/>
     <component id="IconToggle" class="org.apache.royale.mdl.IconToggle"/>
     <component id="TextField" class="org.apache.royale.mdl.TextField"/>
+    <component id="NonEmptyTextField" class="org.apache.royale.mdl.beads.NonEmptyTextField"/>
     <component id="TextArea" class="org.apache.royale.mdl.TextArea"/>
     <component id="CheckBox" class="org.apache.royale.mdl.CheckBox"/>
     <component id="RadioButton" class="org.apache.royale.mdl.RadioButton"/>
     <component id="Switch" class="org.apache.royale.mdl.Switch"/>
     <component id="TextPrompt" class="org.apache.royale.mdl.beads.TextPrompt"/>
     <component id="ExpandableSearch" class="org.apache.royale.mdl.beads.ExpandableSearch"/>
-    <component id="Restrict" class="org.apache.royale.mdl.beads.Restrict"/>
+    <component id="RestrictTextField" class="org.apache.royale.mdl.beads.RestrictTextField"/>
     <component id="Disabled" class="org.apache.royale.mdl.beads.Disabled"/>
     <component id="Slider" class="org.apache.royale.mdl.Slider"/>
     <component id="SliderView" class="org.apache.royale.mdl.beads.views.SliderView"/>
