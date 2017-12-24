@@ -21,7 +21,7 @@ package org.apache.royale.mdl.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-
+	import org.apache.royale.html.elements.Span;
     import org.apache.royale.mdl.supportClasses.ITextField;
 	
 	/**
@@ -75,8 +75,19 @@ package org.apache.royale.mdl.beads
 		public function set pattern(value:String):void
 		{
 			_pattern = value;
+			updatePattern();
 		}
-		
+
+		private function updatePattern():void
+		{
+			COMPILE::JS
+			{
+                var mdlTi:ITextField = _strand as ITextField;
+                mdlTi.input.setAttribute('pattern', pattern);
+			}
+		}
+
+		private var _spanError:Span;
         private var _error:String = "";
 
         /**
@@ -94,6 +105,18 @@ package org.apache.royale.mdl.beads
         public function set error(value:String):void
         {
             _error = value;
+			updateError();
+        }
+
+        private function updateError():void
+        {
+            COMPILE::JS
+            {
+                if (_spanError)
+				{
+					_spanError.text = error;
+				}
+            }
         }
 
 		private var _strand:IStrand;
@@ -105,26 +128,20 @@ package org.apache.royale.mdl.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 *  @royaleignorecoercion HTMLSpanElement
-		 *  @royaleignorecoercion Text
-		 *  @royaleignorecoercion org.apache.royale.mdl.supportClasses.ITextField;
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+
 			COMPILE::JS
 			{
-				var mdlTi:ITextField = value as ITextField;
-                mdlTi.input.setAttribute('pattern', pattern);
+                _spanError = new Span();
+                _spanError.element.classList.add("mdl-textfield__error");
+				
+                UIBase(value).positioner.appendChild(_spanError.element);
 
-                var span:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
-				span.classList.add("mdl-textfield__error");
-
-                var spanTextNode:Text = document.createTextNode(error) as Text;
-                span.appendChild(spanTextNode);
-
-				UIBase(mdlTi).positioner.appendChild(span);
+				updateError();
+				updatePattern();
 			}
 		}
 	}
