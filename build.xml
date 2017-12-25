@@ -1381,6 +1381,7 @@
                 <include name="mustella/mustella.swc"/>
             </js-library-path>
             <arg value="-sdk-js-lib=${ROYALE_HOME}/mustella/js" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
         <mkdir dir="${basedir}/mustella/tests/basicTests/fonts" />
         <copy todir="${basedir}/mustella/tests/basicTests/fonts" >
