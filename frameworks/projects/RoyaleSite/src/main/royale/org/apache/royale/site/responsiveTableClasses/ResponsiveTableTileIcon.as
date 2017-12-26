@@ -80,6 +80,7 @@ package org.apache.royale.site.responsiveTableClasses
         /**
          * @return The actual element to be parented.
          * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion HTMLBRElement
          */
         COMPILE::JS
 		override public function addedToParent():void
@@ -90,6 +91,8 @@ package org.apache.royale.site.responsiveTableClasses
             element.appendChild(span);
             if (icon2)
             {
+                var br:HTMLBRElement = document.createElement("br") as HTMLBRElement;
+                element.appendChild(br);
                 span = document.createElement("span") as HTMLSpanElement;
                 span.className = "fa " + icon2;
                 element.appendChild(span);
