@@ -22,25 +22,23 @@ package org.apache.royale.svg
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.graphics.PathBuilder;
 
 	COMPILE::SWF {
-	import flash.display.Graphics;
-	import flash.display.Sprite;
-	import flash.display.DisplayObject;
+		import flash.display.Graphics;
+		import flash.display.Sprite;
+		import flash.display.DisplayObject;
 	}
 
-		COMPILE::JS
-		{
-			import org.apache.royale.utils.UIDUtil;
-		}
+	COMPILE::JS
+	{
+		import org.apache.royale.utils.UIDUtil;
+		import org.apache.royale.core.IUIBase;
+		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.core.IRenderedObject;
+	}
 	/**
-	 *  The MaskBead bead allows you to mask
-	 *  a graphic Shape using a an mask graphic path.
-	 *  The clipping path is defined in the path property
-	 *  using a PathBuilder object. This Bead will not
-	 *  work on the JS side side on components which are not implemented
-	 *  using SVG.
+	 *  The MaskBead transforms an IUIBase element into a mask definition
+	 *  and contains methods to attach an existing element to this mask definition.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -50,7 +48,6 @@ package org.apache.royale.svg
 	public class MaskBead implements IBead
 	{
 		private var _strand:IStrand;
-		private var _path:PathBuilder;
 		private var document:Object;
 		private var maskElementId:String;
 		
@@ -58,20 +55,11 @@ package org.apache.royale.svg
 		{
 		}
 		
-		public function get path():PathBuilder
-		{
-			return _path;
-		}
-		
-		public function set path(value:PathBuilder):void
-		{
-			_path = value;
-			mask();
-		}
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
+		 *  @royaleignorecoercion Element
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -79,89 +67,27 @@ package org.apache.royale.svg
 		 */		
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			if (path)
+			COMPILE::JS 
 			{
-				mask();
-			}
-		}
-		
-		COMPILE::SWF
-		private function mask():void
-		{
-			if (!path)
-			{
-				return;
-			}
-			var element:DisplayObject = host.$displayObject as DisplayObject;
-			var mask:Sprite = new Sprite();
-			var g:Graphics = mask.graphics;
-			g.beginFill(0);
-			path.draw(g);
-			g.endFill();
-			// remove existing mask from display list
-			if (element.mask && element.mask.parent)
-			{
-				element.mask.parent.removeChild(element.mask);
-			}
-			// add new mask to display list
-			if (element.parent)
-			{
-				element.parent.addChild(mask);
-			}
-			// set mask
-			mask.x = element.x;
-			mask.y = element.y;
-//			element.mask = mask;
-		}
-		/**
-		 * @royaleignorecoercion Element
-		 * @royaleignorecoercion Object
-		 */
-		COMPILE::JS
-		private function mask():void
-		{
-			if (!path || !host)
-			{
-				return;
-			}
-			var svgElement:Node = host.element as Element;
-			var defs:Element = getChildNode(svgElement, "defs") as Element;
-			var maskElement:Element = getChildNode(defs, "mask") as Element;
-			maskElementId = maskElement.id = "myMask" + UIDUtil.createUID();
-			// clean up existing mask paths
-			if (maskElement.hasChildNodes())
-			{
-				var childNodes:Object = maskElement.childNodes;
+				_strand = value;
+				var currentPositioner:Element = (value as IRenderedObject).element as Element;
+				var myPositioner:Element = createChildNode(currentPositioner, "defs") as Element;
+				myPositioner = createChildNode(myPositioner, "mask") as Element;
+				maskElementId = myPositioner.id = "myMask" + UIDUtil.createUID();
+				(value as IUIBase).positioner = myPositioner as WrappedHTMLElement;
+				// this helps retains width and height
+				myPositioner.setAttribute('style', currentPositioner.getAttribute('style'));
+				// move children to new positioner
+				var childNodes:Object = currentPositioner.childNodes;
 				for (var i:int = 0; i < childNodes.length; i++)
 				{
-					maskElement.removeChild(childNodes[i]);
+					var childNode:Element = childNodes[i] as Element;
+					if (childNode.tagName != "defs")
+					{
+						myPositioner.appendChild(childNode);
+					}
 				}
 			}
-			// create pathNode
-			var pathNode:Element = createChildNode(maskElement, "path") as Element;
-			pathNode.setAttribute("d", path.getPathString());
-			// set style 
-//			host.element.style["mask"] = "url(#" + maskElement.id + ")";
-		}
-		
-		COMPILE::JS
-		private function getChildNode(node:Node, tagName:String):Node
-		{
-			if (!node.hasChildNodes())
-			{
-				return createChildNode(node, tagName);
-			}
-			var childNodes:Object = node.childNodes;
-			for (var i:int = 0; i < childNodes.length; i++)
-			{
-				if (childNodes[i].tagName == tagName)
-				{
-					return childNodes[i];
-				}
-					
-			}
-			return createChildNode(node, tagName);
 		}
 		
 		COMPILE::JS
