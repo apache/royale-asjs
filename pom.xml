@@ -43,9 +43,9 @@
   -->
 
   <scm>
-    <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
-    <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
-    <url>https://github.com/apache/royale-asjs</url>
+    <connection>scm:git:git@github.com:apache/royale-asjs.git</connection>
+    <developerConnection>scm:git:git@github.com:apache/royale-asjs.git</developerConnection>
+    <url>scm:git:git@github.com:apache/royale-asjs.git</url>
     <tag>HEAD</tag>
   </scm>
 
