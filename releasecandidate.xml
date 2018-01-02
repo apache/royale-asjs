@@ -383,7 +383,7 @@
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:branch" />
-            <arg value="-DdryRun=true" />
+            <arg value="-DpushChanges=false" />
             <arg value="-DbranchName=release/${release.version}" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-build-tools=1.0.0" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-jburg-types=1.0.0" />
@@ -448,7 +448,7 @@
     <target name="maven.branch.typedefs" depends="clone-typedefs,check-maven-branch.typedefs" unless="typedefs.branch.exists">
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="release:branch" />
-            <arg value="-DdryRun=true" />
+            <arg value="-DpushChanges=false" />
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
     </target>
@@ -486,7 +486,7 @@
     <target name="maven.branch.framework" depends="clone-asjs,check-maven-branch" unless="branch.exists">
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="release:branch" />
-            <arg value="-DdryRun=true" />
+            <arg value="-DpushChanges=false" />
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
     </target>
