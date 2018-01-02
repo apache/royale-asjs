@@ -55,9 +55,7 @@
     <property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
     <property name="apache.rat.tasks.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
     
-	<property file="${basedir}/local.properties" />
-	<property file="${basedir}/build.properties" />
-	   
+    <property file="${basedir}/env.properties" />
     <property environment="env"/>
     
 	<condition property="do.copy.downloads" >
@@ -69,8 +67,17 @@
     </condition>
     <property name="CRLF" value="%0A" />
     
+    <target name="check-empty-folder" >
+        <available file="${basedir}/build.properties"
+            type="file"
+            property="found.build.properties" value="true" />
+        
+        <fail message="This script should be copied into an empty folder and run from there.  Run the 'maven' target first then start with an empty folder again and run the 'main' target"
+            unless="found.build.properties"/>
+    </target>
+    
     <fail message="The my.name property is not set to the RM's name"
-    unless="my.name"/>
+        unless="my.name"/>
     
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
@@ -137,6 +144,7 @@
     -Dbrowser=&lt;path-to-browser&gt;"
         unless="browser"/>
         
+    <!--
     <available file="${basedir}/../royale-compiler"
         type="dir"
         property="compiler"
@@ -152,7 +160,8 @@
         
     <fail message="Could not locate royale-typedefs repo.  It must be a sibling to royale-asjs"
         unless="typedefs"/>
-        
+    -->
+    
     <condition property="svn" value="svn.exe">
         <isset property="isWindows" />
     </condition>
@@ -206,9 +215,26 @@
     <fail message="Could not locate Firefox.  Please specify a browser with
     -Dbrowser=&lt;path-to-browser&gt;"
         unless="browser"/>
+    <fail message="The release version number is not set.  Specify -Drelease.version=&lt;release version (e.g. 0.9.0, 1.0.0, etc)&gt;"
+    unless="release.version"/>
+    <target name="use_release_branch">
+        <property name="branch.name" value="release/${release.version}" />
+    </target>
+    <target name="use_develop_branch">
+        <property name="branch.name" value="develop" />
+    </target>
+    <target name="use_release_tag">
+        <property name="branch.name" value="release/${release.version}" />
+    </target>
+    
     <fail message="The release candidate number is not set.  Specify -Drc=&lt;rc number (e.g. 1, 2, 3, etc)&gt;"
     unless="rc"/>
 		
+    <target name="load.asjs.properties" >
+        <property file="${basedir}/local.properties" />
+        <property file="${basedir}/build.properties" />
+    </target>
+        
 	<target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
 	<target name="install-rat.jar" unless="apache.rat.found">
 		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
@@ -223,50 +249,86 @@
         classpathref="anttask.classpath"/>
     </target>
 
-    <target name="main" depends="install-rat,credentials" description="Perform required release approval steps">
+    <target name="check-royale-asjs">
+        <available file="${basedir}/royale-asjs"
+        type="dir"
+        property="royale-asjs-exists"/>
+    </target>
+
+    <target name="clone-asjs" depends="check-royale-asjs" unless="royale-asjs-exists">
+        <echo>cloning royale-asjs repo into ${basedir}/royale-asjs</echo>
+        <exec executable="git" failonerror="true" dir="${basedir}">
+            <arg value="clone" />
+            <arg value="https://github.com/apache/royale-asjs.git" />
+            <arg value="royale-asjs" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${basedir}/royale-asjs">
+            <arg value="checkout" />
+            <arg value="${branch.name}" />
+        </exec>
+        <echo>changed to branch ${branch.name}</echo>
+    </target>
+
+    <target name="check-royale-compiler">
+        <available file="${basedir}/royale-compiler"
+        type="dir"
+        property="royale-compiler-exists"/>
+    </target>
+
+    <target name="clone-compiler" depends="check-royale-compiler" unless="royale-compiler-exists">
+        <echo>cloning royale-compiler repo into ${basedir}/royale-compiler</echo>
+        <exec executable="git" failonerror="true" dir="${basedir}">
+            <arg value="clone" />
+            <arg value="https://github.com/apache/royale-compiler.git" />
+            <arg value="royale-compiler" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${basedir}/royale-compiler">
+            <arg value="checkout" />
+            <arg value="${branch.name}" />
+        </exec>
+        <echo>changed to branch ${branch.name}</echo>
+    </target>
+
+    <target name="check-royale-typedefs">
+        <available file="${basedir}/royale-typedefs"
+        type="dir"
+        property="royale-typedefs-exists"/>
+    </target>
+
+    <target name="clone-typedefs" depends="check-royale-typedefs" unless="royale-typedefs-exists">
+        <echo>cloning royale-typedefs repo into ${basedir}/royale-typedefs</echo>
+        <exec executable="git" failonerror="true" dir="${basedir}">
+            <arg value="clone" />
+            <arg value="https://github.com/apache/royale-typedefs.git" />
+            <arg value="royale-typedefs" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${basedir}/royale-typedefs">
+            <arg value="checkout" />
+            <arg value="${branch.name}" />
+        </exec>
+        <echo>changed to branch ${branch.name}</echo>
+    </target>
+
+    <target name="get-maven-compiler-folder" unless="maven.compiler.folder">
+        <input
+        message="Enter Maven Compiler Staging Repo folder name"
+        addproperty="maven.compiler.folder"/>
+    </target>
+    <target name="get-maven-typedefs-folder" unless="maven.typedefs.folder">
+        <input
+        message="Enter Maven Typedefs Staging Repo folder name"
+        addproperty="maven.typedefs.folder"/>
+    </target>
+    <target name="get-maven-asjs-folder" unless="maven.asjs.folder">
+        <input
+        message="Enter Maven ASJS Staging Repo folder name"
+        addproperty="maven.asjs.folder"/>
+    </target>
+    
+    <target name="get-maven-folder" depends="get-maven-compiler-folder, get-maven-typedefs-folder,get-maven-asjs-folder" />
+    
+    <target name="main" depends="check-empty-folder,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
 		<antcall target="check-new-version" />
-        <!-- get the latest sources before making a branch.  This should fail if you have local changes -->
-		<exec executable="${git}" dir="${basedir}" failonerror="true" >
-			<arg value="pull" />
-			<arg value="--rebase" />
-		</exec>
-        <!-- clean out everything generated from prior Ant builds -->
-        <ant dir="${basedir}" target="super-clean" />
-        <!-- clean out everything generated from prior Maven builds -->
-        <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
-            <arg value="clean" />
-        </exec>
-        <!-- get the latest sources before making a branch.  This should fail if you have local changes -->
-        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
-            <arg value="pull" />
-            <arg value="--rebase" />
-        </exec>
-        <!-- clean out everything generated from prior Ant builds -->
-        <ant dir="${typedefs}" target="wipe" />
-        <!-- clean out everything generated from prior Maven builds -->
-        <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
-            <arg value="clean" />
-        </exec>
-        <!-- get the latest sources before making a branch.  This should fail if you have local changes -->
-        <exec executable="${git}" dir="${compiler}" failonerror="true" >
-            <arg value="pull" />
-            <arg value="--rebase" />
-        </exec>
-        <!-- clean out everything generated from prior Ant builds -->
-        <ant dir="${compiler}" target="super-clean" />
-        <!-- clean out everything generated from prior Maven builds -->
-        <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
-            <arg value="clean" />
-            <arg value="-P" />
-            <arg value="utils" />
-        </exec>
-        <!-- clean out everything generated from prior Maven builds -->
-        <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
-            <arg value="clean" />
-            <arg value="-P" />
-            <arg value="main,build-examples,build-distribution" />
-        </exec>
-        <delete dir="${basedir}/stage" />
 		<antcall target="stage.rc" />
 		<antcall target="push.rc" />
 	</target>
@@ -301,8 +363,9 @@
         </condition>
     </target>
     
-    <target name="maven.branch.compiler" depends="check-maven-branch.compiler" unless="compiler.branch.exists">
+    <target name="maven.branch.compiler" depends="clone-compiler,check-maven-branch.compiler" unless="compiler.branch.exists">
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
+            <arg value="--batch-mode" />
             <arg value="release:branch" />
             <arg value="-DdryRun=true" />
             <arg value="-DbranchName=release/${release.version}" />
@@ -328,6 +391,7 @@
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:prepare" />
+            <arg value="-Dtag=org.apache.royale.compiler-${release.version}-${rc}" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-build-tools=1.0.0" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-jburg-types=1.0.0" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-common=${release.version}" />
@@ -340,6 +404,8 @@
             <arg value="-Dproject.rel.org.apache.royale:flex-compiler-oem=${release.version}" />
             <arg value="-Dproject.rel.org.apache.royale:royale-ant-tasks=${release.version}" />
             <arg value="-Dproject.rel.org.apache.royale:royale-maven-plugin=${release.version}" />
+            <arg value="-Dproject.dev.org.apache.royale:compiler-build-tools=1.0.0" />
+            <arg value="-Dproject.dev.org.apache.royale:compiler-jburg-types=1.0.0" />
         </exec>
     </target>
     
@@ -350,7 +416,7 @@
         </exec>
     </target>
     
-    <target name="royale.compiler" depends="maven.branch.compiler,maven.prepare.compiler,maven.perform.compiler" />
+    <target name="royale.compiler" depends="clone.compiler,maven.prepare.compiler,maven.perform.compiler" />
     
     <target name="update.typedefs.pom" >
         <replaceregexp file="${typedefs}/poml.xml" byline="true" encoding="UTF-8">
@@ -363,7 +429,7 @@
         </replaceregexp>
     </target>
     
-    <target name="maven.branch.typedefs" depends="check-maven-branch.typedefs" unless="typedefs.branch.exists">
+    <target name="maven.branch.typedefs" depends="clone-typedefs,check-maven-branch.typedefs" unless="typedefs.branch.exists">
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="release:branch" />
             <arg value="-DbranchName=release/${release.version}" />
@@ -375,6 +441,7 @@
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:prepare" />
+            <arg value="-Dtag=org.apache.royale.typedefs-${release.version}-${rc}" />
             <arg value="-DautoVersionSubmodules=true" />
         </exec>
     </target>
@@ -386,7 +453,7 @@
         </exec>
     </target>
     
-    <target name="royale.typedefs" depends="update.typedefs.pom,maven.branch.typedefs,maven.prepare.typedefs,maven.perform.typedefs" />
+    <target name="royale.typedefs" depends="clone.typedefs,update.typedefs.pom,maven.prepare.typedefs,maven.perform.typedefs" />
     
     <target name="update.framework.pom" >
         <replaceregexp file="${basedir}/poml.xml" byline="true" encoding="UTF-8">
@@ -399,7 +466,7 @@
         </replaceregexp>
     </target>
     
-    <target name="maven.branch" depends="check-maven-branch" unless="branch.exists">
+    <target name="maven.branch.framework" depends="clone-asjs,check-maven-branch" unless="branch.exists">
         <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
             <arg value="release:branch" />
             <arg value="-DbranchName=release/${release.version}" />
@@ -411,6 +478,7 @@
         <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:prepare" />
+            <arg value="-Dtag=org.apache.royale.framework-${release.version}-${rc}" />
             <arg value="-DautoVersionSubmodules=true" />
         </exec>
     </target>
@@ -422,7 +490,7 @@
         </exec>
     </target>
     
-    <target name="royale.framework" depends="update.framework.pom,maven.branch,maven.prepare,maven.perform" />
+    <target name="royale.framework" depends="clone.framework,update.framework.pom,maven.prepare,maven.perform" />
     
     <target name="close.maven.staging.repo" >
         <input
@@ -435,41 +503,41 @@
         </exec>
     </target>
     
-	<target name="stage.rc" depends="royale.compiler, royale.typedefs, royale.framework, close.maven.staging.repo, ant.artifacts">
+	<target name="maven" depends="check-empty-folder, use_release_branch, royale.compiler, royale.typedefs, royale.framework, close.maven.staging.repo">
     </target>
-    
-    <target name="ant.artifacts" >
-        <input
-        message="Enter Maven Staging folder name"
-        addproperty="maven.staging.folder.name"/>
-        <mkdir dir="${basedir}/stage" />
-        <mkdir dir="${basedir}/stage/royale-asjs" />
-        <mkdir dir="${basedir}/stage/royale-typedefs" />
-        <mkdir dir="${basedir}/stage/royale-compiler" />
-        <get src="http://repository.apache.org/staging/${maven.staging.folder.name}/royale-asjs" dest="${basedir}/stage" />
-        <unzip src="${basedir}/staging/royale-asjs.zip"
-        dest="${basedir}/stage/royale-asjs"/>
-        <get src="http://repository.apache.org/staging/${maven.staging.folder.name}/royale-typedefs" dest="${basedir}/stage" />
-        <unzip src="${basedir}/staging/royale-typedefs.zip"
-        dest="${basedir}/stage/royale-"/>
-        <get src="http://repository.apache.org/staging/${maven.staging.folder.name}/royale-compiler" dest="${basedir}/stage" />
-        <unzip src="${basedir}/staging/royale-compiler.zip"
-        dest="${basedir}/stage/royale-compiler"/>
 
-		<ant dir="${basedir}/stage/royale-asjs" target="release" />
-		<ant dir="${basedir}/stage/royale-asjs" target="create-md5" />
-		<ant dir="${basedir}/stage/royale-asjs" target="sign" />
+    <target name="make_branches" depends="check-empty-folder,use_develop_branch,maven.branch.compiler,maven.branch.typedefs, maven.branch.framework">
+    </target>
+
+    <target name="get-maven-source-artifacts" >
+        <mkdir dir="${basedir}/temp" />
+        <mkdir dir="${basedir}/temp/royale-asjs" />
+        <mkdir dir="${basedir}/temp/royale-typedefs" />
+        <mkdir dir="${basedir}/temp/royale-compiler" />
+        <get src="http://repository.apache.org/staging/royale/${maven.folder.name}/royale-asjs" dest="${basedir}/temp" />
+        <unzip src="${basedir}/temp/royale-asjs.zip"
+        dest="${basedir}/royale-asjs"/>
+        <get src="http://repository.apache.org/staging/royale/${maven.folder.name}/royale-typedefs" dest="${basedir}/temp" />
+        <unzip src="${basedir}/temp/royale-typedefs.zip"
+        dest="${basedir}/royale-typedefs"/>
+        <get src="http://repository.apache.org/staging/royale/${maven.folder.name}/royale-compiler" dest="${basedir}/temp" />
+        <unzip src="${basedir}/temp/royale-compiler.zip"
+        dest="${basedir}/royale-compiler"/>
+
+		<ant dir="${basedir}/royale-asjs" target="release" />
+		<ant dir="${basedir}/royale-asjs" target="create-md5" />
+		<ant dir="${basedir}/royale-asjs" target="sign" />
 		<!--<ant antfile="build.xml" target="doc-create-md5" />-->
 		<!--<ant antfile="build.xml" target="doc-sign" />-->
 		<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" />
 		<!--<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/doc" />-->
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}" >
-			<fileset dir="${basedir}/stage/royale-asjs/out" >
+			<fileset dir="${basedir}/royale-asjs/out" >
 				<include name="apache-royale-${release.version}-src*" />
 			</fileset>
 		</copy>
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
-			<fileset dir="${basedir}/stage/royale-asjs/out" >
+			<fileset dir="${basedir}/royale-asjs/out" >
 				<include name="apache-royale-${release.version}-bin*" />
 			</fileset>
 		</copy>
@@ -646,6 +714,15 @@ ${my.name}
     </target>
 
 	<target name="release" depends="credentials">
+        <antcall target="clone-asjs">
+            <param name="branch.name" value="org.apache.royale.framework-${release.version}-${rc}" />
+        </antcall>
+        <antcall target="clone-typedefs">
+            <param name="branch.name" value="org.apache.royale.typedefs-${release.version}-${rc}" />
+        </antcall>
+        <antcall target="clone-compiler">
+            <param name="branch.name" value="org.apache.royale.compiler-${release.version}-${rc}" />
+        </antcall>
 		<available file="${svn.dist.release}"
 			type="dir" 
 			property="dist.release" value="${svn.dist.release}" />
@@ -671,32 +748,41 @@ ${my.name}
 			<arg value="Apache Royale ${release.version}" />
 		</exec>
         <antcall target="release.tag" />
-		<exec executable="${git}" dir="${basedir}" failonerror="true" >
-			<arg value="push" />
-			<arg value="--tags" />
-		</exec>
-		<echo>Wait at least 24 hours before running update-installer-config-release target</echo>
 	</target>
 
     <target name="release.tag" >
-        <condition property="tag" value="apache-royale-${release.version}-rc${rc}">
-            <not>
-                <isset property="tag" />
-            </not>
-        </condition>
-        <exec executable="${git}" dir="${basedir}" failonerror="true" output="${basedir}/taghash.txt">
-            <arg value="show" />
-            <arg value="${tag}" />
-        </exec>
-        <replaceregexp file="${basedir}/taghash.txt" match="(.*).commit (.*).Author(.*)" replace="\2" byline="false" flags="s" />
-        <loadfile srcFile="${basedir}/taghash.txt" property="releasehash" />
         <exec executable="${git}" dir="${basedir}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
             <arg value="apache-royale-${release.version}" />
-            <arg value="${releasehash}" />
             <arg value="-m" />
             <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
+        </exec>
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="push" />
+            <arg value="--tags" />
+        </exec>
+        <exec executable="${git}" dir="${basedir}../royale-typedefs" failonerror="true" >
+            <arg value="tag" />
+            <arg value="-a" />
+            <arg value="apache-royale-${release.version}" />
+            <arg value="-m" />
+            <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
+        </exec>
+        <exec executable="${git}" dir="${basedir}../royale-typedefs" failonerror="true" >
+            <arg value="push" />
+            <arg value="--tags" />
+        </exec>
+        <exec executable="${git}" dir="${basedir}/../royale-compiler" failonerror="true" >
+            <arg value="tag" />
+            <arg value="-a" />
+            <arg value="apache-royale-${release.version}" />
+            <arg value="-m" />
+            <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
+        </exec>
+        <exec executable="${git}" dir="${basedir}/../royale-compiler" failonerror="true" >
+            <arg value="push" />
+            <arg value="--tags" />
         </exec>
     </target>
 </project>
