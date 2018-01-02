@@ -320,6 +320,25 @@
         unless="ROYALE_TYPEDEFS_HOME"/>
     </target>
 
+    <target name="swf-js-output-royale-description" if="env.PLAYERGLOBAL_HOME">
+        <echo file="${basedir}/royale-sdk-description.xml" append="true">
+&lt;output-targets&gt;
+    &lt;output-target name="js" version="Ecma5Strict" /&gt;
+    &lt;output-target name="swf" version="AS3" AIR="${air.version}" Flash="${playerglobal.version}" /&gt;
+&lt;/output-targets&gt;
+&lt;/royale-sdk-description&gt;
+        </echo>
+    </target>
+
+    <target name="js-output-royale-description" unless="env.PLAYERGLOBAL_HOME">
+        <echo file="${basedir}/royale-sdk-description.xml" append="true">
+&lt;output-targets&gt;
+    &lt;output-target name="js" version="Ecma5Strict" /&gt;
+&lt;/output-targets&gt;
+&lt;/royale-sdk-description&gt;
+        </echo>
+    </target>
+
     <target name="create-description" description="Generate flex-sdk-description.xml" unless="airsdk.found">
         <tstamp>
         	<format property="build.number.date" pattern="yyyyMMdd" />
@@ -370,11 +389,13 @@
 
 --&gt;
 &lt;royale-sdk-description&gt;
-&lt;name&gt;${release.name} ${release.version} FP${playerglobal.version} AIR${air.version} ${locale}&lt;/name&gt;
-&lt;version&gt;${fb.release.version}&lt;/version&gt;
+&lt;name&gt;${release.name}&lt;/name&gt;
+&lt;version&gt;${release.version}&lt;/version&gt;
 &lt;build&gt;${build.number.date}&lt;/build&gt;
-&lt;/royale-sdk-description&gt;
         </echo>
+
+        <antcall target="js-output-royale-description" />
+        <antcall target="swf-js-output-royale-description" />
     </target>
 	
     <target name="create-config" description="Create config files" unless="airsdk.found">
