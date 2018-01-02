@@ -17,7 +17,12 @@
   limitations under the License.
 
 -->
-
+<!--
+ Usage:  make_branches -makes release branches for all 3 repos
+         maven         -produces the Maven artifacts and stages them on the Nexus repo
+         main          -produces the Ant artifacts and prepares emails to be sent
+         release       -run this after vote passes to move stuff to distribution folders and tag the release.
+ -->
 <project name="CreateRoyaleReleaseCandidate" default="main" basedir=".">
 
     <property file="${basedir}/local.properties" />
@@ -72,7 +77,7 @@
             type="file"
             property="found.build.properties" value="true" />
         
-        <fail message="This script should be copied into an empty folder and run from there.  Run the 'maven' target first then start with an empty folder again and run the 'main' target"
+        <fail message="This script should be copied into an empty folder and run from there.  Run the maven-branch target to create release branches or run the 'maven' target to start creating an release candidate, then start with an empty folder again and run the 'main' target to complete the release candidate."
             if="found.build.properties"/>
     </target>
     
@@ -146,24 +151,6 @@
     -Dbrowser=&lt;path-to-browser&gt;"
         unless="browser"/>
         
-    <!--
-    <available file="${basedir}/../royale-compiler"
-        type="dir"
-        property="compiler"
-        value="${basedir}/../royale-compiler" />
-        
-    <fail message="Could not locate royale-compiler repo.  It must be a sibling to royale-asjs"
-        unless="compiler"/>
-        
-    <available file="${basedir}/../royale-typedefs"
-        type="dir"
-        property="typedefs"
-        value="${basedir}/../royale-typedefs"/>
-        
-    <fail message="Could not locate royale-typedefs repo.  It must be a sibling to royale-asjs"
-        unless="typedefs"/>
-    -->
-    
     <condition property="svn" value="svn.exe">
         <isset property="isWindows" />
     </condition>
@@ -249,10 +236,11 @@
     <target name="check-royale-asjs">
         <available file="${basedir}/royale-asjs"
         type="dir"
-        property="royale-asjs-exists"/>
+        property="asjs"
+        value="${basedir}/royale-asjs"/>
     </target>
 
-    <target name="clone-asjs" depends="check-royale-asjs" unless="royale-asjs-exists">
+    <target name="clone-asjs" depends="check-royale-asjs" unless="asjs">
         <echo>cloning royale-asjs repo into ${basedir}/royale-asjs</echo>
         <exec executable="git" failonerror="true" dir="${basedir}">
             <arg value="clone" />
@@ -263,16 +251,25 @@
             <arg value="checkout" />
             <arg value="${branch.name}" />
         </exec>
+        <available file="${basedir}/royale-asjs"
+            type="dir"
+            property="asjs"
+            value="${basedir}/royale-asjs"/>
+        
+        <fail message="Could not locate royale-asjs repo."
+            unless="asjs"/>
+        
         <echo>changed to branch ${branch.name}</echo>
     </target>
 
     <target name="check-royale-compiler">
         <available file="${basedir}/royale-compiler"
         type="dir"
-        property="royale-compiler-exists"/>
+        property="compiler"
+        value="${basedir}/royale-compiler" />
     </target>
 
-    <target name="clone-compiler" depends="check-royale-compiler" unless="royale-compiler-exists">
+    <target name="clone-compiler" depends="check-royale-compiler" unless="compiler">
         <echo>cloning royale-compiler repo into ${basedir}/royale-compiler</echo>
         <exec executable="git" failonerror="true" dir="${basedir}">
             <arg value="clone" />
@@ -283,16 +280,25 @@
             <arg value="checkout" />
             <arg value="${branch.name}" />
         </exec>
+        <available file="${basedir}/royale-compiler"
+            type="dir"
+            property="compiler"
+            value="${basedir}/royale-compiler" />
+        
+        <fail message="Could not locate royale-compiler repo."
+            unless="compiler"/>
+        
         <echo>changed to branch ${branch.name}</echo>
     </target>
 
     <target name="check-royale-typedefs">
         <available file="${basedir}/royale-typedefs"
         type="dir"
-        property="royale-typedefs-exists"/>
+        property="typedefs"
+        value="${basedir}/royale-typedefs"/>
     </target>
 
-    <target name="clone-typedefs" depends="check-royale-typedefs" unless="royale-typedefs-exists">
+    <target name="clone-typedefs" depends="check-royale-typedefs" unless="typedefs">
         <echo>cloning royale-typedefs repo into ${basedir}/royale-typedefs</echo>
         <exec executable="git" failonerror="true" dir="${basedir}">
             <arg value="clone" />
@@ -303,6 +309,14 @@
             <arg value="checkout" />
             <arg value="${branch.name}" />
         </exec>
+        <available file="${basedir}/royale-typedefs"
+            type="dir"
+            property="typedefs"
+            value="${basedir}/royale-typedefs"/>
+        
+        <fail message="Could not locate royale-typedefs repo."
+            unless="typedefs"/>
+        
         <echo>changed to branch ${branch.name}</echo>
     </target>
 
@@ -321,17 +335,22 @@
         message="Enter Maven ASJS Staging Repo folder name"
         addproperty="maven.asjs.folder"/>
     </target>
+    <target name="verify-task">
+        <input
+        message="This task will build a release candidate.  It expects that the make_branches and maven targets ahve been run first.  Press any &lt;enter&gt; to enter the location of the Maven source artifacts."
+        />
+    </target>
     
     <target name="get-maven-folders" depends="get-maven-compiler-folder, get-maven-typedefs-folder,get-maven-asjs-folder" />
     
-    <target name="main" depends="check-empty-folder,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
+    <target name="main" depends="check-empty-folder,verify-task,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
 		<antcall target="check-new-version" />
 		<antcall target="stage.rc" />
 		<antcall target="push.rc" />
 	</target>
 	
     <target name="check-maven-branch" >
-        <exec executable="${git}" dir="${basedir}" failonerror="true" outputproperty="git.branches">
+        <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.branches">
             <arg value="branch" />
             <arg value="--all" />
         </exec>
@@ -416,11 +435,11 @@
     <target name="royale.compiler" depends="clone-compiler,maven.prepare.compiler,maven.perform.compiler" />
     
     <target name="update.typedefs.pom" >
-        <replaceregexp file="${typedefs}/poml.xml" byline="true" encoding="UTF-8">
+        <replaceregexp file="${typedefs}/pom.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.compiler.version&gt;*.&lt;"/>
             <substitution expression="royale.compiler.version&gt;${release.version}&lt;"/>
         </replaceregexp>
-        <replaceregexp file="${typedefs}/poml.xml" byline="true" encoding="UTF-8">
+        <replaceregexp file="${typedefs}/pom.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.build-tools.version&gt;*.&lt;"/>
             <substitution expression="royale.build-tools.version&gt;1.0.0&lt;"/>
         </replaceregexp>
@@ -429,6 +448,7 @@
     <target name="maven.branch.typedefs" depends="clone-typedefs,check-maven-branch.typedefs" unless="typedefs.branch.exists">
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="release:branch" />
+            <arg value="-DdryRun=true" />
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
     </target>
@@ -453,26 +473,27 @@
     <target name="royale.typedefs" depends="clone-typedefs,update.typedefs.pom,maven.prepare.typedefs,maven.perform.typedefs" />
     
     <target name="update.framework.pom" >
-        <replaceregexp file="${basedir}/poml.xml" byline="true" encoding="UTF-8">
+        <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.compiler.version&gt;*.&lt;"/>
             <substitution expression="royale.compiler.version&gt;${release.version}&lt;"/>
         </replaceregexp>
-        <replaceregexp file="${basedir}/poml.xml" byline="true" encoding="UTF-8">
+        <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.build-tools.version&gt;*.&lt;"/>
             <substitution expression="royale.build-tools.version&gt;1.0.0&lt;"/>
         </replaceregexp>
     </target>
     
     <target name="maven.branch.framework" depends="clone-asjs,check-maven-branch" unless="branch.exists">
-        <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="release:branch" />
+            <arg value="-DdryRun=true" />
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
     </target>
     
     <target name="maven.prepare">
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html -->
-        <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:prepare" />
             <arg value="-Dtag=org.apache.royale.framework-${release.version}-${rc}" />
@@ -482,7 +503,7 @@
     
     <target name="maven.perform">
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/perform-release.html -->
-        <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="release:perform" />
         </exec>
     </target>
@@ -529,12 +550,12 @@
 		<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" />
 		<!--<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/doc" />-->
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}" >
-			<fileset dir="${basedir}/royale-asjs/out" >
+			<fileset dir="${asjs}/out" >
 				<include name="apache-royale-${release.version}-src*" />
 			</fileset>
 		</copy>
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
-			<fileset dir="${basedir}/royale-asjs/out" >
+			<fileset dir="${asjs}/out" >
 				<include name="apache-royale-${release.version}-bin*" />
 			</fileset>
 		</copy>
@@ -543,8 +564,8 @@
 				<include name="apache-royale-${release.version}-asdoc*" />
 			</fileset>
 		</copy>-->
-		<copy file="${basedir}/releasemgr/README" tofile="${dist.dev}/royale/${release.version}/rc${rc}/READme" />
-		<copy file="${basedir}/ApproveRoyale.xml" tofile="${dist.dev}/royale/${release.version}/rc${rc}/ApproveRoyale.xml" />
+		<copy file="${asjs}/releasemgr/README" tofile="${dist.dev}/royale/${release.version}/rc${rc}/READme" />
+		<copy file="${asjs}/ApproveRoyale.xml" tofile="${dist.dev}/royale/${release.version}/rc${rc}/ApproveRoyale.xml" />
 	</target>
     
 	<target name="push.rc" >
