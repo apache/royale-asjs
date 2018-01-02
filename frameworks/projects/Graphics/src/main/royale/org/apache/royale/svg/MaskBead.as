@@ -71,12 +71,12 @@ package org.apache.royale.svg
 			{
 				_strand = value;
 				var currentPositioner:Element = (value as IRenderedObject).element as Element;
-				var myPositioner:Element = createChildNode(currentPositioner, "defs") as Element;
-				myPositioner = createChildNode(myPositioner, "mask") as Element;
-				maskElementId = myPositioner.id = "myMask" + UIDUtil.createUID();
-				(value as IUIBase).positioner = myPositioner as WrappedHTMLElement;
+				var newPositioner:Element = createChildNode(currentPositioner, "defs") as Element;
+				newPositioner = createChildNode(newPositioner, "mask") as Element;
+				maskElementId = newPositioner.id = "myMask" + UIDUtil.createUID();
+				(value as IUIBase).positioner = newPositioner as WrappedHTMLElement;
 				// this helps retains width and height
-				myPositioner.setAttribute('style', currentPositioner.getAttribute('style'));
+				newPositioner.setAttribute('style', currentPositioner.getAttribute('style'));
 				// move children to new positioner
 				var childNodes:Object = currentPositioner.childNodes;
 				for (var i:int = 0; i < childNodes.length; i++)
@@ -84,7 +84,7 @@ package org.apache.royale.svg
 					var childNode:Element = childNodes[i] as Element;
 					if (childNode.tagName != "defs")
 					{
-						myPositioner.appendChild(childNode);
+						newPositioner.appendChild(childNode);
 					}
 				}
 			}
@@ -102,6 +102,20 @@ package org.apache.royale.svg
 		public function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;
+		}
+
+		COMPILE::SWF 
+		public function unmaskElement(renderedObject:IRenderedObject):void
+		{
+			renderedObject.$displayObject.mask = null;
+		}
+
+		COMPILE::SWF 
+		public function maskElement(renderedObject:IRenderedObject):void
+		{
+			renderedObject.$displayObject.x = host.$displayObject.x;
+			renderedObject.$displayObject.y = host.$displayObject.y;
+			renderedObject.$displayObject.mask = host.$displayObject;
 		}
 
 		COMPILE::JS 
