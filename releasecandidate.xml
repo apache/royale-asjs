@@ -139,14 +139,16 @@
         
     <available file="${basedir}/../royale-compiler"
         type="dir"
-        property="compiler"/>
+        property="compiler"
+        value="${basedir}/../royale-compiler" />
         
     <fail message="Could not locate royale-compiler repo.  It must be a sibling to royale-asjs"
         unless="compiler"/>
         
     <available file="${basedir}/../royale-typedefs"
         type="dir"
-        property="typedefs"/>
+        property="typedefs"
+        value="${basedir}/../royale-typedefs"/>
         
     <fail message="Could not locate royale-typedefs repo.  It must be a sibling to royale-asjs"
         unless="typedefs"/>
@@ -233,6 +235,7 @@
         <!-- clean out everything generated from prior Maven builds -->
         <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
             <arg value="clean" />
+        </exec>
         <!-- get the latest sources before making a branch.  This should fail if you have local changes -->
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="pull" />
@@ -279,31 +282,44 @@
     </target>
     
     <target name="check-maven-branch.compiler" >
-        <exec executable="${git}" dir="${compiler}" failonerror="true" outputproperty="git.branches">
+        <exec executable="${git}" dir="${compiler}" failonerror="true" outputproperty="git.compiler.branches">
             <arg value="branch" />
             <arg value="--all" />
         </exec>
         <condition property="compiler.branch.exists">
-            <contains string="${git.branches}" substring="${release.version}" />
+            <contains string="${git.compiler.branches}" substring="${release.version}" />
         </condition>
     </target>
     
     <target name="check-maven-branch.typedefs" >
-        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.branches">
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.typedefs.branches">
             <arg value="branch" />
             <arg value="--all" />
         </exec>
         <condition property="typedefs.branch.exists">
-            <contains string="${git.branches}" substring="${release.version}" />
+            <contains string="${git.typedefs.branches}" substring="${release.version}" />
         </condition>
     </target>
     
     <target name="maven.branch.compiler" depends="check-maven-branch.compiler" unless="compiler.branch.exists">
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
             <arg value="release:branch" />
+            <arg value="-DdryRun=true" />
             <arg value="-DbranchName=release/${release.version}" />
-            <arg value="-DupdateBranchVersions=true" />
-            <arg value="-DupdateWorkingCopyVersions=false" />
+            <arg value="-Dproject.rel.org.apache.royale:compiler-build-tools=1.0.0" />
+            <arg value="-Dproject.rel.org.apache.royale:compiler-jburg-types=1.0.0" />
+            <arg value="-Dproject.rel.org.apache.royale:compiler-common=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:compiler-externc=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:compiler=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:compiler-jx=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:compiler-test-utils=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:swfutils=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:debugger=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:flex-compiler-oem=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:royale-ant-tasks=${release.version}" />
+            <arg value="-Dproject.rel.org.apache.royale:royale-maven-plugin=${release.version}" />
+            <arg value="-Dproject.dev.org.apache.royale:compiler-build-tools=1.0.0" />
+            <arg value="-Dproject.dev.org.apache.royale:compiler-jburg-types=1.0.0" />
         </exec>
     </target>
     
@@ -337,11 +353,11 @@
     <target name="royale.compiler" depends="maven.branch.compiler,maven.prepare.compiler,maven.perform.compiler" />
     
     <target name="update.typedefs.pom" >
-        <replaceregexp file="${typedefs}/poml.xml"byline="true" encoding="UTF-8">
+        <replaceregexp file="${typedefs}/poml.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.compiler.version&gt;*.&lt;"/>
             <substitution expression="royale.compiler.version&gt;${release.version}&lt;"/>
         </replaceregexp>
-        <replaceregexp file="${typedefs}/poml.xml"byline="true" encoding="UTF-8">
+        <replaceregexp file="${typedefs}/poml.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.build-tools.version&gt;*.&lt;"/>
             <substitution expression="royale.build-tools.version&gt;1.0.0&lt;"/>
         </replaceregexp>
@@ -351,8 +367,6 @@
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="release:branch" />
             <arg value="-DbranchName=release/${release.version}" />
-            <arg value="-DupdateBranchVersions=true" />
-            <arg value="-DupdateWorkingCopyVersions=false" />
         </exec>
     </target>
     
@@ -375,11 +389,11 @@
     <target name="royale.typedefs" depends="update.typedefs.pom,maven.branch.typedefs,maven.prepare.typedefs,maven.perform.typedefs" />
     
     <target name="update.framework.pom" >
-        <replaceregexp file="${basedir}/poml.xml"byline="true" encoding="UTF-8">
+        <replaceregexp file="${basedir}/poml.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.compiler.version&gt;*.&lt;"/>
             <substitution expression="royale.compiler.version&gt;${release.version}&lt;"/>
         </replaceregexp>
-        <replaceregexp file="${basedir}/poml.xml"byline="true" encoding="UTF-8">
+        <replaceregexp file="${basedir}/poml.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.build-tools.version&gt;*.&lt;"/>
             <substitution expression="royale.build-tools.version&gt;1.0.0&lt;"/>
         </replaceregexp>
@@ -389,8 +403,6 @@
         <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
             <arg value="release:branch" />
             <arg value="-DbranchName=release/${release.version}" />
-            <arg value="-DupdateBranchVersions=true" />
-            <arg value="-DupdateWorkingCopyVersions=false" />
         </exec>
     </target>
     
