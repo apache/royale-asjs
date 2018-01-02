@@ -20,7 +20,7 @@
 
 <project name="CreateRoyaleReleaseCandidate" default="main" basedir=".">
 
-    <!-- use -Dtag=<tag or commit hash> to build from other than the head -->
+    <property file="${basedir}/local.properties" />
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -73,22 +73,24 @@
             property="found.build.properties" value="true" />
         
         <fail message="This script should be copied into an empty folder and run from there.  Run the 'maven' target first then start with an empty folder again and run the 'main' target"
-            unless="found.build.properties"/>
+            if="found.build.properties"/>
     </target>
-    
-    <fail message="The my.name property is not set to the RM's name"
-        unless="my.name"/>
     
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
-		
-	<available file="${svn.dist.dev}"
-		type="dir" 
-		property="dist.dev" value="${svn.dist.dev}" />
+	
+    <target name="check-name-and-svn">
+        <fail message="The my.name property is not set to the RM's name.  This property (and other properties) is often set in a local.properties file and copied into an empty folder before running this script."
+            unless="my.name"/>
+            
+        <available file="${svn.dist.dev}"
+            type="dir" 
+            property="dist.dev" value="${svn.dist.dev}" />
+        
+        <fail message="The svn.dist.dev property is not set to the working copy for https://dist.apache.org/repos/dist/dev."
+            unless="dist.dev"/>
+    </target>
     
-	<fail message="The svn.dist.dev property is not set to the working copy for https://dist.apache.org/repos/dist/dev."
-        unless="dist.dev"/>
-				
     <!--
 	<available file="${svn.site}"
 		type="dir" 
@@ -230,11 +232,6 @@
     <fail message="The release candidate number is not set.  Specify -Drc=&lt;rc number (e.g. 1, 2, 3, etc)&gt;"
     unless="rc"/>
 		
-    <target name="load.asjs.properties" >
-        <property file="${basedir}/local.properties" />
-        <property file="${basedir}/build.properties" />
-    </target>
-        
 	<target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
 	<target name="install-rat.jar" unless="apache.rat.found">
 		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
@@ -325,9 +322,9 @@
         addproperty="maven.asjs.folder"/>
     </target>
     
-    <target name="get-maven-folder" depends="get-maven-compiler-folder, get-maven-typedefs-folder,get-maven-asjs-folder" />
+    <target name="get-maven-folders" depends="get-maven-compiler-folder, get-maven-typedefs-folder,get-maven-asjs-folder" />
     
-    <target name="main" depends="check-empty-folder,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
+    <target name="main" depends="check-empty-folder,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
 		<antcall target="check-new-version" />
 		<antcall target="stage.rc" />
 		<antcall target="push.rc" />
@@ -416,7 +413,7 @@
         </exec>
     </target>
     
-    <target name="royale.compiler" depends="clone.compiler,maven.prepare.compiler,maven.perform.compiler" />
+    <target name="royale.compiler" depends="clone-compiler,maven.prepare.compiler,maven.perform.compiler" />
     
     <target name="update.typedefs.pom" >
         <replaceregexp file="${typedefs}/poml.xml" byline="true" encoding="UTF-8">
@@ -453,7 +450,7 @@
         </exec>
     </target>
     
-    <target name="royale.typedefs" depends="clone.typedefs,update.typedefs.pom,maven.prepare.typedefs,maven.perform.typedefs" />
+    <target name="royale.typedefs" depends="clone-typedefs,update.typedefs.pom,maven.prepare.typedefs,maven.perform.typedefs" />
     
     <target name="update.framework.pom" >
         <replaceregexp file="${basedir}/poml.xml" byline="true" encoding="UTF-8">
@@ -490,7 +487,7 @@
         </exec>
     </target>
     
-    <target name="royale.framework" depends="clone.framework,update.framework.pom,maven.prepare,maven.perform" />
+    <target name="royale.framework" depends="clone-asjs,update.framework.pom,maven.prepare,maven.perform" />
     
     <target name="close.maven.staging.repo" >
         <input
