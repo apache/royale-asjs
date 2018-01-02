@@ -339,25 +339,6 @@
         </echo>
     </target>
 
-    <target name="swf-js-output-flex-description" if="env.PLAYERGLOBAL_HOME">
-       <echo file="${basedir}/flex-sdk-description.xml" append="true">
-&lt;output-targets&gt;
-    &lt;output-target name="js" version="Ecma5Strict" /&gt;
-    &lt;output-target name="swf" version="AS3" AIR="${air.version}" Flash="${playerglobal.version}" /&gt;
-&lt;/output-targets&gt;
-&lt;/flex-sdk-description&gt;
-       </echo>
-    </target>
-
-    <target name="js-output-flex-description" unless="env.PLAYERGLOBAL_HOME">
-        <echo file="${basedir}/flex-sdk-description.xml" append="true">
-&lt;output-targets&gt;
-    &lt;output-target name="js" version="Ecma5Strict" /&gt;
-&lt;/output-targets&gt;
-&lt;/flex-sdk-description&gt;
-        </echo>
-    </target>
-
     <target name="create-description" description="Generate flex-sdk-description.xml" unless="airsdk.found">
         <tstamp>
         	<format property="build.number.date" pattern="yyyyMMdd" />
@@ -383,13 +364,11 @@
 
 --&gt;
 &lt;flex-sdk-description&gt;
-&lt;name&gt;${release.name} ${release.version}&lt;/name&gt;
+&lt;name&gt;${release.name} ${release.version} FP${playerglobal.version} AIR${air.version} ${locale}&lt;/name&gt;
 &lt;version&gt;${fb.release.version}&lt;/version&gt;
 &lt;build&gt;${build.number.date}&lt;/build&gt;
+&lt;/flex-sdk-description&gt;
         </echo>
-        <antcall target="js-output-flex-description" />
-        <antcall target="swf-js-output-flex-description" />
-
         <echo file="${basedir}/royale-sdk-description.xml">&lt;?xml version="1.0"?&gt;
 &lt;!--
 
@@ -410,8 +389,8 @@
 
 --&gt;
 &lt;royale-sdk-description&gt;
-&lt;name&gt;${release.name} ${release.version}&lt;/name&gt;
-&lt;version&gt;${fb.release.version}&lt;/version&gt;
+&lt;name&gt;${release.name}&lt;/name&gt;
+&lt;version&gt;${release.version}&lt;/version&gt;
 &lt;build&gt;${build.number.date}&lt;/build&gt;
         </echo>
 
