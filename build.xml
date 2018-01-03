@@ -344,7 +344,7 @@
             <format property="build.number.date" pattern="yyyyMMdd" />
         </tstamp>
         <echo message="build.number is ${build.number.date}"/>
-        <echo file="${ROYALE_HOME}/royale-sdk-description.xml">&lt;?xml version="1.0"?&gt;
+        <echo file="${basedir}/temp/royale-sdk-description.xml">&lt;?xml version="1.0"?&gt;
 &lt;!--
 
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -947,8 +947,6 @@ limitations under the License.
 
     <target name="jsonly-package" if="env.AIR_HOME"
         description="subset binary package to be a js-only package if AIR_HOME is set and we built a SWF+JS package">
-        <antcall target="create-jsonly-description" />
-
         <!-- assumes temp folder contains the binary package with SWF stuff in it -->
         <delete dir="${basedir}/temp/royale-asjs/frameworks/libs" failonerror="false" includeEmptyDirs="true" />
         <mkdir dir="${basedir}/temp/royale-asjs/frameworks/libs" />
@@ -996,6 +994,7 @@ limitations under the License.
             </fileset>
         </replace>
         <!-- replace npm descriptor with js-only descriptor -->
+        <antcall target="create-jsonly-description" />
         <copy file="${basedir}/npm/package.json" todir="${basedir}/temp" overwrite="true"/>
         <zip destfile="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" basedir="${basedir}/temp"/>
         <tar-gzip name="apache-royale-jsonly-${release.version}-bin" />
