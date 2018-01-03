@@ -20,19 +20,19 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
+	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.core.SimpleCSSStyles;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
 	 * Handles the adding of an itemRenderer once the corresponding datum has been added
@@ -119,15 +119,19 @@ package org.apache.royale.html.beads
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
-			if (dataProviderModel is ISelectionModel) {
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-			}
-
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
             var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
 
             fillRenderer(event.index, event.item, ir, presentationModel);
+			
+			// update the index values in the itemRenderers to correspond to their shifted positions.
+			var dataGroup:UIBase = itemRendererParent as UIBase;
+			var n:int = dataGroup.numElements;
+			for (var i:int = event.index; i < n; i++)
+			{
+				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
+			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}

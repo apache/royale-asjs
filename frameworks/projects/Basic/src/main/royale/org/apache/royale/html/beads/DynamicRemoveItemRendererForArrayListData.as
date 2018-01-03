@@ -111,13 +111,17 @@ package org.apache.royale.html.beads
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			if (dataProviderModel is ISelectionModel) {
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-			}
 			var parent:UIBase = itemRendererParent as UIBase;
 			var ir:ISelectableItemRenderer = parent.getElementAt(event.index) as ISelectableItemRenderer;
 			itemRendererParent.removeItemRenderer(ir);
+			
+			// adjust the itemRenderers' index to adjust for the shift
+			var n:int = parent.numElements;
+			for (var i:int = event.index; i < n; i++)
+			{
+				ir = parent.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
+			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
