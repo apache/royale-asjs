@@ -564,10 +564,21 @@
     
     <target name="maven.perform.compiler">
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/perform-release.html -->
+        <copy file="${compiler}/release.properties" tofile="${compiler}/copyofrelease.properties" />
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
             <arg value="release:perform" />
+            <arg value="-P" />
+            <arg value="-main,utils" />
             <!--<arg value="-DpushChanges=false" />-->
         </exec>
+        <copy file="${compiler}/copyofrelease.properties" tofile="${compiler}/release.properties" />
+        <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
+            <arg value="release:perform" />
+            <arg value="-P" />
+            <arg value="main" />
+            <!--<arg value="-DpushChanges=false" />-->
+        </exec>
+        <!--<delete file="${compiler}/copyofrelease.properties" failonerror="false" />-->
     </target>
     
     <target name="royale.compiler" depends="clone-compiler,checkout-release-branch-compiler,maven.prepare.compiler,maven.perform.compiler" />
