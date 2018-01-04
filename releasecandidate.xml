@@ -482,12 +482,16 @@
     </target>
     
     <target name="git-commit-and-push-typedefs">
-        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.status.typedefs">
+        <exec executable="${git}" dir="${typedefs}" failonerror="true">
+            <arg value="remote" />
+            <arg value="-v" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.push.status.typedefs">
             <arg value="status" />
         </exec>
-        <echo>${git.status.typedefs}</echo>
+        <echo>${git.push.status.typedefs}</echo>
         <condition property="typedefs.modification.exists">
-            <contains string="${git.status.typedefs}" substring="modified:" />
+            <contains string="${git.push.status.typedefs}" substring="modified:" />
         </condition>
         <antcall target="git-commit-and-push-typedefs-if-modified" />
     </target>
@@ -505,11 +509,11 @@
     </target>
     
     <target name="git-commit-and-push-asjs">
-        <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.status.asjs">
+        <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.push.status.asjs">
             <arg value="status" />
         </exec>
         <condition property="asjs.modification.exists">
-            <contains string="${git.status.asjs}" substring="modified:" />
+            <contains string="${git.push.status.asjs}" substring="modified:" />
         </condition>
         <antcall target="git-commit-and-push-asjs-if-modified" />
     </target>
