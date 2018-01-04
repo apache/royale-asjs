@@ -633,6 +633,10 @@
             <regexp pattern="royale.build-tools.version&gt;.*&lt;"/>
             <substitution expression="royale.build-tools.version&gt;1.0.0&lt;"/>
         </replaceregexp>
+        <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.typedefs.version&gt;.*&lt;"/>
+            <substitution expression="royale.typedefs.version&gt;${release.version}&lt;"/>
+        </replaceregexp>
         <antcall target="git-commit-and-push-asjs" />
     </target>
     
@@ -667,7 +671,7 @@
     
     <target name="close.maven.staging.repo" >
         <input
-        message="At this point, the Maven artifacts should be ready to be posted on the staging repo.  Press a key and your browser will open to Nexus, the staging repository UI.  In Nexus 'close' the repo to post the artifacts."/>
+        message="At this point, the Maven artifacts should be ready to be posted on the staging repo.  Press a key and your browser will open to Nexus, the staging repository UI.  Login.  Then choose Staging Repositories in the left list.  Then find the orgapacheroyale repo in the top list.  Check the checkbox for orgapacheroyale then click on the 'close' button to post the artifacts."/>
         <exec executable="${browser}" spawn="true">
             <arg value="http://repository.apache.org/" />
         </exec>
@@ -681,6 +685,8 @@
     <target name="maven_only_compiler" depends="check-empty-folder, use_release_branch, royale.compiler">
     </target>
     <target name="maven_skip_compiler" depends="check-empty-folder, use_release_branch, royale.typedefs, royale.framework, close.maven.staging.repo">
+    </target>
+    <target name="maven_skip_compiler_and_typedefs" depends="check-empty-folder, use_release_branch, royale.framework, close.maven.staging.repo">
     </target>
 
     <target name="make_branches" depends="check-empty-folder,use_develop_branch,maven.branch.compiler,maven.branch.typedefs, maven.branch.framework">
