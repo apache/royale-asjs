@@ -19,19 +19,21 @@
 package org.apache.royale.mdl.beads
 {
     import org.apache.royale.collections.IArrayList;
+    import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IList;
     import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.events.CollectionEvent;
+    import org.apache.royale.core.SimpleCSSStyles;
+    import org.apache.royale.core.UIBase;
 
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData;
+    import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList;
+    import org.apache.royale.html.supportClasses.DataItemRenderer;
     import org.apache.royale.mdl.beads.models.ITabModel;
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
     import org.apache.royale.events.Event;
 
-    [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
-
     /**
-     *  The TabsDynamicItemsRendererFactoryForArrayListData class reads an
+     *  The TabsDataItemRendererFactoryForArrayListData class reads an
      *  array of data and creates an item renderer for every
      *  ITabItemRenderer in the array.
      *
@@ -40,9 +42,9 @@ package org.apache.royale.mdl.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    public class TabsDynamicItemsRendererFactoryForArrayListData extends DynamicItemsRendererFactoryForArrayListData
+    public class TabsDataItemRendererFactoryForArrayListData extends DataItemRendererFactoryForArrayList
     {
-        public function TabsDynamicItemsRendererFactoryForArrayListData(target:Object = null)
+        public function TabsDataItemRendererFactoryForArrayListData(target:Object = null)
         {
             super(target);
         }
@@ -71,6 +73,9 @@ package org.apache.royale.mdl.beads
             if (!dp)
                 return;
 
+            var list:IList = _strand as IList;
+            var dataGroup:IItemRendererParent = list.dataGroup;
+
             dataGroup.removeAllItemRenderers();
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
@@ -80,27 +85,28 @@ package org.apache.royale.mdl.beads
             {
                 var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
                 ir.tabIdField = tabsIdField;
+                var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-                var item:Object = dp.getItemAt(i);
-                fillRenderer(i, item, ir, presentationModel);
+                dataGroup.addItemRenderer(ir);
+
+                if (presentationModel) {
+                    var style:SimpleCSSStyles = new SimpleCSSStyles();
+                    style.marginBottom = presentationModel.separatorThickness;
+                    UIBase(ir).style = style;
+                    UIBase(ir).height = presentationModel.rowHeight;
+                    UIBase(ir).percentWidth = 100;
+                }
+
+                var data:Object = dp.getItemAt(i);
+                ir.index = i;
+                ir.labelField = labelField;
+                if (dataItemRenderer)
+                {
+                    dataItemRenderer.dataField = dataField;
+                }
+
+                setData(ir, data, i);
             }
-
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-        }
-
-        override protected function itemAddedHandler(event:CollectionEvent):void
-        {
-            var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
-            if (!dp)
-                return;
-
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-
-            var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
-            ir.tabIdField = tabsIdField;
-
-            var index:int = dp.length - 1;
-            fillRenderer(index, event.item, ir, presentationModel);
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
         }

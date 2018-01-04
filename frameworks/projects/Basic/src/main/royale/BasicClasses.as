@@ -168,7 +168,6 @@ internal class BasicClasses
     import org.apache.royale.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
     import org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData; DynamicItemsRendererFactoryForArrayListData;
-    import org.apache.royale.html.beads.DynamicRemoveItemRendererForArrayListData; DynamicRemoveItemRendererForArrayListData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView; DataItemRendererFactoryForCollectionView;

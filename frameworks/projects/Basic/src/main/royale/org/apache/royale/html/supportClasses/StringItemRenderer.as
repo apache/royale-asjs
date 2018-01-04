@@ -28,7 +28,6 @@ package org.apache.royale.html.supportClasses
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
     }
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.ITextItemRenderer;
@@ -149,9 +148,6 @@ package org.apache.royale.html.supportClasses
 
             this.text = text;
 		}
-
-        COMPILE::JS
-        private var controller:ItemRendererMouseController;
 
         COMPILE::JS
         private var backgroundView:WrappedHTMLElement;

@@ -18,15 +18,9 @@
 
 -->
 <royale-sdk-description>
-  <name>Apache Royale: Royale ${project.version} FP${flash.version} AIR${air.version} en_US</name>
-  <version>${project.version}</version>
+  <name>Apache Royale ${project.version} FP${flash.version} AIR${air.version} en_US</name>
+  <!--version>${project.version}</version-->
+  <!-- This is a hack to trick the FlashBuilder in accepting this version -->
+  <version>4.8.${project.version}</version>
   <build>${timestamp}</build>
-  <flavor>default</flavor>
-  <default-locale>en_US</default-locale>
-  <flash>
-    <version>${flash.version}</version>
-  </flash>
-  <air>
-    <version>${air.version}</version>
-  </air>
 </royale-sdk-description>

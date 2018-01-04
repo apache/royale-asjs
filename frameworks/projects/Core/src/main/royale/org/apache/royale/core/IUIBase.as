@@ -122,5 +122,18 @@ package org.apache.royale.core
          *  @productversion Royale 0.0
          */
         function get topMostEventDispatcher():IEventDispatcher;
+        /**
+		 *  Set positioner of IUIBase. This can be useful for beads such as MaskBead
+		 *  that change the parent element after it's been drawn.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         *  all input events.
+         *  
+         */
+		COMPILE::JS
+        function set positioner(value:WrappedHTMLElement):void;
     }
 }

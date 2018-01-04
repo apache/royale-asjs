@@ -111,7 +111,7 @@ package org.apache.royale.mdl
 
 					if (!("showModal" in dialog))
 					{
-						dialogPolyfill["registerDialog"](dialog);
+						window["dialogPolyfill"]["registerDialog"](dialog);
 					}
 				}
 			}

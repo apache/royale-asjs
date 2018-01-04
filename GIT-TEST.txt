@@ -1,4 +1,3 @@
-/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,15 +16,5 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-*/
 
-@namespace "http://www.w3.org/1999/xhtml";
-@namespace js "library://ns.apache.org/royale/basic";
-@namespace mdl "library://ns.apache.org/royale/mdl";
-
-.customTabs
-{
-  IItemRenderer: ClassReference("itemRenderers.CustomTabBarPanelItemRenderer");
-  IBeadModel: ClassReference("org.apache.royale.mdl.beads.models.TabArrayListModel");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.mdl.beads.TabsDataItemRendererFactoryForArrayListData");
-}
+Just a commit test [Olaf Krueger]

@@ -27,10 +27,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.EventDispatcher;
@@ -38,7 +36,6 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
-    //import org.apache.royale.html.List;
 	import org.apache.royale.core.IList;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -76,7 +73,7 @@ package org.apache.royale.html.beads
 		protected var labelField:String;
 		protected var dataField:String;
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -89,10 +86,10 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener("initComplete", finishSetup);
+			IEventDispatcher(_strand).addEventListener("initComplete", initComplete);
 		}
 		
-		private function finishSetup(event:Event):void
+		protected function initComplete(event:Event):void
 		{			
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
@@ -193,7 +190,7 @@ package org.apache.royale.html.beads
 				newEvent.itemRenderer = ir;
 				dispatchEvent(newEvent);
 			}
-			
+
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
 	}

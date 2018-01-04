@@ -114,6 +114,7 @@
      -->
 
     <component id="GetScrollbarWidth" class="org.apache.royale.html.beads.GetScrollbarWidth"/>
+    <component id="ThrottleBead" class="org.apache.royale.html.beads.ThrottleBead"/>
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
@@ -122,6 +123,7 @@
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />
     <component id="PasswordInputRemovableBead" class="org.apache.royale.html.accessories.PasswordInputRemovableBead" />
     <component id="TextPromptBead" class="org.apache.royale.html.accessories.TextPromptBead" />
+    <component id="TextOverflow" class="org.apache.royale.html.beads.TextOverflow" />
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
@@ -151,10 +153,13 @@
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayList" />
     <component id="DynamicItemsRendererFactoryForArrayListData" class="org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData" />
+    <component id="DynamicAddItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicAddItemRendererForArrayListData"/>
     <component id="DynamicRemoveItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveItemRendererForArrayListData" />
+    <component id="DynamicUpdateItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicUpdateItemRendererForArrayListData"/>
     <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData" />
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView" />
     <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllItemRendererForArrayListData" />
+    <component id="DynamicRemoveAllByNullItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllByNullItemRendererForArrayListData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
 

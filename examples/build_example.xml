@@ -65,6 +65,11 @@
         </and>
     </condition>
 
+    <condition property="playerglobal_arg" value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}">
+        <isset property="env.PLAYERGLOBAL_HOME"/>
+    </condition>
+    <property name="playerglobal_arg" value="-define+=CONFIG::dummy2,true" />
+
     <condition property="adl" value="adl.exe">
         <os family="windows"/>
     </condition>
@@ -153,6 +158,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="${playerglobal_arg}" />
         </mxmlc>
 
         <antcall target="build_example.wrapper" />
@@ -179,6 +185,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="${playerglobal_arg}" />
         </mxmlc>
     </target>
     

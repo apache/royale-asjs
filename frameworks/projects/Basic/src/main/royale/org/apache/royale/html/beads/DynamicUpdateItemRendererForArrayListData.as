@@ -20,16 +20,17 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 
-	/**
-	 * Handles the removal of all itemRenderers once the all items has been removed
+    /**
+	 * Handles the update of an itemRenderer once the corresponding datum has been updated
 	 * from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
@@ -37,7 +38,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.0
 	 */
-	public class DynamicRemoveAllItemRendererForArrayListData implements IBead
+	public class DynamicUpdateItemRendererForArrayListData implements IBead
 	{
 		/**
 		 * Constructor
@@ -47,11 +48,13 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
 		 */
-		public function DynamicRemoveAllItemRendererForArrayListData()
+		public function DynamicUpdateItemRendererForArrayListData()
 		{
 		}
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
+
+        protected var labelField:String;
 
 		/**
 		 * @copy org.apache.royale.core.IStrand
@@ -80,8 +83,10 @@ package org.apache.royale.html.beads
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			labelField = _dataProviderModel.labelField;
+
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
-			
+
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
@@ -95,8 +100,8 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			// listen for all items being removed in the future.
-			dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+			// listen for individual items being added in the future.
+			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemAdded);
 		}
 
 		/**
@@ -107,16 +112,12 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
 		 */
-		protected function handleAllItemsRemoved(event:CollectionEvent):void
+		protected function handleItemAdded(event:CollectionEvent):void
 		{
-			if (dataProviderModel is ISelectionModel)
-			{
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-				model.selectedItem = null;
-			}
+            var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
 
-			itemRendererParent.removeAllItemRenderers();
+            setData(ir, event.item, event.index);
+
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
@@ -158,5 +159,14 @@ package org.apache.royale.html.beads
 			}
 			return _itemRendererParent;
 		}
+
+        /**
+         * @private
+         */
+        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        {
+            itemRenderer.index = index;
+            itemRenderer.data = data;
+        }
 	}
 }

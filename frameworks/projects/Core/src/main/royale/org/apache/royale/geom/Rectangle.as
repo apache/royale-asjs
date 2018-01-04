@@ -279,12 +279,12 @@ package org.apache.royale.geom
 		
 		public function contains(x:Number, y:Number):Boolean
 		{
-			return x >= x && x < x + width && y >= y && y < y + height;
+			return x >= this.x && x < this.x + this.width && y >= this.y && y < this.y + this.height;
 		}
 		
 		public function containsPoint(point:Point):Boolean
 		{
-			return point.x >= x && point.x < x + width && point.y >= y && point.y < y + height;
+			return contains(point.x, point.y);
 		}
 		
 		public function containsRect(rect:Rectangle):Boolean

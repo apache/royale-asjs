@@ -20,16 +20,22 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
+	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.SimpleCSSStyles;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
-	/**
-	 * Handles the removal of all itemRenderers once the all items has been removed
+    /**
+	 * Handles the adding of an itemRenderer once the corresponding datum has been added
 	 * from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
@@ -37,7 +43,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.0
 	 */
-	public class DynamicRemoveAllItemRendererForArrayListData implements IBead
+	public class DynamicAddItemRendererForArrayListData implements IBead
 	{
 		/**
 		 * Constructor
@@ -47,11 +53,13 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
 		 */
-		public function DynamicRemoveAllItemRendererForArrayListData()
+		public function DynamicAddItemRendererForArrayListData()
 		{
 		}
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
+
+        protected var labelField:String;
 
 		/**
 		 * @copy org.apache.royale.core.IStrand
@@ -80,8 +88,10 @@ package org.apache.royale.html.beads
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			labelField = _dataProviderModel.labelField;
+
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
-			
+
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
@@ -95,8 +105,8 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			// listen for all items being removed in the future.
-			dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+			// listen for individual items being added in the future.
+			dp.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
 		}
 
 		/**
@@ -107,16 +117,22 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
 		 */
-		protected function handleAllItemsRemoved(event:CollectionEvent):void
+		protected function handleItemAdded(event:CollectionEvent):void
 		{
-			if (dataProviderModel is ISelectionModel)
+            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+            var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
+
+            fillRenderer(event.index, event.item, ir, presentationModel);
+			
+			// update the index values in the itemRenderers to correspond to their shifted positions.
+			var dataGroup:UIBase = itemRendererParent as UIBase;
+			var n:int = dataGroup.numElements;
+			for (var i:int = event.index; i < n; i++)
 			{
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-				model.selectedItem = null;
+				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
 			}
 
-			itemRendererParent.removeAllItemRenderers();
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
@@ -158,5 +174,56 @@ package org.apache.royale.html.beads
 			}
 			return _itemRendererParent;
 		}
+
+        private var _itemRendererFactory:IItemRendererClassFactory;
+
+        /**
+         *  The org.apache.royale.core.IItemRendererClassFactory used
+         *  to generate instances of item renderers.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         */
+        public function get itemRendererFactory():IItemRendererClassFactory
+        {
+            if(!_itemRendererFactory)
+                _itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
+
+            return _itemRendererFactory;
+        }
+
+        /**
+         * @private
+         */
+        protected function fillRenderer(index:int,
+                                        item:Object,
+                                        itemRenderer:ISelectableItemRenderer,
+                                        presentationModel:IListPresentationModel):void
+        {
+            itemRendererParent.addItemRendererAt(itemRenderer, index);
+
+            itemRenderer.labelField = labelField;
+
+            if (presentationModel) {
+                var style:SimpleCSSStyles = new SimpleCSSStyles();
+                style.marginBottom = presentationModel.separatorThickness;
+                UIBase(itemRenderer).style = style;
+                UIBase(itemRenderer).height = presentationModel.rowHeight;
+                UIBase(itemRenderer).percentWidth = 100;
+            }
+
+            setData(itemRenderer, item, index);
+        }
+
+        /**
+         * @private
+         */
+        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        {
+            itemRenderer.index = index;
+            itemRenderer.data = data;
+        }
 	}
 }
