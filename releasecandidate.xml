@@ -81,6 +81,21 @@
             if="found.build.properties"/>
     </target>
     
+    <target name="check-no-repos" >
+        <available file="${basedir}/royale-asjs"
+        type="dir"
+        property="found.clone" value="true" />
+        <available file="${basedir}/royale-compiler"
+        type="dir"
+        property="found.clone" value="true" />
+        <available file="${basedir}/royale-typedefs"
+        type="dir"
+        property="found.clone" value="true" />
+        
+        <fail message="This script should be copied into an empty folder and run from there.  Run the maven-branch target to create release branches or run the 'maven' target to start creating an release candidate, then start with an empty folder again and run the 'main' target to complete the release candidate."
+        if="found.clone"/>
+    </target>
+    
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
 	
@@ -343,12 +358,57 @@
     
     <target name="get-maven-folders" depends="get-maven-compiler-folder, get-maven-typedefs-folder,get-maven-asjs-folder" />
     
-    <target name="main" depends="check-empty-folder,verify-task,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
+    <target name="main" depends="check-empty-folder,check-no-repos,verify-task,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
 		<antcall target="check-new-version" />
 		<antcall target="stage.rc" />
 		<antcall target="push.rc" />
 	</target>
 	
+    <target name="checkout-release-branch" >
+        <exec executable="${git}" dir="${asjs}" failonerror="false">
+            <arg value="checkout" />
+            <arg value="${branch.name}" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.status">
+            <arg value="status" />
+        </exec>
+        <condition property="on.branch">
+            <contains string="${git.status}" substring="branch ${branch.name}" />
+        </condition>
+        <fail message="Not on release branch ${branch.name) in ${asjs}."
+            unless="on.branch"/>
+    </target>
+    
+    <target name="checkout-release-branch-compiler" >
+        <exec executable="${git}" dir="${compiler}" failonerror="false">
+            <arg value="checkout" />
+            <arg value="${branch.name}" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" outputproperty="git.status.compiler">
+            <arg value="status" />
+        </exec>
+        <condition property="on.branch.compiler">
+            <contains string="${git.status.compiler}" substring="branch ${branch.name}" />
+        </condition>
+        <fail message="Not on release branch ${branch.name) in ${compiler}."
+            unless="on.branch.compiler"/>
+    </target>
+    
+    <target name="checkout-release-branch-typedefs" >
+        <exec executable="${git}" dir="${typedefs}" failonerror="false">
+            <arg value="checkout" />
+            <arg value="${branch.name}" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.status.typedefs">
+            <arg value="status" />
+        </exec>
+        <condition property="on.branch.typedefs">
+            <contains string="${git.status.typedefs}" substring="branch ${branch.name}" />
+        </condition>
+        <fail message="Not on release branch ${branch.name) in ${typedefs}."
+            unless="on.branch.typedefs"/>
+    </target>
+    
     <target name="check-maven-branch" >
         <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.branches">
             <arg value="branch" />
@@ -383,31 +443,108 @@
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:branch" />
-            <arg value="-DpushChanges=false" />
+            <!--<arg value="-DpushChanges=false" />-->
             <arg value="-DbranchName=release/${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:compiler-build-tools=1.0.0" />
-            <arg value="-Dproject.rel.org.apache.royale:compiler-jburg-types=1.0.0" />
-            <arg value="-Dproject.rel.org.apache.royale:compiler-common=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:compiler-externc=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:compiler=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:compiler-jx=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:compiler-test-utils=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:swfutils=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:debugger=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:flex-compiler-oem=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:royale-ant-tasks=${release.version}" />
-            <arg value="-Dproject.rel.org.apache.royale:royale-maven-plugin=${release.version}" />
-            <arg value="-Dproject.dev.org.apache.royale:compiler-build-tools=1.0.0" />
-            <arg value="-Dproject.dev.org.apache.royale:compiler-jburg-types=1.0.0" />
         </exec>
     </target>
     
+    <target name="git-commit-and-push-utils-if-modified" if="utils.modification.exists">
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="add" />
+            <arg value="compiler-jburg-types/pom.xml" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="add" />
+            <arg value="compiler-build-tools/pom.xml" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="add" />
+            <arg value="pom.xml" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="remove SNAPSHOT from compiler-jburg-types and compiler-build-tools versions" />
+        </exec>
+    </target>
+    
+    <target name="git-commit-and-push-utils">
+        <exec executable="${git}" dir="${compiler}" failonerror="true" outputproperty="git.status.utils">
+            <arg value="status" />
+        </exec>
+        <condition property="utils.modification.exists">
+            <contains string="${git.status.utils}" substring="modified:" />
+        </condition>
+        <antcall target="git-commit-and-push-utils-if-modified" />
+    </target>
+    
+    <target name="git-commit-and-push-typedefs-if-modified" if="typedefs.modification.exists">
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="pom.xml" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="remove SNAPSHOT from compiler-build-tools versions" />
+        </exec>
+    </target>
+    
+    <target name="git-commit-and-push-typedefs">
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.status.typedefs">
+            <arg value="status" />
+        </exec>
+        <condition property="typedefs.modification.exists">
+            <contains string="${git.status.typedefs}" substring="modified:" />
+        </condition>
+        <antcall target="git-commit-and-push-typedefs-if-modified" />
+    </target>
+    
+    <target name="git-commit-and-push-asjs-if-modified" if="asjs.modification.exists">
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="pom.xml" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="remove SNAPSHOT from compiler-build-tools versions" />
+        </exec>
+    </target>
+    
+    <target name="git-commit-and-push-asjs">
+        <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.status.asjs">
+            <arg value="status" />
+        </exec>
+        <condition property="asjs.modification.exists">
+            <contains string="${git.status.asjs}" substring="modified:" />
+        </condition>
+        <antcall target="git-commit-and-push-asjs-if-modified" />
+    </target>
+    
     <target name="maven.prepare.compiler">
+        <!-- use production versions for compiler-build-tools and compiler-jburg-types -->
+        <replace token="1.0.0-SNAPSHOT" value="1.0.0">
+            <fileset dir="${compiler}" >
+                <include name="compiler-build-tools/pom.xml" />
+                <include name="compiler-jburg-types/pom.xml" />
+                <include name="pom.xml" />
+            </fileset>
+        </replace>
+        <!-- build these modules -->
+        <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
+            <arg value="clean" />
+            <arg value="install" />
+            <arg value="-P" />
+            <arg value="-main,utils" />
+        </exec>
+        <antcall target="git-commit-and-push-utils" />
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html -->
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:prepare" />
-            <arg value="-Dtag=org.apache.royale.compiler-${release.version}-${rc}" />
+            <!--<arg value="-DpushChanges=false" />-->
+            <arg value="-Dtag=org.apache.royale.compiler-${release.version}-rc${rc}" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-build-tools=1.0.0" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-jburg-types=1.0.0" />
             <arg value="-Dproject.rel.org.apache.royale:compiler-common=${release.version}" />
@@ -429,26 +566,28 @@
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/perform-release.html -->
         <exec executable="${mvn}" dir="${compiler}" failonerror="true" >
             <arg value="release:perform" />
+            <!--<arg value="-DpushChanges=false" />-->
         </exec>
     </target>
     
-    <target name="royale.compiler" depends="clone-compiler,maven.prepare.compiler,maven.perform.compiler" />
+    <target name="royale.compiler" depends="clone-compiler,checkout-release-branch-compiler,maven.prepare.compiler,maven.perform.compiler" />
     
     <target name="update.typedefs.pom" >
         <replaceregexp file="${typedefs}/pom.xml" byline="true" encoding="UTF-8">
-            <regexp pattern="royale.compiler.version&gt;*.&lt;"/>
+            <regexp pattern="royale.compiler.version&gt;.*&lt;"/>
             <substitution expression="royale.compiler.version&gt;${release.version}&lt;"/>
         </replaceregexp>
         <replaceregexp file="${typedefs}/pom.xml" byline="true" encoding="UTF-8">
-            <regexp pattern="royale.build-tools.version&gt;*.&lt;"/>
+            <regexp pattern="royale.build-tools.version&gt;.*&lt;"/>
             <substitution expression="royale.build-tools.version&gt;1.0.0&lt;"/>
         </replaceregexp>
+        <antcall target="git-commit-and-push-typedefs" />
     </target>
     
     <target name="maven.branch.typedefs" depends="clone-typedefs,check-maven-branch.typedefs" unless="typedefs.branch.exists">
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="release:branch" />
-            <arg value="-DpushChanges=false" />
+            <!--<arg value="-DpushChanges=false" />-->
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
     </target>
@@ -458,7 +597,8 @@
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:prepare" />
-            <arg value="-Dtag=org.apache.royale.typedefs-${release.version}-${rc}" />
+            <!--<arg value="-DpushChanges=false" />-->
+            <arg value="-Dtag=org.apache.royale.typedefs-${release.version}-rc${rc}" />
             <arg value="-DautoVersionSubmodules=true" />
         </exec>
     </target>
@@ -467,26 +607,28 @@
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/perform-release.html -->
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
             <arg value="release:perform" />
+            <!--<arg value="-DpushChanges=false" />-->
         </exec>
     </target>
     
-    <target name="royale.typedefs" depends="clone-typedefs,update.typedefs.pom,maven.prepare.typedefs,maven.perform.typedefs" />
+    <target name="royale.typedefs" depends="clone-typedefs,checkout-release-branch-typedefs,update.typedefs.pom,maven.prepare.typedefs,maven.perform.typedefs" />
     
     <target name="update.framework.pom" >
         <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
-            <regexp pattern="royale.compiler.version&gt;*.&lt;"/>
+            <regexp pattern="royale.compiler.version&gt;.*&lt;"/>
             <substitution expression="royale.compiler.version&gt;${release.version}&lt;"/>
         </replaceregexp>
         <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
-            <regexp pattern="royale.build-tools.version&gt;*.&lt;"/>
+            <regexp pattern="royale.build-tools.version&gt;.*&lt;"/>
             <substitution expression="royale.build-tools.version&gt;1.0.0&lt;"/>
         </replaceregexp>
+        <antcall target="git-commit-and-push-asjs" />
     </target>
     
     <target name="maven.branch.framework" depends="clone-asjs,check-maven-branch" unless="branch.exists">
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="release:branch" />
-            <arg value="-DpushChanges=false" />
+            <!--<arg value="-DpushChanges=false" />-->
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
     </target>
@@ -496,7 +638,8 @@
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="--batch-mode" />
             <arg value="release:prepare" />
-            <arg value="-Dtag=org.apache.royale.framework-${release.version}-${rc}" />
+            <!--<arg value="-DpushChanges=false" />-->
+            <arg value="-Dtag=org.apache.royale.framework-${release.version}-rc${rc}" />
             <arg value="-DautoVersionSubmodules=true" />
         </exec>
     </target>
@@ -505,10 +648,11 @@
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/perform-release.html -->
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="release:perform" />
+            <!--<arg value="-DpushChanges=false" />-->
         </exec>
     </target>
     
-    <target name="royale.framework" depends="clone-asjs,update.framework.pom,maven.prepare,maven.perform" />
+    <target name="royale.framework" depends="clone-asjs,checkout-release-branch,update.framework.pom,maven.prepare,maven.perform" />
     
     <target name="close.maven.staging.repo" >
         <input
@@ -522,6 +666,10 @@
     </target>
     
 	<target name="maven" depends="check-empty-folder, use_release_branch, royale.compiler, royale.typedefs, royale.framework, close.maven.staging.repo">
+    </target>
+    <target name="maven_only_compiler" depends="check-empty-folder, use_release_branch, royale.compiler">
+    </target>
+    <target name="maven_skip_compiler" depends="check-empty-folder, use_release_branch, royale.typedefs, royale.framework, close.maven.staging.repo">
     </target>
 
     <target name="make_branches" depends="check-empty-folder,use_develop_branch,maven.branch.compiler,maven.branch.typedefs, maven.branch.framework">
