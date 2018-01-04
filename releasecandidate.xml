@@ -469,6 +469,7 @@
     </target>
     
     <target name="git-commit-and-push-typedefs-if-modified" if="typedefs.modification.exists">
+        <echo>calling git add</echo>
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="add" />
             <arg value="pom.xml" />
@@ -484,6 +485,7 @@
         <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.status.typedefs">
             <arg value="status" />
         </exec>
+        <echo>${git.status.typedefs}</echo>
         <condition property="typedefs.modification.exists">
             <contains string="${git.status.typedefs}" substring="modified:" />
         </condition>
