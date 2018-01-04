@@ -1466,7 +1466,7 @@ limitations under the License.
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
         <mkdir dir="${basedir}/mustella/tests/basicTests/fonts" />
-        <copy todir="${basedir}/mustella/tests/basicTests/fonts" >
+        <copy todir="${basedir}/mustella/tests/basicTests/fonts" failonerror="false">
             <fileset dir="${ROYALE_HOME}/frameworks/fonts">
                 <include name="**/*.swf" />
             </fileset>
@@ -1626,6 +1626,24 @@ limitations under the License.
         <echo message="Generating MD5 hashes for release artifacts"/>
         <checksum algorithm="md5" file="${basedir}/out/apache-royale-jsonly-${release.version}-bin.tar.gz" forceOverwrite="yes"/>
         <checksum algorithm="md5" file="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" forceOverwrite="yes"/>
+    </target>
+
+    <target name="sign-jsonly" if="env.AIR_HOME" >
+        <exec executable="gpg">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" />
+        </exec>
+        
+        <exec executable="gpg">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.tar.gz.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.tar.gz" />
+        </exec>
     </target>
 
     <target name="sign" >
