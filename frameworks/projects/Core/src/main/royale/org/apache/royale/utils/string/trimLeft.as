@@ -4,7 +4,7 @@
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
 //  The ASF licenses this file to You under the Apache License, Version 2.0
-//  (the "License"); you may not use this file except in compliance with
+//  (the "Licens"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -16,18 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package org.apache.royale.utils.string
 {
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class CoreTester
+    import org.apache.royale.debugging.assert;
+	/**
+	 *  Checks that an index falls within the allowable range of an array.
+	 *  Returns true if it's valid, false if not.
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9
+	 */
+    public function trimLeft(str:String):String
     {
-        public var strandTesterTest:StrandTesterTest;
-		public var binaryDataTesterTest:BinaryDataTesterTest;
-		public var arrayUtilsTest:ArrayUtilsTest;
-		public var dateUtilsTest:DateUtilsTest;
-        public var keyConverterTest:KeyConverterTest;
-        public var keyboardEventConverterTest:KeyboardEventConverterTest;
-        public var stringUtilsTest:StringUtilsTest;
-    }
+        assert(str != null,"trim() cannot be called on null");
+
+        COMPILE::SWF{
+            var startIndex:int = 0;
+            while (isWhitespace(str.charAt(startIndex)))
+                ++startIndex;
+            
+            return str.slice(startIndex);
+        }
+
+        COMPILE::JS{
+            return str.trimLeft();
+        }
+    }   
 }
