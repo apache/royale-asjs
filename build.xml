@@ -344,7 +344,7 @@
             <format property="build.number.date" pattern="yyyyMMdd" />
         </tstamp>
         <echo message="build.number is ${build.number.date}"/>
-        <echo file="${basedir}/temp/royale-sdk-description.xml">&lt;?xml version="1.0"?&gt;
+        <echo file="${basedir}/temp/royale-asjs/royale-sdk-description.xml">&lt;?xml version="1.0"?&gt;
 &lt;!--
 
 Licensed to the Apache Software Foundation (ASF) under one or more
