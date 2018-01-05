@@ -335,31 +335,21 @@
         <echo>changed to branch ${branch.name}</echo>
     </target>
 
-    <target name="get-maven-compiler-folder" unless="maven.compiler.folder">
-        <input
-        message="Enter Maven Compiler Staging Repo folder name"
-        addproperty="maven.compiler.folder"/>
-    </target>
-    <target name="get-maven-typedefs-folder" unless="maven.typedefs.folder">
-        <input
-        message="Enter Maven Typedefs Staging Repo folder name"
-        addproperty="maven.typedefs.folder"/>
-    </target>
-    <target name="get-maven-asjs-folder" unless="maven.asjs.folder">
-        <input
-        message="Enter Maven ASJS Staging Repo folder name"
-        addproperty="maven.asjs.folder"/>
-    </target>
     <target name="verify-task">
         <input
-        message="This task will build a release candidate.  It expects that the make_branches and maven targets ahve been run first.  Press any &lt;enter&gt; to enter the location of the Maven source artifacts."
+        message="This task will build a release candidate.  It expects that the make_branches and maven targets have been run first.  Press any &lt;enter&gt; to enter the location of the Maven source artifacts."
         />
     </target>
     
-    <target name="get-maven-folders" depends="get-maven-compiler-folder, get-maven-typedefs-folder,get-maven-asjs-folder" />
+    <target name="get-maven-folders">
+        <input
+        message="Enter Maven Staging Repo folder number"
+        addproperty="maven.staging.folder.number"/>
+    </target>
     
-    <target name="main" depends="check-empty-folder,check-no-repos,verify-task,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
+    <target name="main" depends="check-empty-folder,check-no-repos,verify-task,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts,check-royale-asjs" description="Perform packaging steps">
 		<antcall target="check-new-version" />
+        <antcall target="ant-artifacts" />
 		<antcall target="stage.rc" />
 		<antcall target="push.rc" />
 	</target>
@@ -479,6 +469,7 @@
     </target>
     
     <target name="git-commit-and-push-typedefs-if-modified" if="typedefs.modification.exists">
+        <echo>calling git add</echo>
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="add" />
             <arg value="pom.xml" />
@@ -491,11 +482,16 @@
     </target>
     
     <target name="git-commit-and-push-typedefs">
-        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.status.typedefs">
+        <exec executable="${git}" dir="${typedefs}" failonerror="true">
+            <arg value="remote" />
+            <arg value="-v" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" outputproperty="git.push.status.typedefs">
             <arg value="status" />
         </exec>
+        <echo>${git.push.status.typedefs}</echo>
         <condition property="typedefs.modification.exists">
-            <contains string="${git.status.typedefs}" substring="modified:" />
+            <contains string="${git.push.status.typedefs}" substring="modified:" />
         </condition>
         <antcall target="git-commit-and-push-typedefs-if-modified" />
     </target>
@@ -513,11 +509,11 @@
     </target>
     
     <target name="git-commit-and-push-asjs">
-        <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.status.asjs">
+        <exec executable="${git}" dir="${asjs}" failonerror="true" outputproperty="git.push.status.asjs">
             <arg value="status" />
         </exec>
         <condition property="asjs.modification.exists">
-            <contains string="${git.status.asjs}" substring="modified:" />
+            <contains string="${git.push.status.asjs}" substring="modified:" />
         </condition>
         <antcall target="git-commit-and-push-asjs-if-modified" />
     </target>
@@ -578,7 +574,7 @@
             <arg value="main" />
             <!--<arg value="-DpushChanges=false" />-->
         </exec>
-        <!--<delete file="${compiler}/copyofrelease.properties" failonerror="false" />-->
+        <delete file="${compiler}/copyofrelease.properties" failonerror="false" />
     </target>
     
     <target name="royale.compiler" depends="clone-compiler,checkout-release-branch-compiler,maven.prepare.compiler,maven.perform.compiler" />
@@ -675,9 +671,6 @@
         <exec executable="${browser}" spawn="true">
             <arg value="http://repository.apache.org/" />
         </exec>
-        <exec executable="${browser}">
-            <arg value="http://central.sonatype.org/pages/releasing-the-deployment.html#locate-and-examine-your-staging-repository" />
-        </exec>
     </target>
     
 	<target name="maven" depends="check-empty-folder, use_release_branch, royale.compiler, royale.typedefs, royale.framework, close.maven.staging.repo">
@@ -697,21 +690,35 @@
         <mkdir dir="${basedir}/temp/royale-asjs" />
         <mkdir dir="${basedir}/temp/royale-typedefs" />
         <mkdir dir="${basedir}/temp/royale-compiler" />
-        <get src="http://repository.apache.org/staging/royale/${maven.folder.name}/royale-asjs" dest="${basedir}/temp" />
+        <get src="https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" dest="${basedir}/temp/royale-asjs.zip" />
         <unzip src="${basedir}/temp/royale-asjs.zip"
-        dest="${basedir}/royale-asjs"/>
-        <get src="http://repository.apache.org/staging/royale/${maven.folder.name}/royale-typedefs" dest="${basedir}/temp" />
+            dest="${basedir}/royale-asjs">
+          <cutdirsmapper dirs="1"/>
+        </unzip>
+        <get src="https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}/org/apache/royale/typedefs/royale-typedefs-parent/${release.version}/royale-typedefs-parent-${release.version}-source-release.zip" dest="${basedir}/temp/royale-typedefs.zip" />
         <unzip src="${basedir}/temp/royale-typedefs.zip"
-        dest="${basedir}/royale-typedefs"/>
-        <get src="http://repository.apache.org/staging/royale/${maven.folder.name}/royale-compiler" dest="${basedir}/temp" />
+            dest="${basedir}/royale-typedefs">
+          <cutdirsmapper dirs="1"/>
+        </unzip>
+        <get src="https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}/org/apache/royale/compiler/royale-compiler-parent/${release.version}/royale-compiler-parent-${release.version}-source-release.zip" dest="${basedir}/temp/royale-compiler.zip" />
         <unzip src="${basedir}/temp/royale-compiler.zip"
-        dest="${basedir}/royale-compiler"/>
+            dest="${basedir}/royale-compiler">
+          <cutdirsmapper dirs="1"/>
+        </unzip>
 
+    </target>
+    
+    <target name="ant-artifacts">
 		<ant dir="${basedir}/royale-asjs" target="release" />
 		<ant dir="${basedir}/royale-asjs" target="create-md5" />
+        <ant dir="${basedir}/royale-asjs" target="create-md5-jsonly" />
 		<ant dir="${basedir}/royale-asjs" target="sign" />
+        <ant dir="${basedir}/royale-asjs" target="sign-jsonly" />
 		<!--<ant antfile="build.xml" target="doc-create-md5" />-->
 		<!--<ant antfile="build.xml" target="doc-sign" />-->
+    </target>
+    
+    <target name="stage.rc">
 		<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" />
 		<!--<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/doc" />-->
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}" >
@@ -724,6 +731,11 @@
 				<include name="apache-royale-${release.version}-bin*" />
 			</fileset>
 		</copy>
+        <copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
+            <fileset dir="${asjs}/out" >
+                <include name="apache-royale-jsonly-${release.version}-bin*" />
+            </fileset>
+        </copy>
 		<!--<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/doc" >
 			<fileset dir="${basedir}/out" >
 				<include name="apache-royale-${release.version}-asdoc*" />
