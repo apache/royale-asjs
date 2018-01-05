@@ -34,28 +34,14 @@ limitations under the License.
         <js:ViewDataBinding />
     </js:beads>
 	
-	<js:Tree id="tree" x="30" y="30" width="400" height="300" 
+	<js:Tree id="tree" x="30" y="30" width="400" height="500" 
 			 labelField="title">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
-				sourcePropertyName="gridData"
+				sourcePropertyName="treeData"
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 	</js:Tree>
-	
-	<js:TreeGrid id="treeGrid" x="450" y="30" width="400" height="300">
-		<js:beads>
-			<js:ConstantBinding
-				sourceID="applicationModel"
-				sourcePropertyName="gridData"
-				destinationPropertyName="dataProvider" />
-		</js:beads>
-		<js:columns>
-			<js:TreeGridColumn dataField="title" label="Title" columnWidth="200" />
-			<js:TreeGridColumn dataField="status" label="Status" columnWidth="125" />
-			<js:TreeGridColumn dataField="hours" label="Hours" columnWidth="75" />
-		</js:columns>
-	</js:TreeGrid>
 
 </js:View>
