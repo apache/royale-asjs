@@ -234,6 +234,7 @@ internal class CoreClasses
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 
 	import org.apache.royale.utils.string.contains; contains;
+	import org.apache.royale.utils.string.isWhitespace; isWhitespace;
 	import org.apache.royale.utils.string.trim; trim;
 	import org.apache.royale.utils.string.trimRight; trimRight;
 	import org.apache.royale.utils.string.trimLeft; trimLeft;
