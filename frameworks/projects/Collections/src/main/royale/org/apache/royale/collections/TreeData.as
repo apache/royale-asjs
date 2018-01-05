@@ -19,6 +19,7 @@
 package org.apache.royale.collections
 {
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.CollectionEvent;
 
 	/**
 	 * TreeData is used with tree or structured data classes. This class incorporates
@@ -31,6 +32,24 @@ package org.apache.royale.collections
 		{
 			_hierarchicalData = source;
 			_flatList = new FlattenedList(source);
+			
+			_flatList.addEventListener(CollectionEvent.ITEM_ADDED, handleCollectionEvent);
+			_flatList.addEventListener(CollectionEvent.ITEM_REMOVED, handleCollectionEvent);
+			_flatList.addEventListener(CollectionEvent.ITEM_UPDATED, handleCollectionEvent);
+		}
+		
+		/**
+		 * Forwards CollectionEvents from the internal FlattenedList as if they came
+		 * from this TreeData, further mimicking an ICollectionView.
+		 * 
+		 * @private
+		 */
+		private function handleCollectionEvent(event:CollectionEvent):void
+		{
+			var newEvent:CollectionEvent = new CollectionEvent(event.type);
+			newEvent.item = event.item;
+			newEvent.index = event.index;
+			dispatchEvent(newEvent);
 		}
 		
 		private var _hierarchicalData:HierarchicalData;

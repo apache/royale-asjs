@@ -20,6 +20,8 @@ package org.apache.royale.html.beads.models
 {
 	import org.apache.royale.collections.HierarchicalData;
 	import org.apache.royale.collections.TreeData;
+	import org.apache.royale.events.CollectionEvent;
+	import org.apache.royale.events.Event;
 
 	/**
 	 * The TreeModel is used by Tree

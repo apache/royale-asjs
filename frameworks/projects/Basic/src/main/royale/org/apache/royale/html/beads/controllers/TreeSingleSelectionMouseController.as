@@ -70,6 +70,7 @@ package org.apache.royale.html.beads.controllers
 			if (treeData == null) return;
 			
 			var node:Object = event.data;
+			listModel.selectedItem = node;
 			
 			if (treeData.isOpen(node)) {
 				treeData.closeNode(node);
@@ -77,8 +78,6 @@ package org.apache.royale.html.beads.controllers
 				treeData.openNode(node);
 			}
 			
-            listModel.selectedItem = node;
-			listModel.dispatchEvent(new Event("dataProviderChanged"));
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 		}
 	}

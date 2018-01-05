@@ -36,9 +36,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.supportClasses.StringItemRenderer;
+	import org.apache.royale.html.supportClasses.UIItemRendererBase;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	
-	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
 	
 	/**
@@ -158,7 +157,12 @@ package org.apache.royale.html.beads
 				return;
 			
 			// listen for individual items being added in the future.
-			(dp as IEventDispatcher).addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			var dped:IEventDispatcher = dp as IEventDispatcher;
+			if (!dped.hasEventListener(CollectionEvent.ITEM_ADDED)) {
+				dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+				dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+				dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+			}
 			
 			dataGroup.removeAllItemRenderers();
 			
@@ -187,19 +191,78 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			if (dataProviderModel is ISelectionModel) {
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;				
-				model.selectedIndex = -1;
-			}
-			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 			labelField = dataProviderModel.labelField;
 			
 			fillRenderer(event.index, event.item, ir, presentationModel);
 			
+			// update the index values in the itemRenderers to correspond to their shifted positions.
+			var n:int = dataGroup.numElements;
+			for (var i:int = event.index; i < n; i++)
+			{
+				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
+				
+				// could let the IR know its index has been changed (eg, it might change its
+				// UI based on the index). Instead (PAYG), allow another bead to detect
+				// this event and do this as not every IR will need to be updated.
+				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
+				//if (ubase) ubase.updateRenderer()
+			}
+			
 			(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function itemRemovedHandler(event:CollectionEvent):void
+		{
+			if (!dataProviderModel)
+				return;
+			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			if (!dp)
+				return;
+			
+			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+			dataGroup.removeItemRenderer(ir);
+			
+			// adjust the itemRenderers' index to adjust for the shift
+			var n:int = dataGroup.numElements;
+			for (var i:int = event.index; i < n; i++)
+			{
+				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
+				
+				// could let the IR know its index has been changed (eg, it might change its
+				// UI based on the index). Instead (PAYG), allow another bead to detect
+				// this event and do this as not every IR will need to be updated.
+				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
+				//if (ubase) ubase.updateRenderer()
+			}
+			
+			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function itemUpdatedHandler(event:CollectionEvent):void
+		{
+			if (!dataProviderModel)
+				return;
+			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			if (!dp)
+				return;
+			
+			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+			
+			// update the given renderer with (possibly) new information so it can change its
+			// appearence or whatever.
+			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+			fillRenderer(event.index, event.item, ir, presentationModel);
 		}
 		
 		/**
