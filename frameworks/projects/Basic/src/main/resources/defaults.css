@@ -194,7 +194,7 @@ DataGridColumnList {
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayList");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");

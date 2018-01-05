@@ -44,9 +44,9 @@ package org.apache.royale.html.supportClasses
 			super();
 		}
 		
-		override public function createList():UIBase
-		{
-			return new Tree();
-		}
+//		override public function createList():UIBase
+//		{
+//			return new Tree();
+//		}
 	}
 }
