@@ -347,7 +347,7 @@
         addproperty="maven.staging.folder.number"/>
     </target>
     
-    <target name="main" depends="check-empty-folder,check-no-repos,verify-task,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts" description="Perform packaging steps">
+    <target name="main" depends="check-empty-folder,check-no-repos,verify-task,check-name-and-svn,install-rat,credentials,get-maven-folders,get-maven-source-artifacts,check-royale-asjs" description="Perform packaging steps">
 		<antcall target="check-new-version" />
         <antcall target="ant-artifacts" />
 		<antcall target="stage.rc" />
