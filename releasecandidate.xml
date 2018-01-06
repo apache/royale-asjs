@@ -792,6 +792,9 @@
 	</target>
 	
 	<target name="check-new-version" description="check if svn folder needs to be added" >
+        <exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
+            <arg value="update" />
+        </exec>
 		<condition property="version.folder" value="${dist.dev}/royale/${release.version}" >
 			<not>
 				<available file="${dist.dev}/royale/${release.version}" />
