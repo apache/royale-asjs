@@ -227,9 +227,6 @@
     <target name="use_develop_branch">
         <property name="branch.name" value="develop" />
     </target>
-    <target name="use_release_tag">
-        <property name="branch.name" value="release/${release.version}" />
-    </target>
     
     <fail message="The release candidate number is not set.  Specify -Drc=&lt;rc number (e.g. 1, 2, 3, etc)&gt;"
     unless="rc"/>
@@ -633,6 +630,12 @@
             <regexp pattern="royale.typedefs.version&gt;.*&lt;"/>
             <substitution expression="royale.typedefs.version&gt;${release.version}&lt;"/>
         </replaceregexp>
+        <!-- also update a couple of places we use version numbers that Maven can't handle -->
+        <replace token="defaults-css-files=Basic-${release.version}-SNAPSHOT" value="defaults-css-files=Basic-{release.version}">
+            <fileset dir="${asjs}/examples" >
+                <include name="royale/MDLBlogExample/pom.xml" />
+            </fileset>
+        </replace>
         <antcall target="git-commit-and-push-asjs" />
     </target>
     
@@ -911,7 +914,7 @@ ${my.name}
 		<delete file="${basedir}/discussthread.properties" />
     </target>
 
-	<target name="release" depends="credentials">
+	<target name="release" depends="check-empty-folder,credentials">
         <antcall target="clone-asjs">
             <param name="branch.name" value="org.apache.royale.framework-${release.version}-${rc}" />
         </antcall>
@@ -946,6 +949,9 @@ ${my.name}
 			<arg value="Apache Royale ${release.version}" />
 		</exec>
         <antcall target="release.tag" />
+        <antcall target="update.versions" />
+        <antcall target="merge_rc_to_develop" />
+        <antcall target="merge_rc_to_master" />
 	</target>
 
     <target name="release.tag" >
@@ -983,4 +989,174 @@ ${my.name}
             <arg value="--tags" />
         </exec>
     </target>
+    
+    <target name="get-next-version">
+        <input
+        message="Enter next release version"
+        addproperty="new.release.version"/>
+        <condition property="has.next.version">
+            <not>
+                <length string="new.release.version" length="0" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="update.versions" depends="get-next-version" if="has.next.version">
+        <replace file="${basedir}/build.properties"
+            token="release.version = ${release.version}"
+            value="release.version = ${new.release.version}" />
+        <replace
+            token="versionNumber&gt;${release.version}"
+            value="versionNumber&gt;${new.release.version}" >
+            <fileset dir="${basedir}/examples" >
+                <include name="royale/CordovaCameraExample/CordovaCameraExample-app.xml" />
+                <include name="royale/MapSearch/MapSearch-app.xml" />
+                <include name="royale/MobileMap/MobileMap-app.xml" />
+                <include name="royale/MobileStocks/MobileStocks-app.xml" />
+                <include name="royale/StorageExample/StorageExample-app.xml" />
+            </fileset>
+        </replace>
+        <replace value="defaults-css-files=Basic-${new.release.version}-SNAPSHOT" token="defaults-css-files=Basic-{release.version}">
+            <fileset dir="${asjs}/examples" >
+                <include name="royale/MDLBlogExample/pom.xml" />
+            </fileset>
+        </replace>
+        <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.compiler.version&gt;.*&lt;"/>
+            <substitution expression="royale.compiler.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+        <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.typedefs.version&gt;.*&lt;"/>
+            <substitution expression="royale.typedefs.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update version to ${new.release.version}" />
+        </exec>
+        <replace file="${compiler}/build.properties"
+            token="release.version = ${release.version}"
+            value="release.version = ${new.release.version}" />
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update version to ${new.release.version}" />
+        </exec>
+        <replaceregexp file="${typedefs}/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.compiler.version&gt;.*&lt;"/>
+            <substitution expression="royale.compiler.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update version to ${new.release.version}" />
+        </exec>
+    </target>
+    
+    <target name="merge_rc_to_develop" depends="merge_to_asjs_develop, merge_to_typedefs_develop, merge_to_compiler_develop" />
+    <target name="merge_to_asjs_develop">
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="pull" />
+            <arg value="--rebase" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="merge" />
+            <arg value="apache-royale-${release.version}" />
+        </exec>
+        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+    </target>
+    <target name="merge_to_typedefs_develop">
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="pull" />
+            <arg value="--rebase" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="merge" />
+            <arg value="apache-royale-${release.version}" />
+        </exec>
+        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+    </target>
+    <target name="merge_to_compiler_develop">
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="pull" />
+            <arg value="--rebase" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="merge" />
+            <arg value="apache-royale-${release.version}" />
+        </exec>
+        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+    </target>
+    
+    <target name="merge_rc_to_master" depends="merge_to_asjs_master, merge_to_typedefs_master, merge_to_compiler_master" />
+    <target name="merge_to_asjs_master">
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="master" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="pull" />
+            <arg value="--rebase" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="merge" />
+            <arg value="apache-royale-${release.version}" />
+        </exec>
+        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+    </target>
+    <target name="merge_to_typedefs_master">
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="master" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="pull" />
+            <arg value="--rebase" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="merge" />
+            <arg value="apache-royale-${release.version}" />
+        </exec>
+        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+    </target>
+    <target name="merge_to_compiler_master">
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="master" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="pull" />
+            <arg value="--rebase" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="merge" />
+            <arg value="apache-royale-${release.version}" />
+        </exec>
+        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+    </target>
+    
 </project>
