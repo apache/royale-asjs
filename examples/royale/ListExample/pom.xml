@@ -49,15 +49,7 @@
     </plugins>
   </build>
 
-  <dependencies>
-    <!-- Already added in parent -->
-    <!--dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
-      <type>swc</type>
-    </dependency-->
-    
+  <dependencies>    
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>

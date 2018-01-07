@@ -34,9 +34,9 @@
   <description>Maven archetype for creating Royale Maven project for building a simple Royale application with only Flash output.</description>
 
   <!--
-  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-application-archetype -DarchetypeVersion=0.8.0
-  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-pure-js-application-archetype -DarchetypeVersion=0.8.0
-  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-pure-swf-application-archetype -DarchetypeVersion=0.8.0
+  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-application-archetype -DarchetypeVersion=x.x.x
+  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-pure-js-application-archetype -DarchetypeVersion=x.x.x
+  mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-pure-swf-application-archetype -DarchetypeVersion=x.x.x
   -->
 
 </project>
