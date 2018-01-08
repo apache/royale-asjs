@@ -184,16 +184,19 @@ package org.apache.royale.html.beads
             var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
             if (!dp)
                 return;
-			
-			if (dataProviderModel is ISelectionModel) {
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;				
-				model.selectedIndex = -1;
-			}
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
             var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 
             fillRenderer(event.index, event.item, ir, presentationModel);
+			
+			// update the index values in the itemRenderers to correspond to their shifted positions.
+			var n:int = dataGroup.numElements;
+			for (var i:int = event.index; i < n; i++)
+			{
+				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
+			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));

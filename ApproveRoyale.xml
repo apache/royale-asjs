@@ -312,7 +312,7 @@
         <delete dir="${basedir}/${doc.package.url.name}" failonerror="false" />-->
 	</target>
 	
-    <!-- untar does not restore file permissions so don't bother checking --->
+    <!-- untar does not restore file permissions so don't bother checking -->
     <target name="untar-file" unless="zip.package" description="Untars zipFile">
         <untar src="${basedir}/${package.url.name}.${package.suffix}"
                 dest="${basedir}" compression="gzip"/>
@@ -343,6 +343,7 @@
                 <exclude name="README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
+                <exclude name="royale-asjs/DEPENDENCIES"/>
                 <exclude name="royale-asjs/README.md"/>
                 <exclude name="royale-asjs/LICENSE.bin"/>
                 <exclude name="royale-asjs/LICENSE.base"/>
@@ -366,6 +367,7 @@
                 <exclude name="**/org.apache.royale.tools.RoyaleToolGroup"/>
                 <exclude name="**/debugger/META-INF/MANIFEST.MF"/>
                 <exclude name="**/*.patch"/>
+                <exclude name="royale-typedefs/DEPENDENCIES"/>
                 <exclude name="royale-compiler/LICENSE.bin"/>
                 <exclude name="royale-compiler/README_MAVEN.txt"/>
                 <exclude name="royale-compiler/NOTICE.base"/>
@@ -403,6 +405,7 @@
                 <exclude name="README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
+                <exclude name="royale-asjs/DEPENDENCIES"/>
                 <exclude name="royale-asjs/README.md"/>
                 <exclude name="royale-asjs/LICENSE.bin"/>
                 <exclude name="royale-asjs/LICENSE.base"/>
@@ -426,6 +429,7 @@
                 <exclude name="**/org.apache.royale.tools.RoyaleToolGroup"/>
                 <exclude name="**/debugger/META-INF/MANIFEST.MF"/>
                 <exclude name="**/*.patch"/>
+                <exclude name="royale-typedefs/DEPENDENCIES"/>
                 <exclude name="royale-compiler/LICENSE.bin"/>
                 <exclude name="royale-compiler/README_MAVEN.txt"/>
                 <exclude name="royale-compiler/NOTICE.base"/>

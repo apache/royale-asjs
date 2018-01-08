@@ -315,5 +315,10 @@ package org.apache.royale.utils
 			return null;
 		}
 
+		COMPILE::JS
+        public function set positioner(value:WrappedHTMLElement):void
+		{
+			// void implementation of IUIBase.positioner
+		}
 	}
 }

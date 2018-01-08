@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
+	import org.apache.royale.collections.HierarchicalData;
+	import org.apache.royale.collections.TreeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.html.beads.models.TreeGridModel;
+	import org.apache.royale.html.beads.models.TreeModel;
 	
 	/**
 	 * A TreeGrid is a combination of a Tree and a DataGrid. The first column of the
@@ -33,7 +36,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class TreeGrid extends UIBase
+	public class TreeGrid extends DataGrid
 	{
 		/**
 		 * Constructor.
@@ -48,22 +51,21 @@ package org.apache.royale.html
 			super();
 		}
 		
+		
 		/**
-		 * The dataProvider should be of type HierarchicalData.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 *  @see org.apache.royale.collections.HierarchicalData.
+		 * The dataProvider for a TreeGrid is TreeData which is created
+		 * from HierarchicalData. You can set the dataProvider with
+		 * TreeData or HierarchicalData and it will create a TreeData
+		 * from that.
 		 */
-		public function get dataProvider():Object
+		override public function set dataProvider(value:Object):void
 		{
-			return (model as TreeGridModel).dataProvider;
-		}
-		public function set dataProvider(value:Object):void
-		{
-			(model as TreeGridModel).dataProvider = value;
+			if (value is HierarchicalData) {
+				var treeData:TreeData = new TreeData(value as HierarchicalData);
+				super.dataProvider = treeData;
+			} else {
+				super.dataProvider = value;
+			}
 		}
 		
 		/**
@@ -74,13 +76,13 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function get columns():Array
-		{
-			return (model as TreeGridModel).columns;
-		}
-		public function set columns(value:Array):void
-		{
-			(model as TreeGridModel).columns = value;
-		}
+//		public function get columns():Array
+//		{
+//			return (model as TreeGridModel).columns;
+//		}
+//		public function set columns(value:Array):void
+//		{
+//			(model as TreeGridModel).columns = value;
+//		}
 	}
 }

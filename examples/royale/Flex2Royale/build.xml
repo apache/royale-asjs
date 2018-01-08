@@ -63,7 +63,7 @@
             <arg value="-debug=true" />
             <arg value="-output=${basedir}/bin-debug" />
             <arg value="-window-title=Apache Royale API Reference" />
-            <arg value="-main-title=Apache Royale 0.8.0 API Reference " />
+            <arg value="-main-title=Apache Royale ${release.version} API Reference " />
             <arg value="-footer=The Apache Software Foundation" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />

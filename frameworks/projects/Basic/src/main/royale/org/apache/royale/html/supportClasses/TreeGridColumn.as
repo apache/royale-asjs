@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.Tree;
+
 	/**
 	 * A TreeGridColumn defines the property of a specific column in the TreeGrid.
 	 * 
@@ -40,5 +43,10 @@ package org.apache.royale.html.supportClasses
 		{
 			super();
 		}
+		
+//		override public function createList():UIBase
+//		{
+//			return new Tree();
+//		}
 	}
 }

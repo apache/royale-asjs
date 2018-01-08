@@ -244,7 +244,7 @@ The map coordinates in examples/native/USStatesMap/src/MapCoords.as
 were placed into the Public Domain by its author.  See:
 https://en.wikipedia.org/wiki/File:USA_CIA_Map.svg#file
 
-Most of the .as files in frameworks/projects/Network/src/main/royyale/ in the
+Most of the .as files in frameworks/projects/Network/src/main/royale/ in the
 package org.apache.royale.net.remoting.amf are derived from
 https://github.com/emilkm/amfjs/blob/master/amf.js which is available under 
 Apache License 2.0.

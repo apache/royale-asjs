@@ -19,7 +19,10 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.collections.FlattenedList;
+	import org.apache.royale.collections.HierarchicalData;
+	import org.apache.royale.collections.TreeData;
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
@@ -52,7 +55,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataItemRendererFactoryForHierarchicalData extends DynamicItemsRendererFactoryForArrayListData
+	public class DataItemRendererFactoryForHierarchicalData extends DataItemRendererFactoryForCollectionView
 	{
         /**
          *  Constructor.
@@ -94,18 +97,21 @@ package org.apache.royale.html.beads
 		 */
 		override protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
+			if (!dataProviderModel)
+				return;
+			
+			var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
+			var depth:int = treeData.getDepth(data);
+			var isOpen:Boolean = treeData.isOpen(data);
+			var hasChildren:Boolean = treeData.hasChildren(data);
+			
 			// Set the listData with the depth of this item
-			var flatList:FlattenedList = dataProviderModel.dataProvider as FlattenedList;
-			var depth:int = flatList.getDepth(data);
-			var isOpen:Boolean = flatList.isOpen(data);
-			var hasChildren:Boolean = flatList.hasChildren(data);
+			var treeListData:TreeListData = new TreeListData();
+			treeListData.depth = depth;
+			treeListData.isOpen = isOpen;
+			treeListData.hasChildren = hasChildren;
 			
-			var treeData:TreeListData = new TreeListData();
-			treeData.depth = depth;
-			treeData.isOpen = isOpen;
-			treeData.hasChildren = hasChildren;
-			
-			ir.listData = treeData;
+			ir.listData = treeListData;
 			
 			super.setData(ir, data, index);
 		}

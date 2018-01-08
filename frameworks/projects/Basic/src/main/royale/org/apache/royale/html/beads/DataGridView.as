@@ -280,11 +280,11 @@ package org.apache.royale.html.beads
 					list.addBead(presentationModel);
 
 					if (i == 0) {
-						list.className = "first";
+						list.typeNames = "first";
 					} else if (i == sharedModel.columns.length-1) {
-						list.className = "last";
+						list.typeNames = "last";
 					} else {
-						list.className = "middle";
+						list.typeNames = "middle";
 					}
 
 					_listArea.addElement(list);

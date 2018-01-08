@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
-	import org.apache.royale.collections.FlattenedList;
-	import org.apache.royale.html.Tree
-	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.collections.TreeData;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemClickedEvent;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -67,18 +66,18 @@ package org.apache.royale.html.beads.controllers
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
-			var tree:Tree = _strand as Tree;
-			var flatList:FlattenedList = listModel.dataProvider as FlattenedList;
-			var node:Object = event.data;
+			var treeData:TreeData = listModel.dataProvider as TreeData;
+			if (treeData == null) return;
 			
-			if (flatList.isOpen(node)) {
-				flatList.closeNode(node);
+			var node:Object = event.data;
+			listModel.selectedItem = node;
+			
+			if (treeData.isOpen(node)) {
+				treeData.closeNode(node);
 			} else {
-				flatList.openNode(node);
+				treeData.openNode(node);
 			}
 			
-            listModel.selectedItem = node;
-			listModel.dispatchEvent(new Event("dataProviderChanged"));
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 		}
 	}

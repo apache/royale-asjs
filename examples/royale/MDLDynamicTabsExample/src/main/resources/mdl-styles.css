@@ -27,5 +27,5 @@
 {
   IItemRenderer: ClassReference("itemRenderers.CustomTabBarPanelItemRenderer");
   IBeadModel: ClassReference("org.apache.royale.mdl.beads.models.TabArrayListModel");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.mdl.beads.TabsDataItemRendererFactoryForArrayListData");
 }

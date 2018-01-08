@@ -71,7 +71,7 @@ limitations under the License.
 				<mdl:TableColumn headerText="Email"/>
 			</mdl:columns>
 			<mdl:beads>
-				<js:DynamicItemsRendererFactoryForArrayListData />
+				<js:DynamicAddItemRendererForArrayListData/>
 				<js:DynamicRemoveItemRendererForArrayListData />
 				<js:DynamicRemoveAllItemRendererForArrayListData />
 				<js:DynamicRemoveAllByNullItemRendererForArrayListData />

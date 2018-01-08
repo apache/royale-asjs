@@ -46,17 +46,21 @@ package org.apache.royale.html.supportClasses
 		{
 			super.data = value;
 			
-			var treeData:TreeListData = listData as TreeListData;
+			var treeListData:TreeListData = listData as TreeListData;
 			var indentSpace:String = "    ";
+			var extraSpace:String = " ";
 			
 			COMPILE::JS {
-				indentSpace = "&nbsp;&nbsp;&nbsp;&nbsp;"
+				indentSpace = "&nbsp;&nbsp;&nbsp;&nbsp;";
+				extraSpace = "&nbsp;";
 			}
-			
-			var indent:String = treeData.hasChildren ? (treeData.isOpen ? "▼" : "▶") : " ";
-			for (var i:int=0; i < treeData.depth; i++) {
+				
+			var indent:String = "";
+			for (var i:int=0; i < treeListData.depth - 1; i++) {
 				indent += indentSpace;
 			}
+			
+			indent += (treeListData.hasChildren ? (treeListData.isOpen ? "▼" : "▶") : "") + extraSpace;
 			
 			this.text = indent + this.text;
 		}

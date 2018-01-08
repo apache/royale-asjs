@@ -25,7 +25,7 @@ package org.apache.royale.events
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion Royale 0.8.0
+	 * @productversion Royale 0.9.0
 	 */
 	public class CollectionEvent extends Event
 	{
@@ -49,7 +49,7 @@ package org.apache.royale.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.8.0
+		 * @productversion Royale 0.9.0
 		 */
 		public function CollectionEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
@@ -72,7 +72,7 @@ package org.apache.royale.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.8.0
+         * @productversion Royale 0.9.0
          */
         public var item:Object;
 
@@ -82,7 +82,7 @@ package org.apache.royale.events
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.8.0
+         * @productversion Royale 0.9.0
          */
 		public var items:Array;
 

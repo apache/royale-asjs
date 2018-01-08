@@ -326,6 +326,12 @@ package org.apache.royale.utils
 		}
 
 		COMPILE::JS
+        public function set positioner(value:WrappedHTMLElement):void
+		{
+			// void implementation of IUIBase.positioner
+		}
+
+		COMPILE::JS
 		public function get element():WrappedHTMLElement
 		{
 			return null;

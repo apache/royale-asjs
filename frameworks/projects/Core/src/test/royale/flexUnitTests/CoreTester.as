@@ -28,5 +28,6 @@ package flexUnitTests
 		public var dateUtilsTest:DateUtilsTest;
         public var keyConverterTest:KeyConverterTest;
         public var keyboardEventConverterTest:KeyboardEventConverterTest;
+        public var stringUtilsTest:StringUtilsTest;
     }
 }

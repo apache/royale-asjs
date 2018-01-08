@@ -64,6 +64,8 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
     //  Properties
     //
     //--------------------------------------------------------------------------
+	
+	private var _flatList:FlattenedList;
 
     //--------------------------------------------------------------------------
     // childrenField
@@ -263,6 +265,26 @@ public class HierarchicalData  extends EventDispatcher implements IHierarchicalD
     {
         return source;
     }
+	
+	public function isOpen(node:Object):Boolean
+	{
+		return _flatList.isOpen(node);
+	}
+	
+	public function openNode(node:Object):void
+	{
+		_flatList.openNode(node);
+	}
+	
+	public function closeNode(node:Object):void
+	{
+		_flatList.closeNode(node);
+	}
+	
+	public function getDepth(node:Object):int
+	{
+		return _flatList.getDepth(node);
+	}
 
 }
 

@@ -18,8 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	import org.apache.royale.collections.FlattenedList;
+//	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
+	import org.apache.royale.collections.TreeData;
+	import org.apache.royale.html.beads.models.TreeModel;
 
 	/**
 	 *  The Tree component displays structured data. The Tree uses a HierarchicalData
@@ -44,30 +46,21 @@ package org.apache.royale.html
 		{
 			super();
 		}
-
-		private var _hierarchicalData:HierarchicalData;
-		private var _flatList:FlattenedList;
-
+		
 		/**
-		 * The dataProvider should be of type HierarchicalData.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 *  @see org.apache.royale.collections.HierarchicalData.
+		 * The dataProvider for a Tree is TreeData which is created
+		 * from HierarchicalData. You can set the dataProvider with
+		 * TreeData or HierarchicalData and it will create a TreeData
+		 * from that.
 		 */
-		override public function get dataProvider():Object
-		{
-			return _hierarchicalData;
-		}
 		override public function set dataProvider(value:Object):void
 		{
-			_hierarchicalData = value as HierarchicalData;
-
-			_flatList = new FlattenedList(_hierarchicalData);
-
-			super.dataProvider = _flatList;
+			if (value is HierarchicalData) {
+				var treeData:TreeData = new TreeData(value as HierarchicalData);
+				super.dataProvider = treeData;
+			} else {
+				super.dataProvider = value;
+			}
 		}
 	}
 }

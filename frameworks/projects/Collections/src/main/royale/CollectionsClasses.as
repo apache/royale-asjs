@@ -32,6 +32,7 @@ internal class CollectionsClasses
 	import org.apache.royale.collections.HierarchicalData; HierarchicalData;
 	import org.apache.royale.collections.LazyCollection; LazyCollection;
 	import org.apache.royale.collections.Collection; Collection;
+	import org.apache.royale.collections.TreeData; TreeData;
 }
 
 }

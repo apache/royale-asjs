@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mdl:TableRowItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+<mdl:TableRowItemSingleSelectionMouseRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
                        xmlns:js="library://ns.apache.org/royale/basic"
                        xmlns:mdl="library://ns.apache.org/royale/mdl"
                        xmlns="http://www.w3.org/1999/xhtml">
@@ -43,4 +43,4 @@ limitations under the License.
     <mdl:TableCell text="{userVO.lastName}"/>
     <mdl:TableCell text="{userVO.email}"/>
     
-</mdl:TableRowItemRenderer>
+</mdl:TableRowItemSingleSelectionMouseRenderer>

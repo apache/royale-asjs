@@ -122,7 +122,7 @@ Tabs
     IBeadView: ClassReference("org.apache.royale.mdl.beads.views.TabsView");
     IBeadModel: ClassReference("org.apache.royale.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.mdl.beads.TabsDataItemRendererFactoryForArrayListData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.royale.mdl.itemRenderers.TabBarPanelItemRenderer");
 }
@@ -132,7 +132,7 @@ TabBar
     IBeadView: ClassReference("org.apache.royale.mdl.beads.views.TabBarView");
     IBeadModel: ClassReference("org.apache.royale.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.mdl.beads.TabsDataItemRendererFactoryForArrayListData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.royale.mdl.itemRenderers.TabBarButtonTabsItemRenderer");
 }

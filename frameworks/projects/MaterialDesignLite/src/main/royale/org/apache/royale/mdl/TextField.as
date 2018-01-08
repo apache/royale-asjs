@@ -77,6 +77,24 @@ package org.apache.royale.mdl
 			_positioner = value;
 		}
 
+        override public function set id(value:String):void
+        {
+            super.id = value;
+
+            updateForTextFieldLabel();
+        }
+
+        private function updateForTextFieldLabel():void
+        {
+            COMPILE::JS
+            {
+                if (label)
+                {
+                    label.setAttribute('for', input.id);
+                }
+            }
+        }
+
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLDivElement

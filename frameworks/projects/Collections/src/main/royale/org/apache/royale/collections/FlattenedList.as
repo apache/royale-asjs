@@ -133,6 +133,7 @@ package org.apache.royale.collections
 					addItemAt(arr.shift(), ++i);
 				}
 			}
+			updateNode(node);
 		}
 		
 		/**
@@ -165,6 +166,16 @@ package org.apache.royale.collections
 					arr.shift();
 				}
 			}
+			updateNode(node);
+		}
+		
+		/**
+		 * Singles to the node that its state has changed and it should
+		 * update itself
+		 */
+		public function updateNode(node:Object):void
+		{
+			this.itemUpdated(node);
 		}
 		
 		/**
