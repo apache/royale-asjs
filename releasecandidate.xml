@@ -499,6 +499,10 @@
             <arg value="pom.xml" />
         </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="examples/royale/MDLBlogExample/pom.xml" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="commit" />
             <arg value="-m" />
             <arg value="remove SNAPSHOT from compiler-build-tools versions" />
