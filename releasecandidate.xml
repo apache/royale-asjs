@@ -852,15 +852,24 @@ At a minimum you would be expected to check that:\n\
 - That the build script completes successfully\n\
 - That you can compile and cross-compile a simple example using the SDK.\n\
 \n\
-The source package is set up the same way as the repo.  This means that\n\
-the results of the build are not the same as an IDE-compatible SDK.  The\n\
-compiled source package can be used in combination with the Royale Transpiler\n\
-source package to compile some of the sample applications.\n\
+The source package is a combination of the 3 main Royale repos.\n\
 \n\
 To use the binary package, unzip it into a folder.  The -js package is\n\
 ready-to-use in an IDE or command-line.  If you need SWF output, use the\n\
 -royale package and use Apache Ant to run the InstallAdobeSDKs script via:\n\
   ant -f InstallAdobeSDKs.xml\n\
+\n\
+You may also get the binary packages via NPM.  The -js package can be\n\
+installed via:\n\
+\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/binaries/apache-royale-jsonly-${release.version}-bin.tar.gz -g\n\
+\n\
+The full package with SWF support can be installed via:\n\
+\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin.tar.gz -g\n\
+\n\
+Maven artifacts are staged here:\n\
+https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}\n\
 \n\
 Please vote to approve this release:\n\
 +1 Approve the release\n\
@@ -953,9 +962,9 @@ ${my.name}
 			<arg value="Apache Royale ${release.version}" />
 		</exec>
         <antcall target="release.tag" />
+        <antcall target="merge_rc_to_master" />
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
-        <antcall target="merge_rc_to_master" />
 	</target>
 
     <target name="release.tag" >
