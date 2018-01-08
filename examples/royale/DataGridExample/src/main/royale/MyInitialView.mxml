@@ -21,13 +21,33 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/royale/basic">
     <fx:Script>
         <![CDATA[
-		 import org.apache.royale.html.DataGrid;
+			import models.ProductsModel;
 			
-		 private function dataGridChange(grid:DataGrid) : void
+			import org.apache.royale.html.DataGrid;
+			
+			import products.Product;
+			
+		 private function dataGridChange(grid:DataGrid, output:Label) : void
 		 {
 			 output.text = "Clicked on row "+grid.selectedIndex;
-			 trace("Click on row "+grid.selectedIndex);
 		 }
+			
+		private function refreshGrid():void
+		{
+			dataGrid.dataProvider = null;
+			dataGrid.dataProvider = (applicationModel as ProductsModel).productList;
+		}
+			
+		private function addValue():void
+		{
+			var product:Product = new Product("xx100","New Item",44,10,"assets/smallbluerect.jpg");
+			(applicationModel as ProductsModel).productList.addItemAt(product, 2);
+		}
+			
+		private function removeValue():void
+		{
+			(applicationModel as ProductsModel).productList.removeItemAt(2);
+		}
 		]]>
     </fx:Script>
 	
@@ -39,13 +59,31 @@ limitations under the License.
 			border-left: solid 1px #333333;
 			border-right: solid 1px #333333;
 		}
+		
+		.DynamicGrid {
+			IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+		}
+		
+		.DynamicGridColumn {
+			IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+		}
 
 	</fx:Style>
 	
-	<js:Label id="output" x="450" y="30"/>
+	<js:Label x="20" y="10" text="Both DataGrids share the same dataProvider. The second DataGrid is dynamic." />
+	
+	<!-- controls for first grid -->
+	<js:Label id="output1" x="30" y="430"/>
+	<js:TextButton text="Refresh Grid" x="20" y="460" click="refreshGrid()" />
+	<js:Label text="Refresh this grid after add or removing values" x="30" y="490" />
+	
+	<!-- controls for second grid -->
+	<js:Label id="output2" x="520" y="430" />
+	<js:TextButton x="520" y="460" text="Add Value" click="addValue()" />
+	<js:TextButton x="520" y="490" text="Remove Value" click="removeValue()" />
 	
 		
-	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="150" change="dataGridChange(dataGrid)" rowHeight="40">
+	<js:DataGrid id="dataGrid" x="20" y="50" width="400" height="350" change="dataGridChange(dataGrid, output1)" rowHeight="40">
 		<js:beads>
 			<js:DataGridPercentageView />
 			<js:ConstantBinding
@@ -60,7 +98,7 @@ limitations under the License.
 		</js:columns>
 	</js:DataGrid>
 		
-	<js:DataGrid id="dataGrid2" x="20" y="300" width="400" height="150" change="dataGridChange(dataGrid2)" rowHeight="40">
+	<js:DataGrid id="dataGrid2" x="520" y="50" width="400" height="350" change="dataGridChange(dataGrid2, output2)" rowHeight="40" className="DynamicGrid">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -68,9 +106,9 @@ limitations under the License.
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
-			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" className="DynamicGridColumn" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" className="DynamicGridColumn" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" className="DynamicGridColumn" />
 		</js:columns>
 	</js:DataGrid>
 	
