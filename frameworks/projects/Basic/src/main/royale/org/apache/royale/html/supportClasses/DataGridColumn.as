@@ -123,5 +123,25 @@ package org.apache.royale.html.supportClasses
 		{
 			_dataField = value;
 		}
+		
+		private var _className:String;
+		
+		/**
+		 * The name of the style class to use for this column. If this is not set
+		 * it defaults to DataGridColumnList.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.0
+		 */
+		public function get className():String
+		{
+			return _className;
+		}
+		public function set className(value:String):void
+		{
+			_className = value;
+		}
 	}
 }

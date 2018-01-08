@@ -272,6 +272,7 @@ package org.apache.royale.html.beads
 					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 
 					var list:DataGridColumnList = new DataGridColumnList();
+					if (dataGridColumn.className != null) list.className = dataGridColumn.className;
 					list.id = "dataGridColumn"+String(i);
 					list.dataProvider = sharedModel.dataProvider;
 					list.itemRenderer = dataGridColumn.itemRenderer;

@@ -189,6 +189,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.RangeStepperView; RangeStepperView;
     import org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
 	import org.apache.royale.html.beads.models.DataGridModel; DataGridModel;
+	import org.apache.royale.html.beads.models.DataGridCollectionViewModel; DataGridCollectionViewModel;
 	import org.apache.royale.html.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.royale.html.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.royale.html.beads.controllers.DateChooserMouseController; DateChooserMouseController;

@@ -158,11 +158,9 @@ package org.apache.royale.html.beads
 			
 			// listen for individual items being added in the future.
 			var dped:IEventDispatcher = dp as IEventDispatcher;
-			if (!dped.hasEventListener(CollectionEvent.ITEM_ADDED)) {
-				dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-				dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-				dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-			}
+			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
 			dataGroup.removeAllItemRenderers();
 			

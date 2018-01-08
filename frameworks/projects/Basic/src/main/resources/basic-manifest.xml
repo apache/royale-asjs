@@ -149,6 +149,7 @@
     <component id="DataGridLinesBead" class="org.apache.royale.html.beads.DataGridLinesBead"/>
     <component id="DataGridColumnList" class="org.apache.royale.html.supportClasses.DataGridColumnList"/>
     <component id="DataGridPercentageView" class="org.apache.royale.html.beads.DataGridPercentageView" />
+    <component id="DataGridCollectionViewModel" class="org.apache.royale.html.beads.models.DataGridCollectionViewModel" />
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayList" />
