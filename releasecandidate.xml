@@ -725,7 +725,7 @@
 		<!--<ant antfile="build.xml" target="doc-sign" />-->
     </target>
     
-    <target name="stage.rc">
+    <target name="stage.rc" unless="no.push">
 		<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" />
 		<!--<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/doc" />-->
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}" >
@@ -752,7 +752,7 @@
 		<copy file="${asjs}/ApproveRoyale.xml" tofile="${dist.dev}/royale/${release.version}/rc${rc}/ApproveRoyale.xml" />
 	</target>
     
-	<target name="push.rc" >
+	<target name="push.rc" unless="no.push">
 		<exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
 			<arg value="add" />
 			<arg value="${dist.dev}/royale/${release.version}/rc${rc}" />
