@@ -216,7 +216,7 @@ package org.apache.royale.html.beads.controllers
 			goog.events.listen(host.element, goog.events.EventType.MOUSELEAVE,
 				handleThumbLeave, false, this);
 			
-			mouseOrigin = bevent.clientY;
+			mouseOrigin = bevent.screenY; //.clientY;
 			thumbOrigin = parseInt(thumb.element.style.top, 10);
 			oldValue = rangeModel.value;
 		}
@@ -278,7 +278,9 @@ package org.apache.royale.html.beads.controllers
 		COMPILE::JS
 		private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
 		{
-			var deltaY:Number = (useOffset ? event.offsetY : event.clientY) - mouseOrigin;
+			var deltaY:Number = event.screenY - mouseOrigin; //(useOffset ? event.offsetY : event.clientY) - mouseOrigin;
+			if (deltaY == 0) return;
+			
 			var thumbH:int = parseInt(thumb.element.style.height, 10) / 2;
 			var newY:Number = thumbOrigin + deltaY;
 			var newPointY:Number = newY + thumbH; // center of the thumb which represents the value
