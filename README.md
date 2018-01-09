@@ -179,8 +179,14 @@ If you are not interested in SWF output, the binary distribution can just be unz
 
 If you want SWF output, use NPM. Run:
 
+- Mac
 ```bash
 sudo npm install royale -g
+```
+
+- Windows
+```bash
+npm install royale -g
 ```
 
 # Using Royale
