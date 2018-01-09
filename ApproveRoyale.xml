@@ -756,6 +756,11 @@
         <property name="no.lint" value="true" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="all" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="examples" />
+        <antcall target="build_maven" />
+    </target>
+
+    <target name="build_maven" >
+        <echo>Path is ${env.Path}</echo>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="-P" />
             <arg value="-main,utils" />
