@@ -962,44 +962,61 @@ ${my.name}
 			<arg value="Apache Royale ${release.version}" />
 		</exec>
         <antcall target="release.tag" />
+        <!-- this is intended to merge the tag to master because it should have the right versions in it -->
         <antcall target="merge_rc_to_master" />
+        <antcall target="get_head_of_rc_branches" />
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
 	</target>
 
     <target name="release.tag" >
-        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
             <arg value="apache-royale-${release.version}" />
             <arg value="-m" />
             <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
         </exec>
-        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="push" />
             <arg value="--tags" />
         </exec>
-        <exec executable="${git}" dir="${basedir}../royale-typedefs" failonerror="true" >
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
             <arg value="apache-royale-${release.version}" />
             <arg value="-m" />
             <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
         </exec>
-        <exec executable="${git}" dir="${basedir}../royale-typedefs" failonerror="true" >
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="push" />
             <arg value="--tags" />
         </exec>
-        <exec executable="${git}" dir="${basedir}/../royale-compiler" failonerror="true" >
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
             <arg value="apache-royale-${release.version}" />
             <arg value="-m" />
             <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
         </exec>
-        <exec executable="${git}" dir="${basedir}/../royale-compiler" failonerror="true" >
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="push" />
             <arg value="--tags" />
+        </exec>
+    </target>
+    
+    <target name="get_head_of_rc_branches" >
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="release/${release.version}" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="release/${release.version}" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="release/${release.version}" />
         </exec>
     </target>
     
