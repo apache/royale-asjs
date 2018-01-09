@@ -69,12 +69,12 @@
 
     <property name="build.target" value="main" />
 	
-	<available file="${env.APPDATA}/npm/jshint.cmd" 
-		type="file" 
-		property="jshint" value="${env.APPDATA}/npm/jshint.cmd" />
-	<property name="jshint" value="jshint" />
+    <condition property="mvn" value="mvn.exe">
+        <isset property="isWindows" />
+    </condition>
+    <property name="mvn" value="mvn" />
     
-	<available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" 
+	<available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe"
 		type="file" 
 		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
 	<available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe" 
@@ -142,6 +142,7 @@
 	<property name="package.url.name" value="apache-royale-${release.version}-src" />
     <property name="bin.package.url.path" value="${package.url.path}/binaries" />
     <property name="bin.package.url.name" value="apache-royale-${release.version}-bin" />
+    <property name="maven.package.url.name" value="apache-royale-${release.version}-maven-src" />
     <!--
     <property name="doc.package.url.path" value="${package.url.path}/doc" />
     <property name="doc.package.url.name" value="apache-royale-${release.version}-asdocs" />
@@ -192,12 +193,20 @@
         classpathref="anttask.classpath"/>
     </target>
 
-    <target name="main" depends="write-out-jars-list,install-rat,download,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
+    <target name="main" depends="write-out-jars-list,install-rat,download,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
     </target>
     
-    <target name="main-no-download" depends="write-out-jars-list,install-rat,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
+    <target name="main-no-download" depends="write-out-jars-list,install-rat,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
     </target>
 	
+    <target name="copy-source-for-maven">
+        <copy todir="${basedir}/${maven.package.url.name}">
+            <fileset dir="${basedir}/${package.url.name}">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+    
     <target name="test" >
 		<echo>${rat.report}.bin.txt</echo>
 		<replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="" byline="true"/>
@@ -741,6 +750,24 @@
         <property name="no.lint" value="true" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="all" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="examples" />
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
+            <arg value="-P" />
+            <arg value="-main,utils" />
+            <arg value="clean" />
+            <arg value="install" />
+        </exec>
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
+            <arg value="clean" />
+            <arg value="install" />
+        </exec>
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-typedefs" failonerror="true" >
+            <arg value="clean" />
+            <arg value="install" />
+        </exec>
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" >
+            <arg value="clean" />
+            <arg value="install" />
+        </exec>
     </target>
 
     <target name="copy.downloads" if="${do.copy.downloads}" description="instead of actually downloading all of the dependencies, you can save lots of time by just copying from some other folder in some other SDK.">
