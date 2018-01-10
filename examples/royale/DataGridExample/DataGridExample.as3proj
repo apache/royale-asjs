@@ -81,7 +81,7 @@ limitations under the License.
     <option deviceSimulator="null"/>
     <option targetPlatform="2"/>
     <option launchMethod="Simulator"/>
-    <option urlToLaunch="D:\flex_sdk\Royale-Sources\royale-asjs\examples\royale\DataGridExample\bin\js-debug\index.html"/>
+    <option urlToLaunch=""/>
     <option projectType="2"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>

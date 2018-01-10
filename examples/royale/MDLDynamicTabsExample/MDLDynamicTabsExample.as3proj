@@ -80,7 +80,7 @@ limitations under the License.
     <option targetPlatform="2"/>
     <option projectType="2"/>
     <option launchMethod="Simulator"/>
-    <option urlToLaunch="D:\flex_sdk\Royale-Sources\royale-asjs\examples\royale\MDLDynamicTabsExample\bin\js-debug\index.html"/>
+    <option urlToLaunch=""/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
