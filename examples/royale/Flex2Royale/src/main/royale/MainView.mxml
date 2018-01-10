@@ -26,12 +26,12 @@ limitations under the License.
         <![CDATA[
         	import org.apache.royale.html.TableRow;
         	import org.apache.royale.html.TableCell;
-        	import org.apache.royale.html.P;
-        	import org.apache.royale.html.PRE;
-        	import org.apache.royale.html.H3;
         	import org.apache.royale.events.Event;
         	
         	import models.MainModel;
+        	import org.apache.royale.html.elements.H3;
+        	import org.apache.royale.html.elements.P;
+        	import org.apache.royale.html.elements.Pre;
         	
         	private function fillTable():void
         	{
@@ -69,7 +69,7 @@ limitations under the License.
         		var cell3:TableCell = new TableCell();
         		for(var i:int=0; i < col3.length; i++) {
         			para = new P();
-        			para.html = String(col3[i]);
+        			para.text = String(col3[i]);
         			cell3.addElement(para);
         		}
         		var preText:String = "";
@@ -77,8 +77,8 @@ limitations under the License.
         			if (i > 0) preText = preText + "\n";
         			preText = preText + String(exp3[i]);
         		}
-        		var pre:PRE = new PRE();
-        		pre.html = preText;
+        		var pre:Pre = new Pre();
+        		pre.text = preText;
         		cell3.addElement(pre);
         		row.addElement(cell3);
         		
