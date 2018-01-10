@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="HTML.as" projectUUID="10468643-4626-481f-ba6b-3f035ccbbabb" version="11">
+  <compiler additionalCompilerArguments="-locale en_US&#13;&#10;-define=COMPILE::SWF,true&#13;&#10;-define=COMPILE::JS,false&#13;&#10;-load-config=../config/compile-swf-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/royale" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/{playerglobalHome}/27.0" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/{playerglobalHome}/27.0/playerglobal.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/air/airglobal.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="Badic.as"/>
+  </applications>
+  <modules/>
+  <workers/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+</actionScriptProperties>
