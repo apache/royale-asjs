@@ -232,7 +232,7 @@ package org.apache.royale.html.supportClasses
 				_verticalScroller.visible = true;
 				_verticalScroller.x = UIBase(_strand).width - borderMetrics.right - _verticalScroller.width;
 				_verticalScroller.y = borderMetrics.top;
-				_verticalScroller.setHeight(hostHeight - (needH ? _horizontalScroller.height : 0), true);
+				_verticalScroller.setHeight(hostHeight - (needH ? _horizontalScroller.height : 0), false);
 				
 				ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;
 				ScrollBarModel(_verticalScroller.model).pageSize = contentArea.height;
@@ -251,7 +251,7 @@ package org.apache.royale.html.supportClasses
 				_horizontalScroller.visible = true;
 				_horizontalScroller.x = 0;
 				_horizontalScroller.y = UIBase(_strand).height - borderMetrics.bottom - _horizontalScroller.height;
-				_horizontalScroller.setWidth(hostWidth - (needV ? _verticalScroller.width : 0), true);
+				_horizontalScroller.setWidth(hostWidth - (needV ? _verticalScroller.width : 0), false);
 				
 				ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;
 				ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
