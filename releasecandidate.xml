@@ -676,7 +676,37 @@
         <echo>run git show in royale-asjs to double-check the last commit then run git-push</echo>
     </target>
     
+    <target name="update_other_release_poms" depends="check-royale-asjs">
+        <xmlproperty file="${asjs}/pom.xml" prefix="pom"/>
+        <echo>updating release poms to version: ${pom.project.version}</echo>
+        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
+            <arg value="versions:set" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
+            <arg value="versions:set" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
+            <arg value="versions:set" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update other poms to current version" />
+        </exec>
+    </target>
+    
     <target name="maven.prepare">
+        <antcall target="update_other_release_poms" />
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html -->
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="--batch-mode" />
