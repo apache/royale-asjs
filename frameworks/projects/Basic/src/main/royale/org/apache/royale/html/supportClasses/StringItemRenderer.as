@@ -142,7 +142,8 @@ package org.apache.royale.html.supportClasses
 		{
 			super.data = value;
             var text:String;
-			if (labelField) text = String(value[labelField]);
+			if (value is String) text = value as String;
+			else if (labelField) text = String(value[labelField]);
 			else if (dataField) text = String(value[dataField]);
 			else text = String(value);
 
