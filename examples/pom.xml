@@ -35,6 +35,7 @@
 
   <properties>
     <compiler.output-dir>${basedir}/target/javascript/bin/js-debug</compiler.output-dir>
+    <royale.framework.version>0.9.0-SNAPSHOT</royale.framework.version>
   </properties>
 
   <modules>
@@ -42,6 +43,7 @@
     <module>royale</module>
     <module>native</module>
     <module>node</module>
+    <module>amf</module>
 
     <module>examples-tests</module>
     <module>examples-integrationtests</module>

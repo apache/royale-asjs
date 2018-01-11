@@ -44,15 +44,17 @@
     <module>DataGridExample</module>
     <module>DateControlsExample</module>
     <module>DesktopMap</module>
+    <module>Flex2Royale</module>
     <module>RoyaleStore</module>
     <module>RoyaleStore_jquery</module>
     <module>RoyaleTeamPage_MDL</module>
     <module>RoyaleThemes</module>
     <module>RoyaleWebsiteStatsViewer</module>
     <module>HelloWorld</module>
+    <module>HTMLElements</module>
     <module>ListExample</module>
     <module>MapSearch</module>
-    <!--module>MDLBlogExample</module>-->
+    <module>MDLBlogExample</module>
     <module>MDLDynamicTabsExample</module>
     <module>MDLExample</module>
     <module>MDLDynamicTableExample</module>
