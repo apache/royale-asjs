@@ -294,12 +294,11 @@ package org.apache.royale.html.beads.controllers
         COMPILE::JS
         private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
         {
-            var deltaX:Number = event.screenX - mouseOrigin;//(useOffset ? event.offsetX : event.clientX) - mouseOrigin;
+            var deltaX:Number = event.screenX - mouseOrigin;
 			if (deltaX == 0) return;
 			
             var thumbW:int = parseInt(thumb.element.style.width, 10) / 2;
-            var newX:Number = thumbOrigin + deltaX;
-			var newPointX:Number = newX + thumbW; // center of the thumb which represents the value
+			var newPointX:Number = thumbOrigin + deltaX;
 			
 			var useWidth:Number = parseInt(track.element.style.width,10) * 1.0;
 			var p:Number = newPointX / useWidth;

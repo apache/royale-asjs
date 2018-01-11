@@ -106,9 +106,9 @@ limitations under the License.
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" className="DynamicGridColumn" />
-			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" className="DynamicGridColumn" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" className="DynamicGridColumn" />
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100"  />
 		</js:columns>
 	</js:DataGrid>
 	
