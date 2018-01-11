@@ -19,11 +19,13 @@ package org.apache.royale.svg
 {
     import org.apache.royale.core.GroupBase;
     import org.apache.royale.core.IChild;
+	import org.apache.royale.events.Event;
     import org.apache.royale.core.IMXMLDocument;
     import org.apache.royale.core.IRoyaleElement;
     import org.apache.royale.core.ITransformHost;
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.ValuesManager;
 
 	COMPILE::JS
 	{
@@ -42,6 +44,7 @@ package org.apache.royale.svg
 		private var graphicGroup:GroupBase;
 		private var _mxmlDescriptor:Array;
 		private var _mxmlDocument:Object = this;
+		private var _initialized:Boolean;
 
 		public function GraphicContainer()
 		{
@@ -205,6 +208,31 @@ package org.apache.royale.svg
 		{
 			_mxmlDocument = document;
 			_mxmlDescriptor = value;
+		}
+
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			if (!_initialized)
+			{
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+			}
+			
+			super.addedToParent();
+			
+			if (!_initialized)
+			{
+				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+				
+				//?? why was this added here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will already have called it
+			}
 		}
 
 		/**
