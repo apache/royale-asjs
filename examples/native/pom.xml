@@ -33,14 +33,22 @@
   <name>Apache Royale: Examples: Native</name>
 
   <modules>
-    <!-- Seems to be missing a module with the angular types -->
-    <!--module>AngularExample</module-->
     <!-- Also seems to be missing something -->
     <module>ButtonExample</module>
     <!-- Also seems to be missing something -->
     <module>USStatesMap</module>
   </modules>
 
+  <profiles>
+    <profile>
+      <id>brokenmodules</id>
+      <modules>
+        <!-- Seems to be missing a module with the angular types -->
+        <module>AngularExample</module>
+      </modules>
+    </profile>
+  </profiles>
+    
   <dependencies>
       <!--
        By declaring this dependency here, we force the royale-externs-js to be
