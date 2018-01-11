@@ -26,15 +26,15 @@
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
-    <artifactId>examples-royale</artifactId>
+    <artifactId>examples-express</artifactId>
     <version>0.9.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>DataGridExample</artifactId>
+  <artifactId>DataGridExample-Express</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: DataGridExample</name>
+  <name>Apache Royale: Examples: Express: DataGridExample</name>
 
   <build>
     <plugins>
