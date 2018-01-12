@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>distribution</artifactId>
-  <version>0.9.1-SNAPSHOT</version>
+  <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Distribution</name>
@@ -465,37 +465,37 @@
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compc</artifactId>
-      <version>0.9.1-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>mxmlc</artifactId>
-      <version>0.9.1-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-asc</artifactId>
-      <version>0.9.1-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-compc</artifactId>
-      <version>0.9.1-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-mxmlc</artifactId>
-      <version>0.9.1-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-optimizer</artifactId>
-      <version>0.9.1-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-swfdump</artifactId>
-      <version>0.9.1-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
