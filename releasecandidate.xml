@@ -669,7 +669,17 @@
             <arg value="-DgenerateBackupPoms=false" />
             <arg value="-DallowSnapshots=true" />
         </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
+            <arg value="versions:use-latest-versions" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="versions:set" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
             <arg value="versions:set" />
             <arg value="-DgenerateBackupPoms=false" />
             <arg value="-DnewVersion=${pom.project.version}" />
@@ -680,6 +690,16 @@
             <arg value="-DallowSnapshots=true" />
         </exec>
         <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
+            <arg value="versions:update-parent" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
+            <arg value="versions:update-parent" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/testsuite" failonerror="true" >
             <arg value="versions:update-parent" />
             <arg value="-DgenerateBackupPoms=false" />
             <arg value="-DallowSnapshots=true" />
