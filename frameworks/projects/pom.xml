@@ -59,6 +59,7 @@
     <module>XML</module>
     <module>Text</module>
     <module>TLF</module>
+    <module>Testing</module>
   </modules>
 
   <build>
