@@ -659,11 +659,6 @@
         </exec>
         <xmlproperty file="${asjs}/pom.xml" prefix="pom"/>
         <echo>next version is: ${pom.project.version}</echo>
-        <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
-            <arg value="versions:use-latest-versions" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
         <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
             <arg value="versions:use-latest-versions" />
             <arg value="-DgenerateBackupPoms=false" />
