@@ -54,27 +54,27 @@
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler</artifactId>
-      <version>0.9.0-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>flex-compiler-oem</artifactId>
-      <version>0.9.0-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>royale-ant-tasks</artifactId>
-      <version>0.9.0-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>debugger</artifactId>
-      <version>0.9.0-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler-jx</artifactId>
-      <version>0.9.0-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
 
     <!-- Add the framework swc modules -->
