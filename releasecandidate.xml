@@ -669,6 +669,18 @@
             <arg value="-DgenerateBackupPoms=false" />
             <arg value="-DnewVersion=${pom.project.version}" />
         </exec>
+        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
+            <arg value="versions:update-parent" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="versions:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="add" />
             <arg value="." />
