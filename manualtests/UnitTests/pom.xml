@@ -156,14 +156,14 @@
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.0-SNAPSHOT</version>
+			<version>${royale.framework.version}</version>
 			<type>swc</type>
 			<classifier>swf</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.0-SNAPSHOT</version>
+			<version>${royale.framework.version}</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
