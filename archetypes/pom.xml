@@ -33,6 +33,10 @@
   <name>Apache Royale: Framework: Archetypes</name>
   <description>Maven archetypes for creating royale maven projects</description>
 
+  <properties>
+    <royale.framework.version>0.9.0-SNAPSHOT</royale.framework.version>
+  </properties>
+  
   <modules>
     <module>royale-simple-application-archetype</module>
     <module>royale-simple-application-pure-js-archetype</module>
