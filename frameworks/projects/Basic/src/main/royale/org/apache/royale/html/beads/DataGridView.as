@@ -21,17 +21,14 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataGridPresentationModel;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IBead;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.Container;
-	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.supportClasses.DataGridColumn;
@@ -68,7 +65,6 @@ package org.apache.royale.html.beads
 				super();
 			}
 
-			private var _strand:IStrand;
 			private var _header:DataGridButtonBar;
 			private var _listArea:Container;
 
@@ -94,41 +90,24 @@ package org.apache.royale.html.beads
 			/**
 			 * Returns the component used as the header for the DataGrid.
 			 */
-			public function get header():IUIBase
+			public function get header():DataGridButtonBar
 			{
 				return _header;
 			}
 
-			/**
-			 *  @copy org.apache.royale.core.IBead#strand
-			 *
-			 *  @langversion 3.0
-			 *  @playerversion Flash 10.2
-			 *  @playerversion AIR 2.6
-			 *  @productversion Royale 0.0
-			 */
-			override public function set strand(value:IStrand):void
-			{
-				super.strand = value;
-				_strand = value;
-
-				IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
-			}
-
-			public function refreshContent():void
-			{
-				finishSetup(null);
-			}
+            public function refreshContent():void
+            {
+                handleInitComplete(null);
+            }
 
 			/**
 			 * @private
 			 */
-			protected function finishSetup(event:Event):void
+			override protected function handleInitComplete(event:Event):void
 			{
 				var host:DataGrid = _strand as DataGrid;
 
 				// see if there is a presentation model already in place. if not, add one.
-				var presentationModel:IDataGridPresentationModel = host.presentationModel;
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
 				IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
@@ -188,13 +167,13 @@ package org.apache.royale.html.beads
 				}
 
 				var bblayout:ButtonBarLayout = new ButtonBarLayout();
-				_header.buttonWidths = buttonWidths
+				_header.buttonWidths = buttonWidths;
 				_header.widthType = ButtonBarModel.PIXEL_WIDTHS;
-				_header.addBead(bblayout);
-				_header.addBead(new Viewport());
-				host.addElement(_header);
+				_header.addBead(bblayout as IBead);
+				_header.addBead(new Viewport() as IBead);
+				host.addElement(_header as IChild);
 
-				host.addElement(_listArea);
+				host.addElement(_listArea as IChild);
 
 				handleDataProviderChanged(event);
 
@@ -266,9 +245,10 @@ package org.apache.royale.html.beads
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				var presentationModel:IDataGridPresentationModel = host.presentationModel;
 
-				_lists = new Array();
+				_lists = [];
 
-				for (var i:int=0; i < sharedModel.columns.length; i++) {
+				for (var i:int=0; i < sharedModel.columns.length; i++)
+				{
 					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 
 					var list:DataGridColumnList = new DataGridColumnList();
@@ -278,17 +258,22 @@ package org.apache.royale.html.beads
 					list.itemRenderer = dataGridColumn.itemRenderer;
 					list.labelField = dataGridColumn.dataField;
 					list.addEventListener('change',handleColumnListChange);
-					list.addBead(presentationModel);
+					list.addBead(presentationModel as IBead);
 
-					if (i == 0) {
+					if (i == 0)
+					{
 						list.typeNames = "first";
-					} else if (i == sharedModel.columns.length-1) {
+					}
+					else if (i == sharedModel.columns.length-1)
+					{
 						list.typeNames = "last";
-					} else {
+					}
+					else
+					{
 						list.typeNames = "middle";
 					}
 
-					_listArea.addElement(list);
+					_listArea.addElement(list as IChild);
 					_lists.push(list);
 				}
 
