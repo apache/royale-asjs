@@ -89,7 +89,7 @@
         well as the BlazeDS server.
     -->
     <dependency>
-      <groupId>org.apache.royale.blazeds</groupId>
+      <groupId>org.apache.flex.blazeds</groupId>
       <artifactId>blazeds-spring-boot-starter</artifactId>
       <version>4.7.3</version>
     </dependency>
