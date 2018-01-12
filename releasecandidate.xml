@@ -748,22 +748,24 @@
     </target>
     
     <target name="update_other_release_poms" depends="check-royale-asjs">
-        <xmlproperty file="${asjs}/pom.xml" prefix="pom"/>
-        <echo>updating release poms to version: ${pom.project.version}</echo>
+        <echo>updating release poms to version: ${release.version}</echo>
         <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
-            <arg value="versions:set" />
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
             <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DnewVersion=${pom.project.version}" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${release.version}" />
         </exec>
-        <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
-            <arg value="versions:set" />
+        <exec executable="${mvn}" dir="${asjs}/archetypes" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
             <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DnewVersion=${pom.project.version}" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${release.version}" />
         </exec>
         <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
-            <arg value="versions:set" />
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
             <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DnewVersion=${pom.project.version}" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${release.version}" />
         </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="add" />
@@ -785,6 +787,8 @@
             <!--<arg value="-DpushChanges=false" />-->
             <arg value="-Dtag=org.apache.royale.framework-${release.version}-rc${rc}" />
             <arg value="-DautoVersionSubmodules=true" />
+            <arg value="-P" />
+            <arg value="build-examples,build-distribution" />
         </exec>
     </target>
     
