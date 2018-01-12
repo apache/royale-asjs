@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.core.IBead;
+    import org.apache.royale.core.UIBase;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.Container;
@@ -90,7 +91,7 @@ package org.apache.royale.html.beads
 			/**
 			 * Returns the component used as the header for the DataGrid.
 			 */
-			public function get header():DataGridButtonBar
+			public function get header():UIBase
 			{
 				return _header;
 			}

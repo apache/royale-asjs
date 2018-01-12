@@ -20,9 +20,7 @@ package org.apache.royale.express
 {
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IDataProviderNotifier;
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.html.DataGrid;
-	import org.apache.royale.html.beads.DataGridColumnReorderView;
 	import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
 	import org.apache.royale.html.beads.SingleSelectionDragImageBead;
 	import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
