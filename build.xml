@@ -43,14 +43,15 @@
     <property name="strict" value="true"/>
     <property name="javac.src" value="1.5"/>
     
-    <condition property="kit.prefix" value="apache-royale-jsonly-${release.version}">
+    <property name="kit.prefix" value="apache-royale-${release.version}"/>
+    <property name="source.kit" value="${kit.prefix}-src"/>
+    <condition property="binary.kit" value="${kit.prefix}-bin-js">
         <not>
             <isset property="env.AIR_HOME" />
         </not>
     </condition>
-    <property name="kit.prefix" value="apache-royale-${release.version}"/>
-    <property name="source.kit" value="${kit.prefix}-src"/>
-    <property name="binary.kit" value="${kit.prefix}-bin"/>
+    <property name="binary.kit" value="${kit.prefix}-bin-js-swf"/>
+    <property name="binary-js.kit" value="${kit.prefix}-bin-js"/>
     <property name="staging-dir" value="${basedir}/temp/royale-asjs" />
     
     <condition property="isMac" value="mac">
@@ -996,8 +997,8 @@ limitations under the License.
         <!-- replace npm descriptor with js-only descriptor -->
         <antcall target="create-jsonly-description" />
         <copy file="${basedir}/npm/package.json" todir="${basedir}/temp" overwrite="true"/>
-        <zip destfile="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" basedir="${basedir}/temp"/>
-        <tar-gzip name="apache-royale-jsonly-${release.version}-bin" />
+        <zip destfile="${basedir}/out/${binary-js.kit}.zip" basedir="${basedir}/temp"/>
+        <tar-gzip name="${binary-js.kit}" />
     </target>
     
     <target name="binary-package"
@@ -1626,25 +1627,25 @@ limitations under the License.
 
     <target name="create-md5-jsonly" if="env.AIR_HOME" >
         <echo message="Generating MD5 hashes for release artifacts"/>
-        <checksum algorithm="md5" file="${basedir}/out/apache-royale-jsonly-${release.version}-bin.tar.gz" forceOverwrite="yes"/>
-        <checksum algorithm="md5" file="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" forceOverwrite="yes"/>
+        <checksum algorithm="md5" file="${basedir}/out/${binary-js.kit}.tar.gz" forceOverwrite="yes"/>
+        <checksum algorithm="md5" file="${basedir}/out/${binary-js.kit}.zip" forceOverwrite="yes"/>
     </target>
 
     <target name="sign-jsonly" if="env.AIR_HOME" >
         <exec executable="gpg">
             <arg value="--armor" />
             <arg value="--output" />
-            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip.asc" />
+            <arg value="${basedir}/out/${binary-js.kit}.zip.asc" />
             <arg value="--detach-sig" />
-            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.zip" />
+            <arg value="${basedir}/out/${binary-js.kit}.zip" />
         </exec>
         
         <exec executable="gpg">
             <arg value="--armor" />
             <arg value="--output" />
-            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.tar.gz.asc" />
+            <arg value="${basedir}/out/${binary-js.kit}.tar.gz.asc" />
             <arg value="--detach-sig" />
-            <arg value="${basedir}/out/apache-royale-jsonly-${release.version}-bin.tar.gz" />
+            <arg value="${basedir}/out/${binary-js.kit}.tar.gz" />
         </exec>
     </target>
 
