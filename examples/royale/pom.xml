@@ -72,6 +72,7 @@
     <module>DebuggingExample</module>
     <module>DataBindingExampleWithFlexLayout</module>
     <module>DragAndDropExample</module>
+    <module>AlertExample</module>
   </modules>
 
   <build>
