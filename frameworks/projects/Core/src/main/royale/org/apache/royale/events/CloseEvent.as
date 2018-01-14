@@ -16,38 +16,41 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package org.apache.royale.events
 {
-    /**
-     *  The IMeasurementBead interface is the basic interface for the 
-     *  bead that can compute and report the measurements of the contents of
-     *  a component.
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-	public interface IMeasurementBead extends IBead
+	/**
+	 * The CloseEvent class represents event objects specific to popup windows, such as the Alert control.
+	 *
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion Royale 0.9
+	 */
+    public class CloseEvent extends Event
 	{
-        /**
-         *  The measured width.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		function get measuredWidth():Number;
+		public static const CLOSE:String = "close";
+
+		public function CloseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false,
+                                   detail:uint = 0x000004):void
+		{
+			super(type, bubbles, cancelable);
+
+			this.detail = detail;
+		}
 
         /**
-         *  The measured height
-         * 
+         *  Identifies the button in the popped up control that was clicked. This property is for controls with multiple    		 *	buttons. The Alert control sets this property to one of the following constants:
+		 *
+         *  Alert.YES
+         *  Alert.NO
+         *  Alert.OK
+         *  Alert.CANCEL
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
-		function get measuredHeight():Number;
-	}
+		public var detail:uint;
+    }
 }

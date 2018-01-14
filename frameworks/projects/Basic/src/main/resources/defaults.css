@@ -45,8 +45,11 @@
 
 Alert
 {
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.AlertView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.AlertController");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
-	
+
 	background-color: #FFFFFF;
 	border-style: solid;
 	border-color: #000000;
@@ -644,8 +647,6 @@ global
 	
 	Alert
 	{
-		IBeadView:  ClassReference("org.apache.royale.html.beads.AlertView");
-		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.AlertController");
 		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
 	}

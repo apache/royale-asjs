@@ -39,7 +39,8 @@ internal class BasicClasses
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
     import org.apache.royale.html.beads.AlertView; AlertView;
-    import org.apache.royale.html.beads.models.AlertModel; AlertModel;
+    import org.apache.royale.html.beads.controllers.AlertController; AlertController;
+	
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.BackgroundImageBead; BackgroundImageBead;
@@ -129,7 +130,6 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.ViewportModel; ViewportModel;
 	COMPILE::SWF
 	{
-	    import org.apache.royale.html.beads.controllers.AlertController; AlertController;
     	import org.apache.royale.html.beads.controllers.DropDownListController; DropDownListController;
 		import org.apache.royale.html.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
 	}

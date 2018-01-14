@@ -17,12 +17,17 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
-{	
-    import flash.display.DisplayObject;
-    
+{
+    import org.apache.royale.core.UIBase;
+
+    COMPILE::SWF
+    {
+        import flash.display.DisplayObject;
+    }
+
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
+	import org.apache.royale.events.CloseEvent;
 	import org.apache.royale.events.IEventDispatcher;
 
 	/**
@@ -74,15 +79,25 @@ package org.apache.royale.html.beads.controllers
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(value).addEventListener("close",handleAlertClose);
+            IEventDispatcher(value).addEventListener("close", alertCloseHandler);
         }
         
 		/**
 		 * @private
 		 */
-        private function handleAlertClose(event:Event):void
+        private function alertCloseHandler(event:CloseEvent):void
         {
-            DisplayObject(_strand).parent.removeChild(DisplayObject(_strand));
+			COMPILE::SWF
+            {
+                DisplayObject(_strand).parent.removeChild(DisplayObject(_strand));
+            }
+
+			COMPILE::JS
+			{
+				var host:UIBase = strand as UIBase;
+                var htmlElement:HTMLElement = host.element as HTMLElement;
+                htmlElement.parentElement.removeChild(host.element);
+			}
         }
 	}
 }
