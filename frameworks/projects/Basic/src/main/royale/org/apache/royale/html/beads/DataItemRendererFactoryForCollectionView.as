@@ -254,13 +254,11 @@ package org.apache.royale.html.beads
 			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
 			if (!dp)
 				return;
-			
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			
+
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
 			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
-			fillRenderer(event.index, event.item, ir, presentationModel);
+			setData(ir, event.item, event.index);
 		}
 		
 		/**
