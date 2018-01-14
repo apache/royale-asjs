@@ -865,12 +865,12 @@
 		</copy>
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
 			<fileset dir="${asjs}/out" >
-				<include name="apache-royale-${release.version}-bin*" />
+				<include name="apache-royale-${release.version}-bin-js-swf*" />
 			</fileset>
 		</copy>
         <copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
             <fileset dir="${asjs}/out" >
-                <include name="apache-royale-jsonly-${release.version}-bin*" />
+                <include name="apache-royale-${release.version}-bin-js*" />
             </fileset>
         </copy>
 		<!--<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/doc" >
@@ -992,11 +992,11 @@ ready-to-use in an IDE or command-line.  If you need SWF output, use the\n\
 You may also get the binary packages via NPM.  The -js package can be\n\
 installed via:\n\
 \n\
-npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/binaries/apache-royale-jsonly-${release.version}-bin.tar.gz -g\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/binaries/apache-royale-${release.version}-bin-js.tar.gz -g\n\
 \n\
 The full package with SWF support can be installed via:\n\
 \n\
-npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin.tar.gz -g\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz -g\n\
 \n\
 Maven artifacts are staged here:\n\
 https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}\n\
