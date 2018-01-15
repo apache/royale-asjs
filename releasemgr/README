@@ -113,8 +113,13 @@ the results of the build, see the next section.
 Using the Binary Convenience Package
 ====================================
 
-A package containing compiled binaries can be used in IDEs that support Royale.  IDEs
-should recognize the royale-asjs as a valid Royale SDK.
+There are two packages containing compiled binaries.  The packages ending with -bin-js only supports JavaScript output.  The packages ending with bin-js-swf supports both JavaScript and SWF output.
+
+These packages can be used in IDEs that support Royale.  The bin-js package can be uncompressed and used directly.  The bin-js-swf package requires the downloading of SWF-related libraries from Adobe Systems Inc.  There is an Ant script called InstallAdobeSDKs.xml that you can run via:
+
+  ant -f InstallAdobeSDKs.xml
+
+IDEs should recognize the royale-asjs folder as a valid Royale SDK.
 
 You can also compile applications from the command line by running MXMLC to compile ActionScript and MXML into JS (and SWF) applications.
 
@@ -184,7 +189,13 @@ Getting Royale with NPM
 
 You can use NPM to get a pre-built package.  To do so run:
 
+On Mac:
+
   sudo npm install royale -g
+
+On Windows:
+
+  npm install royale -g
 
 
 Using Royale
