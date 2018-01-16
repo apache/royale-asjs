@@ -253,6 +253,12 @@ Most of the .as files in frameworks/projects/GoogleMaps/src/main/royale/google
 are derived from the google_maps_api_v3_11.js externs file in the 
 Google Closure Library which are available under Apache License 2.0.
 
+The example in examples/royale/MDLBlogExample is a port of Google's Material
+Design Lite Blog example from https://github.com/google/material-design-lite/tree/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog which is available under
+Apache License 2.0, but the text and CSS is under CC-BY-4.0 per Google's LICENSE
+file which has been copied into examples/royale/MDLBlogExample/google-LICENSE.html from
+https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/LICENSE
+
 The file frameworks/projects/Core/src/main/royale/org/apache/royale/geom/Matrix.as
 is derived from OpenFL (https://github.com/openfl) which is available under an
 MIT License.

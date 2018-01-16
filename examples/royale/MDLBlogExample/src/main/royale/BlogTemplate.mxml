@@ -1,21 +1,16 @@
 <?xml version="1.0"?>
 <!--
-
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
 -->
 <mdl:NavigationLayout xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/royale/basic"
@@ -48,6 +43,8 @@ limitations under the License.
                 <mdl:CardMedia>
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[<h3><a href="entry.html">Coffee Pic</a></h3>]]>
                         </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
@@ -61,6 +58,8 @@ limitations under the License.
                     <html:Div>
                         <mdl:beads>
                             <html:InnerHTML>
+                                <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                     which is availble under CC-BY-4.0 -->
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
                             </html:InnerHTML>
                         </mdl:beads>
@@ -82,6 +81,8 @@ limitations under the License.
                     </mdl:materialIcon>-->
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[<i class="material-icons mdl-color-text--white" role="presentation">add</i><span class="visuallyhidden">add</span>]]>
                         </html:InnerHTML>
                     </mdl:beads>
@@ -101,6 +102,8 @@ limitations under the License.
                     <html:Div>
                         <mdl:beads>
                             <html:InnerHTML>
+	                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+    	                             which is availble under CC-BY-4.0 -->
                                 <![CDATA[<strong>The Newist</strong>]]>
                             </html:InnerHTML>
                         </mdl:beads>
@@ -117,6 +120,8 @@ limitations under the License.
                     <mdl:Button id="menubtn" icon="true" ripple="true">
                         <mdl:beads>
                             <html:InnerHTML>
+	                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+    	                             which is availble under CC-BY-4.0 -->
                                 <![CDATA[<i class="material-icons mdl-color-text--white" role="presentation">more_vert</i><span class="visuallyhidden">show menu</span>]]>
                             </html:InnerHTML>
                         </mdl:beads>
@@ -131,6 +136,8 @@ limitations under the License.
                 <mdl:CardMedia>
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[<h3><a href="entry.html">On the road again</a></h3>]]>
                         </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
@@ -139,6 +146,8 @@ limitations under the License.
                 <mdl:CardSupportingText>
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
                         </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-600"/>
@@ -149,6 +158,8 @@ limitations under the License.
                     <html:Div>
                         <mdl:beads>
                             <html:InnerHTML>
+	                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+    	                             which is availble under CC-BY-4.0 -->
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
                             </html:InnerHTML>
                         </mdl:beads>
@@ -163,6 +174,8 @@ limitations under the License.
                 <mdl:CardTitle>
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[<h3 class="quote"><a href="entry.html">I couldn’t take any pictures but this was an amazing thing…</a></h3>]]>
                         </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
@@ -171,6 +184,8 @@ limitations under the License.
                 <mdl:CardSupportingText>
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
                         </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-600"/>
@@ -181,6 +196,8 @@ limitations under the License.
                     <html:Div>
                         <mdl:beads>
                             <html:InnerHTML>
+	                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+    	                             which is availble under CC-BY-4.0 -->
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
                             </html:InnerHTML>
                         </mdl:beads>
@@ -195,6 +212,8 @@ limitations under the License.
                 <mdl:CardMedia>
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[<h3><a href="entry.html">Shopping</a></h3>]]>
                         </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-50"/>
@@ -203,6 +222,8 @@ limitations under the License.
                 <mdl:CardSupportingText>
                     <mdl:beads>
                         <html:InnerHTML>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
                         </html:InnerHTML>
                         <mdl:MdlTextColor textColor="grey-600"/>
@@ -213,6 +234,8 @@ limitations under the License.
                     <html:Div>
                         <mdl:beads>
                             <html:InnerHTML>
+	                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+    	                             which is availble under CC-BY-4.0 -->
                                 <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
                             </html:InnerHTML>
                         </mdl:beads>
@@ -227,16 +250,22 @@ limitations under the License.
                 <mdl:FooterLeftSection>
                     <mdl:FooterSocialButton className="social-btn social-btn__twitter">
                         <mdl:beads>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <html:InnerHTML><![CDATA[<span class="visuallyhidden">Twitter</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
                     <mdl:FooterSocialButton className="social-btn social-btn__blogger">
                         <mdl:beads>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <html:InnerHTML><![CDATA[<span class="visuallyhidden">Facebook</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
                     <mdl:FooterSocialButton className="social-btn social-btn__gplus">
                         <mdl:beads>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <html:InnerHTML><![CDATA[<span class="visuallyhidden">Google Plus</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
@@ -245,6 +274,8 @@ limitations under the License.
                 <mdl:FooterRightSection>
                     <mdl:FooterSocialButton className="social-btn social-btn__share">
                         <mdl:beads>
+                            <!-- content from https://github.com/google/material-design-lite/blob/88872e672e41c56af0a78a35b34373b8c4a8c49d/templates/blog/index.html
+                                 which is availble under CC-BY-4.0 -->
                             <html:InnerHTML><![CDATA[<i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share</span>]]></html:InnerHTML>
                         </mdl:beads>
                     </mdl:FooterSocialButton>
