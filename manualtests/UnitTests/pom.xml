@@ -56,6 +56,7 @@
 				<configuration>
 					<targets>SWF</targets>
 					<mainClass>${project.artifactId}.mxml</mainClass>
+                    <removeCirculars>true</removeCirculars>
 					<debug>true</debug>
 					<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
 					<outputDirectory>${basedir}/target/bin-debug</outputDirectory>
@@ -93,7 +94,7 @@
 							<includeEmptyDirs>true</includeEmptyDirs>
 							<resources>
 								<resource>
-									<directory>${ROYALE_HOME}/templates/swfobject</directory>
+									<directory>${basedir}/../../templates/swfobject</directory>
 									<filtering>true</filtering>									
 								</resource>
 							</resources>
