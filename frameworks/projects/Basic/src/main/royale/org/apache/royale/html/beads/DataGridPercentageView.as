@@ -21,8 +21,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.DataGrid;
-    import org.apache.royale.html.DataGridButtonBar;
-    import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.html.DataGridButtonBar;
+	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.supportClasses.DataGridColumnList;
 
@@ -84,6 +84,7 @@ package org.apache.royale.html.beads
                 var dgButtonBar:DataGridButtonBar = header as DataGridButtonBar;
                 dgButtonBar.buttonWidths = buttonWidths;
                 dgButtonBar.widthType = ButtonBarModel.PERCENT_WIDTHS;
+				dgButtonBar.dispatchEvent(new Event("layoutNeeded"));
 			}
 		}
 	}

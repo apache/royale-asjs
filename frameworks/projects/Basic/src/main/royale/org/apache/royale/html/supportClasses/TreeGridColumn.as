@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.html.Tree;
 
 	/**
@@ -44,9 +44,18 @@ package org.apache.royale.html.supportClasses
 			super();
 		}
 		
-//		override public function createList():UIBase
-//		{
-//			return new Tree();
-//		}
+		/**
+		 * Returns a new instance of a UIBase component to be used as the actual
+		 * column in the grid.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		override public function createColumn():IUIBase
+		{
+			return new Tree();
+		}
 	}
 }

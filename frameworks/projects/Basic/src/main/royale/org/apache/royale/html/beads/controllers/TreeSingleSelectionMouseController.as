@@ -70,7 +70,10 @@ package org.apache.royale.html.beads.controllers
 			if (treeData == null) return;
 			
 			var node:Object = event.data;
-			listModel.selectedItem = node;
+			
+			// clear any previous selections
+			listModel.selectedIndex = -1;
+			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 			
 			if (treeData.isOpen(node)) {
 				treeData.closeNode(node);
@@ -78,6 +81,8 @@ package org.apache.royale.html.beads.controllers
 				treeData.openNode(node);
 			}
 			
+			// reset the selection
+			listModel.selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 		}
 	}

@@ -422,14 +422,18 @@ Tree
 TreeGrid
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeGridModel");
-}
-/*
 	IBeadView: ClassReference("org.apache.royale.html.beads.TreeGridView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.TreeGridLayout");
-	*/
+	border-style: solid;
+	border-color: #222222;
+}
 
-.TreeGridContentArea .List {
-	display: inline-block;
+.opt_org-apache.royale-html-TreeGrid_ListArea {
+	background-color: #FFFFFF;
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	position: absolute;
 }
 
 NumericStepper

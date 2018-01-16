@@ -28,6 +28,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.html.beads.TreeGridView;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.beads.models.TreeGridModel;
+	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
 	
 	/**
@@ -106,26 +107,30 @@ package org.apache.royale.html.beads.layouts
 		public function layout():Boolean
 		{
 			var model:TreeGridModel = uiHost.model as TreeGridModel;
-			var header:ButtonBar = (uiHost.view as TreeGridView).header;
-			var contentArea:UIBase = (uiHost.view as TreeGridView).contentArea;
-			var displayedColumns:Array = (uiHost.view as TreeGridView).displayedColumns;
+			var header:ButtonBar = (uiHost.view as TreeGridView).header as ButtonBar;
+			var contentArea:UIBase = (uiHost.view as TreeGridView).listArea;
+			var displayedColumns:Array = (uiHost.view as TreeGridView).columnLists;
 			
 			// size and position the header
 			header.x = 0;
 			header.y = 0;
-			header.setWidthAndHeight(uiHost.width, 25); 
+			header.width = uiHost.width;
+			header.height = 30;
 			
 			// size and position the elements that make up the content
 			var xpos:Number = 0;
-			var defaultColumnWidth:Number = contentArea.width / model.columns.length;
+			var defaultColumnWidth:Number = (contentArea.width) / model.columns.length;
 			var columnWidths:Array = [];
 			
+			COMPILE::JS {
+				contentArea.element.style["position"] = "absolute";
+			}
+			
 			for(var i:int=0; i < displayedColumns.length; i++) {
-				var columnDef:TreeGridColumn = model.columns[i] as TreeGridColumn;
+				var columnDef:IDataGridColumn = model.columns[i] as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
 				columnList.x = xpos;
 				columnList.y = 0;
-				//columnList.setWidthAndHeight(columnWidth, _contentArea.height);
 				if (isNaN(columnDef.columnWidth)) {
 					columnList.width = defaultColumnWidth;
 				} else {
@@ -144,7 +149,8 @@ package org.apache.royale.html.beads.layouts
 			// size and position the contentArea
 			contentArea.x = 0;
 			contentArea.y = header.height; 
-			contentArea.setWidthAndHeight(uiHost.width, uiHost.height - header.height);
+			contentArea.width = uiHost.width;
+			contentArea.height = uiHost.height - header.height;
 			
 			return true;
 		}
