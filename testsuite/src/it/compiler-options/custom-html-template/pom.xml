@@ -43,7 +43,7 @@
         <configuration>
           <debug>true</debug>
           <mainClass>HelloWorld.mxml</mainClass>
-          <targets>JS</targets>
+          <targets>JSRoyale</targets>
           <htmlTemplate>${basedir}/src/main/template/custom-js-index-template.html</htmlTemplate>
         </configuration>
         <dependencies>
@@ -74,7 +74,27 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>@royale.framework.version@</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
+      <version>@royale.framework.version@</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>@royale.framework.version@</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Language</artifactId>
       <version>@royale.framework.version@</version>
       <type>swc</type>
     </dependency>
@@ -83,6 +103,7 @@
       <artifactId>Language</artifactId>
       <version>@royale.framework.version@</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
   </dependencies>
 
