@@ -37,36 +37,36 @@ package models
 
 		private var store:Object = { title:"That's Entertainment",
         		children:[
-        			{title:"My Music",
+        			{title:"My Music", artist:"", length:"",
         				children:[
-        					{title:"Language and Perspective", artist:"Bad Suns",
+        					{title:"Language and Perspective", artist:"Bad Suns", length:"31:47",
         					    children:[
-        					    	{title:"Matthew James", length:"3:24"},
-        					    	{title:"We Move Like the Ocean", length:"3:56"},
-        					    	{title:"Cardiac Arrest", length:"3:15"}
+        					    	{title:"Matthew James", artist:"Bad Suns (feat BS)", length:"3:24"},
+        					    	{title:"We Move Like the Ocean", artist:"Bad Suns", length:"3:56"},
+        					    	{title:"Cardiac Arrest", artist:"Bad Suns", length:"3:15"}
         					    ]},
-        					{title:"Strange Desire", artist:"Bleachers",
+        					{title:"Strange Desire", artist:"Bleachers", length:"28:56",
         						children:[
-        							{title:"Wild Heart", length:"4:15"},
-        							{title:"Rollercoaster", length:"3:39"},
-        							{title:"Shadow", length:"3:46"},
-        							{title:"I Wanna Get Better", length:"4:23"}
+        							{title:"Wild Heart", artist:"Bleachers", length:"4:15"},
+        							{title:"Rollercoaster", artist:"Bleachers", length:"3:39"},
+        							{title:"Shadow", artist:"Bleachers", length:"3:46"},
+        							{title:"I Wanna Get Better", artist:"Bleachers", length:"4:23"}
         						]}
         				]},
-        			{title:"My Books",
+        			{title:"My Books", artist:"", length:"",
         				children:[
-        					{title:"Wizard of Oz",
+        					{title:"Wizard of Oz", artist:"Frank L Baum", length: "1024",
         						children:[
-        							{title:"So this is Kansas?", length:"82"},
-        							{title:"A Might Dusty Here", length:"63"},
-        							{title:"Is that a Tornado?", length:"103"}
+        							{title:"So this is Kansas?", artist:"Frank L Baum", length:"82"},
+        							{title:"A Might Dusty Here", artist:"Frank L Baum", length:"63"},
+        							{title:"Is that a Tornado?", artist:"Frank L Baum", length:"103"}
         						]},
-        					{title:"Favorite Book #2",
+        					{title:"Favorite Book #2", artist: "The Writer", length: "4095",
         						children:[
-        							{title:"Chapter 1", length:"15"},
-        							{title:"Chapter 2", length:"86"},
-        							{title:"Chapter 3", length:"104"},
-        							{title:"Chapter 4", length:"99"}
+        							{title:"Chapter 1", artist: "The Writer", length:"15"},
+        							{title:"Chapter 2", artist: "The Writer", length:"86"},
+        							{title:"Chapter 3", artist: "The Writer", length:"104"},
+        							{title:"Chapter 4", artist: "The Writer", length:"99"}
         						]}
         				]}
         		]};

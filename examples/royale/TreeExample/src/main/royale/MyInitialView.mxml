@@ -23,6 +23,7 @@ limitations under the License.
 	<fx:Style>
 		@namespace js "library://ns.apache.org/royale/basic";
 		
+		
 	</fx:Style>
 	
 	<fx:Script>
@@ -43,5 +44,19 @@ limitations under the License.
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 	</js:Tree>
+	
+	<js:TreeGrid x="450" y="30" width="500" height="500" rowHeight="40">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="treeData"
+				destinationPropertyName="dataProvider" />
+		</js:beads>
+		<js:columns>
+			<js:TreeGridColumn label="Title" dataField="title" columnWidth="250"  />
+			<js:DataGridColumn label="Artist" dataField="artist" columnWidth="150" />
+			<js:DataGridColumn label="Length" dataField="length" columnWidth="100" />
+		</js:columns>
+	</js:TreeGrid>
 
 </js:View>
