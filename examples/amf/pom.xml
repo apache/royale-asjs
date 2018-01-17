@@ -33,16 +33,7 @@
   <name>Apache Royale: Examples: AMF Server</name>
 
   <modules>
+      <module>SampleAmfWebApp</module>
   </modules>
   
-  <profiles>
-      <profile>
-          <id>brokenmodules</id>
-          <modules>
-              <!-- Doesn't deploy on builds.a.o -->
-              <module>SampleAmfWebApp</module>
-          </modules>
-      </profile>
-  </profiles>
-
 </project>
