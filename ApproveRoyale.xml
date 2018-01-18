@@ -141,7 +141,7 @@
 	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}" />
 	<property name="package.url.name" value="apache-royale-${release.version}-src" />
     <property name="bin.package.url.path" value="${package.url.path}/binaries" />
-    <property name="bin.package.url.name" value="apache-royale-${release.version}-bin" />
+    <property name="bin.package.url.name" value="apache-royale-${release.version}-bin-js-swf" />
     <property name="maven.package.url.name" value="apache-royale-${release.version}-maven-src" />
     <!--
     <property name="doc.package.url.path" value="${package.url.path}/doc" />
