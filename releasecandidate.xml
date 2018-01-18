@@ -334,7 +334,7 @@
 
     <target name="verify-task">
         <input
-        message="This task will build a release candidate.  It expects that the make_branches and maven targets have been run first.  Press any &lt;enter&gt; to enter the location of the Maven source artifacts."
+        message="This task will build a release candidate.  It expects that the make_branches and maven targets have been run first.  Close the browser if you are using FireFox.  Press any &lt;enter&gt; to enter the location of the Maven source artifacts."
         />
     </target>
     
