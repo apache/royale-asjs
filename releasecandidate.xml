@@ -788,7 +788,8 @@
             <arg value="-Dtag=org.apache.royale.framework-${release.version}-rc${rc}" />
             <arg value="-DautoVersionSubmodules=true" />
             <arg value="-P" />
-            <arg value="build-examples,build-distribution" />
+            <!-- include all profiles that build so that the version update hits all of their poms -->
+            <arg value="build-examples,build-distribution,build-manualtests,run-testsuite" />
         </exec>
     </target>
     
