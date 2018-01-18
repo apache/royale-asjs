@@ -639,9 +639,137 @@
             <!--<arg value="-DpushChanges=false" />-->
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
+        <antcall target="update_other_develop_poms" />
+    </target>
+    
+    <!-- The use-latest-version may require that the build has built the framework projects so
+         you may need to let a build run, then run this target separately -->
+    <target name="update_other_develop_poms" depends="check-royale-asjs">
+        <exec executable="${git}" dir="${asjs}" failonerror="false" >
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+        <xmlproperty file="${asjs}/pom.xml" prefix="pom"/>
+        <echo>next version is: ${pom.project.version}</echo>
+        <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
+            <arg value="versions:use-latest-versions" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
+            <arg value="versions:use-latest-versions" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
+            <arg value="versions:use-latest-versions" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="versions:set" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
+            <arg value="versions:set" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DupdateAllModules=true" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
+            <arg value="versions:update-parent" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
+            <arg value="versions:update-parent" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
+            <arg value="versions:update-parent" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/testsuite" failonerror="true" >
+            <arg value="versions:update-parent" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="versions:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="versions:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.compiler.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="versions:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.typedefs.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update other poms to next version" />
+        </exec>
+        <echo>run git show in royale-asjs to double-check the last commit then run git-push</echo>
+    </target>
+    
+    <target name="update_other_release_poms" depends="check-royale-asjs">
+        <echo>updating release poms to version: ${release.version}</echo>
+        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${release.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/archetypes" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${release.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${release.version}" />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update other poms to current version" />
+        </exec>
     </target>
     
     <target name="maven.prepare">
+        <antcall target="update_other_release_poms" />
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html -->
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="--batch-mode" />
@@ -649,6 +777,9 @@
             <!--<arg value="-DpushChanges=false" />-->
             <arg value="-Dtag=org.apache.royale.framework-${release.version}-rc${rc}" />
             <arg value="-DautoVersionSubmodules=true" />
+            <arg value="-P" />
+            <!-- include all profiles that build so that the version update hits all of their poms -->
+            <arg value="build-examples,build-distribution,build-manualtests,run-testsuite" />
         </exec>
     </target>
     
@@ -715,7 +846,7 @@
 		<!--<ant antfile="build.xml" target="doc-sign" />-->
     </target>
     
-    <target name="stage.rc">
+    <target name="stage.rc" unless="no.push">
 		<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" />
 		<!--<mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/doc" />-->
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}" >
@@ -725,12 +856,12 @@
 		</copy>
 		<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
 			<fileset dir="${asjs}/out" >
-				<include name="apache-royale-${release.version}-bin*" />
+				<include name="apache-royale-${release.version}-bin-js-swf*" />
 			</fileset>
 		</copy>
         <copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
             <fileset dir="${asjs}/out" >
-                <include name="apache-royale-jsonly-${release.version}-bin*" />
+                <include name="apache-royale-${release.version}-bin-js*" />
             </fileset>
         </copy>
 		<!--<copy todir="${dist.dev}/royale/${release.version}/rc${rc}/doc" >
@@ -742,7 +873,7 @@
 		<copy file="${asjs}/ApproveRoyale.xml" tofile="${dist.dev}/royale/${release.version}/rc${rc}/ApproveRoyale.xml" />
 	</target>
     
-	<target name="push.rc" >
+	<target name="push.rc" unless="no.push">
 		<exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
 			<arg value="add" />
 			<arg value="${dist.dev}/royale/${release.version}/rc${rc}" />
@@ -842,15 +973,24 @@ At a minimum you would be expected to check that:\n\
 - That the build script completes successfully\n\
 - That you can compile and cross-compile a simple example using the SDK.\n\
 \n\
-The source package is set up the same way as the repo.  This means that\n\
-the results of the build are not the same as an IDE-compatible SDK.  The\n\
-compiled source package can be used in combination with the Royale Transpiler\n\
-source package to compile some of the sample applications.\n\
+The source package is a combination of the 3 main Royale repos.\n\
 \n\
 To use the binary package, unzip it into a folder.  The -js package is\n\
 ready-to-use in an IDE or command-line.  If you need SWF output, use the\n\
 -royale package and use Apache Ant to run the InstallAdobeSDKs script via:\n\
   ant -f InstallAdobeSDKs.xml\n\
+\n\
+You may also get the binary packages via NPM.  The -js package can be\n\
+installed via:\n\
+\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/binaries/apache-royale-${release.version}-bin-js.tar.gz -g\n\
+\n\
+The full package with SWF support can be installed via:\n\
+\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz -g\n\
+\n\
+Maven artifacts are staged here:\n\
+https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}\n\
 \n\
 Please vote to approve this release:\n\
 +1 Approve the release\n\
@@ -945,44 +1085,61 @@ ${my.name}
 			<arg value="Apache Royale ${release.version}" />
 		</exec>
         <antcall target="release.tag" />
+        <!-- this is intended to merge the tag to master because it should have the right versions in it -->
+        <antcall target="merge_rc_to_master" />
+        <antcall target="get_head_of_rc_branches" />
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
-        <antcall target="merge_rc_to_master" />
 	</target>
 
     <target name="release.tag" >
-        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
             <arg value="apache-royale-${release.version}" />
             <arg value="-m" />
             <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
         </exec>
-        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="push" />
             <arg value="--tags" />
         </exec>
-        <exec executable="${git}" dir="${basedir}../royale-typedefs" failonerror="true" >
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
             <arg value="apache-royale-${release.version}" />
             <arg value="-m" />
             <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
         </exec>
-        <exec executable="${git}" dir="${basedir}../royale-typedefs" failonerror="true" >
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="push" />
             <arg value="--tags" />
         </exec>
-        <exec executable="${git}" dir="${basedir}/../royale-compiler" failonerror="true" >
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
             <arg value="apache-royale-${release.version}" />
             <arg value="-m" />
             <arg value="&quot;Official release of apache-royale-${release.version}&quot;" />
         </exec>
-        <exec executable="${git}" dir="${basedir}/../royale-compiler" failonerror="true" >
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="push" />
             <arg value="--tags" />
+        </exec>
+    </target>
+    
+    <target name="get_head_of_rc_branches" >
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="release/${release.version}" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="release/${release.version}" />
+        </exec>
+        <exec executable="${git}" dir="${compiler}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="release/${release.version}" />
         </exec>
     </target>
     
