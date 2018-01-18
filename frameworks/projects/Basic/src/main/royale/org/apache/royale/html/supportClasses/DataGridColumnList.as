@@ -56,7 +56,7 @@ package org.apache.royale.html.supportClasses
 		public function DataGridColumnList()
 		{
 			super();
-			typeNames = "DataGridColumnList";
+			className = "DataGridColumnList";
 		}
 		
 		public var columnInfo: DataGridColumn;

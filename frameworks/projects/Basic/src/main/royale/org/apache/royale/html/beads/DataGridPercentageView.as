@@ -19,12 +19,11 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
-	import org.apache.royale.html.supportClasses.DataGridColumn;
-	import org.apache.royale.html.supportClasses.DataGridColumnList;
+	import org.apache.royale.html.supportClasses.IDataGridColumn;
 
 	/**
 	 *  The DataGridPercentageView class is the visual bead for the org.apache.royale.html.DataGrid.
@@ -62,18 +61,18 @@ package org.apache.royale.html.beads
 
             if (columnLists)
 			{
-                var host:DataGrid = _strand as DataGrid;
+                var host:UIBase = _strand as UIBase;
                 var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				var columnListCount:int = sharedModel.columns.length;
                 var buttonWidths:Array = [];
 
 				for (var i:int = 0; i < columnListCount; i++)
 				{
-                    var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+                    var dgc:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
                     var colWidth:Number = dgc.columnWidth;
                     buttonWidths.push(colWidth);
 
-                    var list:DataGridColumnList = columnLists[i] as DataGridColumnList;
+                    var list:UIBase = columnLists[i] as UIBase;
                     if (!isNaN(dgc.columnWidth))
                     {
 						list.width = NaN;

@@ -18,23 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IUIBase;
+	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
-	import org.apache.royale.html.Container;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.supportClasses.DataGridColumnList;
 	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	COMPILE::SWF {
 		import org.apache.royale.core.SimpleCSSStylesWithFlex;
@@ -242,6 +244,12 @@ package org.apache.royale.html.beads
 			private function createLists():void
 			{
 				var host:DataGrid = _strand as DataGrid;
+				
+				// get the name of the class to use for the columns
+				var columnClassName:String = ValuesManager.valuesImpl.getValue(host, "columnClassName") as String;
+				if (columnClassName == null) {
+					columnClassName = "DataGridColumnList";
+				}
 
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				var presentationModel:IDataGridPresentationModel = host.presentationModel;
@@ -251,28 +259,30 @@ package org.apache.royale.html.beads
 				for (var i:int=0; i < sharedModel.columns.length; i++)
 				{
 					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+					var useClassName:String = columnClassName;
+					if (dataGridColumn.className != null) useClassName = dataGridColumn.className;
 
 					var list:DataGridColumnList = new DataGridColumnList();
-					if (dataGridColumn.className != null) list.className = dataGridColumn.className;
+					
+					if (i == 0)
+					{
+						list.className = "first "+useClassName;
+					}
+					else if (i == sharedModel.columns.length-1)
+					{
+						list.className = "last "+useClassName;
+					}
+					else
+					{
+						list.className = "middle "+useClassName;
+					}
+					
 					list.id = "dataGridColumn"+String(i);
 					list.dataProvider = sharedModel.dataProvider;
 					list.itemRenderer = dataGridColumn.itemRenderer;
 					list.labelField = dataGridColumn.dataField;
 					list.addEventListener('change',handleColumnListChange);
 					list.addBead(presentationModel as IBead);
-
-					if (i == 0)
-					{
-						list.typeNames = "first";
-					}
-					else if (i == sharedModel.columns.length-1)
-					{
-						list.typeNames = "last";
-					}
-					else
-					{
-						list.typeNames = "middle";
-					}
 
 					_listArea.addElement(list as IChild);
 					_lists.push(list);

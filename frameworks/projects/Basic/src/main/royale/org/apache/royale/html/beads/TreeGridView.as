@@ -267,6 +267,12 @@ package org.apache.royale.html.beads
 		{
 			var host:TreeGrid = _strand as TreeGrid;
 			
+			// get the name of the class to use for the columns
+			var columnClassName:String = ValuesManager.valuesImpl.getValue(host, "columnClassName") as String;
+			if (columnClassName == null) {
+				columnClassName = "TreeGridColumn";
+			}
+			
 			var presentationModel:IDataGridPresentationModel = host.presentationModel;
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
 			
@@ -274,8 +280,23 @@ package org.apache.royale.html.beads
 			
 			for (var i:int=0; i < sharedModel.columns.length; i++) {
 				var columnDef:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
+				var useClassName:String = columnClassName;
+				if (columnDef.className != null) useClassName = columnDef.className;
+				
 				var column:List = columnDef.createColumn() as List;
-				if (columnDef.className != null) column.className = columnDef.className;
+				
+				if (i == 0)
+				{
+					column.className = "first "+useClassName;
+				}
+				else if (i == sharedModel.columns.length-1)
+				{
+					column.className = "last "+useClassName;
+				}
+				else
+				{
+					column.className = "middle "+useClassName;
+				}
 				
 				// For the TreeGrid, the List columns must use this
 				// model and itemRenderer factory to be compatible 
@@ -292,14 +313,6 @@ package org.apache.royale.html.beads
 				column.addBead(presentationModel);
 				column.addBead(new Viewport());
 				column.addEventListener('change', handleColumnListChange);
-				
-				if (i == 0) {
-					column.typeNames = "first";
-				} else if (i == sharedModel.columns.length-1) {
-					column.typeNames = "last";
-				} else {
-					column.typeNames = "middle";
-				}
 				
 				_listArea.addElement(column);
 				_lists.push(column);

@@ -25,7 +25,7 @@ package org.apache.royale.html.beads.models
 	/**
 	 *  The DataGridCollectiomModel class bead extends org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel
 	 *  to facilitate using an ICollectionView as the dataProvider for the DataGrid. Use this with
-	 *  org.apache.royale.html.beads.DataItemRenderFactoryForCollectionView.
+	 *  org.apache.royale.html.beads.DataItemRenderFactoryForCollectionView for each DataGridColumn.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
