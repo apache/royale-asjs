@@ -35,5 +35,13 @@ package models
 		{
 			return _productList;
 		}
+		
+		public var productArray:Array = [
+			new Product("ps100","Blueberries",44,200,"assets/smallbluerect.jpg"),
+			new Product("tx200","Kiwis",5,285,"assets/smallgreenrect.jpg"),
+			new Product("rz300","Bananas",80,105,"assets/smallyellowrect.jpg"),
+			new Product("dh440","Strawberries",10,340,"assets/smallredrect.jpg"),
+			new Product("ps220","Oranges",35,190,"assets/smallorangerect.jpg")
+		];
 	}
 }

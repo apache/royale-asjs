@@ -23,7 +23,18 @@ limitations under the License.
 	<fx:Style>
 		@namespace js "library://ns.apache.org/royale/basic";
 		
-		
+		/* Vertically center the cells of the Tree and TreeGrid and give
+		 * them a thin border.
+		 */
+		.Tree .StringItemRenderer {
+			border: solid 0.5px #ACACAC;
+			line-height: 40px;
+		}
+
+		.TreeGrid .StringItemRenderer {
+			border: solid 0.5px #ACACAC;
+			line-height: 40px;
+		}
 	</fx:Style>
 	
 	<fx:Script>
@@ -36,7 +47,7 @@ limitations under the License.
     </js:beads>
 	
 	<js:Tree id="tree" x="30" y="30" width="400" height="500" 
-			 labelField="title">
+			 labelField="title" rowHeight="40">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -53,7 +64,7 @@ limitations under the License.
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:TreeGridColumn label="Title" dataField="title" columnWidth="250"  />
+			<js:TreeGridColumn label="Title" dataField="title" columnWidth="250" />
 			<js:DataGridColumn label="Artist" dataField="artist" columnWidth="150" />
 			<js:DataGridColumn label="Length" dataField="length" columnWidth="100" />
 		</js:columns>
