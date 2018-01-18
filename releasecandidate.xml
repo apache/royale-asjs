@@ -630,12 +630,6 @@
             <regexp pattern="royale.typedefs.version&gt;.*&lt;"/>
             <substitution expression="royale.typedefs.version&gt;${release.version}&lt;"/>
         </replaceregexp>
-        <!-- also update a couple of places we use version numbers that Maven can't handle -->
-        <replace token="defaults-css-files=Basic-${release.version}-SNAPSHOT" value="defaults-css-files=Basic-{release.version}">
-            <fileset dir="${asjs}/examples" >
-                <include name="royale/MDLBlogExample/pom.xml" />
-            </fileset>
-        </replace>
         <antcall target="git-commit-and-push-asjs" />
     </target>
     
@@ -1016,11 +1010,6 @@ ${my.name}
                 <include name="royale/MobileMap/MobileMap-app.xml" />
                 <include name="royale/MobileStocks/MobileStocks-app.xml" />
                 <include name="royale/StorageExample/StorageExample-app.xml" />
-            </fileset>
-        </replace>
-        <replace value="defaults-css-files=Basic-${new.release.version}-SNAPSHOT" token="defaults-css-files=Basic-{release.version}">
-            <fileset dir="${asjs}/examples" >
-                <include name="royale/MDLBlogExample/pom.xml" />
             </fileset>
         </replace>
         <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
