@@ -59,11 +59,11 @@ limitations under the License.
 		/* Puts a box around each cell of the DataGrids.
 		 */
 		js|DataGrid .DataItemRenderer {
-			border: solid 0.5px #ACACAC;
+			border: 1px solid #ACACAC;
 			line-height: 40px;
 		}
 		js|DataGrid .StringItemRenderer {
-			border: solid 0.5px #ACACAC;
+			border: 1px solid #ACACAC;
 			line-height: 40px;
 		}
 		
@@ -72,6 +72,7 @@ limitations under the License.
 		 */
 		.PercentageColumnWidths {
 			IBeadView: ClassReference("org.apache.royale.html.beads.DataGridPercentageView");	
+			border: 1px solid #ACACAC;
 		}
 
 	</fx:Style>
