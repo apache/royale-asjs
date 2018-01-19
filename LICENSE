@@ -277,3 +277,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE.
+
+The following is relative to the royale-typedefs folder:
+
+The .as files in GCL/src are derived from the .js files in the 
+Google Closure Library which are available under Apache License 2.0.
+
+The createjs.js file in createjs/src/main/javascript is
+a non-copyrightable subset of EaselJS and TweenJS from 
+https://github.com/CreateJS 
