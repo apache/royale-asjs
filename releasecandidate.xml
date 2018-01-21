@@ -204,7 +204,7 @@
         unless="git"/>
     -->
     
-    <condition property="mvn" value="mvn.exe">
+    <condition property="mvn" value="mvn.cmd">
         <isset property="isWindows" />
     </condition>
     <property name="mvn" value="mvn" />
