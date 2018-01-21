@@ -71,7 +71,7 @@ limitations under the License.
 		 * than pixel widths) and does not respond to changes to its dataProvider.
 		 */
 		.PercentageColumnWidths {
-			IBeadView: ClassReference("org.apache.royale.html.beads.DataGridPercentageView");	
+			IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridPercentageLayout");
 			border: 1px solid #ACACAC;
 		}
 
@@ -110,7 +110,7 @@ limitations under the License.
 	<!-- A dynamic DataGrid, responding to additions and deletions, using the .DynamicDataGrid style class
 	-->
 	<js:DataGrid id="dataGrid2" x="520" y="50" width="400" height="350" change="dataGridChange(dataGrid2, output2)" 
-				 rowHeight="40" className="DynamicDataGrid DataGrid">
+				 rowHeight="40" className="DynamicDataGrid DataGrid" >
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
