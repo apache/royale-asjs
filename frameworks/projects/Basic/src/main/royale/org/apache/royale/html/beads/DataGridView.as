@@ -32,15 +32,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
-	import org.apache.royale.html.beads.models.ButtonBarModel;
-	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.supportClasses.DataGridColumnList;
+	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.Viewport;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-
-	COMPILE::SWF {
-		import org.apache.royale.core.SimpleCSSStylesWithFlex;
-	}
 
 		/**
 		 *  The DataGridView class is the visual bead for the org.apache.royale.html.DataGrid.
@@ -116,7 +110,7 @@ package org.apache.royale.html.beads
 				IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
 				_header = new DataGridButtonBar();
-				_header.height = 30;
+				// header's height is set in CSS
 				_header.percentWidth = 100;
 				_header.dataProvider = sharedModel.columns;
 				_header.labelField = "label";
@@ -126,52 +120,9 @@ package org.apache.royale.html.beads
 				_listArea.percentWidth = 100;
 				_listArea.className = "opt_org-apache.royale-html-DataGrid_ListArea";
 
-				COMPILE::SWF {
-					_header.style = new SimpleCSSStylesWithFlex();
-					_header.style.flexGrow = 0;
-
-					_listArea.style = new SimpleCSSStylesWithFlex();
-					_listArea.style.flexGrow = 1;
-				}
-				COMPILE::JS {
-					_header.element.style["flex-grow"] = "0";
-					_header.element.style["min-height"] = "30px";
-					_listArea.element.style["flex-grow"] = "1";
-				}
-
 				createLists();
 
-				//var columnLabels:Array = [];
-				var buttonWidths:Array = [];
-
-				var marginBorderOffset:int = 0;
-				COMPILE::SWF {
-					marginBorderOffset = 1;
-				}
-
-				for(var i:int=0; i < sharedModel.columns.length; i++) {
-					var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-					//columnLabels.push(dgc.label);
-					var colWidth:Number = dgc.columnWidth - marginBorderOffset;
-					buttonWidths.push(colWidth);
-
-					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
-					if (!isNaN(colWidth)) {
-						list.width = Number(colWidth - marginBorderOffset);
-					} else {
-						COMPILE::SWF {
-							list.style = new SimpleCSSStylesWithFlex();
-							list.style.flexGrow = 1;
-						}
-							COMPILE::JS {
-								list.element.style["flex-grow"] = "1";
-							}
-					}
-				}
-
 				var bblayout:ButtonBarLayout = new ButtonBarLayout();
-				_header.buttonWidths = buttonWidths;
-				_header.widthType = ButtonBarModel.PIXEL_WIDTHS;
 				_header.addBead(bblayout as IBead);
 				_header.addBead(new Viewport() as IBead);
 				host.addElement(_header as IChild);
@@ -200,7 +151,6 @@ package org.apache.royale.html.beads
 			 */
 			private function handleDataProviderChanged(event:Event):void
 			{
-
 				host.dispatchEvent(new Event("layoutNeeded"));
 			}
 
@@ -258,7 +208,7 @@ package org.apache.royale.html.beads
 
 				for (var i:int=0; i < sharedModel.columns.length; i++)
 				{
-					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+					var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
 					var useClassName:String = columnClassName;
 					if (dataGridColumn.className != null) useClassName = dataGridColumn.className;
 

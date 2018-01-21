@@ -24,12 +24,14 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.ButtonBar;
 	import org.apache.royale.html.beads.TreeGridView;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.beads.models.TreeGridModel;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
+	import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 * The TreeGridLayout class provides the sizing and positioning for the sub-components
@@ -111,15 +113,19 @@ package org.apache.royale.html.beads.layouts
 			var contentArea:UIBase = (uiHost.view as TreeGridView).listArea;
 			var displayedColumns:Array = (uiHost.view as TreeGridView).columnLists;
 			
+			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
+			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
+			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
+			
 			// size and position the header
-			header.x = 0;
-			header.y = 0;
-			header.width = uiHost.width;
-			header.height = 30;
+			header.x = borderMetrics.left;
+			header.y = borderMetrics.top;
+			header.width = useWidth;
+			// header's height is set in CSS
 			
 			// size and position the elements that make up the content
 			var xpos:Number = 0;
-			var defaultColumnWidth:Number = (contentArea.width) / model.columns.length;
+			var defaultColumnWidth:Number = (useWidth) / model.columns.length;
 			var columnWidths:Array = [];
 			
 			COMPILE::JS {
@@ -129,15 +135,18 @@ package org.apache.royale.html.beads.layouts
 			for(var i:int=0; i < displayedColumns.length; i++) {
 				var columnDef:IDataGridColumn = model.columns[i] as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
+				
+				// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
 				columnList.x = xpos;
 				columnList.y = 0;
-				if (isNaN(columnDef.columnWidth)) {
-					columnList.width = defaultColumnWidth;
-				} else {
-					columnList.width = columnDef.columnWidth;
+				
+				var columnWidth:Number = defaultColumnWidth;
+				if (!isNaN(columnDef.columnWidth)) {
+					columnWidth = (columnDef.columnWidth / uiHost.width) * useWidth;
 				}
 				
-				columnWidths.push(columnList.width);
+				columnList.width = columnWidth;
+				columnWidths.push(columnWidth);
 				
 				xpos += columnList.width;
 			}
@@ -147,10 +156,10 @@ package org.apache.royale.html.beads.layouts
 			header.dispatchEvent(new Event("layoutNeeded"));
 			
 			// size and position the contentArea
-			contentArea.x = 0;
-			contentArea.y = header.height; 
-			contentArea.width = uiHost.width;
-			contentArea.height = uiHost.height - header.height;
+			contentArea.x = borderMetrics.left;
+			contentArea.y = header.height + header.y; 
+			contentArea.width = useWidth;
+			contentArea.height = useHeight - header.height;
 			
 			return true;
 		}

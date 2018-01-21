@@ -182,6 +182,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.DataGridView; DataGridView;
 	import org.apache.royale.html.beads.IDataGridView; IDataGridView;
 	import org.apache.royale.html.beads.DataGridPercentageView; DataGridPercentageView;
+	import org.apache.royale.html.beads.layouts.DataGridLayout; DataGridLayout;
+	import org.apache.royale.html.beads.layouts.DataGridPercentageLayout; DataGridPercentageLayout;
 	import org.apache.royale.html.beads.DateChooserView; DateChooserView;
 	import org.apache.royale.html.beads.DateFieldView; DateFieldView;
 	import org.apache.royale.html.beads.DecrementButtonView; DecrementButtonView;

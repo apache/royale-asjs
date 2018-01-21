@@ -20,19 +20,19 @@ package org.apache.royale.html.beads.layouts
 {	
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IDataGridModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.ButtonBar;
-	import org.apache.royale.html.beads.DataGridView;
-	import org.apache.royale.html.beads.layouts.BasicLayout;
-	import org.apache.royale.html.supportClasses.DataGridColumnList;
-	import org.apache.royale.html.supportClasses.DataGridColumn;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IDataGridModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.html.beads.DataGridView;
+    import org.apache.royale.html.beads.IDataGridView;
+    import org.apache.royale.html.beads.models.ButtonBarModel;
+    import org.apache.royale.html.supportClasses.IDataGridColumn;
+    import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
@@ -44,7 +44,7 @@ package org.apache.royale.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridLayout implements IDataGridLayout
+	public class DataGridLayout implements IBeadLayout
 	{
 		/**
 		 *  constructor
@@ -72,145 +72,86 @@ package org.apache.royale.html.beads.layouts
 		{
 			_strand = value;
 			
-            var host:UIBase = value as UIBase;
-            
-			var view:DataGridView = host.view as DataGridView;
-			header = view.header;
-			listArea = view.listArea;
-            
-            var anylayout:IBead = listArea.getBeadByType(IBeadLayout);
-            if (anylayout != null) {
-                listArea.removeBead(anylayout);
-            }
-			listArea.addBead(new BasicLayout());
-            
-            host.addEventListener("widthChanged", handleSizeChanges);
-            host.addEventListener("heightChanged", handleSizeChanges);
-            host.addEventListener("sizeChanged", handleSizeChanges);
-            host.addEventListener("layoutNeeded", handleSizeChanges);
-
+			(_strand as IEventDispatcher).addEventListener("widthChanged", handleSizeChanges);
+			(_strand as IEventDispatcher).addEventListener("heightChanged", handleSizeChanges);
+			(_strand as IEventDispatcher).addEventListener("sizeChanged", handleSizeChanges);
+			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 		}
 		
-		private var _header:UIBase;
-		
-		/**
-		 * The element that is the header for the DataGrid
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get header():IUIBase
+		private function get host():IUIBase
 		{
-			return _header;
+			return _strand as IUIBase;
 		}
-		public function set header(value:IUIBase):void
+		private function get uiHost():UIBase
 		{
-			_header = UIBase(value);
+			return _strand as UIBase;
 		}
 		
-		private var _columns:Array;
-		
-		/**
-		 * The array of column elements.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get columns():Array
-		{
-			return _columns;
-		}
-		public function set columns(value:Array):void
-		{
-			_columns = value;
-		}
-		
-		private var _listArea:IUIBase;
-		
-		public function get listArea():IUIBase
-		{
-			return _listArea;
-		}
-		public function set listArea(value:IUIBase):void
-		{
-			_listArea = value;
-		}
-		
-        /**
-         * @copy org.apache.royale.core.IBeadLayout#layout
-         */
-		public function layout():Boolean
-		{						
-			if (columns == null || columns.length == 0) {
-				return false;
-			}
-			var host:UIBase = _strand as UIBase;
-			
-			var useWidth:Number = host.width;
-			var useHeight:Number = host.height;
-
-			if (host.height > 0) {
-				useHeight = host.height - _header.height;
-			}
-			
-			var thisisnothing:Number = -1234;
-
-			_listArea.x = 0;
-			_listArea.y = 26;
-			_listArea.width = useWidth;
-			_listArea.height = useHeight;
-
-			var sharedModel:IDataGridModel = host.model as IDataGridModel;
-			var buttonWidths:Array = [];
-
-			if (_columns != null && _columns.length > 0) {
-				var xpos:Number = 0;
-				var listWidth:Number = host.width / _columns.length;
-				for (var i:int=0; i < _columns.length; i++) {
-					var list:DataGridColumnList = _columns[i] as DataGridColumnList;
-					list.x = xpos;
-					list.y = 0;
-
-					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-					var colWidth:Number = dataGridColumn.columnWidth;
-					if (!isNaN(colWidth)) list.width = colWidth;
-					else list.width = listWidth;
-
-					xpos += list.width;
-					
-					buttonWidths.push(list.width);
-				}
-			}
-			
-			var bar:ButtonBar = header as ButtonBar;
-			var barLayout:ButtonBarLayout = bar.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
-			barLayout.buttonWidths = buttonWidths;
-			bar.dispatchEvent(new Event("layoutNeeded"));
-			
-			_header.x = 0;
-			_header.y = 0;
-			_header.width = useWidth;
-			_header.height = 25;
-			_header.dispatchEvent(new Event("layoutNeeded"));
-			
-			return true;
-		}
-		
-		/**
-		 * @private
-		 */
 		private function handleSizeChanges(event:Event):void
 		{
-			var view:DataGridView = UIBase(_strand).view as DataGridView;
-			if (view == null) return;
-			
-			columns = view.columnLists;
-			
 			layout();
+		}
+		
+		private function handleLayoutNeeded(event:Event):void
+		{
+			layout();
+		}
+		
+		/**
+		 * @copy org.apache.royale.core.IBeadLayout#layout
+		 */
+		public function layout():Boolean
+		{
+			var header:IUIBase = (uiHost.view as IDataGridView).header;
+			var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
+			
+			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
+			var model:IDataGridModel = uiHost.model as IDataGridModel;
+			
+			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(_strand);			
+			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
+			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
+			
+			var xpos:Number = 0;
+			var defaultColumnWidth:Number = (useWidth) / model.columns.length;
+			var columnWidths:Array = [];
+			
+			for(var i:int=0; i < displayedColumns.length; i++) {
+				var columnDef:IDataGridColumn = model.columns[i] as IDataGridColumn;
+				var columnList:UIBase = displayedColumns[i] as UIBase;
+				
+				// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
+				columnList.x = xpos;
+				columnList.y = 0;
+				
+				var columnWidth:Number = defaultColumnWidth;
+				if (!isNaN(columnDef.columnWidth)) {
+					columnWidth = (columnDef.columnWidth / uiHost.width) * useWidth;
+				}
+				
+				columnList.width = columnWidth;
+				columnWidths.push(columnWidth);
+				
+				xpos += columnList.width;
+			}
+			
+			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			bbmodel.buttonWidths = columnWidths;
+			
+			header.x = borderMetrics.left;
+			header.y = borderMetrics.top;
+			header.width = useWidth;
+			// header's height is set in CSS
+			
+			listArea.x = borderMetrics.left;
+			listArea.y = header.height + header.y;
+			listArea.width = useWidth;
+			listArea.height = useHeight - header.height;
+			
+			header.dispatchEvent(new Event("layoutNeeded"));
+			listArea.dispatchEvent(new Event("layoutNeeded"));
+			
+			return true;
 		}
 	}
 }

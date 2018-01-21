@@ -45,10 +45,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
 	import org.apache.royale.html.supportClasses.Viewport;
 	
-	COMPILE::SWF {
-		import org.apache.royale.core.SimpleCSSStylesWithFlex;
-	}
-	
 	/**
 	 * The TreeGridView class is responsible for creating the sub-components of the TreeGrid:
 	 * the ButtonBar header, the Tree (first column), and Lists (rest of the columns), as well
@@ -130,7 +126,6 @@ package org.apache.royale.html.beads
 				_strand.addBead(layout);
 			}
 
-			
 			IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
 		}
 		
@@ -153,7 +148,7 @@ package org.apache.royale.html.beads
 			IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 			
 			_header = new DataGridButtonBar();
-			_header.height = 30;
+			// header's height is set in CSS
 			_header.percentWidth = 100;
 			_header.dataProvider = sharedModel.columns;
 			_header.labelField = "label";
@@ -180,14 +175,6 @@ package org.apache.royale.html.beads
 				var list:UIBase = _lists[i] as UIBase;
 				if (!isNaN(colWidth)) {
 					list.width = Number(colWidth - marginBorderOffset);
-				} else {
-					COMPILE::SWF {
-						list.style = new SimpleCSSStylesWithFlex();
-						list.style.flexGrow = 1;
-					}
-					COMPILE::JS {
-						list.element.style["flex-grow"] = "1";
-					}
 				}
 			}
 				
@@ -223,7 +210,6 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDataProviderChanged(event:Event):void
 		{
-			
 			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
