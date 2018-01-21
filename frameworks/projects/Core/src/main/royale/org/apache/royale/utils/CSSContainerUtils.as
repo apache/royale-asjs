@@ -67,7 +67,7 @@ public class CSSContainerUtils
             {
                 if (border is Array)
                 {
-                    borderOffset = CSSUtils.toNumber(border[0], object.width);
+                    borderOffset = CSSUtils.toNumber(String(border[0]), object.width);
                     borderStyle = border[1];
                 }
                 else if (border == "none")
