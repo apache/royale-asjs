@@ -140,12 +140,22 @@ package org.apache.royale.html.beads.layouts
 			
 			header.x = borderMetrics.left;
 			header.y = borderMetrics.top;
-			header.width = useWidth;
+			COMPILE::SWF {
+				header.width = useWidth;
+			}
+			COMPILE::JS {
+				(header as UIBase).percentWidth = 100;
+			}
 			// header's height is set in CSS
 			
 			listArea.x = borderMetrics.left;
 			listArea.y = header.height + header.y;
-			listArea.width = useWidth;
+			COMPILE::SWF {
+				listArea.width = useWidth;
+			}
+			COMPILE::JS {
+				(listArea as UIBase).percentWidth = 100;
+			}
 			listArea.height = useHeight - header.height;
 			
 			header.dispatchEvent(new Event("layoutNeeded"));

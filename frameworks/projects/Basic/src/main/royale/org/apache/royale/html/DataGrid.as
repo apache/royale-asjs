@@ -60,6 +60,10 @@ package org.apache.royale.html
 			super();
 			
 			className = "DataGrid";
+			
+			// set a reasonable default size
+			width = 200;
+			height = 200;
 		}
 		
 		/**

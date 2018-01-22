@@ -120,7 +120,12 @@ package org.apache.royale.html.beads.layouts
 			// size and position the header
 			header.x = borderMetrics.left;
 			header.y = borderMetrics.top;
-			header.width = useWidth;
+			COMPILE::SWF {
+				header.width = useWidth;
+			}
+			COMPILE::JS {
+				(header as UIBase).percentWidth = 100;
+			}
 			// header's height is set in CSS
 			
 			// size and position the elements that make up the content
@@ -158,7 +163,12 @@ package org.apache.royale.html.beads.layouts
 			// size and position the contentArea
 			contentArea.x = borderMetrics.left;
 			contentArea.y = header.height + header.y; 
-			contentArea.width = useWidth;
+			COMPILE::SWF {
+				contentArea.width = useWidth;
+			}
+			COMPILE::JS {
+				(contentArea as UIBase).percentWidth = 100;
+			}
 			contentArea.height = useHeight - header.height;
 			
 			return true;

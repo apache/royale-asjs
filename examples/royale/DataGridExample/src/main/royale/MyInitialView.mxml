@@ -74,6 +74,14 @@ limitations under the License.
 			IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridPercentageLayout");
 			border: 1px solid #ACACAC;
 		}
+		
+		.OuterGroup {
+			background-color: orange;
+			padding: 10px;
+		}
+		.OuterGroup .DataGrid {
+			position: relative;
+		}
 
 	</fx:Style>
 		
@@ -89,23 +97,28 @@ limitations under the License.
 	
 		
 	<!-- The default configuration of the DataGrid, using only Array as the dataProvider. A style class
-	     has been added to add the DataGridPercentageView bead that lets the columns' widths be
+	     has been added to add the DataGridPercentageLayout bead that lets the columns' widths be
 	     specified by percentages.
 	-->
-	<js:DataGrid id="dataGrid" x="20" y="50" width="400" height="350" change="dataGridChange(dataGrid, output1)" 
-				 rowHeight="40" className="PercentageColumnWidths DataGrid">
-		<js:beads>
-			<js:ConstantBinding
-				sourceID="applicationModel"
-				sourcePropertyName="productArray"
-				destinationPropertyName="dataProvider" />
-		</js:beads>
-		<js:columns>
-			<js:DataGridColumn label="Image" dataField="image" columnWidth="15" itemRenderer="products.ProductItemRenderer"/>
-			<js:DataGridColumn label="Title" dataField="title" columnWidth="60" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
-		</js:columns>
-	</js:DataGrid>
+	<js:HContainer x="20" y="50" width="400" height="350" className="OuterGroup">
+		
+	    <!-- demonstrates how to place a DataGrid into a Container that has padding. -->
+		<js:DataGrid id="dataGrid" width="100%" height="100%" change="dataGridChange(dataGrid, output1)" 
+					 rowHeight="40" className="PercentageColumnWidths DataGrid">
+			<js:beads>
+				<js:ConstantBinding
+					sourceID="applicationModel"
+					sourcePropertyName="productArray"
+					destinationPropertyName="dataProvider" />
+			</js:beads>
+			<js:columns>
+				<js:DataGridColumn label="Image" dataField="image" columnWidth="15" itemRenderer="products.ProductItemRenderer"/>
+				<js:DataGridColumn label="Title" dataField="title" columnWidth="60" />
+				<js:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
+			</js:columns>
+		</js:DataGrid>
+		
+	</js:HContainer>
 		
 	<!-- A dynamic DataGrid, responding to additions and deletions, using the .DynamicDataGrid style class
 	-->
