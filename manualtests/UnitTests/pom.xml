@@ -17,9 +17,7 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -56,6 +54,7 @@
 				<configuration>
 					<targets>SWF</targets>
 					<mainClass>${project.artifactId}.mxml</mainClass>
+                    <removeCirculars>true</removeCirculars>
 					<debug>true</debug>
 					<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
 					<outputDirectory>${basedir}/target/bin-debug</outputDirectory>
@@ -93,7 +92,7 @@
 							<includeEmptyDirs>true</includeEmptyDirs>
 							<resources>
 								<resource>
-									<directory>${ROYALE_HOME}/templates/swfobject</directory>
+									<directory>${basedir}/../../templates/swfobject</directory>
 									<filtering>true</filtering>									
 								</resource>
 							</resources>

@@ -22,7 +22,7 @@
     </js-output-optimization>
     <compiler>
         <theme>
-            <filename>../../../../../../frameworks/libs/Flat.swc</filename>
+            <filename>../../../../../../frameworks/js/libs/FlatJS.swc</filename>
         </theme>
     </compiler>
 </royale-config>

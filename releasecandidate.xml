@@ -334,7 +334,7 @@
 
     <target name="verify-task">
         <input
-        message="This task will build a release candidate.  It expects that the make_branches and maven targets have been run first.  Press any &lt;enter&gt; to enter the location of the Maven source artifacts."
+        message="This task will build a release candidate.  It expects that the make_branches and maven targets have been run first.  Close the browser if you are using FireFox.  Press any &lt;enter&gt; to enter the location of the Maven source artifacts."
         />
     </target>
     
@@ -634,12 +634,6 @@
             <regexp pattern="royale.typedefs.version&gt;.*&lt;"/>
             <substitution expression="royale.typedefs.version&gt;${release.version}&lt;"/>
         </replaceregexp>
-        <!-- also update a couple of places we use version numbers that Maven can't handle -->
-        <replace token="defaults-css-files=Basic-${release.version}-SNAPSHOT" value="defaults-css-files=Basic-{release.version}">
-            <fileset dir="${asjs}/examples" >
-                <include name="royale/MDLBlogExample/pom.xml" />
-            </fileset>
-        </replace>
         <antcall target="git-commit-and-push-asjs" />
     </target>
     
@@ -1032,6 +1026,8 @@ package and signature files, unzipping, etc, you can instead:\n\
 https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}/ApproveRoyale.xml\n\
 3) run the script:\n\
    ant -e -f ApproveRoyale.xml -Drelease.version=${release.version} -Drc=${rc}\n\
+   If you want to test SWF support during the approval, use:\n\
+   ant -e -f ApproveRoyale.xml -Drelease.version=${release.version} -Drc=${rc} -Duse-flash=true\n\
 \n\
 You are not required to use this script, and more testing of the packages\n\
 and build results are always encouraged.\n\
@@ -1175,11 +1171,6 @@ ${my.name}
                 <include name="royale/MobileMap/MobileMap-app.xml" />
                 <include name="royale/MobileStocks/MobileStocks-app.xml" />
                 <include name="royale/StorageExample/StorageExample-app.xml" />
-            </fileset>
-        </replace>
-        <replace value="defaults-css-files=Basic-${new.release.version}-SNAPSHOT" token="defaults-css-files=Basic-{release.version}">
-            <fileset dir="${asjs}/examples" >
-                <include name="royale/MDLBlogExample/pom.xml" />
             </fileset>
         </replace>
         <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">

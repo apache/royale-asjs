@@ -328,6 +328,13 @@
     </profile>
 
     <profile>
+      <id>build-manualtests</id>
+      <modules>
+        <module>manualtests</module>
+      </modules>
+    </profile>
+
+    <profile>
       <id>run-testsuite</id>
       <modules>
         <module>testsuite</module>

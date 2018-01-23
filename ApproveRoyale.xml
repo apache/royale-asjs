@@ -88,27 +88,29 @@
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
 		
-	<available file="${env.AIR_HOME}"
-		type="dir" 
-		property="AIR_HOME" value="${env.AIR_HOME}" />
+        <target name="check-flash" if="use-flash">
+        <available file="${env.AIR_HOME}"
+            type="dir" 
+            property="AIR_HOME" value="${env.AIR_HOME}" />
 
-    <fail message="The AIR_HOME property is not set in environment or command-line."
-        unless="AIR_HOME"/>
-		
-    <available file="${env.PLAYERGLOBAL_HOME}"
-        type="dir"
-        property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}" />
-    
-    <fail message="The PLAYERGLOBAL_HOME property is not set in environment or command-line."
-        unless="PLAYERGLOBAL_HOME"/>
-    
-    <available file="${env.FLASHPLAYER_DEBUGGER}"
-        type="file"
-        property="FLASHPLAYER_DEBUGGER" value="${env.FLASHPLAYER_DEBUGGER}" />
-    
-    <fail message="The FLASHPLAYER_DEBUGGER property is not set in environment or command-line."
-        unless="FLASHPLAYER_DEBUGGER"/>
-    
+        <fail message="The AIR_HOME property is not set in environment or command-line."
+            unless="AIR_HOME"/>
+            
+        <available file="${env.PLAYERGLOBAL_HOME}"
+            type="dir"
+            property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}" />
+        
+        <fail message="The PLAYERGLOBAL_HOME property is not set in environment or command-line."
+            unless="PLAYERGLOBAL_HOME"/>
+        
+        <available file="${env.FLASHPLAYER_DEBUGGER}"
+            type="file"
+            property="FLASHPLAYER_DEBUGGER" value="${env.FLASHPLAYER_DEBUGGER}" />
+        
+        <fail message="The FLASHPLAYER_DEBUGGER property is not set in environment or command-line."
+            unless="FLASHPLAYER_DEBUGGER"/>
+    </target>
+        
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
         property="apache.rat.found"/>
@@ -141,7 +143,7 @@
 	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc${rc}" />
 	<property name="package.url.name" value="apache-royale-${release.version}-src" />
     <property name="bin.package.url.path" value="${package.url.path}/binaries" />
-    <property name="bin.package.url.name" value="apache-royale-${release.version}-bin" />
+    <property name="bin.package.url.name" value="apache-royale-${release.version}-bin-js-swf" />
     <property name="maven.package.url.name" value="apache-royale-${release.version}-maven-src" />
     <!--
     <property name="doc.package.url.path" value="${package.url.path}/doc" />
@@ -193,10 +195,10 @@
         classpathref="anttask.classpath"/>
     </target>
 
-    <target name="main" depends="write-out-jars-list,install-rat,download,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
+    <target name="main" depends="check-flash,write-out-jars-list,install-rat,download,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
     </target>
     
-    <target name="main-no-download" depends="write-out-jars-list,install-rat,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
+    <target name="main-no-download" depends="check-flash,write-out-jars-list,install-rat,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
     </target>
 	
     <target name="copy-source-for-maven">
@@ -746,7 +748,7 @@
         defaultvalue="y" />
     </target>
 
-    <target name="build" depends="ask.build,ask-font,get.dependencies,copy.downloads">
+    <target name="build" depends="check-flash,ask.build,ask-font,get.dependencies,copy.downloads">
         <property name="no.lint" value="true" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="all" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="examples" />
