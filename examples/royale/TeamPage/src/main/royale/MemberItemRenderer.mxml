@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:MXMLItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:local="*"
+				xmlns:js="library://ns.apache.org/royale/basic"
+				width="25%" >
+	
+	<fx:Script>
+		<![CDATA[
+			import models.Person;
+			
+			import org.apache.royale.events.MouseEvent;
+			import org.apache.royale.html.elements.A;
+			import org.apache.royale.utils.BrowserUtils;
+			
+			private var _member:Person;
+			
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				
+				_member = value as Person;
+				memberPhoto.src = _member.photoURL;
+				memberName.text = _member.name;
+				memberBio.text = _member.bio;
+				memberID.text = _member.apacheID;
+				
+				if (_member.title != null && _member.title.length > 0) {
+					memberTitle.text = _member.title;
+					memberTitle.visible = true;
+				} else {
+					memberTitle.visible = false;
+				}
+				
+				for (var type:String in _member.social) {
+					var link:A = new A();
+					link.text = type;
+					link.className = type;
+					link.className = "social";
+					link.href = _member.social[type];
+					socialMedia.addElement(link);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<js:beads>
+		<js:OneFlexibleChildHorizontalLayout id="mylayout" flexibleChild="contentArea" />
+	</js:beads>
+	
+	<js:Image id="memberPhoto" width="128" height="128" />
+	<js:Spacer width="10" />
+	
+	<js:VContainer id="contentArea" width="100%" >
+		<js:style>
+			<js:SimpleCSSStyles verticalAlign="top" />
+		</js:style>
+		
+		<js:Label id="memberName" width="100%" className="MemberName" />
+		<js:Label id="memberTitle" width="100%" className="MemberTitle" />
+		<js:Label id="memberID" width="100%" className="ApacheID" />
+		<js:Spacer height="10" />
+		<js:Container id="socialMedia" width="100%">
+			<js:beads>
+				<js:HorizontalFlowLayout useChildWidth="true" />
+			</js:beads>
+		</js:Container>
+		<js:Spacer height="10"/>
+		<js:MultilineLabel id="memberBio" width="100%"/>
+	</js:VContainer>
+	
+</js:MXMLItemRenderer>

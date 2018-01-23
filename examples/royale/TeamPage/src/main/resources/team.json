@@ -1,0 +1,210 @@
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+ { "template": {
+	"name": "put here name here",
+	"title": "put your apache.org title here or leave blank",
+	"photoURL": "put the url to your uploaded photo here",
+	"url": "not used at the moment but should point to a personal site",
+	"bio": "put your official Apache Royale bio here. If you use HTML, be sure to use single quote (apostrophes)",
+	"twitter": "put your URL here or leave blank",
+	"facebook": "put your URL here or leave blank",
+	"github": "put your URL here or leave blank",
+	"googleplus": "put your URL here or leave blank",
+	"rss": "put your URL here or leave blank",
+	"wordpress": "put your URL here or leave blank"
+  },
+
+  "members": [
+	{"name": "Alex Harui",
+     "title": "PMC Member, Apache Royale",
+     "apacheID": "aharui (C+P)",
+	 "photoURL": "images/headshots/aharui.jpg",
+     "url": "http://www.apache.org/alex",
+     "bio": "Alex Harui has been working on the Flex SDK since he joined Macromedia in 2002. He is now spending most of his time on a next-generation of Flex called Royale that cross-compiles MXML and ActionScript into JavaScript so your Flex apps can run without Flash and AIR",
+     "twitter":"",
+     "linkedIn":"",
+     "facebook":"",
+     "github":"",
+     "googleplus":"",
+     "rss":""
+    },
+    
+	{"name": "Carlos Rovira",
+     "title": "",
+     "apacheID": "carlosrovira",
+	 "photoURL": "images/headshots/carlosrovira.jpg",
+     "url": "http://www.apache.org/carlos",
+     "bio": "Carlos Rovira is a technologist, entrepreneur and businessman. He is passionate about advanced web interfaces and rich multi-device business applications. He is extremely happy when their applications are useful for people, combining functionality and usability. He's founder of various companies including carlosrovira.com in 2007 and Codeoscopic in 2009. He's the technical leader behind the Riality Flex/JEE Platform and other successful insurance software products like Direct Writer and Avant 2",
+     "twitter":"http://www.twitter.com/carlosrovira",
+     "linkedIn":"http://es.linkedin.com/in/carlosrovira/",
+     "facebook":"",
+     "github":"http://www.github.com/carlosrovira",
+     "googleplus":"https://plus.google.com/115670167046758349523",
+     "rss":"http://www.carlosrovira.com/blog/feed/"
+    },
+        
+    {"name": "Christofer Dutz",
+     "title": "",
+     "apacheID": "cdutz (C+P)",
+     "photoURL": "images/headshots/cdutz.jpg",
+     "bio": "Christofer is a software engineer specialized on Flex, Java, Spring and Maven. He is the lead developer of the <a href='https://royalemojos.atlassian.net/wiki/display/FLEXMOJOS/Home' target='_blank'>Flexmojos</a> project (Maven plugin for building Flex applications) after taking over from Velo in 2012. His main areas of contribution to the Apache Royale project is Maven support for Royale.",
+     "twitter":"http://de.twitter.com/ChristoferDutz",
+     "linkedIn":"http://www.linkedin.com/pub/christofer-dutz/49/9b6/424",
+     "facebook":"",
+     "github":"http://github.com/chrisdutz",
+     "googleplus":"",
+     "rss":""
+    },
+    
+    {"name": "Erik de Bruin",
+     "title": "",
+     "apacheID": "erikdebruin (C+P)",
+     "photoURL": "images/headshots/erikdebruin.jpg",
+     "bio": "Erik is a software engineer (Flex/Flash, PHP, Delphi, Authorware, to name a few), e-learning consultant and occassional project manager. For the Apache Royale project he is a committer and part of the PMC. He was a key developer of the cross-compiler, and championed the use of Google Closure for the JavaScript output",
+     "twitter":"",
+     "linkedIn":"http://www.linkedin.com/pub/erik-de-bruin/1/281/176",
+     "facebook":"",
+     "github":"",
+     "googleplus":"",
+     "rss":""
+    },
+     
+    {"name": "Frédéric Thomas",
+     "title": "",
+     "apacheID": "fthomas (C+P)",
+     "photoURL": "images/headshots/fthomas.jpg",
+     "bio": "Freelancer, software architect, Apache Flex Royale Member, trying to make the Royale world better.<br>(French)",
+     "twitter":"http://www.twitter.com/webdoublefx",
+     "linkedIn":"",
+     "facebook":"",
+     "github":"",
+     "googleplus":"https://plus.google.com/116545614452242070442/posts",
+     "rss":""
+    },
+    
+    {"name": "Harbs",
+     "title": "PMC Chair, Apache Royale",
+     "apacheID": "harbs (C+P)",
+     "photoURL": "images/headshots/harbs.jpg",
+     "bio": "Harbs comes from a print background and his primary interest is in publishing. He keeps himself busy with his multiple technology businesses: <a href='http://in-tools.com'>In-Tools</a>, <a href='http://printui.com'>PrintUI</a> and <a href='http://unhurdle.com/'>UnHurdle</a>.  All three businesses rely heavily on Flex as one of the active technologies, so Harbs has a strong interest in Royale.<br/><br/>Harbs also spends his time studying Talmud, and with his wife and kids. If there's any time left, he gets a bit of sleep.",
+     "twitter":"http://www.twitter.com/intools",
+     "linkedIn":"http://www.linkedin.com/profile/view?id=46698545",
+     "facebook":"http://www.facebook.com/gharbs",
+     "github":"https://github.com/Harbs",
+     "googleplus":"",
+     "rss":""
+    },
+    
+    {"name": "Josh Tynjala",
+     "title": "",
+     "apacheID": "joshtynjala (C+P)",
+     "photoURL": "images/headshots/joshtynjala.jpg",
+     "bio": "Josh Tynjala is the author of the open source <a href='http://feathersui.com/'>Feathers</a> user interface components for Starling Framework. In addition to improving the Apache Royale compilers, Josh teaches developers how to transpile ActionScript on his website, <a href='http://nextgenactionscript.com/'>NextGen ActionScript</a>",
+     "twitter":"https://twitter.com/joshtynjala",
+     "linkedIn":"",
+     "facebook":"",
+     "github":"https://github.com/joshtynjala",
+     "googleplus":"",
+     "rss":""
+    },
+    
+    {"name": "Michael Schmalle",
+     "title": "",
+     "apacheID": "mschmalle (C+P)",
+     "photoURL": "images/headshots/mschmalle.jpg",
+     "bio": "<p>Past; ActionScript since 2001 and ui component developer. Created a read/write DOM for ActionScript in AS3 and Java, familiar with parsers and compilers.<br/><br/>Future; Working creating a framework to make synths and sequencers for techno music in Android and also Unity3D, WebAudio and JavaScript.<br/><br/>Leading the development of the Royale Cross-compiler to finally put the last nail in the Flash Player for myself. I don't claim to be anything I'm not, the third person scares me.</p>",
+     "twitter":"http://www.twitter.com/teotigraphix",
+     "linkedIn":"http://www.linkedin.com/pub/michael-schmalle/4/409/980",
+     "facebook":"",
+     "github":"https://github.com/teotigraphix",
+     "googleplus":"",
+     "rss":"http://blog.teotigraphix.com/feed"
+    },
+    
+    {"name": "OmPrakash Muppirala",
+     "title": "",
+     "apacheID": " bigosmallm (C + P)",
+     "photoURL": "images/headshots/bigosmallm.jpg",
+     "bio": "<p>Om 'bigosmallm' Muppirala is a UI architect with years of experience building Flex and Flash based applications. He has been working on various tools and utilities aimed at making life easier for Apache Royale developers and users.  Also interested in contributing more web and mobile Royale components.</p>",
+     "twitter":"http://twitter.com/bigosmallm",
+     "linkedIn":"http://www.linkedin.com/in/omprakashm/",
+     "facebook":"",
+     "github":"",
+     "googleplus":"",
+     "rss":""
+    },
+    
+    {"name": "Peter Ent",
+     "title": "",
+     "apacheID": "pent (C + P)",
+     "photoURL": "images/headshots/pent.jpg",
+     "bio": "<p>Peter has been working with Flex since its early days.  Peter provided many useful blog articles about item renderers.  Peter is now working on making it easier to port Flex applications to Royale.</p>",
+     "twitter":"",
+     "linkedIn":"http://ww.linkedin.com/in/pent/",
+     "facebook":"",
+     "github":"",
+     "googleplus":"",
+     "rss":"",
+     "skype":""
+    },
+    
+    {"name": "Piotr Zarzycki",
+     "title": "",
+     "apacheID": "piotrz (C + P)",
+     "photoURL": "images/headshots/piotrz.jpg",
+     "bio": "<p>Piotr has been working with Flex since 2008 in various project. He always stays open for self-development opportunity.</p><p>He currently lives in Cracow, Poland.</p>",
+     "twitter":"",
+     "linkedIn":"http://pl.linkedin.com/pub/piotr-zarzycki/52/535/92a/",
+     "facebook":"",
+     "github":"",
+     "googleplus":"",
+     "rss":"",
+     "skype":"skype:zarzycki10?call"
+    },
+    
+    {"name": "Olaf Krueger",
+     "title": "",
+     "apacheID": "okrueger (C)",
+     "photoURL": "images/headshots/okrueger.png",
+     "bio": "<p>Olaf believes in the power and beauty of simplicity in all respects.</p><p>Employed at a leading automotive supplier for hinge systems he creates software for internal use. For many years and still with great passion.</p><p>Olaf would like to help to bring the Material Design to Royale</p>",
+     "twitter":"http://www.twitter.com/openoli",
+     "linkedIn":"",
+     "facebook":"",
+     "github":"",
+     "googleplus":"",
+     "rss":""
+    },
+    
+    {"name": "Dave Fisher ",
+     "title": "Project Mentor",
+     "apacheID": "wave (C+P)",
+     "photoURL": "images/headshots/davefisher.jpg",
+     "bio": "<p>I'm fascinated by the communities that develop around projects at Apache I really enjoy the spirit here in the Apache Royale project. I am particularly interested in documents and am on the Apache POI and OpenOffice PMCs. Apache Royale for office documents anyone?</p><p>I live in San Francisco where the weather is mild.</p>",
+     "twitter":"",
+     "linkedIn":"",
+     "facebook":"",
+     "github":"",
+     "googleplus":"",
+     "rss":""
+    } 
+
+]
+  
+}

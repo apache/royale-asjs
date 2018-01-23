@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:VContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                  xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:productsView="productsView.*"
+    xmlns:royalestore="samples.royalestore.*"
+    height="100%" 
+    currentState="showingThumbnails"
+    initComplete="series.selectedIndex = 0">
+    <js:style>
+        <js:SimpleCSSStyles paddingLeft="4" 
+                               paddingRight="12" 
+                               paddingTop="12" 
+                               paddingBottom="8" 
+                               />
+
+    </js:style>
+    
+    <fx:Metadata>
+       [Event(name="filter", type="samples.royalestore.ProductFilterEvent")] 
+       [Event("compare")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.html.Slider;
+        import org.apache.royale.html.SimpleAlert; 
+        import samples.royalestore.ProductFilterEvent;
+           
+        private var thumbBeingPressed:Boolean;
+           
+        private function dispatchFilter():void
+        {
+            var event:ProductFilterEvent = 
+                new ProductFilterEvent(filter, thumbBeingPressed);
+            dispatchEvent(event);
+            currentState = "showingThumbnails";
+        }
+        
+        private function sliderValue(values:Array, index:int):Number
+        {
+            return values[index];
+        }
+        
+        private function productRemoved():void
+        {
+            if (currentState == "showingComparison")
+            {
+                if (productList.items.length == 0)
+                {
+                    dispatchFilter();
+                }
+                else
+                {
+                    attemptCompare();
+                }
+            }
+        }
+        
+        private function attemptCompare():void
+        {
+            if (productList.items.length > 0)
+            {
+                dispatchEvent(new Event("compare"));
+                currentState = "showingComparison";
+            }
+            else
+            {
+                SimpleAlert.show("There are no items to compare.", "Compare");
+            }
+        }
+        
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <royalestore:ProductFilter id="filter">
+            <royalestore:experience>{series.selectedItem}</royalestore:experience>
+            <royalestore:minPrice>{loPrice.value}</royalestore:minPrice>
+            <royalestore:maxPrice>{hiPrice.value}</royalestore:maxPrice>
+            <royalestore:blazeds>{cbBlazeDS.selected}</royalestore:blazeds>
+            <royalestore:mobile>{cbMobile.selected}</royalestore:mobile>
+            <royalestore:video>{cbVideo.selected}</royalestore:video>
+        </royalestore:ProductFilter>
+        
+        <js:CurrencyFormatter currencySymbol="$" id="cf"/>    
+        
+    </fx:Declarations>
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
+    
+    <js:Label text="Find" className="sectionHeader"/>
+    
+    <js:Container width="100%">
+        <js:beads>
+            <js:FlexibleFirstChildHorizontalLayout />
+        </js:beads>
+        <js:TextInput className="glass" width="100%"/>
+        <js:TextButton className="glass" text="Go" click="SimpleAlert.show('This feature is not implemented in this sample', 'Find')"/>
+    </js:Container>
+
+    <js:Spacer height="18"/>
+
+    <js:HRule width="100%"/>
+
+    <js:Spacer height="8"/>
+
+    <js:HContainer>
+        <js:style>
+            <js:SimpleCSSStyles paddingTop="0" paddingLeft="0" verticalAlign="bottom" />
+        </js:style>
+        <js:Label text="Filter" className="sectionHeader"/>
+        <js:Label text="({filter.count} items selected)" >
+            <js:style>
+                <js:SimpleCSSStyles fontWeight="bold" />
+                <!--<js:SimpleCSSStyles color="{getStyle('themeColor')}" fontWeight="bold" />-->
+            </js:style>
+        </js:Label>
+    </js:HContainer>
+
+    <js:Spacer height="8"/>
+
+    <js:Label text="Years of Experience"/>
+
+    <js:DropDownList id="series" className="glass" width="140" change="dispatchFilter();">
+        <js:dataProvider>
+            <fx:Array>
+                <fx:String>All</fx:String>
+                <fx:String>3</fx:String>
+                <fx:String>5</fx:String>
+                <fx:String>7</fx:String>
+                <fx:String>9</fx:String>
+            </fx:Array>                
+        </js:dataProvider>
+    </js:DropDownList>
+
+    <js:Spacer height="18"/>
+
+    <js:Label text="Price"/>
+
+    <!--<s:HSlider id="priceSlider" className="glassSlider" minimum="0" maximum="200" tickInterval="10" snapInterval="10"
+        width="100%" thumbCount="2" values="[0,200]" labels="[$0,$200]" liveDragging="true" dataTipFormatFunction="{cf.format}"
+        change="dispatchFilter()"
+        thumbPress="thumbBeingPressed=true"
+        thumbRelease="thumbBeingPressed=false;dispatchFilter()"
+        />-->
+    <js:HContainer id="nsholder" width="100%">
+        <js:NumericStepper width="48%" id="loPrice" minimum="0" maximum="{hiPrice.value}" value="0" valueChange="dispatchFilter()" />
+        <js:NumericStepper width="48%" id="hiPrice" minimum="{loPrice.value}" maximum="200" value="200" valueChange="dispatchFilter()" />
+    </js:HContainer>
+
+    <js:Spacer height="18"/>
+
+    <js:Label text="Required Features"/>
+
+    <js:Spacer height="4"/>
+
+    <js:CheckBox id="cbBlazeDS" className="glass" text="BlazeDS" click="dispatchFilter();"/>
+    <js:Spacer height="4"/>
+    <js:CheckBox id="cbMobile" className="glass" text="Mobile" click="dispatchFilter()"/>
+    <js:Spacer height="4"/>
+    <js:CheckBox id="cbVideo" className="glass" text="Video" click="dispatchFilter();"/>
+
+    <js:Spacer height="18"/>
+
+    <js:HRule width="100%"/>
+
+    <js:Spacer height="8"/>
+
+        <js:HContainer>
+            <js:Label text="Compare" className="sectionHeader"/>
+            <js:Label text="(Drag items here to compare)" className="instructions"/>
+        </js:HContainer>
+
+
+    <js:Spacer height="4"/>
+
+    <!-- height is maxItems * ProductListItem.HEIGHT + 2px border -->
+    <productsView:ProductList id="productList" height="{productList.maxItems * ProductListItem.HEIGHT + 2}" width="100%"
+        newItemStartX="300" newItemStartY="-100" maxItems="4" 
+        removeProduct="productRemoved()"/>
+
+    <js:Spacer height="8"/>
+    
+    <js:ImageAndTextButton id="compareButton" className="glass" 
+                  click.showingThumbnails="attemptCompare()"
+                  click.showingComparison="dispatchFilter()"            
+                  text.showingComparison="Back to thumbnail view"
+                  text.showingThumbnails="Compare Items"
+                  image.showingThumbnails="assets/icon_compare.png"
+                  image.showingComparison="assets/icon_tiles.png" />
+    
+    <js:states>
+       <js:State name="showingThumbnails" />
+       <js:State name="showingComparison" />
+    </js:states>
+
+</js:VContainer>

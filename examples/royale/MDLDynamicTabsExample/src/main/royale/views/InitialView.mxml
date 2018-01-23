@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mdl:Grid xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:js="library://ns.apache.org/royale/basic"
+		  xmlns:mdl="library://ns.apache.org/royale/mdl"
+		  xmlns="http://www.w3.org/1999/xhtml"
+		  xmlns:models="models.*">
+		<fx:Script>
+		<![CDATA[
+		    import org.apache.royale.events.MouseEvent;
+			import vos.TabVO;
+
+			private function onAddNewTabClick(event:MouseEvent):void
+			{
+				tabsModel.tabs.addItem(new TabVO("tab4", "Tab Four"));
+			}
+			]]>
+	</fx:Script>
+	<mdl:beads>
+		<js:ContainerDataBinding/>
+	</mdl:beads>
+	<mdl:model>
+		<models:TabsModel id="tabsModel"/>
+	</mdl:model>
+	<mdl:GridCell column="6">
+		<mdl:Tabs id="myTabs" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabs"
+				  dataProvider="{tabsModel.tabs}" width="500">
+			<mdl:beads>
+				<mdl:DynamicTabsAddItemRendererForArrayListData/>
+			</mdl:beads>
+		</mdl:Tabs>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Add new Tab" click="onAddNewTabClick(event)"/>
+	</mdl:GridCell>
+</mdl:Grid>

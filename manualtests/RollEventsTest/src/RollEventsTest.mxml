@@ -21,7 +21,7 @@
 <js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
 				xmlns:models="models.*"
-				xmlns:js="library://ns.apache.org/flexjs/basic" 
+				xmlns:js="library://ns.apache.org/royale/basic" 
 				xmlns:controller="controller.*"
 				xmlns:views="views.*" 
 				>
@@ -31,7 +31,7 @@
 	</js:valuesImpl>
 	
 	<fx:Style>
-		@namespace js "library://ns.apache.org/flexjs/basic";
+		@namespace js "library://ns.apache.org/royale/basic";
 			
 		.ContainerBackground {
 			background-color: #FFFFCC;

@@ -17,42 +17,36 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0</version>
   </parent>
 
   <artifactId>examples-native</artifactId>
-  <version>0.8.0</version>
+  <version>0.9.0</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: Native</name>
+  <name>Apache Royale: Examples: Native</name>
 
   <modules>
-    <!-- Seems to be missing a module with the angular types -->
-    <!--module>AngularExample</module-->
-    <!-- Also seems to be missing something -->
     <module>ButtonExample</module>
-    <!-- Also seems to be missing something -->
     <module>USStatesMap</module>
   </modules>
-
+  
   <dependencies>
       <!--
-       By declaring this dependency here, we force the flexjs-externs-js to be
+       By declaring this dependency here, we force the royale-externs-js to be
        added to the external library path of all modules. Without this it would
        have gone to the library path.
        -->
       <dependency>
-          <groupId>org.apache.flex.flexjs.typedefs</groupId>
-          <artifactId>flexjs-typedefs-js</artifactId>
-          <version>${flexjs.typedefs.version}</version>
+          <groupId>org.apache.royale.typedefs</groupId>
+          <artifactId>royale-typedefs-js</artifactId>
+          <version>${royale.typedefs.version}</version>
           <type>swc</type>
           <classifier>typedefs</classifier>
           <scope>runtime</scope>

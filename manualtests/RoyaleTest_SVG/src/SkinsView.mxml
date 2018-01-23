@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic" 
+				xmlns:svg="org.apache.royale.svg.*"
+				xmlns:graphics="org.apache.royale.graphics.*" 
+				xmlns:skins="skins.*" xmlns:mx="library://ns.adobe.com/flex/mx"
+				initComplete="viewbase1_initCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.svg.Rect;
+			import org.apache.royale.graphics.SolidColor;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
+			
+			protected function viewbase1_initCompleteHandler(event:org.apache.royale.events.Event):void
+			{
+				//this.mouseChildren = false;
+				currentState = "up";
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_DOWN, handleMouseDown);
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_UP, handleMouseUp);
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_OVER, handleMouseOver);
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_OUT, handleMouseOut);
+			}
+			
+			private function handleMouseDown(event:org.apache.royale.events.MouseEvent):void
+			{
+				currentState = "down";
+			}
+			
+			private function handleMouseUp(event:org.apache.royale.events.MouseEvent):void
+			{
+				currentState = "up";
+			}
+			
+			private function handleMouseOver(event:org.apache.royale.events.MouseEvent):void
+			{
+				currentState = "over";
+				// This will cause the stroke to appear on the second hover
+				//fill_over.stroke.lineDash = dashArray;
+			}
+			
+			private function handleMouseOut(event:org.apache.royale.events.MouseEvent):void
+			{
+				currentState = "up";
+			}
+			[Bindable]private var dashArray:Array = [2,4,6,8];
+			
+		]]>
+	</fx:Script>
+	<js:states>
+		<js:State name="up"/>
+		<js:State name="over"/>
+		<js:State name="down"/>
+		<js:State name="disabled"/>
+	</js:states>
+	<!--<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>-->
+	<js:Container x="0" y="0" width="500" height="500">
+		<js:Label text="MyButton" x="20" y="10" includeIn="{[up,down,over,disabled]}" />
+		
+		<svg:Rect id="fill_up" width="100" height="30" includeIn="up" >
+			<svg:stroke>
+				<graphics:SolidColorStroke alpha="1.0" color="#000000" />
+			</svg:stroke>
+			<svg:fill>
+				<graphics:SolidColor color="#1ABC9C" alpha="1.0" />
+			</svg:fill>
+		</svg:Rect>
+		
+		<svg:Rect id="fill_over" width="100" height="30" includeIn="over">
+			<svg:stroke>
+				<graphics:SolidColorStroke alpha="1.0" color="#000000" lineDash="{dashArray}" weight="5" lineJoin="round"/>
+			</svg:stroke>
+			<svg:fill>
+				<graphics:SolidColor color="#48C9B0" alpha="1.0" />
+			</svg:fill>
+		</svg:Rect>
+		
+		<svg:Rect id="fill_down" width="100" height="30" includeIn="down">
+			<svg:stroke>
+				<graphics:SolidColorStroke alpha="1.0" color="#000000" />
+			</svg:stroke>
+			<svg:fill>
+				<graphics:SolidColor color="#16A085" alpha="1.0" />
+			</svg:fill>
+		</svg:Rect>
+		<js:TextButton x="50" y="100" text="Just a button"/>
+	</js:Container>
+	
+</js:View>

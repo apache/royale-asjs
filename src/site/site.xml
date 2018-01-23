@@ -32,16 +32,16 @@
     <custom>
         <reflowSkin>
             <theme>site</theme>
-            <titleTemplate>Apache Flex® - %2$s</titleTemplate>
+            <titleTemplate>Apache Royale® - %2$s</titleTemplate>
             <breadcrumbs>false</breadcrumbs>
             <highlightJs>true</highlightJs>
         </reflowSkin>
     </custom>
 
     <bannerLeft>
-        <name>Apache Flex</name>
-        <src>img/logo-flex.png</src>
-        <href>http://flex.apache.org/</href>
+        <name>Apache Royale</name>
+        <src>img/logo-royale.png</src>
+        <href>http://royale.apache.org/</href>
     </bannerLeft>
 
     <bannerRight>
@@ -60,9 +60,8 @@
         </head>
 
         <links>
-            <item name="Apache Flex Homepage" href="http://flex.apache.org/" />
-            <!--item name="Apache FlexJS Homepage" href="http://flex.apache.org/" /-->
-            <item name="Apache Flex Wiki" href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki"/>
+            <item name="Apache Royale Homepage" href="http://royale.apache.org/" />
+            <item name="Apache Royale Documentation" href="https://apache.github.io/royale-docs/"/>
         </links>
 
         <menu ref="reports" />

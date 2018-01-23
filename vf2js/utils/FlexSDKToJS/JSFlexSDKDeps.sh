@@ -1,1 +1,0 @@
-/Users/erik/Documents/ApacheFlex/dependencies/GoogleClosure/library/closure/bin/build/depswriter.py --root_with_prefix="/Users/erik/Documents/ApacheFlex/dependencies/GoogleClosure/library/closure/goog ../../../../../bin/js-debug/library/closure/goog" --root_with_prefix="../../frameworks/js/vf2js ../../../../../bin/js-debug" > ../../frameworks/js/sdk-deps.js

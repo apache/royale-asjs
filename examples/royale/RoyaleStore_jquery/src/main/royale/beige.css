@@ -1,0 +1,171 @@
+/*
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+/* Style for color-specific state - Beige */
+
+@namespace "library://ns.apache.org/royale/basic";
+
+/*
+//----------------------------
+//  Global styles
+//----------------------------
+*/
+.global
+{
+    highlightAlphas:        .5, .25;
+    borderColor:            #939A9D;
+    headerColors:           #A65904, #E68701;
+    themeColor:             #75B1CE;
+    rollOverColor:          #D6E6EE;
+    selectionColor:         #B8D5E4;
+}
+
+/*
+//----------------------------
+// Type selectors
+//----------------------------
+*/
+Application
+{
+    backgroundColor:		#EAE6DD;
+    backgroundImage:        "assets/beige_background.jpg";
+}
+
+/*
+//----------------------------
+// Apply to Panels and Alerts by default
+//----------------------------
+*/
+.windowStatus {
+	color: #FFCC99;
+}
+
+.windowStyles {		/* catalog panel's title text */
+	color: #FFCC99;
+}
+
+/*
+//----------------------------
+// Named styles
+//----------------------------
+*/
+
+.colorPanel /* for the background of some surfaces */
+{
+    borderStyle:            "solid";
+    borderWidth:        0;
+    backgroundColor:		#BCB29F;
+    backgroundAlpha:		0.4;
+    color: 					#170505;
+    cornerRadius:           4;
+    dropShadowEnabled:      true;
+}
+
+.homeProgramHeader /* in HomeView */
+{
+    fontWeight:             "bold";
+    fontSize:               13;
+    color:                  #BE7E3F;
+}
+
+.homeMap
+{
+    borderStyle:            "solid";
+    cornerRadius:           4;
+    backgroundColor:        #BE7E3F;
+    alpha:                  1;
+    dottedMap:              "assets/beige_dotted_map.png";
+}
+
+.instructions
+{
+    alpha:                  .85;
+    color:                  #5C5857;
+}
+
+.storeControlBar
+{
+    fillAlphas: 			.60, .40;
+    fillColors: 			#8F8879, #BCB29F;
+    highlightAlphas:		.05, .25;
+    cornerRadius: 			3;
+	shadowDistance:         4;
+	paddingLeft:            0;
+	paddingRight:           0;
+	paddingTop:             0;
+	paddingBottom:          0;
+	horizontalGap:          0;
+    storeLogo:              "assets/logo_orange.png";
+}
+
+.storeButtonBar
+{
+    cornerRadius:           0;
+    buttonStyleName:        "storeButton";
+    themeColor:             #A65904;
+}
+
+.storeButton
+{
+    cornerRadius:           0;
+    fillColors:             #8F8879, #BCB29F, #A65904, #E68701;
+    fillAlphas:             1, 1;
+    highlightAlphas:        .5, .25;
+    fontWeight:             "normal";
+    /** need to port to ButtonView 
+    selectedOverSkin:       ClassReference("samples.royalestore.ButtonBarButtonSkin");
+    selectedUpSkin:         ClassReference("samples.royalestore.ButtonBarButtonSkin");
+    overSkin:               ClassReference("samples.royalestore.ButtonBarButtonSkin");
+    **/
+}
+
+.catalogTitleButtonSelected
+{
+    color:                  #FFFFFF;
+    fontWeight:             "bold";
+}
+
+.catalogTitleButtonDeselected
+{
+    color:                  #222222;
+    fontWeight:             "bold";
+}
+
+.catalogTitleButtonHighlighted
+{
+    color:                  #FFCC99;
+    fontWeight:             "bold";
+}
+
+.catalogPanel
+{
+    highlightAlphas:        .5, .25;
+    headerColors:           #A65904, #E68701;
+    borderAlpha:            1;
+    borderColor:            #FFFFFF;
+    border-width: 1px;
+    borderThicknessRight:   1;
+    borderThicknessBottom:  1;
+    paddingRight:           0;
+    paddingBottom:          0;
+}
+
+

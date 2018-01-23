@@ -33,7 +33,7 @@ String version = model.version
 
 // Find the index.html produced by the build
 System.out.println("Base Dir: " + ((File) basedir).getPath())
-String fileName = "target/" + artifactId + "-" + version + "/index.html"
+String fileName = "target/javascript/bin/js-debug/index.html"
 File file = new File((File) basedir, fileName)
 
 // Check that the index.html file exists and is a file

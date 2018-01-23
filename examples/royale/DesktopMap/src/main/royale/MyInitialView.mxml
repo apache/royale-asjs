@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+                xmlns:google="library://ns.apache.org/royale/google"
+				xmlns:local="*"
+				initComplete="initControls()">
+    <fx:Script>
+        <![CDATA[			
+			import models.MyModel;
+			import org.apache.royale.events.Event;
+			import google.maps.LatLng;
+									
+
+			private function initControls() : void
+			{
+				
+			}
+			
+			/**
+			 * Take the values from the input field and have the map
+			 * display that coordinate.
+			 */
+			private function mapIt() : void
+			{
+				var lat:Number = Number(latInput.text);
+				var lng:Number = Number(longInput.text);
+				var center:LatLng = new LatLng(lat, lng);
+				
+				map.setCenter(center);
+			}
+			
+			private var selectedCity:String;
+			
+			/**
+			 * Triggered by a change in the drop list with a new city selected. This
+			 * will also update the input fields.
+			 */
+			private function changeCity(event:org.apache.royale.events.Event) : void
+			{
+				var index:int = list.selectedIndex;
+				
+				var latlng:Object = MyModel(applicationModel).coordinates[index];
+				var address:String = MyModel(applicationModel).cities[index];
+				mapLocation.text = address;
+				map.centerOnAddress(address);
+				
+				latInput.text = String(latlng.lat);
+				longInput.text = String(latlng.lng);
+			}
+			
+			private function codeAddress() : void
+			{
+				map.markAddress(mapLocation.text);
+				map.setZoom(12);
+			}
+			
+			private function searchOnMap() : void
+			{
+				map.nearbySearch(search.text);
+				map.setZoom(12);
+			}
+			
+			private function clearSearchResults() : void
+			{
+				map.clearSearchResults();
+			}
+			
+			private function orientMap() : void
+			{
+				map.centerOnAddress(mapLocation.text);
+				map.setZoom(12);
+			}
+			
+		]]>
+    </fx:Script>
+	
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/royale/basic";
+		
+		.MapPanel {
+			border: 1px solid #555555;
+			backgroundColor: darkgray;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.LocationGroup {
+			flex-grow: 0;
+			padding: 4px;
+		}
+		
+		.Map {
+			flex-grow: 1;
+		}
+		
+		.SearchGroup {
+			flex-grow: 0;
+			padding: 4px;
+		}
+		
+		.InputGroup {
+			flex-grow: 0;
+			padding: 4px;
+			margin-top: 10px;
+		}
+		
+		.FieldInput {
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+	
+	</fx:Style>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	
+	<js:Panel title="Map" width="100%" height="100%" className="MapPanel">
+		<js:beads>
+			<js:VerticalFlexLayout />
+		</js:beads>
+		
+		<js:Group className="SearchGroup">
+			<js:beads>
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="search" />
+			</js:beads>
+			<js:Label text="Search on Map:" />
+			<js:TextInput id="search" className="FieldInput" />
+			<js:TextButton text="Find" click="searchOnMap()" />
+			<js:TextButton text="Clear" click="clearSearchResults()" />
+		</js:Group>
+		
+		<google:Map id="map" className="Map" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
+		
+		<js:Group className="LocationGroup">
+			<js:beads>
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="mapLocation" />
+			</js:beads>
+			<js:Label text="Location:" />
+			<js:TextInput id="mapLocation" className="FieldInput" />
+			<js:TextButton text="Go" click="orientMap()" />
+			<js:Spacer width="10" />
+			<js:DropDownList id="list"
+							 change="changeCity(event)"
+							 dataProvider="{MyModel(applicationModel).cities}" />
+		</js:Group>
+		
+		<js:Group className="InputGroup">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			
+			<js:Label text="Lat:" />
+			<js:TextInput id="latInput" text="" width="70" />
+			<js:Spacer width="10" />
+			
+			<js:Label text="Long:" />
+			<js:TextInput id="longInput" text="" width="70" />
+			<js:Spacer width="10" />
+			
+			<js:TextButton text="MapIt" click="mapIt()" />
+		</js:Group>
+
+	</js:Panel>
+
+</js:View>

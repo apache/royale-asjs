@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mdl:Grid xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:js="library://ns.apache.org/royale/basic"
+		 xmlns:mdl="library://ns.apache.org/royale/mdl" xmlns:models="models.*">
+	
+	<fx:Script>
+        <![CDATA[
+		import vo.UserVO;
+
+		private function onAddEmployeeClick(event:MouseEvent):void
+		{
+			usersListModel.users.addItem(new UserVO("piotrz", "Piotr", "Zarzycki", "piotrz@apache.org"));
+		}
+
+		private function onRemoveEmployeeClick(event:MouseEvent):void
+		{
+			usersListModel.users.removeItemAt(usersListModel.users.length - 1);
+		}		
+		
+		private function onRemoveAllClick(event:MouseEvent):void
+		{
+			usersListModel.users.removeAll();	
+		}		
+		
+		private function onRemoveAllByNullClick(event:MouseEvent):void
+		{
+			tblUsers.dataProvider = null;	
+		}		
+		
+		private function onTblChange(event:Event):void
+		{
+			var selIndex:int = tblUsers.selectedIndex;
+			var selItem:Object = tblUsers.selectedItem;
+		}
+        ]]>
+    </fx:Script>
+
+	<mdl:beads>
+		<js:ContainerDataBinding/>
+	</mdl:beads>
+
+	<mdl:model>
+		<models:UserListModel id="usersListModel"/>
+	</mdl:model>
+
+	<mdl:GridCell column="12">
+		<mdl:Table id="tblUsers" shadow="2"
+				   dataProvider="{usersListModel.users}" className="customTableStyle" change="onTblChange(event)">
+			<mdl:columns>
+				<mdl:TableColumn headerText="Username" />
+				<mdl:TableColumn headerText="First Name"/>
+				<mdl:TableColumn headerText="Last Name"/>
+				<mdl:TableColumn headerText="Email"/>
+			</mdl:columns>
+			<mdl:beads>
+				<js:DynamicAddItemRendererForArrayListData/>
+				<js:DynamicRemoveItemRendererForArrayListData />
+				<js:DynamicRemoveAllItemRendererForArrayListData />
+				<js:DynamicRemoveAllByNullItemRendererForArrayListData />
+			</mdl:beads>
+		</mdl:Table>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Add Employee" width="100" click="onAddEmployeeClick(event)"/>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Remove Last Employee" width="100" click="onRemoveEmployeeClick(event)"/>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Remove All" width="130" click="onRemoveAllClick(event)"/>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Remove All by Null" width="150" click="onRemoveAllByNullClick(event)"/>
+	</mdl:GridCell>
+</mdl:Grid>

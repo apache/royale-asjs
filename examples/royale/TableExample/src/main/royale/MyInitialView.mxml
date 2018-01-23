@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic" 
+				xmlns:dataTable="dataTable.*" 
+				xmlns:model="dataTable.model.*">
+    
+	<fx:Style>
+		@namespace js "library://ns.apache.org/royale/basic";
+		
+		
+		.Table {
+			backgroundColor: orange;
+		}
+		
+		.TableHeader {
+			backgroundColor: aliceblue;
+			border: 1px solid orange;
+		}
+		
+		.TableCell {
+			backgroundColor: lightblue;
+			border: 1px solid orange;
+		}
+		
+		.CellGroup {
+			backgroundColor: aliceblue;
+			padding: 6px;
+		}
+		
+		.DataTable {
+			iBeadModel: ClassReference("dataTable.model.DataTableModel");
+			border-collapse: collapse;
+		}
+		
+	</fx:Style>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	
+	<js:Table width="500" height="400" >
+		<!-- By placing the width on the cell of the first row, you effectively set the
+		     width for the rest of the cells in each column. Here, the widths are set to
+		     percentage values but you can use pixel values as well.
+		-->
+		<js:TableRow>
+			<js:TableHeader width="25%">
+				<js:Label text="Apples" />
+			</js:TableHeader>
+			<js:TableHeader width="50%">
+				<js:Label text="Oranges" />
+			</js:TableHeader>
+			<js:TableHeader width="25%">
+				<js:Label text="Grapes" />
+			</js:TableHeader>
+		</js:TableRow>
+		<js:TableRow>
+			<js:TableCell>
+				<js:Label text="Row 1, Col 1" />
+			</js:TableCell>
+			<js:TableCell>
+				<js:Label text="Row 1, Col 2" />
+			</js:TableCell>
+			<js:TableCell>
+				<js:Label text="Row 1, Col 3" />
+			</js:TableCell>
+		</js:TableRow>
+		<js:TableRow>
+			<js:TableCell>
+				<js:Label text="Row 2, Col 1" />
+			</js:TableCell>
+			<js:TableCell>
+				<js:Label text="Row 2, Col 2" />
+			</js:TableCell>
+			<js:TableCell>
+				<js:Label text="Row 2, Col 3" />
+			</js:TableCell>
+		</js:TableRow>
+		<js:TableRow>
+			<js:TableCell>
+				<js:Label text="Row 3, Col 1" />
+			</js:TableCell>
+			<js:TableCell>
+				<!-- By using a Group within a cell you have better control of the
+				     layout.
+				-->
+				<js:Group className="CellGroup">
+					<js:beads>
+						<js:VerticalLayout />
+					</js:beads>
+					<js:Label text="Row 3" />
+					<js:Label text="+" />
+					<js:Label text="Col 2" />
+				</js:Group>
+			</js:TableCell>
+			<js:TableCell>
+				<js:Group className="CellGroup">
+					<js:beads>
+						<js:HorizontalLayout />
+					</js:beads>
+					<js:Label text="Row 3" />
+					<js:Label text="+" />
+					<js:Label text="Col 3" />
+				</js:Group>
+			</js:TableCell>
+		</js:TableRow>
+	</js:Table>
+	
+	<!-- Generates a Table structure from a data source -->
+	
+	<dataTable:DataTable x="600" y="0" width="400" height="400">
+		<dataTable:beads>
+			<js:ConstantBinding 
+				sourceID="applicationModel"
+				sourcePropertyName="products"
+				destinationPropertyName="dataProvider" />
+		</dataTable:beads>
+		<dataTable:DataColumn 
+			dataField="name" 
+			label="State" 
+			itemRenderer="org.apache.royale.html.supportClasses.StringItemRenderer" />
+		<dataTable:DataColumn 
+			dataField="capital"
+			label="Capital" 
+			itemRenderer="org.apache.royale.html.supportClasses.StringItemRenderer" />
+		<dataTable:DataColumn 
+			dataField="country" 
+			label="Country" 
+			itemRenderer="org.apache.royale.html.supportClasses.StringItemRenderer" />
+	</dataTable:DataTable>
+
+</js:View>

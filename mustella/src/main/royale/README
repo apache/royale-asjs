@@ -1,0 +1,271 @@
+
+Prototype of new test framework. 
+
+
+Example test: CBTester.mxml
+
+Example test-swf: main.mxml
+
+
+
+To compile the sample: 
+
+	mxmlc -includes=CBTester main.mxml
+
+To run: 
+
+	SAFlashPlayer.exe main.swf
+
+
+Multiple scripts can be applied to a single Test swf, as in
+
+	mxmlc -includes=CBTester main.mxml -includes=CBTester2 
+	
+
+Currently, output goes only to trace. 
+
+
+
+What's in a test file? There are some mandatory items: notice the top of CBTester.mxml
+
+        <mx:Script>
+        <![CDATA[
+        public static function init(o:DisplayObject):void
+        {
+        }
+        ]]>
+        </mx:Script>
+        <mx:Metadata>
+        <![CDATA[
+                [Mixin]
+        ]]>
+        </mx:Metadata>
+
+
+These need not vary.
+
+The init function is called by the swf under test. You can add things here if you like, 
+but do so carefully. Note that the application isn't complete by the time this is called.
+
+The [Mixin] is required by the compiler to include this class as a Mixin.
+
+
+
+The UnitTester tag must name what swf it is associated with, using the testSWF tag.
+in CBTester:
+	 testSWF="main.mxml"
+
+
+
+TestCases must have a testID attribute: for example, 
+
+   <TestCase testID="myTest1">
+
+
+The testID should be unique. 
+
+
+
+Description of Available Tags
+
+
+
+<testCases>   - no attributes.  children are of type TestCase
+
+
+<TestCase testID="myTest1">    
+	attributes:
+
+		testID - a unique identifier for the TestCase
+
+	child elements: 
+
+		<setup>  - no attributes
+		<body>   - no attributes 
+		<cleanup>- no attributes
+
+
+	setup, body, and cleanup may have the following elements: 
+
+	AssertPixelValue
+		attributes: 
+			target - the object that has the property to verify
+			x - the X coordinate, relative to the target. 
+			y - the Y coordinate, relative to the target. 
+			value - the expected value (eg, 0XFFFFFF)
+			valueExpression - a code expression, generally setting value=<code>
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+	AssertPropertyValue
+		attributes: 
+			target - the object that has the property to verify
+			propertyName - the property to verify
+			value - the expected value
+			valueExpression - a code expression, generally setting value=<code>
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+	AssertMethodValue
+		attributes: 
+			target - the object that has the property to verify
+			propertyName - the property to verify
+			value - the expected value
+			valueExpression - a code expression, generally setting value=<code>
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+	AssertStyleValue
+		attributes: 
+			target - the object on which to assert the style
+			styleName - the name of the style to verify
+			value - the expected value
+			valueExpression - a code expression, generally setting value=<code>
+			waitEvent - (optional) - the event to wait for. The test will not advance
+			            until this event is received or a timeout occurs.
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+	CompareBitmap   (see below for more description)
+		attributes: 
+			target - the object on which to assert the style
+			url - the name of the file to save/read
+			waitEvent - do not use!
+			waitTarget - do not use!
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+
+	DispatchKeyEvent 
+				
+			key  - the key to press 
+			char  - the character to enter 
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+
+
+	DispatchMouseEvent 
+			target - the object on which to target the event.
+			type - the type of MouseEvent to dispatch. For instance, "mouseUp"
+			localX - the X coordinate, relative to the target. 
+			localY - the Y coordinate, relative to the target. 
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+	Pause
+			timeout - how long to wait. (Does not cause an error)
+		
+
+	RunCode
+		attributes: 
+			code - the code to run. This might be a method call or the actual code.
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+
+	SetProperty 
+		attributes: 
+			target - the object on which to set the style
+			propertyName - the name of the style to set
+			value - the value to set the property to
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+			timeout - in milliseconds. default is 3000 milliseconds.
+
+		example: 
+
+			<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+:w
+
+	
+	SetStyle
+		attributes: 
+			target - the object whose style you will set
+			styleName - the style you want to set
+			value - the value to set the property to
+			waitEvent - (optional) - the event to wait for. The test will not
+				     advance until this event is received, or a timeout occurs. 
+			waitTarget - the object that will dispatch the waitEvent event
+
+
+
+			<AssertPropertyValue target="cb" propertyName="selectedItem" value="3" />
+
+
+
+
+
+
+
+
+
+
+
+
+Bitmap Comparison: 
+
+
+To use bitmap verification, use the CompareBitmap tag: 
+
+for instance: 
+
+	<CompareBitmap target="cb" url="myTest4.png" timeout="4500" />
+
+This associates a bitmap of cb to save in a file names myTest4.png. 
+
+It is safest to preceed the bitmap call with a call that synchronizes (using waitFor and waitTarget). Do not use waitFor and WaitTarget on the bitmap call itself!
+
+
+To write new bitmaps, it is necessary to mixin the CreateBitmapReferences class. 
+
+
+	mxmlc -includes=CBTester -includes=CreateBitmapReferences main.mxml
+
+
+(and, because of the current bug, it is necessary to have a reference to CreateBitmapReferences in main.mxml). 
+
+
+Because writing to the local disk is a security violation, a server is required. The server is available in ~depot/flex/qa/skunkworks/baselinewriter/baselinewriter.zip. 
+
+
+This is meant to be run by jrun. To install, unzip it under servers/default in a jrun installation. 
+
+
+The root url that mustella writes bitmaps to is defined in CreateBitmapReferences.as; very likely you will have to alter the server port, local directory location, and the base url to make this work. 
+
+
+Let me know of any difficulties setting up the server: bolaughl&part;adobe.com
+
+
+
+issues: 
+
+	mixin currently requires a reference to the mixin file(s). (bug)
+
+
+
+
+
+
+
+USEFUL TOOLS
+
+
+EventSniffer - include an EventSniffer tag in your test swf. This sniffs all events and displays them. Start, stop, mark and clear controls. 
+
+PixelSniffer - include a PixelSniffer tag in your test swf. This sniffs all mouse locations and pixel values under the mouse. Start, stop, mark and clear controls. 
+ca
+going 

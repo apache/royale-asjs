@@ -16,20 +16,20 @@ goog.provide('MyController');
 
 goog.require('flash.events.EventDispatcher');
 
-goog.require('org.apache.flex.FlexGlobal');
+goog.require('org.apache.royale.FlexGlobal');
 
 /**
  * @constructor
- * @param {org.apache.flex.core.Application} app The main application.
+ * @param {org.apache.royale.core.Application} app The main application.
  */
 MyController = function(app) {
     /**
-     * @type {org.apache.flex.core.Application}
+     * @type {org.apache.royale.core.Application}
      */
     this.app = app || null;
 
     this.app.addEventListener(
-        'viewChanged', org.apache.flex.FlexGlobal.createProxy(
+        'viewChanged', org.apache.royale.FlexGlobal.createProxy(
             this, this.viewChangeHandler
         )
     );
@@ -41,7 +41,7 @@ MyController = function(app) {
  */
 MyController.prototype.viewChangeHandler = function(event) {
     this.app.initialView.addEventListener(
-        'buttonClicked', org.apache.flex.FlexGlobal.createProxy(
+        'buttonClicked', org.apache.royale.FlexGlobal.createProxy(
             this, this.buttonClickHandler
         )
     );

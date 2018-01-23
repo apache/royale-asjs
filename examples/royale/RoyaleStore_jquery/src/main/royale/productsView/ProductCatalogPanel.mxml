@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:js="library://ns.apache.org/royale/basic" 
+         implements="org.apache.royale.core.IDragInitiator"
+    xmlns:productsView="productsView.*"
+    currentState="browse"
+    title="SpaceHolder"
+    title.browse="Browse"
+    title.compare="Product Comparison"
+    title.details="Product Details"
+    className="catalogPanel"
+    >
+    
+    <fx:Metadata>
+        [Event(name="purchase", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.royalestore.ProductThumbEvent")]
+        [Event(name="details", type="samples.royalestore.ProductThumbEvent")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.core.IUIBase;
+            import org.apache.royale.effects.Effect;
+            import org.apache.royale.effects.Fade;
+            import org.apache.royale.effects.Move;
+            import org.apache.royale.effects.Parallel;
+            import org.apache.royale.effects.Tween;
+            import org.apache.royale.events.DragEvent;
+            import org.apache.royale.events.Event;
+            import org.apache.royale.collections.LazyCollection;
+            
+            import samples.royalestore.Product;
+            import samples.royalestore.ProductFilter;
+            import samples.royalestore.ProductFilterEvent;
+            import samples.royalestore.ProductThumbEvent;
+       
+     
+        private var accepted:Object = new Object();
+        private var thumbnails:Array;
+        private var filterCount:int;
+        private var thumbnailState:String = 'browse'; //either 'browse' or 'compare'
+                
+        [Bindable]
+        public var cartCount:int;
+        
+        //-----------------------------
+        // catalog
+        //-----------------------------
+        
+        private var _catalog:LazyCollection;
+        
+        [Bindable]
+        public function set catalog(c:LazyCollection):void
+        {
+            _catalog = c;
+            createThumbnails();
+        }
+        
+        public function get catalog():LazyCollection
+        {
+            return _catalog;
+        }
+        
+        //----------------------------------------------------------------------
+        // methods
+        //----------------------------------------------------------------------
+       
+        private function createThumbnails():void
+        {
+            var i:int; //variables are hoisted up in scope so declare here to avoid warning
+            if (thumbnails != null)
+            {
+                for (i=0; i < thumbnails.length; i++)
+                {
+                    thumbContentGroup.removeElement(thumbnails[i]);
+                }
+            }
+            
+            var row:int = 0;
+            var col:int = -1;
+            var n:int = catalog.length;
+            thumbnails = new Array(n);
+            filterCount = n;
+            
+            for (i=0; i < n; i++)
+            {
+                var thumb:ProductCatalogThumbnail = new ProductCatalogThumbnail();
+                thumb.x = 0;
+                thumb.y = 0;
+                thumbnails[i] = thumb;
+                // thumbnails[i].showInAutomationHierarchy = true;
+                thumb.product = catalog.getItemAt(i) as Product;
+                accepted[thumb.product.productId.toString()] = true;
+                thumbContentGroup.addElement(thumb);
+                thumb.addEventListener(ProductThumbEvent.PURCHASE, productThumbEventHandler);
+                thumb.addEventListener(ProductThumbEvent.COMPARE, productThumbEventHandler);
+                thumb.addEventListener(ProductThumbEvent.DETAILS, productThumbEventHandler);
+                thumb.addEventListener(DragEvent.DRAG_START,thumbDragStartHandler);
+            }
+
+            var lastMove:Effect = layoutCatalog();
+            if (lastMove)
+            {
+                lastMove.addEventListener(Tween.TWEEN_UPDATE, updateLayout);
+                lastMove.addEventListener(Tween.TWEEN_END, updateLayout);
+            }
+        }
+        
+        private function updateLayout(event:org.apache.royale.events.Event):void
+        {
+            thumbContentGroup.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));   
+        }
+            
+        private function thumbDragStartHandler(event:MouseEvent):void
+        {
+            if (DragMouseController.dragging == false)
+            {
+                var thumb:ProductCatalogThumbnail = event.target as ProductCatalogThumbnail;
+                DragEvent.dragSource = thumb.product;
+
+                var di:ProductCatalogThumbnail = new ProductCatalogThumbnail();
+                di.product = thumb.product;
+                di.currentState = thumb.currentState;
+                DragMouseController.dragImage = di;
+                
+                DragEvent.dragInitiator = this;
+            }    
+        }
+        
+        public function filter(productFilter:ProductFilter, live:Boolean):void
+        {
+            currentState = "browse";
+            thumbnailState = "browse";
+            var count:int=0;
+            var n:int = thumbnails.length;
+            var targets:Array = [];
+            for (var i:int = 0; i < n; i++)
+            {
+                var thumb:ProductCatalogThumbnail = thumbnails[i];
+                var product:Product = thumb.product;
+                if (productFilter.accept(product))
+                {
+                    accepted[product.productId.toString()] = true;
+                    thumb.alpha = 1;    
+                    count++;
+                }
+                else
+                {
+                    accepted[product.productId.toString()] = false;
+                    if (live)
+                    {
+                        thumb.alpha = .1;
+                    }
+                    else if (thumb.alpha == 1) //only fade if we hadn't started
+                    {
+                        targets.push(thumb);
+                    }
+                }
+            }
+            productFilter.count = count;
+            filterCount = count;
+
+            if (targets.length > 0)    
+            {
+                var p:Parallel = new Parallel();
+                n = targets.length;
+                for (i = 0; i < n; i++)
+                {
+                    var fadeOut:Fade = new Fade(targets[i] as IUIBase);
+                    fadeOut.alphaFrom = 1;
+                    fadeOut.alphaTo = .1;
+                    p.addChild(fadeOut);
+                }
+                p.play();
+                p.addEventListener(Effect.EFFECT_END,
+                    function(event:org.apache.royale.events.Event):void
+                    {
+                        layoutCatalog();
+                    });
+            }
+            else if (!live)
+            {
+                layoutCatalog();
+            }
+        }
+        
+        private function layoutCatalog():Effect
+        {
+            var tileWidth:Number;
+            var tileHeight:Number;
+            var numCols:int;
+
+            if (filterCount > 9 || currentState == "compare")
+            {
+                numCols = 4;
+                tileWidth = ProductCatalogThumbnail.COL_WIDTH_4;
+                tileWidth = currentState == "compare"
+                    ? ProductCatalogThumbnail.COMPARE_WIDTH
+                    : ProductCatalogThumbnail.COL_WIDTH_4
+                tileHeight = currentState == "compare"
+                    ? height - 4
+                    : ProductCatalogThumbnail.COL_HEIGHT_4;
+            }
+            else if (filterCount > 4)
+			{
+                numCols = 3;
+                tileWidth = ProductCatalogThumbnail.COL_WIDTH_3;
+                tileHeight = ProductCatalogThumbnail.COL_HEIGHT_3;
+            }
+			else if (filterCount <= 9)
+			{
+                numCols = 2;
+                tileWidth = ProductCatalogThumbnail.COL_WIDTH_2;
+                tileHeight = ProductCatalogThumbnail.COL_HEIGHT_2;
+            }
+			else
+			{
+            }
+            
+            var row:int = 0;
+            var col:int = -1;
+
+			var move:Move = null;
+
+            var n:int = catalog.length;
+			for (var i:int = 0 ; i < n ; i++)
+			{
+                var product:Product = catalog.getItemAt(i) as Product;
+                var thumb:ProductCatalogThumbnail = thumbnails[i];
+                if (accepted[product.productId.toString()])
+                {
+                    thumb.currentState = "x" + numCols + "cols";
+                    col++;
+                    if (col > numCols - 1)
+					{
+                        row++;
+                        col = 0;
+                    }
+
+                    var xTo:Number = col * (tileWidth + ProductCatalogThumbnail.HORIZONTAL_GAP);
+                    var yTo:Number = row * (tileHeight + ProductCatalogThumbnail.VERTICAL_GAP);
+
+                    // If the thumbnail is already visible
+					// animate it to its new position.
+                    if (thumb.visible)
+					{
+                        // Animate only if the position is different
+						// from its current position.
+                        if (thumb.x != xTo || thumb.y != yTo)
+						{
+                            move = new Move(thumb);
+                            move.xTo = xTo;
+                            move.yTo = yTo;
+                            move.play();
+                        }
+                    }
+
+                    // If the thumbnail was not previously visible, sets its
+					// x and y coordinates. We'll make it reappear after all
+                    // the visible thumbnails have reached their new position.
+					else
+					{
+                        thumb.x = xTo;
+                        thumb.y = yTo;
+//                        thumb.includeInLayout = true;
+                    }
+                }
+				else
+				{
+                    thumb.visible = false;
+//                    thumb.includeInLayout = false;
+                }
+            }
+
+            if (!move)
+			{
+                // No visible thumbnails were animated to a new position;
+				// fade in newly selected thumbnails right away.
+                fadeInThumbnails();
+            }
+			else
+			{
+			    //since movement is happening get the scrollbar back to the top
+				scv.verticalScrollPosition = 0;
+                // Fade in newly selected thumbnails after the last
+				// visible thumbnail has moved to its new position.
+                move.addEventListener(Effect.EFFECT_END,
+					function(event:org.apache.royale.events.Event):void
+					{
+						fadeInThumbnails();
+					});
+            }
+            thumbContentGroup.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));
+            //return the last move to watch
+            return move;
+        }
+        
+        //return the last effect so we could add effectEnd handler if desired
+        private function fadeInThumbnails():void
+		{
+			var n:int = thumbnails.length;
+			var targets:Array = [];
+			for (var i:int = 0; i < n ; i++)
+			{
+			    var thumb:ProductCatalogThumbnail = thumbnails[i];
+			    if (accepted[thumb.product.productId.toString()] && !thumb.visible)
+				{
+                    thumb.alpha = 0;
+                    thumb.visible = true;
+                    targets.push(thumb);
+                }
+            }
+            if (targets.length > 0)
+            {
+                n = targets.length;
+                for (i = 0; i < n; i++)
+                {
+                    var effect:Fade = new Fade(targets[i] as IUIBase);
+                    effect.alphaTo = 1;
+                    effect.play();
+                }
+            }
+        }
+        
+        private function showDetails(product:Product):void
+        {
+            if (currentState == "details")
+			{
+                details.product = product;
+                return;
+            }
+
+            var row:int = -1;
+
+            //should be computed using border metrics instead of hard-coding the 20, but...
+			var xTo:Number = thumbContentGroup.width - ProductCatalogThumbnail.COL_WIDTH_4 - 20;
+            var yTo:Number;
+
+            var move:Move;
+            var first:Boolean = true;
+            var selectedThumb:ProductCatalogThumbnail;
+
+            var n:int = thumbnails.length;
+			for (var i:int = 0; i < n; i++)
+			{
+			    var thumb:ProductCatalogThumbnail = thumbnails[i];
+                if (thumb.visible)
+				{
+                    row++;
+                    yTo = row * (ProductCatalogThumbnail.COL_HEIGHT_4 + ProductCatalogThumbnail.VERTICAL_GAP);
+
+                    thumb.currentState = "x4cols";
+
+                    if (thumb.x != xTo || thumb.y != yTo)
+					{
+                        move = new Move(thumb);
+                        if (first)
+						{
+                            move.addEventListener(Effect.EFFECT_END,
+								function(event:org.apache.royale.events.Event):void
+								{
+									details.product = product;
+                                    currentState = "details";
+								});
+
+                            first = false;
+                        }
+                        move.xTo = xTo;
+                        move.yTo = yTo;
+                        move.play();
+                    }
+                    
+                    if (thumb.product == product)
+                    {
+                        selectedThumb = thumb;
+                    }
+                }
+            }
+            if (selectedThumb != null)
+            {
+                //make sure that the selected thumb is visible in the list on the right
+                move.addEventListener(Effect.EFFECT_END,
+					function(e:org.apache.royale.events.Event):void
+					{
+					    var curpos:int = scv.verticalScrollPosition;
+					    if (selectedThumb.y < curpos)
+					    {
+					        scv.verticalScrollPosition = y;
+					    }
+					    else if (selectedThumb.y + ProductCatalogThumbnail.COL_HEIGHT_4 > curpos + thumbContentGroup.height)
+					    {
+					        //this logic doesn't seem to be perfect but it will do
+					        var diff:int = selectedThumb.y - (curpos + thumbContentGroup.height)
+					        scv.verticalScrollPosition += diff + ProductCatalogThumbnail.COL_HEIGHT_4 + ProductCatalogThumbnail.VERTICAL_GAP;
+					    }
+					});
+            }
+            
+        }
+        
+        private function productThumbEventHandler(event:ProductThumbEvent):void
+        {
+            if (event.type == ProductThumbEvent.DETAILS)
+            {
+                showDetails(event.product);
+            }
+            else if (event.type == ProductThumbEvent.BROWSE)
+            {
+                if (thumbnailState == "browse")
+                {                
+                    currentState = "browse";
+                    layoutCatalog();
+                }
+                else
+                {
+                    compare();
+                }
+            }
+            else
+            {
+                dispatchEvent(event);
+            }
+        }
+        
+        public function compare(toCompare:Array=null):void
+        {
+            currentState = "compare";
+            thumbnailState = "compare";
+            if (toCompare != null)
+            {
+                var n:int = thumbnails.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    accepted[thumbnails[i].product.productId.toString()] = false;
+                }
+                for (i=0; i < toCompare.length; i++)
+                {
+                    accepted[toCompare[i].productId.toString()] = true;
+                }
+            }
+            var lastEffect:Effect = layoutCatalog();
+            if (lastEffect != null)
+            {
+                lastEffect.addEventListener(Effect.EFFECT_END,
+                    function (event:org.apache.royale.events.Event):void
+                    {
+                        setCompareState();
+                    });
+            }
+            else
+            {
+                setCompareState();
+            }
+        }
+        
+        private function setCompareState():void
+        {
+            //avoid an issue if the user clicks quickly where we move into
+            //compare state even though we're no longer in compare
+            if (currentState == "compare") 
+            {
+                var n:int = thumbnails.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var thumb:ProductCatalogThumbnail = thumbnails[i];
+                    if (accepted[thumb.product.productId.toString()])
+                    {
+                        thumb.currentState = "compare";
+                    }
+                }
+                
+            }
+        }
+        
+        public function acceptingDrop(dropTarget:Object, type:String):void
+        {
+            
+        }
+            
+        public function acceptedDrop(dropTarget:Object, type:String):void
+        {
+            
+        }
+
+        ]]>
+    </fx:Script>
+    
+    <js:beads>
+        <js:ContainerDataBinding />
+        <js:BasicLayout />
+        <js:DragMouseController id="dragger" />
+        <js:ParentDocumentBead id="pdb" />
+        <js:PanelView>
+            <js:titleBar>
+                <js:TitleBar height="20" >
+                    <js:style>
+                        <js:SimpleCSSStylesWithFlex backgroundColor="0xA65904" />
+                    </js:style>
+                    <js:beads>
+                        <productsView:ProductCatalogPanelTitleBarView />
+                    </js:beads>
+                </js:TitleBar>
+            </js:titleBar>
+        </js:PanelView>
+    </js:beads>
+    <js:Container width="100%" height="100%" style="backgroundColor: #ffffff">
+        <js:Container id="thumbContentGroup" width="100%" height="100%">
+            <js:beads>
+				<js:ScrollingViewport id="scv" />
+            </js:beads>
+        </js:Container>
+        <productsView:ProductDetails id="details" y="0"
+            width="{ProductCatalogThumbnail.COL_WIDTH_4 * 3}"
+            height="100%"
+            visible="false"
+            visible.details="true"
+            compare="productThumbEventHandler(event)"
+            purchase="productThumbEventHandler(event)"
+            browse="productThumbEventHandler(event)" />
+    </js:Container>
+    
+    <js:states>
+        <js:State name="browse" />
+        <js:State name="compare" />
+        <js:State name="details" />
+    </js:states>
+    
+</js:Panel>

@@ -17,20 +17,19 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.flex.flexjs.framework</groupId>
-    <artifactId>flexjs-framework-parent</artifactId>
-    <version>0.8.0</version>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>royale-framework-parent</artifactId>
+    <version>0.9.0</version>
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
+  <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compc</artifactId>
-  <version>0.8.0</version>
+  <version>0.9.0</version>
 
   <build>
     <plugins>
@@ -52,9 +51,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.flex.flexjs.compiler</groupId>
+      <groupId>org.apache.royale.compiler</groupId>
       <artifactId>flex-compiler-oem</artifactId>
-      <version>0.8.0</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
   </dependencies>
 

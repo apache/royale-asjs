@@ -23,6 +23,6 @@
 <listEntry value='org.eclipse.ui.externaltools.launchGroup'/>
 </listAttribute>
 <stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='${project}'/>
-<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='$FLEXJS_HOME/js/bin/$ASJSC'/>
+<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='$ROYALE_HOME/js/bin/$ASJSC'/>
 <stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-debug=true -fb &quot;${project_loc}&quot;'/>
 </launchConfiguration>

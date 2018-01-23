@@ -17,8 +17,7 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -26,15 +25,16 @@
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
     <version>18</version>
+    <relativePath />
   </parent>
 
-  <groupId>org.apache.flex.flexjs.framework</groupId>
-  <artifactId>flexjs-framework-parent</artifactId>
-  <version>0.8.0</version>
+  <groupId>org.apache.royale.framework</groupId>
+  <artifactId>royale-framework-parent</artifactId>
+  <version>0.9.0</version>
   <packaging>pom</packaging>
 
-  <name>Apache Flex - FlexJS: Framework: Parent</name>
-  <description>The Apache Flex ASJS Project</description>
+  <name>Apache Royale: Framework: Parent</name>
+  <description>The Apache Royale Project</description>
 
   <!--
         This build builds only the framework libraries per default.
@@ -43,10 +43,10 @@
   -->
 
   <scm>
-    <connection>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</connection>
-    <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</developerConnection>
-    <url>https://github.com/apache/flex-asjs</url>
-    <tag>HEAD</tag>
+    <connection>scm:git:git@github.com:apache/royale-asjs.git</connection>
+    <developerConnection>scm:git:git@github.com:apache/royale-asjs.git</developerConnection>
+    <url>scm:git:git@github.com:apache/royale-asjs.git</url>
+    <tag>org.apache.royale.framework-0.9.0-rc2</tag>
   </scm>
 
   <properties>
@@ -55,18 +55,18 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.3.1</maven.version>
 
-    <flexjs.compiler.version>0.8.0</flexjs.compiler.version>
-    <flexjs.typedefs.version>0.8.0</flexjs.typedefs.version>
-    <flexjs.build-tools.version>1.0.0</flexjs.build-tools.version>
+    <royale.compiler.version>0.9.0</royale.compiler.version>
+    <royale.typedefs.version>0.9.0</royale.typedefs.version>
+    <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
-    <flex.debug>true</flex.debug>
+    <royale.debug>true</royale.debug>
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
     <swf.version>31</swf.version>
 
-    <selenium.version>3.1.0</selenium.version>
+    <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
 
     <!-- URL of the ASF SonarQube server -->
@@ -79,29 +79,29 @@
   <distributionManagement>
     <site>
       <id>apache.website</id>
-      <url>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</url>
+      <url>scm:git:https://git-wip-us.apache.org/repos/asf/royale-asjs.git</url>
     </site>
   </distributionManagement>
 
   <issueManagement>
     <system>Jira</system>
-    <url>https://issues.apache.org/jira/browse/FLEX</url>
+    <url>https://github.com/apache/royale-asjs/issues</url>
   </issueManagement>
 
   <mailingLists>
     <mailingList>
-      <name>Apache Flex User List</name>
-      <subscribe>users-subscribe@flex.apache.org</subscribe>
-      <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
-      <post>users@flex.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
+      <name>Apache Royale User List</name>
+      <subscribe>users-subscribe@royale.apache.org</subscribe>
+      <unsubscribe>users-unsubscribe@royale.apache.org</unsubscribe>
+      <post>users@royale.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/royale-users/</archive>
     </mailingList>
     <mailingList>
-      <name>Apache Flex Developer List</name>
-      <subscribe>dev-subscribe@flex.apache.org</subscribe>
-      <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
-      <post>dev@flex.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
+      <name>Apache Royale Developer List</name>
+      <subscribe>dev-subscribe@royale.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@royale.apache.org</unsubscribe>
+      <post>dev@royale.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/royale-dev/</archive>
     </mailingList>
   </mailingLists>
 
@@ -114,13 +114,13 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.flex.flexjs.compiler</groupId>
-          <artifactId>flexjs-maven-plugin</artifactId>
-          <version>${flexjs.compiler.version}</version>
+          <groupId>org.apache.royale.compiler</groupId>
+          <artifactId>royale-maven-plugin</artifactId>
+          <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
           <configuration>
             <targetPlayer>${flash.version}</targetPlayer>
-            <debug>${flex.debug}</debug>
+            <debug>${royale.debug}</debug>
             <keepAs3Metadata>
               <name>Bindable</name>
               <name>Managed</name>
@@ -132,18 +132,30 @@
           </configuration>
           <dependencies>
             <dependency>
-              <groupId>org.apache.flex.flexjs.compiler</groupId>
+              <groupId>org.apache.royale.compiler</groupId>
               <artifactId>compiler-jx</artifactId>
-              <version>${flexjs.compiler.version}</version>
+              <version>${royale.compiler.version}</version>
             </dependency>
           </dependencies>
         </plugin>
 
         <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+        
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+<!--
+        <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
           <version>3.2</version>
-        </plugin>
+        </plugin>-->
       </plugins>
     </pluginManagement>
     <plugins>
@@ -167,6 +179,8 @@
             <exclude>**/*.json</exclude>
             <!-- This is appended to the LICENSE file for binary packages-->
             <exclude>LICENSE.bin</exclude>
+            <!-- READMEs don't have headers -->
+            <exclude>README.md</exclude>
 
             <!-- Stuff that needs to be removed -->
             <exclude>fxg2svg/**</exclude>
@@ -295,7 +309,7 @@
     <profile>
       <id>release</id>
       <properties>
-        <flex.debug>false</flex.debug>
+        <royale.debug>false</royale.debug>
       </properties>
     </profile>
 
@@ -310,6 +324,13 @@
       <id>build-distribution</id>
       <modules>
         <module>distribution</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>build-manualtests</id>
+      <modules>
+        <module>manualtests</module>
       </modules>
     </profile>
 

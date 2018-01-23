@@ -22,9 +22,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.apache.flex.flexjs.testsuite.compiler-options</groupId>
+  <groupId>org.apache.royale.testsuite.compiler-options</groupId>
   <artifactId>custom-html-template</artifactId>
-  <version>@flexjs.framework.version@</version>
+  <version>@royale.framework.version@</version>
   <packaging>swf</packaging>
 
   <description>
@@ -33,24 +33,24 @@
   </description>
 
   <build>
-    <sourceDirectory>src/main/flex</sourceDirectory>
+    <sourceDirectory>src/main/royale</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.apache.flex.flexjs.compiler</groupId>
-        <artifactId>flexjs-maven-plugin</artifactId>
-        <version>@flexjs.compiler.version@</version>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>@royale.compiler.version@</version>
         <extensions>true</extensions>
         <configuration>
           <debug>true</debug>
           <mainClass>HelloWorld.mxml</mainClass>
-          <targets>JS</targets>
+          <targets>JSRoyale</targets>
           <htmlTemplate>${basedir}/src/main/template/custom-js-index-template.html</htmlTemplate>
         </configuration>
         <dependencies>
           <dependency>
-            <groupId>org.apache.flex.flexjs.compiler</groupId>
+            <groupId>org.apache.royale.compiler</groupId>
             <artifactId>compiler-jx</artifactId>
-            <version>@flexjs.compiler.version@</version>
+            <version>@royale.compiler.version@</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -67,22 +67,43 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>@flexjs.framework.version@</version>
+      <version>@royale.framework.version@</version>
       <type>swc</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>@royale.framework.version@</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>@flexjs.framework.version@</version>
+      <version>@royale.framework.version@</version>
       <type>swc</type>
     </dependency>
     <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>Language</artifactId>
-      <version>@flexjs.framework.version@</version>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>@royale.framework.version@</version>
       <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>@royale.framework.version@</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>@royale.framework.version@</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
   </dependencies>
 

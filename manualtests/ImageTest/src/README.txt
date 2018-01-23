@@ -19,10 +19,10 @@
 
 DESCRIPTION
 
-The ImageTest example is a simple demonstration of the FlexJS Image component.
+The ImageTest example is a simple demonstration of the Royale Image component.
 You can use this test to see if your image loads properly. 
 
-This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+This Royale application may be run as a Flash SWF or cross-compiled (using the Royale Compiler)
 into JavaScript and HTML and run without Flash.
 
 All of the images are placed into a Container and then given various sizes.
@@ -37,4 +37,4 @@ COMPONENTS and BEADS
 NOTES
 
 The cross-compilation to JavaScript often results in non-fatal warnings. Some of these warnings
-should be addressed in future releases of the Falcon JX compiler.
+should be addressed in future releases of the the Royale Compiler compiler.

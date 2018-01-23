@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                    xmlns:js="library://ns.apache.org/royale/basic" 
+    className="listItem" 
+    height="{HEIGHT}" implements="org.apache.royale.core.IItemRenderer">
+    <!--automationName="{product.name}">-->
+
+    <fx:Metadata>
+       [Event(name="productQtyChange", type="samples.royalestore.ProductListEvent")]
+       [Event(name="removeProduct", type="samples.royalestore.ProductListEvent")]
+    </fx:Metadata>
+    
+    <fx:Script>
+    <![CDATA[
+    
+        import samples.royalestore.Product;
+        import samples.royalestore.ProductListEvent;
+        
+        private static var idCounter:int = 0;
+        public var uid:String = (idCounter++).toString();
+        
+        public static const HEIGHT:int = 30;
+        
+        [Bindable("__NoChangeEvent__")]
+        public function get product():Product
+        {
+            return _data as Product;
+        }
+        public function set product(value:Product):void
+        {
+            _data = value;
+        }
+        
+        private var _data:Object;
+        
+        public function get data():Object
+        {
+            return _data;
+        }
+        
+        public function set data(value:Object):void
+        {
+            _data = value;
+        }
+        
+        public function get listData():Object
+        {
+        	return null;
+        }
+        
+        public function set listData(value:Object):void
+        {
+        	// not used
+        }
+
+        private var _itemRendererParent:Object;
+        
+        public function get itemRendererParent():Object
+        {
+            return _itemRendererParent;
+        }
+        
+        public function set itemRendererParent(value:Object):void
+        {
+            _itemRendererParent = value;
+        }
+        
+        private function qtyChange():void
+    	{
+            product.qty = int(qty.text);
+            var event:ProductListEvent = new ProductListEvent(ProductListEvent.PRODUCT_QTY_CHANGE);
+            event.product = product;
+    		dispatchEvent(event);
+        }
+        
+        private function removeItem():void
+        {
+            var event:ProductListEvent = new ProductListEvent(ProductListEvent.REMOVE_PRODUCT);
+            event.product = product;
+    		dispatchEvent(event);
+        }
+        
+    ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>
+    </fx:Declarations>
+    
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
+        
+    <js:ImageButton id="removeButton" src="assets/trashcan.png"
+        width="14" height="14" y="5"
+        click="removeItem()">
+        <js:beads>
+            <js:ToolTipBead toolTip="Remove from cart" />
+        </js:beads>
+    </js:ImageButton>
+    
+    <js:Image id="productImage" x="16" y="6" width="12" height="12" src="{product.image}"/>
+
+    <js:Label id="productName" x="30" width="100" y="4" text="{product.name}"/>
+
+    <js:Label id="productPrice" width="60" y="4"
+        text="{cf.format(product.price)}" style="textAlign:right;right:0"
+                                style.showQuantity="textAlign:right;right:25"/>
+        
+    <js:TextInput id="qty" width="25" y="3" text="{product.qty}" includeIn="showQuantity"
+                  style="textAlign:right;right:0;marginTop:0" change="qtyChange()" >
+        <js:beads>
+            <js:NumericOnlyTextInputBead maxChars="3" />
+        </js:beads>
+    </js:TextInput>
+    
+    <js:states>
+        <js:State name="compare" />
+        <js:State name="showQuantity" />
+    </js:states>
+    
+</js:Container>

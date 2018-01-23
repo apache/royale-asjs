@@ -22,8 +22,36 @@
 
 	<property environment="env"/>
     
+    <!-- get absolute path to SDK folder -->
+    <pathconvert property="sdk" dirsep="/">
+        <path location="${basedir}/../.."/>
+    </pathconvert>
+    
     <condition property="isWindows" value="windows">
         <os family="windows" />
+    </condition>
+
+    <condition property="COMPC" value="compc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="COMPC" value="compc" />
+    <condition property="MXMLC" value="mxmlc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="MXMLC" value="mxmlc" />
+    <condition property="ASJSC" value="asjsc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="ASJSC" value="asjsc" />
+    <property file="src.properties" />
+    
+    <condition property="java.home" value="${env.JAVA_HOME}" >
+        <and>
+            <available file="${env.JAVA_HOME}" type="dir" />
+            <not>
+                <equals arg1="" arg2="${env.JAVA_HOME}" />
+            </not>
+        </and>
     </condition>
 
     <target name="check_params" >
@@ -38,21 +66,23 @@
         </fail>
     </target>
     
-    <target name="convert_project" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS project">
-        <copy file="${basedir}/../../examples/flexjs/HelloWorld/src/main/flex/HelloWorld.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+    <target name="convert_project" depends="check_params, cutpath"  description="Replaces the files in a new Royale project folder with a basic Royale project">
+        <copy file="${basedir}/../../examples/royale/HelloWorld/src/main/royale/HelloWorld.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
         <antcall target="makeAIRvisible" />
+        <antcall target="addSourceAttachments" />
     </target>
 
-    <target name="convert_project_mvc" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS MVC project">
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/DataBindingExample.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/MyInitialView.mxml" tofile="${projectDir}/src/MyInitialView.mxml" overwrite="true" />
+    <target name="convert_project_mvc" depends="check_params, cutpath"  description="Replaces the files in a new Royale project folder with a basic Royale MVC project">
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/royale/DataBindingExample.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/royale/MyInitialView.mxml" tofile="${projectDir}/src/MyInitialView.mxml" overwrite="true" />
         <mkdir dir="${projectDir}/src/models" />
         <mkdir dir="${projectDir}/src/controllers" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/StockDataJSONItemConverter.as" tofile="${projectDir}/src/StockDataJSONItemConverter.as" overwrite="true" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/models/MyModel.as" tofile="${projectDir}/src/models/MyModel.as" overwrite="true" />
-        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/main/flex/controllers/MyController.as" tofile="${projectDir}/src/controllers/MyController.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/royale/StockDataJSONItemConverter.as" tofile="${projectDir}/src/StockDataJSONItemConverter.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/royale/models/MyModel.as" tofile="${projectDir}/src/models/MyModel.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/royale/DataBindingExample/src/main/royale/controllers/MyController.as" tofile="${projectDir}/src/controllers/MyController.as" overwrite="true" />
         <replace file="${projectDir}/src/controllers/MyController.as" token="DataBindingExample" value="${projectName}" />
         <antcall target="makeAIRvisible" />
+        <antcall target="addSourceAttachments" />
     </target>
 
     <target name="cutpath" >
@@ -72,4 +102,47 @@
         <replace file="${projectDir}/src/${projectName}-app.xml" token="&lt;visible&gt;false&lt;/visible&gt;" value="&lt;visible&gt;true&lt;/visible&gt;" />
     </target>
     
+    <target name="addSourceAttachments">
+        <available file="${basedir}/../../frameworks/libs/Core.swc"
+            property="hasSWCSupport" />
+        <antcall target="addSWFSourceAttachments" />
+        <antcall target="addJSSourceAttachments" />
+    </target>
+    
+    <target name="addSWFSourceAttachments" if="hasSWCSupport">
+        <replace file="${projectDir}/.actionScriptProperties" token="&lt;sourceAttachmentPath/&gt;"
+            value="${SWFSourceAttachments}" />
+    </target>
+    <target name="addJSSourceAttachments" unless="hasSWCSupport">
+        <replace file="${projectDir}/.actionScriptProperties" token="&lt;sourceAttachmentPath/&gt;"
+            value="${JSSourceAttachments}" />
+    </target>
+    
+    <target name="setup" depends="setup-windows" description="Custom Flash Builder launch configurations">
+        <replace>
+            <fileset dir="${basedir}" includes="**/*.launch"/>
+            <replacefilter
+            token="$MXMLC"
+            value="${MXMLC}"/>
+            <replacefilter
+            token="$COMPC"
+            value="${COMPC}"/>
+            <replacefilter
+            token="$ASJSC"
+            value="${ASJSC}"/>
+            <replacefilter
+            token="$ROYALE_HOME"
+            value="${sdk}"/>
+        </replace>
+    </target>
+    
+    <target name="setup-windows" description="Custom Flash Builder launch configurations for Windows" if="isWindows">
+        <replace>
+            <fileset dir="${basedir}" includes="**/*.launch"/>
+            <replacefilter
+            token="PATH"
+            value="UNIX_PATH" />
+        </replace>
+    </target>
+
 </project>

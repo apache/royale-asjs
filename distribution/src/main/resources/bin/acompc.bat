@@ -18,7 +18,7 @@ rem limitations under the License.
 rem
 
 rem
-rem acompc.bat script to launch falcon-compc.jar in Windows Command Prompt to
+rem acompc.bat script to launch compiler-compc.jar in Windows Command Prompt to
 rem compile SWC libraries for Adobe AIR.
 rem On OSX, Unix, or Cygwin, use the acompc shell script instead.
 rem

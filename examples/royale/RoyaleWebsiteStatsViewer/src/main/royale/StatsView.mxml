@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+                initComplete="testit()"
+				>
+	<fx:Script>
+		<![CDATA[
+		import org.apache.royale.events.MouseEvent;
+
+		private function testit():void {
+			trace();
+		}
+
+		private function onRefreshBtnClick(event:MouseEvent):void {
+			var e:Event = new Event("refresh", true);
+			dispatchEvent(e);
+		}
+		]]>
+	</fx:Script>
+	
+	<fx:Style>
+		@namespace js "library://ns.apache.org/royale/basic";
+		.AllCharts {
+			border-width: 0px;
+			padding-left: 2px;
+			padding-top: 10px;
+			padding-bottom: 2px;
+			padding-right: 10px;
+		}
+	</fx:Style>
+	
+	
+	<js:Label text="Number of users on royale.apache.org for last 30 days" x="10" y="10" />
+	<js:TextButton id="refreshButton" text="Refresh" x="300" y="10" click="onRefreshBtnClick(event)"/>
+	
+	<js:ColumnChart id="columnChart" x="40" y="40" width="2000" height="768" className="AllCharts">
+		<js:beads>
+			<js:SimpleBinding
+				sourceID="applicationModel"
+				sourcePropertyName="lastThirtyDaysUsers"
+				destinationPropertyName="dataProvider" 
+				eventName="lastThirtyDaysDataChanged"
+				/>
+			<js:HorizontalCategoryAxisBead categoryField="date" />
+			<js:VerticalLinearAxisBead valueField="users" />
+		</js:beads>
+		<js:series>
+			<js:ColumnSeries yField="users">
+				<js:itemRenderer>
+					<fx:Component>
+						<js:BoxItemRenderer>
+							<js:fill>
+								<js:SolidColor color="#7CB5EC" alpha="1.0" />
+							</js:fill>
+							<!--<js:fill>
+								<js:LinearGradient rotation="90">
+									<js:entries>
+										<js:GradientEntry color="#7CB5EC" ratio="0" />
+										<js:GradientEntry color="#EFF7FF" ratio="0.5" />
+									</js:entries>
+								</js:LinearGradient>
+							</js:fill>-->
+						</js:BoxItemRenderer>                      
+					</fx:Component>
+				</js:itemRenderer>
+			</js:ColumnSeries>
+		</js:series>
+	</js:ColumnChart>	
+</js:View>

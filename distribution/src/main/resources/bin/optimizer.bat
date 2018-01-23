@@ -18,10 +18,10 @@ rem limitations under the License.
 rem
 
 rem
-rem foptimizer.bat script to launch the falcon-optimizer.jar in a Windows
+rem foptimizer.bat script to launch the compiler-optimizer.jar in a Windows
 rem Command Prompt. On OSX, Unix, or Cygwin, use the foptimizer shell script
 rem instead.
 rem
 
-@java -Dsun.io.useCanonCaches=false -Dapplication.home="%~dp0.." -Xms32m -Xmx512m -jar "%~dp0..\lib\falcon-optimizer.jar" %*
+@java -Dsun.io.useCanonCaches=false -Dapplication.home="%~dp0.." -Xms32m -Xmx512m -jar "%~dp0..\lib\compiler-optimizer.jar" %*
 
