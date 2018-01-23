@@ -1095,6 +1095,7 @@ ${my.name}
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
         <antcall target="release.maven.staging.repo" />
+        <echo>Also run the release.npm and release.npm.swf targets</echo>
 	</target>
 
     <target name="release.tag" depends="check-royale-asjs, check-royale-typedefs, check-royale-compiler">
@@ -1336,6 +1337,38 @@ ${my.name}
         message="The Maven artifacts need to be released to Maven Central.  Press a key and your browser will open to Nexus, the staging repository UI.  Login.  Then choose Staging Repositories in the left list.  Then find the orgapacheroyale repo in the top list.  Check the checkbox for orgapacheroyale then click on the 'release' button to post the artifacts."/>
         <exec executable="${browser}" spawn="true">
             <arg value="http://repository.apache.org/" />
+        </exec>
+    </target>
+
+    <target name="release.npm" depends="check-name-and-svn">
+        <input
+        message="To publish the npm artifacts, you must first run 'npm login' and login as apache-royale with the password from the private@ list and the email private@royale.apache.org.  Press any key to continue"/>
+        <available file="${svn.dist.release}"
+        type="dir"
+        property="dist.release" value="${svn.dist.release}" />
+        
+        <fail message="The svn.dist.release property is not set to the working copy for https://dist.apache.org/repos/dist/release."
+        unless="dist.release"/>
+        
+        <exec executable="npm" failonerror="true">
+            <arg value="publish" />
+            <arg value="${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js.tar.gz" />
+        </exec>
+    </target>
+    
+    <target name="release.npm.swf" depends="check-name-and-svn">
+        <input
+        message="To publish the npm artifacts, you must first run 'npm login' and login as apache-royale-swf with the password from the private@ list and the email private@royale.apache.org.  Press any key to continue"/>
+        <available file="${svn.dist.release}"
+        type="dir"
+        property="dist.release" value="${svn.dist.release}" />
+        
+        <fail message="The svn.dist.release property is not set to the working copy for https://dist.apache.org/repos/dist/release."
+        unless="dist.release"/>
+        
+        <exec executable="npm" failonerror="true">
+            <arg value="publish" />
+            <arg value="${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz" />
         </exec>
     </target>
 

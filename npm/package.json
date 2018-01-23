@@ -1,5 +1,5 @@
 {
-  "name": "royale",
+  "name": "apache-royale",
   "version": "0.9.1",
   "description": "Apache Royale (formerly FlexJS)",
   "keywords": [
@@ -15,7 +15,7 @@
     "reactjs"
   ],
   "homepage": "http://royale.apache.org",
-  "author": "OmPrakash Muppirala <bigosmallm@apache.org>",
+  "author": "Apache Royale <dev@royale.apache.org>",
   "license": "Apache-2.0",
   "dependencies": {
     "eol": "^0.2.0",

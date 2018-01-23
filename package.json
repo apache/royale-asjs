@@ -1,5 +1,5 @@
 {
-  "name": "royale-swf",
+  "name": "apache-royale-swf",
   "version": "0.9.1",
   "description": "Apache Royale (formerly FlexJS) with SWF support",
   "keywords": [
@@ -15,7 +15,7 @@
     "reactjs"
   ],
   "homepage": "http://royale.apache.org",
-  "author": "OmPrakash Muppirala <bigosmallm@apache.org>",
+  "author": "Apache Flex <dev@royale.apache.org>",
   "license": "Apache-2.0",
   "dependencies": {
     "eol": "^0.2.0",
