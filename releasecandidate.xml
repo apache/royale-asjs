@@ -1054,15 +1054,15 @@ ${my.name}
 		<delete file="${basedir}/discussthread.properties" />
     </target>
 
-	<target name="release" depends="check-empty-folder,credentials">
+	<target name="release" depends="check-empty-folder,check-name-and-svn,credentials">
         <antcall target="clone-asjs">
-            <param name="branch.name" value="org.apache.royale.framework-${release.version}-${rc}" />
+            <param name="branch.name" value="org.apache.royale.framework-${release.version}-rc${rc}" />
         </antcall>
         <antcall target="clone-typedefs">
-            <param name="branch.name" value="org.apache.royale.typedefs-${release.version}-${rc}" />
+            <param name="branch.name" value="org.apache.royale.typedefs-${release.version}-rc${rc}" />
         </antcall>
         <antcall target="clone-compiler">
-            <param name="branch.name" value="org.apache.royale.compiler-${release.version}-${rc}" />
+            <param name="branch.name" value="org.apache.royale.compiler-${release.version}-rc${rc}" />
         </antcall>
 		<available file="${svn.dist.release}"
 			type="dir" 
@@ -1094,9 +1094,10 @@ ${my.name}
         <antcall target="get_head_of_rc_branches" />
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
+        <antcall target="release.maven.staging.repo" />
 	</target>
 
-    <target name="release.tag" >
+    <target name="release.tag" depends="check-royale-asjs, check-royale-typedefs, check-royale-compiler">
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="tag" />
             <arg value="-a" />
@@ -1132,7 +1133,7 @@ ${my.name}
         </exec>
     </target>
     
-    <target name="get_head_of_rc_branches" >
+    <target name="get_head_of_rc_branches" depends="check-royale-asjs, check-royale-typedefs, check-royale-compiler">
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="checkout" />
             <arg value="release/${release.version}" />
@@ -1158,15 +1159,22 @@ ${my.name}
         </condition>
     </target>
     
-    <target name="update.versions" depends="get-next-version" if="has.next.version">
-        <replace file="${basedir}/build.properties"
+    <target name="update.versions" depends="check-royale-asjs, check-royale-typedefs, check-royale-compiler,get-next-version" if="has.next.version">
+        <replace file="${asjs}/build.properties"
             token="release.version = ${release.version}"
             value="release.version = ${new.release.version}" />
+        <replace file="${asjs}/package.json"
+            token="version&quot;: &quot;${release.version}"
+            value="version&quot;: &quot;${new.release.version}" />
+        <replace file="${asjs}/npm/package.json"
+            token="version&quot;: &quot;${release.version}"
+            value="version&quot;: &quot;${new.release.version}" />
         <replace
             token="versionNumber&gt;${release.version}"
             value="versionNumber&gt;${new.release.version}" >
-            <fileset dir="${basedir}/examples" >
+            <fileset dir="${asjs}/examples" >
                 <include name="royale/CordovaCameraExample/CordovaCameraExample-app.xml" />
+                <include name="royale/DesktopMap/DesktopMap-app.xml" />
                 <include name="royale/MapSearch/MapSearch-app.xml" />
                 <include name="royale/MobileMap/MobileMap-app.xml" />
                 <include name="royale/MobileStocks/MobileStocks-app.xml" />
@@ -1181,11 +1189,23 @@ ${my.name}
             <regexp pattern="royale.typedefs.version&gt;.*&lt;"/>
             <substitution expression="royale.typedefs.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
         </replaceregexp>
-        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+        <replaceregexp file="${asjs}/archetypes/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.framework.version&gt;.*&lt;"/>
+            <substitution expression="royale.framework.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+        <replaceregexp file="${asjs}/examples/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.framework.version&gt;.*&lt;"/>
+            <substitution expression="royale.framework.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+        <replaceregexp file="${asjs}/manualtests/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.framework.version&gt;.*&lt;"/>
+            <substitution expression="royale.framework.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="add" />
             <arg value="." />
         </exec>
-        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="commit" />
             <arg value="-m" />
             <arg value="update version to ${new.release.version}" />
@@ -1218,7 +1238,7 @@ ${my.name}
     </target>
     
     <target name="merge_rc_to_develop" depends="merge_to_asjs_develop, merge_to_typedefs_develop, merge_to_compiler_develop" />
-    <target name="merge_to_asjs_develop">
+    <target name="merge_to_asjs_develop" depends="check-royale-asjs">
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="checkout" />
             <arg value="develop" />
@@ -1229,11 +1249,11 @@ ${my.name}
         </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="merge" />
-            <arg value="apache-royale-${release.version}" />
+            <arg value="release/${release.version}" />
         </exec>
         <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
     </target>
-    <target name="merge_to_typedefs_develop">
+    <target name="merge_to_typedefs_develop" depends="check-royale-typedefs">
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="checkout" />
             <arg value="develop" />
@@ -1244,11 +1264,11 @@ ${my.name}
         </exec>
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="merge" />
-            <arg value="apache-royale-${release.version}" />
+            <arg value="release/${release.version}" />
         </exec>
         <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
     </target>
-    <target name="merge_to_compiler_develop">
+    <target name="merge_to_compiler_develop" depends="check-royale-compiler">
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="checkout" />
             <arg value="develop" />
@@ -1259,13 +1279,13 @@ ${my.name}
         </exec>
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="merge" />
-            <arg value="apache-royale-${release.version}" />
+            <arg value="release/${release.version}" />
         </exec>
         <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
     </target>
     
     <target name="merge_rc_to_master" depends="merge_to_asjs_master, merge_to_typedefs_master, merge_to_compiler_master" />
-    <target name="merge_to_asjs_master">
+    <target name="merge_to_asjs_master" depends="check-royale-asjs">
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="checkout" />
             <arg value="master" />
@@ -1280,7 +1300,7 @@ ${my.name}
         </exec>
         <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
     </target>
-    <target name="merge_to_typedefs_master">
+    <target name="merge_to_typedefs_master" depends="check-royale-typedefs">
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
             <arg value="checkout" />
             <arg value="master" />
@@ -1295,7 +1315,7 @@ ${my.name}
         </exec>
         <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
     </target>
-    <target name="merge_to_compiler_master">
+    <target name="merge_to_compiler_master" depends="check-royale-compiler">
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="checkout" />
             <arg value="master" />
@@ -1311,4 +1331,12 @@ ${my.name}
         <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
     </target>
     
+    <target name="release.maven.staging.repo" >
+        <input
+        message="The Maven artifacts need to be released to Maven Central.  Press a key and your browser will open to Nexus, the staging repository UI.  Login.  Then choose Staging Repositories in the left list.  Then find the orgapacheroyale repo in the top list.  Check the checkbox for orgapacheroyale then click on the 'release' button to post the artifacts."/>
+        <exec executable="${browser}" spawn="true">
+            <arg value="http://repository.apache.org/" />
+        </exec>
+    </target>
+
 </project>
