@@ -50,7 +50,7 @@ package org.apache.royale.mdl.beads
          * The image contact
          */
         COMPILE::JS
-        private var contact:HTMLImageElement;
+        protected var contact:HTMLImageElement;
 
         private var _strand:IStrand;
         /**
