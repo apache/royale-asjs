@@ -53,6 +53,38 @@ package org.apache.royale.mdl.beads
         protected var contact:HTMLImageElement;
 
         private var _strand:IStrand;
+
+        private var _imageWidth:Number = 32;
+        private var _imageHeight:Number = 32;
+
+        /**
+         * Specifies the width of the image Chip, in pixels.
+         *
+         * @default 32px
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.1
+         */
+        public function set imageWidth(value:Number):void
+        {
+            _imageWidth = value;
+        }
+
+        /**
+         * Specifies the height of the image Chip, in pixels.
+         *
+         * @default 32px
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.1
+         */
+        public function set imageHeight(value:Number):void
+        {
+            _imageHeight = value;
+        }
+
         /**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -84,6 +116,8 @@ package org.apache.royale.mdl.beads
                     contact = document.createElement("img") as HTMLImageElement;
                     contact.classList.add("mdl-chip__contact");
                     contact.src = _source;
+                    contact.style["width"] = isNaN(_imageWidth) ? "32px" : String(_imageWidth) + "px";
+                    contact.style["height"] = isNaN(_imageHeight) ? "32px" : String(_imageHeight) + "px";
 
                     element.insertBefore(contact, host["chipTextSpan"]);
                 }
