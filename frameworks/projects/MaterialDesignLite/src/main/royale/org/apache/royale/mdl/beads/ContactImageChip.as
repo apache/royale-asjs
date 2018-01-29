@@ -54,8 +54,8 @@ package org.apache.royale.mdl.beads
 
         private var _strand:IStrand;
 
-        private var _imageWidth:Number = 32;
-        private var _imageHeight:Number = 32;
+        protected var _imageWidth:Number = 32;
+        protected var _imageHeight:Number = 32;
 
         /**
          * Specifies the width of the image Chip, in pixels.
