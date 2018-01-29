@@ -13,8 +13,8 @@ The package: `@apache-royale/royale-js-swf` supports both JS/HTML and SWF/AIR ou
 To install these packages, users need to run the following commands:
 
 ```
-npm install @apache-royale/royale-js
-npm install @apache-royale/royale-js-swf
+npm install @apache-royale/royale-js -g
+npm install @apache-royale/royale-js-swf -g
 ```
 
 **For Release Managers:**
