@@ -1,6 +1,6 @@
 {
-  "name": "apache-royale",
-  "version": "0.9.1",
+  "name": "@apache-royale/royale-js",
+  "version": "0.9.0",
   "description": "Apache Royale (formerly FlexJS)",
   "keywords": [
     "royale",
@@ -18,15 +18,7 @@
   "author": "Apache Royale <dev@royale.apache.org>",
   "license": "Apache-2.0",
   "dependencies": {
-    "eol": "^0.2.0",
-    "fs-extra": "^0.26.3",
-    "merge-dirs": "^0.2.1",
-    "mkdirp": "^0.5.1",
-    "prompt": "^0.2.14",
-    "replace": "^0.3.0",
-    "request": "^2.67.0",
-    "unzip": "^0.1.11",
-    "wrench": "^1.5.8"
+    
   },
   "scripts": {
   },
