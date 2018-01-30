@@ -29,7 +29,8 @@ package org.apache.royale.core
         import org.apache.royale.events.Event;
     }
 
-        
+    [DefaultProperty("beads")]
+    
     /**
      *  This is a platform-dependent base class
      *  for Application
@@ -78,6 +79,8 @@ package org.apache.royale.core
             return _info;
         }
    	}
+    
+    [DefaultProperty("beads")]
     
     COMPILE::JS
     public class ApplicationBase extends HTMLElementWrapper implements IFlexInfo
