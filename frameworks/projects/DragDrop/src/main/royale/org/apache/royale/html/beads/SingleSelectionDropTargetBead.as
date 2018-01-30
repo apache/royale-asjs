@@ -25,11 +25,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
 	import org.apache.royale.events.DragEvent;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
@@ -203,7 +204,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDragEnter(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragEnter via: "+event.relatedObject.toString());
+			//trace("SingleSelectionDropTargetBead received DragEnter via: "+event.relatedObject.toString());
 			var newEvent:Event = new Event("enter", false, true);
 			dispatchEvent(newEvent);
 			if (newEvent.defaultPrevented) return;
@@ -212,7 +213,7 @@ package org.apache.royale.html.beads
 			var pt1:Point;
 			var pt2:Point;
 
-			_dropController.acceptDragDrop(event.target as IUIBase, DropType.COPY);
+			_dropController.acceptDragDrop(event.relatedObject as IUIBase, DropType.COPY);
 
 			var startHere:Object = event.relatedObject;
 			while( !(startHere is IItemRenderer) && startHere != null) {
@@ -242,7 +243,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDragExit(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragExit via: "+event.relatedObject.toString());
+			//trace("SingleSelectionDropTargetBead received DragExit via: "+event.relatedObject.toString());
 			dispatchEvent(new Event("exit", false, true));
 
 			if (indicatorVisible) {
@@ -258,7 +259,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDragOver(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragOver via: "+event.relatedObject.toString());
+			//trace("SingleSelectionDropTargetBead received DragOver via: "+event.relatedObject.toString());
 			var newEvent:Event = new Event("over", false, true);
 			dispatchEvent(newEvent);
 			if (event.defaultPrevented) {
@@ -290,7 +291,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDragDrop(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragDrop via: "+event.relatedObject.toString());
+			//trace("SingleSelectionDropTargetBead received DragDrop via: "+event.relatedObject.toString());
 
 			handleDragExit(event);
 
@@ -310,14 +311,14 @@ package org.apache.royale.html.beads
 
 			if (startHere is IItemRenderer) {
 				var ir:IItemRenderer = startHere as IItemRenderer;
-				trace("-- dropping onto an existing object: "+ir.data.toString());
+				//trace("-- dropping onto an existing object: "+ir.data.toString());
 
 				itemRendererParent = ir.itemRendererParent as UIBase;
 				targetIndex = itemRendererParent.getElementIndex(ir);
 			}
-			else  {
+			else if (startHere != null)  {
 				itemRendererParent = startHere.itemRendererParent as UIBase;
-				trace("-- dropping after the last item");
+				//trace("-- dropping after the last item");
 			}
 
 			var downPoint:Point = new Point(event.clientX, event.clientY);
@@ -360,14 +361,15 @@ package org.apache.royale.html.beads
 					// insert before target index
 					dataList.addItemAt(dragSource, targetIndex);
 				}
-
-				var newList:ArrayList = new ArrayList(dataList.source);
-				dataProviderModel.dataProvider = newList;
 			}
 
 			// Let the dragInitiator know the drop has been completed.
 			if (DragEvent.dragInitiator) {
 				DragEvent.dragInitiator.acceptedDrop(_strand, "object");
+			}
+			
+			if (dataProviderModel is ISelectionModel) {
+				(dataProviderModel as ISelectionModel).selectedIndex = targetIndex;
 			}
 
 			// is this event necessary? isn't "complete" enough?

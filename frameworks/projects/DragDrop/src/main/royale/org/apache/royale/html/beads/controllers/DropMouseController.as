@@ -150,6 +150,7 @@ package org.apache.royale.html.beads.controllers
             if (!inside)
             {
                 dragEvent = DragEvent.createDragEvent("dragEnter", event as MouseEvent);
+				dragEvent.relatedObject = event.relatedObject;
 				dispatchEvent(dragEvent);
                 inside = true;
                 IUIBase(_strand).addEventListener(DragEvent.DRAG_END, dragEndHandler);
@@ -160,6 +161,7 @@ package org.apache.royale.html.beads.controllers
             else
             {
                 dragEvent = DragEvent.createDragEvent("dragOver", event as MouseEvent);
+				dragEvent.relatedObject = event.relatedObject;
 				dispatchEvent(dragEvent);
             }
         }
@@ -197,10 +199,10 @@ package org.apache.royale.html.beads.controllers
 				dragEvent.relatedObject = event.target as InteractiveObject;
 			}
 			COMPILE::JS {
-				dragEvent.relatedObject = event.target;
+				dragEvent.relatedObject = event.relatedObject;
 			}
 
-			DragEvent.dispatchDragEvent(dragEvent, this);
+			dispatchEvent(dragEvent);
 
             inside = false;
             IUIBase(_strand).removeEventListener(DragEvent.DRAG_END, dragEndHandler);
