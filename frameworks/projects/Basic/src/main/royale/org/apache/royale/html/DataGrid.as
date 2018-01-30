@@ -109,6 +109,7 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
+		[Bindable("change")]
 		public function get selectedIndex():int
 		{
 			return IDataGridModel(model).selectedIndex;
