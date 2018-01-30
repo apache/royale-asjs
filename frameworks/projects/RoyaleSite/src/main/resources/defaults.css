@@ -108,13 +108,14 @@ BigButton {
 
 SocialButtons {
 	display: inline;
-	position: absolute;
-	right: 0px;
+	margin-top: 0px;
+	height: 40px;
 }
 
 .SocialButton {
 	display: inline;
 	margin-right: 20px;
+	line-height: 70px;
 }
 
 .topbar {
