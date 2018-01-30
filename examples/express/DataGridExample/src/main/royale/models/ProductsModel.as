@@ -36,17 +36,17 @@ package models
 			return _productList;
 		}
 
-		private var _productList2:ArrayList = new ArrayList([
-            new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
-            new Product("tx200","Thingys",5,285,"assets/smallgreenrect.jpg"),
-            new Product("rz300","Sprockets",80,105,"assets/smallyellowrect.jpg"),
-            new Product("dh440","Doohickies",10,340,"assets/smallredrect.jpg"),
-            new Product("ps220","Weejets",35,190,"assets/smallorangerect.jpg")
+		private var _fruits:ArrayList = new ArrayList([
+            new Product("bb100","Blueberries",44,200,"assets/smallbluerect.jpg"),
+            new Product("ap100","Apples",5,285,"assets/smallgreenrect.jpg"),
+            new Product("bn200","Bananas",80,105,"assets/smallyellowrect.jpg"),
+            new Product("sb300","Strawberries",10,340,"assets/smallredrect.jpg"),
+            new Product("or100","Oranges",35,190,"assets/smallorangerect.jpg")
 		]);
 
-		public function get productList2():ArrayList
+		public function get fruits():ArrayList
 		{
-			return _productList2;
+			return _fruits;
 		}
 	}
 }
