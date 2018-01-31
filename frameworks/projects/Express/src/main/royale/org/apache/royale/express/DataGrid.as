@@ -21,12 +21,12 @@ package org.apache.royale.express
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IDataProviderNotifier;
 	import org.apache.royale.html.DataGrid;
-	import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
-	import org.apache.royale.html.beads.SingleSelectionDragImageBead;
-	import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
-	import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
-	import org.apache.royale.html.beads.DataGridWithDrawingLayerLayout;
 	import org.apache.royale.html.beads.DataGridDrawingLayerBead;
+	import org.apache.royale.html.beads.DataGridWithDrawingLayerLayout;
+	import org.apache.royale.html.beads.SingleSelectionDragImageBead;
+	import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
+	import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
+	import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -63,11 +63,8 @@ package org.apache.royale.express
 				dataNotifier = loadBeadFromValuesManager(IDataProviderNotifier, "iDataProviderNotifier", this) as IDataProviderNotifier;
 			}
 			super.addedToParent();
-			if(getBeadByType(IBeadLayout) is DataGridWithDrawingLayerLayout)
-			{
-				addBead(new DataGridDrawingLayerBead());
-			}
 		}
+		
 		public var dataNotifier:IDataProviderNotifier;
 
 		private var _dragEnabled:Boolean = false;
@@ -115,6 +112,7 @@ package org.apache.royale.express
 			_dropEnabled = value;
 			if(value)
 			{
+				addBead(new DataGridDrawingLayerBead());
 				addBead(new SingleSelectionDropTargetBead());
 				addBead(new SingleSelectionDropIndicatorBead());
 			}

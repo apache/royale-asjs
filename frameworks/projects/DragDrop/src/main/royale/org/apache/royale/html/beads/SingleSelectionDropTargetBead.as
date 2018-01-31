@@ -266,10 +266,6 @@ package org.apache.royale.html.beads
 				return;
 			}
 
-			var pt0:Point;
-			var pt1:Point;
-			var pt2:Point;
-
 			var startHere:Object = event.relatedObject;
 			while( !(startHere is IItemRenderer) && startHere != null) {
 				startHere = startHere.parent;
@@ -386,7 +382,7 @@ package org.apache.royale.html.beads
 			var pt2:Point;
 
 			if (dropDirection == "horizontal") {
-				pt0 = new Point(0, item.y);
+				pt0 = new Point(0, item.y+item.height);
 				pt1 = PointUtils.localToGlobal(pt0, item.parent);
 				pt2 = PointUtils.globalToLocal(pt1, indicatorParent);
 				_dropIndicator.x = 0;

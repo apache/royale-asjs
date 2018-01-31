@@ -68,8 +68,6 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 			_strand = value;
-			
-			_strand.addBead(new DataGridDrawingLayerBead());
 		}
 
 		/**
@@ -77,25 +75,21 @@ package org.apache.royale.html.beads
 		 */
 		override public function layout():Boolean
 		{
-			// If there is a drawing layer, remove it so the super.layout function
-			// will not include it.
+			// Get the drawing layer, if there is one, so it can be positioned at the
+			// top of the z-order and sized properly.
 			var layerBead:IDrawingLayerBead = _strand.getBeadByType(IDrawingLayerBead) as IDrawingLayerBead;
-			if (layerBead != null && layerBead.layer == null) {
-				UIBase(_strand).dispatchEvent(new Event("beadsAdded"));
-			}
-//			if (layerBead != null && layerBead.layer != null) {
-//				UIBase(_strand).removeElement(layerBead.layer);
-//			}
 
 			// Run the actual layout
 			var result:Boolean = super.layout();
 
 			// Put the drawing layer back, sizing it to fit over the listArea.
-			if (layerBead != null && layerBead.layer != null) {
-//				UIBase(_strand).addElement(layerBead.layer);
+			if (result && layerBead != null && layerBead.layer != null) {
 				
 				var view:IDataGridView = UIBase(_strand).view as IDataGridView;
 				var listArea:UIBase = view.listArea;
+				
+				UIBase(_strand).removeElement(layerBead.layer);
+				UIBase(_strand).addElement(layerBead.layer); // always keep it on top
 
 				var layerX:Number = listArea.x;
 				var layerY:Number = listArea.y;
@@ -117,6 +111,7 @@ package org.apache.royale.html.beads
 				layerBead.layer.setWidthAndHeight(useWidth, useHeight, true);
 
 			}
+			
 			return result;
 		}
 	}
