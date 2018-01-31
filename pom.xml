@@ -181,6 +181,7 @@
             <exclude>LICENSE.bin</exclude>
             <!-- READMEs don't have headers -->
             <exclude>README.md</exclude>
+            <exclude>npm/README.md</exclude>
 
             <!-- Stuff that needs to be removed -->
             <exclude>fxg2svg/**</exclude>
