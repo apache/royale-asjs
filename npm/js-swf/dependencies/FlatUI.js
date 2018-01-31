@@ -31,8 +31,8 @@ var constants = require('../dependencies/Constants');
 var FlatUI = module.exports = Object.create(events.EventEmitter.prototype);
 
 //FlatUI
-var flatUIURL = pjson.org_apache_flex.flatui_url;
-var fileNameFlatUI = pjson.org_apache_flex.flatui_file_name;
+var flatUIURL = pjson.org_apache_royale.flatui_url;
+var fileNameFlatUI = pjson.org_apache_royale.flatui_file_name;
 var promptText =
 "Apache FlexJS includes an optional component set\n\
 that uses fonts from designmodo.com.  The font\n\

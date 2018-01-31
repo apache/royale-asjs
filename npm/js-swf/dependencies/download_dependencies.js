@@ -47,7 +47,7 @@ function updateScriptEOL()
 {
     try
     {
-        var dirPath = path.join(__dirname, '..', 'js', 'bin');
+        var dirPath = path.join(__dirname, '..', '..', 'js', 'bin');
         var files = fs.readdirSync(dirPath);
         do
         {
@@ -81,7 +81,7 @@ function updateScriptPermissions()
     var mode = parseInt('755', 8);
     try
     {
-        var dirPath = path.join(__dirname, '..', 'js', 'bin');
+        var dirPath = path.join(__dirname, '..', '..', 'js', 'bin');
         var files = fs.readdirSync(dirPath);
         do
         {
