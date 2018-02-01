@@ -12,16 +12,33 @@
  * limitations under the License.
  */
 
-@namespace "library://ns.apache.org/royale/site";
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace rs "library://ns.apache.org/royale/site";
 
-ASFCopyrightAttributionAndLinks
+h1 {
+	margin-top: 0px;
+}
+
+rs|Tagline {
+	font-family: 'Hind Siliguri';
+}
+
+rs|DocTagline {
+	top: 60px;
+	right: 10px;
+	font-size: 10px;
+	color: #fff;
+	position: absolute;
+}
+
+rs|ASFCopyrightAttributionAndLinks
 {
 	text-align: center;
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: 10px;
 }
 
-CurvedTop {
+rs|CurvedTop {
 	background-color: #ffffff;
 	border-top-right-radius: 50% 20px;
 	border-top-left-radius: 50% 20px;
@@ -31,12 +48,12 @@ CurvedTop {
 	padding: 30px;
 }
 
-ResponsiveTable {
+rs|ResponsiveTable {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-ResponsiveTableTile {
+rs|ResponsiveTableTile {
 	width: 350px;
 }
 
@@ -61,7 +78,7 @@ ResponsiveTableTile {
 	
 }
 
-BigButton {
+rs|BigButton {
 	border-radius: 100px;
 	padding: 30px;
 	margin: 20px;
@@ -98,15 +115,20 @@ BigButton {
 	font-family:Verdana, Geneva, sans-serif;
 }
 
-.page {
+rs|MainPage {
 	width: 100%;
 	background-color: #cccccc;
 	background-image: url('http://royale.codeoscopic.com/wp-content/uploads/2017/10/isometric-devices-light-curve-1920x1025.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
+	margin-top: 0px;
 }
 
-SocialButtons {
+rs|DocPage {
+	background-image: url('http://royale.codeoscopic.com/wp-content/uploads/2017/10/page-bg-1-1920x300.png');
+}
+
+rs|SocialButtons {
 	display: inline;
 	margin-top: 0px;
 	height: 40px;
@@ -118,24 +140,47 @@ SocialButtons {
 	line-height: 70px;
 }
 
-.topbar {
-	width: 100%;
+rs|DocSocialButtons {
+	color: #fff;
 }
 
-TopMenu {
+rs|TopBar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-left: 54px;
+	padding-right: 54px;
+}
+
+rs|DocTopBar {
+	color: #fff;
+}
+
+rs|TopMenu {
 	display: inline-block;
 	vertical-align: top;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	height: 40px;
 	list-style: none;
 }
 
-TopMenuButton {
+rs|TopMenuButton {
 	display: inline;
 	margin-right: 20px;
-	font-size: 12px;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: 'Signika';
+	line-height: 70px;
+	letter-spacing: 1px;
 }
 
 .TopMenuButtonContent {
 	text-decoration: none;
+}
+
+rs|DocTopMenu {
+	color: #fff;
 }
 
 .orange-box {
@@ -168,38 +213,112 @@ TopMenuButton {
 	margin: 20px 300px;
 }
 
+
 .apache {
-	color: #f0f;
+	color: #a002a0;
+	font-family: Signika;
+	font-weight: 600;
+	line-height: 30px;
 }
 
 .apacheroyale {
-	color: #f00;
+	color: rgb(250, 70, 30);
+	font-family: Signika;
+	font-weight: 600;
+	line-height: 30px;
 }
 
 .documentation {
 	color: #000;
+	font-family: Signika;
+	font-weight: 600;
+	line-height: 30px;
 }
 
 .development {
-	color: #ff0;
+	color: rgb(243, 199, 103);
+	font-family: Signika;
+	font-weight: 600;
+	line-height: 30px;
 }
 
 .community {
-	color: #0f0;
+	color: rgb(42, 139, 42);
+	font-family: Signika;
+	font-weight: 600;
+	line-height: 30px;
 }
 
-.footer {
-	width: 100%;
+rs|Footer {
+	padding-left: 54px;
+	padding-right: 54px;
+	padding-top: 48px;
+	padding-bottom: 18px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	font-family: Verdana, Geneva, sans-serif;
+	font-family: 'Hind Siliguri';
+	font-size: 14px;
+}
+
+rs|DocFooter
+{
+	background-color: rgb(233, 233, 233);
 }
 
 .footer-column {
+	flex-grow: 1;
 }
 
-TitledAnchorList {
+.footer-list {
+	list-style: none;
+	padding-left: 0px;
+	margin-bottom: 20px;
+}
+
+.footer-list_a{
+	text-decoration: none;
+	line-height: 26px;
+	color: rgb(67, 147, 195);
+}
+
+.aboutusdiv {
+	min-width: 150px;
+	flex-basis: 33%;
+	flex-grow: 1;
+}
+
+.aboutus {
+	color: #000;
+	font-family: Signika;
+	font-weight: 600;
+	line-height: 30px;
+}
+
+.aboutus_p {
+	padding-bottom: 38px;
+}
+
+.aboutus_a {
+	text-decoration: none;
+	color: rgb(67, 147, 195);
+}
+
+.aboutus-logo {
+	float: left;
+	width: 100px;
+	padding-bottom: 14px;
+	padding-right: 14px;
+}
+
+.aboutus-apache-logo {
+	float: right;
+	width: 100px;
+	padding-bottom: 14px;
+	padding-right: 14px;
+}
+
+rs|TitledAnchorList {
 	list-style: none;
 }
 
@@ -207,23 +326,9 @@ TitledAnchorList {
 	text-decoration: none;
 }
 
-.aboutusdiv {
-	min-width: 150px;
-	flex-basis: 40%;
-	flex-grow: 1;
+.logo {
+    margin-top:15px; 
+    margin-bottom: 5px; 
+    width: 190px; 
+    height: 40px;
 }
-
-.aboutus {
-	color: #000;
-}
-
-.aboutus-logo {
-	float: left;
-	width: 100px;
-}
-
-.aboutus-apache-logo {
-	float: right;
-	width: 100px;
-}
-

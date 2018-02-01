@@ -18,23 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.site
 {	
-	import org.apache.royale.html.Group;
+	import org.apache.royale.core.UIBase;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
     }
 	
 	/**
-	 * The TopMenu is set of buttons at the top
-     * of the
-     * Apache Royale site.
-	 * 
+	 * The DocTopMenu displays the top menu for the Royale 
+     * documentation page.
+     *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TopMenu extends Group
+	public class DocTopMenu extends TopMenu
 	{
 		/**
 		 * Constructor.
@@ -44,26 +43,11 @@ package org.apache.royale.site
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function TopMenu()
+		public function DocTopMenu()
 		{
 			super();
 			
-			typeNames = "TopMenu";
-		}
-		
-
-        /**
-         * @return The actual element to be parented.
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         * @royaleignorecoercion HTMLUListElement
-         */
-        COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-            var ul:HTMLUListElement = document.createElement("ul") as HTMLUListElement;
-            element = ul as WrappedHTMLElement;
-			return element;
-		}
-		
+			typeNames = "DocTopMenu TopMenu";
+		}		
 	}
 }

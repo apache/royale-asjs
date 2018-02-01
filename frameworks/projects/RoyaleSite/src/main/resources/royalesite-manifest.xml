@@ -24,10 +24,22 @@
     <component id="ASFCopyrightAttributionAndLinks" class="org.apache.royale.site.ASFCopyrightAttributionAndLinks" />
     <component id="BigButton" class="org.apache.royale.site.BigButton" />
     <component id="CurvedTop" class="org.apache.royale.site.CurvedTop" />
+    <component id="Footer" class="org.apache.royale.site.Footer" />
+    <component id="MainPage" class="org.apache.royale.site.MainPage" />
     <component id="ResponsiveTable" class="org.apache.royale.site.ResponsiveTable" />
     <component id="ResponsiveTableTile" class="org.apache.royale.site.ResponsiveTableTile" />
     <component id="SocialButtons" class="org.apache.royale.site.SocialButtons" />
+    <component id="Tagline" class="org.apache.royale.site.Tagline" />
     <component id="TitledAnchorList" class="org.apache.royale.site.TitledAnchorList" />
+    <component id="TopBar" class="org.apache.royale.site.TopBar" />x
     <component id="TopMenu" class="org.apache.royale.site.TopMenu" />
     <component id="TopMenuButton" class="org.apache.royale.site.TopMenuButton" />
+    
+    <component id="DocFooter" class="org.apache.royale.site.DocFooter" />
+    <component id="DocPage" class="org.apache.royale.site.DocPage" />
+    <component id="DocSocialButtons" class="org.apache.royale.site.DocSocialButtons" />
+    <component id="DocTagline" class="org.apache.royale.site.DocTagline" />
+    <component id="DocTopBar" class="org.apache.royale.site.DocTopBar" />
+    <component id="DocTopMenu" class="org.apache.royale.site.DocTopMenu" />
+    
 </componentPackage>
