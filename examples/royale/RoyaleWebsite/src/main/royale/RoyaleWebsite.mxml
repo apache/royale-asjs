@@ -33,27 +33,16 @@ limitations under the License.
     </js:valuesImpl>
     
     <js:initialView>
-        <js:View width="100%" height="100%" className="page">
-            <Div className="topbar">
-                <Img src="http://royale.codeoscopic.com/wp-content/uploads/2017/11/apache-royale-tm-logo-default.png" />
-                <rs:TopMenu>
-                    <rs:TopMenuButton href="features.html">FEATURES</rs:TopMenuButton>
-                    <rs:TopMenuButton href="tryitnow/index.html">TRY IT NOW</rs:TopMenuButton>
-                    <rs:TopMenuButton href="download.html">DOWNLOAD</rs:TopMenuButton>
-                    <rs:TopMenuButton href="documentation.html">DOCS</rs:TopMenuButton>
-                    <rs:TopMenuButton href="blog.html">BLOG</rs:TopMenuButton>
-                    <rs:TopMenuButton href="github.html">GITHUB</rs:TopMenuButton>
-                </rs:TopMenu>
-                <rs:SocialButtons />
-            </Div>
-            <H3>Designed for the future</H3>
+        <rs:MainPage width="100%" height="100%">
+            <rs:TopBar />
+            <rs:Tagline />
             <H2>Code Once.  Run Everywhere.</H2>
             <P className="intro">
                 Apache Royale™ is a productive open source frontend application technology that allows you to code in MXML &amp; AS3 and output to different formats.
             </P>
             <Div className="big-buttons">
                 <rs:BigButton className="red-button" href="getstarted.html">GET STARTED</rs:BigButton>
-                <rs:BigButton className="blue-button" href="tryitnow/index.html">TRY IT NOW</rs:BigButton>
+                <!--<rs:BigButton className="blue-button" href="tryitnow/index.html">TRY IT NOW</rs:BigButton>-->
             </Div>
             <rs:CurvedTop>
                 <rs:ResponsiveTable>
@@ -89,54 +78,7 @@ limitations under the License.
                         href="tryitnow/index.html">LEARN MORE ABOUT</rs:BigButton>
                 </Div>
             </Div>
-            <Div className="footer">
-                <Div className="footer-column">
-                    <rs:TitledAnchorList title="APACHE ROYALE" titleClassName="apacheroyale">
-                        <rs:AnchorListData href="index.html">Home</rs:AnchorListData>
-                        <rs:AnchorListData href="features.html">Features</rs:AnchorListData>
-                        <rs:AnchorListData href="tryitnow/index.html">Try it now</rs:AnchorListData>
-                        <rs:AnchorListData href="download.html">Download</rs:AnchorListData>
-                        <rs:AnchorListData href="showcase.html">Showcase</rs:AnchorListData>
-                        <rs:AnchorListData href="blog.html">Blog</rs:AnchorListData>
-                        <rs:AnchorListData href="team.html">Team</rs:AnchorListData>
-                        <rs:AnchorListData href="royalenpm.html">Royale in npm</rs:AnchorListData>
-                        <rs:AnchorListData href="license.html">License</rs:AnchorListData>
-                    </rs:TitledAnchorList>
-                </Div>
-                <Div className="footer-column">
-                    <rs:TitledAnchorList title="DOCUMENTATION" titleClassName="documentation">
-                        <rs:AnchorListData href="index.html">Getting Started</rs:AnchorListData>
-                        <rs:AnchorListData href="docs.html">Docs</rs:AnchorListData>
-                        <rs:AnchorListData href="reference/index.html">Reference</rs:AnchorListData>
-                        <rs:AnchorListData href="wiki.html">Wiki</rs:AnchorListData>
-                    </rs:TitledAnchorList>
-                    <rs:TitledAnchorList title="COMMUNITY" titleClassName="community">
-                        <rs:AnchorListData href="contribute.html">Get Involved</rs:AnchorListData>
-                        <rs:AnchorListData href="mailinglists.html">MailingLists</rs:AnchorListData>
-                        <rs:AnchorListData href="faq.html">FAQ</rs:AnchorListData>
-                    </rs:TitledAnchorList>
-                </Div>
-                <Div className="footer-column">
-                    <rs:TitledAnchorList title="DEVELOPMENT" titleClassName="development">
-                        <rs:AnchorListData href="github.html">Github</rs:AnchorListData>
-                        <rs:AnchorListData href="source.html">Source Code</rs:AnchorListData>
-                        <rs:AnchorListData href="issues.html">Issues</rs:AnchorListData>
-                    </rs:TitledAnchorList>
-                    <rs:TitledAnchorList title="APACHE" titleClassName="apache">
-                        <rs:AnchorListData href="http://www.apache.org/">Apache</rs:AnchorListData>
-                        <rs:AnchorListData href="http://www.apache.org/donations.html">Donations</rs:AnchorListData>
-                        <rs:AnchorListData href="http://www.apache.org/thanks.html">Sponsorship</rs:AnchorListData>
-                        <rs:AnchorListData href="http://www.apache.org/thanks.html">Thanks</rs:AnchorListData>
-                    </rs:TitledAnchorList>
-                </Div>
-                <Div className="aboutusdiv" >
-                    <P className="aboutus">ABOUT US</P>
-                    <P><img class="aboutus-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/apache-royale-logo-footer-circle-grey.svg"/>Apache Royale™ is a highly productive open source application technology for building expressive frontend applications that outputs to different formats and deploy consistently on all major browsers, desktops and devices.</P>
-                    <P><img class="aboutus-apache-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/Apache_PoweredBy.svg" />
-                    Apache Royale™, Apache™ and the Apache feather logo™ are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners. Read more about our privacy policy on our Privacy Policy page.</P>
-                </Div>
-            </Div>
-            <rs:ASFCopyrightAttributionAndLinks />
-        </js:View>
+            <rs:Footer />
+        </rs:MainPage>
     </js:initialView>
 </js:Application>
