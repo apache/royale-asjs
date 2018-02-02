@@ -58,7 +58,7 @@ import  org.apache.royale.html.supportClasses.StringItemRenderer;
             	var href:String = data.href;
             	if (!href) // assume package name
             		href = value;
-                this.element.innerHTML = "<a href='#" + href + "' class='HashAnchorAnchor'>" + value + "</a>";
+                this.element.innerHTML = "<a href='#!" + href + "' class='HashAnchorAnchor'>" + value + "</a>";
             }
 		}
 

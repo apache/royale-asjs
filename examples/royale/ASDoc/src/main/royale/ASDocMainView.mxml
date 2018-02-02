@@ -72,6 +72,8 @@ limitations under the License.
             private function updateView():void
             {
             	var hash:String = router.hash;
+            	if (hash.substr(0,2) == "#!")
+            	  hash = hash.substring(2);
             	if (hash.charAt(0) == "#")
             	  hash = hash.substring(1);
             	if (!hash)
