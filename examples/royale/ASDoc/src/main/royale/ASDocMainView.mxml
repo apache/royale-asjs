@@ -90,6 +90,11 @@ limitations under the License.
         }
         
 	</fx:Style>
+	<fx:Declarations>
+		<fx:Component className="AltBGRenderer">
+		    <js:AlternatingBackgroundColorStringItemRenderer backgroundColor0="#ffffff" backgroundColor1="#ffeeee" />
+		</fx:Component>
+	</fx:Declarations>
 	<js:states>
 	  <js:State name="packages" />
 	  <js:State name="classDetail" />
@@ -130,7 +135,8 @@ limitations under the License.
 	                <js:VerticalLayout />
 	            </js:beads>
 	            <js:Label className="paneTitle" text="All Packages" width="100%"/>
-	            <js:List className="paneList" id="packagePaneList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageListChangedHandler()"/>
+	            <js:List className="paneList" id="packagePaneList" dataProvider="{ASDocModel(applicationModel).packageList}" 
+	                itemRenderer="AltBGRenderer" change="packageListChangedHandler()"/>
             </js:Group>
             <js:Group id="detailsPane" width="100%" includeIn="classDetail">
 	            <js:beads>
