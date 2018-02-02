@@ -148,9 +148,9 @@ package models
                 for (var p:String in packageData)
                 {
                     if (filter == null)
-                        arr.push(p);
+                        arr.push({ label: p, href: value + "/" + p});
                     else if (filter(packageData[p]))
-                        arr.push(p);
+                        arr.push({ label: p, href: value + "/" + p});
                 }
                 arr.sort();
                 _classList = arr;

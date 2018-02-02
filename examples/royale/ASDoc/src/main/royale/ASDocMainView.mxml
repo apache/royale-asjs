@@ -20,6 +20,7 @@ limitations under the License.
 <rs:DocPage xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:rs="library://ns.apache.org/royale/site"
+				xmlns:local="*"
 			    width="100%" height="100%"
 			    >
     <fx:Script>
@@ -64,6 +65,8 @@ limitations under the License.
 		]]>
     </fx:Script>
 	<fx:Style>
+	    @namespace "*";
+	    
         .sectionLabel{
             font-size: 16px;
             font-weight: bold;
@@ -89,10 +92,14 @@ limitations under the License.
         	border-style: solid;
         }
         
+        .HashAnchorAnchor {
+            text-decoration: none;
+        }
+        
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
-		    <js:AlternatingBackgroundColorStringItemRenderer backgroundColor0="#ffffff" backgroundColor1="#ffeeee" />
+		    <local:AlternatingBackgroundColorHashAnchorStringItemRenderer backgroundColor0="#ffffff" backgroundColor1="#ffeeee" />
 		</fx:Component>
 	</fx:Declarations>
 	<js:states>
@@ -122,8 +129,12 @@ limitations under the License.
             <js:beads>
                 <js:VerticalLayout />
             </js:beads>
-            <js:List id="packageList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageChangedHandler()" width="100%" height="50%"/>
-            <js:List id="classList" dataProvider="{ASDocModel(applicationModel).classList}" change="classChangedHandler()"  width="100%" height="50%"/>
+            <js:List id="packageList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageChangedHandler()" 
+            	width="100%" height="50%"
+            	itemRenderer="HashAnchorStringItemRenderer"/>
+            <js:List id="classList" dataProvider="{ASDocModel(applicationModel).classList}" change="classChangedHandler()"  
+            	width="100%" height="50%"
+            	itemRenderer="HashAnchorStringItemRenderer" labelField="label" />
         </js:Group>
         <js:Container className="rightSide" id="rightSide" height="100%">
             <js:beads>
