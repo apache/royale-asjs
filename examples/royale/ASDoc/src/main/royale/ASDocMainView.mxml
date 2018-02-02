@@ -17,8 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+<rs:DocPage xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/royale/basic"
+				xmlns:rs="library://ns.apache.org/royale/site"
 			    width="100%" height="100%"
 			    >
     <fx:Script>
@@ -35,10 +36,17 @@ limitations under the License.
                 dispatchEvent(new Event("packageChanged"));
             }
                         
+            private function packageListChangedHandler():void
+            {
+                currentPackage = packagePaneList.selectedItem as String;
+                dispatchEvent(new Event("packageChanged"));
+            }
+                        
             public var currentClass:String;
             
             private function classChangedHandler():void
             {
+            	currentState = "classDetail";
                 currentClass = classList.selectedItem as String;
                 dispatchEvent(new Event("classChanged"));
             }
@@ -63,16 +71,40 @@ limitations under the License.
             color: white;
             text-align: center;
         }
+        
+        .titleGroup {
+        	margin-top: 30px;
+        }
+        
+        .paneTitle {
+        	font-size: 24px;
+            font-weight: bold;
+            padding-left: 20px;
+            background-color: rgb( 253, 171, 125);
+        }
+        
+        .paneList {
+        	margin-left: 20px;
+        	margin-right: 20px;
+        	border-style: solid;
+        }
+        
 	</fx:Style>
+	<js:states>
+	  <js:State name="packages" />
+	  <js:State name="classDetail" />
+	</js:states>
     <js:beads>
         <js:ViewDataBinding />
         <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />                
     </js:beads>
-    <js:Group width="100%" id="titleGroup">
+    <rs:DocTopBar />
+    <rs:DocTagline />
+    <js:Group width="100%" id="titleGroup" className="titleGroup">
         <js:beads>
             <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="title" />
         </js:beads>
-        <js:Label text="Royale ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
+        <js:Label text="Apache Royale ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
         <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
         <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
     </js:Group>
@@ -93,12 +125,19 @@ limitations under the License.
                 <js:VerticalLayout />
                 <js:ScrollingViewport />
             </js:beads>
-            <js:Group id="detailsPane" width="100%">
+            <js:Group id="packageListPane" width="100%" includeIn="packages">
 	            <js:beads>
 	                <js:VerticalLayout />
 	            </js:beads>
+	            <js:Label className="paneTitle" text="All Packages" width="100%"/>
+	            <js:List className="paneList" id="packagePaneList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageListChangedHandler()"/>
+            </js:Group>
+            <js:Group id="detailsPane" width="100%" includeIn="classDetail">
+	            <js:beads>
+	                <js:VerticalLayout />
+	            </js:beads>
+	            <js:Label className="paneTitle" id="baseName" text="{ASDocModel(applicationModel).currentClass}" width="100%" style="fontSize:20"/>
 	            <js:Label id="packageName"  text="{ASDocModel(applicationModel).currentPackage}" width="100%"/>
-	            <js:Label id="baseName" text="{ASDocModel(applicationModel).currentClass}" width="100%" style="fontSize:20"/>
 	            <js:Label id="inheritance" text="{ASDocModel(applicationModel).inheritance}" width="100%"/>
 	            <js:MultilineLabel id="attributes" text="{ASDocModel(applicationModel).attributes}" width="100%"/>
 	            <js:MultilineLabel id="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
@@ -120,4 +159,4 @@ limitations under the License.
 	        </js:Group>
         </js:Container>
     </js:Group>	
-</js:View>
+</rs:DocPage>
