@@ -59,6 +59,7 @@
     <module>XML</module>
     <module>Text</module>
     <module>TLF</module>
+    <module>RoyaleSite</module>
   </modules>
 
   <profiles>

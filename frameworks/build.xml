@@ -136,6 +136,7 @@
 		<antcall target="MaterialDesignLite"/>
 		<antcall target="FontAwesome"/>
 		<antcall target="Express"/>
+        <antcall target="RoyaleSite"/>
     </target>
     
     <target name="fonts">
@@ -189,6 +190,7 @@
         <ant dir="${basedir}/projects/XML" target="clean"/>
         <ant dir="${basedir}/projects/Text" target="clean"/>
         <ant dir="${basedir}/projects/TLF" target="clean"/>
+        <ant dir="${basedir}/projects/RoyaleSite" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
@@ -320,6 +322,9 @@
     </target>
     <target name="TLF" description="Clean build of TLF.swc">
         <ant dir="${basedir}/projects/TLF"/>
+    </target>
+    <target name="RoyaleSite" description="Clean build of RoyaleSite.swc">
+        <ant dir="${basedir}/projects/RoyaleSite"/>
     </target>
 
     <target name="create-config" depends="playerglobal-setswfversion" description="Copy the config template and inject version numbers">
