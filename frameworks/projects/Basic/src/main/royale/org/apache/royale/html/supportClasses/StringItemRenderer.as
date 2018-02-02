@@ -56,6 +56,8 @@ package org.apache.royale.html.supportClasses
 		{
 			super();
 
+            typeNames = 'StringItemRenderer';
+
             COMPILE::SWF
             {
                 textField = new CSSTextField();
@@ -163,7 +165,6 @@ package org.apache.royale.html.supportClasses
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('span') as WrappedHTMLElement;
-            className = 'StringItemRenderer';
             // itemRenderers should provide something for the background to handle
             // the selection and highlight
             backgroundView = element;
