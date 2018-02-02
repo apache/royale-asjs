@@ -125,7 +125,11 @@ rs|MainPage {
 }
 
 rs|DocPage {
+	width: 100%;
 	background-image: url('http://royale.codeoscopic.com/wp-content/uploads/2017/10/page-bg-1-1920x300.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-top: 0px;
 }
 
 rs|SocialButtons {
@@ -138,6 +142,8 @@ rs|SocialButtons {
 	display: inline;
 	margin-right: 20px;
 	line-height: 70px;
+	color: inherit;
+	font-size: 16px;
 }
 
 rs|DocSocialButtons {
@@ -153,6 +159,11 @@ rs|TopBar {
 }
 
 rs|DocTopBar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-left: 54px;
+	padding-right: 54px;
 	color: #fff;
 }
 
@@ -173,10 +184,12 @@ rs|TopMenuButton {
 	font-family: 'Signika';
 	line-height: 70px;
 	letter-spacing: 1px;
+	color: inherit;
 }
 
 .TopMenuButtonContent {
 	text-decoration: none;
+	color:inherit;
 }
 
 rs|DocTopMenu {

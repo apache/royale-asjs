@@ -22,8 +22,8 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/royale/basic"
                  xmlns:rs="library://ns.apache.org/royale/site"
                  xmlns:local="*"
-                 className="TopBar">
-    <Img className="logo" src="http://royale.codeoscopic.com/wp-content/uploads/2018/01/apache-royale-tm-logo-dark.svg" />
+                 className="DocTopBar TopBar">
+    <Img className="logo" src="http://royale.codeoscopic.com/wp-content/uploads/2018/01/apache-royale-tm-logo-light.svg" />
     <rs:TopMenu />
     <rs:SocialButtons />
 </Div>
