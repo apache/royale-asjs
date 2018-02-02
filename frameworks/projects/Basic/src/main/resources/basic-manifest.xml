@@ -196,4 +196,6 @@
     <component id="TreeGrid" class="org.apache.royale.html.TreeGrid" />
     <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
 
+    <component id="HashChangeNotifierBead" class="org.apache.royale.routing.HashChangeNotifierBead" />
+
 </componentPackage>
