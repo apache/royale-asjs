@@ -62,7 +62,7 @@ package org.apache.royale.core
 		{
 			super();
 
-			className = "royale";
+			typeNames = "royale";
 		}
 
 		private var _applicationModel:Object;

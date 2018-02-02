@@ -93,6 +93,7 @@
     <component id="Spinner" class="org.apache.royale.html.Spinner"/>
     <component id="Slider" class="org.apache.royale.html.Slider"/>
     <component id="NumericStepper" class="org.apache.royale.html.NumericStepper" />
+    <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
     <component id="AccordionItemRenderer" class="org.apache.royale.html.supportClasses.AccordionItemRenderer"/>
     <component id="AccordionCollapseBead" class="org.apache.royale.html.beads.AccordionCollapseBead"/>
@@ -199,5 +200,7 @@
     
     <component id="TreeGrid" class="org.apache.royale.html.TreeGrid" />
     <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
+
+    <component id="HashChangeNotifierBead" class="org.apache.royale.routing.HashChangeNotifierBead" />
 
 </componentPackage>

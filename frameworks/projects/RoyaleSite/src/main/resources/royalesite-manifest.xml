@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+    <component id="AnchorListData" class="org.apache.royale.site.data.AnchorListData" />
+    <component id="ASFCopyrightAttributionAndLinks" class="org.apache.royale.site.ASFCopyrightAttributionAndLinks" />
+    <component id="BigButton" class="org.apache.royale.site.BigButton" />
+    <component id="CurvedTop" class="org.apache.royale.site.CurvedTop" />
+    <component id="Footer" class="org.apache.royale.site.Footer" />
+    <component id="MainPage" class="org.apache.royale.site.MainPage" />
+    <component id="ResponsiveTable" class="org.apache.royale.site.ResponsiveTable" />
+    <component id="ResponsiveTableTile" class="org.apache.royale.site.ResponsiveTableTile" />
+    <component id="SocialButtons" class="org.apache.royale.site.SocialButtons" />
+    <component id="Tagline" class="org.apache.royale.site.Tagline" />
+    <component id="TitledAnchorList" class="org.apache.royale.site.TitledAnchorList" />
+    <component id="TopBar" class="org.apache.royale.site.TopBar" />x
+    <component id="TopMenu" class="org.apache.royale.site.TopMenu" />
+    <component id="TopMenuButton" class="org.apache.royale.site.TopMenuButton" />
+    
+    <component id="DocFooter" class="org.apache.royale.site.DocFooter" />
+    <component id="DocPage" class="org.apache.royale.site.DocPage" />
+    <component id="DocSocialButtons" class="org.apache.royale.site.DocSocialButtons" />
+    <component id="DocTagline" class="org.apache.royale.site.DocTagline" />
+    <component id="DocTopBar" class="org.apache.royale.site.DocTopBar" />
+    <component id="DocTopMenu" class="org.apache.royale.site.DocTopMenu" />
+    
+</componentPackage>

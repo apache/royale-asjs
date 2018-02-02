@@ -73,7 +73,7 @@ package models
             _knownTags = config.tags;
             
             app.service.addEventListener("complete", completeHandler);
-            app.service.url = "classes.json";
+            app.service.url = "classlist.json";
             app.service.send();
         }
         
@@ -89,10 +89,9 @@ package models
         private function filterPackageList():void
         {
             var packages:Object = {};
-            for each (var classData:Object in masterData.classes)
+            for each (var qname:String in masterData.classnames)
             {
                 var packageName:String;
-                var qname:String = classData.name;
                 var c:int = qname.lastIndexOf(".")
                 if (c == -1)
                     packageName = "Top Level";
@@ -105,7 +104,7 @@ package models
                 {
                     packages[packageName] = {};
                 }
-                packages[packageName][qname] = classData;
+                packages[packageName][qname] = {};
             }
             var arr:Array = [];
             for (var p:String in packages)
@@ -149,9 +148,9 @@ package models
                 for (var p:String in packageData)
                 {
                     if (filter == null)
-                        arr.push(p);
+                        arr.push({ label: p, href: value + "/" + p});
                     else if (filter(packageData[p]))
-                        arr.push(p);
+                        arr.push({ label: p, href: value + "/" + p});
                 }
                 arr.sort();
                 _classList = arr;

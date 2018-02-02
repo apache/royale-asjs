@@ -20,6 +20,8 @@ package org.apache.royale.html
 {
     import org.apache.royale.core.UIBase;
 
+    [DefaultProperty("mxmlContent|innerHTML")]
+    
     public class TextNodeContainerBase extends NodeElementBase
     {
         public function TextNodeContainerBase()

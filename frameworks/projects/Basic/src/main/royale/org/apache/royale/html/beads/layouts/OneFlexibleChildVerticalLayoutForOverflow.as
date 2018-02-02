@@ -132,7 +132,8 @@ package org.apache.royale.html.beads.layouts
 
 			for(var i:int=0; i < n; i++) {
 				var child:UIBase = contentView.getElementAt(i) as UIBase;
-				if (child.element.style["display"] != "flex" && child.element.style["display"] != "none")
+				var display:String = getComputedStyle(child.element)["display"];
+				if (display != "flex" && display != "none")
 					child.element.style["display"] = "block";
 			}
 
