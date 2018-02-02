@@ -519,7 +519,8 @@ Spinner
 StringItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
-	height: 24px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	flex-shrink: 0;
 	flex-grow: 1;
 	cursor: pointer;
