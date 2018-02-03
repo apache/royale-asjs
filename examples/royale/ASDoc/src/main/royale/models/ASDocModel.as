@@ -367,22 +367,31 @@ package models
             return _currentClassData.description;
         }
         
-        private var _inheritance:String;
+        private var _inheritance:Array;
         
         [Bindable("currentDataChanged")]
-        public function get inheritance():String
+        public function get inheritance():Array
         {
             if (!_inheritance)
             {
-                var s:String = "extends ";
+                var s:Array;
                 if (_baseClassList.length == 0)
-                    s += "Object";
+                    s = [{label: currentClass}, { label: "Object"}];
                 else
                 {
-                    s += _baseClassList.shift();
+                    s = [{label: currentClass}];
                     for each (var p:String in _baseClassList)
                     {
-                        s += "-> " + p;
+                    	var end:String = p;
+                    	var c:int = end.lastIndexOf(".");
+                    	if (c != -1)
+                    		end = end.substr(c + 1);
+                        var data:Object = {label: end };
+                        if (masterData.classnames.indexOf(p) != -1)
+                        {
+                        	data.href = p;
+                        }
+                        s.push(data);
                     }
                 }
                 _inheritance = s;
