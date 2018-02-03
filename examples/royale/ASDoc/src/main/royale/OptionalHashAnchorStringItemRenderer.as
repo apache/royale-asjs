@@ -45,7 +45,7 @@ import  org.apache.royale.html.List;
 		 */
 		public function OptionalHashAnchorStringItemRenderer()
 		{
-			typeNames += " HashAnchorStringItemRenderer"
+			typeNames += " OptionalHashAnchorStringItemRenderer"
 		}
 
 		override public function set text(value:String):void
