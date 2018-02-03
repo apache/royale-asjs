@@ -101,6 +101,7 @@ limitations under the License.
     </fx:Script>
 	<fx:Style>
 	    @namespace "*";
+	    @namespace rs "library://ns.apache.org/royale/site";
 	    
         .sectionLabel{
             font-size: 16px;
@@ -112,16 +113,22 @@ limitations under the License.
         
         .titleGroup {
         	margin-top: 30px;
+        	margin-left: 5px;
+        }
+        
+        .detailsPane {
+            padding-left: 20px;
+            padding-right: 10px;
         }
         
         .paneTitle {
         	font-size: 24px;
             font-weight: bold;
-            padding-left: 20px;
             background-color: rgb( 253, 171, 125);
         }
         
         .paneList {
+            margin-top: 50px;
         	margin-left: 20px;
         	margin-right: 20px;
         	border-style: solid;
@@ -131,8 +138,17 @@ limitations under the License.
             text-decoration: none;
         }
         
+        HashAnchorStringItemRenderer {
+            padding-left: 5px;
+        }
+        
         .detailCaption {
         	font-weight: bold;
+        	width: 150px;
+        }
+        
+        .title {
+			font-size: 20px;
         }
         
 	</fx:Style>
@@ -156,7 +172,7 @@ limitations under the License.
         <js:beads>
             <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="title" />
         </js:beads>
-        <js:Label text="Apache Royale ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
+        <js:Label text="Apache Royale ActionScript Library Reference" id="title" height="30" className="title"/>
         <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
         <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
     </js:Group>
@@ -181,19 +197,19 @@ limitations under the License.
                 <js:VerticalLayout />
                 <js:ScrollingViewport />
             </js:beads>
+	        <js:Label className="paneTitle" id="baseName" width="100%" style="fontSize:20"
+	        	text="{currentState == 'packages' ? 'All Packages' : ASDocModel(applicationModel).currentClass}" />
             <js:Group id="packageListPane" width="100%" includeIn="packages">
 	            <js:beads>
 	                <js:VerticalLayout />
 	            </js:beads>
-	            <js:Label className="paneTitle" text="All Packages" width="100%"/>
 	            <js:List className="paneList" id="packagePaneList" dataProvider="{ASDocModel(applicationModel).packageList}" 
 	                itemRenderer="AltBGRenderer"/>
             </js:Group>
-            <js:Group id="detailsPane" width="100%" includeIn="classDetail">
+            <js:Group id="detailsPane" className="detailsPane" width="100%" includeIn="classDetail">
 	            <js:beads>
 	                <js:VerticalLayout />
 	            </js:beads>
-	            <js:Label className="paneTitle" id="baseName" text="{ASDocModel(applicationModel).currentClass}" width="100%" style="fontSize:20"/>
 	            <js:Group>
 		            <js:beads>
 		                <js:HorizontalLayout />
