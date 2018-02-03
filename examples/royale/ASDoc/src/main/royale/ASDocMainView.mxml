@@ -156,6 +156,21 @@ limitations under the License.
 			font-size: 20px;
         }
         
+        .attributeList {
+            border-style: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+        	margin-top: 10px;
+        	margin-bottom: 10px;
+        }
+        
+        .attributeCaption {
+            font-weight: bold;
+        }
+        
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
@@ -241,8 +256,9 @@ limitations under the License.
 		            	</js:beads>
 		            </js:List>
 		        </js:Group>
-	            <js:MultilineLabel id="attributes" text="{ASDocModel(applicationModel).attributes}" width="100%"/>
-	            <js:MultilineLabel id="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
+	            <js:DataContainer id="attributes" className="attributeList" dataProvider="{ASDocModel(applicationModel).attributes}" 
+	                itemRenderer="AttributeRenderer" width="100%"/>
+	            <js:MultilineLabel id="description" className="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
 	            <js:Label text="Public Properties" className="sectionLabel"/>
 	            <js:List id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
 	                     itemRenderer="SummaryRenderer" width="100%"/>

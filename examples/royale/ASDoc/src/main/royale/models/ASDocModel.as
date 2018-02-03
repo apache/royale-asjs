@@ -399,22 +399,24 @@ package models
             return _inheritance;
         }
        
-        private var _attributes:String;
+        private var _attributes:Array;
         
         [Bindable("currentDataChanged")]
-        public function get attributes():String
+        public function get attributes():Array
         {
             if (!_attributes)
             {
-                var s:String = "";
+            	_attributes = [];
                 for (var p:String in _attributesMap)
                 {
+                    var obj:Object = {};
                     var o:Array = _attributesMap[p];
                     var k:String = tagNameMap[p];
                     if (k != null)
-                        s += k + " ";
+                        obj.name = k;
                     else
-                        s += p + ": ";
+                        obj.name = p;
+                    var s:String = "";
                     var firstOne:Boolean = true;
                     for each (var q:String in o)
                     {
@@ -423,9 +425,9 @@ package models
                         firstOne = false;
                         s += q;
                     }
-                    s += "\n";
+                    obj.value = s;
+                    _attributes.push(obj);
                 }
-                _attributes = s;
             }
             return _attributes;
         }
