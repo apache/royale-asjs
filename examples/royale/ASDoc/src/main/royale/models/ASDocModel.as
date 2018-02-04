@@ -389,6 +389,15 @@ package models
                         var data:Object = {label: end };
                         if (masterData.classnames.indexOf(p) != -1)
                         {
+                        	c = p.lastIndexOf(".");
+                        	if (c != -1)
+                        	{
+                        		p = p.substr(0, c) + "/" + p.substr(c + 1);
+                        	}
+                        	else
+                        	{
+                        		p = "/"+ p;
+                        	}
                         	data.href = p;
                         }
                         s.push(data);
