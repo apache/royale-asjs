@@ -45,6 +45,10 @@ internal class ExpressClasses
     import org.apache.royale.express.View; View;
 	import org.apache.royale.express.VSlider; VSlider;
     import org.apache.royale.express.VView; VView;
+	
+	import org.apache.royale.express.beads.models.DataGridModel; DataGridModel;
+	import org.apache.royale.express.beads.layouts.DataGridLayout; DataGridLayout;
+	import org.apache.royale.express.supportClasses.DataGridColumn; DataGridColumn;
 }
 
 }

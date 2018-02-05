@@ -40,6 +40,8 @@
     <component id="VSlider" class="org.apache.royale.express.VSlider"/>
     <component id="VView" class="org.apache.royale.express.VView"/>
     
+    <component id="DataGridColumn" class="org.apache.royale.express.supportClasses.DataGridColumn" />
+    
     <!--  Basic Components -->
     
     <component id="SimpleCSSValuesImpl" class="org.apache.royale.core.SimpleCSSValuesImpl" lookupOnly="true"/>
@@ -93,7 +95,6 @@
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport"  lookupOnly="true" />
 
     <component id="DataGridButtonBar" class="org.apache.royale.html.DataGridButtonBar" lookupOnly="true" />
-    <component id="DataGridColumn" class="org.apache.royale.html.supportClasses.DataGridColumn" lookupOnly="true" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser" lookupOnly="true" />
     <component id="DateField" class="org.apache.royale.html.DateField" lookupOnly="true" />

@@ -49,8 +49,8 @@ DataGrid
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.DataGridWithDrawingLayerLayout");
+	IBeadModel: ClassReference("org.apache.royale.express.beads.models.DataGridModel");
+	IBeadLayout: ClassReference("org.apache.royale.express.beads.layouts.DataGridLayout");
 	ColumnClassName: "DataGridColumnList";
 	
 	background-color: #FFFFFF;
@@ -61,7 +61,7 @@ DataGrid
 
 .DataGridColumnList
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
+	IBeadModel: ClassReference("org.apache.royale.express.beads.models.DataGridModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
