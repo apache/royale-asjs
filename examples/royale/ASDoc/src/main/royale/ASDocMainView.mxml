@@ -225,6 +225,17 @@ limitations under the License.
         	font-family: monospace;
         }
         
+        .paramName {
+        	font-family: monospace;
+        }
+        .paramType {
+        	font-family: monospace;
+        }
+        .paramLink {
+            text-decoration: none;
+        	font-family: monospace;
+        }
+        
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
@@ -318,16 +329,16 @@ limitations under the License.
 	                     itemRenderer="SummaryRenderer" width="100%"/>
 	            <js:Label text="Public Methods" className="sectionLabel"/>
 	            <js:List className="summaryList" id="publicMethodList" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
-	                     itemRenderer="SummaryRenderer" width="100%"/>
+	                     itemRenderer="MethodSummaryRenderer" width="100%"/>
 	            <js:Label text="Property Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="propertyDetails" dataProvider="{ASDocModel(applicationModel).publicProperties}" 
-	                              itemRenderer="DetailRenderer" width="100%"/>
+	                              itemRenderer="PropertyDetailRenderer" width="100%"/>
 	            <js:Label text="Constructor Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="constructorDetails" dataProvider="{ASDocModel(applicationModel).constructorList}" 
-	                              itemRenderer="DetailRenderer" width="100%"/>
+	                              itemRenderer="MethodDetailRenderer" width="100%"/>
 	            <js:Label text="Method Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="MethodDetails" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
-	                              itemRenderer="DetailRenderer" width="100%"/>
+	                              itemRenderer="MethodDetailRenderer" width="100%"/>
 	        </js:Group>
         </js:Container>
     </js:Group>	

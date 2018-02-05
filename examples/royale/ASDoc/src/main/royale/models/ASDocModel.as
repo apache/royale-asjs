@@ -232,7 +232,10 @@ package models
                     var href:String = m.return;
                     var c:int = href.lastIndexOf(".");
                     if (c != -1)
+                    {
+                    	m.return = href.substr(c + 1);
                     	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    }
                     m.returnhref = "#!" +href;
                 }
                     
@@ -290,6 +293,10 @@ package models
         		}
         	}
         	addAttributes(data, data);
+        	if (data.type == "method")
+        	{
+        		processParams(data);
+        	}
         	arr.push(data);
         }
 
@@ -304,14 +311,19 @@ package models
         	}
         	arr = dest.attributes;
         	var map:Object = {};
-        	for (var tag:Object in arr)
+        	var tag:Object;
+        	var n:int = arr.length;
+        	for (var i:int = 0; i < n; i++)
         	{
+        		tag = arr[i];
         		map[tag.name] = tag.value;
         	}
-        	var n:int = src.tags.length;
-            for (var i:int = 0; i < n; i++)
+        	n = src.tags.length;
+            for (i = 0; i < n; i++)
             {
             	tag = src.tags[i];
+            	if (map[tag.tagName]) 
+            		continue;
             	var obj:Object = {};
                 var k:String = tagNameMap[tag.tagName];
                 if (k != null)
@@ -338,6 +350,26 @@ package models
                     arr.push(obj);
                 }
             }
+		}
+		
+		private function processParams(data:Object):void
+		{
+			var n:int = data.params.length;
+			for (var i:int = 0; i < n; i++)
+			{
+				var param:Object = data.params[i];
+				if (masterData.classnames.indexOf(param.type) != -1)
+				{
+                    var href:String = param.type;
+                    var c:int = href.lastIndexOf(".");
+                    if (c != -1)
+                    {
+                    	param.type = href.substr(c + 1);
+                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    }
+                    param.typehref = "#!" +href;
+				}
+			}
 		}
 		
         private function computeFileName(input:String):String
