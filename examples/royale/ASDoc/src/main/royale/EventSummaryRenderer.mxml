@@ -48,6 +48,21 @@ limitations under the License.
 				_color1 = value;
 			}
 			
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
+			}
+			
+            [Bindable("dataChange")]
+            /**
+              @royaleignorecoercion ValueObject
+            */
+            public function get obj():ValueObject
+            {
+                return data as ValueObject;
+            }
+            		
 			private var oddIndex:Boolean;
 
 			override public function addedToParent():void
@@ -87,7 +102,7 @@ limitations under the License.
       <js:beads>
         <js:HorizontalLayout />
       </js:beads>
-      <js:Label className="eventSummaryQName" text="{ValueObject(data).qname}" />
+      <html:A id="qname" className="eventSummaryQName" text="{ValueObject(data).qname}" />
       <js:Label id="label" className="eventDescription" text="{ValueObject(data).shortDescription}" />
     </js:Group>
 </js:MXMLItemRenderer>

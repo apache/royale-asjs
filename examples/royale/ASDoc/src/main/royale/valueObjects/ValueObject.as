@@ -30,5 +30,6 @@ package valueObjects
 		public var params:Array;
 		public var type:String;
 		public var typehref:String;
+		public var ownerhref:String;
 	}
 }

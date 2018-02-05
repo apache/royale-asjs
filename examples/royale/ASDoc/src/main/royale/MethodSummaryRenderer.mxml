@@ -57,7 +57,17 @@ limitations under the License.
 					typeGroup.removeElement(label);
 				else
 					typeGroup.removeElement(link);
+				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
 			}
+			
+            [Bindable("dataChange")]
+            /**
+              @royaleignorecoercion ValueObject
+            */
+            public function get obj():ValueObject
+            {
+                return data as ValueObject;
+            }
 		
 			override public function addedToParent():void
 			{
@@ -96,7 +106,7 @@ limitations under the License.
       <js:beads>
         <js:HorizontalLayout />
       </js:beads>
-      <js:Label className="summaryQName" text="{ValueObject(data).qname}" />
+      <html:A id="qname" className="summaryQName" text="{ValueObject(data).qname}" />
       <js:Label text="(" />
   	  <js:DataContainer id="params" dataProvider="{ValueObject(data).params}" style="border-style:none"
 	     itemRenderer="ParameterRenderer">

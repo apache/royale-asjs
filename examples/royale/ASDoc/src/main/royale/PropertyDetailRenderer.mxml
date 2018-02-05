@@ -33,6 +33,11 @@ limitations under the License.
 					propertyTypeGroup.removeElement(label);
 				else
 					propertyTypeGroup.removeElement(link);
+				COMPILE::JS
+				{
+				// set up anchor link target
+				target.element.id = obj.qname;
+				}
 			}
 			
             [Bindable("dataChange")]
@@ -52,7 +57,7 @@ limitations under the License.
       <js:beads>
         <js:HorizontalLayout />
       </js:beads>
-      <js:Label className="propertyQNameTitle" text="{obj.qname}"/>
+      <js:Label id="target" className="propertyQNameTitle" text="{obj.qname}"/>
       <js:Label text="property"/>
     </js:Group>
     <js:Group id="propertyTypeGroup" className="propertyTypeGroup">

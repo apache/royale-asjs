@@ -315,6 +315,7 @@ package models
         	{
         		processParams(data);
         	}
+        	data.ownerhref = currentPackage + "/" + currentClass;
         	arr.push(data);
         }
 

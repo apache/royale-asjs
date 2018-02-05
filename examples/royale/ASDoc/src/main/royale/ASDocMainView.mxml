@@ -69,6 +69,8 @@ limitations under the License.
                 dispatchEvent(new DetailEvent(viewBeads.selected ? "addTag" : "removeTag", false, false, "viewbead"));
             }
             
+            private var findMember:String ;
+            
             private function updateView():void
             {
             	var hash:String = router.hash;
@@ -87,6 +89,23 @@ limitations under the License.
 						packageList.selectedItem = pkg;
 						packageChangedHandler();
             			var cls:String = hash.substr(c + 1);
+            			c = cls.indexOf("/")
+            			if (c != -1)
+            			{
+            				findMember = cls.substr(c + 1);
+            				cls = cls.substr(0, c);
+            				COMPILE::JS
+            				{
+            					if (document.getElementById(findMember) &&
+            					    classList.selectedItem == cls)
+            					{
+            						// we are already on the right page so just scroll to member
+            					    scrollMemberIntoView();
+            					    return;
+            					}
+            				}
+            				applicationModel.addEventListener("currentDataChanged", findMemberDetail);
+            			}
             			classList.selectedItem = cls; 
             			classChangedHandler();
             		}
@@ -95,6 +114,20 @@ limitations under the License.
 						packageList.selectedItem = hash;
 						packageChangedHandler();
             		}
+            	}
+            }
+            
+            private function findMemberDetail(event:Event):void
+            {
+            	applicationModel.removeEventListener("currentDataChanged", findMemberDetail);
+            	clb.callLater(scrollMemberIntoView);
+            }
+            
+            private function scrollMemberIntoView():void
+            {
+            	COMPILE::JS
+            	{
+            		document.getElementById(findMember).scrollIntoView();
             	}
             }
 		]]>
@@ -182,6 +215,7 @@ limitations under the License.
             font-weight: bold;
             margin-left: 10px;
             margin-top: 3px;
+            text-decoration: none;
         }
         .summaryType {
         }
@@ -244,6 +278,7 @@ limitations under the License.
         }
         
         .eventSummaryQName {
+            text-decoration: none;
             font-weight: bold;
             width: 120px;
             margin-left: 10px;
@@ -265,6 +300,7 @@ limitations under the License.
         <js:ViewDataBinding />
         <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />
         <js:HashChangeNotifierBead id="router" hashChange="updateView()" />                
+        <js:CallLaterBead id="clb" />
     </js:beads>
     <rs:DocTopBar />
     <rs:DocTagline />
