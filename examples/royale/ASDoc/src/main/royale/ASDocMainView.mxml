@@ -236,6 +236,21 @@ limitations under the License.
         	font-family: monospace;
         }
         
+        .eventQName {
+            font-weight: bold;
+        }
+        .eventLink {
+            text-decoration: none;
+        }
+        
+        .eventSummaryQName {
+            font-weight: bold;
+            width: 120px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
@@ -330,6 +345,9 @@ limitations under the License.
 	            <js:Label text="Public Methods" className="sectionLabel"/>
 	            <js:List className="summaryList" id="publicMethodList" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
 	                     itemRenderer="MethodSummaryRenderer" width="100%"/>
+	            <js:Label text="Events" className="sectionLabel"/>
+	            <js:List className="summaryList" id="publicEventList" dataProvider="{ASDocModel(applicationModel).publicEvents}" 
+	                     itemRenderer="EventSummaryRenderer" width="100%"/>
 	            <js:Label text="Property Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="propertyDetails" dataProvider="{ASDocModel(applicationModel).publicProperties}" 
 	                              itemRenderer="PropertyDetailRenderer" width="100%"/>
@@ -339,6 +357,9 @@ limitations under the License.
 	            <js:Label text="Method Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="MethodDetails" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
 	                              itemRenderer="MethodDetailRenderer" width="100%"/>
+	            <js:Label text="Event Details" className="sectionLabel"/>
+	            <js:DataContainer className="detailList" id="EventDetails" dataProvider="{ASDocModel(applicationModel).publicEvents}" 
+	                              itemRenderer="EventDetailRenderer" width="100%"/>
 	        </js:Group>
         </js:Container>
     </js:Group>	

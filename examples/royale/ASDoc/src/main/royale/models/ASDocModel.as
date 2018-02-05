@@ -203,6 +203,7 @@ package models
                 _currentClassData = data;
                 _publicProperties = [];
                 _publicMethods = [];
+                _publicEvents = [];
                 _constructorList = [];
                 _baseClassList = [];
                 _inheritance = null;
@@ -240,6 +241,22 @@ package models
                 }
                     
             }
+            for each (m in data.events)
+            {
+                m.shortDescription = makeShortDescription(m.description);
+                addIfNeededAndMakeAttributes(_publicEvents, m);
+                if (masterData.classnames.indexOf(m.type) != -1)
+                {
+                    href = m.type;
+                    c = href.lastIndexOf(".");
+                    if (c != -1)
+                    {
+                    	m.type = href.substr(c + 1);
+                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    }
+                    m.typehref = "#!" +href;
+                }
+            }
             for each (m in data.tags)
             {
                 if (!_attributesMap[m.tagName])
@@ -265,6 +282,7 @@ package models
             else
             {
                 _publicMethods.sortOn("qname");
+                _publicEvents.sortOn("qname");
                 _publicProperties.sortOn("qname");
                 dispatchEvent(new Event("currentDataChanged"));
             }
@@ -397,6 +415,7 @@ package models
                 _currentClassData = data;
                 _publicProperties = [];
                 _publicMethods = [];
+                _publicEvents = [];
                 _constructorList = [];
                 _baseClassList = [];
                 _inheritance = null;
@@ -415,13 +434,29 @@ package models
                         _constructorList.push(m);
                     }
                     else if (m.qname != data.qname)
-                        _publicMethods.push(m);
+                        addIfNeededAndMakeAttributes(_publicMethods, m);
                 }
                 else
                 {
-                    _publicProperties.push(m);
+                    addIfNeededAndMakeAttributes(_publicProperties, m);
                 }
                 
+            }
+            for each (m in data.events)
+            {
+                m.shortDescription = makeShortDescription(m.description);
+                addIfNeededAndMakeAttributes(_publicEvents, m);
+                if (masterData.classnames.indexOf(m.type) != -1)
+                {
+                    var href:String = m.type;
+                    var c:int = href.lastIndexOf(".");
+                    if (c != -1)
+                    {
+                    	m.type = href.substr(c + 1);
+                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    }
+                    m.typehref = "#!" +href;
+                }
             }
             for each (m in data.tags)
             {
@@ -445,6 +480,7 @@ package models
             else
             {
                 _publicMethods.sortOn("qname");
+                _publicEvents.sortOn("qname");
                 _publicProperties.sortOn("qname");
                 dispatchEvent(new Event("currentDataChanged"));
             }
@@ -472,6 +508,14 @@ package models
         public function get constructorList():Array
         {
             return _constructorList;
+        }
+        
+        private var _publicEvents:Array;
+        
+        [Bindable("currentDataChanged")]
+        public function get publicEvents():Array
+        {
+            return _publicEvents;
         }
         
         [Bindable("currentDataChanged")]

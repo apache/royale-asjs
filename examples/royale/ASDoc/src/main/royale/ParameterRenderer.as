@@ -54,7 +54,7 @@ import  org.apache.royale.html.DataContainer;
 			}			
 			var html:String = "<span class='paramName'>" + data.name + ":</span>";
 			if (data.typehref)
-				html += "<a href='#!" + data.typehref + "' class='paramLink'>" + data.type + "</a>";
+				html += "<a href='" + data.typehref + "' class='paramLink'>" + data.type + "</a>";
 			else
 				html += "<span class='paramType'>" + data.type + "</span>";
 			if (!last)

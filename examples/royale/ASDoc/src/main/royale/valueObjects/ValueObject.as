@@ -28,5 +28,7 @@ package valueObjects
 		public var returnhref:String;
 		public var attributes:Array;
 		public var params:Array;
+		public var type:String;
+		public var typehref:String;
 	}
 }
