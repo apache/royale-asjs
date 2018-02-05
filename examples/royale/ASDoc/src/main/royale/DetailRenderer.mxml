@@ -19,11 +19,22 @@ limitations under the License.
 -->
 <js:MXMLItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
                      xmlns:js="library://ns.apache.org/royale/basic"
+	 				 xmlns:html="library://ns.apache.org/royale/html"
+	  				 className="property"
                      width="100%">
     <fx:Script>
         <![CDATA[
             import valueObjects.ValueObject;
             
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				if (value.returnhref)
+					propertyTypeGroup.removeElement(label);
+				else
+					propertyTypeGroup.removeElement(link);
+			}
+			
             [Bindable("dataChange")]
             public function get obj():ValueObject
             {
@@ -37,9 +48,23 @@ limitations under the License.
         <js:VerticalFlexLayout />
         <js:ItemRendererDataBinding />
     </js:beads>
-    <js:Spacer height="2"/>
-    <js:Label width="100%" style="fontWeight:bold;text-indent:10px" text="{obj.qname}"/>
-    <js:Spacer height="2"/>
-    <js:MultilineLabel id="description" width="100%" text="{obj.description}" style="text-indent:5px"/>
-    <js:Spacer height="7"/>
+    <js:Group>
+      <js:beads>
+        <js:HorizontalLayout />
+      </js:beads>
+      <js:Label className="propertyQNameTitle" text="{obj.qname}"/>
+      <js:Label text="property"/>
+    </js:Group>
+    <js:Group id="propertyTypeGroup" className="propertyTypeGroup">
+      <js:beads>
+        <js:HorizontalLayout />
+      </js:beads>
+      <js:Label className="propertyQName" text="{ValueObject(data).qname}" />
+      <js:Label text=":" />
+      <js:Label id="label" className="propertyType" text="{ValueObject(data).return}" />
+      <html:A id="link" className="propertyTypeLink" text="{ValueObject(data).return}" href="{ValueObject(data).returnhref}" />
+    </js:Group>
+	<js:DataContainer id="attributes" className="attributeList" dataProvider="{ValueObject(data).attributes}" 
+	     itemRenderer="AttributeRenderer" width="100%"/>
+    <js:MultilineLabel id="description" width="100%" text="{obj.description}"/>
 </js:MXMLItemRenderer>

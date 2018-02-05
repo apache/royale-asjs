@@ -221,11 +221,19 @@ package models
                         _constructorList.push(m);
                     }
                     else if (m.qname != data.qname)
-                        _publicMethods.push(m);
+                        addIfNeededAndMakeAttributes(_publicMethods, m);
                 }
                 else
                 {
-                    _publicProperties.push(m);
+                    addIfNeededAndMakeAttributes(_publicProperties, m);
+                }
+                if (masterData.classnames.indexOf(m.return) != -1)
+                {
+                    var href:String = m.return;
+                    var c:int = href.lastIndexOf(".");
+                    if (c != -1)
+                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    m.returnhref = "#!" +href;
                 }
                     
             }
@@ -259,6 +267,79 @@ package models
             }
         }
         
+        private function addIfNeededAndMakeAttributes(arr:Array, data:Object):void
+        {
+        	var n:int = arr.length;
+        	for (var i:int = 0; i < n; i++)
+        	{
+        		var obj:Object = arr[i];
+        		if (obj.qname == data.qname)
+        		{
+        			// if no description and the base definition has one
+        			// then use base description
+        			if (obj.description == "" && data.description != "")
+        			{
+        			    addAttributes(data, data);
+        				arr.splice(i, 1, data);
+        			}
+        			else
+        			{
+        				addAttributes(obj, data);
+        			}
+        			return;
+        		}
+        	}
+        	addAttributes(data, data);
+        	arr.push(data);
+        }
+
+		private function addAttributes(dest:Object, src:Object):void
+		{
+			if (!src.tags) return;
+			
+			var arr:Array;
+        	if (!dest.attributes)
+        	{
+        	    dest.attributes = [];
+        	}
+        	arr = dest.attributes;
+        	var map:Object = {};
+        	for (var tag:Object in arr)
+        	{
+        		map[tag.name] = tag.value;
+        	}
+        	var n:int = src.tags.length;
+            for (var i:int = 0; i < n; i++)
+            {
+            	tag = src.tags[i];
+            	var obj:Object = {};
+                var k:String = tagNameMap[tag.tagName];
+                if (k != null)
+                    obj.name = k;
+                else
+                    obj.name = tag.tagName;
+                var s:String = "";
+                var firstOne:Boolean = true;
+                var o:Array = tag.values;
+                for each (var q:String in o)
+                {
+                    if (!firstOne)
+                        s += ", ";
+                    firstOne = false;
+                    s += q;
+                }
+                if (map[obj.name])
+                {
+                	map[obj.name].value += "," + s;
+                }
+                else
+                {
+	                obj.value = s;
+                    arr.push(obj);
+                }
+            }
+		}
+		
         private function computeFileName(input:String):String
         {
             return input.replace(new RegExp("\\.", "g"), "/") + ".json";     

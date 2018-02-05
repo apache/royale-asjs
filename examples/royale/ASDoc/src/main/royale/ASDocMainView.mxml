@@ -104,10 +104,11 @@ limitations under the License.
 	    @namespace rs "library://ns.apache.org/royale/site";
 	    
         .sectionLabel{
+        	padding-top: 3px;
+        	padding-bottom: 3px;
             font-size: 16px;
             font-weight: bold;
-            background-color: black;
-            color: white;
+            background-color: rgb( 253, 171, 125);
             text-align: center;
         }
         
@@ -122,6 +123,7 @@ limitations under the License.
         }
         
         .paneTitle {
+        	padding-left: 20px;
         	font-size: 24px;
             font-weight: bold;
             background-color: rgb( 253, 171, 125);
@@ -144,6 +146,11 @@ limitations under the License.
         
         OptionalHashAnchorStringItemRenderer {
             padding-right: 3px;
+        }
+        
+        .summary {
+        	padding-top:3px;
+        	padding-bottom:3px;
         }
         
         .detailCaption {
@@ -169,6 +176,53 @@ limitations under the License.
         
         .attributeCaption {
             font-weight: bold;
+        }
+        
+        .summaryQName {
+            font-weight: bold;
+            margin-left: 10px;
+            margin-top: 3px;
+        }
+        .summaryType {
+        }
+        .summaryTypeLink {
+            text-decoration: none;
+        }
+        .summaryDescription {
+            margin-left: 10px;
+            margin-bottom: 3px;
+        }
+        
+        .summaryList {
+        	margin-bottom: 20px;
+        	border-style: solid;
+        }
+        
+        .detailList {
+        	margin-bottom: 20px;
+        }
+        
+        .property {
+        	padding-left: 20px;
+        	padding-right: 10px;
+        	padding-bottom: 20px;
+        	border-bottom-style: solid;
+        }
+        .propertyQName {
+        	font-family: monospace;
+        }
+        .propertyType {
+        	font-family: monospace;
+        }
+        .propertyQNameTitle {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 3px;
+            margin-right: 3px;
+        }
+        .propertyTypeLink {
+            text-decoration: none;
+        	font-family: monospace;
         }
         
 	</fx:Style>
@@ -260,19 +314,19 @@ limitations under the License.
 	                itemRenderer="AttributeRenderer" width="100%"/>
 	            <js:MultilineLabel id="description" className="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
 	            <js:Label text="Public Properties" className="sectionLabel"/>
-	            <js:List id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
+	            <js:List className="summaryList" id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
 	                     itemRenderer="SummaryRenderer" width="100%"/>
 	            <js:Label text="Public Methods" className="sectionLabel"/>
-	            <js:List id="publicMethodList" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
+	            <js:List className="summaryList" id="publicMethodList" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
 	                     itemRenderer="SummaryRenderer" width="100%"/>
 	            <js:Label text="Property Details" className="sectionLabel"/>
-	            <js:DataContainer id="propertyDetails" dataProvider="{ASDocModel(applicationModel).publicProperties}" 
+	            <js:DataContainer className="detailList" id="propertyDetails" dataProvider="{ASDocModel(applicationModel).publicProperties}" 
 	                              itemRenderer="DetailRenderer" width="100%"/>
 	            <js:Label text="Constructor Details" className="sectionLabel"/>
-	            <js:DataContainer id="constructorDetails" dataProvider="{ASDocModel(applicationModel).constructorList}" 
+	            <js:DataContainer className="detailList" id="constructorDetails" dataProvider="{ASDocModel(applicationModel).constructorList}" 
 	                              itemRenderer="DetailRenderer" width="100%"/>
 	            <js:Label text="Method Details" className="sectionLabel"/>
-	            <js:DataContainer id="MethodDetails" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
+	            <js:DataContainer className="detailList" id="MethodDetails" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
 	                              itemRenderer="DetailRenderer" width="100%"/>
 	        </js:Group>
         </js:Container>

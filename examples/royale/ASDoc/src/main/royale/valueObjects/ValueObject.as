@@ -22,6 +22,10 @@ package valueObjects
 	public class ValueObject
 	{
 		public var qname:String;
+		public var shortDescription:String;
 		public var description:String;
+		public var return:String;
+		public var returnhref:String;
+		public var attributes:Array;
 	}
 }
