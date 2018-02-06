@@ -61,7 +61,7 @@ initialize="addEventListener('dataReady', dataReadyHandler);configurator.send()"
             data.author = authorObj["name"];
             // clip date after yyyy-mm-dd
             data.date = authorObj["date"].substr(0, 10);
-            data.message = commitObj.message;
+            data.message = commitObj["message"];
             commits.push(data);
         }
         if (currentIndex < repos.length)
