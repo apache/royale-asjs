@@ -590,10 +590,15 @@ package models
                         obj.name = p;
                     var s:String = "";
                     var firstOne:Boolean = true;
+                    var joiner:String = ", ";
+                    if (obj.name == "commentary")
+                    	joiner = "  ";
+                    if (obj.name == "example")
+                        joiner = "<br/>";
                     for each (var q:String in o)
                     {
                         if (!firstOne)
-                            s += ", ";
+                            s += joiner;
                         firstOne = false;
                         s += q;
                     }
