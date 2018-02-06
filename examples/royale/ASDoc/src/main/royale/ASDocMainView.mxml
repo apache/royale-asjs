@@ -165,17 +165,17 @@ limitations under the License.
             		popUpList.width = searchTI.width;
             		popUpList.height = 200;
             	}
+                filterRegEx = new RegExp(searchTI.text,"i");
             	var arr:Array = (applicationModel as ASDocModel).allClasses.filter(filterClasses, this);
             	if (arr.length < max_results)
 	            	popUpList.dataProvider = arr;
 	            else
 	            	popUpList.dataProvider = too_many;
             }
-            
+            private var filterRegEx:RegExp;
             private function filterClasses(item:String):Boolean
             {
-            	var regex:RegExp = new RegExp(searchTI.text);
-            	return regex.test(item);
+            	return filterRegEx.test(item);
             }
             
 		]]>
