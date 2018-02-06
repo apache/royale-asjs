@@ -21,12 +21,12 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/royale/express">
     <fx:Script>
         <![CDATA[
+			import models.ProductsModel;
+			
 			import org.apache.royale.collections.ArrayList;
 			import org.apache.royale.express.DataGrid;
+			
 			import products.Product;
-			import models.ProductsModel;
-
-			[Bindable]private var provider:ArrayList = new ArrayList();
 			
 			override public function toString():String
 			{
@@ -39,26 +39,9 @@ limitations under the License.
 				trace("Click on row "+grid.selectedIndex);
 			}
 			
-			private function setProvider():void{
-				provider.source = [
-					new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
-					new Product("tx200","Thingys",5,285,"assets/smallgreenrect.jpg"),
-					new Product("rz300","Sprockets",80,105,"assets/smallyellowrect.jpg"),
-					new Product("dh440","Doohickies",10,340,"assets/smallredrect.jpg"),
-					new Product("ps220","Weejets",35,190,"assets/smallorangerect.jpg")
-				];
-				
-			}
-			private function addToProvider():void{
-				var num:Number = Number((Math.random()*1000).toFixed());
-				provider.addItem(
-					new Product("ps" + num,"Weejets",35,num,"assets/smallorangerect.jpg")
-				);
-			}
-			
 			private function addNewValue():void {
 				var item:String = newValue.text;
-				if (item == "") item = "New Value";
+				if (item == "" || item == null) item = "New Value";
 				var num:Number = Number((Math.random()*100).toFixed());
 				var product:Product = new Product("abc123", item, 30, num, "assets/smallorangerect.jpg");
 				(applicationModel as ProductsModel).productList.addItem(product);
@@ -116,8 +99,8 @@ limitations under the License.
 		</js:beads>
 		<js:columns>
 			<js:DataGridColumn label="Image" dataField="image" columnWidth="50" itemRenderer="products.ProductItemRenderer" />
-			<js:DataGridColumn label="Name" dataField="title" columnWidth="250" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+			<js:DataGridColumn label="Name" dataField="title" columnWidth="100%" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="80" />
 		</js:columns>
 	</js:DataGrid>
 	
@@ -153,8 +136,8 @@ limitations under the License.
 		</js:beads>
 		<js:columns>
 			<js:DataGridColumn label="Image" dataField="image" columnWidth="50" itemRenderer="products.ProductItemRenderer" />
-			<js:DataGridColumn label="Name" dataField="title" columnWidth="250" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+			<js:DataGridColumn label="Name" dataField="title" columnWidth="100%" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="80" />
 		</js:columns>
 	</js:DataGrid>
 

@@ -72,7 +72,7 @@ initialize="addEventListener('dataReady', dataReadyHandler);configurator.send()"
 
     private function dataReadyHandler(event:Event):void
     {
-        dg.dataProvider = new ArrayList(commits);
+        dg.dataProvider = commits; //new ArrayList(commits);
     }
 
 ]]>
@@ -87,7 +87,7 @@ initialize="addEventListener('dataReady', dataReadyHandler);configurator.send()"
             <js:columns>
                 <js:DataGridColumn label="Date" dataField="date" columnWidth="100"/>
                 <js:DataGridColumn label="Author" dataField="author" columnWidth="100"/>
-                <js:DataGridColumn label="Message" dataField="message" columnWidth="400"/>
+                <js:DataGridColumn label="Message" dataField="message" columnWidth="100%"/>
             </js:columns>
         </js:DataGrid>
         <js:Label text="Selected Message:"/>
