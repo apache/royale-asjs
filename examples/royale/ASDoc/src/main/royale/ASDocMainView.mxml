@@ -257,6 +257,7 @@ limitations under the License.
         
         .attributeCaption {
             font-weight: bold;
+            margin-right: 3px;
         }
         
         .summaryQName {
