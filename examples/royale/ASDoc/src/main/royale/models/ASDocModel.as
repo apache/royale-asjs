@@ -22,6 +22,7 @@ package models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import valueObjects.DataVO;
 	
 	public class ASDocModel extends EventDispatcher implements IBeadModel
 	{
@@ -59,7 +60,7 @@ package models
         {
             app.service.removeEventListener("complete", configCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
-            tagNameMap = config.tagNames;
+            tagNameMap = config["tagNames"];
             
             app.service.addEventListener("complete", tagsCompleteHandler);
             app.service.url = "tags.json";
@@ -70,7 +71,7 @@ package models
         {
             app.service.removeEventListener("complete", tagsCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
-            _knownTags = config.tags;
+            _knownTags = config["tags"];
             
             app.service.addEventListener("complete", completeHandler);
             app.service.url = "classlist.json";
@@ -81,7 +82,7 @@ package models
         
         public function get allClasses():Array
         {
-        	return masterData.classnames;
+        	return masterData["classnames"];
         }
         
         private function completeHandler(event:Event):void
@@ -94,7 +95,7 @@ package models
         private function filterPackageList():void
         {
             var packages:Object = {};
-            for each (var qname:String in masterData.classnames)
+            for each (var qname:String in masterData["classnames"])
             {
                 var packageName:String;
                 var c:int = qname.lastIndexOf(".")
@@ -202,7 +203,7 @@ package models
         private function completeClassHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeClassHandler);
-            var data:Object = JSON.parse(app.service.data);
+            var data:DataVO = new DataVO(JSON.parse(app.service.data));
             if (_currentClassData == null)
             {
                 _currentClassData = data;
@@ -233,7 +234,7 @@ package models
                 {
                     addIfNeededAndMakeAttributes(_publicProperties, m);
                 }
-                if (masterData.classnames.indexOf(m.return) != -1)
+                if (masterData["classnames"].indexOf(m.return) != -1)
                 {
                     var href:String = m.return;
                     var c:int = href.lastIndexOf(".");
@@ -250,7 +251,7 @@ package models
             {
                 m.shortDescription = makeShortDescription(m.description);
                 addIfNeededAndMakeAttributes(_publicEvents, m);
-                if (masterData.classnames.indexOf(m.type) != -1)
+                if (masterData["classnames"].indexOf(m.type) != -1)
                 {
                     href = m.type;
                     c = href.lastIndexOf(".");
@@ -382,7 +383,7 @@ package models
 			for (var i:int = 0; i < n; i++)
 			{
 				var param:Object = data.params[i];
-				if (masterData.classnames.indexOf(param.type) != -1)
+				if (masterData["classnames"].indexOf(param.type) != -1)
 				{
                     var href:String = param.type;
                     var c:int = href.lastIndexOf(".");
@@ -415,7 +416,7 @@ package models
         private function completeInterfaceHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeInterfaceHandler);
-            var data:Object = JSON.parse(app.service.data);
+            var data:DataVO = new DataVO(JSON.parse(app.service.data));
             if (_currentClassData == null)
             {
                 _currentClassData = data;
@@ -452,7 +453,7 @@ package models
             {
                 m.shortDescription = makeShortDescription(m.description);
                 addIfNeededAndMakeAttributes(_publicEvents, m);
-                if (masterData.classnames.indexOf(m.type) != -1)
+                if (masterData["classnames"].indexOf(m.type) != -1)
                 {
                     var href:String = m.type;
                     var c:int = href.lastIndexOf(".");
@@ -550,7 +551,7 @@ package models
                     	if (c != -1)
                     		end = end.substr(c + 1);
                         var data:Object = {label: end };
-                        if (masterData.classnames.indexOf(p) != -1)
+                        if (masterData["classnames"].indexOf(p) != -1)
                         {
                         	c = p.lastIndexOf(".");
                         	if (c != -1)
