@@ -40,11 +40,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.beads.models.ScrollBarModel;
-	import org.apache.royale.html.beads.models.SingleLineBorderModel;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
-	import org.apache.royale.html.supportClasses.ScrollBar;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.

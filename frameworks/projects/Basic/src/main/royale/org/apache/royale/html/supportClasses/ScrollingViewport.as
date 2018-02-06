@@ -30,6 +30,8 @@ package org.apache.royale.html.supportClasses
     COMPILE::SWF
     {
         import org.apache.royale.core.IViewportScroller;
+		import org.apache.royale.html.beads.ScrollBarView;
+		import org.apache.royale.html.beads.models.ScrollBarModel;
 		import org.apache.royale.utils.CSSContainerUtils;
 		import flash.geom.Rectangle;
 		import org.apache.royale.geom.Rectangle;
@@ -37,8 +39,6 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Size;
-	import org.apache.royale.html.beads.ScrollBarView;
-	import org.apache.royale.html.beads.models.ScrollBarModel;
 	import org.apache.royale.geom.Rectangle;
 
 	/**

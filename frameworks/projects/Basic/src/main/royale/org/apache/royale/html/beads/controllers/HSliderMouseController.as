@@ -30,7 +30,6 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.beads.ISliderView;
-	import org.apache.royale.html.beads.SliderTrackView;
 
     COMPILE::JS
     {
@@ -38,8 +37,6 @@ package org.apache.royale.html.beads.controllers
         import goog.events.EventType;
         import org.apache.royale.events.BrowserEvent;
         import org.apache.royale.html.Slider;
-        import org.apache.royale.html.beads.SliderThumbView;
-        import org.apache.royale.html.beads.SliderTrackView;
     }
 	
 	/**
