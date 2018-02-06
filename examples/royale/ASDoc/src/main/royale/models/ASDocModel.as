@@ -271,13 +271,15 @@ package models
                 }
             }
 
-            if (data.type == "class" && data.baseClassname && data.baseClassname.indexOf("flash.") != 0)
+            if (data.type == "class" && data.baseClassname && 
+            	data.baseClassname.indexOf("flash.") != 0  && data.baseClassname.indexOf("goog.") != 0)
             {
                 app.service.addEventListener("complete", completeClassHandler);
                 app.service.url = computeFileName(data.baseClassname);
                 app.service.send();
             }
-            else if (data.type == "interface" && data.baseInterfaceNames && data.baseInterfaceNames[0].indexOf("flash.") != 0)
+            else if (data.type == "interface" && data.baseInterfaceNames && 
+            	data.baseInterfaceNames[0].indexOf("flash.") != 0 && data.baseInterfaceNames[0].indexOf("goog.") != 0)
             {
                 app.service.addEventListener("complete", completeInterfaceHandler);
                 extensions = data.baseInterfaceNames;
@@ -592,9 +594,9 @@ package models
                     var s:String = "";
                     var firstOne:Boolean = true;
                     var joiner:String = ", ";
-                    if (obj.name == "commentary")
+                    if (p == "commentary")
                     	joiner = "  ";
-                    if (obj.name == "example")
+                    if (p == "example")
                     {
                         joiner = "<br/>";
                         firstOne = false;
