@@ -27,8 +27,11 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
 			import models.ASDocModel;
+            import org.apache.royale.core.ClassFactory;
             import org.apache.royale.events.Event;
             import org.apache.royale.events.DetailEvent;
+            import org.apache.royale.html.List;
+            import org.apache.royale.utils.PointUtils;
 			
             private function packagesReadyHandler(event:Event):void
             {
@@ -73,6 +76,12 @@ limitations under the License.
             
             private function updateView():void
             {
+            	if (popUpList)
+            	{
+            		removeElement(popUpList);
+            		popUpList = null;
+            		searchTI.text = "";
+            	}
             	var hash:String = router.hash;
             	if (hash.substr(0,2) == "#!")
             	  hash = hash.substring(2);
@@ -130,6 +139,45 @@ limitations under the License.
             		document.getElementById(findMember).scrollIntoView();
             	}
             }
+            
+            private var popUpList:List;
+            private var max_results:int = 200;
+            private var too_many:Array = [ "Too many search results" ];
+            
+            private function search():void
+            {
+            	if (!popUpList)
+            	{
+            		popUpList = new List();
+            		popUpList.itemRenderer = new ClassFactory(ClassPickerHashAnchorStringItemRenderer);
+            		popUpList.dataProvider = too_many;
+            		addElement(popUpList);
+            		COMPILE::JS
+            		{
+            			popUpList.positioner.style.position = "absolute";
+            			popUpList.positioner.style.backgroundColor = "#fff";
+            		}
+            		var pt:Point = new Point(searchTI.x, searchTI.y);
+            		pt.y += searchTI.height;
+            		//pt = PointUtils.localToGlobal(pt, titleGroup); // probably need this after we fix x,y
+            		popUpList.x = pt.x;
+            		popUpList.y = pt.y;
+            		popUpList.width = searchTI.width;
+            		popUpList.height = 200;
+            	}
+            	var arr:Array = (applicationModel as ASDocModel).allClasses.filter(filterClasses, this);
+            	if (arr.length < max_results)
+	            	popUpList.dataProvider = arr;
+	            else
+	            	popUpList.dataProvider = too_many;
+            }
+            
+            private function filterClasses(item:String):Boolean
+            {
+            	var regex:RegExp = new RegExp(searchTI.text);
+            	return regex.test(item);
+            }
+            
 		]]>
     </fx:Script>
 	<fx:Style>
@@ -286,6 +334,14 @@ limitations under the License.
             margin-top: 3px;
         }
         
+        .findClassLabel {
+        	padding-right: 3px;
+        }
+        
+        .searchTI {
+        	width: 300px;
+        }
+        
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
@@ -306,9 +362,13 @@ limitations under the License.
     <rs:DocTagline />
     <js:Group width="100%" id="titleGroup" className="titleGroup">
         <js:beads>
-            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="title" />
+            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="spacer" />
         </js:beads>
         <js:Label text="Apache Royale ActionScript Library Reference" id="title" height="30" className="title"/>
+        <js:Spacer width="20" />
+        <js:Label text="Find a class" className="findClassLabel"/>
+        <js:TextInput id="searchTI" className="searchTI" change="search()" />
+        <js:Spacer id="spacer" />
         <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
         <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
     </js:Group>

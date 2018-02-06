@@ -79,6 +79,11 @@ package models
         
         private var masterData:Object;
         
+        public function get allClasses():Array
+        {
+        	return masterData.classnames;
+        }
+        
         private function completeHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeHandler);
