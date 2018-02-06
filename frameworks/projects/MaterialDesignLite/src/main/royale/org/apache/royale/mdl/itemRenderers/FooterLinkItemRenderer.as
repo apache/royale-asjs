@@ -126,7 +126,7 @@ package org.apache.royale.mdl.itemRenderers
 		}
 
         COMPILE::JS
-        private var link:HTMLElement;
+        protected var link:HTMLElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
