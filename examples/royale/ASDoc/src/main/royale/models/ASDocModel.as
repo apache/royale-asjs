@@ -594,7 +594,10 @@ package models
                     if (obj.name == "commentary")
                     	joiner = "  ";
                     if (obj.name == "example")
+                    {
                         joiner = "<br/>";
+                        firstOne = false;
+                    }
                     for each (var q:String in o)
                     {
                         if (!firstOne)
