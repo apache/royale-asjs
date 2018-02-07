@@ -39,19 +39,10 @@
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
-		<version>0.9.1-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>AlertExample.mxml</mainClass>
-          <debug>true</debug>
         </configuration>
-		<dependencies>
-          <dependency>
-            <groupId>org.apache.royale.compiler</groupId>
-            <artifactId>compiler-jx</artifactId>
-            <version>0.9.1-SNAPSHOT</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
   </build>
