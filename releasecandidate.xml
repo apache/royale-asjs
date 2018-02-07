@@ -642,8 +642,11 @@
             <arg value="release:branch" />
             <!--<arg value="-DpushChanges=false" />-->
             <arg value="-DbranchName=release/${release.version}" />
+            <arg value="-P" />
+            <!-- include all profiles that build so that the version update hits all of their poms -->
+            <arg value="build-examples,build-distribution,build-manualtests,run-testsuite" />
         </exec>
-        <antcall target="update_other_develop_poms" />
+        <!--<antcall target="update_other_develop_poms" />-->
     </target>
     
     <!-- The use-latest-version may require that the build has built the framework projects so
