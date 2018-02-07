@@ -646,7 +646,7 @@
             <!-- include all profiles that build so that the version update hits all of their poms -->
             <arg value="build-examples,build-distribution,build-manualtests,run-testsuite" />
         </exec>
-        <!--<antcall target="update_other_develop_poms" />-->
+        <antcall target="update_other_develop_poms" />
     </target>
     
     <!-- The use-latest-version may require that the build has built the framework projects so
@@ -658,52 +658,6 @@
         </exec>
         <xmlproperty file="${asjs}/pom.xml" prefix="pom"/>
         <echo>next version is: ${pom.project.version}</echo>
-        <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
-            <arg value="versions:use-latest-versions" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
-            <arg value="versions:use-latest-versions" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
-            <arg value="versions:use-latest-versions" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
-            <arg value="versions:set" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
-            <arg value="versions:set" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DupdateAllModules=true" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
-            <arg value="versions:update-parent" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}/distribution" failonerror="true" >
-            <arg value="versions:update-parent" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
-            <arg value="versions:update-parent" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}/testsuite" failonerror="true" >
-            <arg value="versions:update-parent" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-        </exec>
         <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
             <arg value="versions:set-property" />
             <arg value="-DgenerateBackupPoms=false" />
@@ -726,6 +680,20 @@
             <arg value="-DnewVersion=${pom.project.version}" />
         </exec>
         <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/archetypes" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}/manualtests" failonerror="true" >
             <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
             <arg value="-DgenerateBackupPoms=false" />
             <arg value="-DallowSnapshots=true" />
