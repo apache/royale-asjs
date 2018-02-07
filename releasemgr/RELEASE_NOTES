@@ -1,3 +1,12 @@
+Apache Royale 0.9.1
+===================
+
+This release contains:
+
+- fixes to NPM packaging 
+- GitHubCommitsLogViewer example that provides the source code for a tutorial in the documentation
+- NestedStringItemRenderer for displaying data from sub-objects in DataGrids
+
 Apache Royale 0.9.0
 ===================
 
