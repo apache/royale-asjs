@@ -1095,7 +1095,7 @@ ${my.name}
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
         <antcall target="release.maven.staging.repo" />
-        <echo>Also run the release.npm and release.npm.swf targets</echo>
+        <echo>Also run the release.npm target</echo>
 	</target>
 
     <target name="release.tag" depends="check-royale-asjs, check-royale-typedefs, check-royale-compiler">
@@ -1167,7 +1167,10 @@ ${my.name}
         <replace file="${asjs}/package.json"
             token="version&quot;: &quot;${release.version}"
             value="version&quot;: &quot;${new.release.version}" />
-        <replace file="${asjs}/npm/package.json"
+        <replace file="${asjs}/npm/js-only/package.json"
+            token="version&quot;: &quot;${release.version}"
+            value="version&quot;: &quot;${new.release.version}" />
+            <replace file="${asjs}/npm/js-swf/package.json"
             token="version&quot;: &quot;${release.version}"
             value="version&quot;: &quot;${new.release.version}" />
         <replace
@@ -1342,7 +1345,9 @@ ${my.name}
 
     <target name="release.npm" depends="check-name-and-svn">
         <input
-        message="To publish the npm artifacts, you must first run 'npm login' and login as apache-royale with the password from the private@ list and the email private@royale.apache.org.  Press any key to continue"/>
+        message="To publish the npm artifacts, enter the npm password from the private@ list"
+        addproperty="npm.password"/>
+        
         <available file="${svn.dist.release}"
         type="dir"
         property="dist.release" value="${svn.dist.release}" />
@@ -1350,25 +1355,22 @@ ${my.name}
         <fail message="The svn.dist.release property is not set to the working copy for https://dist.apache.org/repos/dist/release."
         unless="dist.release"/>
         
-        <exec executable="npm" failonerror="true">
-            <arg value="publish" />
-            <arg value="${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js.tar.gz" />
+        <exec executable="npm" dir="${asjs}/npm/release-scripts" failonerror="true">
+            <arg value="install" />
         </exec>
-    </target>
-    
-    <target name="release.npm.swf" depends="check-name-and-svn">
-        <input
-        message="To publish the npm artifacts, you must first run 'npm login' and login as apache-royale-swf with the password from the private@ list and the email private@royale.apache.org.  Press any key to continue"/>
-        <available file="${svn.dist.release}"
-        type="dir"
-        property="dist.release" value="${svn.dist.release}" />
-        
-        <fail message="The svn.dist.release property is not set to the working copy for https://dist.apache.org/repos/dist/release."
-        unless="dist.release"/>
-        
-        <exec executable="npm" failonerror="true">
-            <arg value="publish" />
-            <arg value="${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz" />
+        <exec executable="node" dir="${asjs}/npm/release-scripts" failonerror="true">
+            <arg value="publish.js" />
+            <arg value="--type=js-only" />
+            <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js.tar.gz" />
+            <arg value="--username=apache-royale-owner" />
+            <arg value="--password=${npm.password}" />
+        </exec>
+        <exec executable="node" dir="${asjs}/npm/release-scripts" failonerror="true">
+            <arg value="publish.js" />
+            <arg value="--type=js-swf" />
+            <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz" />
+            <arg value="--username=apache-royale-owner" />
+            <arg value="--password=${npm.password}" />
         </exec>
     </target>
 

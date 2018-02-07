@@ -191,11 +191,19 @@ You can use NPM to get a pre-built package.  To do so run:
 
 On Mac:
 
-  sudo npm install royale -g
+  sudo npm install @apache-royale/royale-js -g
+
+or for both JS and SWF output:
+
+  sudo npm install @apache-royale/royale-js-swf -g
 
 On Windows:
 
-  npm install royale -g
+  npm install @apache-royale/royale-js -g
+
+or for both JS and SWF output:
+
+  npm install @apache-royale/royale-js-swf -g
 
 
 Using Royale
