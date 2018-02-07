@@ -49,6 +49,7 @@
     <module>RoyaleStore_jquery</module>
     <module>RoyaleTeamPage_MDL</module>
     <module>RoyaleThemes</module>
+    <module>RoyaleWebsite</module>
     <module>RoyaleWebsiteStatsViewer</module>
     <module>HelloWorld</module>
     <module>HTMLElements</module>
