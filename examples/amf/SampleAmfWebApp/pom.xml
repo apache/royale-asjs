@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-amf-server</artifactId>
-    <version>0.9.2-SNAPSHOT</version>
+    <version>0.9.1-SNAPSHOT</version>
   </parent>
   
   <artifactId>sampleamfwebapp</artifactId>
-  <version>0.9.2-SNAPSHOT</version>
+  <version>0.9.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <properties>
@@ -103,7 +103,7 @@
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RemoteObjectAMFTest</artifactId>
-      <version>0.9.2-SNAPSHOT</version>
+      <version>0.9.1-SNAPSHOT</version>
       <type>war</type>
     </dependency>
 
