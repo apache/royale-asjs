@@ -35,6 +35,7 @@
   <modules>
     <module>DataBindingExample</module>
     <module>DataGridExample</module>
+    <module>GitHubCommitLogViewer</module>
   </modules>
 
   <build>
