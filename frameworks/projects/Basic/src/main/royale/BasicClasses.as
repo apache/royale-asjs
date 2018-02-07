@@ -203,6 +203,7 @@ internal class BasicClasses
     import org.apache.royale.html.supportClasses.DateChooserList; DateChooserList;
     import org.apache.royale.html.supportClasses.DateItemRenderer; DateItemRenderer;
 	import org.apache.royale.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
+	import org.apache.royale.html.supportClasses.NestedStringItemRenderer; NestedStringItemRenderer;
 
     import org.apache.royale.html.beads.TitleBarView; TitleBarView;
     import org.apache.royale.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
