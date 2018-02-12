@@ -29,7 +29,7 @@
     "wrench": "^1.5.8"
   },
   "scripts": {
-    "postinstall": "node royale-asjs/npm/dependencies/download_dependencies.js"
+    "postinstall": "node royale-asjs/npm/js-swf/dependencies/download_dependencies.js"
   },
   "bin": {
     "asjsc": "./royale-asjs/js/bin/asjscnpm",
