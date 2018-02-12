@@ -499,13 +499,9 @@
             <arg value="pom.xml" />
         </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
-            <arg value="add" />
-            <arg value="examples/royale/MDLBlogExample/pom.xml" />
-        </exec>
-        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="commit" />
             <arg value="-m" />
-            <arg value="remove SNAPSHOT from compiler-build-tools versions" />
+            <arg value="remove SNAPSHOT from compiler and typedefs versions" />
         </exec>
     </target>
     
@@ -598,8 +594,35 @@
             <!--<arg value="-DpushChanges=false" />-->
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
+        <antcall target="update_other_typedef_develop_poms" />
     </target>
-    
+
+    <target name="update_other_typedef_develop_poms" depends="check-royale-typedefs">
+        <exec executable="${git}" dir="${typedefs}" failonerror="false" >
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+        <xmlproperty file="${typedefs}/pom.xml" prefix="pom"/>
+        <echo>next version is: ${pom.project.version}</echo>
+        <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.compiler.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update other poms to next version" />
+        </exec>
+        <echo>run git show in royale-asjs to double-check the last commit then run git-push</echo>
+    </target>
+
     <target name="maven.prepare.typedefs">
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html -->
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
@@ -649,8 +672,6 @@
         <antcall target="update_other_develop_poms" />
     </target>
     
-    <!-- The use-latest-version may require that the build has built the framework projects so
-         you may need to let a build run, then run this target separately -->
     <target name="update_other_develop_poms" depends="check-royale-asjs">
         <exec executable="${git}" dir="${asjs}" failonerror="false" >
             <arg value="checkout" />
@@ -658,27 +679,6 @@
         </exec>
         <xmlproperty file="${asjs}/pom.xml" prefix="pom"/>
         <echo>next version is: ${pom.project.version}</echo>
-        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
-            <arg value="versions:set-property" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-            <arg value="-Dproperty=royale.framework.version" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
-            <arg value="versions:set-property" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-            <arg value="-Dproperty=royale.compiler.version" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
-            <arg value="versions:set-property" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-            <arg value="-Dproperty=royale.typedefs.version" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
         <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
             <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
             <arg value="-DgenerateBackupPoms=false" />
@@ -698,6 +698,27 @@
             <arg value="-DgenerateBackupPoms=false" />
             <arg value="-DallowSnapshots=true" />
             <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.typedefs.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.compiler.version" />
             <arg value="-DnewVersion=${pom.project.version}" />
         </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >

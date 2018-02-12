@@ -352,6 +352,7 @@
             reportFile="${src.rat.report}">
             <fileset dir="${basedir}/${package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
                 <exclude name="royale-asjs/DEPENDENCIES"/>
@@ -414,6 +415,7 @@
             reportFile="${bin.rat.report}">
             <fileset dir="${basedir}/${bin.package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
                 <exclude name="royale-asjs/DEPENDENCIES"/>
@@ -474,6 +476,7 @@
                 <exclude name="royale-asjs/frameworks/libs/Mobile.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Network.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Reflection.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/RoyaleSite.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Storage.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/TLF.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Testing.swc"/>
@@ -501,6 +504,7 @@
                 <exclude name="royale-asjs/frameworks/js/libs/MobileJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/NetworkJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/ReflectionJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/RoyaleSiteJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/StorageJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TLFJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TestingJS.swc"/>
