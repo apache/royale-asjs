@@ -42,10 +42,8 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.geom.Rectangle;
 
 	/**
-	 * The VScrollViewport extends the Viewport class by adding horizontal and
-	 * vertical scroll bars, if needed, to the content area of a Container. In
-	 * addition, the content of the Container is clipped so that items extending
-	 * outside the Container are hidden and reachable only by scrolling.
+	 * The VScrollViewport extends the ScrollingViewport class and limts scrolling
+	 * to only vertical scroll bars.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -69,14 +67,14 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		// These shuould be disabled for VScroll
-		// public function get horizontalScrollPosition():Number
-		// {
-		// 	return this.contentView.positioner.scrollLeft;
-		// }
-		// public function set horizontalScrollPosition(value:Number):void
-		// {
-		// 	this.contentView.positioner.scrollLeft = value;
-		// }
+		override public function get horizontalScrollPosition():Number
+		{
+			return 0;
+		}
+		override public function set horizontalScrollPosition(value:Number):void
+		{
+			// Do nothing
+		}
 		
 		/**
 		 * @royaleignorecoercion HTMLElement 
@@ -186,7 +184,6 @@ package org.apache.royale.html.supportClasses
 			var host:UIBase = UIBase(_strand);
 			
 			var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;
-			// var hadH:Boolean = _horizontalScroller != null && _horizontalScroller.visible;
 			
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
@@ -197,13 +194,10 @@ package org.apache.royale.html.supportClasses
 			hostHeight -= borderMetrics.top + borderMetrics.bottom;
 			
 			var needV:Boolean = contentSize.height > viewportHeight;
-			// var needH:Boolean = contentSize.width > viewportWidth;
 			
 			// if sized to content, the container should stretch to fit, making the original
 			// viewport dimensions obsolete and scrollbars unnecessary.
 			// This might not work for the flexible child.
-			// if (host.isWidthSizedToContent())
-			// 	needH = false;
 			if (host.isHeightSizedToContent())
 				needV = false;
 
@@ -214,13 +208,6 @@ package org.apache.royale.html.supportClasses
 					(_strand as IContainer).strandChildren.addElement(_verticalScroller);
 				}
 			}
-			// if (needH)
-			// {
-			// 	if (_horizontalScroller == null) {
-			// 		_horizontalScroller = createHorizontalScrollBar();
-			// 		(_strand as IContainer).strandChildren.addElement(_horizontalScroller);
-			// 	}
-			// }
 			
 			if (needV)
 			{
@@ -240,25 +227,6 @@ package org.apache.royale.html.supportClasses
 			else if (_verticalScroller) {
 				_verticalScroller.visible = false;
 			}
-			
-			// if (needH)
-			// {
-			// 	_horizontalScroller.visible = true;
-			// 	_horizontalScroller.x = 0;
-			// 	_horizontalScroller.y = UIBase(_strand).height - borderMetrics.bottom - _horizontalScroller.height;
-			// 	_horizontalScroller.setWidth(hostWidth - (needV ? _verticalScroller.width : 0), false);
-				
-			// 	ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;
-			// 	ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
-			// 	ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;
-				
-			// 	if (contentSize.width > contentArea.width &&
-			// 		(contentSize.width - contentArea.width) < _horizontalScrollPosition)
-			// 		_horizontalScrollPosition = contentSize.width - contentArea.width;
-			// } 
-			// else if (_horizontalScroller) {
-			// 	_horizontalScroller.visible = false;
-			// }
 			
 			var rect:flash.geom.Rectangle = new flash.geom.Rectangle(_horizontalScrollPosition, _verticalScrollPosition,
 				(_verticalScroller != null && _verticalScroller.visible) ? _verticalScroller.x : hostWidth,
@@ -284,23 +252,6 @@ package org.apache.royale.html.supportClasses
 			return vsb;
 		}
 
-		// private function createHorizontalScrollBar():ScrollBar
-		// {
-		// 	var hsbm:ScrollBarModel = new ScrollBarModel();
-		// 	hsbm.minimum = 0;
-		// 	hsbm.snapInterval = 1;
-		// 	hsbm.stepSize = 1;
-		// 	hsbm.value = 0;
-
-		// 	var hsb:HScrollBar;
-		// 	hsb = new HScrollBar();
-		// 	hsb.model = hsbm;
-		// 	hsb.visible = false;
-
-		// 	hsb.addEventListener("scroll",handleHorizontalScroll);
-		// 	return hsb;
-		// }
-
 		private function handleVerticalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
@@ -312,17 +263,6 @@ package org.apache.royale.html.supportClasses
 			_verticalScrollPosition = vpos;
 		}
 
-		// private function handleHorizontalScroll(event:Event):void
-		// {
-		// 	var host:UIBase = UIBase(_strand);
-		// 	var hpos:Number = ScrollBarModel(_horizontalScroller.model).value;
-		// 	var rect:flash.geom.Rectangle = contentArea.scrollRect;
-		// 	rect.x = hpos;
-		// 	contentArea.scrollRect = rect;
-
-		// 	_horizontalScrollPosition = hpos;
-		// }
-
 		private function handleVerticalScrollChange():void
 		{
 			if (_verticalScroller) {
@@ -330,11 +270,5 @@ package org.apache.royale.html.supportClasses
 			}
 		}
 
-		// private function handleHorizontalScrollChange():void
-		// {
-		// 	if (_horizontalScroller) {
-		// 		ScrollBarModel(_horizontalScroller.model).value = horizontalScrollPosition;
-		// 	}
-		// }
 	}
 }
