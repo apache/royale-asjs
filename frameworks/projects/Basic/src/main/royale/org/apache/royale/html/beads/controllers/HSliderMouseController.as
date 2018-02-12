@@ -30,7 +30,6 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.beads.ISliderView;
-	import org.apache.royale.html.beads.SliderTrackView;
 
     COMPILE::JS
     {
@@ -38,8 +37,6 @@ package org.apache.royale.html.beads.controllers
         import goog.events.EventType;
         import org.apache.royale.events.BrowserEvent;
         import org.apache.royale.html.Slider;
-        import org.apache.royale.html.beads.SliderThumbView;
-        import org.apache.royale.html.beads.SliderTrackView;
     }
 	
 	/**
@@ -228,7 +225,7 @@ package org.apache.royale.html.beads.controllers
 			goog.events.listen(host.element, goog.events.EventType.MOUSELEAVE,
 				handleThumbLeave, false, this);
             
-            mouseOrigin = bevent.clientX;
+            mouseOrigin = bevent.screenX; //.clientX;
             thumbOrigin = parseInt(thumb.element.style.left, 10);
             oldValue = rangeModel.value;
         }
@@ -294,10 +291,11 @@ package org.apache.royale.html.beads.controllers
         COMPILE::JS
         private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
         {
-            var deltaX:Number = (useOffset ? event.offsetX : event.clientX) - mouseOrigin;
+            var deltaX:Number = event.screenX - mouseOrigin;
+			if (deltaX == 0) return;
+			
             var thumbW:int = parseInt(thumb.element.style.width, 10) / 2;
-            var newX:Number = thumbOrigin + deltaX;
-			var newPointX:Number = newX + thumbW; // center of the thumb which represents the value
+			var newPointX:Number = thumbOrigin + deltaX;
 			
 			var useWidth:Number = parseInt(track.element.style.width,10) * 1.0;
 			var p:Number = newPointX / useWidth;

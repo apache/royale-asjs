@@ -20,15 +20,8 @@ package org.apache.royale.html
 {
 	import org.apache.royale.core.IAlertModel;
 	import org.apache.royale.core.IPopUp;
-	import org.apache.royale.core.UIBase;
 
-    COMPILE::JS
-    {
-        import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.events.Event;
-    }
-	
+    [Event(name="close", type="org.apache.royale.events.CloseEvent")]
 	/**
 	 *  The Alert class is a component that displays a message and one or more buttons
 	 *  in a view that pops up over all other controls and views. The Alert component
@@ -47,7 +40,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Alert extends UIBase implements IPopUp
+	public class Alert extends Group implements IPopUp
 	{
 		/**
 		 *  The bitmask button flag to show the YES button.
@@ -104,83 +97,27 @@ package org.apache.royale.html
 			className = "Alert";
 		}
 
-        COMPILE::JS
-        private var titleBar:TitleBar;
-        
-        COMPILE::JS
-        private var label:Label;
-        
-        COMPILE::JS
-        private var buttonArea:Container;
-        
-        /**
-         * @override
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            super.createElement();
-            
-            element.className = 'Alert';
-            
-            // add in a title bar
-            titleBar = new TitleBar();
-            addElement(titleBar);
-            titleBar.element.id = 'titleBar';
-            titleBar.percentWidth = 100;
-            titleBar.height = 24;
-            titleBar.element.style.top = "0px";
-            titleBar.element.style.right = "0px";
-            titleBar.element.style.left = "0px";
-            titleBar.element.style.marginBottom = "6px";
-
-            
-            label = new Label();
-            addElement(label);
-            label.element.style.display = "block";
-            label.element.style.padding = "6px";
-            label.element.style.left = "0px";
-            label.element.style.right = "0px";
-            label.element.style.whiteSpace = "normal";
-
-            label.element.id = 'message';
-            
-            // add a place for the buttons
-            buttonArea = new Container();
-            buttonArea.percentWidth = 100;
-            buttonArea.height = 30;
-            addElement(buttonArea);
-            buttonArea.element.style.marginTop = "6px";
-            buttonArea.element.style.marginBottom = "6px";
-            buttonArea.element.style.padding = "2px";
-            buttonArea.element.style.left = "0px";
-            buttonArea.element.style.right = "0px";
-            buttonArea.element.id = 'buttonArea';
-            
-            return element;
-        };
-		
-		// note: only passing parent to this function as I don't see a way to identify
-		// the 'application' or top level view without supplying a place to start to
-		// look for it.
-		/**
-		 *  This static method is a convenience function to quickly create and display an Alert. The
-		 *  text and parent paramters are required, the others will default.
-		 * 
-		 *  @param String text The message content of the Alert.
-		 *  @param Object parent The object that hosts the pop-up.
-		 *  @param String title An optional title for the Alert.
-		 *  @param uint flags Identifies which buttons to display in the alert.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-        static public function show( text:String, parent:Object, title:String="", flags:uint=Alert.OK ) : Alert
+         // note: only passing parent to this function as I don't see a way to identify
+         // the 'application' or top level view without supplying a place to start to
+         // look for it.
+         /**
+          *  This static method is a convenience function to quickly create and display an Alert. The
+          *  text and parent paramters are required, the others will default.
+          *
+          *  @param String message The message content of the Alert.
+          *  @param Object parent The object that hosts the pop-up.
+          *  @param String title An optional title for the Alert.
+          *  @param uint flags Identifies which buttons to display in the alert.
+          *
+          *  @langversion 3.0
+          *  @playerversion Flash 10.2
+          *  @playerversion AIR 2.6
+          *  @productversion Royale 0.0
+          */
+        static public function show( message:String, parent:Object, title:String="", flags:uint=Alert.OK ) : Alert
 		{
 			var alert:Alert = new Alert();
-			alert.message = text;
+			alert.message = message;
 			alert.title  = title;
 			alert.flags = flags;
 			
@@ -224,15 +161,12 @@ package org.apache.royale.html
 		{
 			return IAlertModel(model).title;
 		}
+
 		public function set title(value:String):void
 		{
 			IAlertModel(model).title = value;
-            COMPILE::JS {
-                titleBar.title = value;
-            }
-
 		}
-		
+
 		/**
 		 *  The message to display in the Alert body.
 		 *
@@ -248,14 +182,15 @@ package org.apache.royale.html
 		public function set message(value:String):void
 		{
 			IAlertModel(model).message = value;
-            COMPILE::JS {
-                label.text = value;
-            }
-
 		}
-		
+
 		/**
 		 *  The buttons to display on the Alert as bit-mask values.
+		 *
+		 *  Alert.YES
+         *  Alert.NO
+         *  Alert.OK
+         *  Alert.CANCEL
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -269,52 +204,6 @@ package org.apache.royale.html
 		public function set flags(value:uint):void
 		{
 			IAlertModel(model).flags = value;
-            
-            COMPILE::JS
-            {
-                // add buttons based on flags
-                if (flags & Alert.OK) {
-                    var ok:TextButton = new TextButton();
-                    buttonArea.addElement(ok);
-                    ok.text = 'OK';
-                    ok.element.style.margin = "4px";
-                    goog.events.listen(ok.element, 'click', dismissAlert);
-                }
-                if (flags & Alert.CANCEL) {
-                    var cancel:TextButton = new TextButton();
-                    buttonArea.addElement(cancel);
-                    cancel.text = 'Cancel';
-                    cancel.element.style.margin = "4px";
-                    goog.events.listen(cancel.element, 'click', dismissAlert);
-                }
-                if (flags & Alert.YES) {
-                    var yes:TextButton = new TextButton();
-                    buttonArea.addElement(yes);
-                    yes.text = 'YES';
-                    yes.element.style.margin = "4px";
-                    goog.events.listen(yes.element, 'click', dismissAlert);
-                }
-                if (flags & Alert.NO) {
-                    var nob:TextButton = new TextButton();
-                    buttonArea.addElement(nob);
-                    nob.text = 'NO';
-                    nob.element.style.margin = "4px";
-                    goog.events.listen(nob.element, 'click', dismissAlert);
-                }
-                
-            }
 		}
-        
-        /**
-         * @param event The event object.
-         * @royaleignorecoercion HTMLElement
-         */
-        COMPILE::JS
-        private function dismissAlert(event:Event):void
-        {
-            var htmlElement:HTMLElement = element as HTMLElement;
-            htmlElement.parentElement.removeChild(element);
-        };
-	
 	}
 }

@@ -31,6 +31,8 @@ package models
 			return _productNames;
 		}
 		
+		public var simple:Array = ["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons"];
+		
 		private var _states:ArrayList = new ArrayList([
 				"Massachusetts", "Vermont", "New Hampshire", "Maine", "Rhode Island", "Conneticutt"]);
 		

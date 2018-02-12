@@ -181,13 +181,22 @@ If you want SWF output, use NPM. Run:
 
 - Mac
 ```bash
-sudo npm install royale -g
+sudo npm install @apache-royale/royale-js -g
 ```
+or for both JS and SWF output:
+
+```bash
+sudo npm install @apache-royale/royale-js-swf -g
 
 - Windows
 ```bash
-npm install royale -g
+npm install @apache-royale/royale-js -g
 ```
+or for both JS and SWF output:
+```bash
+npm install @apache-royale/royale-js-swf -g
+```
+
 
 # Using Royale
 

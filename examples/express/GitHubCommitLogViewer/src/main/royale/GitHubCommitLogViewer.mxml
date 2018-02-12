@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+xmlns:local="*"
+xmlns:js="library://ns.apache.org/royale/express"
+initialize="addEventListener('dataReady', dataReadyHandler);configurator.send()"
+>
+<fx:Script>
+<![CDATA[
+    import org.apache.royale.collections.ArrayList;
+    import org.apache.royale.events.Event;
+
+    public const commits:Array = [];
+    public var repos:Array;
+    [Bindable]
+    public var projectName:String;
+
+    private function setConfig():void
+    {
+        repos = configurator.json.repos;
+        projectName = configurator.json.projectName;
+    }
+
+    private var currentIndex:int = 0;
+    
+    private function fetchCommits():void
+    {
+        commitsService.addEventListener("complete", gotCommits);
+        commitsService.url = "https://api.github.com/repos/" + repos[currentIndex] + "/commits";
+        commitsService.send();
+    }
+
+    private function gotCommits(event:Event):void
+    {
+        currentIndex++;
+        var results:Array = commitsService.json as Array;
+        var n:int = results.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            var obj:Object = results[i];
+            var data:LogEntry = new LogEntry();
+            var commitObj:Object = obj["commit"];
+            var authorObj:Object = commitObj["author"];
+            data.author = authorObj["name"];
+            // clip date after yyyy-mm-dd
+            data.date = authorObj["date"].substr(0, 10);
+            data.message = commitObj["message"];
+            commits.push(data);
+        }
+        if (currentIndex < repos.length)
+            fetchCommits();
+        else
+            dispatchEvent(new Event("dataReady"));
+    }
+
+    private function dataReadyHandler(event:Event):void
+    {
+        dg.dataProvider = commits; //new ArrayList(commits);
+    }
+
+]]>
+</fx:Script>
+<js:HTTPService id="configurator" url="project.json" complete="setConfig();fetchCommits()" />
+<js:HTTPService id="commitsService" />
+
+<js:initialView>
+    <js:VView>
+        <js:Label text="{projectName} Commits Log"/>
+        <js:DataGrid id="dg" width="600" height="300">
+            <js:columns>
+                <js:DataGridColumn label="Date" dataField="date" columnWidth="100"/>
+                <js:DataGridColumn label="Author" dataField="author" columnWidth="100"/>
+                <js:DataGridColumn label="Message" dataField="message" columnWidth="100%"/>
+            </js:columns>
+        </js:DataGrid>
+        <js:Label text="Selected Message:"/>
+        <js:MultilineLabel text="{LogEntry(commits[dg.selectedIndex]).message}" width="600" />
+    </js:VView>
+</js:initialView>
+</js:Application>

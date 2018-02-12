@@ -19,10 +19,81 @@ limitations under the License.
 -->
 <js:MXMLItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/royale/basic"
+				xmlns:html="library://ns.apache.org/royale/html"
+				className="summary"
 			    width="100%">
     <fx:Script>
         <![CDATA[
             import valueObjects.ValueObject;
+            
+			private var _color0:String = "#fff";
+			
+			public function get backgroundColor0():String
+			{
+				return _color0;
+			}
+			public function set backgroundColor0(value:String):void
+			{
+				_color0 = value;
+			}
+			
+			private var _color1:String = "#ffeeee";
+			
+			public function get backgroundColor1():String
+			{
+				return _color1;
+			}
+			public function set backgroundColor1(value:String):void
+			{
+				_color1 = value;
+			}
+			
+			private var oddIndex:Boolean;
+
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				if (value.returnhref)
+					typeGroup.removeElement(label);
+				else
+					typeGroup.removeElement(link);
+				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
+			}
+			
+            [Bindable("dataChange")]
+            /**
+              @royaleignorecoercion ValueObject
+            */
+            public function get obj():ValueObject
+            {
+                return data as ValueObject;
+            }
+            		
+			override public function addedToParent():void
+			{
+				super.addedToParent();
+	
+				var index:int = parent.getElementIndex(this);
+				oddIndex = ((index % 2) == 1)
+				COMPILE::JS
+				{
+					element.style.backgroundColor = oddIndex ? _color1 : _color0;
+				}
+			}
+			
+			/**
+			 * @private
+			 */
+			override public function updateRenderer():void
+			{
+				super.updateRenderer();
+				COMPILE::JS
+				{
+					if (element.style.backgroundColor == null || element.style.backgroundColor == "")
+						element.style.backgroundColor = oddIndex ? _color1 : _color0;
+				}
+			}
+			
 		]]>
     </fx:Script>
 	<fx:Style>
@@ -30,9 +101,15 @@ limitations under the License.
     <js:beads>
         <js:VerticalLayout />
         <js:ItemRendererDataBinding />
-        <js:ItemRendererSimpleBinding sourcePropertyName="shortDescription" destinationID="short" destinationPropertyName="text"/>
     </js:beads>
-    <js:Label width="100%" height="30" style="fontWeight:bold" text="{ValueObject(data).qname}" >
-    </js:Label>
-    <js:MultilineLabel id="short" width="100%" />
+    <js:Group id="typeGroup">
+      <js:beads>
+        <js:HorizontalLayout />
+      </js:beads>
+      <html:A id="qname" className="summaryQName" text="{ValueObject(data).qname}" />
+      <js:Label text=":" />
+      <js:Label id="label" className="summaryType" text="{ValueObject(data).return}" />
+      <html:A id="link" className="summaryTypeLink" text="{ValueObject(data).return}" href="{ValueObject(data).returnhref}" />
+    </js:Group>
+    <js:MultilineLabel className="summaryDescription" id="short" width="100%" text="{ValueObject(data).shortDescription}"/>
 </js:MXMLItemRenderer>

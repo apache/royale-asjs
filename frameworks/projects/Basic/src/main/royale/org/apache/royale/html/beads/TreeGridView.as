@@ -18,27 +18,32 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.ItemRendererClassFactory;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.ButtonBar;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.Tree;
+	import org.apache.royale.html.TreeGrid;
+	import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.beads.layouts.TreeGridLayout;
-	import org.apache.royale.html.beads.models.ArrayListSelectionModel;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
-	import org.apache.royale.html.beads.models.TreeGridModel;
+	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel;
+	import org.apache.royale.html.supportClasses.DataGridColumn;
+	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
-	import org.apache.royale.html.supportClasses.TreeGridControlItemRenderer;
+	import org.apache.royale.html.supportClasses.Viewport;
 	
 	/**
 	 * The TreeGridView class is responsible for creating the sub-components of the TreeGrid:
@@ -51,7 +56,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class TreeGridView implements IBeadView
+	public class TreeGridView extends GroupView implements IBeadView, IDataGridView
 	{
 		/**
 		 * Constructor.
@@ -63,84 +68,53 @@ package org.apache.royale.html.beads
 		 */
 		public function TreeGridView()
 		{
+			super();
 		}
 		
-		private var _strand: IStrand;
+		private var _strand:IStrand;
+		private var _header:DataGridButtonBar;
+		private var _listArea:Container;
 		
-		private var _controlColumn:Tree;
-		private var controlColumnDataProvider:Object;
-		
-		private var _header: ButtonBar;
+		private var _lists:Array;
 		
 		/**
-		 * The ButtonBar header for the TreeGrid.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 * An array of List objects the comprise the columns of the DataGrid.
 		 */
-		public function get header(): ButtonBar
+		public function get columnLists():Array
+		{
+			return _lists;
+		}
+		
+		/**
+		 * The area used to hold the columns
+		 *
+		 */
+		public function get listArea():Container
+		{
+			return _listArea;
+		}
+		
+		/**
+		 * Returns the component used as the header for the DataGrid.
+		 */
+		public function get header():IUIBase
 		{
 			return _header;
 		}
 		
-		private var _contentArea: UIBase;
-		
 		/**
-		 * The component that contains the Tree/List columns.
-		 * 
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.0
 		 */
-		public function get contentArea(): UIBase
+		override public function set strand(value:IStrand):void
 		{
-			return _contentArea;
-		}
-		
-		private var _displayedColumns:Array;
-		
-		/**
-		 * The array of the displayed columns with a Tree at index zero.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function get displayedColumns():Array
-		{
-			return _displayedColumns;
-		}
-		
-		public function get host():IUIBase
-		{
-			return _strand as IUIBase;
-		}
-		private function get uiHost():UIBase
-		{
-			return _strand as UIBase;
-		}
-		
-		/**
-		 * @see org.apache.royale.core.IStrand
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function set strand(value:IStrand):void
-		{
+			super.strand = value;
 			_strand = value;
 			
-			(_strand as IEventDispatcher).addEventListener("beadsAdded", finishSetup);
-		}
-		
-		private function finishSetup(event:Event):void
-		{
 			var layout:IBeadLayout = _strand.getBeadByType(TreeGridLayout) as IBeadLayout;
 			if (layout == null) {
 				var layoutClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout") as Class;
@@ -151,94 +125,187 @@ package org.apache.royale.html.beads
 				}
 				_strand.addBead(layout);
 			}
-			
-			_contentArea = new UIBase();
-			_contentArea.typeNames = "TreeGridContentArea";
-			
-			_header = new ButtonBar();
-			_header.typeNames = "TreedGridHeader";
-			
-			var columnLabels:Array = [];
-			
-			var model:TreeGridModel = uiHost.model as TreeGridModel;
-			_displayedColumns = [];
-			
-			for(var i:int=0; i < model.columns.length; i++) {
-				var columnDef:TreeGridColumn = model.columns[i] as TreeGridColumn;
-				
-				columnLabels.push(columnDef.label);
-				
-				if (i == 0) {
-					_controlColumn = new Tree();
-					_controlColumn.typeNames = "TreeGridColumn";
-					_controlColumn.dataProvider = model.dataProvider;
-					_controlColumn.labelField = columnDef.dataField;
-					
-					_displayedColumns.push(_controlColumn);
-					_contentArea.addElement(_controlColumn, false);
-					
-					_controlColumn.addEventListener("change", handleTreeChange);
-					
-					// remember this so all of the lists get the same model data
-					controlColumnDataProvider = _controlColumn.model.dataProvider as ArrayList;
-					(_controlColumn.model as IEventDispatcher).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
-				}
-				else {
-					var columnList:List = new List();
-					columnList.typeNames = "TreeGridColumn";
-					
-					columnList.model = new ArrayListSelectionModel();
-					columnList.dataProvider = controlColumnDataProvider; 
-					columnList.labelField = columnDef.dataField;
-					columnList.addBead(new DynamicItemsRendererFactoryForArrayListData());
-					
-					_displayedColumns.push(columnList);
-					_contentArea.addElement(columnList, false);
-					
-					(columnList.model as IEventDispatcher).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
-				}
-			}
-			
-			_header.dataProvider = columnLabels;
-			uiHost.addElement(_header, false);
-			
-			uiHost.addElement(_contentArea, false);
-			
-			// request the layout to do its thing
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+
+			IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
+		}
+		
+		public function refreshContent():void
+		{
+			finishSetup(null);
 		}
 		
 		/**
-		 * Handles the changes to the tree nodes (open and close) and updates the other column
-		 * lists to reflect that.
-		 * 
 		 * @private
 		 */
-		private function handleTreeChange(event:Event):void
+		protected function finishSetup(event:Event):void
 		{
-			var tree:Tree = event.currentTarget as Tree;
-			for(var i:int=1; i < _displayedColumns.length; i++) {
-				var columnList:List = _displayedColumns[i] as List;
-				columnList.dataProvider = null;
-				columnList.dataProvider = _controlColumn.model.dataProvider as ArrayList;
+			var host:TreeGrid = _strand as TreeGrid;
+			
+			// see if there is a presentation model already in place. if not, add one.
+			var presentationModel:IDataGridPresentationModel = host.presentationModel;
+			var sharedModel:IDataGridModel = host.model as IDataGridModel;
+			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
+			IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
+			
+			_header = new DataGridButtonBar();
+			// header's height is set in CSS
+			_header.percentWidth = 100;
+			_header.dataProvider = sharedModel.columns;
+			_header.labelField = "label";
+			sharedModel.headerModel = _header.model as IBeadModel;
+			
+			_listArea = new Container();
+			_listArea.percentWidth = 100;
+			_listArea.className = "opt_org-apache.royale-html-TreeGrid_ListArea";
+				
+			createColumns();
+			
+			var buttonWidths:Array = [];
+			
+			var marginBorderOffset:int = 0;
+			COMPILE::SWF {
+				marginBorderOffset = 1;
 			}
+				
+			for(var i:int=0; i < sharedModel.columns.length; i++) {
+				var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+				var colWidth:Number = dgc.columnWidth - marginBorderOffset;
+				buttonWidths.push(colWidth);
+				
+				var list:UIBase = _lists[i] as UIBase;
+				if (!isNaN(colWidth)) {
+					list.width = Number(colWidth - marginBorderOffset);
+				}
+			}
+				
+			var bblayout:ButtonBarLayout = new ButtonBarLayout();
+			_header.buttonWidths = buttonWidths;
+			_header.widthType = ButtonBarModel.PIXEL_WIDTHS;
+			_header.addBead(bblayout);
+			_header.addBead(new Viewport());
+			host.addElement(_header);
+			
+			host.addElement(_listArea);
+				
+			handleDataProviderChanged(event);
+			
+			host.addEventListener("widthChanged", handleSizeChanges);
+			host.addEventListener("heightChanged", handleSizeChanges);
+			
+			host.dispatchEvent(new Event("dataGridViewCreated"));
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
 		/**
-		 * Handles selection from one column and selects the same index in the other
-		 * columns.
-		 * 
+		 * @private
+		 */
+		private function handleSizeChanges(event:Event):void
+		{
+			_header.dispatchEvent(new Event("layoutChanged"));
+			_listArea.dispatchEvent(new Event("layoutChanged"));
+		}
+		
+		/**
+		 * @private
+		 */
+		private function handleDataProviderChanged(event:Event):void
+		{
+			host.dispatchEvent(new Event("layoutNeeded"));
+		}
+		
+		/**
 		 * @private
 		 */
 		private function handleSelectedIndexChanged(event:Event):void
 		{
-			trace("selection changed on the model");
-			if (event.currentTarget is ISelectionModel) {
-				var newIndex:int = (event.currentTarget as ISelectionModel).selectedIndex;
-				for(var i:int=0; i < _displayedColumns.length; i++) {
-					_displayedColumns[i].selectedIndex = newIndex;
+			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var newIndex:int = sharedModel.selectedIndex;
+			
+			for(var i:int=0; i < _lists.length; i++) {
+				if (_lists[i] is List) {
+					(_lists[i] as List).selectedIndex = newIndex;
 				}
 			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function handleColumnListChange(event:Event):void
+		{
+			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			
+			if (event.target is List) {
+				var list:List = event.target as List;
+				sharedModel.selectedIndex = list.selectedIndex;
+			}
+			else {
+				return;
+			}
+			
+			host.dispatchEvent(new Event('change'));
+		}
+		
+		/**
+		 * @private
+		 */
+		private function createColumns():void
+		{
+			var host:TreeGrid = _strand as TreeGrid;
+			
+			// get the name of the class to use for the columns
+			var columnClassName:String = ValuesManager.valuesImpl.getValue(host, "columnClassName") as String;
+			if (columnClassName == null) {
+				columnClassName = "TreeGridColumn";
+			}
+			
+			var presentationModel:IDataGridPresentationModel = host.presentationModel;
+			var sharedModel:IDataGridModel = host.model as IDataGridModel;
+			
+			_lists = new Array();
+			
+			for (var i:int=0; i < sharedModel.columns.length; i++) {
+				var columnDef:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
+				var useClassName:String = columnClassName;
+				if (columnDef.className != null) useClassName = columnDef.className;
+				
+				var column:List = columnDef.createColumn() as List;
+				
+				if (i == 0)
+				{
+					column.className = "first "+useClassName;
+				}
+				else if (i == sharedModel.columns.length-1)
+				{
+					column.className = "last "+useClassName;
+				}
+				else
+				{
+					column.className = "middle "+useClassName;
+				}
+				
+				// For the TreeGrid, the List columns must use this
+				// model and itemRenderer factory to be compatible 
+				// with the Tree column
+				if (!(column is Tree)) {
+					column.model = new SingleSelectionCollectionViewModel();
+					column.addBead(new DataItemRendererFactoryForCollectionView());
+				}
+				
+				column.id = "treeGridColumn" + String(i);
+				column.dataProvider = sharedModel.dataProvider;
+				column.labelField = columnDef.dataField;
+				column.itemRenderer = columnDef.itemRenderer;
+				column.addBead(presentationModel);
+				column.addBead(new Viewport());
+				column.addEventListener('change', handleColumnListChange);
+				
+				_listArea.addElement(column);
+				_lists.push(column);
+				
+			}
+			
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }

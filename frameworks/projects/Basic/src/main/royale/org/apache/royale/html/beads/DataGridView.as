@@ -18,29 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
-	import org.apache.royale.html.Container;
-	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
-	import org.apache.royale.html.beads.models.ButtonBarModel;
-	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.supportClasses.DataGridColumnList;
+	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.Viewport;
-
-	COMPILE::SWF {
-		import org.apache.royale.core.SimpleCSSStylesWithFlex;
-	}
 
 		/**
 		 *  The DataGridView class is the visual bead for the org.apache.royale.html.DataGrid.
@@ -68,7 +62,6 @@ package org.apache.royale.html.beads
 				super();
 			}
 
-			private var _strand:IStrand;
 			private var _header:DataGridButtonBar;
 			private var _listArea:Container;
 
@@ -99,42 +92,25 @@ package org.apache.royale.html.beads
 				return _header;
 			}
 
-			/**
-			 *  @copy org.apache.royale.core.IBead#strand
-			 *
-			 *  @langversion 3.0
-			 *  @playerversion Flash 10.2
-			 *  @playerversion AIR 2.6
-			 *  @productversion Royale 0.0
-			 */
-			override public function set strand(value:IStrand):void
-			{
-				super.strand = value;
-				_strand = value;
-
-				IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
-			}
-
-			public function refreshContent():void
-			{
-				finishSetup(null);
-			}
+            public function refreshContent():void
+            {
+                handleInitComplete(null);
+            }
 
 			/**
 			 * @private
 			 */
-			protected function finishSetup(event:Event):void
+			override protected function handleInitComplete(event:Event):void
 			{
 				var host:DataGrid = _strand as DataGrid;
 
 				// see if there is a presentation model already in place. if not, add one.
-				var presentationModel:IDataGridPresentationModel = host.presentationModel;
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
 				IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
 				_header = new DataGridButtonBar();
-				_header.height = 30;
+				// header's height is set in CSS
 				_header.percentWidth = 100;
 				_header.dataProvider = sharedModel.columns;
 				_header.labelField = "label";
@@ -144,57 +120,14 @@ package org.apache.royale.html.beads
 				_listArea.percentWidth = 100;
 				_listArea.className = "opt_org-apache.royale-html-DataGrid_ListArea";
 
-				COMPILE::SWF {
-					_header.style = new SimpleCSSStylesWithFlex();
-					_header.style.flexGrow = 0;
-
-					_listArea.style = new SimpleCSSStylesWithFlex();
-					_listArea.style.flexGrow = 1;
-				}
-				COMPILE::JS {
-					_header.element.style["flex-grow"] = "0";
-					_header.element.style["min-height"] = "30px";
-					_listArea.element.style["flex-grow"] = "1";
-				}
-
 				createLists();
 
-				//var columnLabels:Array = [];
-				var buttonWidths:Array = [];
-
-				var marginBorderOffset:int = 0;
-				COMPILE::SWF {
-					marginBorderOffset = 1;
-				}
-
-				for(var i:int=0; i < sharedModel.columns.length; i++) {
-					var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-					//columnLabels.push(dgc.label);
-					var colWidth:Number = dgc.columnWidth - marginBorderOffset;
-					buttonWidths.push(colWidth);
-
-					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
-					if (!isNaN(colWidth)) {
-						list.width = Number(colWidth - marginBorderOffset);
-					} else {
-						COMPILE::SWF {
-							list.style = new SimpleCSSStylesWithFlex();
-							list.style.flexGrow = 1;
-						}
-							COMPILE::JS {
-								list.element.style["flex-grow"] = "1";
-							}
-					}
-				}
-
 				var bblayout:ButtonBarLayout = new ButtonBarLayout();
-				_header.buttonWidths = buttonWidths
-				_header.widthType = ButtonBarModel.PIXEL_WIDTHS;
-				_header.addBead(bblayout);
-				_header.addBead(new Viewport());
-				host.addElement(_header);
+				_header.addBead(bblayout as IBead);
+				_header.addBead(new Viewport() as IBead);
+				host.addElement(_header as IChild);
 
-				host.addElement(_listArea);
+				host.addElement(_listArea as IChild);
 
 				handleDataProviderChanged(event);
 
@@ -218,7 +151,6 @@ package org.apache.royale.html.beads
 			 */
 			private function handleDataProviderChanged(event:Event):void
 			{
-
 				host.dispatchEvent(new Event("layoutNeeded"));
 			}
 
@@ -262,32 +194,47 @@ package org.apache.royale.html.beads
 			private function createLists():void
 			{
 				var host:DataGrid = _strand as DataGrid;
+				
+				// get the name of the class to use for the columns
+				var columnClassName:String = ValuesManager.valuesImpl.getValue(host, "columnClassName") as String;
+				if (columnClassName == null) {
+					columnClassName = "DataGridColumnList";
+				}
 
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				var presentationModel:IDataGridPresentationModel = host.presentationModel;
 
-				_lists = new Array();
+				_lists = [];
 
-				for (var i:int=0; i < sharedModel.columns.length; i++) {
-					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+				for (var i:int=0; i < sharedModel.columns.length; i++)
+				{
+					var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
+					var useClassName:String = columnClassName;
+					if (dataGridColumn.className != null) useClassName = dataGridColumn.className;
 
 					var list:DataGridColumnList = new DataGridColumnList();
+					
+					if (i == 0)
+					{
+						list.className = "first "+useClassName;
+					}
+					else if (i == sharedModel.columns.length-1)
+					{
+						list.className = "last "+useClassName;
+					}
+					else
+					{
+						list.className = "middle "+useClassName;
+					}
+					
 					list.id = "dataGridColumn"+String(i);
 					list.dataProvider = sharedModel.dataProvider;
 					list.itemRenderer = dataGridColumn.itemRenderer;
 					list.labelField = dataGridColumn.dataField;
 					list.addEventListener('change',handleColumnListChange);
-					list.addBead(presentationModel);
+					list.addBead(presentationModel as IBead);
 
-					if (i == 0) {
-						list.typeNames = "first";
-					} else if (i == sharedModel.columns.length-1) {
-						list.typeNames = "last";
-					} else {
-						list.typeNames = "middle";
-					}
-
-					_listArea.addElement(list);
+					_listArea.addElement(list as IChild);
 					_lists.push(list);
 				}
 

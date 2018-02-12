@@ -19,9 +19,13 @@ package org.apache.royale.svg
 {
     import org.apache.royale.core.GroupBase;
     import org.apache.royale.core.IChild;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.core.IMXMLDocument;
     import org.apache.royale.core.IRoyaleElement;
     import org.apache.royale.core.ITransformHost;
-	import org.apache.royale.events.ValueEvent;
+    import org.apache.royale.events.ValueEvent;
+    import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.ValuesManager;
 
 	COMPILE::JS
 	{
@@ -30,22 +34,17 @@ package org.apache.royale.svg
 		import org.apache.royale.events.Event;
 	}
 
+	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
 	[DefaultProperty("mxmlContent")]
-
-	COMPILE::SWF
-    public class GraphicContainer extends GroupBase implements ITransformHost
-    {
-        public function GraphicContainer()
-        {
-            super();
-        }
-
-    }
-
-	COMPILE::JS
-	public class GraphicContainer extends GroupBase implements ITransformHost
+	public class GraphicContainer extends GroupBase implements ITransformHost, IMXMLDocument
 	{
 		private var graphicGroup:GroupBase;
+		private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+		private var _initialized:Boolean;
 
 		public function GraphicContainer()
 		{
@@ -55,6 +54,7 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
+		COMPILE::JS
 		override protected function createElement():org.apache.royale.core.WrappedHTMLElement
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as org.apache.royale.core.WrappedHTMLElement;
@@ -75,6 +75,7 @@ package org.apache.royale.svg
 			element.setAttribute('class', value);
 		}
 
+		COMPILE::JS
 		override public function get transformElement():org.apache.royale.core.WrappedHTMLElement
 		{
 			return graphicGroup.element;
@@ -88,6 +89,7 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
+		COMPILE::JS
 		override public function getElementAt(index:int):IChild
 		{
 			return graphicGroup.getElementAt(index);
@@ -101,6 +103,7 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
+		COMPILE::JS
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			graphicGroup.addElement(c, dispatchEvent);
@@ -116,6 +119,7 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
+		COMPILE::JS
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
 			graphicGroup.addElementAt(c, index, dispatchEvent);
@@ -131,6 +135,7 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
+		COMPILE::JS
 		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			graphicGroup.removeElement(c, dispatchEvent);
@@ -146,6 +151,7 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
+		COMPILE::JS
 		override public function getElementIndex(c:IChild):int
 		{
 			return graphicGroup.getElementIndex(c);
@@ -160,6 +166,7 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
+		COMPILE::JS
 		override public function get numElements():int
 		{
 			return graphicGroup.numElements;
@@ -181,6 +188,75 @@ package org.apache.royale.svg
 			element.setAttribute("y", value);
         }
 
+		/**
+		 *  @copy org.apache.royale.core.Application#MXMLDescriptor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get MXMLDescriptor():Array
+		{
+			return _mxmlDescriptor;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function setMXMLDescriptor(document:Object, value:Array):void
+		{
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
+		}
+
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			if (!_initialized)
+			{
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+			}
+			
+			super.addedToParent();
+			
+			if (!_initialized)
+			{
+				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+				
+				//?? why was this added here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will already have called it
+			}
+		}
+
+		/**
+		 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function generateMXMLAttributes(data:Array):void
+		{
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
+		}
+		
+		/**
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public var mxmlContent:Array;
 	}
 }
 

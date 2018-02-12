@@ -27,11 +27,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
   </parent>
 
   <artifactId>DataGridExample</artifactId>
-  <version>0.9.0</version>
+  <version>0.9.1</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: DataGridExample</name>

@@ -23,15 +23,15 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.events.Event;
 
 	/**
-	 *  The DataGridModel class bead extends org.apache.royale.html.beads.models.ArrayListSelectionModel
-	 *  to facilitate using an ArrayList as the dataProvider for the DataGrid.
+	 *  The DataGridModel class bead extends org.apache.royale.html.beads.models.ArraySelectionModel
+	 *  to facilitate using an Array as the dataProvider for the DataGrid.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridModel extends ArrayListSelectionModel implements IDataGridModel
+	public class DataGridModel extends ArraySelectionModel implements IDataGridModel
 	{
 		/**
 		 *  constructor.

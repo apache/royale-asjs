@@ -19,6 +19,8 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.html.List;
 
 	/**
 	 *  The DataGridColumn class is the collection of properties that describe
@@ -32,7 +34,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridColumn
+	public class DataGridColumn implements IDataGridColumn
 	{
 		/**
 		 *  constructor.
@@ -44,6 +46,21 @@ package org.apache.royale.html.supportClasses
 		 */
 		public function DataGridColumn()
 		{
+		}
+		
+		/**
+		 * Returns a new instance of a UIBase component to be used as the actual
+		 * column in the grid.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function createColumn():IUIBase
+		{
+			var list:List = new List();
+			return list;
 		}
 		
 		private var _itemRenderer:IFactory;
@@ -122,6 +139,26 @@ package org.apache.royale.html.supportClasses
 		public function set dataField(value:String):void
 		{
 			_dataField = value;
+		}
+		
+		private var _className:String;
+		
+		/**
+		 * The name of the style class to use for this column. If this is not set
+		 * it defaults to DataGridColumnList.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.0
+		 */
+		public function get className():String
+		{
+			return _className;
+		}
+		public function set className(value:String):void
+		{
+			_className = value;
 		}
 	}
 }

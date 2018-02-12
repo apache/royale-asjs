@@ -24,9 +24,11 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.IDrawingLayerBead;
 	
+	COMPILE::SWF {
+		import org.apache.royale.html.beads.SolidBackgroundBead;
+	}
     
 	/**
 	 *  DataGridDrawingLayerBead places a graphic space into the DataGrid that is
@@ -61,8 +63,15 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
-			IEventDispatcher(_strand).addEventListener("beadsAdded", handleBeadsAdded);
+						
+			_layer = new UIBase();
+			_layer.className = "DataGridDrawingLayer";
+			COMPILE::JS {
+				_layer.element.style.position = "absolute";
+				_layer.element.style['pointer-events'] = 'none';
+				_layer.element.style['overflow'] = 'hidden';
+			}
+			UIBase(_strand).addElement(_layer);
 		}
 		
 		private var _layer:UIBase;
@@ -78,26 +87,6 @@ package org.apache.royale.html.beads
 		public function get layer():UIBase
 		{
 			return _layer;
-		}
-		
-		/**
-		 * @private
-		 */
-		private function handleBeadsAdded(event:Event):void
-		{
-			var view:IDataGridView = UIBase(_strand).view as IDataGridView;
-			if (view != null) {
-				_layer = new UIBase();
-				_layer.className = "DataGridDrawingLayer";
-				COMPILE::JS {
-					_layer.element.style.position = "absolute";
-					_layer.element.style['pointer-events'] = 'none';
-					_layer.element.style['overflow'] = 'hidden';
-				}
-				UIBase(_strand).addElement(_layer);
-			}
-			// else: this is an error as this bead cannot be used with anything but
-			// a DataGrid.
 		}
 	}
 }

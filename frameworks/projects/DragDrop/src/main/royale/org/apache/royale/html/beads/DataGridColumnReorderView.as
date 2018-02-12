@@ -72,9 +72,9 @@ package org.apache.royale.html.beads
 			/**
 			 * @private
 			 */
-			override protected function finishSetup(event:Event):void
+            override protected function handleInitComplete(event:Event):void
 			{
-				super.finishSetup(event);
+				super.handleInitComplete(event);
 
 				 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 				IEventDispatcher(sharedModel).addEventListener("headerModelChanged", handleHeaderModelChanged);

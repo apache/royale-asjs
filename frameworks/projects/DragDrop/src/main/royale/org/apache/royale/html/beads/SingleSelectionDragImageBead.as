@@ -127,9 +127,10 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
-			trace("SingleSelectionDragImageBead received the DragStart via: "+event.target.toString());
+			//trace("SingleSelectionDragImageBead received the DragStart via: "+event.target.toString());
 
-			var renderer:IItemRenderer = getParentOrSelfByType(event.target as IChild, IItemRenderer) as IItemRenderer;
+			var relatedObject:Object = event.relatedObject;
+			var renderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
 			if (renderer) {
 				DragMouseController.dragImage = createDragImage(renderer);
 			}

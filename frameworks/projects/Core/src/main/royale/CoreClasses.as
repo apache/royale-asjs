@@ -121,6 +121,7 @@ internal class CoreClasses
 	import org.apache.royale.core.StyleChangeNotifier; StyleChangeNotifier;
 	import org.apache.royale.events.CustomEvent; CustomEvent;
     import org.apache.royale.events.Event; Event;
+	import org.apache.royale.events.CloseEvent; CloseEvent;
 	import org.apache.royale.events.CollectionEvent; CollectionEvent;
     import org.apache.royale.events.ProgressEvent; ProgressEvent;
 	import org.apache.royale.events.StyleChangeEvent; StyleChangeEvent;

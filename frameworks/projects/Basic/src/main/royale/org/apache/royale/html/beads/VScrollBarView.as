@@ -75,9 +75,9 @@ package org.apache.royale.html.beads
         
         override protected function changeHandler(event:Event):void
         {
-            layout.layout();
-            sbModel = host.getBeadByType(IScrollBarModel) as IScrollBarModel;
-            sbModel.stepSize = Math.max(Math.round(host.height / STEP_RATE), 1);
+        	layout.layout();
+        	sbModel = host.getBeadByType(IScrollBarModel) as IScrollBarModel;
+        	sbModel.stepSize = Math.max(Math.round(host.height / STEP_RATE), 1);
         }            
 
         /**
@@ -113,7 +113,7 @@ package org.apache.royale.html.beads
             
             IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
             
-            layout.layout();
+			layout.layout();
 		}
 	}
 }

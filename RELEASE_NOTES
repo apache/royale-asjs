@@ -1,3 +1,12 @@
+Apache Royale 0.9.1
+===================
+
+The ASDoc example was upgraded to look better, show events, and provide permalinks.
+
+Updates to the RELEASE_NOTES discovered after this file was packaged into the release artifacts can be found here:
+
+https://github.com/apache/royale-asjs/wiki/Release-Notes-0.9.1
+
 Apache Royale 0.9.0
 ===================
 
@@ -8,6 +17,9 @@ without Flash.
 Apache Royale was previously released by the Apache Flex project.  You can
 see RELEASE_NOTES for earlier releases in the Apache Flex releases.
 
+Updates to the RELEASE_NOTES discovered after this file was packaged into the release artifacts can be found here:
+
+https://github.com/apache/royale-asjs/wiki/Release-Notes-0.9.0
 
 Please report new issues to our bugbase at:
 

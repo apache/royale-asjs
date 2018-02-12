@@ -1,0 +1,225 @@
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.asf
+{
+	text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+}
+
+.curved-top {
+	background-color: #ffffff;
+	border-top-right-radius: 50% 20px;
+	border-top-left-radius: 50% 20px;
+	border-color: #ffffff;
+	border-style: solid none none none;
+	width: 100%;
+	padding: 30px;
+}
+
+.responsive-table {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.responsive-table-tile {
+	width: 350px;
+}
+
+.responsive-table-tile-text {
+	margin-left: 60px;
+	margin-top: 16px;
+}
+
+.responsive-table-tile-icon {
+	font-size: 40px;
+	float: left;
+}
+
+.responsive-table-tile-title {
+	color: #00ffff;
+}
+
+.responsive-table-tile-content {
+}
+
+.big-buttons {
+	
+}
+
+.big-button {
+	border-radius: 100px;
+	padding: 30px;
+	margin: 20px;
+	display: inline-block;
+}
+
+.big-button_a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.red-button {
+	background-color: #ff0000;
+	border-color: #ff0000;
+}
+
+.blue-button {
+	background-color: #0000ff;
+	border-color: #0000ff;
+}
+
+.centerButton {
+	display: flex;
+	justify-content: center;
+}
+
+.white-border-button {
+	border-color: #fff;
+	border-style: solid;
+}
+
+.intro {
+	width: 40%;
+	font-family:Verdana, Geneva, sans-serif;
+}
+
+.page {
+	width: 100%;
+	background-color: #cccccc;
+	background-image: url('http://royale.codeoscopic.com/wp-content/uploads/2017/10/isometric-devices-light-curve-1920x1025.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.social {
+	display: inline;
+	position: absolute;
+	right: 0px;
+}
+
+.social_li {
+	display: inline;
+	margin-right: 20px;
+}
+
+.topbar {
+	width: 100%;
+}
+
+.topMenu {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.topMenu_li {
+	display: inline;
+	margin-right: 20px;
+	font-size: 12px;
+}
+
+.topMenu_li_a {
+	text-decoration: none;
+}
+
+.orange-box {
+	background-color: #F93;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.orange-box-text {
+	margin: 20px 200px;
+}
+
+.orange-box-code {
+	font-family: "Courier New", Courier, monospace;
+	background-color: #FC0;
+	text-align: left;
+	margin: 20px 200px;
+}
+
+.npm-title {
+	color: #fff;
+	text-align: center;
+}
+
+.npm-command {
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+	margin: 20px 300px;
+}
+
+.apache {
+	color: #f0f;
+}
+
+.apacheroyale {
+	color: #f00;
+}
+
+.documentation {
+	color: #000;
+}
+
+.development {
+	color: #ff0;
+}
+
+.community {
+	color: #0f0;
+}
+
+.footer {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.footer-column {
+}
+
+.footer-list {
+	list-style: none;
+}
+
+.footer-list_a{
+	text-decoration: none;
+}
+
+.aboutusdiv {
+	min-width: 150px;
+	flex-basis: 40%;
+	flex-grow: 1;
+}
+
+.aboutus {
+	color: #000;
+}
+
+.aboutus-logo {
+	float: left;
+	width: 100px;
+}
+
+.aboutus-apache-logo {
+	float: right;
+	width: 100px;
+}
+

@@ -1,0 +1,35 @@
+{
+  "name": "@apache-royale/royale-js",
+  "version": "0.9.0",
+  "description": "Apache Royale (formerly FlexJS)",
+  "keywords": [
+    "royale",
+    "apache royale",
+    "flex",
+    "flexjs",
+    "apache flexjs",
+    "actionscript",
+    "as3",
+    "mxml",
+    "angularjs",
+    "reactjs"
+  ],
+  "homepage": "http://royale.apache.org",
+  "author": "Apache Royale <dev@royale.apache.org>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    
+  },
+  "scripts": {
+  },
+  "bin": {
+    "asjsc": "./royale-asjs/js/bin/asjscnpm",
+    "asjscompc": "./royale-asjs/js/bin/asjscompcnpm",
+    "asnodec": "./royale-asjs/js/bin/asnodecnpm",
+    "mxmlc": "./royale-asjs/js/bin/mxmlcnpm",
+    "compc": "./royale-asjs/js/bin/compcnpm",
+    "externc": "./royale-asjs/js/bin/externcnpm"
+  },
+  "org_apache_royale": {
+  }
+}

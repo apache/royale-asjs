@@ -53,7 +53,12 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			var model:IEventDispatcher = value.getBeadByType(IBeadModel) as IEventDispatcher;
+			IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
+		}
+		
+		protected function finishSetup(e:Event):void
+		{
+			var model:IEventDispatcher = _strand.getBeadByType(IBeadModel) as IEventDispatcher;
 			model.addEventListener('dataProviderChanged', handleDataProviderChanged);
 		}
 		
@@ -61,6 +66,8 @@ package org.apache.royale.html.beads
 		{
 			var dataGridView:IDataGridView = _strand.getBeadByType(IDataGridView) as IDataGridView;
 			var lists:Array = dataGridView.columnLists;
+			if (lists == null) return;
+			
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			for (var i:int=0; i < lists.length; i++)
 			{

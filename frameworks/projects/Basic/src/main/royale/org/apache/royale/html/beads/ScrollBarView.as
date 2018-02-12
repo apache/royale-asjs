@@ -20,7 +20,7 @@ package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	
-    import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IScrollBarModel;
@@ -29,8 +29,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.Event;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Button;
 	import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -117,7 +117,7 @@ package org.apache.royale.html.beads
             sbModel.addEventListener("pageSizeChange", changeHandler);
             sbModel.addEventListener("valueChange", changeHandler);
             
-			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand);
+			layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand) as IBeadLayout;
 		}
 						
         protected function changeHandler(event:Event):void

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	import org.apache.royale.events.IEventDispatcher;
+
     COMPILE::SWF
     {
         import flash.display.Sprite;
@@ -286,6 +288,9 @@ package org.apache.royale.core
                 }
             }
             var source:Object = this.getActualDispatcher_(eventType);
+			if (e.bubbles) {
+				return dispatchBubblingEvent(source, e);
+			}
             if (source == this)
             {
                 return super.dispatchEvent(e);
@@ -293,5 +298,18 @@ package org.apache.royale.core
             
             return source.dispatchEvent(e);
         }
+		
+		public function dispatchBubblingEvent(source:Object, e:Object):Boolean
+		{
+			// build the ancestors tree without setting the actual parentEventTarget
+			var ancestorsTree:Array = [];
+			var t:IEventDispatcher = source["parent"] as IEventDispatcher;
+			while (t != null) {
+				ancestorsTree.push(t);
+				t = t["parent"] as IEventDispatcher;
+			}
+			
+			return goog.events.EventTarget.dispatchEventInternal_(source, e, ancestorsTree);
+		}
 	}
 }

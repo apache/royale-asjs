@@ -40,11 +40,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.models.ArraySelectionModel;
-	import org.apache.royale.html.beads.models.ScrollBarModel;
-	import org.apache.royale.html.beads.models.SingleLineBorderModel;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
-	import org.apache.royale.html.supportClasses.ScrollBar;
 
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List

@@ -133,7 +133,7 @@ package org.apache.royale.html.beads
 			DragMouseController.dragImageOffsetX = 0;
 			DragMouseController.dragImageOffsetY = -30;
 
-			var startHere:Object = event.target;
+			var startHere:Object = event.relatedObject;
 			while (!(startHere is IItemRenderer) && startHere != null) {
 				startHere = startHere.itemRendererParent;
 			}
@@ -302,9 +302,6 @@ package org.apache.royale.html.beads
 					// insert before target index
 					dataList.addItemAt(dragSource, targetIndex);
 				}
-
-				var newList:ArrayList = new ArrayList(dataList.source);
-				dataProviderModel.dataProvider = newList;
 			}
 		}
 

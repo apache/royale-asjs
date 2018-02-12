@@ -158,11 +158,9 @@ package org.apache.royale.html.beads
 			
 			// listen for individual items being added in the future.
 			var dped:IEventDispatcher = dp as IEventDispatcher;
-			if (!dped.hasEventListener(CollectionEvent.ITEM_ADDED)) {
-				dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-				dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-				dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-			}
+			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
 			dataGroup.removeAllItemRenderers();
 			
@@ -256,13 +254,11 @@ package org.apache.royale.html.beads
 			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
 			if (!dp)
 				return;
-			
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			
+
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
 			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
-			fillRenderer(event.index, event.item, ir, presentationModel);
+			setData(ir, event.item, event.index);
 		}
 		
 		/**

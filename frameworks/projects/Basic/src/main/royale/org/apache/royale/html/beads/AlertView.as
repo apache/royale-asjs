@@ -22,22 +22,29 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IAlertModel;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IMeasurementBead;
     import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
     import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.events.CloseEvent;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.Alert;
-	import org.apache.royale.html.ControlBar;
+    import org.apache.royale.html.Container;
+    import org.apache.royale.html.ControlBar;
+    import org.apache.royale.html.Group;
     import org.apache.royale.html.Label;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TitleBar;
-	import org.apache.royale.utils.CSSContainerUtils;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+
+	COMPILE::SWF
+	{
+        import org.apache.royale.geom.Rectangle;
+        import org.apache.royale.core.ValuesManager;
+        import org.apache.royale.utils.CSSContainerUtils;
+        import org.apache.royale.utils.loadBeadFromValuesManager;
+        import org.apache.royale.core.IMeasurementBead;
+	}
 	
 	/**
 	 *  The AlertView class creates the visual elements of the org.apache.royale.html.Alert
@@ -49,7 +56,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class AlertView extends BeadViewBase implements IBeadView
+	public class AlertView extends GroupView
 	{
 		/**
 		 *  constructor.
@@ -63,14 +70,18 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _titleBar:TitleBar;
-		private var _controlBar:ControlBar;
-		private var _label:Label;
-		private var _okButton:TextButton;
-		private var _cancelButton:TextButton;
-		private var _yesButton:TextButton;
-		private var _noButton:TextButton;
-		
+		protected var titleBar:TitleBar;
+		protected var controlBar:UIBase;
+		protected var label:Label;
+		protected var labelContent:Group;
+
+        protected var okButton:TextButton;
+        protected var cancelButton:TextButton;
+        protected var yesButton:TextButton;
+        protected var noButton:TextButton;
+
+        protected var alertModel:IAlertModel;
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -83,100 +94,178 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 
-            var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
-			if (backgroundColor != null || backgroundImage != null)
+			COMPILE::SWF
+            {
+                var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+                var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+                if (backgroundColor != null || backgroundImage != null)
+                {
+                    loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
+                }
+
+                var borderStyle:String;
+                var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+                if (borderStyles is Array)
+                {
+                    borderStyle = borderStyles[1];
+                }
+                if (borderStyle == null)
+                {
+                    borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
+                }
+                if (borderStyle != null && borderStyle != "none")
+                {
+                    loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
+                }
+            }
+
+			alertModel = (_strand as UIBase).model as IAlertModel;
+
+			createButtons();
+
+			if (alertModel.title)
+            {
+                titleBar = new TitleBar();
+                titleBar.height = 25;
+                titleBar.title = alertModel.title;
+                IParent(_strand).addElement(titleBar);
+            }
+
+			label = new Label();
+			label.text = alertModel.message;
+			
+			labelContent = new Group();
+			labelContent.percentWidth = 100;
+			labelContent.percentHeight = 100;
+
+			labelContent.addElement(label);
+			
+            IParent(_strand).addElement(labelContent);
+
+			COMPILE::JS
 			{
-				loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
+                label.element.style["white-space"] = "unset";
+				labelContent.element.style["minHeight"] = "30px";
+				controlBar.element.style["flex-direction"] = "row";
+				controlBar.element.style["justify-content"] = "flex-end";
+				controlBar.element.style["border"] = "none";
+				controlBar.element.style["background-color"] = "#FFFFFF";
 			}
-			
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
-			if (borderStyles is Array)
-			{
-				borderStyle = borderStyles[1];
-			}
-			if (borderStyle == null)
-			{
-				borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
-			}
-			if (borderStyle != null && borderStyle != "none")
-			{
-				loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
-			}
-			
-			var flags:uint = IAlertModel(UIBase(_strand).model).flags;
-			if( flags & Alert.OK ) {
-				_okButton = new TextButton();
-				_okButton.text = IAlertModel(UIBase(_strand).model).okLabel;
-				_okButton.addEventListener("click",handleOK);
-			}
-			if( flags & Alert.CANCEL ) {
-				_cancelButton = new TextButton();
-				_cancelButton.text = IAlertModel(UIBase(_strand).model).cancelLabel;
-				_cancelButton.addEventListener("click",handleCancel);
-			}
-			if( flags & Alert.YES ) {
-				_yesButton = new TextButton();
-				_yesButton.text = IAlertModel(UIBase(_strand).model).yesLabel;
-				_yesButton.addEventListener("click",handleYes);
-			}
-			if( flags & Alert.NO ) {
-				_noButton = new TextButton();
-				_noButton.text = IAlertModel(UIBase(_strand).model).noLabel;
-				_noButton.addEventListener("click",handleNo);
-			}
-			
-			_titleBar = new TitleBar();
-			_titleBar.title = IAlertModel(UIBase(_strand).model).title;
-			
-			_label = new Label();
-			_label.text = IAlertModel(UIBase(_strand).model).message;
-			
-			_controlBar = new ControlBar();
-			if( _okButton ) _controlBar.addElement(_okButton);
-			if( _cancelButton ) _controlBar.addElement(_cancelButton);
-			if( _yesButton  ) _controlBar.addElement(_yesButton);
-			if( _noButton ) _controlBar.addElement(_noButton);
-			
-		    IParent(_strand).addElement(_titleBar);
-            IParent(_strand).addElement(_controlBar);
-            IParent(_strand).addElement(_label);
-			
-			sizeHandler(null);
+            IParent(_strand).addElement(controlBar);
+
+			COMPILE::SWF
+            {
+                refreshSize();
+            }
 		}
-		
+
+		private function createButtons():void
+		{
+			COMPILE::SWF
+			{
+				controlBar = new Group();
+            }
+
+			COMPILE::JS
+			{
+				controlBar = new ControlBar();
+			}
+
+            var flags:uint = alertModel.flags;
+            if( flags & Alert.OK )
+            {
+                okButton = new TextButton();
+                okButton.text = alertModel.okLabel;
+                okButton.addEventListener("click",handleOK);
+
+                controlBar.addElement(okButton);
+
+                COMPILE::JS
+                {
+                    okButton.element.style["margin-left"] = "2px";
+                    okButton.element.style["margin-right"] = "2px";
+                }
+            }
+            if( flags & Alert.CANCEL )
+            {
+                cancelButton = new TextButton();
+                cancelButton.text = alertModel.cancelLabel;
+                cancelButton.addEventListener("click",handleCancel);
+
+                controlBar.addElement(cancelButton);
+
+                COMPILE::JS
+                {
+                    cancelButton.element.style["margin-left"] = "2px";
+                    cancelButton.element.style["margin-right"] = "2px";
+                }
+            }
+            if( flags & Alert.YES )
+            {
+                yesButton = new TextButton();
+                yesButton.text = alertModel.yesLabel;
+                yesButton.addEventListener("click",handleYes);
+
+                controlBar.addElement(yesButton);
+
+                COMPILE::JS
+                {
+                    yesButton.element.style["margin-left"] = "2px";
+                    yesButton.element.style["margin-right"] = "2px";
+                }
+            }
+            if( flags & Alert.NO )
+            {
+                noButton = new TextButton();
+                noButton.text = alertModel.noLabel;
+                noButton.addEventListener("click",handleNo);
+
+                controlBar.addElement(noButton);
+
+                COMPILE::JS
+                {
+                    noButton.element.style["margin-left"] = "2px";
+                    noButton.element.style["margin-right"] = "2px";
+                }
+            }
+		}
+
 		/**
 		 * @private
 		 */
-		private function sizeHandler(event:Event):void
+		COMPILE::SWF
+		private function refreshSize():void
 		{
-			var labelMeasure:IMeasurementBead = _label.measurementBead;
-			var titleMeasure:IMeasurementBead = _titleBar.measurementBead;
-			var ctrlMeasure:IMeasurementBead  = _controlBar.measurementBead;
-			var maxWidth:Number = Math.max(titleMeasure.measuredWidth, ctrlMeasure.measuredWidth, labelMeasure.measuredWidth);
-			
+			var labelMeasure:IMeasurementBead = label.measurementBead;
+			var titleMeasure:IMeasurementBead = titleBar.measurementBead;
+			var titleBarWidth:Number = titleBar ? titleBar.measurementBead.measuredWidth : 0;
+
+			var maxWidth:Number = Math.max(titleMeasure.measuredWidth, titleBarWidth, labelMeasure.measuredWidth);
+
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 
-			_titleBar.x = 0;
-			_titleBar.y = 0;
-			_titleBar.width = maxWidth;
-			_titleBar.height = 25;
-			_titleBar.dispatchEvent(new Event("layoutNeeded"));
-			
+            var titleBarHeight:Number = 0;
+			if (titleBar)
+            {
+                titleBarHeight = titleBar.height;
+                titleBar.x = 0;
+                titleBar.y = 0;
+                titleBar.width = maxWidth;
+                titleBar.dispatchEvent(new Event("layoutNeeded"));
+            }
+
 			// content placement here
-			_label.x = metrics.left;
-			_label.y = _titleBar.y + _titleBar.height + metrics.top;
-			_label.width = maxWidth - metrics.left - metrics.right;
+			label.x = metrics.left;
+			label.y = titleBarHeight + metrics.top;
+			label.width = maxWidth - metrics.left - metrics.right;
 			
-			_controlBar.x = 0;
-			_controlBar.y = _titleBar.height + _label.y + _label.height + metrics.bottom;
-			_controlBar.width = maxWidth;
-			_controlBar.height = 25;
-			_controlBar.dispatchEvent(new Event("layoutNeeded"));
+			controlBar.x = 0;
+			controlBar.y = titleBarHeight + label.y + label.height + metrics.bottom;
+			controlBar.width = maxWidth;
+			controlBar.dispatchEvent(new Event("layoutNeeded"));
 			
 			UIBase(_strand).width = maxWidth;
-			UIBase(_strand).height = _titleBar.height + _label.height + _controlBar.height + metrics.top + metrics.bottom;
+			UIBase(_strand).height = titleBarHeight + label.height + controlBar.height + metrics.top + metrics.bottom;
 		}
 		
 		/**
@@ -218,9 +307,8 @@ package org.apache.royale.html.beads
 		 */
 		public function dispatchCloseEvent(buttonFlag:uint):void
 		{
-			// TO DO: buttonFlag should be part of the event
-			var newEvent:Event = new Event("close",true);
-			IEventDispatcher(_strand).dispatchEvent(newEvent);
+			var closeEvent:CloseEvent = new CloseEvent("close", false, false, buttonFlag);
+			IEventDispatcher(_strand).dispatchEvent(closeEvent);
 		}
 	}
 }

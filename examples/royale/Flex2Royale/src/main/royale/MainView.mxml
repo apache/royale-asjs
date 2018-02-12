@@ -26,12 +26,12 @@ limitations under the License.
         <![CDATA[
         	import org.apache.royale.html.TableRow;
         	import org.apache.royale.html.TableCell;
-        	import org.apache.royale.html.elements.P;
-        	import org.apache.royale.html.elements.Pre;
-        	import org.apache.royale.html.elements.H3;
         	import org.apache.royale.events.Event;
         	
         	import models.MainModel;
+        	import org.apache.royale.html.elements.H3;
+        	import org.apache.royale.html.elements.P;
+        	import org.apache.royale.html.elements.Pre;
         	
         	private function fillTable():void
         	{

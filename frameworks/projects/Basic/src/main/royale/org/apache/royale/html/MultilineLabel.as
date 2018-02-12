@@ -60,6 +60,8 @@ package org.apache.royale.html
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'div');
+			textNode = document.createTextNode(text) as Text;
+            element.appendChild(textNode);
 			element.style.whiteSpace = 'normal'; // was nowrap on safari?
             return element;
         }        

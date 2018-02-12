@@ -27,6 +27,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
@@ -170,13 +171,14 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
-			trace("SingleSelectionDragSourceBead received the DragStart");
+			//trace("SingleSelectionDragSourceBead received the DragStart");
 
 			DragEvent.dragInitiator = this;
 			DragMouseController.dragImageOffsetX = 0;
 			DragMouseController.dragImageOffsetY = -30;
 
-			var itemRenderer:IItemRenderer = getParentOrSelfByType(event.target as IChild, IItemRenderer) as IItemRenderer;
+			var relatedObject:Object = event.relatedObject;
+			var itemRenderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
 
 			if (itemRenderer) {
 				var p:UIBase = itemRenderer.itemRendererParent as UIBase;
@@ -221,14 +223,17 @@ package org.apache.royale.html.beads
 		{
 			if (!continueDragOperation) return;
 
-			trace("SingleSelectionDragSourceBead accepting drop of type "+type);
+			//trace("SingleSelectionDragSourceBead accepting drop of type "+type);
 			var newEvent:Event = new Event("accept", false, true);
 			dispatchEvent(newEvent);
 			if (newEvent.defaultPrevented) return;
+			
+			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			if (dataProviderModel is ISelectionModel) {
+				(dataProviderModel as ISelectionModel).selectedIndex = -1;
+			}
 
 			if (dragType == "copy") return;
-
-			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			if (dataProviderModel.dataProvider is Array) {
 				var dataArray:Array = dataProviderModel.dataProvider as Array;
 
@@ -244,10 +249,6 @@ package org.apache.royale.html.beads
 
 				// remove the item being selected
 				DragEvent.dragSource = dataList.removeItemAt(_dragSourceIndex);
-
-				// refresh the dataProvider model
-				var newList:ArrayList = new ArrayList(dataList.source);
-				dataProviderModel.dataProvider = newList;
 			}
 		}
 
@@ -261,7 +262,7 @@ package org.apache.royale.html.beads
 		 */
 		public function acceptedDrop(dropTarget:Object, type:String):void
 		{
-			trace("SingleSelectionDragSourceBead accepted drop of type "+type);
+			//trace("SingleSelectionDragSourceBead accepted drop of type "+type);
 			var value:Object = DragEvent.dragSource;
 
 			_dragSourceIndex = -1;

@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
   </parent>
 
   <artifactId>examples-royale</artifactId>
-  <version>0.9.0</version>
+  <version>0.9.1</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Examples: Royale</name>
@@ -48,6 +48,8 @@
     <module>RoyaleStore</module>
     <module>RoyaleStore_jquery</module>
     <module>RoyaleTeamPage_MDL</module>
+    <module>RoyaleThemes</module>
+    <module>RoyaleWebsite</module>
     <module>RoyaleWebsiteStatsViewer</module>
     <module>HelloWorld</module>
     <module>HTMLElements</module>
@@ -69,6 +71,7 @@
     <module>DebuggingExample</module>
     <module>DataBindingExampleWithFlexLayout</module>
     <module>DragAndDropExample</module>
+    <module>AlertExample</module>
   </modules>
 
   <build>
@@ -107,84 +110,84 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Graphics</artifactId>
-        <version>0.9.0</version>
+        <version>0.9.1</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
@@ -193,7 +196,7 @@
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>examples-tests</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

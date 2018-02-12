@@ -93,6 +93,7 @@
     <component id="Spinner" class="org.apache.royale.html.Spinner"/>
     <component id="Slider" class="org.apache.royale.html.Slider"/>
     <component id="NumericStepper" class="org.apache.royale.html.NumericStepper" />
+    <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
     <component id="AccordionItemRenderer" class="org.apache.royale.html.supportClasses.AccordionItemRenderer"/>
     <component id="AccordionCollapseBead" class="org.apache.royale.html.beads.AccordionCollapseBead"/>
@@ -105,6 +106,7 @@
     <component id="DayNameItemRenderer" class="org.apache.royale.html.supportClasses.DayNameItemRenderer"/>
     <component id="TextButtonItemRenderer" class="org.apache.royale.html.supportClasses.TextButtonItemRenderer"/>
     <component id="DataFieldProviderBead" class="org.apache.royale.html.beads.DataFieldProviderBead"/>
+    <component id="ButtonBarButtonItemRenderer" class="org.apache.royale.html.supportClasses.ButtonBarButtonItemRenderer"/>
     <!--
      <component id="TextFieldItemRenderer" class="org.apache.royale.html.supportClasses.TextFieldItemRenderer"/>
      <component id="HScrollBar" class="org.apache.royale.html.supportClasses.HScrollBar"/>
@@ -149,6 +151,7 @@
     <component id="DataGridLinesBead" class="org.apache.royale.html.beads.DataGridLinesBead"/>
     <component id="DataGridColumnList" class="org.apache.royale.html.supportClasses.DataGridColumnList"/>
     <component id="DataGridPercentageView" class="org.apache.royale.html.beads.DataGridPercentageView" />
+    <component id="DataGridCollectionViewModel" class="org.apache.royale.html.beads.models.DataGridCollectionViewModel" />
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.royale.html.beads.DataItemRendererFactoryForArrayList" />
@@ -197,5 +200,7 @@
     
     <component id="TreeGrid" class="org.apache.royale.html.TreeGrid" />
     <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
+
+    <component id="HashChangeNotifierBead" class="org.apache.royale.routing.HashChangeNotifierBead" />
 
 </componentPackage>

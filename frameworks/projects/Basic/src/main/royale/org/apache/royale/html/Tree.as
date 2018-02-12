@@ -45,6 +45,7 @@ package org.apache.royale.html
 		public function Tree()
 		{
 			super();
+			className = "Tree";
 		}
 		
 		/**

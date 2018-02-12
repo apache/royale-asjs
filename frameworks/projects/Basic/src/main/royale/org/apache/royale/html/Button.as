@@ -48,6 +48,113 @@ package org.apache.royale.html
 	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
+     *  Set a different class for rollOver events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="rollOver", type="org.apache.royale.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for rollOut events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="rollOut", type="org.apache.royale.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseDown events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="mouseDown", type="org.apache.royale.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseUp events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="mouseUp", type="org.apache.royale.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseMove events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="mouseMove", type="org.apache.royale.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseOut events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="mouseOut", type="org.apache.royale.events.MouseEvent")]
+    
+	/**
+	 *  Set a different class for mouseOver events so that
+	 *  there aren't dependencies on the flash classes
+	 *  on the JS side.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[Event(name="mouseOver", type="org.apache.royale.events.MouseEvent")]
+	/**
+	 *  Set a different class for mouseWheel events so that
+	 *  there aren't dependencies on the flash classes
+	 *  on the JS side.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[Event(name="mouseWheel", type="org.apache.royale.events.MouseEvent")]
+	
+	/**
+	 *  Set a different class for doubleClick events so that
+	 *  there aren't dependencies on the flash classes
+	 *  on the JS side.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[Event(name="doubleClick", type="org.apache.royale.events.MouseEvent")]
+	
+    /**
      *  The Button class is a simple button.  Use TextButton for
      *  buttons that should show text.  This is the lightest weight
      *  button used for non-text buttons like the arrow buttons

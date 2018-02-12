@@ -19,6 +19,7 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IBead;
 	
     
 	/**
@@ -30,7 +31,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public interface IDrawingLayerBead
+	public interface IDrawingLayerBead extends IBead
 	{
 		/**
 		 * Returns the component to use as the actual drawing surface.

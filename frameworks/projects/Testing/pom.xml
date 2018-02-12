@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>Testing</artifactId>
-  <version>0.9.0-SNAPSHOT</version>
+  <version>0.9.1-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Testing</name>

@@ -794,7 +794,7 @@ limitations under the License.
     </target>
     
     <target name="stage-top-level" >
-        <copy file="${basedir}/package.json" todir="${basedir}/temp" />
+        <copy file="${basedir}/npm/js-swf/package.json" todir="${basedir}/temp" />
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
             <fileset dir="${basedir}/releasemgr" includes="**" />
         </copy>
@@ -996,7 +996,7 @@ limitations under the License.
         </replace>
         <!-- replace npm descriptor with js-only descriptor -->
         <antcall target="create-jsonly-description" />
-        <copy file="${basedir}/npm/package.json" todir="${basedir}/temp" overwrite="true"/>
+        <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
         <zip destfile="${basedir}/out/${binary-js.kit}.zip" basedir="${basedir}/temp"/>
         <tar-gzip name="${binary-js.kit}" />
     </target>

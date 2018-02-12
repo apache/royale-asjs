@@ -72,6 +72,12 @@ package org.apache.royale.html
 			super();
 		}
 
+        COMPILE::JS
+        protected var textNode:Text;
+
+        COMPILE::JS
+        private var _text:String = "";
+
         [Bindable("textChange")]
         /**
          *  The text to display in the label.
@@ -89,7 +95,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                return element.innerHTML;
+                return _text;
             }
 		}
 
@@ -104,8 +110,12 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                this.element.innerHTML = value;
-                this.dispatchEvent('textChange');
+                if (textNode)
+                {
+                    _text = value;
+                    textNode.nodeValue = value;
+                    this.dispatchEvent('textChange');
+                }
             }
 
 		}
@@ -165,6 +175,10 @@ package org.apache.royale.html
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'span');
+
+            textNode = document.createTextNode(_text) as Text;
+            element.appendChild(textNode);
+
             element.style.whiteSpace = "nowrap";
 
             className = "Label";

@@ -19,12 +19,15 @@
 package org.apache.royale.events
 {
     import org.apache.royale.core.IDragInitiator;
-	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.geom.Point;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.utils.PointUtils;
+
     COMPILE::JS
     {
         import org.apache.royale.core.IUIBase;
 		import org.apache.royale.core.IStrand;
+		import org.apache.royale.core.UIBase;
         import window.Event;
         import window.MouseEvent;
         import org.apache.royale.events.utils.EventUtils;
@@ -334,6 +337,7 @@ package org.apache.royale.events
             COMPILE::JS
             {
                 this.type = type;
+				this.bubbles = bubbles;
             }
 		}
 
@@ -413,20 +417,7 @@ package org.apache.royale.events
                 target.dispatchEvent(event);                    
             }
             COMPILE::JS
-            {
-				// build an event target chain of ancestors so that bubbling
-				// will work for drag events on JS platform.
-				var pet:Object = target.getParentEventTarget();
-				if (!pet) {
-					var p:Object = target.parent;
-					var t:Object = target;
-					while (p != null && (p is IStrand)) {
-						t.setParentEventTarget(p);
-						t = p;
-						p = p.parent;
-					}
-				}
-				
+            {	
 				(target as IEventDispatcher).dispatchEvent(event);
             }
         }

@@ -39,7 +39,8 @@ internal class BasicClasses
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
     import org.apache.royale.html.beads.AlertView; AlertView;
-    import org.apache.royale.html.beads.models.AlertModel; AlertModel;
+    import org.apache.royale.html.beads.controllers.AlertController; AlertController;
+	
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.BackgroundImageBead; BackgroundImageBead;
@@ -129,7 +130,6 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.ViewportModel; ViewportModel;
 	COMPILE::SWF
 	{
-	    import org.apache.royale.html.beads.controllers.AlertController; AlertController;
     	import org.apache.royale.html.beads.controllers.DropDownListController; DropDownListController;
 		import org.apache.royale.html.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
 	}
@@ -182,6 +182,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.DataGridView; DataGridView;
 	import org.apache.royale.html.beads.IDataGridView; IDataGridView;
 	import org.apache.royale.html.beads.DataGridPercentageView; DataGridPercentageView;
+	import org.apache.royale.html.beads.layouts.DataGridLayout; DataGridLayout;
+	import org.apache.royale.html.beads.layouts.DataGridPercentageLayout; DataGridPercentageLayout;
 	import org.apache.royale.html.beads.DateChooserView; DateChooserView;
 	import org.apache.royale.html.beads.DateFieldView; DateFieldView;
 	import org.apache.royale.html.beads.DecrementButtonView; DecrementButtonView;
@@ -189,6 +191,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.RangeStepperView; RangeStepperView;
     import org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
 	import org.apache.royale.html.beads.models.DataGridModel; DataGridModel;
+	import org.apache.royale.html.beads.models.DataGridCollectionViewModel; DataGridCollectionViewModel;
 	import org.apache.royale.html.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.royale.html.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.royale.html.beads.controllers.DateChooserMouseController; DateChooserMouseController;
@@ -200,6 +203,7 @@ internal class BasicClasses
     import org.apache.royale.html.supportClasses.DateChooserList; DateChooserList;
     import org.apache.royale.html.supportClasses.DateItemRenderer; DateItemRenderer;
 	import org.apache.royale.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
+	import org.apache.royale.html.supportClasses.NestedStringItemRenderer; NestedStringItemRenderer;
 
     import org.apache.royale.html.beads.TitleBarView; TitleBarView;
     import org.apache.royale.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;

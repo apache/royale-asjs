@@ -21,8 +21,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.IDataGridView;
-	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
+	import org.apache.royale.html.beads.layouts.DataGridLayout;
 
 	COMPILE::SWF {
 		import org.apache.royale.html.supportClasses.ScrollingViewport;
@@ -38,7 +39,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridWithDrawingLayerLayout extends VerticalFlexLayout
+	public class DataGridWithDrawingLayerLayout extends DataGridLayout
 	{
 		/**
 		 *  constructor
@@ -74,27 +75,26 @@ package org.apache.royale.html.beads
 		 */
 		override public function layout():Boolean
 		{
-			// If there is a drawing layer, remove it so the super.layout function
-			// will not include it.
+			// Get the drawing layer, if there is one, so it can be positioned at the
+			// top of the z-order and sized properly.
 			var layerBead:IDrawingLayerBead = _strand.getBeadByType(IDrawingLayerBead) as IDrawingLayerBead;
-			if (layerBead != null && layerBead.layer != null) {
-				UIBase(_strand).removeElement(layerBead.layer);
-			}
 
 			// Run the actual layout
 			var result:Boolean = super.layout();
 
 			// Put the drawing layer back, sizing it to fit over the listArea.
-			if (layerBead != null && layerBead.layer != null) {
-				UIBase(_strand).addElement(layerBead.layer);
-
-				var layerX:Number = 0;
-				var layerY:Number = 0;
-				var useWidth:Number = UIBase(_strand).width;
-				var useHeight:Number = UIBase(_strand).height;
-
+			if (result && layerBead != null && layerBead.layer != null) {
+				
 				var view:IDataGridView = UIBase(_strand).view as IDataGridView;
 				var listArea:UIBase = view.listArea;
+				
+				UIBase(_strand).removeElement(layerBead.layer);
+				UIBase(_strand).addElement(layerBead.layer); // always keep it on top
+
+				var layerX:Number = listArea.x;
+				var layerY:Number = listArea.y;
+				var useWidth:Number = listArea.width;
+				var useHeight:Number = listArea.height;
 
 				COMPILE::SWF {
 					var scrollViewport:ScrollingViewport = listArea.getBeadByType(ScrollingViewport) as ScrollingViewport;
@@ -111,6 +111,7 @@ package org.apache.royale.html.beads
 				layerBead.layer.setWidthAndHeight(useWidth, useHeight, true);
 
 			}
+			
 			return result;
 		}
 	}

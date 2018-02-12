@@ -35,7 +35,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Spinner;
 	import org.apache.royale.html.TextInput;
 	import org.apache.royale.html.supportClasses.Border;
-	import org.apache.royale.html.supportClasses.ScrollBar;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 

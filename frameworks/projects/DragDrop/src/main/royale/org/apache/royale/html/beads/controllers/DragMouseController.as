@@ -176,8 +176,6 @@ package org.apache.royale.html.beads.controllers
 		{
 			_strand = value;
 
-			trace("DragMouseController instance "+DragMouseController.instanceNumber+"; isDragging "+DragMouseController.dragging);
-
             IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, dragMouseDownHandler);
 
             DragMouseController.instanceNumber += 100;
@@ -224,6 +222,12 @@ package org.apache.royale.html.beads.controllers
 					dragEvent.clientX = mouseDownX;
 					dragEvent.clientY = mouseDownY;
 //					trace("DRAG-MOUSE: sending dragStart via "+event.target.toString()+" == "+dragImageOffsetX);
+					COMPILE::SWF {
+						dragEvent.relatedObject = event.target as InteractiveObject;
+					}
+					COMPILE::JS {
+						dragEvent.relatedObject = event.target;
+					}
 					DragEvent.dispatchDragEvent(dragEvent, event.target);
 					dispatchEvent(dragEvent);
 
@@ -257,6 +261,12 @@ package org.apache.royale.html.beads.controllers
                 pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
+				COMPILE::SWF {
+					dragEvent.relatedObject = event.target as InteractiveObject;
+				}
+				COMPILE::JS {
+					dragEvent.relatedObject = event.target;
+				}
                 DragEvent.dispatchDragEvent(dragEvent, event.target);
 				dispatchEvent(dragEvent);
             }
@@ -264,7 +274,7 @@ package org.apache.royale.html.beads.controllers
 
         private function dragMouseUpHandler(event:MouseEvent):void
         {
-            trace("DRAG-MOUSE: dragMouseUp");
+            //trace("DRAG-MOUSE: dragMouseUp");
             var dragEvent:DragEvent;
 
             host = UIUtils.findPopUpHost(_strand as IUIBase);
@@ -274,13 +284,19 @@ package org.apache.royale.html.beads.controllers
 
             if (dragging && event.target)
             {
-                trace("DRAG-MOUSE: sending dragEnd via: "+event.target.toString());
+                //trace("DRAG-MOUSE: sending dragEnd via: "+event.target.toString());
 
 				var screenPoint:Point = new Point(event.screenX, event.screenY);
 				var newPoint:Point = PointUtils.globalToLocal(screenPoint, event.target);
 				dragEvent = DragEvent.createDragEvent("dragEnd", event);
 				dragEvent.clientX = newPoint.x;
 				dragEvent.clientY = newPoint.y;
+				COMPILE::SWF {
+					dragEvent.relatedObject = event.target as InteractiveObject;
+				}
+				COMPILE::JS {
+					dragEvent.relatedObject = event.target;
+				}
 
                 DragEvent.dispatchDragEvent(dragEvent, event.target);
 				dispatchEvent(dragEvent);

@@ -49,6 +49,7 @@ package org.apache.royale.html
 		public function TreeGrid()
 		{
 			super();
+			className = "TreeGrid";
 		}
 		
 		
@@ -67,22 +68,5 @@ package org.apache.royale.html
 				super.dataProvider = value;
 			}
 		}
-		
-		/**
-		 * The TreeGridColumns that define each column displayed.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-//		public function get columns():Array
-//		{
-//			return (model as TreeGridModel).columns;
-//		}
-//		public function set columns(value:Array):void
-//		{
-//			(model as TreeGridModel).columns = value;
-//		}
 	}
 }

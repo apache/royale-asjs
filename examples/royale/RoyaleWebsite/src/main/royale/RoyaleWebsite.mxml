@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns="library://ns.apache.org/royale/html"
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:rs="library://ns.apache.org/royale/site"
+                 xmlns:local="*">
+
+    <fx:Script>
+        <![CDATA[
+            
+        ]]>
+    </fx:Script>
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </js:valuesImpl>
+    
+    <js:initialView>
+        <rs:MainPage width="100%" height="100%">
+            <rs:TopBar />
+            <rs:Tagline />
+            <H2>Code Once.  Run Everywhere.</H2>
+            <P className="intro">
+                Apache Royale™ is a productive open source frontend application technology that allows you to code in MXML &amp; AS3 and output to different formats.
+            </P>
+            <Div className="big-buttons">
+                <rs:BigButton className="red-button" href="getstarted.html">GET STARTED</rs:BigButton>
+                <!--<rs:BigButton className="blue-button" href="tryitnow/index.html">TRY IT NOW</rs:BigButton>-->
+            </Div>
+            <rs:CurvedTop>
+                <rs:ResponsiveTable>
+                    <rs:ResponsiveTableTile icon1="fa-university" title="Enterprise Class Level">
+                        Design &amp; Code in enterprise level languages and tools to ensure the level of quality your applications and clients demand
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-desktop" icon2="fa-mobile" title="Multiple Targets &amp; Devices">
+                        Maintain your knowledge and workflows intact for years to come and let Royale provide you with the right output you need.
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-clock-o" title="Fast Performance &amp; Lightweight">
+                        Royale Apps are light and performant thanks to the PAYG (Pay as you go) philosophy combined with their Composition architecture (Strands &amp; Beads).
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-code" title="OOP &amp; Declarative Programming">
+                        Code in a robust OOP language (AS3) and build your interfaces in a fast declarative XML language (MXML).
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-exchange" title="Advanced Communications">
+                        Royale support AMF communications a performant way to share object graphs with your backend of choice.
+                    </rs:ResponsiveTableTile>
+                    <rs:ResponsiveTableTile icon1="fa-users" title="Supported by Apache">
+                        A great Open Source Foundation ensures long term evolution with the technologies you choose far beyond market &amp; corporate trends
+                    </rs:ResponsiveTableTile>
+                </rs:ResponsiveTable>
+            </rs:CurvedTop>
+            <Div className="orange-box">
+                <H1 className="npm-title">Install Apache Royale via npm</H1>
+                <H2 className="npm-command">npm install royale -g</H2>
+                <P className="fa orange-box-text">After global installation, the following compiler tools will be available for you to use: mxmlc, compc, asjsc, asjscompc, asnodec, and externc.</P>
+                <P className="fa orange-box-text">Usage:</P>
+                <P className="orange-box-code">mxmlc &lt;path to main.mxml file&gt;<br />
+                asjsc &lt;path to main.as file&gt;</P>
+                <Div className="centerButton">
+                    <rs:BigButton icon="fa-external-link" className="white-border-button"
+                        href="tryitnow/index.html">LEARN MORE ABOUT</rs:BigButton>
+                </Div>
+            </Div>
+            <rs:Footer />
+        </rs:MainPage>
+    </js:initialView>
+</js:Application>

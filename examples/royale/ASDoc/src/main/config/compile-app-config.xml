@@ -20,4 +20,5 @@
     <js-output-optimization>
         <optimization>skipAsCoercions</optimization>
     </js-output-optimization>
+    <html-template>../resources/royale-index-template.html</html-template>
 </royale-config>

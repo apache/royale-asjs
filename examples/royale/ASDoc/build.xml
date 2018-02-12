@@ -32,7 +32,7 @@
     <condition property="config.path" value="${windows_config}">
         <os family="windows" />
     </condition>
-    <property name="config.path" value="${basedir}/src/main/config/asdoc-config.xml"/>
+    <property name="config.path" value="${basedir}/src/main/config/asdoc-js-config.xml"/>
 
     <include file="${basedir}/../../build_example.xml" />
     
@@ -51,6 +51,43 @@
     </target>
 
     <target name="json" unless="json.exists" >
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
+        <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCode"
+            fork="true">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <jvmarg line="-Droyalelib='${ROYALE_HOME}/frameworks'"/>
+            <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
+            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/js.swc" />
+            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/GCL.swc" />
+            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/createjs.swc" />
+            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/jquery.swc" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
+            <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
+            <arg value="-load-config=${config.path}" />
+            <arg value="-debug=true" />
+            <arg value="-output=${basedir}/bin-debug" />
+            <arg value="-window-title=Apache Royale API Reference" />
+            <arg value="-main-title=Apache Royale ${release.version} API Reference " />
+            <arg value="-footer=The Apache Software Foundation" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-js-output-type=ROYALE" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
+        </java>
+        <copy todir="${basedir}/bin/js-debug">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin/js-release">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+
+    </target>
+    
+    <target name="json.swf" unless="json.exists" >
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCode"
             fork="true">
@@ -81,7 +118,7 @@
                 <include name="**/*.json" />
             </fileset>
         </copy>
-
+        
     </target>
     
     <target name="examine" depends="build_example.get.browser">
