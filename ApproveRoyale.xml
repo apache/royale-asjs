@@ -239,17 +239,17 @@
     <target name="download" description="download the release package">
         <get src="${package.url.path}/${package.url.name}.${package.suffix}"
             dest="${basedir}/${package.url.name}.${package.suffix}" />
-        <get src="${package.url.path}/${package.url.name}.${package.suffix}.md5"
-            dest="${basedir}/${package.url.name}.${package.suffix}.md5" />
+        <get src="${package.url.path}/${package.url.name}.${package.suffix}.SHA-512"
+            dest="${basedir}/${package.url.name}.${package.suffix}.SHA-512" />
         <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}"
             dest="${basedir}/${bin.package.url.name}.${package.suffix}" />
-        <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}.md5"
-            dest="${basedir}/${bin.package.url.name}.${package.suffix}.md5" />
+        <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}.SHA-512"
+            dest="${basedir}/${bin.package.url.name}.${package.suffix}.SHA-512" />
         <!-- no doc packages in 0.8.0
         <get src="${doc.package.url.path}/${doc.package.url.name}.zip"
             dest="${basedir}/${doc.package.url.name}.zip" />
-        <get src="${doc.package.url.path}/${doc.package.url.name}.zip.md5"
-            dest="${basedir}/${doc.package.url.name}.zip.md5" />-->
+        <get src="${doc.package.url.path}/${doc.package.url.name}.zip.SHA-512"
+            dest="${basedir}/${doc.package.url.name}.zip.SHA-512" />-->
         <antcall target="get_asc" />
     </target>
 
@@ -263,35 +263,35 @@
         dest="${basedir}/${doc.package.url.name}.zip.asc" />-->
     </target>
     
-    <target name="check-sigs" description="check md5 and gpg sigs">
-		<replace file="${basedir}/${package.url.name}.${package.suffix}.md5"
+    <target name="check-sigs" description="check SHA-512 and gpg sigs">
+		<replace file="${basedir}/${package.url.name}.${package.suffix}.SHA-512"
 			token=" " />
-		<checksum file="${basedir}/${package.url.name}.${package.suffix}" algorithm="md5" verifyproperty="md5.ok" />
-        <condition property="MD5Invalid">
+		<checksum file="${basedir}/${package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="SHA-512.ok" />
+        <condition property="SHA-512Invalid">
 			<not>
-				<equals arg1="${md5.ok}" arg2="true" />
+				<equals arg1="${SHA-512.ok}" arg2="true" />
 			</not>
         </condition>
-        <fail message="MD5 checksum did not match" if="MD5Invalid" />
-        <replace file="${basedir}/${bin.package.url.name}.${package.suffix}.md5"
+        <fail message="SHA-512 checksum did not match" if="SHA-512Invalid" />
+        <replace file="${basedir}/${bin.package.url.name}.${package.suffix}.SHA-512"
         token=" " />
-        <checksum file="${basedir}/${bin.package.url.name}.${package.suffix}" algorithm="md5" verifyproperty="bin.md5.ok" />
-        <condition property="BinaryMD5Invalid">
+        <checksum file="${basedir}/${bin.package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="bin.SHA-512.ok" />
+        <condition property="BinarySHA-512Invalid">
             <not>
-                <equals arg1="${bin.md5.ok}" arg2="true" />
+                <equals arg1="${bin.SHA-512.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="Binary Package MD5 checksum did not match" if="BinaryMD5Invalid" />
+        <fail message="Binary Package SHA-512 checksum did not match" if="BinarySHA-512Invalid" />
         <!-- no doc packages in 0.8.0
-        <replace file="${basedir}/${doc.package.url.name}.zip.md5"
+        <replace file="${basedir}/${doc.package.url.name}.zip.SHA-512"
         token=" " />
-        <checksum file="${basedir}/${doc.package.url.name}.zip" algorithm="md5" verifyproperty="doc.md5.ok" />
-        <condition property="DocMD5Invalid">
+        <checksum file="${basedir}/${doc.package.url.name}.zip" algorithm="SHA-512" verifyproperty="doc.SHA-512.ok" />
+        <condition property="DocSHA-512Invalid">
             <not>
-                <equals arg1="${doc.md5.ok}" arg2="true" />
+                <equals arg1="${doc.SHA-512.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="Doc Package MD5 checksum did not match" if="DocMD5Invalid" />-->
+        <fail message="Doc Package SHA-512 checksum did not match" if="DocSHA-512Invalid" />-->
         <antcall target="gpg_check" />
     </target>
 
@@ -836,15 +836,15 @@
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
         <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.md5"
-             dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="compiler.md5.ok" />
-        <condition property="CompilerMD5Invalid">
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.SHA-512"
+             dest="${basedir}/${binary.jx.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" />
+        <condition property="CompilerSHA-512Invalid">
             <not>
-                <equals arg1="${compiler.md5.ok}" arg2="true" />
+                <equals arg1="${compiler.SHA-512.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="MD5 checksum did not match" if="CompilerMD5Invalid" />
+        <fail message="SHA-512 checksum did not match" if="CompilerSHA-512Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/compiler" />
         <ant dir="${basedir}/compiler/compiler/src/main/resources" antfile="downloads.xml" />
         <property name="ROYALE_COMPILER_REPO" value="${basedir}/compiler" />
@@ -855,15 +855,15 @@
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
         <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip"
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip.md5"
-        dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="compiler.md5.ok" />
-        <condition property="CompilerMD5Invalid">
+        <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip.SHA-512"
+        dest="${basedir}/${binary.jx.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" />
+        <condition property="CompilerSHA-512Invalid">
             <not>
-                <equals arg1="${compiler.md5.ok}" arg2="true" />
+                <equals arg1="${compiler.SHA-512.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="MD5 checksum did not match" if="CompilerMD5Invalid" />
+        <fail message="SHA-512 checksum did not match" if="CompilerSHA-512Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/compiler" />
         <ant dir="${basedir}/compiler/compiler/src/main/resources" antfile="downloads.xml" />
         <property name="ROYALE_COMPILER_REPO" value="${basedir}/compiler" />
@@ -873,15 +873,15 @@
         <property name="binary.flexunit.kit" value="apache.royale-flexunit-4.2.0-4.12.0-bin"/>
         <get src="https://archive.apache.org/dist/royale/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip"
         dest="${basedir}/${binary.flexunit.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://archive.apache.org/dist/royale/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.md5"
-        dest="${basedir}/${binary.flexunit.kit}.zip.md5" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="md5" verifyproperty="flexunit.md5.ok" />
-        <condition property="FlexUnitMD5Invalid">
+        <get src="https://archive.apache.org/dist/royale/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.SHA-512"
+        dest="${basedir}/${binary.flexunit.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="SHA-512" verifyproperty="flexunit.SHA-512.ok" />
+        <condition property="FlexUnitSHA-512Invalid">
             <not>
-                <equals arg1="${flexunit.md5.ok}" arg2="true" />
+                <equals arg1="${flexunit.SHA-512.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="MD5 checksum did not match" if="FlexUnitMD5Invalid" />
+        <fail message="SHA-512 checksum did not match" if="FlexUnitSHA-512Invalid" />
         <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/flexunit" />
         <property name="FLEXUNIT_HOME" value="${basedir}/flexunit" />
     </target>
@@ -891,15 +891,15 @@
         <property name="binary.sdk.kit" value="${kit.sdk.prefix}-bin"/>
         <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip"
         dest="${basedir}/${binary.sdk.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip.md5"
-        dest="${basedir}/${binary.sdk.kit}.zip.md5" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="md5" verifyproperty="sdk.md5.ok" />
-        <condition property="SDKMD5Invalid">
+        <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip.SHA-512"
+        dest="${basedir}/${binary.sdk.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="SHA-512" verifyproperty="sdk.SHA-512.ok" />
+        <condition property="SDKSHA-512Invalid">
             <not>
-                <equals arg1="${sdk.md5.ok}" arg2="true" />
+                <equals arg1="${sdk.SHA-512.ok}" arg2="true" />
             </not>
         </condition>
-        <fail message="MD5 checksum did not match" if="SDKMD5Invalid" />
+        <fail message="SHA-512 checksum did not match" if="SDKSHA-512Invalid" />
         <unzip src="${basedir}/${binary.sdk.kit}.zip" dest="${basedir}/sdk" />
         <ant dir="${basedir}/sdk/frameworks" antfile="downloads.xml" />
         <property name="FLEX_SDK_HOME" value="${basedir}/sdk" />

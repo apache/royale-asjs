@@ -834,8 +834,8 @@
     
     <target name="ant-artifacts">
 		<ant dir="${basedir}/royale-asjs" target="release" />
-		<ant dir="${basedir}/royale-asjs" target="create-md5" />
-        <ant dir="${basedir}/royale-asjs" target="create-md5-jsonly" />
+		<ant dir="${basedir}/royale-asjs" target="create-SHA-512" />
+        <ant dir="${basedir}/royale-asjs" target="create-SHA-512-jsonly" />
 		<ant dir="${basedir}/royale-asjs" target="sign" />
         <ant dir="${basedir}/royale-asjs" target="sign-jsonly" />
 		<!--<ant antfile="build.xml" target="doc-create-md5" />-->
@@ -964,7 +964,7 @@ approving a release?', at:\n\
 http://www.apache.org/dev/release.html#approving-a-release\n\
 \n\
 At a minimum you would be expected to check that:\n\
-- MD5 and signed packages are correct\n\
+- SHA and signed packages are correct\n\
 - README, RELEASE_NOTES, NOTICE and LICENSE files are all fine\n\
 - That the build script completes successfully\n\
 - That you can compile and cross-compile a simple example using the SDK.\n\
