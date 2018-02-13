@@ -1335,7 +1335,7 @@ ${my.name}
         </exec>
     </target>
 
-    <target name="release.npm" depends="check-name-and-svn,check-royale-asjs">
+    <target name="release.npm" depends="check-name-and-svn,check-royale-asjs,use_release_branch,checkout-release-branch">
         <input
         message="To publish the npm artifacts, enter the npm password from the private@ list"
         addproperty="npm.password"/>
