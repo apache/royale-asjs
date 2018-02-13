@@ -1247,7 +1247,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="release/${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_typedefs_develop" depends="check-royale-typedefs">
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
@@ -1262,7 +1262,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="release/${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_compiler_develop" depends="check-royale-compiler">
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
@@ -1277,7 +1277,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="release/${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     
     <target name="merge_rc_to_master" depends="merge_to_asjs_master, merge_to_typedefs_master, merge_to_compiler_master" />
@@ -1294,7 +1294,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="apache-royale-${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_typedefs_master" depends="check-royale-typedefs">
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
@@ -1309,7 +1309,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="apache-royale-${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_compiler_master" depends="check-royale-compiler">
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
@@ -1324,7 +1324,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="apache-royale-${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     
     <target name="release.maven.staging.repo" >
@@ -1335,7 +1335,7 @@ ${my.name}
         </exec>
     </target>
 
-    <target name="release.npm" depends="check-name-and-svn">
+    <target name="release.npm" depends="check-name-and-svn,check-royale-asjs,use_release_branch,checkout-release-branch">
         <input
         message="To publish the npm artifacts, enter the npm password from the private@ list"
         addproperty="npm.password"/>
