@@ -70,6 +70,7 @@
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
+    <component id="VirtualListVerticalLayout" class="org.apache.royale.html.beads.layouts.VirtualListVerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
     <component id="VerticalFlexLayout" class="org.apache.royale.html.beads.layouts.VerticalFlexLayout"/>
     <component id="VerticalSliderLayout" class="org.apache.royale.html.beads.layouts.VerticalSliderLayout" />
@@ -166,6 +167,7 @@
     <component id="DynamicRemoveAllByNullItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllByNullItemRendererForArrayListData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
+    <component id="VirtualDataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser"/>
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />

@@ -30,6 +30,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IList;
+    import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IDataProviderModel;
@@ -73,7 +74,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataContainer extends DataContainerBase
+	public class DataContainer extends DataContainerBase implements IListWithPresentationModel
 	{
 		/**
 		 *  constructor.
