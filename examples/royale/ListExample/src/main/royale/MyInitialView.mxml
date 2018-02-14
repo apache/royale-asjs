@@ -131,6 +131,7 @@ limitations under the License.
             is using an ArrayList as its dataProvider -->
             <js:VirtualDataItemRendererFactoryForArrayData />
             <js:VirtualListVerticalLayout />
+            <js:VirtualListView />
         </js:beads>
     </js:List>
     
