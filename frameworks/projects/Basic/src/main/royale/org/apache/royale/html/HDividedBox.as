@@ -41,7 +41,6 @@ package org.apache.royale.html
 		{
 			super();
 			typeNames = "HDividedBox";
-			direction = "horizontal";
 		}
 	}
 }

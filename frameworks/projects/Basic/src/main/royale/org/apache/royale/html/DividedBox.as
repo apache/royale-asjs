@@ -104,25 +104,6 @@ package org.apache.royale.html
 				_initialized = true;
 			}
 		}
-				
-		/**
-		 * Sets the direction of the divided box. Setting direction to "horizontal" divides
-		 * the box into columns with a separator between each column. Setting direction to
-		 * "vertical" divides the box into rows with separators between the rows.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function get direction():String
-		{
-			return DividedBoxModel(model).direction;
-		}
-		public function set direction(value:String):void
-		{
-			DividedBoxModel(model).direction = value;
-		}
 		
 		// IMXMLDocument
 		

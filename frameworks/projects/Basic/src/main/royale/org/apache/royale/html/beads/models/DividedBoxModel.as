@@ -57,30 +57,6 @@ package org.apache.royale.html.beads.models
 			_strand = value;
 		}
 		
-		private var _direction:String = "vertical";
-		
-		[Binding("directionChanged")]
-		
-		/**
-		 * The direction of the DividedBox. This can be "horizontal" (the
-		 * children arranged in flexible columns) or "vertical" (the children
-		 * arranged in flexible rows).
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function get direction():String
-		{
-			return _direction;
-		}
-		public function set direction(value:String):void
-		{
-			_direction = value;
-			dispatchEvent(new Event("directionChanged"));
-		}
-		
 		private var _pairAdjustments:Array = [0];
 		
 		/**
