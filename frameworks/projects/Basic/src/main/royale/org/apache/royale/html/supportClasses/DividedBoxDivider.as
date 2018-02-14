@@ -19,11 +19,10 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.html.beads.SingleLineBorderBead;
-	import org.apache.royale.html.beads.models.DividedBoxModel;
 	
 	COMPILE::SWF {
 		import org.apache.royale.html.beads.SolidBackgroundBead;
+		import org.apache.royale.html.beads.SingleLineBorderBead;
 		import org.apache.royale.utils.loadBeadFromValuesManager;
 	}
 	
@@ -37,7 +36,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DividedBoxDivider extends UIBase
+	public class DividedBoxDivider extends UIBase implements IDividedBoxDivider
 	{
 		/**
 		 * Constructor.
@@ -50,13 +49,15 @@ package org.apache.royale.html.supportClasses
 		public function DividedBoxDivider()
 		{
 			super();
-			className = "DividedBoxDivider";
+			typeNames = "DividedBoxDivider";
 			
 			COMPILE::SWF {
 				loadBeadFromValuesManager(SolidBackgroundBead, "iBackgroundBead", this);
 				loadBeadFromValuesManager(SingleLineBorderBead, "iBorderBead", this);
 			}
 		}
+		
+		private var _pairIndex:int = 0;
 				
 		/**
 		 * The index of this divider instance, indicating which pair of children it
@@ -67,6 +68,14 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public var pairIndex:int = 0;
+		public function get pairIndex():int
+		{
+			return _pairIndex;
+		}
+		
+		public function set pairIndex(value:int):void
+		{
+			_pairIndex = value;
+		}
 	}
 }

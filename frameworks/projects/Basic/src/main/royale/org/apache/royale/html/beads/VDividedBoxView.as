@@ -16,21 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.supportClasses
+package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.html.supportClasses.IDividedBoxDivider;
+	import org.apache.royale.html.supportClasses.VDividedBoxDivider;
 
 	/**
-	 * This sub-class of DividerBoxDivider sets up a vertical divider between
-	 * the columns of an HDividedBox.
+	 * Creates a vertical DividerBoxDivider.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class HDividedBoxDivider extends DividedBoxDivider
+	public class VDividedBoxView extends DividedBoxView
 	{
 		/**
 		 * Constructor.
@@ -40,20 +39,17 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function HDividedBoxDivider()
+		public function VDividedBoxView()
 		{
 			super();
-			typeNames = "HDividedBoxDivider";
 		}
-				
+		
 		/**
 		 * @private
 		 */
-		override public function addedToParent():void
+		override protected function createSeparator():IDividedBoxDivider
 		{
-			super.addedToParent();
-
-			loadBeadFromValuesManager(IDividedBoxGripper, "iGripperBead", this);
+			return new VDividedBoxDivider();
 		}
 	}
 }

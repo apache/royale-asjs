@@ -41,7 +41,8 @@ internal class BasicClasses
     import org.apache.royale.html.beads.AlertView; AlertView;
     import org.apache.royale.html.beads.controllers.AlertController; AlertController;
 	
-	import org.apache.royale.html.beads.DividedBoxView; DividedBoxView;
+	import org.apache.royale.html.beads.HDividedBoxView; HDividedBoxView;
+	import org.apache.royale.html.beads.VDividedBoxView; VDividedBoxView;
 	import org.apache.royale.html.beads.models.DividedBoxModel; DividedBoxModel;
 	import org.apache.royale.html.beads.layouts.HDividedBoxLayout; HDividedBoxLayout;
 	import org.apache.royale.html.beads.layouts.VDividedBoxLayout; VDividedBoxLayout;

@@ -40,7 +40,7 @@ package org.apache.royale.html
 		public function HDividedBox()
 		{
 			super();
-			className = "HDividedBox";
+			typeNames = "HDividedBox";
 			direction = "horizontal";
 		}
 	}

@@ -18,42 +18,38 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IChild;
 
 	/**
-	 * This sub-class of DividerBoxDivider sets up a vertical divider between
-	 * the columns of an HDividedBox.
+	 * All DividerBoxDividers must implement this interface.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class HDividedBoxDivider extends DividedBoxDivider
+	public interface IDividedBoxDivider extends IChild
 	{
 		/**
-		 * Constructor.
+		 * The model being used with the DividedBox.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function HDividedBoxDivider()
-		{
-			super();
-			typeNames = "HDividedBoxDivider";
-		}
-				
+		function get model():Object;
+		function set model(value:Object):void;
+		
 		/**
-		 * @private
+		 * The index of the pairs this divider is managing.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
 		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
-			loadBeadFromValuesManager(IDividedBoxGripper, "iGripperBead", this);
-		}
+		function get pairIndex():int;
+		function set pairIndex(value:int):void;
 	}
 }

@@ -62,7 +62,7 @@ package org.apache.royale.html
 		public function DividedBox()
 		{
 			super();
-			className = "DividedBox";
+			typeNames = "DividedBox";
 		}
 		
 		// DividedBoxLayout takes care of sizing and positioning the children and the

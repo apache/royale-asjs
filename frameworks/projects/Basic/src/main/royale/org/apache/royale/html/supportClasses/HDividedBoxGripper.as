@@ -24,7 +24,8 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.graphics.SolidColor;
-	import org.apache.royale.svg.Rect;
+	import org.apache.royale.graphics.SolidColorStroke;
+	import org.apache.royale.svg.Path;
 
 	/**
 	 * The HDividedBoxGripper is a bead added to the HDividedBoxDivider to
@@ -50,7 +51,7 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		private var _strand:IStrand;
-		private var rect:Rect;
+		private var path:Path;
 		
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
@@ -68,9 +69,10 @@ package org.apache.royale.html.supportClasses
 			(_strand as IEventDispatcher).addEventListener("widthChanged", handleResize);
 			(_strand as IEventDispatcher).addEventListener("heightChanged", handleResize);
 			
-			rect = new Rect();
-			rect.fill = new SolidColor(0x555555);
-			(_strand as UIBase).addElement(rect);
+			path = new Path();
+			path.stroke = new SolidColorStroke(0x555555,1);
+			path.data = "M 1 0 L 1 30 M 4 0 L 4 30 M 7 0 L 7 30";
+			(_strand as UIBase).addElement(path);
 		}
 		
 		/**
@@ -81,13 +83,11 @@ package org.apache.royale.html.supportClasses
 			var useWidth:Number = (_strand as UIBase).width;
 			var useHeight:Number = (_strand as UIBase).height;
 			
-			// for horizontal gripper, it is taller than it is wide
-			rect.width = useWidth - 2;
-			rect.height = rect.width * 4;
-			
-			rect.x = 1;
-			rect.y = (useHeight - rect.height)/2;
-			rect.draw();
+			path.width = 8;
+			path.height = 30;
+			path.x = (useWidth - path.width)/2;
+			path.y = (useHeight - path.height)/2;
+			path.draw();
 		}
 	}
 }

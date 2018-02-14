@@ -43,7 +43,7 @@ package org.apache.royale.html.supportClasses
 		public function VDividedBoxDivider()
 		{
 			super();
-			className = "VDividedBoxDivider";
+			typeNames = "VDividedBoxDivider";
 		}
 				
 		/**

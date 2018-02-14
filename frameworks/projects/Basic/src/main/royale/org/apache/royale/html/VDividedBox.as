@@ -40,7 +40,7 @@ package org.apache.royale.html
 		public function VDividedBox()
 		{
 			super();
-			className = "VDividedBox";
+			typeNames = "VDividedBox";
 			direction = "vertical";
 		}
 	}
