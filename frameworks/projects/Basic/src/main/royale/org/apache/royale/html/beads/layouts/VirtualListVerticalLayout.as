@@ -29,6 +29,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
+    import org.apache.royale.core.IScrollingViewport;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -41,9 +42,13 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.html.beads.VirtualListView;
 	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.CSSUtils;
-
+    COMPILE::SWF {
+        import org.apache.royale.geom.Size;
+    }
+        
 	/**
 	 *  The VerticalLayout class is a simple layout
 	 *  bead.  It takes the set of children and lays them out
@@ -89,10 +94,8 @@ package org.apache.royale.html.beads.layouts
         COMPILE::JS
         private var bottomSpacer:HTMLDivElement;
         
-        COMPILE::JS
         private var visibleIndexes:Array = [];
         
-        COMPILE::JS
         private function scrollHandler(e:Event):void
         {
             layout();
@@ -117,19 +120,22 @@ package org.apache.royale.html.beads.layouts
             
 			COMPILE::SWF
 			{
+                // the strategy for virtualization in SWF is based on the
+                // fact that we can completely control the scrolling metrics
+                // instead of trying to rely on the browsers built-in scrolling.
+                // This code puts enough renderers on the screen and then dictates
+                // the scrolling metrics.
 				var contentView:ILayoutView = layoutView;
-
-				var n:Number = contentView.numElements;
-				if (n == 0) return false;
 
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
+                var dp:Array = dataProviderModel.dataProvider as Array;
+                var presentationModel:IListPresentationModel = (host as IListWithPresentationModel).presentationModel;
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
 				var hostWidth:Number = host.width;
 				var hostHeight:Number = host.height;
 
-				var ilc:ILayoutChild;
 				var data:Object;
 				var canAdjust:Boolean = false;
 
@@ -142,51 +148,94 @@ package org.apache.royale.html.beads.layouts
 				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.top;
+                var ypos:Number = borderMetrics.top + paddingMetrics.top;
+                
+                var viewport:IScrollingViewport = host.getBeadByType(IScrollingViewport) as IScrollingViewport;
+                viewport.addEventListener("verticalScrollPositionChanged", scrollHandler);
+                var viewportTop:Number = viewport.verticalScrollPosition;
+                var viewportHeight:Number = hostHeight;
+                var startIndex:int = Math.floor(viewportTop / presentationModel.rowHeight);
+                var factory:IDataProviderVirtualItemRendererMapper = host.getBeadByType(IDataProviderVirtualItemRendererMapper) as IDataProviderVirtualItemRendererMapper;
+                var endIndex:int = Math.ceil((viewportTop + viewportHeight) / presentationModel.rowHeight);
+                var freeIndex:int;
+                var firstIndex:int;
+                var lastIndex:int;
 
-				// First pass determines the data about the child.
-				for(var i:int=0; i < n; i++)
-				{
-					var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-					if (child == null || !child.visible) continue;
-					var positions:Object = childPositions(child);
-					var margins:Object = childMargins(child, hostWidth, hostHeight);
+                if (visibleIndexes.length)
+                {
+                    if (startIndex < visibleIndexes[0])
+                    {
+                        // see if we can re-use any renderers
+                        freeIndex = visibleIndexes.pop();
+                        while (freeIndex >= endIndex)
+                        {
+                            factory.freeItemRendererForIndex(freeIndex);
+                            if (visibleIndexes.length == 0)
+                                break;
+                            freeIndex = visibleIndexes.pop();
+                        }
+                        if (visibleIndexes.length)
+                            endIndex = visibleIndexes[visibleIndexes.length - 1];
+                    }
+                    else if (startIndex > visibleIndexes[0])
+                    {
+                        // see if we can re-use any renderers
+                        freeIndex = visibleIndexes.shift();
+                        while (freeIndex < startIndex)
+                        {
+                            factory.freeItemRendererForIndex(freeIndex);
+                            if (visibleIndexes.length == 0)
+                                break;
+                            freeIndex = visibleIndexes.shift();
+                        }
+                    }
+                    else
+                    {
+                        // see if rows got added or removed because height changed
+                        lastIndex = visibleIndexes[visibleIndexes.length - 1];
+                        if (lastIndex > endIndex)
+                        {
+                            // see if we can re-use any renderers
+                            freeIndex = visibleIndexes.pop();
+                            while (freeIndex > endIndex)
+                            {
+                                factory.freeItemRendererForIndex(freeIndex);
+                                if (visibleIndexes.length == 0)
+                                    break;
+                                freeIndex = visibleIndexes.pop();
+                            }
+                            inLayout = false;
+                            return true;  // we should be all done if we shrunk
+                        }
+                    }
+                    firstIndex = visibleIndexes[0];
+                    lastIndex = visibleIndexes[visibleIndexes.length - 1];
+                }
+                else
+                {
+                    firstIndex = dp.length;
+                    lastIndex = 0;
+                }
+                for (var i:int = startIndex; i < endIndex; i++)
+                {
+                    var ir:ISelectableItemRenderer;
+                    if (i < firstIndex)
+                    {
+                        ir  = factory.getItemRendererForIndex(i, i - startIndex);
+                        sizeAndPositionRenderer(ir, xpos, ypos + (presentationModel.rowHeight * i), hostWidth, hostHeight);
+                        visibleIndexes.push(i);
+                    }
+                    else if (i > lastIndex)
+                    {
+                        ir  = factory.getItemRendererForIndex(i, i - startIndex);
+                        sizeAndPositionRenderer(ir, xpos, ypos + (presentationModel.rowHeight * i), hostWidth, hostHeight);
+                        visibleIndexes.push(i);
+                    }
+                }
+                visibleIndexes = visibleIndexes.sort(numberSort);
 
-					ilc = child as ILayoutChild;
-
-					ypos += margins.top;
-
-					var childXpos:Number = xpos + margins.left; // default x position
-
-					var childWidth:Number = child.width;
-					if (ilc != null && !isNaN(ilc.percentWidth)) {
-						childWidth = hostWidth * ilc.percentWidth/100.0;
-						ilc.setWidth(childWidth);
-					}
-					else if (ilc.isWidthSizedToContent() && !margins.auto)
-					{
-						childWidth = hostWidth;
-						ilc.setWidth(childWidth);
-					}
-					if (margins.auto)
-						childXpos = (hostWidth - childWidth) / 2;
-						
-					if (ilc) {
-						ilc.setX(childXpos);
-						ilc.setY(ypos);
-
-						if (!isNaN(ilc.percentHeight)) {
-							var newHeight:Number = hostHeight * ilc.percentHeight / 100;
-							ilc.setHeight(newHeight);
-						}
-
-					} else {
-						child.x = childXpos;
-						child.y = ypos;
-					}
-
-					ypos += child.height + margins.bottom;
-				}
+                var view:VirtualListView = host.getBeadByType(VirtualListView) as VirtualListView;
+                view.lastContentSize = new Size(hostWidth, dp.length * presentationModel.rowHeight);
 
                 inLayout = false;
 				return true;
@@ -305,5 +354,48 @@ package org.apache.royale.html.beads.layouts
             return a - b;
         }
 
+        COMPILE::SWF
+        private function sizeAndPositionRenderer(ir:ISelectableItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
+        {
+            var ilc:ILayoutChild;
+            var positions:Object = childPositions(ir);
+            var margins:Object = childMargins(ir, hostWidth, hostHeight);
+            
+            ilc = ir as ILayoutChild;
+            var child:IUIBase = ir as IUIBase;
+            
+            ypos += margins.top;
+            
+            var childXpos:Number = xpos + margins.left; // default x position
+            
+            var childWidth:Number = child.width;
+            if (ilc != null && !isNaN(ilc.percentWidth)) {
+                childWidth = hostWidth * ilc.percentWidth/100.0;
+                ilc.setWidth(childWidth);
+            }
+            else if (ilc.isWidthSizedToContent() && !margins.auto)
+            {
+                childWidth = hostWidth;
+                ilc.setWidth(childWidth);
+            }
+            if (margins.auto)
+                childXpos = (hostWidth - childWidth) / 2;
+            
+            if (ilc) {
+                ilc.setX(childXpos);
+                ilc.setY(ypos);
+                
+                if (!isNaN(ilc.percentHeight)) {
+                    var newHeight:Number = hostHeight * ilc.percentHeight / 100;
+                    ilc.setHeight(newHeight);
+                }
+                
+            } else {
+                child.x = childXpos;
+                child.y = ypos;
+            }
+            
+            ypos += child.height + margins.bottom;
+        }
 	}
 }

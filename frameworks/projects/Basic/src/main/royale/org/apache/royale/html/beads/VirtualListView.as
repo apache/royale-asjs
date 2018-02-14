@@ -25,6 +25,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IList;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
@@ -42,7 +44,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.models.ArraySelectionModel;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
-
+    COMPILE::SWF {
+        import org.apache.royale.geom.Size;
+    }
+        
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List
 	 *  component. A List consists of the area to display the data (in the dataGroup), any
@@ -181,5 +186,18 @@ package org.apache.royale.html.beads
 			
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
 		}
-	}
+
+        override protected function calculateContentSize():Size
+        {
+            return _lastContentSize;
+        }
+        
+        private var _lastContentSize:Size;
+        
+        public function set lastContentSize(value:Size):void
+        {
+            _lastContentSize = value;
+        }
+
+    }
 }

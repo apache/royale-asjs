@@ -111,6 +111,7 @@ internal class CoreClasses
     import org.apache.royale.core.IUIBase; IUIBase;
     import org.apache.royale.core.IValueToggleButtonModel; IValueToggleButtonModel;
 	import org.apache.royale.core.IViewport; IViewport;
+    import org.apache.royale.core.IScrollingViewport; IScrollingViewport;
 	import org.apache.royale.core.IViewportModel; IViewportModel;
 	COMPILE::SWF
 	{

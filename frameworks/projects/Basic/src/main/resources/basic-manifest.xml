@@ -70,6 +70,7 @@
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
+    <component id="VirtualListView" class="org.apache.royale.html.beads.VirtualListView"/>
     <component id="VirtualListVerticalLayout" class="org.apache.royale.html.beads.layouts.VirtualListVerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
     <component id="VerticalFlexLayout" class="org.apache.royale.html.beads.layouts.VerticalFlexLayout"/>
