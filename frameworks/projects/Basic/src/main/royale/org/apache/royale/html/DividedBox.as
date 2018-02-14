@@ -33,6 +33,8 @@ package org.apache.royale.html
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
+	[Event(name="initComplete", type="org.apache.royale.events.Event")]
+	
 	[DefaultProperty("mxmlContent")]
 	
 	/**

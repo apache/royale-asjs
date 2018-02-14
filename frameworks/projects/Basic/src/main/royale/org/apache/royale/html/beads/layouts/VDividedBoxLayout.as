@@ -67,9 +67,7 @@ package org.apache.royale.html.beads.layouts
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			super.strand = value;
-			
-			//((_strand as UIBase).model as IEventDispatcher).addEventListener("pairAdjustmentChanged", handleLayoutNeeded);
+			super.strand = value;			
 		}
 		
 		/**
