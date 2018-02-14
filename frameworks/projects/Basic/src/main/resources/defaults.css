@@ -310,15 +310,17 @@ DateField {
 /** DividedBox */
 
 HDividedBox {
-	IBeadView: ClassReference("org.apache.royale.html.beads.HDividedBoxView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedBoxView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedBoxModel");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HDividedBoxLayout");
+	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.HDividedBoxDivider");
 }
 
 VDividedBox {
-	IBeadView: ClassReference("org.apache.royale.html.beads.VDividedBoxView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedBoxView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedBoxModel");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VDividedBoxLayout");
+	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.VDividedBoxDivider");
 }
 
 HDividedBoxDivider {

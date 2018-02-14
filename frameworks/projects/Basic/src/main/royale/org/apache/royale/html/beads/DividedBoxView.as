@@ -22,6 +22,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.DividedBox;
@@ -76,19 +77,6 @@ package org.apache.royale.html.beads
 		}
 		
 		/**
-		 * A sub-class should create an instance of a DividedBoxDivider and return it.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		protected function createSeparator():IDividedBoxDivider
-		{
-			return null;
-		}
-		
-		/**
 		 * Handles the "childrenAdded" event and generates the separators between them
 		 * based on the direction of the box.
 		 *  
@@ -106,7 +94,7 @@ package org.apache.royale.html.beads
 			var adjustments:Array = [];
 			if (n > 1) {
 				for(var i:int=0; i < (n-1); i++) {
-					var sep:IDividedBoxDivider = createSeparator();
+					var sep:IDividedBoxDivider = ValuesManager.valuesImpl.newInstance(_strand, "iDividerFactory") as IDividedBoxDivider;
 					(host as UIBase).addElement(sep);
 					seps.push(sep);
 					adjustments.push(0);

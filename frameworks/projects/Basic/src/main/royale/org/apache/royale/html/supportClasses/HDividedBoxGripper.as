@@ -23,7 +23,6 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.graphics.SolidColor;
 	import org.apache.royale.graphics.SolidColorStroke;
 	import org.apache.royale.svg.Path;
 
