@@ -25,49 +25,49 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.DividedBox;
-	import org.apache.royale.html.beads.models.DividedBoxModel;
-	import org.apache.royale.html.supportClasses.DividedBoxDivider;
-	import org.apache.royale.html.supportClasses.IDividedBoxDivider;
+	import org.apache.royale.html.DividedContainer;
+	import org.apache.royale.html.beads.models.DividedContainerModel;
+	import org.apache.royale.html.supportClasses.DividedContainerDivider;
+	import org.apache.royale.html.supportClasses.IDividedContainerDivider;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	
+
 	/**
-	 * The DividedBoxView class is responsible for generating the
-	 * DividedBoxSeparators between the children and placing them
+	 * The DividedContainerView class is responsible for generating the
+	 * DividedContainerSeparators between the children and placing them
 	 * in the z-order between the children.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DividedBoxView implements IBeadView
+	public class DividedContainerView implements IBeadView
 	{
 		/**
 		 * Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function DividedBoxView()
+		public function DividedContainerView()
 		{
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+
 			(_strand as IEventDispatcher).addEventListener("childrenAdded", handleChildrenAdded);
 			(_strand as UIBase).model.addEventListener("pairAdjustmentChanged", handlePairAdjustmentChanged);
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -75,11 +75,11 @@ package org.apache.royale.html.beads
 		{
 			return _strand as IUIBase;
 		}
-		
+
 		/**
 		 * Handles the "childrenAdded" event and generates the separators between them
 		 * based on the direction of the box.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -88,27 +88,27 @@ package org.apache.royale.html.beads
 		protected function handleChildrenAdded(event:Event):void
 		{
 			var n:int = (host as UIBase).numElements;
-			
+
 			// add in n-1 separators and adjustments
 			var seps:Array = [];
 			var adjustments:Array = [];
 			if (n > 1) {
 				for(var i:int=0; i < (n-1); i++) {
-					var sep:IDividedBoxDivider = ValuesManager.valuesImpl.newInstance(_strand, "iDividerFactory") as IDividedBoxDivider;
+					var sep:IDividedContainerDivider = ValuesManager.valuesImpl.newInstance(_strand, "iDividerFactory") as IDividedContainerDivider;
 					(host as UIBase).addElement(sep);
 					seps.push(sep);
 					adjustments.push(0);
-					
+
 					sep.model = (_strand as UIBase).model;
 					sep.pairIndex = i;
 				}
 			}
-			
-			((host as UIBase).model as DividedBoxModel).pairAdjustments = adjustments;
-						
+
+			((host as UIBase).model as DividedContainerModel).pairAdjustments = adjustments;
+
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
-		
+
 		/**
 		 * @private
 		 */

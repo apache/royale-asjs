@@ -41,8 +41,8 @@ limitations under the License.
 			background-color: #CCCC00;
 		}
 		
-		/* Give the outer HDividedBox some padding */
-		js|HDividedBox {
+		/* Give the outer HDividedContainer some padding */
+		js|HDividedContainer {
 			padding: 10px;
 		}
 		
@@ -52,24 +52,24 @@ limitations under the License.
 		}
 	</fx:Style>
 		
-	<js:HDividedBox width="600" height="600">
+	<js:HDividedContainer width="600" height="600">
 		<js:VGroup className="Group1" width="175" height="100%">
 			<js:Label text="Group One" />
 			<js:Spacer height="30" />
 			<js:Label text="Menu or tool palette perhaps" />
 		</js:VGroup>
 		
-		<!-- Because VDividedBox has no default width it will occupy
-		     the remaining width of the HDividedBox.
+		<!-- Because VDividedContainer has no default width it will occupy
+		     the remaining width of the HDividedContainer.
 		-->
-		<js:VDividedBox>
+		<js:VDividedContainer>
 			<js:Group id="group2" className="Group2" height="100" >
 				<js:Label text="Group Two" />
 			</js:Group>
 			
 			<!-- Because Group has no default height and group3 is not given
 			     an explicit height, it will occupy the remaining space in the
-			     VDividedBox.
+			     VDividedContainer.
 			-->
 			<js:Group id="group3" className="Group3">
 				<js:Label text="Group 3" />
@@ -79,8 +79,8 @@ limitations under the License.
 				<js:Label text="Group 4" />
 			</js:Group>
 			
-		</js:VDividedBox>
+		</js:VDividedContainer>
 		
-	</js:HDividedBox>
+	</js:HDividedContainer>
 
 </js:View>

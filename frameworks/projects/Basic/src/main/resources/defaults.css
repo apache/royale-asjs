@@ -307,31 +307,31 @@ DateField {
 	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
 }
 
-/** DividedBox */
+/** DividedContainer */
 
-HDividedBox {
-	IBeadView: ClassReference("org.apache.royale.html.beads.DividedBoxView");
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedBoxModel");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HDividedBoxLayout");
-	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.HDividedBoxDivider");
+HDividedContainer {
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedContainerView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedContainerModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HDividedContainerLayout");
+	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.HDividedContainerDivider");
 }
 
-VDividedBox {
-	IBeadView: ClassReference("org.apache.royale.html.beads.DividedBoxView");
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedBoxModel");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VDividedBoxLayout");
-	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.VDividedBoxDivider");
+VDividedContainer {
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedContainerView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedContainerModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VDividedContainerLayout");
+	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.VDividedContainerDivider");
 }
 
-HDividedBoxDivider {
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HDividedBoxMouseController");
-	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.HDividedBoxGripper");
+HDividedContainerDivider {
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HDividedContainerMouseController");
+	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.HDividedContainerGripper");
 	background-color: transparent;
 }
 
-VDividedBoxDivider {
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.VDividedBoxMouseController");
-	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.VDividedBoxGripper");
+VDividedContainerDivider {
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.VDividedContainerMouseController");
+	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.VDividedContainerGripper");
 	background-color: transparent;
 }
 
@@ -818,12 +818,12 @@ global
 		padding: 5px;
 	}
 	
-	HDividedBoxDivider {
+	HDividedContainerDivider {
 		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
 		iBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");  
 	}
 	
-	VDividedBoxDivider {
+	VDividedContainerDivider {
 		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
 		iBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");  
 	}

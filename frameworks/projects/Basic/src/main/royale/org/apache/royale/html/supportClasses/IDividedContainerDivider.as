@@ -16,16 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.html.supportClasses
+{
+	import org.apache.royale.core.IChild;
 
-DESCRIPTION
+	/**
+	 * All DividerBoxDividers must implement this interface.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9
+	 */
+	public interface IDividedContainerDivider extends IChild
+	{
+		/**
+		 * The model being used with the DividedContainer.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		function get model():Object;
+		function set model(value:Object):void;
 
-The DividedBoxExample demonstrates the Royale DividedBox components: HDividedBox and
-VDividedBox. These contains separate their children using interactive dividers, allowing
-you to resize them.
-
-The HDividedBox arranges its children into columns while the VDividedBox arranges its
-children into rows.
-
-The DividedBox is built from sub-components and beads, most of which can be substituted
-with other compatible beads or even custom beads you write. The substitutions can be
-made in MXML but are most often done in CSS.
+		/**
+		 * The index of the pairs this divider is managing.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		function get pairIndex():int;
+		function set pairIndex(value:int):void;
+	}
+}

@@ -27,53 +27,53 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.svg.Path;
 
 	/**
-	 * The VDividedBoxGripper bead adds a visual cue to the VDividedBoxDivider to
+	 * The VDividedContainerGripper bead adds a visual cue to the VDividedContainerDivider to
 	 * indicate where to start dragging to change the size of the elements.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class VDividedBoxGripper implements IBead, IDividedBoxGripper
+	public class VDividedContainerGripper implements IBead, IDividedContainerGripper
 	{
 		/**
 		 * Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function VDividedBoxGripper()
+		public function VDividedContainerGripper()
 		{
 		}
-		
+
 		private var _strand:IStrand;
 		private var path:Path;
-		
+
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
-		 * 
+		 *
 		 * @royaleignorecoercion UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+
 			COMPILE::JS {
 				(_strand as UIBase).element.style.cursor = 'row-resize';
 			}
-			
+
 			(_strand as IEventDispatcher).addEventListener("widthChanged", handleResize);
 			(_strand as IEventDispatcher).addEventListener("heightChanged", handleResize);
-			
+
 			path = new Path();
 			path.stroke = new SolidColorStroke(0x555555,1);
 			path.data = "M 0 1 L 30 1 M 0 4 L 30 4 M 0 7 L 30 7";
 			(_strand as UIBase).addElement(path);
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -81,7 +81,7 @@ package org.apache.royale.html.supportClasses
 		{
 			var useWidth:Number = (_strand as UIBase).width;
 			var useHeight:Number = (_strand as UIBase).height;
-			
+
 			path.width = 30;
 			path.height = 8;
 			path.x = (useWidth - path.width)/2;

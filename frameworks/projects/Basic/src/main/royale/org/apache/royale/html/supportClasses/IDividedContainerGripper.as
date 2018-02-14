@@ -16,31 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.supportClasses
 {
+	import org.apache.royale.core.IBead;
+
 	/**
-	 * This sub-class of DividedBox organizes its children into columns separated by
-	 * movable dividers.
-	 *  
+	 * This interface defines a gripper bead control for a DividedContainer.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class HDividedBox extends DividedBox
+	public interface IDividedContainerGripper extends IBead
 	{
-		/**
-		 * Constructor
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function HDividedBox()
-		{
-			super();
-			typeNames = "HDividedBox";
-		}
+
 	}
 }

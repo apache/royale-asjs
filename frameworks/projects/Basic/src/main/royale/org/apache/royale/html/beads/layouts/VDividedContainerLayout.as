@@ -25,51 +25,51 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
-	import org.apache.royale.html.beads.models.DividedBoxModel;
-	import org.apache.royale.html.supportClasses.DividedBoxDivider;
+	import org.apache.royale.html.beads.models.DividedContainerModel;
+	import org.apache.royale.html.supportClasses.DividedContainerDivider;
 	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.CSSUtils;
-	
+
 	/**
-	 * This sub-class of DividedBoxLayout class is responsible for sizing and 
-	 * positioning the children of the DividedBox into columns with separators
-	 * between them. 
-	 * 
-	 * In order to correctly size and place the children, the DividedBoxLayout
-	 * relies on additional information contained in the DividedBoxModel. These
+	 * This sub-class of DividedContainerLayout class is responsible for sizing and
+	 * positioning the children of the DividedContainer into rows with separators
+	 * between them.
+	 *
+	 * In order to correctly size and place the children, the DividedContainerLayout
+	 * relies on additional information contained in the DividedContainerModel. These
 	 * adjustments (which default to zero) can be changed by interacting with
-	 * the DividedBoxSeparators and their mouse controllers.
-	 *  
+	 * the DividedContainerSeparators and their mouse controllers.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class HDividedBoxLayout extends LayoutBase implements IBeadLayout
+	public class VDividedContainerLayout extends LayoutBase implements IBeadLayout
 	{
 		/**
 		 * Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function HDividedBoxLayout()
+		public function VDividedContainerLayout()
 		{
 		}
-		
+
 		private var _strand: IStrand;
-		
+
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			super.strand = value;			
+			super.strand = value;
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -78,104 +78,104 @@ package org.apache.royale.html.beads.layouts
 			var host:UIBase = _strand as UIBase;
 			var n:int = host.numElements;
 			if (n == 0) return false;
-			
+
 			COMPILE::JS {
 				host.element.style['position'] = 'absolute';
 			}
-			
+
 			var useWidth:Number = host.width;
 			var useHeight:Number = host.height;
-			
+
 			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
 
 			useWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
 			useHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
-			
-			// Separate the children from the dividers and determine left over width
-			var remainingWidth:Number = useWidth;
+
+			// Separate the children from the dividers
+			var remainingHeight:Number = useHeight;
 			var remainingCount:Number = 0;
 			var actualChildren:Array = [];
 			var separators:Array = [];
-			
+
 			for(var i:int=0; i < n; i++) {
 				var child:UIBase = host.getElementAt(i) as UIBase;
-				if (child is DividedBoxDivider) {
+				if (child is DividedContainerDivider) {
 					separators.push(child);
 				} else {
 					actualChildren.push(child);
-					if (!isNaN(child.explicitWidth)) {
-						remainingWidth -= child.explicitWidth;
+					if (!isNaN(child.explicitHeight)) {
+						remainingHeight -= child.explicitHeight;
 					} else {
 						remainingCount++;
 					}
 				}
 			}
-			
+
 			// calculate defaults
 			var numSeparators:Number = separators.length;
-			remainingWidth -= numSeparators*10;
-			var childInitialWidth:Number = remainingWidth;
+			remainingHeight -= numSeparators*10;
+			var childInitialHeight:Number = remainingHeight;
 			if (remainingCount > 0) {
-				childInitialWidth = remainingWidth/remainingCount;
+				childInitialHeight = remainingHeight/remainingCount;
 			}
 			var xpos:Number = borderMetrics.left + paddingMetrics.left;
 			var ypos:Number = borderMetrics.top + paddingMetrics.top;
 			var j:int = 0;
-			
-			var adjustments:Array = (host.model as DividedBoxModel).pairAdjustments;			
-			var childWidths:Array = [];
-			
+
+			var adjustments:Array = (host.model as DividedContainerModel).pairAdjustments;
+			var childHeights:Array = [];
+
 			// size and position a child followed by a separator
 			for(i=0; i < actualChildren.length; i++)
 			{
 				child = actualChildren[i] as UIBase;
-				
-				var childWidth:Number = childInitialWidth;
-				var childHeight:Number = useHeight;
-				if (!isNaN(child.percentWidth)) {
-					childWidth = (child.percentWidth/100.0) * remainingWidth;
+
+				var childWidth:Number = useWidth;
+				var childHeight:Number = childInitialHeight;
+				if (!isNaN(child.percentHeight)) {
+					childHeight = (child.percentHeight/100.0) * remainingHeight;
 				}
-				else if (!isNaN(child.explicitWidth)) {
-					childWidth = child.explicitWidth;
+				else if (!isNaN(child.explicitHeight)) {
+					childHeight = child.explicitHeight;
 				}
-				//trace("1 - HDividedBoxLayout: Setting child to "+childWidth+" x "+childHeight);
-				childWidths.push(childWidth);
+				//trace("1 - VDividedContainerLayout: Setting child to "+childWidth+" x "+childHeight);
+				childHeights.push(childHeight);
 			}
-			
-			//trace("2 - HDividedBoxLayout: adjusting");
+
+			//trace("2 - VDividedContainerLayout: adjusting");
 			for(j=0, i=0; j < adjustments.length; j++, i++) {
-				childWidths[i] += adjustments[j];
-				childWidths[i+1] -= adjustments[j];
+				childHeights[i] += adjustments[j];
+				childHeights[i+1] -= adjustments[j];
 			}
-			
+
 			for(i=0, j=0; i < actualChildren.length; i++)
 			{
 				child = actualChildren[i] as UIBase;
 				child.x = xpos;
 				child.y = ypos;
-				//trace("3 - HDividedLayout: setting child to "+childWidths[i]+" x "+useHeight);
-				child.setWidth(childWidths[i]);
-				child.setHeight(useHeight);
+				//trace("3 - VDividedLayout: setting child to "+useWidth+" x "+childHeights[i]);
+				child.setWidth(useWidth);
+				child.setHeight(childHeights[i]);
 				COMPILE::JS {
 					child.element.style['position'] = 'absolute';
 				}
-							
+
 				if (j < separators.length) {
 					var sep:UIBase = separators[j] as UIBase;
-					sep.width = 10;
-					sep.height = useHeight;
-					sep.x = xpos + child.width;
-					sep.y = ypos;
+					sep.height = 10;
+					sep.width = useWidth;
+					sep.x = xpos;
+					sep.y = ypos + child.height;
 					COMPILE::JS {
 						sep.element.style['position'] = 'absolute';
 					}
 					j += 1;
 				}
-				
-				xpos += child.width + 10;
+
+				ypos += child.height + 10;
 			}
-			
+
 			return true;
 		}
 	}

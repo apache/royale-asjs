@@ -19,7 +19,7 @@
 package org.apache.royale.html
 {
 	/**
-	 * This sub-class of DividedBox organizes its children into rows separated by
+	 * This sub-class of DividedContainer organizes its children into rows separated by
 	 * movable dividers.
 	 *  
 	 *  @langversion 3.0
@@ -27,7 +27,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class VDividedBox extends DividedBox
+	public class VDividedContainer extends DividedContainer
 	{
 		/**
 		 * Constructor.
@@ -37,10 +37,10 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function VDividedBox()
+		public function VDividedContainer()
 		{
 			super();
-			typeNames = "VDividedBox";
+			typeNames = "VDividedContainer";
 		}
 	}
 }

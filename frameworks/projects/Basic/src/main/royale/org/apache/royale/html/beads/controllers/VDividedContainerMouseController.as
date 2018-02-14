@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
-{	
+{
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IStrand;
@@ -25,35 +25,35 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.html.beads.models.DividedBoxModel;
-	import org.apache.royale.html.supportClasses.DividedBoxDivider;
-	
+	import org.apache.royale.html.beads.models.DividedContainerModel;
+	import org.apache.royale.html.supportClasses.DividedContainerDivider;
+
 	/**
-	 * This is the mouse controller for the VDividedBox. This bead class tracks
-	 * the mouse over a VDividedBoxDivider (its strand) causing the rows above
+	 * This is the mouse controller for the VDividedContainer. This bead class tracks
+	 * the mouse over a VDividedContainerDivider (its strand) causing the rows above
 	 * and below it to grow and shrink.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class VDividedBoxMouseController implements IBead, IBeadController
+	public class VDividedContainerMouseController implements IBead, IBeadController
 	{
 		/**
 		 * Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function VDividedBoxMouseController()
+		public function VDividedContainerMouseController()
 		{
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
 		 */
@@ -62,10 +62,10 @@ package org.apache.royale.html.beads.controllers
 			_strand = value;
 			(_strand as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 		}
-		
+
 		private var deltaMove:Number = 0;
 		private var lastPosition:Number = 0;
-		
+
 		/**
 		 * @private
 		 */
@@ -77,12 +77,12 @@ package org.apache.royale.html.beads.controllers
 			}
 			lastPosition = event.screenY;
 			deltaMove = 0;
-			//trace("* VDividedBoxMouseController: anchor at "+lastPosition);
-			
+			//trace("* VDividedContainerMouseController: anchor at "+lastPosition);
+
 			IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, handleMouseMove);
 			IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, handleMouseUp);
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -90,29 +90,29 @@ package org.apache.royale.html.beads.controllers
 		{
 			//trace("--- mouse moving by "+(event.screenY - lastPosition));
 			deltaMove = event.screenY - lastPosition;
-			
-			var model:DividedBoxModel = (_strand as UIBase).model as DividedBoxModel;
-			var pairIndex:int = (_strand as DividedBoxDivider).pairIndex;
-			
+
+			var model:DividedContainerModel = (_strand as UIBase).model as DividedContainerModel;
+			var pairIndex:int = (_strand as DividedContainerDivider).pairIndex;
+
 			model.addPairAdjustment(deltaMove, pairIndex);
-			
+
 			lastPosition = event.screenY;
 		}
-		
+
 		/**
 		 * @private
 		 */
 		private function handleMouseUp(event:MouseEvent):void
 		{
 			deltaMove = event.screenY - lastPosition;
-			//trace("* VDividedBoxMouseController: up at "+event.screenY+" delta of "+deltaMove);
-			
+			//trace("* VDividedContainerMouseController: up at "+event.screenY+" delta of "+deltaMove);
+
 			IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, handleMouseMove);
 			IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, handleMouseUp);
-			
-			var model:DividedBoxModel = (_strand as UIBase).model as DividedBoxModel;
-			var pairIndex:int = (_strand as DividedBoxDivider).pairIndex;
-			
+
+			var model:DividedContainerModel = (_strand as UIBase).model as DividedContainerModel;
+			var pairIndex:int = (_strand as DividedContainerDivider).pairIndex;
+
 			model.addPairAdjustment(deltaMove, pairIndex);
 		}
 	}

@@ -19,17 +19,41 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IBead;
-	
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+
 	/**
-	 * This interface defines a gripper bead control for a DividedBox.
-	 *  
+	 * This sub-class of DividedContainerDivider sets up a horizontal divider between
+	 * the rows of a VDividedContainer.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public interface IDividedBoxGripper extends IBead
+	public class VDividedContainerDivider extends DividedContainerDivider
 	{
-		
+		/**
+		 * Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function VDividedContainerDivider()
+		{
+			super();
+			typeNames = "VDividedContainerDivider";
+		}
+
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+
+			loadBeadFromValuesManager(IDividedContainerGripper, "iGripperBead", this);
+		}
 	}
 }

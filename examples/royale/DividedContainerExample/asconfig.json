@@ -26,6 +26,6 @@
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "src/main/royale/DividedBoxExample.mxml"
+        "src/main/royale/DividedContainerExample.mxml"
     ]
 }

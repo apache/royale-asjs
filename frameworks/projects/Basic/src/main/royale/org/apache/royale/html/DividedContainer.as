@@ -28,8 +28,8 @@ package org.apache.royale.html
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.layouts.HDividedBoxLayout;
-	import org.apache.royale.html.beads.models.DividedBoxModel;
+	import org.apache.royale.html.beads.layouts.HDividedContainerLayout;
+	import org.apache.royale.html.beads.models.DividedContainerModel;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
@@ -38,18 +38,18 @@ package org.apache.royale.html
 	[DefaultProperty("mxmlContent")]
 	
 	/**
-	 * The DividedBox lays out its children (either horizontally or vertically, depending on
+	 * The DividedContainer lays out its children (either horizontally or vertically, depending on
 	 * which layout is used) separated by dividers. The dividers can be moved to grow and shrink
 	 * the children.
 	 * 
-	 * This is the base class. See HDividedBox and VDividedBox for useful implementations.
+	 * This is the base class. See HDividedContainer and VDividedContainer for useful implementations.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DividedBox extends UIBase implements IContainer, ILayoutParent, ILayoutHost, ILayoutView, IMXMLDocument
+	public class DividedContainer extends UIBase implements IContainer, ILayoutParent, ILayoutHost, ILayoutView, IMXMLDocument
 	{
 		/**
 		 * Constructor
@@ -59,23 +59,23 @@ package org.apache.royale.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function DividedBox()
+		public function DividedContainer()
 		{
 			super();
-			typeNames = "DividedBox";
+			typeNames = "DividedContainer";
 		}
 		
-		// DividedBoxLayout takes care of sizing and positioning the children and the
-		// the separators. The layout listens to changes to the DividedBoxModel and uses
+		// DividedContainerLayout takes care of sizing and positioning the children and the
+		// the separators. The layout listens to changes to the DividedContainerModel and uses
 		// the model to determine the exact size of each child.
 		
-		// DividedBoxModel contains the identities of the children and the separators as
+		// DividedContainerModel contains the identities of the children and the separators as
 		// well as the amount to increase or decrease each child. Once the layout completes,
 		// the adjustments are reset to zero (their default values). 
 		
-		// DividedBoxDivider is a control that sits between the children and has a mouse
-		// controller (DividedBoxMouseController) that lets the user interact with the
-		// DividedBox. By pressing the mouse down over the separator and moving it, the
+		// DividedContainerDivider is a control that sits between the children and has a mouse
+		// controller (DividedContainerMouseController) that lets the user interact with the
+		// DividedContainer. By pressing the mouse down over the separator and moving it, the
 		// mouse controller tracks the changes to the mouse position and updates the model
 		// which will then trigger a new layout, adjusting the size and position of the
 		// children.
@@ -93,7 +93,7 @@ package org.apache.royale.html
 			
 			super.addedToParent();
 			
-			var layoutBead:IBeadLayout = loadBeadFromValuesManager(HDividedBoxLayout, "iBeadLayout", this) as IBeadLayout;
+			var layoutBead:IBeadLayout = loadBeadFromValuesManager(HDividedContainerLayout, "iBeadLayout", this) as IBeadLayout;
 			
 			if (!_initialized)
 			{

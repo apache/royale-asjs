@@ -16,44 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.supportClasses
-{
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 
-	/**
-	 * This sub-class of DividerBoxDivider sets up a vertical divider between
-	 * the columns of an HDividedBox.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
-	 */
-	public class HDividedBoxDivider extends DividedBoxDivider
-	{
-		/**
-		 * Constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function HDividedBoxDivider()
-		{
-			super();
-			typeNames = "HDividedBoxDivider";
-		}
-				
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
+DESCRIPTION
 
-			loadBeadFromValuesManager(IDividedBoxGripper, "iGripperBead", this);
-		}
-	}
-}
+The DividedContainerExample demonstrates the Royale DividedContainer components: HDividedContainer and
+VDividedContainer. These contains separate their children using interactive dividers, allowing
+you to resize them.
+
+The HDividedContainer arranges its children into columns while the VDividedContainer arranges its
+children into rows.
+
+The DividedContainer is built from sub-components and beads, most of which can be substituted
+with other compatible beads or even custom beads you write. The substitutions can be
+made in MXML but are most often done in CSS.

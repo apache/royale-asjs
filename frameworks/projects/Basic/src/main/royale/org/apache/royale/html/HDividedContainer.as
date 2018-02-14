@@ -16,66 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.supportClasses
+package org.apache.royale.html
 {
-	import org.apache.royale.core.UIBase;
-	
-	COMPILE::SWF {
-		import org.apache.royale.html.beads.SolidBackgroundBead;
-		import org.apache.royale.html.beads.SingleLineBorderBead;
-		import org.apache.royale.utils.loadBeadFromValuesManager;
-	}
-	
 	/**
-	 * The DividedBoxSeparator is a control that lays between the children of
-	 * a DividedBox. This is the base class for the HDividedBoxDivider and 
-	 * VDividedBoxDivider.
+	 * This sub-class of DividedContainer organizes its children into columns separated by
+	 * movable dividers.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DividedBoxDivider extends UIBase implements IDividedBoxDivider
+	public class HDividedContainer extends DividedContainer
 	{
 		/**
-		 * Constructor.
+		 * Constructor
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function DividedBoxDivider()
+		public function HDividedContainer()
 		{
 			super();
-			typeNames = "DividedBoxDivider";
-			
-			COMPILE::SWF {
-				loadBeadFromValuesManager(SolidBackgroundBead, "iBackgroundBead", this);
-				loadBeadFromValuesManager(SingleLineBorderBead, "iBorderBead", this);
-			}
-		}
-		
-		private var _pairIndex:int = 0;
-				
-		/**
-		 * The index of this divider instance, indicating which pair of children it
-		 * is managing.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function get pairIndex():int
-		{
-			return _pairIndex;
-		}
-		
-		public function set pairIndex(value:int):void
-		{
-			_pairIndex = value;
+			typeNames = "HDividedContainer";
 		}
 	}
 }

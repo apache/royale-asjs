@@ -27,53 +27,53 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.svg.Path;
 
 	/**
-	 * The HDividedBoxGripper is a bead added to the HDividedBoxDivider to
+	 * The HDividedContainerGripper is a bead added to the HDividedContainerDivider to
 	 * provide a visual cue that the divider can be grabbed and moved.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class HDividedBoxGripper implements IBead, IDividedBoxGripper
+	public class HDividedContainerGripper implements IBead, IDividedContainerGripper
 	{
 		/**
 		 * Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function HDividedBoxGripper()
+		public function HDividedContainerGripper()
 		{
 		}
-		
+
 		private var _strand:IStrand;
 		private var path:Path;
-		
+
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
-		 * 
+		 *
 		 * @royaleignorecoercion UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+
 			COMPILE::JS {
 				(_strand as UIBase).element.style.cursor = 'col-resize';
 			}
-			
+
 			(_strand as IEventDispatcher).addEventListener("widthChanged", handleResize);
 			(_strand as IEventDispatcher).addEventListener("heightChanged", handleResize);
-			
+
 			path = new Path();
 			path.stroke = new SolidColorStroke(0x555555,1);
 			path.data = "M 1 0 L 1 30 M 4 0 L 4 30 M 7 0 L 7 30";
 			(_strand as UIBase).addElement(path);
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -81,7 +81,7 @@ package org.apache.royale.html.supportClasses
 		{
 			var useWidth:Number = (_strand as UIBase).width;
 			var useHeight:Number = (_strand as UIBase).height;
-			
+
 			path.width = 8;
 			path.height = 30;
 			path.x = (useWidth - path.width)/2;

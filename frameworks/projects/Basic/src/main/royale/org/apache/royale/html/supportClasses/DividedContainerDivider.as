@@ -18,38 +18,64 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.UIBase;
+
+	COMPILE::SWF {
+		import org.apache.royale.html.beads.SolidBackgroundBead;
+		import org.apache.royale.html.beads.SingleLineBorderBead;
+		import org.apache.royale.utils.loadBeadFromValuesManager;
+	}
 
 	/**
-	 * All DividerBoxDividers must implement this interface.
-	 *  
+	 * The DividedContainerSeparator is a control that lays between the children of
+	 * a DividedContainer. This is the base class for the HDividedContainerDivider and
+	 * VDividedContainerDivider.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public interface IDividedBoxDivider extends IChild
+	public class DividedContainerDivider extends UIBase implements IDividedContainerDivider
 	{
 		/**
-		 * The model being used with the DividedBox.
-		 *  
+		 * Constructor.
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		function get model():Object;
-		function set model(value:Object):void;
-		
+		public function DividedContainerDivider()
+		{
+			super();
+			typeNames = "DividedContainerDivider";
+
+			COMPILE::SWF {
+				loadBeadFromValuesManager(SolidBackgroundBead, "iBackgroundBead", this);
+				loadBeadFromValuesManager(SingleLineBorderBead, "iBorderBead", this);
+			}
+		}
+
+		private var _pairIndex:int = 0;
+
 		/**
-		 * The index of the pairs this divider is managing.
-		 *  
+		 * The index of this divider instance, indicating which pair of children it
+		 * is managing.
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		function get pairIndex():int;
-		function set pairIndex(value:int):void;
+		public function get pairIndex():int
+		{
+			return _pairIndex;
+		}
+
+		public function set pairIndex(value:int):void
+		{
+			_pairIndex = value;
+		}
 	}
 }
