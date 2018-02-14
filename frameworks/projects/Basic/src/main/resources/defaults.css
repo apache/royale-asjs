@@ -175,6 +175,8 @@ DataGrid
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
+	width: 200px;
+	height: 200px;
 }
 
 DataGridButtonBar
@@ -303,6 +305,32 @@ DateField {
 	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateFieldMouseController");
 	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
+}
+
+/** DividedBox */
+
+HDividedBox {
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedBoxView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedBoxModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HDividedBoxLayout");
+}
+
+VDividedBox {
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedBoxView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedBoxModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VDividedBoxLayout");
+}
+
+HDividedBoxDivider {
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HDividedBoxMouseController");
+	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.HDividedBoxGripper");
+	background-color: transparent;
+}
+
+VDividedBoxDivider {
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.VDividedBoxMouseController");
+	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.VDividedBoxGripper");
+	background-color: transparent;
 }
 
 /* Groups */
@@ -786,6 +814,16 @@ global
 	DateItemRenderer {
 		margin: 0px;
 		padding: 5px;
+	}
+	
+	HDividedBoxDivider {
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");  
+	}
+	
+	VDividedBoxDivider {
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");  
 	}
 	
 	DropDownList

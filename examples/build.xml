@@ -87,6 +87,7 @@
         <ant dir="${basedir}/royale/DataGridExample"/>
         <ant dir="${basedir}/royale/DateControlsExample"/>
         <ant dir="${basedir}/royale/DesktopMap"/>
+        <ant dir="${basedir}/royale/DividedBoxExample"/>
         <ant dir="${basedir}/royale/DragAndDropExample"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer"/>
@@ -135,6 +136,7 @@
         <ant dir="${basedir}/royale/DataGridExample" target="clean"/>
         <ant dir="${basedir}/royale/DateControlsExample" target="clean"/>
         <ant dir="${basedir}/royale/DesktopMap" target="clean"/>
+        <ant dir="${basedir}/royale/DividedBoxExample" target="clean"/>
         <ant dir="${basedir}/royale/DragAndDropExample" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="clean"/>
@@ -173,6 +175,7 @@
         <ant dir="${basedir}/royale/DataGridExample" target="examine"/>
         <ant dir="${basedir}/royale/DateControlsExample" target="examine"/>
         <ant dir="${basedir}/royale/DesktopMap" target="examine"/>
+        <ant dir="${basedir}/royale/DividedBoxExample" target="examine"/>
         <ant dir="${basedir}/royale/DragAndDropExample" target="examine"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="examine"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="examine"/>
