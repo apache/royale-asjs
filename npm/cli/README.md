@@ -1,7 +1,10 @@
 #Welcome to the README for the Apache Royale CLI tool
 
 ##To Install:
-npm install @apache-royale/cli
+```
+npm install @apache-royale/royale-js -g
+npm install @apache-royale/cli@alpha -g
+```
 
 ## How to use
 
@@ -28,6 +31,7 @@ royale serve:debug
 * Opens the default browser and navigates to http://localhost:3000
 * Listens to src folder
 * When any file changes, it will recompile the app
+*  Automatically reloads the browser to show the updated application
 
 #### Run in release mode
 
