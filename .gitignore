@@ -145,3 +145,4 @@ manualtests/FlexJSTest_SVG/bin
 
 #npm
 node_modules
+npm/cli/test
