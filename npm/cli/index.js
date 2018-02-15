@@ -45,6 +45,7 @@ const DEBUG_PORT = 3000;
 const SERVE_RELEASE = 'serve:release';
 const RELEASE_PORT = 3001;
 const SOURCE_DIR_NAME = 'src';
+const APP_START_FILE_NAME = 'Main.mxml';
 
 var command = args._[0];
 if(!args.help && !args.h) {
@@ -85,31 +86,38 @@ function createNewProject() {
 function serveDebug() {
     compileDebug();
     startDebugServer();
+    startWatchingSourceFiles();
 }
 
 function compileDebug() {
     //Compile project in debug mode
-    var command = 'mxmlc ' + path.join(process.cwd(), SOURCE_DIR_NAME , 'Main.mxml -debug=true');
+    var command = 'mxmlc ' + path.join(process.cwd(), SOURCE_DIR_NAME , APP_START_FILE_NAME) + ' -debug=true';
     console.log('Compiling...');
     try {
+        //stopWatchingSourceFiles();
+        //stopWatchingBinFiles();
         execSync(command);
+        console.log('Finished compiling');
     }
     catch(e) {
         console.error(e.message);
     }
-    console.log('Finished compiling');
-    updateIndex();
-    watchFiles();
-    openBrowser('http://localhost:' + DEBUG_PORT);
+    finally {
+        reloadBrowser();
+        //startWatchingSourceFiles();
+        updateIndex();
+    }
 }
 
 var debugServerRunning = false;
+var connectServer;
 // Start server if it is not already running
 function startDebugServer() {
     if(!debugServerRunning) {
         var command = 'node ' + path.join(__dirname, 'connect.js');
         console.log('Starting server on localhost:3000...');
-        fork(path.join(__dirname, 'connect.js'));
+        connectServer = fork(path.join(__dirname, 'connect.js'));
+        openBrowser('http://localhost:' + DEBUG_PORT);
     }
 }
 
@@ -125,22 +133,40 @@ function updateIndex() {
 }
 
 var watchingFiles = false;
-function watchFiles() {
+var watcher;
+function startWatchingSourceFiles() {
     if(!watchingFiles) {
         watchingFiles = true;
         //Watch the SOURCE_DIR_NAME directory, recompile if anything changes
         var pathToWatch = path.join(process.cwd(), SOURCE_DIR_NAME);
         console.log('Watching the directory %s for changes...', pathToWatch);
-        chokidar.watch(pathToWatch)
+        watcher = chokidar.watch(pathToWatch)
             .on('change',
                 function(path){
                     console.log('Change detected... %s', path);
-
                     compileDebug();
                 }
             );
     }
 }
+
+function stopWatchingSourceFiles() {
+    if(watcher) {
+        watcher.close();
+    }
+}
+
+function reloadBrowser() {
+    if(connectServer) {
+        connectServer.send({ message: 'reload' });
+    }
+}
+
+/*function stopWatchingBinFiles() {
+    if(connectServer) {
+        connectServer.send({ message: 'stopWatching' });
+    }
+}*/
 
 var browserOpened = false;
 function openBrowser(url) {
@@ -158,7 +184,7 @@ function serveRelease() {
 
 function compileRelease() {
     //Compile project in release mode
-    var command = 'mxmlc ' + path.join(process.cwd(), SOURCE_DIR_NAME , 'Main.mxml -debug=false');
+    var command = 'mxmlc ' + path.join(process.cwd(), SOURCE_DIR_NAME , APP_START_FILE_NAME) +  ' -debug=false';
     console.log('Compiling release build...');
     execSync(command);
     console.log('Finished compiling');

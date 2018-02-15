@@ -11,4 +11,9 @@ server.listen(3000);
 
 var livereload = require('livereload');
 var lrserver = livereload.createServer();
-lrserver.watch(debugDirPath);
+//lrserver.watch(debugDirPath);
+
+process.on('message', function(msg){
+    console.log('received message: %s', msg.message);
+    lrserver.refresh(debugDirPath);
+});
