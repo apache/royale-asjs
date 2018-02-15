@@ -175,6 +175,8 @@ DataGrid
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
+	width: 200px;
+	height: 200px;
 }
 
 DataGridButtonBar
@@ -303,6 +305,34 @@ DateField {
 	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateFieldMouseController");
 	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
+}
+
+/** DividedContainer */
+
+HDividedContainer {
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedContainerView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedContainerModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HDividedContainerLayout");
+	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.HDividedContainerDivider");
+}
+
+VDividedContainer {
+	IBeadView: ClassReference("org.apache.royale.html.beads.DividedContainerView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DividedContainerModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VDividedContainerLayout");
+	IDividerFactory: ClassReference("org.apache.royale.html.supportClasses.VDividedContainerDivider");
+}
+
+HDividedContainerDivider {
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HDividedContainerMouseController");
+	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.HDividedContainerGripper");
+	background-color: transparent;
+}
+
+VDividedContainerDivider {
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.VDividedContainerMouseController");
+	IGripperBead: ClassReference("org.apache.royale.html.supportClasses.VDividedContainerGripper");
+	background-color: transparent;
 }
 
 /* Groups */
@@ -786,6 +816,16 @@ global
 	DateItemRenderer {
 		margin: 0px;
 		padding: 5px;
+	}
+	
+	HDividedContainerDivider {
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");  
+	}
+	
+	VDividedContainerDivider {
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");  
 	}
 	
 	DropDownList

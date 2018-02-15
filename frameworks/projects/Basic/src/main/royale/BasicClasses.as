@@ -41,6 +41,17 @@ internal class BasicClasses
     import org.apache.royale.html.beads.AlertView; AlertView;
     import org.apache.royale.html.beads.controllers.AlertController; AlertController;
 	
+	import org.apache.royale.html.beads.DividedContainerView; DividedContainerView;
+	import org.apache.royale.html.beads.models.DividedContainerModel; DividedContainerModel;
+	import org.apache.royale.html.beads.layouts.HDividedContainerLayout; HDividedContainerLayout;
+	import org.apache.royale.html.beads.layouts.VDividedContainerLayout; VDividedContainerLayout;
+	import org.apache.royale.html.supportClasses.DividedContainerDivider; DividedContainerDivider;
+	import org.apache.royale.html.supportClasses.HDividedContainerGripper; HDividedContainerGripper;
+	import org.apache.royale.html.supportClasses.VDividedContainerGripper; VDividedContainerGripper;
+	import org.apache.royale.html.beads.controllers.HDividedContainerMouseController; HDividedContainerMouseController;
+	import org.apache.royale.html.beads.controllers.VDividedContainerMouseController; VDividedContainerMouseController;
+	
+	
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.BackgroundImageBead; BackgroundImageBead;

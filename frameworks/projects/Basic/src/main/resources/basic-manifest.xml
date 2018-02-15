@@ -27,6 +27,8 @@
     <component id="Button" class="org.apache.royale.html.Button"/>
     <component id="CloseButton" class="org.apache.royale.html.CloseButton"/>
     <component id="ButtonBar" class="org.apache.royale.html.ButtonBar"/>
+    <component id="HDividedContainer" class="org.apache.royale.html.HDividedContainer" />
+    <component id="VDividedContainer" class="org.apache.royale.html.VDividedContainer" />
     <component id="DropDownList" class="org.apache.royale.html.DropDownList"/>
     <component id="DropDownListList" class="org.apache.royale.html.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.royale.html.Image"/>
@@ -131,6 +133,8 @@
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
+    <component id="HDividedContainerDivider" class="org.apache.royale.html.supportClasses.HDividedContainerDivider" />
+    <component id="VDividedContainerDivider" class="org.apache.royale.html.supportClasses.VDividedContainerDivider" />
     <!--
      <component id="ImageAndTextButtonView" class="org.apache.royale.html.beads.ImageAndTextButtonView" />
      -->
