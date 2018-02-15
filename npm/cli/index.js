@@ -21,9 +21,13 @@
 var fs = require('fs-extra');
 var path = require('path');
 var execSync = require('child_process').execSync;
-var server=require('node-http-server');
+var spawn = require('child_process').spawn;
+var fork = require('child_process').fork;
+//var server=require('node-http-server');
+//var server = require('./server');
 var chokidar = require('chokidar');
 var open = require("open");
+var livereload = require('livereload');
 
 var args = require('yargs')
     .usage('Usage: royale <command>')
@@ -87,46 +91,64 @@ function compileDebug() {
     //Compile project in debug mode
     var command = 'mxmlc ' + path.join(process.cwd(), SOURCE_DIR_NAME , 'Main.mxml -debug=true');
     console.log('Compiling...');
-    execSync(command);
+    try {
+        execSync(command);
+    }
+    catch(e) {
+        console.error(e.message);
+    }
     console.log('Finished compiling');
+    updateIndex();
+    watchFiles();
+    openBrowser('http://localhost:' + DEBUG_PORT);
 }
 
 var debugServerRunning = false;
 // Start server if it is not already running
 function startDebugServer() {
     if(!debugServerRunning) {
-        server.deploy(
-            {
-                port: DEBUG_PORT,
-                root: path.join(process.cwd(), 'bin', 'js-debug')
-            },
-            handleDebugServerReady
-        );
+        var command = 'node ' + path.join(__dirname, 'connect.js');
+        console.log('Starting server on localhost:3000...');
+        fork(path.join(__dirname, 'connect.js'));
     }
 }
 
-function handleDebugServerReady() {
-    debugServerRunning = true;
-    console.log('Your Apache Royale app (debug version) is running on localhost:%s', DEBUG_PORT);
-    watchFiles();
-    openBrowser('http://localhost:' + DEBUG_PORT);
+function updateIndex() {
+    var debugDirPath = path.join(process.cwd(), 'bin', 'js-debug');
+    //Rewrite index.html
+    var indexHTML = fs.readFileSync(path.join(debugDirPath, 'index.html'), 'utf8');
+    indexHTML = indexHTML.replace("</html>", '<script>\n' +
+        '  document.write(\'<script src="http://\' + (location.host || \'localhost\').split(\':\')[0] +\n' +
+        '  \':35729/livereload.js?snipver=1"></\' + \'script>\')\n' +
+        '</script></html>');
+    fs.writeFile(path.join(debugDirPath, 'index.html'), indexHTML);
 }
 
+var watchingFiles = false;
 function watchFiles() {
-    //Watch the SOURCE_DIR_NAME directory, recompile if anything changes
-    var pathToWatch = path.join(process.cwd(), SOURCE_DIR_NAME);
-    console.log('Watching the directory %s for changes...', pathToWatch);
-    chokidar.watch(pathToWatch)
-        .on('change',
-            function(event, path){
-                console.log('Change detected...');
-                compileDebug();
-            }
-        );
+    if(!watchingFiles) {
+        watchingFiles = true;
+        //Watch the SOURCE_DIR_NAME directory, recompile if anything changes
+        var pathToWatch = path.join(process.cwd(), SOURCE_DIR_NAME);
+        console.log('Watching the directory %s for changes...', pathToWatch);
+        chokidar.watch(pathToWatch)
+            .on('change',
+                function(path){
+                    console.log('Change detected... %s', path);
+
+                    compileDebug();
+                }
+            );
+    }
 }
 
+var browserOpened = false;
 function openBrowser(url) {
-    open(url);
+    if(!browserOpened) {
+        browserOpened = true;
+        console.log('Opening browser: ', url);
+        open(url);
+    }
 }
 
 function serveRelease() {
