@@ -30,9 +30,10 @@ var livereload = require('livereload');
 
 var args = require('yargs')
     .usage('Usage: royale <command>')
-    .example('royale new my-royale-project', 'Creates a new Apache Royale project in the myFirstRoyaleProject directory')
-    .example('royale serve:debug', 'Builds debug version and starts server on localhost:6000; also watches the directory for changes')
-    .example('royale serve:release', 'Builds release version and starts server on localhost:6001')
+    .example('royale new my-royale-project', 'Creates a new Apache Royale project in the my-royale-project directory')
+    .example('royale serve:debug', 'Builds debug version and starts server on http://localhost:3000; also watches the ' +
+        'my-royale-project/src directory for changes')
+    .example('royale serve:release', 'Builds release version and starts server on http://localhost:3001')
     .help('h')
     .alias('h', 'help')
     .epilog('Email: users@royale.apache.org | Github: https://github.com/apache/royale-asjs')

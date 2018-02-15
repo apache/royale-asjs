@@ -5,6 +5,11 @@ npm install @apache-royale/cli
 
 ## How to use
 
+####Help
+```
+royale help
+```
+
 ####Setup
 ```cmd
 royale new  my-royale-app 
@@ -32,5 +37,4 @@ royale serve:release
 * Compiles the project in release mode
 * Starts a http server and serves the files from the bin/js-release directory
 * Opens the default browser and navigates to http://localhost:3001
-
 
