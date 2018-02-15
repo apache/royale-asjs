@@ -23,8 +23,7 @@ var path = require('path');
 var execSync = require('child_process').execSync;
 var spawn = require('child_process').spawn;
 var fork = require('child_process').fork;
-//var server=require('node-http-server');
-//var server = require('./server');
+var releaseServer=require('node-http-server');
 var chokidar = require('chokidar');
 var open = require("open");
 var livereload = require('livereload');
@@ -40,6 +39,7 @@ var args = require('yargs')
     .argv;
 
 const CREATE_NEW_PROJECT = 'new';
+const DEFAULT_PROJECT_NAME = 'my-royale-project';
 const SERVE_DEBUG = 'serve:debug';
 const DEBUG_PORT = 3000;
 const SERVE_RELEASE = 'serve:release';
@@ -71,7 +71,7 @@ if(!args.help && !args.h) {
 
 function createNewProject() {
     //Get project name.  If project name is missing, use a default one
-    var projectName = args._[1] || 'my-royale-project';
+    var projectName = args._[1] || DEFAULT_PROJECT_NAME;
 
     //Copy template project; create directories automatically
     var projectPath = path.join(process.cwd(), projectName);
@@ -89,13 +89,11 @@ function serveDebug() {
     startWatchingSourceFiles();
 }
 
+//Compile project in debug mode
 function compileDebug() {
-    //Compile project in debug mode
     var command = 'mxmlc ' + path.join(process.cwd(), SOURCE_DIR_NAME , APP_START_FILE_NAME) + ' -debug=true';
     console.log('Compiling...');
     try {
-        //stopWatchingSourceFiles();
-        //stopWatchingBinFiles();
         execSync(command);
         console.log('Finished compiling');
     }
@@ -104,36 +102,34 @@ function compileDebug() {
     }
     finally {
         reloadBrowser();
-        //startWatchingSourceFiles();
         updateIndex();
     }
 }
 
 var debugServerRunning = false;
 var connectServer;
-// Start server if it is not already running
+// Start debug server if it is not already running
 function startDebugServer() {
     if(!debugServerRunning) {
         var command = 'node ' + path.join(__dirname, 'connect.js');
-        console.log('Starting server on localhost:3000...');
+        console.log('Starting server on http://localhost:%s...', DEBUG_PORT);
         connectServer = fork(path.join(__dirname, 'connect.js'));
         openBrowser('http://localhost:' + DEBUG_PORT);
     }
 }
 
+//Inject reload script into index.html
 function updateIndex() {
     var debugDirPath = path.join(process.cwd(), 'bin', 'js-debug');
-    //Rewrite index.html
     var indexHTML = fs.readFileSync(path.join(debugDirPath, 'index.html'), 'utf8');
-    indexHTML = indexHTML.replace("</html>", '<script>\n' +
-        '  document.write(\'<script src="http://\' + (location.host || \'localhost\').split(\':\')[0] +\n' +
-        '  \':35729/livereload.js?snipver=1"></\' + \'script>\')\n' +
-        '</script></html>');
+    indexHTML = indexHTML.replace('</html>', '<script src="http://localhost:35729/livereload.js?snipver=1"></script></html>')
     fs.writeFile(path.join(debugDirPath, 'index.html'), indexHTML);
 }
 
 var watchingFiles = false;
 var watcher;
+//Watch source files, trigger debug compilation when anything changes
+//Note: we are not checking for file adds, since that causes multiple compilations
 function startWatchingSourceFiles() {
     if(!watchingFiles) {
         watchingFiles = true;
@@ -141,38 +137,27 @@ function startWatchingSourceFiles() {
         var pathToWatch = path.join(process.cwd(), SOURCE_DIR_NAME);
         console.log('Watching the directory %s for changes...', pathToWatch);
         watcher = chokidar.watch(pathToWatch)
-            .on('change',
-                function(path){
-                    console.log('Change detected... %s', path);
-                    compileDebug();
-                }
-            );
+        .on('change',
+            function(path){
+                console.log('Change detected... %s', path);
+                compileDebug();
+            }
+        );
     }
 }
 
-function stopWatchingSourceFiles() {
-    if(watcher) {
-        watcher.close();
-    }
-}
-
+//Send message to Connect server to make it send a refresh command to browser
 function reloadBrowser() {
     if(connectServer) {
         connectServer.send({ message: 'reload' });
     }
 }
 
-/*function stopWatchingBinFiles() {
-    if(connectServer) {
-        connectServer.send({ message: 'stopWatching' });
-    }
-}*/
-
 var browserOpened = false;
 function openBrowser(url) {
     if(!browserOpened) {
         browserOpened = true;
-        console.log('Opening browser: ', url);
+        console.log('Launching browser: ', url);
         open(url);
     }
 }
@@ -182,6 +167,7 @@ function serveRelease() {
     startReleaseServer();
 }
 
+//Compile project in release mode
 function compileRelease() {
     //Compile project in release mode
     var command = 'mxmlc ' + path.join(process.cwd(), SOURCE_DIR_NAME , APP_START_FILE_NAME) +  ' -debug=false';
@@ -191,9 +177,11 @@ function compileRelease() {
 }
 
 var releaseServerRunning = false;
+// Start release server
+// after server is ready, launch browser
 function startReleaseServer() {
     if(!releaseServerRunning) {
-        server.deploy(
+        releaseServer.deploy(
             {
                 port: RELEASE_PORT,
                 root: path.join(process.cwd(), 'bin', 'js-release')
@@ -205,6 +193,6 @@ function startReleaseServer() {
 
 function handleReleaseServerReady() {
     releaseServerRunning = true;
-    console.log('Your Apache Royale app (release version) is running on localhost:%s', RELEASE_PORT);
-    openBrowser('http://localhost:' + RELEASE_PORT);
+    console.log('Your app (release version) is running on localhost:%s', RELEASE_PORT);
+    open('http://localhost:' + RELEASE_PORT);
 }
