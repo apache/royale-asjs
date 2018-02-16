@@ -28,6 +28,7 @@ limitations under the License.
 			import org.apache.royale.storage.events.FileErrorEvent;
 			import org.apache.royale.storage.file.IDataInput;
 			import org.apache.royale.storage.file.IDataOutput;
+            import org.apache.royale.reflection.beads.JSONReviver;
 			
 			private function startup():void
 			{
@@ -67,7 +68,9 @@ limitations under the License.
                 var key:String;
 				var useFile:String = className + ".as";
 				var useContent:String = "package\n{\n";
+                useContent += "[RemoteClass(alias='" + className + "')]\n";
                 useContent += "public class " + className + "\n{\n";
+                useContent += "    public static const key:String = \"" + JSONReviver.generateKey(obj) + "\";\n\n";
                 for (var p:String in obj)
                 {
                     if (p == "__JSON2ASVO__") continue;
@@ -85,7 +88,7 @@ limitations under the License.
                                   value === true || 
                                   value === false))
                             {
-                                key = generateKey(value);
+                                key = JSONReviver.generateKey(value);
                                 if (!subClasses[key])
                                 {
                                     firstChar = p.charAt(0).toUpperCase();
@@ -122,7 +125,7 @@ limitations under the License.
                             useContent += typeName + ";\n";
                         else
                         {
-                            key = generateKey(value);
+                            key = JSONReviver.generateKey(value);
                             typeName = subClasses[key];
                             if (typeName)
                                 useContent += typeName + ";\n";
@@ -153,7 +156,7 @@ limitations under the License.
                 {
                     var value:Object = subObjects.shift();
                     if (value["__JSON2ASVO__"]) continue; // already seen it
-                    var key:String = generateKey(value);
+                    var key:String = JSONReviver.generateKey(value);
                     var className:String = subClasses[key];
                     foundOne = true;
                     writeClass(value, className);
@@ -168,20 +171,6 @@ limitations under the License.
 				status.text = "Error: "+event.errorMessage;
 			}
 			
-            private function generateKey(value:Object):String
-            {
-                var parts:Array = [];
-                for (var p:String in value)
-                {
-                    var key:String = "";
-                    key += p;
-                    key += ":";
-                    key += typeof value[p];
-                    parts.push(key);
-                }
-                parts.sort();
-                return parts.join(";");
-            }
 		]]>
     </fx:Script>
 	
