@@ -22,7 +22,6 @@ package models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import valueObjects.DataVO;
 	
 	public class ASDocModel extends EventDispatcher implements IBeadModel
 	{
@@ -203,7 +202,7 @@ package models
         private function completeClassHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeClassHandler);
-            var data:DataVO = new DataVO(JSON.parse(app.service.data));
+            var data:ASDocClass = app.reviver.parse(app.service.data) as ASDocClass;
             if (_currentClassData == null)
             {
                 _currentClassData = data;
@@ -218,7 +217,7 @@ package models
             }
             else
                 _baseClassList.push(data.qname);
-            for each (var m:Object in data.members)
+            for each (var m:ASDocClassMembers in data.members)
             {
                 m.shortDescription = makeShortDescription(m.description);
                 if (m.type == "method")
@@ -247,27 +246,27 @@ package models
                 }
                     
             }
-            for each (m in data.events)
+            for each (var e:ASDocClassEvents in data.events)
             {
-                m.shortDescription = makeShortDescription(m.description);
-                addIfNeededAndMakeAttributes(_publicEvents, m);
-                if (masterData["classnames"].indexOf(m.type) != -1)
+                e.shortDescription = makeShortDescription(e.description);
+                addIfNeededAndMakeAttributes(_publicEvents, e);
+                if (masterData["classnames"].indexOf(e.type) != -1)
                 {
-                    href = m.type;
+                    href = e.type;
                     c = href.lastIndexOf(".");
                     if (c != -1)
                     {
-                    	m.type = href.substr(c + 1);
+                    	e.type = href.substr(c + 1);
                     	href = href.substr(0, c) + "/" + href.substr(c + 1);
                     }
-                    m.typehref = "#!" +href;
+                    e.typehref = "#!" +href;
                 }
             }
-            for each (m in data.tags)
+            for each (var t:ASDocClassTags in data.tags)
             {
-                if (!_attributesMap[m.tagName])
+                if (!_attributesMap[t.tagName])
                 {
-                    _attributesMap[m.tagName] = m.values;
+                    _attributesMap[t.tagName] = t.values;
                 }
             }
 
@@ -296,12 +295,12 @@ package models
             }
         }
         
-        private function addIfNeededAndMakeAttributes(arr:Array, data:Object):void
+        private function addIfNeededAndMakeAttributes(arr:Array, data:ASDocClassEvents):void
         {
         	var n:int = arr.length;
         	for (var i:int = 0; i < n; i++)
         	{
-        		var obj:Object = arr[i];
+        		var obj:ASDocClassEvents = arr[i];
         		if (obj.qname == data.qname)
         		{
         			// if no description and the base definition has one
@@ -321,13 +320,13 @@ package models
         	addAttributes(data, data);
         	if (data.type == "method")
         	{
-        		processParams(data);
+        		processParams(data as ASDocClassMembers);
         	}
         	data.ownerhref = currentPackage + "/" + currentClass;
         	arr.push(data);
         }
 
-		private function addAttributes(dest:Object, src:Object):void
+		private function addAttributes(dest:ASDocClassEvents, src:ASDocClassEvents):void
 		{
 			if (!src.tags) return;
 			
@@ -338,12 +337,13 @@ package models
         	}
         	arr = dest.attributes;
         	var map:Object = {};
-        	var tag:Object;
+            var attr:ASDocClassAttribute;
+        	var tag:ASDocClassTags;
         	var n:int = arr.length;
         	for (var i:int = 0; i < n; i++)
         	{
-        		tag = arr[i];
-        		map[tag.name] = tag.value;
+        		attr = arr[i];
+        		map[attr.name] = attr.value;
         	}
         	n = src.tags.length;
             for (i = 0; i < n; i++)
@@ -351,7 +351,7 @@ package models
             	tag = src.tags[i];
             	if (map[tag.tagName]) 
             		continue;
-            	var obj:Object = {};
+            	var obj:ASDocClassAttribute = new ASDocClassAttribute();
                 var k:String = tagNameMap[tag.tagName];
                 if (k != null)
                     obj.name = k;
@@ -379,7 +379,7 @@ package models
             }
 		}
 		
-		private function processParams(data:Object):void
+		private function processParams(data:ASDocClassMembers):void
 		{
 			var n:int = data.params.length;
 			for (var i:int = 0; i < n; i++)
@@ -418,7 +418,7 @@ package models
         private function completeInterfaceHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeInterfaceHandler);
-            var data:DataVO = new DataVO(JSON.parse(app.service.data));
+            var data:ASDocClass = app.reviver.parse(app.service.data) as ASDocClass;
             if (_currentClassData == null)
             {
                 _currentClassData = data;
@@ -433,7 +433,7 @@ package models
             }
             else
                 _baseClassList.push(data.qname);
-            for each (var m:Object in data.members)
+            for each (var m:ASDocClassMembers in data.members)
             {
                 m.shortDescription = makeShortDescription(m.description);
                 if (m.type == "method")
@@ -451,27 +451,27 @@ package models
                 }
                 
             }
-            for each (m in data.events)
+            for each (var e:ASDocClassEvents in data.events)
             {
-                m.shortDescription = makeShortDescription(m.description);
-                addIfNeededAndMakeAttributes(_publicEvents, m);
-                if (masterData["classnames"].indexOf(m.type) != -1)
+                e.shortDescription = makeShortDescription(e.description);
+                addIfNeededAndMakeAttributes(_publicEvents, e);
+                if (masterData["classnames"].indexOf(e.type) != -1)
                 {
-                    var href:String = m.type;
+                    var href:String = e.type;
                     var c:int = href.lastIndexOf(".");
                     if (c != -1)
                     {
-                    	m.type = href.substr(c + 1);
+                    	e.type = href.substr(c + 1);
                     	href = href.substr(0, c) + "/" + href.substr(c + 1);
                     }
-                    m.typehref = "#!" +href;
+                    e.typehref = "#!" +href;
                 }
             }
-            for each (m in data.tags)
+            for each (var t:ASDocClassTags in data.tags)
             {
-                if (!_attributesMap[m.tagName])
+                if (!_attributesMap[t.tagName])
                 {
-                    _attributesMap[m.tagName] = m.values;
+                    _attributesMap[t.tagName] = t.values;
                 }
             }
             if (data.baseInterfaceNames)
@@ -648,7 +648,7 @@ package models
             filterPackageList();
         }
 
-        public function filterByTags(classData:Object):Boolean
+        public function filterByTags(classData:ASDocClass):Boolean
         {
             var tags:Array = classData.tags;
             if (!tags) return false;

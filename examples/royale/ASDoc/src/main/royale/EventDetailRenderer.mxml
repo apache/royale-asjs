@@ -24,7 +24,6 @@ limitations under the License.
                      width="100%">
     <fx:Script>
         <![CDATA[
-            import valueObjects.ValueObject;
             
 			override public function set data(value:Object):void
 			{
@@ -41,9 +40,9 @@ limitations under the License.
 			}
 			
             [Bindable("dataChange")]
-            public function get obj():ValueObject
+            public function get obj():ASDocClassEvents
             {
-                return data as ValueObject;
+                return data as ASDocClassEvents;
             }
         ]]>
     </fx:Script>
@@ -65,10 +64,10 @@ limitations under the License.
         <js:HorizontalLayout />
       </js:beads>
       <js:Label className="eventQName" text="Event Object Type:" />
-      <js:Label id="label" className="eventType" text="{ValueObject(data).type}" />
-      <html:A id="link" className="eventTypeLink" text="{ValueObject(data).type}" href="{ValueObject(data).typehref}" />
+      <js:Label id="label" className="eventType" text="{ASDocClassEvents(data).type}" />
+      <html:A id="link" className="eventTypeLink" text="{ASDocClassEvents(data).type}" href="{ASDocClassEvents(data).typehref}" />
     </js:Group>
-	<js:DataContainer id="attributes" className="attributeList" dataProvider="{ValueObject(data).attributes}" 
+	<js:DataContainer id="attributes" className="attributeList" dataProvider="{ASDocClassEvents(data).attributes}" 
 	     itemRenderer="AttributeRenderer" width="100%"/>
     <js:MultilineLabel id="description" width="100%" text="{obj.description}"/>
 </js:MXMLItemRenderer>

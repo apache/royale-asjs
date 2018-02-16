@@ -23,9 +23,7 @@ limitations under the License.
 	  				 className="property"
                      width="100%">
     <fx:Script>
-        <![CDATA[
-            import valueObjects.ValueObject;
-            
+        <![CDATA[            
 			override public function set data(value:Object):void
 			{
 				super.data = value;
@@ -41,9 +39,9 @@ limitations under the License.
 			}
 			
             [Bindable("dataChange")]
-            public function get obj():ValueObject
+            public function get obj():ASDocClassMembers
             {
-                return data as ValueObject;
+                return data as ASDocClassMembers;
             }
         ]]>
     </fx:Script>
@@ -64,19 +62,19 @@ limitations under the License.
       <js:beads>
         <js:HorizontalLayout />
       </js:beads>
-      <js:Label className="propertyQName" text="{ValueObject(data).qname}" />
+      <js:Label className="propertyQName" text="{ASDocClassMembers(data).qname}" />
       <js:Label text="(" />
-  	  <js:DataContainer id="params" dataProvider="{ValueObject(data).params}" style="border-style:none"
+  	  <js:DataContainer id="params" dataProvider="{ASDocClassMembers(data).params}" style="border-style:none"
 	     itemRenderer="ParameterRenderer">
 	    <js:beads>
 	      <js:HorizontalLayout />
 	    </js:beads>
 	  </js:DataContainer>
       <js:Label text="):" />
-      <js:Label id="label" className="propertyType" text="{ValueObject(data).return}" />
-      <html:A id="link" className="propertyTypeLink" text="{ValueObject(data).return}" href="{ValueObject(data).returnhref}" />
+      <js:Label id="label" className="propertyType" text="{ASDocClassMembers(data).return}" />
+      <html:A id="link" className="propertyTypeLink" text="{ASDocClassMembers(data).return}" href="{ASDocClassMembers(data).returnhref}" />
     </js:Group>
-	<js:DataContainer id="attributes" className="attributeList" dataProvider="{ValueObject(data).attributes}" 
+	<js:DataContainer id="attributes" className="attributeList" dataProvider="{ASDocClassMembers(data).attributes}" 
 	     itemRenderer="AttributeRenderer" width="100%"/>
     <js:MultilineLabel id="description" width="100%" text="{obj.description}"/>
 </js:MXMLItemRenderer>

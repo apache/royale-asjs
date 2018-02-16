@@ -24,8 +24,6 @@ limitations under the License.
 			    width="100%">
     <fx:Script>
         <![CDATA[
-            import valueObjects.ValueObject;
-            
 			private var _color0:String = "#fff";
 			
 			public function get backgroundColor0():String
@@ -56,11 +54,11 @@ limitations under the License.
 			
             [Bindable("dataChange")]
             /**
-              @royaleignorecoercion ValueObject
+              @royaleignorecoercion ASDocClassEvents
             */
-            public function get obj():ValueObject
+            public function get obj():ASDocClassEvents
             {
-                return data as ValueObject;
+                return data as ASDocClassEvents;
             }
             		
 			private var oddIndex:Boolean;
@@ -102,7 +100,7 @@ limitations under the License.
       <js:beads>
         <js:HorizontalLayout />
       </js:beads>
-      <html:A id="qname" className="eventSummaryQName" text="{ValueObject(data).qname}" />
-      <js:Label id="label" className="eventDescription" text="{ValueObject(data).shortDescription}" />
+      <html:A id="qname" className="eventSummaryQName" text="{ASDocClassEvents(data).qname}" />
+      <js:Label id="label" className="eventDescription" text="{ASDocClassEvents(data).shortDescription}" />
     </js:Group>
 </js:MXMLItemRenderer>

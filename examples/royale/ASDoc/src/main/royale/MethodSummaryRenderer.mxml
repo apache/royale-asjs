@@ -24,8 +24,6 @@ limitations under the License.
 			    width="100%">
     <fx:Script>
         <![CDATA[
-            import valueObjects.ValueObject;
-            
 			private var _color0:String = "#fff";
 			
 			public function get backgroundColor0():String
@@ -62,11 +60,11 @@ limitations under the License.
 			
             [Bindable("dataChange")]
             /**
-              @royaleignorecoercion ValueObject
+              @royaleignorecoercion ASDocClassMembers
             */
-            public function get obj():ValueObject
+            public function get obj():ASDocClassMembers
             {
-                return data as ValueObject;
+                return data as ASDocClassMembers;
             }
 		
 			override public function addedToParent():void
@@ -106,17 +104,17 @@ limitations under the License.
       <js:beads>
         <js:HorizontalLayout />
       </js:beads>
-      <html:A id="qname" className="summaryQName" text="{ValueObject(data).qname}" />
+      <html:A id="qname" className="summaryQName" text="{ASDocClassMembers(data).qname}" />
       <js:Label text="(" />
-  	  <js:DataContainer id="params" dataProvider="{ValueObject(data).params}" style="border-style:none"
+  	  <js:DataContainer id="params" dataProvider="{ASDocClassMembers(data).params}" style="border-style:none"
 	     itemRenderer="ParameterRenderer">
 	    <js:beads>
 	      <js:HorizontalLayout />
 	    </js:beads>
 	  </js:DataContainer>
       <js:Label text="):" />
-      <js:Label id="label" className="summaryType" text="{ValueObject(data).return}" />
-      <html:A id="link" className="summaryTypeLink" text="{ValueObject(data).return}" href="{ValueObject(data).returnhref}" />
+      <js:Label id="label" className="summaryType" text="{ASDocClassMembers(data).return}" />
+      <html:A id="link" className="summaryTypeLink" text="{ASDocClassMembers(data).return}" href="{ASDocClassMembers(data).returnhref}" />
     </js:Group>
-    <js:MultilineLabel className="summaryDescription" id="short" width="100%" text="{ValueObject(data).shortDescription}"/>
+    <js:MultilineLabel className="summaryDescription" id="short" width="100%" text="{ASDocClassMembers(data).shortDescription}"/>
 </js:MXMLItemRenderer>
