@@ -126,6 +126,7 @@
         <antcall target="CreateJS"/>
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
+	<!--antcall target="Ace"/-->
         <antcall target="Mobile"/>
         <antcall target="Reflection"/>
         <antcall target="Network"/>
