@@ -29,7 +29,7 @@ package
 		 * "inject_html" tag as follows:
 		 *
 		 * <inject_html>
-		 * <script src="https://raw.githubusercontent.com/ajaxorg/ace-builds/master/src-min-noconflict/ace.js"></script>
+		 * <script src="https://cdn.rawgit.com/ajaxorg/ace-builds/master/src-min-noconflict/ace.js"></script>
 		 * </inject_html>
 		 */
 		public function Application()
