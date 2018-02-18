@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <project>
   <output>
-    <movie version="10"/>
+    <movie version="11"/>
     <movie disabled="False"/>
     <movie height="600"/>
     <movie fps="60"/>
@@ -38,7 +38,7 @@ limitations under the License.
     <option showDeprecationWarnings="True"/>
     <option antBuildPath="build/build.xml"/>
     <option showUnusedTypeSelectorWarnings="True"/>
-    <option customSDK="D:\Work\royale-binary-js-swf"/>
+    <option customSDK=""/>
     <option strict="True"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
@@ -79,10 +79,10 @@ limitations under the License.
   </options>
   <moonshineRunCustomization>
     <option launchMethod="Simulator"/>
-    <option projectType="2"/>
     <option urlToLaunch=""/>
     <option targetPlatform="2"/>
     <option deviceSimulator="null"/>
+    <option projectType="2"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
