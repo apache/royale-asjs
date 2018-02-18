@@ -42,7 +42,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.geom.Rectangle;
 
 	/**
-	 * The VScrollViewport extends the ScrollingViewport class and limts scrolling
+	 * The HScrollViewport extends the ScrollingViewport class and limts scrolling
 	 * to only vertical scroll bars.
 	 *
 	 *  @langversion 3.0
@@ -51,7 +51,7 @@ package org.apache.royale.html.supportClasses
 	 *  @productversion Royale 0.9.2
 	 */
 	COMPILE::JS
-	public class VScrollViewport extends ScrollingViewport
+	public class HScrollViewport extends ScrollingViewport
 	{
 		/**
 		 * Constructor
@@ -61,17 +61,17 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.2
 		 */
-		public function VScrollViewport()
+		public function HScrollViewport()
 		{
 			super();
 		}
 		
-		// These shuould be disabled for VScroll
-		override public function get horizontalScrollPosition():Number
+		// These shuould be disabled for HScroll
+		override public function get verticalScrollPosition():Number
 		{
 			return 0;
 		}
-		override public function set horizontalScrollPosition(value:Number):void
+		override public function set verticalScrollPosition(value:Number):void
 		{
 			// Do nothing
 		}
@@ -84,16 +84,16 @@ package org.apache.royale.html.supportClasses
 			super.strand = value;
 			if (contentView == null) {
 				(value as UIBase).element.style.overflow = "hidden";
-				(value as UIBase).element.style.overflowY = "auto";
+				(value as UIBase).element.style.overflowX = "auto";
 			} else {
 				(contentView as UIBase).element.style.overflow = "hidden";
-				(contentView as UIBase).element.style.overflowY = "auto";
+				(contentView as UIBase).element.style.overflowX = "auto";
 			}
 		}		
 	}
 	
 	COMPILE::SWF
-	public class VScrollViewport extends ScrollingViewport
+	public class HScrollViewport extends ScrollingViewport
 	{
 		/**
 		 * Constructor
@@ -101,9 +101,9 @@ package org.apache.royale.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion Royale 0.9.2
+	     *  @productversion Royale 0.0
 		 */
-		public function VScrollViewport()
+		public function HScrollViewport()
 		{
 			super();
 		}
@@ -122,16 +122,13 @@ package org.apache.royale.html.supportClasses
 			return _horizontalScroller;
 		}
 
-        private var _verticalScrollPosition:Number = 0;
-
         override public function get verticalScrollPosition():Number
         {
-			return _verticalScrollPosition;
+			return 0;
         }
         override public function set verticalScrollPosition(value:Number):void
         {
-			_verticalScrollPosition = value;
-			handleVerticalScrollChange();
+			//do nothing
         }
 
         private var _horizontalScrollPosition:Number = 0;
@@ -142,9 +139,9 @@ package org.apache.royale.html.supportClasses
         }
         override public function set horizontalScrollPosition(value:Number):void
         {
-			// Do nothing
-			// _horizontalScrollPosition = value;
-			// handleHorizontalScrollChange();
+			_horizontalScrollPosition = value;
+            dispatchEvent(new Event("horizontalScrollPositionChanged"));
+			handleHorizontalScrollChange();
         }
 
         private var viewportWidth:Number;
@@ -166,9 +163,7 @@ package org.apache.royale.html.supportClasses
 		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
 			var host:UIBase = UIBase(_strand);
-			
-			var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;
-			
+						
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 			
@@ -177,80 +172,81 @@ package org.apache.royale.html.supportClasses
 			hostWidth -= borderMetrics.left + borderMetrics.right;
 			hostHeight -= borderMetrics.top + borderMetrics.bottom;
 			
-			var needV:Boolean = contentSize.height > viewportHeight;
+			var needH:Boolean = contentSize.width > viewportWidth;
 			
 			// if sized to content, the container should stretch to fit, making the original
 			// viewport dimensions obsolete and scrollbars unnecessary.
 			// This might not work for the flexible child.
-			if (host.isHeightSizedToContent())
-				needV = false;
+			if (host.isWidthSizedToContent())
+				needH = false;
 
-			if (needV)
+			if (needH)
 			{
-				if (_verticalScroller == null) {
-					_verticalScroller = createVerticalScrollBar();
-					(_strand as IContainer).strandChildren.addElement(_verticalScroller);
+				if (_horizontalScroller == null) {
+					_horizontalScroller = createHorizontalScrollBar();
+					(_strand as IContainer).strandChildren.addElement(_horizontalScroller);
 				}
 			}
 			
-			if (needV)
+			if (needH)
 			{
-				_verticalScroller.visible = true;
-				_verticalScroller.x = UIBase(_strand).width - borderMetrics.right - _verticalScroller.width;
-				_verticalScroller.y = borderMetrics.top;
-				_verticalScroller.setHeight(hostHeight, false);
+				_horizontalScroller.visible = true;
+				_horizontalScroller.x = 0;
+				_horizontalScroller.y = UIBase(_strand).height - borderMetrics.bottom - _horizontalScroller.height;
+				_horizontalScroller.setWidth(hostWidth, false);
 				
-				ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;
-				ScrollBarModel(_verticalScroller.model).pageSize = contentArea.height;
-				ScrollBarModel(_verticalScroller.model).pageStepSize = contentArea.height;
+				ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;
+				ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
+				ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;
 				
-				if (contentSize.height > contentArea.height &&
-					(contentSize.height - contentArea.height) < _verticalScrollPosition)
-					_verticalScrollPosition = contentSize.height - contentArea.height;
-			}
-			else if (_verticalScroller) {
-				_verticalScroller.visible = false;
+				if (contentSize.width > contentArea.width &&
+					(contentSize.width - contentArea.width) < _horizontalScrollPosition)
+					_horizontalScrollPosition = contentSize.width - contentArea.width;
+			} 
+			else if (_horizontalScroller) {
+				_horizontalScroller.visible = false;
 			}
 			
-			var rect:flash.geom.Rectangle = new flash.geom.Rectangle(_horizontalScrollPosition, _verticalScrollPosition,
-				(_verticalScroller != null && _verticalScroller.visible) ? _verticalScroller.x : hostWidth,
-				hostHeight);
+			var rect:flash.geom.Rectangle = new flash.geom.Rectangle(_horizontalScrollPosition, 0,
+				hostWidth,
+				(_horizontalScroller != null && _horizontalScroller.visible) ? _horizontalScroller.y : hostHeight);
 			
 			contentArea.scrollRect = rect;
 		}
 
-		private function createVerticalScrollBar():ScrollBar
+		private function createHorizontalScrollBar():ScrollBar
 		{
-			var vsbm:ScrollBarModel = new ScrollBarModel();
-			vsbm.minimum = 0;
-			vsbm.snapInterval = 1;
-			vsbm.stepSize = 1;
-			vsbm.value = 0;
+			var hsbm:ScrollBarModel = new ScrollBarModel();
+			hsbm.minimum = 0;
+			hsbm.snapInterval = 1;
+			hsbm.stepSize = 1;
+			hsbm.value = 0;
 
-			var vsb:VScrollBar;
-			vsb = new VScrollBar();
-			vsb.model = vsbm;
-			vsb.visible = false;
+			var hsb:HScrollBar;
+			hsb = new HScrollBar();
+			hsb.model = hsbm;
+			hsb.visible = false;
 
-			vsb.addEventListener("scroll",handleVerticalScroll);
-			return vsb;
+			hsb.addEventListener("scroll",handleHorizontalScroll);
+			return hsb;
 		}
 
-		private function handleVerticalScroll(event:Event):void
+		private function handleHorizontalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
-			var vpos:Number = ScrollBarModel(_verticalScroller.model).value;
+			var hpos:Number = ScrollBarModel(_horizontalScroller.model).value;
 			var rect:flash.geom.Rectangle = contentArea.scrollRect;
-			rect.y = vpos;
+			rect.x = hpos;
 			contentArea.scrollRect = rect;
 
-			_verticalScrollPosition = vpos;
+			_horizontalScrollPosition = hpos;
+            dispatchEvent(new Event("horizontalScrollPositionChanged"));
 		}
 
-		private function handleVerticalScrollChange():void
+		private function handleHorizontalScrollChange():void
 		{
-			if (_verticalScroller) {
-				ScrollBarModel(_verticalScroller.model).value = verticalScrollPosition;
+			if (_horizontalScroller) {
+				ScrollBarModel(_horizontalScroller.model).value = horizontalScrollPosition;
 			}
 		}
 
