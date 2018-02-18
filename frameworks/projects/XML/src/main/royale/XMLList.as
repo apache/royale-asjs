@@ -961,7 +961,7 @@ package
 				if(str)
 					retVal.push(str);
 			}
-			return retVal.join("\n");
+			return retVal.join("");
 		}
 		
 		/**

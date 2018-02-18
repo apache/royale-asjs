@@ -145,7 +145,13 @@ limitations under the License.
         trace("moving to <newparent/>");
         trace(childXML.toXMLString() + " is child of" + parent.toXMLString() + "? " + (childXML.parent() == parent));
         trace(childXML.toXMLString() + " is child of" + newParent.toXMLString() + "? " + (childXML.parent() == newParent));
-
+        childXML = <Content>	• <?ACE 7?>Some amazing content</Content>;
+				var childXMLStr:String = childXML.text();
+				trace(childXMLStr + " (should be) •Some amazing content? " + (childXMLStr == "•Some amazing content"));
+        XML.ignoreWhitespace = false;
+        childXML = <Content>	• <?ACE 7?>Some amazing content</Content>;
+				childXMLStr = childXML.text();
+				trace(childXMLStr + " (should be) \t• Some amazing content? " + (childXMLStr == "\t• Some amazing content"));
         
         var xmlString:String = xml.toXMLString();
         var script:XML = xml..script[0].children()[0];

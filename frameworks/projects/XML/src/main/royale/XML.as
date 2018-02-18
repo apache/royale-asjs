@@ -238,6 +238,8 @@ package
 					xml = new XML();
 					xml.setNodeKind("text");
 					xml.setName(qname);
+					if(XML.ignoreWhitespace)
+						data = data.trim();
 					xml.setValue(data);
 					break;
 				case 4:
