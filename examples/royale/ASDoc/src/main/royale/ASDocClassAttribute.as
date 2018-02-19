@@ -18,10 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-[Bindable]
 public class ASDocClassAttribute
 {
-    public var name:String;
-    public var value:String;
+    private var _name:String;
+    [Bindable("__NoChangeEvent__")]
+    public function get name():String
+    {
+        return _name;
+    }
+    public function set name(__v__:String):void
+    {
+        _name = __v__;
+    }
+    
+    private var _value:String;
+    [Bindable("__NoChangeEvent__")]
+    public function get value():String
+    {
+        return _value;
+    }
+    public function set value(__v__:String):void
+    {
+        _value = __v__;
+    }
 }
 }

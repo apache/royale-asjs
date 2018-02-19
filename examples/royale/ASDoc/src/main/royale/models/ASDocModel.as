@@ -199,6 +199,9 @@ package models
         
         private var _attributesMap:Object;
         
+        /**
+         * @flexjsignorecoercion ASDocClass 
+         */
         private function completeClassHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeClassHandler);
@@ -217,7 +220,7 @@ package models
             }
             else
                 _baseClassList.push(data.qname);
-            for each (var m:ASDocClassMembers in data.members)
+            for each (var m:ASDocClassFunction in data.members)
             {
                 m.shortDescription = makeShortDescription(m.description);
                 if (m.type == "method")
@@ -229,9 +232,10 @@ package models
                     else if (m.qname != data.qname)
                         addIfNeededAndMakeAttributes(_publicMethods, m);
                 }
-                else
+                else if (m.type == "accessor")
                 {
-                    addIfNeededAndMakeAttributes(_publicProperties, m);
+                    var a:ASDocClassAccessor = m as ASDocClassAccessor; // force link class
+                    addIfNeededAndMakeAttributes(_publicProperties, a);
                 }
                 if (masterData["classnames"].indexOf(m.return) != -1)
                 {
