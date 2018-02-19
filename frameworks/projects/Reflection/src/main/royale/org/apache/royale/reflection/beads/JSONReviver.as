@@ -108,7 +108,11 @@ public class JSONReviver
             var c:Class = classMap[key];
             if (c)
             {
-                return new c();
+                var newValue:Object = new c();
+                for (var p:String in value)
+                {
+                    newValue[p] = value[p];
+                }
             }
         }
         return value;
