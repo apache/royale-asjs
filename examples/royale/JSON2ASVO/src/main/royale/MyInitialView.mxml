@@ -68,25 +68,34 @@ limitations under the License.
                 var key:String;
 				var useFile:String = className + ".as";
 				var useContent:String = "package\n{\n";
+                if (generateBinding.selected && !immutable.selected)
+                {
+                    useContent += "import org.apache.royale.events.EventDispatcher;\n";
+                    useContent += "import org.apache.royale.events.ValueChangeEvent;\n";
+                }
                 useContent += "[RemoteClass(alias='" + className + "')]\n";
-                useContent += "public class " + className + "\n{\n";
+                if (generateBinding.selected && !immutable.selected)
+                    useContent += "public class " + className + " extends EventDispatcher\n{\n";
+                else
+                    useContent += "public class " + className + "\n{\n";
                 useContent += "    public static const key:String = \"" + JSONReviver.generateKey(obj) + "\";\n\n";
                 for (var p:String in obj)
                 {
                     if (p == "__JSON2ASVO__") continue;
                     
                     var value:Object = obj[p];
-                    useContent += "    public var " + p + ":";
+                    var typeName:String;
+                    var typeString:String;
                     if (value is Array)
                     {
-                        useContent += "Array;\n";
+                        typeString = "Array";
                         if (value.length > 0)
                         {
                             value = value[0];
                             if (!(value is String ||
-                                  value is Number ||
-                                  value === true || 
-                                  value === false))
+                                value is Number ||
+                                value === true || 
+                                value === false))
                             {
                                 key = JSONReviver.generateKey(value);
                                 if (!subClasses[key])
@@ -101,46 +110,70 @@ limitations under the License.
                     }
                     else if (value is String)
                     {
-                        useContent += "String;\n";
+                        typeString = "String";
                     }
                     else if (value is Number)
                     {
                         if (Math.round(value as Number) === value)
-                            useContent += "int;\n";
+                            typeString += "int";
                         else
-                            useContent += "Number;\n";
+                            typeString += "Number";
                     }
                     else if (value === true || value === false)
                     {
-                        useContent += "Boolean;\n";
+                        typeString += "Boolean";
                     }
                     else if (value === null)
                     {
-                        useContent += "Object; // was null\n";                        
+                        typeString += "Object /* was null */";                        
                     }
                     else
                     {
-                        var typeName:String = value["__JSON2ASVO__"];
+                        typeName = value["__JSON2ASVO__"];
                         if (typeName)
-                            useContent += typeName + ";\n";
+                            typeString = typeName;
                         else
                         {
                             key = JSONReviver.generateKey(value);
                             typeName = subClasses[key];
                             if (typeName)
-                                useContent += typeName + ";\n";
+                                typeString = typeName;
                             else
                             {
                                 firstChar = p.charAt(0).toUpperCase();
                                 typeName = className + firstChar + p.substr(1);
                                 subClasses[key] = typeName;
-                                useContent += typeName + ";\n";
+                                typeString = typeName;
                                 subObjects.push(value);
                             }
                         }
                     }
+
+                    useContent += "    private var _" + p + ":" + typeString + ";\n";
+                    if (generateBinding.selected)
+                    {
+                        useContent += "    [Bindable(\"";
+                        if (!immutable.selected)
+                            useContent += "valueChange";
+                        else
+                            useContent += "__NoChangeEvent__";
+                        useContent += "\")]\n";
+                    }
+                    useContent += "    public function get " + p + "():" + typeString + "\n";
+                    useContent += "    {\n        return _" + p + ";\n    }\n";
+                    useContent += "    public function set " + p + "(__v__:" + typeString + "):void\n";
+                    useContent += "    {\n";
+                    if (generateBinding.selected && !immutable.selected)
+                    {
+                        useContent += "        if (_" + p + " == __v__) return;\n";
+                        useContent += "        var e:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(this, _" + p + ", __v__);\n";
+                        useContent += "        _" + p + " = __v__;\n";
+                        useContent += "        dispatchEvent(e);\n";
+                    }
+                    else
+                        useContent += "        _" + p + " = __v__;\n";
+                    useContent += "    }\n\n";				
                 }
-				
                 useContent += "}\n"; // end class
                 useContent += "}\n"; // end package
                 
@@ -199,7 +232,7 @@ limitations under the License.
         <js:Label text="Generated classes will be written to the application storage folder" width="100%" />
 		<js:HGroup>
 			<js:Label text="Output Class Name:" className="labelStyle" />
-			<js:TextInput id="writeFileNameField" text="ValueObject" />
+			<js:TextInput id="writeFileNameField" text="ValueObject" width="200"/>
 		</js:HGroup>
         <js:Label text="Sub-Objects will be given a class name based on the field where it was discovered." width="100%" />
         <js:Label text="So if you set Output Class Name to 'Foo' and the JSON result has a sub-object" width="100%" />
@@ -207,6 +240,11 @@ limitations under the License.
         <js:Spacer height="20" />
 		<js:Label text="Enter JSON result:" className="labelStyle" />
 		<js:TextArea id="contentField" width="100%" height="300" />
+        <js:HGroup>
+            <js:CheckBox id="generateBinding" text="Bindable" selected="true"/>		
+            <js:Spacer width="20" />
+            <js:CheckBox id="immutable" text="Immutable"/>		
+        </js:HGroup>
 		<js:TextButton text="Generate Classes" click="onSave()" />		
 	</js:VGroup>		
 
