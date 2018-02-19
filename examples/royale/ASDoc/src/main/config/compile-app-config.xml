@@ -17,6 +17,10 @@
 
 -->
 <royale-config>
+    <remove-circulars>true</remove-circulars>
+    <js-compiler-option>
+        <option>--skip_type_inference</option>
+    </js-compiler-option>
     <js-output-optimization>
         <optimization>skipAsCoercions</optimization>
     </js-output-optimization>
