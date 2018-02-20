@@ -46,6 +46,11 @@ package org.apache.royale.html.supportClasses
 			className = 'RadioButtonIcon';
 		}
 
+        /**
+         * @private
+         * 
+         * @royalesuppresspublicvarwarning
+         */
 		COMPILE::JS 
 		public var element:WrappedHTMLElement;
 		

@@ -29,6 +29,8 @@ package org.apache.royale.core
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
      */
 	public class SimpleCSSStyles 
 	{
@@ -74,6 +76,10 @@ package org.apache.royale.core
             "borderWidth": 1
         };
 		
+        // it should be ok if these properties get renamed since they will be
+        // set by name from MXML and read by name by the StylesImpl.  If AS
+        // code tries to write to these objects then they will need 
+        // protection from renaming
         public var top:*;
         public var bottom:*;
         public var left:*;

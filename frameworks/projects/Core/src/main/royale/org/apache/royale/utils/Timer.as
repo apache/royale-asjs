@@ -95,6 +95,17 @@ public class Timer extends flash.utils.Timer
 	}
 }
 
+/**
+ *  The Timer class dispatches events based on a delay
+ *  and repeat count.  
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ * 
+ *  @royalesuppresspublicvarwarning
+ */
 COMPILE::JS
 public class Timer extends EventDispatcher
 {

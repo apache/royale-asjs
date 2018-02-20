@@ -251,6 +251,8 @@ package org.apache.royale.createjs
 			ValuesManager.valuesImpl.init(this);
 		}
 		
+        private var _initialView:IApplicationView;
+        
 		/**
 		 *  The initial view.
 		 *
@@ -261,8 +263,21 @@ package org.apache.royale.createjs
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		[Bindable("__NoChangeEvent__")]
-		public var initialView:IApplicationView;
+        [Bindable("__NoChangeEvent__")]
+        public function get initialView():IApplicationView
+        {
+            return _initialView;
+        }
+        
+        /**
+         *  @private
+         */
+        [Bindable("__NoChangeEvent__")]
+        public function set initialView(value:IApplicationView):void
+        {
+            _initialView = value;
+        }
+        
 		
 		/**
 		 *  The data model (for the initial view).
@@ -272,7 +287,6 @@ package org.apache.royale.createjs
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		[Bindable("__NoChangeEvent__")]		
 		private var _model:Object;
 		
 		/**
@@ -298,6 +312,8 @@ package org.apache.royale.createjs
 			_model = value;
 		}
 		
+        private var _controller:Object;
+        
 		/**
 		 *  The controller.  The controller typically watches
 		 *  the UI for events and updates the model accordingly.
@@ -307,7 +323,20 @@ package org.apache.royale.createjs
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public var controller:Object;
+        [Bindable("__NoChangeEvent__")]
+        public function get controller():Object
+        {
+            return _controller;
+        }
+        
+        /**
+         *  @private
+         */
+        [Bindable("__NoChangeEvent__")]
+        public function set controller(value:Object):void
+        {
+            _controller = value;
+        }
 		
 		/**
 		 *  An array of data that describes the MXML attributes
@@ -359,6 +388,8 @@ package org.apache.royale.createjs
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
 		public var beads:Array;
 		

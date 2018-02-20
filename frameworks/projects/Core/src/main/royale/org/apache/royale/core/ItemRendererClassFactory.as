@@ -108,6 +108,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
 		public var mxmlContent:Array;
 		
@@ -136,6 +138,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var createFunction:Function = createFromMXMLContent;
 
@@ -160,6 +164,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var itemRendererFactory:IFactory;
         

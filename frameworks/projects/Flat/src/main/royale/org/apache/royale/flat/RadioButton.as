@@ -74,6 +74,8 @@ package org.apache.royale.flat
     {
         /**
          * Provides unique name
+         * 
+         * @royalesuppresspublicvarwarning
          */
         public static var radioCounter:int = 0;
         

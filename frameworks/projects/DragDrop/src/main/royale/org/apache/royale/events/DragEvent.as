@@ -254,6 +254,8 @@ package org.apache.royale.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public static var dragInitiator:IDragInitiator;
         
@@ -265,6 +267,8 @@ package org.apache.royale.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public static var dragSource:Object;
 		

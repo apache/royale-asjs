@@ -113,6 +113,8 @@ package org.apache.royale.graphics
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Royale 0.6
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
         public var closedPath:Boolean;
         

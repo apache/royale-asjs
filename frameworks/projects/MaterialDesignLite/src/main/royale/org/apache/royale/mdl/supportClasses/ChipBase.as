@@ -56,6 +56,8 @@ package org.apache.royale.mdl.supportClasses
         
         /**
          * The chip span element
+         * 
+         * @royalesuppresspublicvarwarning
          */
         COMPILE::JS
         public var chipTextSpan:HTMLSpanElement;

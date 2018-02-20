@@ -227,6 +227,11 @@ package org.apache.royale.html
     COMPILE::JS
     public class RadioButton extends UIBase implements ISelectable
     {
+        /**
+         * @private
+         * 
+         *  @royalesuppresspublicvarwarning
+         */
         public static var radioCounter:int = 0;
 
         private var labelFor:HTMLLabelElement;

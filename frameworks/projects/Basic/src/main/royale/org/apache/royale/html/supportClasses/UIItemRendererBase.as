@@ -99,6 +99,8 @@ package org.apache.royale.html.supportClasses
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var mxmlContent:Array;
         
@@ -120,10 +122,46 @@ package org.apache.royale.html.supportClasses
             mxmlProperties = data;
         }
         
-		public var backgroundColor:uint = 0xFFFFFF;
-		public var highlightColor:uint = 0xCEDBEF;
-		public var selectedColor:uint = 0xA8C6EE;
-		public var downColor:uint = 0x808080;
+        private var _backgroundColor:uint = 0xFFFFFF;
+        public function get backgroundColor():uint
+        {
+            return _backgroundColor;
+        }
+        public function set backgroundColor(value:uint):void
+        {
+            _backgroundColor = value;
+        }
+        
+        private var _highlightColor:uint = 0xCEDBEF;
+        public function get highlightColor():uint
+        {
+            return _highlightColor;
+        }
+        public function set highlightColor(value:uint):void
+        {
+            _highlightColor = value;
+        }
+        
+        private var _selectedColor:uint = 0xA8C6EE;
+        public function get selectedColor():uint
+        {
+            return _selectedColor;
+        }
+        public function set selectedColor(value:uint):void
+        {
+            _selectedColor = value;
+        }
+        
+        private var _downColor:uint = 0x808080;
+        public function get downColor():uint
+        {
+            return _downColor;
+        }
+        public function set downColor(value:uint):void
+        {
+            _downColor = value;
+        }
+        
 		protected var useColor:uint = backgroundColor;
 		
 		private var _data:Object;

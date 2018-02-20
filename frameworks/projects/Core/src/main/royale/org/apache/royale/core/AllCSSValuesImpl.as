@@ -297,6 +297,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var values:Object;
 		
@@ -654,7 +656,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public static var inheritingStyles:Object = { 
+        public static const inheritingStyles:Object = { 
             "color" : 1,
             "fontFamily" : 1,
             "fontSize" : 1,
@@ -666,7 +668,7 @@ package org.apache.royale.core
          * The styles that apply to each UI widget
          */
         COMPILE::JS
-        public static var perInstanceStyles:Object = {
+        public static const perInstanceStyles:Object = {
             'backgroundColor': 1,
             'backgroundImage': 1,
             'color': 1,
@@ -681,7 +683,7 @@ package org.apache.royale.core
          * The styles that use color format #RRGGBB
          */
         COMPILE::JS
-        public static var colorStyles:Object = {
+        public static const colorStyles:Object = {
             'backgroundColor': 1,
             'borderColor': 1,
             'color': 1
@@ -691,7 +693,7 @@ package org.apache.royale.core
          * The styles that can use raw numbers
          */
         COMPILE::JS
-        public static var numericStyles:Object = {
+        public static const numericStyles:Object = {
             'fontWeight': 1
         }
         
@@ -700,7 +702,7 @@ package org.apache.royale.core
          * The properties that enumerate that we skip
          */
         COMPILE::JS
-        public static var skipStyles:Object = {
+        public static const skipStyles:Object = {
             'constructor': 1
         }
         

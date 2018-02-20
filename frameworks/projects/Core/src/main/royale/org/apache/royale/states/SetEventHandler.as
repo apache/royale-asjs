@@ -49,13 +49,49 @@ package org.apache.royale.states
 			super();
 		}
 		
-        public var target:String;
+        private var _target:String;
         
-        public var name:String;
+        public function get target():String
+        {
+            return _target;
+        }
+        public function set target(value:String):void
+        {
+            _target = value;
+        }
         
-        public var handlerFunction:Function;
+        private var _name:String;
+        
+        public function get name():String
+        {
+            return _name;
+        }
+        public function set name(value:String):void
+        {
+            _name = value;
+        }
+        
+        private var _handlerFunction:Function;
+        
+        public function get handlerFunction():Function
+        {
+            return _handlerFunction;
+        }
+        public function set handlerFunction(value:Function):void
+        {
+            _handlerFunction = value;
+        }
 
-        public var document:Object;
+        private var _document:Object;
+        
+        public function get document():Object
+        {
+            return _document;
+        }
+        public function set document(value:Object):void
+        {
+            _document = value;
+        }
         
         public function setDocument(document:Object, id:String = null):void
         {

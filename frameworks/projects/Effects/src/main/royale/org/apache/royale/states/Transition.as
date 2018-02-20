@@ -45,6 +45,8 @@ package org.apache.royale.states
 			super();
 		}
 		
+        private var _fromState:String;
+        
 		/**
 		 *  The state or states from which the view is leaving.
 		 *
@@ -53,7 +55,17 @@ package org.apache.royale.states
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public var fromState:String;
+        public function get fromState():String
+        {
+            return _fromState;
+        }
+        
+        public function set fromState(value:String):void
+        {
+            _fromState = value;
+        }
+        
+        private var _toState:String;
         
         /**
          *  The state or states to which the view is going.
@@ -63,9 +75,19 @@ package org.apache.royale.states
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public var toState:String;
+        public function get toState():String
+        {
+            return _toState;
+        }
+        
+        public function set toState(value:String):void
+        {
+            _toState = value;
+        }
 		
 		
+        private var _effects:Array;
+        
         /**
          *  The list of effects to play
          *
@@ -74,7 +96,15 @@ package org.apache.royale.states
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public var effects:Array;
+        public function get effects():Array
+        {
+            return _effects;
+        }
+        
+        public function set effects(value:Array):void
+        {
+            _effects = value;
+        }
         
 	}
 }

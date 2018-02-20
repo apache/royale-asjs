@@ -80,11 +80,21 @@ public class Fade extends Tween implements IDocument
 	 */
 	private var actualTarget:IUIBase;
     
+    private var _target:String;
+    
     /**
      *  The target as the String id 
      *  of a widget in an MXML Document.
      */
-    public var target:String;
+    public function get target():String
+    {
+        return _target;
+    }
+    
+    public function set target(value:String):void
+    {
+        _target = value;
+    }
     
 	/**
 	 *  @private
@@ -98,15 +108,35 @@ public class Fade extends Tween implements IDocument
 	 */
 	private var start:Number;
 	
+    private var _alphaFrom:Number;
+    
 	/**
 	 *  Starting alpha value.  If NaN, the current alpha value is used
      */
-    public var alphaFrom:Number;
+    public function get alphaFrom():Number
+    {
+        return _alphaFrom;
+    }
+    
+    public function set alphaFrom(value:Number):void
+    {
+        _alphaFrom = value;
+    }
+    
+    private var _alphaTo:Number;
     
 	/**
 	 *  Ending alpha value.  If NaN, the current alpha value is not changed
 	 */
-	public var alphaTo:Number;
+    public function get alphaTo():Number
+    {
+        return _alphaTo;
+    }
+    
+    public function set alphaTo(value:Number):void
+    {
+        _alphaTo = value;
+    }
 	
 	
     

@@ -92,6 +92,8 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public static var dragging:Boolean = false;
 
@@ -102,6 +104,8 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public static var dragImage:IUIBase;
 
@@ -112,6 +116,8 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public static var dragImageOffsetX:Number = 0;
 
@@ -122,6 +128,8 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public static var dragImageOffsetY:Number = 0;
 
@@ -133,6 +141,8 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public static var defaultThreshold:int = 4;
 
@@ -149,6 +159,8 @@ package org.apache.royale.html.beads.controllers
             threshold = defaultThreshold;
 		}
 
+        private var _threshold:int = 4;
+        
         /**
          *  The movement in x and or y that
          *  means a drag should start
@@ -158,10 +170,22 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          */
-        public var threshold:int = 4;
-
+        public function get threshold():int
+        {
+            return _threshold;
+        }
+        public function set threshold(value:int):void
+        {
+            _threshold = value;
+        }
+        
 		private var _strand:IStrand;
 
+        /**
+         *  @private
+         * 
+         *  @royalesuppresspublicvarwarning
+         */
 		public static var instanceNumber:int = 1;
 
 		/**

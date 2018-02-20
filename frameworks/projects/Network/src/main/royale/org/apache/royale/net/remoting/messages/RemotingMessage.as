@@ -34,6 +34,8 @@ package org.apache.royale.net.remoting.messages
  *  @playerversion AIR 1.1
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3 
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class RemotingMessage extends AbstractMessage
 {

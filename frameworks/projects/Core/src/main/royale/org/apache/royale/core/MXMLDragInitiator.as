@@ -88,6 +88,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var dropTarget:Object;
 
@@ -98,6 +100,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var dropType:String;
         
@@ -111,6 +115,8 @@ package org.apache.royale.core
          */
         public function acceptingDrop(dropTarget:Object, type:String):void
         {
+            this.dropTarget = dropTarget;
+            dropType = type;
             dispatchEvent(new Event("acceptingDrop"));
         }
         
@@ -124,6 +130,8 @@ package org.apache.royale.core
          */
         public function acceptedDrop(dropTarget:Object, type:String):void
         {
+            this.dropTarget = dropTarget;
+            dropType = type;
             dispatchEvent(new Event("acceptedDrop"));
         }
 

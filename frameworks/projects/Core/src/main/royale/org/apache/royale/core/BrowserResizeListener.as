@@ -50,6 +50,8 @@ COMPILE::SWF
 		
         private var app:IInitialViewApplication;
         
+        private var _minHeight:Number;
+        
         /**
          *  Minimum height
          *  
@@ -58,7 +60,16 @@ COMPILE::SWF
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public var minHeight:Number;
+        public function get minHeight():Number
+        {
+            return _minHeight;
+        }
+        public function set minHeight(value:Number):void
+        {
+            _minHeight = value;
+        }
+        
+        private var _minWidth:Number;
         
         /**
          *  Minimum width
@@ -68,7 +79,14 @@ COMPILE::SWF
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public var minWidth:Number;
+        public function get minWidth():Number
+        {
+            return _minWidth;
+        }
+        public function set minWidth(value:Number):void
+        {
+            _minWidth = value;
+        }
         
         /**
          *  @copy org.apache.royale.core.IBead#strand

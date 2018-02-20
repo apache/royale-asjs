@@ -38,11 +38,15 @@ package org.apache.royale.net
 		
         /**
          *  @private
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var onSuccess:Function;
         
         /**
          *  @private
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var onFailure:Function;
                 

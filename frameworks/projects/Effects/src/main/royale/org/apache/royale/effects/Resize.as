@@ -80,21 +80,51 @@ public class Resize extends Tween implements IDocument
 	 */
 	private var actualTarget:IUIBase;
     
+    private var _target:String;
+    
     /**
      *  The target as the String id 
      *  of a widget in an MXML Document.
      */
-    public var target:String;
+    public function get target():String
+    {
+        return _target;
+    }
+    
+    public function set target(value:String):void
+    {
+        _target = value;
+    }
+    
+    private var _widthBy:Number;
     
 	/**
 	 *  The change in width.
 	 */
-	public var widthBy:Number;
+    public function get widthBy():Number
+    {
+        return _widthBy;
+    }
+    
+    public function set widthBy(value:Number):void
+    {
+        _widthBy = value;
+    }
 	
+    private var _heightBy:Number;
+    
 	/**
 	 *  The change in height.
 	 */
-	public var heightBy:Number;
+    public function get heightBy():Number
+    {
+        return _heightBy;
+    }
+    
+    public function set heightBy(value:Number):void
+    {
+        _heightBy = value;
+    }
 	
 	/**
 	 *  @private
@@ -108,25 +138,65 @@ public class Resize extends Tween implements IDocument
 	 */
 	private var heightStart:Number;
 
+    private var _widthFrom:Number;
+    
 	/**
 	 *  Starting width value.  If NaN, the current width value is used
      */
-    public var widthFrom:Number;
+    public function get widthFrom():Number
+    {
+        return _widthFrom;
+    }
+    
+    public function set widthFrom(value:Number):void
+    {
+        _widthFrom = value;
+    }
+    
+    private var _heightFrom:Number;
     
 	/**
 	 *  Starting height value.  If NaN, the current height value is used
 	 */
-	public var heightFrom:Number;
+    public function get heightFrom():Number
+    {
+        return _heightFrom;
+    }
+    
+    public function set heightFrom(value:Number):void
+    {
+        _heightFrom = value;
+    }
 		
+    private var _widthTo:Number;
+    
     /**
      *  Ending width value.
      */
-    public var widthTo:Number;
+    public function get widthTo():Number
+    {
+        return _widthTo;
+    }
+    
+    public function set widthTo(value:Number):void
+    {
+        _widthTo = value;
+    }
+    
+    private var _heightTo:Number;
     
     /**
      *  Ending height value.
      */
-    public var heightTo:Number;
+    public function get heightTo():Number
+    {
+        return _heightTo;
+    }
+    
+    public function set heightTo(value:Number):void
+    {
+        _heightTo = value;
+    }
     
     
     //--------------------------------------------------------------------------

@@ -20,6 +20,18 @@ package org.apache.royale.net.events
 {
 	import org.apache.royale.events.Event;
 	
+    /**
+     *  ResultEvents are returned from RPC requests to a remote endpoint
+     *  when the server response is ready.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion BlazeDS 4
+     *  @productversion LCDS 3 
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
 	public class ResultEvent extends Event
 	{
 		public static const RESULT:String = "result";
