@@ -2644,6 +2644,8 @@ package
 		override public function valueOf():*
 		{
 			var str:String = this.toString();
+			if(str == "")
+				return str;
 			var num:Number = Number(str);
 			return isNaN(num) ? str : num;
 		}
