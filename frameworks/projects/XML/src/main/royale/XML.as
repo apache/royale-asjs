@@ -2510,8 +2510,12 @@ package
 				if(prettyPrinting)
 				{
 					var v:String = trimXMLWhitespace(_value);
+					if(name().localName == "#cdata-section")
+						return indent + v;
 					return indent + escapeElementValue(v);
 				}
+				if(name().localName == "#cdata-section")
+					return _value;
 				return escapeElementValue(_value);
 			}
 			if(this.nodeKind() == "attribute")

@@ -152,7 +152,21 @@ limitations under the License.
         childXML = <Content>	• <?ACE 7?>Some amazing content</Content>;
 				childXMLStr = childXML.text();
 				trace(childXMLStr + " (should be) \t• Some amazing content? " + (childXMLStr == "\t• Some amazing content"));
-        
+        XML.ignoreWhitespace = true;
+        XML.prettyPrinting = false;
+        var content:XML = new XML(
+'<root>' +
+'	<content><![CDATA[<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?>' +
+'<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        ">' +
+'   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">' +
+'      <rdf:Description rdf:about=""/>' +
+'   </rdf:RDF>' +
+'</x:xmpmeta>' +
+'<?xpacket end="r"?>]'+']></content>' +
+'</root>');
+var contentStr:String = content.toXMLString();
+var correctStr:String = '<root><content><![CDATA[<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        ">   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">      <rdf:Description rdf:about=""/>   </rdf:RDF></x:xmpmeta><?xpacket end="r"?>]'+']></content></root>';
+trace("content with cdata works? " + (contentStr == correctStr));
         var xmlString:String = xml.toXMLString();
         var script:XML = xml..script[0].children()[0];
         var kind:String = script.nodeKind();
