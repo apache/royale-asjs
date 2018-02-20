@@ -83,7 +83,10 @@ package org.apache.royale.mdl.beads
 			COMPILE::JS
 			{
                 var mdlTi:ITextField = _strand as ITextField;
-                mdlTi.input.setAttribute('pattern', pattern);
+				if (mdlTi)
+                {
+                    mdlTi.input.setAttribute('pattern', pattern);
+                }
 			}
 		}
 
