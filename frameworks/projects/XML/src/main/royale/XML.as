@@ -222,7 +222,13 @@ package
 			var xml:XML;
 			var i:int;
 			var data:* = node.nodeValue;
-			var qname:QName = getQName(node.nodeName, node.prefix, node.namespaceURI,false);
+			var localName:String = node.nodeName;
+			var prefix:String = node.prefix;
+			if(prefix && localName.indexOf(prefix + ":") == 0)
+			{
+				localName = localName.substr(prefix.length+1);
+			}
+			var qname:QName = getQName(localName, prefix, node.namespaceURI,false);
 			switch(node.nodeType)
 			{
 				case 1:

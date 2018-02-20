@@ -167,6 +167,36 @@ limitations under the License.
 var contentStr:String = content.toXMLString();
 var correctStr:String = '<root><content><![CDATA[<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        ">   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">      <rdf:Description rdf:about=""/>   </rdf:RDF></x:xmpmeta><?xpacket end="r"?>]'+']></content></root>';
 trace("content with cdata works? " + (contentStr == correctStr));
+content = <Document>
+<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:about="">
+         <dc:format>application/x-indesign</dc:format>
+      </rdf:Description>
+      <rdf:Description xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:xmpGImg="http://ns.adobe.com/xap/1.0/g/img/" rdf:about="">
+         <xmp:CreatorTool>Adobe InDesign CS6 (Windows)</xmp:CreatorTool>
+         <xmp:CreateDate>2018-02-19T09:17:41Z</xmp:CreateDate>
+         <xmp:MetadataDate>2018-02-19T09:17:41Z</xmp:MetadataDate>
+         <xmp:ModifyDate>2018-02-19T09:17:41Z</xmp:ModifyDate>
+         <xmp:Thumbnails>
+            <rdf:Alt>
+               <rdf:li rdf:parseType="Resource">
+                  <xmpGImg:format>JPEG</xmpGImg:format>
+                  <xmpGImg:width>512</xmpGImg:width>
+                  <xmpGImg:height>512</xmpGImg:height>
+                  <xmpGImg:image>FOO</xmpGImg:image>
+               </rdf:li>
+            </rdf:Alt>
+         </xmp:Thumbnails>
+      </rdf:Description>
+   </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="r"?>
+</Document>;
+contentStr = content.toXMLString();
+trace("have x prefix? " + (contentStr.indexOf("x:xmptk") != -1));
+trace("have double x prefix? (should be false) " + (contentStr.indexOf("x:x:xmptk") != -1));
         var xmlString:String = xml.toXMLString();
         var script:XML = xml..script[0].children()[0];
         var kind:String = script.nodeKind();
