@@ -1528,6 +1528,7 @@ limitations under the License.
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
                 <exclude name="README.md"/>
+                <exclude name="RELEASE_NOTES.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
                 <exclude name="royale-asjs/DEPENDENCIES"/>
