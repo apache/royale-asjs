@@ -115,6 +115,11 @@ package org.apache.royale.html.beads
 				text = _toggleButtonModel.text;
 			if (_toggleButtonModel.html != null)
 				html = _toggleButtonModel.html;
+            for each( var s:Sprite in sprites )
+            {
+                var tf:CSSTextField = s.getChildByName("textField") as CSSTextField;
+                tf.styleParent = value;
+            }
 			
 			layoutControl();
 			
