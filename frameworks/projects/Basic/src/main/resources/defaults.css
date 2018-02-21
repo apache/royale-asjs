@@ -20,14 +20,6 @@
 @namespace "library://ns.apache.org/royale/basic";
 @namespace svg "library://ns.apache.org/royale/svg";
 
-/* Global style declaration */
-*
-{
-	font-family: "Arial";
-	font-size: 12px;
-	border-width: 1px;
-}
-
 .Application *, .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -746,6 +738,14 @@ global
 
 @media -royale-swf
 {
+	/* Global style declaration for Flash only.  This will effectively be the same
+	   as the browser defaults */
+	global
+	{
+		font-size: 16px;
+		border-width: 1px;
+	}
+
 	Accordion {
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 	}
@@ -779,12 +779,16 @@ global
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
 		IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView");			
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	CSSCheckBox
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
 		IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView");			
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	CloseButton
@@ -814,12 +818,16 @@ global
 	DataGrid {
 		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	DataContainer {
 		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	DataGridButtonBar {
@@ -859,6 +867,8 @@ global
 		IBeadView: ClassReference("org.apache.royale.html.beads.DropDownListView");
 		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DropDownListController");
 		IPopUp: ClassReference("org.apache.royale.html.supportClasses.DropDownListList");
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	DropDownListList
@@ -875,6 +885,8 @@ global
 		border-color: #333333;
 		border-width: 1px;
 		background-color: #FFFFFF;
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	Group
@@ -912,6 +924,8 @@ global
 		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
 		iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	MenuItemRenderer
@@ -951,6 +965,8 @@ global
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
 		IBeadView:  ClassReference("org.apache.royale.html.beads.RadioButtonView");			
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	VScrollBar
@@ -1024,6 +1040,8 @@ global
 		border-color: #000000;
 		border-width: 1px;
 		background-color: #FFFFFF;
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	TextButton
@@ -1031,6 +1049,8 @@ global
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.CSSTextButtonView");
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextButtonMeasurementBead");
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	Tree {
@@ -1056,6 +1076,8 @@ global
 		border-color: #000000;
 		border-width: 1px;
 		background-color: #FFFFFF;
+		font-size: 11px;
+		font-family: Arial;
 	}
 	
 	TitleBar
