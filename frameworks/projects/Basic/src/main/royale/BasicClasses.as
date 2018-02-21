@@ -51,6 +51,10 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.controllers.HDividedContainerMouseController; HDividedContainerMouseController;
 	import org.apache.royale.html.beads.controllers.VDividedContainerMouseController; VDividedContainerMouseController;
 	
+	import org.apache.royale.html.Menu; Menu;
+	import org.apache.royale.html.beads.MenuView; MenuView;
+	import org.apache.royale.html.supportClasses.MenuItemRenderer; MenuItemRenderer;
+	
 	
 	COMPILE::SWF
 	{
@@ -118,6 +122,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
 	import org.apache.royale.html.beads.models.TreeModel; TreeModel;
+	import org.apache.royale.html.beads.models.MenuModel; MenuModel;
     import org.apache.royale.html.beads.models.RangeModel; RangeModel;
     import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
 	import org.apache.royale.html.beads.models.ComboBoxModel; ComboBoxModel;
@@ -149,6 +154,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
+	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
     import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;
 	import org.apache.royale.html.beads.controllers.VSliderMouseController; VSliderMouseController;
 	COMPILE::SWF

@@ -442,6 +442,23 @@ List
 	background-color: #FFFFFF;
 }
 
+Menu {
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.MenuModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.MenuView");	
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.MenuSelectionMouseController");	
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.MenuItemRenderer");	
+	background-color: white;
+	box-shadow: 2px 2px 5px gray;
+}
+
+MenuItemRenderer {
+	margin-top: 4px;
+	margin-left: 2px;
+	margin-bottom: 2px;
+	margin-right: 8px;
+	cursor: pointer;
+}
+
 Accordion
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
@@ -619,6 +636,14 @@ AccordionItemRenderer
 }
 
 TreeItemRenderer
+{
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+	height: 24;
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+MenuItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 	height: 24;
@@ -887,6 +912,13 @@ global
 		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
 		iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+	}
+	
+	MenuItemRenderer
+	{
+		iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
 	}
 	
 	MultilineLabel
