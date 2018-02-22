@@ -50,7 +50,6 @@
           <targets>JSRoyale</targets>
           <removeCirculars>true</removeCirculars>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/mdl-js-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-${royale.framework.version}-js.swc:defaults.css</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

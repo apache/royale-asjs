@@ -55,7 +55,6 @@
           <mainClass>RoyaleWebsite.mxml</mainClass>
           <targets>JSRoyale</targets>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/royale-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-${royale.framework.version}-SNAPSHOT-js.swc:defaults.css</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

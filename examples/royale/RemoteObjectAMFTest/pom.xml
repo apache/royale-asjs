@@ -54,8 +54,6 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <targets>SWF,JSRoyale</targets>
-          <!--<htmlTemplate>${basedir}/target/javascript/bin/js-debug/mdl-js-index-template.html</htmlTemplate>-->
-          <!--<additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-${royale.framework.version}.swc:defaults.css</additionalCompilerOptions>-->
         </configuration>
       </plugin>
       <plugin>
