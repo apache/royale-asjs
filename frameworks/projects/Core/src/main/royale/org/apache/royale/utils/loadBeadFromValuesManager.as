@@ -29,6 +29,9 @@ package org.apache.royale.utils
 	*  @playerversion Flash 9
 	*  @playerversion AIR 1.1
 	*  @productversion Flex 3
+    *  @royaleignorecoercion Class
+    *  @royaleignorecoercion Function
+    *  @royaleignorecoercion org.apache.royale.core.IBead
 	*/
 	public function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
 	{
@@ -38,7 +41,15 @@ package org.apache.royale.utils
 			var c:Class = ValuesManager.valuesImpl.getValue(strand, classOrInterfaceName) as Class;
 			if (c)
 			{
-				result = new c() as IBead;
+                COMPILE::JS
+                {
+                    var f:Function = c as Function;
+                    result = new f() as IBead;
+                }
+                COMPILE::SWF
+                {
+                    result = new c() as IBead;
+                }
 				if (result)
 					strand.addBead(result);
 			}
