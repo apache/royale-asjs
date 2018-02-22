@@ -154,6 +154,7 @@ DataContainer
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	border-style: solid;
 	border-color: #222222;
+	border-width: 1px;
 }
 
 /* ASJS */
@@ -743,7 +744,7 @@ global
 	global
 	{
 		font-size: 16px;
-		border-width: 1px;
+		border-width: 4px;
 	}
 
 	Accordion {
