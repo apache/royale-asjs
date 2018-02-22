@@ -560,6 +560,12 @@ Panel .TitleBar
 	background-color: #FFFFFF;
 }
 
+PopUpList
+{
+	position: absolute;
+	background-color: #fff;
+}
+	
 SimpleList
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
