@@ -36,3 +36,15 @@ RadioButton
 	font-size: 12px;
 	font-family: sans-serif;
 }
+
+StringItemRenderer
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+MXMLItemRenderer
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
