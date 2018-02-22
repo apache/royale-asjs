@@ -129,7 +129,6 @@ package org.apache.royale.html
 		override protected function createElement():WrappedHTMLElement
 		{
 			super.createElement();
-			className = "TextButton";
 			typeNames = "TextButton";
 			return element;
 		}

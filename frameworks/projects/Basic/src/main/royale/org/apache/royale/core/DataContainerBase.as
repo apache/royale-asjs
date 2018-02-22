@@ -67,18 +67,6 @@ package org.apache.royale.core
 		* UIBase
 		*/
 		
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 */
-		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-			super.createElement();
-			className = 'DataContainer';
-			
-			return element;
-		}
-		
 		private var _DCinitialized:Boolean;
 		
 		/**

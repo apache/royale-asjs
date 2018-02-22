@@ -77,6 +77,7 @@ package org.apache.royale.html
 		public function List()
 		{
 			super();
+            typeNames += " List";
 		}
 
 		/**
@@ -151,20 +152,5 @@ package org.apache.royale.html
 			ISelectionModel(model).selectedItem = value;
 		}
 
-		/*
-		 * UIBase
-		 */
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            super.createElement();
-            className = 'List';
-
-            return element;
-        }
    	}
 }

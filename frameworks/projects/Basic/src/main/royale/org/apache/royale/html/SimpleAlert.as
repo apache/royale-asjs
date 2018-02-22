@@ -55,7 +55,7 @@ package org.apache.royale.html
 		{
 			super();
 			
-			className = "SimpleAlert";
+			typeNames = "SimpleAlert";
 		}
 		
 		/**

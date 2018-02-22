@@ -181,7 +181,6 @@ package org.apache.royale.html
 
             element.style.whiteSpace = "nowrap";
 
-            className = "Label";
             typeNames = "Label";
             return element;
         }

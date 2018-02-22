@@ -56,7 +56,7 @@ package org.apache.royale.html
 		{
 			super();
 			
-			className = "DateField";
+			typeNames = "DateField";
 		}
 		
 		/**

@@ -155,7 +155,6 @@ package org.apache.royale.html
         {
 			addElementToWrapper(this,'textarea');
             goog.events.listen(element, 'input', textChangeHandler);
-            element.className = 'TextArea';
             typeNames = 'TextArea';
             return element;
         }

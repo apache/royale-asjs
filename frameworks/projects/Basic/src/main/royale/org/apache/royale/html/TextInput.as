@@ -171,7 +171,6 @@ package org.apache.royale.html
         {
 			addElementToWrapper(this,'input');
             element.setAttribute('type', 'text');
-            element.className = 'TextInput';
             typeNames = 'TextInput';
 
             //attach input handler to dispatch royale change event when user write in textinput
