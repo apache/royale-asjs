@@ -411,7 +411,9 @@ package org.apache.royale.core
             o = values["*"];			
             if (o !== undefined)
             {
-                return o[valueName];
+                value = o[valueName];
+                if (value !== undefined)
+                    return value;
             }
             
             COMPILE::SWF
@@ -472,15 +474,10 @@ package org.apache.royale.core
                     return getValue(parentObject, valueName, state, attrs);
             }
             
-            COMPILE::SWF
+            o = values["global"];
+            if (o !== undefined)
             {
-                o = values["global"];
-                if (o !== undefined)
-                {
-                    value = o[valueName];
-                    if (value !== undefined)
-                        return value;
-                }
+                return o[valueName];
             }
 			return undefined;
 		}
