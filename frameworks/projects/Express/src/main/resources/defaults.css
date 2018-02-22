@@ -19,14 +19,6 @@
 
 @namespace "library://ns.apache.org/royale/express";
 
-/* Global style declaration */
-*
-{
-	font-family: "Arial";
-	font-size: 12px;
-	border-width: 1px;
-}
-
 .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
