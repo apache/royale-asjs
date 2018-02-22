@@ -253,6 +253,8 @@ limitations under the License.
         .description {
         	margin-top: 10px;
         	margin-bottom: 10px;
+            font-family: sans-serif;
+            font-size: 12px;
         }
         
         .attributeCaption {
@@ -289,6 +291,7 @@ limitations under the License.
         	padding-left: 20px;
         	padding-right: 10px;
         	padding-bottom: 20px;
+            border-width: 1px;
         	border-bottom-style: solid;
         }
         .propertyQName {
