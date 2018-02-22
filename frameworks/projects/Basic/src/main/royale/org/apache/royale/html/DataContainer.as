@@ -87,6 +87,7 @@ package org.apache.royale.html
 		public function DataContainer()
 		{
 			super();
+            typeNames = "DataContainer";
 		}
 
 		/**
