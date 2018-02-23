@@ -200,7 +200,7 @@ package models
         private var _attributesMap:Object;
         
         /**
-         * @flexjsignorecoercion ASDocClass 
+         * @royaleignorecoercion ASDocClass 
          */
         private function completeClassHandler(event:Event):void
         {

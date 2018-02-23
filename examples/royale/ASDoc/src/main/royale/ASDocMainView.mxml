@@ -30,7 +30,7 @@ limitations under the License.
             import org.apache.royale.core.ClassFactory;
             import org.apache.royale.events.Event;
             import org.apache.royale.events.DetailEvent;
-            import org.apache.royale.html.List;
+            import org.apache.royale.html.PopUpList;
             import org.apache.royale.utils.PointUtils;
 			
             private function packagesReadyHandler(event:Event):void
@@ -39,6 +39,9 @@ limitations under the License.
             	updateView();
             }
 			
+            /**
+             * @royalesuppresspublicvarwarning
+             */
             public var currentPackage:String;
             
             private function packageChangedHandler():void
@@ -53,6 +56,9 @@ limitations under the License.
                 dispatchEvent(new Event("packageChanged"));
             }
                         
+            /**
+             * @royalesuppresspublicvarwarning
+             */
             public var currentClass:String;
             
             private function classChangedHandler():void
@@ -140,7 +146,7 @@ limitations under the License.
             	}
             }
             
-            private var popUpList:List;
+            private var popUpList:PopUpList;
             private var max_results:int = 200;
             private var too_many:Array = [ "Too many search results" ];
             
@@ -148,18 +154,13 @@ limitations under the License.
             {
             	if (!popUpList)
             	{
-            		popUpList = new List();
+            		popUpList = new PopUpList();
             		popUpList.itemRenderer = new ClassFactory(ClassPickerHashAnchorStringItemRenderer);
             		popUpList.dataProvider = too_many;
             		addElement(popUpList);
-            		COMPILE::JS
-            		{
-            			popUpList.positioner.style.position = "absolute";
-            			popUpList.positioner.style.backgroundColor = "#fff";
-            		}
             		var pt:Point = new Point(searchTI.x, searchTI.y);
             		pt.y += searchTI.height;
-            		//pt = PointUtils.localToGlobal(pt, titleGroup); // probably need this after we fix x,y
+            		pt = PointUtils.localToGlobal(pt, titleGroup);
             		popUpList.x = pt.x;
             		popUpList.y = pt.y;
             		popUpList.width = searchTI.width;
