@@ -152,9 +152,6 @@ DataContainer
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-	border-style: solid;
-	border-color: #222222;
-	border-width: 1px;
 }
 
 /* ASJS */
@@ -416,7 +413,6 @@ List
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-	border: 1px solid #222222;
 }
 
 .DynamicList
