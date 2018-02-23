@@ -19,6 +19,7 @@
 
 
 @namespace "library://ns.apache.org/royale/mdl";
+@namespace basic "library://ns.apache.org/royale/basic";
 
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
@@ -162,6 +163,12 @@ DropDownList
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.royale.mdl.itemRenderers.DropDownListItemRenderer");
 }
+
+basic|View
+{
+    IBeadLayout: ClassReference(null);
+}
+
 
 @media -royale-swf
 {
