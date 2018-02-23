@@ -43,6 +43,11 @@ List
 	border: 1px solid #222222;
 }
 
+Group
+{
+	border-width: 1px;
+}
+
 RadioButton
 {
 	font-size: 12px;

@@ -66,6 +66,7 @@ package org.apache.royale.html
 		public function Group()
 		{
 			super();
+            typeNames = "Group";
 		}
 		
 		private var _mxmlDescriptor:Array;
