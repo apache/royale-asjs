@@ -163,7 +163,7 @@ package org.apache.royale.html
             //positioner.style.position = 'relative';
 			_icon.element.royale_wrapper = this;
 
-            typeNames = 'CheckBox, CheckBoxIcon';
+            typeNames = 'CheckBox CheckBoxIcon';
 
             return element;
         }
