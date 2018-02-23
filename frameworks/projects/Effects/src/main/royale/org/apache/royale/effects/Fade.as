@@ -80,7 +80,9 @@ public class Fade extends Tween implements IDocument
 	 */
 	private var actualTarget:IUIBase;
     
-    private var _target:String;
+    // there is already a _target in the base class
+    // and JS can't hide it
+    private var target_:String;
     
     /**
      *  The target as the String id 
@@ -88,12 +90,12 @@ public class Fade extends Tween implements IDocument
      */
     public function get target():String
     {
-        return _target;
+        return target_;
     }
     
     public function set target(value:String):void
     {
-        _target = value;
+        target_ = value;
     }
     
 	/**
