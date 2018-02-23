@@ -44,12 +44,27 @@ limitations under the License.
         import samples.royalestore.Product;
         import samples.royalestore.ProductListEvent;
         
+        /**
+         * @royalesuppresspublicvarwarning
+         */
         public var items:Array;
         
+        /**
+         * @royalesuppresspublicvarwarning
+         */
         public var newItemStartX:int;
+            
+        /**
+         * @royalesuppresspublicvarwarning
+         */
         public var newItemStartY:int;
+            
         [Bindable]
         public var maxItems:int = 0;
+            
+        /**
+         * @royalesuppresspublicvarwarning
+         */
         public var showQuantity:Boolean;
         
         private var playingEffects:Object = new Object();
