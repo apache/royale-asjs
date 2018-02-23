@@ -17,5 +17,9 @@
 
 -->
 <royale-config>
+    <compiler>
+        <theme>
+        </theme>
+    </compiler>
     <html-template>../resources/mdl-js-index-template.html</html-template>
 </royale-config>
