@@ -327,6 +327,8 @@ package models
                             if (q.params.length == mm.params.length)
                             {
                                 foundMatch = true;
+                                if (q.platforms.indexOf(mm.platforms[0]) == -1)
+                                    q.platforms.push(mm.platforms[0]);
                                 break;
                             }
                         }
@@ -579,6 +581,8 @@ package models
                             if (q.params.length == m.params.length)
                             {
                                 foundMatch = true;
+                                if (q.platforms.indexOf(m.platforms[0]) == -1)
+                                    q.platforms.push(m.platforms[0]);
                                 break;
                             }
                         }

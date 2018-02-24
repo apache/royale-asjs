@@ -47,6 +47,26 @@
         property="json.exists"/>
         <antcall target="json" />
         <antcall target="json.swf" />
+        <!-- copy manually patched json files.  Because ASDoc doesn't document
+             flash.*.* classes and browser builtins, some useful ASDoc is
+             missing, so we patch a base class like EventDispatcher so ASDoc
+             looks better -->
+        <copy todir="${basedir}/bin-debug" overwrite="true">
+            <fileset dir="${basedir}/src/main/json">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+        <!-- make copies of all json for js-debug and js-release -->
+        <copy todir="${basedir}/bin/js-debug">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin/js-release">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
@@ -80,16 +100,6 @@
             <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
         </java>
-        <copy todir="${basedir}/bin/js-debug">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/bin/js-release">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
 
     </target>
     
@@ -114,17 +124,6 @@
             <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
         </java>
-        <copy todir="${basedir}/bin/js-debug">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/bin/js-release">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
-        
     </target>
     
     <target name="examine" depends="build_example.get.browser">

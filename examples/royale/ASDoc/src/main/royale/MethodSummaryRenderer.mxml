@@ -24,6 +24,10 @@ limitations under the License.
 			    width="100%">
     <fx:Script>
         <![CDATA[
+            private static var fakeBothPlatforms:Object = {"addEventListener": 1, "removeEventListener" : 1,
+                "hasEventListener": 1, "dispatchEvent": 1,
+                "toString": 1};
+                
 			private var _color0:String = "#fff";
 			
 			public function get backgroundColor0():String
@@ -56,10 +60,13 @@ limitations under the License.
 				else
 					typeGroup.removeElement(link);
 				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
-                if (obj.platforms[0] == "swf")
-                    qname.className += " swfonly";
-                if (obj.platforms[0] == "js")
-                    qname.className += " jsonly";
+                if (obj.platforms.length == 1 && !fakeBothPlatforms[obj.qname])
+                {
+                    if (obj.platforms[0] == "swf")
+                        qname.className += " swfonly";
+                    if (obj.platforms[0] == "js")
+                        qname.className += " jsonly";
+                }
 			}
 			
             [Bindable("dataChange")]

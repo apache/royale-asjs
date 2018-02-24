@@ -24,6 +24,10 @@ limitations under the License.
                      width="100%">
     <fx:Script>
         <![CDATA[            
+            private static var fakeBothPlatforms:Object = {"addEventListener": 1, "removeEventListener" : 1,
+                "hasEventListener": 1, "dispatchEvent": 1,
+                "toString": 1};
+            
 			override public function set data(value:Object):void
 			{
 				super.data = value;
@@ -36,10 +40,13 @@ limitations under the License.
 				// set up anchor link target
 				target.element.id = obj.qname;
 				}
-                if (obj.platforms[0] == "swf")
-                    target.className += " swfonly";
-                if (obj.platforms[0] == "js")
-                    target.className += " jsonly";
+                if (obj.platforms.length == 1 && !fakeBothPlatforms[obj.qname])
+                {
+                    if (obj.platforms[0] == "swf")
+                        target.className += " swfonly";
+                    if (obj.platforms[0] == "js")
+                        target.className += " jsonly";
+                }
 			}
 			
             [Bindable("dataChange")]

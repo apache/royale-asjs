@@ -36,11 +36,13 @@ limitations under the License.
 				// set up anchor link target
 				target.element.id = obj.qname;
 				}
-                if (obj.platforms[0] == "swf")
-                    target.className += " swfonly";
-                if (obj.platforms[0] == "js")
-                    target.className += " jsonly";
-
+                if (obj.platforms.length == 1)
+                {
+                    if (obj.platforms[0] == "swf")
+                        target.className += " swfonly";
+                    if (obj.platforms[0] == "js")
+                        target.className += " jsonly";
+                }
 			}
 			
             [Bindable("dataChange")]

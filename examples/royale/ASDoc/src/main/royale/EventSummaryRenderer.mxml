@@ -50,10 +50,13 @@ limitations under the License.
 			{
 				super.data = value;
 				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
-                if (obj.platforms[0] == "swf")
-                    qname.className += " swfonly";
-                if (obj.platforms[0] == "js")
-                    qname.className += " jsonly";
+                if (obj.platforms.length == 1)
+                {
+                    if (obj.platforms[0] == "swf")
+                        qname.className += " swfonly";
+                    if (obj.platforms[0] == "js")
+                        qname.className += " jsonly";
+                }
 			}
 			
             [Bindable("dataChange")]

@@ -63,7 +63,7 @@ limitations under the License.
             
             private function classChangedHandler():void
             {
-            	currentState = "classDetail";
+                currentState = "loading";
                 currentClass = classList.selectedItem as String;
                 dispatchEvent(new Event("classChanged"));
             }
@@ -119,8 +119,8 @@ limitations under the License.
             					    return;
             					}
             				}
-            				applicationModel.addEventListener("currentDataChanged", findMemberDetail);
             			}
+                        applicationModel.addEventListener("currentDataChanged", findMemberDetail);
             			classList.selectedItem = cls; 
             			classChangedHandler();
             		}
@@ -134,8 +134,10 @@ limitations under the License.
             
             private function findMemberDetail(event:Event):void
             {
+                currentState = "classDetail";
             	applicationModel.removeEventListener("currentDataChanged", findMemberDetail);
-            	clb.callLater(scrollMemberIntoView);
+                if (findMember)
+                	clb.callLater(scrollMemberIntoView);
             }
             
             private function scrollMemberIntoView():void
@@ -144,6 +146,7 @@ limitations under the License.
             	{
             		document.getElementById(findMember).scrollIntoView();
             	}
+                findMember = null;
             }
             
             private var popUpList:PopUpList;
@@ -354,6 +357,10 @@ limitations under the License.
         .jsonly {
             color: #0f0;
         }
+        
+        .loading {
+            font-size: 40px;
+        }
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
@@ -362,6 +369,7 @@ limitations under the License.
 	</fx:Declarations>
 	<js:states>
 	  <js:State name="packages" />
+      <js:State name="loading" />
 	  <js:State name="classDetail" />
 	</js:states>
     <js:beads>
@@ -413,6 +421,9 @@ limitations under the License.
 	            </js:beads>
 	            <js:List className="paneList" id="packagePaneList" dataProvider="{ASDocModel(applicationModel).packageList}" 
 	                itemRenderer="AltBGRenderer"/>
+            </js:Group>
+            <js:Group id="loadingPane" width="100%" includeIn="loading">
+                <js:Label className="loading" text="Loading..." />
             </js:Group>
             <js:Group id="detailsPane" className="detailsPane" width="100%" includeIn="classDetail">
 	            <js:beads>
