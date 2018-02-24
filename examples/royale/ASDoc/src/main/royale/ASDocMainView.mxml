@@ -33,10 +33,13 @@ limitations under the License.
             import org.apache.royale.html.PopUpList;
             import org.apache.royale.utils.PointUtils;
 			
+            private var packagesReady:Boolean = false;
+            
             private function packagesReadyHandler(event:Event):void
             {
+                packagesReady = true;
             	// wait until package data is ready before updating initial view to any anchor hash
-            	updateView();
+            	hashChanged();
             }
 			
             /**
@@ -80,7 +83,15 @@ limitations under the License.
             
             private var findMember:String ;
             
-            private function updateView():void
+            private function paramsReady():void
+            {
+                if (packagesReady)
+                    updateView(efb.urlParameters);
+                else
+                    clb.callLater(paramsReady);
+            }
+            
+            private function hashChanged():void
             {
             	if (popUpList)
             	{
@@ -93,6 +104,11 @@ limitations under the License.
             	  hash = hash.substring(2);
             	if (hash.charAt(0) == "#")
             	  hash = hash.substring(1);
+                updateView(hash);
+            }
+            
+            private function updateView(hash:String):void
+            {
             	if (!hash)
             	  currentState = "packages";
             	else
@@ -121,12 +137,17 @@ limitations under the License.
             				}
             			}
                         applicationModel.addEventListener("currentDataChanged", findMemberDetail);
-            			classList.selectedItem = cls; 
+            			classList.selectedItem = cls;
+                        var title:String = cls;
+                        if (pkg.length > 1)
+                            title += " (" + pkg + ")";
+                        router.title = title;
             			classChangedHandler();
             		}
             		else
             		{
 						packageList.selectedItem = hash;
+                        router.title = hash;
 						packageChangedHandler();
             		}
             	}
@@ -375,7 +396,8 @@ limitations under the License.
     <js:beads>
         <js:ViewDataBinding />
         <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />
-        <js:HashChangeNotifierBead id="router" hashChange="updateView()" />                
+        <js:HashChangeNotifierBeadWithTitle id="router" hashChange="hashChanged()" />                
+        <js:EscapedFragmentBead id="efb" ready="paramsReady()" />                
         <js:CallLaterBead id="clb" />
     </js:beads>
     <rs:DocTopBar />
