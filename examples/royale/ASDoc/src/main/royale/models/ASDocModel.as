@@ -47,6 +47,17 @@ package models
         
         private var tagNameMap:Object;
         
+        private var _platforms:Array = ["js", "swf"];
+        
+        public function get platforms():Array
+        {
+            return _platforms;
+        }
+        public function set platforms(value:Array):void
+        {
+            _platforms = value;
+        }
+        
         private var _knownTags:Array;
         
         [Bindable("packageListChanged")]
@@ -55,14 +66,20 @@ package models
             return _knownTags;
         }
         
+        private var platformList:Array;
+        private var currentPlatform:String;
+        
         private function configCompleteHandler(event:Event):void
         {
             app.service.removeEventListener("complete", configCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
             tagNameMap = config["tagNames"];
             
+            platformList = platforms.slice();
+            currentPlatform = platformList.shift();
+            var middle:String = "." + currentPlatform;
             app.service.addEventListener("complete", tagsCompleteHandler);
-            app.service.url = "tags.json";
+            app.service.url = "tags" + middle + ".json";
             app.service.send();
         }
         
@@ -70,11 +87,37 @@ package models
         {
             app.service.removeEventListener("complete", tagsCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
-            _knownTags = config["tags"];
-            
-            app.service.addEventListener("complete", completeHandler);
-            app.service.url = "classlist.json";
-            app.service.send();
+            if (!_knownTags)
+                _knownTags = config["tags"];
+            else
+            {
+                var arr:Array = config["tags"];
+                var n:int = arr.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var tag:String = arr[i];
+                    if (_knownTags.indexOf(tag) == -1)
+                        _knownTags.push(tag);
+                }
+            }
+            var middle:String;
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                middle = "." + currentPlatform;
+                app.service.addEventListener("complete", tagsCompleteHandler);
+                app.service.url = "tags" + middle + ".json";
+                app.service.send();                                
+            }
+            else
+            {
+                platformList = platforms.slice();
+                currentPlatform = platformList.shift();
+                middle = "." + currentPlatform;
+                app.service.addEventListener("complete", completeHandler);
+                app.service.url = "classlist" + middle + ".json";
+                app.service.send();                
+            }
         }
         
         private var masterData:Object;
@@ -84,18 +127,55 @@ package models
         	return masterData["classnames"];
         }
         
+        /**
+         * @royaleignorecoercion ASDocClassData 
+         */
         private function completeHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeHandler);
-            masterData = JSON.parse(app.service.data);
-            filterPackageList();
+            if (!masterData)
+                masterData = { "classnames": [], "data": [] };
+            var allNames:Array = allClasses;
+            var moreData:Object = JSON.parse(app.service.data);
+            var arr:Array = moreData["classnames"];
+            var n:int = arr.length;
+            var item:ASDocClassData;
+            for (var i:int = 0; i < n; i++)
+            {
+                var cname:String = arr[i];
+                var j:int = allNames.indexOf(cname);
+                if (j != -1)
+                {
+                   item = masterData["data"][i] as ASDocClassData;
+                   item.platforms.push(currentPlatform);
+                }
+                else
+                {
+                    item = new ASDocClassData(cname, currentPlatform);
+                    masterData["data"].push(item);
+                    masterData["classnames"].push(cname);
+                }
+            }
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                var middle:String = "." + currentPlatform;
+                app.service.addEventListener("complete", completeHandler);
+                app.service.url = "classlist" + middle + ".json";
+                app.service.send();
+            }
+            else
+            {
+                filterPackageList();
+            }
         }
         
         private function filterPackageList():void
         {
             var packages:Object = {};
-            for each (var qname:String in masterData["classnames"])
+            for each (var cdata:ASDocClassData in masterData.data)
             {
+                var qname:String = cdata.label;
                 var packageName:String;
                 var c:int = qname.lastIndexOf(".")
                 if (c == -1)
@@ -186,6 +266,8 @@ package models
                 _currentClass = value;
                 var packageData:Object = allPackages[_currentPackage];
                 dispatchEvent(new Event("currentClassChanged"));
+                platformList = platforms.slice();
+                currentPlatform = platformList.shift();
                 app.service.addEventListener("complete", completeClassHandler);
                 app.service.url = computeFileName(_currentPackage + "." + _currentClass);
                 app.service.send();
@@ -201,6 +283,8 @@ package models
         
         /**
          * @royaleignorecoercion ASDocClass 
+         * @royaleignorecoercion ASDocClassMembers
+         * @royaleignorecoercion ASDocClassFunction
          */
         private function completeClassHandler(event:Event):void
         {
@@ -218,16 +302,36 @@ package models
                 _attributesMap = {};
                 _attributes = null;
             }
-            else
+            // track base classes if primary platform
+            // don't list base classes for other platforms
+            // because they might be duplicates or different
+            // class hierarchy.
+            else if (currentPlatform == platforms[0])
                 _baseClassList.push(data.qname);
             for each (var m:ASDocClassFunction in data.members)
             {
+                if (!m.platforms)
+                    m.platforms = [];
+                m.platforms.push(currentPlatform);
                 m.shortDescription = makeShortDescription(m.description);
                 if (m.type == "method")
                 {
                     if (m.qname == _currentPackage + "." + _currentClass)
                     {
-                        _constructorList.push(m);
+                        var foundMatch:Boolean = false;
+                        var n:int = _constructorList.length;
+                        for (var i:int; i < n; i++)
+                        {
+                            var q:ASDocClassMembers = _constructorList[i] as ASDocClassMembers;
+                            var mm:ASDocClassMembers = m as ASDocClassMembers
+                            if (q.params.length == mm.params.length)
+                            {
+                                foundMatch = true;
+                                break;
+                            }
+                        }
+                        if (!foundMatch)
+                            _constructorList.push(m);
                     }
                     else if (m.qname != data.qname)
                         addIfNeededAndMakeAttributes(_publicMethods, m);
@@ -252,6 +356,9 @@ package models
             }
             for each (var e:ASDocClassEvents in data.events)
             {
+                if (!e.platforms)
+                    e.platforms = [];
+                e.platforms.push(currentPlatform);
                 e.shortDescription = makeShortDescription(e.description);
                 addIfNeededAndMakeAttributes(_publicEvents, e);
                 if (masterData["classnames"].indexOf(e.type) != -1)
@@ -292,10 +399,20 @@ package models
             }
             else
             {
-                _publicMethods.sortOn("qname");
-                _publicEvents.sortOn("qname");
-                _publicProperties.sortOn("qname");
-                dispatchEvent(new Event("currentDataChanged"));
+                if (platformList.length)
+                {
+                    currentPlatform = platformList.shift();
+                    app.service.addEventListener("complete", completeClassHandler);
+                    app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                    app.service.send();                    
+                }
+                else
+                {
+                    _publicMethods.sortOn("qname");
+                    _publicEvents.sortOn("qname");
+                    _publicProperties.sortOn("qname");
+                    dispatchEvent(new Event("currentDataChanged"));
+                }
             }
         }
         
@@ -307,6 +424,9 @@ package models
         		var obj:ASDocClassEvents = arr[i];
         		if (obj.qname == data.qname)
         		{
+                    var platform:String = data.platforms[0];
+                    if (obj.platforms.indexOf(platform) == -1)
+                        obj.platforms.push(platform);
         			// if no description and the base definition has one
         			// then use base description
         			if (obj.description == "" && data.description != "")
@@ -405,7 +525,7 @@ package models
 		
         private function computeFileName(input:String):String
         {
-            return input.replace(new RegExp("\\.", "g"), "/") + ".json";     
+            return input.replace(new RegExp("\\.", "g"), "/")  + "." + currentPlatform + ".json";     
         }
         
         private function makeShortDescription(input:String):String
@@ -435,16 +555,35 @@ package models
                 _attributesMap = {};
                 _attributes = null;
             }
-            else
+            // track base classes if primary platform
+            // don't list base classes for other platforms
+            // because they might be duplicates or different
+            // class hierarchy.
+            else if (currentPlatform == platforms[0])
                 _baseClassList.push(data.qname);
             for each (var m:ASDocClassMembers in data.members)
             {
+                if (!m.platforms)
+                    m.platforms = [];
+                m.platforms.push(currentPlatform);
                 m.shortDescription = makeShortDescription(m.description);
                 if (m.type == "method")
                 {
                     if (m.qname == _currentPackage + "." + _currentClass)
                     {
-                        _constructorList.push(m);
+                        var foundMatch:Boolean = false;
+                        var n:int = _constructorList.length;
+                        for (var i:int; i < n; i++)
+                        {
+                            var q:ASDocClassMembers = _constructorList[i] as ASDocClassMembers;
+                            if (q.params.length == m.params.length)
+                            {
+                                foundMatch = true;
+                                break;
+                            }
+                        }
+                        if (!foundMatch)
+                            _constructorList.push(m);
                     }
                     else if (m.qname != data.qname)
                         addIfNeededAndMakeAttributes(_publicMethods, m);
@@ -457,6 +596,9 @@ package models
             }
             for each (var e:ASDocClassEvents in data.events)
             {
+                if (!e.platforms)
+                    e.platforms = [];
+                e.platforms.push(currentPlatform);
                 e.shortDescription = makeShortDescription(e.description);
                 addIfNeededAndMakeAttributes(_publicEvents, e);
                 if (masterData["classnames"].indexOf(e.type) != -1)
@@ -492,10 +634,20 @@ package models
             }
             else
             {
-                _publicMethods.sortOn("qname");
-                _publicEvents.sortOn("qname");
-                _publicProperties.sortOn("qname");
-                dispatchEvent(new Event("currentDataChanged"));
+                if (platformList.length)
+                {
+                    currentPlatform = platformList.shift();
+                    app.service.addEventListener("complete", completeInterfaceHandler);
+                    app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                    app.service.send();                                        
+                }
+                else
+                {
+                    _publicMethods.sortOn("qname");
+                    _publicEvents.sortOn("qname");
+                    _publicProperties.sortOn("qname");
+                    dispatchEvent(new Event("currentDataChanged"));
+                }
             }
         }
         
@@ -676,3 +828,4 @@ package models
         }
 	}
 }
+

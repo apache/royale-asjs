@@ -347,6 +347,13 @@ limitations under the License.
         	width: 300px;
         }
         
+        .swfonly {
+            color: #f00;
+        }
+        
+        .jsonly {
+            color: #0f0;
+        }
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">

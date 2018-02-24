@@ -111,5 +111,16 @@ public class ASDocClassEvents
         _ownerhref = __v__;
     }
 
+    private var _platforms:Array;
+    [Bindable("__NoChangeEvent__")]
+    public function get platforms():Array
+    {
+        return _platforms;
+    }
+    public function set platforms(__v__:Array):void
+    {
+        _platforms = __v__;
+    }
+
 }
 }
