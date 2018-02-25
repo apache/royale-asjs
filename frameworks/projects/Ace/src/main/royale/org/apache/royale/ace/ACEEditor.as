@@ -19,27 +19,47 @@
 package org.apache.royale.ace
 {
 	import org.apache.royale.core.UIBase;
-	
+
+	COMPILE::JS {
+		import ace.Editor;
+		import ace.Document;
+	}
+
+	COMPILE::SWF
 	public class ACEEditor extends org.apache.royale.core.UIBase
 	{
+	}
+	
+	COMPILE::JS
+	public class ACEEditor extends org.apache.royale.core.UIBase
+	{
+		/**
+		 * <inject_html>
+		 * <script src="https://cdn.rawgit.com/ajaxorg/ace-builds/master/src-min-noconflict/ace.js"></script>
+		 * </inject_html>
+		 */
+		public function ACEEditor()
+		{
+			super();
+		}
 		private var editor:Editor; 			
 
 		override public function addedToParent():void 
 		{ 
-		   super.addedToParent(); 
-		   editor = ace.edit(id); 
+			super.addedToParent(); 
+			editor = ace["edit"](id); 
 		} 
 
 		private var _theme:String; 
 		public function get theme():String 
 		{ 
-		    return _theme; 
+			return _theme; 
 		} 
 
 		public function set theme(value:String):void 
 		{ 
-		   _theme = value; 
-		   editor.setTheme(value); 
+			_theme = value; 
+			editor.setTheme(value); 
 		} 
 	}
 }
