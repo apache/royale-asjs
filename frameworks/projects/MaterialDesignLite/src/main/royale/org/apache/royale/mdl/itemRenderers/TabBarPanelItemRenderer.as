@@ -20,12 +20,6 @@ package org.apache.royale.mdl.itemRenderers
 {
     import org.apache.royale.mdl.supportClasses.TabItemRendererBase;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-    }
-
     /**
      *  Represents content for a TabBarPanel
      *  Creates MDL "mdl-tabs__panel" conponent
@@ -40,16 +34,8 @@ package org.apache.royale.mdl.itemRenderers
         public function TabBarPanelItemRenderer()
         {
             super();
-        }
-        
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
+
             typeNames = "mdl-tabs__panel";
-			return addElementToWrapper(this,'div');
         }
     }
 }

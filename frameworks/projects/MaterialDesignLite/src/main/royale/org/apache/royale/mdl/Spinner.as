@@ -25,6 +25,7 @@ package org.apache.royale.mdl
     {    
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
     /**
      *  The Material Design Lite (MDL) spinner component is an enhanced replacement for
@@ -49,7 +50,7 @@ package org.apache.royale.mdl
         {
             super();
 
-            className = "";
+            typeNames = "mdl-spinner mdl-js-spinner";
 
             addBead(new UpgradeElement());
         }
@@ -72,12 +73,18 @@ package org.apache.royale.mdl
          */
         public function set isActive(value:Boolean):void
         {
-            _isActive = value;
-
-            COMPILE::JS
+            if (_isActive != value)
             {
-                element.classList.toggle("is-active", _isActive);
-                typeNames = element.className;
+                _isActive = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("is-active");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "is-active");
+                    }
+                }
             }
         }
 
@@ -92,12 +99,18 @@ package org.apache.royale.mdl
          */
         public function set singleColor(value:Boolean):void
         {
-            _singleColor = value;
-
-            COMPILE::JS
+            if (_singleColor != value)
             {
-                element.classList.toggle("mdl-spinner--single-color", _singleColor);
-                typeNames = element.className;
+                _singleColor = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-spinner--single-color");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-spinner--single-color");
+                    }
+                }
             }
         }
 
@@ -109,7 +122,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-spinner mdl-js-spinner";
 			return addElementToWrapper(this,'div');
         }
     }

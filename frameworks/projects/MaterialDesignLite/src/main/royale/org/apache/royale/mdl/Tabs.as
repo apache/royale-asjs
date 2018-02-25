@@ -25,6 +25,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
     
 	/**
@@ -58,7 +59,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-tabs mdl-js-tabs";
 		}
 
         /**
@@ -140,7 +141,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-tabs mdl-js-tabs";
 			return addElementToWrapper(this,'div');
         }
 
@@ -163,12 +163,18 @@ package org.apache.royale.mdl
          */
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-js-ripple-effect");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
+                    }
+                }
             }
         }
 	}

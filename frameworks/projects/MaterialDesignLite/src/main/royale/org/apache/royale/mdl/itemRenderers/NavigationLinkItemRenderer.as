@@ -48,7 +48,8 @@ package org.apache.royale.mdl.itemRenderers
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-navigation__link";
+		//	className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
 		private var _href:String = "#";
@@ -135,7 +136,6 @@ package org.apache.royale.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-navigation__link";
             var a:WrappedHTMLElement = addElementToWrapper(this,'a');
             a.setAttribute('href', href);
 

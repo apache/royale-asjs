@@ -47,8 +47,9 @@ package org.apache.royale.mdl.itemRenderers
 		public function ListItemRenderer()
 		{
 			super();
-			
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+
+            typeNames = "mdl-list__item";
+           // className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
 		private var _text:String = "";
@@ -111,7 +112,6 @@ package org.apache.royale.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-list__item";
 			addElementToWrapper(this,'li');
             
 			if(MXMLDescriptor == null)
@@ -143,7 +143,7 @@ package org.apache.royale.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-list__item--two-line", _twoLine);
-                typeNames = element.className;
+               // typeNames = element.className;
             }
         }
 
@@ -168,7 +168,7 @@ package org.apache.royale.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-list__item--three-line", _threeLine);
-                typeNames = element.className;
+               // typeNames = element.className;
             }
         }
 	}

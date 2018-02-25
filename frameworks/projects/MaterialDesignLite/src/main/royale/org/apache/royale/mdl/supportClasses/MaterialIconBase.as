@@ -25,6 +25,7 @@ package org.apache.royale.mdl.supportClasses
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
     /**
@@ -53,7 +54,7 @@ package org.apache.royale.mdl.supportClasses
         {
             super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "material-icons";
         }
 
         COMPILE::JS
@@ -67,7 +68,6 @@ package org.apache.royale.mdl.supportClasses
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "material-icons";
 			var i:WrappedHTMLElement = addElementToWrapper(this,'i');
             
             textNode = document.createTextNode(iconText) as Text;
@@ -117,16 +117,13 @@ package org.apache.royale.mdl.supportClasses
          */
         public function set size(value:Number):void
         {
-            COMPILE::JS
+            if (_size != value)
             {
-                element.classList.remove("md-" + _size);
-            }
-
-            _size = value;
-
-            COMPILE::JS
-            {
-                element.classList.add("md-" + _size);
+                COMPILE::JS
+                {
+                    className = addOrReplaceClassName(className, "md-" + value, "md-" + _size);
+                    _size = value;
+                }
             }
         }
 
@@ -145,11 +142,18 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set dark(value:Boolean):void
         {
-            _dark = value;
-
-            COMPILE::JS
+            if (_dark != value)
             {
-                element.classList.toggle("md-dark", _dark);
+                _dark = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("md-dark");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "md-dark");
+                    }
+                }
             }
         }
 
@@ -168,11 +172,18 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set light(value:Boolean):void
         {
-            _light = value;
-
-            COMPILE::JS
+            if (_light != value)
             {
-                element.classList.toggle("md-light", _light);
+                _light = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("md-light");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "md-light");
+                    }
+                }
             }
         }
 
@@ -191,11 +202,18 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set inactive(value:Boolean):void
         {
-            _inactive = value;
-
-            COMPILE::JS
+            if (_inactive != value)
             {
-                element.classList.toggle("md-inactive", _inactive);
+                _inactive = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("md-inactive");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "md-inactive");
+                    }
+                }
             }
         }
 
@@ -214,11 +232,18 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set listItemIcon(value:Boolean):void
         {
-            _listItemIcon = value;
-
-            COMPILE::JS
+            if (_listItemIcon != value)
             {
-                element.classList.toggle("mdl-list__item-icon", _listItemIcon);
+                _listItemIcon = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-list__item-icon");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-list__item-icon");
+                    }
+                }
             }
         }
 
@@ -237,11 +262,18 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set listItemAvatar(value:Boolean):void
         {
-            _listItemAvatar = value;
-
-            COMPILE::JS
+            if (_listItemAvatar != value)
             {
-                element.classList.toggle("mdl-list__item-avatar", _listItemAvatar);
+                _listItemAvatar = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-list__item-avatar");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-list__item-avatar");
+                    }
+                }
             }
         }
 
@@ -260,11 +292,18 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set iconToggleLabel(value:Boolean):void
         {
-            _iconToggleLabel = value;
-
-            COMPILE::JS
+            if (_iconToggleLabel != value)
             {
-                element.classList.toggle("mdl-icon-toggle__label", _iconToggleLabel);
+                _iconToggleLabel = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-icon-toggle__label");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-icon-toggle__label");
+                    }
+                }
             }
         }
     }

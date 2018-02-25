@@ -24,6 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -49,18 +50,8 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-dialog__actions";
 		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-dialog__actions";
-			return addElementToWrapper(this,'div');
-        }
 
 		protected var _fullWidth:Boolean = false;
         /**
@@ -80,13 +71,19 @@ package org.apache.royale.mdl
         }
         public function set fullWidth(value:Boolean):void
         {
-			_fullWidth = value;
-
-			COMPILE::JS
+            if (_fullWidth != value)
             {
-				positioner.classList.toggle("mdl-dialog__actions--full-width", _fullWidth);
-				typeNames = positioner.className;
-			}
+                _fullWidth = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-dialog__actions--full-width");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-dialog__actions--full-width");
+                    }
+                }
+            }
         }
 	}
 }

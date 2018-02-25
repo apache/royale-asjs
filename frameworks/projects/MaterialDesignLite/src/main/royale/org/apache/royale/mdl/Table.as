@@ -20,11 +20,14 @@ package org.apache.royale.mdl
 {
 	import org.apache.royale.core.IChild;
     import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.html.elements.Thead;
+	import org.apache.royale.html.elements.Tbody;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
     
 	/**
@@ -58,7 +61,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-data-table mdl-js-data-table";
 		}
 
 		private var _columns:Array;
@@ -234,11 +237,11 @@ package org.apache.royale.mdl
         }
 
         COMPILE::JS
-		private var thead:THead;
+		private var thead:Thead;
 		private var _isTheadAddedToParent:Boolean = false;
 
 		COMPILE::JS
-		private var tbody:TBody;
+		private var tbody:Tbody;
         private var _isTbodyAddedToParent:Boolean = false;
 
         /**
@@ -247,7 +250,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-data-table mdl-js-data-table";
 			addElementToWrapper(this,'table');
 
             addTHeadToParent();
@@ -272,18 +274,17 @@ package org.apache.royale.mdl
         }
         public function set shadow(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-shadow--" + _shadow + "dp");
-				
-				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
-				{
-					_shadow = value;
-
-                    element.classList.add("mdl-shadow--" + _shadow + "dp");
-					typeNames = element.className;
-				}
-			}
+            if (_shadow != value)
+            {
+                COMPILE::JS
+                {
+                    className = addOrReplaceClassName(className, "mdl-shadow--" + value + "dp", "mdl-shadow--" + _shadow + "dp");
+                    if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+                    {
+                        _shadow = value;
+                    }
+                }
+            }
         }
 
 		protected var _selectable:Boolean = false;
@@ -303,13 +304,19 @@ package org.apache.royale.mdl
         }
         public function set selectable(value:Boolean):void
         {
-			_selectable = value;
-
-			COMPILE::JS
+            if (_selectable != value)
             {
-                element.classList.toggle("mdl-data-table--selectable", _selectable);
-				typeNames = element.className;
-			}
+                _selectable = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-data-table--selectable");
+                    COMPILE::JS
+                    {
+                        className = addOrReplaceClassName(className, "mdl-data-table--selectable");
+                    }
+                }
+            }
         }
 
 		COMPILE::JS
@@ -317,7 +324,7 @@ package org.apache.royale.mdl
         {
             if (_isTheadAddedToParent) return;
 
-			thead = new THead();
+			thead = new Thead();
 			super.addElement(thead);
 
 			_isTheadAddedToParent = true;
@@ -328,7 +335,7 @@ package org.apache.royale.mdl
 		{
 			if (_isTbodyAddedToParent) return;
 
-            tbody = new TBody();
+            tbody = new Tbody();
             super.addElement(tbody);
 			_isTbodyAddedToParent = true;
 		}

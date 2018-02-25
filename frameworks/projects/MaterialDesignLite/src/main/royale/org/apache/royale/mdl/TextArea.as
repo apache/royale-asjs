@@ -61,7 +61,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-textfield mdl-js-textfield";
 		}
 		
         private var _rows:int = 2;
@@ -142,8 +142,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-textfield mdl-js-textfield";
-
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
 

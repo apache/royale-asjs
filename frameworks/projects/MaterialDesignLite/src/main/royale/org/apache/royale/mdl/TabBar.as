@@ -25,6 +25,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
     
 	/**
@@ -61,7 +62,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-layout__tab-bar";
 		}
 
         /**
@@ -145,12 +146,11 @@ package org.apache.royale.mdl
 
 			if(parent is Tabs)
 			{
+                element.classList.remove(typeNames);
 				typeNames = "mdl-tabs__tab-bar";
-			} else {
-				typeNames = "mdl-layout__tab-bar";
+
+                className = addOrReplaceClassName(className, "mdl-tabs__tab-bar");
 			}
-			
-			element.classList.add(typeNames);
 
 			if(parent is Tabs && _ripple)
 			{
@@ -174,17 +174,23 @@ package org.apache.royale.mdl
         }
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-			if(parent is Tabs && _ripple)
-			{
-				throw new Error("TabBar ripple can not be used if parent is a Tabs component. Use only in Tabs instead to avoid MDL browser error.");
-			}
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                if(parent is Tabs && _ripple)
+                {
+                    throw new Error("TabBar ripple can not be used if parent is a Tabs component. Use only in Tabs instead to avoid MDL browser error.");
+                }
+
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-js-ripple-effect");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
+                    }
+                }
             }
         }
 	}

@@ -40,6 +40,8 @@ package org.apache.royale.mdl.itemRenderers
         public function TabBarLayoutItemRenderer()
         {
             super();
+
+            typeNames = "mdl-layout__tab-panel";
         }
         
         /**
@@ -48,7 +50,6 @@ package org.apache.royale.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-layout__tab-panel";
 			return addElementToWrapper(this,'section');
         }
     }

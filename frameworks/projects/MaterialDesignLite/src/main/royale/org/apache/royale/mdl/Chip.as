@@ -40,6 +40,12 @@ package org.apache.royale.mdl
      */
     public class Chip extends ChipBase
     {
+        public function Chip()
+        {
+            super();
+            typeNames = "mdl-chip";
+        }
+
         COMPILE::JS
         private var chip:HTMLSpanElement;
         
@@ -51,8 +57,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-chip";
-
             chipTextSpan = document.createElement("span") as HTMLSpanElement;
             chipTextSpan.classList.add("mdl-chip__text");
 

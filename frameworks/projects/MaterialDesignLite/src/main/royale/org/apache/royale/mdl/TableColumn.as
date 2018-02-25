@@ -23,6 +23,7 @@ package org.apache.royale.mdl
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -50,7 +51,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = "";
+            typeNames = "mdl-data-table__cell--non-numeric";
 		}
 
         private var _headerText:String = "";
@@ -86,17 +87,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         protected var textNode:Text;
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-data-table__cell--non-numeric";
-
-            return super.createElement();;
-        }
-		
         protected var _ascending:Boolean;
         /**
 		 *  A boolean flag to activate "mdl-data-table__header--sorted-ascending" effect selector.
@@ -114,13 +104,19 @@ package org.apache.royale.mdl
         }
         public function set ascending(value:Boolean):void
         {
-			_ascending = value;
+            if (_ascending != value)
+            {
+                _ascending = value;
 
-			COMPILE::JS
-			{
-				element.classList.toggle("mdl-data-table__header--sorted-ascending", _ascending);
-				typeNames = element.className;
-			}
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-data-table__header--sorted-ascending");
+                    COMPILE::JS
+                    {
+                        className = addOrReplaceClassName(className, "mdl-data-table__header--sorted-ascending");
+                    }
+                }
+            }
         }
 
         protected var _descending:Boolean;
@@ -140,13 +136,19 @@ package org.apache.royale.mdl
         }
         public function set descending(value:Boolean):void
         {
-			_descending = value;
+            if (_descending != value)
+            {
+                _descending = value;
 
-			COMPILE::JS
-			{
-				element.classList.toggle("mdl-data-table__header--sorted-descending", _descending);
-				typeNames = element.className;
-			}
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-data-table__header--sorted-descending");
+                    COMPILE::JS
+                    {
+                        className = addOrReplaceClassName(className, "mdl-data-table__header--sorted-descending");
+                    }
+                }
+            }
         }
     }
 }

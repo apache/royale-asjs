@@ -32,6 +32,7 @@ package org.apache.royale.mdl
     {    
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
     //--------------------------------------
@@ -97,8 +98,8 @@ package org.apache.royale.mdl
         {
             super();
 
-            className = "";
-            
+            typeNames = "mdl-switch mdl-js-switch";
+
             addBead(new UpgradeElement());
             addBead(new UpgradeChildren(["mdl-switch__ripple-container"]));
         }
@@ -176,12 +177,18 @@ package org.apache.royale.mdl
 
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-js-ripple-effect");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
+                    }
+                }
             }
         }
 
@@ -203,8 +210,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-switch mdl-js-switch";
-
             label = addElementToWrapper(this,'label') as HTMLLabelElement;
 
             input = document.createElement("input") as HTMLInputElement;

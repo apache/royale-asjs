@@ -50,49 +50,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-mega-footer__drop-down-section";
 		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-mega-footer__drop-down-section";
-			return addElementToWrapper(this,'div');
-        }
-
-		/**
-         *  Configuration depends on parent Footer.
-		 *  Check to see if is mega or mini.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-
-		COMPILE::JS
-		override public function addedToParent():void
-        {
-			super.addedToParent();
-
-			if(parent is FooterMiddleSection)
-			{
-				element.classList.remove(typeNames);
-				if(!Footer(parent).mini)
-				{
-					typeNames = "mdl-mega-footer__drop-down-section";
-				} else
-				{
-					typeNames = "mdl-mini-footer__drop-down-section";
-				}
-				element.classList.add(typeNames);
-			}
-			else
-			{
-				throw new Error("FooterDropDownSection can not be used if parent is not a MDL FooterMiddleSection component.");
-			}
-        }*/
 	}
 }

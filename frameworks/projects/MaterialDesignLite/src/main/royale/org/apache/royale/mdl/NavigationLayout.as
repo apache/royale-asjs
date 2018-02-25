@@ -26,6 +26,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -52,7 +53,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-layout mdl-js-layout";
 		}
 
 		private var _applicationModel:Object;
@@ -82,16 +83,6 @@ package org.apache.royale.mdl
             _applicationModel = value;
             dispatchEvent(new Event("modelChanged"));
         }
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-layout mdl-js-layout";
-			return addElementToWrapper(this,'div');
-        }
 
 		protected var _fixedHeader:Boolean;
         /**
@@ -109,12 +100,18 @@ package org.apache.royale.mdl
         }
         public function set fixedHeader(value:Boolean):void
         {
-			_fixedHeader = value;
-
-			COMPILE::JS
+            if (_fixedHeader != value)
             {
-                element.classList.toggle("mdl-layout--fixed-header", _fixedHeader);
-				typeNames = element.className;
+                _fixedHeader = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-layout--fixed-header");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-layout--fixed-header");
+                    }
+                }
             }
         }
 
@@ -134,12 +131,18 @@ package org.apache.royale.mdl
         }
         public function set fixedDrawer(value:Boolean):void
         {
-			_fixedDrawer = value;
-
-			COMPILE::JS
+            if (_fixedDrawer != value)
             {
-                element.classList.toggle("mdl-layout--fixed-drawer", _fixedDrawer);
-				typeNames = element.className;
+                _fixedDrawer = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-layout--fixed-drawer");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-layout--fixed-drawer");
+                    }
+                }
             }
         }
 	}

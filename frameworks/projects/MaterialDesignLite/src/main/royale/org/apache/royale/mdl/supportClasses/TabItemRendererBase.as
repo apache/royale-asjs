@@ -20,6 +20,11 @@ package org.apache.royale.mdl.supportClasses
 {
     import org.apache.royale.html.supportClasses.MXMLItemRenderer;
 
+    COMPILE::JS
+    {
+        import org.apache.royale.html.util.addOrReplaceClassName;
+    }
+
     /**
      *  Base class for Tabs item renderers
      *
@@ -41,8 +46,6 @@ package org.apache.royale.mdl.supportClasses
         public function TabItemRendererBase()
         {
             super();
-
-            className = "";
         }
 
         private var _tabIdField:String;
@@ -80,11 +83,18 @@ package org.apache.royale.mdl.supportClasses
 
         public function set isActive(value:Boolean):void
         {
-            _isActive = value;
-
-            COMPILE::JS
+            if (_isActive != value)
             {
-                element.classList.toggle("is-active", _isActive);
+                _isActive = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("is-active");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "is-active");
+                    }
+                }
             }
         }
 

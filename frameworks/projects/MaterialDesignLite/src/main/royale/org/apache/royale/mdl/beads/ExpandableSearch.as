@@ -47,13 +47,10 @@ package org.apache.royale.mdl.beads
 		public function ExpandableSearch()
 		{
 		}
-		
-        /**
-         * Provides unique name
-         */
-        private static var tfCounter:int = 0;
 
-		private var _strand:IStrand;		
+		private var _strand:IStrand;
+		private var _host:UIBase;
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -69,13 +66,10 @@ package org.apache.royale.mdl.beads
 			
 			COMPILE::JS
 			{
-				var host:UIBase = value as UIBase;
-				
+                var host:UIBase = value as UIBase;
 				if (host is TextField)
 				{
-                    var searchId:String = '_searchId_' + ExpandableSearch.tfCounter++;
-
-					host.positioner.classList.add("mdl-textfield--expandable");
+                    var searchId:String = '_searchId_' + Math.random();
 
                     var label:HTMLLabelElement = document.createElement('label') as HTMLLabelElement;
                     label.className = "mdl-button mdl-js-button mdl-button--icon";
@@ -84,7 +78,7 @@ package org.apache.royale.mdl.beads
                     var searchIcon:MaterialIcon = new MaterialIcon();
 					searchIcon.text = "search";
 					label.appendChild(searchIcon.element);
-                    
+
                     host.positioner.appendChild(label);
 
                     var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;

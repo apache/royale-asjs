@@ -48,18 +48,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-        }
-        
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
             typeNames = "mdl-layout-spacer";
-			return addElementToWrapper(this,'div');
-        }        
-
+        }
 	}
 }

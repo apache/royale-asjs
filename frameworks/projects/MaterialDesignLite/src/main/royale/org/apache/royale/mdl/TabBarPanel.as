@@ -24,6 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -50,7 +51,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-layout__tab-panel";
 		}
 
         /**
@@ -75,14 +76,13 @@ package org.apache.royale.mdl
         {
 			super.addedToParent();
 
-			if(parent is Tabs)
-			{
-				typeNames = "mdl-tabs__panel";
-			} else {
-				typeNames = "mdl-layout__tab-panel";
-			}
+            if(parent is Tabs)
+            {
+                element.classList.remove(typeNames);
+                typeNames = "mdl-tabs__panel";
 
-			element.classList.add(typeNames);
+                className = addOrReplaceClassName(className, "mdl-tabs__panel");
+            }
         }
 
 		private var _isActive:Boolean;
@@ -102,12 +102,18 @@ package org.apache.royale.mdl
 
 		public function set isActive(value:Boolean):void
 		{
-            _isActive = value;
-
-            COMPILE::JS
+            if (_isActive != value)
             {
-                element.classList.toggle("is-active", _isActive);
-				typeNames = element.className;
+                _isActive = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("is-active");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "is-active");
+                    }
+                }
             }
 		}
 	}

@@ -51,7 +51,7 @@ package org.apache.royale.mdl
         {
             super();
 
-            className = "";
+            typeNames = "mdl-js-snackbar mdl-snackbar";
         }
 
         /**
@@ -131,8 +131,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-js-snackbar mdl-snackbar";
-			
             addElementToWrapper(this,'div');
             element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
 

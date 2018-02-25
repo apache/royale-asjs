@@ -24,6 +24,7 @@ package org.apache.royale.mdl.supportClasses
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -47,18 +48,7 @@ package org.apache.royale.mdl.supportClasses
 		public function CardInner()
 		{
 			super();
-
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this,'div');
-        }
 
 		private var _border:Boolean = false;
         /**
@@ -76,13 +66,19 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set border(value:Boolean):void
         {
-			_border = value;
+            if (_border != value)
+            {
+                _border = value;
 
-			COMPILE::JS
-    		{
-				element.classList.toggle("mdl-card--border", _border);
-				typeNames = element.className;
-			}
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-card--border");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-card--border");
+                    }
+                }
+            }
         }
 
 		private var _expand:Boolean = false;
@@ -102,13 +98,19 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set expand(value:Boolean):void
         {
-			_expand = value;
+            if (_expand != value)
+            {
+                _expand = value;
 
-			COMPILE::JS
-    		{
-				element.classList.toggle("mdl-card--expand", _expand);
-				typeNames = element.className;
-			}
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-card--expand");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-card--expand");
+                    }
+                }
+            }
         }
 	}
 }

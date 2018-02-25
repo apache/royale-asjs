@@ -20,11 +20,6 @@ package org.apache.royale.mdl.itemRenderers
 {
     import org.apache.royale.mdl.supportClasses.TabBarButtonItemRendererBase;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
-
     /**
      *  Represents an item renderer for the TabBarButton
      *  It is default item renderer for TabBarButton
@@ -40,17 +35,8 @@ package org.apache.royale.mdl.itemRenderers
         public function TabBarButtonTabsItemRenderer()
         {
             super();
-        }
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
             typeNames = "mdl-tabs__tab";
-
-            return super.createElement();
         }
     }
 }

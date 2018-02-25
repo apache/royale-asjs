@@ -52,7 +52,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-layout-title";
 		}
 
 		/**
@@ -61,7 +61,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-layout-title";
 			return addElementToWrapper(this,'span');
 		}
 	}

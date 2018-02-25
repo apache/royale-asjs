@@ -50,8 +50,6 @@ package org.apache.royale.mdl.supportClasses
         public function ChipBase()
         {
             super();
-
-            className = "";
         }
         
         /**

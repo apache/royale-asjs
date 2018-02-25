@@ -27,6 +27,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
     
     /**
@@ -52,7 +53,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-button mdl-js-button";
 
             addBead(new UpgradeElement());
 		}
@@ -64,8 +65,6 @@ package org.apache.royale.mdl
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-            typeNames = "mdl-button mdl-js-button";
-            
 			return addElementToWrapper(this,'button');
 		}
 
@@ -109,13 +108,19 @@ package org.apache.royale.mdl
         }
         public function set fab(value:Boolean):void
         {
-             _fab = value;
+            if (_fab != value)
+            {
+                _fab = value;
 
-             COMPILE::JS
-             {
-                 element.classList.toggle("mdl-button--fab", _fab);
-                 typeNames = element.className;
-             }
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-button--fab");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-button--fab");
+                    }
+                }
+            }
         }
 
         private var _raised:Boolean = false;
@@ -134,12 +139,18 @@ package org.apache.royale.mdl
         }
         public function set raised(value:Boolean):void
         {
-            _raised = value;
-
-            COMPILE::JS
+            if (_raised != value)
             {
-                element.classList.toggle("mdl-button--raised", _raised);
-                typeNames = element.className;
+                _raised = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-button--raised");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-button--raised");
+                    }
+                }
             }
         }
 
@@ -160,13 +171,19 @@ package org.apache.royale.mdl
         }
         public function set colored(value:Boolean):void
         {
-             _colored = value;
-
-            COMPILE::JS
+            if (_colored != value)
             {
-                element.classList.toggle("mdl-button--colored", _colored);
-                typeNames = element.className;
-            } 
+                _colored = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-button--colored");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-button--colored");
+                    }
+                }
+            }
         }
 
         private var _accent:Boolean = false;
@@ -186,13 +203,19 @@ package org.apache.royale.mdl
         }
         public function set accent(value:Boolean):void
         {
-            _accent = value;
-
-            COMPILE::JS
+            if (_accent != value)
             {
-                element.classList.toggle("mdl-button--accent", _accent);
-                typeNames = element.className;
-            } 
+                _accent = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-button--accent");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-button--accent");
+                    }
+                }
+            }
         }
 
         private var _primary:Boolean = false;
@@ -212,12 +235,18 @@ package org.apache.royale.mdl
         }
         public function set primary(value:Boolean):void
         {
-            _primary = value;
-
-            COMPILE::JS
+            if (_primary != value)
             {
-                element.classList.toggle("mdl-button--primary", _primary);
-                typeNames = element.className;
+                _primary = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-button--primary");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-button--primary");
+                    }
+                }
             }
         }
 
@@ -238,12 +267,18 @@ package org.apache.royale.mdl
         }
         public function set minifab(value:Boolean):void
         {
-            _minifab = value;
-
-            COMPILE::JS
+            if (_minifab != value)
             {
-                element.classList.toggle("mdl-button--mini-fab", _minifab);
-                typeNames = element.className;
+                _minifab = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-button--mini-fab");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-button--mini-fab");
+                    }
+                }
             }
         }
 
@@ -264,12 +299,18 @@ package org.apache.royale.mdl
         }
         public function set icon(value:Boolean):void
         {
-            _icon = value;
-
-            COMPILE::JS
+            if (_icon != value)
             {
-                element.classList.toggle("mdl-button--icon", _icon);
-                typeNames = element.className;
+                _icon = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-button--icon");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-button--icon");
+                    }
+                }
             }
         }
 
@@ -289,12 +330,18 @@ package org.apache.royale.mdl
         }
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-js-ripple-effect");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
+                    }
+                }
             }
         }
 	}

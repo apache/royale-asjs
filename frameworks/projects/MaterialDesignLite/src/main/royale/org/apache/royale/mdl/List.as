@@ -40,13 +40,18 @@ package org.apache.royale.mdl
      */ 
 	public class List extends org.apache.royale.html.List
 	{
+        public function List()
+		{
+			super();
+            typeNames = "mdl-list";
+		}
+
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			typeNames = "mdl-list";
 			return addElementToWrapper(this,'ul');
 		}
 	}

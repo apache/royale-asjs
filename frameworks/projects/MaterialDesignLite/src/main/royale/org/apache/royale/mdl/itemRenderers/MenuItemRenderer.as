@@ -48,7 +48,8 @@ package org.apache.royale.mdl.itemRenderers
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-menu__item";
+            //className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
         
         private var _text:String = "";
@@ -128,7 +129,6 @@ package org.apache.royale.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-menu__item";
 			addElementToWrapper(this,'li');
             
             textNode = document.createTextNode('') as Text;
@@ -158,7 +158,7 @@ package org.apache.royale.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-menu__item--full-bleed-divider", _divider);
-                typeNames = element.className;
+                //typeNames = element.className;
             }
 		}
 		
@@ -187,7 +187,7 @@ package org.apache.royale.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                //typeNames = element.className;
             }
         }     
 

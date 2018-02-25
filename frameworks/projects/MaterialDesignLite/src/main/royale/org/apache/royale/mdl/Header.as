@@ -24,6 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -50,7 +51,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-layout__header"
 		}
 
         /**
@@ -58,8 +59,7 @@ package org.apache.royale.mdl
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-layout__header";
+        {;
 			return addElementToWrapper(this,'header');
         }
 
@@ -79,12 +79,18 @@ package org.apache.royale.mdl
         }
         public function set transparent(value:Boolean):void
         {
-			_transparent = value;
-
-			COMPILE::JS
+            if (_transparent != value)
             {
-                element.classList.toggle("mdl-layout__header--transparent", _transparent);
-				typeNames = element.className;
+                _transparent = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-layout__header--transparent");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-layout__header--transparent");
+                    }
+                }
             }
         }
 
@@ -104,12 +110,18 @@ package org.apache.royale.mdl
         }
         public function set scrollable(value:Boolean):void
         {
-			_scrollable = value;
-
-			COMPILE::JS
+            if (_scrollable != value)
             {
-                element.classList.toggle("mdl-layout__header--scroll", _scrollable);
-				typeNames = element.className;
+                _scrollable = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-layout__header--scroll");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-layout__header--scroll");
+                    }
+                }
             }
         }
 
@@ -129,12 +141,18 @@ package org.apache.royale.mdl
         }
         public function set waterfall(value:Boolean):void
         {
-			_waterfall = value;
-
-			COMPILE::JS
+            if (_waterfall != value)
             {
-                element.classList.toggle("mdl-layout__header--waterfall", _waterfall);
-				typeNames = element.className;
+                _waterfall = value;
+
+                COMPILE::JS
+                {
+                    element.classList.remove("mdl-layout__header--waterfall");
+                    if (value)
+                    {
+                        className = addOrReplaceClassName(className, "mdl-layout__header--waterfall");
+                    }
+                }
             }
         }
 	}

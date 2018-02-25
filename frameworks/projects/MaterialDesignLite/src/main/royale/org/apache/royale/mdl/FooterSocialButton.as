@@ -26,6 +26,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addOrReplaceClassName;
     }
     
 	/**
@@ -50,18 +51,8 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-mega-footer__social-btn";
 		}
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-mega-footer__social-btn";
-			return addElementToWrapper(this,'button');
-        }
 
 		/**
          *  Configuration depends on parent Footer.
@@ -85,12 +76,13 @@ package org.apache.royale.mdl
 					element.classList.remove(typeNames);
 					if(!Footer(UIBase(parentSection).parent).mini)
 					{
-						typeNames = "mdl-mega-footer__social-btn";
-					} else
-					{
-						typeNames = "mdl-mini-footer__social-btn";
+                        className = addOrReplaceClassName(className, "mdl-mega-footer__social-btn");
 					}
-					element.classList.add(typeNames);
+					else
+					{
+                        typeNames = "mdl-mini-footer__social-btn";
+                        className = addOrReplaceClassName(className, "mdl-mini-footer__social-btn");
+					}
 				}
 			}
 			else
