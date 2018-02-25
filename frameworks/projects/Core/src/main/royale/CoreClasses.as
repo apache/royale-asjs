@@ -224,6 +224,12 @@ internal class CoreClasses
 		import org.apache.royale.core.WrappedHTMLElement ;WrappedHTMLElement;
 	    import org.apache.royale.core.IRoyaleElement; IRoyaleElement;
 	}
+
+	//JS native classes
+	COMPILE::SWF
+	{
+		import Map; Map;
+	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
 	import org.apache.royale.debugging.assertType; assertType;
