@@ -19,6 +19,7 @@
 package org.apache.royale.svg
 {
 	
+	import org.apache.royale.core.ITransformHost;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.IStrand;
@@ -119,15 +120,15 @@ package org.apache.royale.svg
 		}
 
 		COMPILE::JS 
-		public function unmaskElement(renderedObject:IRenderedObject):void
+		public function unmaskElement(transformHost:ITransformHost):void
 		{
-			renderedObject.element.style["mask"] = "";
+			transformHost.transformElement.setAttribute("mask", "");
 		}
 
 		COMPILE::JS 
-		public function maskElement(renderedObject:IRenderedObject):void
+		public function maskElement(transformHost:ITransformHost):void
 		{
-			renderedObject.element.style["mask"] = "url(#" + maskElementId + ")";
+			transformHost.transformElement.setAttribute("mask", "url(#" + maskElementId + ")");
 		}
 	}
 }
