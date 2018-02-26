@@ -96,6 +96,7 @@
         <ant dir="${basedir}/royale/HelloWorld"/>
         <ant dir="${basedir}/royale/ListExample"/>
         <ant dir="${basedir}/royale/MapSearch"/>
+        <ant dir="${basedir}/royale/MenuExample"/>
         <ant dir="${basedir}/royale/MobileMap"/>
         <ant dir="${basedir}/royale/MobileStocks"/>
         <ant dir="${basedir}/royale/MobileTrader"/>
@@ -145,6 +146,7 @@
         <ant dir="${basedir}/royale/HelloWorld" target="clean"/>
         <ant dir="${basedir}/royale/ListExample" target="clean"/>
         <ant dir="${basedir}/royale/MapSearch" target="clean"/>
+        <ant dir="${basedir}/royale/MenuExample" target="clean"/>
         <ant dir="${basedir}/royale/MobileTrader" target="clean"/>
         <ant dir="${basedir}/royale/MobileStocks" target="clean"/>
         <ant dir="${basedir}/royale/MobileMap" target="clean"/>
@@ -184,6 +186,7 @@
         <ant dir="${basedir}/royale/HelloWorld" target="examine"/>
         <ant dir="${basedir}/royale/ListExample" target="examine"/>
         <ant dir="${basedir}/royale/MapSearch" target="examine"/>
+        <ant dir="${basedir}/royale/MenuExample" target="examine"/>
         <ant dir="${basedir}/royale/MobileTrader" target="examine"/>
         <ant dir="${basedir}/royale/MobileStocks" target="examine"/>
         <ant dir="${basedir}/royale/MobileMap" target="examine"/>
