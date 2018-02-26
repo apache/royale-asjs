@@ -16,100 +16,89 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.supportClasses
+package org.apache.royale.html
 {
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.html.Label;
-	import org.apache.royale.html.beads.ITextItemRenderer;
+	import org.apache.royale.core.ClassFactory;
+	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IMenu;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.beads.models.MenuBarModel;
 
 	/**
-	 * The MenuItemRenderer class is the default itemRenderer for Menus.
+	 * The MenuBar class is a list that, when an item is tapped, displays a menu of selections.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class MenuItemRenderer extends DataItemRenderer implements ITextItemRenderer
+	public class MenuBar extends List
 	{
 		/**
-		 * Constructor.
+		 * Constructor
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function MenuItemRenderer()
+		public function MenuBar()
 		{
 			super();
-			typeNames = "MenuItemRenderer";
+			typeNames = "MenuBar";
 		}
 		
 		/**
-		 * A place to show the label
-		 */
-		private var label:Label;
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			label = new Label();
-			label.typeNames = "MenuItemLabel";
-			addElement(label);
-		}
-		
-		/**
-		 *  Sets the data value and uses the String version of the data for display.
-		 *
-		 *  @param Object data The object being displayed by the itemRenderer instance.
+		 * The field in the data that holds the sub-menus. The default is "menu".
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		override public function set data(value:Object):void
+		public function get submenuField():String
 		{
-			super.data = value;
-			var text:String;
-			if (value is String) text = value as String;
-			else if (labelField) text = String(value[labelField]);
-			else if (dataField) text = String(value[dataField]);
-			else text = String(value);
-			
-			label.text = text;
+			return (model as MenuBarModel).submenuField;
 		}
 		
+		public function set submenuField(value:String):void
+		{
+			(model as MenuBarModel).submenuField = value;
+		}
+		
+		private var _menuClass:IFactory;
+		
 		/**
-		 * The label of the itemRenderer, if any.
+		 * The class to use that can manufacture an IMenu. This can be set either in a style
+		 * using "IMenuClassFactory" or directory from ActionScript or MXML.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function get text():String
+		public function get menuClass():IFactory
 		{
-			return label.text;
+			return _menuClass;
 		}
-		public function set text(value:String):void
+		public function set menuClass(value:IFactory):void
 		{
-			label.text = text;
+			_menuClass = value;
 		}
 		
 		/**
 		 * @private
 		 */
-		override public function adjustSize():void
+		override public function addedToParent():void
 		{
-			var cy:Number = height/2;
+			super.addedToParent();
 			
-			label.x = 0;
-			label.y = cy - label.height/2;
-
-			updateRenderer();
+			if (menuClass == null) {
+				var mclass:Class = ValuesManager.valuesImpl.getValue(this, "iMenuClassFactory") as Class;
+				if (mclass) {
+					menuClass = new ClassFactory(mclass);
+				}
+			}
 		}
 	}
 }

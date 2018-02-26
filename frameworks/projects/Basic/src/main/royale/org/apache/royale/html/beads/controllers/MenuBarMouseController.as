@@ -16,29 +16,41 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads.models
+package org.apache.royale.html.beads.controllers
 {
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IMenu;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.html.Menu;
+	import org.apache.royale.html.MenuBar;
+	import org.apache.royale.html.beads.models.MenuBarModel;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
-	 * The model used to support menus.
-	 *
+	 * The MenuBarMouseController handles mouse events for the MenuBar. While the menu bar is
+	 * a list, selecting an item causes a Menu (or one of its subclasses) to appear.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class MenuModel extends ArraySelectionModel
+	public class MenuBarMouseController extends ListSingleSelectionMouseController
 	{
 		/**
 		 * Constructor.
-		 *
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function MenuModel()
+		public function MenuBarMouseController()
 		{
 			super();
 		}
@@ -57,56 +69,34 @@ package org.apache.royale.html.beads.models
 		{
 			_strand = value;
 			super.strand = value;
+		}
+		
+		/**
+		 * Called when an item in the MenuBar is selected; it produces an IMenu below
+		 * the item selected.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		override protected function selectedHandler(event:ItemClickedEvent):void
+		{
+			// close any previously open menus
+			var host:UIBase = UIUtils.findPopUpHost(_strand as IUIBase) as UIBase;
+			host.dispatchEvent(new Event("hideMenus"));
 			
-			MenuModel.menuList.push(_strand);
-		}
-		
-		private static var _menuList:Array = [];
-		
-		/**
-		 * The array of active IMenu instances. This list is maintained so that any of the
-		 * instances can close all of them. Imagine several cascading menus open the user
-		 * selects one of the items. That menu uses this array to close itself and the others.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public static function get menuList():Array
-		{
-			return _menuList;
-		}
-		
-		/**
-		 * Empties the menuList.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public static function clearMenuList():void
-		{
-			_menuList = [];
-		}
-		
-		/**
-		 * Removes a specific menu from the menuList.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public static function removeMenu(menu:Object):void
-		{
-			for(var i:int=0; i < menuList.length; i++) {
-				if (menuList[i] == menu) {
-					menuList.splice(i,1);
-					break;
-				}
-			}
+			var component:IUIBase = event.target as IUIBase;
+			var mbar:MenuBar = _strand as MenuBar;
+			var menu:IMenu = mbar.menuClass.newInstance() as IMenu;
+			
+			var model:MenuBarModel = _strand.getBeadByType(IBeadModel) as MenuBarModel;
+			
+			menu.dataProvider = event.data[model.submenuField];
+			menu.labelField = model.labelField;
+			menu.submenuField = model.submenuField;
+			menu.parentMenuBar = _strand as IEventDispatcher;
+			menu.show(component, 0, component.height);
 		}
 	}
 }

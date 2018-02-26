@@ -18,13 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
+	import org.apache.royale.core.IMenu;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.html.Menu;
 	import org.apache.royale.html.beads.models.MenuModel;
 	import org.apache.royale.utils.UIUtils;
 	
@@ -55,7 +56,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			super();
 		}
-		
+				
 		private var _strand:IStrand;
 		
 		/**
@@ -70,12 +71,12 @@ package org.apache.royale.html.beads.controllers
 		{
 			_strand = value;
 			super.strand = value;
-			
-			(_strand as IEventDispatcher).addEventListener("menuWillHide", handleMenuWillHide);
-			
+						
 			// detect an up event on the background as a way to dismiss this menu
+			var host:IEventDispatcher = UIUtils.findPopUpHost(_strand as IUIBase) as IEventDispatcher;
+			host.addEventListener("hideMenus", handleHideMenus);
+			
 			COMPILE::SWF {
-				var host:IEventDispatcher = UIUtils.findPopUpHost(_strand as IUIBase) as IEventDispatcher;
 				host.addEventListener(MouseEvent.MOUSE_UP, hideMenu_internal);
 			}
 			COMPILE::JS {
@@ -93,39 +94,107 @@ package org.apache.royale.html.beads.controllers
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{						
-			var menuModel:MenuModel = listModel as MenuModel;
+			var menuDispatcher:IEventDispatcher = findMenuDispatcher();
+			var list:UIBase = menuDispatcher as UIBase;
 			var node:Object = event.data;
 			
-			listModel.selectedItem = node;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			list.model.selectedItem = node;
+			menuDispatcher.dispatchEvent(new Event("change"));
+		}
+		
+		/**
+		 * Finds and returns the object from which events should be dispatched. This
+		 * may be the Menu itself of the menu's parent menu bar.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		protected function findMenuDispatcher():IEventDispatcher
+		{
+			var menu:IMenu = _strand as IMenu;
+			if (menu.parentMenuBar) return menu.parentMenuBar;
+			else return menu as IEventDispatcher;
+		}
+		
+		/**
+		 * Hides any menus that are open. This means only one pop-up menu (or set of cascading menus)
+		 * may be open at one time.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		protected function hideOpenMenus():void
+		{
+			var copy:Array = MenuModel.menuList.concat();
+			
+			for(var i:int=0; i < copy.length; i++) {
+				var menu:UIBase = copy[i] as UIBase;
+				if (menu.parent != null) {
+					var controller:MenuSelectionMouseController = menu.getBeadByType(MenuSelectionMouseController) as MenuSelectionMouseController;
+					controller.removeClickOutHandler(menu);
+					menu.parent.removeElement(menu);
+				}
+			}
+			MenuModel.clearMenuList();
 		}
 		
 		// Internal Event Handling
 		
-		COMPILE::SWF
-		private function handleMenuWillHide(event:Event):void
+		/**
+		 * @private
+		 */
+		private function handleHideMenus(event:Event):void
 		{
-			var host:IEventDispatcher = UIUtils.findPopUpHost(_strand as IUIBase) as IEventDispatcher;
-			host.removeEventListener(MouseEvent.MOUSE_UP, hideMenu_internal);
+			hideOpenMenus();
 		}
 		
-		COMPILE::JS
-		private function handleMenuWillHide(event:Event):void
+		/**
+		 * @private
+		 * 
+		 * Removes the event handler that detects clicks outside of the menu.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function removeClickOutHandler(menu:Object):void
 		{
-			window.removeEventListener('mouseup', hideMenu_internal, false);
+			MenuModel.removeMenu(menu);
+			
+			var host:IEventDispatcher = UIUtils.findPopUpHost(menu as IUIBase) as IEventDispatcher;
+			host.removeEventListener("hideMenus", handleHideMenus);
+			
+			COMPILE::SWF {
+				host.removeEventListener(MouseEvent.MOUSE_UP, hideMenu_internal);
+			}
+			COMPILE::JS {
+				window.removeEventListener('mouseup', hideMenu_internal, false);
+			}			
 		}
 		
+		/**
+		 * @private
+		 */
 		COMPILE::SWF
-		private function hideMenu_internal(event:MouseEvent):void
+		protected function hideMenu_internal(event:MouseEvent):void
 		{
-			(_strand as Menu).hide();
+			event.stopImmediatePropagation();
+			hideOpenMenus();
 		}
 
+		/**
+		 * @private
+		 */
 		COMPILE::JS
-		private function hideMenu_internal(event:BrowserEvent):void
+		protected function hideMenu_internal(event:BrowserEvent):void
 		{			
 			event.stopImmediatePropagation();
-			(_strand as Menu).hide();
+			hideOpenMenus();
 		}
 	}
 }

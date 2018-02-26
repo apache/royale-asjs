@@ -112,7 +112,6 @@
     <component id="TextButtonItemRenderer" class="org.apache.royale.html.supportClasses.TextButtonItemRenderer"/>
     <component id="DataFieldProviderBead" class="org.apache.royale.html.beads.DataFieldProviderBead"/>
     <component id="ButtonBarButtonItemRenderer" class="org.apache.royale.html.supportClasses.ButtonBarButtonItemRenderer"/>
-    <component id="MenuItemRenderer" class="org.apache.royale.html.supportClasses.MenuItemRenderer"/>
     <!--
      <component id="TextFieldItemRenderer" class="org.apache.royale.html.supportClasses.TextFieldItemRenderer"/>
      <component id="HScrollBar" class="org.apache.royale.html.supportClasses.HScrollBar"/>
@@ -137,7 +136,6 @@
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
     <component id="HDividedContainerDivider" class="org.apache.royale.html.supportClasses.HDividedContainerDivider" />
     <component id="VDividedContainerDivider" class="org.apache.royale.html.supportClasses.VDividedContainerDivider" />
-    <component id="Menu" class="org.apache.royale.html.Menu" />
     <!--
      <component id="ImageAndTextButtonView" class="org.apache.royale.html.beads.ImageAndTextButtonView" />
      -->
@@ -217,5 +215,12 @@
     <component id="HashChangeNotifierBeadWithTitle" class="org.apache.royale.routing.HashChangeNotifierBeadWithTitle" />
     <component id="URLParameterBead" class="org.apache.royale.routing.URLParameterBead" />
     <component id="EscapedFragmentBead" class="org.apache.royale.routing.EscapedFragmentBead" />
+    
+    <component id="MenuBar" class="org.apache.royale.html.MenuBar"/>
+    <component id="Menu" class="org.apache.royale.html.Menu" />
+    <component id="CascadingMenu" class="org.apache.royale.html.CascadingMenu"/>
+    <component id="MenuItemRenderer" class="org.apache.royale.html.supportClasses.MenuItemRenderer"/>
+    <component id="MenuBarItemRenderer" class="org.apache.royale.html.supportClasses.MenuBarItemRenderer"/>
+    <component id="CascadingMenuItemRenderer" class="org.apache.royale.html.supportClasses.CascadingMenuItemRenderer" />
 
 </componentPackage>

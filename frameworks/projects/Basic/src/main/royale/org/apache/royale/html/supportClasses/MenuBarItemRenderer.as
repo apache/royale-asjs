@@ -18,58 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.ITextItemRenderer;
-
-	/**
-	 * The MenuItemRenderer class is the default itemRenderer for Menus.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
-	 */
-	public class MenuItemRenderer extends DataItemRenderer implements ITextItemRenderer
+	
+	public class MenuBarItemRenderer extends DataItemRenderer implements ITextItemRenderer
 	{
-		/**
-		 * Constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function MenuItemRenderer()
+		public function MenuBarItemRenderer()
 		{
 			super();
-			typeNames = "MenuItemRenderer";
+			typeNames = "MenuBarItemRenderer";
+			
+			label = new Label();
 		}
 		
-		/**
-		 * A place to show the label
-		 */
 		private var label:Label;
 		
 		override public function addedToParent():void
 		{
 			super.addedToParent();
 			
-			label = new Label();
-			label.typeNames = "MenuItemLabel";
 			addElement(label);
 		}
 		
-		/**
-		 *  Sets the data value and uses the String version of the data for display.
-		 *
-		 *  @param Object data The object being displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
 		override public function set data(value:Object):void
 		{
 			super.data = value;
@@ -80,6 +50,8 @@ package org.apache.royale.html.supportClasses
 			else text = String(value);
 			
 			label.text = text;
+			
+			adjustSize();
 		}
 		
 		/**
@@ -108,7 +80,11 @@ package org.apache.royale.html.supportClasses
 			
 			label.x = 0;
 			label.y = cy - label.height/2;
-
+			label.width = width;
+			
+			var h:Number = height;
+			var w:Number = width;
+			
 			updateRenderer();
 		}
 	}

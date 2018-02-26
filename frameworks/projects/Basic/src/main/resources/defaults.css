@@ -438,6 +438,10 @@ Menu {
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.MenuItemRenderer");	
 	background-color: white;
 	box-shadow: 2px 2px 5px gray;
+	position: absolute;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #222222;
 }
 
 MenuItemRenderer {
@@ -447,6 +451,45 @@ MenuItemRenderer {
 	margin-right: 8px;
 	cursor: pointer;
 }
+
+MenuBar {
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.MenuBarModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.MenuBarItemRenderer");			
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.MenuBarMouseController");
+	IMenuClassFactory: ClassReference("org.apache.royale.html.Menu");
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	border-bottom: 1px solid #222222;
+}
+
+MenuBarItemRenderer {
+	margin-left: 5px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+CascadingMenu {
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.CascadingMenuModel");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.CascadingMenuItemRenderer");
+	position: absolute;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #222222;
+	box-shadow: 2px 2px 5px gray;
+}
+
+CascadingMenuItemRenderer {
+	margin-top: 4px;
+	margin-left: 2px;
+	margin-bottom: 2px;
+	margin-right: 8px;
+	cursor: pointer;
+}
+
 
 Accordion
 {
@@ -639,6 +682,22 @@ TreeItemRenderer
 }
 
 MenuItemRenderer
+{
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+	height: 24;
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+MenuBarItemRenderer
+{
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+	height: 24;
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+CascadingMenuItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 	height: 24;
