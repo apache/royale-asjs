@@ -27,7 +27,6 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
     }
     
     /**
@@ -114,11 +113,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-button--fab");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-button--fab");
-                    }
+                    adjustTypeNames("mdl-button--fab", value);
                 }
             }
         }
@@ -142,15 +137,33 @@ package org.apache.royale.mdl
             if (_raised != value)
             {
                 _raised = value;
-
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-button--raised");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-button--raised");
-                    }
+                    adjustTypeNames("mdl-button--raised", value);
                 }
+            }
+        }
+        COMPILE::JS
+        private function adjustTypeNames(type:String,add:Boolean):void
+        {
+            type = " " + type;
+            var typeLength:int = type.length;
+            var typeIdx:int = typeNames.indexOf(type);
+            var adjust:Boolean = false;
+            if(add && typeIdx == -1)
+            {
+                typeNames += type;
+                adjust = true;
+            }
+            else if(!add && typeIdx != -1)
+            {
+                typeNames = typeNames.substr(typeIdx,typeLength);
+                adjust = true;
+            }
+            if(adjust)
+            {
+                var cl:String = className;
+                setClassName((cl ? cl + " " : "") + typeNames);                
             }
         }
 
@@ -177,11 +190,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-button--colored");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-button--colored");
-                    }
+                    adjustTypeNames("mdl-button--colored", value);
                 }
             }
         }
@@ -209,11 +218,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-button--accent");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-button--accent");
-                    }
+                    adjustTypeNames("mdl-button--accent", value);
                 }
             }
         }
@@ -241,11 +246,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-button--primary");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-button--primary");
-                    }
+                    adjustTypeNames("mdl-button--primary", value);
                 }
             }
         }
@@ -273,11 +274,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-button--mini-fab");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-button--mini-fab");
-                    }
+                    adjustTypeNames("mdl-button--mini-fab", value);
                 }
             }
         }
@@ -305,11 +302,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-button--icon");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-button--icon");
-                    }
+                    adjustTypeNames("mdl-button--icon", value);
                 }
             }
         }
@@ -336,11 +329,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-js-ripple-effect");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
-                    }
+                    adjustTypeNames("mdl-js-ripple-effect", value);
                 }
             }
         }
