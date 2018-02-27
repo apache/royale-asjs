@@ -16,50 +16,61 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.beads
 {
-	import org.apache.royale.html.beads.models.MenuBarModel;
-
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.html.Menu;
+	
 	/**
-	 * The MenuBar class is a list that, when an item is tapped, displays a menu of selections.
-	 *
+	 * This bead class generates instances of the Menu class for use with MenuBar.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class MenuBar extends List
+	public class MenuFactory implements IBead, IFactory
 	{
 		/**
-		 * Constructor
-		 *
+		 * Constructor.
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function MenuBar()
+		public function MenuFactory()
 		{
-			super();
-			typeNames = "MenuBar";
+		}
+		
+		private var _strand:IStrand;
+		
+		/**
+		 * @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
 		}
 		
 		/**
-		 * The field in the data that holds the sub-menus. The default is "menu".
-		 *
+		 * Returns a new instance of the Menu class.
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function get submenuField():String
+		public function newInstance():*
 		{
-			return (model as MenuBarModel).submenuField;
-		}
-		
-		public function set submenuField(value:String):void
-		{
-			(model as MenuBarModel).submenuField = value;
+			return new Menu();
 		}
 	}
 }

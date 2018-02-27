@@ -19,6 +19,7 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IMenu;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -30,6 +31,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.MenuBar;
 	import org.apache.royale.html.beads.models.MenuBarModel;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 * The MenuBarMouseController handles mouse events for the MenuBar. While the menu bar is
@@ -88,7 +90,9 @@ package org.apache.royale.html.beads.controllers
 			
 			var component:IUIBase = event.target as IUIBase;
 			var mbar:MenuBar = _strand as MenuBar;
-			var menu:IMenu = mbar.menuClass.newInstance() as IMenu;
+			
+			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", mbar) as IFactory;
+			var menu:IMenu = menuFactory.newInstance() as IMenu;
 			
 			var model:MenuBarModel = _strand.getBeadByType(IBeadModel) as MenuBarModel;
 			
