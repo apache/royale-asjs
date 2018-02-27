@@ -144,8 +144,11 @@ limitations under the License.
 		<js:beads>
 			<js:BasicLayout />
 		</js:beads>
+		
+		<!-- The MenuBar. This displays CascadingMenu menus, but you can change that to use the simpler
+		     Menu for a lighter app by adding menuClass="org.apache.royale.html.CascadingMenu". -->
+		
 		<js:MenuBar dataProvider="{menubarData}" x="0" y="0" width="100%"
-					menuClass="org.apache.royale.html.CascadingMenu"
 					labelField="title" change="handleMenubarSelection(event)" />
 		
 		<js:Label id="output" x="50" y="80" className="Output" />

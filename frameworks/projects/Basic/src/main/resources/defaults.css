@@ -457,7 +457,7 @@ MenuBar {
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.MenuBarItemRenderer");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.MenuBarMouseController");
-	IMenuClassFactory: ClassReference("org.apache.royale.html.Menu");
+	IMenuClassFactory: ClassReference("org.apache.royale.html.CascadingMenu");
 	height: 30px;
 	line-height: 30px;
 	vertical-align: middle;
