@@ -75,9 +75,11 @@ package org.apache.royale.mdl.beads
                     label.className = "mdl-button mdl-js-button mdl-button--icon";
                     label.setAttribute('for', searchId);
                     
-                    var searchIcon:MaterialIcon = new MaterialIcon();
-					searchIcon.text = "search";
-					label.appendChild(searchIcon.element);
+					var i:Element = document.createElement("i");
+					i.className = "material-icons";
+		            var textNode:Text = document.createTextNode("search");
+        		    i.appendChild(textNode); 
+					label.appendChild(i);
 
                     host.positioner.appendChild(label);
 
