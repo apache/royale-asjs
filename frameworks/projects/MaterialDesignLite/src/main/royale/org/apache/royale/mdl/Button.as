@@ -27,6 +27,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
     
     /**
@@ -54,8 +55,16 @@ package org.apache.royale.mdl
 
             typeNames = "mdl-button mdl-js-button";
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             addBead(new UpgradeElement());
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
         
         /**
 		 * @private
@@ -92,7 +101,6 @@ package org.apache.royale.mdl
         }
 
         private var _fab:Boolean = false;
-        private var _fabClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-button--fab" effect selector.
@@ -112,17 +120,17 @@ package org.apache.royale.mdl
             if (_fab != value)
             {
                 _fab = value;
-                _fabClassName = value ? "mdl-button--fab " : "";
-
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-button--fab";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _raised:Boolean = false;
-        private var _raisedClassName:String = "";
+        // private var _raisedClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-button--raised" effect selector.
@@ -143,17 +151,17 @@ package org.apache.royale.mdl
             if (_raised != value)
             {
                 _raised = value;
-                _raisedClassName = value ? "mdl-button--raised " : "";
 
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-button--raised";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _colored:Boolean = false;
-        private var _coloredClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-button--colored" effect selector.
@@ -174,17 +182,17 @@ package org.apache.royale.mdl
             if (_colored != value)
             {
                 _colored = value;
-                _coloredClassName = value ? "mdl-button--colored " : "";
 
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-button--colored";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _accent:Boolean = false;
-        private var _accentClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-button--accent" effect selector.
@@ -206,17 +214,17 @@ package org.apache.royale.mdl
             if (_accent != value)
             {
                 _accent = value;
-                _accentClassName = value ? "mdl-button--accent " : "";
 
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-button--accent";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _primary:Boolean = false;
-        private var _primaryClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-button--primary" effect selector.
@@ -238,17 +246,17 @@ package org.apache.royale.mdl
             if (_primary != value)
             {
                 _primary = value;
-                _primaryClassName = value ? "mdl-button--primary " : "";
 
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-button--primary";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _minifab:Boolean = false;
-        private var _miniFabClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-button--mini-fab" effect selector.
@@ -270,17 +278,17 @@ package org.apache.royale.mdl
             if (_minifab != value)
             {
                 _minifab = value;
-                _miniFabClassName = value ? "mdl-button--mini-fab " : "";
 
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-button--mini-fab";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _icon:Boolean = false;
-        private var _iconClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-button--icon" effect selector.
@@ -302,17 +310,17 @@ package org.apache.royale.mdl
             if (_icon != value)
             {
                 _icon = value;
-                _iconClassName = value ? "mdl-button--icon " : "";
 
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-button--icon";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
         protected var _ripple:Boolean = false;
-        private var _rippleClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
@@ -332,10 +340,11 @@ package org.apache.royale.mdl
             if (_ripple != value)
             {
                 _ripple = value;
-                _rippleClassName = value ? "mdl-js-ripple-effect " : "";
 
                 COMPILE::JS
                 {
+                    var classVal:String = "mdl-js-ripple-effect";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -344,9 +353,7 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function computeFinalClassNames():String
         {
-            return _rippleClassName + _iconClassName + _miniFabClassName
-                    + _primaryClassName + _accentClassName + _coloredClassName +
-                    _raisedClassName + _fabClassName + super.computeFinalClassNames();
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

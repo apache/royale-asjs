@@ -23,6 +23,7 @@ package org.apache.royale.mdl
 	COMPILE::JS
     {
         import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 	/**
 	 *  The Card class is a self-contained pieces of paper with data.
@@ -50,10 +51,17 @@ package org.apache.royale.mdl
 			super();
 
             typeNames = "mdl-card";
+
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
 		}
 
+        COMPILE::JS
+        private var _classList:CSSClassList;
+
 		protected var _shadow:Number = 0;
-		private var _shadowClassName:String = "";
 
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
@@ -83,7 +91,8 @@ package org.apache.royale.mdl
                 {
                     if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
                     {
-                        _shadowClassName = "mdl-shadow--" + value + "dp";
+						var classVal:String = "mdl-shadow--" + value + "dp";
+						value ? _classList.add(classVal) : _classList.remove(classVal);
                         _shadow = value;
 
                         setClassName(computeFinalClassNames());
@@ -95,7 +104,7 @@ package org.apache.royale.mdl
 		COMPILE::JS
 		override protected function computeFinalClassNames():String
 		{
-			return _shadowClassName + " " + super.computeFinalClassNames();
+			return _classList.compute() + super.computeFinalClassNames();
 		}
 	}
 }
