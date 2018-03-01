@@ -53,6 +53,8 @@ package org.apache.royale.mdl
 		}
 
 		protected var _shadow:Number = 0;
+		private var _shadowClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
 		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
@@ -72,19 +74,28 @@ package org.apache.royale.mdl
         {
             return _shadow;
         }
+
         public function set shadow(value:Number):void
         {
 			if (_shadow != value)
             {
                 COMPILE::JS
                 {
-                    className = addOrReplaceClassName(className, "mdl-shadow--" + value + "dp", "mdl-shadow--" + _shadow + "dp");
                     if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
                     {
+                        _shadowClassName = "mdl-shadow--" + value + "dp";
                         _shadow = value;
+
+                        setClassName(computeFinalClassNames());
                     }
                 }
             }
         }
+
+		COMPILE::JS
+		override protected function computeFinalClassNames():String
+		{
+			return _shadowClassName + " " + super.computeFinalClassNames();
+		}
 	}
 }

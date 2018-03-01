@@ -92,6 +92,8 @@ package org.apache.royale.mdl
         }
 
         private var _fab:Boolean = false;
+        private var _fabClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--fab" effect selector.
          *  Applies fab (circular) display effect. Mutually exclusive with raised, mini-fab, and icon.
@@ -110,15 +112,18 @@ package org.apache.royale.mdl
             if (_fab != value)
             {
                 _fab = value;
+                _fabClassName = value ? "mdl-button--fab " : "";
 
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-button--fab", value);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _raised:Boolean = false;
+        private var _raisedClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--raised" effect selector.
          *  Applies raised display effect. Mutually exclusive with fab, mini-fab, and icon.
@@ -132,42 +137,24 @@ package org.apache.royale.mdl
         {
             return _raised;
         }
+
         public function set raised(value:Boolean):void
         {
             if (_raised != value)
             {
                 _raised = value;
+                _raisedClassName = value ? "mdl-button--raised " : "";
+
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-button--raised", value);
+                    setClassName(computeFinalClassNames());
                 }
-            }
-        }
-        COMPILE::JS
-        private function adjustTypeNames(type:String,add:Boolean):void
-        {
-            type = " " + type;
-            var typeLength:int = type.length;
-            var typeIdx:int = typeNames.indexOf(type);
-            var adjust:Boolean = false;
-            if(add && typeIdx == -1)
-            {
-                typeNames += type;
-                adjust = true;
-            }
-            else if(!add && typeIdx != -1)
-            {
-                typeNames = typeNames.substr(typeIdx,typeLength);
-                adjust = true;
-            }
-            if(adjust)
-            {
-                var cl:String = className;
-                setClassName((cl ? cl + " " : "") + typeNames);                
             }
         }
 
         private var _colored:Boolean = false;
+        private var _coloredClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--colored" effect selector.
          *  Applies colored display effect (primary or accent color, depending on the type of button).
@@ -187,15 +174,18 @@ package org.apache.royale.mdl
             if (_colored != value)
             {
                 _colored = value;
+                _coloredClassName = value ? "mdl-button--colored " : "";
 
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-button--colored", value);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _accent:Boolean = false;
+        private var _accentClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--accent" effect selector.
 		 *  Applies accent color display effect.
@@ -210,20 +200,24 @@ package org.apache.royale.mdl
         {
             return _accent;
         }
+
         public function set accent(value:Boolean):void
         {
             if (_accent != value)
             {
                 _accent = value;
+                _accentClassName = value ? "mdl-button--accent " : "";
 
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-button--accent", value);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _primary:Boolean = false;
+        private var _primaryClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--primary" effect selector.
 		 *  Applies primary color display effect.
@@ -238,20 +232,24 @@ package org.apache.royale.mdl
         {
             return _primary;
         }
+
         public function set primary(value:Boolean):void
         {
             if (_primary != value)
             {
                 _primary = value;
+                _primaryClassName = value ? "mdl-button--primary " : "";
 
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-button--primary", value);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _minifab:Boolean = false;
+        private var _miniFabClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--mini-fab" effect selector.
 		 *  Applies mini-fab (small fab circular) display effect.
@@ -266,20 +264,24 @@ package org.apache.royale.mdl
         {
             return _minifab;
         }
+
         public function set minifab(value:Boolean):void
         {
             if (_minifab != value)
             {
                 _minifab = value;
+                _miniFabClassName = value ? "mdl-button--mini-fab " : "";
 
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-button--mini-fab", value);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
 
         private var _icon:Boolean = false;
+        private var _iconClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--icon" effect selector.
 		 *  Applies icon (small plain circular) display effect.
@@ -294,20 +296,24 @@ package org.apache.royale.mdl
         {
             return _icon;
         }
+
         public function set icon(value:Boolean):void
         {
             if (_icon != value)
             {
                 _icon = value;
+                _iconClassName = value ? "mdl-button--icon " : "";
 
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-button--icon", value);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
 
         protected var _ripple:Boolean = false;
+        private var _rippleClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
 		 *  Applies ripple click effect. May be used in combination with any other classes
@@ -326,12 +332,21 @@ package org.apache.royale.mdl
             if (_ripple != value)
             {
                 _ripple = value;
+                _rippleClassName = value ? "mdl-js-ripple-effect " : "";
 
                 COMPILE::JS
                 {
-                    adjustTypeNames("mdl-js-ripple-effect", value);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _rippleClassName + _iconClassName + _miniFabClassName
+                    + _primaryClassName + _accentClassName + _coloredClassName +
+                    _raisedClassName + _fabClassName + super.computeFinalClassNames();
         }
 	}
 }
