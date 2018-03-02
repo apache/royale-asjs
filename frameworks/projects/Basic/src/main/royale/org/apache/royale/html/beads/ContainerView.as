@@ -23,6 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContainerView;
@@ -36,6 +37,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IViewport;
 	import org.apache.royale.core.IViewportModel;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -47,7 +49,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.ContainerContentArea;
 	import org.apache.royale.html.supportClasses.Viewport;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -196,10 +197,11 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
-		protected function getChromeMetrics():Rectangle
+		protected function getChromeMetrics():EdgeData
 		{
-			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+			var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
 			return paddingMetrics;
 		}
 		
@@ -211,6 +213,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		override public function beforeLayout():void
 		{
@@ -219,7 +222,7 @@ package org.apache.royale.html.beads
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 
-            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
+            vm.borderMetrics = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 
             viewport.setPosition(vm.borderMetrics.left, vm.borderMetrics.top);
 

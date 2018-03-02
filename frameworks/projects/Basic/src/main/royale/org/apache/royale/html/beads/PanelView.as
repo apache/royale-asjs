@@ -39,7 +39,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.Panel;
 	import org.apache.royale.html.TitleBar;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.CSSUtils;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy;

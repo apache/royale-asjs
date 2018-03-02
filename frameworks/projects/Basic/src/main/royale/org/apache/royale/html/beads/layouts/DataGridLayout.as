@@ -21,10 +21,13 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
@@ -32,7 +35,6 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.html.supportClasses.IDataGridColumn;
-    import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
@@ -99,6 +101,8 @@ package org.apache.royale.html.beads.layouts
 		
 		/**
 		 * @copy org.apache.royale.core.IBeadLayout#layout
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function layout():Boolean
 		{
@@ -108,7 +112,7 @@ package org.apache.royale.html.beads.layouts
 			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
 			var model:IDataGridModel = uiHost.model as IDataGridModel;
 			
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(_strand);			
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
 			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
 			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			

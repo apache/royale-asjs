@@ -20,6 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContentViewHost;
 	import org.apache.royale.core.IParentIUIBase;
@@ -27,12 +28,13 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IScrollingViewport;
 	import org.apache.royale.core.IViewportModel;
+    import org.apache.royale.core.layout.EdgeData;
+    import org.apache.royale.core.ValuesManager;
     COMPILE::SWF
     {
         import org.apache.royale.core.IViewportScroller;
 		import org.apache.royale.html.beads.ScrollBarView;
 		import org.apache.royale.html.beads.models.ScrollBarModel;
-		import org.apache.royale.utils.CSSContainerUtils;
 		import flash.geom.Rectangle;
 		import org.apache.royale.geom.Rectangle;
     }
@@ -187,6 +189,7 @@ package org.apache.royale.html.supportClasses
 
         /**
          * @copy org.apache.royale.core.IViewport
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
@@ -198,7 +201,7 @@ package org.apache.royale.html.supportClasses
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 			
-			var borderMetrics:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);
 			
 			hostWidth -= borderMetrics.left + borderMetrics.right;
 			hostHeight -= borderMetrics.top + borderMetrics.bottom;
