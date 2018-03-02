@@ -158,7 +158,6 @@ internal class CoreClasses
 	    import org.apache.royale.utils.CSSBorderUtils; CSSBorderUtils;
 	}
 	import org.apache.royale.utils.ColorUtil; ColorUtil;
-    import org.apache.royale.utils.CSSContainerUtils; CSSContainerUtils;
     import org.apache.royale.utils.DisplayUtils; DisplayUtils;
 	COMPILE::SWF
 	{

@@ -22,11 +22,13 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -36,7 +38,6 @@ package org.apache.royale.html.beads
 	COMPILE::SWF {
 		import org.apache.royale.geom.Size;
 		import org.apache.royale.geom.Rectangle;
-		import org.apache.royale.utils.CSSContainerUtils;
 	}
 
 	/**
@@ -230,6 +231,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		protected function calculateContentSize():Size
@@ -247,8 +249,8 @@ package org.apache.royale.html.beads
 				maxHeight = Math.max(maxHeight, childYMax);
 			}
 
-			var padding:org.apache.royale.geom.Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
-			var border:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(this._strand);
+			var padding:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this._strand as IUIBase);
+			var border:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this._strand as IUIBase);
 
 			// return the content size as the max plus right/bottom padding. the x,y position of
 			// each child is already offset by the left/top padding by the layout algorithm.
@@ -262,16 +264,17 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		public function afterLayout():void
 		{
 			var host:UIBase = _strand as UIBase;
 			var contentSize:Size = calculateContentSize();
-			var border:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(this._strand);
+			var border:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this._strand as IUIBase);
 			contentSize.width += border.left + border.right;
 			contentSize.height += border.top + border.bottom;
-			var padding:org.apache.royale.geom.Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
+			var padding:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this._strand as IUIBase);
 			// add padding.left since it wasn't considered in contentSize,
 			// and add border.right so the border can be drawn in that column of pixels
 			contentSize.width += padding.left + border.right; 
@@ -299,6 +302,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		protected function displayBackgroundAndBorder(host:UIBase) : void
@@ -310,34 +314,11 @@ package org.apache.royale.html.beads
 				loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", _strand);
 			}
 			
-			if (setupForBorder(host, "border")) return;
-			if (setupForBorder(host, "border-top")) return;
-			if (setupForBorder(host, "border-bottom")) return;
-			if (setupForBorder(host, "border-left")) return;
-			if (setupForBorder(host, "border-right")) return;
-		}
-		
-		COMPILE::SWF
-		protected function setupForBorder(host:UIBase, borderType:String):Boolean
-		{
-			var result:Boolean = false;
-			
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, borderType);
-			if (borderStyles is Array)
-			{
-				borderStyle = borderStyles[1];
-			}
-			if (borderStyle == null)
-			{
-				borderStyle = ValuesManager.valuesImpl.getValue(host, borderType+"-style") as String;
-			}
-			if (borderStyle != null && borderStyle != "none")
+            var border:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this._strand as IUIBase);
+			if (border.left + border.right + border.top + border.bottom > 0)
 			{
 				loadBeadFromValuesManager(IBorderBead, "iBorderBead", _strand);
 			}
-			
-			return result;
 		}
 	}
 }
