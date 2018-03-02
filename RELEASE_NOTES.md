@@ -5,6 +5,7 @@ Apache Royale 0.9.2
 - Added Menu and MenuBar
 - Added DividedBox
 - Many CSS default values are now in the basic.css theme.
+- Theme support. Now compiler will copy all resources in "assets" folder to target
 - Added JSON2ASVO, a utility that creates AS classes from a JSON result
 - Added JSONReviver, a class that converts JSON to AS classes sort of like AMF
 - Added HScrollViewport
