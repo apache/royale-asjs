@@ -28,7 +28,7 @@ package org.apache.royale.mdl
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.events.Event;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
     /**
@@ -61,12 +61,20 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-checkbox mdl-js-checkbox";
 
             addBead(new UpgradeElement());
             addBead(new UpgradeChildren(["mdl-checkbox__ripple-container"]));
         }
-        
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
+
         COMPILE::JS
         protected var input:HTMLInputElement;
 
@@ -117,6 +125,7 @@ package org.apache.royale.mdl
         {
             return _ripple;
         }
+
         public function set ripple(value:Boolean):void
         {
             if (_ripple != value)
@@ -125,11 +134,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-js-ripple-effect");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
-                    }
+                    var classVal:String = "mdl-js-ripple-effect";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -262,6 +269,12 @@ package org.apache.royale.mdl
                     input.checked = value;
                 dispatchEvent(new Event(Event.CHANGE));
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 

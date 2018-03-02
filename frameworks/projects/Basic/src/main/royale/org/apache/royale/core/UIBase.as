@@ -1058,13 +1058,19 @@ package org.apache.royale.core
                 dispatchEvent(new Event("classNameChanged"));
             }
         }
-        
+
+		COMPILE::JS
+        protected function computeFinalClassNames():String
+		{
+            return (_className ? _className + " " : "") + (typeNames ? typeNames : "");
+		}
+
         COMPILE::JS
         protected function setClassName(value:String):void
         {
             element.className = value;           
         }
-        
+
         /**
          *  @copy org.apache.royale.core.IUIBase#element
          *  
@@ -1352,7 +1358,10 @@ package org.apache.royale.core
             COMPILE::JS
             {
 				if (typeNames)
-					setClassName((_className ? _className + " " : "") + typeNames);
+                {
+                    setClassName(computeFinalClassNames());
+                }
+
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
             }

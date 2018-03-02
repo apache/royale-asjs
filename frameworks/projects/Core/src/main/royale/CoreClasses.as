@@ -119,7 +119,7 @@ internal class CoreClasses
 	}
     import org.apache.royale.core.SimpleStatesImpl; SimpleStatesImpl;
 	
-
+	import org.apache.royale.core.CSSClassList; CSSClassList;
 	import org.apache.royale.core.StyleChangeNotifier; StyleChangeNotifier;
 	import org.apache.royale.events.CustomEvent; CustomEvent;
     import org.apache.royale.events.Event; Event;
