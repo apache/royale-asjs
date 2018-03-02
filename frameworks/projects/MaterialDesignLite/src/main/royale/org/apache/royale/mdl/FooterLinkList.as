@@ -25,7 +25,6 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -85,15 +84,10 @@ package org.apache.royale.mdl
 				if(UIBase(parentSection).parent is Footer)
 				{
 					element.classList.remove(typeNames);
-					if(!Footer(UIBase(parentSection).parent).mini)
-					{
-                        className = addOrReplaceClassName(className, "mdl-mega-footer__link-list");
-
-					}
-					else
+					if (Footer(UIBase(parentSection).parent).mini)
 					{
                         typeNames = "mdl-mini-footer__link-list";
-                        className = addOrReplaceClassName(className, "mdl-mini-footer__link-list");
+                        setClassName(computeFinalClassNames());
 					}
 				}
 			}

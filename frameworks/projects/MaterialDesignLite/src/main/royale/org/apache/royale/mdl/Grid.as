@@ -24,7 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -63,8 +63,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-grid";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
 		protected var _nospacing:Boolean = false;
         /**
@@ -80,6 +88,7 @@ package org.apache.royale.mdl
         {
             return _nospacing;
         }
+
         public function set nospacing(value:Boolean):void
         {
             if (_nospacing != value)
@@ -88,13 +97,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-grid--no-spacing");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-grid--no-spacing");
-                    }
+                    var classVal:String = "mdl-grid--no-spacing";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

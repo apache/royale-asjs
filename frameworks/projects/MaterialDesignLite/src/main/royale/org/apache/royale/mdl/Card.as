@@ -22,7 +22,6 @@ package org.apache.royale.mdl
 
 	COMPILE::JS
     {
-        import org.apache.royale.html.util.addOrReplaceClassName;
         import org.apache.royale.core.CSSClassList;
     }
 	/**
@@ -91,8 +90,12 @@ package org.apache.royale.mdl
                 {
                     if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
                     {
-						var classVal:String = "mdl-shadow--" + value + "dp";
-						value ? _classList.add(classVal) : _classList.remove(classVal);
+                        var classVal:String = "mdl-shadow--" + _shadow + "dp";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-shadow--" + value + "dp";
+						_classList.add(classVal);
+
                         _shadow = value;
 
                         setClassName(computeFinalClassNames());

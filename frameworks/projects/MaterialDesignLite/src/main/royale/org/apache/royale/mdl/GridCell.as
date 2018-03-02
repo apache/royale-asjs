@@ -24,7 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -52,8 +52,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-cell";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
 		protected var _column:Number = 4;
         /**
@@ -78,7 +86,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 13)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--" + value + "-col", "mdl-cell--" + _column + "-col");
+                        var classVal:String = "mdl-cell--" + _column + "-col";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-col";
+                        _classList.add(classVal);
+
                         _column = value;
                     }
                 }
@@ -100,6 +113,7 @@ package org.apache.royale.mdl
         {
             return _columnDesktop;
         }
+
         public function set columnDesktop(value:Number):void
         {
             if (_columnDesktop != value)
@@ -108,7 +122,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 13)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--" + value + "-col-desktop", "mdl-cell--" + _columnDesktop + "-col-desktop");
+                        var classVal:String = "mdl-cell--" + _columnDesktop + "-col-desktop";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-col-desktop";
+                        _classList.add(classVal);
+
                         _columnDesktop = value;
                     }
                 }
@@ -130,6 +149,7 @@ package org.apache.royale.mdl
         {
             return _columnTablet;
         }
+
         public function set columnTablet(value:Number):void
         {
             if (_columnTablet != value)
@@ -138,7 +158,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 13)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--" + value + "-col-tablet", "mdl-cell--" + _columnTablet + "-col-tablet");
+                        var classVal:String = "mdl-cell--" + _columnTablet + "-col-tablet";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-col-tablet";
+                        _classList.add(classVal);
+
                         _columnTablet = value;
                     }
                 }
@@ -160,6 +185,7 @@ package org.apache.royale.mdl
         {
             return _columnPhone;
         }
+
         public function set columnPhone(value:Number):void
         {
             if (_columnPhone != value)
@@ -168,7 +194,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 5)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--" + value + "-col-phone", "mdl-cell--" + _columnPhone + "-col-phone");
+                        var classVal:String = "mdl-cell--" + _columnPhone + "-col-phone";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-col-phone";
+                        _classList.add(classVal);
+
                         _columnPhone = value;
                     }
                 }
@@ -190,6 +221,7 @@ package org.apache.royale.mdl
         {
             return _offset;
         }
+
         public function set offset(value:Number):void
         {
 			if (_offset != value)
@@ -198,7 +230,12 @@ package org.apache.royale.mdl
 				{
 					if (value > 0 || value < 12)
 					{
-						className = addOrReplaceClassName(className, "mdl-cell--" + value + "-offset", "mdl-cell--" + _offset + "-offset");
+                        var classVal:String = "mdl-cell--" + _offset + "-offset";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-offset";
+                        _classList.add(classVal);
+
 						_offset = value;
 					}
 				}
@@ -220,6 +257,7 @@ package org.apache.royale.mdl
         {
             return _offsetDesktop;
         }
+
         public function set offsetDesktop(value:Number):void
         {
             if (_offsetDesktop != value)
@@ -228,7 +266,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 12)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--" + value + "-offset-desktop", "mdl-cell--" + _offsetDesktop + "-offset-desktop");
+                        var classVal:String = "mdl-cell--" + _offsetDesktop + "-offset-desktop";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-offset-desktop";
+                        _classList.add(classVal);
+
                         _offsetDesktop = value;
                     }
                 }
@@ -250,6 +293,7 @@ package org.apache.royale.mdl
         {
             return _offsetTablet;
         }
+
         public function set offsetTablet(value:Number):void
         {
             if (_offsetTablet != value)
@@ -258,7 +302,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 12)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--" + value + "-offset-tablet", "mdl-cell--" + _offsetTablet + "-offset-tablet");
+                        var classVal:String = "mdl-cell--" + _offsetTablet + "-offset-tablet";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-offset-tablet";
+                        _classList.add(classVal);
+
                         _offsetTablet = value;
                     }
                 }
@@ -280,6 +329,7 @@ package org.apache.royale.mdl
         {
             return _offsetPhone;
         }
+
         public function set offsetPhone(value:Number):void
         {
             if (_offsetPhone != value)
@@ -288,7 +338,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 12)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--" + value + "-offset-phone", "mdl-cell--" + _offsetPhone + "-offset-phone");
+                        var classVal:String = "mdl-cell--" + _offsetPhone + "-offset-phone";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--" + value + "-offset-phone";
+                        _classList.add(classVal);
+
                         _offsetPhone = value;
                     }
                 }
@@ -318,7 +373,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 13)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--order-" + value, "mdl-cell--order-" + _order);
+                        var classVal:String = "mdl-cell--order-" + _order;
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--order-" + value;
+                        _classList.add(classVal);
+
                         _order = value;
                     }
                 }
@@ -340,6 +400,7 @@ package org.apache.royale.mdl
         {
             return _orderDesktop;
         }
+
         public function set orderDesktop(value:Number):void
         {
             if (_orderDesktop != value)
@@ -348,7 +409,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 13)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--order-" + value + "-desktop", "mdl-cell--order-" + _orderDesktop + "-desktop");
+                        var classVal:String = "mdl-cell--order-" + _orderDesktop + "-desktop";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--order-" + value + "-desktop";
+                        _classList.add(classVal);
+
                         _orderDesktop = value;
                     }
                 }
@@ -378,7 +444,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 13)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--order-" + value + "-tablet", "mdl-cell--order-" + _orderTablet + "-tablet");
+                        var classVal:String = "mdl-cell--order-" + _orderTablet + "-tablet";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--order-" + value + "-tablet";
+                        _classList.add(classVal);
+
                         _orderTablet = value;
                     }
                 }
@@ -408,7 +479,12 @@ package org.apache.royale.mdl
                 {
                     if (value > 0 || value < 13)
                     {
-                        className = addOrReplaceClassName(className, "mdl-cell--order-" + value + "-phone", "mdl-cell--order-" + _orderPhone + "-phone");
+                        var classVal:String = "mdl-cell--order-" + _orderPhone + "-phone";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-cell--order-" + value + "-phone";
+                        _classList.add(classVal);
+
                         _orderPhone = value;
                     }
                 }
@@ -429,6 +505,7 @@ package org.apache.royale.mdl
         {
             return _hideDesktop;
         }
+
         public function set hideDesktop(value:Boolean):void
         {
             if (_hideDesktop != value)
@@ -437,11 +514,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-cell--hide-desktop");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-cell--hide-desktop");
-                    }
+                    var classVal:String = "mdl-cell--hide-desktop";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -460,6 +535,7 @@ package org.apache.royale.mdl
         {
             return _hideTablet;
         }
+
         public function set hideTablet(value:Boolean):void
         {
             if (_hideTablet != value)
@@ -468,11 +544,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-cell--hide-tablet");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-cell--hide-tablet");
-                    }
+                    var classVal:String = "mdl-cell--hide-tablet";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -499,11 +573,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-cell--hide-phone");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-cell--hide-phone");
-                    }
+                    var classVal:String = "mdl-cell--hide-phone";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -531,11 +603,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-cell--stretch");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-cell--stretch");
-                    }
+                    var classVal:String = "mdl-cell--stretch";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -562,11 +632,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-cell--top");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-cell--top");
-                    }
+                    var classVal:String = "mdl-cell--top";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -585,6 +653,7 @@ package org.apache.royale.mdl
         {
             return _alignMiddle;
         }
+
         public function set alignMiddle(value:Boolean):void
         {
             if (_alignMiddle != value)
@@ -593,11 +662,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-cell--middle");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-cell--middle");
-                    }
+                    var classVal:String = "mdl-cell--middle";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -625,13 +692,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-cell--bottom");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-cell--bottom");
-                    }
+                    var classVal:String = "mdl-cell--bottom";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }
