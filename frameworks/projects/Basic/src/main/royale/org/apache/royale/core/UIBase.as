@@ -1062,7 +1062,7 @@ package org.apache.royale.core
 		COMPILE::JS
         protected function computeFinalClassNames():String
 		{
-            return (_className ? _className + " " : "") + StringUtil.trim(typeNames ? typeNames : "");
+            return _className ? _className + " " : "" + typeNames ? typeNames : "";
 		}
 
         COMPILE::JS
