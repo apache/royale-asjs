@@ -15,6 +15,8 @@ Apache Royale 0.9.2
   - https://github.com/apache/royale-asjs/issues/121
   - https://github.com/apache/royale-asjs/issues/122
   - https://github.com/apache/royale-asjs/issues/123
+- Fixed Maven distribution so you can use in IDEs like VSCode, Moonshine and more.
+  - https://github.com/apache/royale-asjs/issues/125
 
 Updates to the RELEASE_NOTES discovered after this file was packaged into the release artifacts can be found here:
 
