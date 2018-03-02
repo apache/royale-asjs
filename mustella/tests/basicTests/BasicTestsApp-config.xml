@@ -24,8 +24,9 @@
     <includes>
     <!--
     -->
-        <symbol>halo.scripts.ButtonTestScript</symbol>
-        <symbol>halo.scripts.CheckBoxTestScript</symbol>
+    	<symbol>mxroyale.scripts.ButtonTestScript</symbol>
+        <!--<symbol>halo.scripts.ButtonTestScript</symbol>
+        <symbol>halo.scripts.CheckBoxTestScript</symbol>-->
     <!-- temporarily
         <symbol>halo.scripts.RadioButtonTestScript</symbol>
         <symbol>halo.scripts.TextInputTestScript</symbol>

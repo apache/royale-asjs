@@ -25,6 +25,7 @@
     xmlns:graphicsviews="graphics.views.*"
     xmlns:fxgviews="fxg.views.*"
     xmlns:dmvviews="dmv.views.*"
+    xmlns:mxroyale="mxroyale.views.*"
     height="800" width="1000"
     >
 
@@ -33,30 +34,31 @@
 
     <!--  STEP 1: Add a state for your test here -->
     <js:states>
-        <js:State name="basicTest" />
+    	<js:State name="mxroyaleTest" />
+        <!--<js:State name="basicTest" />
         <js:State name="haloButtonTest" />
         <js:State name="haloCheckBoxTest" />
         <js:State name="haloRadioButtonTest" />
         <js:State name="haloTextInputTest" />
         <js:State name="haloTextAreaTest" />
-        <js:State name="haloComboBoxTest" />
+        <js:State name="haloComboBoxTest" /> -->
         <!--<js:State name="haloColorPickerTest" />-->
-        <js:State name="haloNumericStepperTest" />
+        <!--<js:State name="haloNumericStepperTest" />-->
         <!--<js:State name="haloDateFieldTest" />-->
         <!--<js:State name="haloMenuTest" />-->
         <!--<js:State name="haloMenuBarTest" />-->
         <!--<js:State name="haloFocusManagerTest" />-->
-        <js:State name="haloListAndDataGridTest" />
+        <!--<js:State name="haloListAndDataGridTest" />-->
         <!--<js:State name="haloTreeTest" />-->
-        <js:State name="haloImageTest" />
+        <!--<js:State name="haloImageTest" />-->
         <!--<js:State name="haloSWFLoaderTest" />-->
-        <js:State name="haloTextTest" />
+        <!--<js:State name="haloTextTest" />-->
         <!--<js:State name="haloFTETextTest" />-->
         <!--<js:State name="haloProgressBarTest" />-->
-        <js:State name="haloSliderTest" />
+        <!--<js:State name="haloSliderTest" />-->
         <!--<js:State name="haloTabNavigatorTest" />-->
         <!--<js:State name="haloAccordionTest" />-->
-        <js:State name="haloAlertTest" />
+        <!--<js:State name="haloAlertTest" />-->
         <!--<js:State name="haloRPCDataBindingTest" />-->
         <!--<js:State name="haloCollectionTest" />-->
         <!--<js:State name="dmvADGTest" />-->
@@ -106,8 +108,10 @@
     </js:states>
     
     <!--  STEP 2: Add an mxml component with the widgets for your test here -->
-    <haloviews:ButtonTests id="haloButtonTests" includeIn="haloButtonTest" />    
-    <haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" /> 
+    
+    <!-- <haloviews:ButtonTests id="haloButtonTests" includeIn="haloButtonTest" /> -->
+    <mxroyale:ButtonTests id="mxroyaleButtonTests" includeIn="mxroyaleTest" />   
+    <!--<haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" /> -->
 <!-- temporary
     <haloviews:RadioButtonTests id="haloRadioButtonTests" includeIn="haloRadioButtonTest" />    
     <haloviews:TextInputTests id="haloTextInputTests" includeIn="haloTextInputTest" />    
