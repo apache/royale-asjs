@@ -113,14 +113,14 @@ limitations under the License.
             	  currentState = "packages";
             	else
             	{
-            		var c:int = hash.indexOf("/");
+            		var c:int = hash.indexOf(ASDocModel.DELIMITER);
             		if (c != -1)
             		{
             			var pkg:String = hash.substr(0, c);
 						packageList.selectedItem = pkg;
 						packageChangedHandler();
             			var cls:String = hash.substr(c + 1);
-            			c = cls.indexOf("/")
+            			c = cls.indexOf(ASDocModel.DELIMITER)
             			if (c != -1)
             			{
             				findMember = cls.substr(c + 1);

@@ -24,6 +24,8 @@ limitations under the License.
 			    width="100%">
     <fx:Script>
         <![CDATA[
+            import models.ASDocModel;
+            
 			private var _color0:String = "#fff";
 			
 			public function get backgroundColor0():String
@@ -49,7 +51,7 @@ limitations under the License.
 			override public function set data(value:Object):void
 			{
 				super.data = value;
-				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
+				qname.href = "#!" + obj.ownerhref + ASDocModel.DELIMITER + obj.qname;
                 if (obj.platforms.length == 1)
                 {
                     if (obj.platforms[0] == "swf")

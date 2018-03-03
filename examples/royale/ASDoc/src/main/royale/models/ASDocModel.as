@@ -25,6 +25,8 @@ package models
 	
 	public class ASDocModel extends EventDispatcher implements IBeadModel
 	{
+        public static const DELIMITER:String = "$";
+        
 		public function ASDocModel()
 		{
 		}
@@ -233,9 +235,9 @@ package models
                 for (var p:String in packageData)
                 {
                     if (filter == null)
-                        arr.push({ label: p, href: value + "/" + p});
+                        arr.push({ label: p, href: value + DELIMITER + p});
                     else if (filter(packageData[p]))
-                        arr.push({ label: p, href: value + "/" + p});
+                        arr.push({ label: p, href: value + DELIMITER + p});
                 }
                 arr.sort();
                 _classList = arr;
@@ -350,7 +352,7 @@ package models
                     if (c != -1)
                     {
                     	m.return = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
                     m.returnhref = "#!" +href;
                 }
@@ -370,7 +372,7 @@ package models
                     if (c != -1)
                     {
                     	e.type = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
                     e.typehref = "#!" +href;
                 }
@@ -448,7 +450,7 @@ package models
         	{
         		processParams(data as ASDocClassMembers);
         	}
-        	data.ownerhref = currentPackage + "/" + currentClass;
+        	data.ownerhref = currentPackage + DELIMITER + currentClass;
         	arr.push(data);
         }
 
@@ -518,7 +520,7 @@ package models
                     if (c != -1)
                     {
                     	param.type = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
                     param.typehref = "#!" +href;
 				}
@@ -612,7 +614,7 @@ package models
                     if (c != -1)
                     {
                     	e.type = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
                     e.typehref = "#!" +href;
                 }
@@ -718,11 +720,11 @@ package models
                         	c = p.lastIndexOf(".");
                         	if (c != -1)
                         	{
-                        		p = p.substr(0, c) + "/" + p.substr(c + 1);
+                        		p = p.substr(0, c) + DELIMITER + p.substr(c + 1);
                         	}
                         	else
                         	{
-                        		p = "/"+ p;
+                        		p = DELIMITER + p;
                         	}
                         	data.href = p;
                         }
