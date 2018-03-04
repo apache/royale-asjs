@@ -122,8 +122,7 @@ package org.apache.royale.mdl
                 _fab = value;
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-button--fab";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-button--fab",value);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -154,8 +153,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-button--raised";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-button--raised",value);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -185,8 +183,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-button--colored";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-button--colored",value);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -217,8 +214,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-button--accent";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-button--accent",value);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -249,8 +245,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-button--primary";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-button--primary",value);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -281,8 +276,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-button--mini-fab";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-button--mini-fab",value);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -313,8 +307,7 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-button--icon";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-button--icon",value);
                     setClassName(computeFinalClassNames());
                 }
             }
@@ -343,13 +336,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    var classVal:String = "mdl-js-ripple-effect";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    addOrRemove("mdl-js-ripple-effect",value);
                     setClassName(computeFinalClassNames());
                 }
             }
         }
 
+        COMPILE::JS
+        private function addOrRemove(classNameVal:String,add:Boolean):void
+        {
+            add ? _classList.add(classNameVal) : _classList.remove(classNameVal);
+        }
         COMPILE::JS
         override protected function computeFinalClassNames():String
         {
