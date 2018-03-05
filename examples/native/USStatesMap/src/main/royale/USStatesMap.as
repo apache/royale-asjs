@@ -65,6 +65,7 @@ package
 				path.addEventListener("click", handleStateClick, false);
 				map.appendChild(path);
 			}
+
 		}
 		
 		/**
