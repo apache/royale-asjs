@@ -1,0 +1,67 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="800"
+    height="800">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.*;
+			
+			
+			public function createPlayersAC():ArrayCollection
+			{
+				var players:ArrayCollection = new ArrayCollection([
+					{team:"PTeam",jerseyNumber:80, lastName:"Brown",    firstName:"Tom"},
+					{team:"JTeam", jerseyNumber:7,  lastName:"Left", firstName:"Brian"},
+					{team:"PTeam",jerseyNumber:12, lastName:"Brady",    firstName:"Brad"},
+					{team:"PTeam",jerseyNumber:21, lastName:"Gore",      firstName:"Ron"},
+					{team:"RTeam", jerseyNumber:34, lastName:"OName",    firstName:"Don"},
+					{team:"PTeam",jerseyNumber:12, lastName:"VName",	firstName:"AName"},
+					{team:"JTeam", jerseyNumber:7,  lastName:"Boone",     firstName:"BName"},
+				]);
+				return players;
+			}
+			
+			
+			public function createAbc():ArrayList
+			{
+				var col:ArrayList =
+					new ArrayList(['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']);
+				return (col);
+			}
+			public function createNullDupData():ArrayList
+			{
+				var col:ArrayList =
+					new ArrayList([null,'A',null,'A','a','a','a','B','C','D','E','F','G','H','I','J','K',
+						'L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','a','aa','aa',null,null]);
+				return (col);
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<s:HGroup id="hg" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+		<s:List id="dragFrom"/>
+		<s:List id="l2"/>
+	</s:HGroup>
+</s:Group>
+

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:haloviews="halo.views.*"
+    xmlns:sparkviews="spark.views.*"
+    xmlns:graphicsviews="graphics.views.*"
+    xmlns:fxgviews="fxg.views.*"
+    xmlns:dmvviews="dmv.views.*"
+    preloader="BasicTestsPreloader"
+    height="800" width="1000"
+    paddingTop="8" verticalGap="0"
+    >
+
+    <!-- Style sheet used in this application -->
+    <fx:Style source="BasicTests.css"/>
+
+    <!--  STEP 1: Add a state for your test here -->
+    <mx:states>
+        <mx:State name="basicTest" />
+        <mx:State name="haloButtonTest" />
+        <mx:State name="haloCheckBoxTest" />
+        <mx:State name="haloRadioButtonTest" />
+        <mx:State name="haloTextInputTest" />
+        <mx:State name="haloTextAreaTest" />
+        <mx:State name="haloComboBoxTest" />
+        <mx:State name="haloColorPickerTest" />
+        <mx:State name="haloNumericStepperTest" />
+        <mx:State name="haloDateFieldTest" />
+        <mx:State name="haloMenuTest" />
+        <mx:State name="haloMenuBarTest" />
+        <mx:State name="haloFocusManagerTest" />
+        <mx:State name="haloListAndDataGridTest" />
+        <mx:State name="haloTreeTest" />
+        <mx:State name="haloImageTest" />
+        <mx:State name="haloSWFLoaderTest" />
+        <mx:State name="haloTextTest" />
+        <mx:State name="haloFTETextTest" />
+        <mx:State name="haloProgressBarTest" />
+        <mx:State name="haloSliderTest" />
+        <mx:State name="haloTabNavigatorTest" />
+        <mx:State name="haloAccordionTest" />
+        <mx:State name="haloAlertTest" />
+        <mx:State name="haloRPCDataBindingTest" />
+        <mx:State name="haloCollectionTest" />
+        <mx:State name="dmvADGTest" />
+        <mx:State name="dmvODGTest" />
+        <mx:State name="dmvChartsTest" />        
+        <mx:State name="sparkListDragDropTest" />
+        <mx:State name="sparkBorderContainerTest" />
+        <mx:State name="sparkButtonTest" />
+        <mx:State name="sparkCheckBoxTest" />
+        <mx:State name="sparkAnimateConstraintsTest" />
+        <mx:State name="sparkEasingTest" />
+        <mx:State name="sparkRadioButtonTest" />
+        <mx:State name="sparkTextInputTest" />
+        <mx:State name="sparkTextAreaTest" />
+        <mx:State name="sparkComboBoxTest" />
+        <mx:State name="sparkDropDownListTest" />
+        <mx:State name="sparkFormTest" />
+        <mx:State name="sparkLayoutDirectionTest" />
+        <mx:State name="sparkNumericStepperTest" />
+        <mx:State name="sparkSliderTest" />
+        <mx:State name="sparkScrollBarTest" />
+        <mx:State name="sparkDeferredInstantiationTest" />
+        <mx:State name="sparkLayoutTest" />
+        <mx:State name="sparkPanelControlBarTest" />
+        <mx:State name="sparkButtonBarTest" />
+        <mx:State name="sparkTileGroupTest" />
+        <mx:State name="sparkTitleWindowTest" />
+        <mx:State name="sparkVideoPlayerTest" />
+        <mx:State name="mxItemRendererTest" />
+        <mx:State name="graphicsTagsTest" />
+        <mx:State name="fxgCompileTest" />
+        <mx:State name="fxg2CompileTest" />
+        <mx:State name="designLayerTest" />
+        <mx:State name="styleManagerTest" />
+        <mx:State name="fxg2RuntimeTest" />
+        <mx:State name="imageTest" />
+        <mx:State name="sparkDateTimeFormatterTest" />
+        <mx:State name="sparkAdvancedStyleClientTest" />
+        <mx:State name="sparkNumberFormatterTest" />
+        <mx:State name="sparkStringToolsTest" />
+        <mx:State name="sparkCollatorTest" />
+        <mx:State name="sparkCurrencyFormatterTest" />
+        <mx:State name="sparkDataGridTest" />
+		<mx:State name="sparkCurrencyValidatorTest" />
+        <mx:State name="sparkNumberValidatorTest" />
+        <mx:State name="sparkSortTest" /> 
+    </mx:states>
+    
+    <!--  STEP 2: Add an mxml component with the widgets for your test here -->
+    <haloviews:ButtonTests id="haloButtonTests" includeIn="haloButtonTest" />    
+    <haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" />    
+    <haloviews:RadioButtonTests id="haloRadioButtonTests" includeIn="haloRadioButtonTest" />    
+    <haloviews:TextInputTests id="haloTextInputTests" includeIn="haloTextInputTest" />    
+    <haloviews:TextAreaTests id="haloTextAreaTests" includeIn="haloTextAreaTest" />    
+    <haloviews:ComboBoxTests id="haloComboBoxTests" includeIn="haloComboBoxTest" />    
+    <haloviews:ColorPickerTests id="haloColorPickerTests" includeIn="haloColorPickerTest" />    
+    <haloviews:NumericStepperTests id="haloNumericStepperTests" includeIn="haloNumericStepperTest" />    
+    <haloviews:DateFieldTests id="haloDateFieldTests" includeIn="haloDateFieldTest" />    
+    <haloviews:MenuTests id="haloMenuTests" includeIn="haloMenuTest" />    
+    <haloviews:MenuBarTests id="haloMenuBarTests" includeIn="haloMenuBarTest" />    
+    <haloviews:FocusManagerTests id="haloFocusManagerTests" includeIn="haloFocusManagerTest" />    
+    <haloviews:ListAndDataGridTests id="haloListAndDataGridTests" includeIn="haloListAndDataGridTest" />    
+    <haloviews:TreeTests id="haloTreeTests" includeIn="haloTreeTest" />    
+    <haloviews:ImageTests id="haloImageTests" includeIn="haloImageTest" />    
+    <haloviews:SWFLoaderTests id="haloSWFLoaderTests" includeIn="haloSWFLoaderTest" />    
+    <haloviews:TextTests id="haloTextTests" includeIn="haloTextTest" />    
+    <haloviews:FTETextTests id="haloFTETextTests" includeIn="haloFTETextTest" />    
+    <haloviews:ProgressBarTests id="haloProgressBarTests" includeIn="haloProgressBarTest" />    
+    <haloviews:SliderTests id="haloSliderTests" includeIn="haloSliderTest" />    
+    <haloviews:TabNavigatorTests id="haloTabNavigatorTests" includeIn="haloTabNavigatorTest" />    
+    <haloviews:AccordionTests id="haloAccordionTests" includeIn="haloAccordionTest" />    
+    <haloviews:AlertTests id="haloAlertTests" includeIn="haloAlertTest" />    
+    <haloviews:RPCDataBindingTests id="haloRPCDataBindingTests" includeIn="haloRPCDataBindingTest" />    
+    <haloviews:CollectionTests id="haloCollectionTests" includeIn="haloCollectionTest" />
+    <sparkviews:ListDragDropTests id="sparkListDragDropTests" includeIn="sparkListDragDropTest" />
+    <haloviews:MXItemRendererTests id="mxItemRendererTests" includeIn="mxItemRendererTest" /> 
+    <sparkviews:BorderContainerTests id="sparkBorderContainerTests" includeIn="sparkBorderContainerTest" />    
+    <sparkviews:ButtonTests id="sparkButtonTests" includeIn="sparkButtonTest" />    
+    <sparkviews:CheckBoxTests id="sparkCheckBoxTests" includeIn="sparkCheckBoxTest" />    
+    <sparkviews:EasingTests id="sparkEasingTests" includeIn="sparkEasingTest" />    
+    <sparkviews:AnimateConstraintsTests id="sparkAnimateConstraintsTests" includeIn="sparkAnimateConstraintsTest" />    
+    <sparkviews:RadioButtonTests id="sparkRadioButtonTests" includeIn="sparkRadioButtonTest" />    
+    <sparkviews:TextInputTests id="sparkTextInputTests" includeIn="sparkTextInputTest" />    
+    <sparkviews:TextAreaTests id="sparkTextAreaTests" includeIn="sparkTextAreaTest" />    
+    <sparkviews:ComboBoxTests id="sparkComboBoxTests" includeIn="sparkComboBoxTest" />
+    <sparkviews:DropDownListTests id="sparkDropDownListTests" includeIn="sparkDropDownListTest" />    
+    <sparkviews:FormTests id="sparkFormTests" includeIn="sparkFormTest" />
+    <sparkviews:LayoutDirectionTests id="sparkLayoutDirectionTests" includeIn="sparkLayoutDirectionTest" />    
+    <sparkviews:NumericStepperTests id="sparkNumericStepperTests" includeIn="sparkNumericStepperTest" />    
+    <sparkviews:SliderTests id="sparkSliderTests" includeIn="sparkSliderTest" />    
+    <sparkviews:ScrollBarTests id="sparkScrollBarTests" includeIn="sparkScrollBarTest" />    
+    <sparkviews:DeferredInstantiationTests id="sparkDeferredInstantiationTests" includeIn="sparkDeferredInstantiationTest" />    
+    <sparkviews:DesignLayerTests id="designLayerTests" includeIn="designLayerTest" />    
+    <sparkviews:TileGroupTests id="sparkTileGroupTests" includeIn="sparkTileGroupTest" />    
+    <sparkviews:LayoutTests id="sparkLayoutTests" includeIn="sparkLayoutTest" />    
+    <sparkviews:PanelControlBarTests id="sparkPanelControlBarTests" includeIn="sparkPanelControlBarTest" />    
+    <sparkviews:ButtonBarTests id="sparkButtonBarTests" includeIn="sparkButtonBarTest" />    
+    <sparkviews:TitleWindowTests id="sparkTitleWindowTests" includeIn="sparkTitleWindowTest" />
+    <graphicsviews:GraphicsTagsTests id="graphicsTagsTests" includeIn="graphicsTagsTest" />    
+    <fxgviews:FXGCompileTests id="fxgCompileTests" includeIn="fxgCompileTest" />
+    <fxgviews:FXG2CompileTests id="fxg2CompileTests" includeIn="fxg2CompileTest" />    
+    <sparkviews:StyleManagerTests id="styleManagerTests" includeIn="styleManagerTest" />
+    <sparkviews:FXG2RuntimeTests id="fxg2RuntimeTests" includeIn="fxg2RuntimeTest" />
+    <dmvviews:ADGTests id="dmvADGTests" includeIn="dmvADGTest" />
+    <dmvviews:ODGTests id="dmvODGTests" includeIn="dmvODGTest" />
+    <dmvviews:ChartsTests id="dmvChartsTests" includeIn="dmvChartsTest" />
+    <sparkviews:ImageTests id="imageTests" includeIn="imageTest" />
+    <sparkviews:DateTimeFormatterTests id="sparkDateTimeFormatterTests" includeIn="sparkDateTimeFormatterTest" />
+    <sparkviews:AdvancedStyleClientTests id="sparkAdvancedStyleClientTests" includeIn="sparkAdvancedStyleClientTest" />
+    <sparkviews:NumberFormatterTests id="sparkNumberFormatterTests" includeIn="sparkNumberFormatterTest" />
+    <sparkviews:StringToolsTests id="sparkStringToolsTests" includeIn="sparkStringToolsTest" />
+    <sparkviews:CollatorTests id="sparkCollatorTests" includeIn="sparkCollatorTest" />
+    <sparkviews:CurrencyFormatterTests id="sparkCurrencyFormatterTests" includeIn="sparkCurrencyFormatterTest" />
+    <sparkviews:DataGridTests id="sparkDataGridTests" includeIn="sparkDataGridTest" />
+	<sparkviews:CurrencyValidatorTests id="sparkCurrencyValidatorTests" includeIn="sparkCurrencyValidatorTest" />
+    <sparkviews:NumberValidatorTests id="sparkNumberValidatorTests" includeIn="sparkNumberValidatorTest" />
+    <sparkviews:SortTests id="sparkSortTests" includeIn="sparkSortTest" />
+	
+
+    <!--  STEP 3: Add the testscript to BasicTests-config.xml -->
+    
+    <!--  STEP 4 (Optional): Debug your state without running tests.
+          a. Rename BasicTests-config.xml to BasicTests-config.sav
+          b. Uncomment the block of components below.
+          c. Re-run basic tests or compile BasicTests.mxml at the command line and run BasicTests.swf.
+          d. Enter the name of the state you want to debug.
+    -->
+
+    <!--
+    <s:Group >
+        <s:layout>
+            <s:HorizontalLayout paddingTop="10" />
+        </s:layout>
+        <mx:Label text="Enter the new state:" />
+        <mx:TextInput id="newStateInput" text="" enter="{currentState=newStateInput.text}" />
+    </s:Group>    
+    -->    
+</mx:Application>

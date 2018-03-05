@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<flex-config>
+    <compiler>
+	    <debug>true</debug>
+    </compiler>
+    <includes>
+    <!--
+    -->
+        <symbol>halo.scripts.ButtonTestScript</symbol>
+        <symbol>halo.scripts.CheckBoxTestScript</symbol>
+        <symbol>halo.scripts.RadioButtonTestScript</symbol>
+        <symbol>halo.scripts.TextInputTestScript</symbol>
+        <symbol>halo.scripts.TextAreaTestScript</symbol>
+        <symbol>halo.scripts.ComboBoxTestScript</symbol>
+        <symbol>halo.scripts.ColorPickerTestScript</symbol>
+        <symbol>halo.scripts.NumericStepperTestScript</symbol>
+        <symbol>halo.scripts.DateFieldTestScript</symbol>
+        <symbol>halo.scripts.MenuTestScript</symbol>
+        <symbol>halo.scripts.MenuBarTestScript</symbol>
+        <symbol>halo.scripts.FocusManagerTestScript</symbol>
+        <symbol>halo.scripts.ListAndDataGridTestScript</symbol>
+        <symbol>halo.scripts.TreeTestScript</symbol>
+        <symbol>halo.scripts.ImageTestScript</symbol>
+        <symbol>halo.scripts.SWFLoaderTestScript</symbol>
+        <symbol>halo.scripts.TextTestScript</symbol>
+        <symbol>halo.scripts.FTETextTestScript</symbol>
+        <symbol>halo.scripts.ProgressBarTestScript</symbol>
+        <symbol>halo.scripts.SliderTestScript</symbol>
+        <symbol>halo.scripts.AlertTestScript</symbol>
+        <symbol>halo.scripts.TabNavigatorTestScript</symbol>
+        <symbol>halo.scripts.AccordionTestScript</symbol>
+        <symbol>halo.scripts.RPCDataBindingTestScript</symbol>
+        <symbol>halo.scripts.CollectionTestScript</symbol>
+        <symbol>spark.scripts.ListDragDropTestScript</symbol>
+        <symbol>halo.scripts.MXItemRendererTestScript</symbol>
+        <symbol>spark.scripts.BorderContainerTestScript</symbol>
+        <symbol>spark.scripts.ButtonTestScript</symbol>
+        <symbol>spark.scripts.CheckBoxTestScript</symbol>
+        <symbol>spark.scripts.EasingTestScript</symbol>
+        <symbol>spark.scripts.RadioButtonTestScript</symbol>
+        <symbol>spark.scripts.TextInputTestScript</symbol>
+        <symbol>spark.scripts.TextAreaTestScript</symbol>
+        <symbol>spark.scripts.DesignLayerTestScript</symbol>
+        <symbol>spark.scripts.ComboBoxTestScript</symbol>
+        <symbol>spark.scripts.DropDownListTestScript</symbol>
+        <symbol>spark.scripts.FormTestScript</symbol>
+        <symbol>spark.scripts.NumericStepperTestScript</symbol>
+        <symbol>spark.scripts.SliderTestScript</symbol>
+        <symbol>spark.scripts.ScrollBarTestScript</symbol>
+        <symbol>spark.scripts.DeferredInstantiationTestScript</symbol>
+        <symbol>spark.scripts.LayoutDirectionTestScript</symbol>
+        <symbol>spark.scripts.LayoutTestScript</symbol>
+        <symbol>spark.scripts.PanelControlBarTestScript</symbol>
+        <symbol>spark.scripts.ButtonBarTestScript</symbol>
+        <symbol>spark.scripts.TileGroupTestScript</symbol>
+        <symbol>spark.scripts.TitleWindowTestScript</symbol>
+        <symbol>graphics.scripts.GraphicsTagsTestScript</symbol>
+        <symbol>fxg.scripts.FXGCompileTestScript</symbol>
+        <symbol>fxg.scripts.FXG2CompileTestScript</symbol>
+        <symbol>spark.scripts.StyleManagerTestScript</symbol>
+	    <symbol>spark.scripts.FXG2RuntimeTestScript</symbol>
+	    <symbol>dmv.scripts.ADGTestScript</symbol>
+	    <symbol>dmv.scripts.ODGTestScript</symbol>
+	    <symbol>dmv.scripts.ChartsTestScript</symbol>	
+        <symbol>spark.scripts.AnimateConstraintsTestScript</symbol>
+        <symbol>spark.scripts.ImageTestScript</symbol>
+        <symbol>spark.scripts.DateTimeFormatterTestScript</symbol> 
+        <symbol>spark.scripts.AdvancedStyleClientTestScript</symbol>
+        <symbol>spark.scripts.NumberFormatterTestScript</symbol>
+        <symbol>spark.scripts.StringToolsTestScript</symbol>
+        <symbol>spark.scripts.CollatorTestScript</symbol>
+        <symbol>spark.scripts.CurrencyFormatterTestScript</symbol>
+        <symbol>spark.scripts.DataGridTestScript</symbol>
+		<symbol>spark.scripts.CurrencyValidatorTestScript</symbol>
+        <symbol>spark.scripts.NumberValidatorTestScript</symbol>
+	<symbol>spark.scripts.SortTestScript</symbol>
+    <!--
+        From mustella.swc
+    -->
+        <symbol>ExitWhenDone</symbol>
+        <symbol>SetShowRTE</symbol>
+        <symbol>SendFormattedResultsToLog</symbol>
+    </includes>
+</flex-config>

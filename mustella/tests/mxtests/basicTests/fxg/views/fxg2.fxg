@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2.0">
+    <Group x="25" y="25">
+        <Ellipse x="0" height="30" width="30">
+            <fill>
+               <SolidColor color="#CCCCCC" />
+            </fill>
+            <stroke>
+                <SolidColorStroke color="#333333" />
+            </stroke>
+        </Ellipse>
+        <Path x="50" data="M 0 0 L 30 15 L 15 30 z" winding="nonZero">
+            <stroke>
+                <LinearGradientStroke weight="4" caps="square" joints="miter" miterLimit="3">
+                    <GradientEntry color="#0900B2" ratio="0"/>
+                    <GradientEntry color="#FF0000" ratio="0.5"/>
+                    <GradientEntry color="#FFFC00" ratio="1"/>
+                </LinearGradientStroke>
+            </stroke>
+        </Path>
+        <Rect x="100" height="30" width="30">
+            <fill>
+                <RadialGradient focalPointRatio="0.7" rotation="-45.0">
+                    <GradientEntry color="#FFFC00" ratio="0"/>
+                    <GradientEntry color="#FF0000" ratio="0.749999999999"/>
+                    <GradientEntry color="#0900B2" ratio="1"/>
+                </RadialGradient>
+            </fill>
+        </Rect>
+        <Line x="150" xFrom="0" xTo="30" yFrom="0" yTo="30">
+            <stroke>
+               <SolidColorStroke color="#00CC00" weight="8" caps="round" joints="round" />
+            </stroke>
+        </Line>
+    </Group>
+    <Group x="25" y="75">
+        <Rect x="0" height="30" width="30" maskType="clip">
+            <mask>
+                <Group>
+                    <Ellipse height="30" width="30">
+                        <fill>
+                           <SolidColor color="#000000" />
+                        </fill>
+                    </Ellipse>
+                </Group>
+            </mask>
+            <fill>
+                <SolidColor color="#333333" />
+            </fill>
+        </Rect>
+        <Group x="50" maskType="alpha">
+            <mask>
+                <Group>
+                    <Ellipse height="30" width="30">
+                        <fill>
+                            <RadialGradient>
+                                <GradientEntry color="#FF0000" ratio="0" alpha="1"/>
+                                <GradientEntry color="#FF0000" ratio="0.8" alpha="0.3"/>
+                                <GradientEntry color="#FF0000" ratio="1" alpha="0"/>
+                            </RadialGradient>
+                        </fill>
+                    </Ellipse>
+                </Group>
+            </mask>
+            <Path data="M 0 0 L 30 15 L 15 30 z" winding="nonZero">
+                <stroke>
+                    <SolidColorStroke color="#0900B2" weight="4"/>
+                </stroke>
+            </Path>
+        </Group>
+        <Group x="100" maskType="luminosity">
+            <mask>
+                <Group>
+                    <Ellipse height="30" width="30" alpha="0.5">
+                        <fill>
+                            <RadialGradient>
+                                <GradientEntry color="#FF0000" ratio="0" />
+                                <GradientEntry color="#FF0000" ratio="0.8" />
+                                <GradientEntry color="#FF0000" ratio="1" />
+                            </RadialGradient>
+                        </fill>
+                    </Ellipse>
+                </Group>
+            </mask>
+            <Rect height="30" width="30">
+                <fill>
+                    <RadialGradient focalPointRatio="0.7" rotation="-45.0">
+                        <GradientEntry color="#FFFC00" ratio="0"/>
+                        <GradientEntry color="#FF0000" ratio="0.75"/>
+                        <GradientEntry color="#0900B2" ratio="1"/>
+                    </RadialGradient>
+                </fill>
+            </Rect>
+        </Group>
+        <Line x="150" xFrom="0" xTo="30" yFrom="0" yTo="30" maskType="alpha">
+           <mask>
+                <Group>
+                    <Ellipse height="30" width="30">
+                        <fill>
+                            <RadialGradient>
+                                <GradientEntry color="#FF0000" ratio="0" alpha="1"/>
+                                <GradientEntry color="#FF0000" ratio="0.8" alpha="0.3"/>
+                                <GradientEntry color="#FF0000" ratio="1" alpha="0"/>
+                            </RadialGradient>
+                        </fill>
+                    </Ellipse>
+                </Group>
+            </mask>
+            <stroke>
+               <SolidColorStroke color="#00CC00" weight="8" caps="round" joints="round" />
+            </stroke>
+        </Line>
+    </Group>
+    <Group x="25" y="125" blendMode="layer">
+        <Group x="0">
+            <Ellipse height="30" width="30">
+                <fill>
+                   <SolidColor color="#DDCCCC" />
+                </fill>
+            </Ellipse>
+            <Ellipse x="10" height="30" width="30" alpha="0.5" blendMode="difference">
+                <fill>
+                   <SolidColor color="#CCCCDD" />
+                </fill>
+            </Ellipse>
+        </Group>
+        <Group x="50">
+            <Ellipse height="30" width="30">
+                <fill>
+                   <SolidColor color="#0900B2" />
+                </fill>
+            </Ellipse>
+            <Ellipse x="10" height="30" width="30" alpha="0.5" blendMode="invert">
+                <fill>
+                   <SolidColor color="#FFFC00" />
+                </fill>
+            </Ellipse>
+        </Group>
+        <Group x="100">
+            <Ellipse height="30" width="30">
+                <fill>
+                   <SolidColor color="#FFFC00" />
+                </fill>
+            </Ellipse>
+            <Ellipse x="10" height="30" width="30" alpha="0.5" blendMode="darken">
+                <fill>
+                   <SolidColor color="#FF0000" />
+                </fill>
+            </Ellipse>
+        </Group>
+        <Group x="150">
+            <Ellipse height="30" width="30">
+                <fill>
+                   <SolidColor color="#00CC00" />
+                </fill>
+            </Ellipse>
+            <Ellipse x="10" height="30" width="30" alpha="0.5" blendMode="hue">
+                <fill>
+                   <SolidColor color="#000066" />
+                </fill>
+            </Ellipse>
+        </Group>
+    </Group>
+    <RichText x="25" y="175" height="200" width="300" fontFamily="Arial" whiteSpaceCollapse="collapse">
+        <content>
+            <div>
+                <linkNormalFormat>
+                    <TextLayoutFormat color="#0000CC" textDecoration="none"/>
+                </linkNormalFormat>
+                <p><tab /><span fontWeight="bold">FXG 2.0</span> describes
+                an XML-based graphics interchange format for the
+                <a href="http://www.adobe.com/products/flash/">Flash</a>
+                Platform.<br />
+                <span fontSize="12" fontStyle="italic">FXG</span> 
+                contains high-level graphical and text primitives that can
+                be used to create, group, transform and visually modify
+                basic vector and bitmap shapes.</p>
+            </div>
+        </content>
+    </RichText>
+</Graphic>

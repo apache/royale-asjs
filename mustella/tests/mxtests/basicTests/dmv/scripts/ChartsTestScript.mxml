@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+	<!-- this set of lines form a template that must be in each unit test -->
+	<mx:Script>
+	<![CDATA[
+	public static function init(o:DisplayObject):void
+	{
+	}
+	]]>
+	</mx:Script>
+	<mx:Metadata>
+	<![CDATA[
+		[Mixin]
+	]]>
+	</mx:Metadata>
+	<!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+	<![CDATA[
+	]]>
+	</mx:Script>
+
+	<testCases>
+
+
+		<TestCase testID="SetupChartTest">
+			<body>
+				<SetProperty target="" propertyName="currentState" value="dmvChartsTest" 
+                    waitEvent="updateComplete" />
+				<SetProperty target="dmvChartsTests.testColumnChart" propertyName="dataProvider"
+							 valueExpression="value=application.dmvChartsTests.cChartDP()" 
+							 waitEvent="updateComplete" />
+				<SetProperty target="dmvChartsTests.testBarChart" propertyName="dataProvider"
+							 valueExpression="value=application.dmvChartsTests.bChartDP()" 
+							 waitEvent="updateComplete" />
+				<SetProperty target="dmvChartsTests.testPieChart" propertyName="dataProvider"
+							 valueExpression="value=application.dmvChartsTests.pChartDP()" 
+							 waitEvent="updateComplete" />
+
+				<AssertPropertyValue target="dmvChartsTests.testColumnChart.dataProvider" propertyName="length" value="10" />
+				<AssertPropertyValue target="dmvChartsTests.testBarChart.dataProvider" propertyName="length" value="5" />
+				<AssertPropertyValue target="dmvChartsTests.testPieChart.dataProvider" propertyName="length" value="4" />	
+			</body>
+		</TestCase>
+
+		<TestCase testID="TestMinMax">
+			<body>
+				<AssertPropertyValue target="dmvChartsTests.testBarChart.horizontalAxis" propertyName="maximum" value="24" />
+				<AssertPropertyValue target="dmvChartsTests.testColumnChart.verticalAxis" propertyName="maximum" value="28" />
+			</body>
+		</TestCase>
+	
+		<TestCase testID="DragDropChartTest">
+			<body>
+				
+				<DispatchMouseEvent target="dmvChartsTests.testColumnChart" type="mouseOver" localX="95" localY="258" />
+				<DispatchMouseEvent target="dmvChartsTests.testColumnChart" type="mouseDown" localX="95" localY="258" buttonDown="true" />
+ 				<DispatchMouseEvent target="dmvChartsTests.testColumnChart" type="mouseMove" buttonDown="true" localX="98" localY="270"/>
+
+ 				<DispatchMouseEvent target="dmvChartsTests.testPieChart" type="mouseMove" buttonDown="true" localX="192" localY="181"/>
+ 				<DispatchMouseEvent target="dmvChartsTests.testPieChart" type="mouseUp" localX="192" localY="183" 
+									waitEvent="dragDrop" />
+				<AssertPropertyValue target="dmvChartsTests.testColumnChart.dataProvider" propertyName="length" value="10" />
+				<AssertPropertyValue target="dmvChartsTests.testPieChart.dataProvider" propertyName="length" value="5" />
+				<AssertPropertyValue target="dmvChartsTests.testBarChart.dataProvider" propertyName="length" value="5" />
+
+			</body>
+		</TestCase>
+	</testCases>
+</UnitTester>

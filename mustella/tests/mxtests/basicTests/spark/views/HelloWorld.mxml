@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Application
+xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/halo"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="creationCompleteHandler()" >
+
+<fx:Script>
+<![CDATA[
+
+    // import all Spark Components to make sure mx.swc is not
+    // dragged in.
+    import spark.effects.AddAction; AddAction;
+    import spark.effects.Animate; Animate;
+    import spark.effects.AnimateColor; AnimateColor;
+    import spark.effects.AnimateFilter; AnimateFilter;
+    import spark.effects.AnimateTransitionShader; AnimateTransitionShader;
+    import spark.effects.AnimateTransform; AnimateTransform;
+    import spark.effects.AnimateTransform3D; AnimateTransform3D;
+    import spark.effects.animation.Animation; Animation;
+    import spark.layouts.BasicLayout; BasicLayout;
+    import spark.filters.BevelFilter; BevelFilter;
+    import spark.primitives.BitmapImage; BitmapImage;
+    import spark.layouts.supportClasses.Block; Block;
+    import spark.filters.BlurFilter; BlurFilter;
+    import spark.components.BorderContainer; BorderContainer;
+    import spark.effects.easing.Bounce; Bounce;
+    import spark.components.Button; Button;
+    import spark.components.ButtonBar; ButtonBar;
+    import spark.components.ButtonBarButton; ButtonBarButton;
+    import spark.components.supportClasses.ButtonBarHorizontalLayout; ButtonBarHorizontalLayout;
+    import spark.components.supportClasses.ButtonBase; ButtonBase;
+    import spark.effects.CallAction; CallAction;
+    import spark.components.CheckBox; CheckBox;
+    import spark.filters.ColorMatrixFilter; ColorMatrixFilter;
+    import spark.layouts.ColumnAlign; ColumnAlign;
+    import spark.components.ComboBox; ComboBox;
+    import spark.layouts.ConstraintLayout; ConstraintLayout;
+    import spark.core.ContentCache; ContentCache;
+    import spark.filters.ConvolutionFilter; ConvolutionFilter;
+    import spark.effects.CrossFade; CrossFade;
+    import spark.components.DataGroup; DataGroup;
+    import spark.components.DataRenderer; DataRenderer;
+    import spark.filters.DisplacementMapFilter; DisplacementMapFilter;
+    import spark.components.DropDownList; DropDownList;
+    import spark.layouts.supportClasses.DropLocation; DropLocation;
+    import spark.filters.DropShadowFilter; DropShadowFilter;
+    import spark.components.mediaClasses.DynamicStreamingVideoSource; DynamicStreamingVideoSource;
+    import spark.components.mediaClasses.DynamicStreamingVideoItem; DynamicStreamingVideoItem;
+    import spark.effects.easing.Elastic; Elastic;
+    import spark.primitives.Ellipse; Ellipse;
+    import spark.effects.Fade; Fade;
+    import spark.primitives.supportClasses.FilledElement; FilledElement;
+    import spark.filters.GlowFilter; GlowFilter;
+    import spark.filters.GradientBevelFilter; GradientBevelFilter;
+    import spark.filters.GradientFilter; GradientFilter;
+    import spark.filters.GradientGlowFilter; GradientGlowFilter;
+    import spark.primitives.Graphic; Graphic;
+    import spark.primitives.supportClasses.GraphicElement; GraphicElement;
+    import spark.components.Group; Group;
+    import spark.components.supportClasses.GroupBase; GroupBase;
+    import spark.components.HGroup; HGroup;
+    import spark.layouts.HorizontalLayout; HorizontalLayout;
+    import spark.effects.interpolation.HSBInterpolator; HSBInterpolator;
+    import spark.components.HScrollBar; HScrollBar;
+    import spark.components.HSlider; HSlider;
+    import spark.components.Image; Image;
+    import spark.components.supportClasses.ItemRenderer; ItemRenderer;
+    import spark.effects.animation.Keyframe; Keyframe;
+    import spark.components.Label; Label;
+    import spark.layouts.supportClasses.LayoutBase; LayoutBase;
+    import spark.primitives.Line; Line;
+    import spark.effects.easing.Linear; Linear;
+    import spark.components.List; List;
+    import spark.components.supportClasses.ListBase; ListBase;
+    import spark.core.MaskType; MaskType;
+    import spark.effects.animation.MotionPath; MotionPath;
+    import spark.effects.Move; Move;
+    import spark.effects.Move3D; Move3D;
+    import spark.effects.interpolation.MultiValueInterpolator; MultiValueInterpolator;
+    import spark.components.mediaClasses.MuteButton; MuteButton;
+    import spark.components.NavigatorContent; NavigatorContent;
+    import spark.effects.interpolation.NumberInterpolator; NumberInterpolator;
+    import spark.components.NumericStepper; NumericStepper
+    import spark.components.Panel; Panel;
+    import spark.primitives.Path; Path;
+    import spark.components.PopUpAnchor; PopUpAnchor;
+    import spark.components.PopUpPosition; PopUpPosition;
+    import spark.effects.easing.Power; Power;
+    import spark.components.RadioButton; RadioButton;
+    import spark.components.RadioButtonGroup; RadioButtonGroup;
+    import spark.components.supportClasses.Range; Range;
+    import spark.primitives.Rect; Rect;
+    import spark.primitives.RectangularDropShadow; RectangularDropShadow;
+    import spark.effects.RemoveAction; RemoveAction;
+    import spark.effects.Resize; Resize;
+    import spark.effects.interpolation.RGBInterpolator; RGBInterpolator;
+    import spark.components.RichEditableText; RichEditableText;
+    import spark.components.RichText; RichText;
+    import spark.effects.Rotate; Rotate;
+    import spark.effects.Rotate3D; Rotate3D;
+    import spark.layouts.RowAlign; RowAlign;
+    import spark.effects.Scale; Scale;
+    import spark.effects.Scale3D; Scale3D;
+    import spark.components.supportClasses.ScrollBarBase; ScrollBarBase;
+    import spark.components.Scroller; Scroller;
+    import spark.components.supportClasses.ScrollerLayout; ScrollerLayout;
+    import spark.components.mediaClasses.ScrubBar; ScrubBar;
+    import spark.effects.SetAction; SetAction;
+    import spark.filters.ShaderFilter; ShaderFilter;
+    import spark.effects.animation.SimpleMotionPath; SimpleMotionPath;
+    import spark.effects.easing.Sine; Sine;
+    import spark.components.supportClasses.Skin; Skin;
+    import spark.components.supportClasses.SkinnableComponent; SkinnableComponent;
+    import spark.components.SkinnableContainer; SkinnableContainer;
+    import spark.components.supportClasses.SkinnableContainerBase; SkinnableContainerBase;
+    import spark.components.SkinnableDataContainer; SkinnableDataContainer;
+    import spark.components.supportClasses.SkinnableTextBase; SkinnableTextBase;
+    import spark.components.supportClasses.SliderBase; SliderBase;
+    import spark.skins.SparkSkin; SparkSkin;
+    import spark.components.Spinner; Spinner;
+    import spark.core.SpriteVisualElement; SpriteVisualElement;
+    import spark.primitives.supportClasses.StrokedElement; StrokedElement;
+    import spark.components.TabBar; TabBar;
+    import spark.components.TextArea; TextArea;
+    import spark.components.supportClasses.TextBase; TextBase;
+    import spark.components.TextInput; TextInput;
+    import spark.components.TextSelectionHighlighting; TextSelectionHighlighting;
+    import spark.utils.TextUtil; TextUtil;
+    import spark.components.TileGroup; TileGroup;
+    import spark.layouts.TileLayout; TileLayout;
+    import spark.layouts.TileOrientation; TileOrientation;
+    import spark.components.TitleWindow; TitleWindow;
+    import spark.components.ToggleButton; ToggleButton;
+    import spark.components.supportClasses.ToggleButtonBase; ToggleButtonBase;
+    import spark.components.supportClasses.TrackBase; TrackBase;
+    import spark.layouts.VerticalAlign; VerticalAlign;
+    import spark.layouts.VerticalLayout; VerticalLayout;
+    import spark.components.VGroup; VGroup;
+    import spark.components.VideoDisplay; VideoDisplay;
+    import spark.components.VideoPlayer; VideoPlayer;
+    import spark.components.mediaClasses.VolumeBar; VolumeBar;
+    import spark.components.VScrollBar; VScrollBar;
+    import spark.components.VSlider; VSlider;
+    import spark.effects.Wipe; Wipe;
+
+    private function creationCompleteHandler():void
+    {
+        var isAvailable:Boolean = false;
+ 
+        if (ApplicationDomain.currentDomain.hasDefinition("mx.controls::Label"))
+            isAvailable = true;
+
+          //trace("mx.controls::Label is available = " + isAvailable);
+	    systemManager.dispatchEvent(new FocusEvent("valueIsReady", false, false, null, isAvailable));
+    }
+
+]]>
+</fx:Script>
+
+
+    <s:Label text="Hello World"/>
+
+</s:Application> 
