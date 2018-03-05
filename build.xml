@@ -626,7 +626,7 @@ limitations under the License.
     <target name="player-clean">
         <delete dir="${basedir}/in/player" failonerror="false" includeEmptyDirs="true"/>
     </target>
-
+    
     <!--
         Build Examples
     -->
@@ -1504,6 +1504,74 @@ limitations under the License.
                 <pathelement location="${ROYALE_HOME}/mustella/target/classes"/>
             </classpath>
         </java>
+    </target>
+    
+    <!--
+    	MX and Spark emulation tests
+    -->
+    
+    <target name="runmxtests" depends="mxtests-clean,mxtests-mustella" description="Tests MX and Spark emulation code" />
+    
+    <target name="mxtests-clean">
+        <delete file="${basedir}/mustella/tests/mxtests/BasicTests.swf" failonerror="false"/>
+        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
+    </target>
+    
+    <target name="mxtests-mustella" depends="mustella-setup,mxtests" if="env.AIR_HOME" />
+    
+    <target name="mxtests-compile-java" depends="basictests-compile-java" />
+    
+    <target name="mxtests" depends="load-task,mxtests-compile-java" description="run MX tests using mustella"  if="env.AIR_HOME">
+        <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
+        <property name="ROYALE_HOME" value="${basedir}" />
+        <mxmlc fork="true" debug="true"
+               closure-lib="${env.GOOG_HOME}"
+               file="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <library-path dir="${ROYALE_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </library-path>
+            <js-external-library-path dir="${basedir}">
+                <include name="js/libs/js.swc"/>
+            </js-external-library-path>
+            <js-library-path dir="${basedir}" >
+                <include name="frameworks/js/libs"/>
+            </js-library-path>
+            <js-library-path dir="${ROYALE_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </js-library-path>
+            <arg value="-sdk-js-lib=${ROYALE_HOME}/mustella/js" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </mxmlc>
+        <mkdir dir="${basedir}/mustella/tests/mxtests/basicTests/fonts" />
+        <copy todir="${basedir}/mustella/tests/mxtests/basicTests/fonts" failonerror="false">
+            <fileset dir="${ROYALE_HOME}/frameworks/fonts">
+                <include name="**/*.swf" />
+            </fileset>
+        </copy>
+        <!-- compile supporting swfs for basic tests
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/basicLoader.as">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/spark/views/StyleManagerModuleTest.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/spark/views/HelloWorld.mxml"
+                     static-rsls="false"
+                     remove-unused-rsls="true" >
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+         -->
+        <!-- run the component smoke -->
+        <echo message="launching player and swf"/>
+        <exec executable="${flash.player}" dir="${basedir}/mustella/tests/mxtests/basicTests" failonerror="true">
+            <arg value="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf"/>
+        </exec>
+        <!-- halt if there was an error -->
+        <antcall target="mustellaresultsparser"/>
     </target>
 
 	<!--
