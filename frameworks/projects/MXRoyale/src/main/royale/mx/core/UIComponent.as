@@ -19,7 +19,10 @@
 
 package mx.core
 { 
+COMPILE::JS
+{
     import goog.DEBUG;
+}
 /*
 import flash.accessibility.Accessibility;
 import flash.accessibility.AccessibilityProperties;
@@ -37,7 +40,9 @@ import flash.events.Event;
 import flash.events.EventPhase;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
-import flash.events.KeyboardEvent;
+*/
+import org.apache.royale.events.KeyboardEvent;
+/*
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Matrix3D;
@@ -53,7 +58,9 @@ import flash.text.TextLineMetrics;
 import flash.ui.Keyboard;
 import flash.utils.Dictionary;
 import flash.utils.getQualifiedClassName;
-
+*/
+import org.apache.royale.core.UIBase;
+/*
 import mx.automation.IAutomationObject;
 import mx.binding.Binding;
 import mx.binding.BindingManager;
@@ -70,7 +77,9 @@ import mx.effects.IEffectInstance;
 import mx.events.ChildExistenceChangedEvent;
 import mx.events.DynamicEvent;
 import mx.events.EffectEvent;
+*/
 import mx.events.FlexEvent;
+/*
 import mx.events.MoveEvent;
 import mx.events.PropertyChangeEvent;
 import mx.events.ResizeEvent;
@@ -90,12 +99,16 @@ import mx.graphics.shaderClasses.LuminosityShader;
 import mx.graphics.shaderClasses.SaturationShader;
 import mx.graphics.shaderClasses.SoftLightShader;
 import mx.managers.CursorManager;
+*/
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
+/*
 import mx.managers.IFocusManagerComponent;
 import mx.managers.IFocusManagerContainer;
 import mx.managers.ILayoutManagerClient;
+*/
 import mx.managers.ISystemManager;
+/*
 import mx.managers.IToolTipManagerClient;
 import mx.managers.SystemManager;
 import mx.managers.SystemManagerGlobals;
@@ -223,24 +236,7 @@ public class UIComponent extends UIBase
     public function UIComponent()
     {
         super();
-        
-        _width = super.width;
-        _height = super.height;
-        
     }
-
-    //--------------------------------------------------------------------------
-    //
-    //  Variables
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  @private
-     *  List of methods used by callLater().
-     */
-    private var methodQueue:Array /* of MethodQueueElement */ = [];
-
 
     //--------------------------------------------------------------------------
     //
@@ -283,7 +279,6 @@ public class UIComponent extends UIBase
 
         if (value)
         {
-            setVisible(_visible, true);
             dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
         }
     }
@@ -352,11 +347,6 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
 
-    /**
-     *  @private
-     */
-    private var cachedTextFormat:UITextFormat;
-
     //--------------------------------------------------------------------------
     //
     //  Overridden properties
@@ -370,7 +360,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    mx_internal var _owner:DisplayObjectContainer;
+    private var _owner:IUIComponent;
 
     /**
      *  @copy mx.core.IVisualElement#owner
@@ -380,12 +370,12 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get owner():DisplayObjectContainer
+    public function get owner():IUIComponent
     {
         return _owner ? _owner : parent;
     }
 
-    public function set owner(value:DisplayObjectContainer):void
+    public function set owner(value:IUIComponent):void
     {
         _owner = value;
     }
@@ -411,10 +401,19 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+    COMPILE::SWF
     override public function get doubleClickEnabled():Boolean
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
+            trace("doubleClickEnabled not implemented");
+        return false;
+    }
+    COMPILE::JS
+    public function get doubleClickEnabled():Boolean
+    {
+        // TODO
+        if (GOOG::DEBUG)
             trace("doubleClickEnabled not implemented");
         return false;
     }
@@ -423,7 +422,15 @@ public class UIComponent extends UIBase
      *  @private
      *  Propagate to children.
      */
+    COMPILE::SWF
     override public function set doubleClickEnabled(value:Boolean):void
+    {
+        // TODO
+        if (goog.DEBUG)
+            trace("doubleClickEnabled not implemented");
+    }
+    COMPILE::JS
+    public function set doubleClickEnabled(value:Boolean):void
     {
         // TODO
         if (goog.DEBUG)
@@ -1251,7 +1258,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the minWidth property.
      */
-    mx_internal var _explicitMinWidth:Number;
+    private var _explicitMinWidth:Number;
 
     [Bindable("explicitMinWidthChanged")]
     [Inspectable(environment="none")]
@@ -1318,7 +1325,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the minHeight property.
      */
-    mx_internal var _explicitMinHeight:Number;
+    private var _explicitMinHeight:Number;
 
     [Bindable("explictMinHeightChanged")]
     [Inspectable(environment="none")]
@@ -1385,7 +1392,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the maxWidth property.
      */
-    mx_internal var _explicitMaxWidth:Number;
+    private var _explicitMaxWidth:Number;
 
     [Bindable("explicitMaxWidthChanged")]
     [Inspectable(environment="none")]
@@ -1455,7 +1462,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the maxHeight property.
      */
-    mx_internal var _explicitMaxHeight:Number;
+    private var _explicitMaxHeight:Number;
 
     [Bindable("explicitMaxHeightChanged")]
     [Inspectable(environment="none")]
@@ -1786,7 +1793,7 @@ public class UIComponent extends UIBase
      *  actual new currentState value. This avoids unnecessary, and sometimes
      *  incorrect, use of transitions based on this transient state of currentState.
      */
-    mx_internal function get currentStateDeferred():String
+    private function get currentStateDeferred():String
     {
         return (_currentStateDeferred != null) ? _currentStateDeferred : currentState;
     }
@@ -1794,7 +1801,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    mx_internal function set currentStateDeferred(value:String):void
+    private function set currentStateDeferred(value:String):void
     {
         _currentStateDeferred = value;
         if (value != null)
@@ -1838,12 +1845,6 @@ public class UIComponent extends UIBase
     //----------------------------------
     //  transitions
     //----------------------------------
-
-    /**
-     *  @private
-     *  Transition currently playing.
-     */
-    private var _currentTransition:Transition;
 
     private var _transitions:Array /* of Transition */ = [];
 
@@ -1926,13 +1927,6 @@ public class UIComponent extends UIBase
 
         _styleName = value;
 
-        // If inheritingStyles is undefined, then this object is being
-        // initialized and we haven't yet generated the proto chain.
-        // To avoid redundant work, don't bother to create
-        // the proto chain here.
-        if (inheritingStyles == StyleProtoChain.STYLE_UNINITIALIZED)
-            return;
-        
         // TODO
         if (goog.DEBUG)
             trace("styleName not implemented");
@@ -1946,7 +1940,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the toolTip property.
      */
-    mx_internal var _toolTip:String;
+    private var _toolTip:String;
 
     [Bindable("toolTipChanged")]
     [Inspectable(category="General", defaultValue="null")]
@@ -1974,7 +1968,9 @@ public class UIComponent extends UIBase
         var oldValue:String = _toolTip;
         _toolTip = value;
 
-        ToolTipManager.registerToolTip(this, oldValue, value);
+        // TODO
+        if (goog.DEBUG)
+            trace("toolTip not implemented");
 
         dispatchEvent(new Event("toolTipChanged"));
     }
@@ -2024,7 +2020,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function addChild(child:DisplayObject):DisplayObject
+    override public function addChild(child:IUIComponent):IUIComponent
     {
         // TODO
         if (goog.DEBUG)
@@ -2037,8 +2033,8 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function addChildAt(child:DisplayObject,
-                                        index:int):DisplayObject
+    override public function addChildAt(child:IUIComponent,
+                                        index:int):IUIComponent
     {
         // TODO
         if (goog.DEBUG)
@@ -2050,7 +2046,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function removeChild(child:DisplayObject):DisplayObject
+    override public function removeChild(child:IUIComponent):IUIComponent
     {
         // TODO
         if (goog.DEBUG)
@@ -2063,11 +2059,13 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function removeChildAt(index:int):DisplayObject
+    override public function removeChildAt(index:int):IUIComponent
     {
         // TODO
         if (goog.DEBUG)
             trace("removeChildAt not implemented");
+        
+        var child:IUIComponent = getChildAt(index);
         
         return child;
     }
@@ -2076,7 +2074,14 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+    COMPILE::SWF
     override public function startDrag():void
+    {
+        if (goog.DEBUG)
+            trace("startDrag not implemented");
+    }
+    COMPILE::JS
+    public function startDrag():void
     {
         if (goog.DEBUG)
             trace("startDrag not implemented");
@@ -2085,7 +2090,14 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+    COMPILE::SWF
     override public function stopDrag():void
+    {
+        if (goog.DEBUG)
+            trace("stopDrag not implemented");
+    }
+    COMPILE::JS
+    public function stopDrag():void
     {
         if (goog.DEBUG)
             trace("stopDrag not implemented");
@@ -2246,23 +2258,8 @@ public class UIComponent extends UIBase
      */
     public function styleChanged(styleProp:String):void
     {
-        var allStyles:Boolean = !styleProp || styleProp == "styleName";
-        
-        StyleProtoChain.styleChanged(this, styleProp);
-        
-        if (!allStyles)
-        {
-            if (hasEventListener(styleProp + "Changed"))
-                dispatchEvent(new Event(styleProp + "Changed"));
-        }
-        else
-        {
-            if (hasEventListener("allStylesChanged"))
-                dispatchEvent(new Event("allStylesChanged"));
-        }
-        
-        if (allStyles || styleProp == "layoutDirection")
-            layoutDirectionCachedValue = LAYOUT_DIRECTION_CACHE_UNSET;
+        if (goog.DEBUG)
+            trace("styleChanged not implemented");
     }
 
     /**
@@ -2336,6 +2333,8 @@ public class UIComponent extends UIBase
      */
     public function validateProperties():void
     {
+        if (goog.DEBUG)
+            trace("validateProperties not implemented");
     }
 
     /**
@@ -2365,7 +2364,8 @@ public class UIComponent extends UIBase
      */
     protected function commitProperties():void
     {
-
+        if (goog.DEBUG)
+            trace("commitProperties not implemented");
     }
 
     //--------------------------------------------------------------------------
@@ -2384,7 +2384,8 @@ public class UIComponent extends UIBase
      */
     public function validateSize(recursive:Boolean = false):void
     {
-
+        if (goog.DEBUG)
+            trace("validateSize not implemented");
     }
 
     /**
@@ -2626,6 +2627,8 @@ public class UIComponent extends UIBase
     protected function updateDisplayList(unscaledWidth:Number,
                                         unscaledHeight:Number):void
     {
+        if (goog.DEBUG)
+            trace("updateDisplayList not implemented");                    
     }
 
     
@@ -2974,7 +2977,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function owns(child:DisplayObject):Boolean
+    public function owns(child:IUIComponent):Boolean
     {
         if (goog.DEBUG)
             trace("owns not implemented");

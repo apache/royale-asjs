@@ -89,8 +89,10 @@
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />
+            <arg value="-compiler.define+=GOOG::DEBUG,true" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
+            <arg value="-js-compiler-define+=GOOG::DEBUG,goog.DEBUG" />
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
