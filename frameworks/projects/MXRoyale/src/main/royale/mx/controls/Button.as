@@ -70,55 +70,121 @@ use namespace mx_internal;
 //--------------------------------------
 
 /**
- *  Dispatched when the user presses the Button control.
- *  If the <code>autoRepeat</code> property is <code>true</code>,
- *  this event is dispatched repeatedly as long as the button stays down.
- *
- *  @eventType mx.events.FlexEvent.BUTTON_DOWN
+ *  Dispatched when the user clicks on a button.
  *
  *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
  */
-[Event(name="buttonDown", type="mx.events.FlexEvent")]
+[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
 /**
- *  Dispatched when the <code>selected</code> property
- *  changes for a toggle Button control. A toggle Button control means that the
- *  <code>toggle</code> property is set to <code>true</code>.
- *
- *  For the RadioButton controls, this event is dispatched when the <code>selected</code>
- *  property changes.
- *
- *  For the CheckBox controls, this event is dispatched only when the
- *  user interacts with the control by using the mouse.
- *
- *  @eventType flash.events.Event.CHANGE
+ *  Set a different class for rollOver events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
  *
  *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
  */
-[Event(name="change", type="flash.events.Event")]
+[Event(name="rollOver", type="org.apache.royale.events.MouseEvent")]
 
 /**
- *  Dispatched when the <code>data</code> property changes.
- *
- *  <p>When you use a component as an item renderer,
- *  the <code>data</code> property contains the data to display.
- *  You can listen for this event and update the component
- *  when the <code>data</code> property changes.</p>
- *
- *  @eventType mx.events.FlexEvent.DATA_CHANGE
+ *  Set a different class for rollOut events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
  *
  *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
  */
-[Event(name="dataChange", type="mx.events.FlexEvent")]
+[Event(name="rollOut", type="org.apache.royale.events.MouseEvent")]
+
+/**
+ *  Set a different class for mouseDown events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="mouseDown", type="org.apache.royale.events.MouseEvent")]
+
+/**
+ *  Set a different class for mouseUp events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="mouseUp", type="org.apache.royale.events.MouseEvent")]
+
+/**
+ *  Set a different class for mouseMove events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="mouseMove", type="org.apache.royale.events.MouseEvent")]
+
+/**
+ *  Set a different class for mouseOut events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="mouseOut", type="org.apache.royale.events.MouseEvent")]
+
+/**
+ *  Set a different class for mouseOver events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="mouseOver", type="org.apache.royale.events.MouseEvent")]
+/**
+ *  Set a different class for mouseWheel events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="mouseWheel", type="org.apache.royale.events.MouseEvent")]
+
+/**
+ *  Set a different class for doubleClick events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="doubleClick", type="org.apache.royale.events.MouseEvent")]
 
 
 
