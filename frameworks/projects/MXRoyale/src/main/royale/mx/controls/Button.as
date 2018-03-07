@@ -332,9 +332,9 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 public class Button extends UIComponent
-       implements IDataRenderer, IDropInListItemRenderer,
-       IFocusManagerComponent, IListItemRenderer,
-       IFontContextComponent, IButton
+       implements IDataRenderer,
+       IListItemRenderer,
+       IButton
 {
 
     //--------------------------------------------------------------------------
