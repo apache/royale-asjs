@@ -48,6 +48,7 @@ public class FlexGlobals
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
+     *  @royalesuppresspublicvarwarning
      */
 	public static var topLevelApplication:Object;
 }
