@@ -80,6 +80,27 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
 	//
 	//--------------------------------------------------------------------------
 
+    //----------------------------------
+    //  document
+    //----------------------------------
+    
+    /**
+     *  A reference to the document object. 
+     *  A document object is an Object at the top of the hierarchy of a 
+     *  Flex application, MXML component, or AS component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function get document():Object;
+    
+    /**
+     *  @private
+     */
+    function set document(value:Object):void;
+    
 	//--------------------------------------------------------------------------
 	//
 	//  Methods

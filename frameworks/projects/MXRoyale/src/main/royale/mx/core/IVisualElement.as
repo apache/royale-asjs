@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.core
 {
+import org.apache.royale.core.IParent;
+
 /**
  *  The IVisualElement interface defines the minimum properties and methods 
  *  required for a visual element to be laid out and displayed in a Spark container.
@@ -70,7 +72,7 @@ public interface IVisualElement /* extends ILayoutElement, ILayoutDirectionEleme
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    function get parent():IUIBase;
+    function get parent():IParent;
     
     /**
      *  Controls the visibility of this visual element. 

@@ -93,6 +93,8 @@
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-compiler-define+=GOOG::DEBUG,goog.DEBUG" />
+            <arg value="-js-compiler-define+=COMPILE::SWF,false" />
+            <arg value="-js-compiler-define+=COMPILE::JS,true" />
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>

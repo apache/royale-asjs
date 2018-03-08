@@ -41,73 +41,18 @@ import flash.events.EventPhase;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 */
-import org.apache.royale.events.KeyboardEvent;
-/*
-import flash.geom.ColorTransform;
-import flash.geom.Matrix;
-import flash.geom.Matrix3D;
-import flash.geom.PerspectiveProjection;
-import flash.geom.Point;
-import flash.geom.Rectangle;
-import flash.geom.Transform;
-import flash.geom.Vector3D;
-import flash.system.ApplicationDomain;
-import flash.system.Capabilities;
-import flash.text.TextFormatAlign;
-import flash.text.TextLineMetrics;
-import flash.ui.Keyboard;
-import flash.utils.Dictionary;
-import flash.utils.getQualifiedClassName;
-*/
-import org.apache.royale.core.UIBase;
-/*
-import mx.automation.IAutomationObject;
-import mx.binding.Binding;
-import mx.binding.BindingManager;
-import mx.binding.FunctionReturnWatcher;
-import mx.binding.PropertyWatcher;
-import mx.binding.StaticPropertyWatcher;
-import mx.binding.Watcher;
-import mx.binding.XMLWatcher;
-import mx.controls.IFlexContextMenu;
-import mx.core.LayoutDirection;
-import mx.effects.EffectManager;
-import mx.effects.IEffect;
-import mx.effects.IEffectInstance;
-import mx.events.ChildExistenceChangedEvent;
-import mx.events.DynamicEvent;
-import mx.events.EffectEvent;
-*/
 import mx.events.FlexEvent;
-/*
-import mx.events.MoveEvent;
-import mx.events.PropertyChangeEvent;
-import mx.events.ResizeEvent;
-import mx.events.StateChangeEvent;
-import mx.events.ValidationResultEvent;
-import mx.filters.BaseFilter;
-import mx.filters.IBitmapFilter;
-import mx.geom.RoundedRectangle;
-import mx.geom.Transform;
-import mx.geom.TransformOffsets;
-import mx.graphics.shaderClasses.ColorBurnShader;
-import mx.graphics.shaderClasses.ColorDodgeShader;
-import mx.graphics.shaderClasses.ColorShader;
-import mx.graphics.shaderClasses.ExclusionShader;
-import mx.graphics.shaderClasses.HueShader;
-import mx.graphics.shaderClasses.LuminosityShader;
-import mx.graphics.shaderClasses.SaturationShader;
-import mx.graphics.shaderClasses.SoftLightShader;
-import mx.managers.CursorManager;
-*/
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
-/*
-import mx.managers.IFocusManagerComponent;
-import mx.managers.IFocusManagerContainer;
-import mx.managers.ILayoutManagerClient;
-*/
 import mx.managers.ISystemManager;
+
+import org.apache.royale.core.TextLineMetrics;
+import org.apache.royale.core.UIBase;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.KeyboardEvent;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
+
 /*
 import mx.managers.IToolTipManagerClient;
 import mx.managers.SystemManager;
@@ -204,14 +149,46 @@ public class UIComponent extends UIBase
     IInvalidating,
     IUIComponent, IVisualElement
 {
+    //--------------------------------------------------------------------------
+    //
+    //  Class constants
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  The default value for the <code>maxWidth</code> property.
+     *
+     *  @default 10000
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MAX_WIDTH:Number = 10000;
+    // When changing this constant, make sure you change
+    // the constant with the same name in LayoutElementUIComponentUtils
+    
+    /**
+     *  The default value for the <code>maxHeight</code> property.
+     *
+     *  @default 10000
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MAX_HEIGHT:Number = 10000;
+    // When changing this constant, make sure you change
+    // the constant with the same name in LayoutElementUIComponentUtils
 
     //--------------------------------------------------------------------------
     //
     //  Class properties
     //
     //--------------------------------------------------------------------------
-
-
+    
     //--------------------------------------------------------------------------
     //
     //  Class methods
@@ -281,6 +258,37 @@ public class UIComponent extends UIBase
         {
             dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
         }
+    }
+
+    //----------------------------------
+    //  name
+    //----------------------------------
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    private var _name:String;
+    
+    /**
+     *  @copy mx.core.IVisualElement#owner
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     *  @royaleignorecoercion mx.core.IUIComponent
+     */
+    COMPILE::JS
+    public function get name():String
+    {
+        return _name;
+    }
+    
+    COMPILE::JS
+    public function set name(value:String):void
+    {
+        _name = value;
     }
 
     //--------------------------------------------------------------------------
@@ -369,10 +377,11 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     public function get owner():IUIComponent
     {
-        return _owner ? _owner : parent;
+        return _owner ? _owner : parent as IUIComponent;
     }
 
     public function set owner(value:IUIComponent):void
@@ -383,8 +392,6 @@ public class UIComponent extends UIBase
     //----------------------------------
     //  doubleClickEnabled
     //----------------------------------
-
-    [Inspectable(enumeration="true,false", defaultValue="true")]
 
     /**
      *  Specifies whether the UIComponent object receives <code>doubleClick</code> events.
@@ -402,14 +409,8 @@ public class UIComponent extends UIBase
      *  @productversion Flex 3
      */
     COMPILE::SWF
-    override public function get doubleClickEnabled():Boolean
-    {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("doubleClickEnabled not implemented");
-        return false;
-    }
-    COMPILE::JS
+    { override }
+    [Inspectable(enumeration="true,false", defaultValue="true")]    
     public function get doubleClickEnabled():Boolean
     {
         // TODO
@@ -423,17 +424,13 @@ public class UIComponent extends UIBase
      *  Propagate to children.
      */
     COMPILE::SWF
-    override public function set doubleClickEnabled(value:Boolean):void
     {
-        // TODO
-        if (goog.DEBUG)
-            trace("doubleClickEnabled not implemented");
+        override 
     }
-    COMPILE::JS
     public function set doubleClickEnabled(value:Boolean):void
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("doubleClickEnabled not implemented");
     }
 
@@ -459,7 +456,7 @@ public class UIComponent extends UIBase
     public function get enabled():Boolean
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("enabled not implemented");
         return _enabled;
     }
@@ -470,7 +467,7 @@ public class UIComponent extends UIBase
     public function set enabled(value:Boolean):void
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("enabled not implemented");
         _enabled = value;
     }
@@ -479,13 +476,26 @@ public class UIComponent extends UIBase
     //  cacheAsBitmap
     //----------------------------------
 
+    COMPILE::JS
+    public function get cacheAsBitmap():Boolean
+    {
+        // TODO
+        if (GOOG::DEBUG)
+            trace("cacheAsBitmap not implemented");
+        return false;
+    }
+    
     /**
      *  @private
      */
-    override public function set cacheAsBitmap(value:Boolean):void
+    COMPILE::SWF
+    {
+        override
+    }
+    public function set cacheAsBitmap(value:Boolean):void
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("cacheAsBitmap not implemented");
     }
 
@@ -502,18 +512,26 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function get filters():Array
+    COMPILE::SWF
     {
-        return _filters ? _filters : super.filters;
+        override
+    }
+    public function get filters():Array
+    {
+        return _filters;
     }
 
     /**
      *  @private
      */
-    override public function set filters(value:Array):void
+    COMPILE::SWF
+    {
+        override
+    }
+    public function set filters(value:Array):void
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("filters not implemented");
     }
 
@@ -542,10 +560,10 @@ public class UIComponent extends UIBase
     public function get cursorManager():ICursorManager
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("cursorManager not implemented");
 
-
+        return null;
         //return CursorManager.getInstance();
     }
 
@@ -576,7 +594,7 @@ public class UIComponent extends UIBase
     public function get focusManager():IFocusManager
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("focusManager not implemented");
         return null;
     }
@@ -588,7 +606,7 @@ public class UIComponent extends UIBase
     public function set focusManager(value:IFocusManager):void
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("focusManager not implemented");
     }
     
@@ -617,7 +635,7 @@ public class UIComponent extends UIBase
     public function get systemManager():ISystemManager
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("systemManager not implemented");
         return _systemManager;
     }
@@ -628,7 +646,7 @@ public class UIComponent extends UIBase
     public function set systemManager(value:ISystemManager):void
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("systemManager not implemented");
         _systemManager = value;
     }
@@ -639,6 +657,70 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
 
+    //----------------------------------
+    //  document
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the document property.
+     *  This variable is initialized in the init() method.
+     *  A document object (i.e., an Object at the top of the hierarchy
+     *  of a Flex application, MXML component, or AS component) has an
+     *  autogenerated override of initalize() which sets its _document to
+     *  'this', so that its 'document' property is a reference to itself.
+     *  Other UIComponents set their _document to their parent's _document,
+     *  so that their 'document' property refers to the document object
+     *  that they are inside.
+     */
+    private var _document:Object;
+    
+    [Inspectable(environment="none")]
+    
+    /**
+     *  A reference to the document object associated with this UIComponent.
+     *  A document object is an Object at the top of the hierarchy of a
+     *  Flex application, MXML component, or AS component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get document():Object
+    {
+        return _document;
+    }
+    
+    /**
+     *  A reference to the document object associated with this UIComponent.
+     *  A document object is an Object at the top of the hierarchy of a
+     *  Flex application, MXML component, or AS component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function set document(value:Object):void
+    {
+        var n:int = numChildren;
+        for (var i:int = 0; i < n; i++)
+        {
+            var child:IUIComponent = getChildAt(i) as IUIComponent;
+            if (!child)
+                continue;
+            
+            if (child.document == _document ||
+                child.document == FlexGlobals.topLevelApplication)
+            {
+                child.document = value;
+            }
+        }
+        
+        _document = value;
+    }
+    
     //----------------------------------
     //  parentApplication
     //----------------------------------
@@ -936,7 +1018,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get percentWidth():Number
+    override public function get percentWidth():Number
     {
         return _percentWidth;
     }
@@ -944,7 +1026,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    public function set percentWidth(value:Number):void
+    override public function set percentWidth(value:Number):void
     {
         if (_percentWidth == value)
             return;
@@ -992,7 +1074,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get percentHeight():Number
+    override public function get percentHeight():Number
     {
         return _percentHeight;
     }
@@ -1000,7 +1082,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    public function set percentHeight(value:Number):void
+    override public function set percentHeight(value:Number):void
     {
         if (_percentHeight == value)
             return;
@@ -1524,130 +1606,6 @@ public class UIComponent extends UIBase
         dispatchEvent(new Event("explicitMaxHeightChanged"));
     }
 
-    //----------------------------------
-    //  explicitWidth
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the explicitWidth property.
-     */
-    private var _explicitWidth:Number;
-
-    [Bindable("explicitWidthChanged")]
-    [Inspectable(environment="none")]
-
-    /**
-     *  Number that specifies the explicit width of the component,
-     *  in pixels, in the component's coordinates.
-     *
-     *  <p>This value is used by the container in calculating
-     *  the size and position of the component.
-     *  It is not used by the component itself in determining
-     *  its default size.
-     *  Thus this property may not have any effect if parented by
-     *  Container, or containers that don't factor in
-     *  this property.
-     *  Because the value is in component coordinates,
-     *  the true <code>explicitWidth</code> with respect to its parent
-     *  is affected by the <code>scaleX</code> property.</p>
-     *  <p>Setting the <code>width</code> property also sets this property to
-     *  the specified width value.</p>
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get explicitWidth():Number
-    {
-        return _explicitWidth;
-    }
-
-    /**
-     *  @private
-     */
-    public function set explicitWidth(value:Number):void
-    {
-        if (_explicitWidth == value)
-            return;
-
-        // width can be pixel or percent not both
-        if (!isNaN(value))
-            _percentWidth = NaN;
-
-        _explicitWidth = value;
-
-        // We invalidate size because locking in width
-        // may change the measured height in flow-based components.
-        invalidateSize();
-        invalidateParentSizeAndDisplayList();
-
-        dispatchEvent(new Event("explicitWidthChanged"));
-    }
-
-    //----------------------------------
-    //  explicitHeight
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the explicitHeight property.
-     */
-    private var _explicitHeight:Number;
-
-    [Bindable("explicitHeightChanged")]
-    [Inspectable(environment="none")]
-
-    /**
-     *  Number that specifies the explicit height of the component,
-     *  in pixels, in the component's coordinates.
-     *
-     *  <p>This value is used by the container in calculating
-     *  the size and position of the component.
-     *  It is not used by the component itself in determining
-     *  its default size.
-     *  Thus this property may not have any effect if parented by
-     *  Container, or containers that don't factor in
-     *  this property.
-     *  Because the value is in component coordinates,
-     *  the true <code>explicitHeight</code> with respect to its parent
-     *  is affected by the <code>scaleY</code> property.</p>
-     *  <p>Setting the <code>height</code> property also sets this property to
-     *  the specified height value.</p>
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get explicitHeight():Number
-    {
-        return _explicitHeight;
-    }
-
-    /**
-     *  @private
-     */
-    public function set explicitHeight(value:Number):void
-    {
-        if (_explicitHeight == value)
-            return;
-
-        // height can be pixel or percent, not both
-        if (!isNaN(value))
-            _percentHeight = NaN;
-
-        _explicitHeight = value;
-
-        // We invalidate size because locking in height
-        // may change the measured width in flow-based components.
-        invalidateSize();
-        invalidateParentSizeAndDisplayList();
-
-        dispatchEvent(new Event("explicitHeightChanged"));
-    }
-    
 
     //----------------------------------
     //  includeInLayout
@@ -1769,45 +1727,13 @@ public class UIComponent extends UIBase
      */
     public function set currentState(value:String):void
     {
-        // We have a deferred state change currently queued up, let's override
-        // the originally requested state with the newly requested. Otherwise
-        // we'll synchronously assign our new state.
-        if (_currentStateDeferred != null) 
-            _currentStateDeferred = value;
-        else
-            setCurrentState(value, true);
+        // TODO
+        if (GOOG::DEBUG)
+            trace("currentState not implemented");
+        
+        _currentState = value;
     }
 
-    /**
-     *  @private
-     *  Backing variable for currentStateDeferred property
-     */
-    private var _currentStateDeferred:String;
-    
-    /**
-     *  @private
-     *  Version of currentState property that defers setting currentState
-     *  until commitProperties() time. This is used by SetProperty.remove()
-     *  to avoid causing state transitions when currentState is being rolled
-     *  back in a state change operation just to be set immediately after to the
-     *  actual new currentState value. This avoids unnecessary, and sometimes
-     *  incorrect, use of transitions based on this transient state of currentState.
-     */
-    private function get currentStateDeferred():String
-    {
-        return (_currentStateDeferred != null) ? _currentStateDeferred : currentState;
-    }
-
-    /**
-     *  @private
-     */
-    private function set currentStateDeferred(value:String):void
-    {
-        _currentStateDeferred = value;
-        if (value != null)
-            invalidateProperties();
-    }
-    
 
     //----------------------------------
     //  states
@@ -1840,6 +1766,9 @@ public class UIComponent extends UIBase
     public function set states(value:Array):void
     {
         _states = value;
+        // TODO
+        if (GOOG::DEBUG)
+            trace("states not implemented");
     }
 
     //----------------------------------
@@ -1928,7 +1857,7 @@ public class UIComponent extends UIBase
         _styleName = value;
 
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("styleName not implemented");
     }
 
@@ -1969,7 +1898,7 @@ public class UIComponent extends UIBase
         _toolTip = value;
 
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("toolTip not implemented");
 
         dispatchEvent(new Event("toolTipChanged"));
@@ -2020,10 +1949,13 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function addChild(child:IUIComponent):IUIComponent
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    public function addChild(child:IUIComponent):IUIComponent
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("addChild not implemented");
 
 
@@ -2033,11 +1965,16 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function addChildAt(child:IUIComponent,
+    COMPILE::SWF
+    {
+        override 
+    }
+    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("addChildAt not implemented");        
         
         return child;
@@ -2046,10 +1983,15 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function removeChild(child:IUIComponent):IUIComponent
+    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    COMPILE::SWF
+    {
+        override 
+    }
+    public function removeChild(child:IUIComponent):IUIComponent
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("removeChild not implemented");        
         
         return child;
@@ -2059,10 +2001,15 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    override public function removeChildAt(index:int):IUIComponent
+    [SWFOverride(returns="flash.display.DisplayObject")]
+    COMPILE::SWF
+    {
+        override 
+    }    
+    public function removeChildAt(index:int):IUIComponent
     {
         // TODO
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("removeChildAt not implemented");
         
         var child:IUIComponent = getChildAt(index);
@@ -2070,40 +2017,213 @@ public class UIComponent extends UIBase
         return child;
     }
 
+    /**
+     *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
+     */
+    [SWFOverride(returns="flash.display.DisplayObject")]
+    COMPILE::SWF
+    {
+        override 
+    }    
+    public function getChildAt(index:int):IUIComponent
+    {
+        COMPILE::SWF
+        {
+            return super.getChildAt(index) as IUIComponent;
+        }
+        COMPILE::JS
+        {
+            return getElementAt(index) as IUIComponent;
+        }
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    public function get numChildren():int
+    {
+        return numElements;
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    public function setChildIndex(child:IUIComponent, index:int):void
+    {
+        if (GOOG::DEBUG)
+            trace("setChildIndex not implemented");
+    }
+
+    /**
+     *  @private
+     */
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    public function getChildIndex(child:IUIComponent):int
+    {
+        return getElementIndex(child);
+    }
+
+    /**
+     *  @private
+     */
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(returns="flash.display.DisplayObject")]
+    public function getChildByName(name:String):IUIComponent
+    {
+        if (GOOG::DEBUG)
+            trace("getChildByName not implemented");
+        return null;
+    }
+
+    /**
+     *  @private
+     */
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    public function contains(child:IUIComponent):Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("contains not implemented");
+        return true;
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(params="flash.geom.Rectangle",altparams="org.apache.royale.geom.Rectangle")]
+    public function startDrag(lockCenter:Boolean = false, bounds:Rectangle = null):void
+    {
+        if (GOOG::DEBUG)
+            trace("startDrag not implemented");
+    }
 
     /**
      *  @private
      */
     COMPILE::SWF
-    override public function startDrag():void
     {
-        if (goog.DEBUG)
-            trace("startDrag not implemented");
+        override 
     }
-    COMPILE::JS
-    public function startDrag():void
-    {
-        if (goog.DEBUG)
-            trace("startDrag not implemented");
-    }
-
-    /**
-     *  @private
-     */
-    COMPILE::SWF
-    override public function stopDrag():void
-    {
-        if (goog.DEBUG)
-            trace("stopDrag not implemented");
-    }
-    COMPILE::JS
     public function stopDrag():void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("stopDrag not implemented");
     }
     
+    /**
+     *  Initializes the internal structure of this component.
+     *
+     *  <p>Initializing a UIComponent is the fourth step in the creation
+     *  of a visual component instance, and happens automatically
+     *  the first time that the instance is added to a parent.
+     *  Therefore, you do not generally need to call
+     *  <code>initialize()</code>; the Flex framework calls it for you
+     *  from UIComponent's override of the <code>addChild()</code>
+     *  and <code>addChildAt()</code> methods.</p>
+     *
+     *  <p>The first step in the creation of a visual component instance
+     *  is construction, with the <code>new</code> operator:</p>
+     *
+     *  <pre>
+     *  var okButton:Button = new Button();</pre>
+     *
+     *  <p>After construction, the new Button instance is a solitary
+     *  DisplayObject; it does not yet have a UITextField as a child
+     *  to display its label, and it doesn't have a parent.</p>
+     *
+     *  <p>The second step is configuring the newly-constructed instance
+     *  with the appropriate properties, styles, and event handlers:</p>
+     *
+     *  <pre>
+     *  okButton.label = "OK";
+     *  okButton.setStyle("cornerRadius", 0);
+     *  okButton.addEventListener(MouseEvent.CLICK, clickHandler);</pre>
+     *
+     *  <p>The third step is adding the instance to a parent:</p>
+     *
+     *  <pre>
+     *  someContainer.addChild(okButton);</pre>
+     *
+     *  <p>A side effect of calling <code>addChild()</code>
+     *  or <code>addChildAt()</code>, when adding a component to a parent
+     *  for the first time, is that <code>initialize</code> gets
+     *  automatically called.</p>
+     *
+     *  <p>This method first dispatches a <code>preinitialize</code> event,
+     *  giving developers using this component a chance to affect it
+     *  before its internal structure has been created.
+     *  Next it calls the <code>createChildren()</code> method
+     *  to create the component's internal structure; for a Button,
+     *  this method creates and adds the UITextField for the label.
+     *  Then it dispatches an <code>initialize</code> event,
+     *  giving developers a chance to affect the component
+     *  after its internal structure has been created.</p>
+     *
+     *  <p>Note that it is the act of attaching a component to a parent
+     *  for the first time that triggers the creation of its internal structure.
+     *  If its internal structure includes other UIComponents, then this is a
+     *  recursive process in which the tree of DisplayObjects grows by one leaf
+     *  node at a time.</p>
+     *
+     *  <p>If you are writing a component, you do not need
+     *  to override this method.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function initialize():void
+    {
+        if (initialized)
+            return;
+        
+        // The "preinitialize" event gets dispatched after everything about this
+        // DisplayObject has been initialized, and it has been attached to
+        // its parent, but before any of its children have been created.
+        // This allows a "preinitialize" event handler to set properties which
+        // affect child creation.
+        // Note that this implies that "preinitialize" handlers are called
+        // top-down; i.e., parents before children.
+        dispatchEvent(new FlexEvent(FlexEvent.PREINITIALIZE));
+            
+        createChildren();
+                
+        // This should always be the last thing that initialize() calls.
+        initializationComplete();
+    }
 
+    /**
+     *  Finalizes the initialization of this component.
+     *
+     *  <p>This method is the last code that executes when you add a component
+     *  to a parent for the first time using <code>addChild()</code>
+     *  or <code>addChildAt()</code>.
+     *  It handles some housekeeping related to dispatching
+     *  the <code>initialize</code> event.
+     *  If you are writing a component, you do not need
+     *  to override this method.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function initializationComplete():void
+    {
+    }
+    
     /**
      *  Create child objects of the component.
      *  This is an advanced method that you might override
@@ -2129,7 +2249,7 @@ public class UIComponent extends UIBase
      */
     protected function createChildren():void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("createChildren not implemented");
     }
     
@@ -2164,6 +2284,8 @@ public class UIComponent extends UIBase
      */
     public function invalidateProperties():void
     {
+        if (GOOG::DEBUG)
+            trace("invalidateProperties not implemented");
     }
 
     /**
@@ -2190,6 +2312,8 @@ public class UIComponent extends UIBase
      */
     public function invalidateSize():void
     {
+        if (GOOG::DEBUG)
+            trace("invalidateSize not implemented");
     }
 
     /**
@@ -2203,6 +2327,8 @@ public class UIComponent extends UIBase
      */
     protected function invalidateParentSizeAndDisplayList():void
     {
+        if (GOOG::DEBUG)
+            trace("invalidateParentSizeAndDisplayList not implemented");
     }
 
     /**
@@ -2229,8 +2355,78 @@ public class UIComponent extends UIBase
      */
     public function invalidateDisplayList():void
     {
+        if (GOOG::DEBUG)
+            trace("invalidateDisplayList not implemented");
     }
 
+    /**
+     *  localToGlobal
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
+    public function localToGlobal(value:Point):Point
+    {
+        if (GOOG::DEBUG)
+            trace("localToGlobal not implemented");
+        return value;
+    }
+    
+    /**
+     *  globalToLocal
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF 
+    { override }
+    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
+    public function globalToLocal(value:Point):Point
+    {
+        if (GOOG::DEBUG)
+            trace("globalToLocal not implemented");
+        return value;
+    }
+    
+    /**
+     *  mouseX
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::JS
+    public function get mouseX():Number
+    {
+        if (GOOG::DEBUG)
+            trace("mouseX not implemented");
+        return 0;
+    }
+    
+    /**
+     *  mouseY
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::JS
+    public function get mouseY():Number
+    {
+        if (GOOG::DEBUG)
+            trace("mouseX not implemented");
+        return 0;
+    }
+    
     /**
      *  Detects changes to style properties. When any style property is set,
      *  Flex calls the <code>styleChanged()</code> method,
@@ -2258,7 +2454,7 @@ public class UIComponent extends UIBase
      */
     public function styleChanged(styleProp:String):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("styleChanged not implemented");
     }
 
@@ -2308,7 +2504,7 @@ public class UIComponent extends UIBase
     public function callLater(method:Function,
                               args:Array /* of Object */ = null):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("callLater not implemented");
 
     }
@@ -2333,7 +2529,7 @@ public class UIComponent extends UIBase
      */
     public function validateProperties():void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("validateProperties not implemented");
     }
 
@@ -2364,7 +2560,7 @@ public class UIComponent extends UIBase
      */
     protected function commitProperties():void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("commitProperties not implemented");
     }
 
@@ -2384,7 +2580,7 @@ public class UIComponent extends UIBase
      */
     public function validateSize(recursive:Boolean = false):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("validateSize not implemented");
     }
 
@@ -2549,8 +2745,9 @@ public class UIComponent extends UIBase
      */
     public function measureText(text:String):TextLineMetrics
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("measureText not implemented");
+        return null;
     }
 
     //--------------------------------------------------------------------------
@@ -2579,7 +2776,7 @@ public class UIComponent extends UIBase
      */
     public function validateDisplayList():void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("validateDisplayList not implemented");                    
     }
 
@@ -2627,7 +2824,7 @@ public class UIComponent extends UIBase
     protected function updateDisplayList(unscaledWidth:Number,
                                         unscaledHeight:Number):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("updateDisplayList not implemented");                    
     }
 
@@ -2654,13 +2851,13 @@ public class UIComponent extends UIBase
      */
     public function get left():Object
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("left not implemented");
         return 0;
     }
     public function set left(value:Object):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("left not implemented");
     }
 
@@ -2686,13 +2883,13 @@ public class UIComponent extends UIBase
      */
     public function get right():Object
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("right not implemented");
         return 0;
     }
     public function set right(value:Object):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("right not implemented");
     }
 
@@ -2718,13 +2915,13 @@ public class UIComponent extends UIBase
      */
     public function get top():Object
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("top not implemented");
         return 0;
     }
     public function set top(value:Object):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("top not implemented");
     }
 
@@ -2750,13 +2947,13 @@ public class UIComponent extends UIBase
      */
     public function get bottom():Object
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("bottom not implemented");
         return 0;
     }
     public function set bottom(value:Object):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("bottom not implemented");
     }
 
@@ -2794,7 +2991,7 @@ public class UIComponent extends UIBase
       */
     public function move(x:Number, y:Number):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("move not implemented");
     }
 
@@ -2820,7 +3017,7 @@ public class UIComponent extends UIBase
      */
     public function setActualSize(w:Number, h:Number):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("setActualSize not implemented");
     }
 
@@ -2840,7 +3037,7 @@ public class UIComponent extends UIBase
      */
     public function setFocus():void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("setFocus not implemented");
     }
 
@@ -2888,7 +3085,7 @@ public class UIComponent extends UIBase
      */
     public function getStyle(styleProp:String):*
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("getStyle not implemented");
         return 0;
 
@@ -2913,7 +3110,7 @@ public class UIComponent extends UIBase
      */
     public function setStyle(styleProp:String, newValue:*):void
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("setStyle not implemented");
     }
 
@@ -2979,7 +3176,7 @@ public class UIComponent extends UIBase
      */
     public function owns(child:IUIComponent):Boolean
     {
-        if (goog.DEBUG)
+        if (GOOG::DEBUG)
             trace("owns not implemented");
         return true;
     }

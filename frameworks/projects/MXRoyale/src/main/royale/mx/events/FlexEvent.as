@@ -21,6 +21,7 @@ package mx.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 
 /**
  *  The FlexEvent class represents the event object passed to
@@ -1465,7 +1466,7 @@ public class FlexEvent extends Event
     /**
      *  @private
      */
-    override public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new FlexEvent(type, bubbles, cancelable);
     }
