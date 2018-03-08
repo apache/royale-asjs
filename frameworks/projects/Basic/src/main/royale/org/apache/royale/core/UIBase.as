@@ -209,7 +209,7 @@ package org.apache.royale.core
         {
         }
         
-		private var _explicitWidth:Number;
+		protected var _explicitWidth:Number;
         
         /**
          *  The explicitly set width (as opposed to measured width
@@ -242,7 +242,7 @@ package org.apache.royale.core
 			dispatchEvent(new Event("explicitWidthChanged"));
 		}
 		
-		private var _explicitHeight:Number;
+		protected var _explicitHeight:Number;
 
         /**
          *  The explicitly set width (as opposed to measured width
