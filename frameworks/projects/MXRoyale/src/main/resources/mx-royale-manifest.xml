@@ -21,6 +21,7 @@
 
 <componentPackage>
 
-	<component id="Application" class="mx.core.Application" />
+    <component id="Application" class="mx.core.Application" />
+	<component id="Label" class="mx.controls.Label" />
 	
 </componentPackage>

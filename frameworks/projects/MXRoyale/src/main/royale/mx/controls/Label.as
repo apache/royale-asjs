@@ -19,7 +19,10 @@
 
 package mx.controls
 {
+COMPILE::JS
+{
 	import goog.DEBUG;
+}
 
 /*
 import flash.display.DisplayObject;
@@ -32,17 +35,27 @@ import flash.text.TextLineMetrics;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
+*/
 import mx.core.IDataRenderer;
+/*
 import mx.core.IFlexModuleFactory;
 import mx.core.IFontContextComponent;
 import mx.core.IUITextField;
+*/
 import mx.core.UIComponent;
+import mx.events.FlexEvent;
+/*
 import mx.core.UITextField;
 import mx.core.mx_internal;
-import mx.events.FlexEvent;
 
 use namespace mx_internal;
 */
+COMPILE::JS
+{
+    import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+}
+import org.apache.royale.core.ITextModel;
 
 //--------------------------------------
 //  Events
@@ -66,30 +79,6 @@ use namespace mx_internal;
 [Event(name="dataChange", type="mx.events.FlexEvent")]
 
 /**
- *  Dispatched when a user clicks a hyperlink in an
- *  HTML-enabled text field, where the URL begins with <code>"event:"</code>.
- *  The remainder of the URL after
- *  <code>"event:"</code> is placed in the text property of the <code>link</code> event object.
- *
- *  <p>When you handle the <code>link</code> event, the hyperlink is not automatically executed;
- *  you need to execute the hyperlink from within your event handler.
- *  You typically use the <code>navigateToURL()</code> method to execute the hyperlink.
- *  This allows you to modify the hyperlink, or even prohibit it from occurring,
- *  in your application. </p>
- *
- *  <p>The Label control must have the <code>selectable</code> property set
- *  to <code>true</code> to generate the <code>link</code> event.</p>
- *
- *  @eventType flash.events.TextEvent.LINK
- *
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Event(name="link", type="flash.events.TextEvent")]
-
-/**
  *  Dispatched when the user clicks on a Label.
  *
  *  @langversion 3.0
@@ -107,8 +96,6 @@ use namespace mx_internal;
 [AccessibilityClass(implementation="mx.accessibility.LabelAccImpl")]
 
 [DefaultBindingProperty(destination="text")]
-
-[Alternative(replacement="spark.components.Label", since="4.0")]
 
 /**
  *  The Label control displays a single line of noneditable text.
@@ -207,8 +194,7 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 public class Label extends UIComponent
-                   implements IDataRenderer, IDropInListItemRenderer,
-                   IListItemRenderer, IFontContextComponent
+                   implements IDataRenderer
 
 {
 
@@ -604,18 +590,6 @@ public class Label extends UIComponent
 			this.dispatchEvent('textChange');
 		}
 	}
-
-    //----------------------------------
-    //  isHTML
-    //----------------------------------
-
-    /**
-     *  @private
-     */
-    private function get isHTML():Boolean
-    {
-        return explicitHTMLText != null;
-    }
 
     //----------------------------------
     //  text
