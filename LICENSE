@@ -242,7 +242,7 @@ https://commons.wikimedia.org/wiki/File:Bayarea_map.png
 
 The map coordinates in examples/native/USStatesMap/src/MapCoords.as
 were placed into the Public Domain by its author.  See:
-https://commons.wikimedia.org/wiki/File:Blank_US_Map_(states_only).svg
+https://commons.wikimedia.org/wiki/File:Blank_US_map_borders.svg
 
 Most of the .as files in frameworks/projects/Network/src/main/royale/ in the
 package org.apache.royale.net.remoting.amf are derived from
