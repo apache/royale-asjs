@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.core.IParent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
@@ -134,6 +135,8 @@ package org.apache.royale.core
 				element.className = 'Application';			
 			}
         }
+        
+        protected var instanceParent:IParent = null;
 
         COMPILE::SWF
         private function initHandler(event:flash.events.Event):void
@@ -178,7 +181,7 @@ package org.apache.royale.core
         protected function initialize():void
         {
 
-            MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
+            MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
 
             dispatchEvent(new org.apache.royale.events.Event("initialize"));
 
@@ -648,7 +651,7 @@ package org.apache.royale.core
 		COMPILE::JS
 		protected function initialize():void
 		{
-			MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
+			MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
 			
 			dispatchEvent('initialize');
 			

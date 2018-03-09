@@ -109,6 +109,8 @@ import org.apache.royale.express.Application;
  */
 [Frame(factoryClass="mx.managers.SystemManager")]
 
+[DefaultProperty("mxmlContent")]
+
 /**
  *  Flex defines a default, or Application, container that lets you start
  *  adding content to your application without explicitly defining
@@ -263,6 +265,7 @@ public class Application extends org.apache.royale.express.Application
 
         super();
 
+        instanceParent = this;
     }
 
     //--------------------------------------------------------------------------
@@ -277,6 +280,7 @@ public class Application extends org.apache.royale.express.Application
     override protected function initialize():void
     {
         initManagers();
+        super.initialize();
     }
     
     /**
@@ -287,6 +291,17 @@ public class Application extends org.apache.royale.express.Application
         // install FocusManager
     }
 
+    /**
+     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
+    public var mxmlContent:Array;
 
 }
 
