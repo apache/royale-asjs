@@ -21,14 +21,10 @@ package mx.controls
 {
 COMPILE::JS
 {
-    import goog.DEBUG;
-	import goog.events;
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
+	import goog.DEBUG;
 }
-import org.apache.royale.core.ITextModel;
-import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
+import org.apache.royale.core.ITextModel;
 /*
 import flash.accessibility.AccessibilityProperties;
 import flash.display.DisplayObject;
@@ -45,7 +41,9 @@ import flash.text.TextFormat;
 import flash.text.TextLineMetrics;
 import flash.ui.Keyboard;
 
+*/
 import mx.controls.listClasses.BaseListData;
+/*
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
 import mx.core.EdgeMetrics;
@@ -57,11 +55,15 @@ import mx.core.IIMESupport;
 import mx.core.IInvalidating;
 import mx.core.IRectangularBorder;
 import mx.core.IUITextField;
+*/
 import mx.core.ITextInput;
 import mx.core.UIComponent;
+/*
 import mx.core.UITextField;
 import mx.core.mx_internal;
+*/
 import mx.events.FlexEvent;
+/*
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerComponent;
 import mx.managers.ISystemManager;
@@ -140,28 +142,14 @@ use namespace mx_internal;
  */
 [Event(name="textInput", type="flash.events.TextEvent")]
 
-//--------------------------------------
-//  Styles
-//--------------------------------------
-
-
 
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
 
-[DataBindingInfo("editEvents", "&quot;focusIn;focusOut&quot;")]
-
 [DefaultBindingProperty(source="text", destination="text")]
 
 [DefaultTriggerEvent("change")]
-
-
-[Alternative(replacement="spark.components.TextInput", since="4.0")]
-
-//--------------------------------------
-//  Excluded APIs
-//--------------------------------------
 
 
 /**
@@ -300,7 +288,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class TextInput extends UIComponent
+public class TextInput extends UIComponent implements ITextInput
 {
     //--------------------------------------------------------------------------
     //
@@ -319,11 +307,7 @@ public class TextInput extends UIComponent
     public function TextInput()
     {
         super();
-
-		COMPILE::SWF
-		{
-			model.addEventListener("textChange", textChangeHandler);
-		}
+        typeNames = "TextInput";
     }
 
     //--------------------------------------------------------------------------
@@ -332,28 +316,57 @@ public class TextInput extends UIComponent
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  @private
+     *  Flag that will block default data/listData behavior.
+     */
+    private var textSet:Boolean;
+
+    /**
+     *  @private
+     */
+    private var selectionChanged:Boolean = false;
+
+    /**
+     *  @private
+     */
+    private var errorCaught:Boolean = false;
+
     //--------------------------------------------------------------------------
     //
     //  Overridden properties
     //
     //--------------------------------------------------------------------------
 
-	/**
-	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-	 */
-	COMPILE::JS
-	override protected function createElement():WrappedHTMLElement
-	{
-		addElementToWrapper(this,'input');
-		element.setAttribute('type', 'text');
-		typeNames = 'TextInput';
 
-		//attach input handler to dispatch royale change event when user write in textinput
-		//goog.events.listen(element, 'change', killChangeHandler);
-		goog.events.listen(element, 'input', textChangeHandler);
-		return element;
-	}
+    //----------------------------------
+    //  enabled
+    //----------------------------------
 
+    /**
+     *  @private
+     */
+    private var enabledChanged:Boolean = false;
+
+    [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
+
+    /**
+     *  @private
+     *  Disable TextField when we're disabled.
+     */
+    override public function set enabled(value:Boolean):void
+    {
+        if (value == enabled)
+            return;
+
+        super.enabled = value;
+        enabledChanged = true;
+
+        invalidateProperties();
+
+//         if (border && border is IInvalidating)
+//             IInvalidating(border).invalidateDisplayList();
+    }
 
     //----------------------------------
     //  tabIndex
@@ -379,22 +392,24 @@ public class TextInput extends UIComponent
      *  @tiptext tabIndex of the component
      *  @helpid 3198
      */
-    override public function get tabIndex():int
-    {
-        return _tabIndex;
-    }
+//     override public function get tabIndex():int
+//     {
+//         return _tabIndex;
+//     }
 
     /**
      *  @private
      */
-    override public function set tabIndex(value:int):void
-    {
-        if (value == _tabIndex)
-            return;
-
-        _tabIndex = value;
-        tabIndexChanged = true;
-    }
+//     override public function set tabIndex(value:int):void
+//     {
+//         if (value == _tabIndex)
+//             return;
+//
+//         _tabIndex = value;
+//         tabIndexChanged = true;
+//
+//         invalidateProperties();
+//     }
 
     //--------------------------------------------------------------------------
     //
@@ -403,13 +418,150 @@ public class TextInput extends UIComponent
     //--------------------------------------------------------------------------
 
 
+    //----------------------------------
+    //  data
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the data property.
+     */
+    private var _data:Object;
 
+    [Bindable("dataChange")]
+    [Inspectable(environment="none")]
+
+    /**
+     *  Lets you pass a value to the component
+     *  when you use it in an item renderer or item editor.
+     *  You typically use data binding to bind a field of the <code>data</code>
+     *  property to a property of this component.
+     *
+     *  <p>When you use the control as a drop-in item renderer or drop-in
+     *  item editor, Flex automatically writes the current value of the item
+     *  to the <code>text</code> property of this control.</p>
+     *
+     *  <p>You do not set this property in MXML.</p>
+     *
+     *  @default null
+     *  @see mx.core.IDataRenderer
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get data():Object
+    {
+        return _data;
+    }
+
+    /**
+     *  @private
+     */
+    public function set data(value:Object):void
+    {
+        var newText:*;
+
+        _data = value;
+
+        if (_listData)
+        {
+            newText = _listData.label;
+        }
+        else if (_data != null)
+        {
+            if (_data is String)
+                newText = String(_data);
+            else
+                newText = _data.toString();
+        }
+
+        if (newText !== undefined && !textSet)
+        {
+            text = newText;
+            textSet = false;
+            // changing text should trigger the TextInput's view bead to change the display.
+            //textField.setSelection(0, 0);
+        }
+
+        dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+    }
+
+    //----------------------------------
+    //  displayAsPassword
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the displayAsPassword property.
+     */
+    private var _displayAsPassword:Boolean = false;
+
+    /**
+     *  @private
+     */
+    private var displayAsPasswordChanged:Boolean = false;
+
+    [Bindable("displayAsPasswordChanged")]
+    [Inspectable(category="General", defaultValue="false")]
+
+    /**
+     *  Indicates whether this control is used for entering passwords.
+     *  If <code>true</code>, the field does not display entered text,
+     *  instead, each text character entered into the control
+     *  appears as the  character "&#42;".
+     *
+     *  @default false
+     *  @tiptext Specifies whether to display '*'
+     *  instead of the actual characters
+     *  @helpid 3197
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get displayAsPassword():Boolean
+    {
+        return _displayAsPassword;
+    }
+
+    /**
+     *  @private
+     */
+    public function set displayAsPassword(value:Boolean):void
+    {
+        if (value == _displayAsPassword)
+            return;
+
+        _displayAsPassword = value;
+        displayAsPasswordChanged = true;
+
+        invalidateProperties();
+        invalidateSize();
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("displayAsPasswordChanged"));
+    }
 
     //----------------------------------
     //  editable
     //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the editable property.
+     */
+    private var _editable:Boolean = true;
+
+    /**
+     *  @private
+     */
+    private var editableChanged:Boolean = false;
+
+    [Bindable("editableChanged")]
+    [Inspectable(category="General", defaultValue="true")]
 
     /**
      *  @inheritDoc
@@ -421,7 +573,7 @@ public class TextInput extends UIComponent
      */
     public function get editable():Boolean
     {
-        return true;
+        return _editable;
     }
 
     /**
@@ -429,114 +581,1054 @@ public class TextInput extends UIComponent
      */
     public function set editable(value:Boolean):void
     {
-        if (goog.DEBUG)
-        	trace("setting editable is not yet implemented")
+        if (value == _editable)
+            return;
+
+        _editable = value;
+        editableChanged = true;
+
+        invalidateProperties();
+
+        dispatchEvent(new Event("editableChanged"));
     }
 
     //----------------------------------
-    //  text and htmlText
+    //  horizontalScrollPosition
     //----------------------------------
 
-	/**
-	 *  @copy org.apache.royale.html.Label#text
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 *  @royaleignorecoercion HTMLInputElement
-	 */
-	[Bindable(event="change")]
-	public function get text():String
-	{
-		COMPILE::SWF
-		{
-			return ITextModel(model).text;
-		}
-		COMPILE::JS
-		{
-			return (element as HTMLInputElement).value;
-		}
-	}
+    /**
+     *  @private
+     *  Used to store the init time value if any.
+     */
+    private var _horizontalScrollPosition:Number = 0;
 
-	/**
-	 *  @private
-	 *  @royaleignorecoercion HTMLInputElement
-	 */
-	public function set text(value:String):void
-	{
-		COMPILE::SWF
-		{
-			inSetter = true;
-			ITextModel(model).text = value;
-			inSetter = false;
-		}
-		COMPILE::JS
-		{
-			(element as HTMLInputElement).value = value;
-			dispatchEvent(new Event('textChange'));
-		}
-	}
+    /**
+     *  @private
+     */
+    private var horizontalScrollPositionChanged:Boolean = false;
 
-	/**
-	 *  @copy org.apache.royale.html.Label#html
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 *  @royaleignorecoercion HTMLInputElement
-	 */
-	[Bindable(event="change")]
-	public function get html():String
-	{
-		COMPILE::SWF
-		{
-			return ITextModel(model).html;
-		}
-		COMPILE::JS
-		{
-			return (element as HTMLInputElement).value;
-		}
-	}
+    [Bindable("horizontalScrollPositionChanged")]
+    [Inspectable(defaultValue="0")]
 
-	/**
-	 *  @private
-	 *  @royaleignorecoercion HTMLInputElement
-	 */
-	public function set html(value:String):void
-	{
-		COMPILE::SWF
-		{
-			ITextModel(model).html = value;
-		}
-		COMPILE::JS
-		{
-			(element as HTMLInputElement).value = value;
-			dispatchEvent(new Event('textChange'));
-		}
-	}
 
-	private var inSetter:Boolean;
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalScrollPosition():Number
+    {
+        return _horizontalScrollPosition;
+    }
 
-	/**
-	 *  dispatch change event in response to a textChange event
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public function textChangeHandler(event:Event):void
-	{
-		if (!inSetter)
-			dispatchEvent(new Event(Event.CHANGE));
-	}
+    /**
+     *  @private
+     */
+    public function set horizontalScrollPosition(value:Number):void
+    {
+        if (value == _horizontalScrollPosition)
+            return;
+
+        _horizontalScrollPosition = value;
+        horizontalScrollPositionChanged = true;
+
+        invalidateProperties();
+
+        dispatchEvent(new Event("horizontalScrollPositionChanged"));
+    }
 
     //----------------------------------
+    //  htmlText
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the htmlText property.
+     *  In addition to being set in the htmlText setter,
+     *  it is automatically updated at two other times.
+     *  1. When the 'text' or 'htmlText' is pushed down into
+     *  the textField in commitProperties(), this causes
+     *  the textField to update its own 'htmlText'.
+     *  Therefore in commitProperties() we reset this storage var
+     *  to be in sync with the textField.
+     *  2. When the TextFormat of the textField changes
+     *  because a CSS style has changed (see validateNow()
+     *  in UITextField), the textField also updates its own 'htmlText'.
+     *  Therefore in textField_textFieldStyleChangeHandler()
+     */
+    private var _htmlText:String = "";
+
+    /**
+     *  @private
+     */
+    private var htmlTextChanged:Boolean = false;
+
+    /**
+     *  @private
+     *  The last value of htmlText that was set.
+     *  We have to keep track of this because when you set the htmlText
+     *  of a TextField and read it back, you don't get what you set.
+     *  In general it will have additional HTML markup corresponding
+     *  to the defaultTextFormat set from the CSS styles.
+     *  If this var is null, it means that 'text' rather than 'htmlText'
+     *  was last set.
+     */
+    private var explicitHTMLText:String = null;
+
+    [Bindable("htmlTextChanged")]
+    [CollapseWhiteSpace]
+    [Inspectable(category="General", defaultValue="")]
+    [NonCommittingChangeEvent("change")]
+
+   /**
+     *  Specifies the text displayed by the TextInput control, including HTML markup that
+     *  expresses the styles of that text.
+     *  When you specify HTML text in this property, you can use the subset of HTML
+     *  tags that is supported by the Flash TextField control.
+     *
+     *  <p> When you set this property, the HTML markup is applied
+     *  after the CSS styles for the TextInput instance are applied.
+     *  When you get this property, the HTML markup includes
+     *  the CSS styles.</p>
+     *
+     *  <p>For example, if you set this to be a string such as,
+     *  <code>"This is an example of &lt;b&gt;bold&lt;/b&gt; markup"</code>,
+     *  the text "This is an example of <b>bold</b> markup" appears
+     *  in the TextInput with whatever CSS styles normally apply.
+     *  Also, the word "bold" appears in boldface font because of the
+     *  <code>&lt;b&gt;</code> markup.</p>
+     *
+     *  <p>HTML markup uses characters such as &lt; and &gt;,
+     *  which have special meaning in XML (and therefore in MXML). So,
+     *  code such as the following does not compile:</p>
+     *
+     *  <pre>
+     *  &lt;mx:TextInput htmlText="This is an example of &lt;b&gt;bold&lt;/b&gt; markup"/&gt;
+     *  </pre>
+     *
+     *  <p>There are three ways around this problem.</p>
+     *
+     *  <ul>
+     *
+     *  <li>
+     *
+     *  <p>Set the <code>htmlText</code> property in an ActionScript method called as
+     *  an <code>initialize</code> handler:</p>
+     *
+     *  <pre>
+     *  &lt;mx:TextInput id="myTextInput" initialize="myTextInput_initialize()"/&gt;
+     *  </pre>
+     *
+     *  <p>where the <code>myTextInput_initialize</code> method is in a script CDATA section:</p>
+     *
+     *  <pre>
+     *  &lt;fx:Script&gt;
+     *  &lt;![CDATA[
+     *  private function myTextInput_initialize():void {
+     *      myTextInput.htmlText = "This is an example of &lt;b&gt;bold&lt;/b&gt; markup";
+     *  }
+     *  ]]&gt;
+     *  &lt;/fx:Script&gt;
+     *
+     *  </pre>
+     *
+     *  <p>This is the simplest approach because the HTML markup
+     *  remains easily readable.
+     *  Notice that you must assign an <code>id</code> to the TextInput
+     *  so you can refer to it in the <code>initialize</code>
+     *  handler.</p>
+     *
+     *  </li>
+     *
+     *  <li>
+     *
+     *  <p>Specify the <code>htmlText</code> property by using a child tag
+     *  with a CDATA section. A CDATA section in XML contains character data
+     *  where characters like &lt; and &gt; aren't given a special meaning.</p>
+     *
+     *  <pre>
+     *  &lt;mx:TextInput&gt;
+     *      &lt;mx:htmlText&gt;&lt;![CDATA[This is an example of &lt;b&gt;bold&lt;/b&gt; markup]]&gt;&lt;/mx:htmlText&gt;
+     *  &lt;mx:TextInput/&gt;
+     *  </pre>
+     *
+     *  <p>You must write the <code>htmlText</code> property as a child tag
+     *  rather than as an attribute on the <code>&lt;mx:TextInput&gt;</code> tag
+     *  because XML doesn't allow CDATA for the value of an attribute.
+     *  Notice that the markup is readable, but the CDATA section makes
+     *  this approach more complicated.</p>
+     *
+     *  </li>
+     *
+     *  <li>
+     *
+     *  <p>Use an <code>hmtlText</code> attribute where any occurences
+     *  of the HTML markup characters &lt; and &gt; in the attribute value
+     *  are written instead as the XML "entities" <code>&amp;lt;</code>
+     *  and <code>&amp;gt;</code>:</p>
+     *
+     *  <pre>
+     *  &lt;mx:TextInput htmlText="This is an example of &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt; markup"/&amp;gt;
+     *  </pre>
+     *
+     *  Adobe does not recommend this approach because the HTML markup becomes
+     *  nearly impossible to read.
+     *
+     *  </li>
+     *
+     *  </ul>
+     *
+     *  <p>If the <code>condenseWhite</code> property is <code>true</code>
+     *  when you set the <code>htmlText</code> property, multiple
+     *  white-space characters are condensed, as in HTML-based browsers;
+     *  for example, three consecutive spaces are displayed
+     *  as a single space.
+     *  The default value for <code>condenseWhite</code> is
+     *  <code>false</code>, so you must set <code>condenseWhite</code>
+     *  to <code>true</code> to collapse the white space.</p>
+     *
+     *  <p>If you read back the <code>htmlText</code> property quickly
+     *  after setting it, you get the same string that you set.
+     *  However, after the LayoutManager runs, the value changes
+     *  to include additional markup that includes the CSS styles.</p>
+     *
+     *  <p>Setting the <code>htmlText</code> property affects the <code>text</code>
+     *  property in several ways.
+     *  If you read the <code>text</code> property quickly after setting
+     *  the <code>htmlText</code> property, you get <code>null</code>,
+     *  which indicates that the <code>text</code> corresponding to the new
+     *  <code>htmlText</code> has not yet been determined.
+     *  However, after the LayoutManager runs, the <code>text</code> property
+     *  value changes to the <code>htmlText</code> string with all the
+     *  HTML markup removed; that is,
+     *  the value is the characters that the TextInput actually displays.</p>
+     *
+     *  <p>Conversely, if you set the <code>text</code> property,
+     *  any previously set <code>htmlText</code> is irrelevant.
+     *  If you read the <code>htmlText</code> property quickly after setting
+     *  the <code>text</code> property, you get <code>null</code>,
+     *  which indicates that the <code>htmlText</code> that corresponds to the new
+     *  <code>text</code> has not yet been determined.
+     *  However, after the LayoutManager runs, the <code>htmlText</code> property
+     *  value changes to the new text plus the HTML markup for the CSS styles.</p>
+     *
+     *  <p>To make the LayoutManager run immediately, you can call the
+     *  <code>validateNow()</code> method on the TextInput.
+     *  For example, you could set some <code>htmlText</code>,
+     *  call the <code>validateNow()</code> method, and immediately
+     *  obtain the corresponding <code>text</code> that doesn't have
+     *  the HTML markup.</p>
+     *
+     *  <p>If you set both <code>text</code> and <code>htmlText</code> properties
+     *  in ActionScript, whichever is set last takes effect.
+     *  Do not set both in MXML, because MXML does not guarantee that
+     *  the properties of an instance get set in any particular order.</p>
+     *
+     *  <p>Setting either <code>text</code> or <code>htmlText</code> property
+     *  inside a loop is a fast operation, because the underlying TextField
+     *  that actually renders the text is not updated until
+     *  the LayoutManager runs.</p>
+     *
+     *  <p>If you try to set this property to <code>null</code>,
+     *  it is set, instead, to the empty string.
+     *  If the property temporarily has the value <code>null</code>,
+     *  it indicates that the <code>text</code> has been recently set
+     *  and the corresponding <code>htmlText</code>
+     *  has not yet been determined.</p>
+     *
+     *  @default ""
+     *
+     *  @see flash.text.TextField#htmlText
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get htmlText():String
+    {
+        return ITextModel(model).html;
+    }
+
+    /**
+     *  @private
+     */
+    public function set htmlText(value:String):void
+    {
+        textSet = true;
+
+        // The htmlText property can't be set to null,
+        // only to the empty string, because if you set the htmlText
+        // of a TextField to null it throws an RTE.
+        // If the getter returns null, it means that 'text' was just set
+        // and the value of 'htmlText' isn't yet known, because the 'text'
+        // hasn't been committed into the textField and the 'htmlText'
+        // hasn't yet been read back out of the textField.
+        if (!value)
+            value = "";
+
+        ITextModel(model).html = value;
+        htmlTextChanged = true;
+
+        // The text property is unknown until commitProperties(),
+        // when we push the htmlText into the TextField and it
+        // calculates the text.
+        // But you can call validateNow() to make this happen right away.
+        ITextModel(model).text = null;
+
+        explicitHTMLText = value;
+
+        invalidateProperties();
+        invalidateSize();
+        invalidateDisplayList();
+
+        // Trigger bindings to htmlText.
+        dispatchEvent(new Event("htmlTextChanged"));
+
+        // commitProperties() will dispatch a "valueCommit" event
+        // after the TextField determines the 'text' based on the
+        // 'htmlText'; this event will trigger any bindings to 'text'.
+    }
+
+    //----------------------------------
+    //  isHTML
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    private function get isHTML():Boolean
+    {
+        return explicitHTMLText != null;
+    }
+
+    //----------------------------------
+    //  length
+    //----------------------------------
+
+    /**
+     *  The number of characters of text displayed in the TextArea.
+     *
+     *  @default 0
+     *  @tiptext The number of characters in the TextInput.
+     *  @helpid 3192
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get length():int
+    {
+        return text != null ? text.length : -1;
+    }
+
+    //----------------------------------
+    //  listData
+    //----------------------------------
+
+    private var _listData:BaseListData;
+
+    [Bindable("dataChange")]
+    [Inspectable(environment="none")]
+
+    /**
+     *  When a component is used as a drop-in item renderer or drop-in
+     *  item editor, Flex initializes the <code>listData</code> property
+     *  of the component with the appropriate data from the list control.
+     *  The component can then use the <code>listData</code> property
+     *  to initialize the <code>data</code> property of the drop-in
+     *  item renderer or drop-in item editor.
+     *
+     *  <p>You do not set this property in MXML or ActionScript;
+     *  Flex sets it when the component is used as a drop-in item renderer
+     *  or drop-in item editor.</p>
+     *
+     *  @default null
+     *  @see mx.controls.listClasses.IDropInListItemRenderer
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get listData():BaseListData
+    {
+        return _listData;
+    }
+
+    /**
+     *  @private
+     */
+    public function set listData(value:BaseListData):void
+    {
+        _listData = value;
+    }
+
+    //----------------------------------
+    //  maxChars
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the maxChars property.
+     */
+    private var _maxChars:int = 0;
+
+    /**
+     *  @private
+     */
+    private var maxCharsChanged:Boolean = false;
+
+    [Bindable("maxCharsChanged")]
+    [Inspectable(category="General", defaultValue="0")]
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get maxChars():int
+    {
+        return _maxChars;
+    }
+
+    /**
+     *  @private
+     */
+    public function set maxChars(value:int):void
+    {
+        if (value == _maxChars)
+            return;
+
+        _maxChars = value;
+        maxCharsChanged = true;
+
+        invalidateProperties();
+
+        dispatchEvent(new Event("maxCharsChanged"));
+    }
+
+    //----------------------------------
+    //  maxHorizontalScrollPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Maximum value of <code>horizontalScrollPosition</code>.
+     *
+     *  <p>The default value is 0, which means that horizontal scrolling is not
+     *  required.</p>
+     *
+     *  <p>The value of the <code>maxHorizontalScrollPosition</code> property is
+     *  computed from the data and size of component, and must not be set by
+     *  the application code.</p>
+     */
+    public function get maxHorizontalScrollPosition():Number
+    {
+        return 0;//textField ? textField.maxScrollH : 0;
+    }
+
+    //----------------------------------
+    //  parentDrawsFocus
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the parentDrawsFocus property.
+     */
+    private var _parentDrawsFocus:Boolean = false;
+
+    [Inspectable(category="General", enumeration="true,false", defaultValue="false")]
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get parentDrawsFocus():Boolean
+    {
+        return _parentDrawsFocus;
+    }
+
+    /**
+     *  @private
+     */
+    public function set parentDrawsFocus(value:Boolean):void
+    {
+        _parentDrawsFocus = value;
+    }
+
+    //----------------------------------
+    //  restrict
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the restrict property.
+     */
+    private var _restrict:String;
+
+    /**
+     *  @private
+     */
+    private var restrictChanged:Boolean = false;
+
+    [Bindable("restrictChanged")]
+    [Inspectable(category="General")]
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get restrict():String
+    {
+        return _restrict;
+    }
+
+    /**
+     *  @private
+     */
+    public function set restrict(value:String):void
+    {
+        if (value == _restrict)
+            return;
+
+        _restrict = value;
+        restrictChanged = true;
+
+        invalidateProperties();
+
+        dispatchEvent(new Event("restrictChanged"));
+    }
+
+    //----------------------------------
+    //  selectable
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Used to make TextInput function correctly in the components that use it
+     *  as a subcomponent. ComboBox, at this point.
+     */
+    private var _selectable:Boolean = true;
+
+    /**
+     *  @private
+     */
+    private var selectableChanged:Boolean = false;
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectable():Boolean
+    {
+        return _selectable;
+    }
+
+    /**
+     *  @private
+     */
+    public function set selectable(value:Boolean):void
+    {
+        if (_selectable == value)
+            return;
+        _selectable = value;
+        selectableChanged = true;
+        invalidateProperties();
+    }
+    //----------------------------------
+    //  selectionBeginIndex
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the selectionBeginIndex property.
+     */
+    private var _selectionBeginIndex:int = 0;
+
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The zero-based character index value of the first character
+     *  in the current selection.
+     *  For example, the first character is 0, the second character is 1,
+     *  and so on.
+     *  When the control gets the focus, the selection is visible if the
+     *  <code>selectionBeginIndex</code> and <code>selectionEndIndex</code>
+     *  properties are both set.
+     *
+     *  @default 0
+     *
+     *  @tiptext The zero-based index value of the first character
+     *  in the selection.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectionBeginIndex():int
+    {
+        return _selectionBeginIndex;
+    }
+
+    /**
+     *  @private
+     */
+    public function set selectionBeginIndex(value:int):void
+    {
+        _selectionBeginIndex = value;
+    }
+
+    //----------------------------------
+    //  selectionEndIndex
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the selectionEndIndex property.
+     */
+    private var _selectionEndIndex:int = 0;
+
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The zero-based index of the position <i>after</i> the last character
+     *  in the current selection (equivalent to the one-based index of the last
+     *  character).
+     *  If the last character in the selection, for example, is the fifth
+     *  character, this property has the value 5.
+     *  When the control gets the focus, the selection is visible if the
+     *  <code>selectionBeginIndex</code> and <code>selectionEndIndex</code>
+     *  properties are both set.
+     *
+     *  @default 0
+     *
+     *  @tiptext The zero-based index value of the last character
+     *  in the selection.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectionEndIndex():int
+    {
+        return _selectionEndIndex;
+    }
+
+    /**
+     *  @private
+     */
+    public function set selectionEndIndex(value:int):void
+    {
+        _selectionEndIndex = value;
+        selectionChanged = true;
+
+        invalidateProperties();
+    }
+
+    //----------------------------------
+    //  text
+    //----------------------------------
+
+
+    /**
+     *  @private
+     */
+    private var textChanged:Boolean = false;
+
+    [Bindable("textChanged")]
+    [CollapseWhiteSpace]
+    [Inspectable(category="General", defaultValue="")]
+    [NonCommittingChangeEvent("change")]
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get text():String
+    {
+        return ITextModel(model).text;
+    }
+
+    /**
+     *  @private
+     */
+    public function set text(value:String):void
+    {
+        textSet = true;
+
+        // The text property can't be set to null, only to the empty string.
+        // If the getter returns null, it means that 'htmlText' was just set
+        // and the value of 'text' isn't yet known, because the 'htmlText'
+        // hasn't been committed into the textField and the 'text'
+        // hasn't yet been read back out of the textField.
+        if (!value)
+            value = "";
+
+        if (!isHTML && value == ITextModel(model).text)
+            return;
+
+        ITextModel(model).text = value;
+
+        textChanged = true;
+
+        // The htmlText property is unknown until commitProperties(),
+        // when we push the text into the TextField and it
+        // calculates the htmlText.
+        // But you can call validateNow() to make this happen right away.
+        ITextModel(model).html = null;
+
+        explicitHTMLText = null;
+
+        invalidateProperties();
+        invalidateSize();
+        invalidateDisplayList();
+
+        // Trigger bindings to 'text'.
+        dispatchEvent(new Event("textChanged"));
+
+        // commitProperties() will dispatch an "htmlTextChanged" event
+        // after the TextField determines the 'htmlText' based on the
+        // 'text'; this event will trigger any bindings to 'htmlText'.
+
+        dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  @private
+     *  Create child objects.
+     */
+    override protected function createChildren():void
+    {
+        super.createChildren();
+    }
+
+    /**
+     *  @private
+     */
+    override protected function commitProperties():void
+    {
+        super.commitProperties();
+
+
+//         if (hasFontContextChanged() && textField != null)
+//         {
+//             var childIndex:int = getChildIndex(DisplayObject(textField));
+//             removeTextField();
+//             createTextField(childIndex);
+//
+//             accessibilityPropertiesChanged = true;
+//             condenseWhiteChanged = true;
+//             displayAsPasswordChanged = true;
+//             enabledChanged = true;
+//             maxCharsChanged = true;
+//             restrictChanged = true;
+//             tabIndexChanged = true;
+//             textChanged = true;
+//             selectionChanged = true;
+//             horizontalScrollPositionChanged = true;
+//         }
+//
+//         if (accessibilityPropertiesChanged)
+//         {
+//             textField.accessibilityProperties = _accessibilityProperties;
+//
+//             accessibilityPropertiesChanged = false;
+//         }
+//
+//         if (condenseWhiteChanged)
+//         {
+//             textField.condenseWhite = _condenseWhite;
+//
+//             condenseWhiteChanged = false;
+//         }
+//
+//         if (displayAsPasswordChanged)
+//         {
+//             textField.displayAsPassword = _displayAsPassword;
+//
+//             displayAsPasswordChanged = false;
+//         }
+//
+//         if (enabledChanged || editableChanged)
+//         {
+//             textField.type = enabled && _editable ?
+//                              TextFieldType.INPUT :
+//                              TextFieldType.DYNAMIC;
+//
+//             if (enabledChanged)
+//             {
+//                 if (textField.enabled != enabled)
+//                     textField.enabled = enabled;
+//
+//                 enabledChanged = false;
+//             }
+//             selectableChanged = true;
+//             editableChanged = false;
+//         }
+//
+//         if (selectableChanged)
+//         {
+//             if (_editable)
+//                 textField.selectable = enabled;
+//             else
+//                 textField.selectable = enabled && _selectable;
+//             selectableChanged = false;
+//         }
+//
+//         if (maxCharsChanged)
+//         {
+//             textField.maxChars = _maxChars;
+//
+//             maxCharsChanged = false;
+//         }
+//
+//         if (restrictChanged)
+//         {
+//             textField.restrict = _restrict;
+//
+//             restrictChanged = false;
+//         }
+//
+//         if (tabIndexChanged)
+//         {
+//             textField.tabIndex = _tabIndex;
+//
+//             tabIndexChanged = false;
+//         }
+//
+//         if (textChanged || htmlTextChanged)
+//         {
+//             // If the 'text' and 'htmlText' properties have both changed,
+//             // the last one set wins.
+//             if (isHTML)
+//                 textField.htmlText = explicitHTMLText;
+//             else
+//                 textField.text = _text;
+//
+//             textFieldChanged(false, true);
+//
+//             textChanged = false;
+//             htmlTextChanged = false;
+//         }
+//
+//         if (selectionChanged)
+//         {
+//             textField.setSelection(_selectionBeginIndex, _selectionEndIndex);
+//
+//             selectionChanged = false;
+//         }
+//
+//         if (horizontalScrollPositionChanged)
+//         {
+//             textField.scrollH = _horizontalScrollPosition;
+//
+//             horizontalScrollPositionChanged = false;
+//         }
+    }
+
+    /**
+     *  @private
+     */
+    override protected function measure():void
+    {
+        super.measure();
+
+        if (GOOG::DEBUG)
+        	trace("TextInput.measure not implemented");
+
+//         var bm:EdgeMetrics = border && border is IRectangularBorder ?
+//                              IRectangularBorder(border).borderMetrics :
+//                              EdgeMetrics.EMPTY;
+//
+//         var w:Number;
+//         var h:Number;
+//
+//         // Start with a width of 160. This may change.
+//         measuredWidth = DEFAULT_MEASURED_WIDTH;
+//
+//         if (maxChars)
+//         {
+//             // Use the width of "W" and multiply by the maxChars
+//             measuredWidth = Math.min(measuredWidth,
+//                 measureText("W").width * maxChars + bm.left + bm.right + 8);
+//         }
+//
+//         if (!text || text == "")
+//         {
+//             w = DEFAULT_MEASURED_MIN_WIDTH;
+//             h = measureText(" ").height +
+//                 bm.top + bm.bottom + UITextField.TEXT_HEIGHT_PADDING;
+//             h += getStyle("paddingTop") + getStyle("paddingBottom");
+//         }
+//         else
+//         {
+//             var lineMetrics:TextLineMetrics;
+//             lineMetrics = measureText(text);
+//
+//             w = lineMetrics.width + bm.left + bm.right + 8;
+//             h = lineMetrics.height + bm.top + bm.bottom + UITextField.TEXT_HEIGHT_PADDING;
+//
+//             w += getStyle("paddingLeft") + getStyle("paddingRight");
+//             h += getStyle("paddingTop") + getStyle("paddingBottom");
+//         }
+//
+//         measuredWidth = Math.max(w, measuredWidth);
+//         measuredHeight = Math.max(h, DEFAULT_MEASURED_HEIGHT);
+//
+//         measuredMinWidth = DEFAULT_MEASURED_MIN_WIDTH;
+//         measuredMinHeight = DEFAULT_MEASURED_MIN_HEIGHT;
+    }
+
+    /**
+     *  @private
+     *  Stretch the border and fit the TextField inside it.
+     */
+    override protected function updateDisplayList(unscaledWidth:Number,
+                                                  unscaledHeight:Number):void
+    {
+        super.updateDisplayList(unscaledWidth, unscaledHeight);
+
+        if (GOOG::DEBUG)
+        	trace("TextInput.updateDisplayList not implemented");
+//         var bm:EdgeMetrics;
+//
+//         if (border)
+//         {
+//             border.setActualSize(unscaledWidth, unscaledHeight);
+//             bm = border is IRectangularBorder ?
+//                     IRectangularBorder(border).borderMetrics : EdgeMetrics.EMPTY;
+//         }
+//         else
+//         {
+//             bm = EdgeMetrics.EMPTY;
+//         }
+//
+//         var paddingLeft:Number = getStyle("paddingLeft");
+//         var paddingRight:Number = getStyle("paddingRight");
+//         var paddingTop:Number = getStyle("paddingTop");
+//         var paddingBottom:Number = getStyle("paddingBottom");
+//         var widthPad:Number = bm.left + bm.right;
+//         var heightPad:Number = bm.top + bm.bottom + 1;
+//
+//         textField.x = bm.left;
+//         textField.y = bm.top;
+//
+//         textField.x += paddingLeft;
+//         textField.y += paddingTop;
+//         widthPad += paddingLeft + paddingRight;
+//         heightPad += paddingTop + paddingBottom;
+//
+//         textField.width = Math.max(0, unscaledWidth - widthPad);
+//         textField.height = Math.max(0, unscaledHeight - heightPad);
+    }
+
+    /**
+     *  @private
+     *  Focus should always be on the internal TextField.
+     */
+    override public function setFocus():void
+    {
+    	if (GOOG::DEBUG)
+    		trace("TextInput.setFocus not implemented");
+        //textField.setFocus();
+    }
+
+    /**
+     *  @private
+     */
+    override public function styleChanged(styleProp:String):void
+    {
+    	if (GOOG::DEBUG)
+    		trace("TextInput.styleChanged not implemented");
+//         var allStyles:Boolean = (styleProp == null || styleProp == "styleName");
+//
+//         super.styleChanged(styleProp);
+//
+//         // Replace the borderSkin
+//         if (allStyles || styleProp == "borderSkin")
+//         {
+//             if (border)
+//             {
+//                 removeChild(DisplayObject(border));
+//                 border = null;
+//                 createBorder();
+//             }
+//         }
+    }
+
+    //--------------------------------------------------------------------------
+    //
     //  Methods
-    //----------------------------------
+    //
+    //--------------------------------------------------------------------------
 
+
+    /**
+     *  Creates the border for this component.
+     *  Normally the border is determined by the
+     *  <code>borderStyle</code> and <code>borderSkin</code> styles.
+     *  It must set the border property to the instance
+     *  of the border.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function createBorder():void
+    {
+    	if (GOOG::DEBUG)
+    		trace("TextInput.createBorder not implemented");
+//         if (!border)
+//         {
+//             var borderClass:Class = getStyle("borderSkin");
+//
+//             if (borderClass != null)
+//             {
+//                 border = new borderClass();
+//
+//                 if (border is ISimpleStyleClient)
+//                     ISimpleStyleClient(border).styleName = this;
+//
+//                 // Add the border behind all the children.
+//                 addChildAt(DisplayObject(border), 0);
+//
+//                 invalidateDisplayList();
+//             }
+//         }
+    }
 
     /**
      *  Selects the text in the range specified by the parameters.
@@ -568,9 +1660,125 @@ public class TextInput extends UIComponent
      */
     public function setSelection(beginIndex:int, endIndex:int):void
     {
-        if (goog.DEBUG)
-        	trace("setSelection is not implemented");
+        _selectionBeginIndex = beginIndex;
+        _selectionEndIndex = endIndex;
+        selectionChanged = true;
+
+        invalidateProperties();
     }
+
+    /**
+     *  @private
+     *  Setting the 'htmlText' of textField changes its 'text',
+     *  and vice versa, so afterwards doing so we call this method
+     *  to update the storage vars for various properties.
+     *  Afterwards, the TextInput's 'text', 'htmlText', 'textWidth',
+     *  and 'textHeight' are all in sync with each other
+     *  and are identical to the TextField's.
+     */
+    private function textFieldChanged(styleChangeOnly:Boolean,
+                                      dispatchValueCommitEvent:Boolean):void
+    {
+    	if (GOOG::DEBUG)
+    		trace("TextInput.textFieldChanged not implemented");
+//         var changed1:Boolean;
+//         var changed2:Boolean;
+//
+//         if (!styleChangeOnly)
+//         {
+//             changed1 = _text != textField.text;
+//             _text = textField.text;
+//         }
+//
+//         changed2 = _htmlText != textField.htmlText;
+//         _htmlText = textField.htmlText;
+//
+//         // If the 'text' property changes, trigger bindings to it
+//         // and conditionally dispatch a 'valueCommit' event.
+//         if (changed1)
+//         {
+//             dispatchEvent(new Event("textChanged"));
+//
+//             if (dispatchValueCommitEvent)
+//                 dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+//         }
+//         // If the 'htmlText' property changes, trigger bindings to it.
+//         if (changed2)
+//             dispatchEvent(new Event("htmlTextChanged"));
+//
+//         _textWidth = textField.textWidth;
+//         _textHeight = textField.textHeight;
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  ITextInput Interface
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectionActivePosition():int
+    {
+        return selectionEndIndex;
+    }
+
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectionAnchorPosition():int
+    {
+        return selectionBeginIndex;
+    }
+
+    /**
+     *  Selects the text in the range specified by the parameters.  Unlike
+     *  <code>setSelection</code> this is done immediately.
+     *
+     *  @param anchorIndex The zero-based character index specifying the beginning
+     *  of the selection that stays fixed when the selection is extended.
+     *
+     *  @param activeIndex The zero-based character index specifying
+     *  the end of the selection that moves when the selection is extended.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function selectRange(anchorIndex:int, activeIndex:int):void
+    {
+    	if (GOOG::DEBUG)
+    		trace("TextInput.selectRange not implemented");
+        // Do it immediately.
+//         textField.setSelection(anchorIndex, activeIndex);
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden event handlers: UIComponent
+    //
+    //--------------------------------------------------------------------------
+
+
+    //--------------------------------------------------------------------------
+    //
+    //  Event handlers
+    //
+    //--------------------------------------------------------------------------
+
 }
 
 }

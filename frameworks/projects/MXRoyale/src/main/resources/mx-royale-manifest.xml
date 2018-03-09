@@ -22,6 +22,12 @@
 <componentPackage>
 
     <component id="Application" class="mx.core.Application" />
+	<component id="Button" class="mx.controls.Button" />
+	<component id="CheckBox" class="mx.controls.CheckBox" />
+	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
+	<component id="RadioButton" class="mx.controls.RadioButton" />
+	<component id="RadioButtonGroup" class="mx.controls.RadioButtonGroup" />
+	<component id="TextInput" class="mx.controls.TextInput" />
 	
 </componentPackage>
