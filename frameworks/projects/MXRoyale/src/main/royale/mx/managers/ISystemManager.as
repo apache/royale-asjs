@@ -81,7 +81,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
 	//--------------------------------------------------------------------------
 
     //----------------------------------
-    //  document
+    //  component
     //----------------------------------
     
     /**
@@ -94,12 +94,12 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function get document():Object;
+    function get component():Object;
     
     /**
      *  @private
      */
-    function set document(value:Object):void;
+    function set component(value:Object):void;
     
 	//--------------------------------------------------------------------------
 	//

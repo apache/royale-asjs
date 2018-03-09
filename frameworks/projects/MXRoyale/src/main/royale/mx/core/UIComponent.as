@@ -658,7 +658,7 @@ public class UIComponent extends UIBase
     //--------------------------------------------------------------------------
 
     //----------------------------------
-    //  document
+    //  _component (was 'document' in Flex)
     //----------------------------------
     
     /**
@@ -673,7 +673,7 @@ public class UIComponent extends UIBase
      *  so that their 'document' property refers to the document object
      *  that they are inside.
      */
-    private var _document:Object;
+    private var _component:Object;
     
     [Inspectable(environment="none")]
     
@@ -687,9 +687,9 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get document():Object
+    public function get component():Object
     {
-        return _document;
+        return _component;
     }
     
     /**
@@ -702,7 +702,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function set document(value:Object):void
+    public function set component(value:Object):void
     {
         var n:int = numChildren;
         for (var i:int = 0; i < n; i++)
@@ -711,14 +711,14 @@ public class UIComponent extends UIBase
             if (!child)
                 continue;
             
-            if (child.document == _document ||
-                child.document == FlexGlobals.topLevelApplication)
+            if (child.component == _component ||
+                child.component == FlexGlobals.topLevelApplication)
             {
-                child.document = value;
+                child.component = value;
             }
         }
         
-        _document = value;
+        _component = value;
     }
     
     //----------------------------------
@@ -766,7 +766,7 @@ public class UIComponent extends UIBase
     {
         // Look for the SystemManager's document,
         // which should be the Application.
-        var o:Object = systemManager.document;
+        var o:Object = systemManager.component;
 
         // If this UIComponent is its own root, then it is an Application.
         // We want to return its parent Application, or null
@@ -783,21 +783,21 @@ public class UIComponent extends UIBase
         if (o == this)
         {
             var p:UIComponent = o.systemManager.parent as UIComponent;
-            o = p ? p.systemManager.document : null;
+            o = p ? p.systemManager.component : null;
         }
 
         return o;
     }
 
     //----------------------------------
-    //  parentDocument
+    //  parentComponent
     //----------------------------------
 
     [Bindable("initialize")]
 
     /**
-     *  A reference to the parent document object for this UIComponent.
-     *  A document object is a UIComponent at the top of the hierarchy
+     *  A reference to the parent component object for this UIComponent.
+     *  A component object is a UIComponent at the top of the hierarchy
      *  of a Flex application, MXML component, or AS component.
      *
      *  <p>For the Application object, the <code>parentDocument</code>
@@ -815,23 +815,23 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get parentDocument():Object
+    public function get parentComponent():Object
     {
-        if (document == this)
+        if (component == this)
         {
             var p:IUIComponent = parent as IUIComponent;
             if (p)
-                return p.document;
+                return p.component;
 
             var sm:ISystemManager = parent as ISystemManager;
             if (sm)
-                return sm.document;
+                return sm.component;
 
             return null;
         }
         else
         {
-            return document;
+            return component;
         }
     }
 

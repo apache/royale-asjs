@@ -41,7 +41,7 @@ public interface IUIComponent extends IFlexDisplayObject, IChild
     //--------------------------------------------------------------------------
     
     //----------------------------------
-    //  document
+    //  component (was 'document' in Flex)
     //----------------------------------
 
     /**
@@ -54,12 +54,12 @@ public interface IUIComponent extends IFlexDisplayObject, IChild
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function get document():Object
+    function get component():Object
 
     /**
      *  @private
      */
-    function set document(value:Object):void
+    function set component(value:Object):void
 
     //----------------------------------
     //  enabled
