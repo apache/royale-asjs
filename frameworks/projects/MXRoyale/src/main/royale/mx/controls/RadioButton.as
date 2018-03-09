@@ -19,31 +19,11 @@
 
 package mx.controls
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
-COMPILE::SWF
-{
-	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
-	import flash.utils.Dictionary;
-	import org.apache.royale.core.UIButtonBase;
-}
-
 COMPILE::JS
 {
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.supportClasses.RadioButtonIcon;
-	import org.apache.royale.html.util.addElementToWrapper;
+    import goog.DEBUG;
 }
-
-import org.apache.royale.core.IStrand;
-import org.apache.royale.core.IUIBase;
-import org.apache.royale.core.IValueToggleButtonModel;
 import org.apache.royale.events.Event;
-import org.apache.royale.events.MouseEvent;
-import org.apache.royale.core.ISelectable;
 /*
 import flash.events.Event;
 import flash.events.KeyboardEvent;
@@ -52,7 +32,9 @@ import flash.ui.Keyboard;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
+*/
 import mx.events.FlexEvent;
+/*
 import mx.core.FlexVersion;
 import mx.core.IToggleButton;
 import mx.events.ItemClickEvent;
@@ -66,7 +48,6 @@ import flash.utils.getQualifiedClassName;
 
 use namespace mx_internal;
 */
-
 
 /**
  *  The RadioButton control lets the user make a single choice
@@ -127,9 +108,13 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-COMPILE::SWF
 public class RadioButton extends Button
 {
+    //--------------------------------------------------------------------------
+    //
+    //  Class mixins
+    //
+    //--------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------
     //
@@ -148,33 +133,90 @@ public class RadioButton extends Button
     public function RadioButton()
     {
         super();
-
-		addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
+        typeNames = "RadioButton";
     }
 
+    //--------------------------------------------------------------------------
+    //
+    //  Variables
+    //
+    //--------------------------------------------------------------------------
 
 
-	protected static var dict:Dictionary = new Dictionary(true);
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden properties
+    //
+    //--------------------------------------------------------------------------
 
-	private var _groupName:String;
+    //----------------------------------
+    //  emphasized
+    //----------------------------------
 
-	/**
-	 *  The name of the group. Only one RadioButton in a group is selected.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public function get groupName() : String
-	{
-		return IValueToggleButtonModel(model).groupName;
-	}
-	public function set groupName(value:String) : void
-	{
-		IValueToggleButtonModel(model).groupName = value;
-	}
+    //----------------------------------
+    //  labelPlacement
+    //----------------------------------
 
+    [Bindable("labelPlacementChanged")]
+    [Inspectable(category="General", enumeration="left,right,top,bottom", defaultValue="right")]
+
+    /**
+     *  Position of the label relative to the RadioButton icon.
+     *  Valid values in MXML are <code>"right"</code>, <code>"left"</code>,
+     *  <code>"bottom"</code>, and <code>"top"</code>.
+     *
+     *  <p>In ActionScript, you use the following constants
+     *  to set this property:
+     *  <code>ButtonLabelPlacement.RIGHT</code>,
+     *  <code>ButtonLabelPlacement.LEFT</code>,
+     *  <code>ButtonLabelPlacement.BOTTOM</code>, and
+     *  <code>ButtonLabelPlacement.TOP</code>.</p>
+     *
+     *  @default ButtonLabelPlacement.RIGHT
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get labelPlacement():String
+    {
+        return "right";
+    }
+
+    //----------------------------------
+    //  toggle
+    //----------------------------------
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  @private
+     *  A RadioButton is always toggleable by definition, so toggle is set
+     *  true in the constructor and can't be changed for a RadioButton.
+     */
+
+    override public function get toggle():Boolean
+    {
+        return super.toggle;
+    }
+
+    /**
+     *  @private
+     */
+    override public function set toggle(value:Boolean):void
+    {
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Properties
+    //
+    //--------------------------------------------------------------------------
+
+    //----------------------------------
+    //  group
+    //----------------------------------
 
     /**
      *  @private
@@ -194,335 +236,130 @@ public class RadioButton extends Button
      */
     public function get group():RadioButtonGroup
     {
-    	if (goog.DEBUG)
-    		trace("RadioButtonGroup not implemented for RadioButton");
-    	return _group;
+        return _group;
     }
-
-    public function set group(value:RadioButtonGroup):void
-    {
-    	_group = value;
-    }
-
-	/**
-	 *  The string used as a label for the RadioButton.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public function get text():String
-	{
-		return IValueToggleButtonModel(model).text;
-	}
-	public function set text(value:String):void
-	{
-		IValueToggleButtonModel(model).text = value;
-	}
-
-	/**
-	 *  Whether or not the RadioButton instance is selected. Setting this property
-	 *  causes the currently selected RadioButton in the same group to lose the
-	 *  selection.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public function get selected():Boolean
-	{
-		return IValueToggleButtonModel(model).selected;
-	}
-	public function set selected(selValue:Boolean):void
-	{
-		IValueToggleButtonModel(model).selected = selValue;
-
-		// if this button is being selected, its value should become
-		// its group's selectedValue
-		if( selValue ) {
-			for each(var rb:RadioButton in dict)
-			{
-				if( rb.groupName == groupName )
-				{
-					rb.selectedValue = value;
-				}
-			}
-		}
-	}
-
-	/**
-	 *  The value associated with the RadioButton. For example, RadioButtons with labels,
-	 *  "Red", "Green", and "Blue" might have the values 0, 1, and 2 respectively.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public function get value():Object
-	{
-		return IValueToggleButtonModel(model).value;
-	}
-	public function set value(newValue:Object):void
-	{
-		IValueToggleButtonModel(model).value = newValue;
-	}
-
-	/**
-	 *  The group's currently selected value.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public function get selectedValue():Object
-	{
-		return IValueToggleButtonModel(model).selectedValue;
-	}
-	public function set selectedValue(newValue:Object):void
-	{
-		// a radio button is really selected when its value matches that of the group's value
-		IValueToggleButtonModel(model).selected = (newValue == value);
-		IValueToggleButtonModel(model).selectedValue = newValue;
-	}
-
-	/**
-	 * @private
-	 */
-	override public function addedToParent():void
-	{
-		super.addedToParent();
-
-		// if this instance is selected, set the local selectedValue to
-		// this instance's value
-		if( selected ) selectedValue = value;
-
-		else {
-
-			// make sure this button's selectedValue is set from its group's selectedValue
-			// to keep it in sync with the rest of the buttons in its group.
-			for each(var rb:RadioButton in dict)
-			{
-				if( rb.groupName == groupName )
-				{
-					selectedValue = rb.selectedValue;
-					break;
-				}
-			}
-		}
-
-		dict[this] = this;
-	}
-
-	/**
-	 * @private
-	 */
-	private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
-	{
-		// prevent radiobutton from being turned off by a click
-		if( !selected ) {
-			selected = !selected;
-			dispatchEvent(new Event("change"));
-		}
-	}
-}
-
-
-COMPILE::JS
-public class RadioButton extends Button
-{
-
-    //--------------------------------------------------------------------------
-    //
-    //  Constructor
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  Constructor.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function RadioButton()
-    {
-        super();
-    }
-
-    /**
-	 * @private
-	 *
-	 *  @royalesuppresspublicvarwarning
-	 */
-	public static var radioCounter:int = 0;
-
-	private var labelFor:HTMLLabelElement;
-	private var textNode:Text;
-	private var icon:RadioButtonIcon;
-
-	/**
-	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-	 * @royaleignorecoercion HTMLInputElement
-	 * @royaleignorecoercion HTMLLabelElement
-	 * @royaleignorecoercion Text
-	 */
-	override protected function createElement():WrappedHTMLElement
-	{
-		icon = new RadioButtonIcon()
-		icon.id = '_radio_' + RadioButton.radioCounter++;
-
-		textNode = document.createTextNode('') as Text;
-
-		labelFor = addElementToWrapper(this,'label') as HTMLLabelElement;
-		labelFor.appendChild(icon.element);
-		labelFor.appendChild(textNode);
-
-	   (textNode as WrappedHTMLElement).royale_wrapper = this;
-		(icon.element as WrappedHTMLElement).royale_wrapper = this;
-
-		typeNames = 'RadioButton';
-
-		return element;
-	}
-
-	override public function set id(value:String):void
-	{
-		super.id = value;
-		labelFor.id = value;
-		icon.element.id = value;
-	}
-
-	/**
-	 * @royaleignorecoercion HTMLInputElement
-	 */
-	public function get groupName():String
-	{
-		return (icon.element as HTMLInputElement).name as String;
-	}
-	/**
-	 * @royaleignorecoercion HTMLInputElement
-	 */
-	public function set groupName(value:String):void
-	{
-		(icon.element as HTMLInputElement).name = value;
-	}
 
     /**
      *  @private
-     *  Storage for the group property.
      */
-    private var _group:RadioButtonGroup;
+    public function set group(value:RadioButtonGroup):void
+    {
+        _group = value;
+    }
+
+    //----------------------------------
+    //  groupName
+    //----------------------------------
 
     /**
-     *  The RadioButtonGroup object to which this RadioButton belongs.
+     *  @private
+     *  Storage for groupName property.
+     */
+    protected var _groupName:String;
+
+    /**
+     *  @private
+     */
+    private var groupChanged:Boolean = false;
+
+    [Bindable("groupNameChanged")]
+    [Inspectable(category="General", defaultValue="radioGroup")]
+
+    /**
+     *  Specifies the name of the group to which this RadioButton control belongs, or
+     *  specifies the value of the <code>id</code> property of a RadioButtonGroup control
+     *  if this RadioButton is part of a group defined by a RadioButtonGroup control.
      *
      *  @default "undefined"
+     *  @throws ArgumentError Throws an ArgumentError if you are using Flex 4 or later and the groupName starts with the string "_fx_".
      *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get group():RadioButtonGroup
+    public function get groupName():String
     {
-    	if (goog.DEBUG)
-    		trace("RadioButtonGroup not implemented for RadioButton");
-    	return _group;
+        return _groupName;
     }
 
-    public function set group(value:RadioButtonGroup):void
+    /**
+     *  @private
+     */
+    public function set groupName(value:String):void
     {
-    	_group = value;
+        _groupName = value;
+
+        dispatchEvent(new Event("groupNameChanged"));
     }
 
-	public function get text():String
-	{
-		return textNode.nodeValue as String;
-	}
-	public function set text(value:String):void
-	{
-		textNode.nodeValue = value;
-	}
+    //----------------------------------
+    //  value
+    //----------------------------------
 
-	/**
-	 * @royaleignorecoercion HTMLInputElement
-	 * @export
-	 */
-	public function get selected():Boolean
-	{
-		return (icon.element as HTMLInputElement).checked;
-	}
-	/**
-	 * @royaleignorecoercion HTMLInputElement
-	 */
-	public function set selected(value:Boolean):void
-	{
-		(icon.element as HTMLInputElement).checked = value;
-	}
+    /**
+     *  @private
+     *  Storage for value property.
+     */
+    private var _value:Object;
 
-	/**
-	 * @royaleignorecoercion HTMLInputElement
-	 */
-	public function get value():String
-	{
-		return (icon.element as HTMLInputElement).value;
-	}
-	/**
-	 * @royaleignorecoercion HTMLInputElement
-	 */
-	public function set value(v:String):void
-	{
-		(icon.element as HTMLInputElement).value = "" + v;
-	}
+    [Bindable("valueChanged")]
+    [Inspectable(category="General", defaultValue="")]
 
-	/**
-	 * @royaleignorecoercion HTMLInputElement
-	 */
-	public function get selectedValue():Object
-	{
-		var buttons:NodeList;
-		var groupName:String;
-		var i:int;
-		var n:int;
+    /**
+     *  Optional user-defined value
+     *  that is associated with a RadioButton control.
+     *
+     *  @default null
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get value():Object
+    {
+        return _value;
+    }
 
-		groupName = (icon.element as HTMLInputElement).name;
-		buttons = document.getElementsByName(groupName);
-		n = buttons.length;
+    /**
+     *  @private
+     */
+    public function set value(value:Object):void
+    {
+        _value = value;
 
-		for (i = 0; i < n; i++) {
-			if (buttons[i].checked) {
-				return buttons[i].value;
-			}
-		}
-		return null;
-	}
+    }
 
-	/**
-	 * @royaleignorecoercion Array
-	 * @royaleignorecoercion HTMLInputElement
-	 */
-	public function set selectedValue(value:Object):void
-	{
-		var buttons:NodeList;
-		var groupName:String;
-		var i:int;
-		var n:int;
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: UIComponent
+    //
+    //--------------------------------------------------------------------------
 
-		groupName = (icon.element as HTMLInputElement).name;
-		buttons = document.getElementsByName(groupName);
-		n = buttons.length;
-		for (i = 0; i < n; i++) {
-			if (buttons[i].value === value) {
-				buttons[i].checked = true;
-				break;
-			}
-		}
-	}
+
+    /**
+     *  @private
+     *  Update properties before measurement/layout.
+     */
+    override protected function commitProperties():void
+    {
+        super.commitProperties();
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Methods
+    //
+    //--------------------------------------------------------------------------
+
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden event handlers: UIComponent
+    //
+    //--------------------------------------------------------------------------
+
+
 }
 
 }

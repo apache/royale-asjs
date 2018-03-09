@@ -23,6 +23,7 @@ COMPILE::JS {
 	import goog.DEBUG;
 }
 import org.apache.royale.core.IDocument;
+import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 /*
 import flash.display.DisplayObject;

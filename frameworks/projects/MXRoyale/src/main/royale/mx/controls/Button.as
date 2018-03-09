@@ -19,8 +19,11 @@
 
 package mx.controls
 {
-	import goog.DEBUG;
-
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
+import org.apache.royale.events.Event;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -34,14 +37,18 @@ import flash.ui.Keyboard;
 import flash.utils.Timer;
 
 import mx.controls.dataGridClasses.DataGridListData;
+*/
 import mx.controls.listClasses.BaseListData;
+/*
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
 import mx.core.EdgeMetrics;
 import mx.core.FlexVersion;
 import mx.core.IBorder;
 import mx.core.IButton;
+*/
 import mx.core.IDataRenderer;
+/*
 import mx.core.IFlexAsset;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
@@ -52,10 +59,14 @@ import mx.core.IProgrammaticSkin;
 import mx.core.IStateClient;
 import mx.core.IUIComponent;
 import mx.core.IUITextField;
+*/
 import mx.core.UIComponent;
+/*
 import mx.core.UITextField;
 import mx.core.mx_internal;
+*/
 import mx.events.FlexEvent;
+/*
 import mx.events.MoveEvent;
 import mx.events.SandboxMouseEvent;
 import mx.managers.IFocusManagerComponent;
@@ -70,133 +81,55 @@ use namespace mx_internal;
 //--------------------------------------
 
 /**
- *  Dispatched when the user clicks on a button.
+ *  Dispatched when the user presses the Button control.
+ *  If the <code>autoRepeat</code> property is <code>true</code>,
+ *  this event is dispatched repeatedly as long as the button stays down.
+ *
+ *  @eventType mx.events.FlexEvent.BUTTON_DOWN
  *
  *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
  */
-[Event(name="click", type="org.apache.royale.events.MouseEvent")]
+[Event(name="buttonDown", type="mx.events.FlexEvent")]
 
 /**
- *  Set a different class for rollOver events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
+ *  Dispatched when the <code>selected</code> property
+ *  changes for a toggle Button control. A toggle Button control means that the
+ *  <code>toggle</code> property is set to <code>true</code>.
+ *
+ *  For the RadioButton controls, this event is dispatched when the <code>selected</code>
+ *  property changes.
+ *
+ *  For the CheckBox controls, this event is dispatched only when the
+ *  user interacts with the control by using the mouse.
+ *
+ *  @eventType flash.events.Event.CHANGE
  *
  *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
  */
-[Event(name="rollOver", type="org.apache.royale.events.MouseEvent")]
+[Event(name="change", type="org.apache.royale.events.Event")]
 
 /**
- *  Set a different class for rollOut events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
+ *  Dispatched when the <code>data</code> property changes.
+ *
+ *  <p>When you use a component as an item renderer,
+ *  the <code>data</code> property contains the data to display.
+ *  You can listen for this event and update the component
+ *  when the <code>data</code> property changes.</p>
+ *
+ *  @eventType mx.events.FlexEvent.DATA_CHANGE
  *
  *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
  */
-[Event(name="rollOut", type="org.apache.royale.events.MouseEvent")]
-
-/**
- *  Set a different class for mouseDown events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-[Event(name="mouseDown", type="org.apache.royale.events.MouseEvent")]
-
-/**
- *  Set a different class for mouseUp events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-[Event(name="mouseUp", type="org.apache.royale.events.MouseEvent")]
-
-/**
- *  Set a different class for mouseMove events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-[Event(name="mouseMove", type="org.apache.royale.events.MouseEvent")]
-
-/**
- *  Set a different class for mouseOut events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-[Event(name="mouseOut", type="org.apache.royale.events.MouseEvent")]
-
-/**
- *  Set a different class for mouseOver events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-[Event(name="mouseOver", type="org.apache.royale.events.MouseEvent")]
-/**
- *  Set a different class for mouseWheel events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-[Event(name="mouseWheel", type="org.apache.royale.events.MouseEvent")]
-
-/**
- *  Set a different class for doubleClick events so that
- *  there aren't dependencies on the flash classes
- *  on the JS side.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.0
- */
-[Event(name="doubleClick", type="org.apache.royale.events.MouseEvent")]
-
-
-
-//--------------------------------------
-//  Other metadata
-//--------------------------------------
-
-[AccessibilityClass(implementation="mx.accessibility.ButtonAccImpl")]
-
-[DefaultBindingProperty(source="selected", destination="label")]
-
-[DefaultTriggerEvent("click")]
+[Event(name="dataChange", type="mx.events.FlexEvent")]
 
 
 /**
@@ -332,10 +265,13 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 public class Button extends UIComponent
-       implements IDataRenderer,
-       IListItemRenderer,
-       IButton
+       implements IDataRenderer
 {
+    //--------------------------------------------------------------------------
+    //
+    //  Class mixins
+    //
+    //--------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------
     //
@@ -354,6 +290,7 @@ public class Button extends UIComponent
     public function Button()
     {
         super();
+        typeNames = "Button";
     }
 
     //--------------------------------------------------------------------------
@@ -362,13 +299,108 @@ public class Button extends UIComponent
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  @private
+     *  Skins for the various states (falseUp, trueOver, etc.)
+     *  are created just-in-time as they are needed.
+     *  Each skin is a child Sprite of this Button.
+     *  Each skin has a name property indicating which skin it is;
+     *  for example, the instance of the class specified by the falseUpSkin
+     *  style has the name "falseUpSkin" and can be found using
+     *  getChildByName(). Note that there is no falseUpSkin property
+     *  of Button containing a reference to this skin instance.
+     *  This array contains references to all skins that have been created,
+     *  for looping over them; without this array we wouldn't know
+     *  which of the children are the skins.
+     *  New skins are created and added to this array in viewSkin().
+     */
+    private var skins:Array /* of Sprite */ = [];
+
+    /**
+     *  @private
+     *  A reference to the current skin.
+     *  Set by viewSkin().
+     */
+//    mx_internal var currentSkin:IFlexDisplayObject;
+
+    /**
+     *  The icons array contains references to all icons
+     *  that have been created. Since each icon is a child
+     *  Sprite of this button, we need this array to keep
+     *  track of which children are icons. Each icon has a
+     *  name property indicating which icon it is; for example,
+     *  the instance of the class specified by the falseUpIcon
+     *  style has the name "falseUpIcon" and can be found using
+     *  getChildByName(). Note that there is no falseUpIcon property
+     *  of Button containing a reference to this icon instance.
+     *  New icons are created and added to this array in viewIcon().
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var icons:Array /* of Sprite */ = [];
+
+    /**
+     *  @private
+     *  A reference to the current icon.
+     *  Set by viewIcon().
+     */
+//    mx_internal var currentIcon:IFlexDisplayObject;
+
+    /**
+     *  @private
+     *  Flags that will block default data/listData behavior
+     */
+    private var selectedSet:Boolean;
+    private var labelSet:Boolean;
+
+    /**
+     *  @private
+     *  Flags used to save information about the skin and icon styles
+     */
+//     mx_internal var checkedDefaultSkin:Boolean = false;
+//     mx_internal var defaultSkinUsesStates:Boolean = false;
+//     mx_internal var checkedDefaultIcon:Boolean = false;
+//     mx_internal var defaultIconUsesStates:Boolean = false;
+
+    /**
+     *  @private
+     *  Skin names.
+     *  Allows subclasses to re-define the skin property names.
+     */
+//     mx_internal var skinName:String = "skin";
+//     mx_internal var emphasizedSkinName:String = "emphasizedSkin";
+//     mx_internal var upSkinName:String = "upSkin";
+//     mx_internal var overSkinName:String = "overSkin";
+//     mx_internal var downSkinName:String = "downSkin";
+//     mx_internal var disabledSkinName:String = "disabledSkin";
+//     mx_internal var selectedUpSkinName:String = "selectedUpSkin";
+//     mx_internal var selectedOverSkinName:String = "selectedOverSkin";
+//     mx_internal var selectedDownSkinName:String = "selectedDownSkin";
+//     mx_internal var selectedDisabledSkinName:String = "selectedDisabledSkin";
+
+    /**
+     *  @private
+     *  Icon names.
+     *  Allows subclasses to re-define the icon property names.
+     */
+//     mx_internal var iconName:String = "icon";
+//     mx_internal var upIconName:String = "upIcon";
+//     mx_internal var overIconName:String = "overIcon";
+//     mx_internal var downIconName:String = "downIcon";
+//     mx_internal var disabledIconName:String = "disabledIcon";
+//     mx_internal var selectedUpIconName:String = "selectedUpIcon";
+//     mx_internal var selectedOverIconName:String = "selectedOverIcon";
+//     mx_internal var selectedDownIconName:String = "selectedDownIcon";
+//     mx_internal var selectedDisabledIconName:String = "selectedDisabledIcon";
 
     //--------------------------------------------------------------------------
     //
     //  Overridden properties
     //
     //--------------------------------------------------------------------------
-
 
 
     //----------------------------------
@@ -397,7 +429,6 @@ public class Button extends UIComponent
         invalidateProperties();
         invalidateDisplayList();
     }
-
 
     //----------------------------------
     //  toolTip
@@ -478,13 +509,11 @@ public class Button extends UIComponent
      */
     public function set data(value:Object):void
     {
-        var newSelected:*;
-        var newLabel:*;
-
         _data = value;
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
     }
+
 
     //----------------------------------
     //  label
@@ -553,7 +582,7 @@ public class Button extends UIComponent
      *  @private
      *  Storage for labelPlacement property.
      */
-    mx_internal var _labelPlacement:String = ButtonLabelPlacement.RIGHT;
+    private var _labelPlacement:String = "right";//ButtonLabelPlacement.RIGHT;
 
     [Bindable("labelPlacementChanged")]
     [Inspectable(category="General", enumeration="left,right,top,bottom", defaultValue="right")]
@@ -595,6 +624,52 @@ public class Button extends UIComponent
         dispatchEvent(new Event("labelPlacementChanged"));
     }
 
+    //-----------------------------------
+    //  listData
+    //-----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the listData property.
+     */
+    private var _listData:BaseListData;
+
+    [Bindable("dataChange")]
+    [Inspectable(environment="none")]
+
+    /**
+     *  When a component is used as a drop-in item renderer or drop-in
+     *  item editor, Flex initializes the <code>listData</code> property
+     *  of the component with the appropriate data from the list control.
+     *  The component can then use the <code>listData</code> property
+     *  to initialize the <code>data</code> property
+     *  of the drop-in item renderer or drop-in item editor.
+     *
+     *  <p>You do not set this property in MXML or ActionScript;
+     *  Flex sets it when the component is used as a drop-in item renderer
+     *  or drop-in item editor.</p>
+     *
+     *  @default null
+     *  @see mx.controls.listClasses.IDropInListItemRenderer
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get listData():BaseListData
+    {
+        return _listData;
+    }
+
+    /**
+     *  @private
+     */
+    public function set listData(value:BaseListData):void
+    {
+        _listData = value;
+    }
+
     //----------------------------------
     //  selected
     //----------------------------------
@@ -603,7 +678,7 @@ public class Button extends UIComponent
      *  @private
      *  Storage for selected property.
      */
-    mx_internal var _selected:Boolean = false;
+    private var _selected:Boolean = false;
 
     [Bindable("click")]
     [Bindable("valueCommit")]
@@ -649,6 +724,43 @@ public class Button extends UIComponent
         setSelected(value, true);
     }
 
+    private function setSelected(value:Boolean,
+                                     isProgrammatic:Boolean = false):void
+    {
+        if (_selected != value)
+        {
+            _selected = value;
+
+            invalidateDisplayList();
+
+            if (toggle && !isProgrammatic)
+                dispatchEvent(new Event(Event.CHANGE));
+
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+        }
+    }
+
+    //----------------------------------
+    //  selectedField
+    //----------------------------------
+
+    /**
+     *  The name of the field in the <code>data</code> property which specifies
+     *  the value of the Button control's <code>selected</code> property.
+     *  You can set this property when you use the Button control in an item renderer.
+     *  The default value is null, which means that the Button control does
+     *  not set its selected state based on a property in the <code>data</code> property.
+     *
+     *  @default null
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var selectedField:String = null;
+
+
     //----------------------------------
     //  toggle
     //----------------------------------
@@ -657,12 +769,12 @@ public class Button extends UIComponent
      *  @private
      *  Storage for toggle property.
      */
-    mx_internal var _toggle:Boolean = false;
+    private var _toggle:Boolean = false;
 
     /**
      *  @private
      */
-    mx_internal var toggleChanged:Boolean = false;
+    private var toggleChanged:Boolean = false;
 
     [Bindable("toggleChanged")]
     [Inspectable(category="General", defaultValue="false")]
@@ -709,7 +821,39 @@ public class Button extends UIComponent
         invalidateDisplayList();
 
         dispatchEvent(new Event("toggleChanged"));
-    }=
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: UIComponent
+    //
+    //--------------------------------------------------------------------------
+
+
+    /**
+     *  @private
+     */
+    override protected function commitProperties():void
+    {
+        super.commitProperties();
+    }
+
+    /**
+     *  @private
+     */
+    override protected function measure():void
+    {
+        super.measure();
+    }
+
+    /**
+     *  @private
+     */
+    override protected function updateDisplayList(unscaledWidth:Number,
+                                                  unscaledHeight:Number):void
+    {
+        super.updateDisplayList(unscaledWidth, unscaledHeight);
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -718,6 +862,59 @@ public class Button extends UIComponent
     //--------------------------------------------------------------------------
 
 
+   /**
+     *  @private
+     *  Controls the layout of the icon and the label within the button.
+     *  The text/icon are aligned based on the textAlign style setting.
+     */
+//     mx_internal function layoutContents(unscaledWidth:Number,
+//                                         unscaledHeight:Number,
+//                                         offset:Boolean):void
+//     {
+//     	// left this function here as a reminder. mx.controls.Button should have its own
+//     	// ButtonLayout bead which can place the icon and label.
+//     }
+
+
+    /**
+     *  @private
+     */
+//    mx_internal function buttonPressed():void
+//    {
+//         phase = ButtonPhase.DOWN;
+//
+//         dispatchEvent(new FlexEvent(FlexEvent.BUTTON_DOWN));
+//
+//         if (autoRepeat)
+//         {
+//             autoRepeatTimer.delay = getStyle("repeatDelay");
+//             autoRepeatTimer.addEventListener(
+//                 TimerEvent.TIMER, autoRepeatTimer_timerDelayHandler);
+//             autoRepeatTimer.start();
+//         }
+//    }
+
+    /**
+     *  @private
+     */
+//     mx_internal function buttonReleased():void
+//     {
+//         // Remove the handlers that were added in mouseDownHandler().
+//         systemManager.getSandboxRoot().removeEventListener(
+//             MouseEvent.MOUSE_UP, systemManager_mouseUpHandler, true);
+//         systemManager.getSandboxRoot().removeEventListener(
+//             SandboxMouseEvent.MOUSE_UP_SOMEWHERE, stage_mouseLeaveHandler);
+//
+//         if (autoRepeatTimer)
+//         {
+//             autoRepeatTimer.removeEventListener(
+//                 TimerEvent.TIMER, autoRepeatTimer_timerDelayHandler);
+//             autoRepeatTimer.removeEventListener(
+//                 TimerEvent.TIMER, autoRepeatTimer_timerHandler);
+//             autoRepeatTimer.reset();
+//         }
+//     }
+
 
     //--------------------------------------------------------------------------
     //
@@ -725,32 +922,6 @@ public class Button extends UIComponent
     //
     //--------------------------------------------------------------------------
 
-    /**
-     *  @private
-     */
-    override protected function focusOutHandler(event:FocusEvent):void
-    {
-        if (goog.DEBUG)
-        	trace("focusOutHandler not implemented");
-    }
-
-    /**
-     *  @private
-     */
-    override protected function keyDownHandler(event:KeyboardEvent):void
-    {
-        if (goog.DEBUG)
-        	trace("keyDownHandler not implemented");
-    }
-
-    /**
-     *  @private
-     */
-    override protected function keyUpHandler(event:KeyboardEvent):void
-    {
-        if (goog.DEBUG)
-        	trace("keyUpHandler not implemented");
-    }
 
     //--------------------------------------------------------------------------
     //
@@ -758,132 +929,7 @@ public class Button extends UIComponent
     //
     //--------------------------------------------------------------------------
 
-    /*
 
-    Mouse interaction sequences that Button must handle:
-
-    All start with Button in "up" phase, mouse outside Button,
-    and mouse button up.
-
-    Normal click:
-        roll over Button -> "over" phase
-        mouse down on Button -> "down" phase, dispatch "buttonDown"
-        mouse up while over Button -> "over" phase, dispatch "click"
-        roll out of Button -> "up" phase
-
-    Click canceled:
-        roll over Button -> "over" phase
-        mouse down on Button -> "down" phase, dispatch "buttonDown"
-        roll out of Button -> "over" phase
-        maybe roll over and out of other objects -> dispatch events from them
-        maybe roll off the stage, or off and back on
-        mouse up while out of Button -> "up" phase
-        if mouseup was over another Button, it goes into "over" phase
-
-    Click resumed:
-        roll over Button -> "over" phase
-        mouse down on Button -> "down" phase, dispatch "buttonDown"
-        roll out of Button -> "over" phase
-        maybe roll over and out of other objects -> dispatch events from them
-        roll over Button -> "down" phase
-        maybe roll off the stage, or off and back on
-        maybe repeat last four steps
-        mouse up while over Button -> "over" phase, dispatch "click"
-        roll out of Button -> "up" phase
-
-    Drag over and out
-        mouse down while out of Button
-        roll over Button -> stay in "up" phase
-        roll out of Button -> stay in "up" phase
-
-    Drag over and up
-        mouse down while out of Button
-        roll over Button -> stay in "up" phase
-        mouse up while over Button -> "over" phase
-        continue with step 2 of first three sequences above
-
-    */
-
-    /**
-     *  The default handler for the <code>MouseEvent.ROLL_OVER</code> event.
-     *
-     *  @param The event object.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    protected function rollOverHandler(event:MouseEvent):void
-    {
-       if (goog.DEBUG)
-        	trace("rollOverHandler not implemented");
-    }
-
-    /**
-     *  The default handler for the <code>MouseEvent.ROLL_OUT</code> event.
-     *
-     *  @param The event object.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    protected function rollOutHandler(event:MouseEvent):void
-    {
-
-        if (goog.DEBUG)
-        	trace("rollOutHandler not implemented");
-    }
-
-    /**
-     *  The default handler for the <code>MouseEvent.MOUSE_DOWN</code> event.
-     *
-     *  @param The event object.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    protected function mouseDownHandler(event:MouseEvent):void
-    {
-        if (goog.DEBUG)
-        	trace("mouseDownHandler not implemented");
-    }
-
-    /**
-     *  The default handler for the <code>MouseEvent.MOUSE_UP</code> event.
-     *
-     *  @param The event object.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    protected function mouseUpHandler(event:MouseEvent):void
-    {
-        if (goog.DEBUG)
-        	trace("mouseUpHandler not implemented");
-    }
-
-    /**
-     *  The default handler for the <code>MouseEvent.CLICK</code> event.
-     *
-     *  @param The event object.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    protected function clickHandler(event:MouseEvent):void
-    {
-        if (goog.DEBUG)
-        	trace("clickHandler not implemented");
-    }
 }
 
 }
