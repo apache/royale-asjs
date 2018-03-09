@@ -54,16 +54,43 @@ package
 			
 			var usmapCoords:Object = new MapCoords().usmap;
 			var path:SVGPathElement;
+            var poly:SVGPolygonElement;
+            var line:SVGPolylineElement;
 			for (var state:String in usmapCoords)
 			{
-				path = SVGPathElement(document.createElementNS("http://www.w3.org/2000/svg", "path"));
-				path.setAttribute("d", usmapCoords[state]);
-				path.setAttribute("fill","#FF0000");
-				path.setAttribute("opacity", Math.random());
-				path.addEventListener("mouseover", handleStateMouseOver, false);
-				path.addEventListener("mouseout", handleStateMouseOut, false);
-				path.addEventListener("click", handleStateClick, false);
-				map.appendChild(path);
+                if (state == "wy" || state == "co")
+                {
+                    poly = SVGPolygonElement(document.createElementNS("http://www.w3.org/2000/svg", "polygon"));
+                    poly.setAttribute("points", usmapCoords[state]);
+                    poly.setAttribute("fill","#FF0000");
+                    poly.setAttribute("opacity", Math.random());
+                    poly.addEventListener("mouseover", handleStateMouseOver, false);
+                    poly.addEventListener("mouseout", handleStateMouseOut, false);
+                    poly.addEventListener("click", handleStateClick, false);
+                    map.appendChild(poly);
+                }
+                else if (state == "ut")
+                {
+                    line = SVGPolylineElement(document.createElementNS("http://www.w3.org/2000/svg", "polyline"));
+                    line.setAttribute("points", usmapCoords[state]);
+                    line.setAttribute("fill","#FF0000");
+                    line.setAttribute("opacity", Math.random());
+                    line.addEventListener("mouseover", handleStateMouseOver, false);
+                    line.addEventListener("mouseout", handleStateMouseOut, false);
+                    line.addEventListener("click", handleStateClick, false);
+                    map.appendChild(line);
+                }
+                else
+                {
+    				path = SVGPathElement(document.createElementNS("http://www.w3.org/2000/svg", "path"));
+    				path.setAttribute("d", usmapCoords[state]);
+                    path.setAttribute("fill","#FF0000");
+                    path.setAttribute("opacity", Math.random());
+                    path.addEventListener("mouseover", handleStateMouseOver, false);
+                    path.addEventListener("mouseout", handleStateMouseOut, false);
+                    path.addEventListener("click", handleStateClick, false);
+                    map.appendChild(path);
+                }
 			}
 
 		}
