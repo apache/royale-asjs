@@ -93,6 +93,9 @@
     <component id="SingleSelectionContainerBead" class="org.apache.royale.html.beads.SingleSelectionContainerBead" />
     <!--<component id="MultilineTextFieldView" class="org.apache.royale.html.beads.MultilineTextFieldView"/>-->
 
+    <component id="ApplicationParameters" class="org.apache.royale.html.beads.ApplicationParametersBead"/>
+    <component id="ApplicationParametersCaseInsensitive" class="org.apache.royale.html.beads.ApplicationParametersCaseInsensitiveBead"/>
+
     <component id="SimpleAlert" class="org.apache.royale.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.royale.html.Alert"/>
     <component id="Spinner" class="org.apache.royale.html.Spinner"/>
