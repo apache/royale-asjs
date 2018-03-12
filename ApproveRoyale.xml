@@ -352,6 +352,7 @@
             reportFile="${src.rat.report}">
             <fileset dir="${basedir}/${package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="RELEASE_NOTES.md"/>
                 <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
@@ -415,6 +416,7 @@
             reportFile="${bin.rat.report}">
             <fileset dir="${basedir}/${bin.package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="RELEASE_NOTES.md"/>
                 <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
@@ -650,10 +652,10 @@
         	    </not>
 			</condition>
         </fail>
-        <fail message="RELEASE_NOTES not in package">
+        <fail message="RELEASE_NOTES.md not in package">
 			<condition>
 				<not>
-					<available file="${basedir}/${package.url.name}/RELEASE_NOTES" />
+					<available file="${basedir}/${package.url.name}/RELEASE_NOTES.md" />
 				</not>
 			</condition>
         </fail>
@@ -680,10 +682,10 @@
         defaultvalue="y"
         addproperty="readme.ok"/>
 		<antcall target="display-text" >
-            <param name="file" value="${basedir}/${package.url.name}/RELEASE_NOTES" />
+            <param name="file" value="${basedir}/${package.url.name}/RELEASE_NOTES.md" />
         </antcall>
 		<input
-			message="Check the RELEASE_NOTES for copyright years, spelling, grammar, accuracy. Is it ok?"
+			message="Check the RELEASE_NOTES.md for copyright years, spelling, grammar, accuracy. Is it ok?"
             validargs="y,n"
         defaultvalue="y"
         addproperty="releasenotes.ok"/>
@@ -1043,7 +1045,7 @@ OS: ${os.name} ${os.arch} ${os.version}
 Source kit signatures match: y
 Source kit builds: y
 README is ok: ${readme.ok}
-RELEASE_NOTES is ok: ${releasenotes.ok}
+RELEASE_NOTES.md is ok: ${releasenotes.ok}
 NOTICE is ok: ${notice.ok}
 LICENSE is ok: ${license.ok}
 No unapproved licenses or archives: ${rat.license.ok}
@@ -1071,7 +1073,7 @@ OS: ${os.name} ${os.arch} ${os.version}
 Source kit signatures match: y
 Source kit builds: y
 README is ok: ${readme.ok}
-RELEASE_NOTES is ok: ${releasenotes.ok}
+RELEASE_NOTES.md is ok: ${releasenotes.ok}
 NOTICE is ok: ${notice.ok}
 LICENSE is ok: ${license.ok}
 No unapproved licenses or archives: ${rat.license.ok}
