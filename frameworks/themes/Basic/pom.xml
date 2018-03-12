@@ -33,7 +33,7 @@
   <name>Apache Royale: Framework: Themes: Basic</name>
 
   <build>
-    <sourceDirectory>.</sourceDirectory>
+    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
@@ -44,7 +44,7 @@
           <includeFiles>
             <include-file>
               <name>basic.css</name>
-              <path>../basic.css</path>
+              <path>../src/basic.css</path>
             </include-file>
           </includeFiles>
         </configuration>
