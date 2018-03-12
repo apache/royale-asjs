@@ -59,14 +59,10 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel button";
+            COMPILE::JS {
+                element.classList.add("jewel", "button");
+            }
 		}
-
-        COMPILE::JS
-        override protected function computeFinalClassNames():String
-        {
-            return super.computeFinalClassNames() + " " + element.classList;
-        }
 
         private var _primary:Boolean = false;
 
@@ -93,9 +89,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    
                     element.classList.toggle("primary", value);
-                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -126,7 +120,6 @@ package org.apache.royale.jewel
                 COMPILE::JS
                 {
                     element.classList.toggle("secondary", value);
-                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -157,7 +150,6 @@ package org.apache.royale.jewel
                 COMPILE::JS
                 {
                     element.classList.toggle("emphasized", value);
-                    setClassName(computeFinalClassNames());
                 }
             }
         }

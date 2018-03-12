@@ -51,7 +51,9 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel textbutton";
+            COMPILE::JS {
+                element.classList.add("jewel", "textbutton");
+            }
 		}
         
         /**
