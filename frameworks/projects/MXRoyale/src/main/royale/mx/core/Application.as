@@ -273,6 +273,8 @@ public class Application extends org.apache.royale.express.Application
     //  Variables
     //
     //--------------------------------------------------------------------------
+	
+	private var instanceParent:mx.core.Application;
 
     /**
      *  @private

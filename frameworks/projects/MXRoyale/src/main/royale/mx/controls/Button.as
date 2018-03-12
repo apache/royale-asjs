@@ -758,7 +758,17 @@ public class Button extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var selectedField:String = null;
+	private var _selectedField:String = null;
+	
+	public function get selectedField():String
+	{
+		return _selectedField;
+	}
+	
+	public function set selectedField(value:String):void
+	{
+		_selectedField = value;
+	}
 
 
     //----------------------------------
