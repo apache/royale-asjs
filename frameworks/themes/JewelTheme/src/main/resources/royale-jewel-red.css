@@ -1,0 +1,263 @@
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+@namespace j "library://ns.apache.org/royale/jewel";
+@namespace "http://www.w3.org/1999/xhtml";
+.royale *, .royale *:before, .royale *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.royale {
+  padding: 10px;
+  margin: 10px;
+}
+
+/**
+ * Jewel Button
+ */
+.jewel.button, .jewel.button:hover, .jewel.textbutton, .jewel.textbutton:hover {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 10px 16px;
+  min-width: 74px;
+  min-height: 34px;
+  /* Background: */
+  border: none;
+  border-radius: 3px;
+}
+
+.jewel.button {
+  background-color: rgba(0, 0, 0, 0.2);
+  transition-duration: 0.4s;
+  color: rgba(0, 0, 0, 0.5);
+}
+.jewel.button:hover {
+  background-color: rgba(15, 15, 15, 0.2);
+}
+.jewel.button:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.jewel.button:focus {
+  outline: 0;
+}
+.jewel.button[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+.jewel.button.primary {
+  background-color: #FF0000;
+  transition-duration: 0.4s;
+  color: white;
+}
+.jewel.button.primary:hover {
+  background-color: #ff1f1f;
+}
+.jewel.button.primary:active {
+  background-color: #e00000;
+}
+.jewel.button.primary:focus {
+  outline: 0;
+}
+.jewel.button.primary[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+.jewel.button.secondary {
+  background-color: #342F30;
+  transition-duration: 0.4s;
+  color: white;
+}
+.jewel.button.secondary:hover {
+  background-color: #443e3f;
+}
+.jewel.button.secondary:active {
+  background-color: #242021;
+}
+.jewel.button.secondary:focus {
+  outline: 0;
+}
+.jewel.button.secondary[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+.jewel.button.emphasized {
+  background-color: #016936;
+  transition-duration: 0.4s;
+  color: white;
+}
+.jewel.button.emphasized:hover {
+  background-color: #018746;
+}
+.jewel.button.emphasized:active {
+  background-color: #014b26;
+}
+.jewel.button.emphasized:focus {
+  outline: 0;
+}
+.jewel.button.emphasized[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+/**
+ * Jewel TextButton
+ */
+.jewel.textbutton, .jewel.textbutton:hover {
+  /* TextField */
+  font-family: "Lato-Bold", sans-serif;
+  font-style: bold;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.jewel.textbutton [disabled] {
+  text-shadow: unset;
+}
+
+.jewel.textbutton {
+  background-color: rgba(0, 0, 0, 0.2);
+  transition-duration: 0.4s;
+  color: rgba(0, 0, 0, 0.5);
+}
+.jewel.textbutton:hover {
+  background-color: rgba(15, 15, 15, 0.2);
+}
+.jewel.textbutton:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.jewel.textbutton:focus {
+  outline: 0;
+}
+.jewel.textbutton[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+.jewel.textbutton.primary {
+  background-color: #FF0000;
+  transition-duration: 0.4s;
+  color: white;
+}
+.jewel.textbutton.primary:hover {
+  background-color: #ff1f1f;
+}
+.jewel.textbutton.primary:active {
+  background-color: #e00000;
+}
+.jewel.textbutton.primary:focus {
+  outline: 0;
+}
+.jewel.textbutton.primary[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+.jewel.textbutton.secondary {
+  background-color: #342F30;
+  transition-duration: 0.4s;
+  color: white;
+}
+.jewel.textbutton.secondary:hover {
+  background-color: #443e3f;
+}
+.jewel.textbutton.secondary:active {
+  background-color: #242021;
+}
+.jewel.textbutton.secondary:focus {
+  outline: 0;
+}
+.jewel.textbutton.secondary[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+.jewel.textbutton.emphasized {
+  background-color: #016936;
+  transition-duration: 0.4s;
+  color: white;
+}
+.jewel.textbutton.emphasized:hover {
+  background-color: #018746;
+}
+.jewel.textbutton.emphasized:active {
+  background-color: #014b26;
+}
+.jewel.textbutton.emphasized:focus {
+  outline: 0;
+}
+.jewel.textbutton.emphasized[disabled] {
+  background-color: #CCCCCC;
+  color: #888888;
+  cursor: unset;
+}
+
+/**
+ * Jewel TextField
+ */
+TextField {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 300px;
+  max-width: 100%;
+  margin: 0;
+}
+
+.vTextField--input {
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+  border: none;
+  border-bottom: 2px solid;
+  border-bottom-color: #ff0000;
+  display: block;
+  margin: 0;
+  padding: 4 0;
+  width: 100px;
+  background: transparent;
+  text-align: left;
+  color: inherit;
+  outline: none;
+}
+
+.vTextField--label {
+  bottom: 0;
+  color: #ff0000;
+  font-size: 13px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+}
+
+/*# sourceMappingURL=royale-jewel-red.css.map */
