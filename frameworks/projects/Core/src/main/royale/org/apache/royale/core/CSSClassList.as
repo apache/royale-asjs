@@ -86,7 +86,7 @@ package org.apache.royale.core
          */
 		public function compute():String
 		{
-            return _list ? _list.join(" ") + " " : "";
+            return _list ? _list.join(" ") : "";
 		}
 	}
 }
