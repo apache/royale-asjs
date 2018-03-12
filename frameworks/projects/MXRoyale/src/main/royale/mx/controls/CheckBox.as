@@ -161,7 +161,7 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public function get selected():Boolean
+	override public function get selected():Boolean
 	{
 		return IToggleButtonModel(model).selected;
 	}
@@ -169,7 +169,7 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	/**
 	 *  @private
 	 */
-	public function set selected(value:Boolean):void
+	override public function set selected(value:Boolean):void
 	{
 		IToggleButtonModel(model).selected = value;
 	}
@@ -220,12 +220,12 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	}
 
 	[Bindable("change")]
-	public function get selected():Boolean
+	override public function get selected():Boolean
 	{
 		return (_icon.element as HTMLInputElement).checked;
 	}
 
-	public function set selected(value:Boolean):void
+	override public function set selected(value:Boolean):void
 	{
 	   (_icon.element as HTMLInputElement).checked = value;
 	}

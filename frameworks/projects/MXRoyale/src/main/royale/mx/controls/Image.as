@@ -25,8 +25,11 @@ COMPILE::JS
 }
 import org.apache.royale.core.IImage;
 import org.apache.royale.core.IImageModel;
-import org.apache.royale.core.WrappedHTMLElement;
-import org.apache.royale.html.util.addElementToWrapper;
+COMPILE::JS {
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
+}
+import mx.core.UIComponent;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -35,7 +38,9 @@ import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.core.mx_internal;
+*/
 import mx.events.FlexEvent;
+/*
 
 use namespace mx_internal;
 */
@@ -170,9 +175,9 @@ public class Image extends UIComponent
         super();
 
         // images are generally not interactive
-        tabChildren = false;
-        tabEnabled = true;
-        tabFocusEnabled = true;
+        //tabChildren = false;
+        //tabEnabled = true;
+        //tabFocusEnabled = true;
     }
 
     //--------------------------------------------------------------------------
@@ -207,13 +212,38 @@ public class Image extends UIComponent
 	{
 		return (model as IImageModel).url;
 	}
+	
+	//----------------------------------
+	//  src
+	//----------------------------------
+	
+	public function set src(value:String):void
+	{
+		(model as IImageModel).url = value;
+	}
+	
+	public function get src():String
+	{
+		return (model as IImageModel).url;
+	}
 
     //--------------------------------------------------------------------------
     //
     //  Properties
     //
     //--------------------------------------------------------------------------
-
+	
+	COMPILE::JS
+	public function get imageElement():Element
+	{
+		return element;
+	}
+	
+	COMPILE::JS
+	public function applyImageData(binaryDataAsString:String):void
+	{
+		(element as HTMLImageElement).src = binaryDataAsString;
+	}
 
 
     //--------------------------------------------------------------------------
@@ -221,21 +251,6 @@ public class Image extends UIComponent
     //  Inherited methods: UIComponent
     //
     //--------------------------------------------------------------------------
-
-
-
-	COMPILE::JS
-	public function get imageElement():Element
-	{
-		return null;
-		// override this
-	}
-
-	COMPILE::JS
-	public function applyImageData(binaryDataAsString:String):void
-	{
-		// override this
-	}
 
 	/**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -246,18 +261,6 @@ public class Image extends UIComponent
 		addElementToWrapper(this,'img');
 		typeNames = 'Image';
 		return element;
-	}
-
-	COMPILE::JS
-	override public function get imageElement():Element
-	{
-		return element;
-	}
-
-	COMPILE::JS
-	override public function applyImageData(binaryDataAsString:String):void
-	{
-		(element as HTMLImageElement).src = binaryDataAsString;
 	}
 
 
