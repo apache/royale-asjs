@@ -249,7 +249,7 @@ public class Button extends UIComponent implements IDataRenderer
 	public function Button()
 	{
 		super();
-		typeNames = "ImageAndTextButton";
+		typeNames = "Button";
 	}
 	
 	// ------------------------------------------------
@@ -558,7 +558,7 @@ public class Button extends UIComponent
     public function Button()
     {
         super();
-        typeNames = "ImageAndTextButton";
+        typeNames = "Button";
     }
 
     //--------------------------------------------------------------------------
