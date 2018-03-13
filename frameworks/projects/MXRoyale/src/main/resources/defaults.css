@@ -25,6 +25,24 @@
 	box-sizing: border-box;
 }
 
+/* -------------------------------------------------------
+ * Common Platform Styles
+ * -------------------------------------------------------
+ */
+
+TextInput
+{
+	border: 1px solid #808080;
+	border-radius: 2px;
+	padding: 4px;
+	margin: 0px;
+}
+
+
+/* -------------------------------------------------------
+* SWF specific styles
+* -------------------------------------------------------
+*/
 
 @media -royale-swf
 {
@@ -35,5 +53,20 @@
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
+	}
+	
+	TextInput
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+		IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
+		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
+		IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		background-color: #FFFFFF;
+		font-size: 11px;
+		font-family: Arial;
 	}
 }

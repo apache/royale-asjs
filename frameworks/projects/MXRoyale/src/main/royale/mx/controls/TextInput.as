@@ -22,47 +22,23 @@ package mx.controls
 COMPILE::JS
 {
 	import goog.DEBUG;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
 }
-import org.apache.royale.events.Event;
-import org.apache.royale.core.ITextModel;
-/*
-import flash.accessibility.AccessibilityProperties;
-import flash.display.DisplayObject;
-import flash.events.Event;
-import flash.events.FocusEvent;
-import flash.events.KeyboardEvent;
-import flash.events.TextEvent;
-import flash.system.IME;
-import flash.system.IMEConversionMode;
-import flash.text.TextField;
-import flash.text.TextFieldAutoSize;
-import flash.text.TextFieldType;
-import flash.text.TextFormat;
-import flash.text.TextLineMetrics;
-import flash.ui.Keyboard;
-
-*/
 import mx.controls.listClasses.BaseListData;
-/*
-import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.listClasses.IListItemRenderer;
-import mx.core.EdgeMetrics;
-import mx.core.IDataRenderer;
-import mx.core.IFlexDisplayObject;
-import mx.core.IFlexModuleFactory;
-import mx.core.IFontContextComponent;
-import mx.core.IIMESupport;
-import mx.core.IInvalidating;
-import mx.core.IRectangularBorder;
-import mx.core.IUITextField;
-*/
 import mx.core.ITextInput;
 import mx.core.UIComponent;
-/*
-import mx.core.UITextField;
-import mx.core.mx_internal;
-*/
 import mx.events.FlexEvent;
+
+import org.apache.royale.core.ITextModel;
+import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.PasswordInputBead;
+import org.apache.royale.html.beads.DisableBead;
+
+COMPILE::SWF {
+	import org.apache.royale.html.beads.TextInputView;
+}
+
 /*
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerComponent;
@@ -308,6 +284,11 @@ public class TextInput extends UIComponent implements ITextInput
     {
         super();
         typeNames = "TextInput";
+		
+		COMPILE::SWF
+		{
+			model.addEventListener("textChange", textChangeHandler);
+		}
     }
 
     //--------------------------------------------------------------------------
@@ -347,6 +328,8 @@ public class TextInput extends UIComponent implements ITextInput
      *  @private
      */
     private var enabledChanged:Boolean = false;
+	
+	private var _disableBead:DisableBead;
 
     [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
 
@@ -360,12 +343,24 @@ public class TextInput extends UIComponent implements ITextInput
             return;
 
         super.enabled = value;
-        enabledChanged = true;
-
-        invalidateProperties();
-
+//        enabledChanged = true;
+//
+//        invalidateProperties();
+//
 //         if (border && border is IInvalidating)
 //             IInvalidating(border).invalidateDisplayList();
+		
+		if (_disableBead == null) {
+			_disableBead = new DisableBead();
+			addBead(_disableBead);
+		}
+		
+		_disableBead.disabled = !value;
+		
+		COMPILE::SWF {
+			var textView:TextInputView = view as TextInputView;
+			textView.textField.mouseEnabled = super.enabled;
+		}
     }
 
     //----------------------------------
@@ -501,6 +496,7 @@ public class TextInput extends UIComponent implements ITextInput
     /**
      *  @private
      */
+	private var _passwordBead:PasswordInputBead;
     private var displayAsPasswordChanged:Boolean = false;
 
     [Bindable("displayAsPasswordChanged")]
@@ -536,11 +532,20 @@ public class TextInput extends UIComponent implements ITextInput
             return;
 
         _displayAsPassword = value;
-        displayAsPasswordChanged = true;
-
-        invalidateProperties();
-        invalidateSize();
-        invalidateDisplayList();
+//        displayAsPasswordChanged = true;
+//
+//        invalidateProperties();
+//        invalidateSize();
+//        invalidateDisplayList();;
+		
+		if (_displayAsPassword && _passwordBead == null) {
+			_passwordBead = new PasswordInputBead();
+			addBead(_passwordBead);
+		}
+		else if (!_displayAsPassword && _passwordBead != null) {
+			removeBead(_passwordBead);
+			_passwordBead = null;
+		}
 
         dispatchEvent(new Event("displayAsPasswordChanged"));
     }
@@ -850,7 +855,14 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function get htmlText():String
     {
-        return ITextModel(model).html;
+		COMPILE::SWF
+		{
+			return ITextModel(model).html;
+		}
+		COMPILE::JS
+		{
+			return (element as HTMLInputElement).value;
+		}
     }
 
     /**
@@ -858,39 +870,15 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function set htmlText(value:String):void
     {
-        textSet = true;
-
-        // The htmlText property can't be set to null,
-        // only to the empty string, because if you set the htmlText
-        // of a TextField to null it throws an RTE.
-        // If the getter returns null, it means that 'text' was just set
-        // and the value of 'htmlText' isn't yet known, because the 'text'
-        // hasn't been committed into the textField and the 'htmlText'
-        // hasn't yet been read back out of the textField.
-        if (!value)
-            value = "";
-
-        ITextModel(model).html = value;
-        htmlTextChanged = true;
-
-        // The text property is unknown until commitProperties(),
-        // when we push the htmlText into the TextField and it
-        // calculates the text.
-        // But you can call validateNow() to make this happen right away.
-        ITextModel(model).text = null;
-
-        explicitHTMLText = value;
-
-        invalidateProperties();
-        invalidateSize();
-        invalidateDisplayList();
-
-        // Trigger bindings to htmlText.
-        dispatchEvent(new Event("htmlTextChanged"));
-
-        // commitProperties() will dispatch a "valueCommit" event
-        // after the TextField determines the 'text' based on the
-        // 'htmlText'; this event will trigger any bindings to 'text'.
+		COMPILE::SWF
+		{
+			ITextModel(model).html = value;
+		}
+		COMPILE::JS
+		{
+			(element as HTMLInputElement).value = value;
+			dispatchEvent(new Event('textChange'));
+		}
     }
 
     //----------------------------------
@@ -1269,10 +1257,18 @@ public class TextInput extends UIComponent implements ITextInput
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  @royaleignorecoercion HTMLInputElement
      */
     public function get text():String
     {
-        return ITextModel(model).text;
+		COMPILE::SWF
+		{
+			return ITextModel(model).text;
+		}
+		COMPILE::JS
+		{
+			return (element as HTMLInputElement).value;
+		}
     }
 
     /**
@@ -1280,41 +1276,18 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function set text(value:String):void
     {
-        textSet = true;
-
-        // The text property can't be set to null, only to the empty string.
-        // If the getter returns null, it means that 'htmlText' was just set
-        // and the value of 'text' isn't yet known, because the 'htmlText'
-        // hasn't been committed into the textField and the 'text'
-        // hasn't yet been read back out of the textField.
-        if (!value)
-            value = "";
-
-        if (!isHTML && value == ITextModel(model).text)
-            return;
-
-        ITextModel(model).text = value;
-
-        textChanged = true;
-
-        // The htmlText property is unknown until commitProperties(),
-        // when we push the text into the TextField and it
-        // calculates the htmlText.
-        // But you can call validateNow() to make this happen right away.
-        ITextModel(model).html = null;
-
-        explicitHTMLText = null;
-
-        invalidateProperties();
-        invalidateSize();
-        invalidateDisplayList();
-
-        // Trigger bindings to 'text'.
-        dispatchEvent(new Event("textChanged"));
-
-        // commitProperties() will dispatch an "htmlTextChanged" event
-        // after the TextField determines the 'htmlText' based on the
-        // 'text'; this event will trigger any bindings to 'htmlText'.
+		COMPILE::SWF
+		{
+			inSetter = true;
+			ITextModel(model).text = value;
+			inSetter = false;
+		}
+		
+		COMPILE::JS
+		{
+			(element as HTMLInputElement).value = value;
+			dispatchEvent(new Event('textChange'));
+		}
 
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
@@ -1587,6 +1560,43 @@ public class TextInput extends UIComponent implements ITextInput
 //             }
 //         }
     }
+	
+	//--------------------------------------------------------------------------
+	//
+	//  createElement
+	//
+	//--------------------------------------------------------------------------
+	
+	/**
+	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+	 */
+	COMPILE::JS
+	override protected function createElement():WrappedHTMLElement
+	{
+		addElementToWrapper(this,'input');
+		element.setAttribute('type', 'text');
+		
+		//attach input handler to dispatch royale change event when user write in textinput
+		//goog.events.listen(element, 'change', killChangeHandler);
+		goog.events.listen(element, 'input', textChangeHandler);
+		return element;
+	}
+	
+	private var inSetter:Boolean;
+
+	/**
+	 *  dispatch change event in response to a textChange event
+	 *
+	 *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+	 */
+	public function textChangeHandler(event:Event):void
+	{
+        if (!inSetter)
+            dispatchEvent(new Event(Event.CHANGE));
+	}
 
     //--------------------------------------------------------------------------
     //
