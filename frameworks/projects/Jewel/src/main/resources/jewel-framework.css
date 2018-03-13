@@ -23,6 +23,16 @@
 }
 
 /**
+ * Jewel Label
+ */	 */
+Label {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+  IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
+  iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
+  white-space: nowrap;
+}
+
+/**
  * Jewel TextField
  */
 TextField {
@@ -60,4 +70,4 @@ RadioButton {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.RadioButtonView");
 }
 
-/*# sourceMappingURL=jewel.css.map */
+/*# sourceMappingURL=jewel-framework.css.map */

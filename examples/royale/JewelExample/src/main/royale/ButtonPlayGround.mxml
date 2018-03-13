@@ -35,14 +35,14 @@ limitations under the License.
 		<js:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
-	<js:Label text="Basic"/>
+	<j:Label text="Basic"/>
 	<js:Button/>
 	<js:TextButton text="Basic"/>
 
-	<js:Label text="Jewel Button"/>
+	<j:Label text="Jewel Button"/>
 	<j:Button primary="true"/>
 
-	<js:Label text="Jewel TextButton"/>
+	<j:Label text="Jewel TextButton"/>
 	
 	<j:TextButton text="DEFAULT"/>
 
@@ -60,7 +60,7 @@ limitations under the License.
 		</j:beads>
 	</j:TextButton>
 
-	<js:Label text="Jewel Button Sizing (respect min values)"/>
+	<j:Label text="Jewel Button Sizing (respect min values)"/>
 	<j:Slider id="slider" width="250" value="100" minimum="0" maximum="500"
 				valueChange="onValueChange(event)"/>
 	<j:Slider id="slider_v" width="250" value="40" minimum="0" maximum="300"

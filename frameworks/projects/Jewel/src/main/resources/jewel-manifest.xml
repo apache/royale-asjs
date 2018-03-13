@@ -24,6 +24,7 @@
     <component id="Application" class="org.apache.royale.jewel.Application"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="TextButton" class="org.apache.royale.jewel.TextButton"/>
+    <component id="Label" class="org.apache.royale.jewel.Label"/>
     <component id="TextField" class="org.apache.royale.jewel.TextField"/>
     <component id="Slider" class="org.apache.royale.jewel.Slider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>

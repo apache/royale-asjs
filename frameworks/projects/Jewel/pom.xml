@@ -58,7 +58,7 @@
           <includeFiles>
             <include-file>
               <name>jewel.css</name>
-              <path>../src/main/resources/jewel.css</path>
+              <path>../src/main/resources/jewel-framework.css</path>
             </include-file>
           </includeFiles>
           <includeLookupOnly>true</includeLookupOnly>

@@ -24,15 +24,23 @@
 		white-space: nowrap
 	.vertical
 		display: block !important
-	
+
+/**
+ * Jewel Label
+ */	
+Label
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel")
+	IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView")
+	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
+	white-space: nowrap
 
 /**
  * Jewel TextField
  */
 TextField
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel")
-	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
-	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
+	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
+	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
 
 .vTextField--input
 .vTextField--label
