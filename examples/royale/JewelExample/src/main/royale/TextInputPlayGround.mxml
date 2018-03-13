@@ -22,9 +22,7 @@ limitations under the License.
 		  xmlns:j="library://ns.apache.org/royale/jewel">
     
 	
-	
-	<j:TextField text="Text Input" width="120" height="40"/>
-
 	<j:RadioButton/>
-
+	<j:TextField text="Text Input" width="120" height="40"/>
+	
 </js:Group>

@@ -49,6 +49,8 @@ package org.apache.royale.jewel
 		public function TextField()
 		{
 			super();
+
+            typeNames = "jewel textField";
 		}
 
         COMPILE::JS
@@ -82,8 +84,6 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "TextField";
-
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
             
