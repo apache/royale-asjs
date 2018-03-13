@@ -127,9 +127,9 @@
  */
 .jewel.textbutton, .jewel.textbutton:hover {
   /* TextField */
-  font-family: "Lato-Bold", sans-serif;
+  font-family: "Lato", sans-serif;
   font-style: bold;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   text-decoration: none;
 }
