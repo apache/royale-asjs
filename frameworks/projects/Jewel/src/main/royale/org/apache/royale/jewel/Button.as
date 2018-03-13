@@ -59,9 +59,8 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            COMPILE::JS {
-                element.classList.add("jewel", "button");
-            }
+            
+            typeNames = "jewel button";
 		}
 
         private var _primary:Boolean = false;

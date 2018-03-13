@@ -1025,8 +1025,39 @@ package org.apache.royale.core
          * 
          *  @royalesuppresspublicvarwarning
          */
-        public var typeNames:String;
+        private var _typeNames:String;
         
+        /**
+         *  The classname.  Often used for CSS
+         *  class selector lookups.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get typeNames():String
+		{
+			return _typeNames;
+		}
+
+        /**
+         *  @private
+         */
+        public function set typeNames(value:String):void
+        {
+            if (_typeNames !== value)
+            {
+                _typeNames = value;
+
+                COMPILE::JS
+                {
+                    element.className = "";
+                    setClassName(_typeNames);             
+                }
+            }
+        }
+
         private var _className:String;
 
         /**
@@ -1054,7 +1085,7 @@ package org.apache.royale.core
 
                 COMPILE::JS
                 {
-                    setClassName(_className);             
+                    setClassName(typeNames ? typeNames + " " + _className : _className);             
                 }
                 
                 dispatchEvent(new Event("classNameChanged"));
@@ -1064,7 +1095,8 @@ package org.apache.royale.core
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            element.classList.add(value);
+            var classes:Array = value.split(" ");
+            element.classList.add.apply(element.classList, classes);
         }
 
         /**
