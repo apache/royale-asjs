@@ -17,7 +17,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mx:Application xmlns:mx="library://ns.apache.org/royale/mx" >
+<mx:Application xmlns:mx="library://ns.apache.org/royale/mx"
+                   xmlns:js="library://ns.apache.org/royale/basic"
+                   width="600" height="400" >
 	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
-	<mx:Label text="Hello World" />
+	
+
+	<!-- temporary until we can get this worked out -->
+    <js:initialView>
+        <js:View>
+        	<mx:Label text="Hello World" x="20" y="20" />
+        	<mx:Button label="Push Me" x="20" y="60" />
+        </js:View>
+    </js:initialView>
+        
 </mx:Application>

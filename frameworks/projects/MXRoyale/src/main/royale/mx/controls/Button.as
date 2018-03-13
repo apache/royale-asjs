@@ -22,50 +22,18 @@ package mx.controls
 COMPILE::JS
 {
     import goog.DEBUG;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
 }
-import org.apache.royale.events.Event;
-/*
-import flash.display.DisplayObject;
-import flash.events.Event;
-import flash.events.FocusEvent;
-import flash.events.KeyboardEvent;
-import flash.events.MouseEvent;
-import flash.events.TimerEvent;
-import flash.text.TextFormatAlign;
-import flash.text.TextLineMetrics;
-import flash.ui.Keyboard;
-import flash.utils.Timer;
-
-import mx.controls.dataGridClasses.DataGridListData;
-*/
 import mx.controls.listClasses.BaseListData;
-/*
-import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.listClasses.IListItemRenderer;
-import mx.core.EdgeMetrics;
-import mx.core.FlexVersion;
-import mx.core.IBorder;
-import mx.core.IButton;
-*/
 import mx.core.IDataRenderer;
-/*
-import mx.core.IFlexAsset;
-import mx.core.IFlexDisplayObject;
-import mx.core.IFlexModuleFactory;
-import mx.core.IFontContextComponent;
-import mx.core.IInvalidating;
-import mx.core.ILayoutDirectionElement;
-import mx.core.IProgrammaticSkin;
-import mx.core.IStateClient;
-import mx.core.IUIComponent;
-import mx.core.IUITextField;
-*/
 import mx.core.UIComponent;
-/*
-import mx.core.UITextField;
-import mx.core.mx_internal;
-*/
 import mx.events.FlexEvent;
+
+import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.ToolTipBead;
+import org.apache.royale.html.beads.models.ImageAndTextModel;
+
 /*
 import mx.events.MoveEvent;
 import mx.events.SandboxMouseEvent;
@@ -79,6 +47,16 @@ use namespace mx_internal;
 //--------------------------------------
 //  Events
 //--------------------------------------
+
+/**
+ *  Dispatched when the user clicks on a button.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
 /**
  *  Dispatched when the user presses the Button control.
@@ -264,6 +242,296 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
+COMPILE::JS
+public class Button extends UIComponent implements IDataRenderer
+{
+	
+	public function Button()
+	{
+		super();
+		typeNames = "ImageAndTextButton";
+	}
+	
+	// ------------------------------------------------
+	//  icon
+	// ------------------------------------------------
+	
+	/**
+	 *  The URL of an icon to use in the button
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	public function get icon():String
+	{
+		return ImageAndTextModel(model).image;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set icon(value:String):void
+	{
+		ImageAndTextModel(model).image = value;
+		setInnerHTML();
+	}
+	
+	
+	//----------------------------------
+	//  label
+	//----------------------------------
+	
+	public function get label():String
+	{
+		return ImageAndTextModel(model).text;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set label(value:String):void
+	{
+		ImageAndTextModel(model).text = value;
+		setInnerHTML();
+	}
+	
+	//----------------------------------
+	//  toolTip
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 */	
+	private var _toolTipBead:ToolTipBead;
+	
+	[Inspectable(category="General", defaultValue="null")]
+	
+	/**
+	 *  @private
+	 */
+	override public function set toolTip(value:String):void
+	{
+		super.toolTip = value;
+		
+		_toolTipBead = getBeadByType(ToolTipBead) as ToolTipBead;
+		if (_toolTipBead == null) {
+			_toolTipBead = new ToolTipBead();
+			addBead(_toolTipBead);
+		}
+		_toolTipBead.toolTip = value;
+	}
+	
+	override public function get toolTip():String
+	{
+		if (_toolTipBead) {
+			return _toolTipBead.toolTip;
+		}
+		return null;
+	}
+	
+	
+	//----------------------------------
+	//  data
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 *  Storage for the data property;
+	 */
+	private var _data:Object;
+	
+	[Bindable("dataChange")]
+	[Inspectable(environment="none")]
+	
+	/**
+	 *  The <code>data</code> property lets you pass a value
+	 *  to the component when you use it as an item renderer or item editor.
+	 *  You typically use data binding to bind a field of the <code>data</code>
+	 *  property to a property of this component.
+	 *
+	 *  <p>When you use the control as a drop-in item renderer or drop-in
+	 *  item editor, Flex automatically writes the current value of the item
+	 *  to the <code>selected</code> property of this control.</p>
+	 *
+	 *  <p>You do not set this property in MXML.</p>
+	 *
+	 *  @default null
+	 *  @see mx.core.IDataRenderer
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get data():Object
+	{
+		return _data;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set data(value:Object):void
+	{
+		_data = value;
+		dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+	}
+	
+	//----------------------------------
+	//  selected
+	//----------------------------------
+	
+	private var _selected:Boolean = false;
+	
+	public function get selected():Boolean
+	{
+		return _selected;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set selected(value:Boolean):void
+	{
+		_selected = value;
+	}
+	
+	//----------------------------------
+	//  labelPlacement
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 *  Storage for labelPlacement property.
+	 */
+	private var _labelPlacement:String = "right";//ButtonLabelPlacement.RIGHT;
+	
+	[Bindable("labelPlacementChanged")]
+	[Inspectable(category="General", enumeration="left,right,top,bottom", defaultValue="right")]
+	
+	/**
+	 *  Orientation of the label in relation to a specified icon.
+	 *  Valid MXML values are <code>right</code>, <code>left</code>,
+	 *  <code>bottom</code>, and <code>top</code>.
+	 *
+	 *  <p>In ActionScript, you can use the following constants
+	 *  to set this property:
+	 *  <code>ButtonLabelPlacement.RIGHT</code>,
+	 *  <code>ButtonLabelPlacement.LEFT</code>,
+	 *  <code>ButtonLabelPlacement.BOTTOM</code>, and
+	 *  <code>ButtonLabelPlacement.TOP</code>.</p>
+	 *
+	 *  @default ButtonLabelPlacement.RIGHT
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get labelPlacement():String
+	{
+		return _labelPlacement;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set labelPlacement(value:String):void
+	{
+		_labelPlacement = value;
+		dispatchEvent(new Event("labelPlacementChanged"));
+	}
+	
+	
+	//----------------------------------
+	//  toggle
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 *  Storage for toggle property.
+	 */
+	private var _toggle:Boolean = false;
+	
+	/**
+	 *  @private
+	 */
+	private var toggleChanged:Boolean = false;
+	
+	[Bindable("toggleChanged")]
+	[Inspectable(category="General", defaultValue="false")]
+	
+	/**
+	 *  Controls whether a Button is in a toggle state or not.
+	 *
+	 *  If <code>true</code>, clicking the button toggles it
+	 *  between a selected and an unselected state.
+	 *  You can get or set this state programmatically
+	 *  by using the <code>selected</code> property.
+	 *
+	 *  If <code>false</code>, the button does not stay pressed
+	 *  after the user releases it.
+	 *  In this case, its <code>selected</code> property
+	 *  is always <code>false</code>.
+	 *  Buttons like this are used for performing actions.
+	 *
+	 *  When <code>toggle</code> is set to <code>false</code>,
+	 *  <code>selected</code> is forced to <code>false</code>
+	 *  because only toggle buttons can be selected.
+	 *
+	 *  @default false
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get toggle():Boolean
+	{
+		return _toggle;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set toggle(value:Boolean):void
+	{
+		_toggle = value;
+		toggleChanged = true;
+		dispatchEvent(new Event("toggleChanged"));
+	}
+	
+	
+	//----------------------------------
+	//  internal
+	//----------------------------------
+	
+	/**
+	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+	 */
+	override protected function createElement():WrappedHTMLElement
+	{
+		addElementToWrapper(this,'button');
+		element.setAttribute('type', 'button');
+		return element;
+	}
+	
+	/**
+	 */
+	protected function setInnerHTML():void
+	{
+		var inner:String = '';
+		if (icon != null)
+			inner += "<img src='" + icon + "'/>";
+		inner += '&nbsp;';
+		inner += label;
+		element.innerHTML = inner;
+	};
+}
+
+COMPILE::SWF
 public class Button extends UIComponent
        implements IDataRenderer
 {
@@ -290,7 +558,7 @@ public class Button extends UIComponent
     public function Button()
     {
         super();
-        typeNames = "Button";
+        typeNames = "ImageAndTextButton";
     }
 
     //--------------------------------------------------------------------------
@@ -436,8 +704,8 @@ public class Button extends UIComponent
 
     /**
      *  @private
-     */
-    private var toolTipSet:Boolean = false;
+     */	
+	private var _toolTipBead:ToolTipBead;
 
     [Inspectable(category="General", defaultValue="null")]
 
@@ -447,17 +715,22 @@ public class Button extends UIComponent
     override public function set toolTip(value:String):void
     {
         super.toolTip = value;
-
-        if (value)
-        {
-            toolTipSet = true;
-        }
-        else
-        {
-            toolTipSet = false;
-            invalidateDisplayList();
-        }
+		
+		_toolTipBead = getBeadByType(ToolTipBead) as ToolTipBead;
+		if (_toolTipBead == null) {
+			_toolTipBead = new ToolTipBead();
+			addBead(_toolTipBead);
+		}
+		_toolTipBead.toolTip = value;
     }
+	
+	override public function get toolTip():String
+	{
+		if (_toolTipBead) {
+			return _toolTipBead.toolTip;
+		}
+		return null;
+	}
 
     //--------------------------------------------------------------------------
     //
@@ -519,12 +792,7 @@ public class Button extends UIComponent
     //  label
     //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for label property.
-     */
-    private var _label:String = "";
-
+ 
     /**
      *  @private
      */
@@ -552,7 +820,7 @@ public class Button extends UIComponent
      */
     public function get label():String
     {
-        return _label;
+        return ImageAndTextModel(model).text;
     }
 
     /**
@@ -560,18 +828,7 @@ public class Button extends UIComponent
      */
     public function set label(value:String):void
     {
-        labelSet = true;
-
-        if (_label != value)
-        {
-            _label = value;
-            labelChanged = true;
-
-            invalidateSize();
-            invalidateDisplayList();
-
-            dispatchEvent(new Event("labelChanged"));
-        }
+        ImageAndTextModel(model).text = value;
     }
 
     //----------------------------------

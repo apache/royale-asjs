@@ -30,6 +30,12 @@
  * -------------------------------------------------------
  */
 
+
+Button
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
+}
+
 TextInput
 {
 	border: 1px solid #808080;
@@ -48,6 +54,12 @@ TextInput
 {
 	/* Global style declaration for Flash only.  This will effectively be the same
 	   as the browser defaults */
+	
+	Button
+	{
+		IBeadView: ClassReference("org.apache.royale.html.beads.CSSImageAndTextButtonView");
+	}
+	
 	Label
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
