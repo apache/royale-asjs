@@ -48,7 +48,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <targets>JSRoyale,SWF</targets>
-          <!--<htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-js-index-template.html</htmlTemplate>-->
+          <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>
       </plugin>
     </plugins>
