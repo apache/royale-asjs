@@ -17,15 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-                   xmlns:js="library://ns.apache.org/royale/basic"
-                   xmlns:mx="library://ns.apache.org/royale/mx" >
-    <js:valuesImpl>
-        <js:SimpleCSSValuesImpl />
-    </js:valuesImpl>
-    <js:initialView>
-        <js:View>
-        	<mx:Label text="Hello World!" />
-        </js:View>
-    </js:initialView>
-</js:Application>
+<mx:Application xmlns:mx="library://ns.apache.org/royale/mx" >
+	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
+	<mx:Label text="Hello World" />
+</mx:Application>
