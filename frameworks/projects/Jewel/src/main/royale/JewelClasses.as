@@ -31,6 +31,8 @@ package
 	    
         COMPILE::SWF
 	    {
+            import org.apache.royale.html.beads.TextFieldView; TextFieldView;
+            
             import org.apache.royale.jewel.beads.SliderThumbView; SliderThumbView;
             import org.apache.royale.jewel.beads.SliderTrackView; SliderTrackView;
 
