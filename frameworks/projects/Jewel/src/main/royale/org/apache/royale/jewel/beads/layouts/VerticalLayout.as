@@ -21,14 +21,11 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.LayoutBase;
 	
 	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
@@ -36,10 +33,6 @@ package org.apache.royale.jewel.beads.layouts
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.geom.Rectangle;
-	import org.apache.royale.utils.CSSUtils;
 
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -156,34 +149,32 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				var children:Array;
+				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				contentView.element.classList.add("layout", "vertical");
+				
+				var children:Array = contentView.internalChildren();
+				n = children.length;
+
 				var i:int;
 				var n:int;
-				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				contentView.element.classList.add("layout parent");//style["vertical-align"] = "top";
-				
-				children = contentView.internalChildren();
-				n = children.length;
 				for (i = 0; i < n; i++)
 				{
 					var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
 					if (child == null) continue;
 					
-                    child.classList.add("layout vertical");
-
-                    /*child.royale_wrapper.setDisplayStyleForLayout('block');
-					if (child.style.display === 'none')
-					{
-						child.royale_wrapper.setDisplayStyleForLayout('block');
-					}
-					else
-					{
-						// block elements don't measure width correctly so set to inline for a second
-						child.style.display = 'inline-block';
-						child.style.display = 'block';
-					}*/
 					child.royale_wrapper.dispatchEvent('sizeChanged');
 				}
+
+				/**
+				 * This Layout uses the following CSS rules
+				 * 
+				 * .layout.vertical {
+				 *	vertical-align: top;
+				 *	}
+				 *	.layout.vertical > * {
+				 *	display: block !important;
+				 *	}
+				 */
 
 				return true;
 			}

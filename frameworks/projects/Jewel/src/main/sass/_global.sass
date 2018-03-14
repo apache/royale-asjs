@@ -19,35 +19,27 @@
 
 @namespace "library://ns.apache.org/royale/jewel"
 
-.layout
-	.horizontal
-		white-space: nowrap
-	.vertical
+.layout.horizontal
+	white-space: nowrap
+	display: block
+	> *
+		display: inline-block !important
+.layout.vertical
+	vertical-align: top
+	> *
 		display: block !important
 
-/**
- * Jewel Label
- */	
-Label
+.jewel.label
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel")
-	IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView")
-	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
+	//IBeadView: ClassReference("org.apache.royale.jewel.beads.TextFieldView")
+	//iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
 	white-space: nowrap
 
-/**
- * Jewel TextField
- */
 TextField
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel")
 	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
 	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
 
-.vTextField--input
-.vTextField--label
-
-/**
- * Jewel Slider
- */
 Slider
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel")
 	IBeadView:  ClassReference("org.apache.royale.jewel.beads.SliderView")
@@ -67,8 +59,8 @@ Slider
 		iThumbView: ClassReference("org.apache.royale.jewel.beads.SliderThumbView")
 		iTrackView: ClassReference("org.apache.royale.jewel.beads.SliderTrackView")
 
-RadioButton
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel")
-	IBeadView:  ClassReference("org.apache.royale.jewel.beads.RadioButtonView")
-	//font-size: 11px
-	//font-family: Arial
+	RadioButton
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel")
+		IBeadView:  ClassReference("org.apache.royale.jewel.beads.RadioButtonView")
+		//font-size: 11px
+		//font-family: Arial

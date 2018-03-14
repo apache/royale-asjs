@@ -31,9 +31,6 @@ package org.apache.royale.jewel.beads.layouts
 	COMPILE::SWF {
 			import org.apache.royale.core.UIBase;
 	}
-    COMPILE::JS {
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
 
     /**
      *  The HorizontalLayout class is a simple layout
@@ -62,32 +59,8 @@ package org.apache.royale.jewel.beads.layouts
 		}
 
         /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         *  @royaleignorecoercion HTMLElement
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-			
-            COMPILE::JS
-            {
-				var base:IUIBase = value as IUIBase;
-				if (base.element.style.display !== "none") {
-					base.element.style.display = "block";
-				}
-            }
-		}
-
-        /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.ILayoutHost
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
 		override public function layout():Boolean
 		{
@@ -167,27 +140,21 @@ package org.apache.royale.jewel.beads.layouts
             }
             COMPILE::JS
             {
-                var children:Array;
-                var i:int;
-                var n:int;
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				contentView.element.classList.add("layout parent"); //style["white-space"] = "nowrap";
-                children = contentView.internalChildren();
+				contentView.element.classList.add("layout", "horizontal");
 
-                n = children.length;
-                for (i = 0; i < n; i++)
-                {
-                    var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
-					if (child == null) continue;
-
-					 child.classList.add("layout horizontal");
-
-					/*child.royale_wrapper.setDisplayStyleForLayout('inline-block');
-					if (child.style.display !== 'none')
-					{
-						child.style.display = 'inline-block';
-					}*/
-				}
+				/** 
+				 *  This Layout uses the following CSS rules
+				 * 
+				 *  .layout.horizontal {
+				 *		white-space: nowrap;
+				 *		display: block;
+				 *	}
+				 *
+				 *	.layout.horizontal > * {
+				 *		display: inline-block !important;
+				 *	}
+				 */
 
                 return true;
             }

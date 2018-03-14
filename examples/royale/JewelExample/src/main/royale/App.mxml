@@ -31,7 +31,7 @@
 	<js:initialView>
 		<js:View>
 			<js:beads>
-				<js:HorizontalLayout />
+				<j:HorizontalLayout />
 			</js:beads>
 			<local:ButtonPlayGround/>
 			<local:TextInputPlayGround/>

@@ -179,9 +179,7 @@ package org.apache.royale.jewel
 
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);
-
-            //element.style.whiteSpace = "nowrap";
-
+            
             return element;
         }
 

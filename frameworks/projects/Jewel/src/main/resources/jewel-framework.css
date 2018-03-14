@@ -15,33 +15,30 @@
  *  limitations under the License.
  */
 @namespace "library://ns.apache.org/royale/jewel";
-.layout .horizontal {
+.layout.horizontal {
   white-space: nowrap;
+  display: block;
 }
-.layout .vertical {
+.layout.horizontal > * {
+  display: inline-block !important;
+}
+
+.layout.vertical {
+  vertical-align: top;
+}
+.layout.vertical > * {
   display: block !important;
 }
 
-/**
- * Jewel Label
- */	 */
-Label {
+.jewel.label {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
-  IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
-  iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
   white-space: nowrap;
 }
 
-/**
- * Jewel TextField
- */
 TextField {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 }
 
-/**
- * Jewel Slider
- */
 Slider {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.SliderView");
@@ -64,10 +61,11 @@ Slider {
     iThumbView: ClassReference("org.apache.royale.jewel.beads.SliderThumbView");
     iTrackView: ClassReference("org.apache.royale.jewel.beads.SliderTrackView");
   }
-}
-RadioButton {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
-  IBeadView: ClassReference("org.apache.royale.jewel.beads.RadioButtonView");
+
+  RadioButton {
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.RadioButtonView");
+  }
 }
 
 /*# sourceMappingURL=jewel-framework.css.map */

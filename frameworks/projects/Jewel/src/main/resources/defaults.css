@@ -1,5 +1,4 @@
-/*
- *
+/**
  *  Licensed to the Apache Software Foundation (ASF) under one or more
  *  contributor license agreements.  See the NOTICE file distributed with
  *  this work for additional information regarding copyright ownership.
@@ -14,57 +13,59 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- *
  */
-
 @namespace "library://ns.apache.org/royale/jewel";
-
-.vertical-layout-padding-gap {
-	display: block !important;
+.layout.horizontal {
+  white-space: nowrap;
+  display: block;
+}
+.layout.horizontal > * {
+  display: inline-block !important;
 }
 
-/*
-* Jewel TextField
-*/
+.layout.vertical {
+  vertical-align: top;
+}
+.layout.vertical > * {
+  display: block !important;
+}
+
+.jewel.label {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+  white-space: nowrap;
+}
+
 TextField {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
-	/*IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");*/
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 }
-.vTextField--input {}
-.vTextField--label {}
 
-/*
-* Jewel Slider
-*/
 Slider {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
-	IBeadView:  ClassReference("org.apache.royale.jewel.beads.SliderView");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
-	position: relative;
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.SliderView");
+  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
+  position: relative;
 }
+
 .SliderTrack {
-	position: absolute;
+  position: absolute;
 }
+
 .SliderThumb {
-	position: absolute;
-	border-radius: 15px;
+  position: absolute;
+  border-radius: 15px;
 }
 
-@media -royale-swf
-{
-    Slider
-	{
-		iThumbView: ClassReference("org.apache.royale.jewel.beads.SliderThumbView");
-		iTrackView: ClassReference("org.apache.royale.jewel.beads.SliderTrackView");
-	}
+@media -royale-swf {
+  Slider {
+    iThumbView: ClassReference("org.apache.royale.jewel.beads.SliderThumbView");
+    iTrackView: ClassReference("org.apache.royale.jewel.beads.SliderTrackView");
+  }
 
-	RadioButton
-	{
-		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
-		IBeadView:  ClassReference("org.apache.royale.jewel.beads.RadioButtonView");			
-		/*font-size: 11px;
-		font-family: Arial;*/
-	}
+  RadioButton {
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.RadioButtonView");
+  }
 }
+
+/*# sourceMappingURL=defaults.css.map */
