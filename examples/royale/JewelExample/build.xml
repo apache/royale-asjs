@@ -43,10 +43,6 @@
                 <include name="**" />
             </fileset>
         </copy>
-        <replace file="${basedir}/bin/js-debug/index.html" token="${primary}" value="indigo" />
-        <replace file="${basedir}/bin/js-debug/index.html" token="${accent}" value="pink" />
-        <replace file="${basedir}/bin/js-release/index.html" token="${primary}" value="indigo" />
-        <replace file="${basedir}/bin/js-release/index.html" token="${accent}" value="pink" />
     </target>
     
     <target name="clean">

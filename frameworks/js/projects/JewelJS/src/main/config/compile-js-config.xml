@@ -23,21 +23,11 @@
         
         <!-- build both SWF and JS. -->
         <targets>
+            <target>SWF</target>
             <target>JSRoyale</target>
         </targets>
         <strict-xml>true</strict-xml>
 
-        <external-library-path>
-            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Binding.swc</path-element>
-            <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/Basic.swc</path-element>
-            <path-element>../../../../../libs/Collections.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
-        </external-library-path>
-        
-        <allow-subclass-overrides>true</allow-subclass-overrides>
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -47,7 +37,7 @@
 
         <define>
             <name>COMPILE::SWF</name>
-            <value>true</value>
+            <value>false</value>
         </define>
         <define>
             <name>COMPILE::JS</name>
@@ -64,22 +54,49 @@
 	  
         <locale/>
         
-        <library-path/>
-
+        <!-- overwrite the default library-path setting -->
+        <library-path>
+            <path-element>../../../../../../../js/libs/GCL.swc</path-element>
+            <!-- asjscompc won't 'link' these classes in, but will list their requires
+                 if these swcs are on the external-library-path then their requires
+                 will not be listed -->
+            <path-element>../../../../../libs/BindingJS.swc</path-element>
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
+            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+        </library-path>
+        
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/royale/jewel</uri>
+                <manifest>../../../../../../projects/Jewel/src/main/resources/jewel-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
         <source-path>
-            <path-element>../royale</path-element>
+            <path-element>../../../../../../projects/Jewel/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-lookup-only>true</include-lookup-only>
+    <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../projects/Jewel/src/main/resources/defaults.css</path>
+    </include-file>
+    
+    <include-sources>
+    </include-sources>
     
     <include-classes>
-        <class>JewelThemeClasses</class>
+        <class>JewelClasses</class>
     </include-classes>
     
-    <target-player>${playerglobal.version}</target-player>
-	
+    <include-namespaces>
+        <uri>library://ns.apache.org/royale/jewel</uri>
+    </include-namespaces>
+        
 
 </royale-config>

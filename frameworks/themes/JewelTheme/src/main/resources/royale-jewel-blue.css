@@ -20,6 +20,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  fonts: ClassReference("org.apache.royale.jewel.JewelThemeFontInject")
 }
 
 .royale {
