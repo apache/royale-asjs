@@ -29,32 +29,31 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
-	COMPILE::JS
-	{
-		import org.apache.royale.core.WrappedHTMLElement;
-	}
+	COMPILE::JS {
+        import org.apache.royale.core.WrappedHTMLElement;
+    }
 
-	/**
-	 *  The VerticalLayoutWithPaddingAndGap class is a simple layout
-	 *  bead similar to VerticalLayout, but it adds support for
+    /**
+	 *  The HorizontalLayoutWithPaddingAndGap class is a simple layout
+	 *  bead similar to HorizontalLayout, but it adds support for
 	 *  padding and gap values.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public class VerticalLayoutWithPaddingAndGap extends LayoutBase implements IBeadLayout
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+	public class HorizontalLayoutWithPaddingAndGap extends LayoutBase implements IBeadLayout
 	{
-		/**
-		 *  Constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function VerticalLayoutWithPaddingAndGap()
+        /**
+         *  Constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function HorizontalLayoutWithPaddingAndGap()
 		{
 			super();
 		}
@@ -189,20 +188,16 @@ package org.apache.royale.jewel.beads.layouts
 			_gap = value;
 		}
 
-		/**
-		 *  Layout children vertically
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
-		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 */
+        /**
+         * @copy org.apache.royale.core.IBeadLayout#layout
+         * @royaleignorecoercion org.apache.royale.core.ILayoutHost
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+         */
 		override public function layout():Boolean
 		{
-			COMPILE::SWF
-			{
+            COMPILE::SWF
+            {
 				var contentView:ILayoutView = layoutView;
 
 				var n:Number = contentView.numElements;
@@ -221,7 +216,7 @@ package org.apache.royale.jewel.beads.layouts
 
 				var paddingMetrics:EdgeData = new EdgeData();
                 paddingMetrics.left = _paddingLeft;
-                paddingMetrics.top  = _paddingTop;
+                paddingMetrics.top = _paddingTop;
                 paddingMetrics.right = _paddingRight;
                 paddingMetrics.bottom = _paddingBottom;
 				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
@@ -243,76 +238,74 @@ package org.apache.royale.jewel.beads.layouts
 
 					ilc = child as ILayoutChild;
 
-					var childXpos:Number = xpos; // default x position
+					var childYpos:Number = ypos; // default y position
 
-					if (!hostWidthSizedToContent) {
-						var childWidth:Number = child.width;
-						if (ilc != null && !isNaN(ilc.percentWidth)) {
-							childWidth = hostWidth * ilc.percentWidth/100.0;
-							ilc.setWidth(childWidth);
+					if (!hostHeightSizedToContent) {
+						var childHeight:Number = child.height;
+						if (ilc != null && !isNaN(ilc.percentHeight)) {
+							childHeight = hostHeight * ilc.percentHeight/100.0;
+							ilc.setHeight(childHeight);
 						}
-						// the following code center-aligns the child, but since HTML does not
-						// do this normally, this code is commented. (Use VerticalFlexLayout for
-						// horizontally centered elements in a vertical column).
-						//					childXpos = hostWidth/2 - (childWidth + ml + mr)/2;
+						// the following code middle-aligns the child, but since HTML does not
+						// do this normally, this code is commented. (Use HorizontalFlexLayout for
+						// vertically centered elements in a horizontal row).
+//						childYpos = hostHeight/2 - (childHeight + mt + mb)/2;
 					}
 
 					if (ilc) {
-						ilc.setX(childXpos);
-						ilc.setY(ypos);
+						ilc.setX(xpos);
+						ilc.setY(childYpos);
 
-						if (!hostHeightSizedToContent && !isNaN(ilc.percentHeight)) {
-							var newHeight:Number = hostHeight * ilc.percentHeight / 100;
-							ilc.setHeight(newHeight);
+						if (!hostWidthSizedToContent && !isNaN(ilc.percentWidth)) {
+							var newWidth:Number = hostWidth * ilc.percentWidth / 100;
+							ilc.setWidth(newWidth);
 						}
 
 					} else {
-						child.x = childXpos;
-						child.y = ypos;
+						child.x = xpos;
+						child.y = childYpos;
 					}
 
-					ypos += child.height + _gap;
+					xpos += child.width + _gap;
 				}
 
 				return true;
-			}
-			COMPILE::JS
-			{
-				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				contentView.element.classList.add("layout", "vertical");
+
+            }
+            COMPILE::JS
+            {
+                var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				contentView.element.classList.add("layout", "horizontal");
 
 				var children:Array = contentView.internalChildren();
 				var i:int;
 				var n:int = children.length;
 				for (i = 0; i < n; i++)
-				{
-					var child:WrappedHTMLElement = children[i];
-
-					if(i == 0)
-					{
-						child.style.marginTop = _paddingTop + 'px';
-					}
-					else
-					{
-						child.style.marginTop = _gap + 'px';
-					}
-					child.style.marginRight = _paddingRight + 'px';
+                {
+                    var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
+					if (child == null) continue;
+					child.style.marginTop = _paddingTop + 'px';
 					if(i === (n - 1))
 					{
-						child.style.marginBottom = _paddingBottom + 'px';
+						child.style.marginRight = _paddingRight + 'px';
 					}
 					else
 					{
-						child.style.marginBottom = '0px';
+						child.style.marginRight = '0px';
 					}
-					child.style.marginLeft = _paddingLeft + 'px';
-					
-					child.royale_wrapper.dispatchEvent('sizeChanged');
+					child.style.marginBottom = _paddingBottom + 'px';
+					if(i == 0)
+					{
+						child.style.marginLeft = _paddingLeft + 'px';
+					}
+					else
+					{
+						child.style.marginLeft = _gap + 'px';
+					}					
 				}
 
-				return true;
-			}
+                return true;
+            }
 		}
-
 	}
 }

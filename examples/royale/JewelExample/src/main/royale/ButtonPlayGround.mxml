@@ -32,7 +32,7 @@ limitations under the License.
 	</fx:Script>
 
 	<js:beads>
-		<js:VerticalLayoutWithPaddingAndGap gap="10"/>
+		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
 	<j:Label text="Basic"/>
@@ -41,31 +41,22 @@ limitations under the License.
 
 	<j:Label text="Jewel Button"/>
 	<j:Button primary="true"/>
-
 	<j:Label text="Jewel TextButton"/>
-	
-	<j:TextButton text="DEFAULT"/>
-
+	<j:TextButton text="Default"/>
 	<j:TextButton text="Button With More Text"/>
-
-	<j:TextButton text="PRIMARY" primary="true"/>
-
-	<j:TextButton text="SECONDARY" secondary="true"/>
-
-	<j:TextButton text="EMPHASIZED" emphasized="true"/>
-
+	<j:TextButton text="Primary" primary="true"/>
+	<j:TextButton text="Secondary" secondary="true"/>
+	<j:TextButton text="Emphasized" emphasized="true"/>
 	<j:TextButton text="Disabled" primary="true">
 		<j:beads>
 			<j:Disabled/>
 		</j:beads>
 	</j:TextButton>
-
 	<j:Label text="Jewel Button Sizing (respect min values)"/>
 	<j:Slider id="slider" width="250" value="100" minimum="0" maximum="500"
 				valueChange="onValueChange(event)"/>
 	<j:Slider id="slider_v" width="250" value="40" minimum="0" maximum="300"
 				valueChange="onValueChange(event)"/>
-
 	<j:TextButton id="button" text="Button" width="100" height="40" primary="true"/>
 
 </js:Group>

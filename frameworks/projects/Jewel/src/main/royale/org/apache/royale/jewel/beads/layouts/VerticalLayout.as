@@ -153,10 +153,8 @@ package org.apache.royale.jewel.beads.layouts
 				contentView.element.classList.add("layout", "vertical");
 				
 				var children:Array = contentView.internalChildren();
-				n = children.length;
-
 				var i:int;
-				var n:int;
+				var n:int = children.length;
 				for (i = 0; i < n; i++)
 				{
 					var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
