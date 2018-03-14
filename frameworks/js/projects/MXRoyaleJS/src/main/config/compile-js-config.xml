@@ -83,6 +83,11 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/defaults.css</path>
+    </include-file>
+    
+    <include-file>
     </include-file>
 
     <include-classes>
