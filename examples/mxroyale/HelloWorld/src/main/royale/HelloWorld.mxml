@@ -27,7 +27,6 @@ limitations under the License.
     <js:initialView>
         <js:View>
         	<mx:Label text="Hello World" x="20" y="20" />
-        	<mx:Button label="Push Me" x="20" y="60" />
         </js:View>
     </js:initialView>
         

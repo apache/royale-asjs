@@ -36,6 +36,13 @@ Button
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 }
 
+Image
+{
+	vertical-align: top;
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
+}
+
 TextInput
 {
 	border: 1px solid #808080;
