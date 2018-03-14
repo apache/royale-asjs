@@ -28,6 +28,7 @@ package
 internal class MXRoyaleClasses
 {
     import mx.core.UIComponent; UIComponent;
+	import mx.core.Container; Container;
 }
 
 }

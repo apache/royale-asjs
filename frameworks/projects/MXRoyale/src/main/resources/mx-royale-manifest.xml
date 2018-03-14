@@ -30,4 +30,7 @@
 	<component id="RadioButtonGroup" class="mx.controls.RadioButtonGroup" />
 	<component id="TextInput" class="mx.controls.TextInput" />
 	
+	<component id="Box" class="mx.containers.Box" />
+	<component id="Container" class="mx.core.Container" />
+	
 </componentPackage>

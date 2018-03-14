@@ -36,6 +36,15 @@ Button
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 }
 
+Container
+{
+	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	align-items: flex-start;
+}
+
 Image
 {
 	vertical-align: top;
@@ -65,6 +74,13 @@ TextInput
 	Button
 	{
 		IBeadView: ClassReference("org.apache.royale.html.beads.CSSImageAndTextButtonView");
+	}
+	
+	Container
+	{
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
 	}
 	
 	Label
