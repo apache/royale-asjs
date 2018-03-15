@@ -97,13 +97,13 @@
       <type>swc</type>
       <scope>theme</scope>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JewelBlueTheme</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
-    </dependency>
+    </dependency> -->
   </dependencies>
 
 </project>
