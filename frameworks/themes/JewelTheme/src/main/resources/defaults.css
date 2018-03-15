@@ -65,7 +65,7 @@
 .jewel.button.primary {
   background-color: #dedede;
   transition-duration: 0.4s;
-  color: black;
+  color: #000000;
 }
 .jewel.button.primary:hover {
   background-color: #ededed;
@@ -85,7 +85,7 @@
 .jewel.button.secondary {
   background-color: #011833;
   transition-duration: 0.4s;
-  color: black;
+  color: #000000;
 }
 .jewel.button.secondary:hover {
   background-color: #022651;
@@ -105,7 +105,7 @@
 .jewel.button.emphasized {
   background-color: #1FD348;
   transition-duration: 0.4s;
-  color: black;
+  color: #000000;
 }
 .jewel.button.emphasized:hover {
   background-color: #30e158;
@@ -160,7 +160,7 @@
 .jewel.textbutton.primary {
   background-color: #dedede;
   transition-duration: 0.4s;
-  color: black;
+  color: #000000;
 }
 .jewel.textbutton.primary:hover {
   background-color: #ededed;
@@ -180,7 +180,7 @@
 .jewel.textbutton.secondary {
   background-color: #011833;
   transition-duration: 0.4s;
-  color: black;
+  color: #000000;
 }
 .jewel.textbutton.secondary:hover {
   background-color: #022651;
@@ -200,7 +200,7 @@
 .jewel.textbutton.emphasized {
   background-color: #1FD348;
   transition-duration: 0.4s;
-  color: black;
+  color: #000000;
 }
 .jewel.textbutton.emphasized:hover {
   background-color: #30e158;
