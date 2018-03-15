@@ -23,7 +23,7 @@
     <compiler>
         <theme>
             <filename>../../../../../../frameworks/libs/JewelTheme.swc</filename>
-            <filename>../../../../../../frameworks/themes/JewelTheme/src/main/resources/royale-jewel-blue.css</filename>
+            <filename>../../../../../../frameworks/themes/JewelTheme/src/main/resources/defaults.css</filename>
         </theme>
     </compiler>
 </royale-config>

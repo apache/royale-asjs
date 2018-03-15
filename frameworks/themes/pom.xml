@@ -35,6 +35,7 @@
   <modules>
     <module>Basic</module>
     <module>JewelTheme</module>
+    <module>JewelBlueTheme</module>
   </modules>
 
   <dependencies>

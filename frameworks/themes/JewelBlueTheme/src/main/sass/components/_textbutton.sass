@@ -16,16 +16,49 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+ 
+/**
+ * Jewel TextButton
+ */
+%textbutton-def
+	@extend %button-def
+	/* TextField */
+	font:
+		family: $font-stack 
+		style: bold 
+		size: $font-size
+	//+trans(0.2s ease-in-out)
+	text:
+		transform: uppercase
+		decoration: none 
+		//shadow: 0 .063em rgba(black,.3)
+	[disabled]
+		text:
+			shadow: unset
 
-@namespace j "library://ns.apache.org/royale/jewel"
-@namespace "http://www.w3.org/1999/xhtml"
+.jewel.textbutton, .jewel.textbutton:hover
+	@extend %textbutton-def
 
+.jewel.textbutton
+	+button-theme($default-color, $default-font-color)
 
-.royale *, .royale *:before, .royale *:after
-	-moz-box-sizing: border-box
-	-webkit-box-sizing: border-box
-	box-sizing: border-box
-	
-.royale
-	padding: 10px
-	margin: 10px
+.jewel.textbutton.primary
+	+button-theme($primary-color, $font-color)
+
+.jewel.textbutton.secondary
+	+button-theme($secondary-color, $font-color)
+
+.jewel.textbutton.emphasized
+	+button-theme($emphasized-color, $font-color)
+
+// /* TextField: */
+//	font-family: $font-stack
+//	font-size: 14px
+//	font-weight: bold
+//	color: $font-normal-color
+//	text-shadow: 0 1px 0 #555
+
+//	padding: 10px 0px
+//	display: inline-block
+//	min-width: 80px
+

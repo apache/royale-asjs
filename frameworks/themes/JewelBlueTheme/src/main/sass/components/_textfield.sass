@@ -17,15 +17,51 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-@namespace j "library://ns.apache.org/royale/jewel"
-@namespace "http://www.w3.org/1999/xhtml"
-
-
-.royale *, .royale *:before, .royale *:after
-	-moz-box-sizing: border-box
-	-webkit-box-sizing: border-box
+/**
+ * Jewel TextField
+ */
+TextField
+	position: relative
+	display: inline-block
 	box-sizing: border-box
-	
-.royale
-	padding: 10px
-	margin: 10px
+	width: 300px
+	max-width: 100%
+	margin: 0
+
+.vTextField--input
+	font-size: 16px
+	font-family: 'Lato', sans-serif
+
+	border: none
+	border-bottom: 2px solid
+	border-bottom-color: #ff0000
+	display: block
+	margin: 0
+	padding: 4 0
+	width: 100px
+	background: transparent
+	text-align: left
+	color: inherit
+	outline: none
+
+.vTextField--label
+	bottom: 0
+	color: #ff0000
+	font-size: 13px
+	left: 0
+	right: 0
+	pointer-events: none
+	position: absolute
+	display: block
+	width: 100%
+	overflow: hidden
+	white-space: nowrap
+	text-align: left
+
+//    padding: 5px;
+//    border: solid 1px #666666;
+//    border-radius: 6px;
+//    color: #333333;
+//:hover 
+//    padding: 5px;
+//    background-color: #DFDFDF;

@@ -16,16 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package
+{
 
-@namespace j "library://ns.apache.org/royale/jewel"
-@namespace "http://www.w3.org/1999/xhtml"
+    /**
+     *  @private
+     *  This class is used to link additional classes into JewelBlueTheme.swc
+     *  beyond those that are found by dependecy analysis starting
+     *  from the classes specified in manifest.xml.
+     */
+    internal class JewelBlueThemeClasses
+    {
+       
+    }
 
-
-.royale *, .royale *:before, .royale *:after
-	-moz-box-sizing: border-box
-	-webkit-box-sizing: border-box
-	box-sizing: border-box
-	
-.royale
-	padding: 10px
-	margin: 10px
+}

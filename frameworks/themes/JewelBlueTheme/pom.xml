@@ -26,11 +26,11 @@
     <version>0.9.3-SNAPSHOT</version>
   </parent>
 
-  <artifactId>JewelTheme</artifactId>
+  <artifactId>JewelBlueTheme</artifactId>
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <name>Apache Royale: Framework: Themes: JewelTheme</name>
+  <name>Apache Royale: Framework: Themes: JewelBlueTheme</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -42,7 +42,7 @@
         <extensions>true</extensions>
         <configuration>
           <includeClasses>
-            <includeClass>JewelThemeClasses</includeClass>
+            <includeClass>JewelBlueThemeClasses</includeClass>
           </includeClasses>
           <includeFiles>
             <include-file>
@@ -50,8 +50,8 @@
               <path>../src/main/resources/assets/*</path>
             </include-file>
             <include-file>
-              <name>defaults.css</name>
-              <path>../src/main/resources/defaults.css</path>
+              <name>royale-jewel-blue.css</name>
+              <path>../src/main/resources/royale-jewel-blue.css</path>
             </include-file>
           </includeFiles>
         </configuration>
