@@ -222,6 +222,8 @@ internal class CoreClasses
 	{
 		import org.apache.royale.core.WrappedHTMLElement ;WrappedHTMLElement;
 	    import org.apache.royale.core.IRoyaleElement; IRoyaleElement;
+		import org.apache.royale.utils.object.defineGetter; defineGetter;
+		import org.apache.royale.utils.object.defineSimpleGetter; defineSimpleGetter;
 	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
