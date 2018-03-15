@@ -71,17 +71,18 @@ package org.apache.royale.core
 		{
             var e:IBrowserEvent;
             var nativeEvent:Object = eventObject.getBrowserEvent();
-			var constructorName:String = nativeEvent.constructor.toString();
-			if (constructorName.indexOf('KeyboardEvent') > -1)
-			{
-				e = KeyboardEventConverter.convert(nativeEvent);
-			} else if (constructorName.indexOf('MouseEvent') > -1)
-			{
-				e = MouseEventConverter.convert(nativeEvent);
-			} else
-			{
-				e = new org.apache.royale.events.BrowserEvent();
-			}
+            switch(nativeEvent.constructor.name)
+            {
+                case "KeyboardEvent":
+                    e = KeyboardEventConverter.convert(nativeEvent);
+                    break;
+                case "MouseEvent":
+                    e = MouseEventConverter.convert(nativeEvent);
+                    break;
+                default:
+                    e = new org.apache.royale.events.BrowserEvent();
+                    break;
+            }
 
 			e.wrapEvent(eventObject);
 			return HTMLElementWrapper.googFireListener(listener, e);
