@@ -27,17 +27,19 @@ package mx.core
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.IStrandPrivate;
-	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.states.State;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 COMPILE::JS
 {
@@ -563,6 +565,79 @@ public class Container extends UIComponent
 	public function getLayoutHost():ILayoutHost
 	{
 		return view as ILayoutHost;
+	}
+	
+	//----------------------------------
+	//  getLayoutChildAt for compatibility
+	//----------------------------------
+	
+	public function getLayoutChildAt(index:int):IUIComponent
+	{
+		return getElementAt(index) as IUIComponent;
+	}
+	
+	//----------------------------------
+	//  viewMetricsAndPadding
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 *  Cached value containing the view metrics plus the object's margins.
+	 */
+	private var _viewMetricsAndPadding:EdgeMetrics;
+	
+	/**
+	 *  Returns an object that has four properties: <code>left</code>,
+	 *  <code>top</code>, <code>right</code>, and <code>bottom</code>.
+	 *  The value of each property is equal to the thickness of the chrome
+	 *  (visual elements)
+	 *  around the edge of the container plus the thickness of the object's margins.
+	 *
+	 *  <p>The chrome includes the border thickness.
+	 *  If the <code>horizontalScrollPolicy</code> or <code>verticalScrollPolicy</code> 
+	 *  property value is <code>ScrollPolicy.ON</code>, the
+	 *  chrome also includes the thickness of the corresponding
+	 *  scroll bar. If a scroll policy is <code>ScrollPolicy.AUTO</code>,
+	 *  the chrome measurement does not include the scroll bar thickness, 
+	 *  even if a scroll bar is displayed.</p>
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get viewMetricsAndPadding():EdgeMetrics
+	{		
+		// If this object has scrollbars, and if the verticalScrollPolicy
+		// is not ScrollPolicy.ON, then the view metrics change
+		// depending on whether we're doing layout or not.
+		// In that case, we can't use a cached value.
+		// In all other cases, use the cached value if it exists.
+//		if (_viewMetricsAndPadding &&
+//			(!horizontalScrollBar ||
+//				horizontalScrollPolicy == ScrollPolicy.ON) &&
+//			(!verticalScrollBar ||
+//				verticalScrollPolicy == ScrollPolicy.ON))
+		if (_viewMetricsAndPadding)
+		{
+			return _viewMetricsAndPadding;
+		}
+		
+		if (!_viewMetricsAndPadding) {
+			_viewMetricsAndPadding = new EdgeMetrics();
+		}
+		
+		var o:EdgeMetrics = _viewMetricsAndPadding;
+		var vm:EdgeMetrics = new EdgeMetrics();//viewMetrics;
+		var rect:Rectangle = CSSContainerUtils.getBorderMetrics(this);
+		vm.convertFromRectangle(rect);
+		
+		o.left = vm.left + getStyle("paddingLeft");
+		o.right = vm.right + getStyle("paddingRight");
+		o.top = vm.top + getStyle("paddingTop");
+		o.bottom = vm.bottom + getStyle("paddingBottom");
+		
+		return o;
 	}
 	
 	//--------------------------------------------------------------------------

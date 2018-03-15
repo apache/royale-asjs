@@ -48,6 +48,7 @@ import mx.managers.ISystemManager;
 
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
+import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.geom.Point;
@@ -932,6 +933,7 @@ public class UIComponent extends UIBase
      */
     public function get measuredWidth():Number
     {
+		if (_measuredWidth == 0 && width > 0) return width;
         return _measuredWidth;
     }
 
@@ -966,6 +968,7 @@ public class UIComponent extends UIBase
      */
     public function get measuredHeight():Number
     {
+		if (_measuredHeight == 0 && height > 0) return height;
         return _measuredHeight;
     }
 
@@ -1605,6 +1608,30 @@ public class UIComponent extends UIBase
 
         dispatchEvent(new Event("explicitMaxHeightChanged"));
     }
+	
+	COMPILE::JS
+	public function get scaleX():Number
+	{
+		return 1.0;
+	}
+	
+	COMPILE::JS
+	public function set scaleX(value:Number):void
+	{
+		// always 1.0
+	}
+	
+	COMPILE::JS
+	public function get scaleY():Number
+	{
+		return 1.0;
+	}
+	
+	COMPILE::JS
+	public function set scaleY(value:Number):void
+	{
+		// always 1.0
+	}
 
 
     //----------------------------------
@@ -2991,8 +3018,10 @@ public class UIComponent extends UIBase
       */
     public function move(x:Number, y:Number):void
     {
-        if (GOOG::DEBUG)
-            trace("move not implemented");
+        //if (GOOG::DEBUG)
+        //    trace("move not implemented");
+		this.x = x;
+		this.y = y;
     }
 
     /**
@@ -3017,8 +3046,10 @@ public class UIComponent extends UIBase
      */
     public function setActualSize(w:Number, h:Number):void
     {
-        if (GOOG::DEBUG)
-            trace("setActualSize not implemented");
+        //if (GOOG::DEBUG)
+        //    trace("setActualSize not implemented");
+		this.width = w;
+		this.height = h;
     }
 
 
@@ -3085,10 +3116,12 @@ public class UIComponent extends UIBase
      */
     public function getStyle(styleProp:String):*
     {
-        if (GOOG::DEBUG)
-            trace("getStyle not implemented");
-        return 0;
-
+//        if (GOOG::DEBUG)
+//            trace("getStyle not implemented");
+//        return 0;
+		var value:* = ValuesManager.valuesImpl.getValue(this,styleProp);
+		if (!value) value = 0;
+		return value;
     }
 
     /**

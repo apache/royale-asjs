@@ -405,6 +405,12 @@ public interface IUIComponent extends IFlexDisplayObject, IChild
      *  @private
      */
     function set percentWidth(value:Number):void;
+	
+	function get scaleX():Number;
+	function set scaleX(value:Number):void;
+	
+	function get scaleY():Number;
+	function set scaleY(value:Number):void;
 
     //----------------------------------
     //  systemManager

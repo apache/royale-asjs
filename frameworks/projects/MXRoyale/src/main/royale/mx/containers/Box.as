@@ -30,8 +30,8 @@ COMPILE::JS
 }
 /*
 import flash.events.Event;
-import mx.containers.utilityClasses.BoxLayout;
 */
+import mx.containers.beads.BoxLayout;
 import mx.core.Container;
 /*
 import mx.core.IUIComponent;
@@ -134,6 +134,10 @@ public class Box extends Container
     public function Box()
     {
         super();
+		
+		_layout = new BoxLayout();
+		_layout.direction = _direction;
+		addBead(_layout);
     }
 
     //--------------------------------------------------------------------------
@@ -141,6 +145,8 @@ public class Box extends Container
     //  Variables
     //
     //--------------------------------------------------------------------------
+	
+	private var _layout:BoxLayout;
 
     /**
      *  @private
@@ -187,18 +193,7 @@ public class Box extends Container
     {
 		_direction = value;
 		
-		var layoutBead:IBeadLayout = getBeadByType(IBeadLayout) as IBeadLayout;
-		//if (layoutBead) removeBead(layoutBead);
-		if (layoutBead) {
-			trace("At this time the layoutBead cannot be removed because the active layout bead cannot have its strand un-set");
-			return
-		}
-		
-//		if (_direction == BoxDirection.VERTICAL) {
-//			addBead(new VerticalLayout()); // TBD: replace with MX-specific vertical layout
-//		} else {
-//			addBead(new HorizontalLayout()); // TBD: replace with MX-specific horizontal layout
-//		}
+		_layout.direction = value;
 		
 		dispatchEvent(new Event("directionChanged"));
 		dispatchEvent(new Event("layoutNeeded"));
@@ -215,11 +210,11 @@ public class Box extends Container
 	{
 		// set the layout bead based on the direction
 		
-		if (_direction == BoxDirection.VERTICAL) {
-			addBead(new VerticalLayout()); // TBD: replace with MX-specific vertical layout
-		} else {
-			addBead(new HorizontalLayout()); // TBD: replace with MX-specific horizontal layout
-		}
+//		if (_direction == BoxDirection.VERTICAL) {
+//			addBead(new VerticalLayout()); // TBD: replace with MX-specific vertical layout
+//		} else {
+//			addBead(new HorizontalLayout()); // TBD: replace with MX-specific horizontal layout
+//		}
 		
 		super.addedToParent();
 	}
