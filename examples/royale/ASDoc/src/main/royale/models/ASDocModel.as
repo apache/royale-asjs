@@ -25,7 +25,7 @@ package models
 	
 	public class ASDocModel extends EventDispatcher implements IBeadModel
 	{
-        public static const DELIMITER:String = "$";
+        public static const DELIMITER:String = "/";
         
 		public function ASDocModel()
 		{
@@ -437,6 +437,7 @@ package models
         			{
         			    addAttributes(data, data);
         				arr.splice(i, 1, data);
+                        data.ownerhref = currentPackage + DELIMITER + currentClass;
         			}
         			else
         			{
