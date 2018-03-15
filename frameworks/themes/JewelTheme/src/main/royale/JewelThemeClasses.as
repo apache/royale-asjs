@@ -27,10 +27,7 @@ package
      */
     internal class JewelThemeClasses
     {
-        COMPILE::JS
-	    {
-            import org.apache.royale.jewel.JewelThemeFontInject; JewelThemeFontInject;
-        }
+       
     }
 
 }
