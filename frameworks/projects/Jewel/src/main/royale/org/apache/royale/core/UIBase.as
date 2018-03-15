@@ -1025,39 +1025,8 @@ package org.apache.royale.core
          * 
          *  @royalesuppresspublicvarwarning
          */
-        private var _typeNames:String;
+        public var typeNames:String;
         
-        /**
-         *  The classname.  Often used for CSS
-         *  class selector lookups.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function get typeNames():String
-		{
-			return _typeNames;
-		}
-
-        /**
-         *  @private
-         */
-        public function set typeNames(value:String):void
-        {
-            if (_typeNames !== value)
-            {
-                _typeNames = value;
-
-                COMPILE::JS
-                {
-                    element.className = "";
-                    setClassName(_typeNames);             
-                }
-            }
-        }
-
         private var _className:String;
 
         /**
@@ -1085,18 +1054,126 @@ package org.apache.royale.core
 
                 COMPILE::JS
                 {
-                    setClassName(typeNames ? typeNames + " " + _className : _className);             
+                    setClassName(computeFinalClassNames());             
                 }
                 
                 dispatchEvent(new Event("classNameChanged"));
             }
         }
 
+        /**
+         *  Computes the final syles for this component joining typeNames and classNames
+         *  styles
+         *  
+         *  @langversion 3.0
+         *  @productversion Royale 0.9.3
+         */
+        COMPILE::JS
+        protected function computeFinalClassNames():String
+		{
+            return  StringUtil.trim((_className ? _className : "") + " " + (typeNames ? typeNames : ""));
+		}
+
+        /**
+         *  Sets the component styles in JS
+         *  
+         *  @langversion 3.0
+         *  @productversion Royale 0.0
+         */
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            var classes:Array = value.split(" ");
-            element.classList.add.apply(element.classList, classes);
+            addStyles(value);
+        }
+
+        /**
+         *  Add one or more styles to the component. If the specified class already 
+         *  exist, the class will not be added.
+         *  
+         *  @param value, a String with the style (or styles separated by an space) to
+         *  add from the component. If the string is empty doesn't perform any action
+         *  
+         *  @langversion 3.0
+         *  @productversion Royale 0.9.3
+         */
+        COMPILE::JS
+        protected function addStyles(value:String):void
+        {
+            if (value == "") return;
+            
+            if (value.indexOf(" ") >= 0)
+            {
+                var classes:Array = value.split(" ");
+                element.classList.add.apply(element.classList, classes);
+            } else
+            {
+                element.classList.add(value);
+            }
+        }
+
+        /**
+         *  Removes one or more styles from the component. Removing a class that does not 
+         *  exist, does not throw any error
+         * 
+         *  @param value, a String with the style (or styles separated by an space) to 
+         *  remove from the component. If the string is empty doesn't perform any action
+         *  
+         *  @langversion 3.0
+         *  @productversion Royale 0.9.3
+         */
+        COMPILE::JS
+        protected function removeStyles(value:String):void
+        {
+            if (value == "") return;
+
+            if (value.indexOf(" ") >= 0)
+            {
+                var classes:Array = value.split(" ");
+                element.classList.remove.apply(element.classList, classes);
+            } else
+            {
+                element.classList.remove(value);
+            }
+        }
+
+        /**
+         *  Adds or removes a single style. 
+         * 
+         *  The first parameter removes the style from an element, and returns false.
+         *  If the style does not exist, it is added to the element, and the return value is true.
+         * 
+         *  The optional second parameter is a Boolean value that forces the class to be added 
+         *  or removed, regardless of whether or not it already existed.
+         * 
+         *  @langversion 3.0
+         *  @productversion Royale 0.9.3
+         */
+        COMPILE::JS
+        protected function toggleStyle(value:String, force:Boolean = false):Boolean
+        {
+            return element.classList.toggle(value, force);
+        }
+
+        /**
+         *  Removes all styles that are not in typeNames
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        COMPILE::JS
+        protected function removeAllStyles():void
+        {
+            var classList:DOMTokenList = element.classList;
+            var i:int;
+            for( i = classList.length; i > 0; i-- )
+            {
+                if(typeNames.indexOf(classList[i]) != 0)
+                {
+                    classList.remove(classList[i]);
+                }
+            }
         }
 
         /**
@@ -1385,6 +1462,8 @@ package org.apache.royale.core
 			
             COMPILE::JS
             {
+                setClassName(computeFinalClassNames());
+                
 				if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
             }

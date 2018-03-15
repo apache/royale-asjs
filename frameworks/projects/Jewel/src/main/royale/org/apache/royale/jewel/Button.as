@@ -88,7 +88,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    element.classList.toggle("primary", value);
+                    toggleStyle("primary", value);
                 }
             }
         }
@@ -118,7 +118,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    element.classList.toggle("secondary", value);
+                    toggleStyle("secondary", value);
                 }
             }
         }
@@ -148,7 +148,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    element.classList.toggle("emphasized", value);
+                    toggleStyle("emphasized", value);
                 }
             }
         }
