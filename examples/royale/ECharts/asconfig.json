@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"targets": [
+			"JSRoyale"
+        ],
+		"source-map": true,
+		"html-template": "template.html"
+	},
+	"files":
+	[
+		"src/Main.mxml"
+	]
+}
