@@ -8,8 +8,6 @@
         <![CDATA[
         [Bindable] public var data:Array = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
         [Bindable] public var seriesData:Array = [5, 20, 36, 10, 10, 20];
-
-        
         ]]>
     </fx:Script>
 	<js:valuesImpl>
