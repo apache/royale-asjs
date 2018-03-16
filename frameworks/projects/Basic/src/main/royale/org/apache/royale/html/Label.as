@@ -175,7 +175,7 @@ package org.apache.royale.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'div');
+			addElementToWrapper(this,'span');
 
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);
