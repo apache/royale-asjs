@@ -6,32 +6,9 @@
 				   >
 	<fx:Script>
         <![CDATA[
-        private var _data:Array = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
+        [Bindable] public var data:Array = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
+        [Bindable] public var seriesData:Array = [5, 20, 36, 10, 10, 20];
 
-        [Bindable]
-		public function get data():Array
-		{
-			return _data;
-		}
-
-		public function set data(value:Array):void
-		{
-			_data = value;
-		}
-        
-        
-        private var _seriesData:Array = [5, 20, 36, 10, 10, 20];
-
-        [Bindable]
-		private function get seriesData():Array
-		{
-			return _seriesData;
-		}
-
-		private function set seriesData(value:Array):void
-		{
-			_seriesData = value;
-		}
         
         ]]>
     </fx:Script>

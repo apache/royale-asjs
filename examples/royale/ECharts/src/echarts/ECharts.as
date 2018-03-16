@@ -45,14 +45,14 @@ package echarts
                 }           
             };
 
-            echartsInstance.setOption(option);
+            //echartsInstance.setOption(option);
 
             return echartsContainer;
         }
 
         public function set chartOptions(v:EChartsOptions):void {
             this._chartOptions = v;
-            //echartsInstance.setOption(v);
+            echartsInstance.setOption(v);
         }
 
         public function get chartOptions():EChartsOptions {
