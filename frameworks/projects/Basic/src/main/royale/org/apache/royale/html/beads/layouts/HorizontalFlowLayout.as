@@ -20,6 +20,7 @@ package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutChild;
@@ -27,13 +28,14 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	
 	COMPILE::SWF {
 		import org.apache.royale.geom.Rectangle;
-		import org.apache.royale.utils.CSSContainerUtils;
 		import org.apache.royale.utils.CSSUtils;
 	}
 
@@ -167,6 +169,7 @@ package org.apache.royale.html.beads.layouts
 
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean
 		{
@@ -177,8 +180,8 @@ package org.apache.royale.html.beads.layouts
 				var n:Number = area.numElements;
 				if (n == 0) return false;
 				
-				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+				var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 
 				// if a computedColumnWidth hasn't been preset, calculate it
 				// based on the default column count, giving equal-width columns.

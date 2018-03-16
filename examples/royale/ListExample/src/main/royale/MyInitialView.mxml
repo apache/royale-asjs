@@ -115,5 +115,25 @@ limitations under the License.
 	</gen:GenericList>
 	
 	<js:TextButton text="Add Wing Bats" x="580" y="350" click="addProduct()" />
-	
+
+    <!-- A virtual list
+    -->
+    
+    <js:Label x="880" y="20" text="A virtual List" />
+    
+    <js:List x="880" y="40" width="200" height="300" >
+        <js:beads>
+            <js:ConstantBinding
+                sourceID="applicationModel"
+                sourcePropertyName="bigArray"
+                destinationPropertyName="dataProvider" />
+            <!-- you also add this itemRendererFactory if your DataContainer list
+            is using an ArrayList as its dataProvider -->
+            <js:VirtualDataItemRendererFactoryForArrayData />
+            <js:VirtualListVerticalLayout />
+            <js:VirtualListView />
+        </js:beads>
+    </js:List>
+    
+
 </js:View>

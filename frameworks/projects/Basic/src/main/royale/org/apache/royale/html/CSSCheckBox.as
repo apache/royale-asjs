@@ -182,7 +182,6 @@ package org.apache.royale.html
 			_icon.element.royale_wrapper = this;
             _styleDiv.royale_wrapper = this;
 
-            className = 'CSSCheckBox';
             typeNames = 'CSSCheckBox';
 
             return element;

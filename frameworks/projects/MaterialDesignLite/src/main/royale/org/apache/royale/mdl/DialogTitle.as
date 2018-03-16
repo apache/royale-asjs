@@ -50,8 +50,8 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
+            typeNames = "mdl-dialog__title";
+        }
 
 		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -60,8 +60,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-dialog__title";
-			
 			addElementToWrapper(this,'h4');
             textNode = document.createTextNode('') as Text;
             element.appendChild(textNode);

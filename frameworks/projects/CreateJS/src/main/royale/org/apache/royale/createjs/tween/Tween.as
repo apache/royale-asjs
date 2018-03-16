@@ -46,6 +46,8 @@ package org.apache.royale.createjs.tween
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 1.0.0
+     * 
+     *  @royalesuppresspublicvarwarning
      */
 	public class Tween extends Effect implements IDocument
 	{

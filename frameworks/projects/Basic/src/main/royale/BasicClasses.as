@@ -41,6 +41,32 @@ internal class BasicClasses
     import org.apache.royale.html.beads.AlertView; AlertView;
     import org.apache.royale.html.beads.controllers.AlertController; AlertController;
 	
+	import org.apache.royale.html.beads.DividedContainerView; DividedContainerView;
+	import org.apache.royale.html.beads.models.DividedContainerModel; DividedContainerModel;
+	import org.apache.royale.html.beads.layouts.HDividedContainerLayout; HDividedContainerLayout;
+	import org.apache.royale.html.beads.layouts.VDividedContainerLayout; VDividedContainerLayout;
+	import org.apache.royale.html.supportClasses.DividedContainerDivider; DividedContainerDivider;
+	import org.apache.royale.html.supportClasses.HDividedContainerGripper; HDividedContainerGripper;
+	import org.apache.royale.html.supportClasses.VDividedContainerGripper; VDividedContainerGripper;
+	import org.apache.royale.html.beads.controllers.HDividedContainerMouseController; HDividedContainerMouseController;
+	import org.apache.royale.html.beads.controllers.VDividedContainerMouseController; VDividedContainerMouseController;
+	
+	import org.apache.royale.html.MenuBar; MenuBar;
+	import org.apache.royale.html.beads.models.MenuBarModel; MenuBarModel;
+	import org.apache.royale.html.supportClasses.MenuBarItemRenderer; MenuBarItemRenderer;
+	import org.apache.royale.html.beads.controllers.MenuBarMouseController; MenuBarMouseController;
+	import org.apache.royale.html.Menu; Menu;
+	import org.apache.royale.html.beads.MenuView; MenuView;
+	import org.apache.royale.html.beads.MenuFactory; MenuFactory;
+	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
+	import org.apache.royale.html.supportClasses.MenuItemRenderer; MenuItemRenderer;
+	import org.apache.royale.html.CascadingMenu; CascadingMenu;
+	import org.apache.royale.html.beads.CascadingMenuFactory; CascadingMenuFactory;
+	import org.apache.royale.html.beads.models.CascadingMenuModel; CascadingMenuModel;
+	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
+	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
+	
+	
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.BackgroundImageBead; BackgroundImageBead;
@@ -107,6 +133,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
 	import org.apache.royale.html.beads.models.TreeModel; TreeModel;
+	import org.apache.royale.html.beads.models.MenuModel; MenuModel;
     import org.apache.royale.html.beads.models.RangeModel; RangeModel;
     import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
 	import org.apache.royale.html.beads.models.ComboBoxModel; ComboBoxModel;
@@ -138,6 +165,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
+	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
     import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;
 	import org.apache.royale.html.beads.controllers.VSliderMouseController; VSliderMouseController;
 	COMPILE::SWF

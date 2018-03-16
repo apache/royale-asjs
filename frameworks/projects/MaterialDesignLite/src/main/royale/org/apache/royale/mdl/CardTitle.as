@@ -19,13 +19,7 @@
 package org.apache.royale.mdl
 {
 	import org.apache.royale.mdl.supportClasses.CardInner;
-    
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-    
+
 	/**
 	 *  The CardTitle class is a inner card container component.
 	 *  Its mission is to hold the title of the card
@@ -48,16 +42,8 @@ package org.apache.royale.mdl
 		public function CardTitle()
 		{
 			super();
+
+            typeNames = "mdl-card__title";
 		}
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-card__title";
-			return addElementToWrapper(this,'div');
-        }    
 	}
 }

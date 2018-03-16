@@ -122,6 +122,9 @@ package org.apache.royale.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
+            upTextField.styleParent = _strand;
+            downTextField.styleParent = _strand;
+            overTextField.styleParent = _strand;
             var button:SimpleButton = value as SimpleButton;
 			button.upState = upSprite;
             button.downState = downSprite;

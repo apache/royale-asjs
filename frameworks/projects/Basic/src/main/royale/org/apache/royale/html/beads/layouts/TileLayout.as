@@ -20,6 +20,7 @@ package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.ILayoutParent;
@@ -27,12 +28,13 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.utils.CSSUtils;
-	import org.apache.royale.utils.CSSContainerUtils;
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -121,11 +123,12 @@ package org.apache.royale.html.beads.layouts
 
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean
 		{
-			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 			
 			COMPILE::SWF
 			{

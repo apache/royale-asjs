@@ -50,12 +50,12 @@ package org.apache.royale.mdl.supportClasses
         public function ChipBase()
         {
             super();
-
-            className = "";
         }
         
         /**
          * The chip span element
+         * 
+         * @royalesuppresspublicvarwarning
          */
         COMPILE::JS
         public var chipTextSpan:HTMLSpanElement;

@@ -202,12 +202,17 @@ package org.apache.royale.core
         //   Static Property
         //--------------------------------------
         
+        /**
+         *  @royalesuppresspublicvarwarning
+         */
         static public var googFireListener:Function;
         
         /**
          * The properties that triggers the static initializer.
          * Note, in JS, this property has to be declared
          * after the installOverride.
+         *
+         *  @royalesuppresspublicvarwarning
          */
         static public var installedOverride:Boolean = installOverride();
         

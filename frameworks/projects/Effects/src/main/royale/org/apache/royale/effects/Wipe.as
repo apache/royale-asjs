@@ -79,17 +79,39 @@ public class Wipe extends Tween implements IDocument
 	 */
 	private var actualTarget:IUIBase;
     
+    // there is already a _target in the base class
+    // and JS can't hide it
+    private var target_:String;
+    
     /**
      *  The target as the String id 
      *  of a widget in an MXML Document.
      */
-    public var target:String;
+    public function get target():String
+    {
+        return target_;
+    }
+    
+    public function set target(value:String):void
+    {
+        target_ = value;
+    }
+    
+    private var _direction:String;
     
 	/**
 	 *  The direction of the Wipe.  "up" means the top will be the last
      *  part to disappear. "down" will reveal from the top down.
      */
-    public var direction:String;
+    public function get direction():String
+    {
+        return _direction;
+    }
+    
+    public function set direction(value:String):void
+    {
+        _direction = value;
+    }
     	
     private var wiper:PlatformWiper = new PlatformWiper();	
     

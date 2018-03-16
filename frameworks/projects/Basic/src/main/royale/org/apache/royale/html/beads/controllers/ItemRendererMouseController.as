@@ -172,6 +172,7 @@ COMPILE::JS {
 		COMPILE::SWF
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
+			event.stopImmediatePropagation();
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{				
@@ -191,6 +192,7 @@ COMPILE::JS {
 		COMPILE::JS
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
+			event.stopImmediatePropagation();
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{

@@ -52,7 +52,7 @@ package org.apache.royale.mobile
 		{
 			super();
 			
-			className = "TabbedViewManager";
+			typeNames = "TabbedViewManager";
 		}
 		
 		/**

@@ -45,6 +45,8 @@ package org.apache.royale.binding
 		{
 		}
 		
+        private var _source:Array;
+        
         /**
          *  The source chain of property names
          *
@@ -53,7 +55,15 @@ package org.apache.royale.binding
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public var source:Array;
+        public function get source():Array
+        {
+            return _source;
+        }
+        
+        public function set source(value:Array):void
+        {
+            _source = value;
+        }
 
         /**
          *  The host mxml document for the source and
@@ -70,6 +80,8 @@ package org.apache.royale.binding
          */
         protected var document:Object;
 
+        private var _destination:Object;
+
         /**
          *  The destination property name or chain.
          *
@@ -78,7 +90,15 @@ package org.apache.royale.binding
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public var destination:Object;
+        public function get destination():Object
+        {
+            return _destination;
+        }
+        
+        public function set destination(value:Object):void
+        {
+            _destination = value;
+        }
         
         /**
          *  The watcher for the component at
@@ -88,6 +108,8 @@ package org.apache.royale.binding
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
 		public var watcherChain:Object;
         // TODO: (aharui) handle watcher chain

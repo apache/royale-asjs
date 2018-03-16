@@ -25,6 +25,7 @@ package org.apache.royale.mdl.supportClasses
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
     /**
@@ -53,8 +54,16 @@ package org.apache.royale.mdl.supportClasses
         {
             super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "material-icons";
         }
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         COMPILE::JS
         protected var textNode:Text;
@@ -67,7 +76,6 @@ package org.apache.royale.mdl.supportClasses
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "material-icons";
 			var i:WrappedHTMLElement = addElementToWrapper(this,'i');
             
             textNode = document.createTextNode(iconText) as Text;
@@ -117,16 +125,20 @@ package org.apache.royale.mdl.supportClasses
          */
         public function set size(value:Number):void
         {
-            COMPILE::JS
+            if (_size != value)
             {
-                element.classList.remove("md-" + _size);
-            }
+                COMPILE::JS
+                {
+                    var classVal:String = "md-" + _size;
+                    _classList.remove(classVal);
 
-            _size = value;
+                    classVal = "md-" + value;
+                    _classList.add(classVal);
 
-            COMPILE::JS
-            {
-                element.classList.add("md-" + _size);
+                    _size = value;
+
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -143,13 +155,19 @@ package org.apache.royale.mdl.supportClasses
         {
             return _dark;
         }
+
         public function set dark(value:Boolean):void
         {
-            _dark = value;
-
-            COMPILE::JS
+            if (_dark != value)
             {
-                element.classList.toggle("md-dark", _dark);
+                _dark = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "md-dark";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -168,11 +186,16 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set light(value:Boolean):void
         {
-            _light = value;
-
-            COMPILE::JS
+            if (_light != value)
             {
-                element.classList.toggle("md-light", _light);
+                _light = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "md-light";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -191,11 +214,16 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set inactive(value:Boolean):void
         {
-            _inactive = value;
-
-            COMPILE::JS
+            if (_inactive != value)
             {
-                element.classList.toggle("md-inactive", _inactive);
+                _inactive = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "md-inactive";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -214,11 +242,16 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set listItemIcon(value:Boolean):void
         {
-            _listItemIcon = value;
-
-            COMPILE::JS
+            if (_listItemIcon != value)
             {
-                element.classList.toggle("mdl-list__item-icon", _listItemIcon);
+                _listItemIcon = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-list__item-icon";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -237,11 +270,16 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set listItemAvatar(value:Boolean):void
         {
-            _listItemAvatar = value;
-
-            COMPILE::JS
+            if (_listItemAvatar != value)
             {
-                element.classList.toggle("mdl-list__item-avatar", _listItemAvatar);
+                _listItemAvatar = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-list__item-avatar";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -260,12 +298,23 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set iconToggleLabel(value:Boolean):void
         {
-            _iconToggleLabel = value;
-
-            COMPILE::JS
+            if (_iconToggleLabel != value)
             {
-                element.classList.toggle("mdl-icon-toggle__label", _iconToggleLabel);
+                _iconToggleLabel = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-icon-toggle__label";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

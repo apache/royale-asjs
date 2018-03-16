@@ -18,6 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    /**
+     *  A compile-time class to resolve the royale_wrapper reference added to HTMLElements.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
 	COMPILE::JS
 	public class WrappedHTMLElement extends HTMLElement implements IRoyaleElement
 	{

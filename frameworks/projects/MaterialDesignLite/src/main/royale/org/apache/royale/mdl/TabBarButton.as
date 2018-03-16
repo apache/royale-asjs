@@ -24,6 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
     
 	/**
@@ -48,9 +49,17 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "mdl-layout__tab";
 		}
-		
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
+
 		private var _isActive:Boolean = false;
 
         /**
@@ -68,12 +77,16 @@ package org.apache.royale.mdl
 
 		public function set isActive(value:Boolean):void
 		{
-            _isActive = value;
-            
-			COMPILE::JS
+            if (_isActive != value)
             {
-                element.classList.toggle("is-active", _isActive);
-				typeNames = element.className;
+                _isActive = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "is-active";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
 		}
 
@@ -104,16 +117,21 @@ package org.apache.royale.mdl
 
 			if(parent is TabBar)
 			{
-				var parentTabBar:TabBar = parent as TabBar;
-				if(parentTabBar.parent is Tabs)
-				{
-					typeNames = "mdl-tabs__tab";
-				} else {
-					typeNames = "mdl-layout__tab";
-				}
+                var parentTabBar:TabBar = parent as TabBar;
+                if(parentTabBar.parent is Tabs)
+                {
+                    element.classList.remove(typeNames);
+                    typeNames = "mdl-tabs__tab";
 
-				element.classList.add(typeNames);
+                    setClassName(typeNames);
+                }
 			}
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

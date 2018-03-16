@@ -57,7 +57,7 @@ package org.apache.royale.html
 		public function ToolTip()
 		{
 			super();
-			className = "ToolTip";
+			typeNames = "ToolTip";
 			COMPILE::SWF
 			{
 				mouseEnabled = false;
@@ -73,7 +73,6 @@ package org.apache.royale.html
 			super.createElement();
 			positioner.style.position = 'absolute';
 			positioner.style.pointerEvents = "none";
-			typeNames = "ToolTip";
 			return element;
 		}		
 	}

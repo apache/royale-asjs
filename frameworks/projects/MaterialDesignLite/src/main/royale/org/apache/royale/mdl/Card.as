@@ -20,12 +20,10 @@ package org.apache.royale.mdl
 {
 	import org.apache.royale.html.Group;
 
-    COMPILE::JS
+	COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
-
 	/**
 	 *  The Card class is a self-contained pieces of paper with data.
 	 *  The Material Design Lite (MDL) card component is a user interface element
@@ -51,20 +49,19 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-card";
+
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
         COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-card";
-			return addElementToWrapper(this,'div');
-        }
+        private var _classList:CSSClassList;
 
 		protected var _shadow:Number = 0;
+
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
 		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
@@ -84,21 +81,33 @@ package org.apache.royale.mdl
         {
             return _shadow;
         }
+
         public function set shadow(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-shadow--" + _shadow + "dp");
+			if (_shadow != value)
+            {
+                COMPILE::JS
+                {
+                    if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+                    {
+                        var classVal:String = "mdl-shadow--" + _shadow + "dp";
+                        _classList.remove(classVal);
 
-				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
-				{
-					_shadow = value;
+                        classVal = "mdl-shadow--" + value + "dp";
+						_classList.add(classVal);
 
-					element.classList.add("mdl-shadow--" + _shadow + "dp");
-				}
+                        _shadow = value;
 
-				typeNames = element.className;
-			}
+                        setClassName(computeFinalClassNames());
+                    }
+                }
+            }
         }
+
+		COMPILE::JS
+		override protected function computeFinalClassNames():String
+		{
+			return _classList.compute() + super.computeFinalClassNames();
+		}
 	}
 }

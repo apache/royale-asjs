@@ -46,6 +46,8 @@ package org.apache.royale.states
 			super();
 		}
 		
+        private var _items:Object;
+        
         /**
          *  The item or items created from the descriptor.
          *  
@@ -54,8 +56,16 @@ package org.apache.royale.states
          *  @playerversion AIR 1.1
          *  @productversion Royale 1.0.0
          */
-        public var items:Object;
+        public function get items():Object
+        {
+            return _items;
+        }
+        public function set items(value:Object):void
+        {
+            _items = value;
+        }
         
+        private var _descriptor:Array;     
         /**
          *  The descriptor used to create the item(s).
          *  
@@ -64,7 +74,15 @@ package org.apache.royale.states
          *  @playerversion AIR 1.1
          *  @productversion Royale 1.0.0
          */
-        public var descriptor:Array;     
+        
+        public function get descriptor():Array
+        {
+            return _descriptor;
+        }
+        public function set descriptor(value:Array):void
+        {
+            _descriptor = value;
+        }
         
 	}
 }

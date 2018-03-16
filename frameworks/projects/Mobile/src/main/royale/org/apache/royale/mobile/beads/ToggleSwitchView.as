@@ -54,11 +54,15 @@ package org.apache.royale.mobile.beads
 		
 		/**
 		 * @private
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
 		public var boundingBox:Rect;
 		
 		/**
 		 * @private
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
 		public var actualSwitch:Rect;
 		

@@ -66,7 +66,7 @@ package org.apache.royale.html
 		{
 			super();
 			
-			className = "Panel";
+			typeNames = "Panel";
 		}
 		
 		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void

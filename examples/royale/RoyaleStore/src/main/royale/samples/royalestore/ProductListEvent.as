@@ -28,6 +28,9 @@ public class ProductListEvent extends Event
     public static const REMOVE_PRODUCT:String = "removeProduct";
     public static const PRODUCT_QTY_CHANGE:String = "productQtyChange";
     
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public var product:Product;
     
     //making the default bubbles behavior of the event to true since we want

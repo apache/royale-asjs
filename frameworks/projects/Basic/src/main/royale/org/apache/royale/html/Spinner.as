@@ -58,7 +58,7 @@ package org.apache.royale.html
 		{
 			super();
 
-			className = "Spinner";
+			typeNames = "Spinner";
 		}
 
 		/**

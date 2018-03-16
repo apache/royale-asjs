@@ -48,7 +48,7 @@ package org.apache.royale.mdl.itemRenderers
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            //className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
 
         private var item:Option;

@@ -22,10 +22,11 @@ package models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import valueObjects.DataVO;
 	
 	public class ASDocModel extends EventDispatcher implements IBeadModel
 	{
+        public static const DELIMITER:String = "$";
+        
 		public function ASDocModel()
 		{
 		}
@@ -48,6 +49,17 @@ package models
         
         private var tagNameMap:Object;
         
+        private var _platforms:Array = ["js", "swf"];
+        
+        public function get platforms():Array
+        {
+            return _platforms;
+        }
+        public function set platforms(value:Array):void
+        {
+            _platforms = value;
+        }
+        
         private var _knownTags:Array;
         
         [Bindable("packageListChanged")]
@@ -56,14 +68,20 @@ package models
             return _knownTags;
         }
         
+        private var platformList:Array;
+        private var currentPlatform:String;
+        
         private function configCompleteHandler(event:Event):void
         {
             app.service.removeEventListener("complete", configCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
             tagNameMap = config["tagNames"];
             
+            platformList = platforms.slice();
+            currentPlatform = platformList.shift();
+            var middle:String = "." + currentPlatform;
             app.service.addEventListener("complete", tagsCompleteHandler);
-            app.service.url = "tags.json";
+            app.service.url = "tags" + middle + ".json";
             app.service.send();
         }
         
@@ -71,11 +89,37 @@ package models
         {
             app.service.removeEventListener("complete", tagsCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
-            _knownTags = config["tags"];
-            
-            app.service.addEventListener("complete", completeHandler);
-            app.service.url = "classlist.json";
-            app.service.send();
+            if (!_knownTags)
+                _knownTags = config["tags"];
+            else
+            {
+                var arr:Array = config["tags"];
+                var n:int = arr.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var tag:String = arr[i];
+                    if (_knownTags.indexOf(tag) == -1)
+                        _knownTags.push(tag);
+                }
+            }
+            var middle:String;
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                middle = "." + currentPlatform;
+                app.service.addEventListener("complete", tagsCompleteHandler);
+                app.service.url = "tags" + middle + ".json";
+                app.service.send();                                
+            }
+            else
+            {
+                platformList = platforms.slice();
+                currentPlatform = platformList.shift();
+                middle = "." + currentPlatform;
+                app.service.addEventListener("complete", completeHandler);
+                app.service.url = "classlist" + middle + ".json";
+                app.service.send();                
+            }
         }
         
         private var masterData:Object;
@@ -85,18 +129,55 @@ package models
         	return masterData["classnames"];
         }
         
+        /**
+         * @royaleignorecoercion ASDocClassData 
+         */
         private function completeHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeHandler);
-            masterData = JSON.parse(app.service.data);
-            filterPackageList();
+            if (!masterData)
+                masterData = { "classnames": [], "data": [] };
+            var allNames:Array = allClasses;
+            var moreData:Object = JSON.parse(app.service.data);
+            var arr:Array = moreData["classnames"];
+            var n:int = arr.length;
+            var item:ASDocClassData;
+            for (var i:int = 0; i < n; i++)
+            {
+                var cname:String = arr[i];
+                var j:int = allNames.indexOf(cname);
+                if (j != -1)
+                {
+                   item = masterData["data"][i] as ASDocClassData;
+                   item.platforms.push(currentPlatform);
+                }
+                else
+                {
+                    item = new ASDocClassData(cname, currentPlatform);
+                    masterData["data"].push(item);
+                    masterData["classnames"].push(cname);
+                }
+            }
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                var middle:String = "." + currentPlatform;
+                app.service.addEventListener("complete", completeHandler);
+                app.service.url = "classlist" + middle + ".json";
+                app.service.send();
+            }
+            else
+            {
+                filterPackageList();
+            }
         }
         
         private function filterPackageList():void
         {
             var packages:Object = {};
-            for each (var qname:String in masterData["classnames"])
+            for each (var cdata:ASDocClassData in masterData.data)
             {
+                var qname:String = cdata.label;
                 var packageName:String;
                 var c:int = qname.lastIndexOf(".")
                 if (c == -1)
@@ -154,9 +235,9 @@ package models
                 for (var p:String in packageData)
                 {
                     if (filter == null)
-                        arr.push({ label: p, href: value + "/" + p});
+                        arr.push({ label: p, href: value + DELIMITER + p});
                     else if (filter(packageData[p]))
-                        arr.push({ label: p, href: value + "/" + p});
+                        arr.push({ label: p, href: value + DELIMITER + p});
                 }
                 arr.sort();
                 _classList = arr;
@@ -187,6 +268,8 @@ package models
                 _currentClass = value;
                 var packageData:Object = allPackages[_currentPackage];
                 dispatchEvent(new Event("currentClassChanged"));
+                platformList = platforms.slice();
+                currentPlatform = platformList.shift();
                 app.service.addEventListener("complete", completeClassHandler);
                 app.service.url = computeFileName(_currentPackage + "." + _currentClass);
                 app.service.send();
@@ -200,10 +283,15 @@ package models
         
         private var _attributesMap:Object;
         
+        /**
+         * @royaleignorecoercion ASDocClass 
+         * @royaleignorecoercion ASDocClassMembers
+         * @royaleignorecoercion ASDocClassFunction
+         */
         private function completeClassHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeClassHandler);
-            var data:DataVO = new DataVO(JSON.parse(app.service.data));
+            var data:ASDocClass = app.reviver.parse(app.service.data) as ASDocClass;
             if (_currentClassData == null)
             {
                 _currentClassData = data;
@@ -216,23 +304,46 @@ package models
                 _attributesMap = {};
                 _attributes = null;
             }
-            else
+            // track base classes if primary platform
+            // don't list base classes for other platforms
+            // because they might be duplicates or different
+            // class hierarchy.
+            else if (currentPlatform == platforms[0])
                 _baseClassList.push(data.qname);
-            for each (var m:Object in data.members)
+            for each (var m:ASDocClassFunction in data.members)
             {
+                if (!m.platforms)
+                    m.platforms = [];
+                m.platforms.push(currentPlatform);
                 m.shortDescription = makeShortDescription(m.description);
                 if (m.type == "method")
                 {
                     if (m.qname == _currentPackage + "." + _currentClass)
                     {
-                        _constructorList.push(m);
+                        var foundMatch:Boolean = false;
+                        var n:int = _constructorList.length;
+                        for (var i:int; i < n; i++)
+                        {
+                            var q:ASDocClassMembers = _constructorList[i] as ASDocClassMembers;
+                            var mm:ASDocClassMembers = m as ASDocClassMembers
+                            if (q.params.length == mm.params.length)
+                            {
+                                foundMatch = true;
+                                if (q.platforms.indexOf(mm.platforms[0]) == -1)
+                                    q.platforms.push(mm.platforms[0]);
+                                break;
+                            }
+                        }
+                        if (!foundMatch)
+                            _constructorList.push(m);
                     }
                     else if (m.qname != data.qname)
                         addIfNeededAndMakeAttributes(_publicMethods, m);
                 }
-                else
+                else if (m.type == "accessor")
                 {
-                    addIfNeededAndMakeAttributes(_publicProperties, m);
+                    var a:ASDocClassAccessor = m as ASDocClassAccessor; // force link class
+                    addIfNeededAndMakeAttributes(_publicProperties, a);
                 }
                 if (masterData["classnames"].indexOf(m.return) != -1)
                 {
@@ -241,33 +352,36 @@ package models
                     if (c != -1)
                     {
                     	m.return = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
                     m.returnhref = "#!" +href;
                 }
                     
             }
-            for each (m in data.events)
+            for each (var e:ASDocClassEvents in data.events)
             {
-                m.shortDescription = makeShortDescription(m.description);
-                addIfNeededAndMakeAttributes(_publicEvents, m);
-                if (masterData["classnames"].indexOf(m.type) != -1)
+                if (!e.platforms)
+                    e.platforms = [];
+                e.platforms.push(currentPlatform);
+                e.shortDescription = makeShortDescription(e.description);
+                addIfNeededAndMakeAttributes(_publicEvents, e);
+                if (masterData["classnames"].indexOf(e.type) != -1)
                 {
-                    href = m.type;
+                    href = e.type;
                     c = href.lastIndexOf(".");
                     if (c != -1)
                     {
-                    	m.type = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	e.type = href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
-                    m.typehref = "#!" +href;
+                    e.typehref = "#!" +href;
                 }
             }
-            for each (m in data.tags)
+            for each (var t:ASDocClassTags in data.tags)
             {
-                if (!_attributesMap[m.tagName])
+                if (!_attributesMap[t.tagName])
                 {
-                    _attributesMap[m.tagName] = m.values;
+                    _attributesMap[t.tagName] = t.values;
                 }
             }
 
@@ -289,21 +403,34 @@ package models
             }
             else
             {
-                _publicMethods.sortOn("qname");
-                _publicEvents.sortOn("qname");
-                _publicProperties.sortOn("qname");
-                dispatchEvent(new Event("currentDataChanged"));
+                if (platformList.length)
+                {
+                    currentPlatform = platformList.shift();
+                    app.service.addEventListener("complete", completeClassHandler);
+                    app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                    app.service.send();                    
+                }
+                else
+                {
+                    _publicMethods.sortOn("qname");
+                    _publicEvents.sortOn("qname");
+                    _publicProperties.sortOn("qname");
+                    dispatchEvent(new Event("currentDataChanged"));
+                }
             }
         }
         
-        private function addIfNeededAndMakeAttributes(arr:Array, data:Object):void
+        private function addIfNeededAndMakeAttributes(arr:Array, data:ASDocClassEvents):void
         {
         	var n:int = arr.length;
         	for (var i:int = 0; i < n; i++)
         	{
-        		var obj:Object = arr[i];
+        		var obj:ASDocClassEvents = arr[i];
         		if (obj.qname == data.qname)
         		{
+                    var platform:String = data.platforms[0];
+                    if (obj.platforms.indexOf(platform) == -1)
+                        obj.platforms.push(platform);
         			// if no description and the base definition has one
         			// then use base description
         			if (obj.description == "" && data.description != "")
@@ -321,13 +448,13 @@ package models
         	addAttributes(data, data);
         	if (data.type == "method")
         	{
-        		processParams(data);
+        		processParams(data as ASDocClassMembers);
         	}
-        	data.ownerhref = currentPackage + "/" + currentClass;
+        	data.ownerhref = currentPackage + DELIMITER + currentClass;
         	arr.push(data);
         }
 
-		private function addAttributes(dest:Object, src:Object):void
+		private function addAttributes(dest:ASDocClassEvents, src:ASDocClassEvents):void
 		{
 			if (!src.tags) return;
 			
@@ -338,12 +465,13 @@ package models
         	}
         	arr = dest.attributes;
         	var map:Object = {};
-        	var tag:Object;
+            var attr:ASDocClassAttribute;
+        	var tag:ASDocClassTags;
         	var n:int = arr.length;
         	for (var i:int = 0; i < n; i++)
         	{
-        		tag = arr[i];
-        		map[tag.name] = tag.value;
+        		attr = arr[i];
+        		map[attr.name] = attr.value;
         	}
         	n = src.tags.length;
             for (i = 0; i < n; i++)
@@ -351,7 +479,7 @@ package models
             	tag = src.tags[i];
             	if (map[tag.tagName]) 
             		continue;
-            	var obj:Object = {};
+            	var obj:ASDocClassAttribute = new ASDocClassAttribute();
                 var k:String = tagNameMap[tag.tagName];
                 if (k != null)
                     obj.name = k;
@@ -379,7 +507,7 @@ package models
             }
 		}
 		
-		private function processParams(data:Object):void
+		private function processParams(data:ASDocClassMembers):void
 		{
 			var n:int = data.params.length;
 			for (var i:int = 0; i < n; i++)
@@ -392,7 +520,7 @@ package models
                     if (c != -1)
                     {
                     	param.type = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
                     param.typehref = "#!" +href;
 				}
@@ -401,7 +529,7 @@ package models
 		
         private function computeFileName(input:String):String
         {
-            return input.replace(new RegExp("\\.", "g"), "/") + ".json";     
+            return input.replace(new RegExp("\\.", "g"), "/")  + "." + currentPlatform + ".json";     
         }
         
         private function makeShortDescription(input:String):String
@@ -418,7 +546,7 @@ package models
         private function completeInterfaceHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeInterfaceHandler);
-            var data:DataVO = new DataVO(JSON.parse(app.service.data));
+            var data:ASDocClass = app.reviver.parse(app.service.data) as ASDocClass;
             if (_currentClassData == null)
             {
                 _currentClassData = data;
@@ -431,16 +559,37 @@ package models
                 _attributesMap = {};
                 _attributes = null;
             }
-            else
+            // track base classes if primary platform
+            // don't list base classes for other platforms
+            // because they might be duplicates or different
+            // class hierarchy.
+            else if (currentPlatform == platforms[0])
                 _baseClassList.push(data.qname);
-            for each (var m:Object in data.members)
+            for each (var m:ASDocClassMembers in data.members)
             {
+                if (!m.platforms)
+                    m.platforms = [];
+                m.platforms.push(currentPlatform);
                 m.shortDescription = makeShortDescription(m.description);
                 if (m.type == "method")
                 {
                     if (m.qname == _currentPackage + "." + _currentClass)
                     {
-                        _constructorList.push(m);
+                        var foundMatch:Boolean = false;
+                        var n:int = _constructorList.length;
+                        for (var i:int; i < n; i++)
+                        {
+                            var q:ASDocClassMembers = _constructorList[i] as ASDocClassMembers;
+                            if (q.params.length == m.params.length)
+                            {
+                                foundMatch = true;
+                                if (q.platforms.indexOf(m.platforms[0]) == -1)
+                                    q.platforms.push(m.platforms[0]);
+                                break;
+                            }
+                        }
+                        if (!foundMatch)
+                            _constructorList.push(m);
                     }
                     else if (m.qname != data.qname)
                         addIfNeededAndMakeAttributes(_publicMethods, m);
@@ -451,27 +600,30 @@ package models
                 }
                 
             }
-            for each (m in data.events)
+            for each (var e:ASDocClassEvents in data.events)
             {
-                m.shortDescription = makeShortDescription(m.description);
-                addIfNeededAndMakeAttributes(_publicEvents, m);
-                if (masterData["classnames"].indexOf(m.type) != -1)
+                if (!e.platforms)
+                    e.platforms = [];
+                e.platforms.push(currentPlatform);
+                e.shortDescription = makeShortDescription(e.description);
+                addIfNeededAndMakeAttributes(_publicEvents, e);
+                if (masterData["classnames"].indexOf(e.type) != -1)
                 {
-                    var href:String = m.type;
+                    var href:String = e.type;
                     var c:int = href.lastIndexOf(".");
                     if (c != -1)
                     {
-                    	m.type = href.substr(c + 1);
-                    	href = href.substr(0, c) + "/" + href.substr(c + 1);
+                    	e.type = href.substr(c + 1);
+                    	href = href.substr(0, c) + DELIMITER + href.substr(c + 1);
                     }
-                    m.typehref = "#!" +href;
+                    e.typehref = "#!" +href;
                 }
             }
-            for each (m in data.tags)
+            for each (var t:ASDocClassTags in data.tags)
             {
-                if (!_attributesMap[m.tagName])
+                if (!_attributesMap[t.tagName])
                 {
-                    _attributesMap[m.tagName] = m.values;
+                    _attributesMap[t.tagName] = t.values;
                 }
             }
             if (data.baseInterfaceNames)
@@ -488,10 +640,20 @@ package models
             }
             else
             {
-                _publicMethods.sortOn("qname");
-                _publicEvents.sortOn("qname");
-                _publicProperties.sortOn("qname");
-                dispatchEvent(new Event("currentDataChanged"));
+                if (platformList.length)
+                {
+                    currentPlatform = platformList.shift();
+                    app.service.addEventListener("complete", completeInterfaceHandler);
+                    app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                    app.service.send();                                        
+                }
+                else
+                {
+                    _publicMethods.sortOn("qname");
+                    _publicEvents.sortOn("qname");
+                    _publicProperties.sortOn("qname");
+                    dispatchEvent(new Event("currentDataChanged"));
+                }
             }
         }
         
@@ -558,11 +720,11 @@ package models
                         	c = p.lastIndexOf(".");
                         	if (c != -1)
                         	{
-                        		p = p.substr(0, c) + "/" + p.substr(c + 1);
+                        		p = p.substr(0, c) + DELIMITER + p.substr(c + 1);
                         	}
                         	else
                         	{
-                        		p = "/"+ p;
+                        		p = DELIMITER + p;
                         	}
                         	data.href = p;
                         }
@@ -648,7 +810,7 @@ package models
             filterPackageList();
         }
 
-        public function filterByTags(classData:Object):Boolean
+        public function filterByTags(classData:ASDocClass):Boolean
         {
             var tags:Array = classData.tags;
             if (!tags) return false;
@@ -672,3 +834,4 @@ package models
         }
 	}
 }
+

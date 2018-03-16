@@ -46,7 +46,12 @@ package org.apache.royale.cordova
 			super();
 		}
 		
-		public var isDeviceReady:Boolean = false
+        /**
+         * A flag to tell if the device is ready.  Not bindable.
+         * 
+         * @royalesuppresspublicvarwarning
+         */
+		public var isDeviceReady:Boolean = false;
 		
 		/**
 		 * @private

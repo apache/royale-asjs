@@ -38,7 +38,7 @@ package org.apache.royale.mobile.chrome
 		{
 			super();
 			
-			className = "ToolBar";
+			typeNames = "ToolBar";
 		}
 		
 		private var _controls:Array;

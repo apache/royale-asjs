@@ -18,9 +18,12 @@
 
 -->
 <royale-sdk-description>
-  <name>Apache Royale ${project.version} FP${flash.version} AIR${air.version} en_US</name>
-  <!--version>${project.version}</version-->
-  <!-- This is a hack to trick the FlashBuilder in accepting this version -->
-  <version>4.8.${project.version}</version>
-  <build>${timestamp}</build>
+    <name>Apache Royale</name>
+    <version>${project.version}</version>
+    <build>${timestamp}</build>
+
+    <output-targets>
+      <output-target name="js" version="Ecma5Strict" />
+      <output-target name="swf" version="AS3" AIR="14.0" Flash="11.7" />
+    </output-targets>
 </royale-sdk-description>

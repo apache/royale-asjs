@@ -56,7 +56,7 @@ package org.apache.royale.html
 		{
 			super();
             
-            className = "ComboBox";
+            typeNames = "ComboBox";
 		}
 		
 		/**

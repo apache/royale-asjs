@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:js="library://ns.apache.org/royale/basic"
+		 xmlns:local="*"
+		 className="MyView">
+	
+	<fx:Style>
+		@namespace js "library://ns.apache.org/royale/basic";
+		
+		/**
+		 * the View needs a background-color so that mouse events will
+		 * be picked up in order to close the menu without making a selection.
+		 */
+		.MyView {
+			background-color: #FFFFFF;
+		}
+		
+		.Output {
+			color: blue;
+		}
+		
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.collections.ArrayList;
+			import org.apache.royale.core.UIBase;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
+			import org.apache.royale.html.Menu;
+			
+			/*
+			 * Show a simple menu made of an Array of Strings.
+			 */
+			
+			private var simpleData:Object = ["Open", "Edit", "Save", "Save As", "Print", "Close"];
+			
+			
+			private function showSimpleMenu(component:UIBase):void
+			{
+				var menu:Menu = Menu.createMenu(simpleData);
+				menu.addEventListener("change", handleSimpleSelection);
+				menu.show(component, 0, 20);
+			}
+			
+			private function handleSimpleSelection(event:Event):void
+			{
+				var menu:Menu = event.currentTarget as Menu;
+				output.text = "You selected: "+menu.selectedItem;
+				menu.hide();
+			}
+			
+			/*
+			 * Show a menu made of Objects
+			 */
+			
+			private var complexData:Object = [
+				{title:"Open", value:1},
+				{title:"Edit", value:2},
+				{title:"Save", value:3},
+				{title:"Save As", value:4},
+				{title:"Print", value:5},
+				{title:"Close", value:6}];
+			
+			private function showComplexMenu(component:UIBase):void
+			{
+				var menu:Menu = Menu.createMenu(complexData);
+				menu.labelField = "title";
+				menu.addEventListener("change", handleComplexSelection);
+				menu.show(component, 0, 20);
+			}
+			
+			private function handleComplexSelection(event:Event):void
+			{
+				var menu:Menu = event.currentTarget as Menu;
+				output.text = "You selected: "+menu.selectedItem["title"]+" with value "+menu.selectedItem["value"];
+				menu.hide();
+			}
+			
+			/*
+			 * MenuBar
+			 *
+			 * Use type:"separator" to indicate a separator line in the menus.
+			 */
+			
+			[Bindable]
+			private var menubarData:Array = [
+				{title: "File", value:"fileMenu", menu:[
+					{title:"Open", value:"open"},
+					{title:"Save", value:"save"},
+					{title:"Print", value:"print"},
+					{type:"separator"},
+					{title:"Close", value:"close"}]},
+				{title: "Edit", value:"editMenu", menu:[
+					{title:"Copy", value:"copy"},
+					{title:"Cut", value:"cut"},
+					{title:"Paste", value:"paste"}]},
+				{title: "View", value:"viewMenu", menu:[
+					{title:"Main", value:"main"},
+					{title:"Editor", value:"editor", menu:[
+						{title:"Text Editor", value:"textEditor"},
+						{title:"UI Editor", value:"uiEditor"},
+						{type:"separator"},
+						{title:"Settings Editor", value:"settingsEditor", menu:[
+							{title:"Reset",value:"settingsReset"},
+							{title:"Change", value:"settingsChange"}]}]},
+					{title:"Tools", value:"tools"}]},
+				{title: "Help", value:"helpMenu", menu:[
+					{title:"About", value:"about"},
+					{type:"separator"},
+					{title:"Website", value:"website"}]}];
+			
+			private function handleMenubarSelection(event:Event):void
+			{
+				var mbar:MenuBar = event.target as MenuBar;
+				output.text = "You selected: "+mbar.selectedItem["title"]+" with value: "+mbar.selectedItem["value"];
+			}
+		]]>
+	</fx:Script>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	
+	<js:Panel title="Menu Demo" x="100" y="50" width="300" height="400">
+		<js:beads>
+			<js:BasicLayout />
+		</js:beads>
+		
+		<!-- The MenuBar. This displays CascadingMenu menus, but you can change that to use the simpler
+		     Menu for a lighter app by removing the CascadingMenuFactory bead. -->
+		
+		<js:MenuBar dataProvider="{menubarData}" x="0" y="0" width="100%"
+					labelField="title" change="handleMenubarSelection(event)">
+			<js:beads>
+				<js:CascadingMenuFactory />
+			</js:beads>
+		</js:MenuBar>
+		
+		<js:Label id="output" x="50" y="80" className="Output" />
+		
+		<js:TextButton text="Simple Menu" click="showSimpleMenu(fromLabel)" x="10" y="150" />
+		<js:TextButton text="Complex Menu" click="showComplexMenu(fromLabel)" x="200" y="150" />
+		
+		<js:Label text="Menu appears below here" id="fromLabel" x="50" y="190" className="Output" />
+	</js:Panel>
+	
+		
+
+</js:View>

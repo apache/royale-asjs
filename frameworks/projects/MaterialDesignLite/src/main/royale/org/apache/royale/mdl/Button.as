@@ -27,6 +27,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
     
     /**
@@ -52,10 +53,18 @@ package org.apache.royale.mdl
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-button mdl-js-button";
+
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
 
             addBead(new UpgradeElement());
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
         
         /**
 		 * @private
@@ -64,8 +73,6 @@ package org.apache.royale.mdl
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-            typeNames = "mdl-button mdl-js-button";
-            
 			return addElementToWrapper(this,'button');
 		}
 
@@ -94,6 +101,7 @@ package org.apache.royale.mdl
         }
 
         private var _fab:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-button--fab" effect selector.
          *  Applies fab (circular) display effect. Mutually exclusive with raised, mini-fab, and icon.
@@ -109,16 +117,20 @@ package org.apache.royale.mdl
         }
         public function set fab(value:Boolean):void
         {
-             _fab = value;
-
-             COMPILE::JS
-             {
-                 element.classList.toggle("mdl-button--fab", _fab);
-                 typeNames = element.className;
-             }
+            if (_fab != value)
+            {
+                _fab = value;
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-button--fab",value);
+                    setClassName(computeFinalClassNames());
+                }
+            }
         }
 
         private var _raised:Boolean = false;
+        // private var _raisedClassName:String = "";
+
         /**
 		 *  A boolean flag to activate "mdl-button--raised" effect selector.
          *  Applies raised display effect. Mutually exclusive with fab, mini-fab, and icon.
@@ -132,18 +144,23 @@ package org.apache.royale.mdl
         {
             return _raised;
         }
+
         public function set raised(value:Boolean):void
         {
-            _raised = value;
-
-            COMPILE::JS
+            if (_raised != value)
             {
-                element.classList.toggle("mdl-button--raised", _raised);
-                typeNames = element.className;
+                _raised = value;
+
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-button--raised",value);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
         private var _colored:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-button--colored" effect selector.
          *  Applies colored display effect (primary or accent color, depending on the type of button).
@@ -160,16 +177,20 @@ package org.apache.royale.mdl
         }
         public function set colored(value:Boolean):void
         {
-             _colored = value;
-
-            COMPILE::JS
+            if (_colored != value)
             {
-                element.classList.toggle("mdl-button--colored", _colored);
-                typeNames = element.className;
-            } 
+                _colored = value;
+
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-button--colored",value);
+                    setClassName(computeFinalClassNames());
+                }
+            }
         }
 
         private var _accent:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-button--accent" effect selector.
 		 *  Applies accent color display effect.
@@ -184,18 +205,23 @@ package org.apache.royale.mdl
         {
             return _accent;
         }
+
         public function set accent(value:Boolean):void
         {
-            _accent = value;
-
-            COMPILE::JS
+            if (_accent != value)
             {
-                element.classList.toggle("mdl-button--accent", _accent);
-                typeNames = element.className;
-            } 
+                _accent = value;
+
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-button--accent",value);
+                    setClassName(computeFinalClassNames());
+                }
+            }
         }
 
         private var _primary:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-button--primary" effect selector.
 		 *  Applies primary color display effect.
@@ -210,18 +236,23 @@ package org.apache.royale.mdl
         {
             return _primary;
         }
+
         public function set primary(value:Boolean):void
         {
-            _primary = value;
-
-            COMPILE::JS
+            if (_primary != value)
             {
-                element.classList.toggle("mdl-button--primary", _primary);
-                typeNames = element.className;
+                _primary = value;
+
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-button--primary",value);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
         private var _minifab:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-button--mini-fab" effect selector.
 		 *  Applies mini-fab (small fab circular) display effect.
@@ -236,18 +267,23 @@ package org.apache.royale.mdl
         {
             return _minifab;
         }
+
         public function set minifab(value:Boolean):void
         {
-            _minifab = value;
-
-            COMPILE::JS
+            if (_minifab != value)
             {
-                element.classList.toggle("mdl-button--mini-fab", _minifab);
-                typeNames = element.className;
+                _minifab = value;
+
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-button--mini-fab",value);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
         private var _icon:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-button--icon" effect selector.
 		 *  Applies icon (small plain circular) display effect.
@@ -262,18 +298,23 @@ package org.apache.royale.mdl
         {
             return _icon;
         }
+
         public function set icon(value:Boolean):void
         {
-            _icon = value;
-
-            COMPILE::JS
+            if (_icon != value)
             {
-                element.classList.toggle("mdl-button--icon", _icon);
-                typeNames = element.className;
+                _icon = value;
+
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-button--icon",value);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
         protected var _ripple:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
 		 *  Applies ripple click effect. May be used in combination with any other classes
@@ -289,13 +330,27 @@ package org.apache.royale.mdl
         }
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    addOrRemove("mdl-js-ripple-effect",value);
+                    setClassName(computeFinalClassNames());
+                }
             }
+        }
+
+        COMPILE::JS
+        private function addOrRemove(classNameVal:String,add:Boolean):void
+        {
+            add ? _classList.add(classNameVal) : _classList.remove(classNameVal);
+        }
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

@@ -49,7 +49,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-mega-footer";
 		}
 
         /**
@@ -58,7 +58,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-mega-footer";
 			return addElementToWrapper(this,'footer');
         }
 
@@ -75,6 +74,7 @@ package org.apache.royale.mdl
         {
             return _mini;
         }
+
         public function set mini(value:Boolean):void
         {
             _mini = value;
@@ -82,14 +82,12 @@ package org.apache.royale.mdl
 			COMPILE::JS
             {
 				element.classList.remove(typeNames);
-				if(!_mini)
+
+				if (_mini)
 				{
-					typeNames = "mdl-mega-footer";
-				} else
-				{
-					typeNames = "mdl-mini-footer";
+                    typeNames = "mdl-mini-footer";
+                    setClassName(computeFinalClassNames());
 				}
-				element.classList.add(typeNames);
             }
         }
 	}

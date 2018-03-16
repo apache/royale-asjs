@@ -83,8 +83,6 @@ package org.apache.royale.mdl
 		public function Slider()
 		{
 			super();
-
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
 		/**

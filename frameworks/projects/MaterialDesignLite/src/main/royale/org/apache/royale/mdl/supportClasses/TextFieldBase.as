@@ -19,13 +19,15 @@ package org.apache.royale.mdl.supportClasses
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.TextInput;
-    
+    import org.apache.royale.core.IBead;
+
     import org.apache.royale.mdl.supportClasses.ITextField;
-    
+
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;            
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.core.CSSClassList;
     }
     
     /**
@@ -50,11 +52,15 @@ package org.apache.royale.mdl.supportClasses
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
 		}
 
         COMPILE::JS
         {
+            private var _classList:CSSClassList;
             private var _textNode:Text;
             /**
              *  @copy org.apache.royale.mdl.supportClasses.ITextField#textNode
@@ -143,12 +149,16 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set floatingLabel(value:Boolean):void
         {
-            _floatingLabel = value;
-
-            COMPILE::JS
+            if (_floatingLabel != value)
             {
-                positioner.classList.toggle("mdl-textfield--floating-label", _floatingLabel);
-                typeNames = positioner.className;
+                _floatingLabel = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-textfield--floating-label";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -167,15 +177,26 @@ package org.apache.royale.mdl.supportClasses
         {
             return _isInvalid;
         }
+
         public function set isInvalid(value:Boolean):void
         {
-            _isInvalid = value;
-
-            COMPILE::JS
+            if (_isInvalid != value)
             {
-                positioner.classList.toggle("is-invalid", _isInvalid);
-                typeNames = positioner.className;
+                _isInvalid = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "is-invalid";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

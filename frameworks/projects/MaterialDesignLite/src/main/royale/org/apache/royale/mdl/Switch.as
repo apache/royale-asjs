@@ -32,6 +32,7 @@ package org.apache.royale.mdl
     {    
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
     //--------------------------------------
@@ -97,11 +98,19 @@ package org.apache.royale.mdl
         {
             super();
 
-            className = "";
-            
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "mdl-switch mdl-js-switch";
+
             addBead(new UpgradeElement());
             addBead(new UpgradeChildren(["mdl-switch__ripple-container"]));
         }
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         /**
          *  @copy org.apache.royale.html.Label#text
@@ -176,12 +185,16 @@ package org.apache.royale.mdl
 
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-js-ripple-effect";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -203,8 +216,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-switch mdl-js-switch";
-
             label = addElementToWrapper(this,'label') as HTMLLabelElement;
 
             input = document.createElement("input") as HTMLInputElement;
@@ -232,6 +243,12 @@ package org.apache.royale.mdl
             selected = !selected;
             input.checked = selected;
             label.classList.toggle("is-checked", selected);
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

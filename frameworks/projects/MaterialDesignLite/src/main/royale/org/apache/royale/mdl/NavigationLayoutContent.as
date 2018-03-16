@@ -20,12 +20,6 @@ package org.apache.royale.mdl
 {
 	import org.apache.royale.html.Group;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-
 	/**
 	 *  The NavigationLayoutContent class is a Container component capable of parenting
 	 *  the content of the NavigationLayout parent. If the navigation uses a TabBar component
@@ -50,17 +44,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-layout__content";
 		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-layout__content";
-			return addElementToWrapper(this,'div');
-        }
 	}
 }

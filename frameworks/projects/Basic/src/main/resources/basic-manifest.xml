@@ -27,6 +27,8 @@
     <component id="Button" class="org.apache.royale.html.Button"/>
     <component id="CloseButton" class="org.apache.royale.html.CloseButton"/>
     <component id="ButtonBar" class="org.apache.royale.html.ButtonBar"/>
+    <component id="HDividedContainer" class="org.apache.royale.html.HDividedContainer" />
+    <component id="VDividedContainer" class="org.apache.royale.html.VDividedContainer" />
     <component id="DropDownList" class="org.apache.royale.html.DropDownList"/>
     <component id="DropDownListList" class="org.apache.royale.html.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.royale.html.Image"/>
@@ -41,6 +43,7 @@
     <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
     <component id="DataContainer" class="org.apache.royale.html.DataContainer"/>
     <component id="List" class="org.apache.royale.html.List"/>
+    <component id="PopUpList" class="org.apache.royale.html.PopUpList"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
     <component id="CSSCheckBox" class="org.apache.royale.html.CSSCheckBox"/>
@@ -70,6 +73,8 @@
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
+    <component id="VirtualListView" class="org.apache.royale.html.beads.VirtualListView"/>
+    <component id="VirtualListVerticalLayout" class="org.apache.royale.html.beads.layouts.VirtualListVerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
     <component id="VerticalFlexLayout" class="org.apache.royale.html.beads.layouts.VerticalFlexLayout"/>
     <component id="VerticalSliderLayout" class="org.apache.royale.html.beads.layouts.VerticalSliderLayout" />
@@ -129,10 +134,14 @@
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
+    <component id="HDividedContainerDivider" class="org.apache.royale.html.supportClasses.HDividedContainerDivider" />
+    <component id="VDividedContainerDivider" class="org.apache.royale.html.supportClasses.VDividedContainerDivider" />
     <!--
      <component id="ImageAndTextButtonView" class="org.apache.royale.html.beads.ImageAndTextButtonView" />
      -->
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport" />
+    <component id="HScrollViewport" class="org.apache.royale.html.supportClasses.HScrollViewport" />
+    <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
     <component id="ClippingViewport" class="org.apache.royale.html.supportClasses.Viewport" lookupOnly="true" />
     <component id="Viewport" class="org.apache.royale.html.supportClasses.Viewport" />
     <component id="OverflowViewport" class="org.apache.royale.html.supportClasses.OverflowViewport" />
@@ -165,6 +174,7 @@
     <component id="DynamicRemoveAllByNullItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllByNullItemRendererForArrayListData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
+    <component id="VirtualDataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser"/>
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
@@ -202,5 +212,15 @@
     <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
 
     <component id="HashChangeNotifierBead" class="org.apache.royale.routing.HashChangeNotifierBead" />
+    <component id="HashChangeNotifierBeadWithTitle" class="org.apache.royale.routing.HashChangeNotifierBeadWithTitle" />
+    <component id="URLParameterBead" class="org.apache.royale.routing.URLParameterBead" />
+    <component id="EscapedFragmentBead" class="org.apache.royale.routing.EscapedFragmentBead" />
+    
+    <component id="MenuBar" class="org.apache.royale.html.MenuBar"/>
+    <component id="Menu" class="org.apache.royale.html.Menu" />
+    <component id="CascadingMenu" class="org.apache.royale.html.CascadingMenu"/>
+    <component id="MenuItemRenderer" class="org.apache.royale.html.supportClasses.MenuItemRenderer"/>
+    <component id="MenuBarItemRenderer" class="org.apache.royale.html.supportClasses.MenuBarItemRenderer"/>
+    <component id="CascadingMenuItemRenderer" class="org.apache.royale.html.supportClasses.CascadingMenuItemRenderer" />
 
 </componentPackage>

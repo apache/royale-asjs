@@ -29,6 +29,9 @@ public class ProductThumbEvent extends Event
     public static const DETAILS:String = "details";
     public static const BROWSE:String = "browse";
     
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public var product:Product;
     
     public function ProductThumbEvent(type:String, product:Product)

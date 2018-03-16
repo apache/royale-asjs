@@ -499,13 +499,9 @@
             <arg value="pom.xml" />
         </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
-            <arg value="add" />
-            <arg value="examples/royale/MDLBlogExample/pom.xml" />
-        </exec>
-        <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="commit" />
             <arg value="-m" />
-            <arg value="remove SNAPSHOT from compiler-build-tools versions" />
+            <arg value="remove SNAPSHOT from compiler and typedefs versions" />
         </exec>
     </target>
     
@@ -598,8 +594,35 @@
             <!--<arg value="-DpushChanges=false" />-->
             <arg value="-DbranchName=release/${release.version}" />
         </exec>
+        <antcall target="update_other_typedef_develop_poms" />
     </target>
-    
+
+    <target name="update_other_typedef_develop_poms" depends="check-royale-typedefs">
+        <exec executable="${git}" dir="${typedefs}" failonerror="false" >
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+        <xmlproperty file="${typedefs}/pom.xml" prefix="pom"/>
+        <echo>next version is: ${pom.project.version}</echo>
+        <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.compiler.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+        <exec executable="${git}" dir="${typedefs}" failonerror="true" >
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="update other poms to next version" />
+        </exec>
+        <echo>run git show in royale-asjs to double-check the last commit then run git-push</echo>
+    </target>
+
     <target name="maven.prepare.typedefs">
         <!-- http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html -->
         <exec executable="${mvn}" dir="${typedefs}" failonerror="true" >
@@ -649,8 +672,6 @@
         <antcall target="update_other_develop_poms" />
     </target>
     
-    <!-- The use-latest-version may require that the build has built the framework projects so
-         you may need to let a build run, then run this target separately -->
     <target name="update_other_develop_poms" depends="check-royale-asjs">
         <exec executable="${git}" dir="${asjs}" failonerror="false" >
             <arg value="checkout" />
@@ -658,27 +679,6 @@
         </exec>
         <xmlproperty file="${asjs}/pom.xml" prefix="pom"/>
         <echo>next version is: ${pom.project.version}</echo>
-        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
-            <arg value="versions:set-property" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-            <arg value="-Dproperty=royale.framework.version" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
-            <arg value="versions:set-property" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-            <arg value="-Dproperty=royale.compiler.version" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
-        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
-            <arg value="versions:set-property" />
-            <arg value="-DgenerateBackupPoms=false" />
-            <arg value="-DallowSnapshots=true" />
-            <arg value="-Dproperty=royale.typedefs.version" />
-            <arg value="-DnewVersion=${pom.project.version}" />
-        </exec>
         <exec executable="${mvn}" dir="${asjs}/examples" failonerror="true" >
             <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
             <arg value="-DgenerateBackupPoms=false" />
@@ -698,6 +698,27 @@
             <arg value="-DgenerateBackupPoms=false" />
             <arg value="-DallowSnapshots=true" />
             <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.framework.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.typedefs.version" />
+            <arg value="-DnewVersion=${pom.project.version}" />
+        </exec>
+        <exec executable="${mvn}" dir="${asjs}" failonerror="true" >
+            <arg value="org.codehaus.mojo:versions-maven-plugin:2.5:set-property" />
+            <arg value="-DgenerateBackupPoms=false" />
+            <arg value="-DallowSnapshots=true" />
+            <arg value="-Dproperty=royale.compiler.version" />
             <arg value="-DnewVersion=${pom.project.version}" />
         </exec>
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
@@ -813,8 +834,8 @@
     
     <target name="ant-artifacts">
 		<ant dir="${basedir}/royale-asjs" target="release" />
-		<ant dir="${basedir}/royale-asjs" target="create-md5" />
-        <ant dir="${basedir}/royale-asjs" target="create-md5-jsonly" />
+		<ant dir="${basedir}/royale-asjs" target="create-SHA-512" />
+        <ant dir="${basedir}/royale-asjs" target="create-SHA-512-jsonly" />
 		<ant dir="${basedir}/royale-asjs" target="sign" />
         <ant dir="${basedir}/royale-asjs" target="sign-jsonly" />
 		<!--<ant antfile="build.xml" target="doc-create-md5" />-->
@@ -943,7 +964,7 @@ approving a release?', at:\n\
 http://www.apache.org/dev/release.html#approving-a-release\n\
 \n\
 At a minimum you would be expected to check that:\n\
-- MD5 and signed packages are correct\n\
+- SHA and signed packages are correct\n\
 - README, RELEASE_NOTES, NOTICE and LICENSE files are all fine\n\
 - That the build script completes successfully\n\
 - That you can compile and cross-compile a simple example using the SDK.\n\
@@ -1226,7 +1247,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="release/${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_typedefs_develop" depends="check-royale-typedefs">
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
@@ -1241,7 +1262,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="release/${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_compiler_develop" depends="check-royale-compiler">
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
@@ -1256,7 +1277,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="release/${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     
     <target name="merge_rc_to_master" depends="merge_to_asjs_master, merge_to_typedefs_master, merge_to_compiler_master" />
@@ -1273,7 +1294,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="apache-royale-${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_typedefs_master" depends="check-royale-typedefs">
         <exec executable="${git}" dir="${typedefs}" failonerror="true" >
@@ -1288,7 +1309,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="apache-royale-${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     <target name="merge_to_compiler_master" depends="check-royale-compiler">
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
@@ -1303,7 +1324,7 @@ ${my.name}
             <arg value="merge" />
             <arg value="apache-royale-${release.version}" />
         </exec>
-        <echo>Don't forget to push.  The script doesn't push because it expects conflicts</echo>
+        <echo>Don't forget to push --all.  The script doesn't push because it expects conflicts</echo>
     </target>
     
     <target name="release.maven.staging.repo" >
@@ -1314,7 +1335,7 @@ ${my.name}
         </exec>
     </target>
 
-    <target name="release.npm" depends="check-name-and-svn">
+    <target name="release.npm" depends="check-name-and-svn,check-royale-asjs,use_release_branch,checkout-release-branch">
         <input
         message="To publish the npm artifacts, enter the npm password from the private@ list"
         addproperty="npm.password"/>

@@ -1528,6 +1528,7 @@ limitations under the License.
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
                 <exclude name="README.md"/>
+                <exclude name="RELEASE_NOTES.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
                 <exclude name="royale-asjs/DEPENDENCIES"/>
@@ -1617,18 +1618,18 @@ limitations under the License.
         </rat:report>
     </target>
 	
-	<target name="create-md5" >
-		<echo message="Generating MD5 hashes for release artifacts"/>
-		<checksum algorithm="md5" file="${basedir}/out/${binary.kit}.tar.gz" forceOverwrite="yes"/>
-		<checksum algorithm="md5" file="${basedir}/out/${binary.kit}.zip" forceOverwrite="yes"/>
-		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.tar.gz" forceOverwrite="yes"/>
-		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes"/>
+	<target name="create-SHA-512" >
+		<echo message="Generating SHA-512 hashes for release artifacts"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${binary.kit}.tar.gz" forceOverwrite="yes"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${binary.kit}.zip" forceOverwrite="yes"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${source.kit}.tar.gz" forceOverwrite="yes"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes"/>
 	</target>
 
-    <target name="create-md5-jsonly" if="env.AIR_HOME" >
-        <echo message="Generating MD5 hashes for release artifacts"/>
-        <checksum algorithm="md5" file="${basedir}/out/${binary-js.kit}.tar.gz" forceOverwrite="yes"/>
-        <checksum algorithm="md5" file="${basedir}/out/${binary-js.kit}.zip" forceOverwrite="yes"/>
+    <target name="create-SHA-512-jsonly" if="env.AIR_HOME" >
+        <echo message="Generating SHA-512 hashes for release artifacts"/>
+        <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.tar.gz" forceOverwrite="yes"/>
+        <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.zip" forceOverwrite="yes"/>
     </target>
 
     <target name="sign-jsonly" if="env.AIR_HOME" >
@@ -1683,9 +1684,9 @@ limitations under the License.
         </exec>
     </target>
         
-	<target name="doc-create-md5" >
-		<echo message="Generating MD5 hashes for doc artifacts"/>
-		<checksum algorithm="md5" file="${basedir}/out/${kit.prefix}-asdocs.zip" forceOverwrite="yes"/>
+	<target name="doc-create-SHA-512" >
+		<echo message="Generating SHA-512 hashes for doc artifacts"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${kit.prefix}-asdocs.zip" forceOverwrite="yes"/>
 	</target>
 	
     <target name="doc-sign" >

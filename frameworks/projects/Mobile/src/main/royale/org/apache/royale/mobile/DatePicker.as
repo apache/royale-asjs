@@ -47,7 +47,7 @@ package org.apache.royale.mobile
 		{
 			super();
 
-			className = "DatePicker";
+			typeNames = "DatePicker";
 
 			setWidthAndHeight(120, 60, true);
 			selectedDate = new Date();

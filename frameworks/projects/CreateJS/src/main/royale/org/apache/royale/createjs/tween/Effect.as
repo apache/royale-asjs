@@ -90,6 +90,8 @@ package org.apache.royale.createjs.tween
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Royale 1.0.0
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
 		public var duration:Number = 1000;
 		
@@ -101,6 +103,8 @@ package org.apache.royale.createjs.tween
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Royale 1.0.0
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
 		public var loop:Boolean = false;
 		

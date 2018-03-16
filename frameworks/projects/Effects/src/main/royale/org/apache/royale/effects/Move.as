@@ -80,21 +80,53 @@ public class Move extends Tween implements IDocument
      */
     private var actualTarget:IUIBase;
     
-	/**
-	 *  The target as the String id 
+    // there is already a _target in the base class
+    // and JS can't hide it
+    private var target_:String;
+    
+    /**
+     *  The target as the String id 
      *  of a widget in an MXML Document.
-	 */
-	public var target:String;
+     */
+    public function get target():String
+    {
+        return target_;
+    }
+    
+    public function set target(value:String):void
+    {
+        target_ = value;
+    }
+    
+    private var _xBy:Number;
     
 	/**
 	 *  The change in x.
 	 */
-	public var xBy:Number;
+    public function get xBy():Number
+    {
+        return _xBy;
+    }
+    
+    public function set xBy(value:Number):void
+    {
+        _xBy = value;
+    }
 	
+    private var _yBy:Number;
+    
 	/**
 	 *  The change in y.
 	 */
-	public var yBy:Number;
+    public function get yBy():Number
+    {
+        return _yBy;
+    }
+    
+    public function set yBy(value:Number):void
+    {
+        _yBy = value;
+    }
 	
 	/**
 	 *  @private
@@ -120,25 +152,65 @@ public class Move extends Tween implements IDocument
      */
     private var yMove:Number;
     
+    private var _xFrom:Number;
+    
 	/**
 	 *  Starting x value.  If NaN, the current x value is used
      */
-    public var xFrom:Number;
+    public function get xFrom():Number
+    {
+        return _xFrom;
+    }
+    
+    public function set xFrom(value:Number):void
+    {
+        _xFrom = value;
+    }
+    
+    private var _xTo:Number;
     
 	/**
 	 *  Ending x value.  If NaN, the current x value is not changed
 	 */
-	public var xTo:Number;
+    public function get xTo():Number
+    {
+        return _xTo;
+    }
+    
+    public function set xTo(value:Number):void
+    {
+        _xTo = value;
+    }
 	
+    private var _yFrom:Number;
+    
 	/**
 	 *  Starting y value.  If NaN, the current y value is used
 	 */
-	public var yFrom:Number;
+    public function get yFrom():Number
+    {
+        return _yFrom;
+    }
+    
+    public function set yFrom(value:Number):void
+    {
+        _yFrom = value;
+    }
 	
+    private var _yTo:Number;
+    
 	/**
 	 *  Ending y value.  If NaN, the current y value is not changed
 	 */
-	public var yTo:Number;
+    public function get yTo():Number
+    {
+        return _yTo;
+    }
+    
+    public function set yTo(value:Number):void
+    {
+        _yTo = value;
+    }
 	
     
     //--------------------------------------------------------------------------

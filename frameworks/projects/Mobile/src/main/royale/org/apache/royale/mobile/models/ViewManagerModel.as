@@ -62,10 +62,10 @@ package org.apache.royale.mobile.models
 			_strand = value;
 		}
 		
-		public var contentX:Number = 0;
-		public var contentY:Number = 0;
-		public var contentWidth:Number = 0;
-		public var contentHeight:Number = 0;
+		//public var contentX:Number = 0;
+		//public var contentY:Number = 0;
+		//public var contentWidth:Number = 0;
+		//public var contentHeight:Number = 0;
 		
 		private var _views:Array;
 		

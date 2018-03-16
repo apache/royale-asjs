@@ -1,0 +1,40 @@
+{
+  "name": "@apache-royale/cli",
+  "version": "0.1.0",
+  "description": "CLI tool for Apache Royale",
+  "keywords": [
+    "royale",
+    "apache royale",
+    "flex",
+    "flexjs",
+    "apache flexjs",
+    "actionscript",
+    "as3",
+    "mxml",
+    "angularjs",
+    "angular",
+    "reactjs",
+    "react"
+  ],
+  "homepage": "http://royale.apache.org",
+  "author": "Apache Royale <dev@royale.apache.org>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "child_process": "1.0.2",
+    "chokidar": "2.0.1",
+    "connect": "3.6.5",
+    "express": "4.16.2",
+    "fs-extra": "5.0.0",
+    "http": "0.0.0",
+    "livereload": "0.6.3",
+    "morgan": "1.9.0",
+    "node-http-server": "8.1.2",
+    "open": "0.0.5",
+    "reload": "2.2.2",
+    "serve-static": "1.13.2",
+    "yargs": "11.0.0"
+  },
+  "bin": {
+    "royale": "./index.js"
+  }
+}

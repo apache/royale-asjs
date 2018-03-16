@@ -22,5 +22,6 @@
 <componentPackage>
 
     <component id="ClassAliasBead" class="org.apache.royale.reflection.beads.ClassAliasBead" />
+    <component id="JSONReviver" class="org.apache.royale.reflection.beads.JSONReviver" />
     
 </componentPackage>

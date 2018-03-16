@@ -24,6 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -49,20 +50,19 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "mdl-dialog__actions";
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
         COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-dialog__actions";
-			return addElementToWrapper(this,'div');
-        }
+        private var _classList:CSSClassList;
 
 		protected var _fullWidth:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-dialog__actions--full-width" effect selector.
 		 *  Modifies the actions to each take the full width of the container.
@@ -78,15 +78,26 @@ package org.apache.royale.mdl
         {
             return _fullWidth;
         }
+
         public function set fullWidth(value:Boolean):void
         {
-			_fullWidth = value;
-
-			COMPILE::JS
+            if (_fullWidth != value)
             {
-				positioner.classList.toggle("mdl-dialog__actions--full-width", _fullWidth);
-				typeNames = positioner.className;
-			}
+                _fullWidth = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-dialog__actions--full-width";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
+            }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

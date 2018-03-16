@@ -96,6 +96,8 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 */
 	protected var document:Object;
 
+    private var _eventName:String;
+    
 	/**
 	 *  The event name that is dispatched when the source
 	 *  property changes.
@@ -105,7 +107,15 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public var eventName:String;
+    public function get eventName():String
+    {
+        return _eventName;
+    }
+    
+    public function set eventName(value:String):void
+    {
+        _eventName = value;
+    }
 
     /**
      *  @copy org.apache.royale.core.IBinding#destination;

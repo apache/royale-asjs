@@ -57,7 +57,6 @@ package org.apache.royale.html
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'img');
-            element.className = 'Image';
             typeNames = 'Image';
             return element;
         }

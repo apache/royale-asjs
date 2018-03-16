@@ -40,6 +40,8 @@ package org.apache.royale.net
         /**
          *  @private
          *  The connection to the server 
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var nc:AMFNetConnection = new AMFNetConnection();
 		

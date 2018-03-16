@@ -35,6 +35,7 @@ package org.apache.royale.mdl
     {    
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
     //--------------------------------------
@@ -94,16 +95,24 @@ package org.apache.royale.mdl
         {
             super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "mdl-icon-toggle mdl-js-icon-toggle";
+
             COMPILE::SWF
             {
                 addEventListener(MouseEvent.CLICK, internalMouseHandler);
             }
 
-            className = "";
-
             addBead(new UpgradeElement());
             addBead(new UpgradeChildren(["mdl-icon-toggle__ripple-container"]));
         }
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         [Bindable("change")]
         /**
@@ -176,12 +185,16 @@ package org.apache.royale.mdl
 
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-js-ripple-effect";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -228,8 +241,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-icon-toggle mdl-js-icon-toggle";
-
             label = addElementToWrapper(this,'label') as HTMLLabelElement;
 
             element.setAttribute('for', _dataMdlFor);
@@ -267,6 +278,12 @@ package org.apache.royale.mdl
         private function internalMouseHandler(event:MouseEvent) : void
         {
             //selected = !selected;
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

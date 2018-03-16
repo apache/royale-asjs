@@ -62,7 +62,7 @@ package org.apache.royale.html
             (element as HTMLSelectElement).size = 5;
             goog.events.listen(element, 'change',
                 changeHandler);
-            className = 'SimpleList';
+            typeNames = 'SimpleList';
             return element;
         }
 

@@ -87,6 +87,7 @@
         <ant dir="${basedir}/royale/DataGridExample"/>
         <ant dir="${basedir}/royale/DateControlsExample"/>
         <ant dir="${basedir}/royale/DesktopMap"/>
+        <ant dir="${basedir}/royale/DividedContainerExample"/>
         <ant dir="${basedir}/royale/DragAndDropExample"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer"/>
@@ -95,6 +96,7 @@
         <ant dir="${basedir}/royale/HelloWorld"/>
         <ant dir="${basedir}/royale/ListExample"/>
         <ant dir="${basedir}/royale/MapSearch"/>
+        <ant dir="${basedir}/royale/MenuExample"/>
         <ant dir="${basedir}/royale/MobileMap"/>
         <ant dir="${basedir}/royale/MobileStocks"/>
         <ant dir="${basedir}/royale/MobileTrader"/>
@@ -135,6 +137,7 @@
         <ant dir="${basedir}/royale/DataGridExample" target="clean"/>
         <ant dir="${basedir}/royale/DateControlsExample" target="clean"/>
         <ant dir="${basedir}/royale/DesktopMap" target="clean"/>
+        <ant dir="${basedir}/royale/DividedContainerExample" target="clean"/>
         <ant dir="${basedir}/royale/DragAndDropExample" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="clean"/>
@@ -143,6 +146,7 @@
         <ant dir="${basedir}/royale/HelloWorld" target="clean"/>
         <ant dir="${basedir}/royale/ListExample" target="clean"/>
         <ant dir="${basedir}/royale/MapSearch" target="clean"/>
+        <ant dir="${basedir}/royale/MenuExample" target="clean"/>
         <ant dir="${basedir}/royale/MobileTrader" target="clean"/>
         <ant dir="${basedir}/royale/MobileStocks" target="clean"/>
         <ant dir="${basedir}/royale/MobileMap" target="clean"/>
@@ -173,6 +177,7 @@
         <ant dir="${basedir}/royale/DataGridExample" target="examine"/>
         <ant dir="${basedir}/royale/DateControlsExample" target="examine"/>
         <ant dir="${basedir}/royale/DesktopMap" target="examine"/>
+        <ant dir="${basedir}/royale/DividedContainerExample" target="examine"/>
         <ant dir="${basedir}/royale/DragAndDropExample" target="examine"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="examine"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="examine"/>
@@ -181,6 +186,7 @@
         <ant dir="${basedir}/royale/HelloWorld" target="examine"/>
         <ant dir="${basedir}/royale/ListExample" target="examine"/>
         <ant dir="${basedir}/royale/MapSearch" target="examine"/>
+        <ant dir="${basedir}/royale/MenuExample" target="examine"/>
         <ant dir="${basedir}/royale/MobileTrader" target="examine"/>
         <ant dir="${basedir}/royale/MobileStocks" target="examine"/>
         <ant dir="${basedir}/royale/MobileMap" target="examine"/>

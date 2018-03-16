@@ -70,6 +70,7 @@ internal class CoreClasses
     import org.apache.royale.core.IContentView; IContentView;
 	import org.apache.royale.core.IContentViewHost; IContentViewHost;
     import org.apache.royale.core.IDataProviderItemRendererMapper; IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IDataProviderVirtualItemRendererMapper; IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.IDataProviderNotifier; IDataProviderNotifier;
     import org.apache.royale.core.IBinaryImageModel; IBinaryImageModel;
     import org.apache.royale.core.IDocument; IDocument;
@@ -110,6 +111,7 @@ internal class CoreClasses
     import org.apache.royale.core.IUIBase; IUIBase;
     import org.apache.royale.core.IValueToggleButtonModel; IValueToggleButtonModel;
 	import org.apache.royale.core.IViewport; IViewport;
+    import org.apache.royale.core.IScrollingViewport; IScrollingViewport;
 	import org.apache.royale.core.IViewportModel; IViewportModel;
 	COMPILE::SWF
 	{
@@ -117,7 +119,7 @@ internal class CoreClasses
 	}
     import org.apache.royale.core.SimpleStatesImpl; SimpleStatesImpl;
 	
-
+	import org.apache.royale.core.CSSClassList; CSSClassList;
 	import org.apache.royale.core.StyleChangeNotifier; StyleChangeNotifier;
 	import org.apache.royale.events.CustomEvent; CustomEvent;
     import org.apache.royale.events.Event; Event;
@@ -156,7 +158,6 @@ internal class CoreClasses
 	    import org.apache.royale.utils.CSSBorderUtils; CSSBorderUtils;
 	}
 	import org.apache.royale.utils.ColorUtil; ColorUtil;
-    import org.apache.royale.utils.CSSContainerUtils; CSSContainerUtils;
     import org.apache.royale.utils.DisplayUtils; DisplayUtils;
 	COMPILE::SWF
 	{

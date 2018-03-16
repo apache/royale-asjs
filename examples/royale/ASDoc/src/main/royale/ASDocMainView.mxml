@@ -30,15 +30,21 @@ limitations under the License.
             import org.apache.royale.core.ClassFactory;
             import org.apache.royale.events.Event;
             import org.apache.royale.events.DetailEvent;
-            import org.apache.royale.html.List;
+            import org.apache.royale.html.PopUpList;
             import org.apache.royale.utils.PointUtils;
 			
+            private var packagesReady:Boolean = false;
+            
             private function packagesReadyHandler(event:Event):void
             {
+                packagesReady = true;
             	// wait until package data is ready before updating initial view to any anchor hash
-            	updateView();
+            	hashChanged();
             }
 			
+            /**
+             * @royalesuppresspublicvarwarning
+             */
             public var currentPackage:String;
             
             private function packageChangedHandler():void
@@ -53,11 +59,14 @@ limitations under the License.
                 dispatchEvent(new Event("packageChanged"));
             }
                         
+            /**
+             * @royalesuppresspublicvarwarning
+             */
             public var currentClass:String;
             
             private function classChangedHandler():void
             {
-            	currentState = "classDetail";
+                currentState = "loading";
                 currentClass = classList.selectedItem as String;
                 dispatchEvent(new Event("classChanged"));
             }
@@ -74,7 +83,15 @@ limitations under the License.
             
             private var findMember:String ;
             
-            private function updateView():void
+            private function paramsReady():void
+            {
+                if (packagesReady)
+                    updateView(efb.urlParameters);
+                else
+                    clb.callLater(paramsReady);
+            }
+            
+            private function hashChanged():void
             {
             	if (popUpList)
             	{
@@ -87,18 +104,23 @@ limitations under the License.
             	  hash = hash.substring(2);
             	if (hash.charAt(0) == "#")
             	  hash = hash.substring(1);
+                updateView(hash);
+            }
+            
+            private function updateView(hash:String):void
+            {
             	if (!hash)
             	  currentState = "packages";
             	else
             	{
-            		var c:int = hash.indexOf("/");
+            		var c:int = hash.indexOf(ASDocModel.DELIMITER);
             		if (c != -1)
             		{
             			var pkg:String = hash.substr(0, c);
 						packageList.selectedItem = pkg;
 						packageChangedHandler();
             			var cls:String = hash.substr(c + 1);
-            			c = cls.indexOf("/")
+            			c = cls.indexOf(ASDocModel.DELIMITER)
             			if (c != -1)
             			{
             				findMember = cls.substr(c + 1);
@@ -113,14 +135,19 @@ limitations under the License.
             					    return;
             					}
             				}
-            				applicationModel.addEventListener("currentDataChanged", findMemberDetail);
             			}
-            			classList.selectedItem = cls; 
+                        applicationModel.addEventListener("currentDataChanged", findMemberDetail);
+            			classList.selectedItem = cls;
+                        var title:String = cls;
+                        if (pkg.length > 1)
+                            title += " (" + pkg + ")";
+                        router.title = title;
             			classChangedHandler();
             		}
             		else
             		{
 						packageList.selectedItem = hash;
+                        router.title = hash;
 						packageChangedHandler();
             		}
             	}
@@ -128,8 +155,10 @@ limitations under the License.
             
             private function findMemberDetail(event:Event):void
             {
+                currentState = "classDetail";
             	applicationModel.removeEventListener("currentDataChanged", findMemberDetail);
-            	clb.callLater(scrollMemberIntoView);
+                if (findMember)
+                	clb.callLater(scrollMemberIntoView);
             }
             
             private function scrollMemberIntoView():void
@@ -138,9 +167,10 @@ limitations under the License.
             	{
             		document.getElementById(findMember).scrollIntoView();
             	}
+                findMember = null;
             }
             
-            private var popUpList:List;
+            private var popUpList:PopUpList;
             private var max_results:int = 200;
             private var too_many:Array = [ "Too many search results" ];
             
@@ -148,18 +178,13 @@ limitations under the License.
             {
             	if (!popUpList)
             	{
-            		popUpList = new List();
+            		popUpList = new PopUpList();
             		popUpList.itemRenderer = new ClassFactory(ClassPickerHashAnchorStringItemRenderer);
             		popUpList.dataProvider = too_many;
             		addElement(popUpList);
-            		COMPILE::JS
-            		{
-            			popUpList.positioner.style.position = "absolute";
-            			popUpList.positioner.style.backgroundColor = "#fff";
-            		}
             		var pt:Point = new Point(searchTI.x, searchTI.y);
             		pt.y += searchTI.height;
-            		//pt = PointUtils.localToGlobal(pt, titleGroup); // probably need this after we fix x,y
+            		pt = PointUtils.localToGlobal(pt, titleGroup);
             		popUpList.x = pt.x;
             		popUpList.y = pt.y;
             		popUpList.width = searchTI.width;
@@ -253,6 +278,8 @@ limitations under the License.
         .description {
         	margin-top: 10px;
         	margin-bottom: 10px;
+            font-family: sans-serif;
+            font-size: 12px;
         }
         
         .attributeCaption {
@@ -289,6 +316,7 @@ limitations under the License.
         	padding-left: 20px;
         	padding-right: 10px;
         	padding-bottom: 20px;
+            border-width: 1px;
         	border-bottom-style: solid;
         }
         .propertyQName {
@@ -343,6 +371,17 @@ limitations under the License.
         	width: 300px;
         }
         
+        .swfonly {
+            color: #f00;
+        }
+        
+        .jsonly {
+            color: #0f0;
+        }
+        
+        .loading {
+            font-size: 40px;
+        }
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
@@ -351,12 +390,14 @@ limitations under the License.
 	</fx:Declarations>
 	<js:states>
 	  <js:State name="packages" />
+      <js:State name="loading" />
 	  <js:State name="classDetail" />
 	</js:states>
     <js:beads>
         <js:ViewDataBinding />
         <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />
-        <js:HashChangeNotifierBead id="router" hashChange="updateView()" />                
+        <js:HashChangeNotifierBeadWithTitle id="router" hashChange="hashChanged()" />                
+        <js:EscapedFragmentBead id="efb" ready="paramsReady()" />                
         <js:CallLaterBead id="clb" />
     </js:beads>
     <rs:DocTopBar />
@@ -402,6 +443,9 @@ limitations under the License.
 	            </js:beads>
 	            <js:List className="paneList" id="packagePaneList" dataProvider="{ASDocModel(applicationModel).packageList}" 
 	                itemRenderer="AltBGRenderer"/>
+            </js:Group>
+            <js:Group id="loadingPane" width="100%" includeIn="loading">
+                <js:Label className="loading" text="Loading..." />
             </js:Group>
             <js:Group id="detailsPane" className="detailsPane" width="100%" includeIn="classDetail">
 	            <js:beads>

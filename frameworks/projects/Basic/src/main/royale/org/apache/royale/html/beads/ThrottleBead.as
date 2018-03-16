@@ -74,8 +74,28 @@ package org.apache.royale.html.beads
 		}
 		
 		private var _strand:IStrand;
-		public var event:String;
-		public var interval:Number = 500;
+        
+        private var _event:String;
+        public function get event():String
+        {
+            return _event;
+        }
+        public function set event(value:String):void
+        {
+            _event = value;
+        }
+
+        private var _interval:Number = 500;
+        public function get interval():Number
+        {
+            return _interval;
+        }
+        public function set interval(value:Number):void
+        {
+            _interval = value;
+        }
+        
+        
 		private var timeoutId:Number = NaN;
 		
 		/**

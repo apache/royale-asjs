@@ -30,11 +30,13 @@ package org.apache.royale.mdl
         import org.apache.royale.core.IStrand;
         import org.apache.royale.core.IValueToggleButtonModel;
     }
+
     COMPILE::JS
     {
         import org.apache.royale.core.UIBase;
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
     //--------------------------------------
@@ -90,6 +92,9 @@ package org.apache.royale.mdl
 		public function RadioButton()
 		{
             super();
+
+            typeNames = "mdl-radio mdl-js-radio";
+
 			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
@@ -291,7 +296,9 @@ package org.apache.royale.mdl
 		{
             super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            _classList = new CSSClassList();
+
+            typeNames = "mdl-radio mdl-js-radio";
 
             addBead(new UpgradeElement());
             addBead(new UpgradeChildren(["mdl-radio__ripple-container"]));
@@ -301,6 +308,8 @@ package org.apache.royale.mdl
          * Provides unique name
          */
         protected static var radioCounter:int = 0;
+
+        private var _classList:CSSClassList;
 
         private var radio:HTMLSpanElement;
         private var icon:HTMLInputElement;
@@ -317,12 +326,10 @@ package org.apache.royale.mdl
          */
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-radio mdl-js-radio";
-
             icon = document.createElement("input") as HTMLInputElement;
             icon.type = "radio";
             icon.className = 'mdl-radio__button';
-            icon.id = '_radio_' + RadioButton.radioCounter++;
+            icon.id = '_radio_' + + Math.random();
 
             textNode = document.createTextNode('') as Text;
 
@@ -341,9 +348,8 @@ package org.apache.royale.mdl
             (radio as WrappedHTMLElement).royale_wrapper = this;
 
             return element;
-        };
+        }
 
-        COMPILE::JS
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
             if (type == MouseEvent.CLICK)
@@ -356,7 +362,6 @@ package org.apache.royale.mdl
             }
         }
 
-        COMPILE::JS
         public function clickHandler(event:Event):void
         {
             selected = !selected;
@@ -378,12 +383,13 @@ package org.apache.royale.mdl
         }
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                _ripple = value;
+
+                var classVal:String = "mdl-js-ripple-effect";
+                value ? _classList.add(classVal) : _classList.remove(classVal);
+                setClassName(computeFinalClassNames());
             }
         }
 
@@ -391,6 +397,7 @@ package org.apache.royale.mdl
         {
             return icon.name as String;
         }
+
         public function set groupName(value:String):void
         {
             icon.name = value;
@@ -411,6 +418,7 @@ package org.apache.royale.mdl
         {
             return icon.checked;
         }
+
         public function set selected(value:Boolean):void
         {
             if(icon.checked == value)
@@ -472,26 +480,10 @@ package org.apache.royale.mdl
             }
         }
 
-        /**
-         * @param e The event object.
-         */
-        /*private function mouseOverHandler(e:Event):void
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
         {
-            //radio.className = 'radio-icon-hover';
-        }*/
-        
-        
-        /**
-         * @param e The event object.
-         */
-        /*private function mouseOutHandler(e:Event):void
-        {
-            if (input.checked)
-                radio.className = 'radio-icon-checked';
-            else
-                radio.className = 'radio-icon';
-        }*/
-        
+            return _classList.compute() + super.computeFinalClassNames();
+        }
     }
-
 }

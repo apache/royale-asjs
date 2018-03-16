@@ -25,6 +25,8 @@ package org.apache.royale.utils
 	 * Namespaces are completely ignored.
 	 * If you need more functionality such as E4X and advanced filtering, use the XML and XMLList classes instead.
 	 * To parse XML, use JXON.parse(xmlStr) where xmlStr is a string of your XML. 
+     * 
+     * @royalesuppresspublicvarwarning
 	 */
 	public class JXON
 	{

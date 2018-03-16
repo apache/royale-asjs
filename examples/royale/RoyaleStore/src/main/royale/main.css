@@ -26,16 +26,14 @@
 //  Global styles
 //----------------------------
 */
-.global {
-    IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
-    color:                  #170505;
-    fillAlphas:             1.00, 1.00; /* last pair are for OVER state */
-    fillColors: 		    #FFFFFF, #DDDDDD, #FFFFFF, #EEEEEE;
-}
 
 global {
     IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
 	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
+}
+
+basic|Application {
+    color:                  #170505;
 }
 
 /*

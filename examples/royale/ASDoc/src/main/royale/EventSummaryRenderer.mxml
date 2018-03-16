@@ -24,7 +24,7 @@ limitations under the License.
 			    width="100%">
     <fx:Script>
         <![CDATA[
-            import valueObjects.ValueObject;
+            import models.ASDocModel;
             
 			private var _color0:String = "#fff";
 			
@@ -51,16 +51,23 @@ limitations under the License.
 			override public function set data(value:Object):void
 			{
 				super.data = value;
-				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
+				qname.href = "#!" + obj.ownerhref + ASDocModel.DELIMITER + obj.qname;
+                if (obj.platforms.length == 1)
+                {
+                    if (obj.platforms[0] == "swf")
+                        qname.className += " swfonly";
+                    if (obj.platforms[0] == "js")
+                        qname.className += " jsonly";
+                }
 			}
 			
             [Bindable("dataChange")]
             /**
-              @royaleignorecoercion ValueObject
+              @royaleignorecoercion ASDocClassEvents
             */
-            public function get obj():ValueObject
+            public function get obj():ASDocClassEvents
             {
-                return data as ValueObject;
+                return data as ASDocClassEvents;
             }
             		
 			private var oddIndex:Boolean;
@@ -102,7 +109,7 @@ limitations under the License.
       <js:beads>
         <js:HorizontalLayout />
       </js:beads>
-      <html:A id="qname" className="eventSummaryQName" text="{ValueObject(data).qname}" />
-      <js:Label id="label" className="eventDescription" text="{ValueObject(data).shortDescription}" />
+      <html:A id="qname" className="eventSummaryQName" text="{ASDocClassEvents(data).qname}" />
+      <js:Label id="label" className="eventDescription" text="{ASDocClassEvents(data).shortDescription}" />
     </js:Group>
 </js:MXMLItemRenderer>

@@ -677,15 +677,21 @@ package org.apache.royale.core
                 style.left = value;
         }
         
+        /**
+         * @royaleignorecoercion HTMLElement
+         */
         COMPILE::JS
         public function set x(value:Number):void
         {
             //positioner.style.position = 'absolute';
+            if (positioner.parentNode != positioner.offsetParent)
+                value += (positioner.parentNode as HTMLElement).offsetLeft;
             positioner.style.left = value.toString() + 'px';
         }
 
         /**
          * @royaleignorecoercion String
+         * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         public function get x():Number
@@ -693,7 +699,11 @@ package org.apache.royale.core
             var strpixels:String = positioner.style.left as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
+            {
                 pixels = positioner.offsetLeft;
+                if (positioner.parentNode != positioner.offsetParent)
+                    pixels -= (positioner.parentNode as HTMLElement).offsetLeft;
+            }
             return pixels;
         }
         
@@ -704,6 +714,7 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
          */
         public function setX(value:Number):void
         {
@@ -714,6 +725,8 @@ package org.apache.royale.core
 			COMPILE::JS
 			{
 				//positioner.style.position = 'absolute';
+                if (positioner.parentNode != positioner.offsetParent)
+                    value += (positioner.parentNode as HTMLElement).offsetLeft;
 				positioner.style.left = value.toString() + 'px';
 			}
         }
@@ -733,15 +746,21 @@ package org.apache.royale.core
                 style.top = value;
         }
         
+        /**
+         * @royaleignorecoercion HTMLElement
+         */
         COMPILE::JS
         public function set y(value:Number):void
         {
             //positioner.style.position = 'absolute';
+            if (positioner.parentNode != positioner.offsetParent)
+                value += (positioner.parentNode as HTMLElement).offsetTop;
             positioner.style.top = value.toString() + 'px';
         }
         
         /**
          * @royaleignorecoercion String
+         * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         public function get y():Number
@@ -749,7 +768,11 @@ package org.apache.royale.core
             var strpixels:String = positioner.style.top as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
+            {
                 pixels = positioner.offsetTop;
+                if (positioner.parentNode != positioner.offsetParent)
+                    pixels -= (positioner.parentNode as HTMLElement).offsetTop;
+            }
             return pixels;
         }
         
@@ -760,6 +783,7 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
          */
         public function setY(value:Number):void
         {
@@ -770,6 +794,8 @@ package org.apache.royale.core
 			COMPILE::JS
 			{
 				//positioner.style.position = 'absolute';
+                if (positioner.parentNode != positioner.offsetParent)
+                    value += (positioner.parentNode as HTMLElement).offsetTop;
 				positioner.style.top = value.toString() + 'px';				
 			}
         }
@@ -996,6 +1022,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var typeNames:String;
         
@@ -1030,13 +1058,19 @@ package org.apache.royale.core
                 dispatchEvent(new Event("classNameChanged"));
             }
         }
-        
+
+		COMPILE::JS
+        protected function computeFinalClassNames():String
+		{
+            return (_className ? _className + " " : "") + (typeNames ? typeNames : "");
+		}
+
         COMPILE::JS
         protected function setClassName(value:String):void
         {
             element.className = value;           
         }
-        
+
         /**
          *  @copy org.apache.royale.core.IUIBase#element
          *  
@@ -1058,6 +1092,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
          */
 		public var beads:Array;
 		
@@ -1321,8 +1357,11 @@ package org.apache.royale.core
 			
             COMPILE::JS
             {
-				if (!_className && typeNames)
-					setClassName(typeNames);
+				if (typeNames)
+                {
+                    setClassName(computeFinalClassNames());
+                }
+
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
             }

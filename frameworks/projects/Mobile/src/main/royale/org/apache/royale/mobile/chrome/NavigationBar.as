@@ -46,7 +46,7 @@ package org.apache.royale.mobile.chrome
 		{
 			super();
 			
-			className = "NavigationBar";
+			typeNames = "NavigationBar";
 		}
 		
 		public function hidesBackButton(value:Boolean):void

@@ -24,6 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -51,18 +52,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "mdl-cell";
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
         COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-cell";
-			return addElementToWrapper(this,'div');
-        }
+        private var _classList:CSSClassList;
 
 		protected var _column:Number = 4;
         /**
@@ -81,19 +80,22 @@ package org.apache.royale.mdl
         }
         public function set column(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--" + _column + "-col");
+			if (_column != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 13)
+                    {
+                        var classVal:String = "mdl-cell--" + _column + "-col";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 13)
-				{
-					_column = value;
+                        classVal = "mdl-cell--" + value + "-col";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--" + _column + "-col");
-				}
-
-				typeNames = element.className;
-			}
+                        _column = value;
+                    }
+                }
+            }
         }
 
 		protected var _columnDesktop:Number;
@@ -111,21 +113,25 @@ package org.apache.royale.mdl
         {
             return _columnDesktop;
         }
+
         public function set columnDesktop(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--" + _columnDesktop + "-col-desktop");
+            if (_columnDesktop != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 13)
+                    {
+                        var classVal:String = "mdl-cell--" + _columnDesktop + "-col-desktop";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 13)
-				{
-					_columnDesktop = value;
+                        classVal = "mdl-cell--" + value + "-col-desktop";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--" + _columnDesktop + "-col-desktop");
-				}
-
-				typeNames = element.className;
-			}
+                        _columnDesktop = value;
+                    }
+                }
+            }
         }
 
 		protected var _columnTablet:Number;
@@ -143,21 +149,25 @@ package org.apache.royale.mdl
         {
             return _columnTablet;
         }
+
         public function set columnTablet(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--" + _columnTablet + "-col-tablet");
+            if (_columnTablet != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 13)
+                    {
+                        var classVal:String = "mdl-cell--" + _columnTablet + "-col-tablet";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 9)
-				{
-					_columnTablet = value;
+                        classVal = "mdl-cell--" + value + "-col-tablet";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--" + _columnTablet + "-col-tablet");
-				}
-
-				typeNames = element.className;
-			}
+                        _columnTablet = value;
+                    }
+                }
+            }
         }
 
 		protected var _columnPhone:Number;
@@ -175,21 +185,25 @@ package org.apache.royale.mdl
         {
             return _columnPhone;
         }
+
         public function set columnPhone(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--" + _columnPhone + "-col-phone");
+            if (_columnPhone != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 5)
+                    {
+                        var classVal:String = "mdl-cell--" + _columnPhone + "-col-phone";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 5)
-				{
-					_columnPhone = value;
+                        classVal = "mdl-cell--" + value + "-col-phone";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--" + _columnPhone + "-col-phone");
-				}
-
-				typeNames = element.className;
-			}
+                        _columnPhone = value;
+                    }
+                }
+            }
         }
 
 		protected var _offset:Number;
@@ -207,20 +221,24 @@ package org.apache.royale.mdl
         {
             return _offset;
         }
+
         public function set offset(value:Number):void
         {
-			COMPILE::JS
+			if (_offset != value)
 			{
-				element.classList.remove("mdl-cell--" + _offset + "-offset");
-
-				if(value > 0 || value < 12)
+				COMPILE::JS
 				{
-					_offset = value;
+					if (value > 0 || value < 12)
+					{
+                        var classVal:String = "mdl-cell--" + _offset + "-offset";
+                        _classList.remove(classVal);
 
-					element.classList.add("mdl-cell--" + _offset + "-offset");
+                        classVal = "mdl-cell--" + value + "-offset";
+                        _classList.add(classVal);
+
+						_offset = value;
+					}
 				}
-
-				typeNames = element.className;
 			}
         }
 
@@ -239,21 +257,25 @@ package org.apache.royale.mdl
         {
             return _offsetDesktop;
         }
+
         public function set offsetDesktop(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--" + _offsetDesktop + "-offset-desktop");
+            if (_offsetDesktop != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 12)
+                    {
+                        var classVal:String = "mdl-cell--" + _offsetDesktop + "-offset-desktop";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 12)
-				{
-					_offsetDesktop = value;
+                        classVal = "mdl-cell--" + value + "-offset-desktop";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--" + _offsetDesktop + "-offset-desktop");
-				}
-
-				typeNames = element.className;
-			}
+                        _offsetDesktop = value;
+                    }
+                }
+            }
         }
 
 		protected var _offsetTablet:Number;
@@ -271,21 +293,25 @@ package org.apache.royale.mdl
         {
             return _offsetTablet;
         }
+
         public function set offsetTablet(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--" + _offsetTablet + "-offset-tablet");
+            if (_offsetTablet != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 12)
+                    {
+                        var classVal:String = "mdl-cell--" + _offsetTablet + "-offset-tablet";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 12)
-				{
-					_offsetTablet = value;
+                        classVal = "mdl-cell--" + value + "-offset-tablet";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--" + _offsetTablet + "-offset-tablet");
-				}
-
-				typeNames = element.className;
-			}
+                        _offsetTablet = value;
+                    }
+                }
+            }
         }
 
 		protected var _offsetPhone:Number;
@@ -303,21 +329,25 @@ package org.apache.royale.mdl
         {
             return _offsetPhone;
         }
+
         public function set offsetPhone(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--" + _offsetPhone + "-offset-phone");
+            if (_offsetPhone != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 12)
+                    {
+                        var classVal:String = "mdl-cell--" + _offsetPhone + "-offset-phone";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 12)
-				{
-					_offsetPhone = value;
+                        classVal = "mdl-cell--" + value + "-offset-phone";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--" + _offsetPhone + "-offset-phone");
-				}
-
-				typeNames = element.className;
-			}
+                        _offsetPhone = value;
+                    }
+                }
+            }
         }
 
 		protected var _order:Number;
@@ -337,19 +367,22 @@ package org.apache.royale.mdl
         }
         public function set order(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--order-" + _order);
+            if (_order != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 13)
+                    {
+                        var classVal:String = "mdl-cell--order-" + _order;
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 13)
-				{
-					_order = value;
+                        classVal = "mdl-cell--order-" + value;
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--order-" + _order);
-				}
-
-				typeNames = element.className;
-			}
+                        _order = value;
+                    }
+                }
+            }
         }
 
 		protected var _orderDesktop:Number;
@@ -367,21 +400,25 @@ package org.apache.royale.mdl
         {
             return _orderDesktop;
         }
+
         public function set orderDesktop(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--order-" + _orderDesktop + "-desktop");
+            if (_orderDesktop != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 13)
+                    {
+                        var classVal:String = "mdl-cell--order-" + _orderDesktop + "-desktop";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 13)
-				{
-					_orderDesktop = value;
+                        classVal = "mdl-cell--order-" + value + "-desktop";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--order-" + _orderDesktop + "-desktop");
-				}
-
-				typeNames = element.className;
-			}
+                        _orderDesktop = value;
+                    }
+                }
+            }
         }
 
 		protected var _orderTablet:Number;
@@ -401,19 +438,22 @@ package org.apache.royale.mdl
         }
         public function set orderTablet(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--order-" + _orderTablet + "-tablet");
+            if (_orderTablet != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 13)
+                    {
+                        var classVal:String = "mdl-cell--order-" + _orderTablet + "-tablet";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 13)
-				{
-					_orderTablet = value;
+                        classVal = "mdl-cell--order-" + value + "-tablet";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--order-" + _orderTablet + "-tablet");
-				}
-
-				typeNames = element.className;
-			}
+                        _orderTablet = value;
+                    }
+                }
+            }
         }
 
 		protected var _orderPhone:Number;
@@ -433,19 +473,22 @@ package org.apache.royale.mdl
         }
         public function set orderPhone(value:Number):void
         {
-			COMPILE::JS
-			{
-				element.classList.remove("mdl-cell--order-" + _orderPhone + "-phone");
+            if (_orderPhone != value)
+            {
+                COMPILE::JS
+                {
+                    if (value > 0 || value < 13)
+                    {
+                        var classVal:String = "mdl-cell--order-" + _orderPhone + "-phone";
+                        _classList.remove(classVal);
 
-				if(value > 0 || value < 13)
-				{
-					_orderPhone = value;
+                        classVal = "mdl-cell--order-" + value + "-phone";
+                        _classList.add(classVal);
 
-					element.classList.add("mdl-cell--order-" + _orderPhone + "-phone");
-				}
-
-				typeNames = element.className;
-			}
+                        _orderPhone = value;
+                    }
+                }
+            }
         }
 
 		protected var _hideDesktop:Boolean = false;
@@ -462,14 +505,19 @@ package org.apache.royale.mdl
         {
             return _hideDesktop;
         }
+
         public function set hideDesktop(value:Boolean):void
         {
-            _hideDesktop = value;
-
-			COMPILE::JS
+            if (_hideDesktop != value)
             {
-                element.classList.toggle("mdl-cell--hide-desktop", _hideDesktop);
-				typeNames = element.className;
+                _hideDesktop = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-cell--hide-desktop";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -487,14 +535,19 @@ package org.apache.royale.mdl
         {
             return _hideTablet;
         }
+
         public function set hideTablet(value:Boolean):void
         {
-            _hideTablet = value;
-
-			COMPILE::JS
+            if (_hideTablet != value)
             {
-                element.classList.toggle("mdl-cell--hide-tablet", _hideTablet);
-				typeNames = element.className;
+                _hideTablet = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-cell--hide-tablet";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -514,12 +567,16 @@ package org.apache.royale.mdl
         }
         public function set hidePhone(value:Boolean):void
         {
-            _hidePhone = value;
-
-			COMPILE::JS
+            if (_hidePhone != value)
             {
-                element.classList.toggle("mdl-cell--hide-phone", _hidePhone);
-				typeNames = element.className;
+                _hidePhone = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-cell--hide-phone";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -540,12 +597,16 @@ package org.apache.royale.mdl
         }
         public function set strech(value:Boolean):void
         {
-            _strech = value;
-
-			COMPILE::JS
+            if (_strech != value)
             {
-                element.classList.toggle("mdl-cell--stretch", _strech);
-				typeNames = element.className;
+                _strech = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-cell--stretch";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -565,12 +626,16 @@ package org.apache.royale.mdl
         }
         public function set alignTop(value:Boolean):void
         {
-            _alignTop = value;
-
-			COMPILE::JS
+            if (_alignTop != value)
             {
-                element.classList.toggle("mdl-cell--top", _alignTop);
-				typeNames = element.className;
+                _alignTop = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-cell--top";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -588,14 +653,19 @@ package org.apache.royale.mdl
         {
             return _alignMiddle;
         }
+
         public function set alignMiddle(value:Boolean):void
         {
-            _alignMiddle = value;
-
-			COMPILE::JS
+            if (_alignMiddle != value)
             {
-                element.classList.toggle("mdl-cell--middle", _alignMiddle);
-				typeNames = element.className;
+                _alignMiddle = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-cell--middle";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
 
@@ -613,15 +683,26 @@ package org.apache.royale.mdl
         {
             return _alignBottom;
         }
+
         public function set alignBottom(value:Boolean):void
         {
-            _alignBottom = value;
-
-			COMPILE::JS
+            if (_alignBottom != value)
             {
-                element.classList.toggle("mdl-cell--bottom", _alignBottom);
-				typeNames = element.className;
+                _alignBottom = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-cell--bottom";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

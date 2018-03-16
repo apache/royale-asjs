@@ -63,7 +63,6 @@ package org.apache.royale.express
 			element.style.cursor = "default";
 			element.style.pointerEvents = "none";
 			
-			className = "MXMLViewer";
 			typeNames = "MXMLViewer";
 			
 			return element;

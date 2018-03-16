@@ -20,6 +20,16 @@
 package org.apache.royale.promises.vo
 {
 
+    /**
+     *  The Handler class used with Promises.  
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
 	public final class Handler
 	{
 

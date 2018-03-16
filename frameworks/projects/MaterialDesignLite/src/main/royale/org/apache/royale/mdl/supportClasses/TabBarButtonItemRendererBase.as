@@ -24,6 +24,7 @@ package org.apache.royale.mdl.supportClasses
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
     /**
@@ -48,8 +49,14 @@ package org.apache.royale.mdl.supportClasses
         {
             super();
 
-            className = "";
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
         }
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         private var _tabIdField:String;
         /**
@@ -85,11 +92,16 @@ package org.apache.royale.mdl.supportClasses
 
         public function set isActive(value:Boolean):void
         {
-            _isActive = value;
-
-            COMPILE::JS
+            if (_isActive != value)
             {
-                element.classList.toggle("is-active", _isActive);
+                _isActive = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "is-active";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
         }
         
@@ -129,6 +141,12 @@ package org.apache.royale.mdl.supportClasses
         override protected function createElement():WrappedHTMLElement
         {
 			return addElementToWrapper(this,'a');
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

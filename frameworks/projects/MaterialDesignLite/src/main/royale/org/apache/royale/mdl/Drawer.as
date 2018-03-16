@@ -20,12 +20,6 @@ package org.apache.royale.mdl
 {
 	import org.apache.royale.html.Group;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-
 	/**
 	 *  The Drawer class is a container component used for navigation
 	 *  in smaller screens. Can appear automatically in smaller screens
@@ -51,17 +45,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-layout__drawer";
 		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-layout__drawer";
-			return addElementToWrapper(this,'div');
-        }
 	}
 }

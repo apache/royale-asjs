@@ -32,6 +32,18 @@ package org.apache.royale.file.beads
 	 */
 	public class FileUploaderWithResponseData extends FileUploader
 	{
+        /**
+         *  The responseData from the file upload
+         *  
+         *
+         *  @toplevel
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         * 
+         *  @royalesuppresspublicvarwarning
+         */
 		public var responseData:Object;
 
 		override protected function completeHandler(event:Event):void

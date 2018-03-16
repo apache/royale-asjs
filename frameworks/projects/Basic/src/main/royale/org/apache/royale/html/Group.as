@@ -66,6 +66,7 @@ package org.apache.royale.html
 		public function Group()
 		{
 			super();
+            typeNames = "Group";
 		}
 		
 		private var _mxmlDescriptor:Array;
@@ -139,6 +140,8 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
 		public var mxmlContent:Array;
 	}

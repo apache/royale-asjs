@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/royale/basic"
+				xmlns:local="*"
+				initComplete="startup()">
+    <fx:Script>
+        <![CDATA[			
+			import org.apache.royale.storage.PermanentStorage;
+			import org.apache.royale.storage.events.FileEvent;
+			import org.apache.royale.storage.events.FileErrorEvent;
+			import org.apache.royale.storage.file.IDataInput;
+			import org.apache.royale.storage.file.IDataOutput;
+            import org.apache.royale.reflection.beads.JSONReviver;
+			
+			private function startup():void
+			{
+				trace("Starting up");
+			}
+			
+			public function set ready(value:Boolean):void
+			{
+				status.text = "Now Ready";
+			}
+			
+            private var json:Object;
+
+            private var subClasses:Object = {};
+            private var subObjects:Array = [];
+            
+			private function onSave():void
+			{
+                try {
+                    json = JSON.parse(contentField.text);
+                }
+                catch (e:Error)
+                {
+                    status.text = "Error parsing JSON result"
+                }
+                writeClass(json, writeFileNameField.text);
+            }
+            
+            private function writeClass(obj:Object, className:String):void
+            {
+                obj["__JSON2ASVO__"] = className; // mark as seen so we don't loop on circular references
+                status.text = "Writing class: " + className;
+                
+				var storage:PermanentStorage = new PermanentStorage();
+
+                var firstChar:String;
+                var key:String;
+				var useFile:String = className + ".as";
+				var useContent:String = "package\n{\n";
+                if (generateBinding.selected && !immutable.selected)
+                {
+                    useContent += "import org.apache.royale.events.EventDispatcher;\n";
+                    useContent += "import org.apache.royale.events.ValueChangeEvent;\n";
+                }
+                useContent += "[RemoteClass(alias='" + className + "')]\n";
+                if (generateBinding.selected && !immutable.selected)
+                    useContent += "public class " + className + " extends EventDispatcher\n{\n";
+                else
+                    useContent += "public class " + className + "\n{\n";
+                useContent += "    public static const key:String = \"" + JSONReviver.generateKey(obj) + "\";\n\n";
+                for (var p:String in obj)
+                {
+                    if (p == "__JSON2ASVO__") continue;
+                    
+                    var value:Object = obj[p];
+                    var typeName:String;
+                    var typeString:String;
+                    if (value is Array)
+                    {
+                        typeString = "Array";
+                        if (value.length > 0)
+                        {
+                            value = value[0];
+                            if (!(value is String ||
+                                value is Number ||
+                                value === true || 
+                                value === false))
+                            {
+                                key = JSONReviver.generateKey(value);
+                                if (!subClasses[key])
+                                {
+                                    firstChar = p.charAt(0).toUpperCase();
+                                    typeName = className + firstChar + p.substr(1);
+                                    subClasses[key] = typeName;
+                                    subObjects.push(value);                                    
+                                }
+                            }
+                        }
+                    }
+                    else if (value is String)
+                    {
+                        typeString = "String";
+                    }
+                    else if (value is Number)
+                    {
+                        if (Math.round(value as Number) === value)
+                            typeString += "int";
+                        else
+                            typeString += "Number";
+                    }
+                    else if (value === true || value === false)
+                    {
+                        typeString += "Boolean";
+                    }
+                    else if (value === null)
+                    {
+                        typeString += "Object /* was null */";                        
+                    }
+                    else
+                    {
+                        typeName = value["__JSON2ASVO__"];
+                        if (typeName)
+                            typeString = typeName;
+                        else
+                        {
+                            key = JSONReviver.generateKey(value);
+                            typeName = subClasses[key];
+                            if (typeName)
+                                typeString = typeName;
+                            else
+                            {
+                                firstChar = p.charAt(0).toUpperCase();
+                                typeName = className + firstChar + p.substr(1);
+                                subClasses[key] = typeName;
+                                typeString = typeName;
+                                subObjects.push(value);
+                            }
+                        }
+                    }
+
+                    useContent += "    private var _" + p + ":" + typeString + ";\n";
+                    if (generateBinding.selected)
+                    {
+                        useContent += "    [Bindable(\"";
+                        if (!immutable.selected)
+                            useContent += "valueChange";
+                        else
+                            useContent += "__NoChangeEvent__";
+                        useContent += "\")]\n";
+                    }
+                    useContent += "    public function get " + p + "():" + typeString + "\n";
+                    useContent += "    {\n        return _" + p + ";\n    }\n";
+                    useContent += "    public function set " + p + "(__v__:" + typeString + "):void\n";
+                    useContent += "    {\n";
+                    if (generateBinding.selected && !immutable.selected)
+                    {
+                        useContent += "        if (_" + p + " == __v__) return;\n";
+                        useContent += "        var e:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(this, _" + p + ", __v__);\n";
+                        useContent += "        _" + p + " = __v__;\n";
+                        useContent += "        dispatchEvent(e);\n";
+                    }
+                    else
+                        useContent += "        _" + p + " = __v__;\n";
+                    useContent += "    }\n\n";				
+                }
+                useContent += "}\n"; // end class
+                useContent += "}\n"; // end package
+                
+				storage.addEventListener("WRITE", handleSave);
+				storage.addEventListener("ERROR", handleSaveError);
+				storage.writeTextToDataFile(useFile, useContent);
+			}
+			
+			private function handleSave(event:FileEvent):void
+			{
+                var foundOne:Boolean = false;
+                while (subObjects.length)
+                {
+                    var value:Object = subObjects.shift();
+                    if (value["__JSON2ASVO__"]) continue; // already seen it
+                    var key:String = JSONReviver.generateKey(value);
+                    var className:String = subClasses[key];
+                    foundOne = true;
+                    writeClass(value, className);
+                    break;
+                }
+                if (!foundOne)
+                    status.text = "Done!";
+			}
+			
+			private function handleSaveError(event:FileErrorEvent):void
+			{
+				status.text = "Error: "+event.errorMessage;
+			}
+			
+		]]>
+    </fx:Script>
+	
+	<fx:Style>
+	
+	.labelStyle {
+		color: #9999FF;
+	}
+	
+	.contentStyle {
+		font-size: 18pt;
+	}
+	
+	</fx:Style>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	
+	<js:VGroup>
+		<js:Label text="Generate ActionScript ValueObjects (Data Classes) from a JSON result" width="100%" />
+		<js:Spacer height="20" />
+        <js:Label id="status" text="** APP STATUS HERE **" />
+        <js:Spacer height="20" />
+		
+        <js:Label text="Generated classes will be written to the application storage folder" width="100%" />
+		<js:HGroup>
+			<js:Label text="Output Class Name:" className="labelStyle" />
+			<js:TextInput id="writeFileNameField" text="ValueObject" width="200"/>
+		</js:HGroup>
+        <js:Label text="Sub-Objects will be given a class name based on the field where it was discovered." width="100%" />
+        <js:Label text="So if you set Output Class Name to 'Foo' and the JSON result has a sub-object" width="100%" />
+        <js:Label text="in a 'bar' field, that sub-object will have the class name FooBar." width="100%" />
+        <js:Spacer height="20" />
+		<js:Label text="Enter JSON result:" className="labelStyle" />
+		<js:TextArea id="contentField" width="100%" height="300" />
+        <js:HGroup>
+            <js:CheckBox id="generateBinding" text="Bindable" selected="true"/>		
+            <js:Spacer width="20" />
+            <js:CheckBox id="immutable" text="Immutable"/>		
+        </js:HGroup>
+		<js:TextButton text="Generate Classes" click="onSave()" />		
+	</js:VGroup>		
+
+</js:View>

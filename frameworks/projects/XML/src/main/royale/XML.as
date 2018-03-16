@@ -222,7 +222,13 @@ package
 			var xml:XML;
 			var i:int;
 			var data:* = node.nodeValue;
-			var qname:QName = getQName(node.nodeName, node.prefix, node.namespaceURI,false);
+			var localName:String = node.nodeName;
+			var prefix:String = node.prefix;
+			if(prefix && localName.indexOf(prefix + ":") == 0)
+			{
+				localName = localName.substr(prefix.length+1);
+			}
+			var qname:QName = getQName(localName, prefix, node.namespaceURI,false);
 			switch(node.nodeType)
 			{
 				case 1:
@@ -238,6 +244,8 @@ package
 					xml = new XML();
 					xml.setNodeKind("text");
 					xml.setName(qname);
+					if(XML.ignoreWhitespace)
+						data = data.trim();
 					xml.setValue(data);
 					break;
 				case 4:
@@ -2508,8 +2516,12 @@ package
 				if(prettyPrinting)
 				{
 					var v:String = trimXMLWhitespace(_value);
+					if(name().localName == "#cdata-section")
+						return indent + v;
 					return indent + escapeElementValue(v);
 				}
+				if(name().localName == "#cdata-section")
+					return _value;
 				return escapeElementValue(_value);
 			}
 			if(this.nodeKind() == "attribute")
@@ -2642,6 +2654,8 @@ package
 		override public function valueOf():*
 		{
 			var str:String = this.toString();
+			if(str == "")
+				return str;
 			var num:Number = Number(str);
 			return isNaN(num) ? str : num;
 		}

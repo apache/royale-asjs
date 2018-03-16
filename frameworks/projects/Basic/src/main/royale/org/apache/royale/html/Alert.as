@@ -94,7 +94,7 @@ package org.apache.royale.html
 		{
 			super();
 			
-			className = "Alert";
+			typeNames = "Alert";
 		}
 
          // note: only passing parent to this function as I don't see a way to identify
