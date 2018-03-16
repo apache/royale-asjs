@@ -1085,7 +1085,7 @@ package org.apache.royale.core
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            addStyles(this, value);
+            addStyles(element, value);
         }
 
         

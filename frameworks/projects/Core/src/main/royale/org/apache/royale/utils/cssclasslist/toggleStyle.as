@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.cssclasslist
 {
-    import org.apache.royale.core.IUIBase;
+    COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+    }
 
     /**
      *  Adds or removes a single style. 
@@ -32,8 +35,9 @@ package org.apache.royale.utils.cssclasslist
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
      */
-    public function toggleStyle(wrapper:IUIBase, value:String, force:Boolean = false):Boolean
+    COMPILE::JS
+    public function toggleStyle(element:WrappedHTMLElement, value:String, force:Boolean = false):Boolean
     {
-        return wrapper.element.classList.toggle(value, force);
+        return element.classList.toggle(value, force);
     }
 }

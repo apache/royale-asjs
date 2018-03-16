@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.cssclasslist
 {
-    import org.apache.royale.core.IUIBase;
+    COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+    }
 
     /**
      *  Removes all styles
@@ -28,9 +31,10 @@ package org.apache.royale.utils.cssclasslist
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public function removeAllStyles(wrapper:IUIBase):void
+    COMPILE::JS
+    public function removeAllStyles(element:WrappedHTMLElement):void
     {
-        var classList:DOMTokenList = wrapper.element.classList;
+        var classList:DOMTokenList = element.classList;
         var i:int;
         for( i = classList.length -1; i > 0; i-- )
         {

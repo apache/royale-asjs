@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.cssclasslist
 {
-    import org.apache.royale.core.IUIBase;
+    COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+    }
 
     /**
      *  Removes one or more styles from the component. Removing a class that does not 
@@ -30,17 +33,18 @@ package org.apache.royale.utils.cssclasslist
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
      */
-    public function removeStyles(wrapper:IUIBase, value:String):void
+    COMPILE::JS
+    public function removeStyles(element:WrappedHTMLElement, value:String):void
     {
         if (value == "") return;
 
         if (value.indexOf(" ") >= 0)
         {
             var classes:Array = value.split(" ");
-            wrapper.element.classList.remove.apply(wrapper.element.classList, classes);
+            element.classList.remove.apply(element.classList, classes);
         } else
         {
-            wrapper.element.classList.remove(value);
+            element.classList.remove(value);
         }
     }
 }
