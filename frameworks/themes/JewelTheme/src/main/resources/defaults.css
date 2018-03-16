@@ -221,6 +221,7 @@
  * Jewel Label
  */
 .jewel.label {
+  IBeadView: ClassReference("org.apache.royale.beads.views.LabelViewBead");
   font-family: "Lato", sans-serif;
   font-size: 0.75rem;
 }
