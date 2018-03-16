@@ -352,6 +352,7 @@
             reportFile="${src.rat.report}">
             <fileset dir="${basedir}/${package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="**/RELEASE_NOTES.md"/>
                 <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
@@ -415,6 +416,7 @@
             reportFile="${bin.rat.report}">
             <fileset dir="${basedir}/${bin.package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="**/RELEASE_NOTES.md"/>
                 <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
