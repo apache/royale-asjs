@@ -24,15 +24,15 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IUIBase;
 
 	/**
-	 *  The TextOverflow class is a bead that can be used with
-	 *  a TextButton control to stop the text from overflowing.
+	 *  The EllipsisOverflow class is a bead that can be used 
+	 *  to stop the text from overflowing and display an ellipsis.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class TextOverflow implements IBead
+	public class EllipsisOverflow implements IBead
 	{
 		/**
 		 *  constructor.
@@ -42,7 +42,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function TextOverflow()
+		public function EllipsisOverflow()
 		{
 		}
 
@@ -55,31 +55,21 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			updateHost();
-		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-		private function get host():IUIBase
-		{
-			return _strand as IUIBase;
-		}
-
-		private function updateHost():void
-		{
 			COMPILE::SWF
 			{
 				// Nothing to do as by default ellipsis are added
 			}
 			COMPILE::JS
 			{
-				host.element.style.overflow = "hidden";
-				host.element.style.textOverflow = "ellipsis";
+				var style:CSSStyleDeclaration = (_strand as IUIBase).element.style;
+				style.overflow = "hidden";
+				style.textOverflow = "ellipsis";
+				style.display = "block";
 			}
 		}
 
