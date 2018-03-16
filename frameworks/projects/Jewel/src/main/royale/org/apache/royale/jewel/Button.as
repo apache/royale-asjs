@@ -23,7 +23,7 @@ package org.apache.royale.jewel
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.util.ClassListUtil;
+        import org.apache.royale.utils.cssclasslist.toggleStyle;
     }
 
     /**
@@ -88,7 +88,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    ClassListUtil.toggleStyle(this, "primary", value);
+                    toggleStyle(this, "primary", value);
                 }
             }
         }
@@ -118,7 +118,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    ClassListUtil.toggleStyle(this, "secondary", value);
+                    toggleStyle(this, "secondary", value);
                 }
             }
         }
@@ -148,7 +148,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    ClassListUtil.toggleStyle(this, "emphasized", value);
+                    toggleStyle(this, "emphasized", value);
                 }
             }
         }

@@ -37,7 +37,7 @@ package org.apache.royale.core
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
-        import org.apache.royale.util.ClassListUtil;
+        import org.apache.royale.utils.cssclasslist.addStyles;
     }
 	
 	/**
@@ -1085,7 +1085,7 @@ package org.apache.royale.core
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            ClassListUtil.addStyles(this, value);
+            addStyles(this, value);
         }
 
         

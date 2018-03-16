@@ -226,6 +226,11 @@ internal class CoreClasses
 		import org.apache.royale.utils.object.defineSimpleGetter; defineSimpleGetter;
 		import org.apache.royale.utils.object.defineProperty; defineProperty;
 		import org.apache.royale.utils.object.defineSimpleProperty; defineSimpleProperty;
+
+		import org.apache.royale.utils.cssclasslist.removeAllStyles; removeAllStyles;
+		import org.apache.royale.utils.cssclasslist.removeStyles; removeStyles;
+		import org.apache.royale.utils.cssclasslist.toggleStyle; toggleStyle;
+		import org.apache.royale.utils.cssclasslist.addStyles; addStyles;
 	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
