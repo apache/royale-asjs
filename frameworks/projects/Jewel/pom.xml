@@ -60,10 +60,6 @@
               <name>defaults.css</name>
               <path>../src/main/resources/defaults.css</path>
             </include-file>
-            <include-file>
-              <name>jewel-framework.css</name>
-              <path>../src/main/resources/jewel-framework.css</path>
-            </include-file>
           </includeFiles>
           <includeLookupOnly>true</includeLookupOnly>
           <!--<allowSubclassOverrides>true</allowSubclassOverrides>-->
