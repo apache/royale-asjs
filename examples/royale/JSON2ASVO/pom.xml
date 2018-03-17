@@ -54,37 +54,51 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
       <type>swc</type>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>GoogleMaps</artifactId>
+      <artifactId>Storage</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>GoogleMaps</artifactId>
+      <artifactId>Storage</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
-    
+
     <dependency>
-        <groupId>org.apache.royale.typedefs</groupId>
-        <artifactId>royale-typedefs-googlemaps</artifactId>
-        <version>${royale.typedefs.version}</version>
-        <type>swc</type>
-        <classifier>typedefs</classifier>
-        <scope>runtime</scope>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Reflection</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Reflection</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
 
+    <!-- <dependency>
+      <groupId>com.adobe.air.framework</groupId>
+      <artifactId>airglobal</artifactId>
+      <version>${air.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+     -->
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>BasicTheme</artifactId>

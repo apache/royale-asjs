@@ -30,7 +30,7 @@
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>MDLDynamicTabsExample</name>
+  <name>Apache Royale: Examples: Royale: MDLDynamicTabsExample</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>

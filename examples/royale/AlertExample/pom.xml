@@ -31,8 +31,8 @@
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swf</packaging>
  
-  <name>AlertExample</name>
- 
+  <name>Apache Royale: Examples: Royale: AlertExample</name>
+  
   <build>
 	<sourceDirectory>src/main/royale</sourceDirectory>
     <plugins>
