@@ -228,4 +228,6 @@
     <component id="MenuBarItemRenderer" class="org.apache.royale.html.supportClasses.MenuBarItemRenderer"/>
     <component id="CascadingMenuItemRenderer" class="org.apache.royale.html.supportClasses.CascadingMenuItemRenderer" />
 
+    <component id="CascadingMenuFactory" class="org.apache.royale.html.beads.CascadingMenuFactory" />
+
 </componentPackage>

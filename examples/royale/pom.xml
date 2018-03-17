@@ -57,7 +57,7 @@
     <module>MapSearch</module>
     <module>MDLDynamicTabsExample</module>
     <module>MDLDynamicTableExample</module>
-    <!-- <module>MenuExample</module> -->
+    <module>MenuExample</module>
     <module>MobileMap</module>
     <module>MobileStocks</module>
     <module>MobileTrader</module>
