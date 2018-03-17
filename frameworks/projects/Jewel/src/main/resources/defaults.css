@@ -30,8 +30,11 @@
   display: block !important;
 }
 
+Label {
+  iBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+}
+
 .jewel.label {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
   white-space: nowrap;
 }
 

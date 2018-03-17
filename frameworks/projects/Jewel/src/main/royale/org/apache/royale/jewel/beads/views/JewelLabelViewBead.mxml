@@ -18,31 +18,32 @@ limitations under the License.
 
 -->
 <js:MXMLBeadView xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:js="library://ns.apache.org/royale/basic">
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:j="library://ns.apache.org/royale/jewel">
 				  
     <fx:Script>
         <![CDATA[
-            // import org.apache.royale.core.ITitleBarModel;
-            // import org.apache.royale.core.UIBase;
-            // import org.apache.royale.events.Event;
-            // import com.transpiledactionscript.puremvc.royale.employeeadmin.model.CustomPanelWithControlBarModel;
-     
+            import org.apache.royale.html.beads.models.TextModel;
+
             // private function clickHandler():void
             // {
             //     var newEvent:org.apache.royale.events.Event = new org.apache.royale.events.Event('close');
             //     UIBase(_strand).dispatchEvent(newEvent);   
             // }
+
         ]]>
     </fx:Script>
 
-    <js:TextButton text="VIEWBEAD!!"/>
-    
-    <!-- <js:beads>
+    <js:beads>
         <js:MXMLBeadViewDataBinding />
-        <js:LayoutChangeNotifier watchedProperty="{titleLabel.text}" />
-        <js:LayoutChangeNotifier watchedProperty="{additionalInfoLabel.text}" />
     </js:beads>
 
+    <j:TextButton id="textButton"  text="A view bead" primary="true"/>
+    
+<!--
+    
+        <js:LayoutChangeNotifier watchedProperty="{additionalInfoLabel.text}" />
+    
     <js:Label id="titleLabel" text="{CustomPanelWithControlBarModel(model).title}" className="TitleBarTitle" >
         <js:style>
             <js:SimpleCSSStyles fontWeight="inherit" marginLeft="5" />

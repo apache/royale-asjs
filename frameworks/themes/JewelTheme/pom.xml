@@ -41,6 +41,17 @@
         <version>${royale.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
+          <namespaces>
+            <namespace>
+              <uri>library://ns.apache.org/royale/jewel</uri>
+              <manifest>${project.basedir}/src/main/resources/jeweltheme-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+              <type>as</type>
+              <uri>library://ns.apache.org/royale/jewel</uri>
+              <manifest>${project.basedir}/src/main/resources/jeweltheme-as-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
           <includeClasses>
             <includeClass>JewelThemeClasses</includeClass>
           </includeClasses>
