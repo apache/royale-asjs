@@ -22,9 +22,8 @@
 	    <debug>true</debug>
     </compiler>
     <includes>
-    <!--
-    -->
         <symbol>halo.scripts.ButtonTestScript</symbol>
+        <!--
         <symbol>halo.scripts.CheckBoxTestScript</symbol>
         <symbol>halo.scripts.RadioButtonTestScript</symbol>
         <symbol>halo.scripts.TextInputTestScript</symbol>
@@ -92,6 +91,7 @@
 		<symbol>spark.scripts.CurrencyValidatorTestScript</symbol>
         <symbol>spark.scripts.NumberValidatorTestScript</symbol>
 	<symbol>spark.scripts.SortTestScript</symbol>
+    -->
     <!--
         From mustella.swc
     -->
