@@ -30,16 +30,24 @@
   display: block !important;
 }
 
-Label {
-  iBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+@media -royale-swf {
+  CheckBox {
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
+    IBeadView: ClassReference("org.apache.royale.html.beads.CheckBoxView");
+  }
 }
-
 .jewel.label {
   white-space: nowrap;
 }
 
-TextField {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+Label {
+  iBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+}
+
+.jewel.slider {
+  width: 100px;
+  height: 30px;
+  position: relative;
 }
 
 Slider {
@@ -47,12 +55,6 @@ Slider {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.SliderView");
   IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
-}
-
-.jewel.slider {
-  width: 100px;
-  height: 30px;
-  position: relative;
 }
 
 .SliderTrack {
@@ -74,6 +76,14 @@ Slider {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
     IBeadView: ClassReference("org.apache.royale.jewel.beads.RadioButtonView");
   }
+
+  CheckBox {
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
+    IBeadView: ClassReference("org.apache.royale.html.beads.CheckBoxView");
+  }
+}
+TextField {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 }
 
 /*# sourceMappingURL=defaults.css.map */

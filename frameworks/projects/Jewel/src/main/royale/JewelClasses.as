@@ -36,7 +36,9 @@ package
             import org.apache.royale.jewel.beads.SliderThumbView; SliderThumbView;
             import org.apache.royale.jewel.beads.SliderTrackView; SliderTrackView;
 
-            import org.apache.royale.jewel.beads.RadioButtonView; RadioButtonView;
+            import org.apache.royale.jewel.beads.views.RadioButtonView; RadioButtonView;
+		    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
+	
         }
 
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;

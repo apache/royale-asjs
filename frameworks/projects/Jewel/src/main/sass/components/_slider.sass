@@ -1,0 +1,53 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+.jewel.slider
+	width: 100px
+	height: 30px
+	position: relative
+
+Slider
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel")
+	IBeadView:  ClassReference("org.apache.royale.jewel.beads.SliderView")
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout")
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController")
+
+.SliderTrack
+	position: absolute
+
+.SliderThumb
+	position: absolute
+	border-radius: 15px
+
+@media -royale-swf
+	Slider
+		iThumbView: ClassReference("org.apache.royale.jewel.beads.SliderThumbView")
+		iTrackView: ClassReference("org.apache.royale.jewel.beads.SliderTrackView")
+
+	RadioButton
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel")
+		IBeadView:  ClassReference("org.apache.royale.jewel.beads.RadioButtonView")
+		//font-size: 11px
+		//font-family: Arial
+
+	CheckBox
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel")
+		IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView")
+		//font-size: 11px
+		//font-family: Arial

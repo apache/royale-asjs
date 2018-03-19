@@ -17,18 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-@namespace "library://ns.apache.org/royale/jewel"
+.jewel.check
 
-.layout.horizontal
-	white-space: nowrap
-	display: block
-	> *
-		display: inline-block !important
-.layout.vertical
-	vertical-align: top
-	> *
-		display: block !important
-
-
-
-
+@media -royale-swf
+	CheckBox
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel")
+		IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView")
+		//font-size: 11px
+		//font-family: Arial

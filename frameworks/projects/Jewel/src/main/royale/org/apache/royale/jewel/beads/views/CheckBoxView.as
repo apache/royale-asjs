@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads
+package org.apache.royale.jewel.beads.views
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -28,29 +28,37 @@ package org.apache.royale.jewel.beads
 	import org.apache.royale.core.CSSTextField;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IValueToggleButtonModel;
+	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.events.Event;
 	
-	/**
-	 *  The RadioButtonView class creates the visual elements of the org.apache.royale.html.RadioButton 
-	 *  component. 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public class RadioButtonView extends BeadViewBase implements IBeadView
+    /**
+     *  The CheckBoxView class is the default view for
+     *  the org.apache.royale.html.CheckBox class.
+     *  It displays a simple checkbox with an 'x' if checked,
+     *  and a label on the right.  There are no styles or
+     *  properties to configure the look of the 'x' or the
+     *  position of the label relative to the checkbox as
+     *  there are no equivalents in the standard HTML checkbox.
+     * 
+     *  A more complex CheckBox could implement more view
+     *  configuration.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+	public class CheckBoxView extends BeadViewBase implements IBeadView
 	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function RadioButtonView()
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function CheckBoxView()
 		{
 			sprites = [ upSprite = new Sprite(),
 				        downSprite = new Sprite(),
@@ -81,46 +89,38 @@ package org.apache.royale.jewel.beads
 		
 		private var sprites:Array;
 		
-		private var _toggleButtonModel:IValueToggleButtonModel;
-		
-		/**
-		 *  The model used for the RadioButton.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get toggleButtonModel() : IValueToggleButtonModel
+		private var _toggleButtonModel:IToggleButtonModel;
+
+        // TODO: Can we remove this?
+		private function get toggleButtonModel() : IToggleButtonModel
 		{
 			return _toggleButtonModel;
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
+        /**
+         *  @copy org.apache.royale.core.IBead#strand
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_toggleButtonModel = value.getBeadByType(IValueToggleButtonModel) as IValueToggleButtonModel;
+            
+			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
-			_toggleButtonModel.addEventListener("selectedValueChange", selectedValueChangeHandler);
-			if (_toggleButtonModel.text != null)
+			_toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);
+			if (_toggleButtonModel.text !== null)
 				text = _toggleButtonModel.text;
-			if (_toggleButtonModel.html != null)
-				html = _toggleButtonModel.html;
             for each( var s:Sprite in sprites )
             {
                 var tf:CSSTextField = s.getChildByName("textField") as CSSTextField;
                 tf.styleParent = value;
             }
-			
+            
 			layoutControl();
 			
 			var hitArea:Shape = new Shape();
@@ -137,25 +137,25 @@ package org.apache.royale.jewel.beads
 				text = toggleButtonModel.text;
 			if (toggleButtonModel.html !== null)
 				html = toggleButtonModel.html;
-			
-			if (toggleButtonModel.selected && toggleButtonModel.value == value) {
-				selected = true;
-			}
 		}
 		
-		/**
-		 *  The string label for the org.apache.royale.html.RadioButton.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
+        /**
+         *  @copy org.apache.royale.html.Label#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
 		public function get text():String
 		{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.text;
 		}
+		
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			for each( var s:Sprite in sprites )
@@ -167,19 +167,23 @@ package org.apache.royale.jewel.beads
 			layoutControl();
 		}
 		
-		/**
-		 *  The HTML string for the org.apache.royale.html.RadioButton.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
+        /**
+         *  @copy org.apache.royale.html.Label#html
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
 		public function get html():String
 		{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.htmlText;
 		}
+		
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			for each(var s:Sprite in sprites)
@@ -191,17 +195,11 @@ package org.apache.royale.jewel.beads
 			layoutControl();
 		}
 		
-		/**
-		 * @private
-		 */
 		private function textChangeHandler(event:Event):void
 		{
 			text = toggleButtonModel.text;
 		}
 		
-		/**
-		 * @private
-		 */
 		private function htmlChangeHandler(event:Event):void
 		{
 			html = toggleButtonModel.html;
@@ -209,16 +207,27 @@ package org.apache.royale.jewel.beads
 		
 		private var _selected:Boolean;
 		
-		/**
-		 * The selection state of the RadioButton
-		 */
+        /**
+         *  @copy org.apache.royale.core.IToggleButtonModel#selected
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
 		public function get selected():Boolean
 		{
 			return _selected;
 		}
+		
+        /**
+         *  @private
+         */
 		public function set selected(value:Boolean):void
 		{
 			_selected = value;
+			
+			layoutControl();
 			
 			if( value ) {
 				SimpleButton(_strand).upState = upAndSelectedSprite;
@@ -230,21 +239,21 @@ package org.apache.royale.jewel.beads
 				SimpleButton(_strand).downState = downSprite;
 				SimpleButton(_strand).overState = overSprite;
 			}
-			
-			layoutControl();
 		}
 		
-		/**
-		 * @private
-		 */
-		private function selectedValueChangeHandler(event:Event):void
+		private function selectedChangeHandler(event:Event):void
 		{
-			selected = _toggleButtonModel.value == _toggleButtonModel.selectedValue;
+			selected = toggleButtonModel.selected;
 		}
 		
-		/**
-		 * @private
-		 */
+        /**
+         *  Display the icon and text label
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
 		protected function layoutControl() : void
 		{
 			for each(var s:Sprite in sprites)
@@ -252,7 +261,7 @@ package org.apache.royale.jewel.beads
 				var icon:Shape = s.getChildByName("icon") as Shape;
 				var tf:CSSTextField = s.getChildByName("textField") as CSSTextField;
 				
-				drawRadioButton(icon);
+				drawCheckBox(icon);
 				
 				var mh:Number = Math.max(icon.height,tf.height);
 				
@@ -265,21 +274,27 @@ package org.apache.royale.jewel.beads
 			
 		}
 		
-		/**
-		 * @private
-		 */
-		protected function drawRadioButton(icon:Shape) : void
+        /**
+         *  Draw the checkbox
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		protected function drawCheckBox(icon:Shape) : void
 		{
 			icon.graphics.clear();
 			icon.graphics.beginFill(0xf8f8f8);
 			icon.graphics.lineStyle(1,0x808080);
-			icon.graphics.drawEllipse(0,0,10,10);
+			icon.graphics.drawRect(0,0,10,10);
 			icon.graphics.endFill();
 			
-			if( selected ) {
-				icon.graphics.beginFill(0);
-				icon.graphics.drawEllipse(3,3,4,4);
-				icon.graphics.endFill();
+			if( _toggleButtonModel.selected ) {
+                icon.graphics.lineStyle(2,0);
+				icon.graphics.moveTo(3,4);
+				icon.graphics.lineTo(5,7);
+				icon.graphics.lineTo(9,0);
 			}
 		}
 	}

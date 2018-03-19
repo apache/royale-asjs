@@ -28,6 +28,7 @@
     <component id="TextField" class="org.apache.royale.jewel.TextField"/>
     <component id="Slider" class="org.apache.royale.jewel.Slider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>
+    <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
 
     <component id="Disabled" class="org.apache.royale.jewel.beads.Disabled"/>
 
