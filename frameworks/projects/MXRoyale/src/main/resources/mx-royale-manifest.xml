@@ -33,5 +33,8 @@
 	<component id="Box" class="mx.containers.Box" />
 	<component id="Container" class="mx.core.Container" />
 	<component id="HBox" class="mx.containers.HBox" />
-	<component id="VBox" class="mx.containers.VBox" />	
+	<component id="VBox" class="mx.containers.VBox" />
+    
+    <component id="State" class="mx.states.State" />
+
 </componentPackage>
