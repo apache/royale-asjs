@@ -16,16 +16,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
+xmlns:s="library://ns.adobe.com/flex/spark"
+xmlns:sparkviews="spark.views.*"
+xmlns:graphicsviews="graphics.views.*"
+xmlns:fxgviews="fxg.views.*"
+xmlns:dmvviews="dmv.views.*"
+preloader="BasicTestsPreloader"
 -->
 <mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark"
-    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:mx="library://ns.apache.org/royale/mx"
     xmlns:haloviews="halo.views.*"
-    xmlns:sparkviews="spark.views.*"
-    xmlns:graphicsviews="graphics.views.*"
-    xmlns:fxgviews="fxg.views.*"
-    xmlns:dmvviews="dmv.views.*"
-    preloader="BasicTestsPreloader"
     height="800" width="1000"
     paddingTop="8" verticalGap="0"
     >
@@ -38,6 +38,7 @@
         <mx:State name="basicTest" />
         <mx:State name="haloButtonTest" />
         <mx:State name="haloCheckBoxTest" />
+        <!--
         <mx:State name="haloRadioButtonTest" />
         <mx:State name="haloTextInputTest" />
         <mx:State name="haloTextAreaTest" />
@@ -105,11 +106,13 @@
 		<mx:State name="sparkCurrencyValidatorTest" />
         <mx:State name="sparkNumberValidatorTest" />
         <mx:State name="sparkSortTest" /> 
+        -->
     </mx:states>
     
     <!--  STEP 2: Add an mxml component with the widgets for your test here -->
     <haloviews:ButtonTests id="haloButtonTests" includeIn="haloButtonTest" />    
-    <haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" />    
+    <haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" /> 
+    <!--
     <haloviews:RadioButtonTests id="haloRadioButtonTests" includeIn="haloRadioButtonTest" />    
     <haloviews:TextInputTests id="haloTextInputTests" includeIn="haloTextInputTest" />    
     <haloviews:TextAreaTests id="haloTextAreaTests" includeIn="haloTextAreaTest" />    
@@ -176,7 +179,7 @@
 	<sparkviews:CurrencyValidatorTests id="sparkCurrencyValidatorTests" includeIn="sparkCurrencyValidatorTest" />
     <sparkviews:NumberValidatorTests id="sparkNumberValidatorTests" includeIn="sparkNumberValidatorTest" />
     <sparkviews:SortTests id="sparkSortTests" includeIn="sparkSortTest" />
-	
+	-->
 
     <!--  STEP 3: Add the testscript to BasicTests-config.xml -->
     
