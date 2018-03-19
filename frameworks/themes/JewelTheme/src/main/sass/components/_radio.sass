@@ -17,45 +17,4 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-%textbutton-def
-	@extend %button-def
-	/* TextField */
-	font:
-		family: $font-stack 
-		style: bold 
-		size: $font-size
-	//+trans(0.2s ease-in-out)
-	text:
-		transform: uppercase
-		decoration: none 
-		//shadow: 0 -1px 0 rgba(0,0,0,0.70) //0 .063em 
-	[disabled]
-		text:
-			shadow: unset
-
-.jewel.textbutton, .jewel.textbutton:hover
-	@extend %textbutton-def
-
-.jewel.textbutton
-	+button-theme($default-color, $default-font-color)
-
-.jewel.textbutton.primary
-	+button-theme($primary-color, $font-color)
-
-.jewel.textbutton.secondary
-	+button-theme($secondary-color, $font-color)
-
-.jewel.textbutton.emphasized
-	+button-theme($emphasized-color, $font-color)
-
-// /* TextField: */
-//	font-family: $font-stack
-//	font-size: 14px
-//	font-weight: bold
-//	color: $font-normal-color
-//	text-shadow: 0 1px 0 #555
-
-//	padding: 10px 0px
-//	display: inline-block
-//	min-width: 80px
-
+.jewel.radio
