@@ -17,25 +17,40 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mx:Application xmlns:mx="library://ns.apache.org/royale/mx"
-                   xmlns:js="library://ns.apache.org/royale/basic"
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:mx="library://ns.apache.org/royale/mx"
                    width="600" height="400" >
 	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
+	<fx:Style>
+		@namespace mx "library://ns.apache.org/royale/mx";
+		
+		/* set position:absolute to make the (x,y) properties work */
+		
+		mx|HBox {
+			position: absolute;
+			horizontalGap: 10px;
+			verticalAlign: middle;
+		}
+		
+		mx|VBox {
+			position: absolute;
+			verticalGap: 10px;
+			horizontalAlign: middle;
+		}
+	</fx:Style>
 	
+	<mx:VBox x="10" y="10" width="200" height="300">
+		<mx:Label text="Hello World"/>
+		<mx:Button label="Push Me" />
+		<mx:Button label="Green" icon="assets/smallgreenrect.jpg"  />
+		<mx:Image source="assets/smallgreenrect.jpg"  />
+	</mx:VBox>
+	<mx:HBox x="300" y="10" width="300" height="200">
+		<mx:Label text="Hello World"/>
+		<mx:Button label="Push Me" />
+		<mx:Button label="Green" icon="assets/smallgreenrect.jpg"  />
+		<mx:Image source="assets/smallgreenrect.jpg"  />
+	</mx:HBox>
 
-	<!-- temporary until we can get this worked out -->
-    <js:initialView>
-        <js:View>
-        	<js:beads>
-        		<js:BasicLayout />
-        	</js:beads>
-        	<mx:Box x="10" y="10">
-				<mx:Label text="Hello World"/>
-				<mx:Button label="Push Me" />
-				<mx:Button label="Green" icon="assets/smallgreenrect.jpg"  />
-				<mx:Image source="assets/smallgreenrect.jpg"  />
-        	</mx:Box>
-        </js:View>
-    </js:initialView>
         
 </mx:Application>

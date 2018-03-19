@@ -17,17 +17,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mx:Application xmlns:mx="library://ns.apache.org/royale/mx"
-                   xmlns:js="library://ns.apache.org/royale/basic"
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:mx="library://ns.apache.org/royale/mx"
                    width="600" height="400" >
 	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
-	
+	<fx:Style>
+		@namespace mx "library://ns.apache.org/royale/mx";
+		
+		/* set position:absolute to make the (x,y) properties work */
+		mx|Label {
+			position: absolute;
+		}
+		
+	</fx:Style>
 
-	<!-- temporary until we can get this worked out -->
-    <js:initialView>
-        <js:View>
-        	<mx:Label text="Hello World" x="20" y="20" />
-        </js:View>
-    </js:initialView>
+	<mx:Label text="Hello World" x="20" y="20" />
         
 </mx:Application>
