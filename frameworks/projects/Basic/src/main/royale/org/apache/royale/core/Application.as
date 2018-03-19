@@ -655,11 +655,11 @@ package org.apache.royale.core
 			
 			dispatchEvent('initialize');
 			
-			initialView.applicationModel = model;
-			addElement(initialView);
-			
 			if (initialView)
 			{
+                initialView.applicationModel = model;
+                addElement(initialView);
+                
 				var baseView:UIBase = initialView as UIBase;
 				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
 					this.element.style.height = window.innerHeight.toString() + 'px';
