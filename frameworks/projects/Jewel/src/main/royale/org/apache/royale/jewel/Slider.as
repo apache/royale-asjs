@@ -23,6 +23,7 @@ package org.apache.royale.jewel
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	[Event(name="valueChange", type="org.apache.royale.events.Event")]
@@ -56,17 +57,17 @@ package org.apache.royale.jewel
 		public function Slider()
 		{
 			super();
+
+			typeNames = "jewel slider"
 		}
-
 		
-
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return super.createElement();
+			return addElementToWrapper(this,'div');
         }
     }
 }

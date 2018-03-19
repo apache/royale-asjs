@@ -60,6 +60,8 @@ package org.apache.royale.jewel
 		public function RadioButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
 			super(upState, overState, downState, hitTestState);
+
+            typeNames = "jewel radio"
 		}
     }
 
