@@ -22,12 +22,14 @@ package mx.containers.beads
 	
 	import mx.containers.BoxDirection;
 	import mx.containers.utilityClasses.Flex;
+	import mx.controls.Image;
 	import mx.core.Container;
 	import mx.core.EdgeMetrics;
 	import mx.core.IUIComponent;
 	
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.UIBase;
 
 	//import mx.core.mx_internal;
 	//import mx.core.ScrollPolicy;
@@ -96,7 +98,17 @@ package mx.containers.beads
 		/**
 		 *  @private
 		 */
-		public var direction:String = BoxDirection.VERTICAL;
+		private var _direction:String = BoxDirection.VERTICAL;
+		
+		public function get direction():String
+		{
+			return _direction;
+		}
+		
+		public function set direction(value:String):void
+		{
+			_direction = value;
+		}
 		
 		//--------------------------------------------------------------------------
 		//
@@ -128,6 +140,12 @@ package mx.containers.beads
 				{
 					numChildrenWithOwnSpace--;
 					continue;
+				}
+				
+				COMPILE::JS {
+				if (child is Image) {
+					trace("measure.image.complete: "+(child as Image).complete);
+				}
 				}
 				
 				var wPref:Number = child.getExplicitOrMeasuredWidth();
@@ -169,15 +187,20 @@ package mx.containers.beads
 			
 			target.measuredWidth = preferredWidth + wPadding;
 			target.measuredHeight = preferredHeight + hPadding;
-			
-			// do this too??
-			target.width = target.measuredWidth;
-			target.height = target.measuredHeight;
 		}
 		
 		override public function layout():Boolean
 		{
-			updateDisplayList(target.width, target.height);
+			var testWidth:Number = target.getExplicitOrMeasuredWidth();
+			var testHeight:Number = target.getExplicitOrMeasuredHeight();
+			trace("Before layout: width="+testWidth+"; height="+testHeight);
+			if (updateDisplayList(target.width, target.height)) {
+				testWidth = target.getExplicitOrMeasuredWidth();
+				testHeight = target.getExplicitOrMeasuredHeight();
+			//???	target.setActualSize(testWidth, testHeight);
+				trace("After layout: width="+target.width+"; height="+target.height);
+			
+			}
 			return true;
 		}
 		
@@ -186,11 +209,11 @@ package mx.containers.beads
 		 *  Lay out children as per Box layout rules.
 		 */
 		public function updateDisplayList(unscaledWidth:Number,
-												   unscaledHeight:Number):void
+												   unscaledHeight:Number):Boolean
 		{			
 			var n:int = target.numChildren;
 			if (n == 0)
-				return;
+				return false;
 			
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
 			
@@ -326,7 +349,7 @@ package mx.containers.beads
 					if (obj.includeInLayout)
 						top += obj.height + gap;
 					COMPILE::JS {
-						obj.element.style.position = 'absolute';
+						obj.positioner.style.position = 'absolute';
 					}
 				}
 			}
@@ -368,10 +391,12 @@ package mx.containers.beads
 					if (obj.includeInLayout)
 						left += obj.width + gap;
 					COMPILE::JS {
-						obj.element.style.position = 'absolute';
+						obj.positioner.style.position = 'absolute';
 					}
 				}
 			}
+			
+			return true;
 		}
 		
 		//--------------------------------------------------------------------------

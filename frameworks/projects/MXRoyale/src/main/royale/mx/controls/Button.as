@@ -23,6 +23,7 @@ COMPILE::JS
 {
     import goog.DEBUG;
 	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.events.BrowserEvent;
 	import org.apache.royale.html.util.addElementToWrapper;
 }
 import mx.controls.listClasses.BaseListData;
@@ -576,6 +577,12 @@ public class Button extends UIComponent implements IDataRenderer
 	//  internal
 	//----------------------------------
 	
+	COMPILE::JS
+	private var imagePart:HTMLImageElement;
+	
+	COMPILE::JS
+	private var labelPart:HTMLSpanElement;
+	
 	/**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */
@@ -584,6 +591,7 @@ public class Button extends UIComponent implements IDataRenderer
 	{
 		addElementToWrapper(this,'button');
 		element.setAttribute('type', 'button');
+		
 		return element;
 	}
 	
@@ -592,13 +600,52 @@ public class Button extends UIComponent implements IDataRenderer
 	COMPILE::JS
 	protected function setInnerHTML():void
 	{
-		var inner:String = '';
-		if (icon != null)
-			inner += "<img src='" + icon + "'/>";
-		inner += '&nbsp;';
-		inner += label;
-		element.innerHTML = inner;
+		if (label != null) {
+			if (labelPart == null) {
+				var lbl:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
+				labelPart = lbl;
+				element.appendChild(lbl);
+			}
+			labelPart.innerHTML = label;
+		}
+		if (icon != null) {
+			if (imagePart == null) {
+				var img:HTMLImageElement = document.createElement('img') as HTMLImageElement;
+				img.addEventListener("load", handleImageLoaded);
+				if (labelPart) element.insertBefore(img,labelPart);
+				else element.appendChild(img);
+				imagePart = img;
+			}
+			img.src = icon;
+		}
 	};
+	
+	COMPILE::JS
+	private function handleImageLoaded(event:BrowserEvent):void
+	{		
+		measuredWidth = imagePart.naturalWidth + labelPart.offsetWidth + 2;
+		measuredHeight = Math.max(imagePart.naturalHeight, labelPart.offsetHeight);
+		
+		if (imagePart) {
+			imagePart.style.position = 'absolute';
+			imagePart.style.top = '0px';
+			imagePart.style.left = '0px';
+		}
+		if (labelPart) {
+			labelPart.style.position = 'absolute';
+			labelPart.style.lineHeight = String(measuredHeight) + 'px';
+			labelPart.style.verticalAlign = 'middle';
+			labelPart.style.top = '0px';
+			labelPart.style.left = String(imagePart ? imagePart.naturalWidth + 2 : 0) + 'px';
+		}
+		
+		setActualSize(measuredWidth, measuredHeight);
+		
+		dispatchEvent(new Event("complete"));
+		
+		var newEvent:Event = new Event("layoutNeeded",true);
+		dispatchEvent(newEvent);
+	}
 }
 
 }

@@ -918,7 +918,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the measuredWidth property.
      */
-    private var _measuredWidth:Number = 0;
+    private var _measuredWidth:Number = Number.NaN;
 
     [Inspectable(environment="none")]
 
@@ -933,7 +933,14 @@ public class UIComponent extends UIBase
      */
     public function get measuredWidth():Number
     {
-		if (_measuredWidth == 0 && width > 0) return width;
+		COMPILE::SWF {
+			if (isNaN(_measuredWidth)) return width;
+		}
+		COMPILE::JS {
+			if (isNaN(_measuredWidth)) {
+				return this.positioner.offsetWidth;
+			}
+		}
         return _measuredWidth;
     }
 
@@ -953,7 +960,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the measuredHeight property.
      */
-    private var _measuredHeight:Number = 0;
+    private var _measuredHeight:Number = Number.NaN;
 
     [Inspectable(environment="none")]
 
@@ -968,7 +975,14 @@ public class UIComponent extends UIBase
      */
     public function get measuredHeight():Number
     {
-		if (_measuredHeight == 0 && height > 0) return height;
+		COMPILE::SWF {
+			if (isNaN(_measuredHeight)) return height;
+		}
+		COMPILE::JS {
+			if (isNaN(_measuredHeight)) {
+				return this.positioner.offsetHeight;
+			}
+		}
         return _measuredHeight;
     }
 
@@ -3018,8 +3032,6 @@ public class UIComponent extends UIBase
       */
     public function move(x:Number, y:Number):void
     {
-        //if (GOOG::DEBUG)
-        //    trace("move not implemented");
 		this.x = x;
 		this.y = y;
     }

@@ -91,6 +91,7 @@ public class HBox extends Box
     public function HBox()
     {
         super();
+		typeNames = "HBox";
         
         super.direction = BoxDirection.HORIZONTAL;
     }

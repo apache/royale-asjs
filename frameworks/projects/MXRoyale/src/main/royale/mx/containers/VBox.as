@@ -88,6 +88,7 @@ public class VBox extends Box
     public function VBox()
     {
         super();
+		typeNames = "VBox";
         
         super.direction = BoxDirection.VERTICAL;
     }

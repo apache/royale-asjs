@@ -491,7 +491,8 @@ public class Container extends UIComponent
 		}
 		
 		// Load the layout bead if it hasn't already been loaded.
-		loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+		if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
+			dispatchEvent(new Event("layoutNeeded"));
 	}
 	
 	/**

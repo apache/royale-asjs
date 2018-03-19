@@ -135,6 +135,8 @@ public class Box extends Container
     {
         super();
 		
+		// For Flex compatibility, the BoxLayout is immediately created and added
+		// rather than being loaded from a style
 		_layout = new BoxLayout();
 		_layout.direction = _direction;
 		addBead(_layout);

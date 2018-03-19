@@ -27,6 +27,7 @@ import org.apache.royale.core.IImage;
 import org.apache.royale.core.IImageModel;
 COMPILE::JS {
 	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.events.BrowserEvent;
 	import org.apache.royale.html.util.addElementToWrapper;
 }
 import mx.core.UIComponent;
@@ -40,6 +41,8 @@ import mx.core.IDataRenderer;
 import mx.core.mx_internal;
 */
 import mx.events.FlexEvent;
+import org.apache.royale.events.Event;
+
 /*
 
 use namespace mx_internal;
@@ -192,6 +195,12 @@ public class Image extends UIComponent
     //  Overridden properties
     //
     //--------------------------------------------------------------------------
+	
+	override public function addedToParent():void
+	{
+		super.addedToParent();
+		trace("Image.addedToParent called: "+getExplicitOrMeasuredWidth()+" x "+getExplicitOrMeasuredHeight());
+	}
 
     //----------------------------------
     //  source
@@ -242,7 +251,31 @@ public class Image extends UIComponent
 	COMPILE::JS
 	public function applyImageData(binaryDataAsString:String):void
 	{
+		element.addEventListener("load", handleImageLoaded);
 		(element as HTMLImageElement).src = binaryDataAsString;
+	}
+	
+	COMPILE::JS
+	public function get complete():Boolean
+	{
+		return (element as HTMLImageElement).complete;
+	}
+	
+	COMPILE::JS
+	private function handleImageLoaded(event:BrowserEvent):void
+	{
+		trace("The image src "+src+" is now loaded");
+		
+		trace("Image offset size is: "+(element as HTMLImageElement).naturalWidth+" x "+(element as HTMLImageElement).naturalHeight);
+		// should we now set the image's measured sizes?
+		measuredWidth = (element as HTMLImageElement).naturalWidth;
+		measuredHeight = (element as HTMLImageElement).naturalHeight;
+		setActualSize(measuredWidth, measuredHeight);
+		
+		dispatchEvent(new Event("complete"));
+		
+		var newEvent:Event = new Event("layoutNeeded",true);
+		dispatchEvent(newEvent);
 	}
 
 
