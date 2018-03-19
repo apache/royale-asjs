@@ -3060,8 +3060,7 @@ public class UIComponent extends UIBase
     {
         //if (GOOG::DEBUG)
         //    trace("setActualSize not implemented");
-		this.width = w;
-		this.height = h;
+		this.setWidthAndHeight(w, h);
     }
 
 
