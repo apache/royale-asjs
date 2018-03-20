@@ -19,33 +19,34 @@ limitations under the License.
 -->
 <mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:mx="library://ns.apache.org/royale/mx"
-                   width="600" height="400" >
+                   width="600" height="400"
+                   layout="horizontal" >
 	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
 	<fx:Style>
 		@namespace mx "library://ns.apache.org/royale/mx";
 		
-		/* set position:absolute to make the (x,y) properties work */
+		mx|Application {
+			horizontalGap: 50px;
+		}
 		
 		mx|HBox {
-			position: absolute;
 			horizontalGap: 10px;
 			verticalAlign: middle;
 		}
 		
 		mx|VBox {
-			position: absolute;
 			verticalGap: 10px;
 			horizontalAlign: middle;
 		}
 	</fx:Style>
 	
-	<mx:VBox x="10" y="10" width="200" height="300">
+	<mx:VBox >
 		<mx:Label text="Hello World"/>
 		<mx:Button label="Push Me" />
 		<mx:Button label="Green" icon="assets/smallgreenrect.jpg"  />
 		<mx:Image source="assets/smallgreenrect.jpg"  />
 	</mx:VBox>
-	<mx:HBox x="300" y="10" width="300" height="200">
+	<mx:HBox>
 		<mx:Label text="Hello World"/>
 		<mx:Button label="Push Me" />
 		<mx:Button label="Green" icon="assets/smallgreenrect.jpg"  />
