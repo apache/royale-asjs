@@ -53,10 +53,10 @@ limitations under the License.
 		</j:beads>
 	</j:TextButton>
 	<j:Label text="Jewel Button Sizing (respect min values)"/>
-	<j:Slider id="slider" width="250" value="100" minimum="0" maximum="500"
+	<j:Slider id="slider" width="250" value="120" minimum="100" maximum="500"
 				valueChange="onValueChange(event)"/>
-	<j:Slider id="slider_v" width="250" value="40" minimum="0" maximum="300"
+	<j:Slider id="slider_v" width="250" value="40" minimum="40" maximum="300"
 				valueChange="onValueChange(event)"/>
-	<j:TextButton id="button" text="Button" width="100" height="40" primary="true"/>
+	<j:TextButton id="button" text="Button" width="120" height="40" primary="true"/>
 
 </js:Group>

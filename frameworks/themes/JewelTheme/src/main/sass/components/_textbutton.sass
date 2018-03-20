@@ -17,45 +17,59 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-%textbutton-def
-	@extend %button-def
-	/* TextField */
+
+=textbutton-theme($button-color, $text-color)
+	cursor: pointer
+	display: inline-block
+	margin: $button-margin //1rem
+	padding: $button-padding //.938em 1.875em
+	min-width: $button-min-width
+	min-height: $button-min-height
+	/* Background: */
+	border-radius: 3px //.625em
+	border: 1px solid darken($button-color, 15%)// .094em solid 
+	background: linear-gradient(lighten($button-color, 5%), darken($button-color, 5%))
+	box-shadow: inset 0 1px 0 lighten($button-color, 20%)
+	//transition:
+	//	duration: 0.4s
 	font:
 		family: $font-stack 
-		style: bold 
-		size: $font-size
-	//+trans(0.2s ease-in-out)
+		size: $font-size//+trans(0.2s ease-in-out)
+		weight: bold
+	color: $text-color
 	text:
 		transform: uppercase
 		decoration: none 
-		//shadow: 0 -1px 0 rgba(0,0,0,0.70) //0 .063em 
-	[disabled]
+	@if $text-color == $font-color     
+		shadow: 0 1px 0 darken($text-color, 15%) //0 .063em
+	&:hover
+		border: 1px solid darken($button-color, 20%)// .094em solid 
+		background: linear-gradient($button-color, darken($button-color, 10%))
+	&:active
+		border: 1px solid darken($button-color, 30%)// .094em solid 
+		background: linear-gradient(darken($button-color, 10%), darken($button-color, 20%))
+		box-shadow: inset 0px 2px 3px 0px rgba(50, 50, 50, 0.75)
+	&:focus
+		outline: 0
+	&[disabled]
+		border: 1px solid darken($disabled-color, 20%)// .094em solid 
+		background: $disabled-color
+		color: darken($disabled-color, 25%)
+		box-shadow: none
+		cursor: unset
+		font:
+			weight: normal
 		text:
 			shadow: unset
 
-.jewel.textbutton, .jewel.textbutton:hover
-	@extend %textbutton-def
-
 .jewel.textbutton
-	+button-theme($default-color, $default-font-color)
+	+textbutton-theme($default-color, $default-font-color)
 
 .jewel.textbutton.primary
-	+button-theme($primary-color, $font-color)
+	+textbutton-theme($primary-color, $font-color)
 
 .jewel.textbutton.secondary
-	+button-theme($secondary-color, $font-color)
+	+textbutton-theme($secondary-color, $font-color)
 
 .jewel.textbutton.emphasized
-	+button-theme($emphasized-color, $font-color)
-
-// /* TextField: */
-//	font-family: $font-stack
-//	font-size: 14px
-//	font-weight: bold
-//	color: $font-normal-color
-//	text-shadow: 0 1px 0 #555
-
-//	padding: 10px 0px
-//	display: inline-block
-//	min-width: 80px
-
+	+textbutton-theme($emphasized-color, $font-color)

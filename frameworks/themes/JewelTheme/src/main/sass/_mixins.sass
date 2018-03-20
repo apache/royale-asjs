@@ -17,24 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-=button-theme($button-color, $text-color)
-	//border-color: darken($button-color, 20%)
-	background-color: $button-color
-	transition:
-		duration: 0.4s
-	color: $text-color
-	&:hover
-		background-color: lighten($button-color, 6%)
-		//box-shadow: 0 .125em $off-wht, inset 0 .063em $off-wht, inset 0 -.188em lighten($btn-color, 2%)
-	&:active
-		background-color: darken($button-color, 6%)
-		//box-shadow: 0 .063em $off-wht, inset 0 0 1.094em darken($btn-color, 40%), inset 0 .063em darken($btn-color, 20%),inset 0 -0.188em darken($btn-color, 20%)
-	&:focus
-		outline: 0
-	&[disabled]
-		background-color: $disabled-color
-		color: $font-disabled-color
-		cursor: unset
+
 
 //=trans($val...)
 //	-webkit-transition: $val
