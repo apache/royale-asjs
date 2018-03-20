@@ -52,10 +52,37 @@ import mx.utils.Platform;
 
 use namespace mx_internal;
 */
+COMPILE::SWF {
+import flash.events.Event;
+import flash.display.DisplayObject;
+import flash.display.StageAlign;
+import flash.display.StageQuality;
+import flash.display.StageScaleMode;
+import org.apache.royale.events.utils.MouseEventConverter;
+}
+
+import mx.containers.beads.ApplicationLayout;
+import mx.containers.beads.BoxLayout;
+
+import org.apache.royale.binding.ApplicationDataBinding;
+import org.apache.royale.core.AllCSSValuesImpl;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IInitialViewApplication;
+import org.apache.royale.core.ILayoutChild;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IRenderedObject;
 import org.apache.royale.core.IStatesImpl;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.IValuesImpl;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.ValueChangeEvent;
-import org.apache.royale.express.Application;
 import org.apache.royale.states.State;
+import org.apache.royale.utils.MXMLDataInterpreter;
+import org.apache.royale.utils.Timer;
 import org.apache.royale.utils.loadBeadFromValuesManager;
     
 //--------------------------------------
@@ -203,7 +230,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class Application extends org.apache.royale.express.Application
+public class Application extends Container implements IStrand, IParent, IEventDispatcher, IPopUpHost, IRenderedObject
 {
 
     //--------------------------------------------------------------------------
@@ -272,202 +299,346 @@ public class Application extends org.apache.royale.express.Application
             FlexGlobals.topLevelApplication = this;
 
         super();
+		
+		COMPILE::SWF {
+			if (stage)
+			{
+				stage.align = StageAlign.TOP_LEFT;
+				stage.scaleMode = StageScaleMode.NO_SCALE;
+				// should be opt-in
+				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
+			}
+			
+			loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
+		}
+		COMPILE::JS {
+			element.className = 'Application';			
+		}
+		
+		this.valuesImpl = new AllCSSValuesImpl();
+		addBead(new ApplicationDataBinding());
+		addBead(new ApplicationLayout());
 
         instanceParent = this;
     }
+	
+	COMPILE::SWF
+	private function initHandler(event:flash.events.Event):void
+	{
+		if (model is IBead) addBead(model as IBead);
+		if (controller is IBead) addBead(controller as IBead);
+		
+		MouseEventConverter.setupAllConverters(stage);
+		
+		for each (var bead:IBead in beads)
+		addBead(bead);
+		
+		dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
+		
+		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+			this.initialize();
+		else
+			addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
+		
+	}
+	
+	COMPILE::SWF
+	private function enterFrameHandler(event:flash.events.Event):void
+	{
+		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		{
+			removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
+			this.initialize();
+		}
+	}
+	
+	/**
+	 *  This method gets called when all preinitialize handlers
+	 *  no longer call preventDefault();
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+    COMPILE::SWF
+    override public function initialize():void
+    {
+        MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
+		
+		this.initManagers();
 
-    //--------------------------------------------------------------------------
-    //
-    //  Variables
-    //
-    //--------------------------------------------------------------------------
+        dispatchEvent(new org.apache.royale.events.Event("initialize"));
+        dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+    }
+	
+	//--------------------------------------------------------------------------
+	//
+	//  Variables
+	//
+	//--------------------------------------------------------------------------
+	
+	/**
+	 *  The org.apache.royale.core.IValuesImpl that will
+	 *  determine the default values and other values
+	 *  for the application.  The most common choice
+	 *  is org.apache.royale.core.SimpleCSSValuesImpl.
+	 *
+	 *  @see org.apache.royale.core.SimpleCSSValuesImpl
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+    public function set valuesImpl(value:IValuesImpl):void
+    {
+        ValuesManager.valuesImpl = value;
+        ValuesManager.valuesImpl.init(this);
+    }
 	
 	private var instanceParent:mx.core.Application;
-
-    /**
-     *  @private
-     */
-    override protected function initialize():void
-    {
-        initManagers();
-        super.initialize();
-    }
-    
-    /**
-     *  @private
-     */
-    private function initManagers():void
-    {
-        // install FocusManager
-    }
-
-    /**
-     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     * 
-     *  @royalesuppresspublicvarwarning
-     */
-    public var mxmlContent:Array;
-
-    /**
-     *  Number of pixels between the container's top border
-     *  and the top of its content area.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get paddingTop():Object
-    {
-        if (GOOG::DEBUG)
-            trace("paddingTop not implemented");
-        return 0;
-    }
-    public function set paddingTop(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingTop not implemented");
-    }
-    
-    /**
-     *  Number of pixels between the container's bottom border
-     *  and the bottom of its content area.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get paddingBottom():Object
-    {
-        if (GOOG::DEBUG)
-            trace("paddingBottom not implemented");
-        return 0;
-    }
-    public function set paddingBottom(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingBottom not implemented");
-    }
-    
-    /**
-     *  Number of pixels between children in the vertical direction.
-     *  The default value depends on the component class;
-     *  if not overridden for the class, the default value is 6.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get verticalGap():Object
-    {
-        if (GOOG::DEBUG)
-            trace("verticalGap not implemented");
-        return 0;
-    }
-    public function set verticalGap(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("verticalGap not implemented");
-    }
-
-    private var _states:Array;
-    
-    /**
-     *  The array of view states. These should
-     *  be instances of org.apache.royale.states.State.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function get states():Array
-    {
-        return _states;
-    }
-    
-    /**
-     *  @private
-     *  @royaleignorecoercion Class
-     *  @royaleignorecoercion org.apache.royale.core.IBead
-     */
-    public function set states(value:Array):void
-    {
-        _states = value;
-        _currentState = _states[0].name;
-        
-        try{
-            loadBeadFromValuesManager(IStatesImpl, "iStatesImpl", this);
-        }
-        //TODO:  Need to handle this case more gracefully
-        catch(e:Error)
-        {
-            COMPILE::SWF
-                {
-                    trace(e.message);                        
-                }
-        }
-        
-    }
-    
-    /**
-     *  <code>true</code> if the array of states
-     *  contains a state with this name.
-     * 
-     *  @param state The state namem.
-     *  @return True if state in state array
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function hasState(state:String):Boolean
-    {
-        for each (var s:State in _states)
-        {
-            if (s.name == state)
-                return true;
-        }
-        return false;
-    }
-    
-    private var _currentState:String;
-    
-    [Bindable("currentStateChange")]
-    /**
-     *  The name of the current state.
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function get currentState():String
-    {
-        return _currentState;   
-    }
-    
-    /**
-     *  @private
-     */
-    public function set currentState(value:String):void
-    {
-        var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
-        _currentState = value;
-        dispatchEvent(event);
-    }
+	
+	//----------------------------------
+	// model
+	//----------------------------------
+	
+	/**
+	 *  The data model (for the initial view).
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */	
+	COMPILE::JS
+	private var _model:Object;
+	
+	/**
+	 *  The data model (for the initial view).
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[Bindable("__NoChangeEvent__")]
+	COMPILE::JS
+	override public function get model():Object
+	{
+		return _model;
+	}
+	
+	/**
+	 *  @private
+	 */
+	[Bindable("__NoChangeEvent__")]
+	COMPILE::JS
+	override public function set model(value:Object):void
+	{
+		_model = value;
+	}
+	
+	//----------------------------------
+	// controller
+	//----------------------------------
+	
+	private var _controller:Object;
+	
+	/**
+	 *  The controller.  The controller typically watches
+	 *  the UI for events and updates the model accordingly.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[Bindable("__NoChangeEvent__")]
+	public function get controller():Object
+	{
+		return _controller;
+	}
+	
+	/**
+	 *  @private
+	 */
+	[Bindable("__NoChangeEvent__")]
+	public function set controller(value:Object):void
+	{
+		_controller = value;
+	}
+	
+	//----------------------------------
+	//  layout
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 *  Storage for layout property.
+	 */
+	private var _layout:String = ContainerLayout.VERTICAL;
+	
+	[Bindable("layoutChanged")]
+	[Inspectable(category="General", enumeration="vertical,horizontal,absolute", defaultValue="vertical")]
+	
+	/**
+	 *  Specifies the layout mechanism used for this application. 
+	 *  Applications can use <code>"vertical"</code>, <code>"horizontal"</code>, 
+	 *  or <code>"absolute"</code> positioning. 
+	 *  Vertical positioning lays out each child component vertically from
+	 *  the top of the application to the bottom in the specified order.
+	 *  Horizontal positioning lays out each child component horizontally
+	 *  from the left of the application to the right in the specified order.
+	 *  Absolute positioning does no automatic layout and requires you to
+	 *  explicitly define the location of each child component. 
+	 *
+	 *  @default "vertical"
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get layout():String
+	{
+		return _layout;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set layout(value:String):void
+	{
+		if (value != _layout) {
+			// do something here - find the right bead, remove the old bead??
+			var layoutBead:IBeadLayout = getBeadByType(IBeadLayout) as IBeadLayout;
+			if (layoutBead is BoxLayout) {
+				(layoutBead as BoxLayout).direction = value;
+			}
+		}
+	}
+		
+	//--------------------------------------------------------------------------
+	//
+	//  Initialization and Start-up
+	//
+	//--------------------------------------------------------------------------
+	
+	/**
+	 *  @private
+	 */
+	private function initManagers():void
+	{
+		// install FocusManager
+	}
+	
+	/**
+	 * @return {Object} The array of children.
+	 */
+	COMPILE::JS
+	protected function internalChildren():NodeList
+	{
+		return element.childNodes;
+	};
+	
+	COMPILE::JS
+	protected var startupTimer:Timer;
+	
+	/**
+	 * @royaleignorecoercion org.apache.royale.core.IBead
+	 */
+	COMPILE::JS
+	public function start():void
+	{
+		if (model is IBead) addBead(model as IBead);
+		if (controller is IBead) addBead(controller as IBead);
+		
+		for (var index:int in beads) {
+			addBead(beads[index]);
+		}
+		
+		dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
+		
+		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+			initialize();
+		else {			
+			startupTimer = new Timer(34, 0);
+			startupTimer.addEventListener("timer", handleStartupTimer);
+			startupTimer.start();
+		}
+	}
+	
+	/**
+	 * @private
+	 */
+	COMPILE::JS
+	protected function handleStartupTimer(event:Event):void
+	{
+		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		{
+			startupTimer.stop();
+			initialize();
+		}
+	}
+	
+	/**
+	 * @royaleignorecoercion org.apache.royale.core.IBead
+	 */
+	COMPILE::JS
+	override public function initialize():void
+	{
+		var body:HTMLElement = document.getElementsByTagName('body')[0];
+		body.appendChild(element);
+		
+		MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
+		
+		dispatchEvent('initialize');
+		
+//		if (initialView)
+//		{
+//            initialView.applicationModel = model;
+//            addElement(initialView);
+//            
+//			var baseView:UIBase = initialView as UIBase;
+//			if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
+//				this.element.style.height = window.innerHeight.toString() + 'px';
+//				this.element.style.width = window.innerWidth.toString() + 'px';
+//				this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+//			}
+//			
+//			dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
+//		}
+		dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+	}
+	
+	//--------------------------------------------------------------------------
+	//
+	//  Other overrides
+	//
+	//--------------------------------------------------------------------------
+	
+	COMPILE::SWF
+	override public function get $displayObject():DisplayObject
+	{
+		return this;
+	}
+	
+	COMPILE::SWF
+	override public function set width(value:Number):void
+	{
+		// just eat this.  
+		// The stageWidth will be set by SWF metadata. 
+		// Setting this directly doesn't do anything
+	}
+	
+	COMPILE::SWF
+	override public function set height(value:Number):void
+	{
+		// just eat this.  
+		// The stageWidth will be set by SWF metadata. 
+		// Setting this directly doesn't do anything
+	}
 
 }
 
