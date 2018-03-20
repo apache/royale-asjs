@@ -4,6 +4,7 @@ Apache Royale 0.9.3
 - [Renamed TextOverflow bead to EllipsisOverflow. It now supports Label elements as well.](https://github.com/apache/royale-asjs/issues/130)
 - [Added IEEventAdapterBead](https://github.com/apache/royale-asjs/issues/131)
 - [Added Object getter/setter utility functions](https://github.com/apache/royale-asjs/issues/132)
+- [Added InfiniteVScroller Bead](https://github.com/apache/royale-asjs/issues/134)
 
 Apache Royale 0.9.2
 ===================
