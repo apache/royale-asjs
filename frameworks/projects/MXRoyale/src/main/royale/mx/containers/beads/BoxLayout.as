@@ -191,16 +191,18 @@ package mx.containers.beads
 		
 		override public function layout():Boolean
 		{
-			var testWidth:Number = target.getExplicitOrMeasuredWidth();
-			var testHeight:Number = target.getExplicitOrMeasuredHeight();
-			trace("Before layout: width="+testWidth+"; height="+testHeight);
-			if (updateDisplayList(target.width, target.height)) {
-				testWidth = target.getExplicitOrMeasuredWidth();
-				testHeight = target.getExplicitOrMeasuredHeight();
-			//???	target.setActualSize(testWidth, testHeight);
-				trace("After layout: width="+target.width+"; height="+target.height);
+			var n:int = target.numChildren;
+			if (n == 0)
+				return false;
 			
+			updateDisplayList(target.width, target.height);
+			
+			// update the target's actual size if needed.
+			if (target.isWidthSizedToContent() || target.isHeightSizedToContent()) {
+				target.setActualSize(target.getExplicitOrMeasuredWidth(), 
+					                 target.getExplicitOrMeasuredHeight());
 			}
+
 			return true;
 		}
 		
@@ -209,11 +211,10 @@ package mx.containers.beads
 		 *  Lay out children as per Box layout rules.
 		 */
 		public function updateDisplayList(unscaledWidth:Number,
-												   unscaledHeight:Number):Boolean
+												   unscaledHeight:Number):void
 		{			
 			var n:int = target.numChildren;
-			if (n == 0)
-				return false;
+			if (n == 0) return;
 			
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
 			
@@ -395,8 +396,6 @@ package mx.containers.beads
 					}
 				}
 			}
-			
-			return true;
 		}
 		
 		//--------------------------------------------------------------------------

@@ -66,9 +66,9 @@ public class ApplicationLayout extends BoxLayout
 	 *  Lay out children as per Application layout rules.
 	 */
 	override public function updateDisplayList(unscaledWidth:Number,
-											   unscaledHeight:Number):Boolean
+											   unscaledHeight:Number):void
 	{
-		if (!super.updateDisplayList(unscaledWidth, unscaledHeight)) return false;
+		super.updateDisplayList(unscaledWidth, unscaledHeight);
 		
 		var target:Container = super.target;
 
@@ -106,8 +106,6 @@ public class ApplicationLayout extends BoxLayout
 				}
 			}
 		}
-		
-		return true;
 	}
 }
 
