@@ -177,8 +177,7 @@ span {
   width: 50px;
   height: 50px;
 }
-
-.jewel.checkbox label {
+.jewel.checkbox > label {
   cursor: auto;
   position: relative;
   display: block;
@@ -195,8 +194,7 @@ span {
   width: 50px;
   height: 50px;
 }
-
-.jewel.checkbox label {
+.jewel.radiobutton > label {
   cursor: auto;
   position: relative;
   display: block;
@@ -375,7 +373,6 @@ span {
   max-width: 100%;
   margin: 0;
 }
-
 .jewel.textfield > input {
   font-family: "Lato", sans-serif;
   font-size: 14px;
@@ -392,7 +389,6 @@ span {
   color: inherit;
   outline: none;
 }
-
 .jewel.textfield > label {
   bottom: 0;
   color: #ff0000;
