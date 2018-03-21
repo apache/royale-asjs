@@ -2010,7 +2010,7 @@ public class UIComponent extends UIBase
     {
         override 
     }
-    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject,int",altparams="org.apache.royale.core.IUIComponent,int")]
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
@@ -2091,9 +2091,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+    [SWFOverride(params="flash.display.DisplayObject,int",altparams="org.apache.royale.core.IUIComponent,int")]
     COMPILE::SWF 
     { override }
-    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
     public function setChildIndex(child:IUIComponent, index:int):void
     {
         if (GOOG::DEBUG)
@@ -2103,9 +2103,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
     COMPILE::SWF 
     { override }
-    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
     public function getChildIndex(child:IUIComponent):int
     {
         return getElementIndex(child);
@@ -2114,9 +2114,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
-    [SWFOverride(returns="flash.display.DisplayObject")]
     public function getChildByName(name:String):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -2127,9 +2127,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
     COMPILE::SWF 
     { override }
-    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
     public function contains(child:IUIComponent):Boolean
     {
         if (GOOG::DEBUG)
@@ -2140,9 +2140,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+    [SWFOverride(params="Boolean,flash.geom.Rectangle",altparams="Boolean,org.apache.royale.geom.Rectangle")]
     COMPILE::SWF 
     { override }
-    [SWFOverride(params="flash.geom.Rectangle",altparams="org.apache.royale.geom.Rectangle")]
     public function startDrag(lockCenter:Boolean = false, bounds:Rectangle = null):void
     {
         if (GOOG::DEBUG)

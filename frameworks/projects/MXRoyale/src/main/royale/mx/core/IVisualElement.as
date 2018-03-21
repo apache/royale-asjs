@@ -72,6 +72,7 @@ public interface IVisualElement /* extends ILayoutElement, ILayoutDirectionEleme
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+    [SWFOverride(returns="flash.display.DisplayObjectContainer")]
     function get parent():IParent;
     
     /**

@@ -44,6 +44,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+    [SWFOverride(returns="flash.display.DisplayObjectContainer")]
     function get parent():IParent;
 
     /**
@@ -169,6 +170,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
     function globalToLocal(point:Point):Point;
 
     /**
@@ -179,5 +181,6 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
     function localToGlobal(point:Point):Point;
 
