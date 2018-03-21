@@ -17,6 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// CONSTANTS
 // 12 Color Themes (this will go to one separate project each one)
 $red: #EC1C24
 $amethyst: #922590
@@ -30,15 +31,22 @@ $yellow: #FCEF0A
 $sunflower: #F8B13F
 $orange: #F7941D
 $topaz: #EF5A2A
+$font-theme-color: #FFFFFF
 
-// Common Colors
-$font-color: #FFFFFF
-$default-color: #d9d9d9
-$default-font-color: #808080
-$disabled-color: #F9F9F9
+$light-color: #d9d9d9
+$font-light-color: #808080
 
-// Var Colors
-$default-color: $default-color
+$dark-color: #666666
+$font-dark-color: #FFFFFF
+
+//Theme Style (Flat or Gradient)
+$flat: false
+
+// VARIABLES
+$default-color: $light-color  // change this from light to dark
 $primary-color: $blue
 $secondary-color: $topaz
 $emphasized-color: $green
+
+$default-font-color: $font-light-color // change this from light to dark
+$disabled-color: #F9F9F9 // maybe make it dependent of theme colors

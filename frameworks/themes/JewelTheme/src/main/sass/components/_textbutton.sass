@@ -25,11 +25,15 @@
 	padding: $button-padding //.938em 1.875em
 	min-width: $button-min-width
 	min-height: $button-min-height
-	/* Background: */
-	border-radius: 3px //.625em
-	border: 1px solid darken($button-color, 15%)// .094em solid 
-	background: linear-gradient(lighten($button-color, 5%), darken($button-color, 5%))
-	box-shadow: inset 0 1px 0 lighten($button-color, 20%)
+	
+	@if $flat
+		border: 0px solid
+		background: $button-color
+	@else
+		border: 1px solid darken($button-color, 15%)// .094em solid 
+		background: linear-gradient(lighten($button-color, 5%), darken($button-color, 5%))
+		box-shadow: inset 0 1px 0 lighten($button-color, 20%)
+	border-radius: $button-border-radius //.625em
 	//transition:
 	//	duration: 0.4s
 	font:
@@ -40,15 +44,21 @@
 	text:
 		transform: uppercase
 		decoration: none 
-	@if $text-color == $font-color     
+	@if not $flat and $text-color == $font-theme-color
 		shadow: 0 1px 0 darken($text-color, 15%) //0 .063em
 	&:hover
-		border: 1px solid darken($button-color, 20%)// .094em solid 
-		background: linear-gradient($button-color, darken($button-color, 10%))
+		@if $flat
+			background: darken($button-color, 5%)
+		@else
+			border: 1px solid darken($button-color, 20%)// .094em solid 
+			background: linear-gradient($button-color, darken($button-color, 10%))
 	&:active
-		border: 1px solid darken($button-color, 30%)// .094em solid 
-		background: linear-gradient(darken($button-color, 10%), darken($button-color, 20%))
-		box-shadow: inset 0px 2px 3px 0px rgba(50, 50, 50, 0.75)
+		@if $flat
+			background: darken($button-color, 15%)
+		@else
+			border: 1px solid darken($button-color, 30%)// .094em solid 
+			background: linear-gradient(darken($button-color, 10%), darken($button-color, 20%))
+			box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
 	&:focus
 		outline: 0
 	&[disabled]
@@ -66,10 +76,10 @@
 	+textbutton-theme($default-color, $default-font-color)
 
 .jewel.textbutton.primary
-	+textbutton-theme($primary-color, $font-color)
+	+textbutton-theme($primary-color, $font-theme-color)
 
 .jewel.textbutton.secondary
-	+textbutton-theme($secondary-color, $font-color)
+	+textbutton-theme($secondary-color, $font-theme-color)
 
 .jewel.textbutton.emphasized
-	+textbutton-theme($emphasized-color, $font-color)
+	+textbutton-theme($emphasized-color, $font-theme-color)
