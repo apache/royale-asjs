@@ -322,102 +322,47 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         instanceParent = this;
     }
 	
-	private var instanceParent:mx.core.Application;
-
-    /**
-     *  @private
-     */
-    override protected function initialize():void
-    {
-        initManagers();
-        super.initialize();
-        // IStatesImpl is expecting this event
-        dispatchEvent(new org.apache.royale.events.Event("initComplete"));
-    }
-    
-    /**
-     *  @private
-     */
-    private function initManagers():void
-    {
-        // install FocusManager
-    }
-
-    /**
-     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     * 
-     *  @royalesuppresspublicvarwarning
-     */
-    public var mxmlContent:Array;
-
-    /**
-     *  Number of pixels between the container's top border
-     *  and the top of its content area.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get paddingTop():Object
-    {
-        if (GOOG::DEBUG)
-            trace("paddingTop not implemented");
-        return 0;
-    }
-    public function set paddingTop(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingTop not implemented");
-    }
-    
-    /**
-     *  Number of pixels between the container's bottom border
-     *  and the bottom of its content area.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get paddingBottom():Object
-    {
-        if (GOOG::DEBUG)
-            trace("paddingBottom not implemented");
-        return 0;
-    }
-    public function set paddingBottom(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingBottom not implemented");
-    }
-    
-    /**
-     *  Number of pixels between children in the vertical direction.
-     *  The default value depends on the component class;
-     *  if not overridden for the class, the default value is 6.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get verticalGap():Object
-    {
-        if (GOOG::DEBUG)
-            trace("verticalGap not implemented");
-        return 0;
-    }
-    public function set verticalGap(value:Object):void
+	COMPILE::SWF
+	private function initHandler(event:flash.events.Event):void
+	{
+		if (model is IBead) addBead(model as IBead);
+		if (controller is IBead) addBead(controller as IBead);
+		
+		MouseEventConverter.setupAllConverters(stage);
+		
+		for each (var bead:IBead in beads)
+		addBead(bead);
+		
+		dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
+		
+		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+			this.initialize();
+		else
+			addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
+		
+	}
+	
+	COMPILE::SWF
+	private function enterFrameHandler(event:flash.events.Event):void
+	{
+		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		{
+			removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
+			this.initialize();
+		}
+	}
+	
+	/**
+	 *  This method gets called when all preinitialize handlers
+	 *  no longer call preventDefault();
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+    COMPILE::SWF
+    override public function initialize():void
     {
         MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
 		
