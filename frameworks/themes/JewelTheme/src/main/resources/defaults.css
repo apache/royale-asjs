@@ -367,41 +367,26 @@ span {
 
 .jewel.textfield {
   position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 300px;
-  max-width: 100%;
-  margin: 0;
-}
-.jewel.textfield > input {
-  font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: normal;
-  border: none;
-  border-bottom: 2px solid;
-  border-bottom-color: #ff0000;
-  display: block;
-  margin: 0;
-  padding: 4 0;
-  width: 100px;
-  background: transparent;
-  text-align: left;
-  color: inherit;
-  outline: none;
+  display: inline-flex;
 }
-.jewel.textfield > label {
-  bottom: 0;
-  color: #ff0000;
-  font-size: 13px;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-  position: absolute;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
+.jewel.textfield .input {
+  margin: 0em;
+  max-width: 100%;
+  flex: 1 0 auto;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   text-align: left;
+  line-height: 1.2em;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  padding: 0.67em 1em;
+  background: #ffffff;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 3px;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=defaults.css.map */

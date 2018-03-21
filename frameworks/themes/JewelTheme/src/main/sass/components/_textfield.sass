@@ -20,43 +20,33 @@
 // Jewel Textfield
 .jewel.textfield
 	position: relative
-	display: inline-block
-	box-sizing: border-box
-	width: 300px
-	max-width: 100%
-	margin: 0
-
-	> input
-		font:
-			family: $font-stack 
-			size: $font-size
-			weight: normal
-
-		border: none
-		border-bottom: 2px solid
-		border-bottom-color: #ff0000
-		display: block
-		margin: 0
-		padding: 4 0
-		width: 100px
-		background: transparent
-		text-align: left
-		color: inherit
+	font:
+		//family: $font-stack 
+		size: $font-size
+		weight: normal
+	display: inline-flex
+	
+	.input
+		margin: 0em
+		max-width: 100%
+		flex: 1 0 auto
 		outline: none
-		
-	> label
-		bottom: 0
-		color: #ff0000
-		font-size: 13px
-		left: 0
-		right: 0
-		pointer-events: none
-		position: absolute
-		display: block
-		width: 100%
-		overflow: hidden
-		white-space: nowrap
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 		text-align: left
+		line-height: 1.2em
+
+		font:
+			family: $font-stack
+			size: $font-size
+		padding: .67em 1em
+
+		background: #ffffff
+		border: 1px solid rgba(34, 36, 38, .15)
+		color: rgba(0, 0, 0, .87)
+		border-radius: 3px
+		//transition: transition
+
+		box-shadow: none
 
 //    padding: 5px;
 //    border: solid 1px #666666;

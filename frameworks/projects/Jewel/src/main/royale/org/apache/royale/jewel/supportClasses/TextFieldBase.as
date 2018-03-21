@@ -146,8 +146,8 @@ package org.apache.royale.jewel.supportClasses
 
             COMPILE::JS
             {
-                positioner.classList.toggle("is-invalid", _isInvalid);
-                typeNames = positioner.className;
+                //positioner.classList.toggle("is-invalid", _isInvalid);
+                //typeNames = positioner.className;
             }
         }
 	}

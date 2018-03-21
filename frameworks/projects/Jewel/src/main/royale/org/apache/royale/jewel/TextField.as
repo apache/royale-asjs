@@ -89,23 +89,23 @@ package org.apache.royale.jewel
             
             input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'text');
-            //input.className = "vTextField--input";
+            input.className = "input";
             
             //attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
-            label = document.createElement('label') as HTMLLabelElement;
-            //label.className = "vTextField--label";
+            //label = document.createElement('label') as HTMLLabelElement;
+            //label.className = "jewel-textfield-label";
 
-            textNode = document.createTextNode('') as Text;
-            label.appendChild(textNode);
+            //textNode = document.createTextNode('') as Text;
+            //label.appendChild(textNode);
             
             div.appendChild(input);
-            div.appendChild(label);
+            //div.appendChild(label);
 
             positioner = div as WrappedHTMLElement;
-            (label as WrappedHTMLElement).royale_wrapper = this;
+            //(label as WrappedHTMLElement).royale_wrapper = this;
             _positioner.royale_wrapper = this;
             
             return element;

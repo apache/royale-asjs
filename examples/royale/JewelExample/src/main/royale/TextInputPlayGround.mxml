@@ -35,7 +35,17 @@ limitations under the License.
 
 	<html:H4 text="Jewel TextField"/>
 
-	<j:TextField text="Text Input" width="120" height="40"/>
+	<js:Group>
+		<js:beads>
+			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+		</js:beads>
+		<j:TextField>
+			<j:beads>
+				<js:TextPromptBead prompt="A Textfield..."/>
+			</j:beads>
+		</j:TextField>
+		<j:TextButton text="Send" primary="true"/>
+	</js:Group>
 
 	<html:H4 text="Jewel CheckBox"/>
 	<j:CheckBox text="label"/>
