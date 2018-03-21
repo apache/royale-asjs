@@ -61,13 +61,20 @@ package org.apache.royale.jewel
 		{
 			super(upState, overState, downState, hitTestState);
 
-            typeNames = "jewel radio"
+            typeNames = "jewel radiobutton"
 		}
     }
 
     COMPILE::JS
     public class RadioButton extends org.apache.royale.html.RadioButton
     {
+        public function RadioButton()
+		{
+			super();
+
+            typeNames = "jewel radiobutton";
+		}
+
         /**
          * @private
          * 
@@ -87,8 +94,6 @@ package org.apache.royale.jewel
          */
         override protected function createElement():WrappedHTMLElement
         {
-            
-
             icon = new RadioButtonIcon()
             icon.id = '_radio_' + org.apache.royale.jewel.RadioButton.radioCounter++;
 
@@ -100,8 +105,6 @@ package org.apache.royale.jewel
             
             (textNode as WrappedHTMLElement).royale_wrapper = this;
 			(icon.element as WrappedHTMLElement).royale_wrapper = this;
-
-            typeNames = 'RadioButton';
 
             return element;
         }

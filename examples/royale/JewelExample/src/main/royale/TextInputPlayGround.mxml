@@ -38,9 +38,9 @@ limitations under the License.
 	<j:TextField text="Text Input" width="120" height="40"/>
 
 	<html:H4 text="Jewel CheckBox"/>
-	<j:CheckBox/>
+	<j:CheckBox text="label"/>
 	
 	<html:H4 text="Jewel RadioButton"/>
-	<j:RadioButton/>
+	<j:RadioButton text="label"/>
 
 </js:Group>

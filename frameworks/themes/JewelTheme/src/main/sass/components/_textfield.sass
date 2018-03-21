@@ -25,35 +25,39 @@
 	max-width: 100%
 	margin: 0
 
-.jewel.textfield input
-	font-size: 16px
-	font-family: 'Lato', sans-serif
+.jewel.textfield
+	> input
+		font:
+			family: $font-stack 
+			size: $font-size
+			weight: normal
 
-	border: none
-	border-bottom: 2px solid
-	border-bottom-color: #ff0000
-	display: block
-	margin: 0
-	padding: 4 0
-	width: 100px
-	background: transparent
-	text-align: left
-	color: inherit
-	outline: none
+		border: none
+		border-bottom: 2px solid
+		border-bottom-color: #ff0000
+		display: block
+		margin: 0
+		padding: 4 0
+		width: 100px
+		background: transparent
+		text-align: left
+		color: inherit
+		outline: none
 
-.jewel.textfield label
-	bottom: 0
-	color: #ff0000
-	font-size: 13px
-	left: 0
-	right: 0
-	pointer-events: none
-	position: absolute
-	display: block
-	width: 100%
-	overflow: hidden
-	white-space: nowrap
-	text-align: left
+.jewel.textfield
+	> label
+		bottom: 0
+		color: #ff0000
+		font-size: 13px
+		left: 0
+		right: 0
+		pointer-events: none
+		position: absolute
+		display: block
+		width: 100%
+		overflow: hidden
+		white-space: nowrap
+		text-align: left
 
 //    padding: 5px;
 //    border: solid 1px #666666;
