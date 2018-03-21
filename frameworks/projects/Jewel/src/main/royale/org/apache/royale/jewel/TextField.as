@@ -50,7 +50,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel textField";
+            typeNames = "jewel textfield";
 		}
 
         COMPILE::JS

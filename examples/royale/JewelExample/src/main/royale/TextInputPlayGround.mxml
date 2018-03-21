@@ -19,10 +19,28 @@ limitations under the License.
 -->
 <js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		  xmlns:js="library://ns.apache.org/royale/basic"
+		  xmlns:html="library://ns.apache.org/royale/html"
 		  xmlns:j="library://ns.apache.org/royale/jewel">
     
+	<js:beads>
+		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
+	</js:beads>
 	
-	<j:RadioButton/>
+	<html:H1 text="Heading H1"/>
+	<html:H2 text="Heading H2"/>
+	<html:H3 text="Heading H3"/>
+	<html:H4 text="Heading H4"/>
+
+	<html:Span text="Normal text to use in labels, texts and fields with single line or multiple lines."/>
+
+	<html:H4 text="Jewel TextField"/>
+
 	<j:TextField text="Text Input" width="120" height="40"/>
+
+	<html:H4 text="Jewel CheckBox"/>
 	<j:CheckBox/>
+	
+	<html:H4 text="Jewel RadioButton"/>
+	<j:RadioButton/>
+
 </js:Group>

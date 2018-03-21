@@ -17,6 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Button variables
+$button-margin: 0 !default
+$button-padding: 10px 16px !default
+$button-min-height: 34px !default
+$button-min-width: 74px !default
+
+$button-border-radius: 3px
+
 =button-theme($button-color)
 	cursor: pointer
 	display: inline-block
@@ -31,7 +39,7 @@
 		border: 0px solid
 		background: $button-color
 	@else
-		border: 1px solid darken($button-color, 15%)// .094em solid 
+		border: 1px solid darken($button-color, 15%)// .094em 
 		background: linear-gradient(lighten($button-color, 5%), darken($button-color, 5%))
 		box-shadow: inset 0 1px 0 lighten($button-color, 20%)
 	border-radius: $button-border-radius //.625em
@@ -45,7 +53,7 @@
 		@if $flat
 			background: darken($button-color, 5%)
 		@else
-			border: 1px solid darken($button-color, 20%)// .094em solid 
+			border: 1px solid darken($button-color, 20%)// .094em 
 			background: linear-gradient($button-color, darken($button-color, 10%))
 	
 	&:active

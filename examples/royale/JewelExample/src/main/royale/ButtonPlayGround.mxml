@@ -19,6 +19,7 @@ limitations under the License.
 -->
 <js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		  xmlns:js="library://ns.apache.org/royale/basic"
+		  xmlns:html="library://ns.apache.org/royale/html"
 		  xmlns:j="library://ns.apache.org/royale/jewel">
     
 	<fx:Script>
@@ -35,13 +36,10 @@ limitations under the License.
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
-	<j:Label text="Basic"/>
-	<js:Button/>
-	<js:TextButton text="Basic"/>
-
-	<j:Label text="Jewel Button"/>
+	<html:H4 text="Jewel Button"/>
 	<j:Button primary="true"/>
-	<j:Label text="Jewel TextButton"/>
+	
+	<html:H4 text="Jewel TextButton"/>
 	<j:TextButton text="Default"/>
 	<j:TextButton text="Button With More Text"/>
 	<j:TextButton text="Primary" primary="true"/>
