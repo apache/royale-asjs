@@ -34,15 +34,21 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #d9d9d9;
+  border: 1px solid #b3b3b3;
+  background: linear-gradient(#e6e6e6, #cccccc);
+  box-shadow: inset 0 1px 0 white;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
 }
 .jewel.button:hover {
-  background: #cccccc;
+  border: 1px solid #a6a6a6;
+  background: linear-gradient(#d9d9d9, silver);
 }
 .jewel.button:active {
-  background: #b3b3b3;
+  border: 1px solid #8d8d8d;
+  background: linear-gradient(silver, #a6a6a6);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button:focus {
   outline: 0;
@@ -61,15 +67,21 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #3CADF1;
+  border: 1px solid #0f88d1;
+  background: linear-gradient(#54b7f3, #24a3ef);
+  box-shadow: inset 0 1px 0 #9bd5f8;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
 }
 .jewel.button.primary:hover {
-  background: #24a3ef;
+  border: 1px solid #0d79ba;
+  background: linear-gradient(#3CADF1, #1198e9);
 }
 .jewel.button.primary:active {
-  background: #0f88d1;
+  border: 1px solid #0a5a8a;
+  background: linear-gradient(#1198e9, #0d79ba);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.primary:focus {
   outline: 0;
@@ -88,15 +100,21 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #EF5A2A;
+  border: 1px solid #be390e;
+  background: linear-gradient(#f16c42, #ed4812);
+  box-shadow: inset 0 1px 0 #f6a389;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
 }
 .jewel.button.secondary:hover {
-  background: #ed4812;
+  border: 1px solid #a6320d;
+  background: linear-gradient(#EF5A2A, #d64010);
 }
 .jewel.button.secondary:active {
-  background: #be390e;
+  border: 1px solid #772409;
+  background: linear-gradient(#d64010, #a6320d);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.secondary:focus {
   outline: 0;
@@ -115,15 +133,21 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #3AB549;
+  border: 1px solid #277b32;
+  background: linear-gradient(#45c354, #34a241);
+  box-shadow: inset 0 1px 0 #7fd68a;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
 }
 .jewel.button.emphasized:hover {
-  background: #34a241;
+  border: 1px solid #21682a;
+  background: linear-gradient(#3AB549, #2e8e39);
 }
 .jewel.button.emphasized:active {
-  background: #277b32;
+  border: 1px solid #15411a;
+  background: linear-gradient(#2e8e39, #21682a);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.emphasized:focus {
   outline: 0;
@@ -147,9 +171,12 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #d9d9d9;
+  border: 1px solid #b3b3b3;
+  background: linear-gradient(#e6e6e6, #cccccc);
+  box-shadow: inset 0 1px 0 white;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: bold;
@@ -158,10 +185,14 @@
   text-decoration: none;
 }
 .jewel.textbutton:hover {
-  background: #cccccc;
+  border: 1px solid #a6a6a6;
+  background: linear-gradient(#d9d9d9, silver);
+  box-shadow: inser 0 0 0;
 }
 .jewel.textbutton:active {
-  background: #b3b3b3;
+  border: 1px solid #8d8d8d;
+  background: linear-gradient(silver, #a6a6a6);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton:focus {
   outline: 0;
@@ -183,21 +214,29 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #3CADF1;
+  border: 1px solid #0f88d1;
+  background: linear-gradient(#54b7f3, #24a3ef);
+  box-shadow: inset 0 1px 0 #9bd5f8;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: bold;
   color: #FFFFFF;
   text-transform: uppercase;
   text-decoration: none;
+  shadow: 0 1px 0 #d9d9d9;
 }
 .jewel.textbutton.primary:hover {
-  background: #24a3ef;
+  border: 1px solid #0d79ba;
+  background: linear-gradient(#3CADF1, #1198e9);
+  box-shadow: inser 0 0 0;
 }
 .jewel.textbutton.primary:active {
-  background: #0f88d1;
+  border: 1px solid #0a5a8a;
+  background: linear-gradient(#1198e9, #0d79ba);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.primary:focus {
   outline: 0;
@@ -219,21 +258,29 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #EF5A2A;
+  border: 1px solid #be390e;
+  background: linear-gradient(#f16c42, #ed4812);
+  box-shadow: inset 0 1px 0 #f6a389;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: bold;
   color: #FFFFFF;
   text-transform: uppercase;
   text-decoration: none;
+  shadow: 0 1px 0 #d9d9d9;
 }
 .jewel.textbutton.secondary:hover {
-  background: #ed4812;
+  border: 1px solid #a6320d;
+  background: linear-gradient(#EF5A2A, #d64010);
+  box-shadow: inser 0 0 0;
 }
 .jewel.textbutton.secondary:active {
-  background: #be390e;
+  border: 1px solid #772409;
+  background: linear-gradient(#d64010, #a6320d);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.secondary:focus {
   outline: 0;
@@ -255,21 +302,29 @@
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 0px solid;
-  background: #3AB549;
+  border: 1px solid #277b32;
+  background: linear-gradient(#45c354, #34a241);
+  box-shadow: inset 0 1px 0 #7fd68a;
   border-radius: 3px;
+  transition-duration: 1s;
+  transition-timing-function: ease;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: bold;
   color: #FFFFFF;
   text-transform: uppercase;
   text-decoration: none;
+  shadow: 0 1px 0 #d9d9d9;
 }
 .jewel.textbutton.emphasized:hover {
-  background: #34a241;
+  border: 1px solid #21682a;
+  background: linear-gradient(#3AB549, #2e8e39);
+  box-shadow: inser 0 0 0;
 }
 .jewel.textbutton.emphasized:active {
-  background: #277b32;
+  border: 1px solid #15411a;
+  background: linear-gradient(#2e8e39, #21682a);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.emphasized:focus {
   outline: 0;

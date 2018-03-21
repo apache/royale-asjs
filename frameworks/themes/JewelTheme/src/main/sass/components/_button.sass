@@ -20,8 +20,10 @@
 =button-theme($button-color)
 	cursor: pointer
 	display: inline-block
+
 	margin: $button-margin //1rem
 	padding: $button-padding //.938em 1.875em
+	
 	min-width: $button-min-width
 	min-height: $button-min-height
 	
@@ -33,14 +35,19 @@
 		background: linear-gradient(lighten($button-color, 5%), darken($button-color, 5%))
 		box-shadow: inset 0 1px 0 lighten($button-color, 20%)
 	border-radius: $button-border-radius //.625em
-	//transition:
-	//	duration: 0.4s
+	
+	@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+	
 	&:hover
 		@if $flat
 			background: darken($button-color, 5%)
 		@else
 			border: 1px solid darken($button-color, 20%)// .094em solid 
 			background: linear-gradient($button-color, darken($button-color, 10%))
+	
 	&:active
 		@if $flat
 			background: darken($button-color, 15%)
@@ -48,8 +55,10 @@
 			border: 1px solid darken($button-color, 30%)// .094em solid 
 			background: linear-gradient(darken($button-color, 10%), darken($button-color, 20%))
 			box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
+	
 	&:focus
 		outline: 0
+	
 	&[disabled]
 		border: 1px solid darken($disabled-color, 20%)// .094em solid 
 		background: $disabled-color
