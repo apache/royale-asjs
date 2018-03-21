@@ -58,6 +58,8 @@ import flash.display.DisplayObject;
 import flash.display.StageAlign;
 import flash.display.StageQuality;
 import flash.display.StageScaleMode;
+import flash.system.ApplicationDomain;
+import flash.utils.getQualifiedClassName;
 import org.apache.royale.events.utils.MouseEventConverter;
 }
 
@@ -68,6 +70,7 @@ import org.apache.royale.binding.ApplicationDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IFlexInfo;
 import org.apache.royale.core.IInitialViewApplication;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IParent;
@@ -230,7 +233,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class Application extends Container implements IStrand, IParent, IEventDispatcher, IPopUpHost, IRenderedObject
+public class Application extends Container implements IStrand, IParent, IEventDispatcher, IPopUpHost, IRenderedObject, IFlexInfo
 {
 
     //--------------------------------------------------------------------------
@@ -322,16 +325,39 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         instanceParent = this;
     }
 	
+    private var _info:Object;
+    
+    /**
+     *  An Object containing information generated
+     *  by the compiler that is useful at startup time.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function info():Object
+    {
+        COMPILE::SWF
+        {
+        if (!_info)
+        {
+            var mainClassName:String = getQualifiedClassName(this);
+            var initClassName:String = "_" + mainClassName + "_FlexInit";
+            var c:Class = ApplicationDomain.currentDomain.getDefinition(initClassName) as Class;
+            _info = c.info();
+        }
+        }
+        return _info;
+    }
+    
 	COMPILE::SWF
 	private function initHandler(event:flash.events.Event):void
 	{
-		if (model is IBead) addBead(model as IBead);
-		if (controller is IBead) addBead(controller as IBead);
-		
 		MouseEventConverter.setupAllConverters(stage);
 		
 		for each (var bead:IBead in beads)
-		addBead(bead);
+    		addBead(bead);
 		
 		dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
 		
@@ -398,76 +424,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     }
 	
 	private var instanceParent:mx.core.Application;
-	
-	//----------------------------------
-	// model
-	//----------------------------------
-	
-	/**
-	 *  The data model (for the initial view).
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */	
-	COMPILE::JS
-	private var _model:Object;
-	
-	/**
-	 *  The data model (for the initial view).
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	[Bindable("__NoChangeEvent__")]
-	COMPILE::JS
-	override public function get model():Object
-	{
-		return _model;
-	}
-	
-	/**
-	 *  @private
-	 */
-	[Bindable("__NoChangeEvent__")]
-	COMPILE::JS
-	override public function set model(value:Object):void
-	{
-		_model = value;
-	}
-	
-	//----------------------------------
-	// controller
-	//----------------------------------
-	
-	private var _controller:Object;
-	
-	/**
-	 *  The controller.  The controller typically watches
-	 *  the UI for events and updates the model accordingly.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	[Bindable("__NoChangeEvent__")]
-	public function get controller():Object
-	{
-		return _controller;
-	}
-	
-	/**
-	 *  @private
-	 */
-	[Bindable("__NoChangeEvent__")]
-	public function set controller(value:Object):void
-	{
-		_controller = value;
-	}
 	
 	//----------------------------------
 	//  layout
@@ -551,9 +507,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function start():void
 	{
-		if (model is IBead) addBead(model as IBead);
-		if (controller is IBead) addBead(controller as IBead);
-		
 		for (var index:int in beads) {
 			addBead(beads[index]);
 		}
