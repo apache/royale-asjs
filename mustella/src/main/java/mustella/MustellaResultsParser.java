@@ -154,6 +154,9 @@ public class MustellaResultsParser {
 				else if (s.startsWith("Avertissement"))
 				{
 				}
+                else if (s.contains("not implemented"))
+                {
+                }
 				else if (s.trim().equals(""))
 				{
 				}
