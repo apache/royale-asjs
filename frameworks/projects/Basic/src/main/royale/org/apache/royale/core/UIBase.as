@@ -21,6 +21,7 @@ package org.apache.royale.core
     COMPILE::SWF
     {
         import flash.display.DisplayObject;
+        import flash.display.DisplayObjectContainer;
         import flash.display.Sprite;
         import flash.display.Stage;
         import org.apache.royale.events.utils.MouseEventConverter;
@@ -1621,6 +1622,11 @@ package org.apache.royale.core
         public function get $numChildren():int
         {
             return super.numChildren;
+        }
+        COMPILE::SWF
+        public function get $parent():DisplayObjectContainer
+        {
+            return super.parent;
         }
 
 	}
