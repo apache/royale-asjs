@@ -31,10 +31,33 @@
 	<js:initialView>
 		<js:View>
 			<js:beads>
-				<j:HorizontalLayout />
+				<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
 			</js:beads>
-			<local:ButtonPlayGround/>
-			<local:TextInputPlayGround/>
+
+			<js:Group>
+				<js:beads>
+					<j:VerticalLayoutWithPaddingAndGap gap="10"/>
+				</js:beads>
+				<local:ButtonPlayGround/>
+				<local:TextButtonPlayGround/>
+			</js:Group>
+
+			<js:Group>
+				<js:beads>
+					<j:VerticalLayoutWithPaddingAndGap gap="10"/>
+				</js:beads>
+				<local:TextInputPlayGround/>
+				<local:CheckBoxPlayGround/>
+				<local:RadioButtonPlayGround/>
+				<local:SliderPlayGround/>
+			</js:Group>
+
+			<js:Group>
+				<js:beads>
+					<j:VerticalLayoutWithPaddingAndGap gap="10"/>
+				</js:beads>
+				<local:HeadingsAndText/>
+			</js:Group>
         </js:View>
 	</js:initialView>
 </j:Application>

@@ -37,10 +37,17 @@ limitations under the License.
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
-	<html:H3 text="Jewel Button"/>
+	<html:H3 text="Jewel TextButton"/>
 	
-	<j:Button />
-	<j:Button primary="true"/>
-	<j:Button emphasized="true"/>
-	
+	<j:TextButton text="Default"/>
+	<j:TextButton text="Button With More Text"/>
+	<j:TextButton text="Primary" primary="true"/>
+	<j:TextButton text="Secondary" secondary="true"/>
+	<j:TextButton text="Emphasized" emphasized="true"/>
+	<j:TextButton text="Disabled" primary="true">
+		<j:beads>
+			<j:Disabled/>
+		</j:beads>
+	</j:TextButton>
+
 </js:Group>

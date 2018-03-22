@@ -20,20 +20,22 @@ limitations under the License.
 <js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		  xmlns:js="library://ns.apache.org/royale/basic"
 		  xmlns:html="library://ns.apache.org/royale/html"
-		  xmlns:j="library://ns.apache.org/royale/jewel">
+		  xmlns:j="library://ns.apache.org/royale/jewel"
+		  className="container">
     
 	<js:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
-	<html:H1 text="Heading H1"/>
-	<html:H2 text="Heading H2"/>
-	<html:H3 text="Heading H3"/>
-	<html:H4 text="Heading H4"/>
+	<html:H3 text="Jewel TextField"/>
 
-	<html:Span text="Normal text to use in labels, texts and fields with single line or multiple lines."/>
-
-	<html:H4 text="Jewel TextField"/>
+	<js:Group>
+		<js:beads>
+			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+		</js:beads>
+		<j:TextButton text="Check it!" primary="true"/>
+		<j:TextField text="A TextField"/>
+	</js:Group>
 
 	<js:Group>
 		<js:beads>
@@ -41,16 +43,17 @@ limitations under the License.
 		</js:beads>
 		<j:TextField>
 			<j:beads>
-				<js:TextPromptBead prompt="A Textfield..."/>
+				<js:TextPromptBead prompt="With Placeholder..."/>
 			</j:beads>
 		</j:TextField>
 		<j:TextButton text="Send" primary="true"/>
 	</js:Group>
 
-	<html:H4 text="Jewel CheckBox"/>
-	<j:CheckBox text="label"/>
-	
-	<html:H4 text="Jewel RadioButton"/>
-	<j:RadioButton text="label"/>
+	<j:TextField>
+		<j:beads>
+			<js:TextPromptBead prompt="Disabled Textfield..."/>
+			<j:Disabled/>
+		</j:beads>
+	</j:TextField>
 
 </js:Group>

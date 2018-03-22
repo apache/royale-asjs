@@ -21,14 +21,14 @@ limitations under the License.
 		  xmlns:js="library://ns.apache.org/royale/basic"
 		  xmlns:html="library://ns.apache.org/royale/html"
 		  xmlns:j="library://ns.apache.org/royale/jewel"
-		  className="container">
+          className="container">
     
 	<fx:Script>
 		<![CDATA[
         private function onValueChange(event:Event):void
         {
-        	//button.width = slider.value;
-			//button.height = slider_v.value;
+        	button.width = slider.value;
+			button.height = slider_v.value;
         }
     	]]>
 	</fx:Script>
@@ -37,10 +37,12 @@ limitations under the License.
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
-	<html:H3 text="Jewel Button"/>
+	<html:H3 text="Jewel Slider"/>
 	
-	<j:Button />
-	<j:Button primary="true"/>
-	<j:Button emphasized="true"/>
-	
+	<j:Slider id="slider" width="250" value="120" minimum="100" maximum="500"
+				valueChange="onValueChange(event)"/>
+	<j:Slider id="slider_v" width="250" value="40" minimum="40" maximum="300"
+				valueChange="onValueChange(event)"/>
+	<j:TextButton id="button" text="Button" width="120" height="40" primary="true"/>
+
 </js:Group>

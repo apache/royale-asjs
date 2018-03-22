@@ -21,26 +21,20 @@ limitations under the License.
 		  xmlns:js="library://ns.apache.org/royale/basic"
 		  xmlns:html="library://ns.apache.org/royale/html"
 		  xmlns:j="library://ns.apache.org/royale/jewel"
-		  className="container">
+          className="container">
     
-	<fx:Script>
-		<![CDATA[
-        private function onValueChange(event:Event):void
-        {
-        	//button.width = slider.value;
-			//button.height = slider_v.value;
-        }
-    	]]>
-	</fx:Script>
-
 	<js:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
-	<html:H3 text="Jewel Button"/>
-	
-	<j:Button />
-	<j:Button primary="true"/>
-	<j:Button emphasized="true"/>
-	
+	<html:H3 text="Jewel RadioButton"/>
+
+	<j:RadioButton text="RadioButton 1"/>
+	<j:RadioButton text="RadioButton 2"/>
+	<j:RadioButton text="RadioButton Disabled">
+		<j:beads>
+			<j:Disabled/>
+		</j:beads>
+	</j:RadioButton>
+
 </js:Group>
