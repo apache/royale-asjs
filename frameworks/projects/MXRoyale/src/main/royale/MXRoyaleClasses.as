@@ -31,6 +31,10 @@ internal class MXRoyaleClasses
 	import mx.core.Container; Container;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
+    COMPILE::SWF
+    {
+        import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
+    }
 }
 
 }

@@ -38,7 +38,7 @@ global {
 
 Button
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 	border: 0.5px solid black;
 	background-color: #EEEEEE;
 	padding: 4px 4px;
@@ -92,7 +92,7 @@ TextInput
 	
 	Button
 	{
-		IBeadView: ClassReference("org.apache.royale.html.beads.CSSImageAndTextButtonView");
+		IBeadView: ClassReference("mx.controls.beads.CSSImageAndTextButtonView");
 	}
 	
 	Container
