@@ -25,6 +25,11 @@
 	box-sizing: border-box;
 }
 
+global {
+    IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
+	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
+}
+
 /* -------------------------------------------------------
  * Common Platform Styles
  * -------------------------------------------------------
