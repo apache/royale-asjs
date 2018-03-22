@@ -30,8 +30,8 @@ package org.apache.royale.core
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.utils.StringUtil;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.utils.StringUtil;
 
     COMPILE::JS
     {
@@ -1181,13 +1181,13 @@ package org.apache.royale.core
                 if (c is IUIBase)
                 {
                     if (c is IRenderedObject)
-                        addChild(IRenderedObject(c).$displayObject);
+                        $addChild(IRenderedObject(c).$displayObject);
                     else
-                        addChild(c as DisplayObject);                        
+                        $addChild(c as DisplayObject);                        
                     IUIBase(c).addedToParent();
                 }
                 else
-                    addChild(c as DisplayObject);
+                    $addChild(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1212,13 +1212,13 @@ package org.apache.royale.core
                 if (c is IUIBase)
                 {
                     if (c is IRenderedObject)
-                        addChildAt(IUIBase(c).$displayObject, index);
+                        $addChildAt(IUIBase(c).$displayObject, index);
                     else
-                        addChildAt(c as DisplayObject, index);
+                        $addChildAt(c as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
                 else
-                    addChildAt(c as DisplayObject, index);
+                    $addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS
             {
@@ -1246,7 +1246,7 @@ package org.apache.royale.core
         {
             COMPILE::SWF
             {
-                return getChildAt(index) as IChild;
+                return $getChildAt(index) as IChild;
             }
             COMPILE::JS
             {
@@ -1272,9 +1272,9 @@ package org.apache.royale.core
             COMPILE::SWF
             {
                 if (c is IRenderedObject)
-                    return getChildIndex(IRenderedObject(c).$displayObject);
+                    return $getChildIndex(IRenderedObject(c).$displayObject);
                 else
-                    return getChildIndex(c as DisplayObject);
+                    return $getChildIndex(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1303,9 +1303,9 @@ package org.apache.royale.core
             COMPILE::SWF
             {
                 if (c is IRenderedObject)
-                    removeChild(IRenderedObject(c).$displayObject);
+                    $removeChild(IRenderedObject(c).$displayObject);
                 else
-                    removeChild(c as DisplayObject);
+                    $removeChild(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1575,6 +1575,52 @@ package org.apache.royale.core
         {
             return super.dispatchEvent(event);
         }
+        }
+        
+        COMPILE::SWF
+        public function $addChild(child:DisplayObject):DisplayObject
+        {
+            return super.addChild(child);
+        }
+        COMPILE::SWF
+        public function $addChildAt(child:DisplayObject, index:int):DisplayObject
+        {
+            return super.addChild(child, int);
+        }
+        COMPILE::SWF
+        public function $removeChildAt(index:int):DisplayObject
+        {
+            return super.removeChildAt(int);
+        }
+        COMPILE::SWF
+        public function $removeChild(child:DisplayObject):DisplayObject
+        {
+            return super.removeChild(child);
+        }
+        COMPILE::SWF
+        public function $getChildAt(index:int):DisplayObject
+        {
+            return super.getChildAt(int);
+        }
+        COMPILE::SWF
+        public function $setChildIndex(index:int):void
+        {
+            super.setChildIndex(int);
+        }
+        COMPILE::SWF
+        public function $getChildIndex(child:DisplayObject):int
+        {
+            return super.getChildIndex(child);
+        }
+        COMPILE::SWF
+        public function $getChildByName(name:String):DisplayObject
+        {
+            return super.getChildByName(name);
+        }
+        COMPILE::SWF
+        public function get $numChildren():int
+        {
+            return super.numChildren;
         }
 
 	}
