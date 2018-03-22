@@ -28,6 +28,7 @@
 	<component id="Label" class="mx.controls.Label" />
 	<component id="RadioButton" class="mx.controls.RadioButton" />
 	<component id="RadioButtonGroup" class="mx.controls.RadioButtonGroup" />
+	<component id="TextArea" class="mx.controls.TextArea" />
 	<component id="TextInput" class="mx.controls.TextInput" />
 	
 	<component id="Box" class="mx.containers.Box" />

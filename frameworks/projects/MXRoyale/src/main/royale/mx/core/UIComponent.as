@@ -442,7 +442,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    private var _enabled:Boolean = false;
+    private var _enabled:Boolean = true;
 
     [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
 
