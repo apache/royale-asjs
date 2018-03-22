@@ -23,7 +23,14 @@ package mx.core
 import org.apache.royale.core.IParent;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.geom.Rectangle;
+COMPILE::JS
+{
 import org.apache.royale.geom.Point;
+}
+COMPILE::SWF
+{
+import flash.geom.Point;
+}
 
 /**
  *  The IFlexDisplayObject interface defines the interface for skin elements.

@@ -77,6 +77,10 @@ import mx.events.ChildExistenceChangedEvent;
 */
 import mx.events.FlexEvent;
 import mx.events.IndexChangedEvent;
+COMPILE::SWF
+{
+import flash.display.DisplayObject;
+}
 
 /*
 import mx.events.ScrollEvent;
@@ -853,6 +857,14 @@ public class Container extends UIComponent
 		return contentView.getElementAt(index);
 	}
 	
+    COMPILE::SWF
+    override public function getChildAt(index:int):DisplayObject
+    {
+        var layoutHost:ILayoutHost = view as ILayoutHost;
+        var contentView:IParent = layoutHost.contentView as IParent;
+        return contentView.getElementAt(index) as DisplayObject;
+    }
+
 	/*
 	* IStrandPrivate
 	*

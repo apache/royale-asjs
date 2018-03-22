@@ -59,6 +59,7 @@ import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
 import org.apache.royale.html.accessories.ToolTipBead;
 import org.apache.royale.utils.loadBeadFromValuesManager;
+import org.apache.royale.utils.PointUtils;
 
 /*
 import mx.managers.IToolTipManagerClient;
@@ -2026,9 +2027,7 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::SWF 
-    { override }
-    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
+    COMPILE::JS
     public function addChild(child:IUIComponent):IUIComponent
     {
         return addElement(child) as IUIComponent;
@@ -2038,11 +2037,7 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::SWF
-    {
-        override 
-    }
-    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject,int",altparams="org.apache.royale.core.IUIComponent,int")]
+    COMPILE::JS
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
@@ -2053,11 +2048,7 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
-    COMPILE::SWF
-    {
-        override 
-    }
+    COMPILE::JS
     public function removeChild(child:IUIComponent):IUIComponent
     {
         return removeElement(child) as IUIComponent;
@@ -2068,11 +2059,7 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject")]
-    COMPILE::SWF
-    {
-        override 
-    }    
+    COMPILE::JS
     public function removeChildAt(index:int):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -2085,11 +2072,7 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject")]
-    COMPILE::SWF
-    {
-        override 
-    }    
+    COMPILE::JS
     public function getChildAt(index:int):IUIComponent
     {
         return getElementAt(index) as IUIComponent;
@@ -2108,9 +2091,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject,int",altparams="org.apache.royale.core.IUIComponent,int")]
-    COMPILE::SWF 
-    { override }
+    COMPILE::JS 
     public function setChildIndex(child:IUIComponent, index:int):void
     {
         if (GOOG::DEBUG)
@@ -2120,9 +2101,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
-    COMPILE::SWF 
-    { override }
+    COMPILE::JS
     public function getChildIndex(child:IUIComponent):int
     {
         return getElementIndex(child);
@@ -2131,9 +2110,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    [SWFOverride(returns="flash.display.DisplayObject")]
-    COMPILE::SWF 
-    { override }
+    COMPILE::JS
     public function getChildByName(name:String):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -2144,9 +2121,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
-    COMPILE::SWF 
-    { override }
+    COMPILE::JS 
     public function contains(child:IUIComponent):Boolean
     {
         if (GOOG::DEBUG)
@@ -2425,14 +2400,10 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::SWF 
-    { override }
-    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
+    COMPILE::JS 
     public function localToGlobal(value:Point):Point
     {
-        if (GOOG::DEBUG)
-            trace("localToGlobal not implemented");
-        return value;
+        return PointUtils.localToGlobal(value, this);
     }
     
     /**
@@ -2443,14 +2414,10 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::SWF 
-    { override }
-    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
+    COMPILE::JS 
     public function globalToLocal(value:Point):Point
     {
-        if (GOOG::DEBUG)
-            trace("globalToLocal not implemented");
-        return value;
+        return PointUtils.globalToLocal(value, this);
     }
     
     /**

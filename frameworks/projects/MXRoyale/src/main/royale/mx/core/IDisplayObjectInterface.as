@@ -170,7 +170,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
+    COMPILE::JS
     function globalToLocal(point:Point):Point;
 
     /**
@@ -181,6 +181,6 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
+    COMPILE::JS
     function localToGlobal(point:Point):Point;
 
