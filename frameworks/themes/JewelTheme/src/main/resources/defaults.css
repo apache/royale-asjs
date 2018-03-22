@@ -173,16 +173,13 @@ span {
   cursor: unset;
 }
 
-.jewel.checkbox > input[type="checkbox"] {
-  width: 50px;
-  height: 50px;
+.jewel.checkbox .span {
+  padding-left: 5px;
 }
-.jewel.checkbox > label {
-  cursor: auto;
-  position: relative;
-  display: block;
-  padding-left: 20px;
-  outline: none;
+.jewel.checkbox .input {
+  width: 15px;
+  height: 15px;
+  border: 1px solid;
 }
 
 .jewel.label {
@@ -190,16 +187,44 @@ span {
   font-size: 14px;
 }
 
-.jewel.radiobutton > input[type="radio"] {
-  width: 50px;
-  height: 50px;
+.jewel.radiobutton {
+  padding-left: 5px;
 }
-.jewel.radiobutton > label {
-  cursor: auto;
-  position: relative;
-  display: block;
-  padding-left: 20px;
+.jewel.radiobutton .input {
+  width: 15px;
+  height: 15px;
+  border: 1px solid;
+}
+
+.jewel.slider .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
   outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.jewel.slider .slider:hover {
+  opacity: 1;
+}
+.jewel.slider .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.jewel.slider .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
 }
 
 .jewel.textbutton {
@@ -367,24 +392,46 @@ span {
 
 .jewel.textfield {
   position: relative;
-  font-size: 14px;
-  font-weight: normal;
   display: inline-flex;
 }
 .jewel.textfield .input {
-  margin: 0em;
+  margin: 0;
+  padding: 0.67em 1em;
   max-width: 100%;
   flex: 1 0 auto;
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   text-align: left;
-  line-height: 1.2em;
+  line-height: 1.4em;
   font-family: "Lato", sans-serif;
   font-size: 14px;
+  font-weight: normal;
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #b3b3b3;
+  color: #808080;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.jewel.textfield.primary {
+  position: relative;
+  display: inline-flex;
+}
+.jewel.textfield.primary .input {
+  margin: 0;
   padding: 0.67em 1em;
-  background: #ffffff;
-  border: 1px solid rgba(34, 36, 38, 0.15);
-  color: rgba(0, 0, 0, 0.87);
+  max-width: 100%;
+  flex: 1 0 auto;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  line-height: 1.4em;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #0f88d1;
+  color: #FFFFFF;
   border-radius: 3px;
   box-shadow: none;
 }

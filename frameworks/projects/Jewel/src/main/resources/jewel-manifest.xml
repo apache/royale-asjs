@@ -37,6 +37,7 @@
     <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutWithPaddingAndGap"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.jewel.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
 
+    <component id="HorizontalSliderLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout" />
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     
 </componentPackage>

@@ -28,7 +28,9 @@ package
     internal class JewelClasses
     {
         import org.apache.royale.jewel.beads.SliderView; SliderView;
-	    
+        import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
+	    import org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout; HorizontalSliderLayout;
+
         COMPILE::SWF
 	    {
             import org.apache.royale.html.beads.TextFieldView; TextFieldView;

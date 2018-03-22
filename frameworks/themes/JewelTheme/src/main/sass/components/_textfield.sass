@@ -18,40 +18,54 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Jewel Textfield
-.jewel.textfield
+
+// Textfield variables
+$textfield-margin: 0 !default
+$textfield-padding: .67em 1em !default
+//10px 16px
+$textfield-min-height: 34px !default
+$textfield-min-width: 74px !default
+
+$textfield-border-radius: 3px
+
+=textfield-theme($textfield-color, $text-color)
 	position: relative
-	font:
-		//family: $font-stack 
-		size: $font-size
-		weight: normal
 	display: inline-flex
 	
 	.input
-		margin: 0em
+		margin: $textfield-margin
+		padding: $textfield-padding
+		
 		max-width: 100%
+		
 		flex: 1 0 auto
 		outline: none
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+		
 		text-align: left
-		line-height: 1.2em
+		line-height: 1.4em
 
 		font:
 			family: $font-stack
 			size: $font-size
-		padding: .67em 1em
-
-		background: #ffffff
-		border: 1px solid rgba(34, 36, 38, .15)
-		color: rgba(0, 0, 0, .87)
-		border-radius: 3px
+			weight: normal
+		
+		background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+		border: 1px solid darken($textfield-color, 15%)
+		color: $text-color
+		border-radius: $textfield-border-radius
 		//transition: transition
 
 		box-shadow: none
 
-//    padding: 5px;
-//    border: solid 1px #666666;
-//    border-radius: 6px;
-//    color: #333333;
-//:hover 
-//    padding: 5px;
-//    background-color: #DFDFDF;
+		//:hover 
+		//    padding: 5px;
+		//    background-color: #DFDFDF;
+
+
+.jewel.textfield
+	+textfield-theme($default-color, $default-font-color)
+
+.jewel.textfield.primary
+	+textfield-theme($primary-color, $font-theme-color)
+

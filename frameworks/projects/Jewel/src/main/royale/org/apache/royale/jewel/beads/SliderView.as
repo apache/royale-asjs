@@ -61,6 +61,7 @@ package org.apache.royale.jewel.beads
 		 */
 		public function SliderView()
 		{
+			super();
 		}
 		
 		private var rangeModel:IRangeModel;
@@ -98,7 +99,7 @@ package org.apache.royale.jewel.beads
 				s.addElement(_thumb);
 				
 			}
-			COMPILE::JS {
+			/*COMPILE::JS {
 				_track = new Button();
 				_track.className = "SliderTrack";
 				host.addElement(_track);
@@ -107,7 +108,7 @@ package org.apache.royale.jewel.beads
 				_thumb.className = "SliderThumb";
 				_thumb.text = '\u29BF';
 				host.addElement(_thumb);
-			}
+			}*/
 			
 			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 

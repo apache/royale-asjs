@@ -53,8 +53,8 @@ Label {
 Slider {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.SliderView");
-  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout");
-  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SliderMouseController");
 }
 
 .SliderTrack {

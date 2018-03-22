@@ -18,15 +18,42 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.html.Slider;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+		import org.apache.royale.utils.cssclasslist.addStyles; 
     }
 
+	//--------------------------------------
+    //  Events
+    //--------------------------------------
+
 	[Event(name="valueChange", type="org.apache.royale.events.Event")]
+
+     /**
+     *  Dispatched when Slider ends its change from one position to another.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+	[Event(name="change", type="org.apache.royale.events.Event")]
+
+	/**
+     *  Dispatched each time user moves the slider thumb from one position to another
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+	[Event(name="input", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The Slider class is a component that displays a range of values using a
@@ -44,7 +71,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.2
 	 */
-	public class Slider extends org.apache.royale.html.Slider
+	public class Slider extends UIBase
 	{
 		/**
 		 *  constructor.
@@ -61,13 +88,125 @@ package org.apache.royale.jewel
 			typeNames = "jewel slider"
 		}
 		
+		/**
+		 *  The current value of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get value():Number
+		{
+			return IRangeModel(model).value;
+		}
+		public function set value(newValue:Number):void
+		{
+			IRangeModel(model).value = newValue;
+		}
+		
+		/**
+		 *  The minimum value of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get minimum():Number
+		{
+			return IRangeModel(model).minimum;
+		}
+		public function set minimum(value:Number):void
+		{
+			IRangeModel(model).minimum = value;
+		}
+		
+		/**
+		 *  The maximum value of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get maximum():Number
+		{
+			return IRangeModel(model).maximum;
+		}
+		public function set maximum(value:Number):void
+		{
+			IRangeModel(model).maximum = value;
+		}
+
+		/**
+		 *  The amount to move the thumb when the track is selected. This value is
+		 *  adjusted to fit the nearest snapInterval.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+        public function get stepSize():Number
+        {
+            return IRangeModel(model).stepSize;
+        }
+
+        public function set stepSize(value:Number):void
+        {
+            IRangeModel(model).stepSize = value;
+        }
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+		}
+
+
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'div');
+			var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
+            div.className = typeNames;
+            
+            var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
+            input.setAttribute('type', 'range');
+			input.className = "slider";
+
+			//attach input handler to dispatch royale change event when user write in textinput
+            //goog.events.listen(element, 'change', killChangeHandler);
+            //goog.events.listen(input, 'input', textChangeHandler);
+            
+			div.appendChild(input);
+
+            positioner = div as WrappedHTMLElement;
+            _positioner.royale_wrapper = this;
+			
+			return element;
+        }
+
+		/**
+         * since we have a div surronding the main input, we need to 
+         * route the class assignaments to div
+         */
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            addStyles(positioner, value);
         }
     }
 }

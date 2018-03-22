@@ -84,11 +84,11 @@ package org.apache.royale.jewel
             
             input = document.createElement('input') as HTMLInputElement;
             input.type = 'checkbox';    
-            //input.className = 'input';
+            input.className = 'input';
             label.appendChild(input);
             
             checkbox = document.createElement('span') as HTMLSpanElement;
-            //checkbox.className = 'label';
+            checkbox.className = 'span';
             label.appendChild(checkbox);
             
             (input as WrappedHTMLElement).royale_wrapper = this;

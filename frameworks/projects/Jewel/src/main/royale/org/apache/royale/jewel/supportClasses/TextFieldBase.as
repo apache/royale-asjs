@@ -25,7 +25,9 @@ package org.apache.royale.jewel.supportClasses
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;        
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.utils.cssclasslist.toggleStyle;
+        import org.apache.royale.utils.cssclasslist.addStyles; 
     }
     
     /**
@@ -122,8 +124,39 @@ package org.apache.royale.jewel.supportClasses
 		 */
 		override protected function setClassName(value:String):void
 		{
-			positioner.className = value;           
+			//positioner.className = value;
+            addStyles(positioner, value);
 		}
+
+        private var _primary:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "primary" effect selector.
+		 *  Applies primary color display effect.
+         *  Colors are defined in royale-jewel.css
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.2
+		 */
+        public function get primary():Boolean
+        {
+            return _primary;
+        }
+
+        public function set primary(value:Boolean):void
+        {
+            if (_primary != value)
+            {
+                _primary = value;
+
+                COMPILE::JS
+                {
+                    toggleStyle(positioner, "primary", _primary);
+                }
+            }
+        }
 
         private var _isInvalid:Boolean = false;
         /**
@@ -146,6 +179,7 @@ package org.apache.royale.jewel.supportClasses
 
             COMPILE::JS
             {
+                toggleStyle(positioner, "is-invalid", _isInvalid);
                 //positioner.classList.toggle("is-invalid", _isInvalid);
                 //typeNames = positioner.className;
             }

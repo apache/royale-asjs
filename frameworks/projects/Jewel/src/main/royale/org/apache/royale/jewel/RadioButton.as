@@ -102,6 +102,7 @@ package org.apache.royale.jewel
             labelFor = addElementToWrapper(this,'label') as HTMLLabelElement;
             labelFor.appendChild(icon.element);
             labelFor.appendChild(textNode);
+            icon.element.className = "input";
             
             (textNode as WrappedHTMLElement).royale_wrapper = this;
 			(icon.element as WrappedHTMLElement).royale_wrapper = this;
