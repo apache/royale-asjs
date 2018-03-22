@@ -1326,7 +1326,7 @@ package org.apache.royale.core
         {
             COMPILE::SWF
             {
-                return numChildren;
+                return $numChildren;
             }
             COMPILE::JS
             {
@@ -1586,7 +1586,7 @@ package org.apache.royale.core
         COMPILE::SWF
         public function $addChildAt(child:DisplayObject, index:int):DisplayObject
         {
-            return super.addChild(child, int);
+            return super.addChildAt(child, int);
         }
         COMPILE::SWF
         public function $removeChildAt(index:int):DisplayObject
