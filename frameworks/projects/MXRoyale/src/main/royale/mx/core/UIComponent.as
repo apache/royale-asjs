@@ -53,6 +53,7 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
+import org.apache.royale.html.accessories.ToolTipBead;
 
 /*
 import mx.managers.IToolTipManagerClient;
@@ -1911,6 +1912,8 @@ public class UIComponent extends UIBase
      *  Storage for the toolTip property.
      */
     private var _toolTip:String;
+	
+	private var _toolTipBead: ToolTipBead;
 
     [Bindable("toolTipChanged")]
     [Inspectable(category="General", defaultValue="null")]
@@ -1938,9 +1941,18 @@ public class UIComponent extends UIBase
         var oldValue:String = _toolTip;
         _toolTip = value;
 
-        // TODO
-        if (GOOG::DEBUG)
-            trace("toolTip not implemented");
+        if (_toolTip != null && _toolTip != "" && _toolTipBead == null) {
+			_toolTipBead = new ToolTipBead();
+			addBead(_toolTipBead);
+		}
+		else if ((_toolTip == null || _toolTip == "") && _toolTipBead != null) {
+			removeBead(_toolTipBead);
+			_toolTipBead = null;
+		}
+		
+		if (_toolTipBead) {
+			_toolTipBead.toolTip = _toolTip;
+		}
 
         dispatchEvent(new Event("toolTipChanged"));
     }

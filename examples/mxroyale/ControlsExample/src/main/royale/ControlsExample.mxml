@@ -42,16 +42,24 @@ limitations under the License.
 	
 	<mx:VBox >
 		<mx:Label text="Hello World"/>
-		<mx:Button label="Push Me" />
-		<mx:Button label="Green" icon="assets/smallgreenrect.jpg"  />
-		<mx:Image source="assets/smallgreenrect.jpg"  />
+		<mx:Button label="Push Me" toolTip="I do nothing" />
+		<mx:Button label="Green" icon="assets/smallgreenrect.jpg" toolTip="I also do nothing"  />
+		<mx:Image source="assets/smallgreenrect.jpg" toolTip="Green Square"  />
+		<mx:Text width="200" height="60" toolTip="More than meets the eye.">
+			<mx:html><![CDATA[
+				This is <b>Text!</b> This more than a few words in it to show how
+				it works and <b>wraps</b>.
+			]]></mx:html>
+		</mx:Text>
 	</mx:VBox>
 	<mx:HBox>
 		<mx:Label text="Hello World"/>
-		<mx:Button label="Push Me" />
-		<mx:Button label="Green" icon="assets/smallgreenrect.jpg"  />
-		<mx:Image source="assets/smallgreenrect.jpg"  />
+		<mx:Button label="Push Me" toolTip="I do nothing" />
+		<mx:Button label="Green" icon="assets/smallgreenrect.jpg" toolTip="I also do nothing"  />
+		<mx:Image source="assets/smallgreenrect.jpg" toolTip="Green Square"  />
 	</mx:HBox>
+	<mx:TextArea width="200" height="100" text="This is the TextArea control!"
+		displayAsPassword="true" maxChars="100"/>
 
         
 </mx:Application>

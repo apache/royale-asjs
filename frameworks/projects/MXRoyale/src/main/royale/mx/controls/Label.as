@@ -37,13 +37,9 @@ import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
 */
 import mx.core.IDataRenderer;
-/*
-import mx.core.IFlexModuleFactory;
-import mx.core.IFontContextComponent;
-import mx.core.IUITextField;
-*/
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
+
 /*
 import mx.core.UITextField;
 import mx.core.mx_internal;
@@ -52,6 +48,7 @@ use namespace mx_internal;
 */
 COMPILE::JS
 {
+	import window.Text;
     import org.apache.royale.html.util.addElementToWrapper;
     import org.apache.royale.core.WrappedHTMLElement;
 }
@@ -320,8 +317,66 @@ public class Label extends UIComponent
     //  Properties
     //
     //--------------------------------------------------------------------------
-
-
+	
+	//----------------------------------
+	//  selectable
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 *  Storage for selectable property.
+	 */
+	private var _selectable:Boolean = true;
+	
+	/**
+	 *  @private
+	 *  Change flag for selectable property.
+	 */
+	private var selectableChanged:Boolean;
+	
+	[Inspectable(category="General", defaultValue="true")]
+	
+	/**
+	 *  Specifies whether the text can be selected. 
+	 *  Making the text selectable lets you copy text from the control.
+	 *
+	 *  <p>When a <code>link</code> event is specified in the Label control, the <code>selectable</code> property must be set 
+	 *  to <code>true</code> to execute the <code>link</code> event.</p>
+	 *
+	 *  @default false;
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get selectable():Boolean
+	{
+		return _selectable;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set selectable(value:Boolean):void
+	{
+		if (value == selectable)
+			return;
+		
+		_selectable = value;
+		selectableChanged = true;
+		
+		COMPILE::JS {
+			element.style["-webkit-touch-callout"] = value ? "auto" : "none";
+			element.style["-webkit-user-select"] = value ? "auto" : "none";
+			element.style["-khtml-user-select"] = value ? "auto" : "none";
+			element.style["-moz-user-select"] = value ? "auto" : "none";
+			element.style["-ms-user-select"] = value ? "auto" : "none";
+			element.style["-user-select"] = value ? "auto" : "none";
+		}
+		
+		invalidateProperties();
+	}
 
     //----------------------------------
     //  data
@@ -597,7 +652,7 @@ public class Label extends UIComponent
 
 
 	COMPILE::JS
-	protected var textNode:Text;
+	protected var textNode:window.Text;
 
 	COMPILE::JS
 	private var _text:String = "";
@@ -670,7 +725,7 @@ public class Label extends UIComponent
 	{
 		addElementToWrapper(this,'span');
 
-		textNode = document.createTextNode(_text) as Text;
+		textNode = document.createTextNode(_text) as window.Text;
 		element.appendChild(textNode);
 
 		element.style.whiteSpace = "nowrap";

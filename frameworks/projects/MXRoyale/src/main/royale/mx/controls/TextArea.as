@@ -49,7 +49,6 @@ import mx.events.FlexEvent;
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
-import org.apache.royale.html.accessories.PasswordInputBead;
 
 /*
 import mx.events.ScrollEvent;
