@@ -84,6 +84,7 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.states.State;
+import org.apache.royale.utils.MixinManager;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.Timer;
 import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -351,15 +352,21 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         return _info;
     }
     
+    COMPILE::SWF
+    {
+    [SWFOverride(returns="flash.display.DisplayObjectContainer")]
+    override public function get parent():IParent
+    {
+        // may not work in sub-apps
+        var p:* = root;
+        return p;
+    }
+    }
+        
 	COMPILE::SWF
 	private function initHandler(event:flash.events.Event):void
 	{
 		MouseEventConverter.setupAllConverters(stage);
-		
-		for each (var bead:IBead in beads)
-    		addBead(bead);
-		
-		dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
 		
 		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 			this.initialize();
@@ -390,8 +397,12 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     COMPILE::SWF
     override public function initialize():void
     {
-        MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
-		
+        addBead(new MixinManager());
+        // the application is never added to the dom via addChild
+        // because the parent is the browser, not an IUIBase, but we
+        // need to run most of the code that usually runs when added.
+        addedToParent();
+        
 		this.initManagers();
 
         dispatchEvent(new org.apache.royale.events.Event("initialize"));
@@ -507,12 +518,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function start():void
 	{
-		for (var index:int in beads) {
-			addBead(beads[index]);
-		}
-		
-		dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
-		
 		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 			initialize();
 		else {			
@@ -543,9 +548,13 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	{
 		var body:HTMLElement = document.getElementsByTagName('body')[0];
 		body.appendChild(element);
-		
-		MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
-		
+        
+        // the application is never added to the dom via addChild
+        // because the parent is the browser, not an IUIBase, but we
+        // need to run most of the code that usually runs when added.
+        addBead(new MixinManager());
+		addedToParent();
+        		
 		dispatchEvent('initialize');
 		
 //		if (initialView)
