@@ -46,14 +46,19 @@ import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.ISystemManager;
 
+import org.apache.royale.core.CallLaterBead;
+import org.apache.royale.core.IStatesImpl;
+import org.apache.royale.core.IStatesObject;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.KeyboardEvent;
+import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
 import org.apache.royale.html.accessories.ToolTipBead;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 
 /*
 import mx.managers.IToolTipManagerClient;
@@ -149,6 +154,7 @@ public class UIComponent extends UIBase
     implements IChildList,
     IFlexDisplayObject,
     IInvalidating,
+    IStatesObject,
     IUIComponent, IVisualElement
 {
     //--------------------------------------------------------------------------
@@ -1769,14 +1775,21 @@ public class UIComponent extends UIBase
      */
     public function set currentState(value:String):void
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("currentState not implemented");
-        
+        var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
         _currentState = value;
+        addEventListener("stateChangeComplete", stateChangeCompleteHandler);
+        dispatchEvent(event);
     }
 
-
+    private function stateChangeCompleteHandler(event:Event):void
+    {
+        callLater(dispatchUpdateComplete); 
+    }
+    
+    protected function dispatchUpdateComplete():void
+    {
+        dispatchEvent(new Event("updateComplete"));
+    }
     //----------------------------------
     //  states
     //----------------------------------
@@ -1808,9 +1821,19 @@ public class UIComponent extends UIBase
     public function set states(value:Array):void
     {
         _states = value;
-        // TODO
-        if (GOOG::DEBUG)
-            trace("states not implemented");
+        _currentState = _states[0].name;
+        
+        try {
+            loadBeadFromValuesManager(IStatesImpl, "iStatesImpl", this);
+        }
+        //TODO:  Need to handle this case more gracefully
+        catch(e:Error)
+        {
+            COMPILE::SWF
+            {
+                trace(e.message);                        
+            }
+        }
     }
 
     //----------------------------------
@@ -2001,22 +2024,19 @@ public class UIComponent extends UIBase
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     COMPILE::SWF 
     { override }
     [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
     public function addChild(child:IUIComponent):IUIComponent
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("addChild not implemented");
-
-
-        return child;
+        return addElement(child) as IUIComponent;
     }
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     COMPILE::SWF
     {
@@ -2026,15 +2046,12 @@ public class UIComponent extends UIBase
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("addChildAt not implemented");        
-        
-        return child;
+        return addElementAt(child, index) as IUIComponent;
     }
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject",params="flash.display.DisplayObject",altparams="org.apache.royale.core.IUIComponent")]
     COMPILE::SWF
@@ -2043,16 +2060,13 @@ public class UIComponent extends UIBase
     }
     public function removeChild(child:IUIComponent):IUIComponent
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("removeChild not implemented");        
-        
-        return child;
+        return removeElement(child) as IUIComponent;
     }
 
     
     /**
      *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF
@@ -2061,13 +2075,10 @@ public class UIComponent extends UIBase
     }    
     public function removeChildAt(index:int):IUIComponent
     {
-        // TODO
         if (GOOG::DEBUG)
             trace("removeChildAt not implemented");
         
-        var child:IUIComponent = getChildAt(index);
-        
-        return child;
+        return null;
     }
 
     /**
@@ -2081,20 +2092,14 @@ public class UIComponent extends UIBase
     }    
     public function getChildAt(index:int):IUIComponent
     {
-        COMPILE::SWF
-        {
-            return super.getChildAt(index) as IUIComponent;
-        }
-        COMPILE::JS
-        {
-            return getElementAt(index) as IUIComponent;
-        }
+        return getElementAt(index) as IUIComponent;
     }
     
     /**
      *  @private
      */
-    COMPILE::JS
+    COMPILE::SWF 
+    { override }
     public function get numChildren():int
     {
         return numElements;
@@ -2532,6 +2537,7 @@ public class UIComponent extends UIBase
     {
     }
 
+    private var callLaterBead:CallLaterBead;
 
     /**
      *  Queues a function to be called later.
@@ -2557,9 +2563,12 @@ public class UIComponent extends UIBase
     public function callLater(method:Function,
                               args:Array /* of Object */ = null):void
     {
-        if (GOOG::DEBUG)
-            trace("callLater not implemented");
-
+        if (!callLaterBead)
+        {
+            callLaterBead = new CallLaterBead();
+            addBead(callLaterBead);
+        }
+        callLaterBead.callLater(method, args, this);
     }
 
 
@@ -3236,7 +3245,6 @@ public class UIComponent extends UIBase
             trace("owns not implemented");
         return true;
     }
-
 
 }
 
