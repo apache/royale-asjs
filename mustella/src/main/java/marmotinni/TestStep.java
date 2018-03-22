@@ -103,7 +103,8 @@ public class TestStep {
 	{
 		sb.append("var target = document.getElementsByTagName('body')[0];");
 		sb.append("target = target.royale_wrapper;");
-		sb.append("target = target.initialView;");
+		sb.append("if (target.initialView)");
+        sb.append("  target = target.initialView;");
 		if (target == null || target.length() == 0)
 		{
 			return;
