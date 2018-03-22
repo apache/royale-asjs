@@ -98,5 +98,6 @@
         <symbol>ExitWhenDone</symbol>
         <symbol>SetShowRTE</symbol>
         <symbol>SendFormattedResultsToLog</symbol>
+        <symbol>RoyaleContext</symbol>
     </includes>
 </flex-config>
