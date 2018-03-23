@@ -64,7 +64,6 @@ package org.apache.royale.jewel
         override protected function createElement():WrappedHTMLElement
         {
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-            div.className = typeNames;
             
             input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'text');
