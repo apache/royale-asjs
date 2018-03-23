@@ -28,6 +28,8 @@
 global {
     IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
 	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
+	font-size: 12px;
+	font-family: Arial;
 }
 
 /* -------------------------------------------------------
@@ -45,7 +47,6 @@ Button
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 12px;
 }
 Button:hover {
 	background-color: #CCCCCC;
