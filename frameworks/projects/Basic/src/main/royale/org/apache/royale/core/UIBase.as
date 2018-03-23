@@ -1586,12 +1586,12 @@ package org.apache.royale.core
         COMPILE::SWF
         public function $addChildAt(child:DisplayObject, index:int):DisplayObject
         {
-            return super.addChildAt(child, int);
+            return super.addChildAt(child, index);
         }
         COMPILE::SWF
         public function $removeChildAt(index:int):DisplayObject
         {
-            return super.removeChildAt(int);
+            return super.removeChildAt(index);
         }
         COMPILE::SWF
         public function $removeChild(child:DisplayObject):DisplayObject
@@ -1601,12 +1601,12 @@ package org.apache.royale.core
         COMPILE::SWF
         public function $getChildAt(index:int):DisplayObject
         {
-            return super.getChildAt(int);
+            return super.getChildAt(index);
         }
         COMPILE::SWF
         public function $setChildIndex(index:int):void
         {
-            super.setChildIndex(int);
+            super.setChildIndex(index);
         }
         COMPILE::SWF
         public function $getChildIndex(child:DisplayObject):int
