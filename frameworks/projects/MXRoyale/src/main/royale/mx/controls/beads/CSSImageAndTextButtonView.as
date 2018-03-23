@@ -26,6 +26,7 @@ package mx.controls.beads
 	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
+    import flash.text.TextFieldAutoSize;
 	
     import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.CSSTextField;
@@ -129,6 +130,9 @@ package mx.controls.beads
 			if (textModel.html !== null)
 				html = textModel.html;
 
+            sizeTextField(upTextField);
+            sizeTextField(downTextField);
+            sizeTextField(overTextField);
             setupSkins();
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
@@ -136,6 +140,15 @@ package mx.controls.beads
             IEventDispatcher(_strand).addEventListener("sizeChanged",sizeChangeHandler);
 		}
 	
+        protected function sizeTextField(tf:TextField):void
+        {
+            if (tf.autoSize == TextFieldAutoSize.NONE)
+            {
+                tf.width = tf.textWidth + 4;
+                tf.height = tf.textHeight + 4;
+            }
+        }
+        
         protected function setupSkins():void
         {
             setupSkin(overSprite, overTextField, "hover");
