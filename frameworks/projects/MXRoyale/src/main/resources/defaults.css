@@ -28,8 +28,6 @@
 global {
     IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
 	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
-	font-size: 12px;
-	font-family: Arial;
 }
 
 /* -------------------------------------------------------
@@ -41,19 +39,6 @@ global {
 Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
-	border: 0.5px solid black;
-	background-color: #EEEEEE;
-	padding: 4px 4px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-}
-Button:hover {
-	background-color: #CCCCCC;
-}
-Button:active {
-	background-color: #999999;
-	color: white;
 }
 
 Container
@@ -62,22 +47,12 @@ Container
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-	align-items: flex-start;
 }
 
 Image
 {
-	vertical-align: top;
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
-}
-
-TextInput
-{
-	border: 1px solid #808080;
-	border-radius: 2px;
-	padding: 4px;
-	margin: 0px;
 }
 
 
