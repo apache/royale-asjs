@@ -403,10 +403,10 @@ package org.apache.royale.html.beads
             }
             
             if (autoWidth) {
-                (host as UIBase).setWidth(textField.textWidth, true);
+                (host as UIBase).setWidth(textField.textWidth + 4, true);
             }
             if (autoHeight) {
-                (host as UIBase).setHeight(textField.textHeight, true);
+                (host as UIBase).setHeight(textField.textHeight + 4, true);
             }
         }
     }
