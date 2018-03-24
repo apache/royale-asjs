@@ -395,6 +395,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get width():Number
         {
+            if(!isNaN(_explicitWidth))
+                return _explicitWidth;
             var pixels:Number;
             var strpixels:String = element.style.width as String;
             if(strpixels == null)
@@ -487,6 +489,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get height():Number
         {
+            if(!isNaN(_explicitHeight))
+                return _explicitHeight;
             var pixels:Number;
             var strpixels:String = element.style.height as String;
             if(strpixels == null)
@@ -589,6 +593,37 @@ package org.apache.royale.core
                     dispatchEvent(new Event("widthChanged"));
             }
         }
+
+        /**
+         * @private
+         * Used by layout to prevent causing unnecessary reflows when measuring.
+         */
+        private var _measuredWidth:Number;
+
+		public function get measuredWidth():Number
+		{
+			return _measuredWidth;
+		}
+
+		public function set measuredWidth(value:Number):void
+		{
+			_measuredWidth = value;
+		}
+        /**
+         * @private
+         * Used by layout to prevent causing unnecessary reflows when measuring.
+         */
+        private var _measuredHeight:Number;
+
+		public function get measuredHeight():Number
+		{
+			return _measuredHeight;
+		}
+
+		public function set measuredHeight(value:Number):void
+		{
+			_measuredHeight = value;
+		}
         
         /**
          *  @copy org.apache.royale.core.ILayoutChild#setWidthAndHeight

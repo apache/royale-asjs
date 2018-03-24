@@ -30,10 +30,12 @@ package org.apache.royale.core
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.core.layout.MarginData;
+	import org.apache.royale.core.LayoutManager;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
     import org.apache.royale.utils.CSSUtils;
+	import org.apache.royale.utils.measureComponent;
 
     /**
      *  This class is the base class for most, if not all, layouts. 
@@ -302,6 +304,8 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function performLayout():void
 		{
@@ -309,31 +313,36 @@ package org.apache.royale.core
 			if (isLayoutRunning) return;
 			
 			isLayoutRunning = true;
-
-			var oldWidth:Number = host.width;
-			var oldHeight:Number = host.height;
+			LayoutManager.addMeasurement(host);
+			// measureComponent(host);
+			// var oldWidth:Number = host.measuredWidth;
+			// var oldHeight:Number = host.measuredHeight;
 			
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
 			viewBead.beforeLayout();
-			
-			if (layout()) {
-				viewBead.afterLayout();
-			}
-			
-			isLayoutRunning = false;
-			
-			IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
-			
-			// check sizes to see if layout changed the size or not
-			// and send an event to re-layout parent of host
-			if (host.width != oldWidth ||
-			    host.height != oldHeight)
-			{
-				isLayoutRunning = true;
-				host.dispatchEvent(new Event("sizeChanged"));
-				isLayoutRunning = false;
-			}
+			LayoutManager.addLayout(
+				function ():void
+				{
+					if (layout()) {
+						viewBead.afterLayout();
+					}
+					
+					isLayoutRunning = false;
+					
+					IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
+					
+					// check sizes to see if layout changed the size or not
+					// and send an event to re-layout parent of host
+					if (host.width != host.measuredWidth ||
+						host.height != host.measuredHeight)
+					{
+						isLayoutRunning = true;
+						host.dispatchEvent(new Event("sizeChanged"));
+						isLayoutRunning = false;
+					}
+				}
+			);
 
 		}
 
