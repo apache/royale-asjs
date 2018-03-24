@@ -203,18 +203,18 @@ span {
   border: 1px solid #3CADF1;
   border-radius: 3px;
 }
-.jewel.checkbox .input:checked {
-  border: 3px solid #3CADF1;
+.jewel.checkbox .input:checked, .jewel.checkbox .input:checked:active {
+  border: 1px solid #0f88d1;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-763.000000, -350.000000)' fill='#3CADF1'><g transform='translate(760.000000, 345.000000)'><g><polygon id='Tick' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></g></g></svg>");
+  background-size: cover;
+  padding: 2px;
 }
-.jewel.checkbox .input:checked:active {
-  border: 4px solid #EF5A2A;
+.jewel.checkbox .input:checked path, .jewel.checkbox .input:checked:active path {
+  fill: #ff0000;
 }
-.jewel.checkbox .input:checked:after {
-  font-size: 14px;
-  position: absolute;
-  top: 0px;
-  left: 3px;
-  color: #99a1a7;
+.jewel.checkbox .input:focus {
+  outline: none;
+  border: 1px solid #0f88d1;
 }
 .jewel.checkbox .input[disabled] {
   cursor: unset;
