@@ -20,22 +20,19 @@ package org.apache.royale.core
 {
 
 	import org.apache.royale.core.IBeadLayout;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
-    import org.apache.royale.core.layout.MarginData;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.LayoutManager;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.MarginData;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.utils.CSSUtils;
-	import org.apache.royale.utils.measureComponent;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  This class is the base class for most, if not all, layouts. 
@@ -314,9 +311,6 @@ package org.apache.royale.core
 			
 			isLayoutRunning = true;
 			LayoutManager.addMeasurement(host);
-			// measureComponent(host);
-			// var oldWidth:Number = host.measuredWidth;
-			// var oldHeight:Number = host.measuredHeight;
 			
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
