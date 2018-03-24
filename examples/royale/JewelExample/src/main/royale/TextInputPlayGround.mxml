@@ -34,7 +34,7 @@ limitations under the License.
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
 		</js:beads>
 		<j:TextButton text="Check it!" primary="true"/>
-		<j:TextField text="A TextField" primary="true"/>
+		<j:TextField text="A TextField"/>
 	</js:Group>
 
 	<js:Group>

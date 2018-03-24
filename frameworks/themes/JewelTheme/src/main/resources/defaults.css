@@ -21,7 +21,7 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
-  color: #FFFFFF;
+  color: #808080;
 }
 
 .royale {
@@ -56,18 +56,18 @@ span {
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 1px solid #404040;
-  background: linear-gradient(#737373, #595959);
-  box-shadow: inset 0 1px 0 #999999;
+  border: 1px solid #b3b3b3;
+  background: linear-gradient(#e6e6e6, #cccccc);
+  box-shadow: inset 0 1px 0 white;
   border-radius: 3px;
 }
 .jewel.button:hover {
-  border: 1px solid #333333;
-  background: linear-gradient(#666666, #4d4d4d);
+  border: 1px solid #a6a6a6;
+  background: linear-gradient(#d9d9d9, silver);
 }
 .jewel.button:active {
-  border: 1px solid #1a1a1a;
-  background: linear-gradient(#4d4d4d, #333333);
+  border: 1px solid #8d8d8d;
+  background: linear-gradient(silver, #a6a6a6);
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button:focus {
@@ -173,6 +173,11 @@ span {
   cursor: unset;
 }
 
+.jewel.checkbox {
+  position: absolute;
+  left: -9999px;
+  cursor: pointer;
+}
 .jewel.checkbox .span {
   padding-left: 5px;
 }
@@ -206,6 +211,7 @@ span {
   opacity: 0.7;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
+  focus-outline: none;
 }
 .jewel.slider .slider:hover {
   opacity: 1;
@@ -213,17 +219,17 @@ span {
 .jewel.slider .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #3CADF1;
   cursor: pointer;
 }
 .jewel.slider .slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #3CADF1;
   cursor: pointer;
 }
 
@@ -234,25 +240,24 @@ span {
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 1px solid #404040;
-  background: linear-gradient(#737373, #595959);
-  box-shadow: inset 0 1px 0 #999999;
+  border: 1px solid #b3b3b3;
+  background: linear-gradient(#e6e6e6, #cccccc);
+  box-shadow: inset 0 1px 0 white;
   border-radius: 3px;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #808080;
   text-transform: uppercase;
   text-decoration: none;
-  shadow: 0 1px 0 #d9d9d9;
 }
 .jewel.textbutton:hover {
-  border: 1px solid #333333;
-  background: linear-gradient(#666666, #4d4d4d);
+  border: 1px solid #a6a6a6;
+  background: linear-gradient(#d9d9d9, silver);
 }
 .jewel.textbutton:active {
-  border: 1px solid #1a1a1a;
-  background: linear-gradient(#4d4d4d, #333333);
+  border: 1px solid #8d8d8d;
+  background: linear-gradient(silver, #a6a6a6);
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton:focus {
@@ -407,34 +412,14 @@ span {
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: normal;
-  color: #FFFFFF;
-  background: linear-gradient(#8c8c8c, gray);
-  border: 1px solid #404040;
+  color: #808080;
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #b3b3b3;
   border-radius: 3px;
   box-shadow: none;
 }
-
-.jewel.textfield.primary {
-  position: relative;
-  display: inline-flex;
-}
-.jewel.textfield.primary .input {
-  margin: 0;
-  padding: 0.67em 1em;
-  max-width: 100%;
-  flex: 1 0 auto;
-  outline: none;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  text-align: left;
-  line-height: 1.4em;
-  font-family: "Lato", sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  color: #FFFFFF;
-  background: linear-gradient(#8c8c8c, gray);
+.jewel.textfield .input:focus {
   border: 1px solid #0f88d1;
-  border-radius: 3px;
-  box-shadow: none;
 }
 
 /*# sourceMappingURL=defaults.css.map */
