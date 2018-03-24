@@ -23,12 +23,27 @@ package org.apache.royale.core
         import flash.utils.setTimeout;
     }
     import org.apache.royale.utils.measureComponent;
-
+    /**
+     * The LayoutManager class is an all static class which allows queing
+     * up measuring of components and layouts to prevent layout thrashing
+     * @langversion 3.0
+     * @playerversion Flash 10.2
+     * @playerversion AIR 2.6
+     * @productversion Royale 0.9.3
+     */
     public class LayoutManager
     {
         static private var layoutPending:Boolean;
         static private var measurementPending:Boolean;
         static private var measurements:Array = [];
+        /**
+         * Add a component to be measured during the next cycle.
+         * The queued layouts are automatically run after all components are measured.
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
         static public function addMeasurement(component:ILayoutChild):void
         {
             measurements.push(component);
@@ -51,6 +66,13 @@ package org.apache.royale.core
             }
         }
         static private var pendingLayouts:Array = [];
+        /**
+         * Add a function to be called during the next group of layouts.
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
         static public function addLayout(callback:Function):void
         {
             pendingLayouts.push(callback);
