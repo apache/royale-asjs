@@ -33,18 +33,21 @@
         &:hover
             opacity: 1
 
+        :focus
+            outline: none
+            
         &::-webkit-slider-thumb
             -webkit-appearance: none
             appearance: none
-            width: 25px
-            height: 25px
+            width: 15px
+            height: 15px
             border-radius: 50%
-            background: #4CAF50
+            background: $primary-color
             cursor: pointer
         
         &::-moz-range-thumb
-            width: 25px
-            height: 25px
+            width: 15px
+            height: 15px
             border-radius: 50%
-            background: #4CAF50
+            background: $primary-color
             cursor: pointer
