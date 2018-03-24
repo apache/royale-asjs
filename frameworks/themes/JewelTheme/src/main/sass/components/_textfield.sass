@@ -51,19 +51,42 @@ $textfield-border-radius: 3px
 			weight: normal
 		color: $textfield-text-color
 
-		background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
-		border: 1px solid darken($default-color, 15%)
+		@if $flat
+			border: 0px solid
+			background: $default-color
+		@else
+			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+			border: 1px solid darken($default-color, 15%)
+			//box-shadow: none
 		border-radius: $textfield-border-radius
-		//transition: transition
-
-		box-shadow: none
-
-		&:focus
-			border: 1px solid darken($primary-color, 15%)
 		
-		//:hover 
+		@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+		
+		&:focus
+			@if $flat
+				background: lighten($primary-color, 25%)
+			@else
+				border: 1px solid darken($primary-color, 15%)
+		
+		//&:hover 
 		//    padding: 5px;
 		//    background-color: #DFDFDF;
+
+		&::placeholder
+			color: lighten($textfield-text-color, 15%)
+
+		&[disabled]
+			cursor: unset
+			border: 1px solid darken($disabled-color, 20%)
+			background: $disabled-color
+			box-shadow: none
+			color: darken($disabled-color, 20%)
+			
+			&::placeholder
+				color: darken($disabled-color, 20%)
 
 .jewel.textfield
 	@if $dark
