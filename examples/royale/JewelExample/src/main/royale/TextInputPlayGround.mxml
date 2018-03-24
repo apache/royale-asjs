@@ -49,11 +49,20 @@ limitations under the License.
 		<j:TextButton text="Send" primary="true"/>
 	</js:Group>
 
-	<j:TextField>
+	<j:TextField text="Disabled with text...">
 		<j:beads>
 			<js:TextPromptBead prompt="Disabled Textfield..."/>
 			<j:Disabled/>
 		</j:beads>
 	</j:TextField>
+
+	<j:TextField>
+		<j:beads>
+			<js:TextPromptBead prompt="Disabled with prompt..."/>
+			<j:Disabled/>
+		</j:beads>
+	</j:TextField>
+
+	
 
 </js:Group>

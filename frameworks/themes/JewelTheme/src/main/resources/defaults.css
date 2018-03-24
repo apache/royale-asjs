@@ -71,7 +71,9 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #b3b3b3;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button[disabled] {
   border: 1px solid #c6c6c6;
@@ -102,7 +104,9 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.primary:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #0f88d1;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.primary[disabled] {
   border: 1px solid #c6c6c6;
@@ -133,7 +137,9 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.secondary:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #be390e;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.secondary[disabled] {
   border: 1px solid #c6c6c6;
@@ -164,7 +170,9 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.emphasized:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #277b32;
+  box-shadow: inset 0px 0px 0px 1px rgba(243, 251, 244, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.emphasized[disabled] {
   border: 1px solid #c6c6c6;
@@ -174,17 +182,47 @@ span {
 }
 
 .jewel.checkbox {
-  position: absolute;
-  left: -9999px;
   cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+  box-sizing: border-box;
+  width: 100%;
+  height: 24px;
+}
+.jewel.checkbox .input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  line-height: 24px;
+  border: 1px solid #3CADF1;
+  border-radius: 3px;
+}
+.jewel.checkbox .input:checked {
+  border: 3px solid #3CADF1;
+}
+.jewel.checkbox .input:checked:active {
+  border: 4px solid #EF5A2A;
+}
+.jewel.checkbox .input:checked:after {
+  font-size: 14px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  color: #99a1a7;
+}
+.jewel.checkbox .input[disabled] {
+  cursor: unset;
+  border: 1px solid #c6c6c6;
+  background: #F9F9F9;
 }
 .jewel.checkbox .span {
   padding-left: 5px;
-}
-.jewel.checkbox .input {
-  width: 15px;
-  height: 15px;
-  border: 1px solid;
 }
 
 .jewel.label {
@@ -211,10 +249,12 @@ span {
   opacity: 0.7;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
-  focus-outline: none;
 }
 .jewel.slider .slider:hover {
   opacity: 1;
+}
+.jewel.slider .slider:focus {
+  outline: none;
 }
 .jewel.slider .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -261,12 +301,14 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #b3b3b3;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.textbutton[disabled] {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
-  color: #b9b9b9;
+  color: #c6c6c6;
   box-shadow: none;
   cursor: unset;
   font-weight: normal;
@@ -302,12 +344,14 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.primary:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #0f88d1;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.textbutton.primary[disabled] {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
-  color: #b9b9b9;
+  color: #c6c6c6;
   box-shadow: none;
   cursor: unset;
   font-weight: normal;
@@ -343,12 +387,14 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.secondary:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #be390e;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.textbutton.secondary[disabled] {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
-  color: #b9b9b9;
+  color: #c6c6c6;
   box-shadow: none;
   cursor: unset;
   font-weight: normal;
@@ -384,12 +430,14 @@ span {
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.emphasized:focus {
-  outline: 0;
+  outline: none;
+  border: 1px solid #277b32;
+  box-shadow: inset 0px 0px 0px 1px rgba(243, 251, 244, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.textbutton.emphasized[disabled] {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
-  color: #b9b9b9;
+  color: #c6c6c6;
   box-shadow: none;
   cursor: unset;
   font-weight: normal;
@@ -416,10 +464,24 @@ span {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
   border-radius: 3px;
-  box-shadow: none;
+  transition-duration: 0.3s;
+  transition-timing-function: easein;
 }
 .jewel.textfield .input:focus {
   border: 1px solid #0f88d1;
+}
+.jewel.textfield .input::placeholder {
+  color: #a6a6a6;
+}
+.jewel.textfield .input[disabled] {
+  cursor: unset;
+  border: 1px solid #c6c6c6;
+  background: #F9F9F9;
+  box-shadow: none;
+  color: #c6c6c6;
+}
+.jewel.textfield .input[disabled]::placeholder {
+  color: #c6c6c6;
 }
 
 /*# sourceMappingURL=defaults.css.map */

@@ -70,12 +70,18 @@
 			box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
 	
 	&:focus
-		outline: 0
+		outline: none
+		@if $flat
+			border: 1px solid $button-color
+			box-shadow: inset 0px 0px 0px 1px rgba(lighten($button-color, 50%), .5)
+		@else
+			border: 1px solid darken($button-color, 15%)
+			box-shadow: inset 0px 0px 0px 1px rgba(lighten($button-color, 50%), .5), inset 0 1px 0 rgba(lighten($button-color, 55%), .6)
 	
 	&[disabled]
 		border: 1px solid darken($disabled-color, 20%)// .094em solid 
 		background: $disabled-color
-		color: darken($disabled-color, 25%)
+		color: darken($disabled-color, 20%)
 		box-shadow: none
 		cursor: unset
 		font:
