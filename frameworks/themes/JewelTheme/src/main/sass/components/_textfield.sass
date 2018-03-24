@@ -28,7 +28,7 @@ $textfield-min-width: 74px !default
 
 $textfield-border-radius: 3px
 
-=textfield-theme($textfield-color, $text-color)
+=textfield-theme($textfield-color, $textfield-text-color)
 	position: relative
 	display: inline-flex
 	
@@ -49,10 +49,10 @@ $textfield-border-radius: 3px
 			family: $font-stack
 			size: $font-size
 			weight: normal
-		
+		color: $textfield-text-color
+
 		background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
 		border: 1px solid darken($textfield-color, 15%)
-		color: $text-color
 		border-radius: $textfield-border-radius
 		//transition: transition
 
@@ -62,10 +62,14 @@ $textfield-border-radius: 3px
 		//    padding: 5px;
 		//    background-color: #DFDFDF;
 
-
 .jewel.textfield
-	+textfield-theme($default-color, $default-font-color)
+	@if $dark
+		+textfield-theme($default-color, $font-dark-color)
+	@else
+		+textfield-theme($default-color, $font-light-color)
 
 .jewel.textfield.primary
-	+textfield-theme($primary-color, $font-theme-color)
-
+	@if $dark
+		+textfield-theme($primary-color, $font-dark-color)
+	@else
+		+textfield-theme($primary-color, $font-light-color)

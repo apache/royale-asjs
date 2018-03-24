@@ -41,6 +41,7 @@ $font-dark-color: #FFFFFF
 
 //Theme Style (Flat or Gradient)
 $flat: false
+$dark: false
 $transitions-enable: false
 $transition-duration: .3s
 $transition-timing: easein
@@ -50,12 +51,18 @@ $font-stack: 'Lato', sans-serif
 $font-size: 14px//0.75rem
 
 // VARIABLES
-$default-color: $light-color  // change this from light to dark
+$default-color: $light-color
+@if $dark
+    $default-color: $dark-color
+
 $primary-color: $blue
 $secondary-color: $topaz
 $emphasized-color: $green
 
-$default-font-color: $font-light-color // change this from light to dark
+$default-font-color: $font-light-color
+@if $dark
+    $default-font-color: $font-dark-color
+
 $disabled-color: #F9F9F9 // maybe make it dependent of theme colors
 
 
