@@ -222,6 +222,9 @@ span {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
 }
+.jewel.checkbox .input[disabled] + .span {
+  color: #c6c6c6;
+}
 .jewel.checkbox .input[disabled]:checked {
   border: 1px solid #c6c6c6;
   background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><g><polygon fill='lightgray' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></g></svg>");
@@ -284,6 +287,9 @@ span {
   cursor: unset;
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
+}
+.jewel.radiobutton .input[disabled] + .span {
+  color: #c6c6c6;
 }
 .jewel.radiobutton .input[disabled]:checked {
   border: 1px solid #c6c6c6;
