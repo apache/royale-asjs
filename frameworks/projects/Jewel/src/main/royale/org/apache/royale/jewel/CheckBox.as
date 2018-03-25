@@ -23,7 +23,6 @@ package org.apache.royale.jewel
 
     COMPILE::JS
     {
-        import org.apache.royale.core.CSSClassList;
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.events.Event;
         import org.apache.royale.html.util.addElementToWrapper;
@@ -114,7 +113,6 @@ package org.apache.royale.jewel
             return element;
         }
 
-        COMPILE::JS
         /**
 		 *  override UIBase to affect positioner instead of element
 		 *
@@ -123,10 +121,10 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.2
 		 */
+        COMPILE::JS
 		override protected function setClassName(value:String):void
 		{
-			//positioner.className = value;
-            addStyles(positioner, value);
+			addStyles(positioner, value);
 		}
 
         /**

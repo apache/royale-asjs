@@ -17,20 +17,83 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-.jewel.radiobutton
-    padding-left: 5px
-    .input
-        width: 15px
-        height: 15px
-        border: 1px solid
+// Jewel RadioButton
 
-    // > input[type="radio"]
-    //     width: 50px
-    //     height: 50px
-    // > label
-    //     cursor: auto
-    //     position: relative
-    //     display: block
-    //     padding-left: 20px
-    //     outline: none
-        //font-size: @labelFontSize
+// RadioButton variables
+$radiobutton-button-size: 22px
+$radiobutton-border-radius: 50%
+$radiobutton-label-separation: 6px
+$radiobutton-label-font-size: 16px
+
+.jewel.radiobutton
+    //cursor: pointer
+    display: inline-block
+
+    margin: 0
+    padding: 0
+
+    position: relative
+    vertical-align: middle
+    
+    width: 100%
+    height: $radiobutton-button-size
+
+    // -- INPUT
+    .input
+        +appear(none)
+        cursor: pointer
+        display: inline-block
+        
+        margin: 0
+        padding: 0
+        
+        width: $radiobutton-button-size
+        height: $radiobutton-button-size
+
+        line-height: $radiobutton-button-size
+
+        @if $flat
+            border: 0px solid
+            background: $default-color
+        @else
+            background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+            border: 1px solid darken($default-color, 15%)
+        border-radius: $radiobutton-border-radius
+
+        &:checked,  &:checked:active
+            //background: url(assets/radiobutton-tick.svg), lighten($primary-color, 25%)
+            background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><g><circle fill='#{$primary-color}' cx='11' cy='11' r='6'></circle></g></g></g></svg>")
+            background-repeat: no-repeat
+            background-size: 60%
+            background-position: center
+            background-attachment: fixed
+            
+        &:focus
+            outline: none
+            @if $flat
+                background: lighten($primary-color, 25%)
+            @else
+                border: 1px solid darken($primary-color, 15%)
+
+        &[disabled]
+            cursor: unset
+            border: 1px solid darken($disabled-color, 20%)
+            background: $disabled-color
+            
+            &:checked
+                border: 1px solid darken($disabled-color, 20%)
+                //background: url(assets/radiobutton-tick.svg), $disabled-color
+                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><g><circle fill='#{darken($disabled-color, 15%)}' cx='11' cy='11' r='6'></circle></g></g></g></svg>")
+                background-size: 60%
+                background-position: center
+                background-repeat: no-repeat
+                background-attachment: fixed
+                
+    // -- LABEL
+    .span
+        cursor: pointer
+        position: absolute
+        margin: 0
+        padding-left: $radiobutton-label-separation
+        font-size: $radiobutton-label-font-size
+        line-height: $radiobutton-button-size

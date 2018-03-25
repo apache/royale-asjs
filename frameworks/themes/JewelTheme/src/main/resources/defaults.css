@@ -245,12 +245,61 @@ span {
 }
 
 .jewel.radiobutton {
-  padding-left: 5px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+  height: 22px;
 }
 .jewel.radiobutton .input {
-  width: 15px;
-  height: 15px;
-  border: 1px solid;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #b3b3b3;
+  border-radius: 50%;
+}
+.jewel.radiobutton .input:checked, .jewel.radiobutton .input:checked:active {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><g><circle fill='#3CADF1' cx='11' cy='11' r='6'></circle></g></g></g></svg>");
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
+  background-attachment: fixed;
+}
+.jewel.radiobutton .input:focus {
+  outline: none;
+  border: 1px solid #0f88d1;
+}
+.jewel.radiobutton .input[disabled] {
+  cursor: unset;
+  border: 1px solid #c6c6c6;
+  background: #F9F9F9;
+}
+.jewel.radiobutton .input[disabled]:checked {
+  border: 1px solid #c6c6c6;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><g><circle fill='lightgray' cx='11' cy='11' r='6'></circle></g></g></g></svg>");
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.jewel.radiobutton .span {
+  cursor: pointer;
+  position: absolute;
+  margin: 0;
+  padding-left: 6px;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 .jewel.slider .slider {
