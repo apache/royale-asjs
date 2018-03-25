@@ -79,7 +79,15 @@ package org.apache.royale.core
             if(!layoutPending && !measurementPending)
             {
                 layoutPending = true;
-                setTimeout(executeLayouts, 0);
+                COMPILE::SWF
+                {
+                    setTimeout(executeLayouts, 0);
+                }
+
+                COMPILE::JS
+                {
+                    requestAnimationFrame(executeLayouts);
+                }
             }
         }
         static private function executeMeasurements():void
