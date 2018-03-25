@@ -23,10 +23,11 @@ package org.apache.royale.jewel
 
     COMPILE::JS
     {
+        import org.apache.royale.core.CSSClassList;
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.events.Event;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.core.CSSClassList;
+        import org.apache.royale.utils.cssclasslist.addStyles;
     }
 
     /**
@@ -69,6 +70,21 @@ package org.apache.royale.jewel
 
         COMPILE::JS
         protected var label:HTMLLabelElement;
+
+        COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+		}
         
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -80,9 +96,9 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            label = addElementToWrapper(this,'label') as HTMLLabelElement;
+            var label:HTMLLabelElement = document.createElement('label') as HTMLLabelElement;
             
-            input = document.createElement('input') as HTMLInputElement;
+            input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.type = 'checkbox';    
             input.className = 'input';
             label.appendChild(input);
@@ -91,10 +107,27 @@ package org.apache.royale.jewel
             checkbox.className = 'span';
             label.appendChild(checkbox);
             
-            (input as WrappedHTMLElement).royale_wrapper = this;
-            (checkbox as WrappedHTMLElement).royale_wrapper = this;
+            positioner = label as WrappedHTMLElement;
+            _positioner.royale_wrapper = this;
+            //(input as WrappedHTMLElement).royale_wrapper = this;
+            //(checkbox as WrappedHTMLElement).royale_wrapper = this;
             return element;
         }
+
+        COMPILE::JS
+        /**
+		 *  override UIBase to affect positioner instead of element
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.2
+		 */
+		override protected function setClassName(value:String):void
+		{
+			//positioner.className = value;
+            addStyles(positioner, value);
+		}
 
         /**
          *  The text label for the CheckBox.

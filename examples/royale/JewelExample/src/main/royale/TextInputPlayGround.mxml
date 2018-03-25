@@ -43,7 +43,7 @@ limitations under the License.
 		</js:beads>
 		<j:TextField>
 			<j:beads>
-				<js:TextPromptBead prompt="With Placeholder..."/>
+				<js:TextPromptBead prompt="With prompt..."/>
 			</j:beads>
 		</j:TextField>
 		<j:TextButton text="Send" primary="true"/>

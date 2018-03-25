@@ -53,67 +53,75 @@ package org.apache.royale.jewel.supportClasses
 			super();
 		}
 
+        
         COMPILE::JS
+        private var _textNode:Text;
+
+        /**
+         *  @copy org.apache.royale.jewel.supportClasses.ITextField#textNode
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.2
+         */
+        COMPILE::JS
+        public function get textNode():Text
         {
-            private var _textNode:Text;
-            /**
-             *  @copy org.apache.royale.jewel.supportClasses.ITextField#textNode
-             *
-             *  @langversion 3.0
-             *  @playerversion Flash 10.2
-             *  @playerversion AIR 2.6
-             *  @productversion Royale 0.9.2
-             */
-            public function get textNode():Text
-            {
-                return _textNode;
-            }
-
-            public function set textNode(value:Text):void
-            {
-                _textNode = value;
-            }
-
-            private var _input:HTMLInputElement;
-            /**
-             *  @copy org.apache.royale.jewel.supportClasses.ITextField#input
-             *
-             *  @langversion 3.0
-             *  @playerversion Flash 10.2
-             *  @playerversion AIR 2.6
-             *  @productversion Royale 0.9.2
-             */
-            public function get input():HTMLInputElement
-            {
-                return _input;
-            }
-
-            public function set input(value:HTMLInputElement):void
-            {
-                _input = value;
-            }
-
-            private var _label:HTMLLabelElement;
-            /**
-             *  @copy org.apache.royale.jewel.supportClasses.ITextField#label
-             *
-             *  @langversion 3.0
-             *  @playerversion Flash 10.2
-             *  @playerversion AIR 2.6
-             *  @productversion Royale 0.9.2
-             */
-            public function get label():HTMLLabelElement
-            {
-                return _label;
-            }
-
-            public function set label(value:HTMLLabelElement):void
-            {
-                _label = value;
-            }
+            return _textNode;
         }
 
         COMPILE::JS
+        public function set textNode(value:Text):void
+        {
+            _textNode = value;
+        }
+
+        COMPILE::JS
+        private var _input:HTMLInputElement;
+        /**
+         *  @copy org.apache.royale.jewel.supportClasses.ITextField#input
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.2
+         */
+        COMPILE::JS
+        public function get input():HTMLInputElement
+        {
+            return _input;
+        }
+        COMPILE::JS
+        public function set input(value:HTMLInputElement):void
+        {
+            _input = value;
+        }
+
+        COMPILE::JS
+        private var _label:HTMLLabelElement;
+
+        /**
+         *  @copy org.apache.royale.jewel.supportClasses.ITextField#label
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.2
+         */
+        COMPILE::JS
+        public function get label():HTMLLabelElement
+        {
+            return _label;
+        }
+
+        COMPILE::JS
+        public function set label(value:HTMLLabelElement):void
+        {
+            _label = value;
+        }
+
+        
         /**
 		 *  override UIBase to affect positioner instead of element
 		 *
@@ -122,12 +130,13 @@ package org.apache.royale.jewel.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.2
 		 */
+        COMPILE::JS
 		override protected function setClassName(value:String):void
 		{
 			//positioner.className = value;
             addStyles(positioner, value);
 		}
-        
+
         private var _isInvalid:Boolean = false;
         /**
 		 *  A boolean flag to activate "is-invalid" effect selector.

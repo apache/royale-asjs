@@ -29,11 +29,17 @@ limitations under the License.
 	
 	<html:H3 text="Jewel CheckBox"/>
 
-	<j:CheckBox text="Checkbox 1"/>
+	<j:CheckBox text="Not Checkbox"/>
 
-	<j:CheckBox text="Checkbox 2"/>
+	<j:CheckBox text="Checked" selected="true"/>
 
-	<j:CheckBox text="Checkbox Disabled">
+	<j:CheckBox text="Disabled">
+		<j:beads>
+			<j:Disabled/>
+		</j:beads>
+	</j:CheckBox>
+
+	<j:CheckBox text="Checked And Disabled" selected="true">
 		<j:beads>
 			<j:Disabled/>
 		</j:beads>

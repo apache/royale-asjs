@@ -182,35 +182,36 @@ span {
 }
 
 .jewel.checkbox {
-  cursor: pointer;
   display: inline-block;
   margin: 0;
   padding: 0;
   position: relative;
   vertical-align: middle;
-  box-sizing: border-box;
   width: 100%;
-  height: 24px;
+  height: 22px;
 }
 .jewel.checkbox .input {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
   appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
   width: 22px;
   height: 22px;
-  line-height: 24px;
-  border: 1px solid #3CADF1;
+  line-height: 22px;
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #b3b3b3;
   border-radius: 3px;
 }
 .jewel.checkbox .input:checked, .jewel.checkbox .input:checked:active {
-  border: 1px solid #0f88d1;
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-763.000000, -350.000000)' fill='#3CADF1'><g transform='translate(760.000000, 345.000000)'><g><polygon id='Tick' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></g></g></svg>");
-  background-size: cover;
-  padding: 2px;
-}
-.jewel.checkbox .input:checked path, .jewel.checkbox .input:checked:active path {
-  fill: #ff0000;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><g><polygon fill='#3CADF1' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></g></svg>");
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+  background-attachment: fixed;
 }
 .jewel.checkbox .input:focus {
   outline: none;
@@ -221,8 +222,21 @@ span {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
 }
+.jewel.checkbox .input[disabled]:checked {
+  border: 1px solid #c6c6c6;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><g><polygon fill='lightgray' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></g></svg>");
+  background-size: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .jewel.checkbox .span {
-  padding-left: 5px;
+  cursor: pointer;
+  position: absolute;
+  margin: 0;
+  padding-left: 6px;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 .jewel.label {
