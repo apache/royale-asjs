@@ -49,13 +49,14 @@
 				<local:TextInputPlayGround/>
 				<local:CheckBoxPlayGround/>
 				<local:RadioButtonPlayGround/>
-				<local:SliderPlayGround/>
+				
 			</js:Group>
 
 			<js:Group>
 				<js:beads>
 					<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 				</js:beads>
+				<local:SliderPlayGround/>
 				<local:HeadingsAndText/>
 			</js:Group>
         </js:View>

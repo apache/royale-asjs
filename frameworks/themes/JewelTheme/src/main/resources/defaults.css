@@ -49,6 +49,12 @@ span {
   font-size: 14px;
 }
 
+div {
+  font-size: 14px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
 .jewel.button {
   cursor: pointer;
   display: inline-block;
