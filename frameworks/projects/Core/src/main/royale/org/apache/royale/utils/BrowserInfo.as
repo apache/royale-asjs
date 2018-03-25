@@ -43,6 +43,11 @@ package org.apache.royale.utils
         private var _browser:String;
         /**
          * The browser (if any)
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
          */
         public function get browser():String
         {
@@ -52,6 +57,11 @@ package org.apache.royale.utils
         private var _version:String;
         /**
          * The browser version.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
          */
         public function get version():String
         {
@@ -61,6 +71,11 @@ package org.apache.royale.utils
         private var _engine:String;
         /**
          * The rendering engine used by the browser. One of: "Trident", "Gecko", "Presto", "Blink", "WebKit", "EdgeHTML".
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
          */
         public function get engine():String
         {
@@ -70,6 +85,11 @@ package org.apache.royale.utils
         private var _engineVersion:String;
         /**
          * The specific version of the rendering engine used.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
          */
         public function get engineVersion():String
         {
@@ -77,21 +97,51 @@ package org.apache.royale.utils
         }
 
         private var _formFactor:String;
+
         /**
          * The form factor of the device. One of: "Mobile", "Tablet", "TV", "iPhone", "iPad", "iPod" or "Desktop".
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
          */
         public function get formFactor():String{
             return _formFactor;
         }
+        /**
+         * The os. @see org.apache.royale.utils.OSUtils
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
+         */
         public function get os():String
         {
             return OSUtils.getOS();
         }
+        /**
+         * True if the platform is a tablet or phone.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
+         */
         public function isMobile():Boolean
         {
             return formFactor != "Desktop" && formFactor != "TV";
         }
         private static var _current:BrowserInfo;
+        /**
+         * Returns a BrowserInfo object with properties of the current runtime.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.0
+         */
         public static function current():BrowserInfo
         {
             if(!_current)
