@@ -711,17 +711,14 @@ package org.apache.royale.core
             else
                 style.left = value;
         }
-        
         /**
          * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         public function set x(value:Number):void
         {
-            //positioner.style.position = 'absolute';
-            if (positioner.parentNode != positioner.offsetParent)
-                value += (positioner.parentNode as HTMLElement).offsetLeft;
-            positioner.style.left = value.toString() + 'px';
+            _x = value;
+            setX(value);
         }
 
         /**
@@ -731,6 +728,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get x():Number
         {
+            if(!isNaN(_x))
+                return _x
             var strpixels:String = positioner.style.left as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
@@ -787,10 +786,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function set y(value:Number):void
         {
-            //positioner.style.position = 'absolute';
-            if (positioner.parentNode != positioner.offsetParent)
-                value += (positioner.parentNode as HTMLElement).offsetTop;
-            positioner.style.top = value.toString() + 'px';
+            _y = value;
+            setY(value);
         }
         
         /**
@@ -800,6 +797,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get y():Number
         {
+            if(!isNaN(_y))
+                return _y
             var strpixels:String = positioner.style.top as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
