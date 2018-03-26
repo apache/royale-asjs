@@ -1,6 +1,8 @@
 package echarts
 {
-
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class Title{
         public var text:String;
         public var show:Boolean;

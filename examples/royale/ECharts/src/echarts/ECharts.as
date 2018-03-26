@@ -9,9 +9,10 @@ package echarts
         
         private var echartsContainer:WrappedHTMLElement;
         private var echartsInstance:Object;
+        private var echartsInstanceCreated:Boolean = false;
 
         //EChart options
-        private var _chartOptions:EChartsOptions;
+        private var _chartOptions:EChartsOptions = null;
 
         public function ECharts()
         {
@@ -25,24 +26,17 @@ package echarts
             echartsContainer.setAttribute("style", "width: 600px;height:400px;");
 
             echartsInstance = global["echarts"].init(echartsContainer);
+            echartsInstanceCreated = true;
 
             var option:Object = 
              {
-                xAxis: {
-                    data: ["shirt","cardign","chiffon shirt","pants","heels","socks"]
-                },
-                yAxis: {
-
-                },
+                xAxis:{},
+                yAxis:{},
                 series:[{
                     data: [5, 20, 36, 10, 10, 20],
                     type: "bar",
                     name: "Sales"
-                }],
-                tooltip: {},
-                legend: {
-                    data:['Sales']
-                }           
+                }]
             };
 
             //echartsInstance.setOption(option);
@@ -50,13 +44,41 @@ package echarts
             return echartsContainer;
         }
 
+        protected function handleChartOptionsChanged(event:Event):void {
+            applyChartOptions(EChartsOptions(event.currentTarget).options);
+        }
+
         public function set chartOptions(v:EChartsOptions):void {
-            this._chartOptions = v;
-            echartsInstance.setOption(v);
+            if(this._chartOptions == null) {
+                this._chartOptions = v;
+                this._chartOptions.addEventListener("chartOptionsChanged", this.handleChartOptionsChanged);
+                this.applyChartOptions(this._chartOptions.options);
+            }
+            else {
+                if(!isEqual(this._chartOptions.options, v.options)) {
+                    this._chartOptions = v;
+                    this._chartOptions.addEventListener("chartOptionsChanged", this.handleChartOptionsChanged);
+                    this.applyChartOptions(this._chartOptions.options);
+                }
+            }
+        }
+
+        private function applyChartOptions(options:Object):void {
+            if(this.echartsInstanceCreated) {
+                this.echartsInstance.setOption(options);
+            }
+        }
+
+        private function isEqual(a:Object, b:Object):Boolean {
+            return JSON.stringify(a) === JSON.stringify(b);
         }
 
         public function get chartOptions():EChartsOptions {
             return this._chartOptions;
+        }
+
+        public function redraw(v:EChartsOptions):void {
+            echartsInstance.resize(v);
         }
     }
 }
