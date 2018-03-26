@@ -644,6 +644,7 @@ package org.apache.royale.core
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IBead
+         * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		protected function initialize():void

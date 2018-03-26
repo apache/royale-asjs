@@ -152,6 +152,7 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 */
 		protected function childResizeHandler(event:Event):void
 		{
@@ -303,6 +304,7 @@ package org.apache.royale.core
          *  @productversion Royale 0.8
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function performLayout():void
 		{
@@ -324,7 +326,7 @@ package org.apache.royale.core
 					
 					isLayoutRunning = false;
 					
-					IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
+					host.dispatchEvent(new Event("layoutComplete"));
 					
 					// check sizes to see if layout changed the size or not
 					// and send an event to re-layout parent of host
