@@ -72,7 +72,6 @@ package org.apache.royale.binding
 
         /**
          * @royaleignorecoercion org.apache.royale.core.IBead
-         * @royaleignorecoercion org.apache.royale.core.IStrand
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         protected function prepareCreatedBinding(binding:IBinding, bindingObject:Object, destinationObject:Object = null):void
