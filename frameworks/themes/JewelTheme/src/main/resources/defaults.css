@@ -20,13 +20,11 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
-  color: #808080;
 }
 
-.royale {
-  padding: 10px;
-  margin: 10px;
+.Application {
+  font-family: "Lato", sans-serif;
+  color: #808080;
 }
 
 h1 {

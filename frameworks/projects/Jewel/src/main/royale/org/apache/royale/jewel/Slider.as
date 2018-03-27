@@ -86,6 +86,12 @@ package org.apache.royale.jewel
 			super();
 
 			typeNames = "jewel slider"
+
+			IRangeModel(model).value = 0;
+			IRangeModel(model).minimum = 0;
+			IRangeModel(model).maximum = 100;
+			IRangeModel(model).stepSize = 1;
+			IRangeModel(model).snapInterval = 1;
 		}
 		
 		/**
@@ -96,6 +102,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
+		[Bindable("valueChange")]
 		public function get value():Number
 		{
 			return IRangeModel(model).value;
@@ -137,6 +144,24 @@ package org.apache.royale.jewel
 		public function set maximum(value:Number):void
 		{
 			IRangeModel(model).maximum = value;
+		}
+
+		/**
+		 *  The modulus of the Slider value. The thumb will be positioned
+		 *  at the nearest multiple of this value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		public function get snapInterval():Number
+		{
+			return IRangeModel(model).snapInterval;
+		}
+		public function set snapInterval(value:Number):void
+		{
+			IRangeModel(model).snapInterval = value;
 		}
 
 		/**
@@ -184,8 +209,7 @@ package org.apache.royale.jewel
             
             var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'range');
-			//input.className = "slider";
-
+			
 			//attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             //goog.events.listen(input, 'input', textChangeHandler);

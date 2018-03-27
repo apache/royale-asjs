@@ -21,8 +21,11 @@
 
 @namespace "http://www.w3.org/1999/xhtml";
 
-body{
-    background: #fff; 
+.Application
+{
+    background: #fff;
+    padding: 10px;
+	margin: 10px;
 }
 
 .container {

@@ -316,14 +316,12 @@ package org.apache.royale.jewel
             
             icon = addElementToWrapper(this,'input') as HTMLInputElement;
             icon.type = "radio";
-            //icon.className = 'input';
             icon.id = '_radio_' + + Math.random();
             label.appendChild(icon);
 
             textNode = document.createTextNode('') as Text;
 
             radio = document.createElement('span') as HTMLSpanElement;
-            //radio.className = 'span';
             radio.appendChild(textNode);
             label.appendChild(radio);
             //radio.addEventListener('mouseover', mouseOverHandler, false);

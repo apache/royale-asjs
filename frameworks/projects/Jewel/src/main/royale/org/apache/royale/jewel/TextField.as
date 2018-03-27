@@ -82,7 +82,6 @@ package org.apache.royale.jewel
             
             input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'text');
-            //input.className = "input";
             
             //attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
