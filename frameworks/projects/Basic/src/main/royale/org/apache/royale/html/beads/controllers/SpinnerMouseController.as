@@ -73,6 +73,8 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.html.beads.ISpinnerView
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		public function set strand(value:IStrand):void
 		{

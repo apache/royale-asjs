@@ -69,9 +69,10 @@ package org.apache.royale.html.beads
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
 		 */
 		protected function handleDataProviderChanged(e:Event):void
 		{

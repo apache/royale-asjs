@@ -102,7 +102,9 @@ package org.apache.royale.html.beads
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 * @royaleignorecoercion org.apache.royale.core.IBead
+			 * @royaleignorecoercion org.apache.royale.core.IBeadModel
 			 * @royaleignorecoercion org.apache.royale.core.IChild
+			 * @royaleignorecoercion org.apache.royale.html.DataGrid
 			 */
 			override protected function handleInitComplete(event:Event):void
 			{

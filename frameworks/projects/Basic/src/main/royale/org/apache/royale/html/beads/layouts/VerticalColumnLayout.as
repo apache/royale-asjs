@@ -89,6 +89,7 @@ package org.apache.royale.html.beads.layouts
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.IMeasurementBead
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean

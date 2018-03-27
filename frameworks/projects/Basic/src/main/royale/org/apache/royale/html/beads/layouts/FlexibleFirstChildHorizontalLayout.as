@@ -204,6 +204,9 @@ package org.apache.royale.html.beads.layouts
 			return true;
 		}
 
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
 		COMPILE::JS
 		override public function layout():Boolean
 		{

@@ -102,9 +102,11 @@ package org.apache.royale.html.beads.layouts
 		/**
 		 * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
          * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
 		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
 		 */
 		public function layout():Boolean
