@@ -196,7 +196,7 @@ div {
   width: 100%;
   height: 22px;
 }
-.jewel.checkbox .input {
+.jewel.checkbox input {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -212,26 +212,26 @@ div {
   border: 1px solid #b3b3b3;
   border-radius: 3px;
 }
-.jewel.checkbox .input:checked, .jewel.checkbox .input:checked:active {
+.jewel.checkbox input:checked, .jewel.checkbox input:checked:active {
   background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><g><polygon fill='#3CADF1' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></g></svg>");
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
   background-attachment: fixed;
 }
-.jewel.checkbox .input:focus {
+.jewel.checkbox input:focus {
   outline: none;
   border: 1px solid #0f88d1;
 }
-.jewel.checkbox .input[disabled] {
+.jewel.checkbox input[disabled] {
   cursor: unset;
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
 }
-.jewel.checkbox .input[disabled] + .span {
+.jewel.checkbox input[disabled] + .span {
   color: #c6c6c6;
 }
-.jewel.checkbox .input[disabled]:checked {
+.jewel.checkbox input[disabled]:checked {
   border: 1px solid #c6c6c6;
   background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><g><polygon fill='lightgray' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></g></svg>");
   background-size: 90%;
@@ -239,7 +239,7 @@ div {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-.jewel.checkbox .span {
+.jewel.checkbox span {
   cursor: pointer;
   position: absolute;
   margin: 0;
@@ -262,7 +262,7 @@ div {
   width: 100%;
   height: 22px;
 }
-.jewel.radiobutton .input {
+.jewel.radiobutton input {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -278,26 +278,26 @@ div {
   border: 1px solid #b3b3b3;
   border-radius: 50%;
 }
-.jewel.radiobutton .input:checked, .jewel.radiobutton .input:checked:active {
+.jewel.radiobutton input:checked, .jewel.radiobutton input:checked:active {
   background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><g><circle fill='#3CADF1' cx='11' cy='11' r='6'></circle></g></g></g></svg>");
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
   background-attachment: fixed;
 }
-.jewel.radiobutton .input:focus {
+.jewel.radiobutton input:focus {
   outline: none;
   border: 1px solid #0f88d1;
 }
-.jewel.radiobutton .input[disabled] {
+.jewel.radiobutton input[disabled] {
   cursor: unset;
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
 }
-.jewel.radiobutton .input[disabled] + .span {
+.jewel.radiobutton input[disabled] + .span {
   color: #c6c6c6;
 }
-.jewel.radiobutton .input[disabled]:checked {
+.jewel.radiobutton input[disabled]:checked {
   border: 1px solid #c6c6c6;
   background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><g><circle fill='lightgray' cx='11' cy='11' r='6'></circle></g></g></g></svg>");
   background-size: 60%;
@@ -305,7 +305,7 @@ div {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-.jewel.radiobutton .span {
+.jewel.radiobutton span {
   cursor: pointer;
   position: absolute;
   margin: 0;
@@ -314,7 +314,7 @@ div {
   line-height: 22px;
 }
 
-.jewel.slider .slider {
+.jewel.slider input {
   -webkit-appearance: none;
   width: 100%;
   height: 15px;
@@ -325,13 +325,13 @@ div {
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
 }
-.jewel.slider .slider:hover {
+.jewel.slider input:hover {
   opacity: 1;
 }
-.jewel.slider .slider:focus {
+.jewel.slider input:focus {
   outline: none;
 }
-.jewel.slider .slider::-webkit-slider-thumb {
+.jewel.slider input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -340,7 +340,7 @@ div {
   background: #3CADF1;
   cursor: pointer;
 }
-.jewel.slider .slider::-moz-range-thumb {
+.jewel.slider input::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -523,7 +523,7 @@ div {
   position: relative;
   display: inline-flex;
 }
-.jewel.textfield .input {
+.jewel.textfield input {
   margin: 0;
   padding: 0.67em 1em;
   max-width: 100%;
@@ -542,20 +542,20 @@ div {
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
-.jewel.textfield .input:focus {
+.jewel.textfield input:focus {
   border: 1px solid #0f88d1;
 }
-.jewel.textfield .input::placeholder {
+.jewel.textfield input::placeholder {
   color: #a6a6a6;
 }
-.jewel.textfield .input[disabled] {
+.jewel.textfield input[disabled] {
   cursor: unset;
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
   box-shadow: none;
   color: #c6c6c6;
 }
-.jewel.textfield .input[disabled]::placeholder {
+.jewel.textfield input[disabled]::placeholder {
   color: #c6c6c6;
 }
 

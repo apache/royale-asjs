@@ -30,7 +30,7 @@ limitations under the License.
 	<html:H3 text="Jewel RadioButton"/>
 
 	<j:RadioButton text="RadioButton 1" groupName="radios" value="Test 1"/>
-	<j:RadioButton text="RadioButton 2" groupName="radios" value="Test 2"/>
+	<j:RadioButton text="RadioButton 2" groupName="radios" value="Test 2" selected="true"/>
 	<j:RadioButton text="RadioButton 3" groupName="radios" value="Test 3"/>
 
 	<j:RadioButton text="Disabled">

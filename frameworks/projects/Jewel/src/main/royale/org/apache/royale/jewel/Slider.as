@@ -184,7 +184,7 @@ package org.apache.royale.jewel
             
             var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'range');
-			input.className = "slider";
+			//input.className = "slider";
 
 			//attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);

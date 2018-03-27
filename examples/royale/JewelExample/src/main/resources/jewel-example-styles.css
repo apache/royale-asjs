@@ -21,10 +21,13 @@
 
 @namespace "http://www.w3.org/1999/xhtml";
 
-
+body{
+    background: #fff; 
+}
 
 .container {
     background: #efefef;
     border-radius: 10px;
     padding: 20px;
 }
+	
