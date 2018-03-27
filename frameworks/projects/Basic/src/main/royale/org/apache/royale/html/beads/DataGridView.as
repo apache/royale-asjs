@@ -45,7 +45,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public class DataGridView extends GroupView implements IBeadView, IDataGridView
 		{
@@ -55,7 +55,7 @@ package org.apache.royale.html.beads
 			 *  @langversion 3.0
 			 *  @playerversion Flash 10.2
 			 *  @playerversion AIR 2.6
-			 *  @productversion Royale 0.0
+			 *  @productversion Royale 0.9
 			 */
 			public function DataGridView()
 			{
@@ -99,6 +99,10 @@ package org.apache.royale.html.beads
 
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+			 * @royaleignorecoercion org.apache.royale.core.IBead
+			 * @royaleignorecoercion org.apache.royale.core.IChild
 			 */
 			override protected function handleInitComplete(event:Event):void
 			{
@@ -156,6 +160,8 @@ package org.apache.royale.html.beads
 
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
 			 */
 			private function handleSelectedIndexChanged(event:Event):void
 			{
@@ -171,6 +177,8 @@ package org.apache.royale.html.beads
 
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
 			 */
 			private function handleColumnListChange(event:Event):void
 			{
@@ -190,6 +198,12 @@ package org.apache.royale.html.beads
 
 			/**
 			 * @private
+			 * @royaleignorecoercion String
+			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.core.IBead
+			 * @royaleignorecoercion org.apache.royale.core.IChild
+			 * @royaleignorecoercion org.apache.royale.html.DataGrid
+			 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
 			 */
 			private function createLists():void
 			{
@@ -227,7 +241,7 @@ package org.apache.royale.html.beads
 						list.className = "middle "+useClassName;
 					}
 					
-					list.id = "dataGridColumn"+String(i);
+					list.id = "dataGridColumn" + i;
 					list.dataProvider = sharedModel.dataProvider;
 					list.itemRenderer = dataGridColumn.itemRenderer;
 					list.labelField = dataGridColumn.dataField;
