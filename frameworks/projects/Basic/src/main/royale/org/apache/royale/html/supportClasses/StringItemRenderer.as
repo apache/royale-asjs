@@ -115,7 +115,7 @@ package org.apache.royale.html.supportClasses
             }
             COMPILE::JS
             {
-                return this.element.innerHTML;
+                return this.element.textContent;
             }
 		}
 
@@ -127,7 +127,7 @@ package org.apache.royale.html.supportClasses
             }
             COMPILE::JS
             {
-                this.element.innerHTML = value;
+                this.element.textContent = value;
             }
 		}
 
