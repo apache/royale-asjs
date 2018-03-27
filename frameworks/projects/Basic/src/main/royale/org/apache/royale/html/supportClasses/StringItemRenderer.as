@@ -139,16 +139,17 @@ package org.apache.royale.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion String
 		 */
 		override public function set data(value:Object):void
 		{
 			super.data = value;
             var text:String;
 			if (value is String) text = value as String;
-			else if (labelField) text = String(value[labelField]);
-			else if (dataField) text = String(value[dataField]);
-			else text = String(value);
+			else if (labelField) text = "" + value[labelField];
+			else if (dataField) text = "" + value[dataField];
+			else text = "" + value;
 
             this.text = text;
 		}
