@@ -6,13 +6,13 @@
 				   >
 	<fx:Script>
         <![CDATA[
-        [Bindable] private var data:Array;
+        [Bindable] private var xAxisData:Array;
         [Bindable] private var salesData:Array;
         [Bindable] private var profitData:Array;
 
         private function onAppInitialize(event:Event):void
         {
-            this.data = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
+            this.xAxisData = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
             this.salesData = [5, 20, 36, 10, 10, 20];
             this.profitData = [15, 12, 45, 8, 9, 54];
         }
@@ -25,11 +25,11 @@
                 <ns2:chartOptions>
                     <ns2:EChartsOptions>
                         <ns2:title>
-                            <ns2:Title text="Sales vs. Profit" show="true"
+                            <ns2:Title text="Basic Example" show="true"
                             link="https://ecomfe.github.io/echarts-examples/public/index.html" target="_self" />
                         </ns2:title>
                         <ns2:xAxis>
-                            <ns2:XAxis data="{this.data}" position="top" />
+                            <ns2:XAxis data="{this.xAxisData}" position="top" />
                         </ns2:xAxis>
                         <ns2:yAxis>
                             <ns2:YAxis/>
@@ -37,10 +37,8 @@
                         <ns2:seriesList>
                             <ns2:SeriesList>
                                 <ns2:series>
-                                    <fx:Array>
-                                        <ns2:Series name="Sales" type="bar" data="{this.salesData}" />
-                                        <ns2:Series name="Profit" type="line" data="{this.profitData}" />
-                                    </fx:Array>
+                                    <ns2:Series name="Sales" type="bar" data="{this.salesData}" />
+                                    <ns2:Series name="Profit" type="line" data="{this.profitData}" />
                                 </ns2:series>
                             </ns2:SeriesList>
                         </ns2:seriesList>

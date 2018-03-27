@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:js="library://ns.apache.org/royale/express" 
+                   xmlns:ns2="echarts.*"
+                   initialize="onAppInitialize(event)"
+				   >
+	<fx:Script>
+        <![CDATA[
+        [Bindable] private var seriesData:Array;
+        [Bindable] private var xAxisIndex:Array;
+        [Bindable] private var yAxisIndex:Array;
+
+        private function onAppInitialize(event:Event):void
+        {
+            this.seriesData = [
+                // The first column corresponds to xAxis,
+                // and the second coloum corresponds to yAxis.
+                [1, 11],
+                [3, 9],
+                [12, 24],
+                [90, 80],
+            ];
+
+            this.xAxisIndex = [0];
+            this.yAxisIndex = [0];
+        }
+
+        ]]>
+    </fx:Script>
+	<js:initialView>
+        <js:View>
+            <ns2:ECharts id="chart">
+                <ns2:chartOptions>
+                    <ns2:EChartsOptions>
+                        <ns2:title>
+                            <ns2:Title text="DataZoom example" show="true"
+                            link="https://ecomfe.github.io/echarts-examples/public/index.html" target="_self" />
+                        </ns2:title>
+                        <ns2:xAxis>
+                            <ns2:XAxis type="value" />
+                        </ns2:xAxis>
+                        <ns2:yAxis>
+                            <ns2:YAxis type="value"/>
+                        </ns2:yAxis>
+                        <ns2:seriesList>
+                            <ns2:SeriesList>
+                                <ns2:series>
+                                    <ns2:Series type="line" data="{this.seriesData}" />
+                                </ns2:series>
+                            </ns2:SeriesList>
+                        </ns2:seriesList>
+                        <ns2:dataZoomList>
+                            <ns2:DataZoomList>
+                                <ns2:dataZoom>
+                                    <ns2:DataZoom id="xAxisZoom" type="slider" xAxisIndex="{[0]}" filterMode="filter"/>
+                                    <ns2:DataZoom id="yAxisZoom" type="slider" yAxisIndex="{[0]}" filterMode="filter"/>
+                                </ns2:dataZoom>
+                            </ns2:DataZoomList>
+                        </ns2:dataZoomList>
+                    </ns2:EChartsOptions>
+                </ns2:chartOptions>
+            </ns2:ECharts>
+        </js:View>
+	</js:initialView>
+</js:Application>

@@ -5,6 +5,7 @@ package echarts
     public class XAxis extends EventDispatcher{
 		private var _data:Array;
         private var _position:String;
+		private var _type:String;
 
         [Bindable("xAxisChanged")]
 		public function get data():Array
@@ -30,9 +31,22 @@ package echarts
             dispatchEvent(new Event("xAxisChanged"));
 		}
 
+		[Bindable("xAxisChanged")]
+		public function get type():String
+		{
+			return _type;
+		}
+
+		public function set type(value:String):void
+		{
+			_type = value;
+            dispatchEvent(new Event("xAxisChanged"));
+		}
+
         public function get obj():Object {
             return {data: this.data,
-                    position: this.position};
+                    position: this.position,
+					type: this.type};
         }
     }
 }
