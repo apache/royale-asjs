@@ -31,6 +31,7 @@ package org.apache.royale.html.supportClasses
     }
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.ITextItemRenderer;
+    import org.apache.royale.html.util.addElementToWrapper;
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()
@@ -152,8 +153,8 @@ package org.apache.royale.html.supportClasses
             this.text = text;
 		}
 
-        COMPILE::JS
-        private var backgroundView:WrappedHTMLElement;
+        // COMPILE::JS
+        // private var backgroundView:WrappedHTMLElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -161,11 +162,11 @@ package org.apache.royale.html.supportClasses
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('span') as WrappedHTMLElement;
+			return addElementToWrapper(this,'span');
             // itemRenderers should provide something for the background to handle
             // the selection and highlight
-            backgroundView = element;
-            return element;
+            // backgroundView = element;
+            // return element;
         }
 
 	}

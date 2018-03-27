@@ -71,11 +71,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.ITitleBarModel
 		 */
 		public function get title():String
 		{
 			return ITitleBarModel(model).title;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ITitleBarModel
+		 */
 		public function set title(value:String):void
 		{
 			ITitleBarModel(model).title = value;
@@ -88,11 +92,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.ITitleBarModel
 		 */
 		public function get htmlTitle():String
 		{
 			return ITitleBarModel(model).htmlTitle;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ITitleBarModel
+		 */
 		public function set htmlTitle(value:String):void
 		{
 			ITitleBarModel(model).htmlTitle = value;
@@ -106,11 +114,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.ITitleBarModel
 		 */
 		public function get showCloseButton():Boolean
 		{
 			return ITitleBarModel(model).showCloseButton;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ITitleBarModel
+		 */
 		public function set showCloseButton(value:Boolean):void
 		{
 			ITitleBarModel(model).showCloseButton = value;
