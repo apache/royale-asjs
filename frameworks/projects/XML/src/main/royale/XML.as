@@ -384,12 +384,15 @@ package
 			);
 			
 		}
+		private static var xmlRegEx:RegExp = /&(?![\w]+;)/g;
+		private static var parser:DOMParser;
 		private static var errorNS:String;
 		private function parseXMLStr(xml:String):void
 		{
 			//escape ampersands
-			xml = xml.replace(/&(?![\w]+;)/g,"&amp;");
-			var parser:DOMParser = new DOMParser();
+			xml = xml.replace(xmlRegEx,"&amp;");
+			if(!parser)
+				parser = new DOMParser();
 			if(errorNS == null)
 			{
 				// get error namespace. It's different in different browsers.
