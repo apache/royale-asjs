@@ -31,6 +31,7 @@
     <include file="${basedir}/../../build_example.xml" />
     
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    	<property name="theme_arg" value="–theme=frameworks/themes/MXRoyale/src/mx.css" />
     	<mkdir dir="${basedir}/bin/js-debug/assets" />
         <copy todir="${basedir}/bin/js-debug/assets" >
             <fileset dir="${basedir}/src/main/resources/assets">

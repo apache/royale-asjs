@@ -40,26 +40,50 @@ limitations under the License.
 		}
 	</fx:Style>
 	
-	<mx:VBox >
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
+			
+			private function pushMePushed(event:MouseEvent):void
+			{
+				trace("The PushMe button was pushed");
+			}
+			
+			private function changeIcon():void
+			{
+				button2.icon = "assets/mediumredrect.jpg";
+			}
+			
+			private function otherPushMe():void
+			{
+				trace("The other button was pushed");
+				text1.html = "The Button with an icon was pushed.";
+				dispatchEvent(new Event("layoutNeeded"));
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:VBox id="vbox1">
 		<mx:Label text="Hello World"/>
-		<mx:Button label="Push Me" toolTip="I do nothing" />
-		<mx:Button label="Green" icon="assets/smallgreenrect.jpg" toolTip="I also do nothing"  />
-		<mx:Image source="assets/smallgreenrect.jpg" toolTip="Green Square"  />
-		<mx:Text width="200" height="60" toolTip="More than meets the eye.">
+		<mx:Button label="Change Icon" click="changeIcon()" />
+		<mx:Button id="button2" label="Make Shorter" className="GreenButton" icon="assets/smallgreenrect.jpg" click="otherPushMe()"/>
+		<mx:Image source="assets/mediumredrect.jpg" toolTip="Green Square"  />
+		<mx:Text id="text1" toolTip="More than meets the eye.">
 			<mx:html><![CDATA[
 				This is <b>Text!</b> This more than a few words in it to show how
 				it works and <b>wraps</b>.
 			]]></mx:html>
 		</mx:Text>
 	</mx:VBox>
-	<mx:HBox>
+	<mx:HBox id="hbox1">
 		<mx:Label text="Hello World"/>
-		<mx:Button label="Push Me" toolTip="I do nothing" />
-		<mx:Button label="Green" icon="assets/smallgreenrect.jpg" toolTip="I also do nothing"  />
-		<mx:Image source="assets/smallgreenrect.jpg" toolTip="Green Square"  />
+		<mx:Button label="Push Me Longer Title" toolTip="I do nothing" />
+		<mx:Button label="Green Icon Button" className="GreenButton" icon="assets/smallgreenrect.jpg" toolTip="I also do nothing"  />
+		<mx:Image source="assets/mediumredrect.jpg" toolTip="Green Square"  />
 	</mx:HBox>
-	<mx:TextArea width="200" height="100" text="This is the TextArea control!"
-		displayAsPassword="true" maxChars="100"/>
+	<mx:TextArea text="This is the TextArea control!"
+		maxChars="100"/>
 
         
 </mx:Application>
