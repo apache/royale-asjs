@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads
     import org.apache.royale.html.TextButton;
 	
 	/**
-	 *  The SliderView class creates the visual elements of the org.apache.royale.html.Slider 
+	 *  The SliderView class creates the visual elements of the org.apache.royale.jewel.Slider 
 	 *  component. The Slider has a track and a thumb control which are also created with view beads.
 	 *  
 	 *  @viewbead
@@ -57,76 +57,17 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function SliderView()
 		{
 			super();
 		}
 		
-		private var rangeModel:IRangeModel;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-			
-			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layout == null) {
-				var klass:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout");
-				_strand.addBead(new klass() as IBead);
-			}
-			
-			COMPILE::SWF {
-				var s:UIBase = UIBase(_strand);
-				
-				_track = new Button();
-				_track.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
-				_track.className = "SliderTrack";
-				s.addElement(_track);
-				
-				_thumb = new TextButton();
-				_thumb.text = '\u29BF';
-				_thumb.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
-				_thumb.className = "SliderThumb";
-				s.addElement(_thumb);
-				
-			}
-			/*COMPILE::JS {
-				_track = new Button();
-				_track.className = "SliderTrack";
-				host.addElement(_track);
-				
-				_thumb = new TextButton();
-				_thumb.className = "SliderThumb";
-				_thumb.text = '\u29BF';
-				host.addElement(_thumb);
-			}*/
-			
-			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
-
-			var rm:IEventDispatcher = rangeModel as IEventDispatcher;
-			
-			// listen for changes to the model and adjust the UI accordingly.
-			rm.addEventListener("valueChange",modelChangeHandler);
-			rm.addEventListener("minimumChange",modelChangeHandler);
-			rm.addEventListener("maximumChange",modelChangeHandler);
-			rm.addEventListener("stepSizeChange",modelChangeHandler);
-			rm.addEventListener("snapIntervalChange",modelChangeHandler);
-			
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-		}
-		
 		private var _track:Button;
-		private var _thumb:TextButton;
-		
+		private var _thumb:Button;
+
+        private var rangeModel:IRangeModel;
 		
 		/**
 		 *  The track component.
@@ -134,7 +75,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get track():IUIBase
 		{
@@ -147,27 +88,76 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get thumb():IUIBase
 		{
 			return _thumb;
 		}
-		
+
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
 		 */
-		private function get host():UIBase
+		override public function set strand(value:IStrand):void
 		{
-			return _strand as UIBase;
+			super.strand = value;
+
+            var host:UIBase = UIBase(_strand);
+            rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+
+            COMPILE::SWF {
+				_track = new Button();
+				_track.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
+				_track.className = "SliderTrack";
+				host.addElement(_track);
+				
+				_thumb = new Button();
+				_thumb.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
+				_thumb.className = "SliderThumb";
+				host.addElement(_thumb);
+				
+			}
+
+            COMPILE::JS
+			{
+                var htmlSliderElement:HTMLInputElement = host.element as HTMLInputElement;
+                htmlSliderElement.value = String(rangeModel.value);
+            }
+
+			// listen for changes to the model and adjust the UI accordingly.
+			IEventDispatcher(rangeModel).addEventListener("stepSizeChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("minimumChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("maximumChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("valueChange", modelChangeHandler);
+
+			modelChangeHandler(null);
 		}
 		
 		/**
 		 * @private
+		 *
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.8
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			COMPILE::JS
+			{
+				var inputElement:HTMLInputElement = (UIBase(_strand).element as HTMLInputElement);
+				inputElement.step = String(rangeModel.stepSize);
+				inputElement.min = String(rangeModel.minimum);
+				inputElement.max = String(rangeModel.maximum);
+				inputElement.value = rangeModel.value.toString();
+			}
+
+			//(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }

@@ -94,21 +94,55 @@ package org.apache.royale.jewel.beads.controllers
                 sliderView.track.addEventListener(MouseEvent.CLICK, trackClickHandler, false, 99999);
                                     
             }
-            /*COMPILE::JS
+            COMPILE::JS
             {
 				var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
-				track = sliderView.track as UIBase;
-				thumb = sliderView.thumb as UIBase;
-                
-                goog.events.listen(track.element, goog.events.EventType.CLICK,
-                    handleTrackClick, false, this);
-                
-                goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN,
-                    handleThumbDown, false, this);
+				//track = sliderView.track as UIBase;
+				//thumb = sliderView.thumb as UIBase;
+                //goog.events.listen(track.element, goog.events.EventType.CLICK, handleTrackClick, false, this);
+                //goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN, handleThumbDown, false, this);
 
-            }*/
+                goog.events.listen(UIBase(_strand).element, goog.events.EventType.CHANGE, handleChange, false, this);
+                goog.events.listen(UIBase(_strand).element, goog.events.EventType.INPUT, handleInput, false, this);
+            }
 		}
 		
+		/**
+         *  Manages the change event to update the range model value
+         *   
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+         */
+        COMPILE::JS
+        private function handleChange(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+
+            rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
+
+            //host.dispatchEvent(new org.apache.royale.events.Event('change')); --- This is not needed, the event is thrown in the main comp
+        }
+
+        /**
+         *  Manages the input event to update the range model value and dispatch a input Royale event 
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+         */
+        COMPILE::JS
+        private function handleInput(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+
+            rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
+
+            //host.dispatchEvent(new org.apache.royale.events.Event('input'));
+        }
+
         /*COMPILE::JS
         private var track:UIBase;
         

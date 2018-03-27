@@ -51,7 +51,7 @@ Label {
 }
 
 Slider {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.SliderView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SliderMouseController");
