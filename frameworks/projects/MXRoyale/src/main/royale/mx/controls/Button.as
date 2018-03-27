@@ -577,12 +577,6 @@ public class Button extends UIComponent implements IDataRenderer
 	//  internal
 	//----------------------------------
 	
-	COMPILE::JS
-	private var imagePart:HTMLImageElement;
-	
-	COMPILE::JS
-	private var labelPart:HTMLSpanElement;
-	
 	/**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */
@@ -596,55 +590,55 @@ public class Button extends UIComponent implements IDataRenderer
 	}
 	
 	/**
+	 * @royaleignorecoercion HTMLImageElement
 	 */
 	COMPILE::JS
 	protected function setInnerHTML():void
 	{
 		if (label != null) {
-			if (labelPart == null) {
-				var lbl:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
-				labelPart = lbl;
-				element.appendChild(lbl);
-			}
-			labelPart.innerHTML = label;
+			element.innerHTML = label;
 		}
 		if (icon != null) {
-			if (imagePart == null) {
-				var img:HTMLImageElement = document.createElement('img') as HTMLImageElement;
-				img.addEventListener("load", handleImageLoaded);
-				if (labelPart) element.insertBefore(img,labelPart);
-				else element.appendChild(img);
-				imagePart = img;
-			}
-			img.src = icon;
+			element.style.background = "url('"+icon+"') no-repeat center "+(labelPlacement == "right" ? "left" : "right");
+			
+			// since the load of a CSS background-image cannot be detected, a standard technique
+			// is to create a dummy <img> and load the same image and listen for that to
+			// complete. This element is never added to the DOM.
+			var dummyImage:HTMLImageElement = document.createElement('img') as HTMLImageElement;
+			dummyImage.addEventListener("load", handleImageLoaded2);
+			dummyImage.src = icon;
 		}
+		
+		measuredWidth = Number.NaN;
+		measuredHeight = Number.NaN;
 	};
 	
+	/**
+	 * 
+	 * @royaleignorecoercion HTMLImageElement
+	 */
 	COMPILE::JS
-	private function handleImageLoaded(event:BrowserEvent):void
-	{		
-		measuredWidth = imagePart.naturalWidth + labelPart.offsetWidth + 2;
-		measuredHeight = Math.max(imagePart.naturalHeight, labelPart.offsetHeight);
+	private function handleImageLoaded2(event:BrowserEvent):void
+	{
+		var img:HTMLImageElement = event.target as HTMLImageElement;
+		element.style["padding-left"] = String(img.naturalWidth+2)+"px";
 		
-		if (imagePart) {
-			imagePart.style.position = 'absolute';
-			imagePart.style.top = '0px';
-			imagePart.style.left = '0px';
-		}
-		if (labelPart) {
-			labelPart.style.position = 'absolute';
-			labelPart.style.lineHeight = String(measuredHeight) + 'px';
-			labelPart.style.verticalAlign = 'middle';
-			labelPart.style.top = '0px';
-			labelPart.style.left = String(imagePart ? imagePart.naturalWidth + 2 : 0) + 'px';
-		}
+		this.height = Math.max(img.naturalHeight, element.offsetHeight);
 		
-		setActualSize(measuredWidth, measuredHeight);
-		
-		dispatchEvent(new Event("complete"));
+		measuredWidth = Number.NaN;
+		measuredHeight = Number.NaN;
 		
 		var newEvent:Event = new Event("layoutNeeded",true);
 		dispatchEvent(newEvent);
+	}
+	
+	COMPILE::JS
+	override public function setActualSize(w:Number, h:Number):void
+	{
+		// For HTML/JS, we only set the size if there is an explicit
+		// size set. 
+		if (!isNaN(explicitWidth)) setWidth(w);
+		if (!isNaN(explicitHeight)) setHeight(h);
 	}
 }
 

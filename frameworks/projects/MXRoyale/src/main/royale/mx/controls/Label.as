@@ -644,6 +644,7 @@ public class Label extends UIComponent
 			this.element.innerHTML = value;
 			this.dispatchEvent('textChange');
 		}
+		invalidateSize();
 	}
 
     //----------------------------------
@@ -696,6 +697,8 @@ public class Label extends UIComponent
 				this.dispatchEvent('textChange');
 			}
 		}
+		
+		invalidateSize();
 
 	}
 
@@ -718,7 +721,7 @@ public class Label extends UIComponent
 	}
 
 	/**
-	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+	 * @royaleignorecoercion window.Text
 	 */
 	COMPILE::JS
 	override protected function createElement():WrappedHTMLElement
@@ -729,8 +732,18 @@ public class Label extends UIComponent
 		element.appendChild(textNode);
 
 		element.style.whiteSpace = "nowrap";
+		element.style.display = "inline-block";
 
 		return element;
+	}
+	
+	COMPILE::JS
+	override public function setActualSize(w:Number, h:Number):void
+	{
+		// For HTML/JS, we only set the size if there is an explicit
+		// size set. 
+		if (!isNaN(explicitWidth)) setWidth(w);
+		if (!isNaN(explicitHeight)) setHeight(h);
 	}
 
 

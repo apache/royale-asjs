@@ -30,16 +30,15 @@ Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 	border: 0.5px solid black;
+	border-radius: 2px;
 	background-color: #EEEEEE;
-	padding: 4px 4px;
-	text-align: center;
 	text-decoration: none;
-	display: inline-block;
 }
 
 Button:hover {
 	background-color: #CCCCCC;
 }
+
 Button:active {
 	background-color: #999999;
 	color: white;
