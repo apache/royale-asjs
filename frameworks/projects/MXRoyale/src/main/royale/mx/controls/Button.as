@@ -599,7 +599,7 @@ public class Button extends UIComponent implements IDataRenderer
 			element.innerHTML = label;
 		}
 		if (icon != null) {
-			element.style.background = "url('"+icon+"') no-repeat center "+(labelPlacement == "right" ? "left" : "right");
+			element.style.background = "url('"+icon+"') no-repeat 2px center";
 			
 			// since the load of a CSS background-image cannot be detected, a standard technique
 			// is to create a dummy <img> and load the same image and listen for that to
@@ -621,7 +621,7 @@ public class Button extends UIComponent implements IDataRenderer
 	private function handleImageLoaded2(event:BrowserEvent):void
 	{
 		var img:HTMLImageElement = event.target as HTMLImageElement;
-		element.style["padding-left"] = String(img.naturalWidth+2)+"px";
+		element.style["padding-left"] = String(img.naturalWidth+4)+"px";
 		
 		this.height = Math.max(img.naturalHeight, element.offsetHeight);
 		
