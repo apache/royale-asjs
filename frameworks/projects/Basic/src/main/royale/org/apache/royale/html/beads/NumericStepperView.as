@@ -45,7 +45,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class NumericStepperView extends BeadViewBase implements IBeadView
 	{
@@ -55,7 +55,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function NumericStepperView()
 		{
@@ -71,7 +71,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 *  @royaleignorecoercion org.apache.royale.core.IParent
@@ -181,10 +181,11 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function spinnerValueChanged(event:ValueChangeEvent) : void
 		{
-			input.text = String(spinner.value);
+			input.text = "" + spinner.value;
 			
 			var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", event.oldValue, event.newValue);
 			IEventDispatcher(_strand).dispatchEvent(newEvent);
@@ -222,7 +223,8 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		public function get contentView():IParentIUIBase
 		{

@@ -52,7 +52,7 @@ package org.apache.royale.html.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
      */
 	public class HorizontalLayout extends LayoutBase implements IBeadLayout
 	{
@@ -62,7 +62,7 @@ package org.apache.royale.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function HorizontalLayout()
 		{
@@ -75,7 +75,7 @@ package org.apache.royale.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          *  @royaleignorecoercion HTMLElement
          *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
@@ -95,6 +95,7 @@ package org.apache.royale.html.beads.layouts
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 * @royaleignorecoercion org.apache.royale.core.IParentIUIBase
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
 		override public function layout():Boolean

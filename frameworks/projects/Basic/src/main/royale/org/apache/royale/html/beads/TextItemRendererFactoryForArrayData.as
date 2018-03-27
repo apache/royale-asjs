@@ -137,6 +137,7 @@ package org.apache.royale.html.beads
          *  @royaleignorecoercion Array
          *  @royaleignorecoercion org.apache.royale.html.beads.ITextItemRenderer
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         * @royaleignorecoercion org.apache.royale.core.IList
          */
 		private function dataProviderChangeHandler(event:Event):void
 		{

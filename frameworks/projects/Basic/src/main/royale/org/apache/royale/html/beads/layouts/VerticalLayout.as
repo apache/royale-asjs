@@ -75,6 +75,7 @@ package org.apache.royale.html.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		override public function layout():Boolean
