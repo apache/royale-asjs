@@ -9,7 +9,7 @@ package echarts
         private var _title:Title = new Title();
         private var _xAxis:XAxis;
         private var _yAxis:YAxis = new YAxis();
-		private var _series:ArrayList;
+		private var _seriesList:SeriesList;
 
 		public function EChartsOptions() {
 			
@@ -53,17 +53,15 @@ package echarts
 		}
 
         [Bindable("chartOptionsChanged")]
-		public function get series():ArrayList
+		public function get seriesList():SeriesList
 		{
-			return _series;
+			return _seriesList;
 		}
 
-		public function set series(value:ArrayList):void
+		public function set seriesList(value:SeriesList):void
 		{
-			_series = value;
-			this._series.addEventListener(CollectionEvent.ITEM_UPDATED, this.optionsChanged);
-			this._series.addEventListener(CollectionEvent.COLLECTION_CHANGED, this.optionsChanged);
-			this._series.addEventListener(CollectionEvent.ITEM_ADDED, this.optionsChanged);
+			_seriesList = value;
+			_seriesList.addEventListener("seriesListChanged", this.optionsChanged);
             dispatchEvent(new Event("chartOptionsChanged"));
 		}
 
@@ -75,7 +73,7 @@ package echarts
         }
 
         protected function getSeriesValues():Array {
-            var a:Array =  this.series.source.map(function(item:Series):Object {
+            var a:Array =  this.seriesList.series.map(function(item:Series):Object {
                 return item.obj;
             });
             return a;

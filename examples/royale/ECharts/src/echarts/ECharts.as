@@ -23,29 +23,10 @@ package echarts
         override protected function createElement():WrappedHTMLElement
         {
 			echartsContainer = addElementToWrapper(this,'div');
-            echartsContainer.setAttribute("style", "width: 600px;height:400px;");
-
+            echartsContainer.setAttribute("style", "width: 1200px;height:800px;");
             echartsInstance = global["echarts"].init(echartsContainer);
             echartsInstanceCreated = true;
-
-            var option:Object = 
-             {
-                xAxis:{},
-                yAxis:{},
-                series:[{
-                    data: [5, 20, 36, 10, 10, 20],
-                    type: "bar",
-                    name: "Sales"
-                }]
-            };
-
-            //echartsInstance.setOption(option);
-
             return echartsContainer;
-        }
-
-        protected function handleChartOptionsChanged(event:Event):void {
-            applyChartOptions(EChartsOptions(event.currentTarget).options);
         }
 
         public function set chartOptions(v:EChartsOptions):void {
@@ -63,9 +44,13 @@ package echarts
             }
         }
 
+        protected function handleChartOptionsChanged(event:Event):void {
+            applyChartOptions(EChartsOptions(event.currentTarget).options);
+        }
+
         private function applyChartOptions(options:Object):void {
             if(this.echartsInstanceCreated) {
-                this.echartsInstance.setOption(options);
+                this.echartsInstance.setOption(options, true, true);
             }
         }
 

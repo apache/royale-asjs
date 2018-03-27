@@ -6,16 +6,17 @@
 				   >
 	<fx:Script>
         <![CDATA[
-        [Bindable] private var data:Array = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
-        [Bindable] private var seriesData:Array = [5, 20, 36, 10, 10, 20];
+        [Bindable] private var data:Array;
+        [Bindable] private var salesData:Array;
+        [Bindable] private var profitData:Array;
 
         private function onAppInitialize(event:Event):void
         {
-            setTimeout(function():void {
-                this.data = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
-                this.seriesData = [5, 20, 36, 10, 10, 20];
-            },2000);
+            this.data = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
+            this.salesData = [5, 20, 36, 10, 10, 20];
+            this.profitData = [15, 12, 45, 8, 9, 54];
         }
+
         ]]>
     </fx:Script>
 	<js:initialView>
@@ -24,8 +25,8 @@
                 <ns2:chartOptions>
                     <ns2:EChartsOptions>
                         <ns2:title>
-                            <ns2:Title text="My ECharts Title" show="true"
-                            link="http://www.google.com" target="_self" />
+                            <ns2:Title text="Sales vs. Profit" show="true"
+                            link="https://ecomfe.github.io/echarts-examples/public/index.html" target="_self" />
                         </ns2:title>
                         <ns2:xAxis>
                             <ns2:XAxis data="{this.data}" position="top" />
@@ -33,11 +34,16 @@
                         <ns2:yAxis>
                             <ns2:YAxis/>
                         </ns2:yAxis>
-                        <ns2:series>
-                            <js:ArrayList>
-                                    <ns2:Series name="Accounts" type="bar" data="{this.seriesData}" />
-                            </js:ArrayList>
-                        </ns2:series>
+                        <ns2:seriesList>
+                            <ns2:SeriesList>
+                                <ns2:series>
+                                    <fx:Array>
+                                        <ns2:Series name="Sales" type="bar" data="{this.salesData}" />
+                                        <ns2:Series name="Profit" type="line" data="{this.profitData}" />
+                                    </fx:Array>
+                                </ns2:series>
+                            </ns2:SeriesList>
+                        </ns2:seriesList>
                     </ns2:EChartsOptions>
                 </ns2:chartOptions>
             </ns2:ECharts>

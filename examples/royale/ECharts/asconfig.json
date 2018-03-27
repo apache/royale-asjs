@@ -3,7 +3,7 @@
 		"targets": [
 			"JSRoyale"
         ],
-		"source-map": true,
+		"source-map": false,
 		"html-template": "template.html"
 	},
 	"files":
