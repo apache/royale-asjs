@@ -70,6 +70,8 @@ COMPILE::JS {
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{

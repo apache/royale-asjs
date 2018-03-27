@@ -76,6 +76,8 @@ package org.apache.royale.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleemitcoercion org.apache.royale.core.IUIBase
+		 *  @royaleemitcoercion org.apache.royale.core.IPopUpHost
 		 */
 		public static function findPopUpHost(start:IUIBase):IPopUpHost
 		{

@@ -143,6 +143,7 @@ package org.apache.royale.html.beads.controllers
 		
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloverHandler(event:Event):void
 		{
@@ -154,6 +155,7 @@ package org.apache.royale.html.beads.controllers
 		
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloutHandler(event:Event):void
 		{

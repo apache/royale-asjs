@@ -119,6 +119,7 @@ package org.apache.royale.html.accessories
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -130,6 +131,7 @@ package org.apache.royale.html.accessories
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function rollOverHandler(event:MouseEvent):void
 		{
