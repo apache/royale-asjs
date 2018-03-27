@@ -77,7 +77,9 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion Array
+     *  @royaleignorecoercion String
      */
     public static function generateMXMLObject(document:Object, data:Array):Object
     {
@@ -167,8 +169,13 @@ public class MXMLDataInterpreter
     }
     
     /**
-     * @royaleignorecoercion Function 
-     * @royaleignorecoercion org.apache.royale.core.IChild 
+     * @royaleignorecoercion Array
+     * @royaleignorecoercion Function
+     * @royaleignorecoercion String
+     * @royaleignorecoercion org.apache.royale.core.IChild
+     * @royaleignorecoercion org.apache.royale.core.IParent
+     * @royaleignorecoercion org.apache.royale.core.IStrand
+     * @royaleignorecoercion org.apache.royale.core.IBead
      */
     private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
     {
@@ -333,7 +340,8 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion org.apache.royale.core.IContainer
      */
     public static function generateMXMLInstances(document:Object, parent:IParent, data:Array):void
     {
@@ -359,8 +367,10 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion Array
      *  @royaleignorecoercion Function
+     *  @royaleignorecoercion String
      */
     public static function generateMXMLProperties(host:Object, data:Array):void
     {

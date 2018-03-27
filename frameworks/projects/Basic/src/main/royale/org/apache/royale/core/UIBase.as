@@ -951,6 +951,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          *  @royaleignorecoercion Class
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
          */
         public function get view():IBeadView
         {
@@ -966,7 +967,7 @@ package org.apache.royale.core
         {
             if (_view != value)
             {
-                addBead(value as IBead);
+                addBead(value);
                 dispatchEvent(new Event("viewChanged"));
             }
         }
@@ -1140,7 +1141,9 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IBeadModel
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
          */        
 		override public function addBead(bead:IBead):void
 		{
@@ -1158,7 +1161,7 @@ package org.apache.royale.core
 			bead.strand = this;
 			
 			if (isView) {
-				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));
+				dispatchEvent(new Event("viewChanged"));
 			}
 		}
 		
@@ -1460,7 +1463,8 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IMeasurementBead
          */
 		public function get measurementBead() : IMeasurementBead
 		{
