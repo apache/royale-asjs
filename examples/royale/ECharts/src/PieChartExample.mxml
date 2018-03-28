@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:js="library://ns.apache.org/royale/express" 
+                   xmlns:ns2="echarts.*"
+                   initialize="onAppInitialize(event)"
+				   >
+	<fx:Script>
+        <![CDATA[
+        [Bindable] private var xAxisData:Array;
+        [Bindable] private var salesData:Array;
+        [Bindable] private var profitData:Array;
+
+        private function onAppInitialize(event:Event):void
+        {
+            this.salesData = [5, 20, 36, 10, 10, 20];
+        }
+
+        ]]>
+    </fx:Script>
+	<js:initialView>
+        <js:View>
+            <ns2:ECharts id="chart">
+                <ns2:chartOptions>
+                    <ns2:EChartsOptions>
+                        <ns2:title>
+                            <ns2:Title text="Pie Chart Example" show="true"
+                            link="https://ecomfe.github.io/echarts-examples/public/index.html" target="_self" />
+                        </ns2:title>
+                        <ns2:seriesList>
+                            <ns2:SeriesList>
+                                <ns2:series>
+                                    <ns2:Series name="Sales" type="pie" data="{this.salesData}" />
+                                </ns2:series>
+                            </ns2:SeriesList>
+                        </ns2:seriesList>
+                    </ns2:EChartsOptions>
+                </ns2:chartOptions>
+            </ns2:ECharts>
+        </js:View>
+	</js:initialView>
+</js:Application>

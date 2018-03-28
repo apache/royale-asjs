@@ -82,11 +82,25 @@ package echarts
 
         public function get options():Object {
             return {title: this.title,
-                    xAxis: this.xAxis.obj,
-                    yAxis: this.yAxis.obj,
+                    xAxis: this.getXAxisObj(),
+                    yAxis: this.getYAxisObj(),
                     series: getSeriesValues(),
 					dataZoom: getDataZoomValues()};
         }
+
+		protected function getXAxisObj():Object {
+			if(this.xAxis) {
+				return this.xAxis.obj;
+			}
+			return {};
+		}
+
+		protected function getYAxisObj():Object {
+			if(this.yAxis) {
+				return this.yAxis.obj;
+			}
+			return {};
+		}
 
         protected function getSeriesValues():Array {
 			if(this.seriesList) {
@@ -94,7 +108,7 @@ package echarts
 					return item.obj;
 				});
 			}
-            else return [];
+            return [];
         }
 
 		protected function getDataZoomValues():Array {
@@ -103,7 +117,7 @@ package echarts
 					return item.obj;
 				});
 			}
-            else return [];
+            return [];
         }
         
 		protected function optionsChanged(event:Event):void {
