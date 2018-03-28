@@ -1367,7 +1367,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function localName():Object
+		public function localName():String
 		{
 			return name().localName;
 		}
@@ -1380,7 +1380,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function name():Object
+		public function name():QName
 		{
 			if(!_name)
 				_name = getQName("","","",false);
