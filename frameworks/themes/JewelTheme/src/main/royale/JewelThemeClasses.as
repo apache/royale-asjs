@@ -27,7 +27,7 @@ package
      */
     internal class JewelThemeClasses
     {
-       //import org.apache.royale.jewwl.beads.views.LabelViewBead; LabelViewBead;
+       //import org.apache.royale.jewel.beads.views.LabelViewBead; LabelViewBead;
     }
 
 }

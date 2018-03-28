@@ -18,7 +18,8 @@ limitations under the License.
 
 -->
 <js:MXMLBeadView xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:js="library://ns.apache.org/royale/basic">
+                 xmlns:js="library://ns.apache.org/royale/basic"
+                 xmlns:j="library://ns.apache.org/royale/jewel">
 				  
     <fx:Script>
         <![CDATA[
@@ -35,7 +36,7 @@ limitations under the License.
         ]]>
     </fx:Script>
 
-    <js:TextButton text="LABELVIEWBEAD!!"/>
+    <j:TextButton text="THEME-LABELVIEWBEAD!!"/>
     
     <!-- <js:beads>
         <js:MXMLBeadViewDataBinding />

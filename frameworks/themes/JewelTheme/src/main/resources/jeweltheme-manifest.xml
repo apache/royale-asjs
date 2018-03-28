@@ -21,6 +21,6 @@
 
 <componentPackage>
 
-    <!-- <component id="LabelViewBead" class="org.apache.royale.beads.views.LabelViewBead"/> -->
+    <!-- <component id="LabelViewBead" class="org.apache.royale.jewel.beads.views.LabelViewBead"/> -->
     
 </componentPackage>
