@@ -35,6 +35,7 @@
 	<component id="TextInput" class="mx.controls.TextInput" />
 	
 	<component id="Box" class="mx.containers.Box" />
+	<component id="Canvas" class="mx.containers.Canvas" />
 	<component id="Container" class="mx.core.Container" />
 	<component id="HBox" class="mx.containers.HBox" />
 	<component id="VBox" class="mx.containers.VBox" />	
