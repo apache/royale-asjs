@@ -189,8 +189,10 @@ package org.apache.royale.html.accessories
         /**
          * @private
          */
-        private function rollOutHandler(event:MouseEvent):void
+        protected function rollOutHandler(event:MouseEvent):void
         {
+			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			
 			var comp:IUIBase = _strand as IUIBase;
             if (tt) {
                 host.removeElement(tt);
