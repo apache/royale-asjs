@@ -37,6 +37,7 @@ internal class MXRoyaleClasses
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
+        import mx.controls.beads.CheckBoxView; CheckBoxView;
     }
 }
 

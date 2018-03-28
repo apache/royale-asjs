@@ -315,9 +315,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 			
 			loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
 		}
-		COMPILE::JS {
-			element.className = 'Application';			
-		}
+        typeNames += " Application";
 		
 		this.valuesImpl = new AllCSSValuesImpl();
 		addBead(new ApplicationDataBinding());
