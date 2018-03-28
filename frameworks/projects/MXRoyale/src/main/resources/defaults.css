@@ -41,6 +41,11 @@ Button
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 }
 
+CheckBox
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
+}
+
 Container
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
@@ -69,6 +74,11 @@ Image
 	Button
 	{
 		IBeadView: ClassReference("mx.controls.beads.CSSImageAndTextButtonView");
+	}
+	
+	CheckBox
+	{
+		IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView");			
 	}
 	
 	Container
