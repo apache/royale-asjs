@@ -30,10 +30,67 @@
   display: block !important;
 }
 
+.jewel.alert {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 12%;
+  min-width: 400px;
+  min-height: 210px;
+  overflow: auto;
+  box-shadow: 0px 6px 60px -10px rgba(112, 112, 112, 0.7);
+  background-color: #FFFFFF;
+  border: 0px solid;
+  border-radius: 10px;
+}
+.jewel.alert .jewel.titleBar {
+  font-size: 2em;
+}
+.jewel.alert .Group {
+  padding: 20px;
+}
+.jewel.alert .jewel.controlbar {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  padding: 8px 6px;
+}
+
+j|Alert {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
+}
+
+@media -royale-swf {
+  j|Alert {
+    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+  }
+}
 @media -royale-swf {
   j|CheckBox {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
     IBeadView: ClassReference("org.apache.royale.html.beads.CheckBoxView");
+  }
+}
+.jewel.controlbar {
+  padding: 6px;
+  background-color: transparent;
+  height: 30px;
+}
+
+j|ControlBar {
+  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalFlexLayout");
+}
+
+@media -royale-swf {
+  j|ControlBar {
+    IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
+    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
   }
 }
 .jewel.label {
@@ -80,6 +137,26 @@ j|Slider {
 }
 j|TextField {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+}
+
+.jewel.titlebar {
+  background-color: transparent;
+  padding: 6px;
+  min-height: 30px;
+}
+
+j|TitleBar {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
+  IMeasurementBead: ClassReference("org.apache.royale.jewel.beads.measurements.TitleBarMeasurementBead");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TitleBarView");
+}
+
+@media -royale-swf {
+  j|TitleBar {
+    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+    border: 1px solid #333333;
+  }
 }
 
 /*# sourceMappingURL=defaults.css.map */

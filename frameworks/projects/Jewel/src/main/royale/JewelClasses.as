@@ -32,6 +32,11 @@ package
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
 	    import org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout; HorizontalSliderLayout;
 
+        import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
+        import org.apache.royale.jewel.beads.views.AlertView; AlertView;
+        import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
+        import org.apache.royale.jewel.beads.measurements.TitleBarMeasurementBead; TitleBarMeasurementBead;
+        
         COMPILE::SWF
 	    {
             import org.apache.royale.html.beads.TextFieldView; TextFieldView;

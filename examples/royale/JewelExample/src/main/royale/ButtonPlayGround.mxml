@@ -25,12 +25,20 @@ limitations under the License.
     
 	<fx:Script>
 		<![CDATA[
-        private function onValueChange(event:Event):void
-        {
-        	//button.width = slider.value;
-			//button.height = slider_v.value;
-        }
-    	]]>
+			import org.apache.royale.jewel.Alert;
+
+			private function showAlert(event:MouseEvent):void
+			{
+				var alert:Alert = Alert.show("Are you sure ?", this, "Alert Title", Alert.OK | Alert.CANCEL);
+				//alert.height = 150;
+				//alert.addEventListener("close", onShowAlertAction);
+			}
+			
+			/*private function onShowAlertAction(event:CloseEvent):void
+			{
+				alertStatus.text = "Alert status: " + event.detail;
+			}*/
+		]]>
 	</fx:Script>
 
 	<js:beads>
@@ -39,7 +47,7 @@ limitations under the License.
 	
 	<html:H3 text="Jewel Button"/>
 	
-	<j:Button />
+	<j:Button click="showAlert(event)"/>
 	<j:Button primary="true"/>
 	<j:Button emphasized="true"/>
 	

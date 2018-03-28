@@ -1,0 +1,60 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+.jewel.alert
+    position: fixed //avoid move with scroll 
+    z-index: 1 // above rest of content
+    left: 0
+    right: 0
+    top: 12%
+    min-width: 400px
+    min-height: 210px
+    overflow: auto  // if needed show let scroll
+
+    box-shadow: 0px 6px 60px -10px rgba(112,112,112,0.7)
+
+    background-color: #FFFFFF
+    border: 0px solid
+    border-radius: 10px
+
+    .jewel.titleBar
+        font:
+            size: 2em
+    
+    .Group
+        padding: 20px
+
+    .jewel.controlbar
+        display: flex
+        flex-direction: row-reverse
+        flex-wrap: wrap
+        padding: 8px 6px
+
+
+
+j|Alert
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController")
+    //IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout")
+    IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.AlertView")
+
+@media -royale-swf	
+    j|Alert
+        IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
+        IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")
