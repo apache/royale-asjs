@@ -45,6 +45,7 @@ import mx.events.FlexEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.ISystemManager;
+import mx.controls.beads.ToolTipBead;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
@@ -57,7 +58,7 @@ import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-import org.apache.royale.html.accessories.ToolTipBead;
+//import org.apache.royale.html.accessories.ToolTipBead;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import org.apache.royale.utils.PointUtils;
 
@@ -2778,6 +2779,30 @@ public class UIComponent extends UIBase
             trace("measureText not implemented");
         return null;
     }
+	
+	//----------------------------------
+	//  screen
+	//----------------------------------
+	
+	/**
+	 *  Returns an object that contains the size and position of the base
+	 *  drawing surface for this object.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get screen():Rectangle
+	{
+		COMPILE::SWF {
+			return new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
+		}
+		COMPILE::JS {
+			var body:HTMLBodyElement = document.getElementsByTagName('body')[0] as HTMLBodyElement;
+			return new Rectangle(0, 0, body.clientWidth, body.clientHeight);
+		}
+	}
 
     //--------------------------------------------------------------------------
     //

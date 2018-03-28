@@ -16,29 +16,41 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package mx.controls.beads
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class MXRoyaleClasses
-{
-    import mx.core.UIComponent; UIComponent;
-	import mx.core.Container; Container;
-	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
-	import mx.containers.beads.BoxLayout; BoxLayout;
-	import mx.controls.ToolTip; ToolTip;
-	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.accessories.ToolTipBead;
 	
-    COMPILE::SWF
-    {
-        import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
-    }
+	public class ToolTipBead extends org.apache.royale.html.accessories.ToolTipBead
+	{
+		public function ToolTipBead()
+		{
+			super();
+		}
+		
+		/**                         	
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			IEventDispatcher(value).addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, false);
+		}
+		
+		/**
+		 * @private
+		 */
+		private function mouseDownHandler(event:MouseEvent):void
+		{
+			super.rollOutHandler(event);
+		}
+	}
 }
-
-}
-
