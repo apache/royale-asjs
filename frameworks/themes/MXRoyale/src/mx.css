@@ -54,6 +54,16 @@ Image
 	vertical-align: top;
 }
 
+LinkButton {
+	border: none;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+LinkButton:hover {
+	color: black;
+}
+
 TextInput
 {
 	border: 1px solid #808080;

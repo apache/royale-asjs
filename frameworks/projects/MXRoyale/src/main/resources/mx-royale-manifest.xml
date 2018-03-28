@@ -26,6 +26,7 @@
 	<component id="CheckBox" class="mx.controls.CheckBox" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
+	<component id="LinkButton" class="mx.controls.LinkButton" />
 	<component id="RadioButton" class="mx.controls.RadioButton" />
 	<component id="RadioButtonGroup" class="mx.controls.RadioButtonGroup" />
 	<component id="Spacer" class="mx.controls.Spacer" />
