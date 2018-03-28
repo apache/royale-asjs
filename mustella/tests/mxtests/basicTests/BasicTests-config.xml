@@ -23,8 +23,8 @@
     </compiler>
     <includes>
         <symbol>halo.scripts.ButtonTestScript</symbol>
-        <!--
         <symbol>halo.scripts.CheckBoxTestScript</symbol>
+        <!--
         <symbol>halo.scripts.RadioButtonTestScript</symbol>
         <symbol>halo.scripts.TextInputTestScript</symbol>
         <symbol>halo.scripts.TextAreaTestScript</symbol>
