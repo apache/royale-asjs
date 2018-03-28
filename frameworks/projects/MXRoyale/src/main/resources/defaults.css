@@ -78,7 +78,7 @@ Image
 	
 	CheckBox
 	{
-		IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView");			
+		IBeadView:  ClassReference("mx.controls.beads.CheckBoxView");			
 	}
 	
 	Container

@@ -31,6 +31,7 @@ import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
 
+import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.accessories.ToolTipBead;
 import org.apache.royale.html.beads.models.ImageAndTextModel;
@@ -287,7 +288,7 @@ public class Button extends UIComponent implements IDataRenderer
 	
 	public function get label():String
 	{
-		return ImageAndTextModel(model).text;
+		return ITextModel(model).text;
 	}
 	
 	/**
@@ -295,7 +296,7 @@ public class Button extends UIComponent implements IDataRenderer
 	 */
 	public function set label(value:String):void
 	{
-		ImageAndTextModel(model).text = value;
+		ITextModel(model).text = value;
 		COMPILE::JS {
 			setInnerHTML();
 		}
