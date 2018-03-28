@@ -1587,7 +1587,7 @@ limitations under the License.
             <!--<arg value="browser=chrome" />-->
             <arg value="url=file://${basedir}/mustella/tests/mxTests/basicTests/bin/js-debug/index.html" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ButtonTestScript.mxml" />
-            <!--<arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />-->
+            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
             <!--<arg value="showSteps=true" />-->
             <arg value="${profile_arg}" />
             <classpath>
