@@ -138,7 +138,7 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public function get text():String
+	override public function get label():String
 	{
 		return IToggleButtonModel(model).text;
 	}
@@ -146,7 +146,7 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	/**
 	 *  @private
 	 */
-	public function set text(value:String):void
+	override public function set label(value:String):void
 	{
 		IToggleButtonModel(model).text = value;
 	}
@@ -209,12 +209,12 @@ public class CheckBox extends Button implements IStrand, ISelectable
 		return element;
 	}
 
-	public function get text():String
+	override public function get label():String
 	{
 		return _label.childNodes.item(1).nodeValue;
 	}
 
-	public function set text(value:String):void
+	override public function set label(value:String):void
 	{
 		_label.childNodes.item(1).nodeValue = value;
 	}
