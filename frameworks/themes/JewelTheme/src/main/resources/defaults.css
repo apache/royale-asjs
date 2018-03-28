@@ -226,7 +226,8 @@ div {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
 }
-.jewel.checkbox input[disabled] + .span {
+.jewel.checkbox input[disabled] + span {
+  cursor: unset;
   color: #c6c6c6;
 }
 .jewel.checkbox input[disabled]:checked {
@@ -292,7 +293,8 @@ div {
   border: 1px solid #c6c6c6;
   background: #F9F9F9;
 }
-.jewel.radiobutton input[disabled] + .span {
+.jewel.radiobutton input[disabled] + span {
+  cursor: unset;
   color: #c6c6c6;
 }
 .jewel.radiobutton input[disabled]:checked {
