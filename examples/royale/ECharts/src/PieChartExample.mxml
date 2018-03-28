@@ -29,7 +29,8 @@
                         <ns2:seriesList>
                             <ns2:SeriesList>
                                 <ns2:series>
-                                    <ns2:Series name="Sales" type="pie" data="{this.salesData}" />
+                                    <ns2:PieSeries name="Sales" type="pie" data="{this.salesData}" startAngle="45" minAngle="45" clockwise="false" 
+                                                    center="{['50%','50%']}" radius="{['75%','25%']}" />
                                 </ns2:series>
                             </ns2:SeriesList>
                         </ns2:seriesList>

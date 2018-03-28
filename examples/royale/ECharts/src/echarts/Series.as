@@ -28,6 +28,7 @@ package echarts
 		public function set name(value:String):void
 		{
 			_name = value;
+			dispatchEvent(new Event("seriesChanged"));
 		}
 
 		[Bindable("seriesChanged")]
