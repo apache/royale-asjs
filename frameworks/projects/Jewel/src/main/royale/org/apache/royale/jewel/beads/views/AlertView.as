@@ -18,10 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
@@ -34,8 +32,6 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.html.Group;
     import org.apache.royale.html.beads.GroupView;
-
-
     import org.apache.royale.jewel.Alert;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.TextButton;
@@ -48,7 +44,6 @@ package org.apache.royale.jewel.beads.views
         import org.apache.royale.html.beads.IBorderBead;
         import org.apache.royale.core.IMeasurementBead;
         import org.apache.royale.core.ValuesManager;
-        import org.apache.royale.geom.Rectangle;
         import org.apache.royale.utils.loadBeadFromValuesManager;
 	}
 	
@@ -60,7 +55,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class AlertView extends GroupView
 	{
@@ -70,7 +65,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function AlertView()
 		{
@@ -94,7 +89,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -132,7 +127,6 @@ package org.apache.royale.jewel.beads.views
 			if (alertModel.title)
             {
                 titleBar = new TitleBar();
-                //titleBar.height = 25;
                 titleBar.title = alertModel.title;
                 IParent(_strand).addElement(titleBar);
             }
@@ -141,23 +135,13 @@ package org.apache.royale.jewel.beads.views
 			label.text = alertModel.message;
 			
 			labelContent = new Group();
-			labelContent.percentWidth = 100;
-			labelContent.percentHeight = 100;
-
+			//labelContent.percentWidth = 100;
+			//labelContent.percentHeight = 100;
 			labelContent.addElement(label);
 			
             IParent(_strand).addElement(labelContent);
 
-			/*COMPILE::JS
-			{
-                label.element.style["white-space"] = "unset";
-				labelContent.element.style["minHeight"] = "30px";
-				controlBar.element.style["flex-direction"] = "row";
-				controlBar.element.style["justify-content"] = "flex-end";
-				controlBar.element.style["border"] = "none";
-				controlBar.element.style["background-color"] = "#FFFFFF";
-			}*/
-            IParent(_strand).addElement(controlBar);
+			IParent(_strand).addElement(controlBar);
 
 			COMPILE::SWF
             {
@@ -178,6 +162,16 @@ package org.apache.royale.jewel.beads.views
 			}
 
             var flags:uint = alertModel.flags;
+
+			if( flags & Alert.CANCEL )
+            {
+                cancelButton = new TextButton();
+                cancelButton.text = alertModel.cancelLabel;
+                cancelButton.addEventListener("click",handleCancel);
+
+                controlBar.addElement(cancelButton);
+            }
+
             if( flags & Alert.OK )
             {
                 okButton = new TextButton();
@@ -185,27 +179,17 @@ package org.apache.royale.jewel.beads.views
                 okButton.addEventListener("click",handleOK);
 
                 controlBar.addElement(okButton);
-
-                /*COMPILE::JS
-                {
-                    okButton.element.style["margin-left"] = "2px";
-                    okButton.element.style["margin-right"] = "2px";
-                }*/
             }
-            if( flags & Alert.CANCEL )
+            
+			if( flags & Alert.NO )
             {
-                cancelButton = new TextButton();
-                cancelButton.text = alertModel.cancelLabel;
-                cancelButton.addEventListener("click",handleCancel);
+                noButton = new TextButton();
+                noButton.text = alertModel.noLabel;
+                noButton.addEventListener("click",handleNo);
 
-                controlBar.addElement(cancelButton);
-
-                /*COMPILE::JS
-                {
-                    cancelButton.element.style["margin-left"] = "2px";
-                    cancelButton.element.style["margin-right"] = "2px";
-                }*/
+                controlBar.addElement(noButton);
             }
+
             if( flags & Alert.YES )
             {
                 yesButton = new TextButton();
@@ -213,26 +197,6 @@ package org.apache.royale.jewel.beads.views
                 yesButton.addEventListener("click",handleYes);
 
                 controlBar.addElement(yesButton);
-
-                /*COMPILE::JS
-                {
-                    yesButton.element.style["margin-left"] = "2px";
-                    yesButton.element.style["margin-right"] = "2px";
-                }*/
-            }
-            if( flags & Alert.NO )
-            {
-                noButton = new TextButton();
-                noButton.text = alertModel.noLabel;
-                noButton.addEventListener("click",handleNo);
-
-                controlBar.addElement(noButton);
-
-                /*COMPILE::JS
-                {
-                    noButton.element.style["margin-left"] = "2px";
-                    noButton.element.style["margin-right"] = "2px";
-                }*/
             }
 		}
 

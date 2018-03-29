@@ -57,8 +57,8 @@ div {
   cursor: pointer;
   display: inline-block;
   margin: 0;
-  padding: 10px 16px;
-  min-width: 74px;
+  padding: 8px;
+  min-width: 34px;
   min-height: 34px;
   border: 1px solid #b3b3b3;
   background: linear-gradient(#e6e6e6, #cccccc);
@@ -90,8 +90,8 @@ div {
   cursor: pointer;
   display: inline-block;
   margin: 0;
-  padding: 10px 16px;
-  min-width: 74px;
+  padding: 8px;
+  min-width: 34px;
   min-height: 34px;
   border: 1px solid #0f88d1;
   background: linear-gradient(#54b7f3, #24a3ef);
@@ -123,8 +123,8 @@ div {
   cursor: pointer;
   display: inline-block;
   margin: 0;
-  padding: 10px 16px;
-  min-width: 74px;
+  padding: 8px;
+  min-width: 34px;
   min-height: 34px;
   border: 1px solid #be390e;
   background: linear-gradient(#f16c42, #ed4812);
@@ -156,8 +156,8 @@ div {
   cursor: pointer;
   display: inline-block;
   margin: 0;
-  padding: 10px 16px;
-  min-width: 74px;
+  padding: 8px;
+  min-width: 34px;
   min-height: 34px;
   border: 1px solid #277b32;
   background: linear-gradient(#45c354, #34a241);

@@ -44,11 +44,23 @@
   border: 0px solid;
   border-radius: 10px;
 }
-.jewel.alert .jewel.titleBar {
+.jewel.alert .jewel.titlebar {
+  padding: 20px 20px 0px 20px;
+}
+.jewel.alert .jewel.titlebar .jewel.label {
   font-size: 2em;
+  font-weight: bold;
+}
+.jewel.alert .jewel.titlebar .closebutton {
+  min-width: 24px;
+  min-height: 24px;
+  padding: 4px;
 }
 .jewel.alert .Group {
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
+}
+.jewel.alert .Group .jewel.label {
+  font-size: 1.5em;
 }
 .jewel.alert .jewel.controlbar {
   display: flex;
@@ -83,7 +95,7 @@ j|Alert {
 
 j|ControlBar {
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalFlexLayout");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
 }
 
 @media -royale-swf {
@@ -147,7 +159,7 @@ j|TextField {
 
 j|TitleBar {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
-  IMeasurementBead: ClassReference("org.apache.royale.jewel.beads.measurements.TitleBarMeasurementBead");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TitleBarView");
 }
 
@@ -155,7 +167,6 @@ j|TitleBar {
   j|TitleBar {
     IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
     IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-    border: 1px solid #333333;
   }
 }
 

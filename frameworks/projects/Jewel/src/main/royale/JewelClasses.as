@@ -35,7 +35,6 @@ package
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
         import org.apache.royale.jewel.beads.views.AlertView; AlertView;
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
-        import org.apache.royale.jewel.beads.measurements.TitleBarMeasurementBead; TitleBarMeasurementBead;
         
         COMPILE::SWF
 	    {

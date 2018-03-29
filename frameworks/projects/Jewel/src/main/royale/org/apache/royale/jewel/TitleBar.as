@@ -18,20 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.html.Group;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IChrome;
-	import org.apache.royale.core.ITitleBarModel;
+    import org.apache.royale.html.TitleBar;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.events.Event;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-    }
-	
 	/**
 	 *  The TitleBar class is a Container component that displays a title and an
 	 *  optional close button. The TitleBar uses the following bead types:
@@ -49,7 +40,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TitleBar extends Group implements IChrome
+	public class TitleBar extends org.apache.royale.html.TitleBar
 	{
 		/**
 		 *  constructor.
@@ -65,75 +56,5 @@ package org.apache.royale.jewel
 			
 			typeNames = "jewel titlebar";
 		}
-		
-		/**
-		 *  The title string to display.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get title():String
-		{
-			return ITitleBarModel(model).title;
-		}
-		public function set title(value:String):void
-		{
-			ITitleBarModel(model).title = value;
-		}
-		
-		/**
-		 *  The HTML title to display.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get htmlTitle():String
-		{
-			return ITitleBarModel(model).htmlTitle;
-		}
-		public function set htmlTitle(value:String):void
-		{
-			ITitleBarModel(model).htmlTitle = value;
-		}
-		
-		/**
-		 *  Whether or not to show a org.apache.royale.html.Button that indicates the component
-		 *  may be closed.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get showCloseButton():Boolean
-		{
-			return ITitleBarModel(model).showCloseButton;
-		}
-		public function set showCloseButton(value:Boolean):void
-		{
-			ITitleBarModel(model).showCloseButton = value;
-		}
-		
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
-		}
-        
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this,'div');
-        }        
 	}
 }
