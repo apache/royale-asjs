@@ -27,6 +27,7 @@ package
  */
 internal class MXRoyaleClasses
 {
+	import mx.collections.ArrayList; ArrayList;
     import mx.core.UIComponent; UIComponent;
 	import mx.core.Container; Container;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
@@ -34,6 +35,7 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.utils.ArrayUtil; ArrayUtil;
 	
     COMPILE::SWF
     {
