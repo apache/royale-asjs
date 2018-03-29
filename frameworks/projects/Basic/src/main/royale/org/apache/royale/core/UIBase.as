@@ -395,6 +395,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get width():Number
         {
+            if(!isNaN(_explicitWidth))
+                return _explicitWidth;
             var pixels:Number;
             var strpixels:String = element.style.width as String;
             if(strpixels == null)
@@ -487,6 +489,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get height():Number
         {
+            if(!isNaN(_explicitHeight))
+                return _explicitHeight;
             var pixels:Number;
             var strpixels:String = element.style.height as String;
             if(strpixels == null)
@@ -589,6 +593,37 @@ package org.apache.royale.core
                     dispatchEvent(new Event("widthChanged"));
             }
         }
+
+        /**
+         * @private
+         * Used by layout to prevent causing unnecessary reflows when measuring.
+         */
+        private var _measuredWidth:Number;
+
+		public function get measuredWidth():Number
+		{
+			return _measuredWidth;
+		}
+
+		public function set measuredWidth(value:Number):void
+		{
+			_measuredWidth = value;
+		}
+        /**
+         * @private
+         * Used by layout to prevent causing unnecessary reflows when measuring.
+         */
+        private var _measuredHeight:Number;
+
+		public function get measuredHeight():Number
+		{
+			return _measuredHeight;
+		}
+
+		public function set measuredHeight(value:Number):void
+		{
+			_measuredHeight = value;
+		}
         
         /**
          *  @copy org.apache.royale.core.ILayoutChild#setWidthAndHeight
@@ -676,17 +711,14 @@ package org.apache.royale.core
             else
                 style.left = value;
         }
-        
         /**
          * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         public function set x(value:Number):void
         {
-            //positioner.style.position = 'absolute';
-            if (positioner.parentNode != positioner.offsetParent)
-                value += (positioner.parentNode as HTMLElement).offsetLeft;
-            positioner.style.left = value.toString() + 'px';
+            _x = value;
+            setX(value);
         }
 
         /**
@@ -696,6 +728,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get x():Number
         {
+            if(!isNaN(_x))
+                return _x
             var strpixels:String = positioner.style.left as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
@@ -752,10 +786,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function set y(value:Number):void
         {
-            //positioner.style.position = 'absolute';
-            if (positioner.parentNode != positioner.offsetParent)
-                value += (positioner.parentNode as HTMLElement).offsetTop;
-            positioner.style.top = value.toString() + 'px';
+            _y = value;
+            setY(value);
         }
         
         /**
@@ -765,6 +797,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get y():Number
         {
+            if(!isNaN(_y))
+                return _y
             var strpixels:String = positioner.style.top as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
@@ -917,6 +951,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          *  @royaleignorecoercion Class
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
          */
         public function get view():IBeadView
         {
@@ -932,7 +967,7 @@ package org.apache.royale.core
         {
             if (_view != value)
             {
-                addBead(value as IBead);
+                addBead(value);
                 dispatchEvent(new Event("viewChanged"));
             }
         }
@@ -1106,7 +1141,9 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IBeadModel
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
          */        
 		override public function addBead(bead:IBead):void
 		{
@@ -1124,7 +1161,7 @@ package org.apache.royale.core
 			bead.strand = this;
 			
 			if (isView) {
-				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));
+				dispatchEvent(new Event("viewChanged"));
 			}
 		}
 		
@@ -1426,7 +1463,8 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IMeasurementBead
          */
 		public function get measurementBead() : IMeasurementBead
 		{

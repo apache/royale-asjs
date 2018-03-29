@@ -196,6 +196,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
+	 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 	 */
 	public function set strand(value:IStrand):void
 	{
@@ -242,6 +243,9 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 		this.document = document;
 	}
 
+	/**
+	 * @royaleignorecoercion org.apache.royale.events.ValueChangeEvent
+	 */
 	private function changeHandler(event:Event):void
 	{
 		if (event.type == ValueChangeEvent.VALUE_CHANGE)
@@ -253,6 +257,9 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 		destination[destinationPropertyName] = source[sourcePropertyName];
 	}
 
+	/**
+	 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+	 */
 	private function sourceChangeHandler(event:ValueChangeEvent):void
 	{
 		if (event.propertyName != sourceID)

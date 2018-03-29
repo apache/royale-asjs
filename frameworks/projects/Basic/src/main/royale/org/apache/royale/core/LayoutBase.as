@@ -20,20 +20,19 @@ package org.apache.royale.core
 {
 
 	import org.apache.royale.core.IBeadLayout;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
-    import org.apache.royale.core.layout.MarginData;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.LayoutManager;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.MarginData;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.utils.CSSUtils;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  This class is the base class for most, if not all, layouts. 
@@ -153,6 +152,7 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 */
 		protected function childResizeHandler(event:Event):void
 		{
@@ -302,6 +302,9 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function performLayout():void
 		{
@@ -309,30 +312,34 @@ package org.apache.royale.core
 			if (isLayoutRunning) return;
 			
 			isLayoutRunning = true;
-
-			var oldWidth:Number = host.width;
-			var oldHeight:Number = host.height;
+			COMPILE::SWF
+			{
+				host.measuredHeight = host.height;
+				host.measuredWidth = host.width;
+			}
 			
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
 			viewBead.beforeLayout();
-			
 			if (layout()) {
 				viewBead.afterLayout();
 			}
 			
 			isLayoutRunning = false;
 			
-			IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
+			host.dispatchEvent(new Event("layoutComplete"));
 			
-			// check sizes to see if layout changed the size or not
-			// and send an event to re-layout parent of host
-			if (host.width != oldWidth ||
-			    host.height != oldHeight)
+			COMPILE::SWF
 			{
-				isLayoutRunning = true;
-				host.dispatchEvent(new Event("sizeChanged"));
-				isLayoutRunning = false;
+				// check sizes to see if layout changed the size or not
+				// and send an event to re-layout parent of host
+				if (host.width != host.measuredWidth ||
+					host.height != host.measuredHeight)
+				{
+					isLayoutRunning = true;
+					host.dispatchEvent(new Event("sizeChanged"));
+					isLayoutRunning = false;
+				}
 			}
 
 		}

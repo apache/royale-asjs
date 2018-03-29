@@ -89,16 +89,19 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		/**
-		 * @royaleignorecoercion HTMLElement 
+		 * @royaleignorecoercion HTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			var component:UIBase;
 			if (contentView == null) {
-				(value as UIBase).element.style.overflow = "auto";
+				component = value as UIBase;
 			} else {
-				(contentView as UIBase).element.style.overflow = "auto";
+				component = contentView as UIBase;
 			}
+			component.element.style.overflow = "auto";
 		}
 		
 		/**

@@ -4,7 +4,7 @@
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
 //  The ASF licenses this file to You under the Apache License, Version 2.0
-//  (the "License"); you may not use this file except in compliance with
+//  (the "Licens"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -16,31 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html5
+package org.apache.royale.utils
 {
-	import org.apache.royale.core.TransformBeadBase;
-	import org.apache.royale.geom.Matrix;
-	
-	public class TransformBead extends TransformBeadBase
-	{
-		/**
-		 * @royaleignorecoercion HTMLElement
-		 */
-		COMPILE::JS
-		override public function transform():void
-		{
-			if (!transformModel || !transformModel.matrix)
-			{
-				return;
-			}			
-			var element:org.apache.royale.core.WrappedHTMLElement = host.transformElement;
-			var fjsm:Matrix = transformModel.matrix;
-			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
-			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";
-			element.style.position = "absolute";
-			element.style.transformOrigin = "0px 0px";
-			element.style.transform = transformStr;
-		}
-		
-	}
+    import org.apache.royale.core.ILayoutChild
+    public function measureComponent(component:ILayoutChild):void
+    {
+        component.measuredWidth = component.width;
+        component.measuredHeight = component.height;
+    }
 }

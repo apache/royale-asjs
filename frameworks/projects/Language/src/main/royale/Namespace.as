@@ -25,6 +25,9 @@ package
 		{
 			import org.apache.royale.utils.Language;
 		}
+		/**
+		 * @royaleignorecoercion Namespace
+		 */
 		COMPILE::JS
     	public function Namespace(prefixOrUri:Object=null,uriValue:Object=null)
 		{

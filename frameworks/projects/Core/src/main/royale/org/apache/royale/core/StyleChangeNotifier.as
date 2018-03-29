@@ -45,15 +45,17 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IStyleableObject
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
 			
-			var style:Object = IStyleableObject(value).style as IEventDispatcher;
+			var style:IEventDispatcher = IStyleableObject(value).style as IEventDispatcher;
 			if (style) {
-				IEventDispatcher(style).addEventListener(ValueChangeEvent.VALUE_CHANGE, handleStyleChange);
+				style.addEventListener(ValueChangeEvent.VALUE_CHANGE, handleStyleChange);
 			}
 		}
 		

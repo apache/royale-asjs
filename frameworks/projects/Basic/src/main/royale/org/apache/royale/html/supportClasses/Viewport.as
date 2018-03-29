@@ -91,6 +91,7 @@ package org.apache.royale.html.supportClasses
 		
 		/**
 		 * @royaleignorecoercion Class
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		public function set strand(value:IStrand):void

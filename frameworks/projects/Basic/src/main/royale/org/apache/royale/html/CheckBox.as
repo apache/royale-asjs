@@ -178,12 +178,18 @@ package org.apache.royale.html
             _label.childNodes.item(1).nodeValue = value;
         }
 
+        /**
+         * @royaleignorecoercion HTMLInputElement
+         */
         [Bindable("change")]
         public function get selected():Boolean
         {
             return (_icon.element as HTMLInputElement).checked;
         }
 
+        /**
+         * @royaleignorecoercion HTMLInputElement
+         */
         public function set selected(value:Boolean):void
         {
            (_icon.element as HTMLInputElement).checked = value;
