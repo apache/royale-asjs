@@ -40,10 +40,7 @@
   min-height: 210px;
   max-width: 100%;
   max-height: 100%;
-  box-shadow: 0px 6px 60px -10px rgba(112, 112, 112, 0.7);
-  background-color: #FFFFFF;
-  border: 0px solid;
-  border-radius: 10px;
+  z-index: 1000;
 }
 .jewel.alert .jewel.titlebar {
   padding: 20px 20px 0px 20px;
