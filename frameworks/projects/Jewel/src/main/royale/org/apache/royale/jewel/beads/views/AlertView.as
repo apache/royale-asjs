@@ -175,6 +175,7 @@ package org.apache.royale.jewel.beads.views
             if( flags & Alert.OK )
             {
                 okButton = new TextButton();
+				okButton.primary = true;
                 okButton.text = alertModel.okLabel;
                 okButton.addEventListener("click",handleOK);
 
@@ -193,6 +194,7 @@ package org.apache.royale.jewel.beads.views
             if( flags & Alert.YES )
             {
                 yesButton = new TextButton();
+				yesButton.primary = true;
                 yesButton.text = alertModel.yesLabel;
                 yesButton.addEventListener("click",handleYes);
 

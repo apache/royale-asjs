@@ -33,12 +33,13 @@
 .jewel.alert {
   position: fixed;
   z-index: 1;
-  left: 0;
-  right: 0;
-  top: 12%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   min-width: 400px;
   min-height: 210px;
-  overflow: auto;
+  max-width: 100%;
+  max-height: 100%;
   box-shadow: 0px 6px 60px -10px rgba(112, 112, 112, 0.7);
   background-color: #FFFFFF;
   border: 0px solid;
@@ -58,6 +59,7 @@
 }
 .jewel.alert .Group {
   padding: 10px 20px 20px 20px;
+  overflow: auto;
 }
 .jewel.alert .Group .jewel.label {
   font-size: 1.5em;

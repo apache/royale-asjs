@@ -31,13 +31,14 @@ limitations under the License.
 			{
 				var alert:Alert = Alert.show("Are you sure ?", this, "Alert Title", Alert.OK | Alert.CANCEL);
 				//alert.height = 150;
-				//alert.addEventListener("close", onShowAlertAction);
+				alert.addEventListener("close", onShowAlertAction);
 			}
 			
-			/*private function onShowAlertAction(event:CloseEvent):void
+			private function onShowAlertAction(event:CloseEvent):void
 			{
-				alertStatus.text = "Alert status: " + event.detail;
-			}*/
+				trace("Hi!");
+				//alertStatus.text = "Alert status: " + event.detail;
+			}
 		]]>
 	</fx:Script>
 
