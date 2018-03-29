@@ -41,6 +41,7 @@
 	<component id="VBox" class="mx.containers.VBox" />	
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
+	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	
     <component id="State" class="mx.states.State" />
 	

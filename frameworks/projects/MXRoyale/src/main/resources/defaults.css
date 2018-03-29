@@ -41,6 +41,11 @@ Button
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 }
 
+Canvas
+{
+	IBeadLayout: ClassReference("mx.containers.beads.CanvasLayout");
+}
+
 CheckBox
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
