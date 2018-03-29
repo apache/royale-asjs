@@ -102,8 +102,13 @@ public class TestStep {
 	protected void insertTargetScript(StringBuilder sb, String target)
 	{
 		sb.append("var target = document.getElementsByTagName('body')[0];");
-		sb.append("target = target.royale_wrapper;");
-		sb.append("target = target.initialView;");
+        sb.append("if (target.royale_wrapper) {");
+        sb.append("  target = target.royale_wrapper;");
+		sb.append("  if (target.initialView)");
+        sb.append("    target = target.initialView;}");
+        sb.append("else {");
+        sb.append("  target = document.getElementsByClassName('Application')[0];");
+        sb.append("  target = target.royale_wrapper;}");
 		if (target == null || target.length() == 0)
 		{
 			return;

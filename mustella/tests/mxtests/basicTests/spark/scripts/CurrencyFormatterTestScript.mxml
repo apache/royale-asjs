@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+    
+    <!-- this set of lines form a template that must be in each unit test -->
+    <mx:Script>
+        <![CDATA[
+            public static function init(o:DisplayObject):void
+            {
+            }
+        ]]>
+    </mx:Script>
+    <mx:Metadata>
+        <![CDATA[
+        [Mixin]
+        ]]>
+    </mx:Metadata>
+    <!-- end of set of lines that must be in each unit test -->
+    
+    <mx:Script>
+        <![CDATA[
+            import flash.globalization.CurrencyFormatter;
+            import flash.globalization.NationalDigitsType;
+            import flash.globalization.CurrencyParseResult;
+            public var flashCF:flash.globalization.CurrencyFormatter;
+            
+            
+            public var cfParseResult:CurrencyParseResult;
+            public var flashParseResult:CurrencyParseResult;
+            
+        ]]>
+    </mx:Script>
+    
+    <testCases>
+        <TestCase testID="SetupCurrencyFormatterTest">
+            <body>
+                <SetProperty target="" propertyName="currentState" value="sparkCurrencyFormatterTest" 
+                             waitEvent="updateComplete" />
+            </body>
+        </TestCase>
+        <TestCase testID="CurrencyFormatter_test" description="" keywords="[CurrencyFormatter, actualLocaleIDName]">
+            <setup>
+                <RunCode code="flashCF=new flash.globalization.CurrencyFormatter('xx')" />
+                <RunCode code="flashCF.negativeCurrencyFormat=1" />
+                <RunCode code="cfParseResult=application.sparkCurrencyFormatterTests.cfFormatter.parse('-$1234')" />
+                <RunCode code="flashParseResult=flashCF.parse('-$1234')" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkCurrencyFormatterTests.cfFormatter" propertyName="actualLocaleIDName" valueExpression="value=flashCF.actualLocaleIDName" />
+                <AssertMethodValue method="value=cfParseResult.value" valueExpression="value=flashParseResult.value" />
+                <AssertMethodValue method="value=cfParseResult.currencyString" valueExpression="value=flashParseResult.currencyString" />
+                <AssertPropertyValue target="sparkCurrencyFormatterTests.cfFormatter" propertyName="lastOperationStatus" valueExpression="value=flashCF.lastOperationStatus"/>               
+            </body>
+        </TestCase>
+        <TestCase testID="CurrencyFormatter_test1" description="" keywords="[CurrencyFormatter, actualLocaleIDName]">
+            <setup>
+                <RunCode code="flashCF=new flash.globalization.CurrencyFormatter(application.sparkCurrencyFormatterTests.getLocale.text)" />
+            </setup>
+            <body>
+                <AssertPropertyValue propertyName="actualLocaleIDName" valueExpression="value=flashCF.actualLocaleIDName" target="sparkCurrencyFormatterTests.cfFormatterNoLocaleInline"/>
+            </body>
+        </TestCase>
+        <!--Set/Get Inline decimalSeparator as positive value and format numbers-->
+        <TestCase testID="CF_decimalSeparator_test" description="" keywords="[CurrencyFormatter, decimalSeparator]">
+            <setup>
+                <RunCode code="flashCF=new flash.globalization.CurrencyFormatter('en-US')"/>
+                <RunCode code="flashCF.decimalSeparator='.'"/>
+                <RunCode code="flashCF.setCurrency('INR','@')"/>
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkCurrencyFormatterTests.cfFormatterDecimalSeparator" propertyName="decimalSeparator" valueExpression="value=flashCF.decimalSeparator"/>
+                <AssertMethodValue method="value=application.sparkCurrencyFormatterTests.cfFormatterDecimalSeparator.format(-1234567.89012)" valueExpression="value=flashCF.format(-1234567.89012)" />
+            </body>
+        </TestCase>    
+        <!--Binding property by lable text-->
+         <TestCase testID="CF_digitsType_test" description="" keywords="[CurrencyFormatter, digitsType]">
+            <setup>
+                <RunCode code="flashCF=new flash.globalization.CurrencyFormatter('en-US')" />
+                <RunCode code="flashCF.digitsType=NationalDigitsType.CHAM" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkCurrencyFormatterTests.cfLabel" propertyName="text" valueExpression="value=flashCF.digitsType" />
+            </body>
+        </TestCase>    
+        <!-- Test function of fractionalDigits property -->
+        <TestCase testID="CF_fractionalDigits_test" description="" keywords="[CurrencyFormatter, fractionalDigits]">
+            <setup>
+                <RunCode code="flashCF=new flash.globalization.CurrencyFormatter('en-US')" />
+                <RunCode code="flashCF.trailingZeros=true" />
+                <RunCode code="flashCF.fractionalDigits=1" />
+                <RunCode code="flashCF.useGrouping=true" />
+                <RunCode code="flashCF.groupingSeparator=','"/>
+                <RunCode code="flashCF.groupingPattern='*'" />
+            </setup>
+            <body>
+                <AssertMethodValue method="value=application.sparkCurrencyFormatterTests.cfFormatterFractionalDigits.formattingWithCurrencySymbolIsSafe('USD')" valueExpression="value=flashCF.formattingWithCurrencySymbolIsSafe('USD')" />
+                <AssertMethodValue method="value=application.sparkCurrencyFormatterTests.cfFormatterFractionalDigits.format(1234.352)" valueExpression="value=flashCF.format(1234.352)" />
+            </body>
+        </TestCase>
+        <TestCase testID="CF_errorText_test" description="" keywords="[CurrencyFormatter, errorText]">
+            <body>
+                <AssertMethodValue method="value=application.sparkCurrencyFormatterTests.cfFormatterNoLocaleInline.format('abc')" value="#####"/>
+            </body>
+        </TestCase>
+    </testCases>
+</UnitTester>

@@ -247,6 +247,7 @@ public class MarmotinniRunner extends DefaultHandler {
 		catch (Exception e)
         {
             System.out.println(e.getMessage());
+            e.printStackTrace();
 			exitCode = 1;
         }
         finally

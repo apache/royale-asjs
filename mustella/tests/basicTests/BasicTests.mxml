@@ -106,8 +106,9 @@
     </js:states>
     
     <!--  STEP 2: Add an mxml component with the widgets for your test here -->
-    <haloviews:ButtonTests id="haloButtonTests" includeIn="haloButtonTest" />    
-    <haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" /> 
+    
+    <haloviews:ButtonTests id="haloButtonTests" includeIn="haloButtonTest" />
+    <haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" />
 <!-- temporary
     <haloviews:RadioButtonTests id="haloRadioButtonTests" includeIn="haloRadioButtonTest" />    
     <haloviews:TextInputTests id="haloTextInputTests" includeIn="haloTextInputTest" />    

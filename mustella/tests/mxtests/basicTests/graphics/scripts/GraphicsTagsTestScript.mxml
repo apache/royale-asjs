@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="GraphicTags_checkin.mxml">
+
+    <!-- this set of lines form a template that must be in each unit test -->
+    <mx:Script>
+    <![CDATA[
+    public static function init(o:DisplayObject):void
+    {
+    }
+    ]]>
+    </mx:Script>
+    <mx:Metadata>
+    <![CDATA[
+        [Mixin]
+    ]]>
+    </mx:Metadata>
+    <!-- end of set of lines that must be in each unit test -->
+    
+
+    <mx:Script>
+        <![CDATA[
+            import mx.graphics.*;
+            import spark.primitives.*;
+            import spark.primitives.supportClasses.*;
+
+            public function applyStroke(target:FilledElement, stroke:SolidColorStroke):void
+            {
+                target.stroke = stroke;
+            }
+
+            public function applyFilters(target:FilledElement, filters:Array):void
+            {
+                target.filters = filters;
+            }
+
+            public function roundRect(target:Rect, radX:Number = 5, radY:Number = 5):void
+            {
+                target.radiusX = radX;
+                target.radiusY = radY;
+            }
+
+            public var gradientArr:Array = [new GradientEntry(0xFF0000),  // red
+                                            new GradientEntry(0xFFFFFF),  // white
+                                            new GradientEntry(0x0000FF)]; // blue
+
+            [Bindable]
+            public var strokeDefault:SolidColorStroke = new SolidColorStroke();
+            [Bindable]
+            public var stroke10:SolidColorStroke = new SolidColorStroke(0x000000, 10);
+            [Bindable]
+            public var stroke10Purple:SolidColorStroke = new SolidColorStroke(0xFF00FF, 10);
+            [Bindable]
+            public var stroke10Alpha:SolidColorStroke = new SolidColorStroke(0x000000, 10, 0.4);
+
+            [Bindable]
+            public var bevelFilter:BevelFilter = new BevelFilter();
+            [Bindable]
+            public var blurFilter:BlurFilter = new BlurFilter();
+            [Bindable]
+            public var dropShadowFilter:DropShadowFilter = new DropShadowFilter(0xFF00FF);
+
+            [Bindable]
+            public var linearGrad:LinearGradient = new LinearGradient();
+
+            [Bindable]
+            public var radialGrad:RadialGradient = new RadialGradient();
+
+            [Bindable]
+            public var linearGradStroke:LinearGradientStroke = new LinearGradientStroke();
+
+            public function init2():void
+            {
+                linearGrad.entries = gradientArr;
+                radialGrad.entries = gradientArr;
+                linearGradStroke.entries = gradientArr;
+            }
+
+            public function applyLinearGradient(target:FilledElement, rotation:Number = 0):void
+            {
+                var linearGradient:LinearGradient = new LinearGradient();
+                linearGradient.entries = gradientArr;
+                linearGradient.rotation = rotation;
+                target.fill = linearGradient;
+            }
+
+            public function applyRadialGradient(target:FilledElement):void
+            {
+                var radialGradient:RadialGradient = new RadialGradient();
+                radialGradient.entries = gradientArr;
+                target.fill = radialGradient;
+            }
+
+            public function applyLinearGradientStroke(target:FilledElement, rotation:Number = 0):void
+            {
+                var linearGradientStroke:LinearGradientStroke = new LinearGradientStroke(10);
+                linearGradientStroke.entries = gradientArr;
+                linearGradientStroke.rotation = rotation;
+                target.stroke = linearGradientStroke;
+            }
+        ]]>
+    </mx:Script>
+
+
+    <!-- Ellipse tests -->
+    <testCases>
+		<TestCase testID="SetupGraphicsTagsTest">
+			<body>
+				<SetProperty target="" propertyName="currentState" value="graphicsTagsTest" 
+                    waitEvent="updateComplete" />
+				<AssertPropertyValue target="graphicsTagsTests.hbox" propertyName="numChildren" value="3" />
+			</body>
+		</TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_height" description="Test that you can bind to the Graphic height property" keywords="[Binding, height, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="height" value="120" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1" propertyName="height" value="120" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic1.ellipse1.getLayoutBoundsHeight()" valueExpression="value=120" />
+                <!-- <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_height.png" target="graphicsTagsTests.graphic1" timeout="2000" /> -->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="width" value="110" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1" propertyName="width" value="110" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic1.ellipse1.getLayoutBoundsWidth()" valueExpression="value=110" />
+                <!-- <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_width.png" target="graphicsTagsTests.graphic1" timeout="2000" /> -->
+            </body>
+        </TestCase>
+        
+        <!--
+        <TestCase testID="GraphicTags_Checkin_Ellipse_x" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="x" value="110" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1" propertyName="x" value="110" />
+                <!- -<AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1.transform.matrix" propertyName="tx" value="110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_x.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_y" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="y" value="110" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1" propertyName="y" value="110" />
+                <!- -<AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1.transform.matrix" propertyName="ty" value="110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_y.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <!- - BUG: MXMLG-133 - ->
+        <!- -
+        <TestCase testID="GraphicTags_Checkin_Ellipse_alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="alpha" value="0.2" target="graphicsTagsTests.graphic1.ellipse1" />
+                <AssertPropertyValue value="0.2" propertyName="alpha" target="graphicsTagsTests.graphic1.ellipse1" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_alpha.png" target="graphicsTagsTests.graphic1" timeout="2000" />
+            </body>
+        </TestCase>
+        - ->
+        <TestCase testID="GraphicTags_Checkin_Ellipse_stroke" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="stroke" value="{strokeDefault}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <AssertPropertyValue value="0" propertyName="color" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <AssertPropertyValue value="1" propertyName="weight" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_stroke.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_stroke10" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="stroke" value="{stroke10}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_stroke10.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_stroke10Purple" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="stroke" value="{stroke10Purple}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <AssertPropertyValue value="0xFF00FF" propertyName="color" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic1.ellipse1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_stroke10Purple.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_stroke10Alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="stroke" value="{stroke10Alpha}" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1.stroke" propertyName="alpha" value="0.4" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1.stroke" propertyName="color" value="0x000000" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1.stroke" propertyName="weight" value="10" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_stroke10Alpha.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_bevelFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="filters" value="{[bevelFilter]}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic1.ellipse1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic1.ellipse1.filters[0].toString()" valueExpression="value='[object BevelFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_bevelFilter.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_blurFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="filters" value="{[blurFilter]}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic1.ellipse1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic1.ellipse1.filters[0].toString()" valueExpression="value='[object BlurFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_blurFilter.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        
+        <TestCase testID="GraphicTags_Checkin_Ellipse_LinearGradient" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic1.ellipse1);" waitTarget="graphicsTagsTests.graphic1.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic1.ellipse1.fill.toString()" valueExpression="value='[object LinearGradient]'" />
+                <AssertPixelValue target="graphicsTagsTests.graphic1" x="10" y="40" value="0xFF0000" />
+                <AssertPixelValue target="graphicsTagsTests.graphic1" x="40" y="11" value="0xFFFFFF" />
+                <AssertPixelValue target="graphicsTagsTests.graphic1" x="40" y="40" value="0xFFFFFF" />
+                <AssertPixelValue target="graphicsTagsTests.graphic1" x="40" y="68" value="0xFFFFFF" />
+                <!- - BUG: MXMLG-141 - ->
+                <AssertPixelValue target="graphicsTagsTests.graphic1" x="69" y="40" value="0x0707FF" />
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_LinearGradient_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic1.ellipse1);" waitTarget="graphicsTagsTests.graphic1.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="width" value="110" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1" propertyName="width" value="110" />
+                <AssertPixelValue target="graphicsTagsTests.graphic1" x="10" y="40" value="0xFF0000" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_blurFilter.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_RadialGradient" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <RunCode code="applyRadialGradient(application.graphicsTagsTests.graphic1.ellipse1);" waitTarget="graphicsTagsTests.graphic1.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic1.ellipse1.fill.toString()" valueExpression="value='[object RadialGradient]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_blurFilter.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Ellipse_RadialGradient_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic1" className="graphics.views.comps.EllipseBasic2" waitTarget="graphicsTagsTests.graphic1" waitEvent="updateComplete" />
+                <RunCode code="applyRadialGradient(application.graphicsTagsTests.graphic1.ellipse1);" waitTarget="graphicsTagsTests.graphic1.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic1.ellipse1" propertyName="width" value="110" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic1.ellipse1" propertyName="width" value="110" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Ellipse_blurFilter.png" target="graphicsTagsTests.graphic1" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        
+        
+        <!- - Rect tests - ->
+        <TestCase testID="GraphicTags_Checkin_Rect_height" description="Test that you can bind to the Graphic height property" keywords="[Binding, height, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="height" value="120" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="120" propertyName="height" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsHeight().toString()" valueExpression="value=120" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_height.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="width" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="width" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsWidth().toString()" valueExpression="value=110" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_width.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_x" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="x" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" value="110" propertyName="x" />
+                <!- - <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.tx.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_x.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_y" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="y" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="y" target="graphicsTagsTests.graphic2.rect1" />
+                <!- -<AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.ty.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_y.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <!- - BUG: MXMLG-133 - ->
+        <!- -
+        <TestCase testID="GraphicTags_Checkin_Rect_alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="alpha" value="0.2" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="0.2" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" />
+            </body>
+        </TestCase>
+        - ->
+        <TestCase testID="GraphicTags_Checkin_Rect_stroke" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, strokeDefault);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="1" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_stroke.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_stroke10" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_stroke10.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_stroke10Purple" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10Purple);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0xFF00FF" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_stroke10Purple.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_stroke10Alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10Alpha);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="0.4" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_stroke10Alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_bevelFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyFilters(application.graphicsTagsTests.graphic2.rect1, [bevelFilter]);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic2.rect1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BevelFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_bevelFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_blurFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyFilters(application.graphicsTagsTests.graphic2.rect1, [blurFilter]);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic2.rect1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BlurFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_blurFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        
+        
+        <!- - LinearGradientStroke tests - ->
+        <TestCase testID="GraphicTags_Checkin_Rect_linearGradientStroke" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradientStroke(application.graphicsTagsTests.graphic2.rect1, 0);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries" propertyName="length" value="3" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries.0" propertyName="color" value="0xFF0000" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries.1" propertyName="color" value="0xFFFFFF" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries.2" propertyName="color" value="0x0000FF" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="weight" value="10" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="rotation" value="0" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_stroke10Alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_linearGradientStroke_x" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradientStroke(application.graphicsTagsTests.graphic2.rect1, 0);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="x" value="100" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="x" value="100" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_linearGradientStroke_x.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_linearGradientStroke_y" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradientStroke(application.graphicsTagsTests.graphic2.rect1, 0);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="y" value="100" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="y" value="100" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_linearGradientStroke_x.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+                
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_linearGradientStroke_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradientStroke(application.graphicsTagsTests.graphic2.rect1, 0);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="width" value="100" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="width" value="100" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_linearGradientStroke_width.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+                
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_linearGradientStroke_height" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradientStroke(application.graphicsTagsTests.graphic2.rect1, 0);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="height" value="100" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="height" value="100" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_linearGradientStroke_height.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_Rect_linearGradientStroke_rotation" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradientStroke(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries" propertyName="length" value="3" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries.0" propertyName="color" value="0xFF0000" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries.1" propertyName="color" value="0xFFFFFF" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke.entries.2" propertyName="color" value="0x0000FF" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="weight" value="10" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="rotation" value="45" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="rotation" value="90" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="rotation" value="90" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_Rect_stroke10Alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        
+        
+        
+        <!- - RoundRect tests - ->
+        <TestCase testID="GraphicTags_Checkin_RoundRect_radiusX" description="Test that you can bind to the Graphic height property" keywords="[Binding, height, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="30" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="0" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="30" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="30" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_height.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_radiusY" description="Test that you can bind to the Graphic height property" keywords="[Binding, height, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="30" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="0" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="30" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="30" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_height.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_height" description="Test that you can bind to the Graphic height property" keywords="[Binding, height, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+            </setup>
+            <body>
+                <SetProperty propertyName="height" value="120" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1" propertyName="height" value="120" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsHeight()" valueExpression="value=120" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_height.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+            </setup>
+            <body>
+                <SetProperty propertyName="width" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="width" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsWidth().toString()" valueExpression="value=110" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_width.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_x" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+            </setup>
+            <body>
+                <SetProperty propertyName="x" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="x" target="graphicsTagsTests.graphic2.rect1" />
+                <!- -<AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.tx.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_x.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_y" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+            </setup>
+            <body>
+                <SetProperty propertyName="y" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="y" target="graphicsTagsTests.graphic2.rect1" />
+                <!- -<AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.ty.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_y.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <!- - BUG: MXMLG-133 - ->
+        <!- -
+        <TestCase testID="GraphicTags_Checkin_RoundRect_alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+            </setup>
+            <body>
+                <SetProperty propertyName="alpha" value="0.2" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="0.2" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" />
+            </body>
+        </TestCase>
+        - ->
+        <TestCase testID="GraphicTags_Checkin_RoundRect_stroke" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="stroke" value="{strokeDefault}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="1" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_stroke.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_stroke10" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="stroke" value="{stroke10}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_stroke10.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_stroke10Purple" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="stroke" value="{stroke10Purple}" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0xFF00FF" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_stroke10Purple.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_stroke10Alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="stroke" value="{stroke10Alpha}" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="alpha" value="0.4" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="color" value="0x000000" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.stroke" propertyName="weight" value="10" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_stroke10Alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_bevelFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="filters" value="{[bevelFilter]}" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.filters" propertyName="length" value="1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BevelFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_bevelFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RoundRect_blurFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusX" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="radiusY" value="10" />
+                <SetProperty target="graphicsTagsTests.graphic2.rect1" propertyName="filters" value="{[blurFilter]}" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic2.rect1.filters" propertyName="length" value="1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BlurFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RoundRect_blurFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        
+        
+        
+        
+        <!- - LinearGradientRect - ->
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_height" description="Test that you can bind to the Graphic height property" keywords="[Binding, height, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="height" value="120" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="120" propertyName="height" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsHeight().toString()" valueExpression="value=120" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_height.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="width" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="width" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsWidth().toString()" valueExpression="value=110" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_width.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_x" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="x" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="x" target="graphicsTagsTests.graphic2.rect1" />
+                <!- -<AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.tx.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_x.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_y" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="y" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="y" target="graphicsTagsTests.graphic2.rect1" />
+                <!- -<AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.ty.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_y.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <!- - BUG: MXMLG-133 - ->
+        <!- -
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="alpha" value="0.2" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="0.2" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" />
+            </body>
+        </TestCase>
+        - ->
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_stroke" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, strokeDefault);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="1" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_stroke.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_stroke10" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_stroke10.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_stroke10Purple" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10Purple);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0xFF00FF" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_stroke10Purple.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_stroke10Alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10Alpha);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="0.4" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_stroke10Alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_bevelFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" />
+                <RunCode code="applyFilters(application.graphicsTagsTests.graphic2.rect1, [bevelFilter]);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic2.rect1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BevelFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_bevelFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_LinearGradRect_blurFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyFilters(application.graphicsTagsTests.graphic2.rect1, [blurFilter]);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic2.rect1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BlurFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_LinearGradRect_blurFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        
+        
+        
+        
+        <!- - RotatedLinearGradientRect tests - ->
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_height" description="Test that you can bind to the Graphic height property" keywords="[Binding, height, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="height" value="120" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="120" propertyName="height" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsHeight().toString()" valueExpression="value=120" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_height.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="width" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="width" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.getLayoutBoundsWidth().toString()" valueExpression="value=110" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_width.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_x" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="x" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="x" target="graphicsTagsTests.graphic2.rect1" />
+                <!- -<AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.tx.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_x.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_y" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="y" value="110" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="110" propertyName="y" target="graphicsTagsTests.graphic2.rect1" />
+                <!- -<AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.transform.matrix.ty.toString()" valueExpression="value=110" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_y.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <!- - BUG: MXMLG-133 - ->
+        <!- -
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty propertyName="alpha" value="0.2" target="graphicsTagsTests.graphic2.rect1" />
+                <AssertPropertyValue value="0.2" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1" />
+                <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" />
+            </body>
+        </TestCase>
+        - ->
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_stroke" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, strokeDefault);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="1" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_stroke.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_stroke10" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_stroke10.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_stroke10Purple" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10Purple);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0xFF00FF" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_stroke10Purple.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_stroke10Alpha" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyStroke(application.graphicsTagsTests.graphic2.rect1, stroke10Alpha);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="0.4" propertyName="alpha" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="0x000000" propertyName="color" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <AssertPropertyValue value="10" propertyName="weight" target="graphicsTagsTests.graphic2.rect1.stroke" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_stroke10Alpha.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_bevelFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" />
+                <RunCode code="applyFilters(application.graphicsTagsTests.graphic2.rect1, [bevelFilter]);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic2.rect1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BevelFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_bevelFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_RotatedLinearGradRect_blurFilter" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic2" className="graphics.views.comps.RectBasic3" waitTarget="graphicsTagsTests.graphic2" waitEvent="updateComplete" />
+                <RunCode code="applyLinearGradient(application.graphicsTagsTests.graphic2.rect1, 45);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+                <RunCode code="applyFilters(application.graphicsTagsTests.graphic2.rect1, [blurFilter]);" waitTarget="graphicsTagsTests.graphic2.getChildAt(0)" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue value="1" propertyName="length" target="graphicsTagsTests.graphic2.rect1.filters" />
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic2.rect1.filters[0].toString()" valueExpression="value='[object BlurFilter]'" />
+                <!- - <CompareBitmap url="baselines/GraphicTags_Checkin_RotatedLinearGradRect_blurFilter.png" target="graphicsTagsTests.graphic2" timeout="2000" /> - ->                
+            </body>
+        </TestCase>
+        
+        
+        
+        <!- - TextGraphic tests - ->
+        <!- -
+        <TestCase testID="GraphicTags_Checkin_TextGraphic" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic3" className="graphics.views.comps.TextGraphicBasic1" waitTarget="graphicsTagsTests.graphic3" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="content" value="The quick brown fox jumped over the lazy dog." />
+            </body>
+        </TestCase>
+        
+        <TestCase testID="GraphicTags_Checkin_TextGraphic_content" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic3" className="graphics.views.comps.TextGraphicBasic1" waitTarget="graphicsTagsTests.graphic3" waitEvent="updateComplete" />
+                <SetProperty target="graphicsTagsTests.graphic3.textGraphic1" propertyName="content" value="Hello world" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="content" value="Hello world" />
+            </body>
+        </TestCase>
+        - ->
+        
+        <TestCase testID="GraphicTags_Checkin_TextGraphic_width" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic3" className="graphics.views.comps.TextGraphicBasic1" waitTarget="graphicsTagsTests.graphic3" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="width" value="100" />
+                <SetProperty target="graphicsTagsTests.graphic3.textGraphic1" propertyName="width" value="60" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="width" value="60" />
+                <!- - MXMLG-108 - ->
+                <!- -
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic3.textGraphic1.getLayoutBoundsWidth().toString()" valueExpression="value=60" />
+                - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_TextGraphic_height" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic3" className="graphics.views.comps.TextGraphicBasic1" waitTarget="graphicsTagsTests.graphic3" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="height" value="100" />
+                <SetProperty target="graphicsTagsTests.graphic3.textGraphic1" propertyName="height" value="60" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="height" value="60" />
+                <!- - MXMLG-108 - ->
+                <!- -
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic3.textGraphic1.getLayoutBoundsHeight().toString()" valueExpression="value=60" />
+                - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_TextGraphic_x" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic3" className="graphics.views.comps.TextGraphicBasic1" waitTarget="graphicsTagsTests.graphic3" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic3.textGraphic1" propertyName="x" value="60" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="x" value="60" />
+                <!- - MXMLG-108 - ->
+                <!- -
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic3.textGraphic1.bounds.x.toString()" valueExpression="value=60" />
+                - ->
+                <!- -
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic3.textGraphic1.transform.matrix.tx.toString()" valueExpression="value=60" />
+                - ->
+            </body>
+        </TestCase>
+        <TestCase testID="GraphicTags_Checkin_TextGraphic_y" description="Test that you can bind to the Graphic width property" keywords="[Binding, width, Graphic]">
+            <setup>
+                <ResetComponent target="graphicsTagsTests.graphic3" className="graphics.views.comps.TextGraphicBasic1" waitTarget="graphicsTagsTests.graphic3" waitEvent="updateComplete" />
+            </setup>
+            <body>
+                <SetProperty target="graphicsTagsTests.graphic3.textGraphic1" propertyName="y" value="60" />
+                <AssertPropertyValue target="graphicsTagsTests.graphic3.textGraphic1" propertyName="y" value="60" />
+                <!- - MXMLG-108 - ->
+                <!- -
+                <AssertMethodValue method="value=application.graphicsTagsTests.graphic3.textGraphic1.bounds.y.toString()" valueExpression="value=60" />
+                - ->
+            </body>
+        </TestCase>
+        -->
+    </testCases>
+
+</UnitTester>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+	<!-- this set of lines form a template that must be in each unit test -->
+	<mx:Script>
+	<![CDATA[
+	public static function init(o:DisplayObject):void
+	{
+	}
+	]]>
+	</mx:Script>
+	<mx:Metadata>
+	<![CDATA[
+		[Mixin]
+	]]>
+	</mx:Metadata>
+	<!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+	<![CDATA[
+	]]>
+	</mx:Script>
+
+	<testCases>
+<!--
+-->
+		<TestCase testID="SetupListAndDataGridTest">
+			<body>
+				<SetProperty target="" propertyName="currentState" value="haloListAndDataGridTest" 
+                    waitEvent="updateComplete" />
+				<AssertPropertyValue target="haloListAndDataGridTests.testList.dataProvider" propertyName="length" value="6" />
+			</body>
+		</TestCase>
+		<TestCase testID="ListTest1">
+			<body>
+				<DispatchMouseEvent target="haloListAndDataGridTests.testList" type="mouseOver" localX="10" localY="55" />
+				<DispatchMouseClickEvent target="haloListAndDataGridTests.testList" localX="10" localY="55" waitEvent="change"/>
+				<AssertPropertyValue target="haloListAndDataGridTests.testList" propertyName="selectedIndex" value="2" />
+			</body>
+		</TestCase>
+		<TestCase testID="DragDropTest1">
+			<body>
+				<DispatchMouseEvent target="haloListAndDataGridTests.testList" type="mouseOver" localX="10" localY="55" />
+				<DispatchMouseEvent target="haloListAndDataGridTests.testList" type="mouseDown" localX="10" localY="55" buttonDown="true" />
+ 				<DispatchMouseEvent target="haloListAndDataGridTests.testList" type="mouseMove" buttonDown="true" localX="2" localY="55" waitEvent="dragStart" />
+ 				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="0" localY="60"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="0" localY="80"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="0" localY="100"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="0" localY="120"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="0" localY="140"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="0" localY="180"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="0" localY="210"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="10" localY="210" waitTarget="haloListAndDataGridTests.testDataGrid" waitEvent="dragEnter" />
+ 				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="20" localY="230"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="30" localY="230"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseMove" buttonDown="true" localX="40" localY="230" />
+ 				<DispatchMouseEvent target="haloListAndDataGridTests" type="mouseUp" localX="40" localY="210" waitTarget="haloListAndDataGridTests.testDataGrid" waitEvent="dragDrop" />
+				<AssertEvent target="haloListAndDataGridTests.testList" eventName="dragComplete" eventClass="mx.events::DragEvent" />
+				<AssertPropertyValue target="haloListAndDataGridTests.testDataGrid.dataProvider" propertyName="length" value="7" />
+			</body>
+		</TestCase>
+	</testCases>
+</UnitTester>

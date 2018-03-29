@@ -89,6 +89,7 @@ public class DispatchMouseClickEvent extends TestStep {
         catch (Exception e1)
         {
             TestOutput.logResult("Exception thrown in DispatchMouseClickEvent.");
+            e1.printStackTrace();
             testResult.doFail (e1.getMessage()); 
         }
 		
