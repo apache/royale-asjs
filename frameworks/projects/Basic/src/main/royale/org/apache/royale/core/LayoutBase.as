@@ -317,36 +317,30 @@ package org.apache.royale.core
 				host.measuredHeight = host.height;
 				host.measuredWidth = host.width;
 			}
-			// LayoutManager.addMeasurement(host);
 			
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
 			viewBead.beforeLayout();
-			// LayoutManager.addLayout(
-			// 	function ():void
-			// 	{
-					if (layout()) {
-						viewBead.afterLayout();
-					}
-					
+			if (layout()) {
+				viewBead.afterLayout();
+			}
+			
+			isLayoutRunning = false;
+			
+			host.dispatchEvent(new Event("layoutComplete"));
+			
+			COMPILE::SWF
+			{
+				// check sizes to see if layout changed the size or not
+				// and send an event to re-layout parent of host
+				if (host.width != host.measuredWidth ||
+					host.height != host.measuredHeight)
+				{
+					isLayoutRunning = true;
+					host.dispatchEvent(new Event("sizeChanged"));
 					isLayoutRunning = false;
-					
-					host.dispatchEvent(new Event("layoutComplete"));
-					
-					COMPILE::SWF
-					{
-						// check sizes to see if layout changed the size or not
-						// and send an event to re-layout parent of host
-						if (host.width != host.measuredWidth ||
-							host.height != host.measuredHeight)
-						{
-							isLayoutRunning = true;
-							host.dispatchEvent(new Event("sizeChanged"));
-							isLayoutRunning = false;
-						}
-					}
-			// 	}
-			// );
+				}
+			}
 
 		}
 

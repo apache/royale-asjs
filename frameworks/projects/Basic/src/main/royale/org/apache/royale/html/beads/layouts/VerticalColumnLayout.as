@@ -103,8 +103,8 @@ package org.apache.royale.html.beads.layouts
 			}
 			
             var padding:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
-			var sw:Number = host.measuredWidth;
-			var sh:Number = host.measuredHeight;
+			var sw:Number = host.width;
+			var sh:Number = host.height;
 
             var hasWidth:Boolean = !host.isWidthSizedToContent();
             var hasHeight:Boolean = !host.isHeightSizedToContent();
