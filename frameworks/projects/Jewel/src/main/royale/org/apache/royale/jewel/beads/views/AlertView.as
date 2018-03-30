@@ -167,7 +167,7 @@ package org.apache.royale.jewel.beads.views
             {
                 cancelButton = new TextButton();
                 cancelButton.text = alertModel.cancelLabel;
-                cancelButton.addEventListener("click",handleCancel);
+                cancelButton.addEventListener("click", handleCancel);
 
                 controlBar.addElement(cancelButton);
             }
@@ -177,7 +177,7 @@ package org.apache.royale.jewel.beads.views
                 okButton = new TextButton();
 				okButton.primary = true;
                 okButton.text = alertModel.okLabel;
-                okButton.addEventListener("click",handleOK);
+                okButton.addEventListener("click", handleOK);
 
                 controlBar.addElement(okButton);
             }
@@ -186,7 +186,7 @@ package org.apache.royale.jewel.beads.views
             {
                 noButton = new TextButton();
                 noButton.text = alertModel.noLabel;
-                noButton.addEventListener("click",handleNo);
+                noButton.addEventListener("click", handleNo);
 
                 controlBar.addElement(noButton);
             }
@@ -196,7 +196,7 @@ package org.apache.royale.jewel.beads.views
                 yesButton = new TextButton();
 				yesButton.primary = true;
                 yesButton.text = alertModel.yesLabel;
-                yesButton.addEventListener("click",handleYes);
+                yesButton.addEventListener("click", handleYes);
 
                 controlBar.addElement(yesButton);
             }

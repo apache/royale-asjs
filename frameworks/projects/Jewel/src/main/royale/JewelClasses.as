@@ -52,7 +52,8 @@ package
         import org.apache.royale.jewel.beads.layouts.VerticalLayout; VerticalLayout;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayoutWithPaddingAndGap; HorizontalLayoutWithPaddingAndGap;
         import org.apache.royale.jewel.beads.layouts.VerticalLayoutWithPaddingAndGap; VerticalLayoutWithPaddingAndGap;
-
+        import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween; HorizontalLayoutSpaceBetween;
+        
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
 
     }

@@ -43,7 +43,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class HorizontalLayout extends LayoutBase implements IBeadLayout
+	public class HorizontalLayoutSpaceBetween extends LayoutBase implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -53,7 +53,7 @@ package org.apache.royale.jewel.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function HorizontalLayout()
+		public function HorizontalLayoutSpaceBetween()
 		{
 			super();
 		}
@@ -141,18 +141,14 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles(contentView.element, "layout horizontal");
+				addStyles (contentView.element, "layout horizontal space");
 
 				/** 
 				 *  This Layout uses the following CSS rules
 				 * 
-				 *  .layout.horizontal {
-				 *		white-space: nowrap;
-				 *		display: block;
-				 *	}
-				 *
-				 *	.layout.horizontal > * {
-				 *		display: inline-block !important;
+				 *  .layout.horizontal.space {
+				 *		display: flex;
+				 * 		justify-content: space-between;
 				 *	}
 				 */
 

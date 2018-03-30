@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
-	
 	import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
@@ -30,6 +29,7 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	COMPILE::JS {
+		import org.apache.royale.utils.cssclasslist.addStyles;
         import org.apache.royale.core.WrappedHTMLElement;
     }
 
@@ -275,7 +275,7 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
                 var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				contentView.element.classList.add("layout", "horizontal");
+				addStyles (contentView.element, "layout horizontal");
 
 				var children:Array = contentView.internalChildren();
 				var i:int;

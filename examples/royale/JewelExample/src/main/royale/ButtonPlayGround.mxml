@@ -29,12 +29,12 @@ limitations under the License.
 
 			private function showAlert(event:MouseEvent):void
 			{
-				var alert:Alert = Alert.show("Are you sure ?", this, "Alert Title", Alert.OK | Alert.CANCEL);
-				//alert.height = 150;
-				alert.addEventListener("close", onShowAlertAction);
+				var alert:Alert = Alert.show("Are you sure ?", "Alert Title", Alert.OK | Alert.CANCEL);
+				//alert.height = 450;
+				alert.addEventListener("close", onClose);
 			}
 			
-			private function onShowAlertAction(event:CloseEvent):void
+			private function onClose(event:CloseEvent):void
 			{
 				trace("Hi!");
 				//alertStatus.text = "Alert status: " + event.detail;
