@@ -29,26 +29,23 @@
     min-height: 200px
     max-width: 100%
     max-height: 100%
+    border: 0px solid
 
-    border: 1px solid rgba(0, 0, 0, .3)
     // box-shadow: 0px 6px 60px -10px rgba(112,112,112,0.7)
     // background-color: #FFFFFF
-    // border: 0px solid
     // border-radius: 10px
 
     .jewel.titlebar
-        padding: 0px
-        border: 1px solid rgba(0, 0, 0, .3)
+        padding: 10px 10px 0px 10px
+        height: 50px
         
         .jewel.label
-            border: 1px solid rgba(0, 0, 0, .3)
             font:
                 size: 1.9em
                 weight: bold
 
         .closebutton
             border: 0px
-            border: 1px solid rgba(0, 0, 0, .3)
             min-width: 16px
             min-height: 16px
             padding: 4px
@@ -60,28 +57,28 @@
     
     .Group
         position: absolute
-        top: 0
-        left: 0
-        padding: 60px 20px 20px 20px
-        border: 1px solid rgba(0, 0, 0, .3)
         width: 100%
-        height: 100%
-        overflow: auto
+        top: 50px
+        bottom: 50px
+        overflow-y: auto
+        padding: 10px
 
         .jewel.label
             font:
                 size: 1.1em
 
     .jewel.controlbar
-        padding: 0px
-        border: 1px solid rgba(0, 0, 0, .3)
-        // display: flex
-        // flex-direction: row-reverse
-        // flex-wrap: wrap
-
+        padding: 0px 10px 10px 10px
+        position: absolute
+        bottom: 0
+        width: 100%
+        height: 50px
+        display: flex
+        flex-direction: row-reverse
+        
     + .backdrop
         background-color: rgba(0, 0, 0, .5)
-        //filter: blur(5px)
+        // filter: blur(5px)
 
 j|Alert
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel")

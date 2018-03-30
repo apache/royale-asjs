@@ -71,18 +71,18 @@ package org.apache.royale.jewel.beads.views
 		public function AlertView()
 		{
 		}
+
+        protected var alertModel:IAlertModel;
 		
 		protected var titleBar:TitleBar;
-		protected var controlBar:UIBase;
+		protected var content:Group;
 		protected var label:Label;
-		protected var labelContent:Group;
+		protected var controlBar:UIBase;
 
         protected var okButton:TextButton;
         protected var cancelButton:TextButton;
         protected var yesButton:TextButton;
         protected var noButton:TextButton;
-
-        protected var alertModel:IAlertModel;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -123,26 +123,21 @@ package org.apache.royale.jewel.beads.views
 
 			alertModel = (_strand as UIBase).model as IAlertModel;
 
-			createButtons();
-
-			if (alertModel.title)
-            {
-                titleBar = new TitleBar();
-				titleBar.addBead(new HorizontalLayoutSpaceBetween());
-                titleBar.title = alertModel.title;
-                IParent(_strand).addElement(titleBar);
-            }
-
+			// TitleBar
+			titleBar = new TitleBar();
+			titleBar.addBead(new HorizontalLayoutSpaceBetween());
+			titleBar.title = alertModel.title;
+			IParent(_strand).addElement(titleBar);
+            
+			// Text
+			content = new Group();
 			label = new Label();
 			label.text = alertModel.message;
+			content.addElement(label);
+			IParent(_strand).addElement(content);
 			
-			labelContent = new Group();
-			//labelContent.percentWidth = 100;
-			//labelContent.percentHeight = 100;
-			labelContent.addElement(label);
-			
-            IParent(_strand).addElement(labelContent);
-
+			// ControlBar
+			createButtons();
 			IParent(_strand).addElement(controlBar);
 
 			COMPILE::SWF
