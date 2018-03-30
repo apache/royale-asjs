@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<states>
+    <state name="Massachusetts" data="MA"/>
+    <state name="California" data="CA"/>
+    <state name="Alabama" data="AL"/>
+    <state name="Alaska" data="AK"/>
+    <state name="Arizona" data="AZ"/>
+    <state name="Arkansas" data="AR"/>
+    <state name="Colorado" data="CO"/>
+    <state name="Connecticut" data="CT"/>
+    <state name="Delaware" data="DE"/>
+    <state name="Florida" data="FL"/>
+    <state name="Georgia" data="GA"/>
+    <state name="Hawaii" data="HI"/>
+    <state name="Idaho" data="ID"/>
+    <state name="Illinois" data="IL"/>
+    <state name="Indiana" data="IN"/>
+    <state name="Iowa" data="IA"/>
+    <state name="Kansas" data="KS"/>
+    <state name="Kentucky" data="KY"/>
+    <state name="Louisiana" data="LA"/>
+    <state name="Maine" data="ME"/>
+    <state name="Maryland" data="MD"/>
+    <state name="Michigan" data="MI"/>
+    <state name="Minnesota" data="MN"/>
+    <state name="Mississippi" data="MS"/>
+    <state name="Missouri" data="MO"/>
+    <state name="Montana" data="MT"/>
+    <state name="Nebraska" data="NE"/>
+    <state name="Nevada" data="NV"/>
+    <state name="New Hampshire" data="NH"/>
+    <state name="New Jersey" data="NJ"/>
+    <state name="New Mexico" data="NM"/>
+    <state name="New York" data="NY"/>
+    <state name="North Carolina" data="NC"/>
+    <state name="North Dakota" data="ND"/>
+    <state name="Ohio" data="OH"/>
+    <state name="Oklahoma" data="OK"/>
+    <state name="Oregon" data="OR"/>
+    <state name="Pennsylvania" data="PA"/>
+    <state name="Rhode Island" data="RI"/>
+    <state name="South Carolina" data="SC"/>
+    <state name="South Dakota" data="SD"/>
+    <state name="Tennessee" data="TN"/>
+    <state name="Texas" data="TX"/>
+    <state name="Utah" data="UT"/>
+    <state name="Vermont" data="VT"/>
+    <state name="Virginia" data="VA"/>
+    <state name="Washington" data="WA"/>
+    <state name="West Virginia" data="WV"/>
+    <state name="Wisconsin" data="WI"/>
+    <state name="Wyoming" data="WY"/>
+</states>

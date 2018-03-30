@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+    
+    <!-- this set of lines form a template that must be in each unit test -->
+    <mx:Script>
+        <![CDATA[
+            public static function init(o:DisplayObject):void
+            {
+            }
+        ]]>
+    </mx:Script>
+    <mx:Metadata>
+        <![CDATA[
+        [Mixin]
+        ]]>
+    </mx:Metadata>
+    <!-- end of set of lines that must be in each unit test -->
+    
+    <mx:Script>
+        <![CDATA[
+            import flash.globalization.NumberFormatter;
+            import flash.globalization.NationalDigitsType;
+            import flash.globalization.NumberParseResult;
+            public var flashNF:flash.globalization.NumberFormatter;
+            
+            
+            public var nfParseResult:NumberParseResult;
+            public var flashParseResult:NumberParseResult;
+            public var nfParseNumberResult:Number;
+            public var flashParseNumberResult:Number;
+        ]]>
+    </mx:Script>
+    
+    <testCases>
+        <TestCase testID="SetupNumberFormatterTest">
+            <body>
+                <SetProperty target="" propertyName="currentState" value="sparkNumberFormatterTest" 
+                             waitEvent="updateComplete" />
+            </body>
+        </TestCase>
+        <TestCase testID="NumberFormatter_test" description="" keywords="[NumberFormatter, actualLocaleIDName]">
+            <setup>
+                <RunCode code="flashNF=new flash.globalization.NumberFormatter('xx')" />
+                <RunCode code="nfParseResult=application.sparkNumberFormatterTests.nfFormatter.parse('-1234')" />
+                <RunCode code="flashParseResult=flashNF.parse('-1234')" />
+                <RunCode code="nfParseNumberResult=application.sparkNumberFormatterTests.nfFormatter.parseNumber('1234')" />
+                <RunCode code="flashParseNumberResult=flashNF.parseNumber('1234')" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkNumberFormatterTests.nfFormatter" propertyName="actualLocaleIDName" valueExpression="value=flashNF.actualLocaleIDName" />
+                <AssertMethodValue method="value=nfParseResult.value" valueExpression="value=flashParseResult.value" />
+                <AssertMethodValue method="value=nfParseResult.startIndex" valueExpression="value=flashParseResult.startIndex" />
+                <AssertMethodValue method="value=nfParseResult.endIndex" valueExpression="value=flashParseResult.endIndex" />
+                <AssertMethodValue method="value=nfParseNumberResult" valueExpression="value=flashParseNumberResult" />
+               
+            </body>
+        </TestCase>
+        <TestCase testID="NumberFormatter_test1" description="" keywords="[NumberFormatter, actualLocaleIDName]">
+            <setup>
+                <RunCode code="flashNF=new flash.globalization.NumberFormatter(application.sparkNumberFormatterTests.getLocale.text)" />
+            </setup>
+            <body>
+                <AssertPropertyValue propertyName="actualLocaleIDName" valueExpression="value=flashNF.actualLocaleIDName" target="sparkNumberFormatterTests.nfFormatterNoLocaleInline"/>
+            </body>
+        </TestCase>
+        <!--Set/Get Inline decimalSeparator as positive value and format numbers-->
+        <TestCase testID="NF_decimalSeparator_test" description="" keywords="[NumberFormatter, decimalSeparator]">
+            <setup>
+                <RunCode code="flashNF=new flash.globalization.NumberFormatter('en-US')"/>
+                <RunCode code="flashNF.decimalSeparator='@'"/>
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkNumberFormatterTests.nfFormatterDecimalSeparator" propertyName="decimalSeparator" valueExpression="value=flashNF.decimalSeparator"/>
+                <AssertMethodValue method="value=application.sparkNumberFormatterTests.nfFormatterDecimalSeparator.format(-1234567.89012)" valueExpression="value=flashNF.formatNumber(-1234567.89012)" />
+                <AssertPropertyValue target="sparkNumberFormatterTests.nfFormatterDecimalSeparator" propertyName="lastOperationStatus" valueExpression="value=flashNF.lastOperationStatus"/>
+            </body>
+        </TestCase>    
+        <!--Binding property by lable text-->
+        <TestCase testID="NF_digitsType_test" description="" keywords="[NumberFormatter, digitsType]">
+            <setup>
+                <RunCode code="flashNF=new flash.globalization.NumberFormatter('en-US')" />
+                <RunCode code="flashNF.digitsType=NationalDigitsType.CHAM" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkNumberFormatterTests.nfLabel" propertyName="text" valueExpression="value=flashNF.digitsType" />
+            </body>
+        </TestCase>    
+        <!-- Test function of fractionalDigits property -->
+        <TestCase testID="NF_fractionalDigits_test" description="" keywords="[NumberFormatter, fractionalDigits]">
+            <setup>
+                <RunCode code="flashNF=new flash.globalization.NumberFormatter('en-US')" />
+                <RunCode code="flashNF.trailingZeros=true" />
+                <RunCode code="flashNF.fractionalDigits=1" />
+                <RunCode code="flashNF.useGrouping=true" />
+                <RunCode code="flashNF.groupingSeparator=','"/>
+                <RunCode code="flashNF.groupingPattern='*'" />
+            </setup>
+            <body>
+                <AssertMethodValue method="value=application.sparkNumberFormatterTests.nfFormatterFractionalDigits.format(1234.352)" valueExpression="value=flashNF.formatNumber(1234.352)" />
+            </body>
+        </TestCase>
+        <TestCase testID="NF_errorText_test" description="" keywords="[NumberFormatter, errorText]">
+            <body>
+                <AssertMethodValue method="value=application.sparkNumberFormatterTests.nfFormatterNoLocaleInline.format('abc')" value="#####"/>
+            </body>
+        </TestCase>
+    </testCases>
+</UnitTester>

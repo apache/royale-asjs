@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:mx="library://ns.apache.org/royale/mx"
+                   width="600" height="400"
+                   layout="horizontal" >
+	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
+	<fx:Style>
+		@namespace mx "library://ns.apache.org/royale/mx";
+		
+		mx|Application {
+			horizontalGap: 50px;
+		}
+		
+		mx|HBox {
+			horizontalGap: 10px;
+			verticalAlign: middle;
+		}
+		
+		mx|VBox {
+			verticalGap: 10px;
+			horizontalAlign: middle;
+		}
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
+			
+			private function pushMePushed(event:MouseEvent):void
+			{
+				trace("The PushMe button was pushed");
+			}
+			
+			private function changeIcon():void
+			{
+				button2.icon = "assets/mediumredrect.jpg";
+			}
+			
+			private function otherPushMe():void
+			{
+				trace("The other button was pushed");
+				text1.html = "The Button with an icon was pushed.";
+				dispatchEvent(new Event("layoutNeeded"));
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:VBox id="vbox1">
+		<mx:Label text="Hello World"/>
+		<mx:Button label="Change Icon" click="changeIcon()"
+		           toolTip="Changes the icon in the button below." />
+		<mx:Button id="button2" label="Make Shorter" icon="assets/smallgreenrect.jpg" 
+		           click="otherPushMe()" toolTip="Makes the text below a lot shorter."/>
+		<mx:Image source="assets/mediumredrect.jpg" toolTip="Green Square"  />
+		<mx:NumericStepper minimum="50" maximum="100" value="75" />
+		<mx:Spacer height="30" />
+		<mx:Text id="text1" toolTip="More than meets the eye.">
+			<mx:html><![CDATA[
+				This is <b>Text!</b> This more than a few words in it to show how
+				it works and <b>wraps</b>.
+			]]></mx:html>
+		</mx:Text>
+	</mx:VBox>
+	<mx:HBox id="hbox1">
+		<mx:Label text="Hello World"/>
+		<mx:LinkButton label="Apache.org" />
+		<mx:Button label="Push Me Longer Title" toolTip="I do nothing" />
+		<mx:Button label="Green Icon Button" className="GreenButton" icon="assets/smallgreenrect.jpg" toolTip="I also do nothing"  />
+		<mx:Image source="assets/mediumredrect.jpg" toolTip="Green Square"  />
+	</mx:HBox>
+	<mx:Canvas width="300" height="300">
+		<mx:Label text="At 0,0" x="0" y="0" />
+		<mx:Label text="At 100,100" x="100" y="100" />
+		<mx:Label text="At 200,200" x="200" y="200" />
+	</mx:Canvas>
+	<mx:TextArea text="This is the TextArea control!"
+		maxChars="100"/>
+
+        
+</mx:Application>

@@ -36,6 +36,7 @@ examples/FlexJSTest_again/html-template
 examples/FlexJSTest_again/bin
 rat.report
 mustella/tests/basicTests/bin
+mustella/tests/mxtests/basicTests/bin
 asdoc-output
 
 #Apache Flex Projects
