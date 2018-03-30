@@ -37,6 +37,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.TextButton;
     import org.apache.royale.jewel.TitleBar;
     import org.apache.royale.jewel.ControlBar;
+	import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween;
 	
     COMPILE::SWF
 	{
@@ -127,6 +128,7 @@ package org.apache.royale.jewel.beads.views
 			if (alertModel.title)
             {
                 titleBar = new TitleBar();
+				titleBar.addBead(new HorizontalLayoutSpaceBetween());
                 titleBar.title = alertModel.title;
                 IParent(_strand).addElement(titleBar);
             }
@@ -159,6 +161,7 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				controlBar = new ControlBar();
+				controlBar.addBead(new HorizontalLayoutSpaceBetween());
 			}
 
             var flags:uint = alertModel.flags;
