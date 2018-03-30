@@ -65,6 +65,12 @@ Image
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
 }
 
+NumericStepper
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.NumericStepperView");
+}
+
 
 /* -------------------------------------------------------
 * SWF specific styles

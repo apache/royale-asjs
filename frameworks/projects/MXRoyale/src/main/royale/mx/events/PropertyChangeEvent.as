@@ -205,7 +205,16 @@ public class PropertyChangeEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var kind:String;
+    private var _kind:String;
+	
+	public function get kind():String
+	{
+		return _kind;
+	}
+	public function set kind(value:String):void
+	{
+		_kind = value;
+	}
 
     //----------------------------------
     //  newValue
@@ -219,7 +228,16 @@ public class PropertyChangeEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var newValue:Object;
+    private var _newValue:Object;
+	
+	public function get newValue():Object
+	{
+		return _newValue;
+	}
+	public function set newValue(value:Object):void
+	{
+		_newValue = value;
+	}
 
     //----------------------------------
     //  oldValue
@@ -233,7 +251,16 @@ public class PropertyChangeEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var oldValue:Object;
+    private var _oldValue:Object;
+	
+	public function get oldValue():Object
+	{
+		return _oldValue;
+	}
+	public function set oldValue(value:Object):void
+	{
+		_oldValue = value;
+	}
 
     //----------------------------------
     //  property
@@ -247,7 +274,16 @@ public class PropertyChangeEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var property:Object;
+    private var _property:Object;
+	
+	public function get property():Object
+	{
+		return _property;
+	}
+	public function set property(value:Object):void
+	{
+		_property = value;
+	}
 
     //----------------------------------
     //  source
@@ -261,7 +297,16 @@ public class PropertyChangeEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var source:Object;
+    private var _source:Object;
+	
+	public function get source():Object
+	{
+		return _source;
+	}
+	public function set source(value:Object):void
+	{
+		_source = value;
+	}
 
     //--------------------------------------------------------------------------
     //

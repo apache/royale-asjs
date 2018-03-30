@@ -171,7 +171,16 @@ public class CollectionEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var kind:String;
+    private var _kind:String;
+	
+	public function get kind():String
+	{
+		return _kind;
+	}
+	public function set kind(value:String):void
+	{
+		_kind = value;
+	}
 
 	//----------------------------------
 	//  items
@@ -200,7 +209,16 @@ public class CollectionEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var items:Array;
+    private var _items:Array;
+	
+	public function get items():Array
+	{
+		return _items;
+	}
+	public function set items(value:Array):void
+	{
+		_items = value;
+	}
 
 	//----------------------------------
 	//  location
@@ -223,7 +241,16 @@ public class CollectionEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var location:int;
+    private var _location:int;
+	
+	public function get location():int
+	{
+		return _location;
+	}
+	public function set location(value:int):void
+	{
+		_location = value;
+	}
 
 	//----------------------------------
 	//  oldLocation
@@ -241,7 +268,16 @@ public class CollectionEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var oldLocation:int;
+    private var _oldLocation:int;
+	
+	public function get oldLocation():int
+	{
+		return _oldLocation;
+	}
+	public function set oldLocation(value:int):void
+	{
+		_oldLocation = value;
+	}
 
     //--------------------------------------------------------------------------
     //
