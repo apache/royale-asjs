@@ -23,32 +23,13 @@ limitations under the License.
 		  xmlns:j="library://ns.apache.org/royale/jewel"
 		  className="container">
     
-	<fx:Script>
-		<![CDATA[
-			import org.apache.royale.jewel.Alert;
-
-			private function showAlert(event:MouseEvent):void
-			{
-				var alert:Alert = Alert.show("This is an Alert component example that shows a label text and two buttons.", "Alert Example", Alert.OK | Alert.CANCEL);
-				//alert.height = 450;
-				alert.addEventListener("close", onClose);
-			}
-			
-			private function onClose(event:CloseEvent):void
-			{
-				trace("Hi!");
-				//alertStatus.text = "Alert status: " + event.detail;
-			}
-		]]>
-	</fx:Script>
-
 	<js:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
 	<html:H3 text="Jewel Button"/>
 	
-	<j:Button click="showAlert(event)"/>
+	<j:Button/>
 	<j:Button primary="true"/>
 	<j:Button emphasized="true"/>
 	

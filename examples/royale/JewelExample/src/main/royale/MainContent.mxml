@@ -50,6 +50,7 @@ limitations under the License.
         </js:beads>
         <local:SliderPlayGround/>
         <local:HeadingsAndText/>
+        <local:AlertPlayGround/>
     </js:Group>
     
 </js:Group>
