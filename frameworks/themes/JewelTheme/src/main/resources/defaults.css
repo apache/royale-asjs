@@ -67,7 +67,7 @@ div {
   min-height: 240px;
   border: 0px solid;
   border-radius: 3px;
-  box-shadow: 0px 0px 65px 0px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
   background-color: #FFFFFF;
 }
 .jewel.alert .jewel.titlebar {
@@ -110,7 +110,7 @@ div {
   justify-content: flex-end;
 }
 .jewel.alert .jewel.controlbar > * {
-  flex: 1 1 auto;
+  flex: 0 0 100px;
 }
 .jewel.alert + .backdrop {
   background-color: rgba(0, 0, 0, 0.5);
