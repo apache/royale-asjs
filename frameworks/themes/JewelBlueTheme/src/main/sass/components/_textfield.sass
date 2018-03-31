@@ -17,51 +17,85 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/**
- * Jewel TextField
- */
-TextField
+// Jewel Textfield
+
+// Textfield variables
+$textfield-margin: 0 !default
+$textfield-padding: .67em 1em !default
+//10px 16px
+$textfield-min-height: 34px !default
+$textfield-min-width: 74px !default
+
+$textfield-border-radius: 3px
+
+=textfield-theme($textfield-text-color)
 	position: relative
-	display: inline-block
-	box-sizing: border-box
-	width: 300px
-	max-width: 100%
-	margin: 0
+	display: inline-flex
+	
+	input
+		margin: $textfield-margin
+		padding: $textfield-padding
+		
+		max-width: 100%
+		
+		flex: 1 0 auto
+		outline: none
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+		
+		text-align: left
+		line-height: 1.4em
 
-.vTextField--input
-	font-size: 16px
-	font-family: 'Lato', sans-serif
+		font:
+			family: $font-stack
+			size: $font-size
+			weight: normal
+		color: $textfield-text-color
 
-	border: none
-	border-bottom: 2px solid
-	border-bottom-color: #ff0000
-	display: block
-	margin: 0
-	padding: 4 0
-	width: 100px
-	background: transparent
-	text-align: left
-	color: inherit
-	outline: none
+		@if $flat
+			border: 0px solid
+			background: $default-color
+		@else
+			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+			border: 1px solid darken($default-color, 15%)
+			//box-shadow: none
+		border-radius: $textfield-border-radius
+		
+		@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+		
+		&:focus
+			@if $flat
+				background: lighten($primary-color, 25%)
+			@else
+				border: 1px solid darken($primary-color, 15%)
+		
+		//&:hover 
+		//    padding: 5px;
+		//    background-color: #DFDFDF;
 
-.vTextField--label
-	bottom: 0
-	color: #ff0000
-	font-size: 13px
-	left: 0
-	right: 0
-	pointer-events: none
-	position: absolute
-	display: block
-	width: 100%
-	overflow: hidden
-	white-space: nowrap
-	text-align: left
+		&::placeholder
+			color: lighten($textfield-text-color, 15%)
 
-//    padding: 5px;
-//    border: solid 1px #666666;
-//    border-radius: 6px;
-//    color: #333333;
-//:hover 
-//    padding: 5px;
-//    background-color: #DFDFDF;
+		&[disabled]
+			cursor: unset
+			border: 1px solid darken($disabled-color, 20%)
+			background: $disabled-color
+			box-shadow: none
+			color: darken($disabled-color, 20%)
+			
+			&::placeholder
+				color: darken($disabled-color, 20%)
+
+.jewel.textfield
+	@if $dark
+		+textfield-theme($font-dark-color)
+	@else
+		+textfield-theme($font-light-color)
+
+// .jewel.textfield.primary
+// 	@if $dark
+// 		+textfield-theme($primary-color, $font-dark-color)
+// 	@else
+// 		+textfield-theme($primary-color, $font-light-color)

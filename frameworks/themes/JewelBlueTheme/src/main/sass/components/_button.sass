@@ -17,57 +17,79 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/**
- * Jewel Button
- */
-%button-def
+// Jewel Button
+
+// Button variables
+$button-margin: 0 !default
+$button-padding: 8px !default
+$button-min-height: 34px !default
+$button-min-width: 34px !default
+
+$button-border-radius: 3px
+
+=button-theme($button-color)
 	cursor: pointer
-	
 	display: inline-block
-	margin: 0 //1rem
-	padding: 10px 16px //.938em 1.875em
+
+	margin: $button-margin //1rem
+	padding: $button-padding //.938em 1.875em
+	
 	min-width: $button-min-width
-	min-height: 34px
+	min-height: $button-min-height
+	
+	@if $flat
+		border: 0px solid
+		background: $button-color
+	@else
+		border: 1px solid darken($button-color, 15%)// .094em 
+		background: linear-gradient(lighten($button-color, 5%), darken($button-color, 5%))
+		box-shadow: inset 0 1px 0 lighten($button-color, 20%) //0px 0px 0px 4px rgba($light-color,.3),
+	border-radius: $button-border-radius //.625em
+	
+	@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+	
+	&:hover
+		@if $flat
+			background: darken($button-color, 5%)
+		@else
+			border: 1px solid darken($button-color, 20%)// .094em 
+			background: linear-gradient($button-color, darken($button-color, 10%))
+	
+	&:active
+		@if $flat
+			background: darken($button-color, 15%)
+		@else
+			border: 1px solid darken($button-color, 30%)// .094em solid 
+			background: linear-gradient(darken($button-color, 10%), darken($button-color, 20%))
+			box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
+	
+	&:focus
+		outline: none
+		@if $flat
+			border: 1px solid $button-color
+			box-shadow: inset 0px 0px 0px 1px rgba(lighten($button-color, 50%), .5)
+		@else
+			border: 1px solid darken($button-color, 15%)
+			box-shadow: inset 0px 0px 0px 1px rgba(lighten($button-color, 50%), .5), inset 0 1px 0 rgba(lighten($button-color, 55%), .6)
 
-	/* Background: */
-	border: none // .094em solid 
-	border-radius: 3px //.625em
-	//box-shadow: 0 .375em .313em -.313em rgba(black,.8), inset 0 .063em $off-wht, inset 0 -.188em rgba(black,.15)
-
-.jewel.button, .jewel.button:hover
-	@extend %button-def
+	&[disabled]
+		border: 1px solid darken($disabled-color, 20%)// .094em solid 
+		background: $disabled-color
+		box-shadow: none
+		cursor: unset
 
 .jewel.button
-	+button-theme($default-color, $default-font-color)
+	+button-theme($default-color)
 
 .jewel.button.primary
-	+button-theme($primary-color, $font-color)
+	+button-theme($primary-color)
 
 .jewel.button.secondary
-	+button-theme($secondary-color, $font-color)
+	+button-theme($secondary-color)
 
 .jewel.button.emphasized
-	+button-theme($emphasized-color, $font-color)
+	+button-theme($emphasized-color)
 
-
-//SVGs
-//border:1px; /*without this svg shows scaled and bigger*/
-//border-image-source: url(assets/jewel-button.svg) ;
-//border-image-slice: 4;
-//border-image-width: 4;
-
-//background-image: linear-gradient(#3BB0FF, #1E36FA);
-
-//background-color: #006CEB;
-//background-size: cover;
-//background-repeat: no-repeat;
-//background-clip: padding-box;
-
-//background: url(assets/4slicewithpattern.svg);
-//background-size: cover;
-//width: fit-content;
-//height: fit-content;
-
-//.button:active	
-//box-shadow: #E6431D 0 1px 0 inset;
-//text-shadow: 0 -1px 0 #5F3A29;

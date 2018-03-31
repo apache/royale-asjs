@@ -50,8 +50,8 @@
               <path>../src/main/resources/assets/*</path>
             </include-file>
             <include-file>
-              <name>royale-jewel-blue.css</name>
-              <path>../src/main/resources/royale-jewel-blue.css</path>
+              <name>defaults.css</name>
+              <path>../src/main/resources/defaults.css</path>
             </include-file>
           </includeFiles>
         </configuration>
