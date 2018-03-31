@@ -30,13 +30,12 @@
     max-width: 100%
     max-height: 100%
     border: 0px solid
-
-    // box-shadow: 0px 6px 60px -10px rgba(112,112,112,0.7)
-    // background-color: #FFFFFF
-    // border-radius: 10px
+    border-radius: 3px
+    box-shadow: 0px 6px 60px -10px rgba(112,112,112,0.7)
+    background-color: #FFFFFF
 
     .jewel.titlebar
-        padding: 10px 10px 0px 10px
+        padding: 14px 14px 0px 14px
         height: 50px
         
         .jewel.label
@@ -49,41 +48,42 @@
             min-width: 16px
             min-height: 16px
             padding: 4px
-            background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 14 14' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-829, -278)'><g fill='#777777' transform='translate(825, 274)'><path d='M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z'></path></g></g></svg>")
+            background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 14 14' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-829, -278)'><g fill='#555555' transform='translate(825, 274)'><path d='M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z'></path></g></g></svg>")
             background-repeat: no-repeat
-            //background-size: 60%
-            //background-position: center
             background-attachment: fixed
-    
+            box-shadow: none
+
+            &:hover
+                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 14 14' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-829, -278)'><g fill='#777777' transform='translate(825, 274)'><path d='M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z'></path></g></g></svg>")
+                
     .Group
         position: absolute
         width: 100%
         top: 50px
         bottom: 50px
         overflow-y: auto
-        padding: 10px
+        padding: 14px
 
         .jewel.label
             font:
                 size: 1.1em
 
     .jewel.controlbar
-        padding: 0px 10px 10px 10px
+        padding: 0px 14px 14px 14px
         position: absolute
+        right: 50%
         bottom: 0
-        width: 100%
         height: 50px
-        display: flex
-        flex-direction: row-reverse
+
+        > *
+            margin-left: 6px
         
     + .backdrop
         background-color: rgba(0, 0, 0, .5)
-        // filter: blur(5px)
 
 j|Alert
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController")
-    //IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout")
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.AlertView")
 
 @media -royale-swf	

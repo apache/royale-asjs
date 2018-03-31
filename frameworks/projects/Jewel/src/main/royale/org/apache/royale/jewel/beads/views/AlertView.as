@@ -156,19 +156,10 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				controlBar = new ControlBar();
-				controlBar.addBead(new HorizontalLayoutSpaceBetween());
+				//controlBar.addBead(new HorizontalLayoutSpaceBetween());
 			}
 
             var flags:uint = alertModel.flags;
-
-			if( flags & Alert.CANCEL )
-            {
-                cancelButton = new TextButton();
-                cancelButton.text = alertModel.cancelLabel;
-                cancelButton.addEventListener("click", handleCancel);
-
-                controlBar.addElement(cancelButton);
-            }
 
             if( flags & Alert.OK )
             {
@@ -179,16 +170,16 @@ package org.apache.royale.jewel.beads.views
 
                 controlBar.addElement(okButton);
             }
-            
-			if( flags & Alert.NO )
+
+			if( flags & Alert.CANCEL )
             {
-                noButton = new TextButton();
-                noButton.text = alertModel.noLabel;
-                noButton.addEventListener("click", handleNo);
+                cancelButton = new TextButton();
+                cancelButton.text = alertModel.cancelLabel;
+                cancelButton.addEventListener("click", handleCancel);
 
-                controlBar.addElement(noButton);
+                controlBar.addElement(cancelButton);
             }
-
+            
             if( flags & Alert.YES )
             {
                 yesButton = new TextButton();
@@ -197,6 +188,15 @@ package org.apache.royale.jewel.beads.views
                 yesButton.addEventListener("click", handleYes);
 
                 controlBar.addElement(yesButton);
+            }
+
+			if( flags & Alert.NO )
+            {
+                noButton = new TextButton();
+                noButton.text = alertModel.noLabel;
+                noButton.addEventListener("click", handleNo);
+
+                controlBar.addElement(noButton);
             }
 		}
 
