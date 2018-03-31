@@ -32,8 +32,13 @@ package org.apache.royale.events
 	{
 		public static const CLOSE:String = "close";
 
+        /**
+         * constructor
+         * 
+         * detail by default is like an Alert.CANCEL
+         */
 		public function CloseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false,
-                                   detail:uint = 0x000004):void
+                                   detail:uint = 0x000008):void
 		{
 			super(type, bubbles, cancelable);
 
@@ -41,7 +46,8 @@ package org.apache.royale.events
 		}
 
         /**
-         *  Identifies the button in the popped up control that was clicked. This property is for controls with multiple    		 *	buttons. The Alert control sets this property to one of the following constants:
+         *  Identifies the button in the popped up control that was clicked. This property is for controls with multiple    		 
+         *  buttons. The Alert control sets this property to one of the following constants:
 		 *
          *  Alert.YES
          *  Alert.NO

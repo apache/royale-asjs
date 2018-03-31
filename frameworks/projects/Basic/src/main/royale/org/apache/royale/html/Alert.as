@@ -114,7 +114,7 @@ package org.apache.royale.html
           *  @playerversion AIR 2.6
           *  @productversion Royale 0.0
           */
-        static public function show( message:String, parent:Object, title:String="", flags:uint=Alert.OK ) : Alert
+        static public function show( message:String, title:String="", parent:Object, flags:uint=Alert.OK ) : Alert
 		{
 			var alert:Alert = new Alert();
 			alert.message = message;
