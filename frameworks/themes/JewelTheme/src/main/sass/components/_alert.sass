@@ -20,5 +20,113 @@
 // Jewel Alert
 
 // Alert variables
+$alert-padding: 20px
+$alert-min-width: 420px
+$alert-min-height: 240px
+$alert-header-height: 50px
+$alert-footer-height: 80px
+$alert-border-radius: 3px
+
+$alert-title-font-size: 1.9em
+$alert-title-font-weight: bold
+$alert-title-color: darken($primary-color, 25%)
+
+$alert-label-font-size: 1.1em
+$alert-label-font-weight: normal
+$alert-label-color: $font-light-color
+
+$alert-control-bar-align: 'left'
+
+$alert-modal-opacity: .5
 
 .jewel.alert
+    display: block
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    margin: 0
+    padding: 0
+    max-width: 100%
+    max-height: 100%
+
+    min-width: $alert-min-width
+    min-height: $alert-min-height
+    
+    border: 0px solid
+    border-radius: $alert-border-radius
+    box-shadow: 0px 0px 65px 0px rgba(0,0,0,0.8)
+    background-color: #FFFFFF
+
+    .jewel.titlebar
+        padding: $alert-padding $alert-padding 0px $alert-padding
+        height: $alert-header-height
+        color: $alert-title-color
+        
+        .jewel.label
+            font:
+                size: $alert-title-font-size
+                weight: $alert-title-font-weight
+          
+    .Group
+        position: absolute
+        padding: $alert-padding
+        top: $alert-header-height
+        bottom: $alert-footer-height
+        width: 100%
+        overflow-y: auto
+
+        .jewel.label
+            white-space: normal
+            color: $alert-label-color
+            font:
+                size: $alert-label-font-size
+                weight: $alert-label-font-weight
+
+    .jewel.controlbar
+        @if $flat
+            border: 0px solid
+            background: $default-color
+        @else
+            border-top: 1px solid darken($default-color, 15%)
+            background: linear-gradient(lighten($default-color, 5%), darken($default-color, 5%))
+            box-shadow: inset 0 1px 0 lighten($default-color, 20%)
+        border-top-left-radius: 0px
+        border-top-right-radius: 0px
+        border-bottom-left-radius: $alert-border-radius 
+        border-bottom-right-radius: $alert-border-radius
+
+        padding: $alert-padding
+        position: absolute
+        bottom: 0
+        width: 100%
+        height: $alert-footer-height
+        
+        display: flex
+        justify-content: flex-end
+        // @if $alert-control-bar-align == 'center'
+        //     left: 50%
+        //     transform: translate(-50%, 0%)
+        // @else if $alert-control-bar-align == 'right'
+        //     right: 0
+        // @else if $alert-control-bar-align == 'left'
+        //     left: 0
+
+        // > *:first-child
+        //     margin-left: 0px
+        > *
+            flex: 1 1 auto
+            //margin-left: 6px
+        
+    + .backdrop
+        background-color: rgba(0, 0, 0, $alert-modal-opacity)
+
+j|Alert
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController")
+    IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.AlertView")
+
+@media -royale-swf	
+    j|Alert
+        IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
+        IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")

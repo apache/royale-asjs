@@ -44,10 +44,10 @@
   transform: translate(-50%, -50%);
   margin: 0;
   padding: 0;
-  min-width: 350px;
-  min-height: 200px;
   max-width: 100%;
   max-height: 100%;
+  min-width: 350px;
+  min-height: 200px;
   border: 0px solid;
   border-radius: 3px;
   box-shadow: 0px 6px 60px -10px rgba(112, 112, 112, 0.7);
@@ -56,40 +56,29 @@
 .jewel.alert .jewel.titlebar {
   padding: 14px 14px 0px 14px;
   height: 50px;
+  color: #000000;
 }
 .jewel.alert .jewel.titlebar .jewel.label {
   font-size: 1.9em;
   font-weight: bold;
 }
-.jewel.alert .jewel.titlebar .closebutton {
-  border: 0px;
-  min-width: 16px;
-  min-height: 16px;
-  padding: 4px;
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 14 14' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-829, -278)'><g fill='#555555' transform='translate(825, 274)'><path d='M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z'></path></g></g></svg>");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  box-shadow: none;
-}
-.jewel.alert .jewel.titlebar .closebutton:hover {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 14 14' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-829, -278)'><g fill='#777777' transform='translate(825, 274)'><path d='M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z'></path></g></g></svg>");
-}
 .jewel.alert .Group {
   position: absolute;
-  width: 100%;
+  padding: 14px;
   top: 50px;
   bottom: 50px;
+  width: 100%;
   overflow-y: auto;
-  padding: 14px;
 }
 .jewel.alert .Group .jewel.label {
+  white-space: normal;
+  color: #000000;
   font-size: 1.1em;
+  font-weight: normal;
 }
 .jewel.alert .jewel.controlbar {
   padding: 0px 14px 14px 14px;
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0%);
   bottom: 0;
   height: 50px;
 }

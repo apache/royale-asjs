@@ -129,7 +129,6 @@ package org.apache.royale.jewel.beads.views
 			titleBar.addBead(new HorizontalLayoutSpaceBetween());
 			titleBar.addBead(new AlertTitleBarView());
 			titleBar.title = alertModel.title;
-			//titleBar.showCloseButton = true;
 			IParent(_strand).addElement(titleBar);
             
 			// Text

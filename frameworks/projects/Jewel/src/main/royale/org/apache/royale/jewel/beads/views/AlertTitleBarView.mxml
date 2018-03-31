@@ -32,15 +32,6 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import org.apache.royale.core.ITitleBarModel;
-            import org.apache.royale.events.IEventDispatcher;
-            import org.apache.royale.events.CloseEvent;
-            
-            private function clickHandler():void
-            {
-                var newEvent:Event = new Event('close');
-                //var closeEvent:CloseEvent = new CloseEvent("close", false, false, buttonFlag);
-                IEventDispatcher(_strand).dispatchEvent(newEvent)   
-            }
         ]]>
     </fx:Script>
     
@@ -50,8 +41,5 @@ limitations under the License.
     </js:beads>
 
     <j:Label id="titleLabel" text="{ITitleBarModel(model).title}"/>
-
-    <j:Button id="closeButton" click="clickHandler()" className="closebutton"
-            visible="{ITitleBarModel(model).showCloseButton}"/>
 
 </js:MXMLBeadView>

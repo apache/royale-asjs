@@ -29,7 +29,7 @@ limitations under the License.
 
 			private function showAlert(event:MouseEvent):void
 			{
-				var alert:Alert = Alert.show("Are you sure ?", "Alert Title", Alert.OK | Alert.CANCEL);
+				var alert:Alert = Alert.show("This is an Alert component example that shows a label text and two buttons.", "Alert Example", Alert.OK | Alert.CANCEL);
 				//alert.height = 450;
 				alert.addEventListener("close", onClose);
 			}
