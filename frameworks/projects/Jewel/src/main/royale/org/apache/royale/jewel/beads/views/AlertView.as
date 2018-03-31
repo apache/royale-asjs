@@ -38,6 +38,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.TitleBar;
     import org.apache.royale.jewel.ControlBar;
 	import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween;
+	import org.apache.royale.jewel.beads.views.AlertTitleBarView;
 	
     COMPILE::SWF
 	{
@@ -126,7 +127,9 @@ package org.apache.royale.jewel.beads.views
 			// TitleBar
 			titleBar = new TitleBar();
 			titleBar.addBead(new HorizontalLayoutSpaceBetween());
+			titleBar.addBead(new AlertTitleBarView());
 			titleBar.title = alertModel.title;
+			//titleBar.showCloseButton = true;
 			IParent(_strand).addElement(titleBar);
             
 			// Text

@@ -20,7 +20,7 @@
   display: block;
 }
 .layout.horizontal > * {
-  display: inline-block !important;
+  display: inline-block;
 }
 
 .layout.vertical {
@@ -88,9 +88,13 @@
 .jewel.alert .jewel.controlbar {
   padding: 0px 14px 14px 14px;
   position: absolute;
-  right: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
   bottom: 0;
   height: 50px;
+}
+.jewel.alert .jewel.controlbar > *:first-child {
+  margin-left: 0px;
 }
 .jewel.alert .jewel.controlbar > * {
   margin-left: 6px;

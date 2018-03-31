@@ -152,7 +152,7 @@ package org.apache.royale.jewel.beads.layouts
 				 *	}
 				 *
 				 *	.layout.horizontal > * {
-				 *		display: inline-block !important;
+				 *		display: inline-block;
 				 *	}
 				 */
 
