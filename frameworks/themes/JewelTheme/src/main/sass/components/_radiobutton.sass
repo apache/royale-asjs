@@ -26,14 +26,12 @@ $radiobutton-label-separation: 6px
 $radiobutton-label-font-size: 16px
 
 .jewel.radiobutton
-    //cursor: pointer
     display: inline-block
 
     margin: 0
     padding: 0
 
     position: relative
-    vertical-align: middle
     
     width: 100%
     height: $radiobutton-button-size
@@ -94,7 +92,8 @@ $radiobutton-label-font-size: 16px
     // -- LABEL
     span
         cursor: pointer
-        position: absolute
+        position: relative
+        vertical-align: top
         margin: 0
         padding-left: $radiobutton-label-separation
         font-size: $radiobutton-label-font-size
