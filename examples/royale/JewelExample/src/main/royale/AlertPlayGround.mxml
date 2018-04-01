@@ -27,10 +27,11 @@ limitations under the License.
 		<![CDATA[
 			import org.apache.royale.jewel.Alert;
 			import org.apache.royale.events.CloseEvent;
+			import org.apache.royale.events.MouseEvent;
 
             // Event handler function uses a static method to show
             // a pop-up window with the title, message, and requested buttons.        
-            private function clickHandler(event:Event):void {
+            private function clickHandler(event:MouseEvent):void {
                 var alert:Alert = Alert.show("Do you want to save your changes?", "Save Changes", 3);
 				alert.addEventListener(CloseEvent.CLOSE, alertClickHandler);
                 alert.height = 300;
