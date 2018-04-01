@@ -101,7 +101,7 @@ j|Alert {
 @media -royale-swf {
   j|CheckBox {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
-    IBeadView: ClassReference("org.apache.royale.html.beads.CheckBoxView");
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.CheckBoxView");
   }
 }
 .jewel.controlbar {
@@ -133,7 +133,7 @@ j|Label {
 @media -royale-swf {
   j|RadioButton {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.RadioButtonView");
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.RadioButtonView");
   }
 }
 .jewel.slider {
