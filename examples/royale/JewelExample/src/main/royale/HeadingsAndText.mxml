@@ -36,6 +36,6 @@ limitations under the License.
 
 	<html:Span text="Some span text."/>
 	
-    <html:Div text="Normal text used in a div, texts and fields with single line or multiple lines."/>
+    <js:MultilineLabel text="Normal text used in a div, texts and fields with single line or multiple lines."/>
 
 </js:Group>

@@ -52,10 +52,10 @@ limitations under the License.
 	
 	<html:H3 text="Jewel Alert"/>
 	
-    <html:Div text="Click the button below to display a simple Alert window"/>
+    <js:MultilineLabel text="Click the button below to display a simple Alert window"/>
 	<j:TextButton text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
 
-    <html:Div text="Click the button below to display an Alert window and capture the button pressed by the user."/>
+    <js:MultilineLabel text="Click the button below to display an Alert window and capture the button pressed by the user."/>
 	<j:TextButton text="Click Me" click="clickHandler(event)"/>
     <j:Label id="status"/>
 	
