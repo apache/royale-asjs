@@ -85,7 +85,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-			typeNames = "jewel slider"
+			typeNames = "jewel slider";
 
 			IRangeModel(model).value = 0;
 			IRangeModel(model).minimum = 0;
