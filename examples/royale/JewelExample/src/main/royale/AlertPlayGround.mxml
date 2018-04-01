@@ -21,7 +21,7 @@ limitations under the License.
 		  xmlns:js="library://ns.apache.org/royale/basic"
 		  xmlns:html="library://ns.apache.org/royale/html"
 		  xmlns:j="library://ns.apache.org/royale/jewel"
-		  className="container">
+		  className="container" width="350">
     
 	<fx:Script>
 		<![CDATA[
@@ -52,10 +52,10 @@ limitations under the License.
 	
 	<html:H3 text="Jewel Alert"/>
 	
-    <j:Label text="Click the button below to display a simple Alert window"/>
+    <html:Div text="Click the button below to display a simple Alert window"/>
 	<j:TextButton text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
 
-    <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user."/>
+    <html:Div text="Click the button below to display an Alert window and capture the button pressed by the user."/>
 	<j:TextButton text="Click Me" click="clickHandler(event)"/>
     <j:Label id="status"/>
 	
