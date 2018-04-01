@@ -109,8 +109,12 @@ div {
   display: flex;
   justify-content: flex-end;
 }
+.jewel.alert .jewel.controlbar > *:first-child {
+  margin-left: 0px;
+}
 .jewel.alert .jewel.controlbar > * {
   flex: 0 0 100px;
+  margin-left: 6px;
 }
 .jewel.alert + .backdrop {
   background-color: rgba(0, 0, 0, 0.5);

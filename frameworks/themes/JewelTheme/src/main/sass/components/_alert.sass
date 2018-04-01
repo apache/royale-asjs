@@ -104,19 +104,12 @@ $alert-modal-opacity: .5
         
         display: flex
         justify-content: flex-end
-        // @if $alert-control-bar-align == 'center'
-        //     left: 50%
-        //     transform: translate(-50%, 0%)
-        // @else if $alert-control-bar-align == 'right'
-        //     right: 0
-        // @else if $alert-control-bar-align == 'left'
-        //     left: 0
-
-        // > *:first-child
-        //     margin-left: 0px
+        
+        > *:first-child
+            margin-left: 0px
         > *
             flex: 0 0 100px
-            //margin-left: 6px
+            margin-left: 6px
         
     + .backdrop
         background-color: rgba(0, 0, 0, $alert-modal-opacity)
