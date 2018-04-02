@@ -21,7 +21,6 @@
 
 <componentPackage>
 
-    <component id="Application" class="org.apache.royale.ace.Application"/>
     <component id="ACEEditor" class="org.apache.royale.ace.ACEEditor"/>
 
 </componentPackage>
