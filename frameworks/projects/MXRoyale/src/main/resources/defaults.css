@@ -106,6 +106,12 @@ NumericStepper
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
 	}
 	
+	RadioButton
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+		IBeadView:  ClassReference("mx.controls.beads.RadioButtonView");			
+	}
+	
 	TextInput
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");

@@ -22,6 +22,10 @@ package mx.controls
 COMPILE::JS
 {
     import goog.DEBUG;
+    import window.Text;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.supportClasses.RadioButtonIcon;
+    import org.apache.royale.html.util.addElementToWrapper;
 }
 import org.apache.royale.events.Event;
 /*
@@ -31,8 +35,8 @@ import flash.events.MouseEvent;
 import flash.ui.Keyboard;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
-import mx.core.mx_internal;
 */
+import mx.core.mx_internal;
 import mx.events.FlexEvent;
 /*
 import mx.core.FlexVersion;
@@ -46,8 +50,8 @@ import mx.styles.StyleManager;
 import flash.text.TextLineMetrics;
 import flash.utils.getQualifiedClassName;
 
-use namespace mx_internal;
 */
+use namespace mx_internal;
 
 /**
  *  The RadioButton control lets the user make a single choice
@@ -208,6 +212,91 @@ public class RadioButton extends Button
     {
     }
 
+    /**
+     * @private
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
+    COMPILE::JS
+    public static var radioCounter:int = 0;
+    
+    COMPILE::JS
+    private var labelFor:HTMLLabelElement;
+    COMPILE::JS
+    private var textNode:window.Text;
+    COMPILE::JS
+    private var rbicon:RadioButtonIcon;
+    
+    /**
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     * @royaleignorecoercion HTMLInputElement
+     * @royaleignorecoercion HTMLLabelElement
+     * @royaleignorecoercion Text
+     */
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        rbicon = new RadioButtonIcon()
+        rbicon.id = '_radio_' + RadioButton.radioCounter++;
+        rbicon.element.addEventListener("change", rbChangeHandler);
+        
+        textNode = document.createTextNode('') as window.Text;
+        
+        labelFor = addElementToWrapper(this,'label') as HTMLLabelElement;
+        labelFor.appendChild(rbicon.element);
+        labelFor.appendChild(textNode);
+        
+        (textNode as WrappedHTMLElement).royale_wrapper = this;
+        (rbicon.element as WrappedHTMLElement).royale_wrapper = this;
+        
+        typeNames = 'RadioButton';
+        
+        return element;
+    }
+    
+    /**
+     * @royaleignorecoercion HTMLInputElement
+     */
+    COMPILE::JS
+    private function rbChangeHandler(event:Event):void
+    {
+        selected = (rbicon.element as HTMLInputElement).checked    
+    }
+    
+    COMPILE::JS
+    override public function set id(value:String):void
+    {
+        super.id = value;
+        labelFor.id = value;
+        rbicon.element.id = value;
+    }
+    
+    COMPILE::JS
+    override public function get label():String
+    {
+        return textNode.nodeValue as String;
+    }
+    
+    COMPILE::JS
+    override public function set label(value:String):void
+    {
+        textNode.nodeValue = value;
+    }
+    
+    /**
+     * @royaleignorecoercion HTMLInputElement
+     */
+    override public function set selected(value:Boolean):void
+    {
+        super.selected = value;
+        COMPILE::JS
+        {
+            (rbicon.element as HTMLInputElement).checked = value;
+        }
+        group.setSelection(this, false);
+        dispatchEvent(new Event("selectedChanged"));
+    }    
+    
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -236,6 +325,10 @@ public class RadioButton extends Button
      */
     public function get group():RadioButtonGroup
     {
+        if (_group == null)
+        {
+            _group = component[groupName];
+        }
         return _group;
     }
 
@@ -290,8 +383,16 @@ public class RadioButton extends Button
     {
         _groupName = value;
 
+        groupChanged = true;
+
+        COMPILE::JS
+        {
+            (rbicon.element as HTMLInputElement).name = value;
+        }
+
         dispatchEvent(new Event("groupNameChanged"));
     }
+    
 
     //----------------------------------
     //  value
@@ -328,6 +429,10 @@ public class RadioButton extends Button
     public function set value(value:Object):void
     {
         _value = value;
+        COMPILE::JS
+        {
+            (rbicon.element as HTMLInputElement).value = "" + value;
+        }
 
     }
 
@@ -337,6 +442,11 @@ public class RadioButton extends Button
     //
     //--------------------------------------------------------------------------
 
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+    }
 
     /**
      *  @private
@@ -345,6 +455,13 @@ public class RadioButton extends Button
     override protected function commitProperties():void
     {
         super.commitProperties();
+        
+        if (groupChanged)
+        {
+            addToGroup();
+            
+            groupChanged = false;
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -353,12 +470,18 @@ public class RadioButton extends Button
     //
     //--------------------------------------------------------------------------
 
-    //--------------------------------------------------------------------------
-    //
-    //  Overridden event handlers: UIComponent
-    //
-    //--------------------------------------------------------------------------
-
+    /**
+     *  @private
+     *  Create radio button group if it does not exist
+     *  and add the instance to the group.
+     */
+    private function addToGroup():Object
+    {
+        var g:RadioButtonGroup = group; // Trigger getting the group
+        if (g)
+            g.addInstance(this);
+        return g;
+    }
 
 }
 
