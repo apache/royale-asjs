@@ -19,7 +19,36 @@
 
 package mx.containers
 {
+	import org.apache.royale.core.ContainerBaseStrandChildren;
+	import org.apache.royale.core.UIComponent;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IContentViewHost;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStatesImpl;
+	import org.apache.royale.core.IStrandPrivate;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.states.State;
+	import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
+COMPILE::JS
+{
+    import goog.DEBUG;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
+}
+/* 
 import flash.display.DisplayObject;
 import flash.display.Graphics;
 import flash.events.Event;
@@ -35,8 +64,6 @@ import mx.containers.utilityClasses.ConstraintColumn;
 import mx.containers.utilityClasses.ConstraintRow;
 import mx.containers.utilityClasses.IConstraintLayout;
 import mx.containers.utilityClasses.Layout;
-import mx.controls.Button;
-import mx.core.Container;
 import mx.core.ContainerLayout;
 import mx.core.EdgeMetrics;
 import mx.core.EventPriority;
@@ -59,342 +86,9 @@ import mx.styles.IStyleClient;
 import mx.styles.StyleProxy;
 
 use namespace mx_internal;
-
-//--------------------------------------
-//  Styles
-//--------------------------------------
-
-include "../styles/metadata/AlignStyles.as";
-include "../styles/metadata/GapStyles.as";
-include "../styles/metadata/ModalTransparencyStyles.as";
-
-/**
- *  Alpha of the title bar, control bar and sides of the Panel.
- *
- *  The default value for the Halo theme is <code>0.4</code>.
- *  The default value for the Spark theme is <code>0.5</code>.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
  */
-[Style(name="borderAlpha", type="Number", inherit="no", theme="halo, spark")]
-
-/**
- *  Thickness of the bottom border of the Panel control.
- *  If this style is not set and the Panel control contains a ControlBar
- *  control, the bottom border thickness equals the thickness of the top border
- *  of the panel; otherwise the bottom border thickness equals the thickness
- *  of the left border.
- *
- *  @default NaN
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="borderThicknessBottom", type="Number", format="Length", inherit="no", theme="halo")]
-
-/**
- *  Thickness of the left border of the Panel.
- *
- *  @default 10
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="borderThicknessLeft", type="Number", format="Length", inherit="no", theme="halo")]
-
-/**
- *  Thickness of the right border of the Panel.
- *
- *  @default 10
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="borderThicknessRight", type="Number", format="Length", inherit="no", theme="halo")]
-
-/**
- *  Thickness of the top border of the Panel.
- *
- *  @default 2
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="borderThicknessTop", type="Number", format="Length", inherit="no", theme="halo")]
-
-/**
- *  Name of the CSS style declaration that specifies styles to apply to 
- *  any control bar child subcontrol.
- * 
- *  @default null
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="controlBarStyleName", type="String", inherit="no")]
-
-/**
- *  Radius of corners of the window frame.
- *
- *  The default value for the Halo theme is <code>4</code>.
- *  The default value for the Spark theme is <code>0</code>.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="cornerRadius", type="Number", format="Length", inherit="no", theme="halo, spark")]
-
-/**
- *  Boolean property that controls the visibility
- *  of the Panel container's drop shadow.
- *
- *  @default true
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="dropShadowEnabled", type="Boolean", inherit="no", theme="halo")]
-
-/**
- *  Array of two colors used to draw the footer
- *  (area for the ControlBar container) background. 
- *  The first color is the top color. 
- *  The second color is the bottom color.
- *  The default values are <code>null</code>, which
- *  makes the control bar background the same as
- *  the panel background.
- *
- *  @default null
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="footerColors", type="Array", arrayType="uint", format="Color", inherit="yes", theme="halo")]
-
-/**
- *  Array of two colors used to draw the header.
- *  The first color is the top color.
- *  The second color is the bottom color.
- *  The default values are <code>null</code>, which
- *  makes the header background the same as the
- *  panel background.
- *
- *  @default null
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="headerColors", type="Array", arrayType="uint", format="Color", inherit="yes", theme="halo")]
-
-/**
- *  Height of the header.
- *  The default value is based on the style of the title text.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="headerHeight", type="Number", format="Length", inherit="no")]
-
-/**
- *  Alphas used for the highlight fill of the header.
- *
- *  @default [0.3,0]
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="highlightAlphas", type="Array", arrayType="Number", inherit="no", theme="halo")]
-
-/**
- *  Number of pixels between the container's lower border
- *  and its content area.
- *
- *  @default 0
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="paddingBottom", type="Number", format="Length", inherit="no")]
-
-/**
- *  Number of pixels between the container's top border
- *  and its content area.
- *
- *  @default 0
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
-
-/**
- *  Flag to enable rounding for the bottom two corners of the container.
- *  Does not affect the upper two corners, which are normally round. 
- *  To configure the upper corners to be square, 
- *  set <code>cornerRadius</code> to 0.
- *
- *  @default false
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="roundedBottomCorners", type="Boolean", inherit="no", theme="halo")]
-
-/**
- *  Direction of drop shadow.
- *  Possible values are <code>"left"</code>, <code>"center"</code>,
- *  and <code>"right"</code>.
- *
- *  @default "center"
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="shadowDirection", type="String", enumeration="left,center,right", inherit="no", theme="halo")]
-
-/**
- *  Distance of drop shadow.
- *  Negative values move the shadow above the panel.
- *
- *  @default 2
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="shadowDistance", type="Number", format="Length", inherit="no", theme="halo")]
-
-/**
- *  Style declaration name for the status in the title bar.
- *
- *  @default "windowStatus"
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
- 
-[Style(name="statusStyleName", type="String", inherit="no")]
-
-/**
- *  The title background skin.
- *
- *  The default value for the Halo theme is <code>mx.skins.halo.TitleBackground</code>.
- *  The default value for the Spark theme is <code>mx.core.UIComponent</code>.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="titleBackgroundSkin", type="Class", inherit="no")]
-
-/**
- *  Style declaration name for the text in the title bar.
- *  The default value is <code>"windowStyles"</code>,
- *  which causes the title to have boldface text.
- *
- *  @default "windowStyles"
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="titleStyleName", type="String", inherit="no")]
-
-//--------------------------------------
-//  Effects
-//--------------------------------------
-
-/**
- *  Specifies the effect to play after a Resize effect finishes playing.
- *  To disable the default Dissolve effect, so that the children are hidden
- *  instantaneously, set the value of the
- *  <code>resizeEndEffect</code> property to <code>"none"</code>.  
- *
- *  @default "Dissolve"
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Effect(name="resizeEndEffect", event="resizeEnd")]
-
-/**
- *  Specifies the effect to play before a Resize effect begins playing.
- *  To disable the default Dissolve effect, so that the children are hidden
- *  instantaneously, set the value of the
- *  <code>resizeStartEffect</code> property to <code>"none"</code>.  
- *
- *  @default "Dissolve"
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Effect(name="resizeStartEffect", event="resizeStart")]
-
-//--------------------------------------
-//  Excluded APIs
-//--------------------------------------
-
-[Exclude(name="focusIn", kind="event")]
-[Exclude(name="focusOut", kind="event")]
-
-[Exclude(name="focusBlendMode", kind="style")]
-[Exclude(name="focusSkin", kind="style")]
-[Exclude(name="focusThickness", kind="style")]
-
-[Exclude(name="focusInEffect", kind="effect")]
-[Exclude(name="focusOutEffect", kind="effect")]
-
-//--------------------------------------
-//  Other metadata
-//--------------------------------------
-
-[AccessibilityClass(implementation="mx.accessibility.PanelAccImpl")]
-
-[IconFile("Panel.png")]
-
-[Alternative(replacement="spark.components.Panel", since="4.0")]
+import mx.core.Container;
+import mx.controls.Button;
 
 /**
  *  A Halo Panel container consists of a title bar, a caption, a border,
@@ -489,6 +183,7 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
+ [Event(name="click", type="org.apache.royale.events.MouseEvent")]
 public class Panel extends Container
     implements IConstraintLayout, IFontContextComponent
 {
@@ -515,8 +210,8 @@ public class Panel extends Container
      *  @private
      *  Placeholder for mixin by PanelAccImpl.
      */
-    mx_internal static var createAccessibilityImplementation:Function;
-
+ /*    mx_internal static var createAccessibilityImplementation:Function;
+ */
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -541,7 +236,10 @@ public class Panel extends Container
         // style sheet). Unfortunately, there's no automated mechanism
         // to hook up the EffectManager, so I need to do that here.
         // Also see the comment in defaults.css.
-        addEventListener("resizeStart", EffectManager.eventHandler,
+      
+	  
+
+	 /*  addEventListener("resizeStart", EffectManager.eventHandler,
                          false, EventPriority.EFFECT);
         addEventListener("resizeEnd", EffectManager.eventHandler,
                          false, EventPriority.EFFECT);
@@ -549,7 +247,7 @@ public class Panel extends Container
         layoutObject = new BoxLayout();
         layoutObject.target = this;
         
-        showInAutomationHierarchy = true;
+        showInAutomationHierarchy = true; */
     }
     
     //--------------------------------------------------------------------------
@@ -568,27 +266,27 @@ public class Panel extends Container
      *  Is there a close button? Panel itself never has one,
      *  but its subclass TitleWindow can set this flag to true.
      */
-    mx_internal var _showCloseButton:Boolean = false;
+     var _showCloseButton:Boolean = false;
 
     /**
      *  @private
      *  A reference to this Panel container's title bar skin.
      *  This is a child of the titleBar.
      */
-    mx_internal var titleBarBackground:IFlexDisplayObject;
+     var titleBarBackground:IFlexDisplayObject;
 
     /**
      *  @private
      *  A reference to this Panel container's title icon.
      */
-    mx_internal var titleIconObject:Object = null;
+     var titleIconObject:Object = null;
 
     /**
      *  @private
      *  A reference to this Panel container's close button, if any.
      *  This is a sibling of the titleBar, not its child.
      */
-    mx_internal var closeButton:Button; 
+     var closeButton:Button; 
 
     /**
      *  @private
@@ -648,10 +346,12 @@ public class Panel extends Container
      */
     override public function get baselinePosition():Number
     {
-        if (!validateBaselinePosition())
+	if (GOOG::DEBUG)
+            trace("baselinePosition not implemented");
+        /* if (!validateBaselinePosition())
             return NaN;
 
-        return titleBar.y + titleTextField.y + titleTextField.baselinePosition;
+        return titleBar.y + titleTextField.y + titleTextField.baselinePosition; */
     }
 
     //----------------------------------
@@ -663,7 +363,7 @@ public class Panel extends Container
      */
     override public function set cacheAsBitmap(value:Boolean):void
     {
-        super.cacheAsBitmap = value;
+        /* super.cacheAsBitmap = value;
 
         // If we got cached, create the content pane so the content area of
         // this panel gets cached with an opaque background.
@@ -673,7 +373,8 @@ public class Panel extends Container
         {
             createContentPane();
             invalidateDisplayList();
-        }
+        } */
+		  invalidateDisplayList();
     }
 
     //----------------------------------
@@ -850,7 +551,7 @@ public class Panel extends Container
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    mx_internal function get _controlBar():IUIComponent
+     function get _controlBar():IUIComponent
     {
         return controlBar;
     }
@@ -1057,14 +758,16 @@ public class Panel extends Container
      */
     public function set title(value:String):void
     {
-        _title = value;
+	if (GOOG::DEBUG)
+            trace("title not implemented");
+        _/* title = value;
         _titleChanged = true;
         
         invalidateProperties();
         invalidateSize();
         invalidateViewMetricsAndPadding();
         
-        dispatchEvent(new Event("titleChanged"));
+        dispatchEvent(new Event("titleChanged")); */
     }
     
     //----------------------------------
@@ -1119,13 +822,15 @@ public class Panel extends Container
      */
     public function set titleIcon(value:Class):void
     {
-        _titleIcon = value;
+	if (GOOG::DEBUG)
+            trace("titleIcon not implemented");
+      /*   _titleIcon = value;
         _titleIconChanged = true;
         
         invalidateProperties();
         invalidateSize();
         
-        dispatchEvent(new Event("titleIconChanged"));
+        dispatchEvent(new Event("titleIconChanged")); */
     }
 
     //----------------------------------
@@ -1152,10 +857,13 @@ public class Panel extends Container
     /**
      *  @private
      */
-    override mx_internal function get usePadding():Boolean
+    override  function get usePadding():Boolean
     {
-        // We use margins for all layouts except absolute.
-        return layout != ContainerLayout.ABSOLUTE;
+	if (GOOG::DEBUG)
+            trace("usePadding not implemented");
+			
+    /*     // We use margins for all layouts except absolute.
+        return layout != ContainerLayout.ABSOLUTE; */
     }
 
     //----------------------------------
@@ -1300,7 +1008,7 @@ public class Panel extends Container
             
             if (statusTextField)
             {
-                childIndex = titleBar.getChildIndex(DisplayObject(statusTextField));
+                childIndex = titleBar.getChildIndex(IUIComponent(statusTextField));
                 removeStatusTextField();
                 createStatusTextField(childIndex);
                 
@@ -1326,14 +1034,14 @@ public class Panel extends Container
 
             if (titleIconObject)
             {
-                titleBar.removeChild(DisplayObject(titleIconObject));
+                titleBar.removeChild(IUIComponent(titleIconObject));
                 titleIconObject = null;
             }
 
             if (_titleIcon)
             {
                 titleIconObject = new _titleIcon();
-                titleBar.addChild(DisplayObject(titleIconObject));
+                titleBar.addChild(IUIComponent(titleIconObject));
             }
 
             // Don't call layoutChrome() if we  haven't initialized,
@@ -1475,7 +1183,7 @@ public class Panel extends Container
                     // Remove existing background
                     if (titleBarBackground)
                     {
-                        titleBar.removeChild(DisplayObject(titleBarBackground));
+                        titleBar.removeChild(IUIComponent(titleBarBackground));
                         titleBarBackground = null;
                     }
                     
@@ -1494,7 +1202,7 @@ public class Panel extends Container
                 if (backgroundStyleable)
                     backgroundStyleable.styleName = this;
 
-                    titleBar.addChildAt(DisplayObject(titleBarBackground), 0);
+                    titleBar.addChildAt(IUIComponent(titleBarBackground), 0);
                 }
             }
         }
@@ -1715,17 +1423,17 @@ public class Panel extends Container
             
             if (contentPane)
             {
-                contentPane.removeChild(DisplayObject(lastChild));
+                contentPane.removeChild(IUIComponent(lastChild));
             }
             else
             {
-                super.removeChild(DisplayObject(lastChild));
+                super.removeChild(IUIComponent(lastChild));
             }       
             // Restore the original document. Otherwise, when we re-add the child when the Panel is
             // a custom component, the child will use the custom component as the document instead of
             // using the document in which the child was declared.
             lastChild.document = oldChildDocument;
-            rawChildren.addChild(DisplayObject(lastChild));
+            rawChildren.addChild(IUIComponent(lastChild));
             setControlBar(lastChild);
         }
         else
@@ -1741,8 +1449,8 @@ public class Panel extends Container
      * 
      *  Container implements addChild in terms of addChildAt. 
      */
-    override public function addChildAt(child:DisplayObject,
-                                        index:int):DisplayObject
+    override public function addChildAt(child:IUIComponent,
+                                        index:int):IUIComponent
     {
         // Special case for adding the control bar.
         super.addChildAt(child, index);
@@ -1758,7 +1466,7 @@ public class Panel extends Container
      * 
      *  Container implements removeChildAt in terms of removeChild.
      */
-    override public function removeChild(child:DisplayObject):DisplayObject
+    override public function removeChild(child:IUIComponent):IUIComponent
     {
         // If the control bar is the last child.
         if (!inCreateComponentsFromDescriptors &&
@@ -1787,7 +1495,7 @@ public class Panel extends Container
      *  @param childIndex The index of where to add the child.
      *  If -1, the text field is appended to the end of the list.
      */
-    mx_internal function createTitleTextField(childIndex:int):void
+     function createTitleTextField(childIndex:int):void
     {
         // Create the titleTextField as a child of the titleBar.
         if (!titleTextField)
@@ -1796,9 +1504,9 @@ public class Panel extends Container
             titleTextField.selectable = false;
     
             if (childIndex == -1)
-                titleBar.addChild(DisplayObject(titleTextField));
+                titleBar.addChild(IUIComponent(titleTextField));
             else 
-                titleBar.addChildAt(DisplayObject(titleTextField), childIndex);
+                titleBar.addChildAt(IUIComponent(titleTextField), childIndex);
 
             var titleStyleName:String = getStyle("titleStyleName"); 
             titleTextField.styleName = titleStyleName;
@@ -1811,11 +1519,11 @@ public class Panel extends Container
      *  @private
      *  Removes the title text field from this component.
      */
-    mx_internal function removeTitleTextField():void
+     function removeTitleTextField():void
     {
         if (titleBar && titleTextField)
         {
-            titleBar.removeChild(DisplayObject(titleTextField));
+            titleBar.removeChild(IUIComponent(titleTextField));
             titleTextField = null;
         }
     }
@@ -1828,7 +1536,7 @@ public class Panel extends Container
      *  @param childIndex The index of where to add the child.
      *  If -1, the text field is appended to the end of the list.
      */
-    mx_internal function createStatusTextField(childIndex:int):void
+     function createStatusTextField(childIndex:int):void
     {
         // Create the statusTextField as a child of the titleBar.
         if (titleBar && !statusTextField)
@@ -1837,9 +1545,9 @@ public class Panel extends Container
             statusTextField.selectable = false;
             
             if (childIndex == -1)
-                titleBar.addChild(DisplayObject(statusTextField));                
+                titleBar.addChild(IUIComponent(statusTextField));                
             else 
-                titleBar.addChildAt(DisplayObject(statusTextField), childIndex);
+                titleBar.addChildAt(IUIComponent(statusTextField), childIndex);
 
             var statusStyleName:String = getStyle("statusStyleName");
             statusTextField.styleName = statusStyleName;
@@ -1852,11 +1560,11 @@ public class Panel extends Container
      *  @private
      *  Removes the status text field from this component.
      */
-    mx_internal function removeStatusTextField():void
+     function removeStatusTextField():void
     {
         if (titleBar && statusTextField)
         {
-            titleBar.removeChild(DisplayObject(statusTextField));
+            titleBar.removeChild(IUIComponent(statusTextField));
             statusTextField = null;
         }
     }
@@ -1933,7 +1641,7 @@ public class Panel extends Container
      *  Proxy to getHeaderHeight() for PanelSkin
      *  since we can't change its function signature
      */
-    mx_internal function getHeaderHeightProxy(useDummyString:Boolean = false):Number
+     function getHeaderHeightProxy(useDummyString:Boolean = false):Number
     {
         var headerHeight:Number = getStyle("headerHeight");
         
@@ -1953,7 +1661,7 @@ public class Panel extends Container
         var n:int = titleBar.numChildren;
         for (var i:int = 0; i < n; i++)
         {
-            var child:DisplayObject = titleBar.getChildAt(i);
+            var child:IUIComponent = titleBar.getChildAt(i);
             child.visible = show;
         }               
     }   
@@ -2013,7 +1721,7 @@ public class Panel extends Container
         regX = event.stageX - x;
         regY = event.stageY - y;
 
-        var sbRoot:DisplayObject = systemManager.getSandboxRoot();
+        var sbRoot:IUIComponent = systemManager.getSandboxRoot();
         sbRoot.addEventListener(
             MouseEvent.MOUSE_MOVE, systemManager_mouseMoveHandler, true);
 
@@ -2038,7 +1746,7 @@ public class Panel extends Container
      */
     protected function stopDragging():void
     {
-        var sbRoot:DisplayObject = systemManager.getSandboxRoot();
+        var sbRoot:IUIComponent = systemManager.getSandboxRoot();
         sbRoot.removeEventListener(
             MouseEvent.MOUSE_MOVE, systemManager_mouseMoveHandler, true);
 
@@ -2061,7 +1769,7 @@ public class Panel extends Container
      *  but can't access the titleBar var because it is protected
      *  and therefore available only to subclasses.
      */
-    mx_internal function getTitleBar():UIComponent
+     function getTitleBar():UIComponent
     {
         return titleBar;
     }
@@ -2073,7 +1781,7 @@ public class Panel extends Container
      *  but can't access the titleTextField var because it is protected
      *  and therefore available only to subclasses.
      */
-    mx_internal function getTitleTextField():IUITextField
+     function getTitleTextField():IUITextField
     {
         return titleTextField;
     }
@@ -2085,7 +1793,7 @@ public class Panel extends Container
      *  but can't access the statusTextField var because it is protected
      *  and therefore available only to subclasses.
      */
-    mx_internal function getStatusTextField():IUITextField
+     function getStatusTextField():IUITextField
     {
         return statusTextField;
     }
@@ -2097,7 +1805,7 @@ public class Panel extends Container
      *  but can't access the controlBar var because it is protected
      *  and therefore available only to subclasses.
      */
-    mx_internal function getControlBar():IUIComponent
+     function getControlBar():IUIComponent
     {
         return controlBar;
     }
