@@ -39,7 +39,9 @@
 	<component id="Canvas" class="mx.containers.Canvas" />
 	<component id="Container" class="mx.core.Container" />
 	<component id="HBox" class="mx.containers.HBox" />
+	<component id="HDividedBox" class="mx.containers.HDividedBox" />
 	<component id="VBox" class="mx.containers.VBox" />	
+	<component id="VDividedBox" class="mx.containers.VDividedBox" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />

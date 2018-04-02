@@ -30,6 +30,7 @@ internal class MXRoyaleClasses
 	import mx.collections.ArrayList; ArrayList;
     import mx.core.UIComponent; UIComponent;
 	import mx.core.Container; Container;
+	import mx.containers.DividedBox; DividedBox;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
