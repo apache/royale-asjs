@@ -43,5 +43,6 @@
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	
     <component id="State" class="mx.states.State" />
-	
+	<component id="ListEvent" class="mx.events.ListEvent" /> 
+	<component id="SliderEvent" class="mx.events.SliderEvent" /> 
 </componentPackage>
