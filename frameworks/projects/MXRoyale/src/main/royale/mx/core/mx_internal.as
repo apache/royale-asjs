@@ -16,35 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+
+package mx.core
 {
 
 /**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
+ *  This namespace is used for undocumented APIs -- usually implementation
+ *  details -- which can't be private because they need to visible
+ *  to other classes.
+ *  APIs in this namespace are completely unsupported and are likely to
+ *  change in future versions of Flex.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
  */
-internal class MXRoyaleClasses
-{
-	import mx.collections.ArrayList; ArrayList;
-    import mx.core.mx_internal; mx_internal;
-    import mx.core.UIComponent; UIComponent;
-	import mx.core.Container; Container;
-	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
-	import mx.containers.beads.BoxLayout; BoxLayout;
-	import mx.containers.beads.CanvasLayout; CanvasLayout;
-	import mx.controls.ToolTip; ToolTip;
-	import mx.controls.beads.ToolTipBead; ToolTipBead;
-	import mx.utils.ArrayUtil; ArrayUtil;
-	
-    COMPILE::SWF
-    {
-        import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
-        import mx.controls.beads.CheckBoxView; CheckBoxView;
-        import mx.controls.beads.RadioButtonView; RadioButtonView;
-    }
+public namespace mx_internal =
+	"http://www.adobe.com/2006/flex/mx/internal";
 }
-
-}
-
