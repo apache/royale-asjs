@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:VBox 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    >
+
+<fx:Script>
+<![CDATA[
+
+    	import mx.collections.*;
+	import mx.events.DragEvent;
+      import mx.managers.DragManager;
+      import mx.core.DragSource;
+      import mx.charts.chartClasses.ChartBase;
+
+
+
+      public function cChartDP():ArrayCollection
+	{
+		var dp:ArrayCollection = new ArrayCollection( [
+            { Date: "25-Jul", open: 18.50,  high: 19, close:18.86},
+            { Date: "26-Jul", open: 19.56,  high: 19.98,  close:11.69},                       
+            { Date: "27-Jul", open: 20.81,  high: 20.99,  close:20.12}, 
+            { Date: "28-Jul", open: 20.70,  high: 21.00,  close:23.84}, 
+            { Date: "29-Jul", open: 21.7,  high: 21.79, close:15.6}, 
+            { Date: "1-Aug", open: 22.45,  high: 22.65, close:21.95},
+            { Date: "2-Aug", open: 22.56,  high: 22.6, close:12.98},
+            { Date: "3-Aug", open: 22.42,  high: 22.70, close:23.63},
+            { Date: "4-Aug", open: 21.67,  high: 22.82, close:26.34},
+            { Date: "5-Aug", open: 22.44,  high: 22.85, close:16.31} ]);
+		return dp;
+	}
+
+	public function bChartDP():ArrayCollection
+	{
+		var dp:ArrayCollection = new ArrayCollection( [
+            { Date: "21-Jul", open: 18.50,  high: 19, close:18.86},
+            { Date: "22-Jul", open: 19.56,  high: 19.98,  close:11.69},                       
+            { Date: "23-Jul", open: 20.81,  high: 20.99,  close:20.12}, 
+            { Date: "24-Jul", open: 20.70,  high: 21.00,  close:23.84}, 
+            { Date: "25-Jul", open: 21.7,  high: 21.79, close:15.6} ]);
+		return dp;
+	}
+ 	
+	public function pChartDP():ArrayCollection
+	{
+		var dp:ArrayCollection = new ArrayCollection( [
+            { Date: "6-Aug", open: 22.45,  high: 22.65, close:21.95},
+            { Date: "7-Aug", open: 22.56,  high: 22.6, close:12.98},
+            { Date: "8-Aug", open: 22.42,  high: 22.70, close:23.63},
+            { Date: "9-Aug", open: 21.67,  high: 22.82, close:26.34} ]);
+		return dp;
+	}
+
+    
+      private function doDragEnter(event:DragEvent):void {
+            var dragInitiator:ChartBase=ChartBase(event.currentTarget);
+            DragManager.acceptDragDrop(dragInitiator);
+      }
+
+      private function doDragOver(event:DragEvent):void {
+            if (event.ctrlKey)
+                DragManager.showFeedback(DragManager.COPY);
+            else if (event.shiftKey)
+                DragManager.showFeedback(DragManager.LINK);
+            else
+                DragManager.showFeedback(DragManager.MOVE);
+      }
+
+      private function doDragDrop(event:DragEvent):void {
+            // Get drop target.
+            var dropTarget:ChartBase=ChartBase(event.currentTarget);
+           
+           // Hide drop feedback.
+           //  doDragExit(event);
+              
+           // Get the dragged items from the drag initiator.
+           var items:Array = event.dragSource.dataForFormat("chartitems") as Array;
+               
+               
+           // Add each item to the drop target.
+           for(var i:uint=0; i < items.length; i++)
+           {
+	           dropTarget.dataProvider.addItem(items[i].item);
+           }
+      }
+
+			
+]]>
+</fx:Script>
+<mx:HBox>
+    <mx:ColumnChart id="testColumnChart" dropEnabled="true" dragEnabled="true" selectionMode="single" dragOver="doDragOver(event)">
+		<mx:horizontalAxis>
+			<mx:CategoryAxis categoryField="Date" />
+		</mx:horizontalAxis>
+            <mx:series>
+                        <mx:ColumnSeries id="series1" yField="open"/>
+                        <mx:ColumnSeries id="series2" yField="close" />
+            </mx:series>
+    </mx:ColumnChart>
+
+	 <mx:BarChart id="testBarChart" dropEnabled="true" dragEnabled="true" selectionMode="single" 
+		dragEnter="doDragEnter(event)" dragDrop="doDragDrop(event)" dragOver="doDragOver(event)">
+		<mx:verticalAxis>
+			<mx:CategoryAxis categoryField="Date" />
+		</mx:verticalAxis>
+            <mx:series>
+                        <mx:BarSeries id="bSeries1" xField="open"/>
+                        <mx:BarSeries id="bSeries2" xField="close" />
+            </mx:series>
+    </mx:BarChart>
+
+</mx:HBox>
+	 <mx:PieChart id="testPieChart" dropEnabled="true" dragEnter="doDragEnter(event)" dragDrop="doDragDrop(event)" dragOver="doDragOver(event)">
+            <mx:series>
+                        <mx:PieSeries field="open"/>
+            </mx:series>
+    </mx:PieChart>
+</mx:VBox>
