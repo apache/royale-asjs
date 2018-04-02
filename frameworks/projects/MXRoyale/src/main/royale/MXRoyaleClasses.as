@@ -28,6 +28,7 @@ package
 internal class MXRoyaleClasses
 {
 	import mx.collections.ArrayList; ArrayList;
+    import mx.core.mx_internal; mx_internal;
     import mx.core.UIComponent; UIComponent;
 	import mx.core.Container; Container;
 	import mx.containers.DividedBox; DividedBox;
@@ -42,6 +43,7 @@ internal class MXRoyaleClasses
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
         import mx.controls.beads.CheckBoxView; CheckBoxView;
+        import mx.controls.beads.RadioButtonView; RadioButtonView;
     }
 }
 

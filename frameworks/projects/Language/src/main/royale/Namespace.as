@@ -143,6 +143,9 @@ package
 		{
 			return this;
 		}
+        
+        COMPILE::JS
+        private static var forceLanguageDependency:Class = Language;
 	}
 }
 
