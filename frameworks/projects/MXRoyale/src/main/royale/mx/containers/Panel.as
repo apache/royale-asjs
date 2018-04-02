@@ -36,6 +36,8 @@ package mx.containers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.CloseEvent;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.states.State;
 	import org.apache.royale.utils.CSSContainerUtils;
@@ -89,6 +91,9 @@ use namespace mx_internal;
  */
 import mx.core.Container;
 import mx.controls.Button;
+import mx.core.UIComponent;
+import mx.core.IUIComponent;
+import mx.core.IFlexDisplayObject;
 
 /**
  *  A Halo Panel container consists of a title bar, a caption, a border,
