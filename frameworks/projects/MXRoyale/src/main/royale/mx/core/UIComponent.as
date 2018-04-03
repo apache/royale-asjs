@@ -41,11 +41,11 @@ import flash.events.EventPhase;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 */
+import mx.controls.beads.ToolTipBead;
 import mx.events.FlexEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.ISystemManager;
-import mx.controls.beads.ToolTipBead;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
@@ -53,14 +53,14 @@ import org.apache.royale.core.IStatesObject;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-//import org.apache.royale.html.accessories.ToolTipBead;
-import org.apache.royale.utils.loadBeadFromValuesManager;
 import org.apache.royale.utils.PointUtils;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 
 /*
 import mx.managers.IToolTipManagerClient;
@@ -720,6 +720,9 @@ public class UIComponent extends UIBase
             var child:IUIComponent = getChildAt(i) as IUIComponent;
             if (!child)
                 continue;
+            // JS subtrees will point back to the component.  Ignore those.
+            if (child == this)
+                continue;
             
             if (child.component == _component ||
                 child.component == FlexGlobals.topLevelApplication)
@@ -729,6 +732,15 @@ public class UIComponent extends UIBase
         }
         
         _component = value;
+    }
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        if (!component && parent is UIComponent)
+            component = UIComponent(parent).component;
+        else if (!component && parent is ContainerContentArea)
+            component = UIComponent(ContainerContentArea(parent).parent).component;
     }
     
     //----------------------------------

@@ -41,6 +41,11 @@ Button
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 }
 
+Canvas
+{
+	IBeadLayout: ClassReference("mx.containers.beads.CanvasLayout");
+}
+
 CheckBox
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
@@ -58,6 +63,12 @@ Image
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
+}
+
+NumericStepper
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.NumericStepperView");
 }
 
 
@@ -93,6 +104,12 @@ Image
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
+	}
+	
+	RadioButton
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+		IBeadView:  ClassReference("mx.controls.beads.RadioButtonView");			
 	}
 	
 	TextInput

@@ -484,6 +484,9 @@ public class Container extends UIComponent
 			ValuesManager.valuesImpl.init(this);
 		}
 		
+        if (MXMLDescriptor)
+            component = this;
+        
 		super.addedToParent();
 		
 		if (!_initialized) {
