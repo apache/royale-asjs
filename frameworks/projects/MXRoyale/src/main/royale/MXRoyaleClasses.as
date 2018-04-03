@@ -37,10 +37,11 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.controls.VRule; VRule;
+	import mx.controls.HRule; HRule;
 	import mx.events.ListEvent; ListEvent;
 	import mx.events.SliderEvent; SliderEvent;
 	import mx.utils.ArrayUtil; ArrayUtil;
-	
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
