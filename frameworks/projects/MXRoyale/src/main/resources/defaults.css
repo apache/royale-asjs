@@ -124,7 +124,7 @@ NumericStepper
 	
 	TextInput
 	{
-		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.NonNullTextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
 		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
 		IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');

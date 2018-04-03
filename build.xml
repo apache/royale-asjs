@@ -1581,14 +1581,13 @@ limitations under the License.
     <target name="mxtests-run-js" >
         <property name="profile_arg" value="dummy=false" />
         <echo>url=file://${basedir}/mustella/tests/mxTests/bin/js-debug/index.html</echo>
-        <echo>script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
-        <echo>script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml</echo>
         <java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
             <!--<arg value="browser=chrome" />-->
             <arg value="url=file://${basedir}/mustella/tests/mxTests/basicTests/bin/js-debug/index.html" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ButtonTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextInputTestScript.mxml" />
             <!--<arg value="showSteps=true" />-->
             <arg value="${profile_arg}" />
             <classpath>
