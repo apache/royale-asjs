@@ -77,6 +77,7 @@ import mx.events.ChildExistenceChangedEvent;
 */
 import mx.events.FlexEvent;
 import mx.events.IndexChangedEvent;
+import mx.managers.IFocusManagerContainer;
 COMPILE::SWF
 {
 import flash.display.DisplayObject;
@@ -88,7 +89,6 @@ import mx.events.ScrollEventDetail;
 import mx.events.ScrollEventDirection;
 import mx.geom.RoundedRectangle;
 import mx.managers.IFocusManager;
-import mx.managers.IFocusManagerContainer;
 import mx.managers.ILayoutManagerClient;
 import mx.managers.ISystemManager;
 import mx.styles.CSSStyleDeclaration;
@@ -315,9 +315,9 @@ use namespace mx_internal;
 public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
-					   IStrandPrivate, IMXMLDocument
+					   IStrandPrivate, IMXMLDocument, IFocusManagerContainer
                        //implements IContainer, IDataRenderer,
-                       //IFocusManagerContainer, IListItemRenderer,
+                       //IListItemRenderer,
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
                        //INavigatorContent
 
