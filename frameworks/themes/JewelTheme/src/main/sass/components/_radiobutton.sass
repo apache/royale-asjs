@@ -74,15 +74,15 @@ $radiobutton-label-font-size: 16px
 
         &[disabled]
             cursor: unset
-            border: 1px solid darken($disabled-color, 20%)
+            border: 1px solid $disabled-border-color// .094em
             background: $disabled-color
             
             & + span
                 cursor: unset
-                color: darken($disabled-color, 20%)
+                color: $disabled-font-color
             
             &:checked
-                border: 1px solid darken($disabled-color, 20%)
+                border: 1px solid $disabled-border-color// .094em
                 background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{darken($disabled-color, 15%)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $disabled-color
                 background-size: 60%
                 background-position: center

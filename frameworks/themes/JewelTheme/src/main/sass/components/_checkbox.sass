@@ -78,15 +78,15 @@ $checkbox-label-font-size: 16px
 
         &[disabled]
             cursor: unset
-            border: 1px solid darken($disabled-color, 20%)
+            border: 1px solid $disabled-border-color// .094em
             background: $disabled-color
             
             & + span
                 cursor: unset
-                color: darken($disabled-color, 20%)
+                color: $disabled-font-color
 
             &:checked
-                border: 1px solid darken($disabled-color, 20%)
+                border: 1px solid $disabled-border-color// .094em
                 background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{darken($disabled-color, 15%)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), $disabled-color
                 background-size: 90%
                 background-position: center

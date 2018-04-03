@@ -84,9 +84,9 @@ $textbutton-min-width: 74px !default
 			box-shadow: inset 0px 0px 0px 1px rgba(lighten($textbutton-color, 50%), .5), inset 0 1px 0 rgba(lighten($textbutton-color, 55%), .6)
 	
 	&[disabled]
-		border: 1px solid darken($disabled-color, 20%)// .094em solid 
+		border: 1px solid $disabled-border-color// .094em
 		background: $disabled-color
-		color: darken($disabled-color, 20%)
+		color: $disabled-font-color
 		box-shadow: none
 		cursor: unset
 		font:

@@ -24,13 +24,20 @@ limitations under the License.
 		  className="container">
     
 	<js:beads>
-		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
+		<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
 	<html:H3 text="Jewel Button"/>
 	
 	<j:Button/>
 	<j:Button primary="true"/>
+	<j:Button secondary="true"/>
 	<j:Button emphasized="true"/>
+
+	<j:Button>
+		<j:beads>
+			<j:Disabled/>
+		</j:beads>
+	</j:Button>
 	
 </js:Group>

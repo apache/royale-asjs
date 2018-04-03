@@ -25,6 +25,7 @@
 	box-sizing: border-box
 	
 j|Application
+	background: $background-color
 	font:
 		family: $font-stack
 	color: $default-font-color
@@ -46,3 +47,15 @@ span
 
 div
 	font-size: 14px
+
+
+//temporal
+.container
+	@if $dark
+		background: lighten($background-color, 10%)
+	@else
+		background: darken($background-color, 8%)
+
+	border-radius: 10px
+	padding: 20px
+

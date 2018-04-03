@@ -33,6 +33,7 @@ $textfield-border-radius: 3px
 	display: inline-flex
 	
 	input
+		+appear(none)
 		margin: $textfield-margin
 		padding: $textfield-padding
 		
@@ -80,13 +81,13 @@ $textfield-border-radius: 3px
 
 		&[disabled]
 			cursor: unset
-			border: 1px solid darken($disabled-color, 20%)
+			border: 1px solid $disabled-border-color// .094em
 			background: $disabled-color
 			box-shadow: none
-			color: darken($disabled-color, 20%)
+			color: $disabled-font-color
 			
 			&::placeholder
-				color: darken($disabled-color, 20%)
+				color: $disabled-font-color
 
 .jewel.textfield
 	@if $dark

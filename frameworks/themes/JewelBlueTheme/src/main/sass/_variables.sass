@@ -36,12 +36,12 @@ $font-theme-color: #FFFFFF
 $light-color: #d9d9d9
 $font-light-color: #808080
 
-$dark-color: #666666
+$dark-color: #595959
 $font-dark-color: #FFFFFF
 
 //Theme Style (Flat or Gradient)
 $flat: false
-$dark: false
+$dark: true
 $transitions-enable: false
 $transition-duration: .3s
 $transition-timing: easein
@@ -56,14 +56,27 @@ $default-color: $light-color
     $default-color: $dark-color
 
 $primary-color: $blue
-$secondary-color: $amethyst
+$secondary-color: $topaz
 $emphasized-color: $green
 
 $default-font-color: $font-light-color
 @if $dark
     $default-font-color: $font-dark-color
 
-$disabled-color: #F9F9F9 // maybe make it dependent of theme colors
+// DISABLED
+$disabled-color: lighten($light-color, 10%)
+@if $dark
+    $disabled-color: darken($dark-color, 10%)
 
+$disabled-font-color: darken($disabled-color, 20%)
+@if $dark
+    $disabled-font-color: lighten($disabled-color, 20%)
 
+$disabled-border-color: darken($disabled-color, 10%)
+@if $dark
+    $disabled-border-color: darken($disabled-color, 20%)
 
+// BACKGROUND
+$background-color: lighten($light-color, 45%)
+@if $dark
+    $background-color: darken($dark-color, 35%)
