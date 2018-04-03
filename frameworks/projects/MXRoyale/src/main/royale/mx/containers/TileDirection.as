@@ -33,7 +33,7 @@ package mx.containers
  */
 public final class TileDirection
 {
-	include "../core/Version.as";
+	/* include "../core/Version.as"; */
 
 	//--------------------------------------------------------------------------
 	//
