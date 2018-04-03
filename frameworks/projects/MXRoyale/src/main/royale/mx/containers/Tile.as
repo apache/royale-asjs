@@ -20,8 +20,10 @@
 package mx.containers
 {
 
-import flash.events.Event;
-import mx.core.Container;
+	import org.apache.royale.events.Event;
+
+/* import flash.events.Event;
+ */import mx.core.Container;
 import mx.core.EdgeMetrics;
 import mx.core.IUIComponent;
 import mx.core.mx_internal;
@@ -240,7 +242,7 @@ use namespace mx_internal;
  */
 public class Tile extends Container
 {
-    include "../core/Version.as";
+    /* include "../core/Version.as"; */
 
     //--------------------------------------------------------------------------
     //
