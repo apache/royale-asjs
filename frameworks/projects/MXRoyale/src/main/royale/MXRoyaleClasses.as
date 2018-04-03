@@ -29,6 +29,7 @@ internal class MXRoyaleClasses
 {
     import mx.core.UIComponent; UIComponent;
 	import mx.core.Container; Container;
+	import mx.containers.Tile; Tile;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.controls.ToolTip; ToolTip;
