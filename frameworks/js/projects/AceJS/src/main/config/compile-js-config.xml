@@ -89,7 +89,6 @@
     </include-sources>
     
     <include-classes>
-        <class>Ace</class>
     </include-classes>
     
     <include-namespaces>

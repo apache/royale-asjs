@@ -29,7 +29,7 @@
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
-    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
+    <target name="main" depends="clean,check-compiler,compile,compile-js,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="compile-js">
@@ -87,6 +87,7 @@
             <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+	    <arg value="-external-library-path+=${basedir}/../../../js/libs/ace-1.2.3.swc" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=JSRoyale" />
             <arg value="-output=${basedir}/target/${target.name}" />
