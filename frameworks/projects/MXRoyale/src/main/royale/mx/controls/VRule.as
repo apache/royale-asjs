@@ -20,7 +20,7 @@
 package mx.controls
 {
 
-import flash.display.Graphics;
+/* import flash.display.Graphics;*/
 import mx.core.UIComponent;
 
 //--------------------------------------
@@ -151,8 +151,8 @@ import mx.core.UIComponent;
  */
 public class VRule extends UIComponent
 {
-    include "../core/Version.as";
-
+/*     include "../core/Version.as";
+ */
     //--------------------------------------------------------------------------
     //
     //  Class constants
@@ -215,7 +215,7 @@ public class VRule extends UIComponent
     {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
 
-        var g:Graphics = graphics;
+      /*   var g:Graphics = graphics;
         g.clear();
 
         // Look up the style properties
@@ -290,7 +290,7 @@ public class VRule extends UIComponent
             g.beginFill(strokeColor);
             g.drawRect(left, top + 1, 1, unscaledHeight - 2);
             g.endFill();
-        }
+        } */
     }
 }
 
