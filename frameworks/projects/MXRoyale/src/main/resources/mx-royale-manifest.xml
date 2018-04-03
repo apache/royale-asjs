@@ -27,6 +27,7 @@
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
 	<component id="LinkButton" class="mx.controls.LinkButton" />
+	<component id="NumericStepper" class="mx.controls.NumericStepper" />
 	<component id="RadioButton" class="mx.controls.RadioButton" />
 	<component id="RadioButtonGroup" class="mx.controls.RadioButtonGroup" />
 	<component id="Spacer" class="mx.controls.Spacer" />
@@ -38,9 +39,12 @@
 	<component id="Canvas" class="mx.containers.Canvas" />
 	<component id="Container" class="mx.core.Container" />
 	<component id="HBox" class="mx.containers.HBox" />
+	<component id="HDividedBox" class="mx.containers.HDividedBox" />
 	<component id="VBox" class="mx.containers.VBox" />	
+	<component id="VDividedBox" class="mx.containers.VDividedBox" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
+	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	
     <component id="State" class="mx.states.State" /> 
 </componentPackage>
