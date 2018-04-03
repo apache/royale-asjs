@@ -41,6 +41,7 @@ internal class MXRoyaleClasses
 	import mx.controls.HRule; HRule;
 	import mx.events.ListEvent; ListEvent;
 	import mx.events.SliderEvent; SliderEvent;
+    import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
     COMPILE::SWF
     {
