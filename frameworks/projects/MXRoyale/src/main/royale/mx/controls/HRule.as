@@ -20,8 +20,8 @@
 package mx.controls
 {
 
-import flash.display.Graphics;
-import mx.core.UIComponent;
+/* import flash.display.Graphics;
+ */import mx.core.UIComponent;
 
 //--------------------------------------
 //  Styles
@@ -93,10 +93,10 @@ import mx.core.UIComponent;
 //  Other metadata
 //--------------------------------------
 
-[IconFile("HRule.png")]
+/* [IconFile("HRule.png")]
 
 [Alternative(replacement="spark.primitives.Line", since="4.0")]
-
+ */
 /**
  *  The HRule control creates a single horizontal line.
  *  You typically use this control to create a dividing line
@@ -151,7 +151,7 @@ import mx.core.UIComponent;
  */
 public class HRule extends UIComponent
 {
-    include "../core/Version.as";
+    /* include "../core/Version.as"; */
 
     //--------------------------------------------------------------------------
     //
@@ -215,7 +215,7 @@ public class HRule extends UIComponent
     {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
 
-        var g:Graphics = graphics;
+       /*  var g:Graphics = graphics;
         
         g.clear();
 
@@ -276,7 +276,7 @@ public class HRule extends UIComponent
             g.beginFill(strokeColor);
             g.drawRect(left, top + 1, 1, bottom - top - 2);
             g.endFill();
-        }
+        } */
     }
 }
 
