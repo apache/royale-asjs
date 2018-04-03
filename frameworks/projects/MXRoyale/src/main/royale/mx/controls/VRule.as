@@ -89,13 +89,7 @@ import mx.core.UIComponent;
     // Note: stroke-width is inheriting in SVG,
     // although border-width is not inheriting in CSS
 
-//--------------------------------------
-//  Other metadata
-//--------------------------------------
 
-[IconFile("VRule.png")]
-
-[Alternative(replacement="spark.primitives.Line", since="4.0")]
 
 /**
  *  The VRule control creates a single vertical line.
