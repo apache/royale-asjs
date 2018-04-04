@@ -25,6 +25,10 @@ COMPILE::JS {
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
 }
+COMPILE::SWF
+{
+    import org.apache.royale.html.beads.TextAreaView;
+}
 /*
 import flash.accessibility.AccessibilityProperties;
 import flash.display.DisplayObject;
@@ -46,6 +50,7 @@ import mx.controls.listClasses.BaseListData;
 import mx.core.IDataRenderer;
 import mx.core.ScrollControlBase;
 import mx.events.FlexEvent;
+import mx.managers.IFocusManagerComponent;
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
@@ -55,7 +60,6 @@ import mx.events.ScrollEvent;
 import mx.events.ScrollEventDetail;
 import mx.events.ScrollEventDirection;
 import mx.managers.IFocusManager;
-import mx.managers.IFocusManagerComponent;
 import mx.managers.ISystemManager;
 import mx.managers.SystemManager;
 
@@ -232,9 +236,9 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 public class TextArea extends ScrollControlBase
-	                  implements IDataRenderer
+	                  implements IDataRenderer, IFocusManagerComponent
 //                      implements IDataRenderer, IDropInListItemRenderer,
-//                      IFocusManagerComponent, IIMESupport, IListItemRenderer,
+//                      IIMESupport, IListItemRenderer,
 //                      IFontContextComponent
 
 {
@@ -2137,17 +2141,12 @@ public class TextArea extends ScrollControlBase
      *  @private
      *  Focus should always be on the internal TextField.
      */
-//    override public function setFocus():void
-//    {
-//        // We want to preserve the scroll position rather than
-//        // scroll to the line containing the caret.
-//        var vScrollPos:int = verticalScrollPosition;
-//        // we dont want to dispatch a scroll event on focus.
-//        allowScrollEvent = false;
-//        textField.setFocus();
-//        verticalScrollPosition = vScrollPos;
-//        allowScrollEvent = true;
-//    }
+    COMPILE::SWF
+    override public function setFocus():void
+    {
+        var textView:TextAreaView = view as TextAreaView;
+        textView.textField.stage.focus = textView.textField
+    }
 
     /**
      *  @private
