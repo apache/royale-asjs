@@ -35,7 +35,7 @@ package mx.core
  */
 public final class ScrollPolicy
 {
-	include "../core/Version.as";
+	/* include "../core/Version.as"; */
 
 	//--------------------------------------------------------------------------
 	//
