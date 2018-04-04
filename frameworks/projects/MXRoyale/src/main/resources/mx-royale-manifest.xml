@@ -29,6 +29,7 @@
 	<component id="Label" class="mx.controls.Label" />
 	<component id="LinkButton" class="mx.controls.LinkButton" />
 	<component id="NumericStepper" class="mx.controls.NumericStepper" />
+	<component id="ProgressBar" class="mx.controls.ProgressBar" />
 	<component id="RadioButton" class="mx.controls.RadioButton" />
 	<component id="RadioButtonGroup" class="mx.controls.RadioButtonGroup" />
 	<component id="Spacer" class="mx.controls.Spacer" />
