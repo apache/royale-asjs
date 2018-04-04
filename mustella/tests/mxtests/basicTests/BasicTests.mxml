@@ -40,8 +40,8 @@ preloader="BasicTestsPreloader"
         <mx:State name="haloCheckBoxTest" />
         <mx:State name="haloRadioButtonTest" />
         <mx:State name="haloTextInputTest" />
-        <!--
         <mx:State name="haloTextAreaTest" />
+        <!--
         <mx:State name="haloComboBoxTest" />
         <mx:State name="haloColorPickerTest" />
         <mx:State name="haloNumericStepperTest" />
@@ -114,8 +114,8 @@ preloader="BasicTestsPreloader"
     <haloviews:CheckBoxTests id="haloCheckBoxTests" includeIn="haloCheckBoxTest" /> 
     <haloviews:RadioButtonTests id="haloRadioButtonTests" includeIn="haloRadioButtonTest" />    
     <haloviews:TextInputTests id="haloTextInputTests" includeIn="haloTextInputTest" />    
-    <!--
     <haloviews:TextAreaTests id="haloTextAreaTests" includeIn="haloTextAreaTest" />    
+    <!--
     <haloviews:ComboBoxTests id="haloComboBoxTests" includeIn="haloComboBoxTest" />    
     <haloviews:ColorPickerTests id="haloColorPickerTests" includeIn="haloColorPickerTest" />    
     <haloviews:NumericStepperTests id="haloNumericStepperTests" includeIn="haloNumericStepperTest" />    
