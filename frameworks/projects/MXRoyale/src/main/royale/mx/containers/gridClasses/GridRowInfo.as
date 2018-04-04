@@ -31,8 +31,8 @@ import mx.core.UIComponent;
  */
 public class GridRowInfo
 {
-	include "../../core/Version.as";
-
+	/* include "../../core/Version.as";
+ */
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor
@@ -51,10 +51,10 @@ public class GridRowInfo
 	{
 		super();
 
-		min = 0;
-		preferred = 0;
-		max = UIComponent.DEFAULT_MAX_HEIGHT;
-		flex = 0;
+		_min = 0;
+		_preferred = 0;
+		_max = UIComponent.DEFAULT_MAX_HEIGHT;
+		_flex = 0;
 	}
 	
 	//--------------------------------------------------------------------------
@@ -75,8 +75,16 @@ public class GridRowInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var flex:Number;
+	private var _flex:Number;
+	public function set flex(value:Number):void
+	{
+	_flex = value;
+	}
 	
+	public function get flex():Number
+	{
+	return _flex;
+	}
 	//----------------------------------
 	//  height
 	//----------------------------------
@@ -90,8 +98,16 @@ public class GridRowInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var height:Number;
-
+	private var _height:Number;
+	public function set height(value:Number):void
+	{
+	_height = value;
+	}
+	
+	public function get height():Number
+	{
+	return _height;
+	}
 	//----------------------------------
 	//  max
 	//----------------------------------
@@ -104,8 +120,16 @@ public class GridRowInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var max:Number;
+	private var _max:Number;
+	public function set max(value:Number):void
+	{
+	_max = value;
+	}
 	
+	public function get max():Number
+	{
+	return _max;
+	}
 	//----------------------------------
 	//  min
 	//----------------------------------
@@ -118,10 +142,18 @@ public class GridRowInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var min:Number;
+	private var _min:Number;
+	public function set min(value:Number):void
+	{
+	_min = value;
+	}
 	
+	public function get min():Number
+	{
+	return _min;
+	}
 	//----------------------------------
-	//  preferred
+	//  _preferred
 	//----------------------------------
 
 	/**
@@ -132,8 +164,16 @@ public class GridRowInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var preferred:Number;
+	private var _preferred:Number;
+	public function set preferred(value:Number):void
+	{
+	_preferred = value;
+	}
 	
+	public function get preferred():Number
+	{
+	return _preferred;
+	}
 	//----------------------------------
 	//  y
 	//----------------------------------
@@ -147,7 +187,16 @@ public class GridRowInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var y:Number;
+	private var _y:Number;
+	public function set y(value:Number):void
+	{
+	_y = value;
+	}
+	
+	public function get y():Number
+	{
+	return _y;
+	}
 }
 
 }
