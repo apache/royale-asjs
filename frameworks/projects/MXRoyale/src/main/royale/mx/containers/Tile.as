@@ -274,14 +274,14 @@ public class Tile extends Container
      *  Cached value from findCellSize() call in measure(),
      *  so that updateDisplayList() doesn't also have to call findCellSize().
      */
-    mx_internal var cellWidth:Number;
+    /*mx_internal*/ protected var cellWidth:Number;
     
     /**
      *  @private
      *  Cached value from findCellSize() call in measure(),
      *  so that updateDisplaylist() doesn't also have to call findCellSize().
      */
-    mx_internal var cellHeight:Number;
+    /*mx_internal*/ protected var cellHeight:Number;
 
     //--------------------------------------------------------------------------
     //
@@ -771,7 +771,7 @@ public class Tile extends Container
      *  @private
      *  Calculate and store the cellWidth and cellHeight.
      */
-    mx_internal function findCellSize():void
+    /*mx_internal*/ protected function findCellSize():void
     {
         // If user explicitly supplied both a tileWidth and
         // a tileHeight, then use those values.
@@ -891,7 +891,7 @@ public class Tile extends Container
      *  Compute how much adjustment must occur in the x direction
      *  in order to align a component of a given width into the cell.
      */
-    mx_internal function calcHorizontalOffset(width:Number,
+    /*mx_internal*/ protected function calcHorizontalOffset(width:Number,
                                               horizontalAlign:String):Number
     {
         var xOffset:Number;
@@ -913,7 +913,7 @@ public class Tile extends Container
      *  Compute how much adjustment must occur in the y direction
      *  in order to align a component of a given height into the cell.
      */
-    mx_internal function calcVerticalOffset(height:Number,
+    /*mx_internal*/ protected function calcVerticalOffset(height:Number,
                                             verticalAlign:String):Number
     {
         var yOffset:Number;
