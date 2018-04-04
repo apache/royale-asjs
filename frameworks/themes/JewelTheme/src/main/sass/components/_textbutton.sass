@@ -25,6 +25,8 @@ $textbutton-padding: 10px 16px !default
 $textbutton-min-height: 34px !default
 $textbutton-min-width: 74px !default
 
+$textbutton-border-radius: 3px
+
 =textbutton-theme($textbutton-color, $text-color)
 	cursor: pointer
 	display: inline-block
@@ -35,14 +37,7 @@ $textbutton-min-width: 74px !default
 	min-width: $textbutton-min-width
 	min-height: $textbutton-min-height
 	
-	@if $flat
-		border: 0px solid
-		background: $textbutton-color
-	@else
-		border: 1px solid darken($textbutton-color, 15%)// .094em solid 
-		background: linear-gradient(lighten($textbutton-color, 5%), darken($textbutton-color, 5%))
-		box-shadow: inset 0 1px 0 lighten($textbutton-color, 20%)
-	border-radius: $button-border-radius //.625em
+	+jewel-bg-border("normal", $textbutton-color, $textbutton-border-radius)
 	
 	@if $transitions-enable
 		transition:
@@ -58,37 +53,23 @@ $textbutton-min-width: 74px !default
 		transform: uppercase
 		decoration: none 
 	@if not $flat and $text-color == $font-theme-color
-		shadow: 0 1px 0 darken($text-color, 15%) //0 .063em
+		text:
+			shadow: 0 -1px 0 rgba(darken($textbutton-color, 30%), .7) //0 .063em
 	
-	&:hover
-		@if $flat
-			background: darken($textbutton-color, 5%)
-		@else
-			border: 1px solid darken($textbutton-color, 20%)// .094em solid 
-			background: linear-gradient($textbutton-color, darken($textbutton-color, 10%))
-	&:active
-		@if $flat
-			background: darken($textbutton-color, 15%)
-		@else
-			border: 1px solid darken($textbutton-color, 30%)// .094em solid 
-			background: linear-gradient(darken($textbutton-color, 10%), darken($textbutton-color, 20%))
-			box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
-	
+	&:hover, &:hover:focus
+		+jewel-bg-border("hover", $textbutton-color)
+
+	&:active, &:active:focus
+		+jewel-bg-border("active", $textbutton-color)
+
 	&:focus
 		outline: none
-		@if $flat
-			border: 1px solid $textbutton-color
-			box-shadow: inset 0px 0px 0px 1px rgba(lighten($textbutton-color, 50%), .5)
-		@else
-			border: 1px solid darken($textbutton-color, 15%)
-			box-shadow: inset 0px 0px 0px 1px rgba(lighten($textbutton-color, 50%), .5), inset 0 1px 0 rgba(lighten($textbutton-color, 55%), .6)
-	
+		+jewel-bg-border("focus", $textbutton-color)
+		
 	&[disabled]
-		border: 1px solid $disabled-border-color// .094em
-		background: $disabled-color
-		color: $disabled-font-color
-		box-shadow: none
 		cursor: unset
+		+jewel-bg-border("disabled", $textbutton-color)
+		color: $disabled-font-color
 		font:
 			weight: normal
 		text:
@@ -99,9 +80,6 @@ $textbutton-min-width: 74px !default
 
 .jewel.textbutton.primary
 	+textbutton-theme($primary-color, $font-theme-color)
-
-//.jewel.textbutton.secondary
-//	+textbutton-theme($secondary-color, $font-theme-color)
 
 .jewel.textbutton.emphasized
 	+textbutton-theme($emphasized-color, $font-theme-color)

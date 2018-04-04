@@ -37,58 +37,32 @@ $button-border-radius: 3px
 	min-width: $button-min-width
 	min-height: $button-min-height
 	
-	@if $flat
-		border: 0px solid
-		background: $button-color
-	@else
-		border: 1px solid darken($button-color, 15%)// .094em 
-		background: linear-gradient(lighten($button-color, 5%), darken($button-color, 5%))
-		box-shadow: inset 0 1px 0 lighten($button-color, 20%) //0px 0px 0px 4px rgba($light-color,.3),
-	border-radius: $button-border-radius //.625em
+	+jewel-bg-border("normal", $button-color, $button-border-radius)
 	
 	@if $transitions-enable
 		transition:
 			duration: $transition-duration
 			timing-function: $transition-timing
 	
-	&:hover
-		@if $flat
-			background: darken($button-color, 5%)
-		@else
-			border: 1px solid darken($button-color, 20%)// .094em 
-			background: linear-gradient($button-color, darken($button-color, 10%))
+	&:hover, &:hover:focus
+		+jewel-bg-border("hover", $button-color)
 	
-	&:active
-		@if $flat
-			background: darken($button-color, 15%)
-		@else
-			border: 1px solid darken($button-color, 30%)// .094em 
-			background: linear-gradient(darken($button-color, 10%), darken($button-color, 20%))
-			box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
+	&:active, &:active:focus
+		+jewel-bg-border("active", $button-color)
 	
 	&:focus
 		outline: none
-		@if $flat
-			border: 1px solid $button-color
-			box-shadow: inset 0px 0px 0px 1px rgba(lighten($button-color, 50%), .5)
-		@else
-			border: 1px solid darken($button-color, 15%)
-			box-shadow: inset 0px 0px 0px 1px rgba(lighten($button-color, 50%), .5), inset 0 1px 0 rgba(lighten($button-color, 55%), .6)
+		+jewel-bg-border("focus", $button-color)
 
 	&[disabled]
-		border: 1px solid $disabled-border-color// .094em
-		background: $disabled-color
-		box-shadow: none
 		cursor: unset
+		+jewel-bg-border("disabled", $button-color)
 
 .jewel.button
 	+button-theme($default-color)
 
 .jewel.button.primary
 	+button-theme($primary-color)
-
-//.jewel.button.secondary
-//	+button-theme($secondary-color)
 
 .jewel.button.emphasized
 	+button-theme($emphasized-color)

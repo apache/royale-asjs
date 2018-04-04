@@ -28,11 +28,11 @@
   box-shadow: inset 0 1px 0 #f6a389;
   border-radius: 3px;
 }
-.jewel.button.secondary:hover {
+.jewel.button.secondary:hover, .jewel.button.secondary:hover:focus {
   border: 1px solid #a6320d;
   background: linear-gradient(#EF5A2A, #d64010);
 }
-.jewel.button.secondary:active {
+.jewel.button.secondary:active, .jewel.button.secondary:active:focus {
   border: 1px solid #772409;
   background: linear-gradient(#d64010, #a6320d);
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
@@ -43,10 +43,10 @@
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.secondary[disabled] {
+  cursor: unset;
   border: 1px solid #d9d9d9;
   background: #f3f3f3;
   box-shadow: none;
-  cursor: unset;
 }
 
 .jewel.textbutton.secondary {
@@ -66,13 +66,13 @@
   color: #FFFFFF;
   text-transform: uppercase;
   text-decoration: none;
-  shadow: 0 1px 0 #d9d9d9;
+  text-shadow: 0 -1px 0 rgba(119, 36, 9, 0.7);
 }
-.jewel.textbutton.secondary:hover {
+.jewel.textbutton.secondary:hover, .jewel.textbutton.secondary:hover:focus {
   border: 1px solid #a6320d;
   background: linear-gradient(#EF5A2A, #d64010);
 }
-.jewel.textbutton.secondary:active {
+.jewel.textbutton.secondary:active, .jewel.textbutton.secondary:active:focus {
   border: 1px solid #772409;
   background: linear-gradient(#d64010, #a6320d);
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
@@ -83,11 +83,11 @@
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.textbutton.secondary[disabled] {
+  cursor: unset;
   border: 1px solid #d9d9d9;
   background: #f3f3f3;
-  color: silver;
   box-shadow: none;
-  cursor: unset;
+  color: silver;
   font-weight: normal;
   text-shadow: unset;
 }
