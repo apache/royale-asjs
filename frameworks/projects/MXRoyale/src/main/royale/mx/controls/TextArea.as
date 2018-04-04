@@ -1721,6 +1721,7 @@ public class TextArea extends ScrollControlBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  @royaleignorecoercion HTMLInputElement
      */
     public function get text():String
     {
@@ -1737,6 +1738,7 @@ public class TextArea extends ScrollControlBase
 
     /**
      *  @private
+     *  @royaleignorecoercion HTMLInputElement
      */
     public function set text(value:String):void
     {
