@@ -29,11 +29,14 @@ internal class MXRoyaleClasses
 {
     import mx.core.UIComponent; UIComponent;
 	import mx.core.Container; Container;
+	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
+	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
