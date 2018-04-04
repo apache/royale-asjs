@@ -20,7 +20,10 @@
 package mx.events
 {
 
-import flash.events.Event;
+/* import flash.events.Event;
+ */
+ import org.apache.royale.events.Event;
+ import org.apache.royale.events.IRoyaleEvent;
 
 /**
  *  The CloseEvent class represents event objects specific to popup windows, 
@@ -35,8 +38,8 @@ import flash.events.Event;
  */
 public class CloseEvent extends Event
 {
-    include "../core/Version.as";
-
+/*     include "../core/Version.as";
+ */
     //--------------------------------------------------------------------------
     //
     //  Class constants
@@ -102,7 +105,7 @@ public class CloseEvent extends Event
     {
         super(type, bubbles, cancelable);
 
-        this.detail = detail;
+        _detail = detail;
     }
 
     //--------------------------------------------------------------------------
@@ -131,8 +134,16 @@ public class CloseEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var detail:int;
-
+    private var _detail:int ;
+	public function set detail(value:int):void
+	{
+	_detail = value;
+	}
+	
+	public function get detail():int
+	{
+	return _detail;
+	}
     //--------------------------------------------------------------------------
     //
     //  Overridden methods: Event
@@ -142,9 +153,9 @@ public class CloseEvent extends Event
     /**
      *  @private
      */
-    override public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
-        return new CloseEvent(type, bubbles, cancelable, detail);
+        return new CloseEvent(type, bubbles, cancelable, _detail);
     }
 }
 
