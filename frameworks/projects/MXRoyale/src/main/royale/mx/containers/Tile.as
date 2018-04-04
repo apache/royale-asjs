@@ -239,6 +239,8 @@ use namespace mx_internal;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ *
+ *  @royalesuppresspublicvarwarning
  */
 public class Tile extends Container
 {
@@ -274,15 +276,33 @@ public class Tile extends Container
      *  Cached value from findCellSize() call in measure(),
      *  so that updateDisplayList() doesn't also have to call findCellSize().
      */
-    /*mx_internal*/ protected var cellWidth:Number;
+    mx_internal var _cellWidth:Number;
     
+	public function set cellWidth(value:Number):void
+	{
+	_cellWidth = value;
+	}
+	
+	public function get cellWidth():Number
+	{
+	return _cellWidth;
+	}
     /**
      *  @private
      *  Cached value from findCellSize() call in measure(),
      *  so that updateDisplaylist() doesn't also have to call findCellSize().
      */
-    /*mx_internal*/ protected var cellHeight:Number;
+    mx_internal var _cellHeight:Number;
 
+	public function set cellHeight(value:Number):void
+	{
+	_cellHeight = value;
+	}
+	
+	public function get cellHeight():Number
+	{
+	return _cellHeight;
+	}
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -497,8 +517,8 @@ public class Tile extends Container
         findCellSize();
 
         // Min width and min height are large enough to display a single child.
-        minWidth = cellWidth;
-        minHeight = cellHeight;
+        minWidth = _cellWidth;
+        minHeight = _cellHeight;
 
         // Determine the width and height necessary to display the tiles
         // in an N-by-N grid (with number of rows equal to number of columns).
@@ -529,9 +549,9 @@ public class Tile extends Container
                 {
                     // If we have an explicit height set,
                     // see how many children can fit in the given height:
-                    // majorAxis * (cellWidth + horizontalGap) - horizontalGap == unscaledExplicitWidth
+                    // majorAxis * (_cellWidth + horizontalGap) - horizontalGap == unscaledExplicitWidth
                     majorAxis = Math.floor((unscaledExplicitWidth + horizontalGap) /
-                                           (cellWidth + horizontalGap));
+                                           (_cellWidth + horizontalGap));
                 }
             }
             else
@@ -543,7 +563,7 @@ public class Tile extends Container
                     // see how many children can fit in the given height:
                     // majorAxis * (cellHeight + verticalGap) - verticalGap == unscaledExplicitHeight
                     majorAxis = Math.floor((unscaledExplicitHeight + verticalGap) /
-                                           (cellHeight + verticalGap));
+                                           (_cellHeight + verticalGap));
                 }
             }
 
@@ -561,18 +581,18 @@ public class Tile extends Container
 
             if (direction == TileDirection.HORIZONTAL)
             {
-                preferredWidth = majorAxis * cellWidth +
+                preferredWidth = majorAxis * _cellWidth +
                                  (majorAxis - 1) * horizontalGap;
 
-                preferredHeight = minorAxis * cellHeight +
+                preferredHeight = minorAxis * _cellHeight +
                                   (minorAxis - 1) * verticalGap;
             }
             else
             {
-                preferredWidth = minorAxis * cellWidth +
+                preferredWidth = minorAxis * _cellWidth +
                                  (minorAxis - 1) * horizontalGap;
 
-                preferredHeight = majorAxis * cellHeight +
+                preferredHeight = majorAxis * _cellHeight +
                                   (majorAxis - 1) * verticalGap;
             }
         }
@@ -652,7 +672,7 @@ public class Tile extends Container
         // The measure function isn't called if the width and height of
         // the Tile are hard-coded. In that case, we compute the cellWidth
         // and cellHeight now.
-        if (isNaN(cellWidth) || isNaN(cellHeight))
+        if (isNaN(_cellWidth) || isNaN(_cellHeight))
             findCellSize();
         
         var vm:EdgeMetrics = viewMetricsAndPadding;
@@ -688,12 +708,12 @@ public class Tile extends Container
                     continue;
 
                 // Start a new row?
-                if (xPos + cellWidth > xEnd)
+                if (xPos + _cellWidth > xEnd)
                 {
                     // Only if we have not just started one...
                     if (xPos != paddingLeft)
                     {
-                        yPos += (cellHeight + verticalGap);
+                        yPos += (_cellHeight + verticalGap);
                         xPos = paddingLeft;
                     }
                 }
@@ -708,7 +728,7 @@ public class Tile extends Container
                             
                 child.move(xPos + xOffset, yPos + yOffset);
 
-                xPos += (cellWidth + horizontalGap);
+                xPos += (_cellWidth + horizontalGap);
             }
         }
         else
@@ -723,12 +743,12 @@ public class Tile extends Container
                     continue;
 
                 // Start a new column?
-                if (yPos + cellHeight > yEnd)
+                if (yPos + _cellHeight > yEnd)
                 {
                     // Only if we have not just started one...
                     if (yPos != paddingTop)
                     {
-                        xPos += (cellWidth + horizontalGap);
+                        xPos += (_cellWidth + horizontalGap);
                         yPos = paddingTop;
                     }
                 }
@@ -743,7 +763,7 @@ public class Tile extends Container
             
                 child.move(xPos + xOffset, yPos + yOffset);
 
-                yPos += (cellHeight + verticalGap);
+                yPos += (_cellHeight + verticalGap);
             }
         }
 
@@ -757,8 +777,8 @@ public class Tile extends Container
         // called indirectly by setChildSize() and child.move() inside
         // the loops above. So we had to save and restore cellWidth
         // and cellHeight around these calls in the loops, which is ugly.)
-        cellWidth = NaN;
-        cellHeight = NaN;
+        _cellWidth = NaN;
+        _cellHeight = NaN;
     }
 
     //--------------------------------------------------------------------------
@@ -771,7 +791,7 @@ public class Tile extends Container
      *  @private
      *  Calculate and store the cellWidth and cellHeight.
      */
-    /*mx_internal*/ protected function findCellSize():void
+    mx_internal function findCellSize():void
     {
         // If user explicitly supplied both a tileWidth and
         // a tileHeight, then use those values.
@@ -779,8 +799,8 @@ public class Tile extends Container
         var heightSpecified:Boolean = !isNaN(tileHeight);
         if (widthSpecified && heightSpecified)
         {
-            cellWidth = tileWidth;
-            cellHeight = tileHeight;
+            _cellWidth = tileWidth;
+            _cellHeight = tileHeight;
             return;
         }
 
@@ -808,8 +828,8 @@ public class Tile extends Container
         
         // If user explicitly specified either width or height, use the
         // user-supplied value instead of the one we computed.
-        cellWidth = widthSpecified ? tileWidth : maxChildWidth;
-        cellHeight = heightSpecified ? tileHeight : maxChildHeight;
+        _cellWidth = widthSpecified ? tileWidth : maxChildWidth;
+        _cellHeight = heightSpecified ? tileHeight : maxChildHeight;
     }
 
     /**
@@ -827,8 +847,8 @@ public class Tile extends Container
         if (child.percentWidth > 0)
         {
             // Set child width to be a percentage of the size of the cell.
-            childWidth = Math.min(cellWidth,
-                                  cellWidth * child.percentWidth / 100);
+            childWidth = Math.min(_cellWidth,
+                                  _cellWidth * child.percentWidth / 100);
         }
         else
         {
@@ -840,7 +860,7 @@ public class Tile extends Container
             // In that case, we'll honor the child's width or minWidth,
             // but only if those values were explicitly set by the developer,
             // not if they were implicitly set based on measurements.
-            if (childWidth > cellWidth)
+            if (childWidth > _cellWidth)
             {
                 childPref = isNaN(child.explicitWidth) ?
                             0 :
@@ -850,23 +870,23 @@ public class Tile extends Container
                            0 :
                            child.explicitMinWidth;
 
-                childWidth = (childPref > cellWidth ||
-                              childMin > cellWidth) ?
+                childWidth = (childPref > _cellWidth ||
+                              childMin > _cellWidth) ?
                              Math.max(childMin, childPref) :
-                             cellWidth;
+                             _cellWidth;
             }
         }
 
         if (child.percentHeight > 0)
         {
-            childHeight = Math.min(cellHeight,
-                                   cellHeight * child.percentHeight / 100);
+            childHeight = Math.min(_cellHeight,
+                                   _cellHeight * child.percentHeight / 100);
         }
         else
         {
             childHeight = child.getExplicitOrMeasuredHeight();
 
-            if (childHeight > cellHeight)
+            if (childHeight > _cellHeight)
             {
                 childPref = isNaN(child.explicitHeight) ?
                             0 :
@@ -876,10 +896,10 @@ public class Tile extends Container
                            0 :
                            child.explicitMinHeight;
 
-                childHeight = (childPref > cellHeight ||
-                               childMin > cellHeight) ?
+                childHeight = (childPref > _cellHeight ||
+                               childMin > _cellHeight) ?
                                Math.max(childMin, childPref) :
-                               cellHeight;
+                               _cellHeight;
             }
         }
 
@@ -891,7 +911,7 @@ public class Tile extends Container
      *  Compute how much adjustment must occur in the x direction
      *  in order to align a component of a given width into the cell.
      */
-    /*mx_internal*/ protected function calcHorizontalOffset(width:Number,
+    mx_internal function calcHorizontalOffset(width:Number,
                                               horizontalAlign:String):Number
     {
         var xOffset:Number;
@@ -900,10 +920,10 @@ public class Tile extends Container
             xOffset = 0;
 
         else if (horizontalAlign == "center")
-            xOffset = (cellWidth - width) / 2;
+            xOffset = (_cellWidth - width) / 2;
 
         else if (horizontalAlign == "right")
-            xOffset = (cellWidth - width);
+            xOffset = (_cellWidth - width);
 
         return xOffset;
     }
@@ -913,7 +933,7 @@ public class Tile extends Container
      *  Compute how much adjustment must occur in the y direction
      *  in order to align a component of a given height into the cell.
      */
-    /*mx_internal*/ protected function calcVerticalOffset(height:Number,
+    mx_internal function calcVerticalOffset(height:Number,
                                             verticalAlign:String):Number
     {
         var yOffset:Number;
@@ -922,10 +942,10 @@ public class Tile extends Container
             yOffset = 0;
 
         else if (verticalAlign == "middle")
-            yOffset = (cellHeight - height) / 2;
+            yOffset = (_cellHeight - height) / 2;
 
         else if (verticalAlign == "bottom")
-            yOffset = (cellHeight - height);
+            yOffset = (_cellHeight - height);
 
         return yOffset;
     }
