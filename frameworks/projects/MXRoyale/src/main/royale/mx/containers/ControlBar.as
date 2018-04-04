@@ -19,7 +19,7 @@
 
 package mx.containers
 {
-
+/* 
 import mx.core.Container;
 import mx.core.FlexVersion;
 import mx.core.ScrollPolicy;
@@ -27,7 +27,13 @@ import mx.core.mx_internal;
 import mx.core.UIComponent;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
-import mx.styles.StyleManager;
+import mx.styles.StyleManager; */
+
+import mx.core.Container;
+import mx.core.mx_internal;
+import mx.core.UIComponent;
+import mx.core.ScrollPolicy;
+
 
 use namespace mx_internal;
 
@@ -126,7 +132,7 @@ use namespace mx_internal;
  */
 public class ControlBar extends Box
 {
-    include "../core/Version.as";
+   /*  include "../core/Version.as"; */
     
     //--------------------------------------------------------------------------
     //
@@ -188,20 +194,20 @@ public class ControlBar extends Box
     /**
      *  @private
      */
-    override public function get horizontalScrollPolicy():String
+  /*   override public function get horizontalScrollPolicy():String
     {
         return ScrollPolicy.OFF;
     }
-
+ */
     /**
      *  @private
      */
-    override public function set horizontalScrollPolicy(value:String):void
+   /*  override public function set horizontalScrollPolicy(value:String):void
     {
         // A ControlBar never scrolls.
         // Its horizontalScrollPolicy is initialized to "off" and can't be changed.
     }
-
+ */
     //----------------------------------
     //  includeInLayout
     //----------------------------------
@@ -218,8 +224,8 @@ public class ControlBar extends Box
             super.includeInLayout = value;
 
             var p:Container = parent as Container;
-            if (p)
-                p.invalidateViewMetricsAndPadding();
+            /* if (p)
+                p.invalidateViewMetricsAndPadding(); */
         }
     }
 
@@ -232,20 +238,20 @@ public class ControlBar extends Box
     /**
      *  @private
      */
-    override public function get verticalScrollPolicy():String
+  /*   override public function get verticalScrollPolicy():String
     {
         return ScrollPolicy.OFF;
-    }
+    } */
 
     /**
      *  @private
      */
-    override public function set verticalScrollPolicy(value:String):void
+  /*   override public function set verticalScrollPolicy(value:String):void
     {
         // A ControlBar never scrolls.
         // Its verticalScrollPolicy is initialized to "off" and can't be changed.
     }
-
+ */
     //--------------------------------------------------------------------------
     //
     //  Overridden methods
@@ -262,8 +268,8 @@ public class ControlBar extends Box
         // Since controlbar isn't a "child" of Panel, we need to call
         // invalidateViewMetricsAndPadding() here when our size is invalidated.
         // This causes our parent Panel to adjust size.
-        if (parent && parent is Container)
-            Container(parent).invalidateViewMetricsAndPadding();
+     /*    if (parent && parent is Container)
+            Container(parent).invalidateViewMetricsAndPadding(); */
     }
 
     /**
@@ -276,8 +282,8 @@ public class ControlBar extends Box
 
         // Make sure we don't have an opaque background for the ControlBar,
         // otherwise the background turns white.
-        if (contentPane)
-            contentPane.opaqueBackground = null;
+      /*   if (contentPane)
+            contentPane.opaqueBackground = null; */
     }
 }
 
