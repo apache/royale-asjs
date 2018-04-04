@@ -1588,7 +1588,9 @@ limitations under the License.
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextInputTestScript.mxml" />
-            <!--<arg value="showSteps=true" />-->
+            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
+            <arg value="showSteps=true" />
+            <arg value="showScripts=true" />
             <arg value="${profile_arg}" />
             <classpath>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
