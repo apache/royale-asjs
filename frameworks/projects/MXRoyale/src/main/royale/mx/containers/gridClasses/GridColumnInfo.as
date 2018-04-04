@@ -32,8 +32,8 @@ import mx.core.UIComponent;
  */
 public class GridColumnInfo extends FlexChildInfo
 {
-	include "../../core/Version.as";
-
+	/* include "../../core/Version.as";
+ */
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor
@@ -78,7 +78,17 @@ public class GridColumnInfo extends FlexChildInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var x:Number;
+	private var _x:Number;
+	public function set x(value:Number):void
+	{
+	_x = value;
+	}
+	
+	public function get x():Number
+	{
+	return _x;
+	}
+	
 }
 
 }
