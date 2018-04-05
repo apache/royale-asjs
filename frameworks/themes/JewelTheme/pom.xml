@@ -78,10 +78,22 @@
                   <source>
                       <directory>${basedir}/src/main/sass</directory>
                       <includes>
-                          <include>**/*.sass</include>
+                          <include>defaults.sass</include>
                       </includes>
                   </source>
                   <destination>${basedir}/src/main/resources</destination>
+              </resource>
+          </resources>
+          <resources>
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-blue</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Blue-Theme/src/main/resources</destination>
               </resource>
           </resources>
         </configuration>
