@@ -156,6 +156,41 @@
                   <destination>${basedir}/../Jewel-Light-NoFlat-Secondary-Topaz-Theme/src/main/resources</destination>
               </resource>
               
+              <!-- LIGHT - NOFLAT - EMPHASIZED - EMERALD -->
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-emphasized-emerald</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Emphasized-Emerald-Theme/src/main/resources</destination>
+              </resource>
+              
+              <!-- LIGHT - NOFLAT - PRIMARY - EMERALD -->
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-primary-emerald</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Primary-Emerald-Theme/src/main/resources</destination>
+              </resource>
+
+              <!-- LIGHT - NOFLAT - SECONDARY - EMERALD -->
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-secondary-emerald</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Secondary-Emerald-Theme/src/main/resources</destination>
+              </resource>
           </resources>
         </configuration>
         <executions>

@@ -43,6 +43,10 @@
     <module>Jewel-Light-NoFlat-Primary-Topaz-Theme</module>
     <module>Jewel-Light-NoFlat-Secondary-Topaz-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Topaz-Theme</module>
+    
+    <module>Jewel-Light-NoFlat-Primary-Emerald-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Emerald-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</module>
   </modules>
 
   <dependencies>
