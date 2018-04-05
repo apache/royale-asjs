@@ -56,39 +56,6 @@ div {
   padding: 20px;
 }
 
-.jewel.button {
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: 8px;
-  min-width: 34px;
-  min-height: 34px;
-  border: 1px solid #b3b3b3;
-  background: linear-gradient(#e6e6e6, #cccccc);
-  box-shadow: inset 0 1px 0 white;
-  border-radius: 3px;
-}
-.jewel.button:hover, .jewel.button:hover:focus {
-  border: 1px solid #a6a6a6;
-  background: linear-gradient(#d9d9d9, silver);
-}
-.jewel.button:active, .jewel.button:active:focus {
-  border: 1px solid #8d8d8d;
-  background: linear-gradient(silver, #a6a6a6);
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
-}
-.jewel.button:focus {
-  outline: none;
-  border: 1px solid #b3b3b3;
-  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-.jewel.button[disabled] {
-  cursor: unset;
-  border: 1px solid #d9d9d9;
-  background: #f3f3f3;
-  box-shadow: none;
-}
-
 .jewel.button.emphasized {
   cursor: pointer;
   display: inline-block;
