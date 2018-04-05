@@ -115,7 +115,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>JewelTheme</artifactId>
+      <artifactId>Jewel-Light-NoFlat-Primary-Blue-Theme</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
@@ -123,7 +123,15 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>JewelBlueTheme</artifactId>
+      <artifactId>Jewel-Light-NoFlat-Secondary-Blue-Theme</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>theme</scope>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-NoFlat-Emphasized-Blue-Theme</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>

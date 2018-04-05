@@ -19,7 +19,7 @@
 -->
 
 
-<project name="Jewel-Light-NoFlat-Blue-Theme" default="main" basedir=".">
+<project name="Jewel-Light-NoFlat-Emphasized-Blue-Theme" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     
     <property file="${ROYALE_HOME}/env.properties"/>

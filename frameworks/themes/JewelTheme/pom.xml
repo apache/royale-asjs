@@ -83,18 +83,40 @@
                   </source>
                   <destination>${basedir}/src/main/resources</destination>
               </resource>
-          </resources>
-          <resources>
+              
               <resource>
                   <source>
-                      <directory>${basedir}/src/main/sass/themes/light-noflat-blue</directory>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-emphasized-blue</directory>
                       <includes>
                           <include>defaults.sass</include>
                       </includes>
                   </source>
                   <relativeOutputDirectory>../..</relativeOutputDirectory>
-                  <destination>${basedir}/../Jewel-Light-NoFlat-Blue-Theme/src/main/resources</destination>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Emphasized-Blue-Theme/src/main/resources</destination>
               </resource>
+              
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-primary-blue</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Primary-Blue-Theme/src/main/resources</destination>
+              </resource>
+
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-secondary-blue</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Secondary-Blue-Theme/src/main/resources</destination>
+              </resource>
+              
           </resources>
         </configuration>
         <executions>

@@ -26,11 +26,11 @@
     <version>0.9.3-SNAPSHOT</version>
   </parent>
 
-  <artifactId>Jewel-Light-NoFlat-Blue-Theme</artifactId>
+  <artifactId>Jewel-Light-NoFlat-Secondary-Blue-Theme</artifactId>
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <name>Apache Royale: Framework: Themes: Jewel-Light-NoFlat-Blue-Theme</name>
+  <name>Apache Royale: Framework: Themes: Jewel-Light-NoFlat-Secondary-Blue-Theme</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
