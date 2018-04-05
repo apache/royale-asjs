@@ -81,8 +81,12 @@ $textfield-border-radius: 3px
 
 		&[disabled]
 			cursor: unset
-			border: 1px solid $disabled-border-color// .094em
-			background: $disabled-color
+			@if $flat
+				border: 0px solid
+				background: $disabled-color
+			@else
+				border: 1px solid $disabled-border-color// .094em
+				background: $disabled-color
 			box-shadow: none
 			color: $disabled-font-color
 			
