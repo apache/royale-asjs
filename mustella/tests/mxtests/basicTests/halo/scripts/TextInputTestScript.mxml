@@ -22,7 +22,7 @@
 	<!-- this set of lines form a template that must be in each unit test -->
 	<mx:Script>
 	<![CDATA[
-	public static function init(o:DisplayObject):void
+	public static function init(o:Object):void
 	{
 	}
 	]]>
@@ -54,7 +54,7 @@
 				<DispatchMouseClickEvent target="haloTextInputTests.testTextInput" localX="10" localY="10" />
 				<DispatchKeyEvent char="This is another test." />
 				<AssertPropertyValue target="haloTextInputTests.testTextInput" propertyName="text" value="This is another test." />
-				<AssertPropertyValue target="haloTextInputTests.testTextInput.getChildAt(1)" propertyName="text" value="This is another test." />
+				<!--<AssertPropertyValue target="haloTextInputTests.testTextInput.getChildAt(1)" propertyName="text" value="This is another test." />-->
 			</body>
 		</TestCase>
 	</testCases>

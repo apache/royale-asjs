@@ -149,6 +149,7 @@ internal class BasicClasses
 	    import org.apache.royale.html.beads.models.SingleLineBorderModel; SingleLineBorderModel;
 	}
 	import org.apache.royale.html.beads.models.TextModel; TextModel;
+    import org.apache.royale.html.beads.models.NonNullTextModel; NonNullTextModel;
     import org.apache.royale.html.beads.models.TitleBarModel; TitleBarModel;
 	import org.apache.royale.html.beads.models.ToggleButtonModel; ToggleButtonModel;
 	COMPILE::SWF
