@@ -84,6 +84,7 @@
                   <destination>${basedir}/src/main/resources</destination>
               </resource>
               
+              <!-- LIGHT - NOFLAT - EMPHASIZED - BLUE -->
               <resource>
                   <source>
                       <directory>${basedir}/src/main/sass/themes/light-noflat-emphasized-blue</directory>
@@ -95,6 +96,7 @@
                   <destination>${basedir}/../Jewel-Light-NoFlat-Emphasized-Blue-Theme/src/main/resources</destination>
               </resource>
               
+              <!-- LIGHT - NOFLAT - PRIMARY - BLUE -->
               <resource>
                   <source>
                       <directory>${basedir}/src/main/sass/themes/light-noflat-primary-blue</directory>
@@ -106,6 +108,7 @@
                   <destination>${basedir}/../Jewel-Light-NoFlat-Primary-Blue-Theme/src/main/resources</destination>
               </resource>
 
+              <!-- LIGHT - NOFLAT - SECONDARY - BLUE -->
               <resource>
                   <source>
                       <directory>${basedir}/src/main/sass/themes/light-noflat-secondary-blue</directory>
@@ -115,6 +118,42 @@
                   </source>
                   <relativeOutputDirectory>../..</relativeOutputDirectory>
                   <destination>${basedir}/../Jewel-Light-NoFlat-Secondary-Blue-Theme/src/main/resources</destination>
+              </resource>
+
+              <!-- LIGHT - NOFLAT - EMPHASIZED - TOPAZ -->
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-emphasized-topaz</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Emphasized-Topaz-Theme/src/main/resources</destination>
+              </resource>
+              
+              <!-- LIGHT - NOFLAT - PRIMARY - TOPAZ -->
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-primary-topaz</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Primary-Topaz-Theme/src/main/resources</destination>
+              </resource>
+
+              <!-- LIGHT - NOFLAT - SECONDARY - TOPAZ -->
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/sass/themes/light-noflat-secondary-topaz</directory>
+                      <includes>
+                          <include>defaults.sass</include>
+                      </includes>
+                  </source>
+                  <relativeOutputDirectory>../..</relativeOutputDirectory>
+                  <destination>${basedir}/../Jewel-Light-NoFlat-Secondary-Topaz-Theme/src/main/resources</destination>
               </resource>
               
           </resources>

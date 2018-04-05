@@ -39,6 +39,10 @@
     <module>Jewel-Light-NoFlat-Primary-Blue-Theme</module>
     <module>Jewel-Light-NoFlat-Secondary-Blue-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Blue-Theme</module>
+    
+    <module>Jewel-Light-NoFlat-Primary-Topaz-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Topaz-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Topaz-Theme</module>
   </modules>
 
   <dependencies>
