@@ -38,6 +38,8 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
+	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
 	import mx.events.CloseEvent; CloseEvent;
 	import mx.controls.VRule; VRule;
 	import mx.controls.HRule; HRule;
