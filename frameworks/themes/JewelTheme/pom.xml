@@ -72,7 +72,10 @@
         <artifactId>sass-maven-plugin</artifactId>
         <version>3.5.2</version>
         <configuration>
-          <targets>JSRoyale,SWF</targets>
+          <!-- <sassOptions>
+            <style>:compressed</style>
+            <always_update>true</always_update>
+          </sassOptions> -->
           <resources>
               <resource>
                   <source>
