@@ -19,9 +19,9 @@
 
 package mx.events
 {
-
-import flash.events.Event;
-
+/* import mx.events.Event;*/
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 /**
  *  Represents event objects that are dispatched when a Flex component moves.
  *
@@ -31,10 +31,11 @@ import flash.events.Event;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ *  @royalesuppresspublicvarwarning
  */
 public class MoveEvent extends Event
 {
-    include "../core/Version.as";
+   /*  include "../core/Version.as"; */
 
 	//--------------------------------------------------------------------------
 	//
@@ -151,7 +152,7 @@ public class MoveEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():IRoyaleEvent
 	{
 		return new MoveEvent(type, bubbles, cancelable, oldX, oldY);
 	}
