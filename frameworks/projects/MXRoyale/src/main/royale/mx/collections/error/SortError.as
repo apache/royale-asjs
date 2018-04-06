@@ -31,7 +31,7 @@ package mx.collections.errors
  */
 public class SortError extends Error
 {
-    include "../../core/Version.as";
+    /* include "../../core/Version.as"; */
 
     //--------------------------------------------------------------------------
     //
