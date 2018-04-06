@@ -20,8 +20,10 @@
 package mx.events
 {
 
-import flash.events.Event;
+/* import flash.events.Event; */
 
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 /**
  *  The ValidationResultEvent class represents the event object 
  *  passed to the listener for the <code>valid</code> validator event
@@ -35,10 +37,11 @@ import flash.events.Event;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ *  @royalesuppresspublicvarwarning
  */
 public class ValidationResultEvent extends Event
 {
-    include "../core/Version.as";
+/*     include "../core/Version.as"; */
 
 	//--------------------------------------------------------------------------
 	//
@@ -226,7 +229,7 @@ public class ValidationResultEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():IRoyaleEvent
 	{
 		return new ValidationResultEvent(type, bubbles, cancelable,
 										 field, results);
