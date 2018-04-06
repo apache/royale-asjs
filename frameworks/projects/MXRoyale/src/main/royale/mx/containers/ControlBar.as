@@ -67,7 +67,7 @@ use namespace mx_internal;
 //  Other metadata
 //--------------------------------------
 
-[IconFile("ControlBar.png")]
+//[IconFile("ControlBar.png")]
 
 /**
  *  As of Flex 4, the ControlBar component is no longer required. Use 
@@ -128,7 +128,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class ControlBar extends Box
 {
