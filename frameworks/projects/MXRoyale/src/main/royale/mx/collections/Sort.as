@@ -20,21 +20,25 @@
 package mx.collections
 {
 
+  /* 
     import flash.events.Event;
-    import flash.events.EventDispatcher;
+    import flash.events.EventDispatcher; */
+	
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
     import mx.collections.errors.SortError;
     import mx.core.mx_internal;
-    import mx.resources.IResourceManager;
-    import mx.resources.ResourceManager;
+  /*   import mx.resources.IResourceManager;
+    import mx.resources.ResourceManager */;
     import mx.utils.ObjectUtil;
 
     use namespace mx_internal;
 
     [DefaultProperty("fields")]
 [ResourceBundle("collections")]
-[Alternative(replacement="spark.collections.Sort", since="4.5")]
-
+/* [Alternative(replacement="spark.collections.Sort", since="4.5")]
+ */
 /**
  *  Provides the sorting information required to establish a sort on an
  *  existing view (<code>ICollectionView</code> interface or class that
@@ -137,10 +141,11 @@ package mx.collections
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ *  @royalesuppresspublicvarwarning
  */
 public class Sort extends EventDispatcher implements ISort
 {
-    include "../core/Version.as";
+   /*  include "../core/Version.as"; */
 
     //--------------------------------------------------------------------------
     //
@@ -219,9 +224,9 @@ public class Sort extends EventDispatcher implements ISort
      *  @private
      *  Used for accessing localized Error messages.
      */
-    private var resourceManager:IResourceManager =
+   /*  private var resourceManager:IResourceManager =
                                     ResourceManager.getInstance();
-
+ */
     /**
      *  @private
      *  True if we should attempt to use Array.sortOn when possible.
@@ -361,7 +366,7 @@ public class Sort extends EventDispatcher implements ISort
      */
     override public function toString():String
     {
-        return ObjectUtil.toString(this);
+        return "";//ObjectUtil.toString(this);
     }
 
     //--------------------------------------------------------------------------
@@ -390,8 +395,8 @@ public class Sort extends EventDispatcher implements ISort
 
         if (!items)
         {
-            message = resourceManager.getString(
-                "collections", "noItems");
+            message = "";/* resourceManager.getString(
+                "collections", "noItems"); */
             throw new SortError(message);
         }
         else if (items.length == 0)
@@ -419,8 +424,8 @@ public class Sort extends EventDispatcher implements ISort
                         {
                             if (!hadPreviousFieldName)
                             {
-                                message = resourceManager.getString(
-                                    "collections", "findCondition", [field.name]);
+                                message = "";/*  resourceManager.getString(
+                                    "collections", "findCondition", [field.name]); */
                                 throw new SortError(message);
                             }
                             else
@@ -442,8 +447,8 @@ public class Sort extends EventDispatcher implements ISort
                 }
                 if (fieldsForCompare.length == 0)
                 {
-                    message = resourceManager.getString(
-                        "collections", "findRestriction");
+                    message = "" /* resourceManager.getString(
+                        "collections", "findRestriction"); */
                     throw new SortError(message);
                 }
                 else
@@ -541,8 +546,8 @@ public class Sort extends EventDispatcher implements ISort
                         break;
                         default:
                         {
-                            message = resourceManager.getString(
-                                "collections", "unknownMode");
+                            message =  "";/* resourceManager.getString(
+                                "collections", "unknownMode"); */
                             throw new SortError(message);
                         }
                     } // switch
@@ -639,11 +644,11 @@ public class Sort extends EventDispatcher implements ISort
 
             if (unique)
             {
-                var uniqueRet1:Object = items.sort(fixedCompareFunction, Array.UNIQUESORT);
+                var uniqueRet1:Object =  new Object();// items.sort(fixedCompareFunction, Array.UNIQUESORT);
                 if (uniqueRet1 == 0)
                 {
-                    message = resourceManager.getString(
-                        "collections", "nonUnique");
+                    message = "";/* resourceManager.getString(
+                        "collections", "nonUnique"); */
                     throw new SortError(message);
                 }
             }
@@ -672,16 +677,16 @@ public class Sort extends EventDispatcher implements ISort
                     var uniqueRet2:Object;
                     if (useSortOn && sortArgs && fields.length == 1)
                     {
-                        uniqueRet2 = items.sortOn(sortArgs.fields[0], sortArgs.options[0] | Array.UNIQUESORT);
+                       // uniqueRet2 = items.sortOn(sortArgs.fields[0], sortArgs.options[0] | Array.UNIQUESORT);
                     }
                     else
                     {
-                        uniqueRet2 = items.sort(internalCompare, Array.UNIQUESORT);
+                      //  uniqueRet2 = items.sort(internalCompare, Array.UNIQUESORT);
                     }
                     if (uniqueRet2 == 0)
                     {
-                        message = resourceManager.getString(
-                            "collections", "nonUnique");
+                        message = "";/*  resourceManager.getString(
+                            "collections", "nonUnique"); */
                         throw new SortError(message);
                     }
                 }
@@ -800,8 +805,8 @@ public class Sort extends EventDispatcher implements ISort
             catch(e:SortError)
             {
                 //this error message isn't as useful in this case so replace
-                var message:String = resourceManager.getString(
-                    "collections", "noComparator", [ a ]);
+                var message:String = "";/*  resourceManager.getString(
+                    "collections", "noComparator", [ a ]); */
                 throw new SortError(message);
             }
         }
