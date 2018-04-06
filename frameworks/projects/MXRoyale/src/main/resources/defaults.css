@@ -41,6 +41,11 @@ Button
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
 }
 
+Canvas
+{
+	IBeadLayout: ClassReference("mx.containers.beads.CanvasLayout");
+}
+
 CheckBox
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
@@ -54,10 +59,26 @@ Container
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+DateChooser 
+{
+	IBeadView:   ClassReference("org.apache.royale.html.beads.DateChooserView");
+	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");			
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");	
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateChooserMouseController");
+	width:  280px;
+	height: 240px;
+}
+
 Image
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
+}
+
+NumericStepper
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.NumericStepperView");
 }
 
 
@@ -95,9 +116,31 @@ Image
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
 	}
 	
+	RadioButton
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+		IBeadView:  ClassReference("mx.controls.beads.RadioButtonView");			
+	}
+	
+	TextArea
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.NonNullTextModel");
+		IBeadView: ClassReference("org.apache.royale.html.beads.TextAreaView");
+		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
+		IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		IBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
+		IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		background-color: #FFFFFF;
+		font-size: 11px;
+		font-family: Arial;
+	}
+	
 	TextInput
 	{
-		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.NonNullTextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
 		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
 		IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');

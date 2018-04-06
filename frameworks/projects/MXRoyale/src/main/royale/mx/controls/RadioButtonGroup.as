@@ -38,14 +38,10 @@ import mx.core.IMXMLObject;
 import mx.core.IRawChildrenContainer;
 */
 import mx.core.UIComponent;
-/*
 import mx.core.mx_internal;
-*/
 import mx.events.FlexEvent;
 import mx.events.ItemClickEvent;
-/*
 use namespace mx_internal;
-*/
 
 //--------------------------------------
 //  Events
@@ -299,8 +295,7 @@ public class RadioButtonGroup extends EventDispatcher
      */
     public function get numRadioButtons():int
     {
-//        return radioButtons.length;
-		return 0;
+        return radioButtons.length;
     }
 
     //----------------------------------
@@ -338,12 +333,12 @@ public class RadioButtonGroup extends EventDispatcher
      */
     public function get selectedValue():Object
     {
-//         if (selection)
-//         {
-//             return selection.value != null ?
-//                    selection.value :
-//                    selection.label;
-//         }
+         if (selection)
+         {
+             return selection.value != null ?
+                    selection.value :
+                    selection.label;
+         }
 
         return null;
     }
@@ -353,28 +348,28 @@ public class RadioButtonGroup extends EventDispatcher
      */
     public function set selectedValue(value:Object):void
     {
-//         _selectedValue = value;
-//
-//         // Clear the exisiting selecton if there is one.
-//         if (value == null)
-//         {
-//             setSelection(null, false);
-//             return;
-//         }
-//
-//         // Find the radio button value specified.
-//         var n:int = numRadioButtons;
-//         for (var i:int = 0; i < n; i++)
-//         {
-//             var radioButton:RadioButton = getRadioButtonAt(i);
-//             if (radioButton.value == value ||
-//                 radioButton.label == value)
-//             {
-//                 changeSelection(i, false);
-//                 break;
-//             }
-//         }
-//
+         _selectedValue = value;
+
+         // Clear the exisiting selecton if there is one.
+         if (value == null)
+         {
+             setSelection(null, false);
+             return;
+         }
+
+         // Find the radio button value specified.
+         var n:int = numRadioButtons;
+         for (var i:int = 0; i < n; i++)
+         {
+             var radioButton:RadioButton = getRadioButtonAt(i);
+             if (radioButton.value == value ||
+                 radioButton.label == value)
+             {
+                 changeSelection(i, false);
+                 break;
+             }
+         }
+
 //         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
 
@@ -449,19 +444,19 @@ public class RadioButtonGroup extends EventDispatcher
      *  @private
      *  Add a radio button to the group.
      */
-    protected function addInstance(instance:RadioButton):void
+    mx_internal function addInstance(instance:RadioButton):void
     {
-//         instance.addEventListener(Event.REMOVED, radioButton_removedHandler);
-//         radioButtons.push(instance);
-//
-//         // Apply group indices in "tab order" or "breadth-first" order.
-//         radioButtons.sort(readOrderCompare);
-//         for (var i:int = 0; i < radioButtons.length; i++)
-//             radioButtons[i].indexNumber = i;
-//
-//         if (_selectedValue != null)
-//             selectedValue = _selectedValue;
-//
+         //instance.addEventListener(Event.REMOVED, radioButton_removedHandler);
+         radioButtons.push(instance);
+
+         // Apply group indices in "tab order" or "breadth-first" order.
+         // TODO (aharui) later: radioButtons.sort(readOrderCompare);
+         //for (var i:int = 0; i < radioButtons.length; i++)
+         //    RadioButton(radioButtons[i]).indexNumber = i;
+
+         if (_selectedValue != null)
+             selectedValue = _selectedValue;
+
 // 		dispatchEvent(new Event("numRadioButtonsChanged"));
     }
 
@@ -469,8 +464,8 @@ public class RadioButtonGroup extends EventDispatcher
      *  @private
      *  Remove a radio button from the group.
      */
-    protected function removeInstance(instance:RadioButton):void
-    {
+//    protected function removeInstance(instance:RadioButton):void
+//    {
 //         if (instance)
 //         {
 //
@@ -503,15 +498,15 @@ public class RadioButtonGroup extends EventDispatcher
 //             if (foundInstance)
 // 				dispatchEvent(new Event("numRadioButtonsChanged"));
 //         }
-    }
+//    }
 
     /**
      *  @private
      *  Return the value or the label value
      *  of the selected radio button.
      */
-    private function getValue():String
-    {
+//    private function getValue():String
+//    {
 //         if (selection)
 //         {
 //             return selection.value &&
@@ -524,37 +519,43 @@ public class RadioButtonGroup extends EventDispatcher
 //         {
 //             return null;
 //         }
-		return null;
-    }
+//		return null;
+//    }
 
+    private var inSetSelection:Boolean;
+    
     /**
      *  @private
      */
-    protected function setSelection(value:RadioButton, fireChange:Boolean = true):void
+    mx_internal function setSelection(value:RadioButton, fireChange:Boolean = true):void
     {
-//         if (value == null)
-//         {
-//             if (selection != null)
-//             {
-//                 _selection.selected = false;
-//                 _selection = null;
-//                 if (fireChange)
-//                     dispatchEvent(new Event(Event.CHANGE));
-//             }
-//         }
-//         else
-//         {
-//             var n:int = numRadioButtons;
-//             for (var i:int = 0; i < n; i++)
-//             {
-//                 if (value == getRadioButtonAt(i))
-//                 {
-//                     changeSelection(i, fireChange);
-//                     break;
-//                 }
-//             }
-//         }
-//
+         if (inSetSelection) return;
+        
+         if (value == null)
+         {
+             if (selection != null)
+             {
+                 _selection.selected = false;
+                 _selection = null;
+                 if (fireChange)
+                     dispatchEvent(new Event(Event.CHANGE));
+             }
+         }
+         else
+         {
+             var n:int = numRadioButtons;
+             for (var i:int = 0; i < n; i++)
+             {
+                 if (value == getRadioButtonAt(i))
+                 {
+                     inSetSelection = true;
+                     changeSelection(i, fireChange);
+                     inSetSelection = false;
+                     break;
+                 }
+             }
+         }
+
 //         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
 
@@ -563,21 +564,21 @@ public class RadioButtonGroup extends EventDispatcher
      */
     private function changeSelection(index:int, fireChange:Boolean = true):void
     {
-//         if (getRadioButtonAt(index))
-//         {
-//             // Unselect the currently selected radio
-//             if (selection)
-//                 selection.selected = false;
-//
-//             // Change the focus to the new radio.
-//             // Set the state of the new radio to true.
-//             // Fire a click event for the new radio.
-//             // Fire a click event for the radio group.
-//             _selection = getRadioButtonAt(index);
-//             _selection.selected = true;
-//             if (fireChange)
-//                 dispatchEvent(new Event(Event.CHANGE));
-//         }
+         if (getRadioButtonAt(index))
+         {
+             // Unselect the currently selected radio
+             if (selection)
+                 selection.selected = false;
+
+             // Change the focus to the new radio.
+             // Set the state of the new radio to true.
+             // Fire a click event for the new radio.
+             // Fire a click event for the radio group.
+             _selection = getRadioButtonAt(index);
+             _selection.selected = true;
+             if (fireChange)
+                 dispatchEvent(new Event(Event.CHANGE));
+         }
     }
 
     //--------------------------------------------------------------------------
@@ -588,15 +589,15 @@ public class RadioButtonGroup extends EventDispatcher
      /**
      *  @private
      */
-    private function radioButton_removedHandler(event:Event):void
-    {
+//    private function radioButton_removedHandler(event:Event):void
+//    {
 //         var rb:RadioButton = event.target as RadioButton;
 //         if (rb)
 //         {
 //         	rb.removeEventListener(Event.REMOVED, radioButton_removedHandler);
 //             removeInstance(RadioButton(event.target));
 //         }
-    }
+//    }
 }
 
 }
