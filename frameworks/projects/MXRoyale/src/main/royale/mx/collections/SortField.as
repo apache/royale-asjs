@@ -20,18 +20,24 @@
 package mx.collections
 {
 
-    import flash.events.Event;
-    import flash.events.EventDispatcher;
 
+/* 
+    import flash.events.Event;
+    import flash.events.EventDispatcher; */
+	
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	
     import mx.collections.errors.SortError;
     import mx.core.mx_internal;
-    import mx.resources.IResourceManager;
-    import mx.resources.ResourceManager;
+/*     import mx.resources.IResourceManager; */ //commented
+
+  /*  import mx.resources.ResourceManager; */ //commented
     import mx.utils.ObjectUtil;
 
     [ResourceBundle("collections")]
-[Alternative(replacement="spark.collections.SortField", since="4.5")]
-
+/* [Alternative(replacement="spark.collections.SortField", since="4.5")]
+ */
 /**
  *  Provides the sorting information required to establish a sort on a field
  *  or property in a collection view.
@@ -104,7 +110,7 @@ package mx.collections
  */
 public class SortField extends EventDispatcher implements ISortField
 {
-    include "../core/Version.as";
+  /*   include "../core/Version.as"; */
 
     //--------------------------------------------------------------------------
     //
@@ -169,8 +175,8 @@ public class SortField extends EventDispatcher implements ISortField
      *  @private
      *  Used for accessing localized Error messages.
      */
-    private var resourceManager:IResourceManager =
-                                    ResourceManager.getInstance();
+   /*  private var resourceManager:IResourceManager =
+                                    ResourceManager.getInstance(); */
 
     //--------------------------------------------------------------------------
     //
@@ -503,7 +509,8 @@ public class SortField extends EventDispatcher implements ISortField
      */
     override public function toString():String
     {
-        return ObjectUtil.toString(this);
+        return "";
+		/* ObjectUtil.toString(this); */
     }
 
     //--------------------------------------------------------------------------
@@ -626,7 +633,7 @@ public class SortField extends EventDispatcher implements ISortField
         //Lookup the sortCompareType by its SortFieldCompareTypes value and set the associated compare method.
         switch(_sortCompareType)
         {
-            case SortFieldCompareTypes.DATE:
+           /*  case SortFieldCompareTypes.DATE:
             {
                 _compareFunction = dateCompare;
 
@@ -659,7 +666,7 @@ public class SortField extends EventDispatcher implements ISortField
                 _compareFunction = xmlCompare;
 
                 return true;
-            }
+            } */
         }
 
 
@@ -766,8 +773,9 @@ public class SortField extends EventDispatcher implements ISortField
         }
         else
         {
-            var message:String = resourceManager.getString(
-                "collections", "noComparatorSortField", [ name ]);
+            var message:String = "";
+			/* resourceManager.getString(
+                "collections", "noComparatorSortField", [ name ]); */
             throw new SortError(message);
         }
     }
