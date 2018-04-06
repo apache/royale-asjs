@@ -30,7 +30,7 @@ import org.apache.royale.events.IRoyaleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  *  @royalesuppresspublicvarwarning
  */
 public class MoveEvent extends Event
@@ -69,7 +69,7 @@ public class MoveEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const MOVE:String = "move";
 
@@ -97,7 +97,7 @@ public class MoveEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function MoveEvent(type:String, bubbles:Boolean = false,
 							  cancelable:Boolean = false,
@@ -125,7 +125,7 @@ public class MoveEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var oldX:Number;
 
@@ -139,7 +139,7 @@ public class MoveEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var oldY:Number;
 
