@@ -36,7 +36,7 @@ import org.apache.royale.events.IRoyaleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  *  @royalesuppresspublicvarwarning
  */
 public class ValidationResultEvent extends Event
@@ -79,7 +79,7 @@ public class ValidationResultEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const INVALID:String = "invalid";
 
@@ -111,7 +111,7 @@ public class ValidationResultEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const VALID:String = "valid";
 
@@ -138,7 +138,7 @@ public class ValidationResultEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public function ValidationResultEvent(type:String, bubbles:Boolean = false,
 										  cancelable:Boolean = false,
@@ -167,7 +167,7 @@ public class ValidationResultEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public var field:String;
 	
@@ -182,7 +182,7 @@ public class ValidationResultEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public function get message():String
     {
@@ -216,7 +216,7 @@ public class ValidationResultEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public var results:Array;
 	
