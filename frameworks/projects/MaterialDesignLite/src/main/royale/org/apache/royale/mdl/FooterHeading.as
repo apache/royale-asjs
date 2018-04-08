@@ -52,7 +52,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-mega-footer__heading";
 		}
 
 		/**
@@ -62,8 +62,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-mega-footer__heading";
-
 			addElementToWrapper(this,'h1');
             textNode = document.createTextNode('') as Text;
             element.appendChild(textNode);

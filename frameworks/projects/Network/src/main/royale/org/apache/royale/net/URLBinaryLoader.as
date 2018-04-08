@@ -45,9 +45,13 @@ package org.apache.royale.net
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
 		*  @productversion Royale 0.7.0
+        * 
+        *  @royalesuppresspublicvarwarning
 		*/        
         public var data:BinaryData;
 
+        private var _endian:String = Endian.BIG_ENDIAN;
+        
 		/**
 		 *  Indicates the byte order for the data.
 		 *  
@@ -56,8 +60,15 @@ package org.apache.royale.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */        
-		public var endian:String = Endian.BIG_ENDIAN;
-		
+        public function get endian():String
+        {
+            return _endian;
+        }
+        public function set endian(value:String):void
+        {
+            _endian = value;
+        }
+
 
         protected var stream:URLStream;
         
@@ -68,6 +79,8 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */        
         public var bytesLoaded:uint = 0;
         
@@ -78,6 +91,8 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */        
         public var bytesTotal:uint = 0;
         

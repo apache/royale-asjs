@@ -58,7 +58,6 @@
     <component id="ListItemSecondaryInfo" class="org.apache.royale.mdl.beads.ListItemSecondaryInfo"/>
     <component id="ListItemTextBody" class="org.apache.royale.mdl.beads.ListItemTextBody"/>
     <component id="Table" class="org.apache.royale.mdl.Table"/>
-    <component id="THead" class="org.apache.royale.mdl.THead"/>
     <component id="TableColumn" class="org.apache.royale.mdl.TableColumn"/>
     <component id="TableRowItemRenderer" class="org.apache.royale.mdl.itemRenderers.TableRowItemRenderer"/>
     <component id="TableRowItemSingleSelectionMouseRenderer" class="org.apache.royale.mdl.itemRenderers.TableRowItemSingleSelectionMouseRenderer"/>

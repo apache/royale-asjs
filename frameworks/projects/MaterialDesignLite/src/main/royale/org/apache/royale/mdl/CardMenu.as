@@ -20,12 +20,6 @@ package org.apache.royale.mdl
 {
 	import org.apache.royale.mdl.supportClasses.CardInner;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-    
 	/**
 	 *  The CardMenu class is a inner card container component.
 	 *  Its mission is to hold menu options for the user to interact.
@@ -48,16 +42,8 @@ package org.apache.royale.mdl
 		public function CardMenu()
 		{
 			super();
+
+            typeNames = "mdl-card__menu";
 		}
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-card__menu";
-			return addElementToWrapper(this,'div');
-        }    
 	}
 }

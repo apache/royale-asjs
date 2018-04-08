@@ -51,7 +51,7 @@ package org.apache.royale.mdl
         {
             super();
 
-            className = "";
+            typeNames = "mdl-js-snackbar mdl-snackbar";
         }
 
         /**
@@ -110,7 +110,6 @@ package org.apache.royale.mdl
                 var snackbarData:Object = IToastModel(model).snackbarData;
                 snackbar.showSnackbar(snackbarData);
             }
-            //dispatchEvent(new Event("action"));
         }
 
         protected var snackbar:Object;
@@ -131,8 +130,6 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-js-snackbar mdl-snackbar";
-			
             addElementToWrapper(this,'div');
             element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
 

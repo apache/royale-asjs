@@ -136,6 +136,21 @@ package org.apache.royale.events
         
 	}
 
+    /**
+     * This class simply wraps flash.events.Event so that
+     * no flash packages are needed on the JS side.
+     * At runtime, this class is not always the event object
+     * that is dispatched.  In most cases we are dispatching
+     * DOMEvents instead, so as long as you don't actually
+     * check the typeof(event) it will work
+     *
+     * @langversion 3.0
+     * @playerversion Flash 10.2
+     * @playerversion AIR 2.6
+     * @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
     COMPILE::JS
     public class Event extends goog.events.Event implements IRoyaleEvent {
 

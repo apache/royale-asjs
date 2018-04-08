@@ -59,7 +59,7 @@ package org.apache.royale.html
 		{
 			super();
 
-			className = "Slider";
+			typeNames = "Slider";
 
 			IRangeModel(model).value = 0;
 			IRangeModel(model).minimum = 0;
@@ -167,7 +167,6 @@ package org.apache.royale.html
 			// just to give it some default values
             element.style.width = '100px';
             element.style.height = '30px';
-            className = 'Slider';
             return element;
         }
 

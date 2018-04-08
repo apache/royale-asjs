@@ -44,7 +44,7 @@ package org.apache.royale.mobile.chrome
 		{
 			super();
 			
-			className = "TabBar";
+			typeNames = "TabBar";
 		}
 	}
 }

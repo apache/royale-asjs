@@ -243,6 +243,10 @@ import org.apache.royale.core.IStrand;
 
 class CursorData implements IBead
 {
+    /**
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
     public var cursor:String;
 
     public function set strand(value:IStrand):void

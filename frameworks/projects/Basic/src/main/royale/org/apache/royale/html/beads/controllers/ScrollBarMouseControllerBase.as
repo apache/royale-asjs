@@ -135,7 +135,7 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */	
-		protected function decrementClickHandler(event:Event):void
+		protected function decrementClickHandler(event:MouseEvent):void
 		{
 			sbModel.value = snap(Math.max(sbModel.minimum, sbModel.value - sbModel.stepSize));
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
@@ -149,7 +149,7 @@ package org.apache.royale.html.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */	
-		protected function incrementClickHandler(event:Event):void
+		protected function incrementClickHandler(event:MouseEvent):void
 		{
 			sbModel.value = snap(Math.min(sbModel.maximum - sbModel.pageSize, sbModel.value + sbModel.stepSize));	
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));

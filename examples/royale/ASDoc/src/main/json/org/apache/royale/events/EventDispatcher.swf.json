@@ -1,0 +1,51 @@
+{ "type": "class",
+  "qname": "org.apache.royale.events.EventDispatcher",
+  "baseClassname": "flash.events.EventDispatcher"
+  ,
+    "description": "This class simply wraps flash.events.EventDispatcher so that no flash packages are needed on the JS side.",
+  "tags": [
+  {  "tagName": "playerversion",
+         "values": ["Flash 10.2", "AIR 2.6"]},
+      {  "tagName": "productversion",
+         "values": ["Royale 0.0"]},
+      {  "tagName": "langversion",
+         "values": ["3.0"]}  ],
+  "members": [
+  { "type": "method",
+        "qname": "org.apache.royale.events.EventDispatcher",
+        "namespace": "",
+        "bindable": [],
+        "details": [],
+        "deprecated": {},
+          "description": "Constructor.",
+        "tags": [
+        {  "tagName": "playerversion",
+               "values": ["Flash 10.2", "AIR 2.6"]},
+            {  "tagName": "productversion",
+               "values": ["Royale 0.0"]},
+            {  "tagName": "langversion",
+               "values": ["3.0"]}  ],
+          "return": "",
+          "params": [{ "name": "target", "type": "org.apache.royale.events.IEventDispatcher"}]}
+      ,
+      { "type": "method",
+        "qname": "addEventListener",
+        "namespace": "public",
+        "bindable": [],
+        "details": [],
+        "deprecated": {},
+          "description": "Adds an event listener.",
+          "return": "void",
+          "params": [{ "name": "type", "type": "String"},{ "name": "handler", "type": "Function"},{ "name": "capture", "type": "Boolean"}]}
+      ,
+      { "type": "method",
+        "qname": "removeEventListener",
+        "namespace": "public",
+        "bindable": [],
+        "details": [],
+        "deprecated": {},
+          "description": "Removes an event listener.",
+          "return": "void",
+          "params": [{ "name": "type", "type": "String"},{ "name": "handler", "type": "Function"},{ "name": "capture", "type": "Boolean"}]}
+      ]
+  }

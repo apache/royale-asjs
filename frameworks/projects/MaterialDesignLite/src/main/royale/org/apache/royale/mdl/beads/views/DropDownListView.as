@@ -66,7 +66,7 @@ package org.apache.royale.mdl.beads.views
                 dropDownList.labelDisplay.classList.add("mdl-textfield__label");
 
                 dropDownList.dropDown = new Select();
-                dropDownList.dropDown.element.classList.add("mdl-textfield__input");
+                dropDownList.dropDown.className = "mdl-textfield__input";
 
                 var emptyOption:Option = new Option();
                 emptyOption.element.style.display = "none";

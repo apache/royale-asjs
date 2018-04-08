@@ -27,6 +27,8 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 *  @royaleignoreimport goog.events.Event
+     * 
+     *  @royalesuppresspublicvarwarning
 	 */
 	public class TreeListData
 	{

@@ -20,13 +20,13 @@ package org.apache.royale.mdl
 {	
 	import org.apache.royale.html.elements.H2;
 
-	COMPILE::JS
+    COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
-	
-	/**
+
+    /**
 	 *  The CardTitleText class is an extended H2 heading used in MDL CardTitle.
 	 *
 	 *  (This is implemented as a class H4 and not as a bead that decorates other html text
@@ -51,7 +51,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-card__title-text";
 		}
 
 		/**
@@ -60,8 +60,7 @@ package org.apache.royale.mdl
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-card__title-text";
+		{
 			addElementToWrapper(this,'h2');
             
             textNode = document.createTextNode('') as Text;

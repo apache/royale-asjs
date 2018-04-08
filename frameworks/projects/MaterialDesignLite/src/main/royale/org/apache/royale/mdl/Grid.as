@@ -24,6 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -62,18 +63,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "mdl-grid";
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
         COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-grid";
-			return addElementToWrapper(this,'div');
-        }
+        private var _classList:CSSClassList;
 
 		protected var _nospacing:Boolean = false;
         /**
@@ -89,15 +88,26 @@ package org.apache.royale.mdl
         {
             return _nospacing;
         }
+
         public function set nospacing(value:Boolean):void
         {
-            _nospacing = value;
-
-			COMPILE::JS
+            if (_nospacing != value)
             {
-                element.classList.toggle("mdl-grid--no-spacing", _nospacing);
-				typeNames = element.className;
+                _nospacing = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-grid--no-spacing";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

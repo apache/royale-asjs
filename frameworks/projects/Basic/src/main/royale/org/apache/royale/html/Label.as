@@ -70,6 +70,7 @@ package org.apache.royale.html
 		public function Label()
 		{
 			super();
+            typeNames = "Label";
 		}
 
         COMPILE::JS
@@ -169,7 +170,7 @@ package org.apache.royale.html
         }
 
         /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -181,8 +182,6 @@ package org.apache.royale.html
 
             element.style.whiteSpace = "nowrap";
 
-            className = "Label";
-            typeNames = "Label";
             return element;
         }
 

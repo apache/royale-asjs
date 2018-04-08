@@ -50,18 +50,8 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-mega-footer__right-section";
 		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-mega-footer__right-section";
-			return addElementToWrapper(this,'div');
-        }
 
 		/**
          *  Configuration depends on parent Footer or IFooterSection.
@@ -79,16 +69,14 @@ package org.apache.royale.mdl
 
 			if(parent is Footer)
 			{
-				element.classList.remove(typeNames);
-				if(!Footer(parent).mini)
+				if (Footer(parent).mini)
 				{
-					typeNames = "mdl-mega-footer__right-section";
-				} else
-				{
-					typeNames = "mdl-mini-footer__right-section";
+                    element.classList.remove(typeNames);
+                    typeNames = "mdl-mini-footer__right-section";
+                    setClassName(computeFinalClassNames());
 				}
-				element.classList.add(typeNames);
-			} else if(parent is IFooterSection)
+			}
+			else if(parent is IFooterSection)
 			{
 
 			}

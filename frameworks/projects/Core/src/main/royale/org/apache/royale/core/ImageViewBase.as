@@ -84,7 +84,8 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IImageModel
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -145,6 +146,10 @@ package org.apache.royale.core
 		
         COMPILE::JS
         private var _sizeHandlerSet:Boolean;
+
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         COMPILE::JS
 		public function setupLoader():void
         {
@@ -211,6 +216,9 @@ package org.apache.royale.core
 			}
 		}
         
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         COMPILE::JS
         protected function loadHandler(event:Object):void
         {
@@ -221,6 +229,7 @@ package org.apache.royale.core
         
         /**
          * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         COMPILE::JS
         protected function sizeChangedHandler(event:Object):void

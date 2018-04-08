@@ -25,6 +25,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
     
 	/**
@@ -61,8 +62,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
+            typeNames = "mdl-layout__tab-bar";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         /**
          * @copy org.apache.royale.core.IDataProviderModel#dataProvider
@@ -76,6 +85,7 @@ package org.apache.royale.mdl
         {
             return ITabModel(model).dataProvider;
         }
+
         override public function set dataProvider(value:Object):void
         {
             ITabModel(model).dataProvider = value;
@@ -93,6 +103,7 @@ package org.apache.royale.mdl
         {
             return ITabModel(model).labelField;
         }
+
         override public function set labelField(value:String):void
         {
             ITabModel(model).labelField = value;
@@ -145,12 +156,11 @@ package org.apache.royale.mdl
 
 			if(parent is Tabs)
 			{
+                element.classList.remove(typeNames);
 				typeNames = "mdl-tabs__tab-bar";
-			} else {
-				typeNames = "mdl-layout__tab-bar";
+
+                setClassName(computeFinalClassNames());
 			}
-			
-			element.classList.add(typeNames);
 
 			if(parent is Tabs && _ripple)
 			{
@@ -172,20 +182,31 @@ package org.apache.royale.mdl
         {
             return _ripple;
         }
+
         public function set ripple(value:Boolean):void
         {
-            _ripple = value;
-
-			if(parent is Tabs && _ripple)
-			{
-				throw new Error("TabBar ripple can not be used if parent is a Tabs component. Use only in Tabs instead to avoid MDL browser error.");
-			}
-
-            COMPILE::JS
+            if (_ripple != value)
             {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-                typeNames = element.className;
+                if(parent is Tabs && _ripple)
+                {
+                    throw new Error("TabBar ripple can not be used if parent is a Tabs component. Use only in Tabs instead to avoid MDL browser error.");
+                }
+
+                _ripple = value;
+
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-js-ripple-effect";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

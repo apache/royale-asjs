@@ -35,6 +35,10 @@ limitations under the License.
         import samples.royalestore.ProductListEvent;
         
         private static var idCounter:int = 0;
+        
+        /**
+         * @royalesuppresspublicvarwarning
+         */
         public var uid:String = (idCounter++).toString();
         
         public static const HEIGHT:int = 30;

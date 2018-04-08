@@ -28,19 +28,45 @@
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
 
-    <property name="windows_config" location="${basedir}/src/main/config/asdoc-config.xml" />
+    <property name="windows_config" location="${basedir}/src/main/config/asdoc-js-config.xml" />
     <condition property="config.path" value="${windows_config}">
         <os family="windows" />
     </condition>
     <property name="config.path" value="${basedir}/src/main/config/asdoc-js-config.xml"/>
+    <property name="windows_swf_config" location="${basedir}/src/main/config/asdoc-swf-config.xml" />
+    <condition property="config.swf.path" value="${windows_swf_config}">
+        <os family="windows" />
+    </condition>
+    <property name="config.swf.path" value="${basedir}/src/main/config/asdoc-swf-config.xml"/>
 
     <include file="${basedir}/../../build_example.xml" />
     
     <target name="main" depends="build_example.compile" description="Clean build of ${example}">
-        <available file="${basedir}/bin-debug/classes.json"
+        <available file="${basedir}/bin-debug/classes.swf.json"
         type="file"
         property="json.exists"/>
         <antcall target="json" />
+        <antcall target="json.swf" />
+        <!-- copy manually patched json files.  Because ASDoc doesn't document
+             flash.*.* classes and browser builtins, some useful ASDoc is
+             missing, so we patch a base class like EventDispatcher so ASDoc
+             looks better -->
+        <copy todir="${basedir}/bin-debug" overwrite="true">
+            <fileset dir="${basedir}/src/main/json">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+        <!-- make copies of all json for js-debug and js-release -->
+        <copy todir="${basedir}/bin/js-debug">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin/js-release">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
@@ -74,16 +100,6 @@
             <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
         </java>
-        <copy todir="${basedir}/bin/js-debug">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/bin/js-release">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
 
     </target>
     
@@ -97,7 +113,7 @@
             <arg value="-external-library-path=${env.AIR_HOME}/frameworks/libs/air/airglobal.swc" />
             <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
-            <arg value="-load-config=${config.path}" />
+            <arg value="-load-config=${config.swf.path}" />
             <arg value="-debug=true" />
             <arg value="-output=${basedir}/bin-debug" />
             <arg value="-window-title=Apache Royale API Reference" />
@@ -108,17 +124,6 @@
             <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
         </java>
-        <copy todir="${basedir}/bin/js-debug">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/bin/js-release">
-            <fileset dir="${basedir}/bin-debug">
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
-        
     </target>
     
     <target name="examine" depends="build_example.get.browser">

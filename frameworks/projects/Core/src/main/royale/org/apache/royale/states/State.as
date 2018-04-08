@@ -46,6 +46,8 @@ package org.apache.royale.states
 			super();
 		}
 		
+        private var _name:String;
+        
         /**
          *  The name of the state.
          *  
@@ -54,7 +56,17 @@ package org.apache.royale.states
          *  @playerversion AIR 1.1
          *  @productversion Royale 1.0.0
          */
-		public var name:String;
+        public function get name():String
+        {
+            return _name;
+        }
+        public function set name(value:String):void
+        {
+            _name = value;
+        }
+        
+        
+        private var _stateGroups:String;
         
         /**
          *  Comma-delimited list of state groups of the state.
@@ -65,7 +77,16 @@ package org.apache.royale.states
          *  @playerversion AIR 1.1
          *  @productversion Royale 1.0.0
          */
-        public var stateGroups:String;
+        public function get stateGroups():String
+        {
+            return _stateGroups;
+        }
+        public function set stateGroups(value:String):void
+        {
+            _stateGroups = value;
+        }
+        
+        private var _overrides:Array;
         
         /**
          *  The array of overrides.  This is normally set by the compiler.
@@ -75,6 +96,13 @@ package org.apache.royale.states
          *  @playerversion AIR 1.1
          *  @productversion Royale 1.0.0
          */
-        public var overrides:Array;
+        public function get overrides():Array
+        {
+            return _overrides;
+        }
+        public function set overrides(value:Array):void
+        {
+            _overrides = value;
+        }
 	}
 }

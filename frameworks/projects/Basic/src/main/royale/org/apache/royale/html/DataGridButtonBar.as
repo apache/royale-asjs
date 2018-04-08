@@ -45,7 +45,7 @@ package org.apache.royale.html
 		public function DataGridButtonBar()
 		{
 			super();
-			className = "DataGridButtonBar";
+			typeNames = "DataGridButtonBar";
 		}
 	}
 }

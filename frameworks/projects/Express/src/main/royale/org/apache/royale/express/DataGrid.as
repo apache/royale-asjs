@@ -65,7 +65,25 @@ package org.apache.royale.express
 			super.addedToParent();
 		}
 		
-		public var dataNotifier:IDataProviderNotifier;
+        private var _dataNotifier:IDataProviderNotifier;
+        /**
+         *  The IDataProviderNotifier that will watch for data
+         *  provider changes.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+		public function get dataNotifier():IDataProviderNotifier
+        {
+            return _dataNotifier;
+        }
+        public function set dataNotifier(value:IDataProviderNotifier):void
+        {
+            _dataNotifier = value;
+        }
+        
 
 		private var _dragEnabled:Boolean = false;
 		/**

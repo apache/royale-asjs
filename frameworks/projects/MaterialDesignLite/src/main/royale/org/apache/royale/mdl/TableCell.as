@@ -47,7 +47,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-			className = "";
+            typeNames = "mdl-data-table__cell--non-numeric";
 		}
 
 		private var _text:String = "";
@@ -82,18 +82,5 @@ package org.apache.royale.mdl
 
 		COMPILE::JS
         protected var textNode:Text;
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            typeNames = "mdl-data-table__cell--non-numeric";
-
-           // element.classList.add("mdl-data-table__cell--non-numeric");
-
-            return super.createElement();;
-        }
 	}
 }

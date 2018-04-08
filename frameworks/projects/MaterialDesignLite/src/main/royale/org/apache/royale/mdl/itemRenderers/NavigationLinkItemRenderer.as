@@ -48,7 +48,8 @@ package org.apache.royale.mdl.itemRenderers
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "mdl-navigation__link";
+		//	className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
 		private var _href:String = "#";
@@ -108,13 +109,21 @@ package org.apache.royale.mdl.itemRenderers
 
 			if(value == null) return;
 
-			if(value.label !== undefined) {
+			if (labelField)
+			{
+                label = String(value[labelField]);
+            }
+			else if(value.label !== undefined)
+			{
                 label = String(value.label);
-			} else {
+			}
+			else
+			{
 				label = String(value);
 			}
 			
-            if(value.href !== undefined) {
+            if(value.href !== undefined)
+			{
                 href = String(value.href);
 			}
 
@@ -135,7 +144,6 @@ package org.apache.royale.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-navigation__link";
             var a:WrappedHTMLElement = addElementToWrapper(this,'a');
             a.setAttribute('href', href);
 

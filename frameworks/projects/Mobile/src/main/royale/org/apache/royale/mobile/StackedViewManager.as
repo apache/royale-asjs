@@ -58,7 +58,7 @@ package org.apache.royale.mobile
 		{
 			super();
 			
-			className = "StackedViewManager";
+			typeNames = "StackedViewManager";
 		}
 		
 		/**

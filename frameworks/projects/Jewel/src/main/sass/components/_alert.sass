@@ -1,0 +1,131 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel Alert
+
+// Alert variables
+$alert-padding: 14px
+$alert-min-width: 350px
+$alert-min-height: 200px
+$alert-header-height: 50px
+$alert-footer-height: 50px
+$alert-border-radius: 3px
+
+$alert-title-font-size: 1.9em
+$alert-title-font-weight: bold
+$alert-title-color: #000000
+
+$alert-label-font-size: 1.1em
+$alert-label-font-weight: normal
+$alert-label-color: #000000
+
+//$alert-close-button-size: 16px
+
+//$alert-control-bar-align: 'center'
+
+$alert-modal-opacity: .5
+
+.jewel.alert
+    display: block
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    margin: 0
+    padding: 0
+    max-width: 100%
+    max-height: 100%
+
+    min-width: $alert-min-width
+    min-height: $alert-min-height
+    
+    border: 0px solid
+    border-radius: $alert-border-radius
+    box-shadow: 0px 6px 60px -10px rgba(112,112,112,0.7)
+    background-color: #FFFFFF
+
+    .jewel.titlebar
+        padding: $alert-padding $alert-padding 0px $alert-padding
+        height: $alert-header-height
+        color: $alert-title-color
+        
+        .jewel.label
+            font:
+                size: $alert-title-font-size
+                weight: $alert-title-font-weight
+
+        // .closebutton
+        //     border: 0px
+        //     padding: 0px
+        //     min-width: $alert-close-button-size
+        //     min-height: $alert-close-button-size
+        //     background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 14 14' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-829, -278)'><g fill='#555555' transform='translate(825, 274)'><path d='M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z'></path></g></g></svg>")
+        //     background-repeat: no-repeat
+        //     background-attachment: fixed
+        //     box-shadow: none
+
+        //     &:hover
+        //         background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 14 14' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-829, -278)'><g fill='#777777' transform='translate(825, 274)'><path d='M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z'></path></g></g></svg>")
+                
+    .Group
+        position: absolute
+        padding: $alert-padding
+        top: $alert-header-height
+        bottom: $alert-footer-height
+        width: 100%
+        overflow-y: auto
+
+        .jewel.label
+            white-space: normal
+            color: $alert-label-color
+            font:
+                size: $alert-label-font-size
+                weight: $alert-label-font-weight
+
+    .jewel.controlbar
+        padding: 0px $alert-padding $alert-padding $alert-padding
+        position: absolute
+        bottom: 0
+        height: $alert-footer-height
+        
+        // @if $alert-control-bar-align == center
+        //     left: 50%
+        //     transform: translate(-50%, 0%)
+        // @else if $alert-control-bar-align == right
+        //     right: 0
+        // @else if $alert-control-bar-align == left
+        //     left: 0
+
+        // > *:first-child
+        //     margin-left: 0px
+        // > *
+        //     margin-left: 6px
+        
+    + .backdrop
+        background-color: rgba(0, 0, 0, $alert-modal-opacity)
+
+j|Alert
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController")
+    IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.AlertView")
+
+@media -royale-swf	
+    j|Alert
+        IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
+        IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")

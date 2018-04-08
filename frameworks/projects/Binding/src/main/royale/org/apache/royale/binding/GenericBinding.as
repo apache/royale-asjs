@@ -32,6 +32,8 @@ package org.apache.royale.binding
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
      */
 	public class GenericBinding implements IBead, IDocument
 	{
@@ -144,6 +146,10 @@ package org.apache.royale.binding
             }
         }
         
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion Function
+         */
         private function getValueFromSource():Object
         {
             if (source is Array)
@@ -181,6 +187,9 @@ package org.apache.royale.binding
             return null;
 		}
         
+        /**
+         * @royaleignorecoercion Array
+         */
         private function applyValue(value:Object):void
         {
 			if (destinationFunction != null)

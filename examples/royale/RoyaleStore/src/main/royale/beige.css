@@ -25,26 +25,12 @@
 
 /*
 //----------------------------
-//  Global styles
-//----------------------------
-*/
-.global
-{
-    highlightAlphas:        .5, .25;
-    borderColor:            #939A9D;
-    headerColors:           #A65904, #E68701;
-    themeColor:             #75B1CE;
-    rollOverColor:          #D6E6EE;
-    selectionColor:         #B8D5E4;
-}
-
-/*
-//----------------------------
 // Type selectors
 //----------------------------
 */
 Application
 {
+    borderColor:            #939A9D;
     backgroundColor:		#EAE6DD;
     backgroundImage:        "assets/beige_background.jpg";
 }

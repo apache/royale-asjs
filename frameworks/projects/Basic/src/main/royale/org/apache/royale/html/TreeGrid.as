@@ -49,7 +49,7 @@ package org.apache.royale.html
 		public function TreeGrid()
 		{
 			super();
-			className = "TreeGrid";
+			typeNames = "TreeGrid";
 		}
 		
 		

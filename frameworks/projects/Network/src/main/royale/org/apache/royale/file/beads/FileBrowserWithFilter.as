@@ -34,7 +34,23 @@ package org.apache.royale.file.beads
 	 */
 	public class FileBrowserWithFilter extends FileBrowser
 	{
-		public var filter:String = "";
+        private var _filter:String = "";
+        /**
+         *  The filter for the FileBrowser
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+		public function get filter():String
+        {
+            return _filter;
+        }
+        public function set filter(value:String):void
+        {
+            _filter = value;
+        }
 		
 		/**
 		 *  @copy org.apache.royale.file.beads.FileBrowser#browse()

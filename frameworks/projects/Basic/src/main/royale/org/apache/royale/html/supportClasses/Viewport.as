@@ -28,9 +28,9 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.geom.Rectangle;
     import org.apache.royale.geom.Size;
-    import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	COMPILE::SWF
 	{
@@ -48,7 +48,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
      */
-	public class Viewport implements IBead, IViewport
+	public class Viewport extends EventDispatcher implements IBead, IViewport
 	{
 		/**
 		 * Constructor
@@ -91,6 +91,7 @@ package org.apache.royale.html.supportClasses
 		
 		/**
 		 * @royaleignorecoercion Class
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		public function set strand(value:IStrand):void

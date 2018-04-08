@@ -66,7 +66,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                return element.innerHTML;
+                return element.textContent;
             }
 		}
 
@@ -81,7 +81,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                this.element.innerHTML = value;
+                this.element.textContent = value;
                 this.dispatchEvent('textChange');
             }
 		}
@@ -129,7 +129,6 @@ package org.apache.royale.html
 		override protected function createElement():WrappedHTMLElement
 		{
 			super.createElement();
-			className = "TextButton";
 			typeNames = "TextButton";
 			return element;
 		}

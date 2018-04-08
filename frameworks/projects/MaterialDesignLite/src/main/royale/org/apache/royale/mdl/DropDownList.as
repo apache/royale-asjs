@@ -59,7 +59,7 @@ package org.apache.royale.mdl
         {
             super();
 
-            className = "";
+            typeNames = 'mdl-textfield mdl-js-textfield';
 
             addBead(new UpgradeElement());
         }
@@ -204,8 +204,8 @@ package org.apache.royale.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = 'mdl-textfield mdl-js-textfield';
-			addElementToWrapper(this,'div');
+			element = super.createElement();
+
             element.classList.add("mdl-textfield--floating-label");
             return element;
         }

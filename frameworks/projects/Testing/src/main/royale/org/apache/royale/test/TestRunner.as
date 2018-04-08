@@ -338,6 +338,9 @@ package org.apache.royale.test
 	}
 }
 
+/**
+ *  @royalesuppresspublicvarwarning
+ */
 class TestInfo
 {
 	public function TestInfo(name:String, reference:Function)

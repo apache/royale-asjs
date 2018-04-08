@@ -24,6 +24,16 @@
 package org.apache.royale.geom
 {
 
+    /**
+     *  2D Matrix
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.7
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
 	public class Matrix
 	{
 		public function Matrix(a:Number = 1, b:Number = 0, c:Number = 0, d:Number = 1, tx:Number = 0, ty:Number = 0)

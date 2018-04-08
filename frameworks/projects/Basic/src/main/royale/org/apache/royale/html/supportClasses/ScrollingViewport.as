@@ -20,19 +20,21 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContentViewHost;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.IScrollingViewport;
 	import org.apache.royale.core.IViewportModel;
+    import org.apache.royale.core.layout.EdgeData;
+    import org.apache.royale.core.ValuesManager;
     COMPILE::SWF
     {
         import org.apache.royale.core.IViewportScroller;
 		import org.apache.royale.html.beads.ScrollBarView;
 		import org.apache.royale.html.beads.models.ScrollBarModel;
-		import org.apache.royale.utils.CSSContainerUtils;
 		import flash.geom.Rectangle;
 		import org.apache.royale.geom.Rectangle;
     }
@@ -53,7 +55,7 @@ package org.apache.royale.html.supportClasses
 	 *  @productversion Royale 0.0
 	 */
 	COMPILE::JS
-	public class ScrollingViewport extends Viewport implements IBead, IViewport
+	public class ScrollingViewport extends Viewport implements IBead, IScrollingViewport
 	{
 		/**
 		 * Constructor
@@ -87,16 +89,19 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		/**
-		 * @royaleignorecoercion HTMLElement 
+		 * @royaleignorecoercion HTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			var component:UIBase;
 			if (contentView == null) {
-				(value as UIBase).element.style.overflow = "auto";
+				component = value as UIBase;
 			} else {
-				(contentView as UIBase).element.style.overflow = "auto";
+				component = contentView as UIBase;
 			}
+			component.element.style.overflow = "auto";
 		}
 		
 		/**
@@ -117,7 +122,7 @@ package org.apache.royale.html.supportClasses
 	}
 	
 	COMPILE::SWF
-	public class ScrollingViewport extends Viewport implements IBead, IViewport
+	public class ScrollingViewport extends Viewport implements IBead, IScrollingViewport
 	{
 		/**
 		 * Constructor
@@ -155,6 +160,7 @@ package org.apache.royale.html.supportClasses
         public function set verticalScrollPosition(value:Number):void
         {
 			_verticalScrollPosition = value;
+            dispatchEvent(new Event("verticalScrollPositionChanged"));
 			handleVerticalScrollChange();
         }
 
@@ -167,6 +173,7 @@ package org.apache.royale.html.supportClasses
         public function set horizontalScrollPosition(value:Number):void
         {
 			_horizontalScrollPosition = value;
+            dispatchEvent(new Event("horizontalScrollPositionChanged"));
 			handleHorizontalScrollChange();
         }
 
@@ -185,6 +192,7 @@ package org.apache.royale.html.supportClasses
 
         /**
          * @copy org.apache.royale.core.IViewport
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
@@ -196,7 +204,7 @@ package org.apache.royale.html.supportClasses
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 			
-			var borderMetrics:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);
 			
 			hostWidth -= borderMetrics.left + borderMetrics.right;
 			hostHeight -= borderMetrics.top + borderMetrics.bottom;
@@ -315,6 +323,7 @@ package org.apache.royale.html.supportClasses
 			contentArea.scrollRect = rect;
 
 			_verticalScrollPosition = vpos;
+            dispatchEvent(new Event("verticalScrollPositionChanged"));
 		}
 
 		private function handleHorizontalScroll(event:Event):void
@@ -326,6 +335,7 @@ package org.apache.royale.html.supportClasses
 			contentArea.scrollRect = rect;
 
 			_horizontalScrollPosition = hpos;
+            dispatchEvent(new Event("horizontalScrollPositionChanged"));
 		}
 
 		private function handleVerticalScrollChange():void

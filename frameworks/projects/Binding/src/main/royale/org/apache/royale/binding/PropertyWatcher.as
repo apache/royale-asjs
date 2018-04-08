@@ -30,6 +30,8 @@ package org.apache.royale.binding
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
      */
 	public class PropertyWatcher extends WatcherBase
 	{
@@ -133,6 +135,7 @@ package org.apache.royale.binding
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.events.ValueChangeEvent
          */                
         protected function changeHandler(event:Event):void
         {
@@ -158,6 +161,8 @@ package org.apache.royale.binding
         
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.binding.PropertyWatcher
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */                
         override public function parentChanged(parent:Object):void
         {
@@ -182,6 +187,10 @@ package org.apache.royale.binding
             notifyListeners();            
         }
 
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion String
+         */
         private function addEventListeners():void
         {
             if (eventNames is String)
@@ -200,6 +209,10 @@ package org.apache.royale.binding
             }
         }
         
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion String
+         */
         private function removeEventListeners():void
         {
             if (eventNames is String)

@@ -42,6 +42,8 @@ package org.apache.royale.net
 	/**
 	 * The URLStream class deals with the underlying platform-specifc architecture for HTTP Requests
 	 * It makes the request and stores the response, dispatching events.
+     * 
+     *  @royalesuppresspublicvarwarning
 	 */
 	public class URLStream extends EventDispatcher
 	{

@@ -222,7 +222,13 @@ package
 			var xml:XML;
 			var i:int;
 			var data:* = node.nodeValue;
-			var qname:QName = getQName(node.nodeName, node.prefix, node.namespaceURI,false);
+			var localName:String = node.nodeName;
+			var prefix:String = node.prefix;
+			if(prefix && localName.indexOf(prefix + ":") == 0)
+			{
+				localName = localName.substr(prefix.length+1);
+			}
+			var qname:QName = getQName(localName, prefix, node.namespaceURI,false);
 			switch(node.nodeType)
 			{
 				case 1:
@@ -238,6 +244,8 @@ package
 					xml = new XML();
 					xml.setNodeKind("text");
 					xml.setName(qname);
+					if(XML.ignoreWhitespace)
+						data = data.trim();
 					xml.setValue(data);
 					break;
 				case 4:
@@ -376,12 +384,15 @@ package
 			);
 			
 		}
+		private static var xmlRegEx:RegExp = /&(?![\w]+;)/g;
+		private static var parser:DOMParser;
 		private static var errorNS:String;
 		private function parseXMLStr(xml:String):void
 		{
 			//escape ampersands
-			xml = xml.replace(/&(?![\w]+;)/g,"&amp;");
-			var parser:DOMParser = new DOMParser();
+			xml = xml.replace(xmlRegEx,"&amp;");
+			if(!parser)
+				parser = new DOMParser();
 			if(errorNS == null)
 			{
 				// get error namespace. It's different in different browsers.
@@ -1356,7 +1367,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function localName():Object
+		public function localName():String
 		{
 			return name().localName;
 		}
@@ -1369,7 +1380,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function name():Object
+		public function name():QName
 		{
 			if(!_name)
 				_name = getQName("","","",false);
@@ -2508,8 +2519,12 @@ package
 				if(prettyPrinting)
 				{
 					var v:String = trimXMLWhitespace(_value);
+					if(name().localName == "#cdata-section")
+						return indent + v;
 					return indent + escapeElementValue(v);
 				}
+				if(name().localName == "#cdata-section")
+					return _value;
 				return escapeElementValue(_value);
 			}
 			if(this.nodeKind() == "attribute")
@@ -2642,6 +2657,8 @@ package
 		override public function valueOf():*
 		{
 			var str:String = this.toString();
+			if(str == "")
+				return str;
 			var num:Number = Number(str);
 			return isNaN(num) ? str : num;
 		}

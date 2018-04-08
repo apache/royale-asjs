@@ -50,7 +50,7 @@ package org.apache.royale.html
 		{
 			super();
 			
-			className = "TableRow";
+			typeNames = "TableRow";
 		}
 		
 		/**

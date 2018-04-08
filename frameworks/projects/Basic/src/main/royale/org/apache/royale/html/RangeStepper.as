@@ -44,7 +44,7 @@ package org.apache.royale.html
 		{
 			super();
 
-			className = "RangeStepper";
+			typeNames = "RangeStepper";
 
 			setWidthAndHeight(40, 60, true);
 		}

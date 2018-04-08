@@ -119,7 +119,7 @@ ButtonBarButtonItemRenderer
 
   speak: none;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;  
+  /* -moz-osx-font-smoothing: grayscale;   */
   
   font-size: 20px;
   line-height: 20px;
@@ -398,7 +398,7 @@ PanelWithControlBar
 
   speak: none;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;  
+  /* -moz-osx-font-smoothing: grayscale;   */
   
   font-size: 20px;
   line-height: 20px;

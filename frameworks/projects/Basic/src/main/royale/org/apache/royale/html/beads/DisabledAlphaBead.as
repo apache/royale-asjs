@@ -62,6 +62,7 @@ package org.apache.royale.html.beads
 		
 		private var _strand:IStrand;
 
+        private var _enabledAlpha:Number = 1.0;
         /**
          *  The alpha of the element when enabled. Defaults to 1.0;
 		 *  @langversion 3.0
@@ -69,8 +70,17 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
          */
-		public var enabledAplha:Number = 1.0;
+        public function get enabledAlpha():Number
+        {
+            return _enabledAlpha;
+        }
+        public function set enabledAlpha(value:Number):void
+        {
+            _enabledAlpha = value;
+        }
 
+        private var _disabledAlpha:Number = 0.5;
+        
         /**
          *  The alpha of the element when disabled. Defaults to 0.5;
 		 *  @langversion 3.0
@@ -78,7 +88,14 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
          */
-        public var disabledAlpha:Number = 0.5;
+        public function get disabledAlpha():Number
+        {
+            return _disabledAlpha;
+        }
+        public function set disabledAlpha(value:Number):void
+        {
+            _disabledAlpha = value;
+        }
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -123,7 +140,7 @@ package org.apache.royale.html.beads
             } else {
                 disabled = value;
             }
-            host.alpha = disabled ? disabledAlpha : enabledAplha;
+            host.alpha = disabled ? disabledAlpha : enabledAlpha;
 		}
 		
 	}

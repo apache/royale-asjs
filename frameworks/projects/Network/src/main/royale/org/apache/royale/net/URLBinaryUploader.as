@@ -73,6 +73,8 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */		
 		public var onUploadProgress:Function;
 

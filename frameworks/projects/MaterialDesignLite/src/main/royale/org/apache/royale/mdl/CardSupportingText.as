@@ -19,13 +19,7 @@
 package org.apache.royale.mdl
 {
 	import org.apache.royale.mdl.supportClasses.CardInner;
-    
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-    
+
 	/**
 	 *  The CardSupportingText class is a inner card container component.
 	 *  Its mission is to hold text info for the user.
@@ -48,16 +42,8 @@ package org.apache.royale.mdl
 		public function CardSupportingText()
 		{
 			super();
+
+            typeNames = "mdl-card__supporting-text";
 		}
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-card__supporting-text";
-			return addElementToWrapper(this,'div');
-        }    
 	}
 }

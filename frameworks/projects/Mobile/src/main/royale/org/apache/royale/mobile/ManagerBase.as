@@ -50,6 +50,7 @@ package org.apache.royale.mobile
 		public function ManagerBase()
 		{
 			super();
+            typeNames = 'ManagerBase';
 			
 			_contentArea = new UIBase();
 			
@@ -74,7 +75,6 @@ package org.apache.royale.mobile
 		override protected function createElement():WrappedHTMLElement
 		{
 			super.createElement();
-			element.className = 'ManagerBase';
 			
 			_contentArea.positioner.style['width'] = '100%';
 			_contentArea.positioner.style['height'] = '100%';

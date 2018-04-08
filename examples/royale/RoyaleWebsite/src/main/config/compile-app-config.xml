@@ -19,10 +19,6 @@
 <royale-config>
     <compiler>
         <targets><target>JSRoyale</target></targets>
-        <exclude-defaults-css-files>
-            <filename>BasicJS.swc:defaults.css</filename>
-            <filename>Basic.swc:defaults.css</filename>
-        </exclude-defaults-css-files>
     </compiler>
     <html-template>../resources/royale-index-template.html</html-template>
 </royale-config>

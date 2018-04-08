@@ -40,5 +40,20 @@ package models
 		{
 			return _states;
 		}
+        
+        public var _bigArray:Array;
+        
+        public function get bigArray():Array
+        {
+            if (!_bigArray)
+            {
+                _bigArray = [];
+                for (var i:int = 0; i < 1000; i++)
+                {
+                    _bigArray.push("row " + i.toString());
+                }
+            }
+            return _bigArray;
+        }
 	}
 }

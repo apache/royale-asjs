@@ -32,7 +32,7 @@ COMPILE::SWF
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.8
      */
 	public class BrowserResizeListener implements IBead
 	{
@@ -42,7 +42,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function BrowserResizeListener()
 		{
@@ -50,15 +50,26 @@ COMPILE::SWF
 		
         private var app:IInitialViewApplication;
         
+        private var _minHeight:Number;
+        
         /**
          *  Minimum height
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
-        public var minHeight:Number;
+        public function get minHeight():Number
+        {
+            return _minHeight;
+        }
+        public function set minHeight(value:Number):void
+        {
+            _minHeight = value;
+        }
+        
+        private var _minWidth:Number;
         
         /**
          *  Minimum width
@@ -66,9 +77,16 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
-        public var minWidth:Number;
+        public function get minWidth():Number
+        {
+            return _minWidth;
+        }
+        public function set minWidth(value:Number):void
+        {
+            _minWidth = value;
+        }
         
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -76,7 +94,8 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IInitialViewApplication
          */
         public function set strand(value:IStrand):void
         {

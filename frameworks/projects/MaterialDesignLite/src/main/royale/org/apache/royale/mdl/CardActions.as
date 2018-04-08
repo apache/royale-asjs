@@ -19,13 +19,7 @@
 package org.apache.royale.mdl
 {
 	import org.apache.royale.mdl.supportClasses.CardInner;
-    
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-    
+
 	/**
 	 *  The CardActions class is a inner card container component.
 	 *  Its mission is to hold buttons or other ways to present
@@ -49,16 +43,8 @@ package org.apache.royale.mdl
 		public function CardActions()
 		{
 			super();
+
+            typeNames = "mdl-card__actions";
 		}
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-card__actions";
-			return addElementToWrapper(this,'div');
-        }    
 	}
 }

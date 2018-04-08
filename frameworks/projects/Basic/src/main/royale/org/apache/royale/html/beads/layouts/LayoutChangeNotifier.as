@@ -31,7 +31,7 @@ package org.apache.royale.html.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class LayoutChangeNotifier implements IBead
 	{
@@ -41,7 +41,7 @@ package org.apache.royale.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function LayoutChangeNotifier()
 		{
@@ -55,7 +55,7 @@ package org.apache.royale.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -71,7 +71,7 @@ package org.apache.royale.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
         public function set initialValue(value:Object):void
         {
@@ -85,7 +85,9 @@ package org.apache.royale.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IBeadView
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set watchedProperty(value:Object):void
 		{

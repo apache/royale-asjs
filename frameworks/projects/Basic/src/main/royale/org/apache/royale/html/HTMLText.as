@@ -109,7 +109,6 @@ package org.apache.royale.html
         {
 			addElementToWrapper(this,'span');
 
-            className = "HTMLText";
             typeNames = "HTMLText";
             return element;
         }

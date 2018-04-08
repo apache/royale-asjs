@@ -49,6 +49,7 @@ package org.apache.royale.html.supportClasses
 		public function MXMLItemRenderer()
 		{
 			super();
+            typeNames = "MXMLItemRenderer";
 		}
 
         [Bindable("dataChange")]

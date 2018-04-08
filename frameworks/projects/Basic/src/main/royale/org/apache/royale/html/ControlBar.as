@@ -63,7 +63,7 @@ package org.apache.royale.html
 		{
 			super();
 
-			className = "ControlBar";
+			typeNames = "ControlBar";
 		}
 
 		/**

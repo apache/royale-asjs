@@ -84,6 +84,8 @@ public class Point extends flash.geom.Point
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion Royale 0.0
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 COMPILE::JS
 public class Point

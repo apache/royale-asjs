@@ -156,6 +156,8 @@ public class Tween extends Effect
 
     /**
      *  The list of tweens that are currently playing.
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public static var activeTweens:Object = { };
 
@@ -177,6 +179,8 @@ public class Tween extends Effect
 
     /**
      *  Used by effects to get the current effect time tick.
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public static var currentTime:Number = NaN;
 
@@ -188,6 +192,7 @@ public class Tween extends Effect
 
     /**
      *  @private
+     *  @royaleignorecoercion org.apache.royale.core.IEffectTimer
      */
     private static function addTween(tween:Tween):void
     {
@@ -221,6 +226,7 @@ public class Tween extends Effect
 
     /**
      *  @royaleignorecoercion org.apache.royale.effects.Tween
+     *  @royaleignorecoercion Number
      *  @private
      */
     private static function updateHandler(event:ValueEvent):void
@@ -298,15 +304,41 @@ public class Tween extends Effect
      */
     private var userEquation:Function;
 
+    private var _endValue:Number;
+    
     /**
      *  Final value of the animation.
      */
-    public var endValue:Number;
+    public function get endValue():Number
+    {
+        return _endValue;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set endValue(value:Number):void
+    {
+        _endValue = value;
+    }
 
+    private var _startValue:Number;
+    
     /**
      *  Initial value of the animation.
      */
-    public var startValue:Number;
+    public function get startValue():Number
+    {
+        return _startValue;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set startValue(value:Number):void
+    {
+        _startValue = value;
+    }
 
     /**
      *  @private
@@ -330,6 +362,8 @@ public class Tween extends Effect
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 1.0.0
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var listener:Object;
 

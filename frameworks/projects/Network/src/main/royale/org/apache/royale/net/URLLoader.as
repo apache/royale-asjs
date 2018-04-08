@@ -77,6 +77,8 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */        
 		public var requestStatus:int;
 		
@@ -88,6 +90,9 @@ package org.apache.royale.net
 			onProgress = null;
 			onStatus = null;
 		}
+        
+        private var _onComplete:Function;
+
 		/**
 		 *  Callback for complete event.
 		 *  
@@ -96,8 +101,17 @@ package org.apache.royale.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public var onComplete:Function;
+		public function get onComplete():Function
+        {
+            return _onComplete;
+        }
+        public function set onComplete(value:Function):void
+        {
+            _onComplete = value;
+        }
 		
+        private var _onError:Function;
+        
 		/**
 		 *  Callback for error event.
 		 *  
@@ -106,8 +120,17 @@ package org.apache.royale.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public var onError:Function;
+        public function get onError():Function
+        {
+            return _onError;
+        }
+        public function set onError(value:Function):void
+        {
+            _onError = value;
+        }
 		
+        private var _onProgress:Function;
+        
 		/**
 		 *  Callback for progress event.
 		 *  
@@ -116,8 +139,17 @@ package org.apache.royale.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public var onProgress:Function;
+        public function get onProgress():Function
+        {
+            return _onProgress;
+        }
+        public function set onProgress(value:Function):void
+        {
+            _onProgress = value;
+        }
 		
+        private var _onStatus:Function;
+        
 		/**
 		 *  Callback for status event.
 		 *  
@@ -126,7 +158,14 @@ package org.apache.royale.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public var onStatus:Function;
+        public function get onStatus():Function
+        {
+            return _onStatus;
+        }
+        public function set onStatus(value:Function):void
+        {
+            _onStatus = value;
+        }
 		
 		/**
 		 *  Convenience function for complete event to allow chaining.

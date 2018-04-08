@@ -24,6 +24,7 @@ package org.apache.royale.mdl.supportClasses
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -48,17 +49,14 @@ package org.apache.royale.mdl.supportClasses
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
         COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this,'div');
-        }
+        private var _classList:CSSClassList;
 
 		private var _border:Boolean = false;
         /**
@@ -76,13 +74,17 @@ package org.apache.royale.mdl.supportClasses
         }
         public function set border(value:Boolean):void
         {
-			_border = value;
+            if (_border != value)
+            {
+                _border = value;
 
-			COMPILE::JS
-    		{
-				element.classList.toggle("mdl-card--border", _border);
-				typeNames = element.className;
-			}
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-card--border";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
+            }
         }
 
 		private var _expand:Boolean = false;
@@ -100,15 +102,26 @@ package org.apache.royale.mdl.supportClasses
         {
             return _expand;
         }
+
         public function set expand(value:Boolean):void
         {
-			_expand = value;
+            if (_expand != value)
+            {
+                _expand = value;
 
-			COMPILE::JS
-    		{
-				element.classList.toggle("mdl-card--expand", _expand);
-				typeNames = element.className;
-			}
+                COMPILE::JS
+                {
+                    var classVal:String = "mdl-card--expand";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
+                }
+            }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

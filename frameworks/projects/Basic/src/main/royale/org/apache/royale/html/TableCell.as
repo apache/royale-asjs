@@ -49,7 +49,7 @@ package org.apache.royale.html
 		{
 			super();
 			
-			className = "TableCell";
+			typeNames = "TableCell";
 		}
 		
 		/**

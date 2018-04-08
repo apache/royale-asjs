@@ -20,12 +20,6 @@ package org.apache.royale.mdl
 {
 	import org.apache.royale.core.UIBase;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;    
-        import org.apache.royale.html.util.addElementToWrapper;        
-    }
-	
     /**
      *  The Spacer class takes up space in the UI layout.
      *
@@ -48,18 +42,7 @@ package org.apache.royale.mdl
 		{
 			super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-        }
-        
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
             typeNames = "mdl-layout-spacer";
-			return addElementToWrapper(this,'div');
-        }        
-
+        }
 	}
 }

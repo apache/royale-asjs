@@ -78,6 +78,7 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 */
 	protected var document:Object;
 
+    private var _destinationID:String;
 
 	/**
 	 *  The destination object.  It is always the same
@@ -89,8 +90,18 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public var destinationID:String;
+    public function get destinationID():String
+    {
+        return _destinationID;
+    }
+    
+    public function set destinationID(value:String):void
+    {
+        _destinationID = value;
+    }
 
+    private var _sourcePropertyName:String;
+    
 	/**
 	 *  If not null, the name of a property on the
 	 *  mxml document that is being watched for changes.
@@ -100,8 +111,18 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public var sourcePropertyName:String;
+    public function get sourcePropertyName():String
+    {
+        return _sourcePropertyName;
+    }
+    
+    public function set sourcePropertyName(value:String):void
+    {
+        _sourcePropertyName = value;
+    }
 
+    private var _destinationPropertyName:String;
+    
 	/**
 	 *  The name of the property on the strand that
 	 *  is set when the source property changes.
@@ -111,7 +132,15 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public var destinationPropertyName:String;
+    public function get destinationPropertyName():String
+    {
+        return _destinationPropertyName;
+    }
+    
+    public function set destinationPropertyName(value:String):void
+    {
+        _destinationPropertyName = value;
+    }
 
 
 

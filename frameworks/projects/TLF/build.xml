@@ -88,6 +88,7 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
+            <arg value="-warn-public-vars=false" />
             <arg value="-js-output-optimization=skipAsCoercions"/>
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-output=${basedir}/target/${target.name}" />

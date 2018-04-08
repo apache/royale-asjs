@@ -40,7 +40,7 @@ import  org.apache.royale.html.supportClasses.StringItemRenderer;
 		 */
 		public function AttributeRenderer()
 		{
-			typeNames = "AttributeRenderer"
+			typeNames += " AttributeRenderer"
 		}
 
 		override public function set text(value:String):void

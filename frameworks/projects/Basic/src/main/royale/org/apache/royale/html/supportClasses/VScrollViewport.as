@@ -20,6 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContentViewHost;
 	import org.apache.royale.core.IParentIUIBase;
@@ -27,12 +28,13 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IViewport;
 	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.layout.EdgeData;
+    import org.apache.royale.core.ValuesManager;
     COMPILE::SWF
     {
         import org.apache.royale.core.IViewportScroller;
 		import org.apache.royale.html.beads.ScrollBarView;
 		import org.apache.royale.html.beads.models.ScrollBarModel;
-		import org.apache.royale.utils.CSSContainerUtils;
 		import flash.geom.Rectangle;
 		import org.apache.royale.geom.Rectangle;
     }
@@ -48,7 +50,7 @@ package org.apache.royale.html.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.2
 	 */
 	COMPILE::JS
 	public class VScrollViewport extends ScrollingViewport
@@ -59,7 +61,7 @@ package org.apache.royale.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.2
 		 */
 		public function VScrollViewport()
 		{
@@ -89,23 +91,7 @@ package org.apache.royale.html.supportClasses
 				(contentView as UIBase).element.style.overflow = "hidden";
 				(contentView as UIBase).element.style.overflowY = "auto";
 			}
-		}
-		
-		/**
-		* @copy org.apache.royale.core.IViewport
-		*/
-		override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
-		{
-			// does nothing for the JS platform
-		}
-		
-		/**
-		 * @copy org.apache.royale.core.IViewport
-		 */
-		override public function layoutViewportAfterContentLayout(contentSize:Size):void
-		{
-			// does nothing for the JS platform
-		}
+		}		
 	}
 	
 	COMPILE::SWF
@@ -117,7 +103,7 @@ package org.apache.royale.html.supportClasses
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion Royale 0.0
+	     *  @productversion Royale 0.9.2
 		 */
 		public function VScrollViewport()
 		{
@@ -188,7 +174,7 @@ package org.apache.royale.html.supportClasses
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 			
-			var borderMetrics:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);
 			
 			hostWidth -= borderMetrics.left + borderMetrics.right;
 			hostHeight -= borderMetrics.top + borderMetrics.bottom;

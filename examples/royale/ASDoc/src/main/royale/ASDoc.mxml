@@ -49,6 +49,7 @@ limitations under the License.
     <js:beads>
         <js:HTTPService id="service">
         </js:HTTPService>
+        <js:JSONReviver id="reviver" />
         <js:ViewSourceContextMenuOption />
     </js:beads>
 </js:Application>

@@ -52,22 +52,100 @@ package org.apache.royale.states
 			super();
 		}
 		
-        public var items:Array;
+        private var _items:Array;
         
-		public var itemsDescriptorIndex:int;     
+        public function get items():Array
+        {
+            return _items;
+        }
+        public function set items(value:Array):void
+        {
+            _items = value;
+        }
+        
+		private var _itemsDescriptorIndex:int;     
+        
+        public function get itemsDescriptorIndex():int
+        {
+            return _itemsDescriptorIndex;
+        }
+        public function set itemsDescriptorIndex(value:int):void
+        {
+            _itemsDescriptorIndex = value;
+        }
 
-        public var itemsDescriptor:ItemAndDescriptor;     
+        private var _itemsDescriptor:ItemAndDescriptor;  
         
-        public var destination:String;
+        public function get itemsDescriptor():ItemAndDescriptor
+        {
+            return _itemsDescriptor;
+        }
         
-        public var propertyName:String;
+        public function set itemsDescriptor(value:ItemAndDescriptor):void
+        {
+            _itemsDescriptor = value;
+        }
         
-        public var position:String;
+        private var _destination:String;
         
-        public var relativeTo:String;
+        public function get destination():String
+        {
+            return _destination;
+        }
+        public function set destination(value:String):void
+        {
+            _destination = value;
+        }
         
-        public var document:Object;
+        private var _propertyName:String;
+
+        public function get propertyName():String
+        {
+            return _propertyName;
+        }
+        public function set propertyName(value:String):void
+        {
+            _propertyName = value;
+        }
+
+        private var _position:String;
         
+        public function get position():String
+        {
+            return _position;
+        }
+        public function set position(value:String):void
+        {
+            _position = value;
+        }
+        
+        private var _relativeTo:String;
+        
+        public function get relativeTo():String
+        {
+            return _relativeTo;
+        }
+        public function set relativeTo(value:String):void
+        {
+            _relativeTo = value;
+        }
+        
+        private var _document:Object;
+        
+        public function get document():Object
+        {
+            return _document;
+        }
+        public function set document(value:Object):void
+        {
+            _document = value;
+        }
+        
+        /**
+         * @see org.apache.royale.core.IDocument#setDocument
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.states.ItemAndDescriptor
+         */
         public function setDocument(document:Object, id:String = null):void
         {
             this.document = document;

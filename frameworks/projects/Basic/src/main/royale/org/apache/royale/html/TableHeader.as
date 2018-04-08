@@ -48,7 +48,7 @@ package org.apache.royale.html
 		{
 			super();
 			
-			className = "TableHeader";
+			typeNames = "TableHeader";
 		}
 		
 		/**
