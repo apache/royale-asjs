@@ -21,6 +21,7 @@ package mx.core
 {
 	import org.apache.royale.core.ContainerBaseStrandChildren;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContentViewHost;
@@ -31,13 +32,12 @@ package mx.core
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.IStrandPrivate;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.events.ValueEvent;
-	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.states.State;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -704,9 +704,8 @@ public class Container extends UIComponent
 		}
 		
 		var o:EdgeMetrics = _viewMetricsAndPadding;
-		var vm:EdgeMetrics = new EdgeMetrics();//viewMetrics;
-		var rect:Rectangle = CSSContainerUtils.getBorderMetrics(this);
-		vm.convertFromRectangle(rect);
+		var ed:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this);
+        var vm:EdgeMetrics = new EdgeMetrics(ed.left, ed.top, ed.right, ed.bottom);
 		
 		o.left = vm.left + getStyle("paddingLeft");
 		o.right = vm.right + getStyle("paddingRight");
