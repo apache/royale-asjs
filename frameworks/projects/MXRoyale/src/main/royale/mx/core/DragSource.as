@@ -41,11 +41,12 @@ package mx.core
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class DragSource
 {
-	include "../core/Version.as";
+	/* include "../core/Version.as"; */
 	
 	//--------------------------------------------------------------------------
 	//
@@ -59,7 +60,7 @@ public class DragSource
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function DragSource()
 	{
@@ -108,7 +109,7 @@ public class DragSource
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function get formats():Array /* of String */
 	{
@@ -134,7 +135,7 @@ public class DragSource
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function addData(data:Object, format:String):void
 	{
@@ -159,7 +160,7 @@ public class DragSource
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function addHandler(handler:Function,
 							   format:String):void
@@ -195,7 +196,7 @@ public class DragSource
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function dataForFormat(format:String):Object
 	{
@@ -222,7 +223,7 @@ public class DragSource
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function hasFormat(format:String):Boolean
 	{
