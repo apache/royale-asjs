@@ -37,6 +37,7 @@ internal class MXRoyaleClasses
 	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.events.DividerEvent; DividerEvent;
 	import mx.events.ScrollEvent; ScrollEvent;
 	import mx.events.MoveEvent; MoveEvent;
 	import mx.events.ValidationResultEvent; ValidationResultEvent;
