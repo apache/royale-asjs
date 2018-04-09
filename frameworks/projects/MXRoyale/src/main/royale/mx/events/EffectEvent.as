@@ -20,8 +20,10 @@
 package mx.events
 {
 
-import flash.events.Event;
-import mx.effects.IEffectInstance;
+/* import flash.events.Event;
+ */
+ import org.apache.royale.events.Event;
+ import mx.effects.IEffectInstance;
 
 /**
  *  Represents event objects that are specific to Flex effects. 
@@ -39,12 +41,13 @@ import mx.effects.IEffectInstance;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class EffectEvent extends Event
 {
-    include "../core/Version.as";
-
+/*     include "../core/Version.as";
+ */
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
@@ -80,7 +83,7 @@ public class EffectEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const EFFECT_END:String = "effectEnd";
     
@@ -113,7 +116,7 @@ public class EffectEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const EFFECT_STOP:String = "effectStop";
     
@@ -146,7 +149,7 @@ public class EffectEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const EFFECT_START:String = "effectStart";
 	
@@ -179,7 +182,7 @@ public class EffectEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const EFFECT_REPEAT:String = "effectRepeat";
 
@@ -212,7 +215,7 @@ public class EffectEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const EFFECT_UPDATE:String = "effectUpdate";
 
@@ -237,7 +240,7 @@ public class EffectEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function EffectEvent(eventType:String, bubbles:Boolean = false,
 								cancelable:Boolean = false,
@@ -266,7 +269,7 @@ public class EffectEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var effectInstance:IEffectInstance;
 	
@@ -279,7 +282,7 @@ public class EffectEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():Event
 	{
 		return new EffectEvent(type, bubbles, cancelable, effectInstance);
 	}
