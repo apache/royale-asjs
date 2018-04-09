@@ -20,7 +20,9 @@
 package mx.events
 {
 
-import flash.events.Event;
+/* import flash.events.Event;
+ */
+ import org.apache.royale.events.Event;
 
 /**
  *  Represents event objects that are dispatched when the size of a Flex 
@@ -31,12 +33,13 @@ import flash.events.Event;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class ResizeEvent extends Event
 {
-    include "../core/Version.as";
-
+/*     include "../core/Version.as";
+ */
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
@@ -69,7 +72,7 @@ public class ResizeEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const RESIZE:String = "resize";
 
@@ -97,7 +100,7 @@ public class ResizeEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function ResizeEvent(type:String, bubbles:Boolean = false,
 							    cancelable:Boolean = false,
@@ -125,7 +128,7 @@ public class ResizeEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var oldHeight:Number;
 
@@ -139,7 +142,7 @@ public class ResizeEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var oldWidth:Number;
 
@@ -152,7 +155,7 @@ public class ResizeEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():Event
 	{
 		return new ResizeEvent(type, bubbles, cancelable, oldWidth, oldHeight);
 	}
