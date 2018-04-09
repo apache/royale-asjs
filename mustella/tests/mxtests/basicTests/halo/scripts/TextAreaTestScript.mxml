@@ -22,7 +22,7 @@
 	<!-- this set of lines form a template that must be in each unit test -->
 	<mx:Script>
 	<![CDATA[
-	public static function init(o:DisplayObject):void
+	public static function init(o:Object):void
 	{
 	}
 	]]>
@@ -51,12 +51,17 @@
 		</TestCase>
 		<TestCase testID="TextAreaTest1">
 			<body>
-				<SetProperty target="haloTextAreaTests.testTextArea" propertyName="text"
+                <DispatchMouseClickEvent target="haloTextAreaTests.testTextArea" localX="10" localY="10" />
+                <DispatchKeyEvent char="This is a TextArea and it contains lots of text which should word wrap and eventually cause scrollbars to appear.  The validation will test for the scrollbar properties" />
+                <AssertPropertyValue target="haloTextAreaTests.testTextArea" propertyName="text" value="This is a TextArea and it contains lots of text which should word wrap and eventually cause scrollbars to appear.  The validation will test for the scrollbar properties" />
+<!-- original
+                <SetProperty target="haloTextAreaTests.testTextArea" propertyName="text"
 					value="This is a TextArea and it contains lots of text which should word wrap and eventually cause scrollbars to appear.  The validation will test for the scrollbar properties" />
 				<AssertEvent target="haloTextAreaTests.testTextArea" eventName="updateComplete" eventClass="mx.events::FlexEvent" numExpectedEvents="1" />
 				<AssertPropertyValue target="haloTextAreaTests.testTextArea" propertyName="numChildren" value="4" />
 				<AssertPropertyValue target="haloTextAreaTests.testTextArea.getChildAt(3)" propertyName="className" value="VScrollBar" />
-			</body>
+-->
+            </body>
 		</TestCase>
 	</testCases>
 </UnitTester>

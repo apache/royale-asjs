@@ -87,11 +87,16 @@
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
+    <component id="CrossBrowserFireListenerOverrideBead" class="org.apache.royale.html.beads.CrossBrowserFireListenerOverrideBead" />
     <component id="AccessibilityAltBead" class="org.apache.royale.html.beads.AccessibilityAltBead" />
     <component id="DataGridColumnChangePropagator" class="org.apache.royale.html.beads.DataGridColumnChangePropagator" />
     <component id="DataGridColumnForceChangePropagator" class="org.apache.royale.html.beads.DataGridColumnForceChangePropagator" />
     <component id="SingleSelectionContainerBead" class="org.apache.royale.html.beads.SingleSelectionContainerBead" />
     <!--<component id="MultilineTextFieldView" class="org.apache.royale.html.beads.MultilineTextFieldView"/>-->
+
+    <component id="ApplicationParameters" class="org.apache.royale.html.beads.ApplicationParametersBead"/>
+    <component id="ApplicationParametersCaseInsensitive" class="org.apache.royale.html.beads.ApplicationParametersCaseInsensitiveBead"/>
+    <component id="IEEventAdapter" class="org.apache.royale.html.beads.IEEventAdapterBead"/>
 
     <component id="SimpleAlert" class="org.apache.royale.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.royale.html.Alert"/>
@@ -130,7 +135,7 @@
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />
     <component id="PasswordInputRemovableBead" class="org.apache.royale.html.accessories.PasswordInputRemovableBead" />
     <component id="TextPromptBead" class="org.apache.royale.html.accessories.TextPromptBead" />
-    <component id="TextOverflow" class="org.apache.royale.html.beads.TextOverflow" />
+    <component id="EllipsisOverflow" class="org.apache.royale.html.beads.EllipsisOverflow" />
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
@@ -145,6 +150,7 @@
     <component id="ClippingViewport" class="org.apache.royale.html.supportClasses.Viewport" lookupOnly="true" />
     <component id="Viewport" class="org.apache.royale.html.supportClasses.Viewport" />
     <component id="OverflowViewport" class="org.apache.royale.html.supportClasses.OverflowViewport" />
+    <component id="InfiniteVScroller" class="org.apache.royale.html.beads.InfiniteVScroller" />
 
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel" />
     <component id="ArrayListSelectionModel" class="org.apache.royale.html.beads.models.ArrayListSelectionModel" />
@@ -222,5 +228,7 @@
     <component id="MenuItemRenderer" class="org.apache.royale.html.supportClasses.MenuItemRenderer"/>
     <component id="MenuBarItemRenderer" class="org.apache.royale.html.supportClasses.MenuBarItemRenderer"/>
     <component id="CascadingMenuItemRenderer" class="org.apache.royale.html.supportClasses.CascadingMenuItemRenderer" />
+
+    <component id="CascadingMenuFactory" class="org.apache.royale.html.beads.CascadingMenuFactory" />
 
 </componentPackage>

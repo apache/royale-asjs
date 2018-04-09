@@ -66,9 +66,13 @@ limitations under the License.
 	
 	<mx:VBox id="vbox1">
 		<mx:Label text="Hello World"/>
-		<mx:Button label="Change Icon" click="changeIcon()" />
-		<mx:Button id="button2" label="Make Shorter" className="GreenButton" icon="assets/smallgreenrect.jpg" click="otherPushMe()"/>
+		<mx:Button label="Change Icon" click="changeIcon()"
+		           toolTip="Changes the icon in the button below." />
+		<mx:Button id="button2" label="Make Shorter" icon="assets/smallgreenrect.jpg" 
+		           click="otherPushMe()" toolTip="Makes the text below a lot shorter."/>
 		<mx:Image source="assets/mediumredrect.jpg" toolTip="Green Square"  />
+		<mx:NumericStepper minimum="50" maximum="100" value="75" />
+		<mx:Spacer height="30" />
 		<mx:Text id="text1" toolTip="More than meets the eye.">
 			<mx:html><![CDATA[
 				This is <b>Text!</b> This more than a few words in it to show how
@@ -78,10 +82,16 @@ limitations under the License.
 	</mx:VBox>
 	<mx:HBox id="hbox1">
 		<mx:Label text="Hello World"/>
+		<mx:LinkButton label="Apache.org" />
 		<mx:Button label="Push Me Longer Title" toolTip="I do nothing" />
 		<mx:Button label="Green Icon Button" className="GreenButton" icon="assets/smallgreenrect.jpg" toolTip="I also do nothing"  />
 		<mx:Image source="assets/mediumredrect.jpg" toolTip="Green Square"  />
 	</mx:HBox>
+	<mx:Canvas width="300" height="300">
+		<mx:Label text="At 0,0" x="0" y="0" />
+		<mx:Label text="At 100,100" x="100" y="100" />
+		<mx:Label text="At 200,200" x="200" y="200" />
+	</mx:Canvas>
 	<mx:TextArea text="This is the TextArea control!"
 		maxChars="100"/>
 
