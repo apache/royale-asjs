@@ -97,12 +97,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get labelField():String
 		{
 			return IDataProviderModel(model).labelField;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
 		public function set labelField(value:String):void
 		{
             IDataProviderModel(model).labelField = value;
@@ -114,12 +118,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
         public function get dataProvider():Object
         {
             return IDataProviderModel(model).dataProvider;
         }
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
         public function set dataProvider(value:Object):void
         {
             IDataProviderModel(model).dataProvider = value;
@@ -132,7 +140,8 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
 		public function get presentationModel():IListPresentationModel
 		{

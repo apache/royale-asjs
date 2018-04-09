@@ -135,15 +135,24 @@ package org.apache.royale.utils
                 return true;
             if (rightOperand === Object)
                 return true; // every value is an Object in ActionScript except null and undefined (caught above)
-            
-			if (typeof leftOperand === 'string')
+            // A little faster to only call typeof once
+			var theType:String = typeof leftOperand;
+			//TODO This is actually incorrect for 'constructed' strings
+			// The correct way is using Object.prototype.toString.call(leftOperand) == '[object String]'
+			// But this is about 50 times slower than typeof
+			// "is String" should probably be pulled out into a separate function
+			// which is called directly by the compiler to deal with it in the most performant manner.
+			// Another (possibly better) option would be to have the compiler throw an error
+			// if new is used with String, Number or Boolean. If 'new' is not allowed, the typeof check is enough.
+			if (theType === 'string')
 				return rightOperand === String;
 
-			if (typeof leftOperand === 'number')
+			if (theType === 'number')
 				return rightOperand === Number;
 
-            if (typeof leftOperand === 'boolean')
+            if (theType === 'boolean')
                 return rightOperand === Boolean;
+			//TODO add optimization to compiler to convert 'is Array' directly to Array.isArray
             if (rightOperand === Array)
                 return Array.isArray(leftOperand);
 
@@ -158,8 +167,7 @@ package org.apache.royale.utils
 				}
 			}
 
-			superClass = leftOperand.constructor;
-            superClass = superClass.superClass_;
+			superClass = leftOperand.constructor.superClass_;
 
 			if (superClass)
 			{
@@ -172,8 +180,7 @@ package org.apache.royale.utils
 							return true;
 						}
 					}
-					superClass = superClass.constructor;
-                    superClass = superClass.superClass_;
+					superClass = superClass.constructor.superClass_;
 				}
 			}
 

@@ -323,7 +323,7 @@
 
       <!-- List of CSS or SWC files to apply as a theme. -->
       <theme>
-          <filename>themes/Basic/basic.css</filename>
+          <filename>themes/Basic/src/basic.css</filename>
       </theme>
 
       <!-- Turns on the display of stack traces for uncaught runtime errors. -->

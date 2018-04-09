@@ -22,9 +22,12 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IMeasurementBead;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
@@ -33,7 +36,6 @@ package org.apache.royale.html.beads
     import org.apache.royale.geom.Rectangle;
     import org.apache.royale.html.Label;
     import org.apache.royale.html.TextButton;
-    import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
@@ -123,6 +125,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		private function handleMessageChange(event:Event):void
 		{
@@ -132,7 +135,7 @@ package org.apache.royale.html.beads
 			}
 			var maxWidth:Number = Math.max(host.width,ruler.measuredWidth);
 			
-			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
+			var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(_strand as IUIBase);
 			
 			messageLabel.x = metrics.left;
 			messageLabel.y = metrics.top;

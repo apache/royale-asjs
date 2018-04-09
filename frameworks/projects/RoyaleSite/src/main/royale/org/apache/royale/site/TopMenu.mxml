@@ -22,10 +22,10 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/royale/basic"
                  xmlns:rs="library://ns.apache.org/royale/site"
                  xmlns:base="org.apache.royale.site.*">
-        <rs:TopMenuButton href="features.html">FEATURES</rs:TopMenuButton>
-        <rs:TopMenuButton href="tryitnow/index.html">TRY IT NOW</rs:TopMenuButton>
-        <rs:TopMenuButton href="download.html">DOWNLOAD</rs:TopMenuButton>
-        <rs:TopMenuButton href="documentation.html">DOCS</rs:TopMenuButton>
-        <rs:TopMenuButton href="blog.html">BLOG</rs:TopMenuButton>
-        <rs:TopMenuButton href="github.html">GITHUB</rs:TopMenuButton>
+        <rs:TopMenuButton href="http://royale.apache.org/features/">FEATURES</rs:TopMenuButton>
+        <rs:TopMenuButton href="http://royale.apache.org/getting-started/">GET STARTED</rs:TopMenuButton>
+        <rs:TopMenuButton href="http://royale.apache.org/download/">DOWNLOAD</rs:TopMenuButton>
+        <rs:TopMenuButton href="http://royale.apache.org/docs/">DOCS</rs:TopMenuButton>
+        <rs:TopMenuButton href="http://royale.apache.org/blog/">BLOG</rs:TopMenuButton>
+        <rs:TopMenuButton href="https://github.com/apache/royale-asjs/wiki/Apache-Royale-Source-Code-Repositories">GITHUB</rs:TopMenuButton>
 </base:TopMenuBase>

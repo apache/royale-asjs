@@ -24,7 +24,9 @@ limitations under the License.
 			    width="100%">
     <fx:Script>
         <![CDATA[
-			private var _color0:String = "#fff";
+            import models.ASDocModel;
+
+            private var _color0:String = "#fff";
 			
 			public function get backgroundColor0():String
 			{
@@ -55,7 +57,7 @@ limitations under the License.
 					typeGroup.removeElement(label);
 				else
 					typeGroup.removeElement(link);
-				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
+				qname.href = "#!" + obj.ownerhref + ASDocModel.DELIMITER + obj.qname;
                 if (obj.platforms.length == 1)
                 {
                     if (obj.platforms[0] == "swf")

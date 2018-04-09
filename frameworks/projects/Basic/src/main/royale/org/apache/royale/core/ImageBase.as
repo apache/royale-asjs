@@ -62,6 +62,9 @@ package org.apache.royale.core
 		{
 			return (model as IImageModel).url;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IImageModel
+		 */
 		public function set src(value:String):void
 		{
 			(model as IImageModel).url = value;

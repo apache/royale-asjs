@@ -25,7 +25,7 @@ package org.apache.royale.mdl.supportClasses
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
     /**
@@ -54,8 +54,16 @@ package org.apache.royale.mdl.supportClasses
         {
             super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "material-icons";
         }
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         COMPILE::JS
         protected var textNode:Text;
@@ -121,8 +129,15 @@ package org.apache.royale.mdl.supportClasses
             {
                 COMPILE::JS
                 {
-                    className = addOrReplaceClassName(className, "md-" + value, "md-" + _size);
+                    var classVal:String = "md-" + _size;
+                    _classList.remove(classVal);
+
+                    classVal = "md-" + value;
+                    _classList.add(classVal);
+
                     _size = value;
+
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -140,6 +155,7 @@ package org.apache.royale.mdl.supportClasses
         {
             return _dark;
         }
+
         public function set dark(value:Boolean):void
         {
             if (_dark != value)
@@ -148,11 +164,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("md-dark");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "md-dark");
-                    }
+                    var classVal:String = "md-dark";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -178,11 +192,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("md-light");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "md-light");
-                    }
+                    var classVal:String = "md-light";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -208,11 +220,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("md-inactive");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "md-inactive");
-                    }
+                    var classVal:String = "md-inactive";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -238,11 +248,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-list__item-icon");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-list__item-icon");
-                    }
+                    var classVal:String = "mdl-list__item-icon";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -268,11 +276,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-list__item-avatar");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-list__item-avatar");
-                    }
+                    var classVal:String = "mdl-list__item-avatar";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -298,13 +304,17 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-icon-toggle__label");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-icon-toggle__label");
-                    }
+                    var classVal:String = "mdl-icon-toggle__label";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

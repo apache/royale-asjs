@@ -19,15 +19,17 @@
 package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.models.DividedContainerModel;
 	import org.apache.royale.html.supportClasses.DividedContainerDivider;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.CSSUtils;
 
 	/**
@@ -72,6 +74,7 @@ package org.apache.royale.html.beads.layouts
 
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		override public function layout():Boolean
 		{
@@ -86,8 +89,8 @@ package org.apache.royale.html.beads.layouts
 			var useWidth:Number = host.width;
 			var useHeight:Number = host.height;
 
-			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 
 			useWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
 			useHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;

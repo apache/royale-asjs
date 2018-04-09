@@ -46,7 +46,7 @@ package org.apache.royale.html.accessories
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.8
 	 */
 	public class NumericOnlyTextInputBead implements IBead
 	{
@@ -56,7 +56,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function NumericOnlyTextInputBead()
 		{
@@ -70,7 +70,8 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -95,7 +96,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get decimalSeparator():String
 		{
@@ -116,7 +117,7 @@ package org.apache.royale.html.accessories
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function get maxChars():int
         {
