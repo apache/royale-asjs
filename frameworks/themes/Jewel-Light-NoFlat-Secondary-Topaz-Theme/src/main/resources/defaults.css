@@ -56,6 +56,10 @@ div {
   padding: 20px;
 }
 
+::-moz-focus-inner {
+  border: 0;
+}
+
 .jewel.button.secondary {
   cursor: pointer;
   display: inline-block;
