@@ -37,11 +37,12 @@ import mx.core.IUIComponent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class PropertyChanges
 {
-    include "../../core/Version.as";
+   /*  include "../../core/Version.as"; */
 
 	//--------------------------------------------------------------------------
 	//
@@ -57,7 +58,7 @@ public class PropertyChanges
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function PropertyChanges(target:Object)
 	{
@@ -89,7 +90,7 @@ public class PropertyChanges
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var end:Object = {};
 
@@ -110,7 +111,7 @@ public class PropertyChanges
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var start:Object = {};
 
@@ -127,7 +128,7 @@ public class PropertyChanges
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var target:Object;
 
@@ -143,7 +144,7 @@ public class PropertyChanges
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public var stripUnchangedValues:Boolean = true;
 }
