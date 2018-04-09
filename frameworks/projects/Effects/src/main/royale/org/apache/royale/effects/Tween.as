@@ -192,6 +192,7 @@ public class Tween extends Effect
 
     /**
      *  @private
+     *  @royaleignorecoercion org.apache.royale.core.IEffectTimer
      */
     private static function addTween(tween:Tween):void
     {
@@ -225,6 +226,7 @@ public class Tween extends Effect
 
     /**
      *  @royaleignorecoercion org.apache.royale.effects.Tween
+     *  @royaleignorecoercion Number
      *  @private
      */
     private static function updateHandler(event:ValueEvent):void

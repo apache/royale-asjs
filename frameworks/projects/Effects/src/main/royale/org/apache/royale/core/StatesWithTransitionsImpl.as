@@ -73,6 +73,7 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         public function set strand(value:IStrand):void
         {
@@ -192,6 +193,10 @@ package org.apache.royale.core
             }
         }
         
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.states.AddItems
+         */
         private function isItemInState(child:IChild, s:State):Boolean
         {
             if (s == null) return false;
@@ -223,6 +228,14 @@ package org.apache.royale.core
             return false;
         }
         
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.states.AddItems
+         * @royaleignorecoercion org.apache.royale.core.IParent
+         * @royaleignorecoercion org.apache.royale.core.IContainer
+         * @royaleignorecoercion org.apache.royale.states.SetProperty
+         * @royaleignorecoercion org.apache.royale.states.SetEventHandler
+         */
         private function revert(s:State, newState:State):void
         {
             var arr:Array = s.overrides;
@@ -267,6 +280,15 @@ package org.apache.royale.core
             }
         }
         
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.states.AddItems
+         * @royaleignorecoercion org.apache.royale.core.IChild
+         * @royaleignorecoercion org.apache.royale.core.IParent
+         * @royaleignorecoercion org.apache.royale.core.IContainer
+         * @royaleignorecoercion org.apache.royale.states.SetProperty
+         * @royaleignorecoercion org.apache.royale.states.SetEventHandler
+         */
         private function apply(oldState:State, s:State):void
         {
             var arr:Array = s.overrides;

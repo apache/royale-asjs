@@ -25,7 +25,7 @@ package org.apache.royale.mdl
     {        
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
     /**
      *  The ProgressBar indicate loading and progress states.
@@ -47,8 +47,16 @@ package org.apache.royale.mdl
         {
             super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-progress mdl-js-progress";
         }
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         private var materialProgress:Object;
 
@@ -115,11 +123,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-progress__indeterminate");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-progress__indeterminate");
-                    }
+                    var classVal:String = "mdl-progress__indeterminate";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -169,6 +175,12 @@ package org.apache.royale.mdl
 
             setCurrentProgress(_currentProgress);
             setCurrentBuffer(_currentBuffer);
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

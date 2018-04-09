@@ -60,6 +60,10 @@ package org.apache.royale.binding
 			super();
 		}
 
+        /**
+         * @royaleignorecoercion String
+         * @royaleignorecoercion org.apache.royale.core.IBinding
+         */
         override protected function initBindingsHandler(event:Event):void
         {
             super.initBindingsHandler(event);
