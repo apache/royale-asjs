@@ -20,7 +20,10 @@
 package mx.collections
 {
 
-import flash.events.IEventDispatcher;
+/* import flash.events.IEventDispatcher;
+ */    
+ import org.apache.royale.events.IEventDispatcher;
+
 
 /**
  *  Dispatched whenever the cursor position is updated.
@@ -30,7 +33,7 @@ import flash.events.IEventDispatcher;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Event(name="cursorUpdate", type="mx.events.FlexEvent")]
 
@@ -46,7 +49,7 @@ import flash.events.IEventDispatcher;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public interface IViewCursor extends IEventDispatcher
 {
@@ -71,7 +74,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get afterLast():Boolean;
 
@@ -90,7 +93,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get beforeFirst():Boolean;
 
@@ -113,7 +116,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get bookmark():CursorBookmark;
 
@@ -139,7 +142,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get current():Object;
 
@@ -153,7 +156,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get view():ICollectionView;
 
@@ -202,7 +205,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function findAny(values:Object):Boolean;
 
@@ -243,7 +246,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function findFirst(values:Object):Boolean;
 
@@ -284,7 +287,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function findLast(values:Object):Boolean;
 
@@ -300,7 +303,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function insert(item:Object):void;
 
@@ -339,7 +342,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function moveNext():Boolean;
 
@@ -379,7 +382,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function movePrevious():Boolean;
 
@@ -403,7 +406,7 @@ public interface IViewCursor extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function remove():Object;
 
@@ -455,7 +458,7 @@ public interface IViewCursor extends IEventDispatcher
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
-    *  @productversion Flex 3
+    *  @productversion Royale 0.9.3
     */
     function seek(bookmark:CursorBookmark, offset:int = 0, prefetch:int = 0):void;
 }
