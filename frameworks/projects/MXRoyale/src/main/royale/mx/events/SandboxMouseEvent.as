@@ -20,7 +20,9 @@
 package mx.events
 {
 
-import flash.events.Event;
+/* import flash.events.Event;
+ */
+ import org.apache.royale.events.Event;
 
 /**
  *  This is an event sent between applications in different security sandboxes to notify listeners
@@ -32,12 +34,13 @@ import flash.events.Event;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class SandboxMouseEvent extends Event
 {
-	include "../core/Version.as";
-
+/* 	include "../core/Version.as";
+ */
     //--------------------------------------------------------------------------
     //
     //  Class constants
@@ -50,7 +53,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public static const CLICK_SOMEWHERE:String = "clickSomewhere";
 
@@ -60,7 +63,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public static const DOUBLE_CLICK_SOMEWHERE:String = "doubleClickSomewhere";
 
@@ -70,7 +73,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public static const MOUSE_DOWN_SOMEWHERE:String = "mouseDownSomewhere";
 
@@ -80,7 +83,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public static const MOUSE_MOVE_SOMEWHERE:String = "mouseMoveSomewhere";
 
@@ -90,7 +93,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public static const MOUSE_UP_SOMEWHERE:String = "mouseUpSomewhere";
 
@@ -100,7 +103,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
     public static const MOUSE_WHEEL_SOMEWHERE:String = "mouseWheelSomewhere";
 
@@ -121,7 +124,7 @@ public class SandboxMouseEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function marshal(event:Event):SandboxMouseEvent
 	{
@@ -160,7 +163,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function SandboxMouseEvent(type:String, bubbles:Boolean = false,
                                       cancelable:Boolean = false,
@@ -195,7 +198,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var altKey:Boolean;
 
@@ -211,7 +214,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var buttonDown:Boolean;
 
@@ -227,7 +230,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var ctrlKey:Boolean;
 
@@ -243,7 +246,7 @@ public class SandboxMouseEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var shiftKey:Boolean;
 
@@ -256,7 +259,7 @@ public class SandboxMouseEvent extends Event
 	/**
      *  @private
      */
-    override public function clone():Event
+    override public function cloneEvent():Event
 	{
 		return new SandboxMouseEvent(type, bubbles, cancelable,
                                      ctrlKey, altKey, shiftKey, buttonDown);
