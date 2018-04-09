@@ -1,0 +1,511 @@
+/*!
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+@namespace j "library://ns.apache.org/royale/jewel";
+@namespace "http://www.w3.org/1999/xhtml";
+.royale *, .royale *:before, .royale *:after {
+  box-sizing: border-box;
+}
+
+j|Application {
+  background: black;
+  font-family: "Lato", sans-serif;
+  color: #FFFFFF;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+span {
+  font-size: 14px;
+}
+
+div {
+  font-size: 14px;
+}
+
+.container {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.jewel.alert {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 420px;
+  min-height: 240px;
+  border: 0px solid;
+  border-radius: 3px;
+  box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
+  background-color: black;
+}
+.jewel.alert .jewel.titlebar {
+  padding: 20px 20px 0px 20px;
+  height: 50px;
+  color: #d9d9d9;
+}
+.jewel.alert .jewel.titlebar .jewel.label {
+  font-size: 1.9em;
+  font-weight: bold;
+}
+.jewel.alert .Group {
+  position: absolute;
+  padding: 20px;
+  top: 50px;
+  bottom: 80px;
+  width: 100%;
+  overflow-y: auto;
+}
+.jewel.alert .Group .jewel.label {
+  white-space: normal;
+  color: #FFFFFF;
+  font-size: 1.1em;
+  font-weight: normal;
+}
+.jewel.alert .jewel.controlbar {
+  border-top: 1px solid #333333;
+  background: linear-gradient(#666666, #4c4c4c);
+  box-shadow: inset 0 1px 0 #8c8c8c;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+.jewel.alert .jewel.controlbar > *:first-child {
+  margin-left: 0px;
+}
+.jewel.alert .jewel.controlbar > * {
+  flex: 0 0 100px;
+  margin-left: 6px;
+}
+.jewel.alert + .backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+j|Alert {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
+}
+
+@media -royale-swf {
+  j|Alert {
+    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+  }
+}
+.jewel.button {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 8px;
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid #333333;
+  background: linear-gradient(#666666, #4c4c4c);
+  box-shadow: inset 0 1px 0 #8c8c8c;
+  border-radius: 3px;
+}
+.jewel.button:hover, .jewel.button:hover:focus {
+  border: 1px solid #262626;
+  background: linear-gradient(#595959, #404040);
+}
+.jewel.button:active, .jewel.button:active:focus {
+  border: 1px solid #0d0d0d;
+  background: linear-gradient(#404040, #262626);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.jewel.button:focus {
+  outline: none;
+  border: 1px solid #333333;
+  box-shadow: inset 0px 0px 0px 1px rgba(217, 217, 217, 0.5), inset 0 1px 0 rgba(229, 229, 229, 0.6);
+}
+.jewel.button[disabled] {
+  cursor: unset;
+  border: 1px solid #0d0d0d;
+  background: #404040;
+  box-shadow: none;
+}
+
+.jewel.button.primary {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 8px;
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid #551654;
+  background: linear-gradient(#a62aa4, #7e207c);
+  box-shadow: inset 0 1px 0 #d24bcf;
+  border-radius: 3px;
+}
+.jewel.button.primary:hover, .jewel.button.primary:hover:focus {
+  border: 1px solid #411040;
+  background: linear-gradient(#922590, #691b68);
+}
+.jewel.button.primary:active, .jewel.button.primary:active:focus {
+  border: 1px solid #180618;
+  background: linear-gradient(#691b68, #411040);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.jewel.button.primary:focus {
+  outline: none;
+  border: 1px solid #551654;
+  box-shadow: inset 0px 0px 0px 1px rgba(240, 198, 240, 0.5), inset 0 1px 0 rgba(246, 218, 245, 0.6);
+}
+.jewel.button.primary[disabled] {
+  cursor: unset;
+  border: 1px solid #0d0d0d;
+  background: #404040;
+  box-shadow: none;
+}
+
+.jewel.checkbox {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 22px;
+}
+.jewel.checkbox input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  border: 1px solid #333333;
+  background: linear-gradient(#7f7f7f, #737373);
+  border-radius: 3px;
+}
+.jewel.checkbox input:checked, .jewel.checkbox input:checked:active {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#922590' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #595959;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+  background-attachment: fixed;
+}
+.jewel.checkbox input:checked:checked:focus, .jewel.checkbox input:checked:checked:active:focus, .jewel.checkbox input:checked:active:checked:focus, .jewel.checkbox input:checked:active:checked:active:focus {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#922590' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #d760d4;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+  background-attachment: fixed;
+}
+.jewel.checkbox input:focus {
+  outline: none;
+  border: 1px solid #551654;
+}
+.jewel.checkbox input[disabled] {
+  cursor: unset;
+  border: 1px solid #0d0d0d;
+  background: #404040;
+}
+.jewel.checkbox input[disabled] + span {
+  cursor: unset;
+  color: #737373;
+}
+.jewel.checkbox input[disabled]:checked {
+  border: 1px solid #0d0d0d;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#191919' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #404040;
+  background-size: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.jewel.checkbox span {
+  cursor: pointer;
+  position: relative;
+  vertical-align: top;
+  margin: 0;
+  padding-left: 6px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.jewel.label {
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+}
+
+.jewel.radiobutton {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 22px;
+}
+.jewel.radiobutton input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  border: 1px solid #333333;
+  background: linear-gradient(#7f7f7f, #737373);
+  border-radius: 50%;
+}
+.jewel.radiobutton input:checked, .jewel.radiobutton input:checked:active {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#922590' cx='11' cy='11' r='6'></circle></g></g></svg>"), #595959;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
+  background-attachment: fixed;
+}
+.jewel.radiobutton input:checked:checked:focus, .jewel.radiobutton input:checked:checked:active:focus, .jewel.radiobutton input:checked:active:checked:focus, .jewel.radiobutton input:checked:active:checked:active:focus {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#922590' cx='11' cy='11' r='6'></circle></g></g></svg>"), #d760d4;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
+  background-attachment: fixed;
+}
+.jewel.radiobutton input:focus {
+  outline: none;
+  border: 1px solid #551654;
+}
+.jewel.radiobutton input[disabled] {
+  cursor: unset;
+  border: 1px solid #0d0d0d;
+  background: #404040;
+}
+.jewel.radiobutton input[disabled] + span {
+  cursor: unset;
+  color: #737373;
+}
+.jewel.radiobutton input[disabled]:checked {
+  border: 1px solid #0d0d0d;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#191919' cx='11' cy='11' r='6'></circle></g></g></svg>"), #404040;
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.jewel.radiobutton span {
+  cursor: pointer;
+  position: relative;
+  vertical-align: top;
+  margin: 0;
+  padding-left: 6px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.jewel.slider input {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.jewel.slider input:hover {
+  opacity: 1;
+}
+.jewel.slider input:focus {
+  outline: none;
+}
+.jewel.slider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #922590;
+  cursor: pointer;
+}
+.jewel.slider input::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #922590;
+  cursor: pointer;
+}
+
+.jewel.textbutton {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 10px 16px;
+  min-width: 74px;
+  min-height: 34px;
+  border: 1px solid #333333;
+  background: linear-gradient(#666666, #4c4c4c);
+  box-shadow: inset 0 1px 0 #8c8c8c;
+  border-radius: 3px;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(13, 13, 13, 0.7);
+}
+.jewel.textbutton:hover, .jewel.textbutton:hover:focus {
+  border: 1px solid #262626;
+  background: linear-gradient(#595959, #404040);
+}
+.jewel.textbutton:active, .jewel.textbutton:active:focus {
+  border: 1px solid #0d0d0d;
+  background: linear-gradient(#404040, #262626);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.jewel.textbutton:focus {
+  outline: none;
+  border: 1px solid #333333;
+  box-shadow: inset 0px 0px 0px 1px rgba(217, 217, 217, 0.5), inset 0 1px 0 rgba(229, 229, 229, 0.6);
+}
+.jewel.textbutton[disabled] {
+  cursor: unset;
+  border: 1px solid #0d0d0d;
+  background: #404040;
+  box-shadow: none;
+  color: #737373;
+  font-weight: normal;
+  text-shadow: unset;
+}
+
+.jewel.textbutton.primary {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 10px 16px;
+  min-width: 74px;
+  min-height: 34px;
+  border: 1px solid #551654;
+  background: linear-gradient(#a62aa4, #7e207c);
+  box-shadow: inset 0 1px 0 #d24bcf;
+  border-radius: 3px;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(24, 6, 24, 0.7);
+}
+.jewel.textbutton.primary:hover, .jewel.textbutton.primary:hover:focus {
+  border: 1px solid #411040;
+  background: linear-gradient(#922590, #691b68);
+}
+.jewel.textbutton.primary:active, .jewel.textbutton.primary:active:focus {
+  border: 1px solid #180618;
+  background: linear-gradient(#691b68, #411040);
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.jewel.textbutton.primary:focus {
+  outline: none;
+  border: 1px solid #551654;
+  box-shadow: inset 0px 0px 0px 1px rgba(240, 198, 240, 0.5), inset 0 1px 0 rgba(246, 218, 245, 0.6);
+}
+.jewel.textbutton.primary[disabled] {
+  cursor: unset;
+  border: 1px solid #0d0d0d;
+  background: #404040;
+  box-shadow: none;
+  color: #737373;
+  font-weight: normal;
+  text-shadow: unset;
+}
+
+.jewel.textfield {
+  position: relative;
+  display: inline-flex;
+}
+.jewel.textfield input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0.67em 1em;
+  max-width: 100%;
+  flex: 1 0 auto;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  line-height: 1.4em;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #FFFFFF;
+  background: linear-gradient(#7f7f7f, #737373);
+  border: 1px solid #333333;
+  border-radius: 3px;
+  transition-duration: 0.3s;
+  transition-timing-function: easein;
+}
+.jewel.textfield input:focus {
+  border: 1px solid #551654;
+}
+.jewel.textfield input::placeholder {
+  color: white;
+}
+.jewel.textfield input[disabled] {
+  cursor: unset;
+  border: 1px solid #0d0d0d;
+  background: #404040;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.textfield input[disabled]::placeholder {
+  color: #737373;
+}
+
+/*# sourceMappingURL=defaults.css.map */
