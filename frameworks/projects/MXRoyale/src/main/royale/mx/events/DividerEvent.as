@@ -20,7 +20,8 @@
 package mx.events
 {
 
-import flash.events.Event;
+/* import flash.events.Event; */
+import org.apache.royale.events.Event;
 
 /**
  *  Represents events that are dispatched when a divider has been pressed,
@@ -33,11 +34,12 @@ import flash.events.Event;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class DividerEvent extends Event
 {
-    include "../core/Version.as";
+    /* include "../core/Version.as"; */
 
 	//--------------------------------------------------------------------------
 	//
@@ -75,7 +77,7 @@ public class DividerEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const DIVIDER_DRAG:String = "dividerDrag";
 
@@ -109,7 +111,7 @@ public class DividerEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const DIVIDER_PRESS:String = "dividerPress";
 
@@ -143,7 +145,7 @@ public class DividerEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const DIVIDER_RELEASE:String = "dividerRelease";
 
@@ -169,7 +171,7 @@ public class DividerEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function DividerEvent(type:String, bubbles:Boolean = false,
 								 cancelable:Boolean = false,
@@ -199,7 +201,7 @@ public class DividerEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var delta:Number;
 
@@ -215,7 +217,7 @@ public class DividerEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var dividerIndex:int;
 
@@ -228,7 +230,7 @@ public class DividerEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():Event
 	{
 		return new DividerEvent(type, bubbles, cancelable, dividerIndex, delta);
 	}
