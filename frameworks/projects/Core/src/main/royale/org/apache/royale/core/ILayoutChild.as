@@ -83,30 +83,6 @@ package org.apache.royale.core
         function set explicitHeight(value:Number):void;
 
         /**
-         *  The measured width of this component 
-         *  This value can be cached by layouts to prevent reflow caused by measuring
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        function get measuredWidth():Number;
-        function set measuredWidth(value:Number):void;
-        
-        /**
-         *  The measured height of this component 
-         *  This value can be cached by layouts to prevent reflow caused by measuring
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        function get measuredHeight():Number;
-        function set measuredHeight(value:Number):void;
-        
-        /**
          * Sets the height of the component without
          * setting explicitHeight.
          * 

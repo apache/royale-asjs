@@ -312,12 +312,14 @@ package org.apache.royale.core
 			if (isLayoutRunning) return;
 			
 			isLayoutRunning = true;
+            /* Not all components need measurement
 			COMPILE::SWF
 			{
 				host.measuredHeight = host.height;
 				host.measuredWidth = host.width;
 			}
-			
+			*/
+            
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
 			viewBead.beforeLayout();
@@ -329,6 +331,7 @@ package org.apache.royale.core
 			
 			host.dispatchEvent(new Event("layoutComplete"));
 			
+            /* measurement may not matter for all components
 			COMPILE::SWF
 			{
 				// check sizes to see if layout changed the size or not
@@ -341,6 +344,7 @@ package org.apache.royale.core
 					isLayoutRunning = false;
 				}
 			}
+            */
 
 		}
 

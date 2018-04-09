@@ -21,7 +21,8 @@ package org.apache.royale.utils
     import org.apache.royale.core.ILayoutChild
     public function measureComponent(component:ILayoutChild):void
     {
-        component.measuredWidth = component.width;
-        component.measuredHeight = component.height;
+        // this should be replaced by loading a measurement bead.
+        //component.measuredWidth = component.width;
+        //component.measuredHeight = component.height;
     }
 }
