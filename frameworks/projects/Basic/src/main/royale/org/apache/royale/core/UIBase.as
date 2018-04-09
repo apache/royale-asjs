@@ -37,6 +37,7 @@ package org.apache.royale.core
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
+        import org.apache.royale.utils.cssclasslist.addStyles;
     }
 	
 	/**
@@ -1085,11 +1086,13 @@ package org.apache.royale.core
         {
             if (_className !== value)
             {
+                _className = value;
+
                 COMPILE::JS
                 {
-                    setClassName(typeNames ? StringUtil.trim(value + ' ' + typeNames) : value);             
+                    setClassName(computeFinalClassNames());             
                 }
-                _className = value;
+                
                 dispatchEvent(new Event("classNameChanged"));
             }
         }
@@ -1097,13 +1100,13 @@ package org.apache.royale.core
 		COMPILE::JS
         protected function computeFinalClassNames():String
 		{
-            return (_className ? _className + " " : "") + (typeNames ? typeNames : "");
+            return  StringUtil.trim((_className ? _className : "") + " " + (typeNames ? typeNames : ""));
 		}
 
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            element.className = value;           
+            addStyles(element, value);        
         }
 
         /**
@@ -1394,11 +1397,8 @@ package org.apache.royale.core
 			
             COMPILE::JS
             {
-				if (typeNames)
-                {
-                    setClassName(computeFinalClassNames());
-                }
-
+			    setClassName(computeFinalClassNames());
+                
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
             }
