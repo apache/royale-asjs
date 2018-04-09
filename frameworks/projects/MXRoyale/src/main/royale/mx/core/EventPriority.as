@@ -41,12 +41,12 @@ package mx.core
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public final class EventPriority
 {
-	include "../core/Version.as";
-
+/* 	include "../core/Version.as";
+ */
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
@@ -61,7 +61,7 @@ public final class EventPriority
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const CURSOR_MANAGEMENT:int = 200;
 	
@@ -73,7 +73,7 @@ public final class EventPriority
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const BINDING:int = 100;
 
@@ -84,7 +84,7 @@ public final class EventPriority
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const DEFAULT:int = 0;
 
@@ -99,7 +99,7 @@ public final class EventPriority
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const DEFAULT_HANDLER:int = -50;
 
@@ -111,7 +111,7 @@ public final class EventPriority
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const EFFECT:int = -100;
 }
