@@ -20,7 +20,9 @@
 package mx.effects
 {
 
-import flash.events.Event;
+/* import flash.events.Event;
+ */
+ import org.apache.royale.events.Event;
 
 import mx.effects.effectClasses.PropertyChanges;
 
@@ -43,7 +45,8 @@ import mx.effects.effectClasses.PropertyChanges;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public interface IEffectInstance
 {
@@ -70,7 +73,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get className():String;
     
@@ -86,7 +89,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get duration():Number;
     
@@ -105,15 +108,15 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    function get effect():IEffect;
+    /* function get effect():IEffect; */
     
     /**
      *  @private
      */
-    function set effect(value:IEffect):void;
-
+/*     function set effect(value:IEffect):void;
+ */
     //----------------------------------
     //  effectTargetHost
     //----------------------------------
@@ -128,15 +131,15 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    function get effectTargetHost():IEffectTargetHost;
-    
+/*     function get effectTargetHost():IEffectTargetHost;
+ */    
     /**
      *  @private
      */
-    function set effectTargetHost(value:IEffectTargetHost):void;
-    
+/*     function set effectTargetHost(value:IEffectTargetHost):void;
+ */    
     //----------------------------------
     //  hideFocusRing
     //----------------------------------
@@ -159,7 +162,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get hideFocusRing():Boolean;
     
@@ -181,7 +184,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get playheadTime():Number;
     
@@ -216,7 +219,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get propertyChanges():PropertyChanges;
     
@@ -239,7 +242,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get repeatCount():int;
     
@@ -262,7 +265,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get repeatDelay():int;
     
@@ -288,7 +291,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get startDelay():int;
     
@@ -313,7 +316,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get suspendBackgroundProcessing():Boolean;
     
@@ -334,7 +337,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get target():Object;
     
@@ -359,7 +362,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get triggerEvent():Event;
     
@@ -388,7 +391,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function initEffect(event:Event):void;
 
@@ -402,7 +405,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function startEffect():void;
     
@@ -419,7 +422,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function play():void;
     
@@ -429,7 +432,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function pause():void;
     
@@ -446,7 +449,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function stop():void;
 
@@ -457,7 +460,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function resume():void;
     
@@ -468,7 +471,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function reverse():void;
     
@@ -494,7 +497,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function end():void;
 
@@ -513,7 +516,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function finishEffect():void;
     
@@ -526,7 +529,7 @@ public interface IEffectInstance
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function finishRepeat():void;
     
