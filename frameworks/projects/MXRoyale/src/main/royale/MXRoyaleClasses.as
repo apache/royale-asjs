@@ -33,6 +33,8 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.events.SandboxMouseEvent; SandboxMouseEvent;
+	import mx.events.ResizeEvent; ResizeEvent;
 	
     COMPILE::SWF
     {
