@@ -20,8 +20,10 @@
 package mx.collections
 {
 
-import flash.events.IEventDispatcher;
-import mx.events.CollectionEvent;
+/* import flash.events.IEventDispatcher;
+ */
+  import org.apache.royale.events.IEventDispatcher;
+ import mx.events.CollectionEvent;
 
 /**
  *  Dispatched when the ICollectionView has been updated in some way.
@@ -31,7 +33,7 @@ import mx.events.CollectionEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Event(name="collectionChange", type="mx.events.CollectionEvent")]
 
@@ -60,7 +62,7 @@ import mx.events.CollectionEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public interface ICollectionView extends IEventDispatcher
 {
@@ -81,7 +83,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get length():int;
 
@@ -114,7 +116,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get filterFunction():Function;
     
@@ -145,7 +147,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function get sort():ISort;
     
@@ -169,7 +171,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function createCursor():IViewCursor;
 
@@ -190,7 +192,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function contains(item:Object):Boolean;
 
@@ -213,7 +215,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function disableAutoUpdate():void;
 
@@ -226,7 +228,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function enableAutoUpdate():void;
 
@@ -256,7 +258,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function itemUpdated(item:Object, property:Object = null,
                          oldValue:Object = null, newValue:Object = null):void;
@@ -286,7 +288,7 @@ public interface ICollectionView extends IEventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     function refresh():Boolean;
 }
