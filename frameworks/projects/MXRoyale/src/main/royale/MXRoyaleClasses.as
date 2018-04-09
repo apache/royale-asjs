@@ -34,6 +34,7 @@ internal class MXRoyaleClasses
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	import mx.core.EventPriority; EventPriority;
+	import mx.core.IFactory; IFactory;
 	
     COMPILE::SWF
     {
