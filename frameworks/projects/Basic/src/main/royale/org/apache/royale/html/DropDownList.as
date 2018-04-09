@@ -88,7 +88,8 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function get dataProvider():Object
         {
@@ -99,6 +100,7 @@ package org.apache.royale.html
          *  @private
          *  @royaleignorecoercion HTMLOptionElement
          *  @royaleignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function set dataProvider(value:Object):void
         {
@@ -140,7 +142,8 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function get selectedIndex():int
         {
@@ -150,6 +153,7 @@ package org.apache.royale.html
         /**
          *  @private
          *  @royaleignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function set selectedIndex(value:int):void
         {
@@ -168,7 +172,8 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function get selectedItem():Object
         {
@@ -178,6 +183,7 @@ package org.apache.royale.html
         /**
          *  @private
          *  @royaleignorecoercion HTMLSelectElement
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function set selectedItem(value:Object):void
         {
@@ -195,12 +201,16 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function get labelField():String
         {
             return ISelectionModel(model).labelField;
         }
+        /**
+         * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
         public function set labelField(value:String):void
         {
             ISelectionModel(model).labelField = value;

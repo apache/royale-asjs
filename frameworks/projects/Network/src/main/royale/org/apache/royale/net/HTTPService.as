@@ -323,6 +323,7 @@ package org.apache.royale.net
          *  Status text contains more information about the HTTP request made.
          *
          *  @productversion Royale 0.8
+         *  @royaleignorecoercion XMLHttpRequest
          */
         COMPILE::JS
         public function get statusText():String
@@ -513,6 +514,7 @@ package org.apache.royale.net
          *  using credentials such as cookies or authorization headers
          *
          *  @productversion Royale 0.8
+         *  @royaleignorecoercion XMLHttpRequest
          */
         COMPILE::JS
         public function set withCredentials(value:Boolean):void {

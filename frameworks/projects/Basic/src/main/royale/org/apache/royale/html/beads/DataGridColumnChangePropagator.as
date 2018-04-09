@@ -50,18 +50,30 @@ package org.apache.royale.html.beads
 		{
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function finishSetup(e:Event):void
 		{
 			var model:IEventDispatcher = _strand.getBeadByType(IBeadModel) as IEventDispatcher;
 			model.addEventListener('dataProviderChanged', handleDataProviderChanged);
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
+		 */
 		protected function handleDataProviderChanged(e:Event):void
 		{
 			var dataGridView:IDataGridView = _strand.getBeadByType(IDataGridView) as IDataGridView;

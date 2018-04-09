@@ -21,12 +21,14 @@ package org.apache.royale.html.beads.layouts
 //	import org.apache.royale.html.beads.layouts.HorizontalLayout;
 
 	import org.apache.royale.core.LayoutBase;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IParentIUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 
@@ -36,7 +38,6 @@ package org.apache.royale.html.beads.layouts
 		import org.apache.royale.events.IEventDispatcher;
 		import org.apache.royale.geom.Rectangle;
 		import org.apache.royale.utils.CSSUtils;
-		import org.apache.royale.utils.CSSContainerUtils;
 	}
 
 	public class HorizontalFlexLayout extends LayoutBase
@@ -100,6 +101,7 @@ package org.apache.royale.html.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		override public function layout():Boolean
@@ -125,8 +127,8 @@ package org.apache.royale.html.beads.layouts
 			var data:Object;
 			var canAdjust:Boolean = false;
 			
-			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 			
 			// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 			// resulting adjusted value may be less than zero.

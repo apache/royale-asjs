@@ -44,7 +44,7 @@ package org.apache.royale.html.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class SpinnerMouseController implements IBeadController
 	{
@@ -54,7 +54,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function SpinnerMouseController()
 		{
@@ -71,7 +71,10 @@ package org.apache.royale.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.html.beads.ISpinnerView
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -106,6 +109,7 @@ package org.apache.royale.html.beads.controllers
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function decrementClickHandler( event:org.apache.royale.events.MouseEvent ) : void
 		{
@@ -117,6 +121,7 @@ package org.apache.royale.html.beads.controllers
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function incrementClickHandler( event:org.apache.royale.events.MouseEvent ) : void
 		{

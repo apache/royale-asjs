@@ -40,7 +40,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function TitleBarMeasurementBead()
 		{
@@ -52,11 +52,14 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.html.TitleBar
+		 *  @royaleignorecoercion org.apache.royale.html.beads.TitleBarView
 		 */
 		public function get measuredWidth():Number
 		{
 			var mwidth:Number = 0;
+			//TODO this should use interfaces
 			var titleBar:TitleBar = _strand as TitleBar;
 			var titleView:TitleBarView = _strand.getBeadByType(TitleBarView) as TitleBarView;
 			var labelMeasure:IMeasurementBead = titleView.titleLabel.measurementBead;
@@ -74,11 +77,14 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.html.TitleBar
+		 *  @royaleignorecoercion org.apache.royale.html.beads.TitleBarView
 		 */
 		public function get measuredHeight():Number
 		{
 			var mheight:Number = 0;
+			//TODO this should use interfaces
 			var titleBar:TitleBar = _strand as TitleBar;
 			var titleView:TitleBarView = _strand.getBeadByType(TitleBarView) as TitleBarView;
 			var labelMeasure:IMeasurementBead = titleView.titleLabel.measurementBead;

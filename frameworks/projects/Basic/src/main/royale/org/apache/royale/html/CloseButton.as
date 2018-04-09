@@ -54,7 +54,7 @@ package org.apache.royale.html
         override protected function createElement():WrappedHTMLElement
         {
             super.createElement();
-            element.innerHTML = 'x';
+            element.textContent = 'x';
             
             element.style.padding = 0;
             height = 11;

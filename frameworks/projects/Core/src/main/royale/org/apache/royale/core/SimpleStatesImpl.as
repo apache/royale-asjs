@@ -40,7 +40,7 @@ package org.apache.royale.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.8
      */
 	public class SimpleStatesImpl extends EventDispatcher implements IStatesImpl, IBead
 	{
@@ -50,7 +50,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function SimpleStatesImpl()
 		{
@@ -67,7 +67,8 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         public function set strand(value:IStrand):void
         {
@@ -76,6 +77,9 @@ package org.apache.royale.core
             IEventDispatcher(_strand).addEventListener("initComplete", initialStateHandler);
         }
         
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IStatesObject
+         */
         private function initialStateHandler(event:org.apache.royale.events.Event):void
         {
             sawInitComplete = true;
@@ -113,7 +117,11 @@ package org.apache.royale.core
         }
         
         /**
+         * @royaleignorecoercion org.apache.royale.states.AddItems
          * @royaleignorecoercion org.apache.royale.core.IParent
+         * @royaleignorecoercion org.apache.royale.core.IContainer
+         * @royaleignorecoercion org.apache.royale.states.SetProperty
+         * @royaleignorecoercion org.apache.royale.states.SetEventHandler
          */
         private function revert(s:State):void
         {
@@ -158,9 +166,13 @@ package org.apache.royale.core
         }
         
         /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.states.AddItems
          * @royaleignorecoercion org.apache.royale.core.IChild 
          * @royaleignorecoercion org.apache.royale.core.IParent
-         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.core.IContainer
+         * @royaleignorecoercion org.apache.royale.states.SetProperty
+         * @royaleignorecoercion org.apache.royale.states.SetEventHandler
          */
         private function apply(s:State):void
         {
