@@ -33,6 +33,9 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.effects.effectClasses.PropertyChanges; PropertyChanges;
+	import mx.effects.IEffectInstance; IEffectInstance;
+	import mx.events.EffectEvent; EffectEvent;
 	
     COMPILE::SWF
     {
