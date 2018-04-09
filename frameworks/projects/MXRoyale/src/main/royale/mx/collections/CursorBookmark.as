@@ -31,12 +31,12 @@ package mx.collections
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class CursorBookmark
 {
-    include "../core/Version.as";
-
+/*     include "../core/Version.as";
+ */
     private static var _first:CursorBookmark;
     private static var _last:CursorBookmark;
     private static var _current:CursorBookmark;
@@ -49,7 +49,7 @@ public class CursorBookmark
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function get FIRST():CursorBookmark
     {
@@ -67,7 +67,7 @@ public class CursorBookmark
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function get LAST():CursorBookmark
     {
@@ -85,7 +85,7 @@ public class CursorBookmark
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function get CURRENT():CursorBookmark
     {
@@ -102,7 +102,7 @@ public class CursorBookmark
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function CursorBookmark(value:Object)
     {
@@ -130,7 +130,7 @@ public class CursorBookmark
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get value():Object
     {
@@ -153,7 +153,7 @@ public class CursorBookmark
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function getViewIndex():int
     {
