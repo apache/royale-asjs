@@ -21,14 +21,16 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.LayoutBase;
 	
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutView;
+    import org.apache.royale.core.layout.EdgeData;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.html.TableCell;
 	import org.apache.royale.html.TableRow;
 	
 	COMPILE::SWF {
 		import org.apache.royale.geom.Rectangle;
 		import org.apache.royale.utils.CSSUtils;
-		import org.apache.royale.utils.CSSContainerUtils;
 	}
 
     /**
@@ -75,7 +77,7 @@ package org.apache.royale.html.beads.layouts
 				var hostWidth:Number = hostWidthSizedToContent ? host.width : contentView.width;
 				var hostHeight:Number = hostHeightSizedToContent ? host.height : contentView.height;
 				
-				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.

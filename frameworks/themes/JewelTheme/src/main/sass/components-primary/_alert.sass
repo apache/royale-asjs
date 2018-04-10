@@ -1,0 +1,125 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel Alert
+
+// Alert variables
+$alert-padding: 20px
+$alert-min-width: 420px
+$alert-min-height: 240px
+$alert-header-height: 50px
+$alert-footer-height: 80px
+$alert-border-radius: 3px
+
+$alert-title-font-size: 1.9em
+$alert-title-font-weight: bold
+$alert-title-color: darken($default-font-color, 15%)
+
+$alert-label-font-size: 1.1em
+$alert-label-font-weight: normal
+$alert-label-color: $default-font-color
+
+$alert-control-bar-align: 'left'
+
+$alert-modal-opacity: .5
+
+.jewel.alert
+    display: block
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    margin: 0
+    padding: 0
+    max-width: 100%
+    max-height: 100%
+
+    min-width: $alert-min-width
+    min-height: $alert-min-height
+    
+    border: 0px solid
+    border-radius: $alert-border-radius
+    box-shadow: 0px 20px 65px 0px rgba(0,0,0,0.8)
+    background-color: $background-color
+
+    .jewel.titlebar
+        padding: $alert-padding $alert-padding 0px $alert-padding
+        height: $alert-header-height
+        color: $alert-title-color
+        
+        .jewel.label
+            font:
+                size: $alert-title-font-size
+                weight: $alert-title-font-weight
+          
+    .Group
+        position: absolute
+        padding: $alert-padding
+        top: $alert-header-height
+        bottom: $alert-footer-height
+        width: 100%
+        overflow-y: auto
+
+        .jewel.label
+            white-space: normal
+            color: $alert-label-color
+            font:
+                size: $alert-label-font-size
+                weight: $alert-label-font-weight
+
+    .jewel.controlbar
+        @if $flat
+            border: 0px solid
+            background: $default-color
+        @else
+            border-top: 1px solid darken($default-color, 15%)
+            background: linear-gradient(lighten($default-color, 5%), darken($default-color, 5%))
+            box-shadow: inset 0 1px 0 lighten($default-color, 20%)
+        border-top-left-radius: 0px
+        border-top-right-radius: 0px
+        border-bottom-left-radius: $alert-border-radius 
+        border-bottom-right-radius: $alert-border-radius
+
+        padding: $alert-padding
+        position: absolute
+        bottom: 0
+        width: 100%
+        height: $alert-footer-height
+        
+        display: flex
+        justify-content: flex-end
+        
+        > *:first-child
+            margin-left: 0px
+        > *
+            flex: 0 0 100px
+            margin-left: 6px
+        
+    + .backdrop
+        background-color: rgba(0, 0, 0, $alert-modal-opacity)
+
+j|Alert
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController")
+    IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.AlertView")
+
+@media -royale-swf	
+    j|Alert
+        IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
+        IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")

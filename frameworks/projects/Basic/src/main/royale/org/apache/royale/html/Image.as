@@ -67,6 +67,9 @@ package org.apache.royale.html
 			return element;
 		}
 
+		/**
+		 * @royaleignorecoercion HTMLImageElement
+		 */
 		COMPILE::JS
 		override public function applyImageData(binaryDataAsString:String):void
 		{

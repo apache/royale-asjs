@@ -1,3 +1,14 @@
+Apache Royale 0.9.2
+===================
+
+This release contains:
+
+- Virtual item renderer management for fixed row height vertical lists.
+- Improved Theme support. The compiler will copy all resources in "assets" 
+  folder to target.
+- JSON deserialization to ActionScript objects
+- JSON2ASVO utility to generate ActionScript Value Objects from a JSON result
+
 Apache Royale 0.9.1
 ===================
 

@@ -105,6 +105,7 @@ package org.apache.royale.core
         /**
          *  @private
          *  @royaleignorecoercion org.apache.royale.core.IChild
+         * @royaleignorecoercion org.apache.royale.core.IMXMLDocument
          */
         public function get parentDocument():Object
         {

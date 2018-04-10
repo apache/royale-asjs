@@ -20,6 +20,7 @@ package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.ILayoutChild;
@@ -33,6 +34,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.ValuesManager;
 	COMPILE::JS
@@ -43,7 +45,6 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
     import org.apache.royale.html.beads.VirtualListView;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.CSSUtils;
     COMPILE::SWF {
         import org.apache.royale.geom.Size;
@@ -139,8 +140,8 @@ package org.apache.royale.html.beads.layouts
 				var data:Object;
 				var canAdjust:Boolean = false;
 
-				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+				var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.

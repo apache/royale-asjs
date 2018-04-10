@@ -23,7 +23,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.IViewportModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.core.layout.EdgeData;
 	
     /**
      * @copy org.apache.royale.core.IViewportModel
@@ -35,19 +35,19 @@ package org.apache.royale.html.beads.models
 			super();
 		}
 		
-        private var _borderMetrics:Rectangle;
-		private var _chromeMetrics:Rectangle;
+        private var _borderMetrics:EdgeData;
+		private var _chromeMetrics:EdgeData;
 		
 		private var _strand:IStrand;
 		
         /**
          * @copy org.apache.royale.core.IViewportModel
          */
-        public function get borderMetrics():Rectangle
+        public function get borderMetrics():EdgeData
         {
             return _borderMetrics;
         }
-        public function set borderMetrics(value:Rectangle):void
+        public function set borderMetrics(value:EdgeData):void
         {
             _borderMetrics = value;
         }
@@ -55,11 +55,11 @@ package org.apache.royale.html.beads.models
         /**
          * @copy org.apache.royale.core.IViewportModel
          */
-        public function get chromeMetrics():Rectangle
+        public function get chromeMetrics():EdgeData
         {
             return _chromeMetrics;
         }
-        public function set chromeMetrics(value:Rectangle):void
+        public function set chromeMetrics(value:EdgeData):void
         {
             _chromeMetrics = value;
         }

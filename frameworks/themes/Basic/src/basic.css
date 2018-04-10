@@ -1,0 +1,96 @@
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+
+@namespace "library://ns.apache.org/royale/basic";
+
+Button
+{
+	background-color: #f8f8f8;
+	border: 1px solid #808080;
+	border-radius: 2px;
+	padding: 4px;
+	margin: 0px;
+}
+
+Button:hover
+{
+	background-color: #e8e8e8;
+	border: 1px solid #808080;
+	padding: 4px;
+}
+
+Button:active
+{
+	background-color: #d8d8d8;
+	border: 1px solid #808080;
+	padding: 4px;
+}
+
+CheckBox
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+DataContainer
+{
+	border-style: solid;
+	border-color: #222222;
+	border-width: 1px;
+}
+
+Label
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+List
+{
+	border: 1px solid #222222;
+}
+
+Group
+{
+	border-width: 1px;
+}
+
+RadioButton
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+StringItemRenderer
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+MXMLItemRenderer
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+Menu
+{
+	font-size: 12px;
+	font-family: sans-serif;
+}
