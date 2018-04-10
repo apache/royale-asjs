@@ -37,6 +37,9 @@ internal class MXRoyaleClasses
 	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.collections.CursorBookmark; CursorBookmark;
+	import mx.collections.ICollectionView; ICollectionView;
+	import mx.collections.IViewCursor; IViewCursor;
 	import mx.events.SandboxMouseEvent; SandboxMouseEvent;
 	import mx.events.ResizeEvent; ResizeEvent;
 	import mx.utils.StringUtil; StringUtil;
