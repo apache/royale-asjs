@@ -49,7 +49,7 @@ package org.apache.royale.mdl.beads
 		{
 		}
 
-		private var _dataBadge:Number = 0;
+		private var _dataBadge:Object;
 
 		/**
 		 *  The current value of the Badge that appers inside the circle.
@@ -59,16 +59,18 @@ package org.apache.royale.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function get dataBadge():Number
+		public function get dataBadge():Object
 		{
 			return _dataBadge;
 		}
-		public function set dataBadge(value:Number):void
+
+		public function set dataBadge(value:Object):void
 		{
 			_dataBadge = value;
 		}
 
 		private var _noBackground:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-badge--no-background" effect selector.
 		 *  Applies open-circle effect to badge
@@ -82,21 +84,25 @@ package org.apache.royale.mdl.beads
         {
             return _noBackground;
         }
+
         public function set noBackground(value:Boolean):void
         {
-			_noBackground = value;
-			
-			COMPILE::JS
+			if (_noBackground != value)
             {
-				if(host)
-				{
-                	host.element.classList.toggle("mdl-badge--no-background", _noBackground);
-					host.typeNames = host.element.className;
-				}
-            }   
+                _noBackground = value;
+
+                COMPILE::JS
+                {
+                    if (host)
+                    {
+                        host.element.classList.toggle("mdl-badge--no-background", _noBackground);
+                    }
+                }
+            }
         }
 
         private var _overlap:Boolean = false;
+
         /**
 		 *  A boolean flag to activate "mdl-badge--overlap" effect selector.
 		 *  Make the badge overlap with its container
@@ -110,17 +116,20 @@ package org.apache.royale.mdl.beads
         {
             return _overlap;
         }
+
         public function set overlap(value:Boolean):void
         {
-			_overlap = value;
-			
-			COMPILE::JS
+			if (_overlap != value)
             {
-				if(host) 
-				{
-                	host.element.classList.toggle("mdl-badge--overlap", _overlap);
-					host.typeNames = host.element.className;
-				}
+                _overlap = value;
+
+                COMPILE::JS
+                {
+                    if (host)
+                    {
+                        host.element.classList.toggle("mdl-badge--overlap", _overlap);
+                    }
+                }
             }
         }
 
@@ -149,9 +158,9 @@ package org.apache.royale.mdl.beads
 				if (host.element is HTMLSpanElement || host.element is HTMLDivElement || host.element is HTMLElement)
 				{
 					host.element.classList.add("mdl-badge");
-					host.element.classList.toggle("mdl-badge--no-background", _noBackground);
-					host.element.classList.toggle("mdl-badge--overlap", _overlap);
-					host.element.setAttribute('data-badge', _dataBadge.toString());
+					host.element.classList.toggle("mdl-badge--no-background", noBackground);
+					host.element.classList.toggle("mdl-badge--overlap", overlap);
+					host.element.setAttribute('data-badge', dataBadge);
 				}
 				else
 				{

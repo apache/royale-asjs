@@ -19,10 +19,13 @@
 package org.apache.royale.express.beads.layouts
 {
 	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.express.supportClasses.DataGridColumn;
@@ -31,7 +34,6 @@ package org.apache.royale.express.beads.layouts
 	import org.apache.royale.html.beads.IDrawingLayerBead;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.supportClasses.ScrollingViewport;
-	import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 * This DataGridLayout class sizes and positions all of the elements of the DataGrid
@@ -99,6 +101,7 @@ package org.apache.royale.express.beads.layouts
 		 * been placed. For example, with three columns of widths, "50", "100%", and "80" the
 		 * 100% size represents the amount left over after the 130 pixels have been removed from
 		 * whatever width the DataGrid currently has at the time this layout is executed.
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		public function layout():Boolean
 		{
@@ -108,7 +111,7 @@ package org.apache.royale.express.beads.layouts
 			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
 			var model:IDataGridModel = uiHost.model as IDataGridModel;
 			
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(_strand);			
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
 			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
 			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			

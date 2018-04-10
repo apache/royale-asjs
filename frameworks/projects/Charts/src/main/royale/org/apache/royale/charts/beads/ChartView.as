@@ -20,9 +20,12 @@ package org.apache.royale.charts.beads
 {
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.charts.core.IAxisGroup;
@@ -35,7 +38,6 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.ListView;
-	import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 *  The ChartView class provides the visual elemental structure for a chart. This includes the
@@ -159,10 +161,11 @@ package org.apache.royale.charts.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */		
 		override public function beforeLayout():void
 		{			
-			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
+			var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(_strand as IUIBase);
 			
 			var widthAdjustment:Number = 0;
 			var heightAdjustment:Number = 0;

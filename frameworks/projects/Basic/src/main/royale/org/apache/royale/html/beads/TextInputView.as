@@ -20,12 +20,14 @@ package org.apache.royale.html.beads
 	import flash.display.DisplayObject;
 	import flash.text.TextFieldType;
 	
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.layout.EdgeData;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
-    import org.apache.royale.utils.CSSContainerUtils;
 	
     /**
      *  The TextInputView class is the view for
@@ -63,6 +65,7 @@ package org.apache.royale.html.beads
 		
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function set strand(value:IStrand):void
 		{
@@ -72,11 +75,11 @@ package org.apache.royale.html.beads
 
             var w:Number;
             var h:Number;
-            var uiMetrics:Rectangle;
+            var uiMetrics:EdgeData;
             var ilc:ILayoutChild = host as ILayoutChild;
             if (ilc.isWidthSizedToContent())
             {
-                uiMetrics = CSSContainerUtils.getBorderAndPaddingMetrics(host);
+                uiMetrics = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(host);
                 // use default width of 20
                 var s:String = textField.text;
                 textField.text = "0";
@@ -90,7 +93,7 @@ package org.apache.royale.html.beads
             if (ilc.isHeightSizedToContent())
             {
                 if (!uiMetrics)
-                    uiMetrics = CSSContainerUtils.getBorderAndPaddingMetrics(host);
+                    uiMetrics = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(host);
                 if (isNaN(h))
                 {
                     s = textField.text;

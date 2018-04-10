@@ -21,10 +21,13 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
@@ -32,7 +35,6 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.html.supportClasses.IDataGridColumn;
-    import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
@@ -42,7 +44,7 @@ package org.apache.royale.html.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class DataGridLayout implements IBeadLayout
 	{
@@ -52,7 +54,7 @@ package org.apache.royale.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function DataGridLayout()
 		{
@@ -66,7 +68,8 @@ package org.apache.royale.html.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -78,10 +81,9 @@ package org.apache.royale.html.beads.layouts
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 		}
 		
-		private function get host():IUIBase
-		{
-			return _strand as IUIBase;
-		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
 		private function get uiHost():UIBase
 		{
 			return _strand as UIBase;
@@ -99,6 +101,13 @@ package org.apache.royale.html.beads.layouts
 		
 		/**
 		 * @copy org.apache.royale.core.IBeadLayout#layout
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
 		 */
 		public function layout():Boolean
 		{
@@ -108,7 +117,7 @@ package org.apache.royale.html.beads.layouts
 			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
 			var model:IDataGridModel = uiHost.model as IDataGridModel;
 			
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(_strand);			
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
 			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
 			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			

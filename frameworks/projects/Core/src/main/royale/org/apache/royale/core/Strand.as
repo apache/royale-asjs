@@ -56,7 +56,8 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IBead
          */
 		public function get model():IBeadModel
 		{
@@ -70,6 +71,7 @@ package org.apache.royale.core
         
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IBead
          */
 		public function set model(value:IBeadModel):void
 		{
@@ -127,7 +129,8 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IBeadModel
          */
 		public function addBead(bead:IBead):void
 		{

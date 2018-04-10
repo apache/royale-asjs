@@ -24,7 +24,6 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
 	/**
@@ -75,6 +74,7 @@ package org.apache.royale.mdl
         {
             return _mini;
         }
+
         public function set mini(value:Boolean):void
         {
             _mini = value;
@@ -82,15 +82,11 @@ package org.apache.royale.mdl
 			COMPILE::JS
             {
 				element.classList.remove(typeNames);
-				if(!_mini)
-				{
-                    element.classList.add("mdl-mega-footer");
-                    className = addOrReplaceClassName(className, "mdl-mega-footer");
-				}
-				else
+
+				if (_mini)
 				{
                     typeNames = "mdl-mini-footer";
-                    className = addOrReplaceClassName(className, "mdl-mini-footer");
+                    setClassName(computeFinalClassNames());
 				}
             }
         }

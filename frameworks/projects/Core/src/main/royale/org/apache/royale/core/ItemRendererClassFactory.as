@@ -65,6 +65,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          *  @royaleignorecoercion Class
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererProvider
          */
         public function set strand(value:IStrand):void
         {
@@ -150,6 +151,7 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IParent
          */
         protected function createFromMXMLContent(parent:IItemRendererParent):IItemRenderer
         {

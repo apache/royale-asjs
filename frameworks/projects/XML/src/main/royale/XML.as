@@ -384,12 +384,15 @@ package
 			);
 			
 		}
+		private static var xmlRegEx:RegExp = /&(?![\w]+;)/g;
+		private static var parser:DOMParser;
 		private static var errorNS:String;
 		private function parseXMLStr(xml:String):void
 		{
 			//escape ampersands
-			xml = xml.replace(/&(?![\w]+;)/g,"&amp;");
-			var parser:DOMParser = new DOMParser();
+			xml = xml.replace(xmlRegEx,"&amp;");
+			if(!parser)
+				parser = new DOMParser();
 			if(errorNS == null)
 			{
 				// get error namespace. It's different in different browsers.
@@ -1364,7 +1367,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function localName():Object
+		public function localName():String
 		{
 			return name().localName;
 		}
@@ -1377,7 +1380,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function name():Object
+		public function name():QName
 		{
 			if(!_name)
 				_name = getQName("","","",false);
