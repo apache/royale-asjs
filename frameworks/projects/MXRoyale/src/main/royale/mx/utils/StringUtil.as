@@ -30,12 +30,12 @@ package mx.utils
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class StringUtil
 {
-    include "../core/Version.as";
-
+/*     include "../core/Version.as";
+ */
     //--------------------------------------------------------------------------
     //
     //  Class methods
@@ -54,7 +54,7 @@ public class StringUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function trim(str:String):String
     {
@@ -88,7 +88,7 @@ public class StringUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function trimArrayElements(value:String, delimiter:String):String
     {
@@ -123,7 +123,7 @@ public class StringUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function isWhitespace(character:String):Boolean
     {
@@ -190,7 +190,7 @@ public class StringUtil
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function substitute(str:String, ... rest):String
     {
