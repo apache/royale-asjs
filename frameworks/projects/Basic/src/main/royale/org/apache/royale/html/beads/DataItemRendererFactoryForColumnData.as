@@ -124,6 +124,10 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion Array
+		 * @royaleignorecoercion org.apache.royale.core.IList
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function dataProviderChangeHandler(event:Event):void
 		{
@@ -135,7 +139,7 @@ package org.apache.royale.html.beads
 			var dataGroup:IItemRendererParent = list.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
-						
+			var renderers:Array = [];
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
 			if (view == null) return;
 						
@@ -143,10 +147,15 @@ package org.apache.royale.html.beads
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
-				dataGroup.addItemRenderer(tf);
+				// dataGroup.addItemRenderer(tf);
 				tf.index = i;
 				tf.labelField = view.column.dataField;
-				tf.data = dp[i];
+				renderers[i] = tf;
+			}
+			dataGroup.addItemRenderers(renderers, false);
+			for(i=0;i<n;i++)
+			{
+                renderers[i].data = dp[i];
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));

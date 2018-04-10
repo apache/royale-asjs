@@ -147,6 +147,8 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -161,13 +163,14 @@ package org.apache.royale.html.beads
 			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
+			var renderers:Array = [];
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 				var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-				dataGroup.addItemRenderer(ir);
+				// dataGroup.addItemRenderer(ir);
 				if (presentationModel) {
 					var style:SimpleCSSStyles = new SimpleCSSStyles();
 					style.marginBottom = presentationModel.separatorThickness;
@@ -176,21 +179,25 @@ package org.apache.royale.html.beads
 					UIBase(ir).percentWidth = 100;
 				}
 
-				var data:Object = dp.getItemAt(i);
-                ir.index = i;
+				// var data:Object = dp.getItemAt(i);
+                // ir.index = i;
                 ir.labelField = labelField;
 				if (dataItemRenderer)
 				{
 					dataItemRenderer.dataField = dataField;
 				}
 
-				setData(ir, data, i);
-
-				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-				newEvent.itemRenderer = ir;
-				dispatchEvent(newEvent);
+				renderers[i] = ir;
 			}
+			dataGroup.addItemRenderers(renderers, false);
+			for(i=0;i<n;i++)
+			{
+				setData(renderers[i], dp.getItemAt(i), i);
+				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
+				newEvent.itemRenderer = renderers[i];
+				dispatchEvent(newEvent);
 
+			}
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
 	}

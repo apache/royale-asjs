@@ -175,7 +175,7 @@ package org.apache.royale.html.beads
 			var dataGroup:IItemRendererParent = list.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
-			
+			var renderers:Array = [];
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
 			var n:int = dp.length; 
@@ -184,7 +184,7 @@ package org.apache.royale.html.beads
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
                 var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-				dataGroup.addItemRenderer(ir);
+				// dataGroup.addItemRenderer(ir);
 				ir.index = i;
 				ir.labelField = labelField;
                 if (dataItemRenderer)
@@ -199,10 +199,14 @@ package org.apache.royale.html.beads
 					UIBase(ir).height = presentationModel.rowHeight;
 					UIBase(ir).percentWidth = 100;
 				}
-				ir.data = dp[i];
-				
+				renderers[i] = ir;
+			}
+			dataGroup.addItemRenderers(renderers, false);
+			for(i=0;i<n;i++)
+			{
+				renderers[i].data = dp[i];
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-				newEvent.itemRenderer = ir;
+				newEvent.itemRenderer = renderers[i];
 				dispatchEvent(newEvent);
 			}
 			

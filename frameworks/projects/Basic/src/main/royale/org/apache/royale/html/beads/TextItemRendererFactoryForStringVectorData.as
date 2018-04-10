@@ -131,6 +131,10 @@ package org.apache.royale.html.beads
          */
         protected var dataGroup:IItemRendererParent;
 		
+        /**
+         * @royaleignorecoercion Vector.<String>
+         * @royaleignorecoercion org.apache.royale.html.beads.ITextItemRenderer
+         */
 		private function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Vector.<String> = selectionModel.dataProvider as Vector.<String>;
@@ -139,19 +143,25 @@ package org.apache.royale.html.beads
 			var dataGroup:IItemRendererParent = list.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
-			
+			var renderers:Array = [];
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                dataGroup.addItemRenderer(tf);
-				tf.text = dp[i];
+                // dataGroup.addItemRenderer(tf);
 				
+                renderers[i] = tf;
+			}
+			dataGroup.addItemRenderers(renderers, true);
+			for(i=0;i<n;i++)
+			{
+				renderers[i].text = dp[i];
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-				newEvent.itemRenderer = tf;
+				newEvent.itemRenderer = renderers[i];
 				dispatchEvent(newEvent);
-			}			
+
+			}
 		}
 		
 	}
