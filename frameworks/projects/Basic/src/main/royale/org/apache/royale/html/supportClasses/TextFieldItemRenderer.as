@@ -24,10 +24,12 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.core.CSSTextField;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadController;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IRoyaleElement;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
@@ -36,7 +38,6 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.events.utils.MouseEventConverter;
     import org.apache.royale.geom.Rectangle;
     import org.apache.royale.html.beads.ITextItemRenderer;
-    import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
@@ -242,7 +243,7 @@ package org.apache.royale.html.supportClasses
 			{
 				var w:Number = _width;
 				if (isNaN(w)) w = $width;
-				var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(this);
+				var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(this);
 				return w + metrics.left + metrics.right;
 			}
 			else
@@ -280,7 +281,7 @@ package org.apache.royale.html.supportClasses
 			{
 				var h:Number = _height;
 				if (isNaN(h)) h = $height;
-				var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(this);
+				var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(this);
 				return h + metrics.top + metrics.bottom;
 			}
 			else

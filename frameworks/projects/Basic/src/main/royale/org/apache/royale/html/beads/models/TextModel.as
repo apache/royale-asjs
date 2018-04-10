@@ -68,6 +68,7 @@ package org.apache.royale.html.beads.models
 
 		private var _text:String;
 
+        [Bindable("textChange")]
         /**
          *  @copy org.apache.royale.core.ITextModel#text
          *  
@@ -97,6 +98,7 @@ package org.apache.royale.html.beads.models
 		
 		private var _html:String;
         
+        [Bindable("htmlChange")]
         /**
          *  @copy org.apache.royale.core.ITextModel#html
          *  

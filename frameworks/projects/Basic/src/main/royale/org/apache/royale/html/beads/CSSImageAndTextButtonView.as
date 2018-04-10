@@ -28,18 +28,21 @@ package org.apache.royale.html.beads
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.CSSTextField;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.styles.BorderStyles;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.TextButton;
-    import org.apache.royale.html.beads.models.ImageAndTextModel;
+	import org.apache.royale.html.beads.models.ImageAndTextModel;
 	import org.apache.royale.utils.CSSUtils;
-    import org.apache.royale.utils.SolidBorderUtil;
-    import org.apache.royale.utils.StringTrimmer;
+	import org.apache.royale.utils.SolidBorderUtil;
+	import org.apache.royale.utils.StringTrimmer;
 
     /**
      *  The CSSTextButtonView class is the default view for
@@ -152,37 +155,14 @@ package org.apache.royale.html.beads
             // set it again so it gets noticed
 			textField.defaultTextFormat = textField.defaultTextFormat;
             
-			var borderColor:uint;
-			var borderThickness:uint;
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border", state);
-			if (borderStyles is Array)
-			{
-				borderColor = CSSUtils.toColor(borderStyles[2]);
-				borderStyle = borderStyles[1];
-				borderThickness = borderStyles[0];
-			}
-            else if (borderStyles is String)
-                borderStyle = borderStyles as String;
-			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "border-style", state);
-			if (value != null)
-				borderStyle = value as String;
-			value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
-			if (value != null)
-				borderColor = CSSUtils.toColor(value);
-			value = ValuesManager.valuesImpl.getValue(_strand, "border-width", state);
-			if (value != null)
-				borderThickness = value as uint;
-            if (borderStyle == "none")
-            {
-                borderStyle = "solid";
-                borderThickness = 0;
-            }
+            var borderStyles:BorderStyles = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderStyles(_strand as IUIBase);
+            if (borderStyles.style == "none")
+                borderStyles.style = "solid";
             
             var borderRadius:String;
             var borderEllipseWidth:Number = NaN;
             var borderEllipseHeight:Number = NaN;
-            value = ValuesManager.valuesImpl.getValue(_strand, "border-radius", state);
+            var value:* = ValuesManager.valuesImpl.getValue(_strand, "border-radius", state);
             if (value != null)
             {
                 if (value is Number)
@@ -219,20 +199,20 @@ package org.apache.royale.html.beads
                     bgColor = bgColor & 0xFFFFFF;
                 }
             }
-			if (borderStyle == "solid")
+			if (borderStyles.style == "solid")
 			{
 				var useWidth:Number = Math.max(sw,textField.textWidth);
 				var useHeight:Number = Math.max(sh,textField.textHeight);
 				
-				if ((useWidth-pl-pr-2*borderThickness) < textField.textWidth) 
-					useWidth = textField.textWidth+pl+pr+2*borderThickness;
-				if ((useHeight-pt-pb-2*borderThickness) < textField.textHeight) 
-					useHeight = textField.textHeight+pt+pb+2*borderThickness;
+				if ((useWidth-pl-pr-2*borderStyles.width) < textField.textWidth) 
+					useWidth = textField.textWidth+pl+pr+2*borderStyles.width;
+				if ((useHeight-pt-pb-2*borderStyles.width) < textField.textHeight) 
+					useHeight = textField.textHeight+pt+pb+2*borderStyles.width;
 				
                 sprite.graphics.clear();
 				SolidBorderUtil.drawBorder(sprite.graphics, 
 					0, 0, useWidth, useHeight,
-					borderColor, backgroundColor == null ? null : bgColor, borderThickness, bgAlpha,
+                    borderStyles.color, backgroundColor == null ? null : borderStyles.color, borderStyles.width, bgAlpha,
                     borderEllipseWidth, borderEllipseHeight);
 				textField.y = ((useHeight - textField.textHeight) / 2) - 2;
 				textField.x = ((useWidth - textField.textWidth) / 2) - 2;
@@ -253,9 +233,9 @@ package org.apache.royale.html.beads
                     loader.y = (textField.height + pt + pb - loader.height) / 2;
                     sprite.graphics.clear();
                     SolidBorderUtil.drawBorder(sprite.graphics, 
-                        0, 0, textField.x + textField.width + pr + borderThickness, 
-                        textField.y + textField.height + pb + borderThickness,
-                        borderColor, backgroundColor == null ? null : bgColor, borderThickness, bgAlpha,
+                        0, 0, textField.x + textField.width + pr + borderStyles.width, 
+                        textField.y + textField.height + pb + borderStyles.width,
+                        borderStyles.color, backgroundColor == null ? null : bgColor, borderStyles.width, bgAlpha,
                         borderEllipseWidth, borderEllipseHeight);
                 });
             }

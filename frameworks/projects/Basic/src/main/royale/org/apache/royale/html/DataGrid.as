@@ -73,12 +73,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
 		public function get columns():Array
 		{
 			return IDataGridModel(model).columns;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 */
 		public function set columns(value:Array):void
 		{
 			IDataGridModel(model).columns = value;
@@ -90,12 +94,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
 		public function get dataProvider():Object
 		{
 			return IDataGridModel(model).dataProvider;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 */
 		public function set dataProvider(value:Object):void
 		{
 			IDataGridModel(model).dataProvider = value;
@@ -107,13 +115,17 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
 		[Bindable("change")]
 		public function get selectedIndex():int
 		{
 			return IDataGridModel(model).selectedIndex;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 */
 		public function set selectedIndex(value:int):void
 		{
 			IDataGridModel(model).selectedIndex = value;
@@ -130,23 +142,25 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 */
 		public function get presentationModel():IDataGridPresentationModel
 		{
 			if (_presentationModel == null) {
 				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
 				if (c) {
-					var presModel:Object = new c();
-					_presentationModel = presModel as IDataGridPresentationModel;
-					if (_presentationModel != null) {
-						addBead(_presentationModel as IBead);
-					}
+					_presentationModel = new c() as IDataGridPresentationModel;
+					addBead(_presentationModel as IBead);
 				}
 			}
 			
 			return _presentationModel;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+		 */
 		public function set presentationModel(value:IDataGridPresentationModel):void
 		{
 			_presentationModel = value;
@@ -158,7 +172,7 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function get rowHeight():Number
 		{
