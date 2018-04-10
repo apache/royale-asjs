@@ -22,7 +22,7 @@
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
-    <artifactId>examples-royale</artifactId>
+    <artifactId>examples-mxroyale</artifactId>
     <version>0.9.3-SNAPSHOT</version>
   </parent>
 
@@ -30,7 +30,7 @@
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: ControlsExample</name>
+  <name>Apache Royale: Examples: MXRoyale: ControlsExample</name>
 
   <build>
     <plugins>
