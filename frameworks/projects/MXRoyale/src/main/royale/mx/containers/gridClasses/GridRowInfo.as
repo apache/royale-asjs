@@ -28,7 +28,9 @@ import mx.core.UIComponent;
  *  @private
  *  Internal helper class used to exchange information between
  *  Grid and GridRow.
+ *  @royalesuppresspublicvarwarning
  */
+
 public class GridRowInfo
 {
 	/* include "../../core/Version.as";
@@ -45,16 +47,16 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function GridRowInfo()
 	{
 		super();
 
-		_min = 0;
-		_preferred = 0;
-		_max = UIComponent.DEFAULT_MAX_HEIGHT;
-		_flex = 0;
+		min = 0;
+		preferred = 0;
+		max = UIComponent.DEFAULT_MAX_HEIGHT;
+		flex = 0;
 	}
 	
 	//--------------------------------------------------------------------------
@@ -73,18 +75,10 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
-	private var _flex:Number;
-	public function set flex(value:Number):void
-	{
-	_flex = value;
-	}
+	public var flex:Number;
 	
-	public function get flex():Number
-	{
-	return _flex;
-	}
 	//----------------------------------
 	//  height
 	//----------------------------------
@@ -96,18 +90,10 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
-	private var _height:Number;
-	public function set height(value:Number):void
-	{
-	_height = value;
-	}
+	public var height:Number;
 	
-	public function get height():Number
-	{
-	return _height;
-	}
 	//----------------------------------
 	//  max
 	//----------------------------------
@@ -118,18 +104,10 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
-	private var _max:Number;
-	public function set max(value:Number):void
-	{
-	_max = value;
-	}
+	public var max:Number;
 	
-	public function get max():Number
-	{
-	return _max;
-	}
 	//----------------------------------
 	//  min
 	//----------------------------------
@@ -140,20 +118,12 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
-	private var _min:Number;
-	public function set min(value:Number):void
-	{
-	_min = value;
-	}
+	public var min:Number;
 	
-	public function get min():Number
-	{
-	return _min;
-	}
 	//----------------------------------
-	//  _preferred
+	//  preferred
 	//----------------------------------
 
 	/**
@@ -162,18 +132,10 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
-	private var _preferred:Number;
-	public function set preferred(value:Number):void
-	{
-	_preferred = value;
-	}
+	public var preferred:Number;
 	
-	public function get preferred():Number
-	{
-	return _preferred;
-	}
 	//----------------------------------
 	//  y
 	//----------------------------------
@@ -185,18 +147,10 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
-	private var _y:Number;
-	public function set y(value:Number):void
-	{
-	_y = value;
-	}
+	public var y:Number;
 	
-	public function get y():Number
-	{
-	return _y;
-	}
 }
 
 }

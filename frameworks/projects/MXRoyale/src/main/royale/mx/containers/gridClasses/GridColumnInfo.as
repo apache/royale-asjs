@@ -29,6 +29,7 @@ import mx.core.UIComponent;
  *  @private
  *  Internal helper class used to exchange information between
  *  Grid and GridRow.
+ *  @royalesuppresspublicvarwarning
  */
 public class GridColumnInfo extends FlexChildInfo
 {
@@ -46,7 +47,7 @@ public class GridColumnInfo extends FlexChildInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function GridColumnInfo()
 	{
@@ -76,18 +77,10 @@ public class GridColumnInfo extends FlexChildInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
-	private var _x:Number;
-	public function set x(value:Number):void
-	{
-	_x = value;
-	}
+	public var x:Number;
 	
-	public function get x():Number
-	{
-	return _x;
-	}
 	
 }
 
