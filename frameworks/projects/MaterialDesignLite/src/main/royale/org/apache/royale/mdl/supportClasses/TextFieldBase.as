@@ -19,16 +19,15 @@ package org.apache.royale.mdl.supportClasses
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.TextInput;
-    import org.apache.royale.mdl.beads.ExpandableSearch;
     import org.apache.royale.core.IBead;
 
     import org.apache.royale.mdl.supportClasses.ITextField;
-    
+
     COMPILE::JS
     {
         import goog.events;
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
     
     /**
@@ -53,11 +52,15 @@ package org.apache.royale.mdl.supportClasses
 		{
 			super();
 
-          //  className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
 		}
 
         COMPILE::JS
         {
+            private var _classList:CSSClassList;
             private var _textNode:Text;
             /**
              *  @copy org.apache.royale.mdl.supportClasses.ITextField#textNode
@@ -152,11 +155,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-textfield--floating-label");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-textfield--floating-label");
-                    }
+                    var classVal:String = "mdl-textfield--floating-label";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -185,25 +186,17 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("is-invalid");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "is-invalid");
-                    }
+                    var classVal:String = "is-invalid";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
 
         COMPILE::JS
-        override public function addedToParent():void
+        override protected function computeFinalClassNames():String
         {
-            super.addedToParent();
-
-            var expandableSearch:IBead = getBeadByType(ExpandableSearch);
-            if (expandableSearch)
-            {
-                className = addOrReplaceClassName(className, "mdl-textfield--expandable");
-            }
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

@@ -146,6 +146,10 @@ package org.apache.royale.binding
             }
         }
         
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion Function
+         */
         private function getValueFromSource():Object
         {
             if (source is Array)
@@ -183,6 +187,9 @@ package org.apache.royale.binding
             return null;
 		}
         
+        /**
+         * @royaleignorecoercion Array
+         */
         private function applyValue(value:Object):void
         {
 			if (destinationFunction != null)

@@ -31,7 +31,8 @@ import org.apache.royale.events.Event;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class ScrollEvent extends Event
 {
@@ -74,7 +75,7 @@ public class ScrollEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public static const SCROLL:String = "scroll";
 
@@ -110,7 +111,7 @@ public class ScrollEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function ScrollEvent(type:String, bubbles:Boolean = false,
 								cancelable:Boolean = false,
@@ -144,7 +145,7 @@ public class ScrollEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var delta:Number;
 
@@ -162,7 +163,7 @@ public class ScrollEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var detail:String;
 
@@ -180,7 +181,7 @@ public class ScrollEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public var direction:String;
 
@@ -194,7 +195,7 @@ public class ScrollEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public var position:Number;
 
@@ -207,7 +208,7 @@ public class ScrollEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():Event
 	{
 		return new ScrollEvent(type, bubbles, cancelable, 
                                detail, position, direction, delta);

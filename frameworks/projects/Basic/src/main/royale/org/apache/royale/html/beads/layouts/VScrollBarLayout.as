@@ -21,14 +21,17 @@ package org.apache.royale.html.beads.layouts
 	import flash.display.DisplayObject;
 	
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IScrollBarModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.IScrollBarView;
 	import org.apache.royale.html.beads.ScrollBarView;
-	import org.apache.royale.utils.CSSContainerUtils;
 
     /**
      *  The VScrollBarLayout class is a layout
@@ -82,7 +85,7 @@ package org.apache.royale.html.beads.layouts
             if (!sbModel)
                 sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
 					
-			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
+			var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(_strand as IUIBase);
                     
 			var h:Number = DisplayObject(_strand).height + metrics.top + metrics.bottom;
 			var increment:DisplayObject = sbView.increment;
