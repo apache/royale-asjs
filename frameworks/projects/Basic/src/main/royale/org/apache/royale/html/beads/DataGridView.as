@@ -124,7 +124,7 @@ package org.apache.royale.html.beads
 
 				_listArea = new Container();
 				_listArea.percentWidth = 100;
-				_listArea.className = "opt_org-apache.royale-html-DataGrid_ListArea";
+				_listArea.className = "opt_org-apache-royale-html-DataGrid_ListArea";
 
 				createLists();
 

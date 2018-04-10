@@ -156,7 +156,7 @@ package org.apache.royale.html.beads
 			
 			_listArea = new Container();
 			_listArea.percentWidth = 100;
-			_listArea.className = "opt_org-apache.royale-html-TreeGrid_ListArea";
+			_listArea.className = "opt_org-apache-royale-html-TreeGrid_ListArea";
 				
 			createColumns();
 			
