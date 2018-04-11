@@ -162,36 +162,6 @@ package org.apache.royale.core
 		/*
 		* IItemRendererParent
 		*/
-
-		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderers()
-		 * @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function addItemRenderers(renderers:Array,dispatch:Boolean):void
-		{
-			var len:int = renderers.length;
-			for(var i:int = 0; i < len; i++)
-			{
-				addElement(renderers[i], false);
-				
-			}
-			//TODO every other childrenAdded event is a ValueEvent with the child as payload
-			if(dispatch)
-				this.dispatchEvent(new Event("childrenAdded"));
-			// Loop a second time to dispatch events once they are all added
-			for(i = 0; i < len; i++)
-			{
-				var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-				newEvent.item = renderers[i];
-				
-				dispatchEvent(newEvent);
-			}
-		}
 		
 		/**
 		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()

@@ -137,7 +137,7 @@ package org.apache.royale.html.beads
          *  @royaleignorecoercion Array
          *  @royaleignorecoercion org.apache.royale.html.beads.ITextItemRenderer
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         *  @royaleignorecoercion org.apache.royale.core.IList
+         * @royaleignorecoercion org.apache.royale.core.IList
          */
 		private function dataProviderChangeHandler(event:Event):void
 		{
@@ -149,24 +149,20 @@ package org.apache.royale.html.beads
 			var dataGroup:IItemRendererParent = list.dataGroup;
 
 			dataGroup.removeAllItemRenderers();
-            var renderers:Array = [];
+
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                // dataGroup.addItemRenderer(tf);
+                dataGroup.addItemRenderer(tf);
                 if (selectionModel.labelField) {
                 	tf.labelField = selectionModel.labelField;
                 }
-                renderers[i] = tf;
-			}
-			dataGroup.addItemRenderers(renderers, false);
-			for(i=0;i<n;i++)
-			{
-                renderers[i].data = dp[i];
+                tf.data = dp[i];
+
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-				newEvent.itemRenderer = renderers[i];
+				newEvent.itemRenderer = tf;
 				dispatchEvent(newEvent);
 			}
 

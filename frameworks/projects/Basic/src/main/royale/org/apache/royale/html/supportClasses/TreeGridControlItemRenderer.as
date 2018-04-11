@@ -22,7 +22,6 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.html.TextButton;
@@ -75,28 +74,6 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		// IItemRendererParent implementation
-
-		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderers()
-		 * @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function addItemRenderers(renderers:Array, dispatch:Boolean):void
-		{
-			var len:int = renderers.length;
-			for(var i:int = 0; i < len; i++)
-			{
-				addElement(renderers[i], false);
-				
-			}
-			//TODO every other childrenAdded event is a ValueEvent with the child as payload
-			if(dispatch)
-				this.dispatchEvent(new Event("childrenAdded"));
-		}
 		
 		public function addItemRenderer(renderer:IItemRenderer):void
 		{
