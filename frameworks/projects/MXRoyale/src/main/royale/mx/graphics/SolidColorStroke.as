@@ -22,26 +22,6 @@ package mx.graphics
 	import org.apache.royale.graphics.SolidColorStroke;
     public class SolidColorStroke extends org.apache.royale.graphics.SolidColorStroke
     {
-       public function SolidColorStroke(color:uint = 0x000000,
-										 weight:Number = 1,
-										 alpha:Number = 1.0,
-										 pixelHinting:Boolean = false,
-										 scaleMode:String = "normal",
-										 caps:String = "round",
-										 joints:String = "round",
-										 miterLimit:Number = 3)
-		{
-			super();
-
-			color = color;
-			weight = weight;
-			alpha = alpha;
-			pixelHinting = pixelHinting;
-			scaleMode = scaleMode;
-			caps = caps;
-			joints = joints;
-			miterLimit = miterLimit;
-		}
-
+     
     }
 }
