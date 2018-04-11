@@ -37,6 +37,7 @@ internal class MXRoyaleClasses
 	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.graphics.IStroke; IStroke;
 	import mx.graphics.IFill; IFill;
 	import mx.graphics.GradientEntry; GradientEntry;
 	import mx.core.EventPriority; EventPriority;
