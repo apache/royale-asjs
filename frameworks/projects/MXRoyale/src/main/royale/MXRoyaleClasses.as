@@ -33,6 +33,9 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.graphics.Stroke; Stroke;
+
+	
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
