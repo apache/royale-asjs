@@ -76,6 +76,9 @@ package org.apache.royale.html.supportClasses
 			updateButtonLabelFromData();
 		}
 
+		/**
+		 * @royaleignorecoercion String
+		 */
 		private function updateButtonLabelFromData():void
 		{
 			var valueAsString:String;
@@ -86,13 +89,13 @@ package org.apache.royale.html.supportClasses
 				valueAsString = data as String;
 			}
 			else if (labelField != null) {
-				valueAsString = String(data[labelField]);
+				valueAsString = "" + data[labelField];
 			}
 			else if (data.hasOwnProperty("label")) {
-				valueAsString = String(data["label"]);
+				valueAsString = "" + data["label"];
 			}
 			else if (data.hasOwnProperty("title")) {
-				valueAsString = String(data["title"]);
+				valueAsString = "" + data["title"];
 			}
 
 			if (valueAsString) text = valueAsString;

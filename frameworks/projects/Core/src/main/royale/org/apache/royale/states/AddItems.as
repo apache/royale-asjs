@@ -141,6 +141,11 @@ package org.apache.royale.states
             _document = value;
         }
         
+        /**
+         * @see org.apache.royale.core.IDocument#setDocument
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.states.ItemAndDescriptor
+         */
         public function setDocument(document:Object, id:String = null):void
         {
             this.document = document;

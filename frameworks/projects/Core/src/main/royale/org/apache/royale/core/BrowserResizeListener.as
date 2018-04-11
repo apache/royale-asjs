@@ -32,7 +32,7 @@ COMPILE::SWF
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.8
      */
 	public class BrowserResizeListener implements IBead
 	{
@@ -42,7 +42,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function BrowserResizeListener()
 		{
@@ -58,7 +58,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function get minHeight():Number
         {
@@ -77,7 +77,7 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function get minWidth():Number
         {
@@ -94,7 +94,8 @@ COMPILE::SWF
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IInitialViewApplication
          */
         public function set strand(value:IStrand):void
         {

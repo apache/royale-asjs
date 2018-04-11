@@ -68,13 +68,17 @@ package org.apache.royale.binding
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         override public function set strand(value:IStrand):void
         {
             _strand = value;
             IEventDispatcher(_strand).addEventListener("viewChanged", viewChangedHandler);
         }
-
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IBinding
+         * @royaleignorecoercion String
+         */
         private function viewChangedHandler(event:Event):void
         {
             if (!("_bindings" in _strand))

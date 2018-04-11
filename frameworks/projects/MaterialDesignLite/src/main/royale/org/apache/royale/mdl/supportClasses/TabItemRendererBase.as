@@ -22,7 +22,7 @@ package org.apache.royale.mdl.supportClasses
 
     COMPILE::JS
     {
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
     /**
@@ -46,7 +46,15 @@ package org.apache.royale.mdl.supportClasses
         public function TabItemRendererBase()
         {
             super();
+
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
         }
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         private var _tabIdField:String;
         /**
@@ -89,11 +97,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("is-active");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "is-active");
-                    }
+                    var classVal:String = "is-active";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -123,6 +129,12 @@ package org.apache.royale.mdl.supportClasses
                     throw new Error("tabIdField cannot be empty.");
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

@@ -30,7 +30,6 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.events.Event;
     import org.apache.royale.geom.Rectangle;
     import org.apache.royale.geom.Size;
-    import org.apache.royale.utils.CSSContainerUtils;
 	COMPILE::SWF
 	{
 		import flash.geom.Rectangle;

@@ -352,6 +352,7 @@
             reportFile="${src.rat.report}">
             <fileset dir="${basedir}/${package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="**/RELEASE_NOTES.md"/>
                 <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
@@ -415,6 +416,7 @@
             reportFile="${bin.rat.report}">
             <fileset dir="${basedir}/${bin.package.url.name}">
                 <exclude name="README.md"/>
+                <exclude name="**/RELEASE_NOTES.md"/>
                 <exclude name="**/README.md"/>
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
@@ -756,6 +758,11 @@
         <property name="no.lint" value="true" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="all" />
         <ant dir="${basedir}/${package.url.name}/royale-asjs" target="examples" />
+        <antcall target="build_maven" />
+    </target>
+
+    <target name="build_maven" >
+        <echo>Path is ${env.Path}</echo>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="-P" />
             <arg value="-main,utils" />

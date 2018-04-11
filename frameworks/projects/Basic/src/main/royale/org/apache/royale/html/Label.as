@@ -170,7 +170,7 @@ package org.apache.royale.html
         }
 
         /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

@@ -41,15 +41,18 @@ import flash.events.EventPhase;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 */
+
+import mx.controls.beads.ToolTipBead;
 import mx.events.FlexEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
+import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
-import mx.controls.beads.ToolTipBead;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
+import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
@@ -58,9 +61,9 @@ import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-//import org.apache.royale.html.accessories.ToolTipBead;
-import org.apache.royale.utils.loadBeadFromValuesManager;
+import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 
 /*
 import mx.managers.IToolTipManagerClient;
@@ -483,6 +486,187 @@ public class UIComponent extends UIBase
     }
 
     //----------------------------------
+    //  focusEnabled
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the focusEnabled property.
+     */
+    private var _focusEnabled:Boolean = true;
+    
+    [Inspectable(defaultValue="true")]
+    
+    /**
+     *  Indicates whether the component can receive focus when tabbed to.
+     *  You can set <code>focusEnabled</code> to <code>false</code>
+     *  when a UIComponent is used as a subcomponent of another component
+     *  so that the outer component becomes the focusable entity.
+     *  If this property is <code>false</code>, focus is transferred to
+     *  the first parent that has <code>focusEnable</code>
+     *  set to <code>true</code>.
+     *
+     *  <p>The default value is <code>true</code>, except for the 
+     *  spark.components.Scroller component. 
+     *  For that component, the default value is <code>false</code>.</p>
+     *
+     *  @see spark.components.Scroller
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get focusEnabled():Boolean
+    {
+        return _focusEnabled;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set focusEnabled(value:Boolean):void
+    {
+        _focusEnabled =  value;
+    }
+    
+    //----------------------------------
+    //  hasFocusableChildren
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the hasFocusableChildren property.
+     */
+    private var _hasFocusableChildren:Boolean = false;
+    
+    [Bindable("hasFocusableChildrenChange")]
+    [Inspectable(defaultValue="false")]
+    
+    /**
+     *  A flag that indicates whether child objects can receive focus.
+     * 
+     *  <p><b>Note: </b>This property is similar to the <code>tabChildren</code> property
+     *  used by Flash Player. 
+     *  Use the <code>hasFocusableChildren</code> property with Flex applications.
+     *  Do not use the <code>tabChildren</code> property.</p>
+     * 
+     *  <p>This property is usually <code>false</code> because most components
+     *  either receive focus themselves or delegate focus to a single
+     *  internal sub-component and appear as if the component has
+     *  received focus. 
+     *  For example, a TextInput control contains a focusable
+     *  child RichEditableText control, but while the RichEditableText
+     *  sub-component actually receives focus, it appears as if the
+     *  TextInput has focus. TextInput sets <code>hasFocusableChildren</code>
+     *  to <code>false</code> because TextInput is considered the
+     *  component that has focus. Its internal structure is an
+     *  abstraction.</p>
+     *
+     *  <p>Usually only navigator components, such as TabNavigator and
+     *  Accordion, have this flag set to <code>true</code> because they
+     *  receive focus on Tab but focus goes to components in the child
+     *  containers on further Tabs.</p>
+     *
+     *  <p>The default value is <code>false</code>, except for the 
+     *  spark.components.Scroller component. 
+     *  For that component, the default value is <code>true</code>.</p>
+     *
+     *  @see spark.components.Scroller
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get hasFocusableChildren():Boolean
+    {
+        return _hasFocusableChildren;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set hasFocusableChildren(value:Boolean):void
+    {
+        if (value != _hasFocusableChildren)
+        {
+            _hasFocusableChildren = value;
+            dispatchEvent(new Event("hasFocusableChildrenChange"));
+        }
+    }
+    
+    //----------------------------------
+    //  tabFocusEnabled
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the tabFocusEnabled property.
+     */
+    private var _tabFocusEnabled:Boolean = true;
+    
+    [Bindable("tabFocusEnabledChange")]
+    [Inspectable(defaultValue="true")]
+    
+    /**
+     *  A flag that indicates whether this object can receive focus
+     *  via the TAB key
+     * 
+     *  <p>This is similar to the <code>tabEnabled</code> property
+     *  used by the Flash Player.</p>
+     * 
+     *  <p>This is usually <code>true</code> for components that
+     *  handle keyboard input, but some components in controlbars
+     *  have them set to <code>false</code> because they should not steal
+     *  focus from another component like an editor.
+     *  </p>
+     *
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get tabFocusEnabled():Boolean
+    {
+        return _tabFocusEnabled;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set tabFocusEnabled(value:Boolean):void
+    {
+        if (value != _tabFocusEnabled)
+        {
+            _tabFocusEnabled = value;
+            dispatchEvent(new Event("tabFocusEnabledChange"));
+        }
+    }
+    
+    //----------------------------------
+    //  tabIndex
+    //----------------------------------
+    
+
+    COMPILE::JS
+    public function get tabIndex():int
+    {
+        return element.tabIndex;
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    public function set tabIndex(value:int):void
+    {
+        element.tabIndex =  value;
+    }
+    
+    //----------------------------------
     //  cacheAsBitmap
     //----------------------------------
 
@@ -603,9 +787,19 @@ public class UIComponent extends UIBase
      */
     public function get focusManager():IFocusManager
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("focusManager not implemented");
+        if (_focusManager)
+            return _focusManager;
+        
+        var o:IUIBase = parent as IUIBase;
+        
+        while (o)
+        {
+            if (o is IFocusManagerContainer)
+                return IFocusManagerContainer(o).focusManager;
+            
+            o = o.parent as IUIBase;
+        }
+        
         return null;
     }
 
@@ -615,9 +809,7 @@ public class UIComponent extends UIBase
      */
     public function set focusManager(value:IFocusManager):void
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("focusManager not implemented");
+        _focusManager = value;
     }
     
     //----------------------------------
@@ -720,6 +912,9 @@ public class UIComponent extends UIBase
             var child:IUIComponent = getChildAt(i) as IUIComponent;
             if (!child)
                 continue;
+            // JS subtrees will point back to the component.  Ignore those.
+            if (child == this)
+                continue;
             
             if (child.component == _component ||
                 child.component == FlexGlobals.topLevelApplication)
@@ -729,6 +924,15 @@ public class UIComponent extends UIBase
         }
         
         _component = value;
+    }
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        if (!component && parent is UIComponent)
+            component = UIComponent(parent).component;
+        else if (!component && parent is ContainerContentArea)
+            component = UIComponent(ContainerContentArea(parent).parent).component;
     }
     
     //----------------------------------
@@ -3092,8 +3296,14 @@ public class UIComponent extends UIBase
      */
     public function setFocus():void
     {
-        if (GOOG::DEBUG)
-            trace("setFocus not implemented");
+        COMPILE::SWF
+        {
+            stage.focus = this;
+        }
+        COMPILE::JS
+        {
+            element.focus();
+        }
     }
 
 
