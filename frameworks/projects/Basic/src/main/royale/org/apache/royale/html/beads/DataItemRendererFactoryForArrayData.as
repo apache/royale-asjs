@@ -184,7 +184,7 @@ package org.apache.royale.html.beads
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
                 var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-				dataGroup.addItemRenderer(ir);
+				dataGroup.addItemRenderer(ir, false);
 				ir.index = i;
 				ir.labelField = labelField;
                 if (dataItemRenderer)

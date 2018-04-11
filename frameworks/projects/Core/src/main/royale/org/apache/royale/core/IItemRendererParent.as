@@ -45,7 +45,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function addItemRenderer(renderer:IItemRenderer):void;
+		function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void;
 		function addItemRendererAt(renderer:IItemRenderer, index:int):void;
 		function removeItemRenderer(renderer:IItemRenderer):void;
 		function getItemRendererForIndex(index:int):IItemRenderer;

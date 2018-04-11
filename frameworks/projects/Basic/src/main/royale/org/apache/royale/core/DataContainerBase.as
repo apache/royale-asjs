@@ -172,14 +172,10 @@ package org.apache.royale.core
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function addItemRenderer(renderer:IItemRenderer):void
+		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
-			addElement(renderer, true);
-			
-			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-			newEvent.item = renderer;
-			
-			dispatchEvent(newEvent);
+			addElement(renderer, dispatchAdded);
+			dispatchItemAdded(renderer);
 		}
 		
 		/**
@@ -194,13 +190,16 @@ package org.apache.royale.core
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
 			addElementAt(renderer, index, true);
-			
+			dispatchItemAdded(renderer);
+		}
+		
+		private function dispatchItemAdded(renderer:IItemRenderer):void
+		{
 			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
 			newEvent.item = renderer;
 			
 			dispatchEvent(newEvent);
 		}
-		
 		/**
 		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
 		 * @private

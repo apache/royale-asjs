@@ -167,7 +167,7 @@ package org.apache.royale.html.beads
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 				var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-				dataGroup.addItemRenderer(ir);
+				dataGroup.addItemRenderer(ir, false);
 				if (presentationModel) {
 					var style:SimpleCSSStyles = new SimpleCSSStyles();
 					style.marginBottom = presentationModel.separatorThickness;
@@ -176,15 +176,13 @@ package org.apache.royale.html.beads
 					UIBase(ir).percentWidth = 100;
 				}
 
-				var data:Object = dp.getItemAt(i);
-                ir.index = i;
                 ir.labelField = labelField;
 				if (dataItemRenderer)
 				{
 					dataItemRenderer.dataField = dataField;
 				}
 
-				setData(ir, data, i);
+				setData(ir, dp.getItemAt(i), i);
 
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 				newEvent.itemRenderer = ir;
