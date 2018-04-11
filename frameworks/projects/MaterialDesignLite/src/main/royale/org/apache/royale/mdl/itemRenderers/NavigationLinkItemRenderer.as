@@ -109,13 +109,21 @@ package org.apache.royale.mdl.itemRenderers
 
 			if(value == null) return;
 
-			if(value.label !== undefined) {
+			if (labelField)
+			{
+                label = String(value[labelField]);
+            }
+			else if(value.label !== undefined)
+			{
                 label = String(value.label);
-			} else {
+			}
+			else
+			{
 				label = String(value);
 			}
 			
-            if(value.href !== undefined) {
+            if(value.href !== undefined)
+			{
                 href = String(value.href);
 			}
 

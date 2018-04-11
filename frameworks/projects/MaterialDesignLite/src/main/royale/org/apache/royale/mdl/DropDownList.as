@@ -31,7 +31,6 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
     [Event(name="change", type="org.apache.royale.events.Event")]
@@ -207,8 +206,7 @@ package org.apache.royale.mdl
         {
 			element = super.createElement();
 
-            className = addOrReplaceClassName(className, "mdl-textfield--floating-label");
-
+            element.classList.add("mdl-textfield--floating-label");
             return element;
         }
     }

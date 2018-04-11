@@ -130,6 +130,30 @@ package org.apache.royale.utils
 
 		}
 
+		public function get measuredWidth():Number
+		{
+			// TODO Auto Generated method stub
+			return 0;
+		}
+
+		public function set measuredWidth(value:Number):void
+		{
+			// TODO Auto Generated method stub
+
+		}
+
+		public function get measuredHeight():Number
+		{
+			// TODO Auto Generated method stub
+			return 0;
+		}
+
+		public function set measuredHeight(value:Number):void
+		{
+			// TODO Auto Generated method stub
+
+		}
+
 		public function get x():Number
 		{
 			// TODO Auto Generated method stub

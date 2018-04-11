@@ -163,7 +163,9 @@ package org.apache.royale.binding
             value = obj[propName];
             return true;
         }
-        
+        /**
+         * @royaleignorecoercion String
+         */
         private function applyValue():void
         {
             var destinationName:String;

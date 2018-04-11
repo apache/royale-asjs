@@ -195,6 +195,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -217,6 +218,7 @@ package org.apache.royale.html.beads.controllers
 
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         private function dragMouseDownHandler(event:MouseEvent):void
         {
@@ -228,6 +230,10 @@ package org.apache.royale.html.beads.controllers
             event.preventDefault();
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         * @royaleignorecoercion org.apache.royale.core.UIBase
+         */
         private function dragMouseMoveHandler(event:MouseEvent):void
         {
             var pt:Point;
@@ -296,6 +302,9 @@ package org.apache.royale.html.beads.controllers
             }
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         private function dragMouseUpHandler(event:MouseEvent):void
         {
             //trace("DRAG-MOUSE: dragMouseUp");

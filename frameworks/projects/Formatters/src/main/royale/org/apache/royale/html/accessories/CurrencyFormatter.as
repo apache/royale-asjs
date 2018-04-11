@@ -33,7 +33,7 @@ package org.apache.royale.html.accessories
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.8
 	 */
 	public class CurrencyFormatter extends EventDispatcher implements IFormatBead
 	{
@@ -43,7 +43,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function CurrencyFormatter()
 		{
@@ -58,7 +58,8 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -71,6 +72,7 @@ package org.apache.royale.html.accessories
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IBeadModel
 		 */
 		private function handleBeadsAdded(event:Event):void
 		{
@@ -95,7 +97,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get propertyName():String
 		{
@@ -116,7 +118,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get eventName():String
 		{
@@ -136,7 +138,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get fractionalDigits():int
 		{
@@ -153,7 +155,7 @@ package org.apache.royale.html.accessories
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function get currencySymbol():String
         {
@@ -170,7 +172,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get formattedString():String
 		{
@@ -179,6 +181,7 @@ package org.apache.royale.html.accessories
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IBeadModel
 		 */
 		private function propertyChangeHandler(event:Event):void
 		{
@@ -200,7 +203,7 @@ package org.apache.royale.html.accessories
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function format(value:Object):String
 		{
