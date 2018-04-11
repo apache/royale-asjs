@@ -28,8 +28,8 @@ package
 internal class MXRoyaleClasses
 {
 	import mx.collections.ArrayList; ArrayList;
-    import mx.core.mx_internal; mx_internal;
-    import mx.core.UIComponent; UIComponent;
+  import mx.core.mx_internal; mx_internal;
+  import mx.core.UIComponent; UIComponent;
 	import mx.core.Container; Container;
 	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
@@ -37,6 +37,7 @@ internal class MXRoyaleClasses
 	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.graphics.GradientEntry; GradientEntry;
 	import mx.core.EventPriority; EventPriority;
 	import mx.core.IFactory; IFactory;
 	import mx.collections.CursorBookmark; CursorBookmark;
@@ -64,7 +65,7 @@ internal class MXRoyaleClasses
 	import mx.controls.HRule; HRule;
 	import mx.events.ListEvent; ListEvent;
 	import mx.events.SliderEvent; SliderEvent;
-    import mx.managers.FocusManager; FocusManager;
+  import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
     COMPILE::SWF
     {
