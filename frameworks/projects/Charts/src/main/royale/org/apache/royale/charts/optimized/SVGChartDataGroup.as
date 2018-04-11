@@ -133,29 +133,6 @@ package org.apache.royale.charts.optimized
 			super.removeAllElements();
 			_children = new Array();
 		}
-
-		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderers()
-		 * @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function addItemRenderers(renderers:Array,dispatch:Boolean):void
-		{
-			_children = _children.concat(renderers);
-			var len:int = renderers.length;
-			for(var i:int = 0; i < len; i++)
-			{
-				addElement(renderers[i], false);
-				
-			}
-			//TODO every other childrenAdded event is a ValueEvent with the child as payload
-			if(dispatch)
-				this.dispatchEvent(new Event("childrenAdded"));
-		}
 		
 		/**
 		 *  Overrides the addElement function to set the element into an internal
