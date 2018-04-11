@@ -20,12 +20,6 @@ package org.apache.royale.mdl
 {
 	import org.apache.royale.html.Group;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
-
 	/**
 	 *  The NavigationLayoutContent class is a Container component capable of parenting
 	 *  the content of the NavigationLayout parent. If the navigation uses a TabBar component

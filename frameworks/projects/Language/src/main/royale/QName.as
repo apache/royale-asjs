@@ -20,6 +20,9 @@ package
 {
 	public class QName
 	{
+		/**
+		 * @royaleignorecoercion Namespace
+		 */
 		COMPILE::JS
 		public function QName(qNameOrUri:*=null,localNameVal:*=null)
 		{
@@ -44,27 +47,30 @@ package
 				  b. Let q.uri = Namespace.uri NOTE implementations that preserve prefixes in qualified names may also set q.[[Prefix]] to Namespace.prefix
 				8. Return q
 			*/
-			if(qNameOrUri is QName)
+			if(qNameOrUri != null)
 			{
-				_uri = qNameOrUri.uri;
-				_localName = qNameOrUri.localName;
-				_prefix = qNameOrUri.prefix;
-			}
-			else if(qNameOrUri is Namespace)
-			{
-				_uri = (qNameOrUri as Namespace).uri;
-				_prefix = (qNameOrUri as Namespace).prefix;
-				if(localNameVal)
-					_localName = localNameVal.toString();
-			}
-			else if(localNameVal)
-			{
-				_localName = localNameVal;
-				_uri = qNameOrUri;
-			}
-			else if (qNameOrUri && qNameOrUri.toString())
-			{
-				_localName = qNameOrUri.toString();
+				if(qNameOrUri is QName)
+				{
+					_uri = qNameOrUri.uri;
+					_localName = qNameOrUri.localName;
+					_prefix = qNameOrUri.prefix;
+				}
+				else if(qNameOrUri is Namespace)
+				{
+					_uri = (qNameOrUri as Namespace).uri;
+					_prefix = (qNameOrUri as Namespace).prefix;
+					if(localNameVal)
+						_localName = localNameVal.toString();
+				}
+				else if(localNameVal)
+				{
+					_localName = localNameVal;
+					_uri = qNameOrUri;
+				}
+				else if (qNameOrUri && qNameOrUri.toString())
+				{
+					_localName = qNameOrUri.toString();
+				}
 			}
 		}
 

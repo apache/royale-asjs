@@ -235,7 +235,16 @@ public class IndexChangedEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var newIndex:Number;
+    private var _newIndex:Number;
+	
+	public function get newIndex():Number
+	{
+		return _newIndex;
+	}
+	public function set newIndex(value:Number):void
+	{
+		_newIndex = value;
+	}
 
     //----------------------------------
     //  oldIndex
@@ -254,7 +263,16 @@ public class IndexChangedEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var oldIndex:Number;
+    private var _oldIndex:Number;
+	
+	public function get oldIndex():Number
+	{
+		return _oldIndex;
+	}
+	public function set oldIndex(value:Number):void
+	{
+		_oldIndex = value;
+	}
 
     //----------------------------------
     //  relatedObject
@@ -269,7 +287,16 @@ public class IndexChangedEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var relatedObject:Object;
+    private var _relatedObject:Object;
+	
+	public function get relatedObject():Object
+	{
+		return _relatedObject;
+	}
+	public function set relatedObject(value:Object):void
+	{
+		_relatedObject = value;
+	}
 
     //----------------------------------
     //  triggerEvent
@@ -286,7 +313,16 @@ public class IndexChangedEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var triggerEvent:Event;
+    private var _triggerEvent:Event;
+	
+	public function get triggerEvent():Event
+	{
+		return _triggerEvent;
+	}
+	public function set triggerEvent(value:Event):void
+	{
+		_triggerEvent = value;
+	}
 
     //--------------------------------------------------------------------------
     //
@@ -297,7 +333,7 @@ public class IndexChangedEvent extends Event
     /**
      *  @private
      */
-    override public function clone():IRoyalEvent
+	override public function cloneEvent():IRoyaleEvent
     {
         return new IndexChangedEvent(type, bubbles, cancelable,
                                      relatedObject, oldIndex, 

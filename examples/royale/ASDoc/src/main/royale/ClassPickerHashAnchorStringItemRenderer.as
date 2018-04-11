@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+import models.ASDocModel;
 import  org.apache.royale.html.supportClasses.StringItemRenderer;
 
 	/**
@@ -63,11 +64,11 @@ import  org.apache.royale.html.supportClasses.StringItemRenderer;
             	{
             		pkg = href.substr(0, c);
             		cname = href.substr(c+1);
-            		href = pkg + "/" + cname;
+            		href = pkg + ASDocModel.DELIMITER + cname;
             	}
             	else
             	{
-            		href = "/" + cname;
+            		href = ASDocModel.DELIMITER + cname;
             	} 
                 this.element.innerHTML = "<a href='#!" + href + "' class='HashAnchorAnchor'>" + value + "</a>";
             }
