@@ -59,14 +59,20 @@ $checkbox-label-font-size: 16px
         border-radius: $checkbox-border-radius
 
         &:checked, &:checked:active
-            background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), $default-color
+            @if $flat
+                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), $default-color
+            @else
+                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), lighten($default-color, 12%)//linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
             background-repeat: no-repeat
             background-size: 90%
             background-position: center
             background-attachment: fixed
 
             &:checked:focus, &:checked:active:focus
-                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), lighten($primary-color, 25%)
+                @if $flat
+                    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), lighten($primary-color, 25%)
+                @else
+                    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), lighten($primary-color, 25%)//linear-gradient(lighten($default-color, 25%), lighten($default-color, 20%))
                 background-repeat: no-repeat
                 background-size: 90%
                 background-position: center
