@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic">
+    
+    <fx:Style source="../../main/resources/styles.css"/>
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.jewel.Alert;
+            import org.apache.royale.events.CloseEvent;
+            import org.apache.royale.events.MouseEvent;
+
+           // Event handler function uses a static method to show
+           // a pop-up window with the title, message, and requested buttons.        
+           private function clickHandler(event:MouseEvent):void {
+               var alert:Alert = Alert.show("Do you want to save your changes?", "Save Changes", Alert.YES | Alert.NO);
+               alert.addEventListener(CloseEvent.CLOSE, alertClickHandler);
+           }
+       
+           // Event handler function for displaying the selected Alert button.
+           private function alertClickHandler(event:CloseEvent):void {
+               if (event.detail == Alert.YES)
+                   button.text="You answered Yes";
+               else
+                   button.text="You answered No";
+           }
+        ]]>
+    </fx:Script>
+
+    <js:initialView>
+        <js:View>
+            <j:TextButton id="button" text="Click Me" primary="true" click="clickHandler(event)"/>
+        </js:View>
+    </js:initialView>
+    
+</j:Application>
