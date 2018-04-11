@@ -24,7 +24,7 @@ package org.apache.royale.mdl.supportClasses
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -48,7 +48,15 @@ package org.apache.royale.mdl.supportClasses
 		public function CardInner()
 		{
 			super();
+
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
 		private var _border:Boolean = false;
         /**
@@ -72,11 +80,9 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-card--border");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-card--border");
-                    }
+                    var classVal:String = "mdl-card--border";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -96,6 +102,7 @@ package org.apache.royale.mdl.supportClasses
         {
             return _expand;
         }
+
         public function set expand(value:Boolean):void
         {
             if (_expand != value)
@@ -104,13 +111,17 @@ package org.apache.royale.mdl.supportClasses
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-card--expand");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-card--expand");
-                    }
+                    var classVal:String = "mdl-card--expand";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

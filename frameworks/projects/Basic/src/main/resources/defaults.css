@@ -55,29 +55,6 @@ Application
 	margin: 0px;
 }
 
-Button
-{
-	background-color: #f8f8f8;
-	border: 1px solid #808080;
-	border-radius: 2px;
-	padding: 4px;
-	margin: 0px;
-}
-
-Button:hover
-{
-	background-color: #e8e8e8;
-	border: 1px solid #808080;
-	padding: 4px;
-}
-
-Button:active
-{
-	background-color: #d8d8d8;
-	border: 1px solid #808080;
-	padding: 4px;
-}
-
 ButtonBar
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");

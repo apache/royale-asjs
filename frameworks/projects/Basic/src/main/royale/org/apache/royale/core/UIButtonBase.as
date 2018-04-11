@@ -394,6 +394,37 @@ package org.apache.royale.core
 		}
 
         /**
+         * @private
+         * Used by layout to prevent causing unnecessary reflows when measuring.
+         */
+        private var _measuredWidth:Number;
+
+		public function get measuredWidth():Number
+		{
+			return _measuredWidth;
+		}
+
+		public function set measuredWidth(value:Number):void
+		{
+			_measuredWidth = value;
+		}
+        /**
+         * @private
+         * Used by layout to prevent causing unnecessary reflows when measuring.
+         */
+        private var _measuredHeight:Number;
+
+		public function get measuredHeight():Number
+		{
+			return _measuredHeight;
+		}
+
+		public function set measuredHeight(value:Number):void
+		{
+			_measuredHeight = value;
+		}
+
+        /**
          *  @copy org.apache.royale.core.IUIBase#setHeight
          *  
          *  @langversion 3.0

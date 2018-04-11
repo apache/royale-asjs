@@ -27,18 +27,55 @@ package
  */
 internal class MXRoyaleClasses
 {
-    import mx.core.UIComponent; UIComponent;
+	import mx.collections.ArrayList; ArrayList;
+  import mx.core.mx_internal; mx_internal;
+  import mx.core.UIComponent; UIComponent;
 	import mx.core.Container; Container;
+	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
+	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	import mx.graphics.SolidColor; SolidColor;
 	import mx.graphics.SolidColorStroke; SolidColorStroke;
+	import mx.graphics.IStroke; IStroke;
+	import mx.graphics.IFill; IFill;
+	import mx.graphics.GradientEntry; GradientEntry;
+	import mx.core.EventPriority; EventPriority;
+	import mx.core.IFactory; IFactory;
+	import mx.collections.CursorBookmark; CursorBookmark;
+	import mx.collections.ICollectionView; ICollectionView;
+	import mx.collections.IViewCursor; IViewCursor;
+	import mx.events.SandboxMouseEvent; SandboxMouseEvent;
+	import mx.events.ResizeEvent; ResizeEvent;
+	import mx.utils.StringUtil; StringUtil;
+	import mx.core.DragSource; DragSource;
+	import mx.events.DividerEvent; DividerEvent;
+	import mx.events.ScrollEvent; ScrollEvent;
+	import mx.events.MoveEvent; MoveEvent;
+	import mx.events.ValidationResultEvent; ValidationResultEvent;
+	import mx.containers.Tile; Tile;
+	import mx.containers.DividedBox; DividedBox;
+	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
+	import mx.containers.beads.BoxLayout; BoxLayout;
+	import mx.containers.beads.CanvasLayout; CanvasLayout;
+	import mx.controls.ToolTip; ToolTip;
+	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
+	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
+	import mx.events.CloseEvent; CloseEvent;
+	import mx.controls.VRule; VRule;
+	import mx.controls.HRule; HRule;
+	import mx.events.ListEvent; ListEvent;
+	import mx.events.SliderEvent; SliderEvent;
+  import mx.managers.FocusManager; FocusManager;
+	import mx.utils.ArrayUtil; ArrayUtil;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
         import mx.controls.beads.CheckBoxView; CheckBoxView;
+        import mx.controls.beads.RadioButtonView; RadioButtonView;
     }
 }
 

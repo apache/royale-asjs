@@ -20,15 +20,18 @@ package org.apache.royale.html.beads.layouts
 {
 	
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IScrollBarModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.IScrollBarView;
 	import org.apache.royale.html.Button;
-	import org.apache.royale.utils.CSSContainerUtils;
 
     /**
      *  The HScrollBarLayout class is a layout
@@ -76,13 +79,14 @@ package org.apache.royale.html.beads.layouts
 			
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		public function layout():Boolean
 		{
             if (!sbModel)
                 sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
 					
-			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
+			var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(_strand as IUIBase);
             
             var host:UIBase = UIBase(_strand);
 			var w:Number = host.width + metrics.left + metrics.right;

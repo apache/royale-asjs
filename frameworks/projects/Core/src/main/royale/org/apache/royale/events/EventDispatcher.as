@@ -80,7 +80,7 @@ package org.apache.royale.events
 				//event.target = _target;
 				if (event) {
 					if (typeof event == "string") {
-						event = new Event(event as String);
+						event = new Event("" + event);
 						event.target = _target;
 						//console.log("created event from string ",event);
 					}
