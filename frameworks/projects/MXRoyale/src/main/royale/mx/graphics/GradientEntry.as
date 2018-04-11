@@ -79,13 +79,7 @@ public class GradientEntry extends org.apache.royale.graphics.GradientEntry
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
     */
-    public function GradientEntry(color:uint = 0x000000,
-                                  ratio:Number = NaN,
-                                  alpha:Number = 1.0)
-    {
-        super();
-
-    }
+  
 
  
 }
