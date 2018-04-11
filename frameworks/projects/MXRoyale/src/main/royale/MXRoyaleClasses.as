@@ -34,6 +34,7 @@ internal class MXRoyaleClasses
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	import mx.graphics.SolidColor; SolidColor;
+	import mx.graphics.SolidColorStroke; SolidColorStroke;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
