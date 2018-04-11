@@ -128,10 +128,11 @@ package org.apache.royale.jewel.beads.views
             }
 
 			// listen for changes to the model and adjust the UI accordingly.
-			IEventDispatcher(rangeModel).addEventListener("stepSizeChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("valueChange", modelChangeHandler);
 			IEventDispatcher(rangeModel).addEventListener("minimumChange", modelChangeHandler);
 			IEventDispatcher(rangeModel).addEventListener("maximumChange", modelChangeHandler);
-			IEventDispatcher(rangeModel).addEventListener("valueChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("stepSizeChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("snapIntervalChange", modelChangeHandler);
 
 			modelChangeHandler(null);
 		}
@@ -149,10 +150,10 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				var inputElement:HTMLInputElement = (UIBase(_strand).element as HTMLInputElement);
-				inputElement.step = String(rangeModel.stepSize);
+				inputElement.value = rangeModel.value.toString();
 				inputElement.min = String(rangeModel.minimum);
 				inputElement.max = String(rangeModel.maximum);
-				inputElement.value = rangeModel.value.toString();
+				inputElement.step = String(rangeModel.stepSize);
 			}
 
 			//(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));

@@ -33,6 +33,14 @@ package org.apache.royale.jewel
     //  Events
     //--------------------------------------
 
+	/**
+     *  Dispatched when Slider change its value.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
 	[Event(name="valueChange", type="org.apache.royale.events.Event")]
 
      /**
@@ -102,7 +110,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		[Bindable("input")]
+		[Bindable("valueChange")]
 		public function get value():Number
 		{
 			return IRangeModel(model).value;
