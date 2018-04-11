@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads
+package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF {
 		import flash.display.DisplayObject;
@@ -26,7 +26,6 @@ package org.apache.royale.jewel.beads
     import org.apache.royale.html.beads.ISliderView;
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IRangeModel;
@@ -36,8 +35,7 @@ package org.apache.royale.jewel.beads
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.Button;
-    import org.apache.royale.html.TextButton;
+    import org.apache.royale.jewel.Button;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.royale.jewel.Slider 
@@ -47,7 +45,7 @@ package org.apache.royale.jewel.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class SliderView extends BeadViewBase implements ISliderView, IBeadView
 	{
@@ -75,7 +73,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get track():IUIBase
 		{
@@ -88,7 +86,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get thumb():IUIBase
 		{
@@ -101,7 +99,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -144,7 +142,7 @@ package org.apache.royale.jewel.beads
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.8
+		 * @productversion Royale 0.9.3
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{

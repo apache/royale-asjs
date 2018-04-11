@@ -40,9 +40,9 @@ limitations under the License.
 	<html:H3 text="Jewel Slider"/>
 	
 	<j:Slider id="slider" width="250" value="120" minimum="100" maximum="500"
-				change="onChange(event)"/>
+				change="onChange(event)" input="onChange(event)"/>
 	<j:Slider id="slider_v" width="250" value="40" minimum="40" maximum="300"
-				change="onChange(event)"/>
+				change="onChange(event)" input="onChange(event)"/>
 	<j:TextButton id="button" text="Button" width="120" height="40" primary="true"/>
 
 </js:Group>

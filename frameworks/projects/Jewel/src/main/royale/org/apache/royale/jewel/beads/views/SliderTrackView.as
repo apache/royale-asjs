@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads
+package org.apache.royale.jewel.beads.views
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
@@ -26,20 +26,20 @@ package org.apache.royale.jewel.beads
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.html.Button;
+	import org.apache.royale.jewel.Button;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.IChild;
 	
 	/**
-	 *  The SliderTrackView class creates the track area for the org.apache.royale.html.Slider
+	 *  The SliderTrackView class creates the track area for the org.apache.royale.jewel.Slider
 	 *  component.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class SliderTrackView extends BeadViewBase implements IBeadView
 	{
@@ -49,7 +49,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function SliderTrackView()
 		{
@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
          *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		override public function set strand(value:IStrand):void

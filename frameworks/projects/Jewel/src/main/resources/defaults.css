@@ -144,8 +144,7 @@ j|Label {
 
 j|Slider {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel");
-  IBeadView: ClassReference("org.apache.royale.jewel.beads.SliderView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SliderView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SliderMouseController");
 }
 
@@ -160,8 +159,8 @@ j|Slider {
 
 @media -royale-swf {
   j|Slider {
-    iThumbView: ClassReference("org.apache.royale.jewel.beads.SliderThumbView");
-    iTrackView: ClassReference("org.apache.royale.jewel.beads.SliderTrackView");
+    iThumbView: ClassReference("org.apache.royale.jewel.beads.views.SliderThumbView");
+    iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }
 }
 j|TextField {

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
-	import org.apache.royale.collections.parsers.JSONInputParser;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IRangeModel;
@@ -36,12 +35,12 @@ package org.apache.royale.jewel.beads.controllers
         import goog.events;
         import goog.events.EventType;
         import org.apache.royale.events.BrowserEvent;
-        import org.apache.royale.html.Slider;
+        import org.apache.royale.jewel.Slider;
     }
 	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
-	 *  org.apache.royale.html.Slider's component parts (thumb and track) and 
+	 *  org.apache.royale.jewel.Slider's component parts (thumb and track) and 
 	 *  dispatches change events on behalf of the Slider (as well as co-ordinating visual 
 	 *  changes (such as moving the thumb when the track has been tapped or clicked). Use
 	 *  this controller for horizontally oriented Sliders.
@@ -49,7 +48,7 @@ package org.apache.royale.jewel.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class SliderMouseController implements IBead, IBeadController
 	{
@@ -59,12 +58,20 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function SliderMouseController()
 		{
 		}
 		
+		/**
+         *  Range model
+         *   
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+         */
 		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
@@ -77,7 +84,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -97,11 +104,7 @@ package org.apache.royale.jewel.beads.controllers
             COMPILE::JS
             {
 				var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
-				//track = sliderView.track as UIBase;
-				//thumb = sliderView.thumb as UIBase;
-                //goog.events.listen(track.element, goog.events.EventType.CLICK, handleTrackClick, false, this);
-                //goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN, handleThumbDown, false, this);
-
+				
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.CHANGE, handleChange, false, this);
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.INPUT, handleInput, false, this);
             }
@@ -113,7 +116,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
          */
         COMPILE::JS
         private function handleChange(event:BrowserEvent):void
@@ -131,7 +134,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
          */
         COMPILE::JS
         private function handleInput(event:BrowserEvent):void
@@ -140,15 +143,16 @@ package org.apache.royale.jewel.beads.controllers
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
-            //host.dispatchEvent(new org.apache.royale.events.Event('input'));
+            host.dispatchEvent(new org.apache.royale.events.Event('input'));
         }
 
-        /*COMPILE::JS
-        private var track:UIBase;
-        
-        COMPILE::JS
-        private var thumb:UIBase;
-        */
+
+
+		COMPILE::SWF
+		private var origin:Point;
+        COMPILE::SWF
+		private var thumb:Point;
+		
 		/**
 		 * @private
 		 */
@@ -177,11 +181,6 @@ package org.apache.royale.jewel.beads.controllers
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
 			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
-		
-        COMPILE::SWF
-		private var origin:Point;
-        COMPILE::SWF
-		private var thumb:Point;
 		
 		/**
 		 * @private

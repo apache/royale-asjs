@@ -16,8 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads
+package org.apache.royale.jewel.beads.views
 {
+    import org.apache.royale.html.beads.TextFieldViewBase
 	import flash.text.TextFieldType;
 	
     /**
@@ -29,7 +30,7 @@ package org.apache.royale.jewel.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
 	public class TextFieldView extends TextFieldViewBase
 	{
@@ -39,7 +40,7 @@ package org.apache.royale.jewel.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function TextFieldView()
 		{

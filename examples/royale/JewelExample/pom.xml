@@ -32,12 +32,6 @@
 
   <name>Apache Royale: Examples: Royale: JewelExample</name>
 
-  <properties>
-    <!-- Customize Jewel colors  -->
-    <primary>red</primary>
-    <secondary>grey</secondary>
-  </properties>
-
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
     <plugins>
@@ -48,7 +42,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <targets>JSRoyale,SWF</targets>
-          <debug>false</debug>
+          <!-- <debug>false</debug> -->
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>
       </plugin>
