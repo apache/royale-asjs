@@ -56,7 +56,7 @@ div {
   padding: 20px;
 }
 
-::-moz-focus-inner {
+::-moz-focus-inner, ::-moz-focus-outer {
   border: 0;
 }
 

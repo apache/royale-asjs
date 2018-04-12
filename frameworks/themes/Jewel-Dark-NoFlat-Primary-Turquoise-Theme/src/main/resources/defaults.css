@@ -56,7 +56,7 @@ div {
   padding: 20px;
 }
 
-::-moz-focus-inner {
+::-moz-focus-inner, ::-moz-focus-outer {
   border: 0;
 }
 
@@ -230,7 +230,7 @@ j|Alert {
   border-radius: 3px;
 }
 .jewel.checkbox input:checked, .jewel.checkbox input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%2329A89F' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #595959;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%2329A89F' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #787878;
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
@@ -304,7 +304,7 @@ j|Alert {
   border-radius: 50%;
 }
 .jewel.radiobutton input:checked, .jewel.radiobutton input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%2329A89F' cx='11' cy='11' r='6'></circle></g></g></svg>"), #595959;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%2329A89F' cx='11' cy='11' r='6'></circle></g></g></svg>"), #787878;
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
@@ -348,38 +348,106 @@ j|Alert {
   line-height: 22px;
 }
 
-.jewel.slider input {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
+.jewel.slider {
+  position: relative;
+  height: 27px;
+  display: flex !important;
+  flex-direction: row;
+  background: none;
 }
-.jewel.slider input:hover {
-  opacity: 1;
+.jewel.slider input {
+  outline: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  margin: 0 20px;
+  padding: 0;
+  width: calc(100% - 40px);
+  height: 6px;
+  background: transparent;
+  user-select: none;
+  color: #29A89F;
+  align-self: center;
+  z-index: 1;
+}
+.jewel.slider input::-webkit-slider-runnable-track {
+  background: transparent;
+}
+.jewel.slider input::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+.jewel.slider input::-webkit-slider-thumb, .jewel.slider input::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(#2cb4ab, #269c93);
+  border: 1px solid #1a6b65;
+  box-shadow: inset 0 1px 0 #5fd8cf;
+  border-radius: 50%;
+}
+.jewel.slider input:active::-webkit-slider-thumb, .jewel.slider input:active::-moz-range-thumb {
+  transform: scale(1.4);
 }
 .jewel.slider input:focus {
   outline: none;
 }
-.jewel.slider input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #29A89F;
-  cursor: pointer;
+.jewel.slider input[disabled] {
+  cursor: unset;
 }
-.jewel.slider input::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #29A89F;
-  cursor: pointer;
+.jewel.slider input[disabled]::-webkit-slider-thumb, .jewel.slider input[disabled]::-moz-range-thumb {
+  background: #0d0d0d;
+  border: 1px solid black;
+}
+.jewel.slider input[disabled]:active::-webkit-slider-thumb, .jewel.slider input[disabled]:active::-moz-range-thumb {
+  transform: scale(1);
+}
+.jewel.slider input[disabled] + .slider-track-container > .slider-track-fill {
+  border: 1px solid black;
+  background: #0d0d0d;
+}
+.jewel.slider input[disabled] + .slider-track-container > .slider-track {
+  border: 1px solid black;
+  background: #0d0d0d;
+}
+
+.slider-track-container {
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  transform: translate(0, -3px);
+  margin: 0 29px;
+  padding: 0;
+  top: 50%;
+  left: 0;
+  width: calc(100% - 58px);
+  height: 6px;
+  background: transparent;
+  border: 0;
+}
+
+.slider-track-fill {
+  position: relative;
+  flex: 0;
+  padding: 0;
+  background: linear-gradient(#2cb4ab, #269c93);
+  border: 1px solid #1a6b65;
+  box-shadow: inset 0 1px 0 #5fd8cf;
+  border-radius: 3px;
+}
+
+.slider-track {
+  position: relative;
+  flex: 0;
+  padding: 0;
+  background: linear-gradient(#666666, #4c4c4c);
+  border: 1px solid #333333;
+  border-radius: 3px;
 }
 
 .jewel.textbutton {
