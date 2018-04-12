@@ -45,6 +45,9 @@ internal class MXRoyaleClasses
 	import mx.events.SliderEvent; SliderEvent;
     import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
+	import mx.charts.PieChart; PieChart;
+	import mx.charts.BarChart; BarChart;
+	import mx.charts.ColumnChart; ColumnChart;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
