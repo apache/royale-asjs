@@ -27,8 +27,8 @@
         <symbol>halo.scripts.RadioButtonTestScript</symbol>
         <symbol>halo.scripts.TextInputTestScript</symbol>
         <symbol>halo.scripts.TextAreaTestScript</symbol>
-        <!--
         <symbol>halo.scripts.ComboBoxTestScript</symbol>
+        <!--
         <symbol>halo.scripts.ColorPickerTestScript</symbol>
         <symbol>halo.scripts.NumericStepperTestScript</symbol>
         <symbol>halo.scripts.DateFieldTestScript</symbol>
