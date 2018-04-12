@@ -37,6 +37,7 @@ internal class MXRoyaleClasses
 	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.graphics.Stroke; Stroke;
 	import mx.graphics.SolidColor; SolidColor;
 	import mx.graphics.SolidColorStroke; SolidColorStroke;
 	import mx.graphics.IStroke; IStroke;
