@@ -20,13 +20,14 @@
 // Jewel Slider
 
 // Slider variables
-$slider-margin: 0 20px
+$slider-margin: 20px
 $slider-padding: 0
-$slider-min-width: calc(100% - 40px)
-$slider-min-height: 2px
-$slider-container-height: 18px
-$slider-thumb-size: 12px
+$slider-min-width: calc(100% - #{2 * $slider-margin})
+$slider-track-min-height: 5px
+$slider-track-border-radius: 3px
+$slider-thumb-size: 18px
 $slider-border-radius: 50%
+$slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
 
 .jewel.slider
     position: relative
@@ -41,10 +42,10 @@ $slider-border-radius: 50%
         outline: 0
         cursor: pointer
         +appear(none)
-        margin: $slider-margin
+        margin: 0 $slider-margin
         padding: $slider-padding
         width: $slider-min-width
-        height: $slider-min-height
+        height: $slider-track-min-height
         background: transparent
         user-select: none
         color: $primary-color
@@ -64,20 +65,25 @@ $slider-border-radius: 50%
             +appear(none)
             width: $slider-thumb-size
             height: $slider-thumb-size
+            @if $flat
+                background: $primary-color
+                border: 0
+            @else
+                background: linear-gradient(lighten($primary-color, 3%), darken($primary-color, 3%))
+                border: 1px solid darken($primary-color, 15%)
+                //background: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg version='1.1' viewBox='0 0 18 17' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><defs><linearGradient id='b' x1='50%' x2='50%' y2='100%'><stop stop-color='#54B7F4' offset='0'/><stop stop-color='#26A3EF' offset='1'/></linearGradient><circle id='a' cx='9.5' cy='8.5' r='8.5'/></defs><g fill='none' fill-rule='evenodd'><g transform='translate(-664 -229)'><g transform='translate(611 195)'><g transform='translate(10 34)'><g transform='translate(43)'><use fill='url(#b)' fill-rule='evenodd' xlink:href='#a'/><circle cx='9.5' cy='8.5' r='8' stroke='#0F88D1'/><rect y='7' width='2' height='3' fill='#3DADF1'/></g></g></g></g></g></svg>")
+                // background-repeat: no-repeat
+                // background-size: 100%
+                // background-position: center
+                // background-attachment: fixed
             border-radius: $slider-border-radius
-            background: $primary-color
-            border: none
             
-        &:focus:not(:active)::-webkit-slider-thumb, &:focus:not(:active)::-moz-range-thumb
-            box-shadow: 0 0 0 10px rgba($primary-color, 0.26)
+        //&:focus:not(:active)::-webkit-slider-thumb, &:focus:not(:active)::-moz-range-thumb
+        //    box-shadow: 0 0 0 10px rgba($primary-color, 0.26)
         
         &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
-            background-image: none
             transform: scale(1.5)
-            
-        //&:hover
-          //  transform: scale(1.25)
-
+        
         &:focus
             outline: none
 
@@ -86,14 +92,17 @@ $slider-border-radius: 50%
             
             &::-webkit-slider-thumb, &::-moz-range-thumb
                 background: $disabled-border-color
+                border: 1px solid darken($disabled-border-color, 15%)
 
             &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
                 transform: scale(1.0)
 
             + .slider-track-container > .slider-track-fill
+                border: 1px solid darken($disabled-border-color, 15%)
                 background: $disabled-border-color
 
             + .slider-track-container > .slider-track
+                border: 1px solid darken($disabled-border-color, 15%)
                 background: $disabled-border-color
 
 
@@ -102,16 +111,16 @@ $slider-border-radius: 50%
     display: flex
     
     overflow: hidden
-    transform: translate(0, -1px)
+    transform: translate(0, -2px)
     
-    margin: 0 26px
+    margin: 0 #{ $slider-margin + round($slider-thumb-size/2) }
     padding: 0
     
     top: $slider-border-radius
     left: 0
     
-    width: calc(100% - 52px)
-    height: $slider-min-height
+    width: calc(100% - #{ 2 * $slider-margin + $slider-thumb-size })
+    height: $slider-track-min-height
     
     background: transparent
     border: 0
@@ -122,8 +131,16 @@ $slider-border-radius: 50%
     
     padding: 0
     
-    background: $primary-color
-    border: 0
+    //background: $primary-color
+    //border: 0
+
+    @if $flat
+        background: $primary-color
+        border: 0
+    @else
+        background: linear-gradient(lighten($primary-color, 3%), darken($primary-color, 3%))
+        border: 1px solid darken($primary-color, 15%)
+    border-radius: $slider-track-border-radius
 
 .slider-track
     position: relative
@@ -131,5 +148,13 @@ $slider-border-radius: 50%
     
     padding: 0
     
-    background: $default-color
-    border: 0
+    //background: $default-color
+    //border: 0
+
+    @if $flat
+        background: $default-color
+        border: 0
+    @else
+        background: linear-gradient(lighten($default-color, 5%), darken($default-color, 5%))
+        border: 1px solid darken($default-color, 15%)
+    border-radius: $slider-track-border-radius

@@ -350,7 +350,7 @@ j|Alert {
 
 .jewel.slider {
   position: relative;
-  height: 18px;
+  height: 27px;
   display: flex !important;
   flex-direction: row;
   background: none;
@@ -365,7 +365,7 @@ j|Alert {
   margin: 0 20px;
   padding: 0;
   width: calc(100% - 40px);
-  height: 2px;
+  height: 5px;
   background: transparent;
   user-select: none;
   color: #3CADF1;
@@ -384,17 +384,13 @@ j|Alert {
   -moz-appearance: none;
   -o-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(#4ab3f2, #2ea7f0);
+  border: 1px solid #0f88d1;
   border-radius: 50%;
-  background: #3CADF1;
-  border: none;
-}
-.jewel.slider input:focus:not(:active)::-webkit-slider-thumb, .jewel.slider input:focus:not(:active)::-moz-range-thumb {
-  box-shadow: 0 0 0 10px rgba(60, 173, 241, 0.26);
 }
 .jewel.slider input:active::-webkit-slider-thumb, .jewel.slider input:active::-moz-range-thumb {
-  background-image: none;
   transform: scale(1.5);
 }
 .jewel.slider input:focus {
@@ -405,14 +401,17 @@ j|Alert {
 }
 .jewel.slider input[disabled]::-webkit-slider-thumb, .jewel.slider input[disabled]::-moz-range-thumb {
   background: #d9d9d9;
+  border: 1px solid #b3b3b3;
 }
 .jewel.slider input[disabled]:active::-webkit-slider-thumb, .jewel.slider input[disabled]:active::-moz-range-thumb {
   transform: scale(1);
 }
 .jewel.slider input[disabled] + .slider-track-container > .slider-track-fill {
+  border: 1px solid #b3b3b3;
   background: #d9d9d9;
 }
 .jewel.slider input[disabled] + .slider-track-container > .slider-track {
+  border: 1px solid #b3b3b3;
   background: #d9d9d9;
 }
 
@@ -420,13 +419,13 @@ j|Alert {
   position: absolute;
   display: flex;
   overflow: hidden;
-  transform: translate(0, -1px);
-  margin: 0 26px;
+  transform: translate(0, -2px);
+  margin: 0 29px;
   padding: 0;
   top: 50%;
   left: 0;
-  width: calc(100% - 52px);
-  height: 2px;
+  width: calc(100% - 58px);
+  height: 5px;
   background: transparent;
   border: 0;
 }
@@ -435,16 +434,18 @@ j|Alert {
   position: relative;
   flex: 0;
   padding: 0;
-  background: #3CADF1;
-  border: 0;
+  background: linear-gradient(#4ab3f2, #2ea7f0);
+  border: 1px solid #0f88d1;
+  border-radius: 3px;
 }
 
 .slider-track {
   position: relative;
   flex: 0;
   padding: 0;
-  background: #d9d9d9;
-  border: 0;
+  background: linear-gradient(#e6e6e6, #cccccc);
+  border: 1px solid #b3b3b3;
+  border-radius: 3px;
 }
 
 .jewel.textbutton {
