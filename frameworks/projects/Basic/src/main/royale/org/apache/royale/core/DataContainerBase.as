@@ -22,10 +22,7 @@ package org.apache.royale.core
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ItemAddedEvent;
-	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.events.ValueChangeEvent;
-	import org.apache.royale.states.State;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	

@@ -18,9 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.events.ValueEvent;
 
     /**
