@@ -365,7 +365,7 @@ j|Alert {
   margin: 0 20px;
   padding: 0;
   width: calc(100% - 40px);
-  height: 5px;
+  height: 6px;
   background: transparent;
   user-select: none;
   color: #3CADF1;
@@ -388,6 +388,7 @@ j|Alert {
   height: 18px;
   background: linear-gradient(#4ab3f2, #2ea7f0);
   border: 1px solid #0f88d1;
+  box-shadow: inset 0 1px 0 #9bd5f8;
   border-radius: 50%;
 }
 .jewel.slider input:active::-webkit-slider-thumb, .jewel.slider input:active::-moz-range-thumb {
@@ -419,13 +420,13 @@ j|Alert {
   position: absolute;
   display: flex;
   overflow: hidden;
-  transform: translate(0, -2.5px);
+  transform: translate(0, -3px);
   margin: 0 29px;
   padding: 0;
   top: 50%;
   left: 0;
   width: calc(100% - 58px);
-  height: 5px;
+  height: 6px;
   background: transparent;
   border: 0;
 }
@@ -436,6 +437,7 @@ j|Alert {
   padding: 0;
   background: linear-gradient(#4ab3f2, #2ea7f0);
   border: 1px solid #0f88d1;
+  box-shadow: inset 0 1px 0 #9bd5f8;
   border-radius: 3px;
 }
 
