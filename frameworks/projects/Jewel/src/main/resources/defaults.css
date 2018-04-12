@@ -136,25 +136,10 @@ j|Label {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.RadioButtonView");
   }
 }
-.jewel.slider {
-  width: 100px;
-  height: 30px;
-  position: relative;
-}
-
 j|Slider {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SliderView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SliderMouseController");
-}
-
-.SliderTrack {
-  position: absolute;
-}
-
-.SliderThumb {
-  position: absolute;
-  border-radius: 15px;
 }
 
 @media -royale-swf {

@@ -36,6 +36,7 @@ package org.apache.royale.jewel.beads.controllers
         import goog.events.EventType;
         import org.apache.royale.events.BrowserEvent;
         import org.apache.royale.jewel.Slider;
+        import org.apache.royale.jewel.beads.views.SliderView;
     }
 	
 	/**
@@ -94,7 +95,7 @@ package org.apache.royale.jewel.beads.controllers
 			
             COMPILE::SWF
             {
-                var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
+            	sliderView = value.getBeadByType(ISliderView) as ISliderView;
                 sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
                 
                 // add handler to detect click on track
@@ -103,13 +104,17 @@ package org.apache.royale.jewel.beads.controllers
             }
             COMPILE::JS
             {
-				var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
+				sliderView = value.getBeadByType(ISliderView) as ISliderView;
 				
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.CHANGE, handleChange, false, this);
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.INPUT, handleInput, false, this);
+
+				changeStyles();
             }
 		}
-		
+
+		public var sliderView:ISliderView;
+
 		/**
          *  Manages the change event to update the range model value
          *   
@@ -124,6 +129,8 @@ package org.apache.royale.jewel.beads.controllers
             var host:Slider = _strand as Slider;
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
+
+			changeStyles();
 
             //host.dispatchEvent(new org.apache.royale.events.Event('change')); --- This is not needed, the event is thrown in the main comp
         }
@@ -144,8 +151,18 @@ package org.apache.royale.jewel.beads.controllers
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
             host.dispatchEvent(new org.apache.royale.events.Event('input'));
+
+			changeStyles();
         }
 
+		COMPILE::JS
+        private function changeStyles():void
+        {
+			var barsize:Number = (rangeModel.value - rangeModel.minimum) / (rangeModel.maximum - rangeModel.minimum);
+
+			SliderView(sliderView).sliderTrackFill.style.flex = "" + barsize;
+			SliderView(sliderView).sliderTrack.style.flex = "" + ( 1 - barsize );
+		}
 
 
 		COMPILE::SWF

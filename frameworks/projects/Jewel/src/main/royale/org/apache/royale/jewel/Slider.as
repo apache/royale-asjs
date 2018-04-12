@@ -209,7 +209,7 @@ package org.apache.royale.jewel
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLInputElement
-		 * @royaleignorecoercion HTMLElement
+		 * @royaleignorecoercion HTMLDivElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -219,10 +219,6 @@ package org.apache.royale.jewel
             var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'range');
 			
-			//attach input handler to dispatch royale change event when user write in textinput
-            //goog.events.listen(element, 'change', killChangeHandler);
-            //goog.events.listen(input, 'input', textChangeHandler);
-            
 			div.appendChild(input);
 
             positioner = div as WrappedHTMLElement;

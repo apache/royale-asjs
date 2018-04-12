@@ -17,37 +17,119 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Jewel Slider
+
+// Slider variables
+$slider-margin: 0 20px
+$slider-padding: 0
+$slider-min-width: calc(100% - 40px)
+$slider-min-height: 2px
+$slider-container-height: 18px
+$slider-thumb-size: 12px
+$slider-border-radius: 50%
+
 .jewel.slider
+    position: relative
+    height: $slider-container-height
+    
+    display: flex !important
+    flex-direction: row
+    
+    background: none
 
     input
-        -webkit-appearance: none
-        width: 100%
-        height: 15px
-        border-radius: 5px
-        background: #d3d3d3
-        outline: none
-        opacity: 0.7
-        -webkit-transition: .2s
-        transition: opacity .2s
+        outline: 0
+        cursor: pointer
+        +appear(none)
+        margin: $slider-margin
+        padding: $slider-padding
+        width: $slider-min-width
+        height: $slider-min-height
+        background: transparent
+        user-select: none
+        color: $primary-color
+        align-self: center
+        z-index: 1
 
-        &:hover
-            opacity: 1
+        // TRACK
+        &::-webkit-slider-runnable-track
+            background: transparent
+            
+        &::-moz-range-track
+            background: transparent
+            border: none
+
+        // THUMB
+        &::-webkit-slider-thumb, &::-moz-range-thumb
+            +appear(none)
+            width: $slider-thumb-size
+            height: $slider-thumb-size
+            border-radius: $slider-border-radius
+            background: $primary-color
+            border: none
+            
+        &:focus:not(:active)::-webkit-slider-thumb, &:focus:not(:active)::-moz-range-thumb
+            box-shadow: 0 0 0 10px rgba($primary-color, 0.26)
+        
+        &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
+            background-image: none
+            transform: scale(1.5)
+            
+        //&:hover
+          //  transform: scale(1.25)
 
         &:focus
             outline: none
 
-        &::-webkit-slider-thumb
-            -webkit-appearance: none
-            appearance: none
-            width: 15px
-            height: 15px
-            border-radius: 50%
-            background: $primary-color
-            cursor: pointer
-        
-        &::-moz-range-thumb
-            width: 15px
-            height: 15px
-            border-radius: 50%
-            background: $primary-color
-            cursor: pointer
+        &[disabled]
+            cursor: unset
+            
+            &::-webkit-slider-thumb, &::-moz-range-thumb
+                background: $disabled-border-color
+
+            &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
+                transform: scale(1.0)
+
+            + .slider-track-container > .slider-track-fill
+                background: $disabled-border-color
+
+            + .slider-track-container > .slider-track
+                background: $disabled-border-color
+
+
+.slider-track-container
+    position: absolute
+    display: flex
+    
+    overflow: hidden
+    transform: translate(0, -1px)
+    
+    margin: 0 26px
+    padding: 0
+    
+    top: $slider-border-radius
+    left: 0
+    
+    width: calc(100% - 52px)
+    height: $slider-min-height
+    
+    background: transparent
+    border: 0
+
+.slider-track-fill
+    position: relative
+    flex: 0
+    
+    padding: 0
+    
+    background: $primary-color
+    border: 0
+
+.slider-track
+    position: relative
+    flex: 0
+    
+    padding: 0
+    
+    background: $default-color
+    border: 0

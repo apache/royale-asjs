@@ -100,6 +100,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion HTMLDivElement
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -125,17 +126,37 @@ package org.apache.royale.jewel.beads.views
 			{
                 var htmlSliderElement:HTMLInputElement = host.element as HTMLInputElement;
                 htmlSliderElement.value = String(rangeModel.value);
+
+				var sliderTrackContainer:HTMLDivElement = document.createElement('div') as HTMLDivElement;
+				sliderTrackContainer.className="slider-track-container";
+
+				sliderTrackFill = document.createElement('div') as HTMLDivElement;
+				sliderTrackFill.className="slider-track-fill";
+
+				sliderTrack = document.createElement('div') as HTMLDivElement;
+				sliderTrack.className="slider-track";
+
+				sliderTrackContainer.appendChild(sliderTrackFill);
+				sliderTrackContainer.appendChild(sliderTrack);
+
+				host.positioner.appendChild(sliderTrackContainer);
             }
 
 			// listen for changes to the model and adjust the UI accordingly.
-			IEventDispatcher(rangeModel).addEventListener("valueChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("stepSizeChange", modelChangeHandler);
 			IEventDispatcher(rangeModel).addEventListener("minimumChange", modelChangeHandler);
 			IEventDispatcher(rangeModel).addEventListener("maximumChange", modelChangeHandler);
-			IEventDispatcher(rangeModel).addEventListener("stepSizeChange", modelChangeHandler);
-			IEventDispatcher(rangeModel).addEventListener("snapIntervalChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("valueChange", modelChangeHandler);
+			//IEventDispatcher(rangeModel).addEventListener("snapIntervalChange", modelChangeHandler);
 
 			modelChangeHandler(null);
 		}
+
+		COMPILE::JS
+		public var sliderTrackFill:HTMLDivElement;
+
+		COMPILE::JS
+		public var sliderTrack:HTMLDivElement;
 		
 		/**
 		 * @private
@@ -150,10 +171,10 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				var inputElement:HTMLInputElement = (UIBase(_strand).element as HTMLInputElement);
-				inputElement.value = rangeModel.value.toString();
+				inputElement.step = String(rangeModel.stepSize);
 				inputElement.min = String(rangeModel.minimum);
 				inputElement.max = String(rangeModel.maximum);
-				inputElement.step = String(rangeModel.stepSize);
+				inputElement.value = rangeModel.value.toString();
 			}
 
 			//(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
