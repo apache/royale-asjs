@@ -22,10 +22,9 @@ package mx.graphics
 	import org.apache.royale.graphics.SolidColor;
 	public class SolidColor extends org.apache.royale.graphics.SolidColor
 	{
-	public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
+    public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
 	 	{
 			super(color,alpha);
 		}
-		
 	}
 }

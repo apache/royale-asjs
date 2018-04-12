@@ -26,7 +26,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -53,8 +53,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-layout mdl-js-layout";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
 		private var _applicationModel:Object;
 
@@ -106,11 +114,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-layout--fixed-header");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-layout--fixed-header");
-                    }
+                    var classVal:String = "mdl-layout--fixed-header";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -129,6 +135,7 @@ package org.apache.royale.mdl
         {
             return _fixedDrawer;
         }
+
         public function set fixedDrawer(value:Boolean):void
         {
             if (_fixedDrawer != value)
@@ -137,13 +144,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-layout--fixed-drawer");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-layout--fixed-drawer");
-                    }
+                    var classVal:String = "mdl-layout--fixed-drawer";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

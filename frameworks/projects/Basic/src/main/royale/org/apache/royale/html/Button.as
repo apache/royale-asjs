@@ -187,6 +187,17 @@ package org.apache.royale.html
 		{
 			super();
 		}
+
+        /**
+		 * @private
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			super.createElement();
+			typeNames = "Button";
+			return element;
+		}
 	}
     
 }

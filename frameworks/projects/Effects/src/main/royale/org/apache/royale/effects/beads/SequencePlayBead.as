@@ -36,6 +36,9 @@ package org.apache.royale.effects.beads
 			super();
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.effects.ICompoundEffect
+		 */
 		public function set strand(value:IStrand):void
 		{
 			host = value as ICompoundEffect;
@@ -59,6 +62,9 @@ package org.apache.royale.effects.beads
 			child.play();   
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		private function effectEndHandler(event:Event):void
 		{
 			(event.target as IEventDispatcher).removeEventListener(Effect.EFFECT_END, effectEndHandler);
