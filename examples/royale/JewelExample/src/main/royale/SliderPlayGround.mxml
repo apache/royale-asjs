@@ -25,12 +25,31 @@ limitations under the License.
     
 	<fx:Script>
 		<![CDATA[
-        private function onChange(event:Event):void
+		
+		private function clickHandler(event:MouseEvent):void
+		{
+			trace("clickHandler");
+			slider_w.value = 400;
+			slider_h.value = 200;
+		}
+
+        private function onInput(event:Event):void
         {
+			trace("onInput");
         	button.width = slider_w.value;
 			button.height = slider_h.value;
 			button.text = slider_w.value + "x" + slider_h.value;
         }
+
+		private function onChange(event:Event):void
+        {
+			trace("onChange");
+		}
+
+		private function onValueChange(event:Event):void
+        {
+			trace("onValueChange");
+		}
     	]]>
 	</fx:Script>
 
@@ -41,9 +60,13 @@ limitations under the License.
 	<html:H3 text="Jewel Slider"/>
 	
 	<j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500"
-				change="onChange(event)" input="onChange(event)"/>
+				change="onChange(event)" 
+				input="onInput(event)"
+				valueChange="onValueChange(event)"/>
 	<j:Slider id="slider_h" width="250" value="80" minimum="40" maximum="300"
-				change="onChange(event)" input="onChange(event)"/>
+				change="onChange(event)" 
+				input="onInput(event)"
+				valueChange="onValueChange(event)"/>
 
 	<j:Slider id="slider_dis" width="250" value="70" minimum="0" maximum="100">
 		<j:beads>
@@ -51,6 +74,7 @@ limitations under the License.
 		</j:beads>
 	</j:Slider>
 
-	<j:TextButton id="button" text="Button" width="250" height="140" primary="true"/>
+	<j:TextButton id="button" text="Slider to 400x200" width="250" height="80" primary="true"
+					click="clickHandler(event)"/>
 
 </js:Group>

@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.models
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.Event;
+    import org.apache.royale.events.ValueChangeEvent;
 
     /**
      *  The SliderRangeModel class bead defines a set of for a numeric range of values
@@ -190,8 +191,9 @@ package org.apache.royale.jewel.beads.models
         {
             if (value != _value)
             {
+                var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", _value, value);
                 _value = value;
-                dispatchEvent(new Event("valueChange"));
+                dispatchEvent(newEvent);
             }
         }
     }

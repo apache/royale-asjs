@@ -35,6 +35,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.jewel.Button;
 	
 	/**
@@ -62,10 +63,11 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 		
-		private var _track:Button;
-		private var _thumb:Button;
-
         private var rangeModel:IRangeModel;
+		
+		private var _track:Button;
+
+		private var _thumb:Button;
 		
 		/**
 		 *  The track component.
@@ -157,6 +159,15 @@ package org.apache.royale.jewel.beads.views
 
 		COMPILE::JS
 		public var sliderTrack:HTMLDivElement;
+
+		COMPILE::JS
+        public function redraw():void
+        {
+			var barsize:Number = (rangeModel.value - rangeModel.minimum) / (rangeModel.maximum - rangeModel.minimum);
+
+			sliderTrack.style.flex = ( 1 - barsize ).toString();
+			sliderTrackFill.style.flex = barsize.toString();
+		}
 		
 		/**
 		 * @private
@@ -170,13 +181,14 @@ package org.apache.royale.jewel.beads.views
 		{
 			COMPILE::JS
 			{
+				
 				var inputElement:HTMLInputElement = (UIBase(_strand).element as HTMLInputElement);
 				inputElement.step = String(rangeModel.stepSize);
 				inputElement.min = String(rangeModel.minimum);
 				inputElement.max = String(rangeModel.maximum);
 				inputElement.value = rangeModel.value.toString();
 			}
-
+			
 			//(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 	}

@@ -41,7 +41,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	[Event(name="valueChange", type="org.apache.royale.events.Event")]
+	[Event(name="valueChange", type="org.apache.royale.events.ValueChangeEvent")]
 
      /**
      *  Dispatched when Slider ends its change from one position to another.

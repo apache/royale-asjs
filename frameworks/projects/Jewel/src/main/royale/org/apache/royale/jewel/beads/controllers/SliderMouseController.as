@@ -29,14 +29,14 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.beads.ISliderView;
+    import org.apache.royale.jewel.beads.views.SliderView;
+    import org.apache.royale.jewel.Slider;
 
     COMPILE::JS
     {
         import goog.events;
         import goog.events.EventType;
         import org.apache.royale.events.BrowserEvent;
-        import org.apache.royale.jewel.Slider;
-        import org.apache.royale.jewel.beads.views.SliderView;
     }
 	
 	/**
@@ -78,6 +78,8 @@ package org.apache.royale.jewel.beads.controllers
 		private var _strand:IStrand;
 
 		private var oldValue:Number;
+
+		public var sliderView:ISliderView;
 				
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -109,11 +111,36 @@ package org.apache.royale.jewel.beads.controllers
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.CHANGE, handleChange, false, this);
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.INPUT, handleInput, false, this);
 
-				changeStyles();
+				SliderView(sliderView).redraw();
             }
+
+			// listen for changes to the model and adjust the model accordingly.
+			IEventDispatcher(rangeModel).addEventListener("valueChange",modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("stepSizeChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("minimumChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("maximumChange", modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("valueChange", modelChangeHandler);
 		}
 
-		public var sliderView:ISliderView;
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 */
+		private function modelChangeHandler( event:Event ) : void
+		{
+			COMPILE::JS
+			{
+				SliderView(sliderView).redraw();
+
+				// value has change so dispatch VALUE_CHANGE event to the strand
+				if(event is ValueChangeEvent) {
+					IEventDispatcher(_strand).dispatchEvent(event.cloneEvent());
+				}
+			}
+		}
+
+		
 
 		/**
          *  Manages the change event to update the range model value
@@ -130,7 +157,7 @@ package org.apache.royale.jewel.beads.controllers
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
-			changeStyles();
+			SliderView(sliderView).redraw();
 
             //host.dispatchEvent(new org.apache.royale.events.Event('change')); --- This is not needed, the event is thrown in the main comp
         }
@@ -152,18 +179,8 @@ package org.apache.royale.jewel.beads.controllers
 
             host.dispatchEvent(new org.apache.royale.events.Event('input'));
 
-			changeStyles();
+			SliderView(sliderView).redraw();
         }
-
-		COMPILE::JS
-        private function changeStyles():void
-        {
-			var barsize:Number = (rangeModel.value - rangeModel.minimum) / (rangeModel.maximum - rangeModel.minimum);
-
-			SliderView(sliderView).sliderTrack.style.flex = ( 1 - barsize ).toString();
-			SliderView(sliderView).sliderTrackFill.style.flex = barsize.toString();
-		}
-
 
 		COMPILE::SWF
 		private var origin:Point;
