@@ -160,8 +160,8 @@ package org.apache.royale.jewel.beads.controllers
         {
 			var barsize:Number = (rangeModel.value - rangeModel.minimum) / (rangeModel.maximum - rangeModel.minimum);
 
-			SliderView(sliderView).sliderTrackFill.style.flex = "" + barsize;
-			SliderView(sliderView).sliderTrack.style.flex = "" + ( 1 - barsize );
+			SliderView(sliderView).sliderTrack.style.flex = ( 1 - barsize ).toString();
+			SliderView(sliderView).sliderTrackFill.style.flex = barsize.toString();
 		}
 
 

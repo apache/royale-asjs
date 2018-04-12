@@ -65,6 +65,7 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
             +appear(none)
             width: $slider-thumb-size
             height: $slider-thumb-size
+            //overflow: visible
             @if $flat
                 background: $primary-color
                 border: 0
@@ -82,7 +83,7 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
         //    box-shadow: 0 0 0 10px rgba($primary-color, 0.26)
         
         &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
-            transform: scale(1.5)
+            transform: scale(1.4)
         
         &:focus
             outline: none
@@ -111,7 +112,7 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
     display: flex
     
     overflow: hidden
-    transform: translate(0, -2px)
+    transform: translate(0, -2.5px)
     
     margin: 0 #{ $slider-margin + round($slider-thumb-size/2) }
     padding: 0
