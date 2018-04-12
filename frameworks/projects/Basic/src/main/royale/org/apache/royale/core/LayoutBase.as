@@ -20,16 +20,19 @@ package org.apache.royale.core
 {
 
 	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.LayoutManager;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.MarginData;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.utils.CSSUtils;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  This class is the base class for most, if not all, layouts. 
@@ -149,6 +152,7 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 */
 		protected function childResizeHandler(event:Event):void
 		{
@@ -231,63 +235,48 @@ package org.apache.royale.core
 			}
 		}
 		
-		/**
-		 * Returns an object of margins for the given child.
-		 * 
-		 * @param child Object The element whose margins are required.
-		 * @param hostWidth Number The usable width dimension of the host.
-		 * @param hostHeight Number The usable height dimension of the host.
-		 * 
-		 * @return Object A structure of {top:Number, left:Number, bottom:Number, right:Number}
+        /**
+         * Returns an object of margins for the given child.
+         * 
+         * @param child Object The element whose margins are required.
+         * @param hostWidth Number The usable width dimension of the host.
+         * @param hostHeight Number The usable height dimension of the host.
+         * 
+         * @return Object A structure of {top:Number, left:Number, bottom:Number, right:Number}
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-		 */
-		protected function childMargins(child:Object, hostWidth:Number, hostHeight:Number):Object
-		{
-			var margin:Object = ValuesManager.valuesImpl.getValue(child, "margin");
-			var marginLeft:Object = ValuesManager.valuesImpl.getValue(child, "margin-left");
-			var marginTop:Object = ValuesManager.valuesImpl.getValue(child, "margin-top");
-			var marginRight:Object = ValuesManager.valuesImpl.getValue(child, "margin-right");
-			var marginBottom:Object = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-			var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, hostWidth);
-			var mr:Number = CSSUtils.getRightValue(marginRight, margin, hostWidth);
-			var mt:Number = CSSUtils.getTopValue(marginTop, margin, hostHeight);
-			var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, hostHeight);
-			if (marginLeft == "auto")
-				ml = 0;
-			if (marginRight == "auto")
-				mr = 0;
-			if (margin == "auto")
-			    ml = mr = mt = mb = 0;
-			
-			return {left:ml, top:mt, right:mr, bottom:mb, auto: (marginLeft == "auto" && marginRight == "auto") || margin == "auto"};
-		}
-		
-		/**
-		 * Returns an object containing the child's positioning values.
-		 * 
-		 * @param child Object The element whose positions are required.
-		 * 
-		 * @return Object A structure of {top:Number, left:Number, bottom:Number, right:Number}
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
+        protected function childMargins(child:Object, hostWidth:Number, hostHeight:Number):MarginData
+        {
+            var md:MarginData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getMargins(child as IUIBase, hostWidth, hostHeight);
+            return md;
+        }
+        
+        /**
+         * Returns an object containing the child's positioning values.
+         * 
+         * @param child Object The element whose positions are required.
+         * 
+         * @return Object A structure of {top:Number, left:Number, bottom:Number, right:Number}
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-		 */
-		protected function childPositions(child:Object):Object
-		{
-			var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
-			var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
-			var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
-			var bottom:Number = ValuesManager.valuesImpl.getValue(child, "bottom");
-			
-			return {top:top, left:left, bottom:bottom, right:right};
-		}
-		
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
+        protected function childPositions(child:Object):EdgeData
+        {
+            var ed:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPositions(child as IUIBase);
+            return ed;
+        }
+        
 		/**
 		 * Returns the ILayoutView for the host.
          *
@@ -313,6 +302,9 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function performLayout():void
 		{
@@ -320,31 +312,39 @@ package org.apache.royale.core
 			if (isLayoutRunning) return;
 			
 			isLayoutRunning = true;
-
-			var oldWidth:Number = host.width;
-			var oldHeight:Number = host.height;
-			
+            /* Not all components need measurement
+			COMPILE::SWF
+			{
+				host.measuredHeight = host.height;
+				host.measuredWidth = host.width;
+			}
+			*/
+            
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
 			viewBead.beforeLayout();
-			
 			if (layout()) {
 				viewBead.afterLayout();
 			}
 			
 			isLayoutRunning = false;
 			
-			IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
+			host.dispatchEvent(new Event("layoutComplete"));
 			
-			// check sizes to see if layout changed the size or not
-			// and send an event to re-layout parent of host
-			if (host.width != oldWidth ||
-			    host.height != oldHeight)
+            /* measurement may not matter for all components
+			COMPILE::SWF
 			{
-				isLayoutRunning = true;
-				host.dispatchEvent(new Event("sizeChanged"));
-				isLayoutRunning = false;
+				// check sizes to see if layout changed the size or not
+				// and send an event to re-layout parent of host
+				if (host.width != host.measuredWidth ||
+					host.height != host.measuredHeight)
+				{
+					isLayoutRunning = true;
+					host.dispatchEvent(new Event("sizeChanged"));
+					isLayoutRunning = false;
+				}
 			}
+            */
 
 		}
 

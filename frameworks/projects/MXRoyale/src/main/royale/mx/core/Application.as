@@ -41,7 +41,6 @@ import flash.utils.setInterval;
 import mx.containers.utilityClasses.ApplicationLayout;
 import mx.effects.EffectManager;
 import mx.events.FlexEvent;
-import mx.managers.FocusManager;
 import mx.managers.IActiveWindowManager;
 import mx.managers.ILayoutManager;
 import mx.managers.ISystemManager;
@@ -63,6 +62,7 @@ import flash.utils.getQualifiedClassName;
 import org.apache.royale.events.utils.MouseEventConverter;
 }
 
+import mx.managers.FocusManager;
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
 
@@ -494,7 +494,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	 */
 	private function initManagers():void
 	{
-		// install FocusManager
+		focusManager = new FocusManager(this);
 	}
 	
 	/**
@@ -550,6 +550,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         // because the parent is the browser, not an IUIBase, but we
         // need to run most of the code that usually runs when added.
         addBead(new MixinManager());
+        initManagers();
+        
 		addedToParent();
         		
 		dispatchEvent('initialize');

@@ -24,7 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -51,8 +51,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-layout__tab-panel";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -81,7 +89,7 @@ package org.apache.royale.mdl
                 element.classList.remove(typeNames);
                 typeNames = "mdl-tabs__panel";
 
-                className = addOrReplaceClassName(className, "mdl-tabs__panel");
+                setClassName(computeFinalClassNames());
             }
         }
 
@@ -108,13 +116,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("is-active");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "is-active");
-                    }
+                    var classVal:String = "is-active";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
 		}
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
+        }
 	}
 }

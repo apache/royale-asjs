@@ -59,6 +59,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -73,6 +74,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -96,6 +99,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel():IDataProviderModel
 		{
@@ -117,6 +121,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
 		 */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
@@ -147,6 +152,10 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
+		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -180,6 +189,10 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
+		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function itemAddedHandler(event:CollectionEvent):void
 		{
@@ -215,6 +228,10 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
+		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function itemRemovedHandler(event:CollectionEvent):void
 		{
@@ -246,6 +263,8 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		protected function itemUpdatedHandler(event:CollectionEvent):void
 		{
@@ -263,6 +282,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		protected function fillRenderer(index:int,
 										item:Object,

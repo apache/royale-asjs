@@ -23,17 +23,30 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.2-SNAPSHOT</version>
+    <version>0.9.3-SNAPSHOT</version>
   </parent>
 
   <artifactId>themes</artifactId>
-  <version>0.9.2-SNAPSHOT</version>
+  <version>0.9.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Themes</name>
 
   <modules>
     <module>Basic</module>
+    <module>JewelTheme</module>
+    
+    <module>Jewel-Light-NoFlat-Primary-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Blue-Theme</module>
+    
+    <module>Jewel-Light-NoFlat-Primary-Topaz-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Topaz-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Topaz-Theme</module>
+    
+    <module>Jewel-Light-NoFlat-Primary-Emerald-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Emerald-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</module>
   </modules>
 
   <dependencies>

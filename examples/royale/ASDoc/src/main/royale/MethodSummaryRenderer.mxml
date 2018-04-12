@@ -24,6 +24,8 @@ limitations under the License.
 			    width="100%">
     <fx:Script>
         <![CDATA[
+            import models.ASDocModel;
+
             private static var fakeBothPlatforms:Object = {"addEventListener": 1, "removeEventListener" : 1,
                 "hasEventListener": 1, "dispatchEvent": 1,
                 "toString": 1};
@@ -59,7 +61,7 @@ limitations under the License.
 					typeGroup.removeElement(label);
 				else
 					typeGroup.removeElement(link);
-				qname.href = "#!" + obj.ownerhref + "/" + obj.qname;
+				qname.href = "#!" + obj.ownerhref + ASDocModel.DELIMITER + obj.qname;
                 if (obj.platforms.length == 1 && !fakeBothPlatforms[obj.qname])
                 {
                     if (obj.platforms[0] == "swf")
