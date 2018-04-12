@@ -58,6 +58,7 @@ package org.apache.royale.html.beads.controllers
 			}
 			
 			IEventDispatcher(viewBead.popupButton).addEventListener("click", handleButtonClick);
+            IEventDispatcher(viewBead.textInputField).addEventListener("click", handleButtonClick);
 		}
 		
 		private function handleButtonClick(event:MouseEvent):void
