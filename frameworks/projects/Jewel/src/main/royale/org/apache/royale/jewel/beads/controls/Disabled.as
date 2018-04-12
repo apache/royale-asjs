@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads
+package org.apache.royale.jewel.beads.controls
 {	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
@@ -28,7 +28,7 @@ package org.apache.royale.jewel.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.2
+	 *  @productversion Royale 0.9.3
 	 */
 	public class Disabled implements IBead
 	{
@@ -38,7 +38,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
+		 *  @productversion Royale 0.9.3
 		 */
 		public function Disabled()
 		{
@@ -51,7 +51,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
+		 *  @productversion Royale 0.9.3
 		 */
         public function get disabled():Boolean
         {
@@ -75,7 +75,7 @@ package org.apache.royale.jewel.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
+		 *  @productversion Royale 0.9.3
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
