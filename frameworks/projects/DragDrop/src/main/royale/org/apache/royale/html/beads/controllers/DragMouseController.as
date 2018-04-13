@@ -266,7 +266,7 @@ package org.apache.royale.html.beads.controllers
                         dragging = true;
                         host = UIUtils.findPopUpHost(_strand as IUIBase);
                         if (host == null) return;
-                        host.addElement(dragImage);
+                        host.popUpParent.addElement(dragImage);
                         pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
                         dragImage.x = pt.x + dragImageOffsetX;
                         dragImage.y = pt.y + dragImageOffsetY;
@@ -312,7 +312,7 @@ package org.apache.royale.html.beads.controllers
 
             host = UIUtils.findPopUpHost(_strand as IUIBase);
             if (dragImage && host) {
-            	host.removeElement(dragImage);
+            	host.popUpParent.removeElement(dragImage);
             }
 
             if (dragging && event.target)
