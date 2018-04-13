@@ -51,6 +51,14 @@ CheckBox
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
 }
 
+ComboBox
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ComboBoxModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ComboBoxView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
+	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ComboBoxList");
+}
+
 Container
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");

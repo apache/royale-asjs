@@ -37,6 +37,7 @@ internal class MXRoyaleClasses
 	import mx.containers.ControlBar; ControlBar;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.graphics.Stroke; Stroke;
 	import mx.graphics.SolidColor; SolidColor;
 	import mx.graphics.SolidColorStroke; SolidColorStroke;
 	import mx.graphics.IStroke; IStroke;
@@ -72,7 +73,7 @@ internal class MXRoyaleClasses
   import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
 	import mx.graphics.LinearGradient; LinearGradient;
-
+	import mx.system.ApplicationDomain; ApplicationDomain;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;

@@ -213,7 +213,7 @@ package org.apache.royale.html.beads
 						_popUp.element.style.position = "absolute";
 					}
 
-					host.addElement(_popUp);
+					host.popUpParent.addElement(_popUp);
 				}
 				else
 				{

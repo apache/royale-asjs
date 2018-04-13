@@ -475,11 +475,10 @@ public class Container extends UIComponent
 	
 	private var _mxmlDescriptor:Array;
 	private var _mxmlDocument:Object = this;
-	private var _initialized:Boolean;
 	
 	override public function addedToParent():void
 	{
-		if (!_initialized) {
+		if (!initialized) {
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
 		}
@@ -487,21 +486,21 @@ public class Container extends UIComponent
         if (MXMLDescriptor)
             component = this;
         
-		super.addedToParent();
-		
-		if (!_initialized) {
-			MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-			
-			dispatchEvent(new Event("initBindings"));
-			dispatchEvent(new Event("initComplete"));
-			_initialized = true;
-		}
+		super.addedToParent();		
 		
 		// Load the layout bead if it hasn't already been loaded.
 		if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
 			dispatchEvent(new Event("layoutNeeded"));
 	}
 	
+    override protected function createChildren():void
+    {
+        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        
+        dispatchEvent(new Event("initBindings"));
+        dispatchEvent(new Event("initComplete"));
+    }
+    
 	/**
 	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 	 *  

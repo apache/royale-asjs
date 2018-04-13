@@ -114,7 +114,7 @@ package org.apache.royale.utils
 			while(!(start is IPopUpHost)) {
 				start = IChild(start).parent;
 			}
-			(start as IPopUpHost).removeElement(popUp);
+			(start as IPopUpHost).popUpParent.removeElement(popUp);
 		}
 	}
 }
