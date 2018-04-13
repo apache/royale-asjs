@@ -71,6 +71,8 @@ internal class MXRoyaleClasses
 	import mx.events.SliderEvent; SliderEvent;
   import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
+	import mx.graphics.LinearGradient; LinearGradient;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
