@@ -1597,6 +1597,7 @@ limitations under the License.
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextInputTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
             <arg value="showSteps=true" />
             <arg value="showScripts=true" />
             <arg value="${profile_arg}" />

@@ -83,8 +83,7 @@ public class GradientEntry extends org.apache.royale.graphics.GradientEntry
                                   ratio:Number = NaN,
                                   alpha:Number = 1.0)
     {
-        super();
-
+        super(color,ratio,alpha);
     }
 
  

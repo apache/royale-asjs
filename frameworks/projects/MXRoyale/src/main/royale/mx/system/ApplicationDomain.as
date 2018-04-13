@@ -16,19 +16,56 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+
+package mx.system
 {
+
+
+/*
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
+ */
+public class ApplicationDomain extends Object
+{
+
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Constructor
+    //
+    //--------------------------------------------------------------------------
+
     /**
-     *  The IPopUpHost interface is a "marker" interface for a component that
-     *  parents components that implement IPopUp.
-     * 
+     *  Constructor.
+     *
      *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
      *  @productversion Royale 0.0
      */
-    public interface IPopUpHost
-	{
-        function get popUpParent():IParent;
+	private var _currentDomain:Object;
+
+	public function get currentDomain():Object
+    {
+        return _currentDomain;
+    }
+    
+    public function set currentDomain(obj:Object):void
+    {
+		_currentDomain = obj;
 	}
+	
+	
+	
+    public function ApplicationDomain()
+    {
+        super();
+    }
+
+}
+
 }
