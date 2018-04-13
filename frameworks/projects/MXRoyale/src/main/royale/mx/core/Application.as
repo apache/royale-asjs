@@ -366,7 +366,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		MouseEventConverter.setupAllConverters(stage);
 		
 		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
-			this.initialize();
+			this.initializeApplication();
 		else
 			addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
 		
@@ -378,7 +378,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 		{
 			removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
-			this.initialize();
+			this.initializeApplication();
 		}
 	}
 	
@@ -392,7 +392,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	 *  @productversion Royale 0.0
 	 */
     COMPILE::SWF
-    override public function initialize():void
+    public function initializeApplication():void
     {
         addBead(new MixinManager());
         // the application is never added to the dom via addChild
@@ -402,7 +402,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         
 		this.initManagers();
 
-        dispatchEvent(new org.apache.royale.events.Event("initialize"));
         dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
     }
 	
@@ -516,7 +515,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	public function start():void
 	{
 		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
-			initialize();
+			initializeApplication();
 		else {			
 			startupTimer = new Timer(34, 0);
 			startupTimer.addEventListener("timer", handleStartupTimer);
@@ -533,7 +532,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 		{
 			startupTimer.stop();
-			initialize();
+			initializeApplication();
 		}
 	}
 	
@@ -541,7 +540,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	 * @royaleignorecoercion org.apache.royale.core.IBead
 	 */
 	COMPILE::JS
-	override public function initialize():void
+	public function initializeApplication():void
 	{
 		var body:HTMLElement = document.getElementsByTagName('body')[0];
 		body.appendChild(element);
@@ -554,8 +553,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         
 		addedToParent();
         		
-		dispatchEvent('initialize');
-		
 //		if (initialView)
 //		{
 //            initialView.applicationModel = model;
@@ -601,6 +598,24 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		// Setting this directly doesn't do anything
 	}
 
+    //--------------------------------------------------------------------------
+    //
+    //  IPopUpHost
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  Application can host popups but in the strandChildren
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get popUpParent():IParent
+    {
+        return strandChildren;
+    }
 }
 
 }
