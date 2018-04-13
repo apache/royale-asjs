@@ -25,10 +25,16 @@ package org.apache.royale.utils.cssclasslist
 
     /**
      *  Removes one or more styles from the component. Removing a class that does not 
-     *  exist, does not throw any error
+     *  exist, does not throw any error.
      * 
-     *  @param value, a String with the style (or styles separated by an space) to 
-     *  remove from the component. If the string is empty doesn't perform any action
+     *  Use of these utility functions should not be mixed with modifying the component's
+     *  className property at runtime.  Also the component's className property will not
+     *  reflect modifications made with this API.
+     * 
+     *  @param element The HTMLElement that will have selectors added or removed.  
+     * 
+     *  @param value A String with the style (or styles separated by an space) to 
+     *  remove from the component. If the string is empty doesn't perform any action.
      *  
      *  @langversion 3.0
      *  @productversion Royale 0.9.3

@@ -88,7 +88,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    toggleStyle(element, "primary", value);
+                    togglePropertyStyle("primary", value);
                 }
             }
         }
@@ -118,7 +118,7 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    toggleStyle(element, "secondary", value);
+                    togglePropertyStyle("secondary", value);
                 }
             }
         }
@@ -148,9 +148,37 @@ package org.apache.royale.jewel
 
                 COMPILE::JS
                 {
-                    toggleStyle(element, "emphasized", value);
+                    togglePropertyStyle("emphasized", value);
                 }
             }
+        }
+        
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            var s:String = super.computeFinalClassNames();
+            if (propertyStyles.length)
+                s += " " + propertyStyles.join(" ");
+            return s;
+        }
+
+        COMPILE::JS
+        private var propertyStyles:Array = [];
+        
+        COMPILE::JS
+        protected function togglePropertyStyle(styleName:String, value:Boolean):void
+        {
+            if (value)
+            {
+                if (propertyStyles.indexOf(styleName) == -1)
+                    propertyStyles.push(styleName);
+            }
+            else
+            {
+                var c:int = propertyStyles.indexOf(styleName);
+                if (c != -1) propertyStyles.splice(c, 1);
+            }
+            toggleStyle(element, styleName, value);
         }
 	}
 }

@@ -24,12 +24,18 @@ package org.apache.royale.utils.cssclasslist
     }
 
     /**
-     *  Adds or removes a single style. 
+     *  Adds or removes a single style (class selector name). 
      * 
-     *  The first parameter removes the style from an element, and returns false.
+     *  Use of these utility functions should not be mixed with modifying the component's
+     *  className property at runtime.  Also the component's className property will not
+     *  reflect modifications made with this API.
+     * 
+     *  @param element The HTMLElement that will have selectors added or removed.  
+     * 
+     *  @param value If the selector name exists it is removed and the return value is false.
      *  If the style does not exist, it is added to the element, and the return value is true.
      * 
-     *  The optional second parameter is a Boolean value that forces the class to be added 
+     *  @param force A Boolean value that forces the class to be added 
      *  or removed, regardless of whether or not it already existed.
      * 
      *  @langversion 3.0

@@ -1061,13 +1061,25 @@ package org.apache.royale.core
          * 
          *  @royalesuppresspublicvarwarning
          */
-        public var typeNames:String;
+        public var typeNames:String = "";
         
         private var _className:String;
 
         /**
          *  The classname.  Often used for CSS
          *  class selector lookups.
+         * 
+         *  In Royale the list of class selectors actually applied to
+         *  the component can be more than what is specified in this
+         *  className property.   This property is primarily provided
+         *  to make it easy to specify class selectors in MXML.  If
+         *  you want to change the set of class selectors at runtime
+         *  it is more efficient to use the ClassList utility functions in
+         *  org.apache.royale.utils.classList.
+         * 
+         *  Do not mix usage of the ClassList utility functions and modifying
+         *  the className property at runtime.  It is best to think of this
+         *  className property as a write-once property.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1090,7 +1102,10 @@ package org.apache.royale.core
 
                 COMPILE::JS
                 {
-                    setClassName(computeFinalClassNames());             
+                    // set it now if it was set once in addedToParent
+                    // otherwise just wait for addedToParent
+                    if (parent)
+                        setClassName(computeFinalClassNames());             
                 }
                 
                 dispatchEvent(new Event("classNameChanged"));
@@ -1100,13 +1115,13 @@ package org.apache.royale.core
 		COMPILE::JS
         protected function computeFinalClassNames():String
 		{
-            return  StringUtil.trim((_className ? _className : "") + " " + (typeNames ? typeNames : ""));
+            return  _className ? _className + " " + typeNames : typeNames;
 		}
 
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            addStyles(element, value);        
+            element.className = value;        
         }
 
         /**
