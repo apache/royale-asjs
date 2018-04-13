@@ -45,7 +45,7 @@
 	<component id="HDividedBox" class="mx.containers.HDividedBox" />
 	<component id="VBox" class="mx.containers.VBox" />	
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
-	<component id="ViewStack" class="mx.containers.ViewStack" />
+	<!--<component id="ViewStack" class="mx.containers.ViewStack" /> waiting for commit -->
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
