@@ -24,6 +24,7 @@
     <component id="Application" class="mx.core.Application" />
 	<component id="Button" class="mx.controls.Button" />
 	<component id="CheckBox" class="mx.controls.CheckBox" />
+    <component id="ComboBox" class="mx.controls.ComboBox" />
 	<component id="DateChooser" class="mx.controls.DateChooser" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />

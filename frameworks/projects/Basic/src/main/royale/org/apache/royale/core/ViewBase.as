@@ -93,5 +93,18 @@ package org.apache.royale.core
             dispatchEvent(new Event("modelChanged"));
         }
 
+        /**
+         *  ViewBase can host popups but they will be in the layout, if any
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get popUpParent():IParent
+        {
+            return this;
+        }
+        
     }
 }
