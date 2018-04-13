@@ -71,6 +71,7 @@ internal class MXRoyaleClasses
 	import mx.events.SliderEvent; SliderEvent;
   import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
+	import mx.effects.Resize; Resize;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
