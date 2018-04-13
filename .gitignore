@@ -142,9 +142,10 @@ _ReSharper*/
 #VF2JS generated files
 vf2js/frameworks/js/
 
-#FlexJS generated files
-frameworks/js/FlexJS/generated-sources
-manualtests/FlexJSTest_SVG/bin
+#Royale generated files
+frameworks/js/Royale/generated-sources
+manualtests/RoyaleTest_SVG/bin
+*.css.map
 
 #npm
 node_modules
