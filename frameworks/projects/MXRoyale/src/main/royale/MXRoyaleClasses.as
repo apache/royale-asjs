@@ -72,6 +72,7 @@ internal class MXRoyaleClasses
 	import mx.events.SliderEvent; SliderEvent;
   import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
+	import mx.effects.Move; Move;
 	import mx.graphics.LinearGradient; LinearGradient;
 	import mx.system.ApplicationDomain; ApplicationDomain;
     COMPILE::SWF
