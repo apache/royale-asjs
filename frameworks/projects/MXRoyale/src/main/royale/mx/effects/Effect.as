@@ -34,7 +34,7 @@ import org.apache.royale.effects.Effect;
 
 public class Effect extends org.apache.royale.effects.Effect
 {
-	public var instanceClass:Class = IEffectInstance;
+	private var instanceClass:Class = IEffectInstance;
 	
 	public function end(effectInstance:IEffectInstance = null):void
     {
