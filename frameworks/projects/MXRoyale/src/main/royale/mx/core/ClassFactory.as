@@ -34,6 +34,8 @@ package mx.core
      */
 	public class ClassFactory extends org.apache.royale.core.ClassFactory
 	{
+	private var properties:Object = null;
+
       public function ClassFactory(generator:Class=null)
 		{
 			super(generator);
