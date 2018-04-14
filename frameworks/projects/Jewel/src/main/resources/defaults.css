@@ -122,6 +122,10 @@ j|ControlBar {
     IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
   }
 }
+j|ListItemRenderer {
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+}
+
 .jewel.label {
   white-space: nowrap;
 }
@@ -137,7 +141,7 @@ j|List {
   IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-  IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
   IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }

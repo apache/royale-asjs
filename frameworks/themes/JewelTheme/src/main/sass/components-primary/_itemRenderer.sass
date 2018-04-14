@@ -16,26 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
-{
-	public class ListsModel 
-	{
-		/**
-		 * Used in the List example.
-		 */
-		private var _watchmen:Array = [
-			"The Comedian", 
-			"Doctor Manhattan", 
-			"Nite Owl",
-			"Ozymandias",
-            "Rorschach",
-            "Silk Spectre"
-		];
-		
-		public function get watchmen():Array
-		{
-			return _watchmen;
-		}
 
-	}
-}
+// Jewel ListItemRenderer
+
+// ListItemRenderer variables
+.jewel.item
+    cursor: pointer
+    padding: 8px
+    flex-shrink: 0
+    flex-grow: 1
+
+    &:hover
+        color: $font-theme-color
+        background: darken($primary-color, 5%)
+
+    &:active, &.selected
+        color: $font-theme-color
+        background: darken($primary-color, 15%)

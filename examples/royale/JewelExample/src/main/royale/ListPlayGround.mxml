@@ -24,6 +24,14 @@ limitations under the License.
           xmlns:models="models.*"
 		  className="container" width="350">
     
+    <fx:Script>
+		<![CDATA[
+			private function onChange(event:Event):void {
+                trace("change");
+            }
+		]]>
+	</fx:Script>
+
     <mdl:model>
         <models:ListsModel/>
 	</mdl:model>
@@ -34,7 +42,7 @@ limitations under the License.
 	
 	<html:H3 text="Jewel List"/>
 	
-    <j:List id="list" x="20" y="40" width="200" height="300">
+    <j:List id="list" width="200" height="300" change="onChange(event)">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="model"
