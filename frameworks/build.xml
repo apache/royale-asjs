@@ -115,6 +115,7 @@
         <antcall target="Binding"/>
         <antcall target="Collections"/>
         <antcall target="Basic"/>
+	<antcall target="Ace"/>
         <antcall target="CoreTest"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
@@ -285,6 +286,10 @@
 
     <target name="HTML5" description="Clean build of HTML5.swc">
         <ant dir="${basedir}/projects/HTML5"/>
+    </target>
+
+    <target name="Ace" description="Clean build of Ace.swc">
+	    <ant dir="${basedir}/projects/Ace"/>
     </target>
 
     <target name="JQuery" description="Clean build of JQuery.swc">

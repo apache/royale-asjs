@@ -111,6 +111,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -142,6 +143,7 @@ package org.apache.royale.html.beads.controllers
         /**
          *  @private
 		 * @royaleignorecoercion org.apache.royale.events.MouseEvent
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         private function dragMoveHandler(event:DragEvent):void
         {
@@ -166,6 +168,9 @@ package org.apache.royale.html.beads.controllers
             }
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         private function rollOutHandler(event:MouseEvent):void
         {
             var dragEvent:DragEvent;
@@ -184,6 +189,7 @@ package org.apache.royale.html.beads.controllers
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.events.MouseEvent
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
         private function dragEndHandler(event:DragEvent):void
         {

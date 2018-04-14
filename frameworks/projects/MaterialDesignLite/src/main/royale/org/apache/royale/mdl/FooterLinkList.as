@@ -83,9 +83,9 @@ package org.apache.royale.mdl
 				var parentSection:IFooterSection = parent as IFooterSection;
 				if(UIBase(parentSection).parent is Footer)
 				{
-					element.classList.remove(typeNames);
 					if (Footer(UIBase(parentSection).parent).mini)
 					{
+                        element.classList.remove(typeNames);
                         typeNames = "mdl-mini-footer__link-list";
                         setClassName(computeFinalClassNames());
 					}

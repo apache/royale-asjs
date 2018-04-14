@@ -50,7 +50,7 @@ package org.apache.royale.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.8
      */
 	public class SimpleCSSValuesImpl extends EventDispatcher implements IBorderPaddingMarginValuesImpl, ICSSImpl
 	{
@@ -64,7 +64,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function SimpleCSSValuesImpl()
 		{
@@ -93,7 +93,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         COMPILE::SWF
         public function init(main:Object):void
@@ -180,7 +180,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         COMPILE::SWF
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
@@ -327,7 +327,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          * 
          *  @royalesuppresspublicvarwarning
          */
@@ -339,7 +339,9 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IStyleableObject
+         *  @royaleignorecoercion org.apache.royale.core.IChild
          */
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
@@ -519,6 +521,9 @@ package org.apache.royale.core
 			return undefined;
 		}
 		
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IChild
+         */
         private function getInheritingValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
         {
             var value:*;
@@ -551,7 +556,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
@@ -577,7 +582,7 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function newInstance(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
@@ -593,8 +598,9 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          *  @royaleignorecoercion Function
+         *  @royaleignorecoercion org.apache.royale.core.IDocument
          */
         public function getInstance(valueName:String):Object
         {
@@ -626,7 +632,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function convertColor(value:Object):uint
         {
@@ -639,7 +645,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function parseStyles(styles:String):Object
         {
@@ -697,7 +703,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
 		 *
 		 *  @royaleignorecoercion HTMLStyleElement
 		 *  @royaleignorecoercion CSSStyleSheet
@@ -761,7 +767,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public static const inheritingStyles:Object = {
             "color" : 1,
@@ -855,7 +861,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          *  @royaleignorecoercion String
          */
         public function getBorderStyles(object:IUIBase, state:String = null):BorderStyles
@@ -938,7 +944,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function getBorderMetrics(object:IUIBase, state:String = null):EdgeData
         {
@@ -1052,7 +1058,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function getPaddingMetrics(object:IUIBase, hostWidth:Number = NaN, hostHeight:Number = NaN, state:String = null):EdgeData
         {
@@ -1102,7 +1108,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function getBorderAndPaddingMetrics(object:IUIBase, hostWidth:Number = NaN, hostHeight:Number = NaN, state:String = null):EdgeData
         {
@@ -1237,7 +1243,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
         public function getBorderPaddingAndMargins(object:IUIBase, hostWidth:Number = NaN, hostHeight:Number = NaN, state:String = null):LayoutData
         {

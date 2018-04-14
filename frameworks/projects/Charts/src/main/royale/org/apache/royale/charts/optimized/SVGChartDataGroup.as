@@ -143,14 +143,14 @@ package org.apache.royale.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function addItemRenderer(value:IItemRenderer):void
+		public function addItemRenderer(value:IItemRenderer, dispatchAdded:Boolean):void
 		{
 			_children.push(value);
 			
 			var base:UIBase = value as UIBase;
 			base.addedToParent();
 			
-			super.addElement(value, true);
+			super.addElement(value, dispatchAdded);
 		}
 		
 		/**

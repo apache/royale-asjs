@@ -60,6 +60,7 @@
     <module>Text</module>
     <module>TLF</module>
     <module>RoyaleSite</module>
+    <module>Jewel</module>
   </modules>
 
   <profiles>

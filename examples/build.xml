@@ -74,6 +74,7 @@
     </target>
     
     <target name="compile" description="Compile Examples" >
+	    <ant dir="${basedir}/royale/Ace"/>
         <ant dir="${basedir}/express/DataBindingExample"/>
         <ant dir="${basedir}/express/DataGridExample"/>
         <ant dir="${basedir}/royale/AccordionExample"/>

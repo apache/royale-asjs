@@ -142,7 +142,7 @@ package org.apache.royale.core
         
         /**
          * @royaleignorecoercion Class 
-         * @royaleignorecoercion org.apache.royale.core.IBeadModel 
+         * @royaleignorecoercion org.apache.royale.core.IBeadModel
          */
         public function get model():Object
         {
@@ -157,6 +157,9 @@ package org.apache.royale.core
             return _model;
         }
         
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IBead
+         */
         [Bindable("modelChanged")]
         public function set model(value:Object):void
         {
@@ -178,6 +181,7 @@ package org.apache.royale.core
 
         /**
          * @param bead The new bead.
+         * @royaleignorecoercion org.apache.royale.core.IBeadModel 
          */
 		public function addBead(bead:IBead):void
 		{
@@ -275,6 +279,9 @@ package org.apache.royale.core
             return goog.events.hasListener(source, type);
         }
 
+        /**
+         * @royaleignorecoercion String
+         */
         override public function dispatchEvent(e:Object):Boolean
         {
             var eventType:String = "";
@@ -306,6 +313,9 @@ package org.apache.royale.core
             return source.dispatchEvent(e);
         }
 		
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
 		public function dispatchBubblingEvent(source:Object, e:Object):Boolean
 		{
 			// build the ancestors tree without setting the actual parentEventTarget

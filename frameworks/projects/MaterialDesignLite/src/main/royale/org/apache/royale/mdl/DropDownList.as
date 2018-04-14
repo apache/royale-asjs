@@ -185,11 +185,11 @@ package org.apache.royale.mdl
             }
         }
 
-        override public function addItemRenderer(renderer:IItemRenderer):void
+        override public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
         {
             COMPILE::JS
             {
-                dropDown.addElement(renderer);
+                dropDown.addElement(renderer, dispatchAdded);
             }
             
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");

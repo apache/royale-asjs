@@ -89,6 +89,7 @@ package org.apache.royale.html.beads.layouts
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.IMeasurementBead
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean
@@ -119,9 +120,16 @@ package org.apache.royale.html.beads.layouts
 			var n:int = contentView.numElements;
             var rowData:Object = { rowHeight: 0 };
 
+			//cache values to prevent layout thrashing
+			var views:Array = [];
+			var heights:Array = [];
+			var widths:Array = [];
 			// determine max widths of columns
 			for (i = 0; i < n; i++) {
-				e = contentView.getElementAt(i) as IUIBase;
+				views[i] = contentView.getElementAt(i);
+				heights[i] = views[i].height;
+				widths[i] = views[i].width;
+				e = views[i];
 				if (e == null || !e.visible) continue;
 				var margins:Object = childMargins(e, sw, sh);
 				
@@ -133,12 +141,12 @@ package org.apache.royale.html.beads.layouts
 					if (measure)
 						thisPrefWidth = measure.measuredWidth + margins.left + margins.right;
 					else
-						thisPrefWidth = e.width + margins.left + margins.right;
+						thisPrefWidth = widths[i] + margins.left + margins.right;
 				}
 				else
-					thisPrefWidth = e.width + margins.left + margins.right;
+					thisPrefWidth = widths[i] + margins.left + margins.right;
 
-                rowData.rowHeight = Math.max(rowData.rowHeight, e.height + margins.top + margins.bottom);
+                rowData.rowHeight = Math.max(rowData.rowHeight, heights[i] + margins.top + margins.bottom);
 				columns[col] = Math.max(columns[col], thisPrefWidth);
                 col = col + 1;
                 if (col == numColumns)
@@ -157,13 +165,13 @@ package org.apache.royale.html.beads.layouts
 			col = 0;
 			for (i = 0; i < n; i++)
             {
-				e = contentView.getElementAt(i) as IUIBase;
+				e = views[i];
 				if (e == null || !e.visible) continue;
 				e.x = curx + data[i].ml;
 				e.y = cury + data[i].mt;
 				curx += columns[col++];
-                maxHeight = Math.max(maxHeight, e.y + e.height + data[i].mb);
-                maxWidth = Math.max(maxWidth, e.x + e.width + data[i].mr);
+                maxHeight = Math.max(maxHeight, e.y + heights[i] + data[i].mb);
+                maxWidth = Math.max(maxWidth, e.x + widths[i] + data[i].mr);
 				if (col == numColumns)
 				{
 					cury += rows[0].rowHeight;

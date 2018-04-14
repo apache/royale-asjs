@@ -37,7 +37,7 @@ package org.apache.royale.html.accessories
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class ToolTipBead implements IBead
 	{
@@ -47,7 +47,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function ToolTipBead()
 		{
@@ -71,7 +71,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function get toolTip():String
 		{
@@ -118,7 +118,8 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -129,6 +130,8 @@ package org.apache.royale.html.accessories
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function rollOverHandler(event:MouseEvent):void
 		{
@@ -152,6 +155,7 @@ package org.apache.royale.html.accessories
 		/**
 		 * @private
 		 * Determines the position of the toolTip.
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		protected function determinePosition(event:MouseEvent, base:Object):Point
 		{
@@ -188,6 +192,7 @@ package org.apache.royale.html.accessories
 
         /**
          * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         private function rollOutHandler(event:MouseEvent):void
         {

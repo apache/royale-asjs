@@ -444,6 +444,9 @@ limitations under the License.
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="js" />
         </ant>
+	<ant dir="${basedir}/frameworks" target="create-config">
+		<property name="configname" value="ace" />
+	</ant>
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="jquery" />
         </ant>
@@ -872,6 +875,8 @@ limitations under the License.
         <fix-config-file file="${staging-dir}/frameworks/js-config-template.xml" version="${build.version}" />
         <echo message="Updating config file jquery-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/jquery-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file ace-config.xml with version ${build.version}"/>
+        <fix-config-file file="${staging-dir}/frameworks/ace-config-template.xml" version="${build.version}" />
         <echo message="Updating config file createjs-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/createjs-config-template.xml" version="${build.version}" />
         <echo message="Updating config file node-config.xml with version ${build.version}"/>
@@ -964,6 +969,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -977,6 +983,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -989,6 +996,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>

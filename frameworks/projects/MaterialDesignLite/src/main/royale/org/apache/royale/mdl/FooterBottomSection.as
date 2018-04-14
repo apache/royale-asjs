@@ -69,9 +69,9 @@ package org.apache.royale.mdl
 
 			if(parent is Footer)
 			{
-                element.classList.remove(typeNames);
                 if (Footer(parent).mini)
                 {
+                    element.classList.remove(typeNames);
                     typeNames = "mdl-mini-footer__bottom-section";
                     setClassName(computeFinalClassNames());
                 }

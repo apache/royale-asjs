@@ -112,6 +112,11 @@
             file="${basedir}/FlexUnitRoyaleApplication.mxml"
             output="${basedir}/FlexUnitRoyaleApplication.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <!--
+            <jvmarg value="-Xdebug" />
+            <jvmarg value="-Xnoagent" />
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8763,server=y,suspend=y" />
+             -->
             <arg value="-debug" />
             <arg value="-compiler.targets=SWF" />
             <arg value="+playerglobal.version=${playerglobal.version}" />

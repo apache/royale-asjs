@@ -1,0 +1,120 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel RadioButton
+
+// RadioButton variables
+$radiobutton-button-size: 22px
+$radiobutton-border-radius: 50%
+$radiobutton-label-separation: 6px
+$radiobutton-label-font-size: 16px
+
+.jewel.radiobutton
+    display: inline-block
+
+    margin: 0
+    padding: 0
+
+    position: relative
+    
+    width: 100%
+    height: $radiobutton-button-size
+
+    // -- INPUT
+    input
+        +appear(none)
+        cursor: pointer
+        display: inline-block
+        
+        margin: 0
+        padding: 0
+        
+        width: $radiobutton-button-size
+        height: $radiobutton-button-size
+
+        line-height: $radiobutton-button-size
+
+        @if $flat
+            border: 1px solid transparent
+            background: $default-color
+        @else
+            border: 1px solid darken($default-color, 15%)
+            background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+        border-radius: $radiobutton-border-radius
+
+        &:checked, &:checked:active
+            @if $flat
+                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $default-color
+            @else
+                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($default-color, 12%)//linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+            background-repeat: no-repeat
+            background-size: 60%
+            background-position: center
+            background-attachment: fixed
+
+            &:checked:focus, &:checked:active:focus
+                @if $flat
+                    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%)
+                @else
+                    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%) //linear-gradient(lighten($default-color, 25%), lighten($default-color, 20%))
+                background-repeat: no-repeat
+                background-size: 60%
+                background-position: center
+                background-attachment: fixed
+            
+        &:focus
+            outline: none
+            @if $flat
+                border: 1px solid transparent
+                background: lighten($primary-color, 25%)
+            @else
+                border: 1px solid darken($primary-color, 15%)
+
+        &[disabled]
+            cursor: unset
+            @if $flat
+                border: 1px solid transparent
+            @else
+                border: 1px solid $disabled-border-color// .094em
+            background: $disabled-color
+            
+            & + span
+                cursor: unset
+                color: $disabled-font-color
+            
+            &:checked
+                @if $flat
+                    border: 1px solid transparent
+                @else
+                    border: 1px solid $disabled-border-color// .094em
+                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor(darken($disabled-color, 15%))}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $disabled-color
+                background-size: 60%
+                background-position: center
+                background-repeat: no-repeat
+                background-attachment: fixed
+                
+    // -- LABEL
+    span
+        cursor: pointer
+        position: relative
+        vertical-align: top
+        margin: 0
+        padding-left: $radiobutton-label-separation
+        font-size: $radiobutton-label-font-size
+        line-height: $radiobutton-button-size

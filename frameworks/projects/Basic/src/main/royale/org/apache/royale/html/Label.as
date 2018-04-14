@@ -170,12 +170,12 @@ package org.apache.royale.html
         }
 
         /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'div');
+			addElementToWrapper(this,'span');
 
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);

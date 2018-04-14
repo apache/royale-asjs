@@ -55,8 +55,8 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.3.1</maven.version>
 
-    <royale.compiler.version>0.9.2-SNAPSHOT</royale.compiler.version>
-    <royale.typedefs.version>0.9.2-SNAPSHOT</royale.typedefs.version>
+    <royale.compiler.version>0.9.3-SNAPSHOT</royale.compiler.version>
+    <royale.typedefs.version>0.9.3-SNAPSHOT</royale.typedefs.version>
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
     <royale.debug>true</royale.debug>
@@ -150,6 +150,12 @@
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+
+        <plugin>
+          <groupId>nl.geodienstencentrum.maven</groupId>
+          <artifactId>sass-maven-plugin</artifactId>
+          <version>3.5.2</version>
+        </plugin>
 <!--
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
@@ -197,6 +203,8 @@
             <!-- Ignore IntelliJ IDEA project files -->
             <exclude>**/*.iml</exclude>
             <exclude>**/.idea/**</exclude>
+            <!-- SASS cc.map generated files by sass-maven-plugin-->
+            <exclude>**/*.css.map</exclude>
             <!--
                 Exclude any eventually existing content of target directories.
                 Some times when building with a bigger maven reactor and then

@@ -70,7 +70,7 @@ package flexUnitTests
                 var nEv:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(oEv);
                 assertEquals("keyUp", nEv.type);
                 oEv = {"type":"keyDown","keyCode":66,"charCode":66};
-                var nEv:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(oEv);
+                nEv = KeyboardEventConverter.convert(oEv);
                 assertEquals("keyDown", nEv.type);
             }
         }

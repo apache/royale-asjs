@@ -143,7 +143,7 @@ package org.apache.royale.html.beads
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
-				dataGroup.addItemRenderer(tf);
+				dataGroup.addItemRenderer(tf, false);
 				tf.index = i;
 				tf.labelField = view.column.dataField;
 				tf.data = dp[i];

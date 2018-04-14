@@ -30,7 +30,7 @@
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale - Examples: Royale: Flex2Royale</name>
+  <name>Apache Royale: Examples: Royale: Flex2Royale</name>
 
   <build>
     <plugins>

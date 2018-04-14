@@ -143,6 +143,7 @@ package org.apache.royale.html.beads.layouts
 
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
          */
 		COMPILE::JS
 		override public function layout():Boolean
