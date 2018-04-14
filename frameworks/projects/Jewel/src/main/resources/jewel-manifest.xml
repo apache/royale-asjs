@@ -32,6 +32,7 @@
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
     <component id="ControlBar" class="org.apache.royale.jewel.ControlBar"/>
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
+    <component id="List" class="org.apache.royale.jewel.List"/>
     
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
 

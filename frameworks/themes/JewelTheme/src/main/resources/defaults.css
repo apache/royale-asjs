@@ -688,6 +688,11 @@ j|Alert {
   box-shadow: none;
 }
 
+.jewel.list {
+  border: 1px solid;
+  background: #d9d9d9;
+}
+
 .jewel.textbutton {
   cursor: pointer;
   display: inline-block;
