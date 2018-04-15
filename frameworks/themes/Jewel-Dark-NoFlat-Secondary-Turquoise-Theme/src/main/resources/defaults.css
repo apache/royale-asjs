@@ -67,18 +67,18 @@ div {
   padding: 8px;
   min-width: 34px;
   min-height: 34px;
-  border: 1px solid #1a6b65;
   background: linear-gradient(#2ebcb2, #24948c);
+  border: 1px solid #1a6b65;
   box-shadow: inset 0 1px 0 #5fd8cf;
   border-radius: 3px;
 }
 .jewel.button.secondary:hover, .jewel.button.secondary:hover:focus {
-  border: 1px solid #155651;
   background: linear-gradient(#29A89F, #1f7f78);
+  border: 1px solid #155651;
 }
 .jewel.button.secondary:active, .jewel.button.secondary:active:focus {
-  border: 1px solid #0b2d2b;
   background: linear-gradient(#1f7f78, #155651);
+  border: 1px solid #0b2d2b;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.secondary:focus {
@@ -88,8 +88,8 @@ div {
 }
 .jewel.button.secondary[disabled] {
   cursor: unset;
-  border: 1px solid #0d0d0d;
   background: #404040;
+  border: 1px solid #0d0d0d;
   box-shadow: none;
 }
 
@@ -100,8 +100,8 @@ div {
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  border: 1px solid #1a6b65;
   background: linear-gradient(#2ebcb2, #24948c);
+  border: 1px solid #1a6b65;
   box-shadow: inset 0 1px 0 #5fd8cf;
   border-radius: 3px;
   font-family: "Lato", sans-serif;
@@ -113,12 +113,12 @@ div {
   text-shadow: 0 -1px 0 rgba(11, 45, 43, 0.7);
 }
 .jewel.textbutton.secondary:hover, .jewel.textbutton.secondary:hover:focus {
-  border: 1px solid #155651;
   background: linear-gradient(#29A89F, #1f7f78);
+  border: 1px solid #155651;
 }
 .jewel.textbutton.secondary:active, .jewel.textbutton.secondary:active:focus {
-  border: 1px solid #0b2d2b;
   background: linear-gradient(#1f7f78, #155651);
+  border: 1px solid #0b2d2b;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.secondary:focus {
@@ -128,8 +128,8 @@ div {
 }
 .jewel.textbutton.secondary[disabled] {
   cursor: unset;
-  border: 1px solid #0d0d0d;
   background: #404040;
+  border: 1px solid #0d0d0d;
   box-shadow: none;
   color: #737373;
   font-weight: normal;
