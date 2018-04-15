@@ -279,11 +279,11 @@ j|Alert {
 }
 .jewel.item:hover {
   color: #FFFFFF;
-  background: #24a3ef;
+  background: #3CADF1;
 }
 .jewel.item:active, .jewel.item.selected {
   color: #FFFFFF;
-  background: #0f88d1;
+  background: #24a3ef;
 }
 
 .jewel.label {

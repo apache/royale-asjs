@@ -79,7 +79,24 @@ package org.apache.royale.jewel.beads.controllers
 
 		private var oldValue:Number;
 
-		public var sliderView:ISliderView;
+		private var _sliderView:ISliderView;
+        /**
+		 *  the view attached to the slider
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get sliderView():ISliderView
+        {
+            return _sliderView;
+        }
+
+        public function set sliderView(value:ISliderView):void
+        {
+            _sliderView = value;
+        }
 				
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -95,9 +112,10 @@ package org.apache.royale.jewel.beads.controllers
 			
 			rangeModel = UIBase(value).model as IRangeModel;
 			
-            COMPILE::SWF
+            sliderView = value.getBeadByType(ISliderView) as ISliderView;
+            
+			COMPILE::SWF
             {
-            	sliderView = value.getBeadByType(ISliderView) as ISliderView;
                 sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
                 
                 // add handler to detect click on track
@@ -105,9 +123,7 @@ package org.apache.royale.jewel.beads.controllers
                                     
             }
             COMPILE::JS
-            {
-				sliderView = value.getBeadByType(ISliderView) as ISliderView;
-				
+            {	
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.CHANGE, handleChange, false, this);
                 goog.events.listen(UIBase(_strand).element, goog.events.EventType.INPUT, handleInput, false, this);
 

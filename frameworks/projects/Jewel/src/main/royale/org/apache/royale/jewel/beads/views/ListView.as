@@ -27,7 +27,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.DataContainerView;
 
 	/**
-	 *  The List class creates the visual elements of the org.apache.royale.html.List
+	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
 	 *  component. A List consists of the area to display the data (in the dataGroup), any
 	 *  scrollbars, and so forth.
 	 *
@@ -35,7 +35,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.3
 	 */
 	COMPILE::JS
 	public class ListView extends DataContainerView

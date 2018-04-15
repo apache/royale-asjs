@@ -155,10 +155,48 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		COMPILE::JS
-		public var sliderTrackFill:HTMLDivElement;
+		private var _sliderTrackFill:HTMLDivElement;
+        /**
+		 *  A visual indicator that shows a part of the track "filled"
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		COMPILE::JS
+        public function get sliderTrackFill():HTMLDivElement
+        {
+            return _sliderTrackFill;
+        }
 
 		COMPILE::JS
-		public var sliderTrack:HTMLDivElement;
+        public function set sliderTrackFill(value:HTMLDivElement):void
+        {
+            _sliderTrackFill = value;
+        }
+
+		COMPILE::JS
+		private var _sliderTrack:HTMLDivElement;
+        /**
+		 *  a visual indicator that show a part of the track as no "filled"
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		COMPILE::JS
+        public function get sliderTrack():HTMLDivElement
+        {
+            return _sliderTrack;
+        }
+
+		COMPILE::JS
+        public function set sliderTrack(value:HTMLDivElement):void
+        {
+            _sliderTrack = value;
+        }
 
 		COMPILE::JS
         public function redraw():void
