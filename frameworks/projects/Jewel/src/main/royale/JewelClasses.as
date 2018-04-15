@@ -30,8 +30,7 @@ package
         import org.apache.royale.jewel.beads.models.SliderRangeModel; SliderRangeModel;
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
-        import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
-
+        
         import org.apache.royale.jewel.beads.views.SliderView; SliderView;
         import org.apache.royale.jewel.beads.views.AlertView; AlertView;
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
