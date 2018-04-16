@@ -35,8 +35,10 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.containers.ControlBar; ControlBar;
+    import mx.containers.Panel; Panel;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.graphics.Stroke; Stroke;
 	import mx.graphics.SolidColor; SolidColor;
 	import mx.graphics.SolidColorStroke; SolidColorStroke;
 	import mx.graphics.IStroke; IStroke;
@@ -72,6 +74,16 @@ internal class MXRoyaleClasses
   import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
 	import mx.charts.ChartItem; ChartItem;
+	import mx.core.ClassFactory; ClassFactory;
+	import mx.charts.LineChart; LineChart;
+	import mx.charts.PieChart; PieChart;
+	import mx.charts.BarChart; BarChart;
+	import mx.charts.ColumnChart; ColumnChart;
+	import mx.effects.Resize; Resize;
+	import mx.effects.Tween; Tween;
+	import mx.effects.Move; Move;
+	import mx.graphics.LinearGradient; LinearGradient;
+	import mx.system.ApplicationDomain; ApplicationDomain;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;

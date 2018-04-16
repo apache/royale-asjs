@@ -296,6 +296,12 @@ public class MXMLDataInterpreter
             }
         }
         
+        if (id)
+            document[id] = comp;
+        
+        if (comp is IDocument)
+            comp.setDocument(document, id);
+        
         var children:Array = data[i++];
         if (children && comp is IMXMLDocument)
         {
@@ -320,12 +326,6 @@ public class MXMLDataInterpreter
             }
         }
         
-        if (id)
-            document[id] = comp;
-        
-        if (comp is IDocument)
-            comp.setDocument(document, id);
-                
         return i;
     }
     

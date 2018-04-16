@@ -16,19 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+
+package mx.effects
 {
+import org.apache.royale.effects.Resize;
+import org.apache.royale.core.IUIBase;
+
+/**
+ *  The Resize effect animates a UI component's width or height.
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+public class Resize extends org.apache.royale.effects.Resize
+{
+
+    //--------------------------------------------------------------------------
+    //
+    //  Constructor
+    //
+    //--------------------------------------------------------------------------
+
     /**
-     *  The IPopUpHost interface is a "marker" interface for a component that
-     *  parents components that implement IPopUp.
-     * 
+     *  Constructor.
+     *
+     *  @param target Object ID or reference to an object that will
+	 *  have its x and/or y property animated.
+     *
      *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 1.0.0
      */
-    public interface IPopUpHost
-	{
-        function get popUpParent():IParent;
-	}
+    public function Resize(target:IUIBase = null)
+    {
+        super(IUIBase);
+
+		
+    }
+   
+}
+
 }

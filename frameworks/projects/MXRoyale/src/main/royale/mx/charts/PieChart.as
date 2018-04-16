@@ -16,19 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package mx.charts
 {
-    /**
-     *  The IPopUpHost interface is a "marker" interface for a component that
-     *  parents components that implement IPopUp.
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public interface IPopUpHost
+	import org.apache.royale.charts.PieChart;
+	import mx.charts.chartClasses.ChartBase;
+
+	/**
+	 *  The PieChart displays data as a percentage of pie. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	public class PieChart extends ChartBase
 	{
-        function get popUpParent():IParent;
+		/**
+		 *  constructor. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		public function PieChart()
+		{
+			super();
+		}
 	}
 }
