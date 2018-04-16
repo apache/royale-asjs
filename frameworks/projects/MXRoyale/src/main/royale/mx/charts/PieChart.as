@@ -19,7 +19,8 @@
 package mx.charts
 {
 	import org.apache.royale.charts.PieChart;
-	
+	import mx.charts.chartClasses.ChartBase;
+
 	/**
 	 *  The PieChart displays data as a percentage of pie. 
 	 *  
@@ -28,7 +29,7 @@ package mx.charts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class PieChart extends org.apache.royale.charts.PieChart
+	public class PieChart extends ChartBase
 	{
 		/**
 		 *  constructor. 
