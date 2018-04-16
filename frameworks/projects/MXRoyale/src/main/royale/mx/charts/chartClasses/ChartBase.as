@@ -36,7 +36,7 @@ package mx.charts.chartClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ChartBase 
+	public class ChartBase extends org.apache.royale.charts.core.ChartBase
 	{
 	 /**
      *  @private
