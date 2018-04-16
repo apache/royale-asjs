@@ -19,7 +19,7 @@
 package mx.charts
 {
 	import org.apache.royale.charts.ColumnChart;
-	
+	import mx.charts.chartClasses.ChartBase;
 	/**
 	 *  The ColumnChart displays a histogram chart where each series in
 	 *  in the chart is a vertical column placed side by side. 
@@ -29,7 +29,7 @@ package mx.charts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ColumnChart extends org.apache.royale.charts.ColumnChart
+	public class ColumnChart extends ChartBase
 	{
 		/**
 		 *  constructor. 
