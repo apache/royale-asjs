@@ -19,7 +19,8 @@
 package mx.charts
 {
 import org.apache.royale.charts.LineChart;
-	
+import mx.charts.chartClasses.ChartBase;
+
 	/**
 	 *  The LineChart displays a series of line graphs with optional
 	 *  graphics at each vertex. 
@@ -29,7 +30,7 @@ import org.apache.royale.charts.LineChart;
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class LineChart extends  org.apache.royale.charts.LineChart
+	public class LineChart extends  ChartBase
 	{
 		/**
 		 *  constructor. 
