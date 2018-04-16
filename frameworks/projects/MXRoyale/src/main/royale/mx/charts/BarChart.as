@@ -19,6 +19,7 @@
 package mx.charts
 {
 	import org.apache.royale.charts.BarChart;
+	import mx.charts.chartClasses.ChartBase;
 	/**
 	 *  The BarChart class draws a multi-series graph of data using vertical
 	 *  columns. The series property is an array of BarChartSeries instances
@@ -29,7 +30,7 @@ package mx.charts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class BarChart extends  org.apache.royale.charts.BarChart
+	public class BarChart extends ChartBase
 	{
 		/**
 		 *  constructor.
