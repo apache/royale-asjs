@@ -35,6 +35,8 @@
   <modules>
     <module>BE0001_Hello_World</module>
     <module>BE0002_Using_Jewel_Alert_Control</module>
+    <module>BE0003_Using_Jewel_Slider_Control</module>
+    <module>BE0004_Adding_an_item_to_a_Jewel_List</module>
   </modules>
 
   <build>
