@@ -84,6 +84,7 @@ internal class MXRoyaleClasses
 	import mx.effects.Move; Move;
 	import mx.graphics.LinearGradient; LinearGradient;
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
 
     COMPILE::SWF
