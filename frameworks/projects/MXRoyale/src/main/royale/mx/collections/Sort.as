@@ -34,9 +34,9 @@ package mx.collections
     import mx.utils.ObjectUtil;
 
     use namespace mx_internal;
-/* 
+ 
     [DefaultProperty("fields")]
-[ResourceBundle("collections")] */
+[ResourceBundle("collections")] 
 /* [Alternative(replacement="spark.collections.Sort", since="4.5")]
  */
 /**
@@ -193,9 +193,9 @@ public class Sort extends EventDispatcher
      */
     private var _fields:Array;
 
-   /*  [Inspectable(category="General", arrayType="mx.collections.ISortField")]
+     [Inspectable(category="General", arrayType="mx.collections.ISortField")]
     [Bindable("fieldsChanged")]
- */
+ 
     /**
      *  @inheritDoc
      *
@@ -220,7 +220,7 @@ public class Sort extends EventDispatcher
     {
         _fields = value;
 
-    /*     dispatchEvent(new Event("fieldsChanged")); */
+        dispatchEvent(new Event("fieldsChanged")); 
     }
 
 }
