@@ -51,6 +51,14 @@ CheckBox
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
 }
 
+ComboBox
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ComboBoxModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ComboBoxView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
+	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ComboBoxList");
+}
+
 Container
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
@@ -79,6 +87,26 @@ NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.NumericStepperView");
+}
+
+Panel
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.PanelModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.PanelView");
+	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	
+	background-color: #FFFFFF;
+	border: 1px solid #333333
+}
+
+Panel .TitleBar
+{
+	border-bottom: 1px solid #333333;
+}
+
+.PanelContent
+{
+	background-color: #FFFFFF;
 }
 
 
@@ -114,6 +142,13 @@ NumericStepper
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
+	}
+	
+	Panel
+	{
+		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");    
 	}
 	
 	RadioButton

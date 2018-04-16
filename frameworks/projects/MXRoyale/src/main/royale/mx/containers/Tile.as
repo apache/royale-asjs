@@ -140,8 +140,6 @@ use namespace mx_internal;
 //  Other metadata
 //--------------------------------------
 
-[IconFile("Tile.png")]
-
 /**
  *  The layout-specific container components in Flex 3 have been replaced by a more generic
  *  Group component that takes a generic layout. To get similar behavior from the new

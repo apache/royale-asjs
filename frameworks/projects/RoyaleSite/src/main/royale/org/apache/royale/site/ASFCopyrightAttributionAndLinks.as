@@ -57,7 +57,7 @@ package org.apache.royale.site
 		override protected function createElement():WrappedHTMLElement
 		{
 			super.createElement();
-			element.innerHTML = "Copyright © 2017 <a href='http://www.apache.org'>The Apache Software Foundation</a>, Licensed under the <a href='http://www.apache.org/licenses/LICENSE-2.0'>Apache License, Version 2.0</a>";
+			element.innerHTML = "Copyright © 2018 <a href='http://www.apache.org'>The Apache Software Foundation</a>, Licensed under the <a href='http://www.apache.org/licenses/LICENSE-2.0'>Apache License, Version 2.0</a>";
 			return element;
 		}
 		

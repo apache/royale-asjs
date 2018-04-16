@@ -31,7 +31,6 @@ internal class BasicClasses
 	{
 		import org.apache.royale.html.util.addElementToWrapper; addElementToWrapper;
 	}
-    import org.apache.royale.html.util.addOrReplaceClassName; addOrReplaceClassName;
     import org.apache.royale.html.ToolTip; ToolTip;
 	import org.apache.royale.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
     import org.apache.royale.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;

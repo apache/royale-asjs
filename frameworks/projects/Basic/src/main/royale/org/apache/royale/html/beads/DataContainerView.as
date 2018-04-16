@@ -86,6 +86,9 @@ package org.apache.royale.html.beads
 			return super.contentView as IItemRendererParent;
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
 		protected function beadsAddedHandler(event:Event):void
 		{
 			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
@@ -219,7 +222,7 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		override protected function resizeHandler(event:Event):void
 		{

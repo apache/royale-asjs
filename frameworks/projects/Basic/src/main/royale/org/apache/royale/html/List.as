@@ -87,13 +87,17 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]
         public function get selectedIndex():int
 		{
 			return ISelectionModel(model).selectedIndex;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
 		public function set selectedIndex(value:int):void
 		{
 			ISelectionModel(model).selectedIndex = value;
@@ -105,12 +109,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
         public function get rollOverIndex():int
 		{
 			return IRollOverModel(model).rollOverIndex;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 */
 		public function set rollOverIndex(value:int):void
 		{
 			IRollOverModel(model).rollOverIndex = value;
@@ -140,13 +148,17 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]
 		public function get selectedItem():Object
 		{
 			return ISelectionModel(model).selectedItem;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
 		public function set selectedItem(value:Object):void
 		{
 			ISelectionModel(model).selectedItem = value;

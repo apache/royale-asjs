@@ -25,41 +25,42 @@ limitations under the License.
     <Div className="Footer">
         <Div className="footer-column">
             <rs:TitledAnchorList title="APACHE ROYALE" titleClassName="apacheroyale">
-                <rs:AnchorListData href="index.html">Home</rs:AnchorListData>
-                <rs:AnchorListData href="features.html">Features</rs:AnchorListData>
-                <rs:AnchorListData href="tryitnow/index.html">Try it now</rs:AnchorListData>
-                <rs:AnchorListData href="download.html">Download</rs:AnchorListData>
-                <rs:AnchorListData href="showcase.html">Showcase</rs:AnchorListData>
-                <rs:AnchorListData href="blog.html">Blog</rs:AnchorListData>
-                <rs:AnchorListData href="team.html">Team</rs:AnchorListData>
-                <rs:AnchorListData href="royalenpm.html">Royale in npm</rs:AnchorListData>
-                <rs:AnchorListData href="license.html">License</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org">Home</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/features/">Features</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/try-it-now/">Try it now</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/download/">Download</rs:AnchorListData>
+                <rs:AnchorListData href="https://www.npmjs.com/org/apache-royale">NPM</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/showcase/">Showcase</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/blog/">Blog</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/team/">Team</rs:AnchorListData>
+                <rs:AnchorListData href="https://www.apache.org/licenses/LICENSE-2.0">License</rs:AnchorListData>
             </rs:TitledAnchorList>
         </Div>
         <Div className="footer-column">
             <rs:TitledAnchorList title="DOCUMENTATION" titleClassName="documentation">
-                <rs:AnchorListData href="index.html">Getting Started</rs:AnchorListData>
-                <rs:AnchorListData href="docs.html">Docs</rs:AnchorListData>
-                <rs:AnchorListData href="reference/index.html">Reference</rs:AnchorListData>
-                <rs:AnchorListData href="wiki.html">Wiki</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/getting-started/">Getting Started</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/docs/">Docs</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/asdoc/">Reference</rs:AnchorListData>
+                <rs:AnchorListData href="https://github.com/apache/royale-asjs/wiki">Wiki</rs:AnchorListData>
             </rs:TitledAnchorList>
             <rs:TitledAnchorList title="COMMUNITY" titleClassName="community">
-                <rs:AnchorListData href="contribute.html">Get Involved</rs:AnchorListData>
-                <rs:AnchorListData href="mailinglists.html">MailingLists</rs:AnchorListData>
-                <rs:AnchorListData href="faq.html">FAQ</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/get-involved/">Get Involved</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/mailing-lists/">MailingLists</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/faq/">FAQ</rs:AnchorListData>
             </rs:TitledAnchorList>
         </Div>
         <Div className="footer-column">
             <rs:TitledAnchorList title="DEVELOPMENT" titleClassName="development">
-                <rs:AnchorListData href="github.html">Github</rs:AnchorListData>
-                <rs:AnchorListData href="source.html">Source Code</rs:AnchorListData>
-                <rs:AnchorListData href="issues.html">Issues</rs:AnchorListData>
+                <rs:AnchorListData href="https://github.com/apache/royale-asjs/wiki/Apache-Royale-Source-Code-Repositories">Github</rs:AnchorListData>
+                <rs:AnchorListData href="http://royale.apache.org/source-code/">Source Code</rs:AnchorListData>
+                <rs:AnchorListData href="https://github.com/apache/royale-asjs/issues">Issues</rs:AnchorListData>
             </rs:TitledAnchorList>
             <rs:TitledAnchorList title="APACHE" titleClassName="apache">
                 <rs:AnchorListData href="http://www.apache.org/">Apache</rs:AnchorListData>
-                <rs:AnchorListData href="http://www.apache.org/donations.html">Donations</rs:AnchorListData>
-                <rs:AnchorListData href="http://www.apache.org/thanks.html">Sponsorship</rs:AnchorListData>
-                <rs:AnchorListData href="http://www.apache.org/thanks.html">Thanks</rs:AnchorListData>
+                <rs:AnchorListData href="http://www.apache.org/foundation/contributing.html">Donations</rs:AnchorListData>
+                <rs:AnchorListData href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</rs:AnchorListData>
+                <rs:AnchorListData href="http://www.apache.org/foundation/thanks.html">Thanks</rs:AnchorListData>
+                <rs:AnchorListData href="http://www.apache.org/security/">Security</rs:AnchorListData>
             </rs:TitledAnchorList>
         </Div>
         <Div className="aboutusdiv" >
