@@ -1,0 +1,19 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<svg viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-829, -278)"><g transform="translate(825, 274)"><path d="M15.9921875,18 C15.8133104,18 11,13.05896 11,13.05896 C11,13.05896 6.20438984,18 6.0255127,18 C5.84663556,18 4,16.2295363 4,16.0506592 C4,15.871782 9.07348633,11 9.07348633,11 C9.07348633,11 4,6.21037128 4,6.03149414 C4,5.852617 5.84663556,4.05688477 6.0255127,4.05688477 C6.20438984,4.05688477 11,9.06176758 11,9.06176758 C11,9.06176758 15.8133104,4.05688477 15.9921875,4.05688477 C16.1710646,4.05688477 18,5.852617 18,6.03149414 C18,6.21037128 13.0563965,11 13.0563965,11 C13.0563965,11 18,15.871782 18,16.0506592 C18,16.2295363 16.1710646,18 15.9921875,18 Z"></path></g></g></svg>

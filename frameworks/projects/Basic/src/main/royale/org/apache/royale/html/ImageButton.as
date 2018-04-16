@@ -69,12 +69,15 @@ package org.apache.royale.html
 		 * Sets the image for the button. This is a URL.
 		 * TODO: figure out how to set the source in the style, rather than using
 		 * backgroundImage behind the scenes.
+         * @royaleignorecoercion org.apache.royale.html.beads.models.ImageModel
 		 */
         public function get src():String
         {
             return ImageModel(model).url;
         }
-
+        /**
+         * @royaleignorecoercion org.apache.royale.html.beads.models.ImageModel
+         */
         public function set src(url:String):void
         {
             ImageModel(model).url = url;

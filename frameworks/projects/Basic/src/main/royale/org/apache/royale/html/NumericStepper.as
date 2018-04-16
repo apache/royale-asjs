@@ -59,6 +59,7 @@ package org.apache.royale.html
 		public function NumericStepper()
 		{
 			super();
+			typeNames = 'NumericStepper';
 		}
 
         [Bindable("valueChange")]
@@ -68,12 +69,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		public function get value():Number
 		{
 			return IRangeModel(model).value;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 */
 		public function set value(newValue:Number):void
 		{
 			IRangeModel(model).value = newValue;
@@ -85,12 +90,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		public function get minimum():Number
 		{
 			return IRangeModel(model).minimum;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 */
 		public function set minimum(value:Number):void
 		{
 			IRangeModel(model).minimum = value;
@@ -102,12 +111,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		public function get maximum():Number
 		{
 			return IRangeModel(model).maximum;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 */
 		public function set maximum(value:Number):void
 		{
 			IRangeModel(model).maximum = value;
@@ -121,12 +134,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		public function get stepSize():Number
 		{
 			return IRangeModel(model).stepSize;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 */
 		public function set stepSize(value:Number):void
 		{
 			IRangeModel(model).stepSize = value;
@@ -139,12 +156,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		public function get snapInterval():Number
 		{
 			return IRangeModel(model).snapInterval;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 */
 		public function set snapInterval(value:Number):void
 		{
 			IRangeModel(model).snapInterval = value;
@@ -162,9 +183,7 @@ package org.apache.royale.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'div');
-            typeNames = 'NumericStepper';
-            return element;
+			return addElementToWrapper(this,'div');
         }
 
 	}

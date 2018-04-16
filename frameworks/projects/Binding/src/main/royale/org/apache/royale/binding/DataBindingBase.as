@@ -58,6 +58,7 @@ package org.apache.royale.binding
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         public function set strand(value:IStrand):void
         {
@@ -69,6 +70,11 @@ package org.apache.royale.binding
         {
         }
 
+        /**
+         * @royaleemitcoercion org.apache.royale.core.IStrand
+         * @royaleignorecoercion org.apache.royale.core.IBead
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
         protected function prepareCreatedBinding(binding:IBinding, bindingObject:Object, destinationObject:Object = null):void
         {
             if (!destinationObject)
@@ -253,6 +259,9 @@ package org.apache.royale.binding
             return { watchers: watchers, watcherMap: watcherMap };
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IBinding
+         */
         protected function makeConstantBinding(binding:Object):void
         {
             var cb:ConstantBinding = new ConstantBinding();
@@ -268,6 +277,9 @@ package org.apache.royale.binding
             prepareCreatedBinding(cb as IBinding, binding);
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IStrand
+         */
         private function deferredBindingsHandler(event:Event):void
         {
             for (var p:String in deferredBindings)

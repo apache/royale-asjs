@@ -21,6 +21,7 @@ package mx.core
 {
 	import org.apache.royale.core.ContainerBaseStrandChildren;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContentViewHost;
@@ -31,13 +32,12 @@ package mx.core
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.IStrandPrivate;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.events.ValueEvent;
-	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.states.State;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -475,11 +475,10 @@ public class Container extends UIComponent
 	
 	private var _mxmlDescriptor:Array;
 	private var _mxmlDocument:Object = this;
-	private var _initialized:Boolean;
 	
 	override public function addedToParent():void
 	{
-		if (!_initialized) {
+		if (!initialized) {
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
 		}
@@ -487,21 +486,21 @@ public class Container extends UIComponent
         if (MXMLDescriptor)
             component = this;
         
-		super.addedToParent();
-		
-		if (!_initialized) {
-			MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-			
-			dispatchEvent(new Event("initBindings"));
-			dispatchEvent(new Event("initComplete"));
-			_initialized = true;
-		}
+		super.addedToParent();		
 		
 		// Load the layout bead if it hasn't already been loaded.
 		if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
 			dispatchEvent(new Event("layoutNeeded"));
 	}
 	
+    override protected function createChildren():void
+    {
+        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        
+        dispatchEvent(new Event("initBindings"));
+        dispatchEvent(new Event("initComplete"));
+    }
+    
 	/**
 	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 	 *  
@@ -704,9 +703,8 @@ public class Container extends UIComponent
 		}
 		
 		var o:EdgeMetrics = _viewMetricsAndPadding;
-		var vm:EdgeMetrics = new EdgeMetrics();//viewMetrics;
-		var rect:Rectangle = CSSContainerUtils.getBorderMetrics(this);
-		vm.convertFromRectangle(rect);
+		var ed:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this);
+        var vm:EdgeMetrics = new EdgeMetrics(ed.left, ed.top, ed.right, ed.bottom);
 		
 		o.left = vm.left + getStyle("paddingLeft");
 		o.right = vm.right + getStyle("paddingRight");

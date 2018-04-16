@@ -36,7 +36,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Panel;
 	import org.apache.royale.html.ControlBar;
 	import org.apache.royale.html.TitleBar;
-	import org.apache.royale.utils.CSSContainerUtils;
 	
 	COMPILE::SWF {
 		import org.apache.royale.core.SimpleCSSStylesWithFlex;

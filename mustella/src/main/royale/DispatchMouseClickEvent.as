@@ -123,6 +123,7 @@ public class DispatchMouseClickEvent extends TestStep
         
 		if (actualTarget is DisplayObjectContainer)
 		{
+            if (!actualTarget.stage) return; // was removed from stage
 			var targets:Array = actualTarget.stage.getObjectsUnderPoint(stagePt);
 			var arr:Array = UnitTester.getObjectsUnderPoint(DisplayObject(actualTarget), stagePt);
 			targets = targets.concat(arr);

@@ -1,0 +1,44 @@
+
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<svg width="152px" height="42px" viewBox="0 0 152 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="50%" y1="3.10307717%" x2="50%" y2="98.2081246%" id="linearGradient-1">
+            <stop stop-color="#3BB0FF" offset="0%"></stop>
+            <stop stop-color="#1E36FA" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="150" height="40" rx="3"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="98.2362085%" id="linearGradient-3">
+            <stop stop-color="#8EDEFF" offset="0%"></stop>
+            <stop stop-color="#1D89E6" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="JewelButton">
+            <g id="Background" transform="translate(1.000000, 1.000000)">
+                <g>
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <rect stroke="#244084" stroke-width="1" x="-0.5" y="-0.5" width="151" height="41" rx="3"></rect>
+                </g>
+                <rect stroke="url(#linearGradient-3)" x="0.5" y="0.5" width="149" height="39" rx="3"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

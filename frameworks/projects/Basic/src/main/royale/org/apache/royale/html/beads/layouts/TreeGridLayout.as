@@ -19,9 +19,12 @@
 package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
@@ -31,7 +34,6 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.html.beads.models.TreeGridModel;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
-	import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 * The TreeGridLayout class provides the sizing and positioning for the sub-components
@@ -105,6 +107,8 @@ package org.apache.royale.html.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function layout():Boolean
 		{
@@ -113,7 +117,7 @@ package org.apache.royale.html.beads.layouts
 			var contentArea:UIBase = (uiHost.view as TreeGridView).listArea;
 			var displayedColumns:Array = (uiHost.view as TreeGridView).columnLists;
 			
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);
 			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
 			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			
