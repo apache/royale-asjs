@@ -73,6 +73,7 @@ internal class MXRoyaleClasses
 	import mx.events.SliderEvent; SliderEvent;
   import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
+	import mx.charts.ChartItem; ChartItem;
 	import mx.core.ClassFactory; ClassFactory;
 	import mx.charts.LineChart; LineChart;
 	import mx.charts.PieChart; PieChart;
