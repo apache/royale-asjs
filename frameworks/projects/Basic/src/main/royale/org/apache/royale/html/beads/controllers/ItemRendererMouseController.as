@@ -43,7 +43,7 @@ COMPILE::JS {
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 *  @royaleignoreimport goog.events.Event
 	 */
 	public class ItemRendererMouseController implements IBeadController
@@ -54,7 +54,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function ItemRendererMouseController()
 		{
@@ -69,7 +69,9 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -106,6 +108,9 @@ COMPILE::JS {
 			}
 		}
 		
+		/**
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
 		COMPILE::JS
 		protected function handleMouseOver(event:BrowserEvent):void
 		{
@@ -128,6 +133,9 @@ COMPILE::JS {
 			}
 		}
 		
+		/**
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
 		COMPILE::JS
 		protected function handleMouseOut(event:BrowserEvent):void
 		{
@@ -154,6 +162,7 @@ COMPILE::JS {
 		
 		/**
 		 * @private
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseDown(event:BrowserEvent):void
@@ -188,6 +197,7 @@ COMPILE::JS {
 		
 		/**
 		 * @private
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseUp(event:BrowserEvent):void

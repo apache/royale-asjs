@@ -90,12 +90,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IPanelModel
 		 */
 		public function get title():String
 		{
 			return IPanelModel(model).title;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
+		 */
 		public function set title(value:String):void
 		{
 			IPanelModel(model).title = value;
@@ -107,12 +111,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IPanelModel
 		 */
 		public function get htmlTitle():String
 		{
 			return IPanelModel(model).htmlTitle;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
+		 */
 		public function set htmlTitle(value:String):void
 		{
 			IPanelModel(model).htmlTitle = value;
@@ -120,11 +128,15 @@ package org.apache.royale.html
 		
 		/**
 		 * Whether or not to show a Close button in the org.apache.royale.html.TitleBar.
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
 		 */
 		public function get showCloseButton():Boolean
 		{
 			return IPanelModel(model).showCloseButton;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
+		 */
 		public function set showCloseButton(value:Boolean):void
 		{
 			IPanelModel(model).showCloseButton = value;

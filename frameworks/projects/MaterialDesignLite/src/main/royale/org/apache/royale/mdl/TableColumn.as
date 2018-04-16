@@ -23,7 +23,7 @@ package org.apache.royale.mdl
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -51,8 +51,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-data-table__cell--non-numeric";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         private var _headerText:String = "";
 
@@ -102,6 +110,7 @@ package org.apache.royale.mdl
         {
             return _ascending;
         }
+
         public function set ascending(value:Boolean):void
         {
             if (_ascending != value)
@@ -110,11 +119,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-data-table__header--sorted-ascending");
-                    COMPILE::JS
-                    {
-                        className = addOrReplaceClassName(className, "mdl-data-table__header--sorted-ascending");
-                    }
+                    var classVal:String = "mdl-data-table__header--sorted-ascending";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -134,6 +141,7 @@ package org.apache.royale.mdl
         {
             return _descending;
         }
+
         public function set descending(value:Boolean):void
         {
             if (_descending != value)
@@ -142,13 +150,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-data-table__header--sorted-descending");
-                    COMPILE::JS
-                    {
-                        className = addOrReplaceClassName(className, "mdl-data-table__header--sorted-descending");
-                    }
+                    var classVal:String = "mdl-data-table__header--sorted-descending";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
     }
 }

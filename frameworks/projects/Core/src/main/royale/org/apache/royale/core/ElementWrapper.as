@@ -335,7 +335,9 @@ package org.apache.royale.core
             
             return goog.events.hasListener(source, type);
         }
-
+        /**
+         * @royaleignorecoercion String
+         */
         override public function dispatchEvent(e:Object):Boolean
         {
             var eventType:String = "";

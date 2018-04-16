@@ -24,6 +24,7 @@
     <component id="Application" class="mx.core.Application" />
 	<component id="Button" class="mx.controls.Button" />
 	<component id="CheckBox" class="mx.controls.CheckBox" />
+    <component id="ComboBox" class="mx.controls.ComboBox" />
 	<component id="DateChooser" class="mx.controls.DateChooser" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
@@ -44,6 +45,7 @@
 	<component id="HDividedBox" class="mx.containers.HDividedBox" />
 	<component id="VBox" class="mx.containers.VBox" />	
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
+	<!--<component id="ViewStack" class="mx.containers.ViewStack" /> waiting for commit -->
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />

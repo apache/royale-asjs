@@ -174,7 +174,7 @@ package org.apache.royale.html.beads
 				}
 				
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-				popupHost.addElement(list);
+				popupHost.popUpParent.addElement(list);
 			}
 			else if (list.visible) {
 				UIUtils.removePopUp(list);
