@@ -176,24 +176,24 @@ j|Alert {
   padding: 8px;
   min-width: 34px;
   min-height: 34px;
-  background: linear-gradient(#fcf123, #eadd03);
-  border: 1px solid #b7ae02;
-  box-shadow: inset 0 1px 0 #fdf66f;
+  background: linear-gradient(#f4e813, #cac00a);
+  border: 1px solid #999207;
+  box-shadow: inset 0 1px 0 #f7ef5c;
   border-radius: 3px;
 }
 .jewel.button.primary:hover, .jewel.button.primary:hover:focus {
-  background: linear-gradient(#FCEF0A, #d0c503);
-  border: 1px solid #9e9602;
+  background: linear-gradient(#E2D70B, #b1a909);
+  border: 1px solid #817a06;
 }
 .jewel.button.primary:active, .jewel.button.primary:active:focus {
-  background: linear-gradient(#d0c503, #9e9602);
-  border: 1px solid #6c6601;
+  background: linear-gradient(#b1a909, #817a06);
+  border: 1px solid #504c04;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.button.primary:focus {
   outline: none;
-  border: 1px solid #b7ae02;
-  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid #999207;
+  box-shadow: inset 0px 0px 0px 1px rgba(254, 253, 238, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.primary[disabled] {
   cursor: unset;
@@ -227,14 +227,14 @@ j|Alert {
   border-radius: 3px;
 }
 .jewel.checkbox input:checked, .jewel.checkbox input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23FCEF0A' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f8f8f8;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23E2D70B' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f8f8f8;
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
   background-attachment: fixed;
 }
 .jewel.checkbox input:checked:checked:focus, .jewel.checkbox input:checked:checked:active:focus, .jewel.checkbox input:checked:active:checked:focus, .jewel.checkbox input:checked:active:checked:active:focus {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23FCEF0A' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #fef788;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23E2D70B' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f8f174;
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
@@ -242,7 +242,7 @@ j|Alert {
 }
 .jewel.checkbox input:focus {
   outline: none;
-  border: 1px solid #b7ae02;
+  border: 1px solid #999207;
 }
 .jewel.checkbox input[disabled] {
   cursor: unset;
@@ -279,11 +279,11 @@ j|Alert {
 }
 .jewel.item:hover {
   color: #FFFFFF;
-  background: #FCEF0A;
+  background: #E2D70B;
 }
 .jewel.item:active, .jewel.item.selected {
   color: #FFFFFF;
-  background: #eadd03;
+  background: #cac00a;
 }
 
 .jewel.label {
@@ -323,14 +323,14 @@ j|Alert {
   border-radius: 50%;
 }
 .jewel.radiobutton input:checked, .jewel.radiobutton input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23FCEF0A' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f8f8f8;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23E2D70B' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f8f8f8;
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
   background-attachment: fixed;
 }
 .jewel.radiobutton input:checked:checked:focus, .jewel.radiobutton input:checked:checked:active:focus, .jewel.radiobutton input:checked:active:checked:focus, .jewel.radiobutton input:checked:active:checked:active:focus {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23FCEF0A' cx='11' cy='11' r='6'></circle></g></g></svg>"), #fef788;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23E2D70B' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f8f174;
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
@@ -338,7 +338,7 @@ j|Alert {
 }
 .jewel.radiobutton input:focus {
   outline: none;
-  border: 1px solid #b7ae02;
+  border: 1px solid #999207;
 }
 .jewel.radiobutton input[disabled] {
   cursor: unset;
@@ -389,7 +389,7 @@ j|Alert {
   width: calc(100% - 40px);
   height: 6px;
   background: transparent;
-  color: #FCEF0A;
+  color: #E2D70B;
 }
 .jewel.slider input::-webkit-slider-runnable-track {
   background: transparent;
@@ -405,9 +405,9 @@ j|Alert {
   appearance: none;
   width: 18px;
   height: 18px;
-  background: linear-gradient(#fcf019, #f4e703);
-  border: 1px solid #b7ae02;
-  box-shadow: inset 0 1px 0 #fdf66f, 0 0 0 1px rgba(255, 255, 255, 0.3);
+  background: linear-gradient(#f1e50c, #d3c90a);
+  border: 1px solid #999207;
+  box-shadow: inset 0 1px 0 #f7ef5c, 0 0 0 1px rgba(255, 255, 255, 0.3);
   border-radius: 50%;
 }
 .jewel.slider input:active::-webkit-slider-thumb, .jewel.slider input:active::-moz-range-thumb {
@@ -457,9 +457,9 @@ j|Alert {
   position: relative;
   flex: 0;
   padding: 0;
-  background: linear-gradient(#fcf019, #f4e703);
-  border: 1px solid #b7ae02;
-  box-shadow: inset 0 1px 0 #fdf66f;
+  background: linear-gradient(#f1e50c, #d3c90a);
+  border: 1px solid #999207;
+  box-shadow: inset 0 1px 0 #f7ef5c;
   border-radius: 3px;
 }
 
@@ -521,9 +521,9 @@ j|Alert {
   padding: 10px 16px;
   min-width: 74px;
   min-height: 34px;
-  background: linear-gradient(#fcf123, #eadd03);
-  border: 1px solid #b7ae02;
-  box-shadow: inset 0 1px 0 #fdf66f;
+  background: linear-gradient(#f4e813, #cac00a);
+  border: 1px solid #999207;
+  box-shadow: inset 0 1px 0 #f7ef5c;
   border-radius: 3px;
   font-family: "Lato", sans-serif;
   font-size: 14px;
@@ -531,21 +531,21 @@ j|Alert {
   color: #FFFFFF;
   text-transform: uppercase;
   text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(108, 102, 1, 0.7);
+  text-shadow: 0 -1px 0 rgba(80, 76, 4, 0.7);
 }
 .jewel.textbutton.primary:hover, .jewel.textbutton.primary:hover:focus {
-  background: linear-gradient(#FCEF0A, #d0c503);
-  border: 1px solid #9e9602;
+  background: linear-gradient(#E2D70B, #b1a909);
+  border: 1px solid #817a06;
 }
 .jewel.textbutton.primary:active, .jewel.textbutton.primary:active:focus {
-  background: linear-gradient(#d0c503, #9e9602);
-  border: 1px solid #6c6601;
+  background: linear-gradient(#b1a909, #817a06);
+  border: 1px solid #504c04;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.textbutton.primary:focus {
   outline: none;
-  border: 1px solid #b7ae02;
-  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid #999207;
+  box-shadow: inset 0px 0px 0px 1px rgba(254, 253, 238, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.textbutton.primary[disabled] {
   cursor: unset;
@@ -585,7 +585,7 @@ j|Alert {
   transition-timing-function: easein;
 }
 .jewel.textfield input:focus {
-  border: 1px solid #b7ae02;
+  border: 1px solid #999207;
 }
 .jewel.textfield input::placeholder {
   color: #a6a6a6;
