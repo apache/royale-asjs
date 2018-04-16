@@ -75,8 +75,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get className():String;
-    
+/*     function get className():String;
+ */    
     //----------------------------------
     //  duration
     //----------------------------------
@@ -164,12 +164,12 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get hideFocusRing():Boolean;
-    
+    /* function get hideFocusRing():Boolean;
+    */
     /**
      *  @private
      */
-    function set hideFocusRing(value:Boolean):void;
+    /* function set hideFocusRing(value:Boolean):void; */
     
     //----------------------------------
     //  playheadTime
@@ -186,13 +186,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get playheadTime():Number;
-    
+   /*  function get playheadTime():Number;
+     */
     /**
      * @private
      */
-    function set playheadTime(value:Number):void;
-    
+    /* function set playheadTime(value:Number):void;
+     */
     //----------------------------------
     //  propertyChanges
     //----------------------------------
@@ -221,13 +221,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get propertyChanges():PropertyChanges;
-    
+    /* function get propertyChanges():PropertyChanges;
+     */
     /**
      *  @private
      */
-    function set propertyChanges(value:PropertyChanges):void;
-    
+   /*  function set propertyChanges(value:PropertyChanges):void;
+     */
     //----------------------------------
     //  repeatCount
     //----------------------------------
@@ -244,13 +244,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get repeatCount():int;
-    
+   /*  function get repeatCount():int;
+     */
     /**
      *  @private
      */
-    function set repeatCount(value:int):void;
-    
+   /*  function set repeatCount(value:int):void;
+     */
     //----------------------------------
     //  repeatDelay
     //----------------------------------
@@ -267,13 +267,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get repeatDelay():int;
-    
+   /*  function get repeatDelay():int;
+     */
     /**
      *  @private
      */
-    function set repeatDelay(value:int):void;
-    
+    /* function set repeatDelay(value:int):void;
+     */
     //----------------------------------
     //  startDelay
     //----------------------------------
@@ -293,13 +293,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get startDelay():int;
-    
+    /* function get startDelay():int;
+     */
     /**
      *  @private
      */
-    function set startDelay(value:int):void;
-    
+    /* function set startDelay(value:int):void;
+     */
     //----------------------------------
     //  suspendBackgroundProcessing
     //----------------------------------
@@ -318,13 +318,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get suspendBackgroundProcessing():Boolean;
-    
+   /*  function get suspendBackgroundProcessing():Boolean;
+     */
     /**
      *  @private
      */
-    function set suspendBackgroundProcessing(value:Boolean):void;
-    
+    /* function set suspendBackgroundProcessing(value:Boolean):void;
+     */
     //----------------------------------
     //  target
     //----------------------------------
@@ -364,13 +364,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get triggerEvent():Event;
-    
+   /*  function get triggerEvent():Event;
+     */
     /**
      *  @private
      */
-    function set triggerEvent(value:Event):void;
-
+    /* function set triggerEvent(value:Event):void;
+ */
     //--------------------------------------------------------------------------
     //
     //  Methods
@@ -393,8 +393,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function initEffect(event:Event):void;
-
+    /* function initEffect(event:Event):void;
+ */
     /**
      *  Plays the effect instance on the target after the
      *  <code>startDelay</code> period has elapsed.
@@ -407,8 +407,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function startEffect():void;
-    
+   /*  function startEffect():void;
+     */
     /**
      *  Plays the effect instance on the target.
      *  Call the <code>startEffect()</code> method instead
@@ -434,8 +434,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function pause():void;
-    
+    /* function pause():void;
+     */
     /**
      *  Stops the effect, leaving the target in its current state.
      *  This method is invoked by a call
@@ -451,8 +451,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function stop():void;
-
+   /*  function stop():void;
+ */
     /**
      *  Resumes the effect after it has been paused 
      *  by a call to the <code>pause()</code> method. 
@@ -462,8 +462,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function resume():void;
-    
+    /* function resume():void;
+     */
     /**
      *  Plays the effect in reverse, starting from
      *  the current position of the effect.
@@ -473,8 +473,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function reverse():void;
-    
+    /* function reverse():void;
+     */
     /**
      *  Interrupts an effect instance that is currently playing,
      *  and jumps immediately to the end of the effect.
@@ -499,8 +499,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function end():void;
-
+   /*  function end():void;
+ */
     /**
      *  Called by the <code>end()</code> method when the effect
      *  finishes playing.
@@ -518,8 +518,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function finishEffect():void;
-    
+    /* function finishEffect():void;
+     */
     /**
      *  Called after each iteration of a repeated effect finishes playing.
      *
@@ -531,8 +531,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function finishRepeat():void;
-    
+  /*   function finishRepeat():void;
+     */
 }
 
 }
