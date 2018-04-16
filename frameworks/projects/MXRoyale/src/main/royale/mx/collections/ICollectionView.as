@@ -149,12 +149,12 @@ public interface ICollectionView extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    function get sort():ISort;
+    //function get sort():ISort; until ISort comes in
     
 	/**
 	 *  @private
 	 */
-    function set sort(value:ISort):void;
+    //function set sort(value:ISort):void;
 
 	//--------------------------------------------------------------------------
 	//
