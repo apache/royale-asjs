@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.events.Event;
     import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::SWF
     {
@@ -275,9 +276,18 @@ package org.apache.royale.jewel
 		{
             super();
 
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel radiobutton";
         }
 
+        protected var classSelectorList:ClassSelectorList;
+        
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
+        
         /**
          * Provides unique name
          */
@@ -336,20 +346,6 @@ package org.apache.royale.jewel
 
             return element;
         }
-
-        /**
-		 *  override UIBase to affect positioner instead of element
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
-		 */
-        COMPILE::JS
-		override protected function setClassName(value:String):void
-		{
-			addStyles(positioner, value);
-		}
 
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {

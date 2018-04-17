@@ -19,7 +19,6 @@
 package org.apache.royale.utils
 {
     import org.apache.royale.core.IUIBase;
-    import org.osmf.elements.HTMLElement;
 
     /**
 	 *  The ClassSelectorList class is used to manage the list of class selectors
@@ -41,27 +40,31 @@ package org.apache.royale.utils
         private var component:IUIBase;
         
         private var startIndex:int = 0;
-        private var count:int;
+        private var count:int = 0;
         
         /**
          * Add a class selector to the list.
          * @param name Name of selector to add.
          */
-        COMPILE::JS
         public function add(name:String):void
         {
+            COMPILE::JS
+            {
             component.positioner.classList.add(name);
             if (!component.parent)
                 startIndex++;
+            }
         }
         
         /**
          * Add a class selector to the list.
          * @param name Name of selector to remove.
          */
-        COMPILE::JS
         public function remove(name:String):void
         {
+            COMPILE::JS
+            {
+            var positioner:HTMLElement = component.positioner as HTMLElement;
             var classList:DOMTokenList = positioner.classList;
             for (var i:int = 0; i < startIndex; i++)
             {
@@ -69,6 +72,7 @@ package org.apache.royale.utils
                     startIndex--;
             }
             positioner.classList.remove(name);
+            }
         }
 
         /**
@@ -76,12 +80,14 @@ package org.apache.royale.utils
          * @param name Name of selector to add or remove.
          * @param value True to add, False to remove.
          */
-        COMPILE::JS
         public function toggle(name:String, value:Boolean):void
         {
+            COMPILE::JS
+            {
             component.positioner.classList.toggle(name, value);
             if (!component.parent && value)
                 startIndex++;
+            }
         }
         
         
@@ -90,9 +96,10 @@ package org.apache.royale.utils
          * @param names Space-separated list of names to add.
          * @royaleignorecoercion HTMLElement
          */
-        COMPILE::JS
         public function addNames(names:String):void
         {
+            COMPILE::JS
+            {
             var positioner:HTMLElement = component.positioner as HTMLElement;
             var classList:DOMTokenList = positioner.classList;
             if (component.parent)
@@ -104,8 +111,12 @@ package org.apache.royale.utils
                     classList.remove(name);
                 }
             }
-            positioner.className += names;
+            if (startIndex > 0)
+                positioner.className += " " + names;
+            else
+                positioner.className = names;
             count = classList.length - startIndex;
+            }
         }
     }
 }

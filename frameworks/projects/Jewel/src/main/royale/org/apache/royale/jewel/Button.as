@@ -19,11 +19,11 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.html.Button;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.utils.cssclasslist.toggleStyle;
     }
 
     /**
@@ -59,9 +59,11 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel button";
 		}
+        
+        protected var classSelectorList:ClassSelectorList;
 
         private var _primary:Boolean = false;
 
@@ -86,10 +88,7 @@ package org.apache.royale.jewel
             {
                 _primary = value;
 
-                COMPILE::JS
-                {
-                    togglePropertyStyle("primary", value);
-                }
+                classSelectorList.toggle("primary", value);
             }
         }
         
@@ -116,10 +115,7 @@ package org.apache.royale.jewel
             {
                 _secondary = value;
 
-                COMPILE::JS
-                {
-                    togglePropertyStyle("secondary", value);
-                }
+                classSelectorList.toggle("secondary", value);
             }
         }
 
@@ -146,39 +142,15 @@ package org.apache.royale.jewel
             {
                 _emphasized = value;
 
-                COMPILE::JS
-                {
-                    togglePropertyStyle("emphasized", value);
-                }
+                classSelectorList.toggle("emphasized", value);
             }
         }
         
         COMPILE::JS
-        override protected function computeFinalClassNames():String
+        override protected function setClassName(value:String):void
         {
-            var s:String = super.computeFinalClassNames();
-            if (propertyStyles.length)
-                s += " " + propertyStyles.join(" ");
-            return s;
+            classSelectorList.addNames(value);
         }
 
-        COMPILE::JS
-        private var propertyStyles:Array = [];
-        
-        COMPILE::JS
-        protected function togglePropertyStyle(styleName:String, value:Boolean):void
-        {
-            if (value)
-            {
-                if (propertyStyles.indexOf(styleName) == -1)
-                    propertyStyles.push(styleName);
-            }
-            else
-            {
-                var c:int = propertyStyles.indexOf(styleName);
-                if (c != -1) propertyStyles.splice(c, 1);
-            }
-            toggleStyle(element, styleName, value);
-        }
 	}
 }
