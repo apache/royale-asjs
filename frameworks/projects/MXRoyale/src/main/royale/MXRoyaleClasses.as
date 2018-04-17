@@ -84,6 +84,8 @@ internal class MXRoyaleClasses
 	import mx.effects.Move; Move;
 	import mx.graphics.LinearGradient; LinearGradient;
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.effects.EffectInstance; EffectInstance;
+	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
