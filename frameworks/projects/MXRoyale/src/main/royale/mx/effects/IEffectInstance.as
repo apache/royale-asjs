@@ -24,7 +24,7 @@ package mx.effects
  */
  import org.apache.royale.events.Event;
 
-import mx.effects.effectClasses.PropertyChanges;
+//import mx.effects.effectClasses.PropertyChanges;
 
 /**
  *  The IEffectInstance interface represents an instance of an effect
