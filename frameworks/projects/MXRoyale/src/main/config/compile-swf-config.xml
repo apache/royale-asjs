@@ -36,7 +36,9 @@
             <path-element>../../../../../libs/Collections.swc</path-element>
             <path-element>../../../../../libs/Basic.swc</path-element>
             <path-element>../../../../../libs/DragDrop.swc</path-element>
+            <path-element>../../../../../libs/Effects.swc</path-element>
             <path-element>../../../../../libs/Express.swc</path-element>
+            <path-element>../../../../../libs/Charts.swc</path-element>
         </external-library-path>
         
         <allow-subclass-overrides>true</allow-subclass-overrides>
