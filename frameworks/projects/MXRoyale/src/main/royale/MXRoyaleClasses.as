@@ -38,6 +38,8 @@ internal class MXRoyaleClasses
     import mx.containers.Panel; Panel;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.effects.IEffectInstance; IEffectInstance;
+	import mx.events.EffectEvent; EffectEvent;
 	import mx.graphics.Stroke; Stroke;
 	import mx.graphics.SolidColor; SolidColor;
 	import mx.graphics.SolidColorStroke; SolidColorStroke;
@@ -86,7 +88,6 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
-
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
