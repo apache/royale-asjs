@@ -39,7 +39,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.Panel;
 	import org.apache.royale.html.TitleBar;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.CSSUtils;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy;
@@ -57,7 +56,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class PanelView extends GroupView implements IBeadView
 	{
@@ -67,7 +66,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function PanelView()
 		{
@@ -83,7 +82,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function get titleBar():TitleBar
 		{
@@ -125,7 +124,12 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IBeadLayout
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IViewport
+		 *  @royaleignorecoercion org.apache.royale.html.Panel
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -273,6 +277,9 @@ package org.apache.royale.html.beads
 			performLayout(event);
 		}
 
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		private function handleClose(event:Event):void
 		{
 			IEventDispatcher(_strand).dispatchEvent(new Event("close"));

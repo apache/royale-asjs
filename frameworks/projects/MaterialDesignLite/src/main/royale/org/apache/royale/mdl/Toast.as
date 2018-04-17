@@ -110,7 +110,6 @@ package org.apache.royale.mdl
                 var snackbarData:Object = IToastModel(model).snackbarData;
                 snackbar.showSnackbar(snackbarData);
             }
-            //dispatchEvent(new Event("action"));
         }
 
         protected var snackbar:Object;

@@ -195,6 +195,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -217,6 +218,7 @@ package org.apache.royale.html.beads.controllers
 
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         private function dragMouseDownHandler(event:MouseEvent):void
         {
@@ -228,6 +230,10 @@ package org.apache.royale.html.beads.controllers
             event.preventDefault();
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         * @royaleignorecoercion org.apache.royale.core.UIBase
+         */
         private function dragMouseMoveHandler(event:MouseEvent):void
         {
             var pt:Point;
@@ -260,7 +266,7 @@ package org.apache.royale.html.beads.controllers
                         dragging = true;
                         host = UIUtils.findPopUpHost(_strand as IUIBase);
                         if (host == null) return;
-                        host.addElement(dragImage);
+                        host.popUpParent.addElement(dragImage);
                         pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
                         dragImage.x = pt.x + dragImageOffsetX;
                         dragImage.y = pt.y + dragImageOffsetY;
@@ -296,6 +302,9 @@ package org.apache.royale.html.beads.controllers
             }
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         private function dragMouseUpHandler(event:MouseEvent):void
         {
             //trace("DRAG-MOUSE: dragMouseUp");
@@ -303,7 +312,7 @@ package org.apache.royale.html.beads.controllers
 
             host = UIUtils.findPopUpHost(_strand as IUIBase);
             if (dragImage && host) {
-            	host.removeElement(dragImage);
+            	host.popUpParent.removeElement(dragImage);
             }
 
             if (dragging && event.target)

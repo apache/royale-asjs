@@ -30,12 +30,13 @@ package org.apache.royale.mdl
         import org.apache.royale.core.IStrand;
         import org.apache.royale.core.IValueToggleButtonModel;
     }
+
     COMPILE::JS
     {
         import org.apache.royale.core.UIBase;
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
     //--------------------------------------
@@ -295,6 +296,8 @@ package org.apache.royale.mdl
 		{
             super();
 
+            _classList = new CSSClassList();
+
             typeNames = "mdl-radio mdl-js-radio";
 
             addBead(new UpgradeElement());
@@ -305,6 +308,8 @@ package org.apache.royale.mdl
          * Provides unique name
          */
         protected static var radioCounter:int = 0;
+
+        private var _classList:CSSClassList;
 
         private var radio:HTMLSpanElement;
         private var icon:HTMLInputElement;
@@ -343,9 +348,8 @@ package org.apache.royale.mdl
             (radio as WrappedHTMLElement).royale_wrapper = this;
 
             return element;
-        };
+        }
 
-        COMPILE::JS
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
             if (type == MouseEvent.CLICK)
@@ -358,7 +362,6 @@ package org.apache.royale.mdl
             }
         }
 
-        COMPILE::JS
         public function clickHandler(event:Event):void
         {
             selected = !selected;
@@ -384,14 +387,9 @@ package org.apache.royale.mdl
             {
                 _ripple = value;
 
-                COMPILE::JS
-                {
-                    element.classList.remove("mdl-js-ripple-effect");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
-                    }
-                }
+                var classVal:String = "mdl-js-ripple-effect";
+                value ? _classList.add(classVal) : _classList.remove(classVal);
+                setClassName(computeFinalClassNames());
             }
         }
 
@@ -399,6 +397,7 @@ package org.apache.royale.mdl
         {
             return icon.name as String;
         }
+
         public function set groupName(value:String):void
         {
             icon.name = value;
@@ -419,6 +418,7 @@ package org.apache.royale.mdl
         {
             return icon.checked;
         }
+
         public function set selected(value:Boolean):void
         {
             if(icon.checked == value)
@@ -479,6 +479,11 @@ package org.apache.royale.mdl
                 }
             }
         }
-    }
 
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
+        }
+    }
 }

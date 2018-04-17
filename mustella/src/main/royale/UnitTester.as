@@ -1134,6 +1134,15 @@ public class UnitTester extends EventDispatcher
 						_getObjectsUnderPoint(rc.getChildAt(i), pt, arr);
 					}
 				}
+                else if ("strandChildren" in doc)
+                {
+                    var sc:Object = doc["strandChildren"];
+                    n = sc.numElements;
+                    for (i = 0; i < n; i++)
+                    {
+                        _getObjectsUnderPoint(sc.getElementAt(i), pt, arr);
+                    }
+                }
 				else
 				{
 					if (doc.numChildren)

@@ -33,7 +33,7 @@ package org.apache.royale.html.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
      */
 	public class SingleSelectionCollectionViewModel extends EventDispatcher implements ISelectionModel, IRollOverModel
 	{
@@ -43,7 +43,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function SingleSelectionCollectionViewModel()
 		{
@@ -57,7 +57,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function set strand(value:IStrand):void
 		{
@@ -72,7 +72,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get dataProvider():Object
 		{
@@ -81,6 +81,7 @@ package org.apache.royale.html.beads.models
 
         /**
          *  @private
+		 *  @royaleignorecoercion org.apache.royale.collections.ICollectionView
          */
 		public function set dataProvider(value:Object):void
 		{
@@ -105,7 +106,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get labelField():String
 		{
@@ -129,7 +130,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get selectedIndex():int
 		{
@@ -154,7 +155,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get rollOverIndex():int
 		{
@@ -180,7 +181,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get selectedItem():Object
 		{
@@ -217,7 +218,7 @@ package org.apache.royale.html.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function get selectedString():String
 		{

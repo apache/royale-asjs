@@ -22,6 +22,7 @@ package org.apache.royale.html.beads.layouts
 	
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
@@ -29,11 +30,11 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.CSSUtils;
 	COMPILE::SWF {
 			import org.apache.royale.core.UIBase;
@@ -51,7 +52,7 @@ package org.apache.royale.html.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
      */
 	public class HorizontalLayout extends LayoutBase implements IBeadLayout
 	{
@@ -61,7 +62,7 @@ package org.apache.royale.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function HorizontalLayout()
 		{
@@ -74,7 +75,7 @@ package org.apache.royale.html.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          *  @royaleignorecoercion HTMLElement
          *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
@@ -94,6 +95,7 @@ package org.apache.royale.html.beads.layouts
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 * @royaleignorecoercion org.apache.royale.core.IParentIUIBase
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
 		override public function layout():Boolean
@@ -116,8 +118,8 @@ package org.apache.royale.html.beads.layouts
 				var data:Object;
 				var canAdjust:Boolean = false;
 
-				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+				var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.

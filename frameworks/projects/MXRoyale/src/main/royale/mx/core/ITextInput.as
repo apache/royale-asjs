@@ -20,10 +20,10 @@
 package mx.core
 {
 
+    import mx.managers.IFocusManagerComponent;
 /*
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
-import mx.managers.IFocusManagerComponent;
 import mx.styles.IStyleClient;
 */
 
@@ -36,7 +36,7 @@ import mx.styles.IStyleClient;
  *  @productversion Flex 4
  */
 public interface ITextInput
-    extends IDataRenderer, IUIComponent
+    extends IDataRenderer, IUIComponent, IFocusManagerComponent
 {
     //--------------------------------------------------------------------------
     //

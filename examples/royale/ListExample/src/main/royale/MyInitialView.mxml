@@ -62,6 +62,9 @@ limitations under the License.
 			{
 				(applicationModel as ProductsModel).productNames.addItemAt("Wing Bats", 2);
 			}
+			private function onScrollEnd():void{
+				trace("scroll end");
+			}
 		]]>
 	</fx:Script>
 	
@@ -91,6 +94,7 @@ limitations under the License.
 				sourceID="applicationModel"
 				sourcePropertyName="states"
 				destinationPropertyName="dataProvider" />
+			<js:InfiniteVScroller scrollEnd="onScrollEnd()"/>
 		</js:beads>
 	</js:List>
 	

@@ -20,6 +20,7 @@ package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
@@ -28,13 +29,13 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.utils.CSSUtils;
-    import org.apache.royale.utils.CSSContainerUtils;
 	
 	COMPILE::JS {
 		import org.apache.royale.core.WrappedHTMLElement;
@@ -88,6 +89,8 @@ package org.apache.royale.html.beads.layouts
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.IMeasurementBead
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean
 		{
@@ -99,7 +102,7 @@ package org.apache.royale.html.beads.layouts
 				contentView.element.style["vertical-align"] = "top";
 			}
 			
-            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+            var padding:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
 			var sw:Number = host.width;
 			var sh:Number = host.height;
 
@@ -117,9 +120,16 @@ package org.apache.royale.html.beads.layouts
 			var n:int = contentView.numElements;
             var rowData:Object = { rowHeight: 0 };
 
+			//cache values to prevent layout thrashing
+			var views:Array = [];
+			var heights:Array = [];
+			var widths:Array = [];
 			// determine max widths of columns
 			for (i = 0; i < n; i++) {
-				e = contentView.getElementAt(i) as IUIBase;
+				views[i] = contentView.getElementAt(i);
+				heights[i] = views[i].height;
+				widths[i] = views[i].width;
+				e = views[i];
 				if (e == null || !e.visible) continue;
 				var margins:Object = childMargins(e, sw, sh);
 				
@@ -131,12 +141,12 @@ package org.apache.royale.html.beads.layouts
 					if (measure)
 						thisPrefWidth = measure.measuredWidth + margins.left + margins.right;
 					else
-						thisPrefWidth = e.width + margins.left + margins.right;
+						thisPrefWidth = widths[i] + margins.left + margins.right;
 				}
 				else
-					thisPrefWidth = e.width + margins.left + margins.right;
+					thisPrefWidth = widths[i] + margins.left + margins.right;
 
-                rowData.rowHeight = Math.max(rowData.rowHeight, e.height + margins.top + margins.bottom);
+                rowData.rowHeight = Math.max(rowData.rowHeight, heights[i] + margins.top + margins.bottom);
 				columns[col] = Math.max(columns[col], thisPrefWidth);
                 col = col + 1;
                 if (col == numColumns)
@@ -155,13 +165,13 @@ package org.apache.royale.html.beads.layouts
 			col = 0;
 			for (i = 0; i < n; i++)
             {
-				e = contentView.getElementAt(i) as IUIBase;
+				e = views[i];
 				if (e == null || !e.visible) continue;
 				e.x = curx + data[i].ml;
 				e.y = cury + data[i].mt;
 				curx += columns[col++];
-                maxHeight = Math.max(maxHeight, e.y + e.height + data[i].mb);
-                maxWidth = Math.max(maxWidth, e.x + e.width + data[i].mr);
+                maxHeight = Math.max(maxHeight, e.y + heights[i] + data[i].mb);
+                maxWidth = Math.max(maxWidth, e.x + widths[i] + data[i].mr);
 				if (col == numColumns)
 				{
 					cury += rows[0].rowHeight;

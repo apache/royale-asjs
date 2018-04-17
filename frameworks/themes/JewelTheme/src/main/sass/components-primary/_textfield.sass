@@ -1,0 +1,106 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel Textfield
+
+// Textfield variables
+$textfield-margin: 0 !default
+$textfield-padding: .67em 1em !default
+//10px 16px
+$textfield-min-height: 34px !default
+$textfield-min-width: 74px !default
+
+$textfield-border-radius: 3px
+
+=textfield-theme($textfield-text-color)
+	position: relative
+	display: inline-flex
+	
+	input
+		+appear(none)
+		margin: $textfield-margin
+		padding: $textfield-padding
+		
+		max-width: 100%
+		
+		flex: 1 0 auto
+		outline: none
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+		
+		text-align: left
+		line-height: 1.4em
+
+		font:
+			family: $font-stack
+			size: $font-size
+			weight: normal
+		color: $textfield-text-color
+
+		@if $flat
+			border: 0px solid
+			background: $default-color
+		@else
+			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+			border: 1px solid darken($default-color, 15%)
+			//box-shadow: none
+		border-radius: $textfield-border-radius
+		
+		@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+		
+		&:focus
+			@if $flat
+				background: lighten($primary-color, 25%)
+			@else
+				border: 1px solid darken($primary-color, 15%)
+		
+		//&:hover 
+		//    padding: 5px;
+		//    background-color: #DFDFDF;
+
+		&::placeholder
+			color: lighten($textfield-text-color, 15%)
+
+		&[disabled]
+			cursor: unset
+			@if $flat
+				border: 0px solid
+				background: $disabled-color
+			@else
+				border: 1px solid $disabled-border-color// .094em
+				background: $disabled-color
+			box-shadow: none
+			color: $disabled-font-color
+			
+			&::placeholder
+				color: $disabled-font-color
+
+.jewel.textfield
+	@if $dark
+		+textfield-theme($font-dark-color)
+	@else
+		+textfield-theme($font-light-color)
+
+// .jewel.textfield.primary
+// 	@if $dark
+// 		+textfield-theme($primary-color, $font-dark-color)
+// 	@else
+// 		+textfield-theme($primary-color, $font-light-color)
