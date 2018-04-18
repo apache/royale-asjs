@@ -88,6 +88,7 @@ internal class MXRoyaleClasses
 	import mx.effects.Move; Move;
 	import mx.graphics.LinearGradient; LinearGradient;
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
