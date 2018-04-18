@@ -105,6 +105,7 @@
       <artifactId>RemoteObjectAMFTest</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>war</type>
+      <scope>runtime</scope>
     </dependency>
 
   </dependencies>
