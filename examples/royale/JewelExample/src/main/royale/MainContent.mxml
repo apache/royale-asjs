@@ -33,6 +33,7 @@ limitations under the License.
         <local:LabelPlayGround/>
         <local:ButtonPlayGround/>
         <local:TextButtonPlayGround/>
+        <local:DropDownListPlayGround/>
     </js:Group>
 
     <js:Group>

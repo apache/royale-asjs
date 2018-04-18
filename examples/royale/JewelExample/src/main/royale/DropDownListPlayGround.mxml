@@ -25,27 +25,35 @@ limitations under the License.
     
 	<fx:Script>
 		<![CDATA[      
-            private function clickHandler(event:MouseEvent):void {
-                button.primary = !button.primary;
+            import org.apache.royale.collections.ArrayList;
+
+            private function changeHandler(event:Event):void {
+                trace("ddl change");
             }
+
+			private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
+			[Bindable("__NoChangeEvent__")]
+			public function get strings():Array
+			{
+				return _strings;
+			}
 		]]>
 	</fx:Script>
 
 	<js:beads>
 		<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+		<js:ViewDataBinding />
 	</js:beads>
 	
-	<html:H3 text="Jewel Button"/>
+	<html:H3 text="Jewel DropDownList"/>
 	
-	<j:Button id="button" click="clickHandler(event)"/>
-	<j:Button primary="true"/>
-	<j:Button secondary="true"/>
-	<j:Button emphasized="true"/>
+	<j:DropDownList dataProvider="{strings}"/>
+		
 
-	<j:Button>
-		<j:beads>
-			<j:Disabled/>
-		</j:beads>
-	</j:Button>
+	<!-- <j:DropDownList change="changeHandler(event)">
+		<j:dataProvider>
+			<js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
+		</j:dataProvider>
+	</j:DropDownList> -->
 	
 </js:Group>

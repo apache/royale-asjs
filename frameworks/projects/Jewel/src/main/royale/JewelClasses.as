@@ -46,7 +46,8 @@ package
 
             import org.apache.royale.jewel.beads.views.RadioButtonView; RadioButtonView;
 		    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
-	
+
+            import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
         }
 
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;

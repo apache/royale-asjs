@@ -122,6 +122,14 @@ j|ControlBar {
     IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
   }
 }
+@media -royale-swf {
+  j|DropDownList {
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DropDownListController");
+    IPopUp: ClassReference("org.apache.royale.html.supportClasses.DropDownListList");
+  }
+}
 j|ListItemRenderer {
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }

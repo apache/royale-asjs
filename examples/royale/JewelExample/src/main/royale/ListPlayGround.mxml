@@ -26,15 +26,19 @@ limitations under the License.
     
     <fx:Script>
 		<![CDATA[
+			import org.apache.royale.collections.ArrayList;
+
 			private function onChange(event:Event):void {
-                trace("change");
+                selected.text = "Selected: " + list.selectedItem;
             }
+
+            public var simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons"]);
 		]]>
 	</fx:Script>
 
-    <mdl:model>
+    <js:model>
         <models:ListsModel/>
-	</mdl:model>
+	</js:model>
 
 	<js:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
@@ -45,10 +49,12 @@ limitations under the License.
     <j:List id="list" width="200" height="300" change="onChange(event)">
 		<js:beads>
 			<js:ConstantBinding
-				sourceID="model"
-				sourcePropertyName="watchmen"
+				
+				sourcePropertyName="simple"
 				destinationPropertyName="dataProvider" />
 		</js:beads>
     </j:List>
+
+    <j:Label id="selected"/>
 	
 </js:Group>
