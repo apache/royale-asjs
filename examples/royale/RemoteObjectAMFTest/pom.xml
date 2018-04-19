@@ -45,10 +45,6 @@
         <directory>src/main/resources</directory>
         <filtering>true</filtering>
       </resource>
-      <resource>
-        <directory>src/main/webapp</directory>
-        <filtering>true</filtering>
-      </resource>
     </resources>
     <plugins>
       <plugin>
@@ -58,13 +54,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <targets>SWF,JSRoyale</targets>
-          <!-- <debug>false</debug> -->
-          <!-- <includeFiles>
-            <include-file>
-              <name>web.xml</name>
-              <path>../src/main/webapp/WEB-INF/web.xml</path>
-            </include-file>
-          </includeFiles> -->
+          <debug>false</debug>
         </configuration>
       </plugin>
       <plugin>
