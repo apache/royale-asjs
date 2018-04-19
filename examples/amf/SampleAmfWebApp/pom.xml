@@ -79,6 +79,7 @@
             <overlay>
               <groupId>org.apache.royale.examples</groupId>
               <artifactId>RemoteObjectAMFTest</artifactId>
+              <targetPath>public</targetPath>
             </overlay>
           </overlays>
         </configuration>
