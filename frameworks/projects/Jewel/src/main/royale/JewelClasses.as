@@ -27,26 +27,27 @@ package
      */
     internal class JewelClasses
     {
-        import org.apache.royale.jewel.beads.SliderView; SliderView;
         import org.apache.royale.jewel.beads.models.SliderRangeModel; SliderRangeModel;
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
-	    import org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout; HorizontalSliderLayout;
-
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
+        
+        import org.apache.royale.jewel.beads.views.SliderView; SliderView;
         import org.apache.royale.jewel.beads.views.AlertView; AlertView;
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
         import org.apache.royale.jewel.beads.views.AlertTitleBarView; AlertTitleBarView;
+        import org.apache.royale.jewel.beads.views.ListView; ListView;
         
         COMPILE::SWF
 	    {
-            import org.apache.royale.html.beads.TextFieldView; TextFieldView;
+            import org.apache.royale.jewel.beads.views.TextFieldView; TextFieldView;
             
-            import org.apache.royale.jewel.beads.SliderThumbView; SliderThumbView;
-            import org.apache.royale.jewel.beads.SliderTrackView; SliderTrackView;
+            import org.apache.royale.jewel.beads.views.SliderThumbView; SliderThumbView;
+            import org.apache.royale.jewel.beads.views.SliderTrackView; SliderTrackView;
 
             import org.apache.royale.jewel.beads.views.RadioButtonView; RadioButtonView;
 		    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
-	
+
+            import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
         }
 
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;

@@ -18,33 +18,40 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.cssclasslist
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
+    import org.apache.royale.core.IUIBase;
 
     /**
      *  Removes one or more styles from the component. Removing a class that does not 
-     *  exist, does not throw any error
+     *  exist, does not throw any error.
      * 
-     *  @param value, a String with the style (or styles separated by an space) to 
-     *  remove from the component. If the string is empty doesn't perform any action
+     *  Use of these utility functions should not be mixed with modifying the component's
+     *  className property at runtime.  Also the component's className property will not
+     *  reflect modifications made with this API.
+     * 
+     *  @param component The component that will have selectors added or removed.  
+     * 
+     *  @param value A String with the style (or styles separated by an space) to 
+     *  remove from the component. If the string is empty doesn't perform any action.
      *  
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
+     *  @royaleignorecoercion HTMLElement
      */
-    COMPILE::JS
-    public function removeStyles(element:WrappedHTMLElement, value:String):void
+    public function removeStyles(component:IUIBase, value:String):void
     {
         if (value == "") return;
 
-        if (value.indexOf(" ") >= 0)
+        COMPILE::JS
         {
-            var classes:Array = value.split(" ");
-            element.classList.remove.apply(element.classList, classes);
-        } else
-        {
-            element.classList.remove(value);
+            if (value.indexOf(" ") >= 0)
+            {
+                var classes:Array = value.split(" ");
+                var element:HTMLElement = component.element as HTMLElement
+                element.classList.remove.apply(element.classList, classes);
+            } else
+            {
+                component.element.classList.remove(value);
+            }
         }
     }
 }

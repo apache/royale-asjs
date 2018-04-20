@@ -67,6 +67,14 @@ package org.apache.royale.mdl.beads
             super.initComplete(event);
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.UIBase
+         * @royaleignorecoercion org.apache.royale.core.IList
+         * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+         * @royaleignorecoercion org.apache.royale.mdl.supportClasses.ITabItemRenderer
+         */
         override protected function dataProviderChangeHandler(event:Event):void
         {
             var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
@@ -87,7 +95,7 @@ package org.apache.royale.mdl.beads
                 ir.tabIdField = tabsIdField;
                 var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-                dataGroup.addItemRenderer(ir);
+                dataGroup.addItemRenderer(ir, false);
 
                 if (presentationModel) {
                     var style:SimpleCSSStyles = new SimpleCSSStyles();
@@ -97,15 +105,13 @@ package org.apache.royale.mdl.beads
                     UIBase(ir).percentWidth = 100;
                 }
 
-                var data:Object = dp.getItemAt(i);
-                ir.index = i;
                 ir.labelField = labelField;
                 if (dataItemRenderer)
                 {
                     dataItemRenderer.dataField = dataField;
                 }
 
-                setData(ir, data, i);
+                setData(ir, dp.getItemAt(i), i);
             }
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));

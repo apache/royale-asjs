@@ -17,37 +17,144 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Jewel Slider
+
+// Slider variables
+$slider-margin: 20px
+$slider-padding: 0
+$slider-min-width: calc(100% - #{2 * $slider-margin})
+$slider-track-min-height: 6px
+$slider-track-border-radius: 3px
+$slider-thumb-size: 18px
+$slider-border-radius: 50%
+$slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
+
 .jewel.slider
+    position: relative
+    height: $slider-container-height
+    
+    display: flex !important
+    flex-direction: row
+    
+    background: none
 
     input
-        -webkit-appearance: none
-        width: 100%
-        height: 15px
-        border-radius: 5px
-        background: #d3d3d3
-        outline: none
-        opacity: 0.7
-        -webkit-transition: .2s
-        transition: opacity .2s
+        cursor: pointer
+        user-select: none
+        
+        +appear(none)
+        outline: 0
+        
+        align-self: center
+        z-index: 1
+        
+        margin: 0 $slider-margin
+        padding: $slider-padding
+        
+        width: $slider-min-width
+        height: $slider-track-min-height
+        
+        background: transparent
+        color: $primary-color
 
-        &:hover
-            opacity: 1
+        // TRACK
+        &::-webkit-slider-runnable-track
+            background: transparent
+            
+        &::-moz-range-track
+            background: transparent
+            border: none
 
+        // THUMB
+        &::-webkit-slider-thumb, &::-moz-range-thumb
+            +appear(none)
+            width: $slider-thumb-size
+            height: $slider-thumb-size
+            @if $flat
+                background: $primary-color
+                border: 0
+            @else
+                background: linear-gradient(lighten($primary-color, 3%), darken($primary-color, 3%))
+                // background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 18 18' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><defs><radialGradient cx='6.43382353%' cy='50%' fx='6.43382353%' fy='50%' r='85.5152803%' id='radialGradient-1'><stop stop-color='#54B7F4' offset='0%'></stop><stop stop-color='#26A3EF' offset='100%'></stop></radialGradient><circle id='path-2' cx='9' cy='9' r='9'></circle></defs><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-655.000000, -228.000000)'><g transform='translate(611.000000, 195.000000)'><g transform='translate(10.000000, 33.000000)'><g transform='translate(34.000000, 0.000000)'><g><use fill='url(#radialGradient-1)' fill-rule='evenodd' xlink:href='#path-2'></use><circle stroke='#0F88D1' stroke-width='1' cx='9' cy='9' r='8.5'></circle></g><rect fill='#3DADF1' x='0' y='8' width='2' height='3'></rect></g></g></g></g></g></svg>")
+                // background-repeat: no-repeat
+                // background-size: 100%
+                // background-position: center
+                // background-attachment: fixed
+                border: 1px solid darken($primary-color, 15%)
+                box-shadow: inset 0 1px 0 lighten($primary-color, 20%), 0 0 0 1px lighten(rgba($default-color, 0.3), 20%)
+            border-radius: $slider-border-radius
+            
+        &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
+            transform: scale(1.4)
+        
         &:focus
             outline: none
 
-        &::-webkit-slider-thumb
-            -webkit-appearance: none
-            appearance: none
-            width: 15px
-            height: 15px
-            border-radius: 50%
-            background: $primary-color
-            cursor: pointer
-        
-        &::-moz-range-thumb
-            width: 15px
-            height: 15px
-            border-radius: 50%
-            background: $primary-color
-            cursor: pointer
+        &[disabled]
+            cursor: unset
+            
+            &::-webkit-slider-thumb, &::-moz-range-thumb
+                background: $disabled-color
+                border: 1px solid darken($disabled-border-color, 10%)
+                box-shadow: none
+
+            &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
+                transform: scale(1.0)
+
+            + .slider-track-container > .slider-track-fill
+                background: darken($disabled-color, 5%)
+                border: 1px solid darken($disabled-border-color, 10%)
+                box-shadow: none
+
+            + .slider-track-container > .slider-track
+                background: $disabled-color
+                border: 1px solid $disabled-border-color
+                box-shadow: none
+
+.slider-track-container
+    position: absolute
+    display: flex
+    
+    overflow: hidden
+    transform: translate(0, -#{ round($slider-track-min-height/2) })
+    
+    margin: 0 #{ $slider-margin + round($slider-thumb-size/2) }
+    padding: 0
+    
+    top: $slider-border-radius
+    left: 0
+    
+    width: calc(100% - #{ 2 * $slider-margin + $slider-thumb-size })
+    height: $slider-track-min-height
+    
+    background: transparent
+    border: 0
+
+.slider-track-fill
+    position: relative
+    flex: 0
+    
+    padding: 0
+    
+    @if $flat
+        background: $primary-color
+        border: 0
+    @else
+        background: linear-gradient(lighten($primary-color, 3%), darken($primary-color, 3%))
+        border: 1px solid darken($primary-color, 15%)
+        box-shadow: inset 0 1px 0 lighten($primary-color, 20%)
+    border-radius: $slider-track-border-radius
+
+.slider-track
+    position: relative
+    flex: 0
+    
+    padding: 0
+    
+    @if $flat
+        background: $default-color
+        border: 0
+    @else
+        background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 5%))
+        border: 1px solid darken($default-color, 15%)
+    border-radius: $slider-track-border-radius
