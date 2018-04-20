@@ -291,12 +291,12 @@ package org.apache.royale.jewel.beads.views
                 if (value)
                 {
 					host = UIUtils.findPopUpHost(_strand as IUIBase);
-                    IPopUpHost(host).addElement(popUp as IChild);
+                    IPopUpHost(host).popUpParent.addElement(popUp as IChild);
                 }
                 else
                 {
                     host = UIUtils.findPopUpHost(_strand as IUIBase);
-                    IPopUpHost(host).removeElement(popUp as IChild);
+                    IPopUpHost(host).popUpParent.removeElement(popUp as IChild);
                 }
             }
         }
