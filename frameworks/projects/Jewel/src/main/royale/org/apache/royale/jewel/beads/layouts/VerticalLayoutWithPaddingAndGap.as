@@ -279,7 +279,7 @@ package org.apache.royale.jewel.beads.layouts
 			COMPILE::JS
 			{
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles (contentView.element, "layout vertical");
+				addStyles (contentView, "layout vertical");
 
 				var children:Array = contentView.internalChildren();
 				var i:int;

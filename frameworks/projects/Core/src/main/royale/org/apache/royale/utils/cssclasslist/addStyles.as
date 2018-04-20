@@ -18,33 +18,39 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.cssclasslist
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
+    import org.apache.royale.core.IUIBase;
     
     /**
-     *  Add one or more styles to the component. If the specified class already 
+     *  Add one or more class selectors to the component. If the specified class already 
      *  exist, the class will not be added.
+     * 
+     *  Use of these utility functions should not be mixed with modifying the component's
+     *  className property at runtime.  Also the component's className property will not
+     *  reflect modifications made with this API.
      *  
-     *  @param value, a String with the style (or styles separated by an space) to
-     *  add from the component. If the string is empty doesn't perform any action
+     *  @param component The component that will have selectors added or removed.  
+     * 
+     *  @param value A String with the style (or list of styles separated by an space) to
+     *  add to the component.
      *  
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
+     *  @royaleignorecoercion HTMLElement
      */
-    COMPILE::JS
-    public function addStyles(element:WrappedHTMLElement, value:String):void
+    public function addStyles(component:IUIBase, value:String):void
     {
-        if (value == "") return;
-        
-        if (value.indexOf(" ") >= 0)
+        COMPILE::JS
         {
-            var classes:Array = value.split(" ");
-            element.classList.add.apply(element.classList, classes);
-        } else
-        {
-            element.classList.add(value);
+            if (value.indexOf(" ") >= 0)
+            {
+                var classes:Array = value.split(" ");
+                var element:HTMLElement = component.element as HTMLElement
+                element.classList.add.apply(element.classList, classes);
+            } 
+            else
+            {
+                component.element.classList.add(value);
+            }
         }
     }
 

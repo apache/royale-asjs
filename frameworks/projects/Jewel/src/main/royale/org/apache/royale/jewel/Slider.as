@@ -21,6 +21,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IRangeModel;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
@@ -93,6 +94,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
+            classSelectorList = new ClassSelectorList(this);
 			typeNames = "jewel slider";
 
 			IRangeModel(model).value = 0;
@@ -102,6 +104,8 @@ package org.apache.royale.jewel
 			IRangeModel(model).snapInterval = 1;
 		}
 		
+        protected var classSelectorList:ClassSelectorList;
+        
 		/**
 		 *  The current value of the Slider.
 		 *
@@ -227,14 +231,10 @@ package org.apache.royale.jewel
 			return element;
         }
 
-		/**
-         * since we have a div surronding the main input, we need to 
-         * route the class assignaments to div
-         */
         COMPILE::JS
         override protected function setClassName(value:String):void
         {
-            addStyles(positioner, value);
+            classSelectorList.addNames(value);
         }
     }
 }
