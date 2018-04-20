@@ -98,6 +98,8 @@ internal class MXRoyaleClasses
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
 	import mx.effects.CompositeEffect; CompositeEffect;
+	import mx.logging.LogEventLevel; LogEventLevel;
+	import mx.logging.ILogger; ILogger;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
