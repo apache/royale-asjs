@@ -140,7 +140,7 @@ package org.apache.royale.jewel.itemRenderers
             COMPILE::JS
             {
                 //element.className = "jewel item selected";
-                toggleStyle(element, "selected", selected);
+                toggleStyle(this, "selected", selected);
             }
 		}
 
