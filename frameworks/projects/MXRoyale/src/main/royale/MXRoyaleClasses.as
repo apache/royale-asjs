@@ -97,6 +97,7 @@ internal class MXRoyaleClasses
 	import mx.charts.HitData; HitData;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+	import mx.logging.ILogger; ILogger;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
