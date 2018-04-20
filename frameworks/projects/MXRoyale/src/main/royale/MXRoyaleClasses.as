@@ -97,6 +97,7 @@ internal class MXRoyaleClasses
 	import mx.charts.HitData; HitData;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+	import mx.managers.BrowserManager; BrowserManager;
 	import mx.containers.FormHeading; FormHeading;
 	import mx.charts.chartClasses.DataTransform; DataTransform;
 	import mx.skins.Border; Border;
