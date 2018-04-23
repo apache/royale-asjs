@@ -1,6 +1,7 @@
 Apache Royale 0.9.3
 ===================
 
+- [Fixed AMF / RemoteObject Support](https://github.com/apache/royale-asjs/issues/204)
 - [Added New Jewel UI Set (Initial work)](https://github.com/apache/royale-asjs/issues/154)
 - [Renamed TextOverflow bead to EllipsisOverflow. It now supports Label elements as well.](https://github.com/apache/royale-asjs/issues/130)
 - [Added IEEventAdapterBead](https://github.com/apache/royale-asjs/issues/131)
