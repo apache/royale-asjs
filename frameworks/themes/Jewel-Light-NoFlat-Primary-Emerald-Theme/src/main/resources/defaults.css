@@ -557,11 +557,11 @@ j|Alert {
   text-shadow: unset;
 }
 
-.jewel.textfield {
+.jewel.textinput {
   position: relative;
   display: inline-flex;
 }
-.jewel.textfield input {
+.jewel.textinput input {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -584,20 +584,20 @@ j|Alert {
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
-.jewel.textfield input:focus {
+.jewel.textinput input:focus {
   border: 1px solid #638c29;
 }
-.jewel.textfield input::placeholder {
+.jewel.textinput input::placeholder {
   color: #a6a6a6;
 }
-.jewel.textfield input[disabled] {
+.jewel.textinput input[disabled] {
   cursor: unset;
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
 }
-.jewel.textfield input[disabled]::placeholder {
+.jewel.textinput input[disabled]::placeholder {
   color: silver;
 }
 
