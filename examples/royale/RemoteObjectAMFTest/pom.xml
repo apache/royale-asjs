@@ -55,6 +55,7 @@
           <mainClass>App.mxml</mainClass>
           <targets>SWF,JSRoyale</targets>
           <debug>false</debug>
+          <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>
       </plugin>
       <plugin>
@@ -106,11 +107,33 @@
         <classifier>js</classifier>
     </dependency>
     <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>BasicTheme</artifactId>
-        <version>0.9.3-SNAPSHOT</version>
-        <type>swc</type>
-        <scope>theme</scope>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-NoFlat-Primary-Blue-Theme</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>theme</scope>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>theme</scope>
     </dependency>
   </dependencies>
 
