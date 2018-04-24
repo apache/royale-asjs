@@ -18,6 +18,7 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.jewel.supportClasses.TextFieldBase;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
@@ -50,8 +51,18 @@ package org.apache.royale.jewel
 		{
 			super();
 
+            classSelectorList = new ClassSelectorList(this);
+
             typeNames = "jewel textfield";
 		}
+
+        protected var classSelectorList:ClassSelectorList;
+
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
 
         COMPILE::JS
 		private var _positioner:WrappedHTMLElement;
