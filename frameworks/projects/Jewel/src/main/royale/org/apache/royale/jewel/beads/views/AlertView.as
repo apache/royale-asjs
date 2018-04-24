@@ -34,7 +34,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.jewel.Alert;
     import org.apache.royale.jewel.Label;
-    import org.apache.royale.jewel.TextButton;
+    import org.apache.royale.jewel.Button;
     import org.apache.royale.jewel.TitleBar;
     import org.apache.royale.jewel.ControlBar;
 	import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween;
@@ -80,10 +80,10 @@ package org.apache.royale.jewel.beads.views
 		protected var label:Label;
 		protected var controlBar:UIBase;
 
-        protected var okButton:TextButton;
-        protected var cancelButton:TextButton;
-        protected var yesButton:TextButton;
-        protected var noButton:TextButton;
+        protected var okButton:Button;
+        protected var cancelButton:Button;
+        protected var yesButton:Button;
+        protected var noButton:Button;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -165,7 +165,7 @@ package org.apache.royale.jewel.beads.views
 
             if( flags & Alert.OK )
             {
-                okButton = new TextButton();
+                okButton = new Button();
 				okButton.primary = true;
                 okButton.text = alertModel.okLabel;
                 okButton.addEventListener("click", handleOK);
@@ -175,7 +175,7 @@ package org.apache.royale.jewel.beads.views
 
 			if( flags & Alert.CANCEL )
             {
-                cancelButton = new TextButton();
+                cancelButton = new Button();
                 cancelButton.text = alertModel.cancelLabel;
                 cancelButton.addEventListener("click", handleCancel);
 
@@ -184,7 +184,7 @@ package org.apache.royale.jewel.beads.views
             
             if( flags & Alert.YES )
             {
-                yesButton = new TextButton();
+                yesButton = new Button();
 				yesButton.primary = true;
                 yesButton.text = alertModel.yesLabel;
                 yesButton.addEventListener("click", handleYes);
@@ -194,7 +194,7 @@ package org.apache.royale.jewel.beads.views
 
 			if( flags & Alert.NO )
             {
-                noButton = new TextButton();
+                noButton = new Button();
                 noButton.text = alertModel.noLabel;
                 noButton.addEventListener("click", handleNo);
 

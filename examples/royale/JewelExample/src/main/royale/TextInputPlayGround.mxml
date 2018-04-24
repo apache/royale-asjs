@@ -33,7 +33,7 @@ limitations under the License.
 		<js:beads>
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
 		</js:beads>
-		<j:TextButton text="Check it!" primary="true"/>
+		<j:Button text="Check it!" primary="true"/>
 		<j:TextInput text="A TextInput"/>
 	</js:Group>
 
@@ -46,7 +46,7 @@ limitations under the License.
 				<js:TextPromptBead prompt="With prompt..."/>
 			</j:beads>
 		</j:TextInput>
-		<j:TextButton text="Send" primary="true"/>
+		<j:Button text="Send" primary="true"/>
 	</js:Group>
 
 	<j:TextInput text="Disabled with text...">

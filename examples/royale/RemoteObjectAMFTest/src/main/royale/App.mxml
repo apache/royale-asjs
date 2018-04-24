@@ -112,7 +112,7 @@ limitations under the License.
                             <js:TextPromptBead prompt="Name to send via AMF"/>
                         </j:beads>
                     </j:TextInput>
-                    <j:TextButton text="Send to Name" primary="true"  click="sendName()"/>
+                    <j:Button text="Send to Name" primary="true"  click="sendName()"/>
                 </js:Group>
 
                 <j:Label id="received" text="Received:"/>
@@ -122,7 +122,7 @@ limitations under the License.
                 <js:beads>
                     <j:VerticalLayoutWithPaddingAndGap gap="10"/>
                 </js:beads>
-                <j:TextButton text="Get Array of ValueObjects" emphasized="true" click="getVOs()" width="100%"/>
+                <j:Button text="Get Array of ValueObjects" emphasized="true" click="getVOs()" width="100%"/>
                 <j:List id="list" labelField="id" width="100%" height="200" 
                             change="reportChange()"/>
                 <j:Label id="received2" text="Selected:"/>
@@ -132,7 +132,7 @@ limitations under the License.
                 <js:beads>
                     <j:VerticalLayoutWithPaddingAndGap gap="10"/>
                 </js:beads>
-                <j:TextButton text="Get Some Product" primary="true" click="getSomeProduct()"/>
+                <j:Button text="Get Some Product" primary="true" click="getSomeProduct()"/>
                 <js:MultilineLabel id="received3" text="Received:"/>
             </js:Group>
 

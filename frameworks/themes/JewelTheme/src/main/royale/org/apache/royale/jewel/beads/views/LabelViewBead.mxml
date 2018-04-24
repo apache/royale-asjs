@@ -36,7 +36,7 @@ limitations under the License.
         ]]>
     </fx:Script>
 
-    <j:TextButton text="THEME-LABELVIEWBEAD!!"/>
+    <j:Button text="THEME-LABELVIEWBEAD!!"/>
     
     <!-- <js:beads>
         <js:MXMLBeadViewDataBinding />

@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.html.Button;
     import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.core.ITextModel;
 
     COMPILE::JS
     {
@@ -27,8 +28,7 @@ package org.apache.royale.jewel
     }
 
     /**
-     *  The Button class is a simple button.  Use TextButton for
-     *  buttons that should show text.  This is the lightest weight
+     *  The Button class that should show text.  This is the lightest weight
      *  button used for non-text buttons like the arrow buttons
      *  in a Scrollbar or NumericStepper.
      * 
@@ -64,6 +64,78 @@ package org.apache.royale.jewel
 		}
         
         protected var classSelectorList:ClassSelectorList;
+
+        /**
+         *  @copy org.apache.royale.html.Label#text
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function get text():String
+		{
+            COMPILE::SWF
+            {
+                return ITextModel(model).text;
+            }
+            COMPILE::JS
+            {
+                return element.innerHTML;
+            }
+		}
+
+        /**
+         *  @private
+         */
+		public function set text(value:String):void
+		{
+            COMPILE::SWF
+            {
+                ITextModel(model).text = value;
+            }
+            COMPILE::JS
+            {
+                this.element.innerHTML = value;
+                this.dispatchEvent('textChange');
+            }
+		}
+
+        /**
+         *  @copy org.apache.royale.html.Label#html
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function get html():String
+		{
+            COMPILE::SWF
+            {
+                return ITextModel(model).html;
+            }
+            COMPILE::JS
+            {
+                return element.innerHTML;
+            }
+		}
+
+        /**
+         *  @private
+         */
+		public function set html(value:String):void
+		{
+            COMPILE::SWF
+            {
+                ITextModel(model).html = value;
+            }
+            COMPILE::JS
+            {
+                this.element.innerHTML = value;
+                this.dispatchEvent('textChange');
+            }
+		}
 
         private var _primary:Boolean = false;
 

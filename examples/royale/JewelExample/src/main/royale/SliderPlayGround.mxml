@@ -74,7 +74,7 @@ limitations under the License.
 		</j:beads>
 	</j:Slider>
 
-	<j:TextButton id="button" text="Slider to 400x200" width="250" height="80" primary="true"
+	<j:Button id="button" text="Slider to 400x200" width="250" height="80" primary="true"
 					click="clickHandler(event)"/>
 
 </js:Group>
