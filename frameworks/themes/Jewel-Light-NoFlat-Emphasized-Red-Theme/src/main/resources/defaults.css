@@ -60,40 +60,7 @@ div {
   border: 0;
 }
 
-.jewel.button.emphasized {
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: 8px;
-  min-width: 34px;
-  min-height: 34px;
-  background: linear-gradient(#ee343b, #dc121a);
-  border: 1px solid #ad0e15;
-  box-shadow: inset 0 1px 0 #f47a7f;
-  border-radius: 3px;
-}
-.jewel.button.emphasized:hover, .jewel.button.emphasized:hover:focus {
-  background: linear-gradient(#EC1C24, #c51017);
-  border: 1px solid #950d12;
-}
-.jewel.button.emphasized:active, .jewel.button.emphasized:active:focus {
-  background: linear-gradient(#c51017, #950d12);
-  border: 1px solid #66090c;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
-}
-.jewel.button.emphasized:focus {
-  outline: none;
-  border: 1px solid #ad0e15;
-  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-.jewel.button.emphasized[disabled] {
-  cursor: unset;
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
-}
-
-.jewel.textbutton {
+.jewel.button {
   cursor: pointer;
   display: inline-block;
   margin: 0;
@@ -111,21 +78,21 @@ div {
   text-transform: uppercase;
   text-decoration: none;
 }
-.jewel.textbutton:hover, .jewel.textbutton:hover:focus {
+.jewel.button:hover, .jewel.button:hover:focus {
   background: linear-gradient(#d9d9d9, silver);
   border: 1px solid #a6a6a6;
 }
-.jewel.textbutton:active, .jewel.textbutton:active:focus {
+.jewel.button:active, .jewel.button:active:focus {
   background: linear-gradient(silver, #a6a6a6);
   border: 1px solid #8d8d8d;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
-.jewel.textbutton:focus {
+.jewel.button:focus {
   outline: none;
   border: 1px solid #b3b3b3;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
-.jewel.textbutton[disabled] {
+.jewel.button[disabled] {
   cursor: unset;
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
@@ -135,7 +102,7 @@ div {
   text-shadow: unset;
 }
 
-.jewel.textbutton.emphasized {
+.jewel.button.emphasized {
   cursor: pointer;
   display: inline-block;
   margin: 0;
@@ -154,21 +121,21 @@ div {
   text-decoration: none;
   text-shadow: 0 -1px 0 rgba(102, 9, 12, 0.7);
 }
-.jewel.textbutton.emphasized:hover, .jewel.textbutton.emphasized:hover:focus {
+.jewel.button.emphasized:hover, .jewel.button.emphasized:hover:focus {
   background: linear-gradient(#EC1C24, #c51017);
   border: 1px solid #950d12;
 }
-.jewel.textbutton.emphasized:active, .jewel.textbutton.emphasized:active:focus {
+.jewel.button.emphasized:active, .jewel.button.emphasized:active:focus {
   background: linear-gradient(#c51017, #950d12);
   border: 1px solid #66090c;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
-.jewel.textbutton.emphasized:focus {
+.jewel.button.emphasized:focus {
   outline: none;
   border: 1px solid #ad0e15;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
-.jewel.textbutton.emphasized[disabled] {
+.jewel.button.emphasized[disabled] {
   cursor: unset;
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
