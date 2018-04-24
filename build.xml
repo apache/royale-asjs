@@ -556,6 +556,7 @@ limitations under the License.
     
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
+        <delete dir="${basedir}/mustella/tests/mxTests/basicTests/bin"/>
         <delete dir="${basedir}/bin" failonerror="false">
             <include name="**"/>
             <exclude name=".gitignore"/>
@@ -585,7 +586,7 @@ limitations under the License.
         <delete dir="${basedir}/marmotinni/java/lib"/>
     </target>
 
-    <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
+    <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean,mxtests-clean"
         description="Full clean excluding thirdparty downloads">
         
         <delete file="${basedir}/royale-sdk-description.xml" failonerror="false"/>
@@ -1053,6 +1054,7 @@ limitations under the License.
     <target name="tweak-for-jsonly" unless="env.AIR_HOME" description="do a few more things so the JSOnly package works">
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
         tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" />
+        <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
     </target>
     
     <!--
@@ -1521,7 +1523,7 @@ limitations under the License.
     <target name="runmxtests" depends="mxtests-clean,mxtests-mustella" description="Tests MX and Spark emulation code" />
     
     <target name="mxtests-clean">
-        <delete file="${basedir}/mustella/tests/mxtests/BasicTests.swf" failonerror="false"/>
+        <delete file="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf" failonerror="false"/>
         <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
     
