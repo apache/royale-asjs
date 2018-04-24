@@ -77,20 +77,25 @@
 	    <ant dir="${basedir}/royale/Ace"/>
         <ant dir="${basedir}/express/DataBindingExample"/>
         <ant dir="${basedir}/express/DataGridExample"/>
+        <ant dir="${basedir}/express/GitHubCommitLogViewer"/>
         <ant dir="${basedir}/royale/AccordionExample"/>
         <ant dir="${basedir}/royale/ASDoc"/>
         <ant dir="${basedir}/royale/CordovaCameraExample"/>
         <ant dir="${basedir}/royale/CreateJSExample"/>
         <ant dir="${basedir}/royale/DataBindingExample"/>
         <ant dir="${basedir}/royale/DataBindingExample_as"/>
-        <ant dir="${basedir}/royale/DataBindingExample_Flat"/>
+        <!--<ant dir="${basedir}/royale/DataBindingExample_Flat"/>-->
         <ant dir="${basedir}/royale/DataBindingExampleWithFlexLayout"/>
         <ant dir="${basedir}/royale/DataGridExample"/>
         <ant dir="${basedir}/royale/DateControlsExample"/>
         <ant dir="${basedir}/royale/DesktopMap"/>
         <ant dir="${basedir}/royale/DividedContainerExample"/>
         <ant dir="${basedir}/royale/DragAndDropExample"/>
+        <ant dir="${basedir}/royale/Flex2Royale"/>
+        <ant dir="${basedir}/royale/JSON2ASVO"/>
+        <ant dir="${basedir}/royale/JewelExample"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL"/>
+        <ant dir="${basedir}/royale/RoyaleWebsite"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer"/>
         <ant dir="${basedir}/royale/RoyaleStore"/>
         <ant dir="${basedir}/royale/RoyaleStore_jquery"/>
@@ -110,6 +115,8 @@
         <ant dir="${basedir}/royale/TodoListSampleApp"/>
         <ant dir="${basedir}/royale/TeamPage"/>
         <ant dir="${basedir}/royale/TreeExample"/>
+        <ant dir="${basedir}/mxroyale/HelloWorld"/>
+        <ant dir="${basedir}/mxroyale/ControlsExample"/>
         <ant dir="${basedir}/native/ButtonExample"/>
         <ant dir="${basedir}/native/USStatesMap"/>
     </target>
@@ -127,6 +134,7 @@
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/express/DataGridExample" target="clean"/>
+        <ant dir="${basedir}/express/GitHubCommitLogViewer" target="clean"/>
         <ant dir="${basedir}/royale/AccordionExample" target="clean"/>
         <ant dir="${basedir}/royale/ASDoc" target="clean"/>
         <ant dir="${basedir}/royale/CordovaCameraExample" target="clean"/>
@@ -140,7 +148,11 @@
         <ant dir="${basedir}/royale/DesktopMap" target="clean"/>
         <ant dir="${basedir}/royale/DividedContainerExample" target="clean"/>
         <ant dir="${basedir}/royale/DragAndDropExample" target="clean"/>
+        <ant dir="${basedir}/royale/Flex2Royale" target="clean"/>
+        <ant dir="${basedir}/royale/JSON2ASVO" target="clean"/>
+        <ant dir="${basedir}/royale/JewelExample" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="clean"/>
+        <ant dir="${basedir}/royale/RoyaleWebsite" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleStore" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleStore_jquery" target="clean"/>
@@ -160,6 +172,8 @@
         <ant dir="${basedir}/royale/TodoListSampleApp" target="clean"/>
         <ant dir="${basedir}/royale/TeamPage" target="clean"/>
         <ant dir="${basedir}/royale/TreeExample" target="clean"/>
+        <ant dir="${basedir}/mxroyale/HelloWorld" target="clean"/>
+        <ant dir="${basedir}/mxroyale/ControlsExample" target="clean"/>
         <ant dir="${basedir}/native/ButtonExample" target="clean"/>
         <ant dir="${basedir}/native/USStatesMap" target="clean"/>
     </target>
