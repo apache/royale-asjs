@@ -20,7 +20,7 @@ package org.apache.royale.jewel.supportClasses
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.TextInput;
     
-    import org.apache.royale.jewel.supportClasses.ITextField;
+    import org.apache.royale.jewel.supportClasses.ITextInput;
     
     COMPILE::JS
     {
@@ -31,14 +31,14 @@ package org.apache.royale.jewel.supportClasses
     }
     
     /**
-     *  The TextFieldBase class is the base class for TextField and TextArea Jewel controls
+     *  The TextInputBase class is the base class for TextInput and TextArea Jewel controls
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.2
      */    
-	public class TextFieldBase extends TextInput implements ITextField
+	public class TextInputBase extends TextInput implements ITextInput
 	{
         /**
          *  Constructor.
@@ -48,7 +48,7 @@ package org.apache.royale.jewel.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.2
          */
-		public function TextFieldBase()
+		public function TextInputBase()
 		{
 			super();
 		}
@@ -58,7 +58,7 @@ package org.apache.royale.jewel.supportClasses
         private var _textNode:Text;
 
         /**
-         *  @copy org.apache.royale.jewel.supportClasses.ITextField#textNode
+         *  @copy org.apache.royale.jewel.supportClasses.ITextInput#textNode
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -80,7 +80,7 @@ package org.apache.royale.jewel.supportClasses
         COMPILE::JS
         private var _input:HTMLInputElement;
         /**
-         *  @copy org.apache.royale.jewel.supportClasses.ITextField#input
+         *  @copy org.apache.royale.jewel.supportClasses.ITextInput#input
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -102,7 +102,7 @@ package org.apache.royale.jewel.supportClasses
         private var _label:HTMLLabelElement;
 
         /**
-         *  @copy org.apache.royale.jewel.supportClasses.ITextField#label
+         *  @copy org.apache.royale.jewel.supportClasses.ITextInput#label
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -140,7 +140,7 @@ package org.apache.royale.jewel.supportClasses
         private var _isInvalid:Boolean = false;
         /**
 		 *  A boolean flag to activate "is-invalid" effect selector.
-         *  Defines the textfield as invalid on initial load.
+         *  Defines the textinput as invalid on initial load.
          *  Optional
 		 *
 		 *  @langversion 3.0

@@ -180,7 +180,7 @@ j|Slider {
     iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }
 }
-j|TextField {
+j|TextInput {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 }
 

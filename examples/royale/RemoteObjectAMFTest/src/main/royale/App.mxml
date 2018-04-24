@@ -107,11 +107,11 @@ limitations under the License.
                     <js:beads>
                         <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
                     </js:beads>
-                    <j:TextField id="name_txt">
+                    <j:TextInput id="name_txt">
                         <j:beads>
                             <js:TextPromptBead prompt="Name to send via AMF"/>
                         </j:beads>
-                    </j:TextField>
+                    </j:TextInput>
                     <j:TextButton text="Send to Name" primary="true"  click="sendName()"/>
                 </js:Group>
 

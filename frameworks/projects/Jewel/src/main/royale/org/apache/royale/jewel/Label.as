@@ -40,7 +40,7 @@ package org.apache.royale.jewel
     [Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
 	/*
-	 *  Label probably should extend TextField directly,
+	 *  Label probably should extend TextInput directly,
 	 *  but the player's APIs for TextLine do not allow
 	 *  direct instantiation, and we might want to allow
 	 *  Labels to be declared and have their actual

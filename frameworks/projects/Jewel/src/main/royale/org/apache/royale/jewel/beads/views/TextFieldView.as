@@ -24,7 +24,7 @@ package org.apache.royale.jewel.beads.views
     /**
      *  The TextFieldView class is the default view for
      *  the org.apache.royale.jewel.Label class.
-     *  It displays text using a TextField, so there is no
+     *  It displays text using a TextInput, so there is no
      *  right-to-left text support in this view.
      *  
      *  @langversion 3.0

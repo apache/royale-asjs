@@ -27,41 +27,41 @@ limitations under the License.
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
-	<html:H3 text="Jewel TextField"/>
+	<html:H3 text="Jewel TextInput"/>
 
 	<js:Group>
 		<js:beads>
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
 		</js:beads>
 		<j:TextButton text="Check it!" primary="true"/>
-		<j:TextField text="A TextField"/>
+		<j:TextInput text="A TextInput"/>
 	</js:Group>
 
 	<js:Group>
 		<js:beads>
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
 		</js:beads>
-		<j:TextField>
+		<j:TextInput>
 			<j:beads>
 				<js:TextPromptBead prompt="With prompt..."/>
 			</j:beads>
-		</j:TextField>
+		</j:TextInput>
 		<j:TextButton text="Send" primary="true"/>
 	</js:Group>
 
-	<j:TextField text="Disabled with text...">
+	<j:TextInput text="Disabled with text...">
 		<j:beads>
-			<js:TextPromptBead prompt="Disabled Textfield..."/>
+			<js:TextPromptBead prompt="Disabled TextInput..."/>
 			<j:Disabled/>
 		</j:beads>
-	</j:TextField>
+	</j:TextInput>
 
-	<j:TextField>
+	<j:TextInput>
 		<j:beads>
 			<js:TextPromptBead prompt="Disabled with prompt..."/>
 			<j:Disabled/>
 		</j:beads>
-	</j:TextField>
+	</j:TextInput>
 
 	
 

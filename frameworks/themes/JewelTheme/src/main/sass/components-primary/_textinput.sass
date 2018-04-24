@@ -20,22 +20,22 @@
 // Jewel Textfield
 
 // Textfield variables
-$textfield-margin: 0 !default
-$textfield-padding: .67em 1em !default
+$textinput-margin: 0 !default
+$textinput-padding: .67em 1em !default
 //10px 16px
-$textfield-min-height: 34px !default
-$textfield-min-width: 74px !default
+$textinput-min-height: 34px !default
+$textinput-min-width: 74px !default
 
-$textfield-border-radius: 3px
+$textinput-border-radius: 3px
 
-=textfield-theme($textfield-text-color)
+=textinput-theme($textinput-text-color)
 	position: relative
 	display: inline-flex
 	
 	input
 		+appear(none)
-		margin: $textfield-margin
-		padding: $textfield-padding
+		margin: $textinput-margin
+		padding: $textinput-padding
 		
 		max-width: 100%
 		
@@ -50,7 +50,7 @@ $textfield-border-radius: 3px
 			family: $font-stack
 			size: $font-size
 			weight: normal
-		color: $textfield-text-color
+		color: $textinput-text-color
 
 		@if $flat
 			background: $default-color
@@ -59,7 +59,7 @@ $textfield-border-radius: 3px
 			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
 			border: 1px solid darken($default-color, 15%)
 			//box-shadow: none
-		border-radius: $textfield-border-radius
+		border-radius: $textinput-border-radius
 		
 		@if $transitions-enable
 		transition:
@@ -77,7 +77,7 @@ $textfield-border-radius: 3px
 		//    background-color: #DFDFDF;
 
 		&::placeholder
-			color: lighten($textfield-text-color, 15%)
+			color: lighten($textinput-text-color, 15%)
 
 		&[disabled]
 			cursor: unset
@@ -93,14 +93,14 @@ $textfield-border-radius: 3px
 			&::placeholder
 				color: $disabled-font-color
 
-.jewel.textfield
+.jewel.textinput
 	@if $dark
-		+textfield-theme($font-dark-color)
+		+textinput-theme($font-dark-color)
 	@else
-		+textfield-theme($font-light-color)
+		+textinput-theme($font-light-color)
 
-// .jewel.textfield.primary
+// .jewel.textinput.primary
 // 	@if $dark
-// 		+textfield-theme($primary-color, $font-dark-color)
+// 		+textinput-theme($primary-color, $font-dark-color)
 // 	@else
-// 		+textfield-theme($primary-color, $font-light-color)
+// 		+textinput-theme($primary-color, $font-light-color)

@@ -17,7 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.supportClasses.TextFieldBase;
+    import org.apache.royale.jewel.supportClasses.TextInputBase;
     import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
@@ -28,7 +28,7 @@ package org.apache.royale.jewel
     }
 
     /**
-     *  The TextField class implements the basic control for
+     *  The TextInput class implements the basic control for
      *  single-line text input.
      *
      *  @toplevel
@@ -37,7 +37,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.2
      */
-	public class TextField extends TextFieldBase
+	public class TextInput extends TextInputBase
 	{
         /**
          *  Constructor.
@@ -47,13 +47,13 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.2
          */
-		public function TextField()
+		public function TextInput()
 		{
 			super();
 
             classSelectorList = new ClassSelectorList(this);
 
-            typeNames = "jewel textfield";
+            typeNames = "jewel textinput";
 		}
 
         protected var classSelectorList:ClassSelectorList;
@@ -99,7 +99,7 @@ package org.apache.royale.jewel
             goog.events.listen(input, 'input', textChangeHandler);
             
             //label = document.createElement('label') as HTMLLabelElement;
-            //label.className = "jewel-textfield-label";
+            //label.className = "jewel-textinput-label";
 
             //textNode = document.createTextNode('') as Text;
             //label.appendChild(textNode);
