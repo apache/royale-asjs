@@ -132,6 +132,7 @@
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
+        <ant dir="${basedir}/royale/Ace" target="clean"/>
         <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/express/DataGridExample" target="clean"/>
         <ant dir="${basedir}/express/GitHubCommitLogViewer" target="clean"/>
