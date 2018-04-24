@@ -52,7 +52,7 @@
 
             <j:Label id="selected"/>
 
-            <j:TextButton width="200" primary="true" text="who is missing?" click="clickHandler(event)"/>
+            <j:Button width="200" primary="true" text="who is missing?" click="clickHandler(event)"/>
         </js:View>
     </js:initialView>
 

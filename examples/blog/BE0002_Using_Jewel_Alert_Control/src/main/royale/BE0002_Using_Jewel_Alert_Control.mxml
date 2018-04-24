@@ -48,7 +48,7 @@
 
     <js:initialView>
         <js:View>
-            <j:TextButton id="button" text="Click Me" primary="true" click="clickHandler(event)"/>
+            <j:Button id="button" text="Click Me" primary="true" click="clickHandler(event)"/>
         </js:View>
     </js:initialView>
     
