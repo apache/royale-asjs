@@ -50,7 +50,7 @@ limitations under the License.
 				else if (evt.data is Product)
                 {
                     var product:Product = evt.data as Product;
-                    received2.text = "Received: product name is '" + product.name + "' and product description is '" + product.description + "'" ;
+                    received3.text = "Received: product name is '" + product.name + "' and product description is '" + product.description + "'" ;
                 } else
               	{
                     var arr:ArrayList = new ArrayList(evt.data as Array);
@@ -76,7 +76,7 @@ limitations under the License.
             protected function reportChange():void
             {
                 var vo:ClientValueObject = list.selectedItem as ClientValueObject;
-                received.text = "selected " + vo.id;
+                received2.text = "Selected: " + vo.id;
             }
 			
 		]]>
@@ -125,6 +125,7 @@ limitations under the License.
                 <j:TextButton text="Get Array of ValueObjects" emphasized="true" click="getVOs()" width="100%"/>
                 <j:List id="list" labelField="id" width="100%" height="200" 
                             change="reportChange()"/>
+                <j:Label id="received2" text="Selected:"/>
             </js:Group>
             
             <js:Group className="container" width="400">
@@ -132,7 +133,7 @@ limitations under the License.
                     <j:VerticalLayoutWithPaddingAndGap gap="10"/>
                 </js:beads>
                 <j:TextButton text="Get Some Product" primary="true" click="getSomeProduct()"/>
-                <js:MultilineLabel id="received2" text="Received:"/>
+                <js:MultilineLabel id="received3" text="Received:"/>
             </js:Group>
 
         </js:View>
