@@ -104,6 +104,8 @@ internal class MXRoyaleClasses
 	import mx.effects.CompositeEffect; CompositeEffect;
 	import mx.logging.LogEventLevel; LogEventLevel;
 	import mx.logging.ILogger; ILogger;
+	import mx.charts.series.ColumnSeries; ColumnSeries;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
