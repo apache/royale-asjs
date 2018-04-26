@@ -86,7 +86,9 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
-
+	import mx.collections.ISort; ISort;
+	import mx.collections.ListCollectionView; ListCollectionView;
+	import mx.collections.ArrayCollection; ArrayCollection;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
