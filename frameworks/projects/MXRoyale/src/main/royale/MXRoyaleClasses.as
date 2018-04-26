@@ -109,6 +109,7 @@ internal class MXRoyaleClasses
 	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
 	import mx.charts.series.BarSeries; BarSeries;
 	import mx.states.State; State;
+	import mx.collections.XMLListCollection; XMLListCollection;
 
     COMPILE::SWF
     {
