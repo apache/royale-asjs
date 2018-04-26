@@ -114,6 +114,7 @@ internal class MXRoyaleClasses
 	import mx.charts.events.ChartItemEvent; ChartItemEvent;
 	import mx.charts.chartClasses.DataTip; DataTip;
   import mx.charts.series.ColumnSeries; ColumnSeries;
+	import mx.charts.CategoryAxis; CategoryAxis;
 
     COMPILE::SWF
     {
