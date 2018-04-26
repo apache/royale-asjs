@@ -110,6 +110,7 @@ internal class MXRoyaleClasses
 	import mx.charts.series.BarSeries; BarSeries;
 	import mx.states.State; State;
 	import mx.collections.XMLListCollection; XMLListCollection;
+	import mx.controls.treeClasses.TreeItemRenderer; TreeItemRenderer;
 
     COMPILE::SWF
     {
