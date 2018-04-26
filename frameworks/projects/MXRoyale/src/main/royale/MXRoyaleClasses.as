@@ -111,6 +111,7 @@ internal class MXRoyaleClasses
 	import mx.states.State; State;
 	import mx.collections.XMLListCollection; XMLListCollection;
 	import mx.controls.treeClasses.TreeItemRenderer; TreeItemRenderer;
+	import mx.charts.events.ChartItemEvent; ChartItemEvent;
 
     COMPILE::SWF
     {
