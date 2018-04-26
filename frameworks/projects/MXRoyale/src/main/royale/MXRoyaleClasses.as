@@ -120,6 +120,7 @@ internal class MXRoyaleClasses
 	import mx.charts.Legend; Legend;
 	import mx.charts.series.AreaSeries; AreaSeries;
 	import mx.controls.textClasses.TextRange; TextRange;
+	import mx.controls.ToggleButtonBar; ToggleButtonBar;
 
     COMPILE::SWF
     {
