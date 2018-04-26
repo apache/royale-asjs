@@ -107,6 +107,7 @@ internal class MXRoyaleClasses
 	import mx.logging.ILogger; ILogger;
 	import mx.core.FlexVersion; FlexVersion;
 	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
+	import mx.charts.series.BarSeries; BarSeries;
 
     COMPILE::SWF
     {
