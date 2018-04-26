@@ -113,7 +113,8 @@ internal class MXRoyaleClasses
 	import mx.controls.treeClasses.TreeItemRenderer; TreeItemRenderer;
 	import mx.charts.events.ChartItemEvent; ChartItemEvent;
 	import mx.charts.chartClasses.DataTip; DataTip;
-  
+  import mx.charts.series.ColumnSeries; ColumnSeries;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
