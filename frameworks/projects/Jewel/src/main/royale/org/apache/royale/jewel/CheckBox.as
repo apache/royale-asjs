@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.html.CheckBox;
     import org.apache.royale.core.IToggleButtonModel;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
@@ -58,9 +59,18 @@ package org.apache.royale.jewel
 		{
 			super();
 
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel checkbox";
         }
 
+        protected var classSelectorList:ClassSelectorList;
+        
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
+        
         COMPILE::JS
         protected var input:HTMLInputElement;
 
@@ -110,20 +120,6 @@ package org.apache.royale.jewel
             //(checkbox as WrappedHTMLElement).royale_wrapper = this;
             return element;
         }
-
-        /**
-		 *  override UIBase to affect positioner instead of element
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
-		 */
-        COMPILE::JS
-		override protected function setClassName(value:String):void
-		{
-			addStyles(positioner, value);
-		}
 
         /**
          *  The text label for the CheckBox.

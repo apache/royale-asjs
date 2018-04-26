@@ -155,7 +155,7 @@ package org.apache.royale.html.beads
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                dataGroup.addItemRenderer(tf);
+                dataGroup.addItemRenderer(tf, false);
                 if (selectionModel.labelField) {
                 	tf.labelField = selectionModel.labelField;
                 }

@@ -19,12 +19,15 @@
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- 
+  this corrupts the packagin and makes an invalid wat
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-amf-server</artifactId>
     <version>0.9.3-SNAPSHOT</version>
   </parent>
-  
+   -->
+  <groupId>org.apache.royale.examples</groupId>
   <artifactId>sampleamfwebapp</artifactId>
   <version>0.9.3-SNAPSHOT</version>
   <packaging>war</packaging>
@@ -76,6 +79,7 @@
             <overlay>
               <groupId>org.apache.royale.examples</groupId>
               <artifactId>RemoteObjectAMFTest</artifactId>
+              <targetPath>public</targetPath>
             </overlay>
           </overlays>
         </configuration>
@@ -87,7 +91,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>5.0.2.RELEASE</version>
+      <version>4.3.2.RELEASE</version>
     </dependency>
 
     <!--

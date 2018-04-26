@@ -137,10 +137,17 @@ package org.apache.royale.mdl.beads
          */
         protected var dataGroup:IItemRendererParent;
 
+        /**
+         * @royaleignorecoercion Array
+         * @royaleignorecoercion org.apache.royale.core.UIBase
+         * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         * @royaleignorecoercion org.apache.royale.mdl.supportClasses.ITabItemRenderer
+         */
         protected function dataProviderChangeHandler(event:Event):void
         {
             var dp:Array = dataProviderModel.dataProvider as Array;
-            if (!dp)
+            if (!(dp is Array))
             {
                 return;
             }
@@ -153,7 +160,7 @@ package org.apache.royale.mdl.beads
             for (var i:int = 0; i < n; i++)
             {
                 var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
-                dataGroup.addItemRenderer(ir);
+                dataGroup.addItemRenderer(ir, false);
                 ir.index = i;
                 ir.labelField = labelField;
                 ir.tabIdField = tabsIdField;

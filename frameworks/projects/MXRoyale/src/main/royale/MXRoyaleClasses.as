@@ -88,6 +88,7 @@ internal class MXRoyaleClasses
 	import mx.effects.Move; Move;
 	import mx.graphics.LinearGradient; LinearGradient;
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.controls.listClasses.ListBase; ListBase;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.charts.chartClasses.RenderData; RenderData;
@@ -96,6 +97,23 @@ internal class MXRoyaleClasses
 	import mx.charts.HitData; HitData;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+	import mx.core.IVisualElementContainer; IVisualElementContainer;
+	import mx.managers.BrowserManager; BrowserManager;
+	import mx.containers.FormHeading; FormHeading;
+	import mx.charts.chartClasses.DataTransform; DataTransform;
+	import mx.skins.Border; Border;
+	import mx.effects.CompositeEffect; CompositeEffect;
+	import mx.logging.LogEventLevel; LogEventLevel;
+	import mx.logging.ILogger; ILogger;
+	import mx.core.FlexVersion; FlexVersion;
+	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
+	import mx.charts.series.BarSeries; BarSeries;
+	import mx.states.State; State;
+	import mx.collections.XMLListCollection; XMLListCollection;
+	import mx.controls.treeClasses.TreeItemRenderer; TreeItemRenderer;
+	import mx.charts.events.ChartItemEvent; ChartItemEvent;
+	import mx.charts.chartClasses.DataTip; DataTip;
+  import mx.charts.series.ColumnSeries; ColumnSeries;
 	import mx.charts.CategoryAxis; CategoryAxis;
 
     COMPILE::SWF
