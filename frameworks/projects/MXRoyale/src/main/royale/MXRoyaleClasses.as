@@ -116,6 +116,7 @@ internal class MXRoyaleClasses
   import mx.charts.series.ColumnSeries; ColumnSeries;
 	import mx.charts.CategoryAxis; CategoryAxis;
 	import mx.charts.LinearAxis; LinearAxis;
+	import mx.charts.renderers.ShadowLineRenderer; ShadowLineRenderer;
 
     COMPILE::SWF
     {
