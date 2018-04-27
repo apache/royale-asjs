@@ -124,6 +124,7 @@ internal class MXRoyaleClasses
 	import mx.managers.DragManager; DragManager;
 	import mx.logging.targets.TraceTarget; TraceTarget; 
 	import mx.managers.CursorManagerPriority; CursorManagerPriority;
+	import mx.logging.Log; Log;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
