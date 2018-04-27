@@ -126,6 +126,7 @@ internal class MXRoyaleClasses
 	import mx.managers.CursorManagerPriority; CursorManagerPriority;
 	import mx.logging.Log; Log;
 	import mx.collections.GroupingCollection2; GroupingCollection2;
+	import mx.charts.chartClasses.Series; Series;
 
     COMPILE::SWF
     {
