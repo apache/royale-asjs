@@ -89,6 +89,8 @@ internal class MXRoyaleClasses
 	import mx.collections.ISort; ISort;
 	import mx.collections.ListCollectionView; ListCollectionView;
 	import mx.collections.ArrayCollection; ArrayCollection;
+	import mx.controls.Alert; Alert;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
