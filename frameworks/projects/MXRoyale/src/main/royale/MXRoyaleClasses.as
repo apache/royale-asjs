@@ -123,6 +123,7 @@ internal class MXRoyaleClasses
 	import mx.controls.ToggleButtonBar; ToggleButtonBar;
 	import mx.managers.DragManager; DragManager;
 	import mx.logging.targets.TraceTarget; TraceTarget; 
+	import mx.managers.CursorManagerPriority; CursorManagerPriority;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
