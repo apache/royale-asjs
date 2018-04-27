@@ -122,6 +122,7 @@ internal class MXRoyaleClasses
 	import mx.controls.textClasses.TextRange; TextRange;
 	import mx.controls.ToggleButtonBar; ToggleButtonBar;
 	import mx.managers.DragManager; DragManager;
+	import mx.logging.targets.TraceTarget; TraceTarget; 
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
