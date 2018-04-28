@@ -1,13 +1,16 @@
 {
+	"config": "royale",
 	"compilerOptions": {
 		"targets": [
 			"JSRoyale"
         ],
 		"source-map": false,
-		"html-template": "template.html"
+		"html-template": "template.html",
+		"library-path": [
+			"C:/Users/omuppirala/AppData/Roaming/npm/node_modules/@apache-royale/royale-js/royale-asjs/frameworks/themes/JewelTheme/target/JewelTheme.swc"
+		]
 	},
-	"files":
-	[
-		"src/PieChartExample.mxml"
+	"files": [
+		"src/EchartsInJewelApp.mxml"
 	]
 }

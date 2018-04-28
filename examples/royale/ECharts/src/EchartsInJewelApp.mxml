@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:js="library://ns.apache.org/royale/express" 
+                   xmlns:ns2="echarts.*" xmlns:j="library://ns.apache.org/royale/jewel" xmlns:ns1="library://ns.apache.org/royale/basic"
+                   initialize="onAppInitialize(event)"
+				   >
+	<fx:Script>
+        <![CDATA[
+        [Bindable] private var xAxisData:Array;
+        [Bindable] private var salesData:Array;
+        [Bindable] private var profitData:Array;
+
+        private function onAppInitialize(event:Event):void
+        {
+            this.xAxisData = ["shirt","cardign","chiffon shirt","pants","heels","socks"];
+            this.salesData = [5, 20, 36, 10, 10, 20];
+            this.profitData = [15, 12, 45, 8, 9, 54];
+        }
+
+        private function changeHandler(event:Event):void {
+               //selected.text = "Selected: " + list.selectedItem;
+           }
+
+        ]]>
+    </fx:Script>
+	<js:initialView>
+        <js:View>
+            <js:beads>
+                <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+            </js:beads>
+            <j:List id="list" width="200" height="1024"  >
+                <j:dataProvider>
+                    <js:ArrayList id="avengersCharacters" source="[Line Chart, Bar Chart, Pie Chart, Radial Chart, Donut Chart]" />
+                </j:dataProvider>
+            </j:List>
+        	<ns1:Accordion width="250" height="320" selectedIndex="0">
+        		<js:dataProvider>
+                    <fx:Array>
+                        <js:Container id="panel1">
+                        	<js:beads>
+                        		<js:TitleBarModel title="Panel 1" />
+                        		<js:VerticalLayout />
+                        	</js:beads>
+                        	<js:Label text="Top Line 1" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Middle Line 1" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Last Line 1" />
+                        </js:Container>
+                        <js:Container id="panel2">
+                        	<js:beads>
+                        		<js:TitleBarModel title="Panel 2" />
+                        		<js:VerticalLayout />
+                        	</js:beads>
+                        	<js:Label text="Top Line 2" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Middle Line 2" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Last Line 2" />
+                        </js:Container>
+                        <js:Container id="panel3">
+                        	<js:beads>
+                        		<js:TitleBarModel title="Panel 3" />
+                        		<js:VerticalLayout />
+                        	</js:beads>
+                        	<js:Label text="Top Line 3" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Middle Line 3" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Last Line 3" />
+                        </js:Container>
+                        <js:Container id="panel4">
+                        	<js:beads>
+                        		<js:TitleBarModel title="Panel 4" />
+                        		<js:VerticalLayout />
+                        	</js:beads>
+                        	<js:Label text="Top Line 4" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Middle Line 4" />
+                        	<js:Spacer height="20" />
+                        	<js:Label text="Last Line 4" />
+                        </js:Container>
+                    </fx:Array>
+                </js:dataProvider>
+        	</ns1:Accordion>
+        </js:View>
+	</js:initialView>
+</js:Application>

@@ -2,6 +2,7 @@
 <js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:js="library://ns.apache.org/royale/express" 
                    xmlns:ns2="echarts.*"
+                   xmlns:j="library://ns.apache.org/royale/jewel"
                    initialize="onAppInitialize(event)"
 				   >
 	<fx:Script>
