@@ -21,12 +21,11 @@ package org.apache.royale.mdl
 	import org.apache.royale.core.IApplicationView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.Group;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -53,16 +52,11 @@ package org.apache.royale.mdl
 		{
 			super();
 
-            COMPILE::JS
-            {
-                _classList = new CSSClassList();
-            }
-
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "mdl-layout mdl-js-layout";
 		}
 
-        COMPILE::JS
-        private var _classList:CSSClassList;
+        protected var classSelectorList:ClassSelectorList;
 
 		private var _applicationModel:Object;
 
@@ -112,12 +106,7 @@ package org.apache.royale.mdl
             {
                 _fixedHeader = value;
 
-                COMPILE::JS
-                {
-                    var classVal:String = "mdl-layout--fixed-header";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
-                    setClassName(computeFinalClassNames());
-                }
+                classSelectorList.toggle("mdl-layout--fixed-header", value);
             }
         }
 
@@ -142,19 +131,14 @@ package org.apache.royale.mdl
             {
                 _fixedDrawer = value;
 
-                COMPILE::JS
-                {
-                    var classVal:String = "mdl-layout--fixed-drawer";
-                    value ? _classList.add(classVal) : _classList.remove(classVal);
-                    setClassName(computeFinalClassNames());
-                }
+                classSelectorList.toggle("mdl-layout--fixed-drawer", value);
             }
         }
 
         COMPILE::JS
-        override protected function computeFinalClassNames():String
+        override protected function setClassName(value:String):void
         {
-            return _classList.compute() + super.computeFinalClassNames();
+            classSelectorList.addNames(value);
         }
 	}
 }
