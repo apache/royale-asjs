@@ -130,7 +130,7 @@ internal class MXRoyaleClasses
 	import mx.charts.chartClasses.GraphicsUtilities; GraphicsUtilities; 
 	import mx.effects.easing.Exponential; Exponential;
 	import mx.controls.listClasses.AdvancedListBase; AdvancedListBase;
-
+	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
