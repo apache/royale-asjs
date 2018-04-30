@@ -131,6 +131,7 @@ internal class MXRoyaleClasses
 	import mx.effects.easing.Exponential; Exponential;
 	import mx.controls.listClasses.AdvancedListBase; AdvancedListBase;
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
+	import mx.effects.TweenEffect; TweenEffect; 
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
