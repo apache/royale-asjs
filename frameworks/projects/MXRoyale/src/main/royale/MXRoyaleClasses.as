@@ -127,7 +127,8 @@ internal class MXRoyaleClasses
 	import mx.logging.Log; Log;
 	import mx.collections.GroupingCollection2; GroupingCollection2;
 	import mx.charts.chartClasses.Series; Series;
-
+	import mx.charts.chartClasses.GraphicsUtilities; GraphicsUtilities; 
+	import mx.effects.easing.Exponential; Exponential;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
