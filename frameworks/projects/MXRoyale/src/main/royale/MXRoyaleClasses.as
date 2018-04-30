@@ -129,6 +129,8 @@ internal class MXRoyaleClasses
 	import mx.charts.chartClasses.Series; Series;
 	import mx.charts.chartClasses.GraphicsUtilities; GraphicsUtilities; 
 	import mx.effects.easing.Exponential; Exponential;
+	import mx.controls.listClasses.AdvancedListBase; AdvancedListBase;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
