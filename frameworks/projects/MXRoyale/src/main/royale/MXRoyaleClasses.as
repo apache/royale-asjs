@@ -86,6 +86,9 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+	import mx.containers.TitleWindow; TitleWindow;
+	import mx.controls.ColorPicker; ColorPicker;
+	import mx.controls.colorPickerClasses.SwatchPanel; SwatchPanel;
 
     COMPILE::SWF
     {
