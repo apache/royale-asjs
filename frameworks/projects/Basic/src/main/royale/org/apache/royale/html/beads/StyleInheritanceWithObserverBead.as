@@ -18,11 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IBead;
 	COMPILE::JS {
-		import org.apache.royale.events.IEventDispatcher;
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
 	
@@ -73,12 +70,15 @@ package org.apache.royale.html.beads
 		COMPILE::JS
 		private function mutationDetected(mutationsList:Array):void
 		{
-			var mutationRecord:MutationRecord = mutationsList[0] as MutationRecord;
-			var addedElements:NodeList = mutationRecord.addedNodes as NodeList;
-			for (var i:int = 0; i < addedElements.length; i++)
+			for (var j:int = 0; j < mutationsList.length; j++)
 			{
-				var addedElement:WrappedHTMLElement = addedElements[i] as WrappedHTMLElement;
-				addedElement.style[styleName] = 'inherit';
+				var mutationRecord:MutationRecord = mutationsList[j] as MutationRecord;
+				var addedElements:NodeList = mutationRecord.addedNodes as NodeList;
+				for (var i:int = 0; i < addedElements.length; i++)
+				{
+					var addedElement:WrappedHTMLElement = addedElements[i] as WrappedHTMLElement;
+					addedElement.style[styleName] = 'inherit';
+				}
 			}
 		}
 
