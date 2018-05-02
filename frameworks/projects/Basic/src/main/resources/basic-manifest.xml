@@ -88,6 +88,7 @@
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
     <component id="StyleInheritanceBead" class="org.apache.royale.html.beads.StyleInheritanceBead"/>
+    <component id="StyleInheritanceWithObserverBead" class="org.apache.royale.html.beads.StyleInheritanceWithObserverBead"/>
     <component id="CrossBrowserFireListenerOverrideBead" class="org.apache.royale.html.beads.CrossBrowserFireListenerOverrideBead" />
     <component id="AccessibilityAltBead" class="org.apache.royale.html.beads.AccessibilityAltBead" />
     <component id="DataGridColumnChangePropagator" class="org.apache.royale.html.beads.DataGridColumnChangePropagator" />

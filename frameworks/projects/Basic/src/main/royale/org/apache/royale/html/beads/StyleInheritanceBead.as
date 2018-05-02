@@ -48,7 +48,7 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		public var styleName:String;
+		private var _styleName:String;
 		private var _strand:IStrand;
 		
 		/**
@@ -71,13 +71,13 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */	
 		COMPILE::JS
-		private function get hostElement():WrappedHTMLElement
+		protected function get hostElement():WrappedHTMLElement
 		{
 			return (_strand as IRenderedObject).element;
 		}
 		
 		COMPILE::JS
-		private function initCompleteHandler(e:Event):void
+		protected function initCompleteHandler(e:Event):void
 		{
 			forceInheritanceOnDescendants();
 		}
@@ -97,6 +97,24 @@ package org.apache.royale.html.beads
 					htmlElement.style[styleName] = "inherit";
 				}
 			}			
+		}
+		
+        /**
+         *  The name of the style that is to be inherited.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 9.3
+         */
+		public function get styleName():String
+		{
+			return _styleName;
+		}
+		
+		public function set styleName(value:String):void
+		{
+			_styleName = value;
 		}
 	}
 }
