@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -27,14 +27,15 @@ package org.apache.royale.html.beads
 	}
 	
 	/**
-	 *  The StyleInheritanceBead class forces descendadants of an IStylableObject to inherit a style
+	 *  The StyleInheritanceWithObserverBead extends StyleInheritace and makes
+	 *  sure that new descendants inherit as well.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 9.3
 	 */
-	public class StyleInheritanceBead implements IBead
+	public class StyleInheritanceWithObserverBead extends StyleInheritanceBead
 	{
 		/**
 		 *  constructor.
@@ -44,12 +45,11 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 9.3
 		 */
-		public function StyleInheritanceBead()
+		public function StyleInheritanceWithObserverBead()
 		{
+			super();
 		}
 		
-		private var _styleName:String;
-		private var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -58,63 +58,29 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 9.3
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			COMPILE::JS 
-			{
-				(value as IEventDispatcher).addEventListener('initComplete', initCompleteHandler);
+			super.strand = value;
+			COMPILE::JS {
+				var observer:MutationObserver = new MutationObserver(mutationDetected);
+				observer.observe(hostElement, {childList: true, subtree: true});
 			}
-		}
-
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 */	
-		COMPILE::JS
-		protected function get hostElement():WrappedHTMLElement
-		{
-			return (_strand as IRenderedObject).element;
-		}
-		
-		COMPILE::JS
-		protected function initCompleteHandler(e:Event):void
-		{
-			forceInheritanceOnDescendants();
 		}
 		
 		/**
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
-		private function forceInheritanceOnDescendants():void
+		private function mutationDetected(mutationsList:Array):void
 		{
-			var elements:NodeList = hostElement.querySelectorAll("*");
-			for (var i:int = 0; i < elements.length; i++)
+			var mutationRecord:MutationRecord = mutationsList[0] as MutationRecord;
+			var addedElements:NodeList = mutationRecord.addedNodes as NodeList;
+			for (var i:int = 0; i < addedElements.length; i++)
 			{
-				var htmlElement:WrappedHTMLElement = elements[i] as WrappedHTMLElement;
-				if (htmlElement)
-				{
-					htmlElement.style[styleName] = "inherit";
-				}
-			}			
+				var addedElement:WrappedHTMLElement = addedElements[i] as WrappedHTMLElement;
+				addedElement.style[styleName] = 'inherit';
+			}
 		}
-		
-        /**
-         *  The name of the style that is to be inherited.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 9.3
-         */
-		public function get styleName():String
-		{
-			return _styleName;
-		}
-		
-		public function set styleName(value:String):void
-		{
-			_styleName = value;
-		}
+
 	}
 }
