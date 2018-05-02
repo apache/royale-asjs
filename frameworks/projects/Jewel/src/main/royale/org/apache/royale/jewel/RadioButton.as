@@ -35,7 +35,6 @@ package org.apache.royale.jewel
         import org.apache.royale.core.UIBase;
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.utils.cssclasslist.addStyles;
     }
 
     //--------------------------------------
@@ -48,7 +47,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9.3
      */
 	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
@@ -58,14 +57,16 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9.3
      */
     [Event(name="change", type="org.apache.royale.events.Event")]
 
+    
+
     /**
-     *  The Jewel radio button component is an enhanced version of the
-     *  standard HTML <input type="radio">, or "radio button" element. A radio button
-     *  consists of a small circle and, typically, text that clearly communicates a
+     *  The Jewel radio button component in SWF is a specialized button.
+     * 
+     *  A radio button consists of a small circle and, typically, text that clearly communicates a
      *  condition that will be set when the user clicks or touches it. Radio buttons
      *  always appear in groups of two or more and, while they can be individually
      *  selected, can only be deselected by selecting a different radio button in the
@@ -74,7 +75,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9.3
      */
     COMPILE::SWF
 	public class RadioButton extends UIButtonBase implements IStrand
@@ -85,16 +86,20 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function RadioButton()
 		{
             super();
 
+            classSelectorList = new ClassSelectorList(this);
+
             typeNames = "jewel radiobutton";
 
 			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
 		}
+
+        protected var classSelectorList:ClassSelectorList;
 
 		protected static var dict:Dictionary = new Dictionary(true);
 
@@ -104,7 +109,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get groupName() : String
 		{
@@ -121,7 +126,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get text():String
 		{
@@ -140,7 +145,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get selected():Boolean
 		{
@@ -170,7 +175,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get value():Object
 		{
@@ -187,7 +192,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get selectedValue():Object
 		{
@@ -241,26 +246,45 @@ package org.apache.royale.jewel
 		}
 	}
     
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+
     /**
      *  Dispatched when the user clicks on RadioButton.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9.3
      */
-    [Event(name="click", type="org.apache.royale.events.MouseEvent")]
-    
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
+
     /**
      *  Dispatched when RadioButton is being selected/unselected.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9.3
      */
     [Event(name="change", type="org.apache.royale.events.Event")]
-    
+
+    /**
+     *  The Jewel radio button component in JS is an enhanced version of the
+     *  standard HTML <input type="radio">, or "radio button" element.
+     * 
+     *  A radio button consists of a small circle and, typically, text that clearly communicates a
+     *  condition that will be set when the user clicks or touches it. Radio buttons
+     *  always appear in groups of two or more and, while they can be individually
+     *  selected, can only be deselected by selecting a different radio button in the
+     *  same group (which deselects all other radio buttons in the group).
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
     COMPILE::JS
     public class RadioButton extends UIBase
     {
@@ -270,7 +294,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
+         *  @productversion Royale 0.9.3
          */
 		public function RadioButton()
 		{
@@ -322,11 +346,12 @@ package org.apache.royale.jewel
          */
         override protected function createElement():WrappedHTMLElement
         {
-            var label:HTMLLabelElement = document.createElement('label') as HTMLLabelElement;
-            
-            icon = addElementToWrapper(this,'input') as HTMLInputElement;
-            icon.type = "radio";
-            icon.id = '_radio_' + + Math.random();
+            label = document.createElement('label') as HTMLLabelElement;
+
+            icon = addElementToWrapper(this, 'input') as HTMLInputElement;
+            icon.type = 'radio';
+            icon.id = '_radio_' + Math.random();
+            icon.value = String(value);
             label.appendChild(icon);
 
             textNode = document.createTextNode('') as Text;
@@ -334,16 +359,10 @@ package org.apache.royale.jewel
             radio = document.createElement('span') as HTMLSpanElement;
             radio.appendChild(textNode);
             label.appendChild(radio);
-            //radio.addEventListener('mouseover', mouseOverHandler, false);
-            //radio.addEventListener('mouseout', mouseOutHandler, false);
-
-            // (textNode as WrappedHTMLElement).royale_wrapper = this;
-            // (icon as WrappedHTMLElement).royale_wrapper = this;
-            // (radio as WrappedHTMLElement).royale_wrapper = this;
-
+            
             positioner = label as WrappedHTMLElement;
             _positioner.royale_wrapper = this;
-
+            
             return element;
         }
 
@@ -411,9 +430,9 @@ package org.apache.royale.jewel
         {
             return icon.value;
         }
-        public function set value(v:Object):void
+        public function set value(value:Object):void
         {
-            icon.value = v as String;
+            icon.value = String(value);
         }
         
         public function get selectedValue():Object
