@@ -141,6 +141,8 @@ internal class MXRoyaleClasses
 	import mx.rpc.AsyncResponder; AsyncResponder;
 	import mx.rpc.Responder; Responder;
 	import mx.printing.FlexPrintJobScaleType; FlexPrintJobScaleType; 
+	import mx.skins.RectangularBorder; RectangularBorder;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
