@@ -139,7 +139,7 @@ internal class MXRoyaleClasses
 	import mx.controls.VScrollBar; VScrollBar;
 	import mx.graphics.LinearGradientStroke; LinearGradientStroke;
 	import mx.rpc.AsyncResponder; AsyncResponder;
-
+	import mx.rpc.Responder; Responder;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
