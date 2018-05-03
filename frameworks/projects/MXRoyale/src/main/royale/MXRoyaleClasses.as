@@ -140,6 +140,7 @@ internal class MXRoyaleClasses
 	import mx.graphics.LinearGradientStroke; LinearGradientStroke;
 	import mx.rpc.AsyncResponder; AsyncResponder;
 	import mx.rpc.Responder; Responder;
+	import mx.printing.FlexPrintJobScaleType; FlexPrintJobScaleType; 
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
