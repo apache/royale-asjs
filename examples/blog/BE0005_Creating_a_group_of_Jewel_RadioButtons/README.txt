@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-Adding an item to a Jewel List
+Creating a group of Jewel RadioButtons
 
 In this example we'll Learn how to configure a group of Jewel RadioButton controls in a Royale application.
 ---
