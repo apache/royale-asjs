@@ -243,7 +243,7 @@ internal class BasicClasses
 	import org.apache.royale.core.ListBase; ListBase;
 	import org.apache.royale.core.Lookalike; Lookalike;
 	import org.apache.royale.core.FilledRectangle; FilledRectangle;
-    import org.apache.royale.core.UIBase; UIBase;
+    
 	COMPILE::JS
 	{
 		import org.apache.royale.core.UIElement; UIElement;
