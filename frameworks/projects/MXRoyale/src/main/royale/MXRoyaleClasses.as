@@ -137,6 +137,8 @@ internal class MXRoyaleClasses
 	import mx.rpc.events.InvokeEvent; InvokeEvent;
 	import mx.rpc.events.ResultEvent; ResultEvent;
 	import mx.controls.VScrollBar; VScrollBar;
+	import mx.graphics.LinearGradientStroke; LinearGradientStroke;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
