@@ -89,7 +89,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.3
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]
@@ -111,7 +111,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.3
 		 *  @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
         public function get rollOverIndex():int
@@ -150,7 +150,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.3
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]

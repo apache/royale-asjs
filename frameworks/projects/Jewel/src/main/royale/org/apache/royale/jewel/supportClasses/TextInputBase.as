@@ -36,7 +36,7 @@ package org.apache.royale.jewel.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.2
+     *  @productversion Royale 0.9.3
      */    
 	public class TextInputBase extends TextInput implements ITextInput
 	{
@@ -46,7 +46,7 @@ package org.apache.royale.jewel.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.2
+         *  @productversion Royale 0.9.3
          */
 		public function TextInputBase()
 		{
@@ -63,7 +63,7 @@ package org.apache.royale.jewel.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.2
+         *  @productversion Royale 0.9.3
          */
         COMPILE::JS
         public function get textNode():Text
@@ -85,7 +85,7 @@ package org.apache.royale.jewel.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.2
+         *  @productversion Royale 0.9.3
          */
         COMPILE::JS
         public function get input():HTMLInputElement
@@ -107,7 +107,7 @@ package org.apache.royale.jewel.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.2
+         *  @productversion Royale 0.9.3
          */
         COMPILE::JS
         public function get label():HTMLLabelElement
@@ -128,7 +128,7 @@ package org.apache.royale.jewel.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
+		 *  @productversion Royale 0.9.3
 		 */
         COMPILE::JS
 		override protected function setClassName(value:String):void
@@ -146,7 +146,7 @@ package org.apache.royale.jewel.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
+		 *  @productversion Royale 0.9.3
 		 */
         public function get isInvalid():Boolean
         {
