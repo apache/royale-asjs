@@ -136,6 +136,7 @@ internal class MXRoyaleClasses
 	import mx.rpc.AsyncToken; AsyncToken;
 	import mx.rpc.events.InvokeEvent; InvokeEvent;
 	import mx.rpc.events.ResultEvent; ResultEvent;
+	import mx.controls.VScrollBar; VScrollBar;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
