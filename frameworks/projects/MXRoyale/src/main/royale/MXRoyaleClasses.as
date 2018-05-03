@@ -133,6 +133,8 @@ internal class MXRoyaleClasses
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
 	import mx.effects.TweenEffect; TweenEffect; 
 	import mx.rpc.Fault; Fault;
+	import mx.rpc.AsyncToken; AsyncToken;
+
 	
     COMPILE::SWF
     {
