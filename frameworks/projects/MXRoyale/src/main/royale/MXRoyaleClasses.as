@@ -138,6 +138,7 @@ internal class MXRoyaleClasses
 	import mx.rpc.events.ResultEvent; ResultEvent;
 	import mx.controls.VScrollBar; VScrollBar;
 	import mx.graphics.LinearGradientStroke; LinearGradientStroke;
+	import mx.rpc.AsyncResponder; AsyncResponder;
 
     COMPILE::SWF
     {
