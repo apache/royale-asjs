@@ -23,7 +23,7 @@ package org.apache.royale.core
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.utils.MXMLDataInterpreter;
-	import org.apache.royale.utils.Timer;
+    import org.apache.royale.utils.Timer;
 
     COMPILE::SWF {
         import flash.display.DisplayObject;
@@ -372,6 +372,21 @@ package org.apache.royale.core
          */
     	public function generateMXMLAttributes(data:Array):void
         {
+            // move the initialView to be the last thing to be
+            // the last thing instantiated so all other properties
+            // are set up first.  This more closely mimics the
+            // Flex timing
+            var propCount:int = data[0];
+            var n:int = data.length;
+            for (var i:int = 1; i < n; i += 3)
+            {
+                if (data[i] == "initialView")
+                {
+                    var initialViewArray:Array = data.splice(i, 3);
+                    var offset:int = (propCount - 1) * 3 + 1;
+                    data.splice(offset, 0, initialViewArray[0], initialViewArray[1], initialViewArray[2]);
+                }
+            }
 			MXMLDataInterpreter.generateMXMLProperties(this, data);
         }
 
