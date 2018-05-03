@@ -1886,7 +1886,46 @@ public class UIComponent extends UIBase
 		// always 1.0
 	}
 
+    //----------------------------------
+    //  alpha
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the alpha property.
+     */
+    private var _alpha:Number = 1.0;
+    
+    [Bindable("alphaChanged")]
+    [Inspectable(defaultValue="1.0", category="General", verbose="1", minValue="0.0", maxValue="1.0")]
+
+    /**
+     *  @private
+     */
+    override public function get alpha():Number
+    {
+        // Here we roundtrip alpha in the same manner as the 
+        // player (purposely introducing a rounding error).
+        return int(_alpha * 256.0) / 256.0;
+    }
+    
+    /**
+     *  @private
+     */
+    override public function set alpha(value:Number):void
+    { 
+        if (_alpha != value)
+        {
+            _alpha = value;
+        
+           /*  if (designLayer)
+                value = value * designLayer.effectiveAlpha; 
+            
+            $alpha = value;
+			*/
+            dispatchEvent(new Event("alphaChanged"));
+        }
+    }
     //----------------------------------
     //  includeInLayout
     //----------------------------------
