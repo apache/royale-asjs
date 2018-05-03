@@ -144,6 +144,8 @@ internal class MXRoyaleClasses
 	import mx.skins.RectangularBorder; RectangularBorder;
 	import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
 	import mx.styles.StyleProxy; StyleProxy;
+	import mx.modules.IModuleInfo; IModuleInfo;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
