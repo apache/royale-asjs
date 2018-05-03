@@ -134,7 +134,7 @@ internal class MXRoyaleClasses
 	import mx.effects.TweenEffect; TweenEffect; 
 	import mx.rpc.Fault; Fault;
 	import mx.rpc.AsyncToken; AsyncToken;
-
+	import mx.rpc.events.InvokeEvent; InvokeEvent;
 	
     COMPILE::SWF
     {
