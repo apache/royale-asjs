@@ -86,6 +86,13 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+	import mx.charts.chartClasses.CartesianChart; CartesianChart;
+	import mx.charts.chartClasses.IAxis; IAxis;
+	import mx.charts.PlotChart; PlotChart;
+	import mx.charts.series.PieSeries; PieSeries;
+	import mx.charts.series.PlotSeries; PlotSeries;
+	import mx.charts.series.items.PieSeriesItem; PieSeriesItem; 
+	import mx.charts.AreaChart; AreaChart; 
 
     COMPILE::SWF
     {
