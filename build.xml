@@ -556,6 +556,7 @@ limitations under the License.
     
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin"/>
         <delete dir="${basedir}/bin" failonerror="false">
             <include name="**"/>
             <exclude name=".gitignore"/>
@@ -1588,16 +1589,17 @@ limitations under the License.
 
     <target name="mxtests-run-js" >
         <property name="profile_arg" value="dummy=false" />
-        <echo>url=file://${basedir}/mustella/tests/mxTests/bin/js-debug/index.html</echo>
+        <echo>url=file://${basedir}/mustella/tests/mxtests/bin/js-debug/index.html</echo>
         <java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
             <!--<arg value="browser=chrome" />-->
-            <arg value="url=file://${basedir}/mustella/tests/mxTests/basicTests/bin/js-debug/index.html" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ButtonTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextInputTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
+            <arg value="url=file://${basedir}/mustella/tests/mxtests/basicTests/bin/js-debug/index.html" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextInputTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ListAndDataGridTestScript.mxml" />
             <arg value="showSteps=true" />
             <arg value="showScripts=true" />
             <arg value="${profile_arg}" />
@@ -1666,10 +1668,10 @@ limitations under the License.
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <delete dir="${basedir}/mustella/tests/mxTests/bin" failonerror="false" />
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" />
         <mxmlc fork="true" debug="true"
             closure-lib="${env.GOOG_HOME}"
-            file="${basedir}/mustella/tests/mxTests/BasicTestsApp.mxml">
+            file="${basedir}/mustella/tests/mxtests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <targets>JSRoyale</targets>
             <library-path dir="${ROYALE_HOME}" append="true">
