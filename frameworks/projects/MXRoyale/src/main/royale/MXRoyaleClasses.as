@@ -146,6 +146,7 @@ internal class MXRoyaleClasses
 	import mx.styles.StyleProxy; StyleProxy;
 	import mx.modules.IModuleInfo; IModuleInfo;
 	import mx.managers.CursorManager; CursorManager;
+	import mx.validators.Validator; Validator;
 	
     COMPILE::SWF
     {
