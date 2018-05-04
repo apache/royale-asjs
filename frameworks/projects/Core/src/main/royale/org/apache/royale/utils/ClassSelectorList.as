@@ -28,7 +28,7 @@ package org.apache.royale.utils
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 1.0.0
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class ClassSelectorList
 	{
@@ -59,6 +59,9 @@ package org.apache.royale.utils
         /**
          * Add a class selector to the list.
          * @param name Name of selector to remove.
+         *
+         * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion DOMTokenList
          */
         public function remove(name:String):void
         {
@@ -95,27 +98,34 @@ package org.apache.royale.utils
          * Add a space-separated list of names.
          * @param names Space-separated list of names to add.
          * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion DOMTokenList
          */
         public function addNames(names:String):void
         {
             COMPILE::JS
             {
-            var positioner:HTMLElement = component.positioner as HTMLElement;
-            var classList:DOMTokenList = positioner.classList;
-            if (component.parent)
-            {
-                // remove names that were set last time
-                while (count > 0)
+                var positioner:HTMLElement = component.positioner as HTMLElement;
+                var classList:DOMTokenList = positioner.classList;
+                if (component.parent)
                 {
-                    var name:String = classList.item(startIndex);
-                    classList.remove(name);
+                    // remove names that were set last time
+                    while (count > 0)
+                    {
+                        var name:String = classList.item(startIndex);
+                        classList.remove(name);
+                        count = classList.length - startIndex;
+                    }
                 }
-            }
-            if (startIndex > 0)
-                positioner.className += " " + names;
-            else
-                positioner.className = names;
-            count = classList.length - startIndex;
+
+                if (startIndex > 0)
+                {
+                    positioner.className += " " + names;
+                }
+                else
+                {
+                    positioner.className = names;
+                }
+                count = classList.length - startIndex;
             }
         }
     }

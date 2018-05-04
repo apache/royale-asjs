@@ -40,6 +40,8 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>ControlsExample.mxml</mainClass>
+          <targets>JSRoyale,SWF</targets>
+          <debug>false</debug>
         </configuration>
       </plugin>
     </plugins>

@@ -37,6 +37,7 @@
     <module>BE0002_Using_Jewel_Alert_Control</module>
     <module>BE0003_Using_Jewel_Slider_Control</module>
     <module>BE0004_Adding_an_item_to_a_Jewel_List</module>
+    <module>BE0005_Creating_a_group_of_Jewel_RadioButtons</module>
   </modules>
 
   <build>

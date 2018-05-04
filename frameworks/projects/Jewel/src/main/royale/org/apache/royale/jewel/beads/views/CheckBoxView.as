@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.views
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
 	public class CheckBoxView extends BeadViewBase implements IBeadView
 	{
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function CheckBoxView()
 		{
@@ -103,7 +103,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		override public function set strand(value:IStrand):void
 		{
@@ -145,7 +145,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function get text():String
 		{
@@ -173,7 +173,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function get html():String
 		{
@@ -213,7 +213,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function get selected():Boolean
 		{
@@ -252,7 +252,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		protected function layoutControl() : void
 		{
@@ -280,7 +280,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		protected function drawCheckBox(icon:Shape) : void
 		{
