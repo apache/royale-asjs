@@ -28,7 +28,7 @@ package org.apache.royale.utils
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 1.0.0
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class ClassSelectorList
 	{
