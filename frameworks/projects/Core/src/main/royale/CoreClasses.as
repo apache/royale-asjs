@@ -103,8 +103,9 @@ internal class CoreClasses
     import org.apache.royale.core.ISelectable; ISelectable;
     import org.apache.royale.core.ISelectionModel; ISelectionModel;
     import org.apache.royale.core.IStrand; IStrand;
-	import org.apache.royale.core.IStrandPrivate; IStrandPrivate;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost; IContainerBaseStrandChildrenHost;
     import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
+    import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
     import org.apache.royale.core.ITextModel; ITextModel;
     import org.apache.royale.core.ITitleBarModel; ITitleBarModel;
     import org.apache.royale.core.IToggleButtonModel; IToggleButtonModel;

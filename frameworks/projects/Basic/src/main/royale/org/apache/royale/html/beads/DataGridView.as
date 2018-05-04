@@ -22,6 +22,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.IUIBase;
@@ -29,7 +30,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Container;
-	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.supportClasses.DataGridColumnList;
@@ -108,7 +108,7 @@ package org.apache.royale.html.beads
 			 */
 			override protected function handleInitComplete(event:Event):void
 			{
-				var host:DataGrid = _strand as DataGrid;
+				var host:IDataGrid = _strand as IDataGrid;
 
 				// see if there is a presentation model already in place. if not, add one.
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
@@ -131,9 +131,9 @@ package org.apache.royale.html.beads
 				var bblayout:ButtonBarLayout = new ButtonBarLayout();
 				_header.addBead(bblayout as IBead);
 				_header.addBead(new Viewport() as IBead);
-				host.addElement(_header as IChild);
+				host.strandChildren.addElement(_header as IChild);
 
-				host.addElement(_listArea as IChild);
+				host.strandChildren.addElement(_listArea as IChild);
 
 				handleDataProviderChanged(event);
 
@@ -204,12 +204,13 @@ package org.apache.royale.html.beads
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 			 * @royaleignorecoercion org.apache.royale.core.IBead
 			 * @royaleignorecoercion org.apache.royale.core.IChild
-			 * @royaleignorecoercion org.apache.royale.html.DataGrid
+			 * @royaleignorecoercion org.apache.royale.core.IDataGrid
+			 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 			 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
 			 */
 			private function createLists():void
 			{
-				var host:DataGrid = _strand as DataGrid;
+				var host:IDataGrid = _strand as IDataGrid;
 				
 				// get the name of the class to use for the columns
 				var columnClassName:String = ValuesManager.valuesImpl.getValue(host, "columnClassName") as String;
@@ -218,7 +219,7 @@ package org.apache.royale.html.beads
 				}
 
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
-				var presentationModel:IDataGridPresentationModel = host.presentationModel;
+				var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
 
 				_lists = [];
 

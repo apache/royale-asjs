@@ -136,13 +136,14 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
 		protected function finishSetup(event:Event):void
 		{
 			var host:TreeGrid = _strand as TreeGrid;
 			
 			// see if there is a presentation model already in place. if not, add one.
-			var presentationModel:IDataGridPresentationModel = host.presentationModel;
+			var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
 			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
 			IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
@@ -248,6 +249,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
 		private function createColumns():void
 		{
@@ -259,7 +261,7 @@ package org.apache.royale.html.beads
 				columnClassName = "TreeGridColumn";
 			}
 			
-			var presentationModel:IDataGridPresentationModel = host.presentationModel;
+			var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
 			
 			_lists = new Array();

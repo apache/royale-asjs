@@ -18,22 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	import org.apache.royale.core.IBead;
+
     /**
-     *  The IStrandPrivate interface is implemented by components that permit 
-	 *  access to their direct children.
-     *  
+     *  The IStrandWithPresentationModel interface is implemented by any IStrand
+	 *  that supports a separate bead that is a presentationModel.  A presentationModel
+     *  is a set of properties that act as parameters to the View as opposed to the
+     *  regular model that is the data to be displayed by the view.  A simple example
+     *  is the rowHeight of a vertical list.
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.0
      */
-	public interface IStrandPrivate
+	public interface IStrandWithPresentationModel
 	{
-		function $numElements():int;
-		function $addElement(c:IChild, dispatchEvent:Boolean = true):void;
-		function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void;
-		function $removeElement(c:IChild, dispatchEvent:Boolean = true):void;
-		function $getElementIndex(c:IChild):int;
-		function $getElementAt(index:int):IChild;
+        /**
+         *  Returns the bead that holds the properties for the presentationModel.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		function get presentationModel():IBead;
+		
 	}
 }

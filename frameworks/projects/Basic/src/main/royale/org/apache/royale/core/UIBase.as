@@ -171,7 +171,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
+	public class UIBase extends HTMLElementWrapper implements IStrandWithModelView, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
 	{
         /**
          *  Constructor.

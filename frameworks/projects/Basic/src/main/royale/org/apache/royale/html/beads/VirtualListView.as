@@ -24,9 +24,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IList;
-    import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
@@ -59,8 +56,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	COMPILE::JS
-	public class VirtualListView extends VirtualDataContainerView
+	public class VirtualListView extends DataContainerView // was VirtualDataContainerView
 	{
 		public function VirtualListView()
 		{
@@ -116,88 +112,22 @@ package org.apache.royale.html.beads
 				ir.hovered = true;
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
 		}
-	}
-
-	COMPILE::SWF
-	public class VirtualListView extends VirtualDataContainerView
-	{
-		public function VirtualListView()
-		{
-			super();
-		}
-
-		protected var listModel:ISelectionModel;
-
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
-
-		/**
-		 * @private
-		 */
-		override protected function handleInitComplete(event:Event):void
-		{
-			super.handleInitComplete(event);
-
-			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-		}
-
-		protected var lastSelectedIndex:int = -1;
-
-		/**
-		 * @private
-		 */
-		protected function selectionChangeHandler(event:Event):void
-		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
-            if (ir)
-				ir.selected = false;
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
-			if (ir)
-				ir.selected = true;
-            lastSelectedIndex = listModel.selectedIndex;
-		}
-
-		protected var lastRollOverIndex:int = -1;
-
-		/**
-		 * @private
-		 */
-		protected function rollOverIndexChangeHandler(event:Event):void
-		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
-			if(ir)
-				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
-			if(ir)
-				ir.hovered = true;
-			
-			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
-		}
-
+        
+        COMPILE::SWF
         override protected function calculateContentSize():Size
         {
             return _lastContentSize;
         }
         
+        COMPILE::SWF
         private var _lastContentSize:Size;
         
+        COMPILE::SWF
         public function set lastContentSize(value:Size):void
         {
             _lastContentSize = value;
         }
+        
 
-    }
+	}
 }

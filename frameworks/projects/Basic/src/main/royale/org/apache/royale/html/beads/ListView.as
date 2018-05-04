@@ -24,7 +24,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
