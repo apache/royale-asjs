@@ -145,7 +145,8 @@ internal class MXRoyaleClasses
 	import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
 	import mx.styles.StyleProxy; StyleProxy;
 	import mx.modules.IModuleInfo; IModuleInfo;
-
+	import mx.managers.CursorManager; CursorManager;
+	
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
