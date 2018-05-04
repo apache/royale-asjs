@@ -1173,7 +1173,12 @@ public class UIComponent extends UIBase
     public function get measuredWidth():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredWidth)) return width;
+			if (isNaN(_measuredWidth))
+            {
+                measure();
+                if (isNaN(_measuredWidth))
+                    return width;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredWidth)) {
@@ -1215,7 +1220,12 @@ public class UIComponent extends UIBase
     public function get measuredHeight():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredHeight)) return height;
+			if (isNaN(_measuredHeight))
+            {
+                measure();
+                if (isNaN(_measuredHeight))
+                    return height;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredHeight)) {
