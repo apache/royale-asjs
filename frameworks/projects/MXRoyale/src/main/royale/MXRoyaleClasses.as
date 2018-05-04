@@ -149,6 +149,7 @@ internal class MXRoyaleClasses
 	import mx.validators.Validator; Validator;
 	import mx.formatters.DateFormatter; DateFormatter;
 	import mx.controls.MenuBar; MenuBar;
+	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
 
     COMPILE::SWF
     {
