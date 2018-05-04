@@ -42,6 +42,7 @@ preloader="BasicTestsPreloader"
         <mx:State name="haloTextInputTest" />
         <mx:State name="haloTextAreaTest" />
         <mx:State name="haloComboBoxTest" />
+        <mx:State name="haloListAndDataGridTest" />
         <!--
         <mx:State name="haloColorPickerTest" />
         <mx:State name="haloNumericStepperTest" />
@@ -49,7 +50,6 @@ preloader="BasicTestsPreloader"
         <mx:State name="haloMenuTest" />
         <mx:State name="haloMenuBarTest" />
         <mx:State name="haloFocusManagerTest" />
-        <mx:State name="haloListAndDataGridTest" />
         <mx:State name="haloTreeTest" />
         <mx:State name="haloImageTest" />
         <mx:State name="haloSWFLoaderTest" />
@@ -116,6 +116,7 @@ preloader="BasicTestsPreloader"
     <haloviews:TextInputTests id="haloTextInputTests" includeIn="haloTextInputTest" />    
     <haloviews:TextAreaTests id="haloTextAreaTests" includeIn="haloTextAreaTest" />    
     <haloviews:ComboBoxTests id="haloComboBoxTests" includeIn="haloComboBoxTest" />    
+    <haloviews:ListAndDataGridTests id="haloListAndDataGridTests" includeIn="haloListAndDataGridTest" />    
     <!--
     <haloviews:ColorPickerTests id="haloColorPickerTests" includeIn="haloColorPickerTest" />    
     <haloviews:NumericStepperTests id="haloNumericStepperTests" includeIn="haloNumericStepperTest" />    
@@ -123,7 +124,6 @@ preloader="BasicTestsPreloader"
     <haloviews:MenuTests id="haloMenuTests" includeIn="haloMenuTest" />    
     <haloviews:MenuBarTests id="haloMenuBarTests" includeIn="haloMenuBarTest" />    
     <haloviews:FocusManagerTests id="haloFocusManagerTests" includeIn="haloFocusManagerTest" />    
-    <haloviews:ListAndDataGridTests id="haloListAndDataGridTests" includeIn="haloListAndDataGridTest" />    
     <haloviews:TreeTests id="haloTreeTests" includeIn="haloTreeTest" />    
     <haloviews:ImageTests id="haloImageTests" includeIn="haloImageTest" />    
     <haloviews:SWFLoaderTests id="haloSWFLoaderTests" includeIn="haloSWFLoaderTest" />    

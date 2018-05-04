@@ -22,7 +22,7 @@
 	<!-- this set of lines form a template that must be in each unit test -->
 	<mx:Script>
 	<![CDATA[
-	public static function init(o:DisplayObject):void
+	public static function init(o:Object):void
 	{
 	}
 	]]>
@@ -56,6 +56,7 @@
 				<AssertPropertyValue target="haloListAndDataGridTests.testList" propertyName="selectedIndex" value="2" />
 			</body>
 		</TestCase>
+        <!--
 		<TestCase testID="DragDropTest1">
 			<body>
 				<DispatchMouseEvent target="haloListAndDataGridTests.testList" type="mouseOver" localX="10" localY="55" />
@@ -86,5 +87,6 @@
 				<AssertPropertyValue target="haloListAndDataGridTests.testDataGrid.dataProvider" propertyName="length" value="7" />
 			</body>
 		</TestCase>
+        -->
 	</testCases>
 </UnitTester>
