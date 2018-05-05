@@ -23,7 +23,7 @@ import org.apache.royale.core.Application;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.core.SimpleCSSValuesImpl;
 import org.apache.royale.events.Event;
-import org.apache.royale.html.beads.ContainerView;
+import org.apache.royale.core.beads.views.ContainerView;
 import org.apache.royale.core.beads.GroupView;
 import org.apache.royale.html.beads.DataItemRendererFactoryForArrayData;
 import org.apache.royale.html.beads.ListView;
