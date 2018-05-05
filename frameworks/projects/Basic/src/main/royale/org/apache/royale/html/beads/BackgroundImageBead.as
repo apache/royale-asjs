@@ -30,6 +30,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+
+	import org.apache.royale.core.beads.IBackgroundBead;
 	
 	/**
 	 *  The BackgroundImageBead is used to render an image as the background to any component

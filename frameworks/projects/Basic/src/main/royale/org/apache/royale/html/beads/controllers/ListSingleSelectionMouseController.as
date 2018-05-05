@@ -29,7 +29,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IListView;
 	
 	import org.apache.royale.events.ItemClickedEvent;
 
@@ -103,7 +103,7 @@ package org.apache.royale.html.beads.controllers
          *  @productversion Royale 0.9
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+         *  @royaleignorecoercion org.apache.royale.core.IListView
          */
 		public function set strand(value:IStrand):void
 		{

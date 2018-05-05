@@ -26,8 +26,8 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.html.supportClasses.DataGroup;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.core.supportClasses.DataGroup;
+	import org.apache.royale.core.DataItemRenderer;
 	import org.apache.royale.geom.Point;
 	
 	/**

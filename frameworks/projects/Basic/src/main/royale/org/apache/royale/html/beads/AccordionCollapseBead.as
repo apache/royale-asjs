@@ -27,6 +27,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.royale.html.supportClasses.ICollapsible;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IListView;
 	
 	public class AccordionCollapseBead implements IAccordionCollapseBead
 	{

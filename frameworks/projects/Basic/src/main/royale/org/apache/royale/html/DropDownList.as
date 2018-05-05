@@ -24,7 +24,7 @@ package org.apache.royale.html
     {
         import goog.events;
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.beads.models.ArraySelectionModel;
+        import org.apache.royale.core.beads.models.ArraySelectionModel;
         import org.apache.royale.html.util.addElementToWrapper;
     }
 

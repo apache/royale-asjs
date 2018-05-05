@@ -26,7 +26,7 @@ limitations under the License.
  @productversion Royale 0.0
 -->
 <js:MXMLBeadView xmlns:fx="http://ns.adobe.com/mxml/2009"
-                     xmlns:js="library://ns.apache.org/royale/basic">
+                 xmlns:js="library://ns.apache.org/royale/basic">
 				  
     <fx:Script>
         <![CDATA[

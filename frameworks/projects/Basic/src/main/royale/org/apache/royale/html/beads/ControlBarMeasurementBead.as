@@ -23,7 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IMeasurementBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.html.Container;
+	import org.apache.royale.core.Container;
 	
 	/**
 	 *  The ControlBarMeasurementBead class measures the size of a org.apache.royale.html.ControlBar

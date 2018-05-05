@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
+	import org.apache.royale.core.beads.models.ArraySelectionModel;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.events.Event;
 			
 	/**
-	 *  The ComboBoxModel class bead extends org.apache.royale.html.beads.models.ArraySelectionModel 
+	 *  The ComboBoxModel class bead extends org.apache.royale.core.beads.models.ArraySelectionModel 
 	 *  and adds the text being displayed by the org.apache.royale.html.ComboBox's input field.
 	 *  
 	 *  @langversion 3.0

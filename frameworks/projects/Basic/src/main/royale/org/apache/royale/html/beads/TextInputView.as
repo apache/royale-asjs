@@ -17,6 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+    import org.apache.royale.core.beads.TextFieldViewBase;
 	import flash.display.DisplayObject;
 	import flash.text.TextFieldType;
 	

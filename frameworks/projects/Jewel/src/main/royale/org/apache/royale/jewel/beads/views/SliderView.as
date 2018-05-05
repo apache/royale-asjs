@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.views
 		import flash.display.Sprite;
 	}
 	
-    import org.apache.royale.html.beads.ISliderView;
+    import org.apache.royale.jewel.beads.controls.slider.ISliderView;
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadModel;

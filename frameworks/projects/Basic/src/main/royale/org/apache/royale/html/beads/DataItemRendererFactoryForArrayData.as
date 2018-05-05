@@ -40,7 +40,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IParentIUIBase;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.core.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -162,7 +162,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.DataItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */		
 		protected function dataProviderChangeHandler(event:Event):void

@@ -21,7 +21,7 @@ package mx.skins
 {
 
 import mx.core.EdgeMetrics;
-import org.apache.royale.html.supportClasses.Border;
+import org.apache.royale.core.supportClasses.Border;
 
 /**
  *  The Border class is an abstract base class for various classes that
@@ -39,7 +39,7 @@ import org.apache.royale.html.supportClasses.Border;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class Border extends org.apache.royale.html.supportClasses.Border 
+public class Border extends org.apache.royale.core.supportClasses.Border 
 {
 	//include "../core/Version.as";
 

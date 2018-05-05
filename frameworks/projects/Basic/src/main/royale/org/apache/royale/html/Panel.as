@@ -40,8 +40,8 @@ package org.apache.royale.html
 	 *  org.apache.royale.core.IBeadModel: the data model for the Panel that includes the title and whether
 	 *  or not to display the close button.
 	 *  org.apache.royale.core.IBeadView: creates the parts of the Panel.
-	 *  org.apache.royale.core.IBorderBead: if present, draws a border around the Panel.
-	 *  org.apache.royale.core.IBackgroundBead: if present, provides a colored background for the Panel.
+	 *  org.apache.royale.core.beads.IBorderBead: if present, draws a border around the Panel.
+	 *  org.apache.royale.core.beads.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
      *  @toplevel
 	 *  @see PanelWithControlBar

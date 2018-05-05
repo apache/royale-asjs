@@ -24,7 +24,7 @@ package org.apache.royale.mdl.itemRenderers
 		import org.apache.royale.html.util.addElementToWrapper;
     }
 
-	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
+	import org.apache.royale.core.MXMLItemRenderer;;
     
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a MDL List Component.

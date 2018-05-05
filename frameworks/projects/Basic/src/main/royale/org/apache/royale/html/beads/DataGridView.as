@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.beads.GroupView;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
@@ -28,13 +29,13 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Container;
+	import org.apache.royale.core.Container;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.supportClasses.DataGridColumnList;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
-	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.core.supportClasses.Viewport;
 
 		/**
 		 *  The DataGridView class is the visual bead for the org.apache.royale.html.DataGrid.

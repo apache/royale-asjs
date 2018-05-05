@@ -27,7 +27,7 @@ package org.apache.royale.mdl.beads
 
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.core.DataItemRenderer;
     import org.apache.royale.mdl.beads.models.ITabModel;
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
     import org.apache.royale.events.Event;
@@ -72,7 +72,7 @@ package org.apache.royale.mdl.beads
          * @royaleignorecoercion org.apache.royale.core.IList
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+         * @royaleignorecoercion org.apache.royale.core.DataItemRenderer
          * @royaleignorecoercion org.apache.royale.mdl.supportClasses.ITabItemRenderer
          */
         override protected function dataProviderChangeHandler(event:Event):void

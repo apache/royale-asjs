@@ -21,5 +21,6 @@
 
 <componentPackage>
 
-    
+    <component id="HScrollBar" class="org.apache.royale.jewel.supportClasses.HScrollBar"/>
+    <component id="VScrollBar" class="org.apache.royale.jewel.supportClasses.VScrollBar"/>
 </componentPackage>

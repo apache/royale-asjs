@@ -22,7 +22,7 @@ package org.apache.royale.charts.beads.models
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	
-	import org.apache.royale.html.beads.models.ArraySelectionModel;
+	import org.apache.royale.core.beads.models.ArraySelectionModel;
 	
 	import org.apache.royale.charts.core.IChartDataModel;
 	import org.apache.royale.charts.core.IChartSeries;

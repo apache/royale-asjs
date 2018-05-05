@@ -35,7 +35,7 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.events.IEventDispatcher;
 	COMPILE::SWF
 	{
-		import org.apache.royale.html.beads.ITextFieldView;			
+		import org.apache.royale.core.beads.ITextFieldView;			
 	}
 	
 	/**

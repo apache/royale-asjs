@@ -27,16 +27,54 @@ package {
 internal class CoreClasses
 {
 	import org.apache.royale.core.UIBase; UIBase;
+	import org.apache.royale.core.LayoutBase; LayoutBase;
+	import org.apache.royale.core.GroupBase; GroupBase;
+	import org.apache.royale.core.ContainerBase; ContainerBase;
+	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;
+	import org.apache.royale.core.ApplicationBase; ApplicationBase;
+	import org.apache.royale.core.DataContainerBase; DataContainerBase;
+	import org.apache.royale.core.UIItemRendererBase; UIItemRendererBase;
+	import org.apache.royale.core.DataItemRenderer; DataItemRenderer;
+	import org.apache.royale.core.MXMLItemRenderer; MXMLItemRenderer;
+	import org.apache.royale.core.IList; IList;
+	import org.apache.royale.core.IListView; IListView;
+	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
+	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
+	import org.apache.royale.core.beads.IDropDownListView; IDropDownListView;
+
+	import org.apache.royale.core.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
+
+	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
+	import org.apache.royale.events.ItemClickedEvent; ItemClickedEvent;
+	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
+	import org.apache.royale.events.ItemRendererEvent; ItemRendererEvent;
+
+    import org.apache.royale.core.MXMLBeadView; MXMLBeadView;
+    import org.apache.royale.core.beads.GroupView; GroupView;
+	import org.apache.royale.core.beads.views.ContainerView; ContainerView;
+	import org.apache.royale.core.beads.views.DataContainerView; DataContainerView;
+	import org.apache.royale.core.beads.IBackgroundBead; IBackgroundBead;
+	import org.apache.royale.core.beads.IBorderBead; IBorderBead;
+
+	import org.apache.royale.core.supportClasses.DataGroup; DataGroup;
+	import org.apache.royale.core.supportClasses.Viewport; Viewport;
+
+	import org.apache.royale.core.beads.models.ViewportModel; ViewportModel;
+
     import org.apache.royale.core.BeadViewBase; BeadViewBase;
     import org.apache.royale.core.ImageViewBase; ImageViewBase;
     import org.apache.royale.core.BrowserWindow; BrowserWindow;
 	COMPILE::SWF
 	{
+		import org.apache.royale.core.UIButtonBase; UIButtonBase;
+		import org.apache.royale.core.supportClasses.ContainerContentArea; ContainerContentArea;
+		import org.apache.royale.core.CSSTextField; CSSTextField;
+		import org.apache.royale.core.beads.ITextFieldView; ITextFieldView;
+		import org.apache.royale.core.beads.TextFieldViewBase; TextFieldViewBase;
 		// import Promise; Promise;
 		import org.apache.royale.core.ApplicationFactory; ApplicationFactory;
 		import org.apache.royale.core.CSSShape; CSSShape;
 		import org.apache.royale.core.CSSSprite; CSSSprite;
-		import org.apache.royale.core.CSSTextField; CSSTextField;
 	    import org.apache.royale.core.StyleableCSSTextField; StyleableCSSTextField;
 		import org.apache.royale.core.WrappedMovieClip; WrappedMovieClip;
 		import org.apache.royale.core.WrappedShape; WrappedShape;
@@ -114,6 +152,10 @@ internal class CoreClasses
 	import org.apache.royale.core.IViewport; IViewport;
     import org.apache.royale.core.IScrollingViewport; IScrollingViewport;
 	import org.apache.royale.core.IViewportModel; IViewportModel;
+
+	import org.apache.royale.core.IApplicationView; IApplicationView;
+	import org.apache.royale.core.beads.models.ArraySelectionModel; ArraySelectionModel;
+
 	COMPILE::SWF
 	{
 		import org.apache.royale.core.IViewportScroller; IViewportScroller;

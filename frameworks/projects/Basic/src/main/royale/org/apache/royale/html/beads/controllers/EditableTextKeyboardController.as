@@ -24,7 +24,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ITextModel;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.html.beads.ITextFieldView;
+	import org.apache.royale.core.beads.ITextFieldView;
 	
 	/**
 	 *  The EditableTextKeyboardController class bead intercepts keyboard events on the

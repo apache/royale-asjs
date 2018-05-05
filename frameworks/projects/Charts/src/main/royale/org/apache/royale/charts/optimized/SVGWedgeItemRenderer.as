@@ -23,7 +23,7 @@ package org.apache.royale.charts.optimized
 	import org.apache.royale.graphics.IFill;
 	import org.apache.royale.graphics.IStroke;
 	import org.apache.royale.svg.Path;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.core.DataItemRenderer;
 	import org.apache.royale.charts.supportClasses.IWedgeItemRenderer;
 	
 	/**

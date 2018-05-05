@@ -17,10 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses
 {
+    import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.TextInput;
-    
     import org.apache.royale.jewel.supportClasses.ITextInput;
+    import org.apache.royale.core.ITextModel;
     
     COMPILE::JS
     {
@@ -31,6 +31,16 @@ package org.apache.royale.jewel.supportClasses
     }
     
     /**
+     *  Dispatched when the user changes the text.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+	[Event(name="change", type="org.apache.royale.events.Event")]
+
+    /**
      *  The TextInputBase class is the base class for TextInput and TextArea Jewel controls
      *  
      *  @langversion 3.0
@@ -38,7 +48,7 @@ package org.apache.royale.jewel.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */    
-	public class TextInputBase extends TextInput implements ITextInput
+	public class TextInputBase extends UIBase implements ITextInput
 	{
         /**
          *  Constructor.
@@ -51,9 +61,109 @@ package org.apache.royale.jewel.supportClasses
 		public function TextInputBase()
 		{
 			super();
+
+            COMPILE::SWF
+            {
+                model.addEventListener("textChange", textChangeHandler);
+            }
 		}
 
-        
+        /**
+         *  @copy org.apache.royale.html.Label#text
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         *  @royaleignorecoercion HTMLInputElement
+         */
+		[Bindable(event="change")]
+		public function get text():String
+		{
+            COMPILE::SWF
+            {
+                return ITextModel(model).text;
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
+            }
+		}
+
+        /**
+         *  @private
+         *  @royaleignorecoercion HTMLInputElement
+         */
+		public function set text(value:String):void
+		{
+            COMPILE::SWF
+            {
+                inSetter = true;
+                ITextModel(model).text = value;
+                inSetter = false;
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+                dispatchEvent(new Event('textChange'));
+            }
+		}
+
+        /**
+         *  @copy org.apache.royale.html.Label#html
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         *  @royaleignorecoercion HTMLInputElement
+         */
+		[Bindable(event="change")]
+		public function get html():String
+		{
+            COMPILE::SWF
+            {
+                return ITextModel(model).html;
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
+            }
+		}
+
+        /**
+         *  @private
+         *  @royaleignorecoercion HTMLInputElement
+         */
+		public function set html(value:String):void
+		{
+            COMPILE::SWF
+            {
+                ITextModel(model).html = value;
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+                dispatchEvent(new Event('textChange'));
+            }
+		}
+
+        private var inSetter:Boolean;
+
+        /**
+		 *  dispatch change event in response to a textChange event
+		 *
+		 *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+		 */
+		public function textChangeHandler(event:Event):void
+		{
+            if (!inSetter)
+                dispatchEvent(new Event(Event.CHANGE));
+		}
+
         COMPILE::JS
         private var _textNode:Text;
 

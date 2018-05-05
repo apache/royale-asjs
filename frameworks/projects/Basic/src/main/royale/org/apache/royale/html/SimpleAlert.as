@@ -33,8 +33,8 @@ package org.apache.royale.html
 	 *  org.apache.royale.core.IBeadModel: the data model, which includes the message.
 	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the Alert.
 	 *  org.apache.royale.core.IBeadController: the bead responsible for handling input events.
-	 *  org.apache.royale.core.IBorderBead: a bead, if present, that draws a border around the control.
-	 *  org.apache.royale.core.IBackgroundBead: a bead, if present, that creates a solid-color background.
+	 *  org.apache.royale.core.beads.IBorderBead: a bead, if present, that draws a border around the control.
+	 *  org.apache.royale.core.beads.IBackgroundBead: a bead, if present, that creates a solid-color background.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

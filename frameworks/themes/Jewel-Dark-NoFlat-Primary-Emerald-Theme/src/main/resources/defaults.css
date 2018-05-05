@@ -124,18 +124,6 @@ div {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-j|Alert {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
-  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
-  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
-}
-
-@media -royale-swf {
-  j|Alert {
-    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-  }
-}
 .jewel.button {
   cursor: pointer;
   display: inline-block;

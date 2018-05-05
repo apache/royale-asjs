@@ -28,10 +28,11 @@ package org.apache.royale.html.supportClasses
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+    	import org.apache.royale.html.util.addElementToWrapper;
     }
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.ITextItemRenderer;
-    import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.DataItemRenderer; 
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()

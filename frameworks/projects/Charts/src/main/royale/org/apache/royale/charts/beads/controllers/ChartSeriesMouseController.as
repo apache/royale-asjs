@@ -29,7 +29,7 @@ package org.apache.royale.charts.beads.controllers
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IListView;
 
 	import org.apache.royale.events.ItemClickedEvent;
 

@@ -31,7 +31,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
-	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.core.supportClasses.Border;
 
     /**
      *  The TextInputWithBorderView class is the default view for

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.beads.views.DataContainerView;
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.ContainerBase;
 	import org.apache.royale.core.IBead;
@@ -39,9 +40,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.beads.models.ArraySelectionModel;
-	import org.apache.royale.html.supportClasses.Border;
-	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.core.supportClasses.Border;
+	import org.apache.royale.core.supportClasses.DataGroup;
 
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List

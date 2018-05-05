@@ -25,7 +25,7 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.svg.Path;
 	import org.apache.royale.graphics.SolidColor;
 	import org.apache.royale.svg.LinearGradient;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.core.DataItemRenderer;
 	
 	/**
 	 *  The WedgeItemRenderer draws a single slide of a PieSeries. 

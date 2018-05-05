@@ -18,16 +18,16 @@ limitations under the License.
 
 -->
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:js="library://ns.apache.org/royale/basic"
-                 xmlns:j="library://ns.apache.org/royale/jewel"
-                 xmlns:html="library://ns.apache.org/royale/html"
-                 xmlns:local="*">
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:local="*">
 
     <fx:Style source="../../main/resources/styles.css"/>
 
-    <js:valuesImpl>
+    <j:valuesImpl>
         <js:SimpleCSSValuesImpl />
-    </js:valuesImpl>
+    </j:valuesImpl>
 
     <fx:Script>
 		<![CDATA[
@@ -82,15 +82,15 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-    <js:beads>
+    <j:beads>
         <js:ClassAliasBead />
         <js:RemoteObject id="service" result="onResult(event)" fault="onFault(event)"
                          endPoint = "http://localhost:8080/messagebroker/websocket-amf"
                          destination = "exampleService"
                          source = "exampleService"/>
-    </js:beads>
+    </j:beads>
 
-    <js:initialView>
+    <j:initialView>
         <js:View>
             <js:beads>
                 <j:VerticalLayoutWithPaddingAndGap gap="10"/>
@@ -98,46 +98,45 @@ limitations under the License.
 
             <html:H3 text="RemoteObject AMF Test"/>
 
-            <js:Group className="container" width="400">
-                <js:beads>
+            <j:Group className="container" width="400">
+                <j:beads>
                     <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-                </js:beads>
+                </j:beads>
 
-                <js:Group>
-                    <js:beads>
+                <j:Group>
+                    <j:beads>
                         <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
-                    </js:beads>
+                    </j:beads>
                     <j:TextInput id="name_txt">
                         <j:beads>
-                            <js:TextPromptBead prompt="Name to send via AMF"/>
+                            <j:TextPromptBead prompt="Name to send via AMF"/>
                         </j:beads>
                     </j:TextInput>
                     <j:Button text="Send to Name" primary="true"  click="sendName()"/>
-                </js:Group>
+                </j:Group>
 
                 <j:Label id="received" text="Received:"/>
-            </js:Group>
+            </j:Group>
 
-            <js:Group className="container" width="400">
-                <js:beads>
+            <j:Group className="container" width="400">
+                <j:beads>
                     <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-                </js:beads>
+                </j:beads>
                 <j:Button text="Get Array of ValueObjects" emphasized="true" click="getVOs()" width="100%"/>
                 <j:List id="list" labelField="id" width="100%" height="200" 
                             change="reportChange()"/>
                 <j:Label id="received2" text="Selected:"/>
-            </js:Group>
+            </j:Group>
             
-            <js:Group className="container" width="400">
-                <js:beads>
+            <j:Group className="container" width="400">
+                <j:beads>
                     <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-                </js:beads>
+                </j:beads>
                 <j:Button text="Get Some Product" primary="true" click="getSomeProduct()"/>
-                <js:MultilineLabel id="received3" text="Received:"/>
-            </js:Group>
+                <j:MultilineLabel id="received3" text="Received:"/>
+            </j:Group>
 
         </js:View>
-    </js:initialView>
-
+    </j:initialView>
     
 </j:Application>

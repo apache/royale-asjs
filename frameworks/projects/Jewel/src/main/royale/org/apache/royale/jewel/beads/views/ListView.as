@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	import org.apache.royale.core.beads.views.DataContainerView;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.DataContainerView;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List

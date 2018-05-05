@@ -19,7 +19,7 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.html.List;
-	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.core.supportClasses.Viewport;
 	import org.apache.royale.html.beads.layouts.TileLayout;
 	
 	public class DateChooserList extends List

@@ -18,17 +18,129 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.html.CheckBox;
     import org.apache.royale.core.IToggleButtonModel;
     import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.jewel.supportClasses.CheckBoxIcon;
+
+    COMPILE::SWF
+    {
+        import org.apache.royale.events.MouseEvent;
+        import org.apache.royale.core.UIButtonBase;
+        import org.apache.royale.core.IStrand;
+        import org.apache.royale.core.ISelectable;
+    }
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.events.Event;
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.cssclasslist.addStyles;
+        import org.apache.royale.core.UIBase;
     }
+
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+
+    /**
+     *  Dispatched when the user checks or un-checks the CheckBox.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+	[Event(name="change", type="org.apache.royale.events.Event")]
+
+    /**
+     *  The CheckBox class implements the common user interface
+     *  control.  The CheckBox includes its text label.
+     *
+     *  @toplevel
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+    COMPILE::SWF
+	public class CheckBox extends UIButtonBase implements IStrand, ISelectable
+	{
+        /**
+         *  Constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function CheckBox()
+		{
+			super();
+
+			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
+		}
+
+        /**
+         *  The text label for the CheckBox.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get text():String
+		{
+			return IToggleButtonModel(model).text;
+		}
+
+        /**
+         *  @private
+         */
+		public function set text(value:String):void
+		{
+			IToggleButtonModel(model).text = value;
+		}
+
+        [Bindable("change")]
+        /**
+         *  <code>true</code> if the check mark is displayed.
+         *
+         *  @default false
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get selected():Boolean
+		{
+			return IToggleButtonModel(model).selected;
+		}
+
+        /**
+         *  @private
+         */
+		public function set selected(value:Boolean):void
+		{
+			IToggleButtonModel(model).selected = value;
+		}
+
+		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
+		{
+			selected = !selected;
+			dispatchEvent(new Event("change"));
+		}
+	}
+
+    /**
+     *  Dispatched when the user checks or un-checks the CheckBox.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+	[Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The CheckBox class provides a Jewel UI-like appearance for a CheckBox.
@@ -45,8 +157,9 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class CheckBox extends org.apache.royale.html.CheckBox
-	{
+    COMPILE::JS
+    public class CheckBox extends UIBase
+    {
         /**
          *  Constructor.
          *  
@@ -64,12 +177,17 @@ package org.apache.royale.jewel
         }
 
         protected var classSelectorList:ClassSelectorList;
-        
+
         COMPILE::JS
         override protected function setClassName(value:String):void
         {
             classSelectorList.addNames(value);
         }
+
+        private var _label:WrappedHTMLElement;
+		private var _icon:CheckBoxIcon;
+
+		private static var _checkNumber:Number = 0;
         
         COMPILE::JS
         protected var input:HTMLInputElement;
@@ -131,7 +249,7 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
          */
-		override public function get text():String
+		public function get text():String
 		{
             COMPILE::SWF
             {
@@ -146,7 +264,7 @@ package org.apache.royale.jewel
         /**
          *  @private
          */
-        override public function set text(value:String):void
+        public function set text(value:String):void
 		{
             COMPILE::SWF
             {
@@ -210,8 +328,9 @@ package org.apache.royale.jewel
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
+         *  @royaleignorecoercion HTMLInputElement
          */
-		override public function get selected():Boolean
+		public function get selected():Boolean
 		{
             COMPILE::SWF
             {
@@ -224,9 +343,9 @@ package org.apache.royale.jewel
 		}
 
         /**
-         *  @private
+         * @royaleignorecoercion HTMLInputElement
          */
-        override public function set selected(value:Boolean):void
+        public function set selected(value:Boolean):void
         {
             COMPILE::SWF
             {

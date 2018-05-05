@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
+	import org.apache.royale.core.beads.models.ArraySelectionModel;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.events.Event;
 
 	/**
-	 *  The DataGridModel class bead extends org.apache.royale.html.beads.models.ArraySelectionModel
+	 *  The DataGridModel class bead extends org.apache.royale.core.beads.models.ArraySelectionModel
 	 *  to facilitate using an Array as the dataProvider for the DataGrid.
 	 *
 	 *  @langversion 3.0

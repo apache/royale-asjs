@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.beads.GroupView;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
@@ -30,7 +31,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Container;
+	import org.apache.royale.core.Container;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.Tree;
@@ -43,7 +44,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
-	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.core.supportClasses.Viewport;
 	
 	/**
 	 * The TreeGridView class is responsible for creating the sub-components of the TreeGrid:

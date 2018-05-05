@@ -28,7 +28,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.html.beads.ISliderView;
+	import org.apache.royale.jewel.beads.controls.slider.ISliderView;
     import org.apache.royale.jewel.beads.views.SliderView;
     import org.apache.royale.jewel.Slider;
 

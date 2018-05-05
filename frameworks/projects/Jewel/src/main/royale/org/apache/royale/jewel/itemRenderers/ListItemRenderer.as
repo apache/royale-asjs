@@ -18,15 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
+	import org.apache.royale.core.MXMLItemRenderer;
+
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.cssclasslist.toggleStyle;
     }
-
-	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
-    
+	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
 	 *

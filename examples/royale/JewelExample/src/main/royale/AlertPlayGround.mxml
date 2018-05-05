@@ -17,11 +17,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		  xmlns:js="library://ns.apache.org/royale/basic"
-		  xmlns:html="library://ns.apache.org/royale/html"
-		  xmlns:j="library://ns.apache.org/royale/jewel"
-		  className="container" width="350">
+<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:html="library://ns.apache.org/royale/html"
+		 xmlns:j="library://ns.apache.org/royale/jewel"
+		 className="container" width="350">
     
 	<fx:Script>
 		<![CDATA[
@@ -47,17 +46,17 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<js:beads>
+	<!-- <j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</js:beads>
+	</j:beads> -->
 	
 	<html:H3 text="Jewel Alert"/>
 	
-    <js:MultilineLabel text="Click the button below to display a simple Alert window"/>
+    <j:MultilineLabel text="Click the button below to display a simple Alert window"/>
 	<j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
 
-    <js:MultilineLabel text="Click the button below to display an Alert window and capture the button pressed by the user."/>
+    <j:MultilineLabel text="Click the button below to display an Alert window and capture the button pressed by the user."/>
 	<j:Button text="Click Me" click="clickHandler(event)"/>
     <j:Label id="status"/>
 	
-</js:Group>
+</j:Group>

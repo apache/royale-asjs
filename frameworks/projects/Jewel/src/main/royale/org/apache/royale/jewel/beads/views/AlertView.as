@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+    import org.apache.royale.core.beads.GroupView;
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
@@ -30,20 +31,20 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
-    import org.apache.royale.html.Group;
-    import org.apache.royale.html.beads.GroupView;
+    import org.apache.royale.jewel.Group;
     import org.apache.royale.jewel.Alert;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Button;
     import org.apache.royale.jewel.TitleBar;
     import org.apache.royale.jewel.ControlBar;
-	import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween;
 	import org.apache.royale.jewel.beads.views.AlertTitleBarView;
+	
+	import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween;
 	
     COMPILE::SWF
 	{
-        import org.apache.royale.html.beads.IBackgroundBead;
-        import org.apache.royale.html.beads.IBorderBead;
+        import org.apache.royale.core.beads.IBackgroundBead;
+        import org.apache.royale.core.beads.IBorderBead;
         import org.apache.royale.core.IMeasurementBead;
         import org.apache.royale.core.ValuesManager;
         import org.apache.royale.utils.loadBeadFromValuesManager;

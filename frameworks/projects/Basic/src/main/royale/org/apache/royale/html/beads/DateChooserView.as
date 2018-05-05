@@ -28,11 +28,11 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Container;
+	import org.apache.royale.core.Container;
 	import org.apache.royale.html.Group;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.TextButton;
-	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.core.beads.GroupView;
 	import org.apache.royale.html.beads.layouts.HorizontalLayout;
 	import org.apache.royale.html.beads.layouts.TileLayout;
 	import org.apache.royale.html.beads.models.DateChooserModel;

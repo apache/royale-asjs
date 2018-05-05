@@ -38,6 +38,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.SolidBorderUtil;
 	import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.core.beads.IDropDownListView;
     
     /**
      *  The DropDownListView class is the default view for

@@ -24,7 +24,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
-	import org.apache.royale.html.supportClasses.UIItemRendererBase;
+	import org.apache.royale.core.UIItemRendererBase;
 
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the button

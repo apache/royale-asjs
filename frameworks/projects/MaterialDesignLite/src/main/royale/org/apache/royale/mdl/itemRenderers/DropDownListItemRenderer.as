@@ -19,7 +19,7 @@
 package org.apache.royale.mdl.itemRenderers
 {
     import org.apache.royale.html.elements.Option;
-    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
+    import org.apache.royale.core.MXMLItemRenderer;
 
     COMPILE::JS
     {

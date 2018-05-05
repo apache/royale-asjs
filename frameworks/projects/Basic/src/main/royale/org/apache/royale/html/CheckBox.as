@@ -47,7 +47,7 @@ package org.apache.royale.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -59,7 +59,7 @@ package org.apache.royale.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
     COMPILE::SWF
 	public class CheckBox extends UIButtonBase implements IStrand, ISelectable
@@ -70,7 +70,7 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function CheckBox()
 		{
@@ -85,7 +85,7 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function get text():String
 		{
@@ -108,7 +108,7 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function get selected():Boolean
 		{
@@ -136,7 +136,7 @@ package org.apache.royale.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
 

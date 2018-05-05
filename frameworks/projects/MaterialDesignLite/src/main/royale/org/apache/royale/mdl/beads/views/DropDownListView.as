@@ -22,7 +22,7 @@ package org.apache.royale.mdl.beads.views
     import org.apache.royale.core.IStrand;
     import org.apache.royale.html.elements.Option;
     import org.apache.royale.html.elements.Select;
-    import org.apache.royale.html.beads.DataContainerView;
+    import org.apache.royale.core.beads.views.DataContainerView;
     import org.apache.royale.mdl.DropDownList;
     import org.apache.royale.events.Event;
 

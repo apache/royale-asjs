@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.html.Group;
+    import org.apache.royale.jewel.Group;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IChrome;
 	import org.apache.royale.core.ValuesManager;

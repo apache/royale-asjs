@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		  xmlns:js="library://ns.apache.org/royale/basic"
 		  xmlns:html="library://ns.apache.org/royale/html"
 		  xmlns:j="library://ns.apache.org/royale/jewel"
@@ -40,20 +40,19 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<js:beads>
-		<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+	<j:beads>
+		<!-- <j:HorizontalLayoutWithPaddingAndGap gap="10"/> -->
 		<js:ViewDataBinding />
-	</js:beads>
+	</j:beads>
 	
 	<html:H3 text="Jewel DropDownList"/>
 	
 	<j:DropDownList dataProvider="{strings}"/>
-		
 
 	<!-- <j:DropDownList change="changeHandler(event)">
 		<j:dataProvider>
-			<js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
+			<j:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
 		</j:dataProvider>
 	</j:DropDownList> -->
 	
-</js:Group>
+</j:Group>

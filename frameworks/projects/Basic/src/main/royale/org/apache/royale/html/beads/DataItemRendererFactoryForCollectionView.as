@@ -36,8 +36,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.supportClasses.StringItemRenderer;
-	import org.apache.royale.html.supportClasses.UIItemRendererBase;
+	import org.apache.royale.core.UIItemRendererBase;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IListView;
 
 	
 	/**

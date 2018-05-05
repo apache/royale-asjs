@@ -34,7 +34,7 @@ package simple
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
-	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IListView;
 
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 

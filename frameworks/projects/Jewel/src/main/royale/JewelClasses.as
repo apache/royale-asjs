@@ -28,14 +28,23 @@ package
     internal class JewelClasses
     {
         import org.apache.royale.jewel.beads.models.SliderRangeModel; SliderRangeModel;
+        import org.apache.royale.jewel.beads.models.AlertModel; AlertModel;
+        import org.apache.royale.jewel.beads.models.TitleBarModel; TitleBarModel;
+        import org.apache.royale.jewel.beads.models.TextModel; TextModel;
+        import org.apache.royale.jewel.beads.models.RangeModel; RangeModel;
+
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
+        import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
         
         import org.apache.royale.jewel.beads.views.SliderView; SliderView;
         import org.apache.royale.jewel.beads.views.AlertView; AlertView;
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
         import org.apache.royale.jewel.beads.views.AlertTitleBarView; AlertTitleBarView;
         import org.apache.royale.jewel.beads.views.ListView; ListView;
+
+        import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
+        import org.apache.royale.jewel.supportClasses.ScrollingViewport; ScrollingViewport;
         
         COMPILE::SWF
 	    {
@@ -48,6 +57,7 @@ package
 		    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
 
             import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
+            import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
         }
 
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;

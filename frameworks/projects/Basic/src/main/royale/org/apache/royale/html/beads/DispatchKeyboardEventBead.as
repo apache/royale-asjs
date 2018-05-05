@@ -35,7 +35,7 @@ package org.apache.royale.html.beads
 	COMPILE::SWF
 	{
 		import flash.events.KeyboardEvent;
-		import org.apache.royale.html.beads.ITextFieldView;
+		import org.apache.royale.core.beads.ITextFieldView;
 	}
 	
 	/**

@@ -30,7 +30,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.events.utils.MouseUtils;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.accessories.ToolTipBead;
-	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IListView;
 	import org.apache.royale.utils.PointUtils;
 	
 	/**

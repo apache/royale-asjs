@@ -22,8 +22,10 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.royale.jewel.Application"/>
+    <component id="Group" class="org.apache.royale.jewel.Group"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
+    <component id="MultilineLabel" class="org.apache.royale.jewel.MultilineLabel"/>
     <component id="TextInput" class="org.apache.royale.jewel.TextInput"/>
     <component id="Slider" class="org.apache.royale.jewel.Slider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>
@@ -34,7 +36,10 @@
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     
+    <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.DropDownListList"/>
+    
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
+    <component id="TextPromptBead" class="org.apache.royale.jewel.beads.controls.textinput.TextPromptBead"/>
 
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
@@ -43,6 +48,10 @@
     <component id="HorizontalLayoutSpaceBetween" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween"/>
     
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
+
+    <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.ScrollingViewport" />
+
+    <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.DataItemRendererFactoryForCollectionView" />
 
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     

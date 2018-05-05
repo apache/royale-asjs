@@ -23,9 +23,26 @@
 
 @media -royale-swf	
     j|DropDownList
-        IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel")
+        IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel")
         IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView")
-        IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DropDownListController")
-        IPopUp: ClassReference("org.apache.royale.html.supportClasses.DropDownListList")
+        IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController")
+        IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.DropDownListList")
+        // font-size: 11px
+        // font-family: Arial
+
+    j|DropDownListList
+        IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel")
+        //--- IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData")
+        IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+        //--- IItemRenderer: ClassReference("org.apache.royale.core.supportClasses.StringItemRenderer")
+        //--- iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
+        //--- iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead')
+        //--- iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel')
+        
+        // border-style: solid
+        // border-radius: 4px
+        // border-color: #333333
+        // border-width: 1px
+        // background-color: #FFFFFF
         // font-size: 11px
         // font-family: Arial

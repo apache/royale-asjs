@@ -17,15 +17,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		  xmlns:js="library://ns.apache.org/royale/basic"
+<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		  xmlns:html="library://ns.apache.org/royale/html"
 		  xmlns:j="library://ns.apache.org/royale/jewel"
           className="container" width="350">
     
-	<js:beads>
+	<!-- <j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</js:beads>
+	</j:beads> -->
 	
     <html:H3 text="Headings and text"/>
 
@@ -36,6 +35,6 @@ limitations under the License.
 
 	<html:Span text="Some span text."/>
 	
-    <js:MultilineLabel text="Normal text used in a div, texts and fields with single line or multiple lines."/>
+    <j:MultilineLabel text="Normal text used in a div, texts and fields with single line or multiple lines."/>
 
-</js:Group>
+</j:Group>

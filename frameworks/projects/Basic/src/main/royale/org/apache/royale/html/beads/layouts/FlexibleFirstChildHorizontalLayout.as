@@ -36,7 +36,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
-    import org.apache.royale.html.supportClasses.Viewport;
+    import org.apache.royale.core.supportClasses.Viewport;
 	import org.apache.royale.utils.CSSUtils;
 
     /**

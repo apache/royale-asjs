@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.beads.models
 {
-    import org.apache.royale.html.beads.models.ArraySelectionModel;
+    import org.apache.royale.core.beads.models.ArraySelectionModel;
 
     /**
      *  The TabArrayModel class defines the data associated with an org.apache.royale.mdl.Tabs

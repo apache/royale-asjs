@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.core.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.ScrollBar;
 
     /**

@@ -26,7 +26,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.beads.models.ArraySelectionModel;
+	import org.apache.royale.core.beads.models.ArraySelectionModel;
 	
 	/**
 	 *  The HorizontalLinearAxisBead class provides a horizontal axis that uses a numeric

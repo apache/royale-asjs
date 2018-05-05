@@ -50,5 +50,18 @@
     
     <component id="StyleChangeNotifier" class="org.apache.royale.core.StyleChangeNotifier"/>
     
+    <component id="DataItemRenderer" class="org.apache.royale.core.DataItemRenderer"/>
+    <component id="MXMLItemRenderer" class="org.apache.royale.core.MXMLItemRenderer"/>
+
+    <component id="MXMLBeadView" class="org.apache.royale.core.MXMLBeadView"/>
+    <component id="LayoutChangeNotifier" class="org.apache.royale.core.beads.layouts.LayoutChangeNotifier"/>
+
+    <component id="Container" class="org.apache.royale.core.Container"/>
+    <component id="Viewport" class="org.apache.royale.core.supportClasses.Viewport" />
+    <component id="Border" class="org.apache.royale.core.supportClasses.Border"/>
+
+    <component id="ArraySelectionModel" class="org.apache.royale.core.beads.models.ArraySelectionModel" />
+    <component id="View" class="org.apache.royale.core.View"/>
+    
     <component id="State" class="org.apache.royale.states.State"/>
 </componentPackage>

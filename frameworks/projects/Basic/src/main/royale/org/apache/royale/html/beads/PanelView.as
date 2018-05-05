@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.beads.GroupView;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutChild;
@@ -36,7 +37,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.geom.Size;
 	import org.apache.royale.html.Group;
-	import org.apache.royale.html.Container;
+	import org.apache.royale.core.Container;
 	import org.apache.royale.html.Panel;
 	import org.apache.royale.html.TitleBar;
 	import org.apache.royale.utils.CSSUtils;

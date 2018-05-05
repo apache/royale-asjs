@@ -26,16 +26,16 @@
 
 	<fx:Style source="../../main/resources/jewel-example-styles.css"/>
 	
-	<js:valuesImpl>
+	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
-	</js:valuesImpl>
-	<js:initialView>
+	</j:valuesImpl>
+	<j:initialView>
 		<js:View>
-			<js:beads>
+			<!-- <j:beads>
 				<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-			</js:beads>
+			</j:beads> -->
 			<html:H1 text="Apache Royale Jewel UI Set Theme Showcase"/>
 			<local:MainContent/>
         </js:View>
-	</js:initialView>
+	</j:initialView>
 </j:Application>

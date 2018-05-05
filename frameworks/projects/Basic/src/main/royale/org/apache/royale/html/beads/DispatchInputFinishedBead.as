@@ -36,7 +36,7 @@ package org.apache.royale.html.beads
 		{
 			import flash.events.FocusEvent;
 			import flash.events.KeyboardEvent;
-			import org.apache.royale.html.beads.ITextFieldView;
+			import org.apache.royale.core.beads.ITextFieldView;
 			import org.apache.royale.events.utils.WhitespaceKeys;
 		}
 		

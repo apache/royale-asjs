@@ -22,6 +22,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.svg.Rect;
+	import org.apache.royale.core.DataItemRenderer;
 
 	/**
 	 * The CascadingMenuItemRenderer is the itemRenderer class for the elements of a CascadingMenu.

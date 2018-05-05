@@ -17,52 +17,49 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		  xmlns:js="library://ns.apache.org/royale/basic"
-		  xmlns:html="library://ns.apache.org/royale/html"
-		  xmlns:j="library://ns.apache.org/royale/jewel"
-		  className="container">
+<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:html="library://ns.apache.org/royale/html"
+		 xmlns:j="library://ns.apache.org/royale/jewel"
+		 className="container">
     
-	<js:beads>
+	<!-- <j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</js:beads>
+	</j:beads> -->
 	
 	<html:H3 text="Jewel TextInput"/>
 
-	<js:Group>
-		<js:beads>
+	<j:Group>
+		<!-- <j:beads>
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
-		</js:beads>
+		</j:beads> -->
 		<j:Button text="Check it!" primary="true"/>
 		<j:TextInput text="A TextInput"/>
-	</js:Group>
+	</j:Group>
 
-	<js:Group>
-		<js:beads>
+	<j:Group>
+		<!-- <j:beads>
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
-		</js:beads>
+		</j:beads> -->
 		<j:TextInput>
 			<j:beads>
-				<js:TextPromptBead prompt="With prompt..."/>
+				<j:TextPromptBead prompt="With prompt..."/>
 			</j:beads>
 		</j:TextInput>
 		<j:Button text="Send" primary="true"/>
-	</js:Group>
+	</j:Group>
 
 	<j:TextInput text="Disabled with text...">
 		<j:beads>
-			<js:TextPromptBead prompt="Disabled TextInput..."/>
+			<j:TextPromptBead prompt="Disabled TextInput..."/>
 			<j:Disabled/>
 		</j:beads>
 	</j:TextInput>
 
 	<j:TextInput>
 		<j:beads>
-			<js:TextPromptBead prompt="Disabled with prompt..."/>
+			<j:TextPromptBead prompt="Disabled with prompt..."/>
 			<j:Disabled/>
 		</j:beads>
 	</j:TextInput>
 
-	
-
-</js:Group>
+</j:Group>

@@ -87,20 +87,13 @@
 }
 
 j|Alert {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
 }
 
 @media -royale-swf {
-  j|Alert {
-    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-  }
-}
-@media -royale-swf {
   j|CheckBox {
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.CheckBoxView");
   }
 }
@@ -111,27 +104,30 @@ j|Alert {
 }
 
 j|ControlBar {
-  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+  IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
 }
 
 @media -royale-swf {
   j|ControlBar {
     IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
-    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
   }
 }
 @media -royale-swf {
   j|DropDownList {
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
-    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DropDownListController");
-    IPopUp: ClassReference("org.apache.royale.html.supportClasses.DropDownListList");
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
+    IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.DropDownListList");
+  }
+
+  j|DropDownListList {
+    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   }
 }
 j|ListItemRenderer {
-  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+  IBeadController: ClassReference("org.apache.royale.core.beads.controllers.ItemRendererMouseController");
 }
 
 .jewel.label {
@@ -139,32 +135,28 @@ j|ListItemRenderer {
 }
 
 j|Label {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
 
 j|List {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
-  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
-  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.DataItemRendererFactoryForCollectionView");
 }
 
 @media -royale-swf {
   j|List {
-    iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-    iBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-    iBorderModel: ClassReference("org.apache.royale.html.beads.models.SingleLineBorderModel");
-    IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+    IContentView: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
   }
 }
 @media -royale-swf {
   j|RadioButton {
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.RadioButtonView");
   }
 }
@@ -181,7 +173,7 @@ j|Slider {
   }
 }
 j|TextInput {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
 
 .jewel.titlebar {
@@ -191,16 +183,9 @@ j|TextInput {
 }
 
 j|TitleBar {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TitleBarModel");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TitleBarView");
-}
-
-@media -royale-swf {
-  j|TitleBar {
-    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-  }
 }
 
 /*# sourceMappingURL=defaults.css.map */

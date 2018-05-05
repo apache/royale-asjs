@@ -77,8 +77,7 @@ internal class BasicClasses
 		import org.apache.royale.html.beads.CheckBoxView; CheckBoxView;
 	}
     import org.apache.royale.html.beads.ComboBoxView; ComboBoxView;
-    import org.apache.royale.html.beads.ContainerView; ContainerView;
-	import org.apache.royale.html.beads.GroupView; GroupView;
+	
 	COMPILE::SWF
 	{
 	    import org.apache.royale.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
@@ -129,7 +128,6 @@ internal class BasicClasses
 	    import org.apache.royale.html.beads.TextInputWithBorderView; TextInputWithBorderView;
 	}
 	import org.apache.royale.html.beads.models.AlertModel; AlertModel;
-	import org.apache.royale.html.beads.models.ArraySelectionModel; ArraySelectionModel;
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
 	import org.apache.royale.html.beads.models.TreeModel; TreeModel;
@@ -155,7 +153,6 @@ internal class BasicClasses
 	{
 		import org.apache.royale.html.beads.models.ValueToggleButtonModel; ValueToggleButtonModel;
 	}
-	import org.apache.royale.html.beads.models.ViewportModel; ViewportModel;
 	COMPILE::SWF
 	{
     	import org.apache.royale.html.beads.controllers.DropDownListController; DropDownListController;
@@ -163,7 +160,6 @@ internal class BasicClasses
 	}
     import org.apache.royale.html.beads.controllers.ComboBoxController; ComboBoxController;
     import org.apache.royale.html.beads.controllers.AccordionItemRendererMouseController; AccordionItemRendererMouseController;
-    import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
@@ -191,7 +187,6 @@ internal class BasicClasses
 	{
 		import org.apache.royale.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
     	import org.apache.royale.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
-		import org.apache.royale.html.supportClasses.ContainerContentArea; ContainerContentArea;
 	}
 	import org.apache.royale.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.royale.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
@@ -199,9 +194,6 @@ internal class BasicClasses
     import org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData; DynamicItemsRendererFactoryForArrayListData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
-	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView; DataItemRendererFactoryForCollectionView;
-	import org.apache.royale.html.supportClasses.DataGroup; DataGroup;
-	import org.apache.royale.html.supportClasses.Viewport; Viewport;
 	import org.apache.royale.html.supportClasses.ScrollingViewport; ScrollingViewport;
 	import org.apache.royale.html.supportClasses.TextButtonItemRenderer; TextButtonItemRenderer;
 
@@ -264,7 +256,6 @@ internal class BasicClasses
 	import org.apache.royale.svg.CompoundGraphic; CompoundGraphic;
 
     import org.apache.royale.html.beads.models.DataProviderModel; DataProviderModel;
-	import org.apache.royale.html.beads.DataContainerView; DataContainerView;
 
 	COMPILE::SWF
 	{
