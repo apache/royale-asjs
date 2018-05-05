@@ -22,10 +22,10 @@ limitations under the License.
 		 xmlns:j="library://ns.apache.org/royale/jewel"
          className="container">
     
-	<!-- <j:beads>
+	<j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 	</j:beads>
-	 -->
+	
 	<html:H3 text="Jewel RadioButton"/>
 
 	<j:RadioButton text="RadioButton 1" groupName="radios" value="Test 1"/>

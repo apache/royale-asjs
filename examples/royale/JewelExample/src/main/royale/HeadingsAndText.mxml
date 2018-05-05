@@ -22,9 +22,9 @@ limitations under the License.
 		  xmlns:j="library://ns.apache.org/royale/jewel"
           className="container" width="350">
     
-	<!-- <j:beads>
+	<j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</j:beads> -->
+	</j:beads>
 	
     <html:H3 text="Headings and text"/>
 

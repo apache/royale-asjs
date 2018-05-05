@@ -19,42 +19,43 @@ limitations under the License.
 -->
 <j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:j="library://ns.apache.org/royale/jewel"
+         xmlns:js="library://ns.apache.org/royale/basic"
          xmlns:local="*">
     
     <j:beads>
-        <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+        <js:HorizontalLayoutWithPaddingAndGap gap="10"/>
     </j:beads>
 
     <j:Group>
-        <!-- <j:beads>
+        <j:beads>
             <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-        </j:beads> -->
+        </j:beads>
         <local:LabelPlayGround/>
         <local:ButtonPlayGround/>
         <local:DropDownListPlayGround/>
     </j:Group>
 
      <j:Group>
-        <!-- <j:beads>
+        <j:beads>
             <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-        </j:beads> -->
+        </j:beads>
         <local:TextInputPlayGround/>
         <local:CheckBoxPlayGround/>
         <local:RadioButtonPlayGround/>
     </j:Group>
 
     <j:Group>
-        <!-- <j:beads>
+        <j:beads>
             <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-        </j:beads> -->
+        </j:beads>
         <local:SliderPlayGround/>
         <local:ListPlayGround/>
     </j:Group>
     
     <j:Group>
-        <!-- <j:beads>
+        <j:beads>
             <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-        </j:beads> -->
+        </j:beads>
         <local:AlertPlayGround/>
         <local:HeadingsAndText/>
     </j:Group>

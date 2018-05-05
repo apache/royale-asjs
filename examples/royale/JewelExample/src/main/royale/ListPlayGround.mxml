@@ -40,9 +40,9 @@ limitations under the License.
         <models:ListsModel/>
 	</j:model>
 
-	<!-- <j:beads>
+	<j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</j:beads> -->
+	</j:beads>
 	
 	<html:H3 text="Jewel List"/>
 	

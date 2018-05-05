@@ -22,24 +22,24 @@ limitations under the License.
 		 xmlns:j="library://ns.apache.org/royale/jewel"
 		 className="container">
     
-	<!-- <j:beads>
+	<j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</j:beads> -->
+	</j:beads>
 	
 	<html:H3 text="Jewel TextInput"/>
 
 	<j:Group>
-		<!-- <j:beads>
+		<j:beads>
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
-		</j:beads> -->
+		</j:beads>
 		<j:Button text="Check it!" primary="true"/>
 		<j:TextInput text="A TextInput"/>
 	</j:Group>
 
 	<j:Group>
-		<!-- <j:beads>
+		<j:beads>
 			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
-		</j:beads> -->
+		</j:beads>
 		<j:TextInput>
 			<j:beads>
 				<j:TextPromptBead prompt="With prompt..."/>

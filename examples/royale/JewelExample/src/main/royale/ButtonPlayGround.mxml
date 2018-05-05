@@ -30,9 +30,9 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<!-- <j:beads>
+	<j:beads>
 		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</j:beads> -->
+	</j:beads>
 	
 	<html:H3 text="Jewel Button"/>
 	
