@@ -22,10 +22,12 @@ package org.apache.royale.mdl
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.Group;
     import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.core.IParent;
 
-    COMPILE::JS
+	COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.mdl.utils.getMdlContainerParent;
     }
 
 	/**
@@ -139,6 +141,15 @@ package org.apache.royale.mdl
         override protected function setClassName(value:String):void
         {
             classSelectorList.addNames(value);
+        }
+
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        COMPILE::JS
+        override public function get parent():IParent
+        {
+			return getMdlContainerParent(this.positioner);
         }
 	}
 }
