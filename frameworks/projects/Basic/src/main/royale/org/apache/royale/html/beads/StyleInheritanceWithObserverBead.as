@@ -60,7 +60,7 @@ package org.apache.royale.html.beads
 			super.strand = value;
 			COMPILE::JS {
 				var observer:MutationObserver = new MutationObserver(mutationDetected);
-				observer.observe(hostElement, {childList: true, subtree: true});
+				observer.observe(hostElement, {'childList': true, 'subtree': true});
 			}
 		}
 		
