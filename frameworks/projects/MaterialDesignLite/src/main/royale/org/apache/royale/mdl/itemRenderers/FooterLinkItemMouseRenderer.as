@@ -20,7 +20,7 @@ package org.apache.royale.mdl.itemRenderers
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.beads.controllers.ItemRendererMouseController;
+        import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
         import org.apache.royale.core.WrappedHTMLElement;
     }
 

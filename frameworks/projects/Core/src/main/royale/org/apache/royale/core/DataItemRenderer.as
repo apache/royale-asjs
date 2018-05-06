@@ -26,7 +26,7 @@ package org.apache.royale.core
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-		import org.apache.royale.core.beads.controllers.ItemRendererMouseController;
+		import org.apache.royale.core.IBeadController;
 	}
 	import org.apache.royale.core.ValuesManager;
 
@@ -112,9 +112,11 @@ package org.apache.royale.core
 			_dataField = value;
 		}
 
+		/**
+		 * This should be an implementation like ItemRendererMouseController
+		 */
 		COMPILE::JS
-        protected var controller:ItemRendererMouseController;
-
+        protected var controller:IBeadController;
 
 		/**
 		 * @private
@@ -150,8 +152,8 @@ package org.apache.royale.core
 		{
 			addElementToWrapper(this,'div');
 			className = 'DataItemRenderer';
-			controller = new ItemRendererMouseController();
-			controller.strand = this;
+			//controller = new ItemRendererMouseController();
+			//controller.strand = this;
 
 			return element;
 		}

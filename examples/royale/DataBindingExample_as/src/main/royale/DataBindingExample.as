@@ -28,7 +28,7 @@ import org.apache.royale.core.beads.GroupView;
 import org.apache.royale.html.beads.DataItemRendererFactoryForArrayData;
 import org.apache.royale.html.beads.ListView;
 import org.apache.royale.html.beads.TextItemRendererFactoryForArrayData;
-import org.apache.royale.core.beads.controllers.ItemRendererMouseController;
+import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
 import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
 import org.apache.royale.html.beads.layouts.BasicLayout;
 import org.apache.royale.html.beads.layouts.VerticalLayout;

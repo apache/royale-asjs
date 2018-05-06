@@ -68,7 +68,7 @@ package
         import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween; HorizontalLayoutSpaceBetween;
         
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
-
+        import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     }
 
 }

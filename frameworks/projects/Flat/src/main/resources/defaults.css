@@ -464,7 +464,7 @@ SimpleList
 
 StringItemRenderer
 {
-    IBeadController: ClassReference("org.apache.royale.core.beads.controllers.ItemRendererMouseController");
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
     height: 16;
 }
 
@@ -833,7 +833,7 @@ TextButton
 
 TextFieldItemRenderer
 {
-    IBeadController: ClassReference("org.apache.royale.core.beads.controllers.ItemRendererMouseController");
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
     height: 16;
 }
 

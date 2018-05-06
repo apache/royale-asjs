@@ -43,8 +43,6 @@ internal class CoreClasses
 	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.core.beads.IDropDownListView; IDropDownListView;
 
-	import org.apache.royale.core.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
-
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
 	import org.apache.royale.events.ItemClickedEvent; ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;

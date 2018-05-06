@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.beads.controllers
+package org.apache.royale.jewel.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.ISelectableItemRenderer;

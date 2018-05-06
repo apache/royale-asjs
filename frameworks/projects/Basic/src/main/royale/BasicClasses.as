@@ -50,7 +50,8 @@ internal class BasicClasses
 	import org.apache.royale.html.supportClasses.VDividedContainerGripper; VDividedContainerGripper;
 	import org.apache.royale.html.beads.controllers.HDividedContainerMouseController; HDividedContainerMouseController;
 	import org.apache.royale.html.beads.controllers.VDividedContainerMouseController; VDividedContainerMouseController;
-	
+	import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
+
 	import org.apache.royale.html.MenuBar; MenuBar;
 	import org.apache.royale.html.beads.models.MenuBarModel; MenuBarModel;
 	import org.apache.royale.html.supportClasses.MenuBarItemRenderer; MenuBarItemRenderer;
