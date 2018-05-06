@@ -35,7 +35,6 @@ package org.apache.royale.core.beads.views
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Size;
-	import org.apache.royale.core.Container;
 	import org.apache.royale.core.beads.models.ViewportModel;
 	import org.apache.royale.core.supportClasses.Border;
 	import org.apache.royale.core.supportClasses.Viewport;
