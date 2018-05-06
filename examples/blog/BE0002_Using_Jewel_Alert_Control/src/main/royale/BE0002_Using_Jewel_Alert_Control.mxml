@@ -26,7 +26,6 @@
         <![CDATA[
             import org.apache.royale.jewel.Alert;
             import org.apache.royale.events.CloseEvent;
-            import org.apache.royale.events.MouseEvent;
 
            // Event handler function uses a static method to show
            // a pop-up window with the title, message, and requested buttons.        
