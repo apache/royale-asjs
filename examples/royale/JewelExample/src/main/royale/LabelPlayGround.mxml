@@ -18,8 +18,8 @@ limitations under the License.
 
 -->
 <j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:html="library://ns.apache.org/royale/html"
 		 xmlns:j="library://ns.apache.org/royale/jewel"
+		 xmlns:html="library://ns.apache.org/royale/html"
 		 className="container">
     
 	<fx:Script>

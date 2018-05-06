@@ -18,9 +18,9 @@ limitations under the License.
 
 -->
 <j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:j="library://ns.apache.org/royale/jewel"
 		 xmlns:js="library://ns.apache.org/royale/basic"
 		 xmlns:html="library://ns.apache.org/royale/html"
-		 xmlns:j="library://ns.apache.org/royale/jewel"
          xmlns:models="models.*"
 		 className="container" width="350">
     
@@ -32,7 +32,17 @@ limitations under the License.
                 selected.text = "Selected: " + list.selectedItem;
             }
 
-            public var simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons"]);
+            private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons"]);
+
+			public function get simple():ArrayList
+			{
+				return _simple
+			}
+
+			public function set simple(value:ArrayList):void
+			{
+				_simple = value;
+			}
 		]]>
 	</fx:Script>
 
