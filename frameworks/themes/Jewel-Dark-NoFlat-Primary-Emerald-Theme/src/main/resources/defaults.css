@@ -16,14 +16,14 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-.royale *, .royale *:before, .royale *:after {
-  box-sizing: border-box;
-}
-
 j|Application {
   background: black;
   font-family: "Lato", sans-serif;
   color: #FFFFFF;
+}
+
+j|Application *, .royale *, .royale *:before, .royale *:after {
+  box-sizing: border-box;
 }
 
 h1 {
@@ -86,7 +86,7 @@ div {
   font-size: 1.9em;
   font-weight: bold;
 }
-.jewel.alert .Group {
+.jewel.alert .content {
   position: absolute;
   padding: 20px;
   top: 50px;
@@ -94,7 +94,7 @@ div {
   width: 100%;
   overflow-y: auto;
 }
-.jewel.alert .Group .jewel.label {
+.jewel.alert .content .jewel.label {
   white-space: normal;
   color: #FFFFFF;
   font-size: 1.1em;
