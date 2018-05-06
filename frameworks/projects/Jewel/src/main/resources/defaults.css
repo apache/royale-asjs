@@ -45,12 +45,6 @@ j|View {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
 }
 
-@media -royale-swf {
-  j|View {
-    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-  }
-}
 .jewel.alert {
   display: block;
   position: fixed;

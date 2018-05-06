@@ -16,14 +16,14 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-.royale *, .royale *:before, .royale *:after {
-  box-sizing: border-box;
-}
-
 j|Application {
   background: white;
   font-family: "Lato", sans-serif;
   color: #808080;
+}
+
+j|Application *, .royale *, .royale *:before, .royale *:after {
+  box-sizing: border-box;
 }
 
 h1 {
