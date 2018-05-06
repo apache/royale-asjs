@@ -91,7 +91,7 @@ limitations under the License.
     </j:beads>
 
     <j:initialView>
-        <js:View>
+        <j:View>
             <js:beads>
                 <j:VerticalLayoutWithPaddingAndGap gap="10"/>
             </js:beads>
@@ -136,7 +136,7 @@ limitations under the License.
                 <j:MultilineLabel id="received3" text="Received:"/>
             </j:Group>
 
-        </js:View>
+        </j:View>
     </j:initialView>
     
 </j:Application>

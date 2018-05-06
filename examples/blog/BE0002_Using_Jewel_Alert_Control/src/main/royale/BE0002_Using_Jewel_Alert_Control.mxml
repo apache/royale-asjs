@@ -18,8 +18,7 @@
 
 -->
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-               xmlns:j="library://ns.apache.org/royale/jewel"
-               xmlns:js="library://ns.apache.org/royale/basic">
+               xmlns:j="library://ns.apache.org/royale/jewel">
     
     <fx:Style source="../../main/resources/styles.css"/>
 
@@ -46,10 +45,10 @@
         ]]>
     </fx:Script>
 
-    <js:initialView>
-        <js:View>
+    <j:initialView>
+        <j:View>
             <j:Button id="button" text="Click Me" primary="true" click="clickHandler(event)"/>
-        </js:View>
-    </js:initialView>
+        </j:View>
+    </j:initialView>
     
 </j:Application>

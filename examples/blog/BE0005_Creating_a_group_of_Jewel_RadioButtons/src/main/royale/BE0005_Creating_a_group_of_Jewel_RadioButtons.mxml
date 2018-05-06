@@ -19,8 +19,7 @@
 -->
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:j="library://ns.apache.org/royale/jewel"
-               xmlns:html="library://ns.apache.org/royale/html"
-               xmlns:js="library://ns.apache.org/royale/basic">
+               xmlns:html="library://ns.apache.org/royale/html">
     
     <fx:Style source="../../main/resources/styles.css"/>
 
@@ -33,12 +32,11 @@
 		]]>
 	</fx:Script>
 
-    <js:initialView>
-        <js:View>
-
-            <js:beads>
+    <j:initialView>
+        <j:View>
+            <j:beads>
                 <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-            </js:beads>
+            </j:beads>
 
             <html:H2 text="Creating a group of Jewel RadioButtons"/>
             
@@ -55,7 +53,7 @@
             <j:Label id="result" text="The radio button selected has the value:"/>
 
             <j:Button text="disable/enable option 3" primary="true" click="opt3disable.disabled = !opt3disable.disabled"/>
-        </js:View>
-    </js:initialView>
+        </j:View>
+    </j:initialView>
 
 </j:Application>
