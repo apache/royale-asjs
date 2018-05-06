@@ -30,12 +30,12 @@
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
 	<j:initialView>
-		<js:View>
+		<j:View>
 			<j:beads>
 				<j:VerticalLayoutWithPaddingAndGap gap="10"/>
 			</j:beads>
 			<html:H1 text="Apache Royale Jewel UI Set Theme Showcase"/>
 			<local:MainContent/>
-        </js:View>
+        </j:View>
 	</j:initialView>
 </j:Application>

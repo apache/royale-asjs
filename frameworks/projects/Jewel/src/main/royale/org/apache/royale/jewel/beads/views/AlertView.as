@@ -134,6 +134,7 @@ package org.apache.royale.jewel.beads.views
             
 			// Text
 			content = new Group();
+			content.typeNames = "content";
 			label = new Label();
 			label.text = alertModel.message;
 			content.addElement(label);

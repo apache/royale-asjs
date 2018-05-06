@@ -86,7 +86,7 @@ div {
   font-size: 1.9em;
   font-weight: bold;
 }
-.jewel.alert .Group {
+.jewel.alert .content {
   position: absolute;
   padding: 20px;
   top: 50px;
@@ -94,7 +94,7 @@ div {
   width: 100%;
   overflow-y: auto;
 }
-.jewel.alert .Group .jewel.label {
+.jewel.alert .content .jewel.label {
   white-space: normal;
   color: #808080;
   font-size: 1.1em;

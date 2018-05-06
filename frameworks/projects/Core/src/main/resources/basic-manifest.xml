@@ -61,7 +61,6 @@
     <component id="Border" class="org.apache.royale.core.supportClasses.Border"/>
 
     <component id="ArraySelectionModel" class="org.apache.royale.core.beads.models.ArraySelectionModel" />
-    <component id="View" class="org.apache.royale.core.View"/>
     
     <component id="State" class="org.apache.royale.states.State"/>
 </componentPackage>

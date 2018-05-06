@@ -28,6 +28,7 @@ internal class CoreClasses
 {
 	import org.apache.royale.core.UIBase; UIBase;
 	import org.apache.royale.core.LayoutBase; LayoutBase;
+	import org.apache.royale.core.ViewBase; ViewBase;
 	import org.apache.royale.core.GroupBase; GroupBase;
 	import org.apache.royale.core.ContainerBase; ContainerBase;
 	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;

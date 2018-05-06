@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.royale.jewel.Application"/>
+    <component id="View" class="org.apache.royale.jewel.View"/>
     <component id="Group" class="org.apache.royale.jewel.Group"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
@@ -41,6 +42,7 @@
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
     <component id="TextPromptBead" class="org.apache.royale.jewel.beads.controls.textinput.TextPromptBead"/>
 
+    <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
     <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutWithPaddingAndGap"/>
