@@ -150,7 +150,7 @@ internal class MXRoyaleClasses
 	import mx.formatters.DateFormatter; DateFormatter;
 	import mx.controls.MenuBar; MenuBar;
 	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
-
+	import mx.effects.Glow; Glow;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
