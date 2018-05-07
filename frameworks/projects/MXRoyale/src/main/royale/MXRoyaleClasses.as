@@ -151,6 +151,8 @@ internal class MXRoyaleClasses
 	import mx.controls.MenuBar; MenuBar;
 	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
 	import mx.effects.Glow; Glow;
+	import mx.printing.FlexPrintJob; FlexPrintJob; 
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
