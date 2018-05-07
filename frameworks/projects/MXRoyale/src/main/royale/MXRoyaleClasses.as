@@ -153,6 +153,8 @@ internal class MXRoyaleClasses
 	import mx.effects.Glow; Glow;
 	import mx.printing.FlexPrintJob; FlexPrintJob; 
 	import mx.validators.StringValidator; StringValidator;
+	import mx.validators.RegExpValidator; RegExpValidator;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
