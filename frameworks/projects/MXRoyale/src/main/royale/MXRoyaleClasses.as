@@ -155,6 +155,8 @@ internal class MXRoyaleClasses
 	import mx.validators.StringValidator; StringValidator;
 	import mx.validators.RegExpValidator; RegExpValidator;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer; AdvancedDataGridHeaderRenderer;
+	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn; AdvancedDataGridColumn;
+	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup; AdvancedDataGridColumnGroup;
 
     COMPILE::SWF
     {
