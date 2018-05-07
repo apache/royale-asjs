@@ -152,7 +152,7 @@ internal class MXRoyaleClasses
 	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
 	import mx.effects.Glow; Glow;
 	import mx.printing.FlexPrintJob; FlexPrintJob; 
-
+	import mx.validators.StringValidator; StringValidator;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
