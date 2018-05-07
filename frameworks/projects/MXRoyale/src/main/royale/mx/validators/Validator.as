@@ -26,10 +26,10 @@ package mx.validators
 	import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
-	
+	import mx.events.ValidationResultEvent;
+
    /*  import mx.core.IMXMLObject;
     import mx.events.FlexEvent;
-    import mx.events.ValidationResultEvent;
     import mx.resources.IResourceManager;
     import mx.resources.ResourceManager;
     import mx.utils.ObjectUtil; */
@@ -403,10 +403,10 @@ public class Validator extends EventDispatcher
      *  @private
      *  Storage for the property property.
      */
-    /* private var _property:String;
+     private var _property:String;
     
     [Inspectable(category="General")]
- */
+ 
     /**
      *  A String specifying the name of the property
      *  of the <code>source</code> object that contains 
@@ -421,18 +421,18 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get property():String
+     public function get property():String
     {
         return _property;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set property(value:String):void
+    public function set property(value:String):void
     {
         _property = value;
-    } */
+    } 
     
     //----------------------------------
     //  required
@@ -501,10 +501,10 @@ public class Validator extends EventDispatcher
      *  @private
      *  Storage for the source property.
      */
-    /* private var _source:Object;
+     private var _source:Object;
     
     [Inspectable(category="General")]
-	[Bindable("sourceChanged")] */
+	[Bindable("sourceChanged")] 
     /**
      *  Specifies the object containing the property to validate. 
      *  Set this to an instance of a component or a data model. 
@@ -524,20 +524,20 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get source():Object
+     public function get source():Object
     {
         return _source;
-    } */
+    } 
     
     /**
      *  @private
      */
-    /* public function set source(value:Object):void
+     public function set source(value:Object):void
     {
         if (_source == value)
             return;
         
-        if (value is String)
+        /* if (value is String)
         {
             var message:String = resourceManager.getString(
                 "validators", "SAttribute", [ value ]);
@@ -553,8 +553,8 @@ public class Validator extends EventDispatcher
         // Listen for the trigger event on the new source.
         addTriggerHandler();    
         addListenerHandler();
-		dispatchEvent(new Event("sourceChanged"));
-    } */
+		dispatchEvent(new Event("sourceChanged")); */
+    } 
 
     //----------------------------------
     //  subFields
@@ -677,8 +677,8 @@ public class Validator extends EventDispatcher
      *  @private
      *  Storage for the requiredFieldError property.
      */
-   /*  private var _requiredFieldError:String;
-     */
+     private var _requiredFieldError:String;
+     
     /**
      *  @private
      */
@@ -697,23 +697,23 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get requiredFieldError():String
+     public function get requiredFieldError():String
     {
         return _requiredFieldError;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set requiredFieldError(value:String):void
+     public function set requiredFieldError(value:String):void
     {
-        requiredFieldErrorOverride = value;
+       /*  requiredFieldErrorOverride = value;
 
         _requiredFieldError = value != null ?
                               value :
                               resourceManager.getString(
-                                  "validators", "requiredFieldError");
-    } */
+                                  "validators", "requiredFieldError"); */
+    } 
 
     //--------------------------------------------------------------------------
     //
@@ -906,11 +906,11 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function validate(
+     public function validate(
                         value:Object = null,
                         suppressEvents:Boolean = false):ValidationResultEvent
     {   
-        if (value == null)
+       /*  if (value == null)
             value = getValueFromSource();   
         
         if (isRealValue(value) || required)
@@ -928,8 +928,9 @@ public class Validator extends EventDispatcher
                 dispatchEvent(resultEvent);
             }
             return resultEvent; 
-        } 
-    } */
+        }  */
+		return null;
+    } 
     
     /**
      *  Returns the Object to validate. Subclasses, such as the 
