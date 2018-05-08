@@ -157,6 +157,7 @@ internal class MXRoyaleClasses
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer; AdvancedDataGridHeaderRenderer;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn; AdvancedDataGridColumn;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup; AdvancedDataGridColumnGroup;
+	import mx.utils.URLUtil; URLUtil;
 
     COMPILE::SWF
     {
