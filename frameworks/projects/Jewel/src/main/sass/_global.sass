@@ -42,7 +42,19 @@ j|View
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 
+j|Container
+	IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport")
+	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel")
+	align-items: flex-start
+
 @media -royale-swf
 	j|View
 		// --- IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
 		// --- IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")
+
+	j|Container
+		// --- IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
+		// --- IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")
+		IContentView: ClassReference("org.apache.royale.core.supportClasses.ContainerContentArea")

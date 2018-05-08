@@ -24,6 +24,8 @@
     <component id="Application" class="org.apache.royale.jewel.Application"/>
     <component id="View" class="org.apache.royale.jewel.View"/>
     <component id="Group" class="org.apache.royale.jewel.Group"/>
+    <component id="Container" class="org.apache.royale.jewel.Container"/>
+
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
     <component id="MultilineLabel" class="org.apache.royale.jewel.MultilineLabel"/>

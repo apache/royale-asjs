@@ -45,6 +45,19 @@ j|View {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
 }
 
+j|Container {
+  IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
+  IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+  align-items: flex-start;
+}
+
+@media -royale-swf {
+  j|Container {
+    IContentView: ClassReference("org.apache.royale.core.supportClasses.ContainerContentArea");
+  }
+}
 .jewel.alert {
   display: block;
   position: fixed;
