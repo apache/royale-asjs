@@ -65,7 +65,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */    
 	public class Container extends ContainerBase implements IMXMLDocument
 	{
@@ -75,7 +75,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function Container()
 		{
@@ -121,7 +121,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get MXMLDescriptor():Array
 		{
@@ -143,7 +143,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function generateMXMLAttributes(data:Array):void
 		{
@@ -156,7 +156,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
          * 
          *  @royalesuppresspublicvarwarning
 		 */

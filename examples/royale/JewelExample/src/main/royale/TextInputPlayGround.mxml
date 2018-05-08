@@ -42,7 +42,7 @@ limitations under the License.
 		</j:beads>
 		<j:TextInput>
 			<j:beads>
-				<j:TextPromptBead prompt="With prompt..."/>
+				<j:TextPrompt prompt="With prompt..."/>
 			</j:beads>
 		</j:TextInput>
 		<j:Button text="Send" primary="true"/>
@@ -50,14 +50,14 @@ limitations under the License.
 
 	<j:TextInput text="Disabled with text...">
 		<j:beads>
-			<j:TextPromptBead prompt="Disabled TextInput..."/>
+			<j:TextPrompt prompt="Disabled TextInput..."/>
 			<j:Disabled/>
 		</j:beads>
 	</j:TextInput>
 
 	<j:TextInput>
 		<j:beads>
-			<j:TextPromptBead prompt="Disabled with prompt..."/>
+			<j:TextPrompt prompt="Disabled with prompt..."/>
 			<j:Disabled/>
 		</j:beads>
 	</j:TextInput>

@@ -30,7 +30,7 @@ package org.apache.royale.jewel.supportClasses
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class ScrollBar extends UIBase implements IChrome, IViewportScroller
 	{
@@ -40,7 +40,7 @@ package org.apache.royale.jewel.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function ScrollBar()
 		{

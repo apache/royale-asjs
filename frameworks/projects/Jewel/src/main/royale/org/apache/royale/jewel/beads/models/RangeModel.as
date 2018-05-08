@@ -32,7 +32,7 @@ package org.apache.royale.jewel.beads.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class RangeModel extends EventDispatcher implements IBead, IRangeModel
 	{
@@ -42,7 +42,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function RangeModel()
 		{
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -73,7 +73,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get maximum():Number
 		{
@@ -100,7 +100,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get minimum():Number
 		{
@@ -127,7 +127,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get snapInterval():Number
 		{
@@ -163,7 +163,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get stepSize():Number
 		{
@@ -191,7 +191,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get value():Number
 		{

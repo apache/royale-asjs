@@ -31,16 +31,16 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
-	 *  The TextPromptBead class is a specialty bead that can be used with
+	 *  The TextPrompt class is a specialty bead that can be used with
 	 *  any TextInput control. The bead places a string into the input field
 	 *  when there is no value associated with the text property.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
-	public class TextPromptBead implements IBead
+	public class TextPrompt implements IBead
 	{
 		/**
 		 *  constructor.
@@ -48,9 +48,9 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
-		public function TextPromptBead()
+		public function TextPrompt()
 		{
 		}
 		
@@ -62,7 +62,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get prompt():String
 		{
@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
@@ -94,7 +94,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 				// listen for changes in text to hide or show the prompt
 				var model:Object = UIBase(_strand).model;
 				if (!model.hasOwnProperty("text")) {
-					throw new Error("Model requires a text property when used with TextPromptBead");
+					throw new Error("Model requires a text property when used with TextPrompt");
 				}
 				IEventDispatcher(model).addEventListener("textChange", handleTextChange);
 				

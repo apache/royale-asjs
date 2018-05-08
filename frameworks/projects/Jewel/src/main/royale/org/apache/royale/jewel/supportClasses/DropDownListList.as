@@ -31,7 +31,7 @@ package org.apache.royale.jewel.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
     [Event(name="change", type="org.apache.royale.events.Event")]
     
@@ -42,7 +42,7 @@ package org.apache.royale.jewel.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
 	public class DropDownListList extends List implements IPopUp
 	{
@@ -52,7 +52,7 @@ package org.apache.royale.jewel.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function DropDownListList()
 		{
