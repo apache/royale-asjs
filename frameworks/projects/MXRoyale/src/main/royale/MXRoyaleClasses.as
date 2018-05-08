@@ -161,6 +161,7 @@ internal class MXRoyaleClasses
 	import mx.controls.DateChooser; DateChooser;
 	import mx.controls.DateField; DateField; 
 	import mx.containers.GridItem; GridItem;
+	import mx.containers.GridRow; GridRow;
 
     COMPILE::SWF
     {
