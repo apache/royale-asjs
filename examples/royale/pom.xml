@@ -53,6 +53,7 @@
     <module>HelloWorld</module>
     <module>HTMLElements</module>
     <module>JSON2ASVO</module>
+    <module>JewelExample</module>
     <module>ListExample</module>
     <module>MapSearch</module>
     <module>MDLDynamicTabsExample</module>
