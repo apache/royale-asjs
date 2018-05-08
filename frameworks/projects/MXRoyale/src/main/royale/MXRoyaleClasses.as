@@ -162,7 +162,7 @@ internal class MXRoyaleClasses
 	import mx.controls.DateField; DateField; 
 	import mx.containers.GridItem; GridItem;
 	import mx.containers.GridRow; GridRow;
-
+	import mx.containers.Grid; Grid;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
