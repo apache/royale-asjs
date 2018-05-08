@@ -26,11 +26,11 @@
     <version>0.9.4-SNAPSHOT</version>
   </parent>
 
-  <artifactId>BE0006_Using_Jewel_TextInput_Control</artifactId>
+  <artifactId>BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label</artifactId>
   <version>0.9.4-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Blog: 0006: Using Jewel TextInput Control</name>
+  <name>Apache Royale: Examples: Blog: 0006: Binding the text property of a Jewel Textinput to update a text label</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -40,7 +40,7 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>BE0006_Using_Jewel_TextInput_Control.mxml</mainClass>
+          <mainClass>BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label.mxml</mainClass>
           <targets>JSRoyale,SWF</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>

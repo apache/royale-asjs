@@ -46,7 +46,7 @@
 
             <j:TextInput id="textinput" change="textChanged(event)">
                 <j:beads>
-                    <j:TextPromptBead prompt="Using change event"/>
+                    <j:TextPrompt prompt="Using change event"/>
                 </j:beads>
             </j:TextInput>
 
@@ -54,7 +54,7 @@
 
             <j:TextInput id="databinding_ti">
                 <j:beads>
-                    <j:TextPromptBead prompt="Using databinding"/>
+                    <j:TextPrompt prompt="Using databinding"/>
                 </j:beads>
             </j:TextInput>
 

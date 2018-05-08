@@ -19,7 +19,7 @@
 -->
 
 
-<project name="BE0005_Creating_a_group_of_Jewel_RadioButtons" default="main" basedir=".">
+<project name="BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="App" />
     

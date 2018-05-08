@@ -19,9 +19,9 @@
 
 DESCRIPTION
 
-Using Jewel TextInput Control
+Binding the text property of a Jewel TextInput to update a Label
 
-In this example we'll Learn how to configure a group of Jewel RadioButton controls in a Royale application.
+Learn how to change a Label’s text with a Jewel TextInput using both a change event and data binding.
 ---
 
 
