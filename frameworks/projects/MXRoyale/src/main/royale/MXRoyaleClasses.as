@@ -160,6 +160,8 @@ internal class MXRoyaleClasses
 	import mx.utils.URLUtil; URLUtil;
 	import mx.controls.DateChooser; DateChooser;
 	import mx.controls.DateField; DateField; 
+	import mx.containers.GridItem; GridItem;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
