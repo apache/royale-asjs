@@ -109,7 +109,7 @@ limitations under the License.
                     </j:beads>
                     <j:TextInput id="name_txt">
                         <j:beads>
-                            <j:TextPromptBead prompt="Name to send via AMF"/>
+                            <j:TextPrompt prompt="Name to send via AMF"/>
                         </j:beads>
                     </j:TextInput>
                     <j:Button text="Send to Name" primary="true"  click="sendName()"/>
