@@ -18,7 +18,8 @@
 
 -->
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-               xmlns:j="library://ns.apache.org/royale/jewel">
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic">
     
     <fx:Style source="../../main/resources/styles.css"/>
 
@@ -26,10 +27,14 @@
 		<![CDATA[
             private function textChanged(event:Event):void
 			{
-				result.text = "The textinput text value is: " + text_ti.text;
+				result.text = "The textinput text value is: " + textinput.text;
 			}
 		]]>
 	</fx:Script>
+
+    <j:beads>
+		<js:ApplicationDataBinding />
+	</j:beads>
 
     <j:initialView>
         <j:View>
@@ -37,13 +42,23 @@
                 <j:VerticalLayoutWithPaddingAndGap gap="10"/>
             </j:beads>
 
-            <j:TextInput id="text_ti" change="textChanged(event)">
+            <j:Label text="Respond to changes in the text property of a Jewel TextInput"/>
+
+            <j:TextInput id="textinput" change="textChanged(event)">
                 <j:beads>
-                    <j:TextPromptBead prompt="Change the text value"/>
+                    <j:TextPromptBead prompt="Using change event"/>
                 </j:beads>
             </j:TextInput>
 
             <j:Label id="result" text="The textinput text value is: "/>
+
+            <j:TextInput id="databinding_ti">
+                <j:beads>
+                    <j:TextPromptBead prompt="Using databinding"/>
+                </j:beads>
+            </j:TextInput>
+
+            <j:Label text="The textinput text value is: {databinding_ti.text}"/>
         </j:View>
     </j:initialView>
 
