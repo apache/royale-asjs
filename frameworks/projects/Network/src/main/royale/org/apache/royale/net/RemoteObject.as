@@ -47,9 +47,6 @@ package org.apache.royale.net
 		
 		/** 
 		 * 
-		 * <inject_html>
-		 * <script src="https://rawgit.com/emilkm/amfjs/master/amf.js"></script>
-		 * </inject_html>
 		 */ 
 		public function RemoteObject()
 		{
