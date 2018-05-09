@@ -51,7 +51,6 @@
     <component id="RadioButton" class="org.apache.royale.html.RadioButton"/>
     <component id="ComboBox" class="org.apache.royale.html.ComboBox"/>
     <component id="ComboBoxList" class="org.apache.royale.html.supportClasses.ComboBoxList"/>
-    <component id="Group" class="org.apache.royale.html.Group"/>
     <component id="HGroup" class="org.apache.royale.html.HGroup"/>
     <component id="VGroup" class="org.apache.royale.html.VGroup"/>
     <component id="Accordion" class="org.apache.royale.html.Accordion"/>

@@ -56,6 +56,7 @@
     <component id="MXMLBeadView" class="org.apache.royale.core.MXMLBeadView"/>
     <component id="LayoutChangeNotifier" class="org.apache.royale.core.beads.layouts.LayoutChangeNotifier"/>
     
+    <component id="Group" class="org.apache.royale.html.Group"/>
     <component id="Viewport" class="org.apache.royale.core.supportClasses.Viewport" />
     <component id="Border" class="org.apache.royale.core.supportClasses.Border"/>
 
