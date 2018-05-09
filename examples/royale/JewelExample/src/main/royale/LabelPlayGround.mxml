@@ -40,9 +40,5 @@ limitations under the License.
 	<html:H3 text="Jewel Label"/>
 	
 	<j:Label id="label" text="This is a Label" click="labelClick(event)"/>
-
-	<html:Div>
-		<html:Span text="Hello"/>
-	</html:Div>
 	
 </j:Group>
