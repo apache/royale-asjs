@@ -42,7 +42,7 @@
                 <j:VerticalLayoutWithPaddingAndGap gap="10"/>
             </j:beads>
 
-            <j:Label text="Respond to changes in the text property of a Jewel TextInput"/>
+            <j:Label text="Binding the text property of a Jewel TextInput to update a text Label"/>
 
             <j:TextInput id="textinput" change="textChanged(event)">
                 <j:beads>
