@@ -165,6 +165,7 @@ internal class MXRoyaleClasses
 	import mx.containers.Grid; Grid;
 	import mx.core.UITextField; UITextField;
 	import mx.effects.Parallel; Parallel; 
+	import mx.rpc.events.FaultEvent; FaultEvent;
 
     COMPILE::SWF
     {
