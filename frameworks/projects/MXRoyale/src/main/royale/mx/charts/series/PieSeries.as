@@ -108,7 +108,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="calloutStroke", type="mx.graphics.IStroke", inherit="no")]
+[Style(name="calloutStroke", type="mx.graphics.IStroke", inherit="no")]
     
 /**
  *  Specifies an array of fill objects used to render
@@ -176,7 +176,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="insideLabelSizeLimit", type="Number", inherit="no")]
+[Style(name="insideLabelSizeLimit", type="Number", inherit="no")]
 
 /** 
  *  Specifies how to render value labels.
@@ -215,7 +215,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="labelPosition", type="String", enumeration="none,outside,callout,inside,insideWithCallout", inherit="no")]
+[Style(name="labelPosition", type="String", enumeration="none,outside,callout,inside,insideWithCallout", inherit="no")]
 
 /**
  *  Specifies the line style used to draw the border
@@ -226,7 +226,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="radialStroke", type="mx.graphics.IStroke", inherit="no")]
+[Style(name="radialStroke", type="mx.graphics.IStroke", inherit="no")]
 
 /**
  *  Sets the direction in which the series is rendered.
@@ -255,7 +255,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="stroke", type="mx.graphics.IStroke", inherit="no")]
+[Style(name="stroke", type="mx.graphics.IStroke", inherit="no")]
 
 /**
  *  The PieSeries class defines the data series for a PieChart control.
@@ -637,6 +637,39 @@ public class PieSeries
         //legendDataChanged();
     }
 
+    //----------------------------------
+    //  displayName
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the displayName property.
+     */
+     private var _displayName:String;
+
+    /**
+     *  The name of the series, for display to the user.
+     *  This property is used to represent the series in user-visible labels,
+     *  such as data tips.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get displayName():String
+    {
+        return _displayName;
+    } 
+    
+    /**
+     *  @private
+     */
+    public function set displayName(value:String):void
+    {
+        _displayName = value;
+    } 
+    
 }
 
 }
