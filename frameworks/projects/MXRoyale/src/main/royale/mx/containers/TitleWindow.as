@@ -20,6 +20,7 @@
 package mx.containers
 {
 
+	import org.apache.royale.events.CloseEvent;
 /*
 import mx.core.mx_internal;
 
@@ -39,10 +40,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-//[Event(name="close", type="mx.events.CloseEvent")]
-	import org.apache.royale.events.CloseEvent;
+[Event(name="close", type="mx.events.CloseEvent")]
 
 //--------------------------------------
 //  Styles
@@ -55,7 +55,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="closeButtonSkin", type="Class", inherit="no", states="up, over, down, disabled")]
 
@@ -67,7 +67,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="closeButtonDisabledSkin", type="Class", inherit="no")]
 
@@ -79,7 +79,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="closeButtonDownSkin", type="Class", inherit="no")]
 
@@ -91,7 +91,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="closeButtonOverSkin", type="Class", inherit="no")]
 
@@ -103,7 +103,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="closeButtonUpSkin", type="Class", inherit="no")]
 
@@ -203,7 +203,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class TitleWindow extends Panel
 {
@@ -233,7 +233,7 @@ public class TitleWindow extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function TitleWindow()
     {
@@ -269,7 +269,7 @@ public class TitleWindow extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     private var _showCloseButton:Boolean = false;
 	
@@ -286,21 +286,6 @@ public class TitleWindow extends Panel
         _showCloseButton = value;
     }
 
-    //--------------------------------------------------------------------------
-    //
-    //  Overridden methods: UIComponent
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  @private
-     */
-	/*
-    override protected function initializeAccessibility():void
-    {
-        if (TitleWindow.createAccessibilityImplementation != null)
-            TitleWindow.createAccessibilityImplementation(this);
-    }*/
 }
 
 }
