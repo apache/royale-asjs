@@ -164,6 +164,8 @@ internal class MXRoyaleClasses
 	import mx.containers.GridRow; GridRow;
 	import mx.containers.Grid; Grid;
 	import mx.core.UITextField; UITextField;
+	import mx.effects.Parallel; Parallel; 
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
