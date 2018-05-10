@@ -167,6 +167,7 @@ internal class MXRoyaleClasses
 	import mx.effects.Parallel; Parallel; 
 	import mx.rpc.events.FaultEvent; FaultEvent;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer;  AdvancedDataGridItemRenderer;
+	import mx.charts.series.LineSeries; LineSeries;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
