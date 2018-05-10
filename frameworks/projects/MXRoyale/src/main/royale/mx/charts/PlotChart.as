@@ -19,10 +19,7 @@
 
 package mx.charts
 {
-	COMPILE::JS {
-		import goog.DEBUG;
-	}
-	import mx.charts.chartClasses.CartesianChart;
+	import mx.charts.chartClasses.IAxis;
 /*
 import flash.utils.Dictionary;
 
@@ -43,13 +40,13 @@ import mx.graphics.Stroke;
 import mx.styles.CSSStyleDeclaration;
 
 use namespace mx_internal;
-
+*/
 [DefaultBindingProperty(destination="dataProvider")]
 
-[DefaultTriggerEvent("itemClick")]
+//[DefaultTriggerEvent("itemClick")]
 
-[IconFile("PlotChart.png")]
-*/
+//[IconFile("PlotChart.png")]
+
 /**
  *  The PlotChart control represents data with two values for each data point.
  *  One value determines the position of the data point along the horizontal
@@ -78,7 +75,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class PlotChart extends CartesianChart
+public class PlotChart //extends CartesianChart
 {
     //include "../core/Version.as";
 
@@ -107,6 +104,87 @@ public class PlotChart extends CartesianChart
         super();
     }
 
+    //
+    //  Properties
+    //
+    //--------------------------------------------------------------------------
+    
+    //----------------------------------
+    //  horizontalAxis
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the horizontalAxis property.
+     */
+    private var _horizontalAxis:IAxis;
+    
+    /**
+     *  Defines the labels, tick marks, and data position
+     *  for items on the x-axis.
+     *  Use either the LinearAxis class or the CategoryAxis class
+     *  to set the properties of the horizontalAxis as a child tag in MXML
+     *  or create a LinearAxis or CategoryAxis object in ActionScript.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+	
+    public function get horizontalAxis():IAxis
+    {
+        return _horizontalAxis;
+    }
+    
+    /**
+     *  @private
+     */
+	
+    public function set horizontalAxis(value:IAxis):void
+    {
+        _horizontalAxis = value;
+    }
+	
+	 /**
+     *  @private
+     */
+    private var _showDataTips:Boolean = false;
+    
+		/**
+     *  Specifies whether Flex shows DataTip controls for the chart.
+     *  DataTip controls are similar to tool tips,
+     *  except that they display an appropriate value
+     *  that represents the nearest chart data point under the mouse pointer.
+     *  
+     *  <p>Different chart elements might show different styles
+     *  of DataTip controls.
+     *  For example, a stacked chart element might show both the values
+     *  of the column and the percentage that it contributes to the whole.</p>
+     *
+     *  <p>You can customize DataTip controls with the
+     *  <code>dataTipFunction</code> property.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+		public function get showDataTips():Boolean
+		{
+			return _showDataTips;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set showDataTips(value:Boolean):void
+		{
+			if (_showDataTips == value)
+				return;
+				
+			_showDataTips = value;
+		}
 }
 
 }
