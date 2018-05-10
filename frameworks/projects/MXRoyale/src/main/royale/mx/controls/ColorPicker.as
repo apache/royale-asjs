@@ -68,7 +68,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="change", type="mx.events.ColorPickerEvent")]
 
@@ -81,7 +81,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="close", type="mx.events.DropdownEvent")]
 
@@ -96,7 +96,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="enter", type="mx.events.ColorPickerEvent")]
 
@@ -110,7 +110,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="itemRollOut", type="mx.events.ColorPickerEvent")]
 
@@ -124,7 +124,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="itemRollOver", type="mx.events.ColorPickerEvent")]
 
@@ -137,7 +137,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="open", type="mx.events.DropdownEvent")]
 
@@ -157,7 +157,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="halo")]
 
@@ -170,7 +170,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="closeDuration", type="Number", format="Time", inherit="no")]
 
@@ -181,7 +181,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="closeEasingFunction", type="Function", inherit="no")]
 
@@ -192,7 +192,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="fillAlphas", type="Array", arrayType="Number", inherit="no", theme="halo")]
 
@@ -204,7 +204,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="fillColors", type="Array", arrayType="uint", format="Color", inherit="no", theme="halo")]
 
@@ -215,7 +215,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="highlightAlphas", type="Array", arrayType="Number", inherit="no", theme="halo")]
 
@@ -228,7 +228,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="openDuration", type="Number", format="Time", inherit="no")]
 
@@ -239,7 +239,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="openEasingFunction", type="Function", inherit="no")]
 
@@ -250,7 +250,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="paddingBottom", type="Number", format="Length", inherit="no")]
 
@@ -261,7 +261,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="paddingLeft", type="Number", format="Length", inherit="no")]
 
@@ -272,7 +272,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="paddingRight", type="Number", format="Length", inherit="no")]
 
@@ -283,7 +283,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
 
@@ -294,7 +294,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="swatchBorderColor", type="uint", format="Color", inherit="no", theme="halo")]
 
@@ -305,7 +305,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="swatchBorderSize", type="Number", format="Length", inherit="no")]
 
@@ -338,7 +338,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="swatchPanelStyleName", type="String", inherit="no")]
 
@@ -464,7 +464,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class ColorPicker extends ComboBase
 {
@@ -494,14 +494,14 @@ public class ColorPicker extends ComboBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function ColorPicker()
     {
         super();
 
-        if (!isModelInited)
-            loadDefaultPalette();
+        //if (!isModelInited)
+        //    loadDefaultPalette();
 
         // Make editable false so that focus doesn't go
         // to the comboBase's textInput which is not used by CP
@@ -538,27 +538,27 @@ public class ColorPicker extends ComboBase
     /**
      *  @private
      */
-    private var dropdownGap:Number = 6;
+    //private var dropdownGap:Number = 6;
 
     /**
      *  @private
      */
-    private var indexFlag:Boolean = false;
+    //private var indexFlag:Boolean = false;
 
     /**
      *  @private
      */
-    private var initializing:Boolean = true;
+    //private var initializing:Boolean = true;
 
     /**
      *  @private
      */
-    private var isModelInited:Boolean = false;
+    //private var isModelInited:Boolean = false;
 
     /**
      *  @private
      */
-    private var collectionChanged:Boolean = false;
+    //private var collectionChanged:Boolean = false;
 
     /**
      *  @private
@@ -568,276 +568,18 @@ public class ColorPicker extends ComboBase
     /**
      *  @private
      */
-    private var dropdownSwatch:SwatchPanel;
+    //private var dropdownSwatch:SwatchPanel;
 
     /**
      *  @private
      */
-    private var triggerEvent:Event;
-
-    //--------------------------------------------------------------------------
-    //
-    //  Overridden Properties
-    //
-    //--------------------------------------------------------------------------
-
-    //----------------------------------
-    //  dataProvider
-    //----------------------------------
-
-    [Bindable("collectionChange")]
-    [Inspectable(category="Data")]
-
-    /**
-     *  @private
-     *  The dataProvider for the ColorPicker control.
-     *  The default dataProvider is an Array that includes all
-     *  the web-safe colors.
-     *
-     *  @helpid 4929
-     */
-    override public function set dataProvider(value:Object):void
-    {
-        super.dataProvider = value;
-        
-        isModelInited = true;
-        
-        if (dropdownSwatch)
-            dropdownSwatch.dataProvider = value;
-    }
-
-    //----------------------------------
-    //  editable
-    //----------------------------------
-
-    [Bindable("editableChanged")]
-    [Inspectable(category="General", defaultValue="true")]
-
-    /**
-     *  @private
-     */
-    private var _editable:Boolean = true;
-
-    /**
-     *  @private
-     *  Specifies whether the user can type a hexadecimal color value
-     *  in the text box.
-     *
-     *  @default true
-     *  @helpid 4930
-     */
-    override public function get editable():Boolean
-    {
-        return _editable;
-    }
-
-    /**
-     *  @private
-     */
-    override public function set editable(value:Boolean):void
-    {
-        _editable = value;
-        
-        if (dropdownSwatch)
-            dropdownSwatch.editable = value;
-        
-        dispatchEvent(new Event("editableChanged"));
-    }
-
-    //----------------------------------
-    //  selectedIndex
-    //----------------------------------
-
-    [Bindable("change")]
-    [Bindable("collectionChange")]
-    [Inspectable(defaultValue="0")]
-
-    /**
-     *  Index in the dataProvider of the selected item in the
-     *  SwatchPanel object.
-     *  Setting this property sets the selected color to the color that
-     *  corresponds to the index, sets the selected index in the drop-down
-     *  swatch to the <code>selectedIndex</code> property value, 
-     *  and displays the associated label in the text box.
-     *  The default value is the index corresponding to 
-     *  black(0x000000) color if found, else it is 0.
-     *
-     *  @helpid 4931
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    override public function set selectedIndex(value:int):void
-    {
-        if ((selectedIndex != -1 || !isNaN(selectedColor)) &&
-            value != selectedIndex)
-        {
-            if (value >= 0)
-            {
-                indexFlag = true;
-                selectedColor = getColor(value);
-                // Call super in mixed-in DataSelector
-                super.selectedIndex = value;
-            }
-
-            if (dropdownSwatch)
-                dropdownSwatch.selectedIndex = value;
-        }
-    }
-
-    //----------------------------------
-    //  selectedItem
-    //----------------------------------
-
-    [Bindable("change")]
-    [Bindable("collectionChange")]
-    [Inspectable(defaultValue="0")]
-
-    /**
-     *  @private
-     *  If the dataProvider is a complex object, this property is a
-     *  reference to the selected item in the SwatchPanel object.
-     *  If the dataProvider is an Array of color values, this
-     *  property is the selected color value.
-     *  If the dataProvider is a complex object, modifying fields of
-     *  this property modifies the dataProvider and its views.
-     *
-     *  <p>If the dataProvider is a complex object, this property is
-     *  read-only. You cannot change its value directly.
-     *  If the dataProvider is an Array of hexadecimal color values,
-     *  you can change this value directly. 
-     *  The default value is undefined for complex dataProviders;
-     *  0 if the dataProvider is an Array of color values.
-     *
-     *  @helpid 4933
-     */
-    override public function set selectedItem(value:Object):void
-    {
-        if (value != selectedItem)
-        {
-            // Call super in mixed-in DataSelector
-            super.selectedItem = value;
-
-            if (typeof(value) == "object")
-                selectedColor = Number(value[colorField]);
-            else if (typeof(value) == "number")
-                selectedColor = Number(value);
-
-            indexFlag = true;
-
-            if (dropdownSwatch)
-                dropdownSwatch.selectedItem = value;
-        }
-    }
+    //private var triggerEvent:Event;
 
     //--------------------------------------------------------------------------
     //
     //  Properties
     //
     //--------------------------------------------------------------------------
-
-    //----------------------------------
-    //  colorField
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the colorField property.
-     */
-    private var _colorField:String = "color";
-
-    [Bindable("colorFieldChanged")]
-    [Inspectable(category="Data", defaultValue="color")]
-
-    /**
-     *  Name of the field in the objects of the dataProvider Array that
-     *  specifies the hexadecimal values of the colors that the swatch
-     *  panel displays.
-     *
-     *  <p>If the dataProvider objects do not contain a color
-     *  field, set the <code>colorField</code> property to use the correct field name.
-     *  This property is available, but not meaningful, if the
-     *  dataProvider is an Array of hexadecimal color values.</p>
-     *
-     *  @default "color"
-     *  @helpid 4927
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get colorField():String
-    {
-        return _colorField;
-    }
-
-    /**
-     *  @private
-     */
-    public function set colorField(value:String):void
-    {
-        _colorField = value;
-
-        if (dropdownSwatch)
-            dropdownSwatch.colorField = value;
-
-        dispatchEvent(new Event("colorFieldChanged"));
-    }
-
-    //----------------------------------
-    //  labelField
-    //----------------------------------
-
-    /**
-     *  Storage for the labelField property.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    private var _labelField:String = "label";
-
-    [Bindable("labelFieldChanged")]
-    [Inspectable(category="Data", defaultValue="label")]
-
-    /**
-     *  Name of the field in the objects of the dataProvider Array that
-     *  contain text to display as the label in the SwatchPanel object text box.
-     *
-     *  <p>If the dataProvider objects do not contain a label
-     *  field, set the <code>labelField</code> property to use the correct field name.
-     *  This property is available, but not meaningful, if the
-     *  dataProvider is an Array of hexadecimal color values.</p>
-     *
-     *  @default "label"
-     *  @helpid 4928
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get labelField():String
-    {
-        return _labelField;
-    }
-
-    /**
-     *  @private
-     */
-    public function set labelField(value:String):void
-    {
-        _labelField = value;
-
-        if (dropdownSwatch)
-            dropdownSwatch.labelField = value;
-
-        dispatchEvent(new Event("labelFieldChanged"));
-    }
 
     //----------------------------------
     //  selectedColor
@@ -849,9 +591,9 @@ public class ColorPicker extends ComboBase
      */
     private var _selectedColor:uint = 0x000000;
 
-    [Bindable("change")]
-    [Bindable("valueCommit")]
-    [Inspectable(category="General", defaultValue="0", format="Color")]
+    //[Bindable("change")]
+    //[Bindable("valueCommit")]
+    //[Inspectable(category="General", defaultValue="0", format="Color")]
 
     /**
      *  The value of the currently selected color in the
@@ -867,7 +609,7 @@ public class ColorPicker extends ComboBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get selectedColor():uint
     {
@@ -879,6 +621,7 @@ public class ColorPicker extends ComboBase
      */
     public function set selectedColor(value:uint):void
     {
+		/*
         if (!indexFlag)
         {
             super.selectedIndex = findColorByName(value);
@@ -887,328 +630,20 @@ public class ColorPicker extends ComboBase
         {
             indexFlag = false;
         }
-
+		*/
         if (value != selectedColor)
         {
             _selectedColor = value;
 
-            updateColor(value);
+            //updateColor(value);
 
-            if (dropdownSwatch)
-                dropdownSwatch.selectedColor = value;
+            //if (dropdownSwatch)
+            //    dropdownSwatch.selectedColor = value;
         }
 
         //dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
 
-    //----------------------------------
-    //  showTextField
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the showTextField property.
-     */
-    private var _showTextField:Boolean = true;
-
-    //[Inspectable(category="General", defaultValue="true")]
-
-    /**
-     *  Specifies whether to show the text box that displays the color
-     *  label or hexadecimal color value.
-     *
-     *  @default true
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get showTextField():Boolean
-    {
-        return _showTextField;
-    }
-
-    /**
-     *  @private
-     */
-    public function set showTextField(value:Boolean):void
-    {
-        _showTextField = value;
-
-        if (dropdownSwatch)
-            dropdownSwatch.showTextField = value;
-    }
-
-    //----------------------------------
-    //  swatchStyleFilters
-    //----------------------------------
-    
-    /**
-     *  Set of styles to pass from the ColorPicker through to the preview swatch. 
-     *  @see mx.styles.StyleProxy
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    protected function get swatchStyleFilters():Object
-    {
-        return _swatchStyleFilters;
-    }
-
-    private static const _swatchStyleFilters:Object = 
-    {
-        "swatchBorderColor" : "swatchBorderColor",
-        "swatchBorderSize" : "swatchBorderSize"
-    };
-
-    /**
-     *  @private
-     */
-    override protected function createChildren():void
-    {
-        super.createChildren();
-		/*
-        // Create swatch preview
-        if (!swatchPreview)
-        {
-            swatchPreview = new SwatchSkin();
-
-            swatchPreview.styleName = new StyleProxy(this, swatchStyleFilters);
-            swatchPreview.color = selectedColor;
-            swatchPreview.name = "colorPickerSwatch";
-
-            addChild(swatchPreview);
-        }
-		
-        setChildIndex(swatchPreview, getChildIndex(downArrowButton));*/
-        textInput.visible = false;
-
-        // Update the preview swatch
-        if (!enabled)
-            super.enabled = enabled;
-
-        initializing = false;
-    }
-
-    /**
-     *  @private
-     */
-    override protected function commitProperties():void
-    {
-        super.commitProperties();
-
-        // Code executed when model (dataProvider changes)
-        // If dataProvider is changed, selectedColor if found in
-        // the new dataProvider is selected
-        // else selectedColor is color at selectedIndex = 0;
-        if (collectionChanged)
-        {
-            if (findColorByName(selectedColor) == -1)
-            {
-                if (dataProvider.length > 0 && selectedIndex > dataProvider.length)
-                    selectedIndex = 0;
-                if (getColor(selectedIndex) >= 0)
-                {
-                    selectedColor = getColor(selectedIndex);
-                    //swatchPreview.color = selectedColor;
-                }/*
-                else
-                {
-                    if (dropdownSwatch)
-                        swatchPreview.color = dropdownSwatch.selectedColor;
-                }*/
-            }
-            else
-                selectedIndex = findColorByName(selectedColor);
-            collectionChanged = false;
-        }
-    }
-
-    /**
-     *  @private
-     */
-    override protected function measure():void
-    {
-        // Though deriving from ComboBase this doesnot implement
-        // calcPreferredSizeFromData required by the super measure.
-        // Hence do not call it.
-        // super.measure();
-
-        // Make sure we're a small square, so we use HEIGHT for both
-        //measuredMinWidth = measuredWidth = DEFAULT_MEASURED_MIN_HEIGHT;
-        //measuredMinHeight = measuredHeight = DEFAULT_MEASURED_MIN_HEIGHT;
-    }
-
-    /**
-     *  @private
-     */
-    override protected function updateDisplayList(unscaledWidth:Number,
-                                                  unscaledHeight:Number):void
-    {
-        super.updateDisplayList(unscaledWidth, unscaledHeight);
-
-        //swatchPreview.color = selectedColor;
-        //swatchPreview.setActualSize(unscaledWidth, unscaledHeight);
-
-        // super may push it around
-        //downArrowButton.move(0, 0);
-        //downArrowButton.setActualSize(unscaledWidth, unscaledHeight);
-
-        if (dropdownSwatch)
-        {
-            dropdownSwatch.setActualSize(
-                dropdownSwatch.getExplicitOrMeasuredWidth(),
-                dropdownSwatch.getExplicitOrMeasuredHeight());
-        }
-    }
-
-    /**
-     *  @private
-     *  Invalidate Style
-     */
-    override public function styleChanged(styleProp:String):void
-    {
-
-        if (dropdownSwatch)
-        {
-            if (styleProp == "swatchPanelStyleName")
-            {
-                var swatchPanelStyleName:Object = getStyle("swatchPanelStyleName");
-                if (swatchPanelStyleName)
-                    dropdownSwatch.styleName = swatchPanelStyleName;
-            }
-            dropdownSwatch.styleChanged(styleProp);
-        }
-    
-
-        super.styleChanged(styleProp);
-
-        // Adjust tweenMask size if needed
-        invalidateDisplayList();
-    }
-
-    //--------------------------------------------------------------------------
-    //
-    //  Methods
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  Displays the drop-down SwatchPanel object
-     *  that shows colors that users can select.
-     *
-     *  @helpid 4925
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function open():void
-    {
-        //displayDropdown(true);
-    }
-
-    /**
-     *  Hides the drop-down SwatchPanel object.
-     *
-     *  @param trigger The event to dispatch when the 
-     *  drop-down list closes.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function close(trigger:Event = null):void
-    {
-        //displayDropdown(false, trigger);
-    }
-
-    /**
-     *  @private
-     *  Load Default Palette
-     */
-    private function loadDefaultPalette():void
-    {
-        // Initialize default swatch list
-        if (!dataProvider || dataProvider.length < 1)
-        {
-            //var wsp:WebSafePalette = new WebSafePalette();
-            //dataProvider = wsp.getList();
-        }
-        selectedIndex = findColorByName(selectedColor);
-    }
-
-    /**
-     *  @private
-     *  Update Color Preview
-     */
-    private function updateColor(color:Number):void
-    {
-        if (initializing || isNaN(color))
-            return;
-
-        // Update the preview swatch
-        //swatchPreview.updateSkin(color);
-    }
-
-    /**
-     *  @private
-     *  Find Color by Name
-     */
-    private function findColorByName(name:Number):int
-    {
-        if (name == getColor(selectedIndex))
-            return selectedIndex;
-
-        var n:int = dataProvider.length;
-        for (var i:int = 0; i < dataProvider.length; i++)
-        {
-            if (name == getColor(i))
-                return i;
-        }
-
-        return -1;
-    }
-
-    /**
-     *  @private
-     *  Get Color Value
-     */
-    private function getColor(location:int):Number
-    {
-        if (!dataProvider || dataProvider.length < 1 ||
-            location < 0 || location >= dataProvider.length)
-        {
-            return -1;
-        }
-
-        return Number(typeof(dataProvider.getItemAt(location)) == "object" ?
-                      dataProvider.getItemAt(location)[colorField] :
-                      dataProvider.getItemAt(location));
-
-    }
-
-    /**
-     *  @private
-     */
-    private function dropdownSwatch_mouseDownOutsideHandler(event:Event):void
-    {
-		/*
-        if (event is MouseEvent)
-        {		
-            var mouseEvent:MouseEvent = MouseEvent(event);
-            if (!hitTestPoint(mouseEvent.stageX, mouseEvent.stageY, true))
-                close(event);
-        }
-        else if (event is SandboxMouseEvent)
-            close(event);
-		*/
-    }    
 }
 
 } 
