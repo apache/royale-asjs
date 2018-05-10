@@ -166,7 +166,7 @@ internal class MXRoyaleClasses
 	import mx.core.UITextField; UITextField;
 	import mx.effects.Parallel; Parallel; 
 	import mx.rpc.events.FaultEvent; FaultEvent;
-
+	import mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer;  AdvancedDataGridItemRenderer;
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
