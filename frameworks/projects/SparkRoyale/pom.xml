@@ -26,11 +26,11 @@
     <version>0.9.2-SNAPSHOT</version>
   </parent>
 
-  <artifactId>MXRoyale</artifactId>
+  <artifactId>SparkRoyale</artifactId>
   <version>0.9.2-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <name>Apache Royale: Framework: Libs: MXRoyale</name>
+  <name>Apache Royale: Framework: Libs: SparkRoyale</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -43,14 +43,22 @@
         <configuration>
           <namespaces>
             <namespace>
-              <uri>library://ns.apache.org/royale/mx</uri>
-              <manifest>${project.basedir}/src/main/resources/mx-royale-manifest.xml</manifest>
+              <uri>library://ns.apache.org/royale/spark</uri>
+              <manifest>${project.basedir}/src/main/resources/spark-royale-manifest.xml</manifest>
             </namespace>
           </namespaces>
           <includeClasses>
-            <includeClass>MXRoyaleClasses</includeClass>
+            <includeClass>SparkRoyaleClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
+          <defines>
+              <define>
+                  <name>GOOG::DEBUG</name>
+                  <value>true</value>
+              </define>
+          </defines>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+          <additionalCompilerOptions>-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
@@ -81,6 +89,20 @@
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Basic</artifactId>
+        <version>0.9.2-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>js</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>MXRoyale</artifactId>
+        <version>0.9.2-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>MXRoyale</artifactId>
         <version>0.9.2-SNAPSHOT</version>
         <type>swc</type>
         <classifier>js</classifier>
