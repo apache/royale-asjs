@@ -86,7 +86,6 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
-	import mx.charts.chartClasses.CartesianChart; CartesianChart;
 	import mx.charts.chartClasses.IAxis; IAxis;
 	import mx.charts.PlotChart; PlotChart;
 	import mx.charts.series.PieSeries; PieSeries;
