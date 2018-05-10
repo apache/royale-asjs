@@ -19,7 +19,6 @@
 
 package mx.charts
 {
-import mx.charts.chartClasses.CartesianChart;
 import mx.charts.chartClasses.IAxis;
 import mx.graphics.IFill;
 import mx.graphics.SolidColor;
@@ -45,13 +44,13 @@ import mx.graphics.Stroke;
 import mx.styles.CSSStyleDeclaration;
 
 use namespace mx_internal;
-
+*/
 [DefaultBindingProperty(destination="dataProvider")]
 
-[DefaultTriggerEvent("itemClick")]
+//[DefaultTriggerEvent("itemClick")]
 
-[IconFile("AreaChart.png")]
-*/
+//[IconFile("AreaChart.png")]
+
 /**
  *  The AreaChart control represents data as an area
  *  bounded by a line connecting the values in the data.
@@ -85,7 +84,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class AreaChart extends CartesianChart
+public class AreaChart 
+//extends CartesianChart
 {
     //include "../core/Version.as";
 
@@ -142,7 +142,7 @@ public class AreaChart extends CartesianChart
     /**
      *  @private
      */
-    override public function set horizontalAxis(value:IAxis):void
+    /*override*/ public function set horizontalAxis(value:IAxis):void
     {
         //if (value is CategoryAxis)
         //    CategoryAxis(value).padding = 0;
@@ -207,12 +207,45 @@ public class AreaChart extends CartesianChart
         //invalidateData();
     }
 
-    //--------------------------------------------------------------------------
-    //
-    //  Overridden methods: UIComponent
-    //
-    //--------------------------------------------------------------------------
+	 /**
+     *  @private
+     */
+    private var _showDataTips:Boolean = false;
     
+		/**
+     *  Specifies whether Flex shows DataTip controls for the chart.
+     *  DataTip controls are similar to tool tips,
+     *  except that they display an appropriate value
+     *  that represents the nearest chart data point under the mouse pointer.
+     *  
+     *  <p>Different chart elements might show different styles
+     *  of DataTip controls.
+     *  For example, a stacked chart element might show both the values
+     *  of the column and the percentage that it contributes to the whole.</p>
+     *
+     *  <p>You can customize DataTip controls with the
+     *  <code>dataTipFunction</code> property.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+		public function get showDataTips():Boolean
+		{
+			return _showDataTips;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set showDataTips(value:Boolean):void
+		{
+			if (_showDataTips == value)
+				return;
+				
+			_showDataTips = value;
+		}
 }
 
 }
