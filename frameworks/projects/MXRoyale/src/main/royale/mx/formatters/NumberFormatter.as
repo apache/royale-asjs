@@ -520,25 +520,6 @@ public class NumberFormatter //extends Formatter
     //  Overridden methods
     //
     //--------------------------------------------------------------------------
-
-    /**
-     *  @private    
-     */
-	/*
-    override protected function resourcesChanged():void
-    {
-        super.resourcesChanged();
-
-        decimalSeparatorFrom = decimalSeparatorFromOverride;
-        decimalSeparatorTo = decimalSeparatorToOverride;
-        precision = precisionOverride;
-        rounding = roundingOverride;
-        thousandsSeparatorFrom = thousandsSeparatorFromOverride;
-        thousandsSeparatorTo = thousandsSeparatorToOverride;
-        useNegativeSign = useNegativeSignOverride;
-        useThousandsSeparator = useThousandsSeparatorOverride;
-    }
-	*/
     /**
      *  Formats the number as a String.
      *  If <code>value</code> cannot be formatted, return an empty String 
