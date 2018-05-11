@@ -69,23 +69,6 @@ public class PopUpManager
 	 */
     // private static var _impl:IPopUpManager;
 
-	/**
-	 *  @private
-	 *  The singleton instance of PopUpManagerImpl which was
-	 *  registered as implementing the IPopUpManager interface.
-	 */
-	/*
-	private static function get impl():IPopUpManager
-	{
-	    if (!_impl)
-		{
-			_impl = IPopUpManager(
-				Singleton.getInstance("mx.managers::IPopUpManager"));
-		}
-	    
-	    return _impl;
-	}
-	*/
     //--------------------------------------------------------------------------
     //
     //  Class methods
@@ -242,25 +225,5 @@ public class PopUpManager
     {
 		//impl.removePopUp(popUp);
     }
-    
-    /**
-     *  Makes sure a popup window is higher than other objects in its child list
-     *  The SystemManager does this automatically if the popup is a top level window
-     *  and is moused on, 
-     *  but otherwise you have to take care of this yourself.
-     *
-     *  @param The IFlexDisplayObject representing the popup.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-	 /*
-    public static function bringToFront(popUp:IFlexDisplayObject):void
-    {
-		impl.bringToFront(popUp);
-    }
-    */
 } // class
 } // package
