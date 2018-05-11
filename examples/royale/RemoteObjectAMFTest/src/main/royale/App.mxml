@@ -86,8 +86,8 @@ limitations under the License.
         <js:ClassAliasBead />
         <js:RemoteObject id="service" result="onResult(event)" fault="onFault(event)"
                          endPoint = "http://localhost:8080/messagebroker/websocket-amf"
-                         destination = "exampleService"
-                         source = "exampleService"/>
+                         destination = "exampleService"/>
+                         <!--source = "exampleService" source is not needed when using JavaAdapter on BlazeDS-->
     </j:beads>
 
     <j:initialView>
