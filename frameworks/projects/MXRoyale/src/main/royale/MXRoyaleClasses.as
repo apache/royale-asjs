@@ -89,9 +89,7 @@ internal class MXRoyaleClasses
 	import mx.modules.Module; Module; 
 	import mx.events.ModuleEvent; ModuleEvent;
 	import mx.modules.IModule; IModule;
-	import mx.core.LayoutContainer; LayoutContainer;
 	import mx.modules.ModuleLoader; ModuleLoader; 
-	import mx.modules.ModuleManagerGlobals; ModuleManagerGlobals;
 	import mx.modules.ModuleManager; ModuleManager;
 
     COMPILE::SWF
