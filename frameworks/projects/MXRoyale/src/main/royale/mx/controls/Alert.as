@@ -63,7 +63,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="buttonStyleName", type="String", inherit="no")]
 
@@ -81,7 +81,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="messageStyleName", type="String", inherit="no")]
 
@@ -99,7 +99,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="titleStyleName", type="String", inherit="no")]
 
@@ -133,7 +133,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class Alert extends Panel
 {
@@ -155,7 +155,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const YES:uint = 0x0001;
     
@@ -169,7 +169,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const NO:uint = 0x0002;
     
@@ -183,7 +183,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const OK:uint = 0x0004;
     
@@ -197,7 +197,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const CANCEL:uint= 0x0008;
 
@@ -211,7 +211,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const NONMODAL:uint = 0x8000;
 
@@ -245,7 +245,7 @@ public class Alert extends Panel
     /**
      *  @private
      */
-    private static var initialized:Boolean = false;
+    //private static var initialized:Boolean = false;
     
     //--------------------------------------------------------------------------
     //
@@ -268,7 +268,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     //public static var buttonHeight:Number = 22;
     
@@ -287,7 +287,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     //public static var buttonWidth:Number = 65;
     
@@ -298,12 +298,12 @@ public class Alert extends Panel
      *  @private
      *  Storage for the cancelLabel property.
      */
-    private static var _cancelLabel:String;
+    //private static var _cancelLabel:String;
     
     /**
      *  @private
      */
-    private static var cancelLabelOverride:String;
+    //private static var cancelLabelOverride:String;
 
     //[Inspectable(category="General")]
 
@@ -315,12 +315,12 @@ public class Alert extends Panel
      *  @private
      *  Storage for the noLabel property.
      */
-    private static var _noLabel:String;
+    //private static var _noLabel:String;
     
     /**
      *  @private
      */
-    private static var noLabelOverride:String;
+    //private static var noLabelOverride:String;
 
     //[Inspectable(category="General")]
 
@@ -328,12 +328,12 @@ public class Alert extends Panel
      *  @private
      *  Storage for the okLabel property.
      */
-    private static var _okLabel:String;
+    //private static var _okLabel:String;
     
     /**
      *  @private
      */
-    private static var okLabelOverride:String;
+    //private static var okLabelOverride:String;
 
     //[Inspectable(category="General")]
 
@@ -341,12 +341,12 @@ public class Alert extends Panel
      *  @private
      *  Storage for the yesLabel property.
      */
-    private static var _yesLabel:String;
+    //private static var _yesLabel:String;
     
     /**
      *  @private
      */
-    private static var yesLabelOverride:String;
+    //private static var yesLabelOverride:String;
 
     //[Inspectable(category="General")]
 
@@ -408,7 +408,7 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static function show(text:String = "", title:String = "",
                                 flags:uint = 0x4 /* Alert.OK */, 
@@ -434,7 +434,7 @@ public class Alert extends Panel
         }
         
         var alert:Alert = new Alert();
-
+		/*
         if (flags & Alert.OK||
             flags & Alert.CANCEL ||
             flags & Alert.YES ||
@@ -452,8 +452,8 @@ public class Alert extends Panel
         }
         
         alert.text = text;
-        alert.title = title;
-        alert.iconClass = iconClass;
+        alert.title = title;*/
+        //alert.iconClass = iconClass;
             
         if (closeHandler != null)
             alert.addEventListener(CloseEvent.CLOSE, closeHandler);
@@ -493,14 +493,14 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function Alert()
     {
         super();
 
         // Panel properties.
-        title = "";
+        //title = "";
     }
 
     //--------------------------------------------------------------------------
@@ -540,23 +540,10 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *	@royalesuppresspublicvarwarning
      */
     //public var buttonFlags:uint = OK;
-    private var _buttonFlags:uint = OK;
-    
-	public function get buttonFlags():uint
-	{
-		return _buttonFlags;
-	}
-
-	public function set buttonFlags(value:uint):void
-	{
-		if (_buttonFlags == value)
-			return;
-			
-		_buttonFlags = value;
-	}
     
     //----------------------------------
     //  defaultButtonFlag
@@ -574,25 +561,11 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *	@royalesuppresspublicvarwarning
      */
     //public var defaultButtonFlag:uint = OK;
-	
-    private var _defaultButtonFlag:uint = OK;
-    
-	public function get defaultButtonFlag():uint
-	{
-		return _defaultButtonFlag;
-	}
-
-	public function set defaultButtonFlag(value:uint):void
-	{
-		if (_defaultButtonFlag == value)
-			return;
-			
-		_defaultButtonFlag = value;
-	}
-    
+	    
     //----------------------------------
     //  iconClass
     //----------------------------------
@@ -610,23 +583,10 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *	@royalesuppresspublicvarwarning
      */
     //public var iconClass:Class;
-    private var _iconClass:Class;
-    
-	public function get iconClass():Class
-	{
-		return _iconClass;
-	}
-
-	public function set iconClass(value:Class):void
-	{
-		if (_iconClass == value)
-			return;
-			
-		_iconClass = value;
-	}
     
     //----------------------------------
     //  text
@@ -642,23 +602,10 @@ public class Alert extends Panel
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *	@royalesuppresspublicvarwarning
      */
     //public var text:String = "";
-    private var _text:String = "";
-    
-	public function get text():String
-	{
-		return _text;
-	}
-
-	public function set text(value:String):void
-	{
-		if (_text == value)
-			return;
-			
-		_text = value;
-	}
         
 }
 
