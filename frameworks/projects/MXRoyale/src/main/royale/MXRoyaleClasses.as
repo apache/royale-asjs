@@ -105,7 +105,6 @@ internal class MXRoyaleClasses
 	import mx.logging.LogEventLevel; LogEventLevel;
 	import mx.logging.ILogger; ILogger;
 	import mx.utils.Base64Encoder; Base64Encoder;
-	import mx.utils.Base64Decoder; Base64Decoder;
 	import mx.utils.Base64JSWrapper; Base64JSWrapper;
 	import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
 	
