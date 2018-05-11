@@ -86,6 +86,11 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+	import mx.events.MenuEvent; MenuEvent;
+	import mx.events.FlexEvent; FlexEvent;
+	import mx.controls.MenuBar; MenuBar; 
+	import mx.formatters.NumberFormatter; NumberFormatter;
+	import mx.managers.PopUpManager; PopUpManager; 
 
     COMPILE::SWF
     {
