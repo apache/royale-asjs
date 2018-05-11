@@ -24,6 +24,7 @@ import mx.containers.VBox;
 import mx.core.FlexVersion;
 import mx.events.FlexEvent;
 import mx.events.ModuleEvent;
+import mx.system.ApplicationDomain;
 //import flash.display.DisplayObject;
 //import flash.display.DisplayObjectContainer;
 //import flash.events.Event;
@@ -44,9 +45,9 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-[Event(name="loading", type="flash.events.Event")]
+//[Event(name="loading", type="flash.events.Event")]
 
 /**
  *  Dispatched when the ModuleLoader is given a new URL.
@@ -56,9 +57,9 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-[Event(name="urlChanged", type="flash.events.Event")]
+//[Event(name="urlChanged", type="flash.events.Event")]
 
 /**
  *  Dispatched when information about the module is 
@@ -70,9 +71,9 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-[Event(name="setup", type="mx.events.ModuleEvent")]
+//[Event(name="setup", type="mx.events.ModuleEvent")]
 
 /**
  *  Dispatched when the module is finished loading.
@@ -82,7 +83,7 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Event(name="ready", type="mx.events.ModuleEvent")]
 
@@ -94,9 +95,9 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-[Event(name="error", type="mx.events.ModuleEvent")]
+//[Event(name="error", type="mx.events.ModuleEvent")]
 
 /**
  *  Dispatched at regular intervals as the module loads.
@@ -106,7 +107,7 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Event(name="progress", type="mx.events.ModuleEvent")]
 
@@ -118,9 +119,9 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-[Event(name="unload", type="mx.events.ModuleEvent")]
+//[Event(name="unload", type="mx.events.ModuleEvent")]
 
 //--------------------------------------
 //  Other metadata
@@ -145,7 +146,7 @@ import mx.events.ModuleEvent;
 
 //[IconFile("ModuleLoader.png")]
 
-[Alternative(replacement="spark.modules.ModuleLoader", since="4.5")]
+//[Alternative(replacement="spark.modules.ModuleLoader", since="4.5")]
 
 /**
  *  ModuleLoader is a component that behaves much like a SWFLoader except
@@ -180,7 +181,7 @@ import mx.events.ModuleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class ModuleLoader extends VBox
                         // implements IDeferredInstantiationUIComponent
@@ -199,7 +200,7 @@ public class ModuleLoader extends VBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function ModuleLoader()
     {
@@ -215,12 +216,12 @@ public class ModuleLoader extends VBox
     /**
      *  @private
      */
-    private var module:IModuleInfo;
+    //private var module:IModuleInfo;
 
     /**
      *  @private
      */
-    private var loadRequested:Boolean = false;
+    //private var loadRequested:Boolean = false;
 
     //--------------------------------------------------------------------------
     //
@@ -244,9 +245,10 @@ public class ModuleLoader extends VBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *	@royalesuppresspublicvarwarning
      */
-   // public var applicationDomain:ApplicationDomain;
+    public var applicationDomain:ApplicationDomain;
 
     //----------------------------------
     //  child
@@ -258,9 +260,10 @@ public class ModuleLoader extends VBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *	@royalesuppresspublicvarwarning
      */
-   // public var child:DisplayObject;
+    public var child:Object; //DisplayObject;
 
     //----------------------------------
     //  trustContent
@@ -291,7 +294,7 @@ public class ModuleLoader extends VBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get url():String
     {
@@ -305,9 +308,9 @@ public class ModuleLoader extends VBox
     {
         if (value == _url)
             return;
-
+		/*
         var wasLoaded:Boolean = false;
-        /*
+        
         if (module)
         {
                     
