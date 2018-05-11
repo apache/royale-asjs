@@ -20,7 +20,7 @@
 package mx.modules
 {
 
-import mx.core.LayoutContainer;
+//import mx.core.LayoutContainer;
 
 //[Frame(factoryClass="mx.core.FlexModuleFactory")]
 
@@ -59,9 +59,14 @@ import mx.core.LayoutContainer;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *    cornerRadius="0"
+ *    fontWeight="normal"
+ *    paddingLeft="0"
+ *    verticalAlign="top|bottom|middle"
+ *    verticalScrollPolicy="auto|on|off"
  */
-public class Module extends LayoutContainer implements IModule
+public class Module implements IModule //extends LayoutContainer 
 {
     //include "../core/Version.as";
 
@@ -77,12 +82,90 @@ public class Module extends LayoutContainer implements IModule
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function Module()
     {
         super();
     }
+	
+    //----------------------------------
+    //  layout
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for layout property.
+     */
+    private var _layout:String = ""; //ContainerLayout.VERTICAL;
+
+    [Bindable("layoutChanged")]
+    [Inspectable(category="General", enumeration="vertical,horizontal,absolute", defaultValue="vertical")]
+
+    /**
+     *  Specifies the layout mechanism used for this application. 
+     *  Applications can use <code>"vertical"</code>, <code>"horizontal"</code>, 
+     *  or <code>"absolute"</code> positioning. 
+     *  Vertical positioning lays out each child component vertically from
+     *  the top of the application to the bottom in the specified order.
+     *  Horizontal positioning lays out each child component horizontally
+     *  from the left of the application to the right in the specified order.
+     *  Absolute positioning does no automatic layout and requires you to
+     *  explicitly define the location of each child component. 
+     *
+     *  @default "vertical"
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get layout():String
+    {
+        return _layout;
+    }
+
+    /**
+     *  @private
+     */
+    public function set layout(value:String):void
+    {
+        if (_layout != value)
+        {
+            _layout = value;
+			/*
+            if (layoutObject)
+                // Set target to null for cleanup.
+                layoutObject.target = null;
+
+            if (_layout == ContainerLayout.ABSOLUTE)
+                layoutObject = new canvasLayoutClass();
+            else
+            {
+                layoutObject = new boxLayoutClass();
+
+                if (_layout == ContainerLayout.VERTICAL)
+                {
+                    BoxLayout(layoutObject).direction =
+                        BoxDirection.VERTICAL;
+                }
+                else
+                {
+                    BoxLayout(layoutObject).direction =
+                        BoxDirection.HORIZONTAL;
+                }
+            }
+
+            if (layoutObject)
+                layoutObject.target = this;
+
+            invalidateSize();
+            invalidateDisplayList();
+
+            dispatchEvent(new Event("layoutChanged"));*/
+        }
+    }
+
 }
 
 }
