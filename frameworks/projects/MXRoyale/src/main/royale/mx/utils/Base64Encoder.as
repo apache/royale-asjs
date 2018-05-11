@@ -138,19 +138,8 @@ public class Base64Encoder
     COMPILE::JS
     public function encode(data:String, encoding = "utf-8"):void
     {
-        // var bytes:Object = new (TextEncoder || TextEncoderLite)(encoding).encode(data);        
-        // return base64js.fromByteArray(bytes);
-        /*
-        var base64js:Object = window["base64js"];
-        var textEncoderLite:Object = window["TextEncoderLite"];        
-        
-        var bytes:Object = textEncoderLite(encoding).encode(data);
-        
-        _stringResult = base64js["base64js"].fromByteArray(bytes);
-        */
-
-  		var bytes:Object = new TextEncoderLiteWrapper(encoding).encode(data);
-		_stringResult = new Base64JSWrapper().fromByteArray(bytes);
+        var bytes:Object = new TextEncoderLiteWrapper(encoding).encode(data);
+        _stringResult = new Base64JSWrapper().fromByteArray(bytes);
 
     }
 
