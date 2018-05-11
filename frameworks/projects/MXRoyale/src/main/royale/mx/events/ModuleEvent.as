@@ -33,7 +33,7 @@ import org.apache.royale.events.ProgressEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class ModuleEvent //extends ProgressEvent
 {
@@ -74,7 +74,7 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const ERROR:String = "error";
 
@@ -107,9 +107,9 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const PROGRESS:String = "progress";
+    //public static const PROGRESS:String = "progress";
 
     /**
      *  Dispatched when the module has finished downloading.     
@@ -139,7 +139,7 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const READY:String = "ready";
 
@@ -173,9 +173,9 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const SETUP:String = "setup";
+    //public static const SETUP:String = "setup";
 
     /**
      *  Dispatched when the module is unloaded.
@@ -206,9 +206,9 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const UNLOAD:String = "unload";
+    //public static const UNLOAD:String = "unload";
 
     //--------------------------------------------------------------------------
     //
@@ -250,7 +250,7 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */    
 	
     public function ModuleEvent(type:String, bubbles:Boolean = false,
@@ -281,21 +281,10 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *	@royalesuppresspublicvarwarning
      */
-    //public var errorText:String;
-    private var _errorText:String;
-
-	public function get errorText():String
-    {
-        return _errorText;
-    }   
-
-	public function set errorText(value:String):void
-    {
-		if(value == null) value = "";
-        _errorText = value;
-    }   
+    public var errorText:String;
 	
     //----------------------------------
     //  module
@@ -310,7 +299,7 @@ public class ModuleEvent //extends ProgressEvent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
 	
     public function get module():IModuleInfo
