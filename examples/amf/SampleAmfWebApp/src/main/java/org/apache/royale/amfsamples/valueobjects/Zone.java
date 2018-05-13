@@ -16,21 +16,35 @@
  */
 package org.apache.royale.amfsamples.valueobjects;
 
-import java.util.Collection;
-
 /**
  * The server side object used by AMFConnectionTestService. There is a 
  * corresponding client side object.
  */
-public class Product
+public class Zone
 {
+    private int id;
     private String name;
-    private String description;
-    private Taxonomy taxonomy;
-    private Object[] zones;
 
-    public Product()
+    public Zone()
     {
+    }
+
+    /**
+    * The id of the zone.
+    *
+    * @return The id of the zone.
+    */
+    public int getId() {
+        return id;
+    }
+
+    /**
+    * The id of the zone.
+    *
+    * @param id The id of the zone.
+    */
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName()
@@ -42,44 +56,8 @@ public class Product
         this.name = name;
     }
 
-    public String getDescription()
-    {
-        return description;
-    }
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
-    public Taxonomy getTaxonomy()
-    {
-        return taxonomy;
-    }
-    public void setTaxonomy(Taxonomy taxonomy)
-    {
-        this.taxonomy = taxonomy;
-    }
-
-    /**
-    * The zone list.
-    *
-    * @return The zone list.
-    */
-    public Object[] getZones() {
-        return zones;
-    }
-
-    /**
-    * The zones list.
-    *
-    * @param zoness The zones list.
-    */
-    public void setZones(Object[] zones) {
-        this.zones = zones;
-    }
-
     public String toString()
     {
-        return "Product -> name: " + name + ", description: " + description;
+        return "Zone -> id: " + id + ", name: " + name;
     }
 }

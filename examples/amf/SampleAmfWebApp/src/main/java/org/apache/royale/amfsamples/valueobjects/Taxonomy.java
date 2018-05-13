@@ -16,30 +16,26 @@
  */
 package org.apache.royale.amfsamples.valueobjects;
 
-import java.util.Collection;
-
 /**
  * The server side object used by AMFConnectionTestService. There is a 
  * corresponding client side object.
  */
-public class Product
+public class Taxonomy
 {
-    private String name;
+    private String type;
     private String description;
-    private Taxonomy taxonomy;
-    private Object[] zones;
 
-    public Product()
+    public Taxonomy()
     {
     }
 
-    public String getName()
+    public String getType()
     {
-        return name;
+        return type;
     }
-    public void setName(String name)
+    public void setType(String type)
     {
-        this.name = name;
+        this.type = type;
     }
 
     public String getDescription()
@@ -51,35 +47,8 @@ public class Product
         this.description = description;
     }
 
-    public Taxonomy getTaxonomy()
-    {
-        return taxonomy;
-    }
-    public void setTaxonomy(Taxonomy taxonomy)
-    {
-        this.taxonomy = taxonomy;
-    }
-
-    /**
-    * The zone list.
-    *
-    * @return The zone list.
-    */
-    public Object[] getZones() {
-        return zones;
-    }
-
-    /**
-    * The zones list.
-    *
-    * @param zoness The zones list.
-    */
-    public void setZones(Object[] zones) {
-        this.zones = zones;
-    }
-
     public String toString()
     {
-        return "Product -> name: " + name + ", description: " + description;
+        return "Taxonomy -> type: " + type + ", description: " + description;
     }
 }

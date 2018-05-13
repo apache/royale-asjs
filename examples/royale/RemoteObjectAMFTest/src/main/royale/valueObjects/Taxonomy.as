@@ -18,25 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package valueObjects
 {
-    //import org.apache.royale.collections.ArrayList;
-
-    [RemoteClass(alias="org.apache.royale.amfsamples.valueobjects.Product")]
-	public class Product
+    [RemoteClass(alias="org.apache.royale.amfsamples.valueobjects.Taxonomy")]
+	public class Taxonomy
 	{
-		public function Product()
+		public function Taxonomy()
 		{
 		}
 
-		private var _name:String;
+		private var _type:String;
 
-        public function get name():String
+        public function get type():String
         {
-            return _name;
+            return _type;
         }
         
-        public function set name(value:String):void
+        public function set type(value:String):void
         {
-            _name = value;
+            _type = value;
         }
 
         private var _description:String;
@@ -49,31 +47,6 @@ package valueObjects
         public function set description(value:String):void
         {
             _description = value;
-        }
-
-        private var _taxonomy:Taxonomy;
-
-        public function get taxonomy():Taxonomy
-        {
-            return _taxonomy;
-        }
-        
-        public function set taxonomy(value:Taxonomy):void
-        {
-            _taxonomy = value;
-        }
-
-        // collection of zones (Zone - ArrayList)
-        private var _zones:Array;
-
-        public function get zones():Array
-        {
-            return _zones;
-        }
-        
-        public function set zones(value:Array):void
-        {
-            _zones = value;
         }
 	}
 }

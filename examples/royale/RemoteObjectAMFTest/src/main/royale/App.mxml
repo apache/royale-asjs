@@ -35,9 +35,10 @@ limitations under the License.
 			import org.apache.royale.net.events.ResultEvent;
             import valueObjects.ClientValueObject;
             import valueObjects.Product;
+            import valueObjects.Zone;
             import org.apache.royale.collections.ArrayList;
-			
-			protected function sendName():void
+
+            protected function sendName():void
 			{
                 service.send("echo", [name_txt.text]);
 			}
@@ -47,10 +48,22 @@ limitations under the License.
 				trace("Result=" + evt.data);
 				if (evt.data is String)
 					received.text = "Received: " + evt.data;
+                else if (evt.data is Zone)
+                {
+                    var zone:Zone = evt.data as Zone;
+                    received3.text = "Received: zone " + zone.id + " is '" + zone.name + "'";
+                }
 				else if (evt.data is Product)
                 {
                     var product:Product = evt.data as Product;
-                    received3.text = "Received: product name is '" + product.name + "' and product description is '" + product.description + "'" ;
+                    received3.text = "Received: product name is '" + product.name + "', product description is '" + product.description + "'. product taxonomy type is '" + product.taxonomy.type + "' and product taxonomy description is '" + product.taxonomy.description + "' zones: " ;
+
+                    var len:int = product.zones.length;
+                    for(var index:int = 0; index < len; index++)
+                    {
+                        var zone:Zone = product.zones[index];
+                        received3.text += "[" + zone.id + ", " + zone.name + "], ";
+                    }
                 } else
               	{
                     var arr:ArrayList = new ArrayList(evt.data as Array);
@@ -68,6 +81,11 @@ limitations under the License.
                 service.send("getObjectArray1", []);
 			}
 
+            protected function getSomeZone():void
+			{
+                service.send("getSomeZone", []);
+			}
+            
             protected function getSomeProduct():void
 			{
                 service.send("getSomeProduct", []);
