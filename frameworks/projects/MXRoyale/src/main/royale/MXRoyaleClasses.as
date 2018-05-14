@@ -173,6 +173,7 @@ internal class MXRoyaleClasses
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
 	import mx.messaging.channels.AMFChannel; AMFChannel;
 	import mx.messaging.ChannelSet; ChannelSet;
+	import mx.rpc.soap.WebService; WebService;
 
     COMPILE::SWF
     {
