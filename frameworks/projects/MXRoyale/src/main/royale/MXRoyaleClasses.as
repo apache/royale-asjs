@@ -172,6 +172,7 @@ internal class MXRoyaleClasses
 	import mx.events.AdvancedDataGridEvent; AdvancedDataGridEvent;
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
 	import mx.messaging.channels.AMFChannel; AMFChannel;
+	import mx.messaging.ChannelSet; ChannelSet;
 
     COMPILE::SWF
     {
