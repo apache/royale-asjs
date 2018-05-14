@@ -29,6 +29,8 @@ internal class SparkRoyaleClasses
 {
     import spark.components.supportClasses.SkinnableComponent; SkinnableComponent;
     import spark.components.supportClasses.ToggleButtonBase; ToggleButtonBase;
+    import spark.components.ToggleButton; ToggleButton;
+
 }
 
 }
