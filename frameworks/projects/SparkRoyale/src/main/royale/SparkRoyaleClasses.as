@@ -32,7 +32,8 @@ internal class SparkRoyaleClasses
     import spark.components.ToggleButton; ToggleButton;
     import spark.events.IndexChangeEvent; IndexChangeEvent;
     import spark.components.DataRenderer; DataRenderer;
-    
+    import spark.components.supportClasses.Range; Range;
+
 }
 
 }
