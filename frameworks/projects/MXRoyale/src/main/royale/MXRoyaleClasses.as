@@ -171,7 +171,8 @@ internal class MXRoyaleClasses
 	import mx.controls.Tree; Tree;
 	import mx.events.AdvancedDataGridEvent; AdvancedDataGridEvent;
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
-	
+	import mx.messaging.channels.AMFChannel; AMFChannel;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
