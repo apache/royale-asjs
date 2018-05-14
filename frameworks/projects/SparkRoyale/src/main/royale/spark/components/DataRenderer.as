@@ -28,7 +28,7 @@ import org.apache.royale.events.EventDispatcher;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  * 
  *  @eventType mx.events.FlexEvent.DATA_CHANGE
  * 
@@ -56,7 +56,7 @@ import org.apache.royale.events.EventDispatcher;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 public class DataRenderer extends EventDispatcher implements IDataRenderer
 { // replacing extends Group with extends EventDispatcher for now
@@ -75,7 +75,7 @@ public class DataRenderer extends EventDispatcher implements IDataRenderer
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function DataRenderer()
     {
@@ -114,7 +114,7 @@ public class DataRenderer extends EventDispatcher implements IDataRenderer
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function get data():Object
     {
