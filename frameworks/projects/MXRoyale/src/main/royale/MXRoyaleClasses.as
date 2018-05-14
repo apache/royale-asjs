@@ -169,7 +169,8 @@ internal class MXRoyaleClasses
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer;  AdvancedDataGridItemRenderer;
 	import mx.charts.series.LineSeries; LineSeries;
 	import mx.controls.Tree; Tree;
-	
+	import mx.events.AdvancedDataGridEvent; AdvancedDataGridEvent;
+
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
