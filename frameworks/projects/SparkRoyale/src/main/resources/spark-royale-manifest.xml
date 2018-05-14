@@ -22,5 +22,5 @@
 <componentPackage>
 
 	<component id="Button" class="spark.components.Button" />
-	
+	<component id="CheckBox" class="spark.components.CheckBox" />
 </componentPackage>
