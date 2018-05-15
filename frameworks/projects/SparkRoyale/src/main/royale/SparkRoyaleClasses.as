@@ -37,6 +37,7 @@ internal class SparkRoyaleClasses
     import spark.components.supportClasses.TextBase; TextBase;
     import spark.components.PopUpAnchor; PopUpAnchor;
     import spark.events.TextOperationEvent; TextOperationEvent;
+    import spark.components.supportClasses.GroupBase; GroupBase;
     
 }
 
