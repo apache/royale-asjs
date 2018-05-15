@@ -35,7 +35,8 @@ internal class SparkRoyaleClasses
     import spark.components.supportClasses.Range; Range;
     import spark.components.supportClasses.SkinnableTextBase; SkinnableTextBase;
     import spark.components.supportClasses.TextBase; TextBase;
-
+    import spark.components.PopUpAnchor; PopUpAnchor;
+    
 }
 
 }
