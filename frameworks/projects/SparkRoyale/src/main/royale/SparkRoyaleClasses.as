@@ -33,6 +33,7 @@ internal class SparkRoyaleClasses
     import spark.events.IndexChangeEvent; IndexChangeEvent;
     import spark.components.DataRenderer; DataRenderer;
     import spark.components.supportClasses.Range; Range;
+	import spark.components.supportClasses.SkinnableTextBase; SkinnableTextBase;
 
 }
 
