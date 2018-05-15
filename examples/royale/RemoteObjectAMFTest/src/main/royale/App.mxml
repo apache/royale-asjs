@@ -46,11 +46,14 @@ limitations under the License.
 			private function onResult(evt:ResultEvent):void
 			{
 				trace("Result=" + evt.data);
+
+                var zone:Zone;
+
 				if (evt.data is String)
 					received.text = "Received: " + evt.data;
                 else if (evt.data is Zone)
                 {
-                    var zone:Zone = evt.data as Zone;
+                    zone = evt.data as Zone;
                     received3.text = "Received: zone " + zone.id + " is '" + zone.name + "'";
                 }
 				else if (evt.data is Product)
@@ -61,7 +64,7 @@ limitations under the License.
                     var len:int = product.zones.length;
                     for(var index:int = 0; index < len; index++)
                     {
-                        var zone:Zone = product.zones[index];
+                        zone = product.zones[index];
                         received3.text += "[" + zone.id + ", " + zone.name + "], ";
                     }
                 } else
