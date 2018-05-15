@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package valueObjects
 {
+    import org.apache.royale.collections.ArrayList;
+
     //import org.apache.royale.collections.ArrayList;
 
     [RemoteClass(alias="org.apache.royale.amfsamples.valueobjects.Product")]
@@ -75,5 +77,18 @@ package valueObjects
         {
             _zones = value;
         }
+
+        private var _flavors:ArrayList = null;
+
+        public function get flavors():ArrayList
+        {
+            return _flavors;
+        }
+        
+        public function set flavors(value:ArrayList):void
+        {
+            _flavors = value;
+        }
+
 	}
 }

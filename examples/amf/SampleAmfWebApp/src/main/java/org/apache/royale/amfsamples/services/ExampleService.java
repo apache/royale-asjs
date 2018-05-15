@@ -28,6 +28,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 @Service("exampleService")
 @RemotingDestination
@@ -109,6 +112,15 @@ public class ExampleService {
         }
 
         product.setZones(zones);
+        
+        List<CharSequence> list = new ArrayList<CharSequence>();
+        list.add("A");
+        list.add("B");
+        list.add("A");
+        list.add("C");
+        list.add("C");
+        list.add("B");
+        product.setFlavors(new HashSet<CharSequence>(list));
 
         return product;
     }

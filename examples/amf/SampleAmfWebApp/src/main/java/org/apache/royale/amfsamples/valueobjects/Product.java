@@ -17,6 +17,7 @@
 package org.apache.royale.amfsamples.valueobjects;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * The server side object used by AMFConnectionTestService. There is a 
@@ -72,11 +73,32 @@ public class Product
     /**
     * The zones list.
     *
-    * @param zoness The zones list.
+    * @param zones The zones list.
     */
     public void setZones(Object[] zones) {
         this.zones = zones;
     }
+
+    private Set<CharSequence> flavors = null;
+
+    /**
+    * The flavors set of names.
+    *
+    * @return The flavors set of names.
+    */
+    public Set<CharSequence> getFlavors() {
+        return flavors;
+    }
+
+    /**
+    * The flavors set of names.
+    *
+    * @param flavors The flavors set of names.
+    */
+    public void setFlavors(Set<CharSequence> flavors) {
+        this.flavors = flavors;
+    }
+
 
     public String toString()
     {

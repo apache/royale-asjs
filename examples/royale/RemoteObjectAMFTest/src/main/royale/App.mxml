@@ -62,10 +62,19 @@ limitations under the License.
                     received3.text = "Received: product name is '" + product.name + "', product description is '" + product.description + "'. product taxonomy type is '" + product.taxonomy.type + "' and product taxonomy description is '" + product.taxonomy.description + "' zones: " ;
 
                     var len:int = product.zones.length;
-                    for(var index:int = 0; index < len; index++)
+                    var index:int;
+                    for(index = 0; index < len; index++)
                     {
                         zone = product.zones[index];
                         received3.text += "[" + zone.id + ", " + zone.name + "], ";
+                    }
+
+                    received3.text += " flavors: ";
+
+                    len = product.flavors.length;
+                    for(index = 0; index < len; index++)
+                    {
+                        received3.text += "[" + product.flavors[index] + "], ";
                     }
                 } else
               	{
