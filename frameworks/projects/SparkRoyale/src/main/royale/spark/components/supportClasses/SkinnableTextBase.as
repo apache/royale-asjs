@@ -74,7 +74,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="borderAlpha", type="Number", inherit="no", theme="spark", minValue="0.0", maxValue="1.0")]
 
@@ -85,7 +85,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark, mobile")]
 
@@ -95,7 +95,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
 
@@ -105,7 +105,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="contentBackgroundAlpha", type="Number", inherit="yes", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
 
@@ -115,7 +115,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
 
@@ -125,7 +125,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="focusAlpha", type="Number", inherit="no", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
 
@@ -135,7 +135,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */ 
 //[Style(name="focusColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
 
@@ -146,7 +146,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.5
- *  @productversion Flex 4.6
+ *  @productversion Royale 0.9.4.6
  */
 //[Style(name="showPromptWhenFocused", type="Boolean", inherit="yes", theme="mobile")]
 
@@ -166,7 +166,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="selectionChange", type="mx.events.FlexEvent")]
 
@@ -182,7 +182,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="changing", type="spark.events.TextOperationEvent")]
 
@@ -194,7 +194,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="change", type="spark.events.TextOperationEvent")]
 
@@ -209,7 +209,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 // [Event(name="textInput", type="flash.events.TextEvent")]
 
@@ -223,7 +223,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[SkinState("normal")]
 
@@ -233,7 +233,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[SkinState("disabled")]
 
@@ -243,7 +243,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.5
- *  @productversion Flex 4.5
+ *  @productversion Royale 0.9.4.5
  */
 //[SkinState("normalWithPrompt")]
 
@@ -253,7 +253,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.5
- *  @productversion Flex 4.5
+ *  @productversion Royale 0.9.4.5
  */
 //[SkinState("disabledWithPrompt")]
 
@@ -307,7 +307,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 public class SkinnableTextBase extends SkinnableComponent 
     implements IFocusManagerComponent
@@ -427,7 +427,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */    
     public function SkinnableTextBase()
     {
@@ -488,7 +488,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var promptDisplay:IDisplayText;
     
@@ -527,7 +527,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
   //  public var textDisplay:IEditableText;
 
@@ -815,7 +815,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.0
-     *  @productversion Flex 4.5
+     *  @productversion Royale 0.9.4.5
      */
     /* public function get prompt():String
     {
@@ -883,7 +883,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get typicalText():String
     {
@@ -918,7 +918,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get displayAsPassword():Boolean
     {
@@ -974,7 +974,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function get editable():Boolean
     {
@@ -1022,7 +1022,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get enableIME():Boolean
     {
@@ -1053,7 +1053,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get imeMode():String
     {
@@ -1104,7 +1104,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get maxChars():int 
     {
@@ -1150,7 +1150,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get restrict():String 
     {
@@ -1208,7 +1208,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get selectable():Boolean
     {
@@ -1266,7 +1266,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get selectionActivePosition():int
     {
@@ -1299,7 +1299,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get selectionAnchorPosition():int
     {
@@ -1327,7 +1327,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
    /*  public function get selectionHighlighting():String 
     {
@@ -1388,7 +1388,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get text():String
     {
@@ -1465,7 +1465,7 @@ public class SkinnableTextBase extends SkinnableComponent
      * 
      *  @langversion 3.0
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get autoCapitalize():String
     {
@@ -1514,7 +1514,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  
      *  @langversion 3.0
      *  @playerversion AIR 3.0
-     *  @productversion Flex 4.6
+     *  @productversion Royale 0.9.4.6
      */
     /* public function get autoCorrect():Boolean
     {
@@ -1580,7 +1580,7 @@ public class SkinnableTextBase extends SkinnableComponent
      * 
      *  @langversion 3.0
      *  @playerversion AIR 3.0
-     *  @productversion Flex 4.6
+     *  @productversion Royale 0.9.4.6
      */
     /* public function get returnKeyLabel():String
     {
@@ -1649,7 +1649,7 @@ public class SkinnableTextBase extends SkinnableComponent
      * 
      *  @langversion 3.0
      *  @playerversion AIR 3.0
-     *  @productversion Flex 4.6
+     *  @productversion Royale 0.9.4.6
      */
 	/* public function get softKeyboardType():String
     {
@@ -1910,7 +1910,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function insertText(text:String):void
     {
@@ -1932,7 +1932,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function appendText(text:String):void
     {
@@ -1954,7 +1954,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function selectRange(anchorIndex:int, activeIndex:int):void
     {
@@ -1976,7 +1976,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function selectAll():void
     {
@@ -2695,7 +2695,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
    /*  private function textDisplay_changeHandler(event:Event):void
     {        
