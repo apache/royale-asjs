@@ -19,7 +19,7 @@
 
 package mx.modules
 {
-
+import mx.core.Container;
 //import mx.core.LayoutContainer;
 
 //[Frame(factoryClass="mx.core.FlexModuleFactory")]
@@ -66,7 +66,7 @@ package mx.modules
  *    verticalAlign="top|bottom|middle"
  *    verticalScrollPolicy="auto|on|off"
  */
-public class Module implements IModule //extends LayoutContainer 
+public class Module extends Container implements IModule //extends LayoutContainer 
 {
     //include "../core/Version.as";
 
