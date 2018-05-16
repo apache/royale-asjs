@@ -24,10 +24,11 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IParentIUIBase;
@@ -41,8 +42,11 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ItemAddedEvent;
+    import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -54,7 +58,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class DataContainerView extends ContainerView implements IListView
+	public class DataContainerView extends ContainerView implements IListView, IItemRendererParent
 	{
 		public function DataContainerView()
 		{
@@ -92,7 +96,7 @@ package org.apache.royale.html.beads
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
-			return super.contentView as IItemRendererParent;
+			return this as IItemRendererParent;
 		}
 		
 		/**
@@ -139,5 +143,159 @@ package org.apache.royale.html.beads
         {
             return _strand as IUIBase;
         }
+        
+        /*
+        * IItemRendererParent
+        */
+        
+        /**
+         * @copy org.apache.royale.core.IItemRendererParent#numItemRenderers()
+         * @private
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        public function get numItemRenderers():int
+        {
+            return (contentView as IParent).numElements;
+        }
+        
+        
+        /**
+         * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
+         * @private
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
+        {
+            (contentView as IParent).addElement(renderer, dispatchAdded);
+            dispatchItemAdded(renderer);
+        }
+        
+        /**
+         * @copy org.apache.royale.core.IItemRendererParent#addItemRendererAt()
+         * @private
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        public function addItemRendererAt(renderer:IItemRenderer, index:int):void
+        {
+            (contentView as IParent).addElementAt(renderer, index, true);
+            dispatchItemAdded(renderer);
+        }
+        
+        private function dispatchItemAdded(renderer:IItemRenderer):void
+        {
+            var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
+            newEvent.item = renderer;
+            
+            host.dispatchEvent(newEvent);
+        }
+        
+        /**
+         * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
+         * @private
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        public function removeItemRenderer(renderer:IItemRenderer):void
+        {
+            (contentView as IParent).removeElement(renderer);
+            
+            var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+            newEvent.item = renderer;
+            
+            host.dispatchEvent(newEvent);
+        }
+        
+        /**
+         * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+         * @private
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        public function removeAllItemRenderers():void
+        {
+            while ((contentView as IParent).numElements > 0) {
+                var child:IChild = (contentView as IParent).getElementAt(0);
+                (contentView as IParent).removeElement(child);
+            }
+        }
+        
+        /**
+         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         * 	@royaleignorecoercion org.apache.royale.core.IItemRenderer
+         */
+        public function getItemRendererForIndex(index:int):IItemRenderer
+        {
+            if (index < 0 || index >= (contentView as IParent).numElements) return null;
+            return (contentView as IParent).getElementAt(index) as IItemRenderer;
+        }
+        
+        /**
+         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererAt()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         * 	@royaleignorecoercion org.apache.royale.core.IItemRenderer
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        public function getItemRendererAt(index:int):IItemRenderer
+        {
+            if (index < 0 || index >= (contentView as IParent).numElements) return null;
+            return (contentView as IParent).getElementAt(index) as IItemRenderer;
+        }
+        
+        /**
+         *  Refreshes the itemRenderers. Useful after a size change by the data group.
+         *
+         *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         * 	@royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        public function updateAllItemRenderers():void
+        {
+            var n:Number = (contentView as IParent).numElements;
+            for (var i:Number = 0; i < n; i++)
+            {
+                var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
+                if (renderer) {
+                    renderer.setWidth(host.width,true);
+                    renderer.adjustSize();
+                }
+            }
+        }
+
 	}
 }

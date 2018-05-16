@@ -28,9 +28,6 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.ItemAddedEvent;
-	import org.apache.royale.events.ItemClickedEvent;
-	import org.apache.royale.events.ItemRemovedEvent;
 
     /**
      *  The DataGroup class is the IItemRendererParent used internally
@@ -41,7 +38,7 @@ package org.apache.royale.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataGroup extends ContainerContentArea implements IItemRendererParent
+	public class DataGroup extends ContainerContentArea
 	{
         /**
          *  Constructor.
@@ -56,121 +53,5 @@ package org.apache.royale.html.supportClasses
 			super();
 		}
 		
-		/*
-		* IItemRendererParent
-		*/
-		
-		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
-		 * @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
-		{
-			addElement(renderer, dispatchAdded);
-			dispatchItemAdded(renderer);
-		}
-		
-		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#addItemRendererAt()
-		 * @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
-		{
-			addElementAt(renderer, index, true);
-			dispatchItemAdded(renderer);
-		}
-		
-		/**
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		private function dispatchItemAdded(renderer:IItemRenderer):void
-		{
-			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-			newEvent.item = renderer;
-			
-			(host as IEventDispatcher).dispatchEvent(newEvent);
-		}
-		
-		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
-		 * @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function removeItemRenderer(renderer:IItemRenderer):void
-		{
-			removeElement(renderer, true);
-			
-			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
-			newEvent.item = renderer;
-			
-			(host as IEventDispatcher).dispatchEvent(newEvent);
-		}
-		
-		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
-		 * @private
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function removeAllItemRenderers():void
-		{
-			while (numElements > 0) {
-				var child:IChild = getElementAt(0);
-				removeItemRenderer(child as IItemRenderer);
-			}
-		}
-		
-		/**
-		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function getItemRendererForIndex(index:int):IItemRenderer
-		{
-			if (index < 0 || index >= numElements) return null;
-			return getElementAt(index) as IItemRenderer;
-		}
-		
-		/**
-		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
-		 *
-		 *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function updateAllItemRenderers():void
-		{
-			var n:Number = numElements;
-			for (var i:Number = 0; i < n; i++)
-			{
-				var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
-				if (renderer) {
-					renderer.setWidth(this.width,true);
-					renderer.adjustSize();
-				}
-			}
-		}
 	}
 }
