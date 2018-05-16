@@ -40,7 +40,7 @@ package mx.charts.series.items
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class PieSeriesItem extends ChartItem
 {
@@ -64,7 +64,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function PieSeriesItem(element:PieSeries = null,
                                   data:Object = null, index:uint = 0)
@@ -146,7 +146,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
 	 *  @royalesuppresspublicvarwarning
      */
     public var angle:Number;
@@ -163,9 +163,10 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
+	 *  @royalesuppresspublicvarwarning
      */
-   //  public var fill:IFill;
+     public var fill:IFill;
 
     //----------------------------------
     //  innerRadius
@@ -179,7 +180,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
    //  public var innerRadius:Number;
 
@@ -195,7 +196,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
    // public var labelAngle:Number;
     
@@ -211,7 +212,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
    // public var number:Number;
 
@@ -227,7 +228,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     // public var origin:Point;
 
@@ -243,7 +244,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     // public var outerRadius:Number;
 
@@ -259,7 +260,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     // public var percentValue:Number;
 
@@ -275,7 +276,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     // public var startAngle:Number;
 
@@ -291,7 +292,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     // public var value:Object;
 
