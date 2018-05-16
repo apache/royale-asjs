@@ -137,8 +137,8 @@ package org.apache.royale.html.beads
 			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
 			
 			// set initial value and positions using default sizes
-			handleItemChange(null);
-			handleSizeChange(null);
+			itemChangeAction();
+			sizeChangeAction();
 		}
 		
 		/**
@@ -185,7 +185,32 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 */
-		private function handleSizeChange(event:Event):void
+		protected function handleSizeChange(event:Event):void
+		{
+			sizeChangeAction();
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function handleItemChange(event:Event):void
+		{
+			itemChangeAction();
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function itemChangeAction():void
+		{
+			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			input.text = model.selectedItem as String;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function sizeChangeAction():void
 		{
 			var host:UIBase = UIBase(_strand);
 			
@@ -213,15 +238,6 @@ package org.apache.royale.html.beads
 			if (host.isWidthSizedToContent()) {
 				host.width = input.width + button.width;
 			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private function handleItemChange(event:Event):void
-		{
-			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-			input.text = model.selectedItem as String;
 		}
 	}
 }
