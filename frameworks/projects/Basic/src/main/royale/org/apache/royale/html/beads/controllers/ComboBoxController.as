@@ -37,7 +37,7 @@ package org.apache.royale.html.beads.controllers
 		
 		private var _strand:IStrand;
 		
-		private var viewBead:IComboBoxView;
+		protected var viewBead:IComboBoxView;
 		
 		public function set strand(value:IStrand):void
 		{
@@ -51,7 +51,7 @@ package org.apache.royale.html.beads.controllers
 			}
 		}
 		
-		private function finishSetup(event:Event):void
+		protected function finishSetup(event:Event):void
 		{
 			if (viewBead == null) {
 				viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
@@ -61,7 +61,7 @@ package org.apache.royale.html.beads.controllers
             IEventDispatcher(viewBead.textInputField).addEventListener("click", handleButtonClick);
 		}
 		
-		private function handleButtonClick(event:MouseEvent):void
+		protected function handleButtonClick(event:MouseEvent):void
 		{			
 			viewBead.popUpVisible = !viewBead.popUpVisible;
 			IEventDispatcher(viewBead.popUp).addEventListener("change", handleListChange);
