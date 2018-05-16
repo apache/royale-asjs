@@ -97,6 +97,7 @@ internal class MXRoyaleClasses
 	import mx.charts.HitData; HitData;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+
 	import mx.core.IVisualElementContainer; IVisualElementContainer;
 	import mx.managers.BrowserManager; BrowserManager;
 	import mx.containers.FormHeading; FormHeading;
@@ -174,6 +175,10 @@ internal class MXRoyaleClasses
 	import mx.messaging.channels.AMFChannel; AMFChannel;
 	import mx.messaging.ChannelSet; ChannelSet;
 	import mx.rpc.soap.WebService; WebService;
+  import mx.collections.ISort; ISort;
+	import mx.collections.ListCollectionView; ListCollectionView;
+	import mx.collections.ArrayCollection; ArrayCollection;
+	import mx.controls.Alert; Alert;
 
     COMPILE::SWF
     {
