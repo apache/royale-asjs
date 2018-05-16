@@ -19,6 +19,7 @@
 
 package mx.charts.series
 {
+import mx.charts.chartClasses.Series;
 /*
 import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -58,8 +59,7 @@ import mx.styles.ISimpleStyleClient;
 use namespace mx_internal;
 */ 
   
-public class PlotSeries  
-//extends Series
+public class PlotSeries extends Series
 {
     
     //--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ public class PlotSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     
     private var _yField:String = "";    
@@ -90,7 +90,7 @@ public class PlotSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get yField():String
     {
@@ -101,6 +101,7 @@ public class PlotSeries
     {
         _yField = value; 
     }
+
      
 }
 }
