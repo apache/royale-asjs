@@ -18,26 +18,36 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.cssclasslist
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
+    import org.apache.royale.core.IUIBase;
 
     /**
-     *  Adds or removes a single style. 
+     *  Adds or removes a single style (class selector name). 
      * 
-     *  The first parameter removes the style from an element, and returns false.
+     *  Use of these utility functions should not be mixed with modifying the component's
+     *  className property at runtime.  Also the component's className property will not
+     *  reflect modifications made with this API.
+     * 
+     *  @param component The component that will have selectors added or removed.  
+     * 
+     *  @param value If the selector name exists it is removed and the return value is false.
      *  If the style does not exist, it is added to the element, and the return value is true.
      * 
-     *  The optional second parameter is a Boolean value that forces the class to be added 
+     *  @param force A Boolean value that forces the class to be added 
      *  or removed, regardless of whether or not it already existed.
      * 
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
      */
-    COMPILE::JS
-    public function toggleStyle(element:WrappedHTMLElement, value:String, force:Boolean = false):Boolean
+    public function toggleStyle(component:IUIBase, value:String, force:Boolean = false):Boolean
     {
-        return element.classList.toggle(value, force);
+        COMPILE::JS
+        {
+            return component.element.classList.toggle(value, force);
+        }
+        COMPILE::SWF
+        {
+            // TODO (aharui) SWF Implementation
+            return true;
+        }
     }
 }

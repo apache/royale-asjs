@@ -392,6 +392,110 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
 
+    //------------------------------------------------------------------------
+    //
+    //  Properties: Accessibility
+    //
+    //------------------------------------------------------------------------
+    
+    /**
+     *  A convenience accessor for the <code>silent</code> property
+     *  in this UIComponent's <code>accessibilityProperties</code> object.
+     *
+     *  <p>Note that <code>accessibilityEnabled</code> has the opposite sense from silent;
+     *  <code>accessibilityEnabled</code> is <code>true</code> 
+     *  when <code>silent</code> is <code>false</code>.</p>
+     *
+     *  <p>The getter simply returns <code>accessibilityProperties.silent</code>,
+     *  or <code>true</code> if <code>accessibilityProperties</code> is null.
+     *  The setter first checks whether <code>accessibilityProperties</code> is null, 
+     *  and if it is, sets it to a new AccessibilityProperties instance.
+     *  Then it sets <code>accessibilityProperties.silent</code>.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get accessibilityEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+        return false;
+    }
+    
+    public function set accessibilityEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+    }
+    
+    /**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get buttonMode():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set buttonMode(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+    }
+    
+    [Bindable("errorStringChanged")]
+    
+    /**
+     *  The text that displayed by a component's error tip when a
+     *  component is monitored by a Validator and validation fails.
+     *
+     *  <p>You can use the <code>errorString</code> property to show a
+     *  validation error for a component, without actually using a validator class.
+     *  When you write a String value to the <code>errorString</code> property,
+     *  Flex draws a red border around the component to indicate the validation error,
+     *  and the String appears in a tooltip as the validation error message when you move
+     *  the mouse over the component, just as if a validator detected a validation error.</p>
+     *
+     *  <p>To clear the validation error, write an empty String, "",
+     *  to the <code>errorString</code> property.</p>
+     *
+     *  <p>Note that writing a value to the <code>errorString</code> property
+     *  does not trigger the valid or invalid events; it only changes the border
+     *  color and displays the validation error message.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get errorString():String
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+        return "";
+    }
+    
+    /**
+     *  @private
+     */
+    public function set errorString(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+    }
+    
     //----------------------------------
     //  owner
     //----------------------------------
@@ -1173,7 +1277,12 @@ public class UIComponent extends UIBase
     public function get measuredWidth():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredWidth)) return width;
+			if (isNaN(_measuredWidth))
+            {
+                measure();
+                if (isNaN(_measuredWidth))
+                    return width;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredWidth)) {
@@ -1215,7 +1324,12 @@ public class UIComponent extends UIBase
     public function get measuredHeight():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredHeight)) return height;
+			if (isNaN(_measuredHeight))
+            {
+                measure();
+                if (isNaN(_measuredHeight))
+                    return height;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredHeight)) {
@@ -1886,7 +2000,46 @@ public class UIComponent extends UIBase
 		// always 1.0
 	}
 
+    //----------------------------------
+    //  alpha
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the alpha property.
+     */
+    private var _alpha:Number = 1.0;
+    
+    [Bindable("alphaChanged")]
+    [Inspectable(defaultValue="1.0", category="General", verbose="1", minValue="0.0", maxValue="1.0")]
+
+    /**
+     *  @private
+     */
+    override public function get alpha():Number
+    {
+        // Here we roundtrip alpha in the same manner as the 
+        // player (purposely introducing a rounding error).
+        return int(_alpha * 256.0) / 256.0;
+    }
+    
+    /**
+     *  @private
+     */
+    override public function set alpha(value:Number):void
+    { 
+        if (_alpha != value)
+        {
+            _alpha = value;
+        
+           /*  if (designLayer)
+                value = value * designLayer.effectiveAlpha; 
+            
+            $alpha = value;
+			*/
+            dispatchEvent(new Event("alphaChanged"));
+        }
+    }
     //----------------------------------
     //  includeInLayout
     //----------------------------------

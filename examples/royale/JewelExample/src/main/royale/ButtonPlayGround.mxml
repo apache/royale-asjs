@@ -23,13 +23,21 @@ limitations under the License.
 		  xmlns:j="library://ns.apache.org/royale/jewel"
 		  className="container">
     
+	<fx:Script>
+		<![CDATA[      
+            private function clickHandler(event:MouseEvent):void {
+                button.primary = !button.primary;
+            }
+		]]>
+	</fx:Script>
+
 	<js:beads>
 		<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
 	</js:beads>
 	
 	<html:H3 text="Jewel Button"/>
 	
-	<j:Button/>
+	<j:Button id="button" click="clickHandler(event)"/>
 	<j:Button primary="true"/>
 	<j:Button secondary="true"/>
 	<j:Button emphasized="true"/>

@@ -28,6 +28,7 @@
         <symbol>halo.scripts.TextInputTestScript</symbol>
         <symbol>halo.scripts.TextAreaTestScript</symbol>
         <symbol>halo.scripts.ComboBoxTestScript</symbol>
+        <symbol>halo.scripts.ListAndDataGridTestScript</symbol>
         <!--
         <symbol>halo.scripts.ColorPickerTestScript</symbol>
         <symbol>halo.scripts.NumericStepperTestScript</symbol>
@@ -35,7 +36,6 @@
         <symbol>halo.scripts.MenuTestScript</symbol>
         <symbol>halo.scripts.MenuBarTestScript</symbol>
         <symbol>halo.scripts.FocusManagerTestScript</symbol>
-        <symbol>halo.scripts.ListAndDataGridTestScript</symbol>
         <symbol>halo.scripts.TreeTestScript</symbol>
         <symbol>halo.scripts.ImageTestScript</symbol>
         <symbol>halo.scripts.SWFLoaderTestScript</symbol>

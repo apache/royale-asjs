@@ -21,6 +21,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.DataContainerBase;
 	
 	import org.apache.royale.core.ContainerBaseStrandChildren;
+    import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IContentViewHost;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
@@ -29,8 +30,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IList;
-    import org.apache.royale.core.IListWithPresentationModel;
+    import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IDataProviderModel;
@@ -74,7 +74,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataContainer extends DataContainerBase implements IListWithPresentationModel
+	public class DataContainer extends DataContainerBase implements IStrandWithPresentationModel
 	{
 		/**
 		 *  constructor.
@@ -143,7 +143,7 @@ package org.apache.royale.html
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
-		public function get presentationModel():IListPresentationModel
+		public function get presentationModel():IBead
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {

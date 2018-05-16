@@ -44,6 +44,7 @@
     <module>native</module>
     <module>node</module>
     <module>amf</module>
+    <module>blog</module>
 
     <module>examples-tests</module>
     <module>examples-integrationtests</module>

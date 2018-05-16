@@ -24,10 +24,11 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.ISelectableItemRenderer;
@@ -42,6 +43,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.
@@ -52,7 +54,6 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	COMPILE::JS
 	public class DataContainerView extends ContainerView implements IListView
 	{
 		public function DataContainerView()
@@ -73,9 +74,17 @@ package org.apache.royale.html.beads
 			_strand = value;
 			super.strand = value;
 			
+            // Even though super.addedToParent dispatched "beadsAdded", DataContainer still needs its data mapper
+            // and item factory beads. These beads are added after super.addedToParent is called in case substitutions
+            // were made; these are just defaults extracted from CSS.
+            loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", value);
+            loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", value);
+            
 			host.addEventListener("beadsAdded", beadsAddedHandler);
+            //host.addEventListener("itemsCreated", itemsCreatedHandler); in beadsAddedHandler
 		}
 		
+        
 		protected var dataModel:IDataProviderModel;
 		
 		/**
@@ -95,14 +104,7 @@ package org.apache.royale.html.beads
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 		}
-		
-		/**
-		 * @private
-		 */
-		override protected function handleInitComplete(event:Event):void
-		{
-			super.handleInitComplete(event);
-		}
+        
 		
 		/**
 		 * @private
@@ -119,115 +121,23 @@ package org.apache.royale.html.beads
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// trace("DataContainerView: dataProviderChangeHandler");
-			performLayout(event);
+            COMPILE::JS
+            {
+    			performLayout(event);
+            }
+            COMPILE::SWF
+            {
+                host.dispatchEvent(new Event("layoutNeeded"));                
+            }
 		}
-	}
-	
-	COMPILE::SWF
-	public class DataContainerView extends ContainerView implements IListView
-	{
-		public function DataContainerView()
-		{
-			super();
-		}
-						
-		protected var dataModel:IDataProviderModel;
-		
-		/**
-		 * @private
-		 */
-		override public function get host():IUIBase
-		{
-			return _strand as IUIBase;
-		}
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-			
-			host.addEventListener("beadsAdded", beadsAddedHandler);
-			host.addEventListener("itemsCreated", itemsCreatedHandler);
-		}
-		
-		override protected function completeSetup():void
-		{
-			super.completeSetup();
-			
-			// list is not interested in UI children, it wants to know when new items
-			// have been added or the dataProvider has changed.
-//			host.removeEventListener("childrenAdded", childrenChangedHandler);
-//			host.removeEventListener("childrenAdded", performLayout);
-		}
-		
-		protected function beadsAddedHandler(event:Event):void
-		{
-			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-		}
-		
-		override protected function handleInitComplete(event:Event):void
-		{
-			super.handleInitComplete(event);
-		}
-		
-		/**
-		 *  The area holding the itemRenderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get dataGroup():IItemRendererParent
-		{
-			return super.contentView as IItemRendererParent;
-		}
-				
-		/**
-		 * @private
-		 */
-		override public function get resizableView():IUIBase
-		{
-			return _strand as IUIBase;
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function itemsCreatedHandler(event:Event):void
-		{
-			host.dispatchEvent(new Event("layoutNeeded"));
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function dataProviderChangeHandler(event:Event):void
-		{
-			host.dispatchEvent(new Event("layoutNeeded"));
-		}
-		        
+        
         /**
-         *  respond to a change in size or request to re-layout everything
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         * @private
          */
-		override protected function resizeHandler(event:Event):void
-		{
-			// might need to do something here, not sure yet.
-			super.resizeHandler(event);
-		}
+        COMPILE::SWF
+        override public function get resizableView():IUIBase
+        {
+            return _strand as IUIBase;
+        }
 	}
 }

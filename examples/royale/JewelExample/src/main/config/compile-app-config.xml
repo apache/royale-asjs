@@ -23,7 +23,9 @@
     <compiler>
         <theme>
             <filename>../../../../../../frameworks/libs/JewelTheme.swc</filename>
-            <filename>../../../../../../frameworks/themes/JewelTheme/src/main/resources/defaults.css</filename>
+            <filename>../../../../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Blue-Theme/src/main/resources/defaults.css</filename>
+            <filename>../../../../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme/src/main/resources/defaults.css</filename>
+            <filename>../../../../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme/src/main/resources/defaults.css</filename>
         </theme>
     </compiler>
 </royale-config>
