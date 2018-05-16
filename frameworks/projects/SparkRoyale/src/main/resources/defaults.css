@@ -17,7 +17,7 @@
 *
 */
 
-@namespace "library://ns.apache.org/royale/mx";
+@namespace "library://ns.apache.org/royale/spark";
 
 .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
