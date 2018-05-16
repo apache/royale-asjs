@@ -38,6 +38,7 @@ package mx.charts.series
 	import mx.graphics.Stroke;
 	import mx.graphics.SolidColor;
 	import mx.graphics.SolidColorStroke;
+	import mx.charts.chartClasses.Series;
 /*
 import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -96,7 +97,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="calloutGap", type="Number", format="Length", inherit="no")]
 
@@ -106,7 +107,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Style(name="calloutStroke", type="mx.graphics.IStroke", inherit="no")]
     
@@ -147,7 +148,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="fills", type="Array", arrayType="mx.graphics.IFill", inherit="no")]
 
@@ -160,7 +161,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Style(name="innerRadius", type="Number", inherit="no")]
     
@@ -174,7 +175,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Style(name="insideLabelSizeLimit", type="Number", inherit="no")]
 
@@ -213,7 +214,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Style(name="labelPosition", type="String", enumeration="none,outside,callout,inside,insideWithCallout", inherit="no")]
 
@@ -224,7 +225,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Style(name="radialStroke", type="mx.graphics.IStroke", inherit="no")]
 
@@ -253,7 +254,7 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Style(name="stroke", type="mx.graphics.IStroke", inherit="no")]
 
@@ -310,10 +311,9 @@ include "../styles/metadata/TextStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-public class PieSeries 
-//extends Series
+public class PieSeries extends Series
 {
     //include "../../core/Version.as";
 
@@ -335,7 +335,7 @@ public class PieSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     private static const DROP_SHADOW_SIZE:Number = 6;
 
@@ -351,7 +351,7 @@ public class PieSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function PieSeries()
     {
@@ -494,7 +494,7 @@ public class PieSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get field():String
     {
@@ -545,7 +545,7 @@ public class PieSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get labelFunction():Function
     {
@@ -581,7 +581,7 @@ public class PieSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get labelField():String
     {
@@ -618,7 +618,7 @@ public class PieSeries
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get nameField():String
     {
@@ -706,7 +706,7 @@ class PieSeriesLegendData //extends LegendData
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function PieSeriesLegendData()
     {
@@ -742,7 +742,7 @@ class PieSeriesLegendMarker //extends ProgrammaticSkin implements IDataRenderer
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function PieSeriesLegendMarker()
     {
@@ -785,4 +785,3 @@ class PieSeriesLegendMarker //extends ProgrammaticSkin implements IDataRenderer
     }
 
 }
-
