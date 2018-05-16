@@ -20,6 +20,7 @@
 package mx.charts
 {
 	import mx.charts.chartClasses.IAxis;
+	import mx.charts.chartClasses.ChartBase;
 /*
 import flash.utils.Dictionary;
 
@@ -73,9 +74,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
-public class PlotChart //extends CartesianChart
+public class PlotChart extends ChartBase//extends CartesianChart
 {
     //include "../core/Version.as";
 
@@ -97,7 +98,7 @@ public class PlotChart //extends CartesianChart
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function PlotChart()
     {
@@ -129,7 +130,7 @@ public class PlotChart //extends CartesianChart
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
 	
     public function get horizontalAxis():IAxis
@@ -146,45 +147,6 @@ public class PlotChart //extends CartesianChart
         _horizontalAxis = value;
     }
 	
-	 /**
-     *  @private
-     */
-    private var _showDataTips:Boolean = false;
-    
-		/**
-     *  Specifies whether Flex shows DataTip controls for the chart.
-     *  DataTip controls are similar to tool tips,
-     *  except that they display an appropriate value
-     *  that represents the nearest chart data point under the mouse pointer.
-     *  
-     *  <p>Different chart elements might show different styles
-     *  of DataTip controls.
-     *  For example, a stacked chart element might show both the values
-     *  of the column and the percentage that it contributes to the whole.</p>
-     *
-     *  <p>You can customize DataTip controls with the
-     *  <code>dataTipFunction</code> property.</p>
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-		public function get showDataTips():Boolean
-		{
-			return _showDataTips;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set showDataTips(value:Boolean):void
-		{
-			if (_showDataTips == value)
-				return;
-				
-			_showDataTips = value;
-		}
 }
 
 }
