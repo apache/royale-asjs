@@ -22,6 +22,8 @@ package spark.components.supportClasses
 COMPILE::JS
 {
     import goog.DEBUG;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
 }
 
 /*
@@ -434,7 +436,27 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
         measuredWidth = Number.NaN;
         measuredHeight = Number.NaN;
     };
+    
+    /**
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        addElementToWrapper(this,'button');
+        element.setAttribute('type', 'button');
+        
+        return element;
+    }
 
+    COMPILE::JS
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        // For HTML/JS, we only set the size if there is an explicit
+        // size set. 
+        if (!isNaN(explicitWidth)) setWidth(w);
+        if (!isNaN(explicitHeight)) setHeight(h);
+    }
 }
 
 }
