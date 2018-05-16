@@ -1286,7 +1286,15 @@ public class UIComponent extends UIBase
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredWidth)) {
-				return this.positioner.offsetWidth;
+                var w:* = positioner.style.width;
+                if (w === undefined || w == "")
+                    return this.positioner.offsetWidth;
+                else
+                {
+                    measure();
+                    if (isNaN(_measuredWidth))
+                        return this.positioner.offsetWidth;
+                }
 			}
 		}
         return _measuredWidth;
@@ -1333,7 +1341,15 @@ public class UIComponent extends UIBase
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredHeight)) {
-				return this.positioner.offsetHeight;
+                var h:* = positioner.style.height;
+                if (h === undefined || h == "")
+    				return this.positioner.offsetHeight;
+                else
+                {
+                    measure();
+                    if (isNaN(_measuredHeight))
+                        return this.positioner.offsetHeight;
+                }
 			}
 		}
         return _measuredHeight;
