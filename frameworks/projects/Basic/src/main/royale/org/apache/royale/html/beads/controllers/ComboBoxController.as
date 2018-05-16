@@ -69,10 +69,6 @@ package org.apache.royale.html.beads.controllers
 		
 		private function handleListChange(event:Event):void
 		{
-			var list:List = viewBead.popUp as List;
-			var input:TextInput = viewBead.textInputField as TextInput;
-			input.text = list.selectedItem as String;
-			
 			viewBead.popUpVisible = false;
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
