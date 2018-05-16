@@ -1523,7 +1523,7 @@ limitations under the License.
     
     <target name="mxtests-clean">
         <delete file="${basedir}/mustella/tests/mxtests/BasicTests.swf" failonerror="false"/>
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
     
     <target name="mxtests-mustella" depends="mustella-setup,mxtests" if="env.AIR_HOME" />
@@ -1600,6 +1600,7 @@ limitations under the License.
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ListAndDataGridTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/spark/scripts/ButtonTestScript.mxml" />
             <arg value="showSteps=true" />
             <arg value="showScripts=true" />
             <arg value="${profile_arg}" />

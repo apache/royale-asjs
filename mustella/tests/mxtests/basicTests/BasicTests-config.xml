@@ -51,7 +51,9 @@
         <symbol>spark.scripts.ListDragDropTestScript</symbol>
         <symbol>halo.scripts.MXItemRendererTestScript</symbol>
         <symbol>spark.scripts.BorderContainerTestScript</symbol>
+-->
         <symbol>spark.scripts.ButtonTestScript</symbol>
+<!--
         <symbol>spark.scripts.CheckBoxTestScript</symbol>
         <symbol>spark.scripts.EasingTestScript</symbol>
         <symbol>spark.scripts.RadioButtonTestScript</symbol>
