@@ -420,7 +420,7 @@ public class Alert extends Panel
                                 moduleFactory:Object = null):Alert
                                 //moduleFactory:IFlexModuleFactory = null):Alert
     {
-        var modal:Boolean = (flags & Alert.NONMODAL) ? false : true;
+       // var modal:Boolean = (flags & Alert.NONMODAL) ? false : true;
 
         if (!parent)
         {
