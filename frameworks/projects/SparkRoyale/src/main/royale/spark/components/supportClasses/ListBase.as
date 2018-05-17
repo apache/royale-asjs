@@ -109,7 +109,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Event(name="change", type="spark.events.IndexChangeEvent")]
+[Event(name="change", type="spark.events.IndexChangeEvent")]
 
 /**
  *  Dispatched after the focus has changed.  
