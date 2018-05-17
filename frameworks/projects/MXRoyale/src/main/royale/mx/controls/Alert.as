@@ -213,7 +213,7 @@ public class Alert extends Panel
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public static const NONMODAL:uint = 0x8000;
+   // public static const NONMODAL:uint = 0x8000;
 
     //--------------------------------------------------------------------------
     //
