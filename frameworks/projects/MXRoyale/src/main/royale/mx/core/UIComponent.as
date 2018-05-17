@@ -470,6 +470,82 @@ public class UIComponent extends UIBase
      */
     COMPILE::SWF
     { override }
+    public function get useHandCursor():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set useHandCursor(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+    }
+	
+	 /**
+     *  From flash.display.InteractiveObject
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get mouseEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set mouseEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+    }
+	
+	 /**
+     *  From flash.display.DisplayObjectContainer
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get mouseChildren():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set mouseChildren(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+    }
+	
+	
+	/**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
     public function get buttonMode():Boolean
     {
         if (GOOG::DEBUG)
