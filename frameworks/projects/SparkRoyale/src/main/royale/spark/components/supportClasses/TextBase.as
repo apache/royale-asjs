@@ -61,7 +61,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="backgroundAlpha", type="Number", inherit="no", minValue="0.0", maxValue="1.0")]
+[Style(name="backgroundAlpha", type="Number", inherit="no", minValue="0.0", maxValue="1.0")]
 
 /**
  *  The color of the background of the entire
@@ -78,7 +78,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="backgroundColor", type="uint", format="Color", inherit="no")]
+[Style(name="backgroundColor", type="uint", format="Color", inherit="no")]
 
  //--------------------------------------------------------------------------
  // Other metadata for accessibility API
@@ -394,9 +394,9 @@ public class TextBase extends UIComponent
     /**
      *  @private
      */
-	/* private var _maxDisplayedLines:int = 0;
+	 private var _maxDisplayedLines:int = 0;
     
-    [Inspectable(category="General", minValue="-1", defaultValue="0")] */
+    [Inspectable(category="General", minValue="-1", defaultValue="0")] 
     
     /**
      *  An integer which determines whether, and where,
@@ -431,17 +431,18 @@ public class TextBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-	/* public function get maxDisplayedLines():int
+	 public function get maxDisplayedLines():int
     {
 		return _maxDisplayedLines;
-    } */
+    } 
     
     /**
      *  @private
      */
-	/* public function set maxDisplayedLines(value:int):void
+	 public function set maxDisplayedLines(value:int):void
     {
-		if (value != _maxDisplayedLines)
+		_maxDisplayedLines = value;
+		/* if (value != _maxDisplayedLines)
     	{
 			_maxDisplayedLines = value;
     		
@@ -449,8 +450,8 @@ public class TextBase extends UIComponent
                  		
     		invalidateSize();
     		invalidateDisplayList();
-    	}
-    } */
+    	} */
+    } 
 
     //----------------------------------
 	//  showTruncationTip
