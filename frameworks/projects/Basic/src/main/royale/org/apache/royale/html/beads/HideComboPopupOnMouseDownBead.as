@@ -20,16 +20,12 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.utils.callLater;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.core.IBeadController;
     import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.html.TextInput;
-	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IComboBoxView;
 	
 	/**
