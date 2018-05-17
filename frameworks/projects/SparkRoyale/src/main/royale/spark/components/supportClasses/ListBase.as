@@ -53,7 +53,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.5
- *  @productversion Royale 0.9.4.5
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="itemRollOver", type="spark.events.ListEvent")]
 
@@ -65,7 +65,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.5
- *  @productversion Royale 0.9.4.5
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="itemRollOut", type="spark.events.ListEvent")]
 
@@ -1946,7 +1946,7 @@ public class ListBase  extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.5
-     *  @productversion Royale 0.9.4.5
+     *  @productversion Royale 0.9.4
      */
     /* protected function dataGroup_rendererAddHandler(event:RendererExistenceEvent):void
     {
@@ -1966,7 +1966,7 @@ public class ListBase  extends SkinnableComponent
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.5
-     *  @productversion Royale 0.9.4.5
+     *  @productversion Royale 0.9.4
      */
     /* protected function dataGroup_rendererRemoveHandler(event:RendererExistenceEvent):void
     {
