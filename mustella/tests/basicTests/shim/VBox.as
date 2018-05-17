@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package shim
 {	
-	import org.apache.royale.html.Container;
+	import org.apache.royale.core.Container;
 	import org.apache.royale.html.beads.layouts.VerticalLayout;
 	
 	[DefaultProperty("mxmlContent")]
