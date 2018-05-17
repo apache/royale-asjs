@@ -179,6 +179,9 @@ internal class MXRoyaleClasses
 	import mx.collections.ListCollectionView; ListCollectionView;
 	import mx.collections.ArrayCollection; ArrayCollection;
 	import mx.controls.Alert; Alert;
+	import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
+	import mx.utils.Base64JSWrapper; Base64JSWrapper;
+
 
     COMPILE::SWF
     {
