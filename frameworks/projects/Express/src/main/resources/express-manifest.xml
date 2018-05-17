@@ -83,7 +83,7 @@
     <component id="NumericStepper" class="org.apache.royale.express.NumericStepper" />
     <component id="TextFieldItemRenderer" class="org.apache.royale.html.supportClasses.TextFieldItemRenderer" lookupOnly="true" />
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer" lookupOnly="true" />
-    <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer" lookupOnly="true" />
+    <component id="DataItemRenderer" class="org.apache.royale.core.DataItemRenderer" lookupOnly="true" />
     <component id="ButtonBarButtonItemRenderer" class="org.apache.royale.html.supportClasses.ButtonBarButtonItemRenderer" lookupOnly="true" />
     <component id="VScrollBar" class="org.apache.royale.html.supportClasses.VScrollBar" lookupOnly="true" />
     <component id="NumericOnlyTextInputBead" class="org.apache.royale.html.accessories.NumericOnlyTextInputBead"  lookupOnly="true" />

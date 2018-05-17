@@ -26,7 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.ListView;
 	import org.apache.royale.html.beads.layouts.VerticalLayout;
-	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.core.supportClasses.DataGroup;
 	import org.apache.royale.html.supportClasses.ScrollingViewport;
 
 
