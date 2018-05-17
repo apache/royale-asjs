@@ -30,7 +30,6 @@ import flash.events.Event;
 import flash.geom.Point;
 import flash.utils.*;
 import mx.core.FlexVersion;
-import mx.core.IFactory;
 import mx.core.ILayoutElement;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
@@ -41,6 +40,8 @@ import spark.utils.FTETextUtil;
 
 use namespace mx_internal;
 */
+import mx.core.IFactory;
+import mx.collections.IList;
 
 import mx.core.UIComponent;
 
@@ -54,7 +55,7 @@ import mx.core.UIComponent;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="chromeColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
 
@@ -66,7 +67,7 @@ import mx.core.UIComponent;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="errorSkin", type="Class")]
 
@@ -77,7 +78,7 @@ import mx.core.UIComponent;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="skinClass", type="Class")]
 
@@ -127,7 +128,7 @@ import mx.core.UIComponent;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 public class SkinnableComponent extends UIComponent
 {
@@ -145,11 +146,15 @@ public class SkinnableComponent extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function SkinnableComponent()
     {
     }
+	
+	
+	
+	
     
 
     //--------------------------------------------------------------------------
@@ -223,13 +228,131 @@ public class SkinnableComponent extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function invalidateSkinState():void
     {
         if (GOOG::DEBUG)
             trace("invalidateSkinState not implemented");
     }
+	
+	
+	//----------------------------------
+    //  dataProvider copied from SkinnableDataContainer
+    //----------------------------------    
+    
+    /**
+     *  @copy spark.components.DataGroup#dataProvider
+     *
+     *  @see #itemRenderer
+     *  @see #itemRendererFunction
+     *  @see mx.collections.IList
+     *  @see mx.collections.ArrayCollection
+     *  @see mx.collections.ArrayList
+     *  @see mx.collections.XMLListCollection
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */
+    [Bindable("dataProviderChanged")]
+    [Inspectable(category="Data")]
+    
+    public function get dataProvider():IList
+    {       
+		return null;
+      /*   return (dataGroup) 
+            ? dataGroup.dataProvider 
+            : dataGroupProperties.dataProvider; */
+    }
+    
+    public function set dataProvider(value:IList):void
+    {
+      /*   if (dataGroup)
+        {
+            dataGroup.dataProvider = value;
+            dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
+                                                     DATA_PROVIDER_PROPERTY_FLAG, true);
+        }
+        else
+            dataGroupProperties.dataProvider = value;
+        dispatchEvent(new Event("dataProviderChanged")); */
+    }
+	//----------------------------------
+    //  layout copied from SkinnableDataContainer
+    //----------------------------------
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  @copy spark.components.supportClasses.GroupBase#layout
+     *
+     *  @default VerticalLayout
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */     
+    public function get layout():Object
+    {
+        /* return (dataGroup) 
+            ? dataGroup.layout 
+            : dataGroupProperties.layout; */
+			return null;
+    }
+
+    /**
+     *  @private
+     */
+    public function set layout(value:Object):void
+    { //value:LayoutBase)
+       /*  if (dataGroup)
+        {
+            dataGroup.layout = value;
+            dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
+                                                     LAYOUT_PROPERTY_FLAG, true);
+        }
+        else
+            dataGroupProperties.layout = value; */
+    }
+	//----------------------------------
+    //  itemRenderer copied from SkinnableDataContainer
+    //----------------------------------
+    
+    [Inspectable(category="Data")]
+    
+    /**
+     *  @copy spark.components.DataGroup#itemRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */
+    public function get itemRenderer():IFactory
+    {
+      /*   return (dataGroup) 
+            ? dataGroup.itemRenderer 
+            : dataGroupProperties.itemRenderer; */ return null;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set itemRenderer(value:IFactory):void
+    {
+       /*  if (dataGroup)
+        {
+            dataGroup.itemRenderer = value;
+            dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
+                                                     ITEM_RENDERER_PROPERTY_FLAG, true);
+        }
+        else
+            dataGroupProperties.itemRenderer = value; */
+    }
+    
 
 }
 
