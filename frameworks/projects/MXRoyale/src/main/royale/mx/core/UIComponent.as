@@ -110,6 +110,34 @@ use namespace mx_internal;
  */
 [Event(name="initialize", type="mx.events.FlexEvent")]
 
+/**
+ *  Dispatched when values are changed programmatically
+ *  or by user interaction.
+ *
+ *  <p>Because a programmatic change triggers this event, make sure
+ *  that any <code>valueCommit</code> event handler does not change
+ *  a value that causes another <code>valueCommit</code> event.
+ *  For example, do not change a control's <code>dataProvider</code>
+ *  property in a <code>valueCommit</code> event handler. </p>
+ *
+ *  @eventType mx.events.FlexEvent.VALUE_COMMIT
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="valueCommit", type="mx.events.FlexEvent")]
+
+/**
+ *  The main color for a component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Style(name="chromeColor", type="uint", format="Color", inherit="yes", theme="spark")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
@@ -164,6 +192,8 @@ use namespace mx_internal;
  *    bottom="undefined"
  *
  *  <b>Events</b>
+ *    valueCommit="<i>No default</i>"
+ *  &gt;
  *  </pre>
  *
  *  @see mx.core.UIComponent
@@ -1286,15 +1316,7 @@ public class UIComponent extends UIBase
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredWidth)) {
-                var w:* = positioner.style.width;
-                if (w === undefined || w == "")
-                    return this.positioner.offsetWidth;
-                else
-                {
-                    measure();
-                    if (isNaN(_measuredWidth))
-                        return this.positioner.offsetWidth;
-                }
+				return this.positioner.offsetWidth;
 			}
 		}
         return _measuredWidth;
@@ -1341,15 +1363,7 @@ public class UIComponent extends UIBase
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredHeight)) {
-                var h:* = positioner.style.height;
-                if (h === undefined || h == "")
-    				return this.positioner.offsetHeight;
-                else
-                {
-                    measure();
-                    if (isNaN(_measuredHeight))
-                        return this.positioner.offsetHeight;
-                }
+				return this.positioner.offsetHeight;
 			}
 		}
         return _measuredHeight;
@@ -3408,7 +3422,67 @@ public class UIComponent extends UIBase
         if (GOOG::DEBUG)
             trace("bottom not implemented");
     }
+	[Inspectable(category="General")]
 
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>horizontalCenter.s2="&#64;Clear()"</code> unsets the 
+     *  <code>horizontalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.horizontalCenter = undefined</code> unsets the 
+     *  <code>horizontalCenter</code> constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalCenter():Object
+    {
+        return 0;
+    }
+    public function set horizontalCenter(value:Object):void
+    {
+         if (GOOG::DEBUG)
+            trace("horizontalCenter not implemented");
+    }
+
+    [Inspectable(category="General")]
+
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>verticalCenter.s2="&#64;Clear()"</code> unsets the <code>verticalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.verticalCenter = undefined</code> unsets the <code>verticalCenter</code>
+     *  constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalCenter():Object
+    {
+        return 0;
+    }
+    public function set verticalCenter(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalCenter not implemented");
+    }
+	
     [Inspectable(category="General")]
 
 
@@ -3500,7 +3574,23 @@ public class UIComponent extends UIBase
         }
     }
 
-
+	/**
+     *  Deletes a style property from this component instance.
+     *
+     *  <p>This does not necessarily cause the <code>getStyle()</code> method
+     *  to return <code>undefined</code>.</p>
+     *
+     *  @param styleProp The name of the style property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function clearStyle(styleProp:String):void
+    {
+        setStyle(styleProp, undefined);
+    }
     [Bindable(style="true")]
     /**
      *  Gets a style property that has been set anywhere in this
