@@ -98,7 +98,7 @@ package mx.validators
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class DateValidator //extends Validator
+public class DateValidator extends Validator
 {
 	//include "../core/Version.as";
 
@@ -206,29 +206,6 @@ public class DateValidator //extends Validator
 	[Inspectable(category="General")]
   
 	//----------------------------------
-	//  validateAsString
-	//----------------------------------
-  
-	[Inspectable(category="General", defaultValue="null")]
-
-	/** 
-	 *  Determines how to validate the value.
-	 *  If set to <code>true</code>, the validator evaluates the value
-	 *  as a String, unless the value has a <code>month</code>,
-	 *  <code>day</code>, or <code>year</code> property.
-	 *  If <code>false</code>, the validator evaluates the value
-	 *  as a Date object. 
-	 *
-	 *  @default true	 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
-	 */
-	 
- 
-	//----------------------------------
 	//  formatError
 	//----------------------------------
 
@@ -284,7 +261,7 @@ public class DateValidator //extends Validator
     /**
      *  @private
      */
-    private var requiredFieldErrorOverride:String;
+    //private var requiredFieldErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
     
@@ -309,7 +286,7 @@ public class DateValidator //extends Validator
      */
     public function set requiredFieldError(value:String):void
     {
-        requiredFieldErrorOverride = value;
+        //requiredFieldErrorOverride = value;
 
         _requiredFieldError = value != null ?
                               value : "" ;
@@ -354,35 +331,6 @@ public class DateValidator //extends Validator
     public function set property(value:String):void
     {
         _property = value;
-    }
-    
-    //----------------------------------
-    //  required
-    //----------------------------------
-
-    private var _required:Boolean = true;
-
-    [Inspectable(category="General", defaultValue="true")]
-
-    /**
-     *  If <code>true</code>, specifies that a missing or empty
-     *  value causes a validation error.
-     *
-     *  @default true
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
-     */
-    public function get required():Boolean
-    {
-        return _required;
-    }
-
-    public function set required(value:Boolean):void
-    {
-        _required = value;
     }
     
     //----------------------------------
