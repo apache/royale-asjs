@@ -150,6 +150,8 @@ public class AMFBinaryData
     private var stringCount:int = 0;
     private var traitCount:int = 0;
     private var objectCount:int = 0;
+	
+	private var flexTraitFound:Boolean = false;
     
     public var pos:int = 0;
         
@@ -871,11 +873,20 @@ public class AMFBinaryData
     {
         var ref:int = this.readUInt29();
         if ((ref & 1) == 0)
-            return this.getObject(ref >> 1);
+		{
+            this.flexTraitFound = false;
+			return this.getObject(ref >> 1);
+		}
         else 
         {
             var traits:Traits = this.readTraits(ref);
-            var obj:Object;
+			if (traits.alias == "flex.messaging.io.ArrayCollection"
+                    || traits.alias == "flex.messaging.io.ObjectProxy")
+			{
+				traits.alias = "";
+				this.flexTraitFound = true;
+			}
+			var obj:Object;
             if (traits.alias) {
                 var c:Class = getClassByAlias(traits.alias);
                 if (c)
@@ -892,13 +903,10 @@ public class AMFBinaryData
             }
             this.rememberObject(obj);
             if (traits.externalizable)
-            {
-                if (obj[CLASS_ALIAS] == "flex.messaging.io.ArrayCollection"
-                    || obj[CLASS_ALIAS] == "flex.messaging.io.ObjectProxy")
-                    return this.readObject();
+				if (this.flexTraitFound)
+                    obj = this.readObject();
                 else
-                    obj[EXTERNALIZED_FIELD] = this.readObject();
-            } 
+					obj[EXTERNALIZED_FIELD] = this.readObject();
             else 
             {
                 for (var i:int in traits.props)
