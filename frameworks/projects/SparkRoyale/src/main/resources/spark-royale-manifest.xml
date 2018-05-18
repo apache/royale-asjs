@@ -25,5 +25,6 @@
 	<component id="CheckBox" class="spark.components.CheckBox" />
 	<component id="Label" class="spark.components.Label" />
     	<component id="List" class="spark.components.List" />
+   	<component id="ComboBox" class="spark.components.ComboBox" />
 
 </componentPackage>
