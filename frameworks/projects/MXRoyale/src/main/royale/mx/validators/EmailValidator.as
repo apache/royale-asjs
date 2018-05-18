@@ -63,7 +63,7 @@ package mx.validators
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class EmailValidator //extends Validator
+public class EmailValidator extends Validator
 {
 	//include "../core/Version.as";
 
@@ -171,35 +171,6 @@ public class EmailValidator //extends Validator
     public function set property(value:String):void
     {
         _property = value;
-    }
-    
-    //----------------------------------
-    //  required
-    //----------------------------------
-
-    private var _required:Boolean = true;
-
-    [Inspectable(category="General", defaultValue="true")]
-
-    /**
-     *  If <code>true</code>, specifies that a missing or empty
-     *  value causes a validation error.
-     *
-     *  @default true
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
-     */
-    public function get required():Boolean
-    {
-        return _required;
-    }
-
-    public function set required(value:Boolean):void
-    {
-        _required = value;
     }
     
     //----------------------------------
