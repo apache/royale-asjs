@@ -39,7 +39,8 @@ internal class SparkRoyaleClasses
     import spark.events.TextOperationEvent; TextOperationEvent;
     import spark.components.supportClasses.GroupBase; GroupBase;
     import spark.components.supportClasses.ListBase; ListBase;
-    
+    import spark.components.supportClasses.DropDownListBase; DropDownListBase;
+
 }
 
 }
