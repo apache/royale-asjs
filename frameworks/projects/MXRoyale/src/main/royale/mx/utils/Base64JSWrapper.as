@@ -19,7 +19,7 @@
 package mx.utils
 {
 	COMPILE::JS
-	private class Base64JSWrapper  
+	public class Base64JSWrapper  
 	{
 		/**
 		 * The Royale Compiler will inject html into the index.html file.  Surround with

@@ -53,7 +53,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
     public static const CHARSET_UTF_8:String = "UTF-8";
@@ -67,7 +67,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
     public static var newLine:int = 10;
@@ -84,12 +84,19 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
+	COMPILE::SWF
     public function Base64Encoder()
     {
         super();
         reset();
+    }
+
+	COMPILE::JS
+    public function Base64Encoder()
+    {
+        super();
     }
 
     //--------------------------------------------------------------------------
@@ -108,7 +115,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
     public var insertNewLines:Boolean = true;
@@ -159,7 +166,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
     public function encode(data:String, offset:uint=0, length:uint=0):void
@@ -209,7 +216,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
 	COMPILE::SWF
     public function encodeUTFBytes(data:String):void
@@ -233,7 +240,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
 	COMPILE::SWF
 	public function encodeBytes(data:ByteArray, offset:uint=0, length:uint=0):void
@@ -288,7 +295,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
     public function reset():void
@@ -318,7 +325,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
     public function toString():String
@@ -380,7 +387,7 @@ public class Base64Encoder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     private var _buffers:Array;
     private var _count:uint;

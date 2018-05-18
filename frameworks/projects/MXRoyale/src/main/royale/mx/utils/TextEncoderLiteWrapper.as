@@ -19,7 +19,7 @@
 package mx.utils
 {
 	COMPILE::JS
-	private class TextEncoderLiteWrapper  
+	public class TextEncoderLiteWrapper  
 	{
 	    private var _encoding:String;
 
