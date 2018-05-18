@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="RemoteObject" class="org.apache.royale.net.RemoteObject"/>
+    <component id="CompressedRemoteObject" class="org.apache.royale.net.CompressedRemoteObject"/>
     <component id="HTTPService" class="org.apache.royale.net.HTTPService"/>
     <component id="BinaryUploader" class="org.apache.royale.net.BinaryUploader"/>
     <component id="CORSCredentialsBead" class="org.apache.royale.net.beads.CORSCredentialsBead"/>
