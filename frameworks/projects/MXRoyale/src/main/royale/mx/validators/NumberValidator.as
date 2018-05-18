@@ -74,7 +74,7 @@ package mx.validators
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class NumberValidator //extends Validator
+public class NumberValidator extends Validator
 {
 //	include "../core/Version.as";
 
@@ -141,7 +141,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var allowNegativeOverride:Object;
+	//private var allowNegativeOverride:Object;
 
     [Inspectable(category="General", defaultValue="null")]
 
@@ -166,7 +166,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set allowNegative(value:Object):void
 	{
-		allowNegativeOverride = value;
+		//allowNegativeOverride = value;
 
 		_allowNegative = value != null ?
 						 Boolean(value) : false;
@@ -187,7 +187,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var decimalSeparatorOverride:String;
+	//private var decimalSeparatorOverride:String;
 
     [Inspectable(category="General", defaultValue="null")]
 
@@ -214,7 +214,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set decimalSeparator(value:String):void
 	{
-		decimalSeparatorOverride = value;
+		//decimalSeparatorOverride = value;
 
 		_decimalSeparator = value != null ?
 							value : "";
@@ -235,7 +235,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var domainOverride:String;
+	//private var domainOverride:String;
 
     [Inspectable(category="General", enumeration="int,real", defaultValue="null")]
 
@@ -264,7 +264,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set domain(value:String):void
 	{
-		domainOverride = value;
+		//domainOverride = value;
 
 		_domain = value != null ?
 				  value : "";
@@ -285,7 +285,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var maxValueOverride:Object;
+	//private var maxValueOverride:Object;
 
     [Inspectable(category="General", defaultValue="null")]
 
@@ -309,7 +309,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set maxValue(value:Object):void
 	{
-		maxValueOverride = value;
+		//maxValueOverride = value;
 
 		_maxValue = value != null ?
 					Number(value) : 0;
@@ -330,7 +330,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var minValueOverride:Object;
+	//private var minValueOverride:Object;
 
     [Inspectable(category="General", defaultValue="null")]
 
@@ -354,7 +354,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set minValue(value:Object):void
 	{
-		minValueOverride = value;
+		//minValueOverride = value;
 
 		_minValue = value != null ?
 					Number(value) : 0;
@@ -375,7 +375,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var precisionOverride:Object;
+	//private var precisionOverride:Object;
 
     [Inspectable(category="General", defaultValue="null")]
 
@@ -403,7 +403,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set precision(value:Object):void
 	{
-		precisionOverride = value;
+		//precisionOverride = value;
 
 		_precision = value != null ?
 					 int(value) : 0;
@@ -424,7 +424,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var thousandsSeparatorOverride:String;
+	//private var thousandsSeparatorOverride:String;
 
     [Inspectable(category="General", defaultValue="null")]
 
@@ -451,7 +451,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set thousandsSeparator(value:String):void
 	{
-		thousandsSeparatorOverride = value;
+		//thousandsSeparatorOverride = value;
 
 		_thousandsSeparator = value != null ?
 							  value : "";
@@ -478,7 +478,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var decimalPointCountErrorOverride:String;
+	//private var decimalPointCountErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
 
@@ -502,7 +502,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set decimalPointCountError(value:String):void
 	{
-		decimalPointCountErrorOverride = value;
+		//decimalPointCountErrorOverride = value;
 
 		_decimalPointCountError = value != null ?
 								  value : "";
@@ -523,7 +523,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var exceedsMaxErrorOverride:String;
+	//private var exceedsMaxErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
 
@@ -547,7 +547,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set exceedsMaxError(value:String):void
 	{
-		exceedsMaxErrorOverride = value;
+		//exceedsMaxErrorOverride = value;
 
 		_exceedsMaxError = value != null ?
 						   value : "";
@@ -568,7 +568,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var invalidCharErrorOverride:String;
+	//private var invalidCharErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
 
@@ -592,7 +592,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set invalidCharError(value:String):void
 	{
-		invalidCharErrorOverride = value;
+		//invalidCharErrorOverride = value;
 
 		_invalidCharError = value != null ?
 							value : "";
@@ -613,7 +613,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var lowerThanMinErrorOverride:String;
+	//private var lowerThanMinErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
 
@@ -637,7 +637,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set lowerThanMinError(value:String):void
 	{
-		lowerThanMinErrorOverride = value;
+		//lowerThanMinErrorOverride = value;
 
 		_lowerThanMinError = value != null ?
 							 value : "";
@@ -658,7 +658,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var negativeErrorOverride:String;
+	//private var negativeErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
 
@@ -683,7 +683,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set negativeError(value:String):void
 	{
-		negativeErrorOverride = value;
+		//negativeErrorOverride = value;
 
 		_negativeError = value != null ?
 						 value : "";
@@ -704,7 +704,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var precisionErrorOverride:String;
+	//private var precisionErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
 
@@ -729,7 +729,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set precisionError(value:String):void
 	{
-		precisionErrorOverride = value;
+		//precisionErrorOverride = value;
 
 		_precisionError = value != null ?
 						  value : "";
@@ -750,7 +750,7 @@ public class NumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var separationErrorOverride:String;
+	//private var separationErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
 
@@ -774,7 +774,7 @@ public class NumberValidator //extends Validator
 	 */
 	public function set separationError(value:String):void
 	{
-		separationErrorOverride = value;
+		//separationErrorOverride = value;
 
 		_separationError = value != null ?
 						   value : "";
@@ -858,35 +858,6 @@ public class NumberValidator //extends Validator
     public function set property(value:String):void
     {
         _property = value;
-    }
-    
-    //----------------------------------
-    //  required
-    //----------------------------------
-
-    private var _required:Boolean = true;
-
-    [Inspectable(category="General", defaultValue="true")]
-
-    /**
-     *  If <code>true</code>, specifies that a missing or empty
-     *  value causes a validation error.
-     *
-     *  @default true
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
-     */
-    public function get required():Boolean
-    {
-        return _required;
-    }
-
-    public function set required(value:Boolean):void
-    {
-        _required = value;
     }
     
     //----------------------------------
