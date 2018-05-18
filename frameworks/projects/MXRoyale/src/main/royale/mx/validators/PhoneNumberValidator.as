@@ -59,7 +59,7 @@ package mx.validators
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class PhoneNumberValidator //extends Validator
+public class PhoneNumberValidator extends Validator
 {
 //	include "../core/Version.as";
 
@@ -132,7 +132,7 @@ public class PhoneNumberValidator //extends Validator
     /**
 	 *  @private
 	 */
-	private var allowedFormatCharsOverride:String;
+	//private var allowedFormatCharsOverride:String;
 	
 	[Inspectable(category="General", defaultValue="null")]
 
@@ -171,27 +171,13 @@ public class PhoneNumberValidator //extends Validator
 			}
 		}
 
-		allowedFormatCharsOverride = value;
+		//allowedFormatCharsOverride = value;
 
 		_allowedFormatChars = value != null ?
 							  value : "";
 	//						  resourceManager.getString(
 	//							  "validators",
 	//							  "phoneNumberValidatorAllowedFormatChars");
-	}
-
-	//--------------------------------------------------------------------------
-	//
-	//  Overridden methods
-	//
-	//--------------------------------------------------------------------------
-
-    /**
-	 *  @private    
-     */
-	/*override*/ protected function resourcesChanged():void
-	{
-		super.resourcesChanged();
 	}
 
     //----------------------------------
