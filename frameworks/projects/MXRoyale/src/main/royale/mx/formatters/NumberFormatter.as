@@ -120,7 +120,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var decimalSeparatorFromOverride:String;
+    //private var decimalSeparatorFromOverride:String;
     
     [Inspectable(category="General", defaultValue="null")]
 
@@ -151,7 +151,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set decimalSeparatorFrom(value:String):void
     {
-        decimalSeparatorFromOverride = value;
+        //decimalSeparatorFromOverride = value;
 
         _decimalSeparatorFrom = value != null ?
                                 value : value 
@@ -172,7 +172,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var decimalSeparatorToOverride:String;
+    //private var decimalSeparatorToOverride:String;
     
     [Inspectable(category="General", defaultValue="null")]
 
@@ -203,7 +203,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set decimalSeparatorTo(value:String):void
     {
-        decimalSeparatorToOverride = value;
+        //decimalSeparatorToOverride = value;
 
         _decimalSeparatorTo = value != null ?
                               value : value  
@@ -224,7 +224,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var precisionOverride:Object;
+    //private var precisionOverride:Object;
     
     [Inspectable(category="General", defaultValue="null")]
 
@@ -254,7 +254,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set precision(value:Object):void
     {
-        precisionOverride = value;
+        //precisionOverride = value;
 
         _precision = value != null ?
                      int(value) : int(value)
@@ -275,7 +275,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var roundingOverride:String;
+    //private var roundingOverride:String;
     
     [Inspectable(category="General", enumeration="none,up,down,nearest", defaultValue="null")]
         // !!@ Should enumeration include null?
@@ -307,7 +307,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set rounding(value:String):void
     {
-        roundingOverride = value;
+        //roundingOverride = value;
 
         _rounding = value != null ?
                     value : value
@@ -328,7 +328,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var thousandsSeparatorFromOverride:String;
+    //private var thousandsSeparatorFromOverride:String;
     
     [Inspectable(category="General", defaultValue="null")]
 
@@ -359,7 +359,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set thousandsSeparatorFrom(value:String):void
     {
-        thousandsSeparatorFromOverride = value;
+        //thousandsSeparatorFromOverride = value;
 
         _thousandsSeparatorFrom = value != null ?
                                   value : value
@@ -381,7 +381,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var thousandsSeparatorToOverride:String;
+    //private var thousandsSeparatorToOverride:String;
     
     [Inspectable(category="General", defaultValue="null")]
 
@@ -412,7 +412,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set thousandsSeparatorTo(value:String):void
     {
-        thousandsSeparatorToOverride = value;
+        //thousandsSeparatorToOverride = value;
 
         _thousandsSeparatorTo = value != null ?
                                 value : value
@@ -434,7 +434,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var useNegativeSignOverride:Object;
+    //private var useNegativeSignOverride:Object;
     
     [Inspectable(category="General", defaultValue="null")]
 
@@ -461,7 +461,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set useNegativeSign(value:Object):void
     {
-        useNegativeSignOverride = value;
+        //useNegativeSignOverride = value;
 
         _useNegativeSign = value != null ?
                            Boolean(value) : Boolean(value)
@@ -482,7 +482,7 @@ public class NumberFormatter //extends Formatter
     /**
      *  @private
      */
-    private var useThousandsSeparatorOverride:Object;
+    //private var useThousandsSeparatorOverride:Object;
     
     [Inspectable(category="General", defaultValue="null")]
 
@@ -507,7 +507,7 @@ public class NumberFormatter //extends Formatter
      */
     public function set useThousandsSeparator(value:Object):void
     {
-        useThousandsSeparatorOverride = value;
+        //useThousandsSeparatorOverride = value;
 
         _useThousandsSeparator = value != null ?
                                  Boolean(value) : Boolean(value)
