@@ -509,7 +509,7 @@ public class MenuBar extends UIComponent
     /**
      *  @private
      */
-    private var iconFieldChanged:Boolean = false;
+    //private var iconFieldChanged:Boolean = false;
     
         /**
      *  @private
@@ -676,7 +676,7 @@ public class MenuBar extends UIComponent
     {
         if (_iconField != value)
         {
-            iconFieldChanged = true;
+            //iconFieldChanged = true;
             _iconField = value;
             invalidateProperties();
             //dispatchEvent(new Event("iconFieldChanged"));
@@ -725,7 +725,7 @@ public class MenuBar extends UIComponent
         if (_labelField != value)
         {
             _labelField = value;
-            dispatchEvent(new Event("labelFieldChanged"));
+            //dispatchEvent(new Event("labelFieldChanged"));
         }
     }
 
