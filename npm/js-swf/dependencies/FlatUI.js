@@ -127,5 +127,11 @@ function extract()
 
 FlatUI.install = function()
 {
-    FlatUI.prompt();
+    if(process.env.ACCEPT_ALL_ROYALE_LICENSES === 'true')
+    {
+        FlatUI.downloadFlatUI();
+    }
+    else {
+        FlatUI.prompt();
+    }
 };
