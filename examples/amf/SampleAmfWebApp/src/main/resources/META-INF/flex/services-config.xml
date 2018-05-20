@@ -25,6 +25,9 @@
                 id="java-object"
                 class="flex.messaging.services.remoting.adapters.JavaAdapter"
                 default="true"/>
+        <adapter-definition
+                id="compressed-java-object"
+                class="org.apache.royale.net.remoting.amf.adapter.AMFCompressorAdapter"/>
       </adapters>
       <default-channels>
         <channel ref="websocketAmf"/>

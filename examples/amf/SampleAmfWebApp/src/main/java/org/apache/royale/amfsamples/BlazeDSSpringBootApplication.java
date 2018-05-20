@@ -23,13 +23,32 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
+import flex.messaging.MessageBroker;
+import flex.messaging.config.ConfigMap;
+import flex.messaging.services.ServiceAdapter;
+import flex.messaging.services.remoting.RemotingDestination;
+
 @SpringBootApplication
 @ServletComponentScan("org.apache.royale.amfsamples")
 public class BlazeDSSpringBootApplication {
 
     public static void main(String[] args) {
+
+        //BlazeDS normal application setup
         SpringApplication application = new SpringApplication(BlazeDSSpringBootApplication.class);
         application.run(args);
-    }
 
+        // makes "compressedService" uses "compressed-java-object" adapter that performs compression on AMF data
+        // this can be done usgin spring xml with <flex:remoting-service default-adapter-id="the-compression-adapter"/>
+        MessageBroker messageBroker = MessageBroker.getMessageBroker("_messageBroker");
+        RemotingDestination destination = RemotingDestination.getRemotingDestination("_messageBroker", "compressedService");
+
+        ConfigMap serviceAdapterConfig = new ConfigMap();
+        serviceAdapterConfig.addProperty("include-packages", "org.apache.royale.");
+
+        ServiceAdapter serviceAdapter = destination.createAdapter("compressed-java-object");
+        serviceAdapter.initialize("compressed-java-object", serviceAdapterConfig);
+
+        destination.setAdapter(serviceAdapter);
+    }
 }

@@ -85,7 +85,12 @@ limitations under the License.
 			
 			private function onFault(evt:FaultEvent):void
 			{
-				trace("Fault=" + evt.message);
+				for(var key:String in evt["message"])
+				{
+					var element:Object = evt["message"][key];
+					trace(key + ", " + element);					
+				}
+				//trace("Fault = " + evt.message);
 			}
 
 			protected function getVOs():void
@@ -109,6 +114,10 @@ limitations under the License.
                 received2.text = "Selected: " + vo.id;
             }
 			
+            protected function getSomeCompressedProduct():void
+			{
+                compressedService.send("getSomeCompressedProduct", []);
+			}
 		]]>
 	</fx:Script>
 
@@ -117,6 +126,9 @@ limitations under the License.
         <js:RemoteObject id="service" result="onResult(event)" fault="onFault(event)"
                          endPoint = "http://localhost:8080/messagebroker/websocket-amf"
                          destination = "exampleService"/>
+        <js:CompressedRemoteObject id="compressedService" result="onResult(event)" fault="onFault(event)"
+                         endPoint = "http://localhost:8080/messagebroker/websocket-amf"
+                         destination = "compressedService"/>
                          <!--source = "exampleService" source is not needed when using JavaAdapter on BlazeDS-->
     </j:beads>
 
@@ -163,6 +175,7 @@ limitations under the License.
                     <j:VerticalLayoutWithPaddingAndGap gap="10"/>
                 </j:beads>
                 <j:Button text="Get Some Product" primary="true" click="getSomeProduct()"/>
+                <j:Button text="Get Some Compressed Product" primary="true" click="getSomeCompressedProduct()"/>
                 <j:MultilineLabel id="received3" text="Received:"/>
             </j:Group>
 
