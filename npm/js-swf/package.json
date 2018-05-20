@@ -3,8 +3,8 @@
   "version": "0.9.3",
   "description": "Apache Royale (formerly FlexJS)",
   "keywords": [
-	"royale",
-	"apache royale",
+    "royale",
+    "apache royale",
     "flex",
     "flexjs",
     "apache flexjs",
@@ -23,10 +23,8 @@
     "merge-dirs": "^0.2.1",
     "mkdirp": "^0.5.1",
     "prompt": "^0.2.14",
-    "replace": "^0.3.0",
     "request": "^2.67.0",
-    "unzip": "^0.1.11",
-    "wrench": "^1.5.8"
+    "unzip": "^0.1.11"
   },
   "scripts": {
     "postinstall": "node royale-asjs/npm/js-swf/dependencies/download_dependencies.js"
