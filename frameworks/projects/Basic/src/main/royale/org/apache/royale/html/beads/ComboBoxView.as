@@ -118,7 +118,7 @@ package org.apache.royale.html.beads
 			input.className = "ComboBoxTextInput";			
 			
 			button = new TextButton();
-			button.className = "opt_org-apache.royale-html-ComboBox_Button";
+			button.className = "opt_org-apache-royale-html-ComboBox_Button";
 			button.text = '\u25BC';
 			
 			if (isNaN(host.width)) input.width = 100;

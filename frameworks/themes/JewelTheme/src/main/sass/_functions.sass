@@ -16,3 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+
+// Firefox needs colors inside inline SVGs to be encoded changing # for %23, i.e: #FF0000 needs to be %23FF0000
+@function encodecolor($string)
+    
+    @if type-of($string) == 'color'
+        $string: unquote('#{str-slice('' + $string, 2)}')
+    
+    @return '%23' + $string

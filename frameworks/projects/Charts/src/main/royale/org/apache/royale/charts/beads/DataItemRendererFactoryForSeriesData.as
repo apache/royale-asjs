@@ -116,7 +116,7 @@ package org.apache.royale.charts.beads
 					if (chartSeries.itemRenderer)
 					{
 						var ir:IChartItemRenderer = chartSeries.itemRenderer.newInstance() as IChartItemRenderer;
-						dataGroup.addItemRenderer(ir);
+						dataGroup.addItemRenderer(ir, false);
 						ir.itemRendererParent = dataGroup;
 						ir.index = i;
 						ir.data = dp[i];

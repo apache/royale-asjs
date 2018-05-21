@@ -23,7 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContainerView;
@@ -37,9 +37,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IViewport;
 	import org.apache.royale.core.IViewportModel;
-    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
@@ -219,6 +219,29 @@ package org.apache.royale.html.beads
 		{
             var host:ILayoutChild = this.host as ILayoutChild;
             var vm:IViewportModel = viewportModel;
+            COMPILE::SWF
+            {
+                // if earlier layouts set the size of the host
+                // then it won't reflect changes in content size
+                if (host is UIBase)
+                {
+                    var uiBase:UIBase = host as UIBase;
+                    if (host.isWidthSizedToContent())
+                    {
+                        if (uiBase.width != uiBase.$width)
+                        {
+                            host.setWidth(uiBase.$width, true);
+                        }
+                    }
+                    if (host.isHeightSizedToContent())
+                    {
+                        if (uiBase.height != uiBase.$height)
+                        {
+                            host.setHeight(uiBase.$height, true);
+                        }
+                    }                    
+                }
+            }
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 
