@@ -27,7 +27,7 @@ package mx.collections
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 
-    import mx.collections.errors.SortError;
+    //import mx.collections.errors.SortError;
     import mx.core.mx_internal;
   /*   import mx.resources.IResourceManager;
     import mx.resources.ResourceManager */;
@@ -140,10 +140,10 @@ package mx.collections
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class Sort extends EventDispatcher 
+public class Sort extends EventDispatcher implements ISort
 {
   
     //--------------------------------------------------------------------------
@@ -166,7 +166,7 @@ public class Sort extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function Sort(fields:Array = null, customCompareFunction:Function = null, unique:Boolean = false)
     {
@@ -206,7 +206,7 @@ public class Sort extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function get fields():Array
     {
