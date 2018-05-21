@@ -25,7 +25,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
     
 	/**
@@ -62,8 +62,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-layout__tab-bar";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         /**
          * @copy org.apache.royale.core.IDataProviderModel#dataProvider
@@ -77,6 +85,7 @@ package org.apache.royale.mdl
         {
             return ITabModel(model).dataProvider;
         }
+
         override public function set dataProvider(value:Object):void
         {
             ITabModel(model).dataProvider = value;
@@ -94,6 +103,7 @@ package org.apache.royale.mdl
         {
             return ITabModel(model).labelField;
         }
+
         override public function set labelField(value:String):void
         {
             ITabModel(model).labelField = value;
@@ -149,7 +159,7 @@ package org.apache.royale.mdl
                 element.classList.remove(typeNames);
 				typeNames = "mdl-tabs__tab-bar";
 
-                className = addOrReplaceClassName(className, "mdl-tabs__tab-bar");
+                setClassName(computeFinalClassNames());
 			}
 
 			if(parent is Tabs && _ripple)
@@ -172,6 +182,7 @@ package org.apache.royale.mdl
         {
             return _ripple;
         }
+
         public function set ripple(value:Boolean):void
         {
             if (_ripple != value)
@@ -185,13 +196,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-js-ripple-effect");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-js-ripple-effect");
-                    }
+                    var classVal:String = "mdl-js-ripple-effect";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

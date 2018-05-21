@@ -19,17 +19,18 @@
 package org.apache.royale.html.beads
 {
     import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererParent;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -45,7 +46,7 @@ package org.apache.royale.html.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
      */
 	public class TextItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
 	{
@@ -55,7 +56,7 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
          */
 		public function TextItemRendererFactoryForArrayData(target:Object=null)
 		{
@@ -72,7 +73,8 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		public function set strand(value:IStrand):void
 		{
@@ -80,6 +82,10 @@ package org.apache.royale.html.beads
 			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
+         * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
 		private function finishSetup(event:Event):void
 		{
 			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
@@ -103,7 +109,8 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
@@ -127,7 +134,12 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion Array
+         *  @royaleignorecoercion org.apache.royale.html.beads.ITextItemRenderer
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
 		private function dataProviderChangeHandler(event:Event):void
 		{
@@ -135,8 +147,8 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererParent = view.dataGroup;
 
 			dataGroup.removeAllItemRenderers();
 
@@ -145,7 +157,7 @@ package org.apache.royale.html.beads
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                dataGroup.addItemRenderer(tf);
+                dataGroup.addItemRenderer(tf, false);
                 if (selectionModel.labelField) {
                 	tf.labelField = selectionModel.labelField;
                 }

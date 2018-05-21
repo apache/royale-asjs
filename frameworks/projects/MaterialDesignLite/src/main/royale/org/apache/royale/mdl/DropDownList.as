@@ -31,7 +31,6 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
     }
 
     [Event(name="change", type="org.apache.royale.events.Event")]
@@ -172,33 +171,6 @@ package org.apache.royale.mdl
             ISelectionModel(model).selectedItem = value;
         }
 
-        override public function removeAllItemRenderers():void
-        {
-            COMPILE::JS
-            {
-                var optionsCount:int = dropDown.numElements;
-                
-                for (var i:int = 1; i < optionsCount; i++)
-                {
-                   var item:UIBase = dropDown.getElementAt(i) as UIBase;
-                   dropDown.removeElement(item);
-                }
-            }
-        }
-
-        override public function addItemRenderer(renderer:IItemRenderer):void
-        {
-            COMPILE::JS
-            {
-                dropDown.addElement(renderer);
-            }
-            
-            var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-            newEvent.item = renderer;
-
-            dispatchEvent(newEvent);
-        }
-
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
@@ -207,8 +179,7 @@ package org.apache.royale.mdl
         {
 			element = super.createElement();
 
-            className = addOrReplaceClassName(className, "mdl-textfield--floating-label");
-
+            element.classList.add("mdl-textfield--floating-label");
             return element;
         }
     }

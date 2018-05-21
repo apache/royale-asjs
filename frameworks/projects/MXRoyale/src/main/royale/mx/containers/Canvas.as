@@ -123,6 +123,7 @@ public class Canvas extends Container implements IConstraintLayout
     public function Canvas()
     {
         super();
+		typeNames = "Canvas";
 
         //layoutObject.target = this;
     }

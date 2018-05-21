@@ -38,6 +38,7 @@ package org.apache.royale.core
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
+        import org.apache.royale.utils.cssclasslist.addStyles;
     }
 	
 	/**
@@ -170,7 +171,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
+	public class UIBase extends HTMLElementWrapper implements IStrandWithModelView, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
 	{
         /**
          *  Constructor.
@@ -396,6 +397,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get width():Number
         {
+            if(!isNaN(_explicitWidth))
+                return _explicitWidth;
             var pixels:Number;
             var strpixels:String = element.style.width as String;
             if(strpixels == null)
@@ -488,6 +491,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get height():Number
         {
+            if(!isNaN(_explicitHeight))
+                return _explicitHeight;
             var pixels:Number;
             var strpixels:String = element.style.height as String;
             if(strpixels == null)
@@ -677,17 +682,14 @@ package org.apache.royale.core
             else
                 style.left = value;
         }
-        
         /**
          * @royaleignorecoercion HTMLElement
          */
         COMPILE::JS
         public function set x(value:Number):void
         {
-            //positioner.style.position = 'absolute';
-            if (positioner.parentNode != positioner.offsetParent)
-                value += (positioner.parentNode as HTMLElement).offsetLeft;
-            positioner.style.left = value.toString() + 'px';
+            _x = value;
+            setX(value);
         }
 
         /**
@@ -697,6 +699,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get x():Number
         {
+            if(!isNaN(_x))
+                return _x
             var strpixels:String = positioner.style.left as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
@@ -753,10 +757,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function set y(value:Number):void
         {
-            //positioner.style.position = 'absolute';
-            if (positioner.parentNode != positioner.offsetParent)
-                value += (positioner.parentNode as HTMLElement).offsetTop;
-            positioner.style.top = value.toString() + 'px';
+            _y = value;
+            setY(value);
         }
         
         /**
@@ -766,6 +768,8 @@ package org.apache.royale.core
         COMPILE::JS
         public function get y():Number
         {
+            if(!isNaN(_y))
+                return _y
             var strpixels:String = positioner.style.top as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
@@ -918,6 +922,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          *  @royaleignorecoercion Class
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
          */
         public function get view():IBeadView
         {
@@ -933,7 +938,7 @@ package org.apache.royale.core
         {
             if (_view != value)
             {
-                addBead(value as IBead);
+                addBead(value);
                 dispatchEvent(new Event("viewChanged"));
             }
         }
@@ -1026,13 +1031,25 @@ package org.apache.royale.core
          * 
          *  @royalesuppresspublicvarwarning
          */
-        public var typeNames:String;
+        public var typeNames:String = "";
         
         private var _className:String;
 
         /**
          *  The classname.  Often used for CSS
          *  class selector lookups.
+         * 
+         *  In Royale the list of class selectors actually applied to
+         *  the component can be more than what is specified in this
+         *  className property.   This property is primarily provided
+         *  to make it easy to specify class selectors in MXML.  If
+         *  you want to change the set of class selectors at runtime
+         *  it is more efficient to use the ClassList utility functions in
+         *  org.apache.royale.utils.classList.
+         * 
+         *  Do not mix usage of the ClassList utility functions and modifying
+         *  the className property at runtime.  It is best to think of this
+         *  className property as a write-once property.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1051,21 +1068,32 @@ package org.apache.royale.core
         {
             if (_className !== value)
             {
+                _className = value;
+
                 COMPILE::JS
                 {
-                    setClassName(typeNames ? StringUtil.trim(value + ' ' + typeNames) : value);             
+                    // set it now if it was set once in addedToParent
+                    // otherwise just wait for addedToParent
+                    if (parent)
+                        setClassName(computeFinalClassNames());             
                 }
-                _className = value;
+                
                 dispatchEvent(new Event("classNameChanged"));
             }
         }
-        
+
+		COMPILE::JS
+        protected function computeFinalClassNames():String
+		{
+            return  _className ? _className + " " + typeNames : typeNames;
+		}
+
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            element.className = value;           
+            element.className = value;        
         }
-        
+
         /**
          *  @copy org.apache.royale.core.IUIBase#element
          *  
@@ -1101,7 +1129,9 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IBeadModel
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
          */        
 		override public function addBead(bead:IBead):void
 		{
@@ -1119,7 +1149,7 @@ package org.apache.royale.core
 			bead.strand = this;
 			
 			if (isView) {
-				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));
+				dispatchEvent(new Event("viewChanged"));
 			}
 		}
 		
@@ -1352,8 +1382,8 @@ package org.apache.royale.core
 			
             COMPILE::JS
             {
-				if (typeNames)
-					setClassName((_className ? _className + " " : "") + typeNames);
+			    setClassName(computeFinalClassNames());
+                
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
             }
@@ -1418,7 +1448,8 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IMeasurementBead
          */
 		public function get measurementBead() : IMeasurementBead
 		{

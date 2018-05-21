@@ -1,7 +1,23 @@
+Apache Royale 0.9.3
+===================
+
+- [Added New Jewel UI Set (Initial work)](https://github.com/apache/royale-asjs/issues/154)
+- [Renamed TextOverflow bead to EllipsisOverflow. It now supports Label elements as well.](https://github.com/apache/royale-asjs/issues/130)
+- [Added IEEventAdapterBead](https://github.com/apache/royale-asjs/issues/131)
+- [Added Object getter/setter utility functions](https://github.com/apache/royale-asjs/issues/132)
+- [Added InfiniteVScroller Bead](https://github.com/apache/royale-asjs/issues/134)
+
 Apache Royale 0.9.2
 ===================
 
+- [Added ApplicationParametersBead and ApplicationParametersCaseInsensitiveBead](https://github.com/apache/royale-asjs/issues/129)
 - Added virtual item renderer management for fixed row height vertical lists.
+- Added Menu and MenuBar
+- Added DividedBox
+- Many CSS default values are now in the basic.css theme.
+- Theme support. Now compiler will copy all resources in "assets" folder to target
+- Added JSON2ASVO, a utility that creates AS classes from a JSON result
+- Added JSONReviver, a class that converts JSON to AS classes sort of like AMF
 - Added HScrollViewport
 - Added VScrollViewport
 - Fixed bugs in XML parsing and converting back to strings
@@ -9,6 +25,8 @@ Apache Royale 0.9.2
   - https://github.com/apache/royale-asjs/issues/121
   - https://github.com/apache/royale-asjs/issues/122
   - https://github.com/apache/royale-asjs/issues/123
+- Fixed Maven distribution so you can use in IDEs like VSCode, Moonshine and more.
+  - https://github.com/apache/royale-asjs/issues/125
 
 Updates to the RELEASE_NOTES discovered after this file was packaged into the release artifacts can be found here:
 

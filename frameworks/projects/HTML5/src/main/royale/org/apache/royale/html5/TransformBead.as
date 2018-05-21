@@ -37,9 +37,9 @@ package org.apache.royale.html5
 			var fjsm:Matrix = transformModel.matrix;
 			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
 			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";
-			element.style.transform = transformStr;
-			element.style.transformOrigin = "0px 0px";
 			element.style.position = "absolute";
+			element.style.transformOrigin = "0px 0px";
+			element.style.transform = transformStr;
 		}
 		
 	}

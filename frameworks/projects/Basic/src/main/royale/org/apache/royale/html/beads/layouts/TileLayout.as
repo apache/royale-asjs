@@ -20,6 +20,7 @@ package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.ILayoutParent;
@@ -27,12 +28,13 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.utils.CSSUtils;
-	import org.apache.royale.utils.CSSContainerUtils;
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -121,14 +123,15 @@ package org.apache.royale.html.beads.layouts
 
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean
 		{
-			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			// var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
 			
 			COMPILE::SWF
 			{
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				var area:UIBase = layoutView as UIBase;
 
 				var xpos:Number = 0;
@@ -199,8 +202,6 @@ package org.apache.royale.html.beads.layouts
 				var ypos:Number;
 				var useWidth:Number;
 				var useHeight:Number;
-				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
-				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
 				
@@ -222,15 +223,22 @@ package org.apache.royale.html.beads.layouts
 				ypos = 0;
 				useWidth = columnWidth;
 				useHeight = rowHeight;
-
-				if (isNaN(useWidth)) {
-					useWidth = Math.floor(adjustedWidth / numColumns); // + gap
-				}
-				if (isNaN(useHeight)) {
-					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.ceil(realN / numColumns);
-					if (host.isHeightSizedToContent()) useHeight = 30; // default height
-					else useHeight = Math.floor(adjustedHeight / numRows);
+				var needWidth:Boolean = isNaN(useWidth);
+				var needHeight:Boolean = isNaN(useHeight);
+				if(needHeight || needWidth){
+					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+					var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+					var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
+					if (needWidth)
+						useWidth = Math.floor(adjustedWidth / numColumns); // + gap
+					
+					if (needHeight)
+					{
+						// given the width and total number of items, how many rows?
+						var numRows:Number = Math.ceil(realN / numColumns);
+						if (host.isHeightSizedToContent()) useHeight = 30; // default height
+						else useHeight = Math.floor(adjustedHeight / numRows);
+					}
 				}
 
 				for (i = 0; i < n; i++)

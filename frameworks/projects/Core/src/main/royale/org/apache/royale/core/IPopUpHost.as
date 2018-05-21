@@ -27,7 +27,8 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public interface IPopUpHost extends IParent
+    public interface IPopUpHost
 	{
+        function get popUpParent():IParent;
 	}
 }

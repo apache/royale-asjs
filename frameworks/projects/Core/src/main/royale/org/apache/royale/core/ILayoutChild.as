@@ -81,7 +81,7 @@ package org.apache.royale.core
          */
         function get explicitHeight():Number;
         function set explicitHeight(value:Number):void;
-        
+
         /**
          * Sets the height of the component without
          * setting explicitHeight.

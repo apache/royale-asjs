@@ -1531,11 +1531,11 @@ public class TextInput extends UIComponent implements ITextInput
      *  @private
      *  Focus should always be on the internal TextField.
      */
+    COMPILE::SWF
     override public function setFocus():void
     {
-    	if (GOOG::DEBUG)
-    		trace("TextInput.setFocus not implemented");
-        //textField.setFocus();
+        var textView:TextInputView = view as TextInputView;
+        textView.textField.stage.focus = textView.textField
     }
 
     /**
@@ -1782,6 +1782,14 @@ public class TextInput extends UIComponent implements ITextInput
     //
     //--------------------------------------------------------------------------
 
+    COMPILE::JS
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        // For HTML/JS, we only set the size if there is an explicit
+        // size set. 
+        if (!isNaN(explicitWidth)) setWidth(w);
+        if (!isNaN(explicitHeight)) setHeight(h);
+    }
 
     //--------------------------------------------------------------------------
     //

@@ -322,6 +322,19 @@ package org.apache.royale.core
         }
 
         /**
+         *  Application can host popups but they will be in the layout, if any
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get popUpParent():IParent
+        {
+            return this;
+        }
+        
+        /**
          *  An array of data that describes the MXML attributes
          *  and tags in an MXML document.  This data is usually
          *  decoded by an MXMLDataInterpreter
@@ -647,6 +660,7 @@ package org.apache.royale.core
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IBead
+         * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		protected function initialize():void

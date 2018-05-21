@@ -55,29 +55,6 @@ Application
 	margin: 0px;
 }
 
-Button
-{
-	background-color: #f8f8f8;
-	border: 1px solid #808080;
-	border-radius: 2px;
-	padding: 4px;
-	margin: 0px;
-}
-
-Button:hover
-{
-	background-color: #e8e8e8;
-	border: 1px solid #808080;
-	padding: 4px;
-}
-
-Button:active
-{
-	background-color: #d8d8d8;
-	border: 1px solid #808080;
-	padding: 4px;
-}
-
 ButtonBar
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
@@ -117,7 +94,7 @@ ComboBoxList
 	background-color: #FFFFFF;
 }
 
-.opt_org-apache.royale-html-ComboBox_Button {
+.opt_org-apache-royale-html-ComboBox_Button {
 	padding: 0px;
 	margin: 0px;
 }
@@ -199,7 +176,7 @@ DataGridColumnList {
 	background-color: #FFFFFF;
 }
 
-.opt_org-apache.royale-html-DataGrid_ListArea {
+.opt_org-apache-royale-html-DataGrid_ListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
@@ -263,7 +240,7 @@ DateChooserHeader {
 	background-color: #FFFFFF;
 }
 
-.opt_org-apache.royale-html-DateChooser_MonthButtons {				
+.opt_org-apache-royale-html-DateChooser_MonthButtons {				
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalFlexLayout");	
 	height: 20px;
 }
@@ -551,7 +528,7 @@ TreeGrid .TreeGridColumn {
 	border: none
 }
 
-.opt_org-apache.royale-html-TreeGrid_ListArea {
+.opt_org-apache-royale-html-TreeGrid_ListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");

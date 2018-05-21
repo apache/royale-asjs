@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.core.layout.EdgeData;
     
 	/**
 	 * A Viewport is the area of a Container set aside for displaying
@@ -31,8 +31,8 @@ package org.apache.royale.core
 		/**
 		 * Size of the borders.
 		 */
-		function get borderMetrics():Rectangle;
-		function set borderMetrics(value:Rectangle):void;
+		function get borderMetrics():EdgeData;
+		function set borderMetrics(value:EdgeData):void;
 		
         /**
          * Size of the chrome.  A plain container doesn't have any chrome
@@ -43,8 +43,8 @@ package org.apache.royale.core
          * deciding whether to further shrink the content area or
          * have the scrollbars overlay the content.
          */
-        function get chromeMetrics():Rectangle;
-        function set chromeMetrics(value:Rectangle):void;
+        function get chromeMetrics():EdgeData;
+        function set chromeMetrics(value:EdgeData):void;
         
 	}
 }

@@ -23,6 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IContainerView;
@@ -38,6 +39,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IViewportModel;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
@@ -47,7 +49,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.ContainerContentArea;
 	import org.apache.royale.html.supportClasses.Viewport;
-	import org.apache.royale.utils.CSSContainerUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -65,7 +66,7 @@ package org.apache.royale.html.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.8
 	 */
 	COMPILE::SWF
 	public class ContainerView extends GroupView
@@ -79,7 +80,7 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function ContainerView()
 		{
@@ -93,7 +94,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		override public function get contentView():ILayoutView
 		{
@@ -107,7 +108,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		protected function get viewport():IViewport
 		{
@@ -121,7 +122,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		public function get viewportModel():IViewportModel
 		{
@@ -138,7 +139,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -159,7 +160,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		override protected function completeSetup():void
 		{
@@ -177,7 +178,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		protected function createViewport():void
 		{
@@ -195,11 +196,12 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
-		protected function getChromeMetrics():Rectangle
+		protected function getChromeMetrics():EdgeData
 		{
-			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+			var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
 			return paddingMetrics;
 		}
 		
@@ -210,16 +212,40 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		override public function beforeLayout():void
 		{
             var host:ILayoutChild = this.host as ILayoutChild;
             var vm:IViewportModel = viewportModel;
+            COMPILE::SWF
+            {
+                // if earlier layouts set the size of the host
+                // then it won't reflect changes in content size
+                if (host is UIBase)
+                {
+                    var uiBase:UIBase = host as UIBase;
+                    if (host.isWidthSizedToContent())
+                    {
+                        if (uiBase.width != uiBase.$width)
+                        {
+                            host.setWidth(uiBase.$width, true);
+                        }
+                    }
+                    if (host.isHeightSizedToContent())
+                    {
+                        if (uiBase.height != uiBase.$height)
+                        {
+                            host.setHeight(uiBase.$height, true);
+                        }
+                    }                    
+                }
+            }
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 
-            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
+            vm.borderMetrics = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 
             viewport.setPosition(vm.borderMetrics.left, vm.borderMetrics.top);
 
@@ -240,7 +266,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		override public function afterLayout():void
 		{
@@ -263,7 +289,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 //		override protected function resizeHandler(event:Event):void
 //		{
@@ -279,7 +305,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 //		protected function childrenChangedHandler(event:Event):void
 //		{
@@ -308,7 +334,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
 		 */
 		protected function get viewport():IViewport
 		{
@@ -322,7 +348,8 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutView
 		 */
 		override public function get contentView():ILayoutView
 		{
@@ -339,7 +366,9 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.IViewport
+		 *  @royaleignorecoercion org.apache.royale.core.IContainer
 		 */
 		override public function set strand(value:IStrand):void
 		{

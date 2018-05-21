@@ -64,12 +64,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IAlertModel
 		 */
 		private function get message():String
 		{
 			return IAlertModel(model).message;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IAlertModel
+		 */
 		private function set message(value:String):void
 		{
 			IAlertModel(model).message = value;
@@ -81,12 +85,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IAlertModel
 		 */
 		private function get htmlMessage():String
 		{
 			return IAlertModel(model).htmlMessage;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IAlertModel
+		 */
 		private function set htmlMessage(value:String):void
 		{
 			IAlertModel(model).htmlMessage = value;

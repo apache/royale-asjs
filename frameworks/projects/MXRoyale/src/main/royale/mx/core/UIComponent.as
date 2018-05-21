@@ -41,15 +41,18 @@ import flash.events.EventPhase;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 */
+
+import mx.controls.beads.ToolTipBead;
 import mx.events.FlexEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
+import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
-import mx.controls.beads.ToolTipBead;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
+import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
@@ -58,9 +61,9 @@ import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-//import org.apache.royale.html.accessories.ToolTipBead;
-import org.apache.royale.utils.loadBeadFromValuesManager;
+import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 
 /*
 import mx.managers.IToolTipManagerClient;
@@ -89,6 +92,52 @@ import mx.validators.ValidationResult;
     
 use namespace mx_internal;
 */
+
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType mx.events.FlexEvent.INITIALIZE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="initialize", type="mx.events.FlexEvent")]
+
+/**
+ *  Dispatched when values are changed programmatically
+ *  or by user interaction.
+ *
+ *  <p>Because a programmatic change triggers this event, make sure
+ *  that any <code>valueCommit</code> event handler does not change
+ *  a value that causes another <code>valueCommit</code> event.
+ *  For example, do not change a control's <code>dataProvider</code>
+ *  property in a <code>valueCommit</code> event handler. </p>
+ *
+ *  @eventType mx.events.FlexEvent.VALUE_COMMIT
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="valueCommit", type="mx.events.FlexEvent")]
+
+/**
+ *  The main color for a component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Style(name="chromeColor", type="uint", format="Color", inherit="yes", theme="spark")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
@@ -143,6 +192,8 @@ use namespace mx_internal;
  *    bottom="undefined"
  *
  *  <b>Events</b>
+ *    valueCommit="<i>No default</i>"
+ *  &gt;
  *  </pre>
  *
  *  @see mx.core.UIComponent
@@ -371,6 +422,186 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
 
+    //------------------------------------------------------------------------
+    //
+    //  Properties: Accessibility
+    //
+    //------------------------------------------------------------------------
+    
+    /**
+     *  A convenience accessor for the <code>silent</code> property
+     *  in this UIComponent's <code>accessibilityProperties</code> object.
+     *
+     *  <p>Note that <code>accessibilityEnabled</code> has the opposite sense from silent;
+     *  <code>accessibilityEnabled</code> is <code>true</code> 
+     *  when <code>silent</code> is <code>false</code>.</p>
+     *
+     *  <p>The getter simply returns <code>accessibilityProperties.silent</code>,
+     *  or <code>true</code> if <code>accessibilityProperties</code> is null.
+     *  The setter first checks whether <code>accessibilityProperties</code> is null, 
+     *  and if it is, sets it to a new AccessibilityProperties instance.
+     *  Then it sets <code>accessibilityProperties.silent</code>.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get accessibilityEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+        return false;
+    }
+    
+    public function set accessibilityEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+    }
+    
+    /**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get useHandCursor():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set useHandCursor(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+    }
+	
+	 /**
+     *  From flash.display.InteractiveObject
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get mouseEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set mouseEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+    }
+	
+	 /**
+     *  From flash.display.DisplayObjectContainer
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get mouseChildren():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set mouseChildren(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+    }
+	
+	
+	/**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get buttonMode():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set buttonMode(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+    }
+    
+    [Bindable("errorStringChanged")]
+    
+    /**
+     *  The text that displayed by a component's error tip when a
+     *  component is monitored by a Validator and validation fails.
+     *
+     *  <p>You can use the <code>errorString</code> property to show a
+     *  validation error for a component, without actually using a validator class.
+     *  When you write a String value to the <code>errorString</code> property,
+     *  Flex draws a red border around the component to indicate the validation error,
+     *  and the String appears in a tooltip as the validation error message when you move
+     *  the mouse over the component, just as if a validator detected a validation error.</p>
+     *
+     *  <p>To clear the validation error, write an empty String, "",
+     *  to the <code>errorString</code> property.</p>
+     *
+     *  <p>Note that writing a value to the <code>errorString</code> property
+     *  does not trigger the valid or invalid events; it only changes the border
+     *  color and displays the validation error message.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get errorString():String
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+        return "";
+    }
+    
+    /**
+     *  @private
+     */
+    public function set errorString(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+    }
+    
     //----------------------------------
     //  owner
     //----------------------------------
@@ -482,6 +713,187 @@ public class UIComponent extends UIBase
         _enabled = value;
     }
 
+    //----------------------------------
+    //  focusEnabled
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the focusEnabled property.
+     */
+    private var _focusEnabled:Boolean = true;
+    
+    [Inspectable(defaultValue="true")]
+    
+    /**
+     *  Indicates whether the component can receive focus when tabbed to.
+     *  You can set <code>focusEnabled</code> to <code>false</code>
+     *  when a UIComponent is used as a subcomponent of another component
+     *  so that the outer component becomes the focusable entity.
+     *  If this property is <code>false</code>, focus is transferred to
+     *  the first parent that has <code>focusEnable</code>
+     *  set to <code>true</code>.
+     *
+     *  <p>The default value is <code>true</code>, except for the 
+     *  spark.components.Scroller component. 
+     *  For that component, the default value is <code>false</code>.</p>
+     *
+     *  @see spark.components.Scroller
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get focusEnabled():Boolean
+    {
+        return _focusEnabled;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set focusEnabled(value:Boolean):void
+    {
+        _focusEnabled =  value;
+    }
+    
+    //----------------------------------
+    //  hasFocusableChildren
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the hasFocusableChildren property.
+     */
+    private var _hasFocusableChildren:Boolean = false;
+    
+    [Bindable("hasFocusableChildrenChange")]
+    [Inspectable(defaultValue="false")]
+    
+    /**
+     *  A flag that indicates whether child objects can receive focus.
+     * 
+     *  <p><b>Note: </b>This property is similar to the <code>tabChildren</code> property
+     *  used by Flash Player. 
+     *  Use the <code>hasFocusableChildren</code> property with Flex applications.
+     *  Do not use the <code>tabChildren</code> property.</p>
+     * 
+     *  <p>This property is usually <code>false</code> because most components
+     *  either receive focus themselves or delegate focus to a single
+     *  internal sub-component and appear as if the component has
+     *  received focus. 
+     *  For example, a TextInput control contains a focusable
+     *  child RichEditableText control, but while the RichEditableText
+     *  sub-component actually receives focus, it appears as if the
+     *  TextInput has focus. TextInput sets <code>hasFocusableChildren</code>
+     *  to <code>false</code> because TextInput is considered the
+     *  component that has focus. Its internal structure is an
+     *  abstraction.</p>
+     *
+     *  <p>Usually only navigator components, such as TabNavigator and
+     *  Accordion, have this flag set to <code>true</code> because they
+     *  receive focus on Tab but focus goes to components in the child
+     *  containers on further Tabs.</p>
+     *
+     *  <p>The default value is <code>false</code>, except for the 
+     *  spark.components.Scroller component. 
+     *  For that component, the default value is <code>true</code>.</p>
+     *
+     *  @see spark.components.Scroller
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get hasFocusableChildren():Boolean
+    {
+        return _hasFocusableChildren;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set hasFocusableChildren(value:Boolean):void
+    {
+        if (value != _hasFocusableChildren)
+        {
+            _hasFocusableChildren = value;
+            dispatchEvent(new Event("hasFocusableChildrenChange"));
+        }
+    }
+    
+    //----------------------------------
+    //  tabFocusEnabled
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the tabFocusEnabled property.
+     */
+    private var _tabFocusEnabled:Boolean = true;
+    
+    [Bindable("tabFocusEnabledChange")]
+    [Inspectable(defaultValue="true")]
+    
+    /**
+     *  A flag that indicates whether this object can receive focus
+     *  via the TAB key
+     * 
+     *  <p>This is similar to the <code>tabEnabled</code> property
+     *  used by the Flash Player.</p>
+     * 
+     *  <p>This is usually <code>true</code> for components that
+     *  handle keyboard input, but some components in controlbars
+     *  have them set to <code>false</code> because they should not steal
+     *  focus from another component like an editor.
+     *  </p>
+     *
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get tabFocusEnabled():Boolean
+    {
+        return _tabFocusEnabled;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set tabFocusEnabled(value:Boolean):void
+    {
+        if (value != _tabFocusEnabled)
+        {
+            _tabFocusEnabled = value;
+            dispatchEvent(new Event("tabFocusEnabledChange"));
+        }
+    }
+    
+    //----------------------------------
+    //  tabIndex
+    //----------------------------------
+    
+
+    COMPILE::JS
+    public function get tabIndex():int
+    {
+        return element.tabIndex;
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    public function set tabIndex(value:int):void
+    {
+        element.tabIndex =  value;
+    }
+    
     //----------------------------------
     //  cacheAsBitmap
     //----------------------------------
@@ -603,9 +1015,19 @@ public class UIComponent extends UIBase
      */
     public function get focusManager():IFocusManager
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("focusManager not implemented");
+        if (_focusManager)
+            return _focusManager;
+        
+        var o:IUIBase = parent as IUIBase;
+        
+        while (o)
+        {
+            if (o is IFocusManagerContainer)
+                return IFocusManagerContainer(o).focusManager;
+            
+            o = o.parent as IUIBase;
+        }
+        
         return null;
     }
 
@@ -615,9 +1037,7 @@ public class UIComponent extends UIBase
      */
     public function set focusManager(value:IFocusManager):void
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("focusManager not implemented");
+        _focusManager = value;
     }
     
     //----------------------------------
@@ -720,6 +1140,9 @@ public class UIComponent extends UIBase
             var child:IUIComponent = getChildAt(i) as IUIComponent;
             if (!child)
                 continue;
+            // JS subtrees will point back to the component.  Ignore those.
+            if (child == this)
+                continue;
             
             if (child.component == _component ||
                 child.component == FlexGlobals.topLevelApplication)
@@ -729,6 +1152,23 @@ public class UIComponent extends UIBase
         }
         
         _component = value;
+    }
+    
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        
+        if (!initialized)
+        {
+            initialize();
+            initialized = true;
+        }
+
+        if (!component && parent is UIComponent)
+            component = UIComponent(parent).component;
+        else if (!component && parent is ContainerContentArea)
+            component = UIComponent(ContainerContentArea(parent).parent).component;
     }
     
     //----------------------------------
@@ -943,7 +1383,12 @@ public class UIComponent extends UIBase
     public function get measuredWidth():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredWidth)) return width;
+			if (isNaN(_measuredWidth))
+            {
+                measure();
+                if (isNaN(_measuredWidth))
+                    return width;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredWidth)) {
@@ -985,7 +1430,12 @@ public class UIComponent extends UIBase
     public function get measuredHeight():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredHeight)) return height;
+			if (isNaN(_measuredHeight))
+            {
+                measure();
+                if (isNaN(_measuredHeight))
+                    return height;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredHeight)) {
@@ -1656,7 +2106,46 @@ public class UIComponent extends UIBase
 		// always 1.0
 	}
 
+    //----------------------------------
+    //  alpha
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the alpha property.
+     */
+    private var _alpha:Number = 1.0;
+    
+    [Bindable("alphaChanged")]
+    [Inspectable(defaultValue="1.0", category="General", verbose="1", minValue="0.0", maxValue="1.0")]
+
+    /**
+     *  @private
+     */
+    override public function get alpha():Number
+    {
+        // Here we roundtrip alpha in the same manner as the 
+        // player (purposely introducing a rounding error).
+        return int(_alpha * 256.0) / 256.0;
+    }
+    
+    /**
+     *  @private
+     */
+    override public function set alpha(value:Number):void
+    { 
+        if (_alpha != value)
+        {
+            _alpha = value;
+        
+           /*  if (designLayer)
+                value = value * designLayer.effectiveAlpha; 
+            
+            $alpha = value;
+			*/
+            dispatchEvent(new Event("alphaChanged"));
+        }
+    }
     //----------------------------------
     //  includeInLayout
     //----------------------------------
@@ -2256,6 +2745,7 @@ public class UIComponent extends UIBase
      */
     protected function initializationComplete():void
     {
+        dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
     }
     
     /**
@@ -2283,8 +2773,6 @@ public class UIComponent extends UIBase
      */
     protected function createChildren():void
     {
-        if (GOOG::DEBUG)
-            trace("createChildren not implemented");
     }
     
 
@@ -3010,7 +3498,67 @@ public class UIComponent extends UIBase
         if (GOOG::DEBUG)
             trace("bottom not implemented");
     }
+	[Inspectable(category="General")]
 
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>horizontalCenter.s2="&#64;Clear()"</code> unsets the 
+     *  <code>horizontalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.horizontalCenter = undefined</code> unsets the 
+     *  <code>horizontalCenter</code> constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalCenter():Object
+    {
+        return 0;
+    }
+    public function set horizontalCenter(value:Object):void
+    {
+         if (GOOG::DEBUG)
+            trace("horizontalCenter not implemented");
+    }
+
+    [Inspectable(category="General")]
+
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>verticalCenter.s2="&#64;Clear()"</code> unsets the <code>verticalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.verticalCenter = undefined</code> unsets the <code>verticalCenter</code>
+     *  constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalCenter():Object
+    {
+        return 0;
+    }
+    public function set verticalCenter(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalCenter not implemented");
+    }
+	
     [Inspectable(category="General")]
 
 
@@ -3092,11 +3640,33 @@ public class UIComponent extends UIBase
      */
     public function setFocus():void
     {
-        if (GOOG::DEBUG)
-            trace("setFocus not implemented");
+        COMPILE::SWF
+        {
+            stage.focus = this;
+        }
+        COMPILE::JS
+        {
+            element.focus();
+        }
     }
 
-
+	/**
+     *  Deletes a style property from this component instance.
+     *
+     *  <p>This does not necessarily cause the <code>getStyle()</code> method
+     *  to return <code>undefined</code>.</p>
+     *
+     *  @param styleProp The name of the style property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function clearStyle(styleProp:String):void
+    {
+        setStyle(styleProp, undefined);
+    }
     [Bindable(style="true")]
     /**
      *  Gets a style property that has been set anywhere in this

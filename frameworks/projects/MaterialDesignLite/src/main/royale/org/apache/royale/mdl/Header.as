@@ -24,7 +24,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
 
 	/**
@@ -51,8 +51,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-layout__header"
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -77,6 +85,7 @@ package org.apache.royale.mdl
         {
             return _transparent;
         }
+
         public function set transparent(value:Boolean):void
         {
             if (_transparent != value)
@@ -85,11 +94,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-layout__header--transparent");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-layout__header--transparent");
-                    }
+                    var classVal:String = "mdl-layout__header--transparent";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -108,6 +115,7 @@ package org.apache.royale.mdl
         {
             return _scrollable;
         }
+
         public function set scrollable(value:Boolean):void
         {
             if (_scrollable != value)
@@ -116,11 +124,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-layout__header--scroll");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-layout__header--scroll");
-                    }
+                    var classVal:String = "mdl-layout__header--scroll";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -139,6 +145,7 @@ package org.apache.royale.mdl
         {
             return _waterfall;
         }
+
         public function set waterfall(value:Boolean):void
         {
             if (_waterfall != value)
@@ -147,13 +154,17 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-layout__header--waterfall");
-                    if (value)
-                    {
-                        className = addOrReplaceClassName(className, "mdl-layout__header--waterfall");
-                    }
+                    var classVal:String = "mdl-layout__header--waterfall";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
+        }
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
         }
 	}
 }

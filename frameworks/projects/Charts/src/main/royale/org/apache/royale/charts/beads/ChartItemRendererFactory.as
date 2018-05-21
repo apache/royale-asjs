@@ -135,7 +135,7 @@ package org.apache.royale.charts.beads
 					
 					renderers.push(k);
 					
-					dataGroup.addItemRenderer(k);
+					dataGroup.addItemRenderer(k, false);
 				}
 				
 				_seriesRenderers.push(renderers);

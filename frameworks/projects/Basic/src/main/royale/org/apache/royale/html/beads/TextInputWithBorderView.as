@@ -22,15 +22,16 @@ package org.apache.royale.html.beads
 	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.supportClasses.Border;
-	import org.apache.royale.utils.CSSContainerUtils;
 
     /**
      *  The TextInputWithBorderView class is the default view for
@@ -75,6 +76,7 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
         override protected function widthChangeHandler(event:Event):void
         {
@@ -82,7 +84,7 @@ package org.apache.royale.html.beads
             {
                 textField.autoSize = "none";
                 autoWidth = false;
-                var uiMetrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(host);
+                var uiMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(host);
                 textField.width = host.width - uiMetrics.left - uiMetrics.right;
                 textField.x = uiMetrics.left;
             }

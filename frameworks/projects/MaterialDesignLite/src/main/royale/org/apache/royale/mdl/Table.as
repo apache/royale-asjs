@@ -27,7 +27,7 @@ package org.apache.royale.mdl
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.util.addOrReplaceClassName;
+        import org.apache.royale.core.CSSClassList;
     }
     
 	/**
@@ -61,8 +61,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            COMPILE::JS
+            {
+                _classList = new CSSClassList();
+            }
+
             typeNames = "mdl-data-table mdl-js-data-table";
 		}
+
+        COMPILE::JS
+        private var _classList:CSSClassList;
 
 		private var _columns:Array;
         /**
@@ -170,71 +178,6 @@ package org.apache.royale.mdl
             }
         }
 
-        /**
-         *  @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-        override public function removeAllItemRenderers():void
-        {
-			if (!_isTbodyAddedToParent) return;
-
-			COMPILE::JS
-            {
-                while (tbody.numElements)
-                {
-                    var child:IChild = tbody.getElementAt(0);
-                    removeElement(child);
-                }
-            }
-        }
-
-        /**
-         *  @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-		override public function removeItemRenderer(renderer:IItemRenderer):void
-		{
-            if (!_isTbodyAddedToParent) return;
-
-            COMPILE::JS
-            {
-                removeElement(renderer);
-            }
-		}
-
-        /**
-         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-        override public function getItemRendererForIndex(index:int):IItemRenderer
-        {
-			if (!_isTbodyAddedToParent) return null;
-			var itemRenderer:IItemRenderer;
-
-            COMPILE::JS
-            {
-                if (index < 0 || index >= tbody.numElements)
-				{
-					return null;
-                }
-
-                itemRenderer = tbody.getElementAt(index) as IItemRenderer;
-            }
-
-			return itemRenderer;
-        }
 
         COMPILE::JS
 		private var thead:Thead;
@@ -278,10 +221,17 @@ package org.apache.royale.mdl
             {
                 COMPILE::JS
                 {
-                    className = addOrReplaceClassName(className, "mdl-shadow--" + value + "dp", "mdl-shadow--" + _shadow + "dp");
                     if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
                     {
+                        var classVal:String = "mdl-shadow--" + _shadow + "dp";
+                        _classList.remove(classVal);
+
+                        classVal = "mdl-shadow--" + value + "dp";
+                        _classList.add(classVal);
+
                         _shadow = value;
+
+                        setClassName(computeFinalClassNames());
                     }
                 }
             }
@@ -310,11 +260,9 @@ package org.apache.royale.mdl
 
                 COMPILE::JS
                 {
-                    element.classList.remove("mdl-data-table--selectable");
-                    COMPILE::JS
-                    {
-                        className = addOrReplaceClassName(className, "mdl-data-table--selectable");
-                    }
+                    var classVal:String = "mdl-data-table--selectable";
+                    value ? _classList.add(classVal) : _classList.remove(classVal);
+                    setClassName(computeFinalClassNames());
                 }
             }
         }
@@ -339,5 +287,11 @@ package org.apache.royale.mdl
             super.addElement(tbody);
 			_isTbodyAddedToParent = true;
 		}
+
+        COMPILE::JS
+        override protected function computeFinalClassNames():String
+        {
+            return _classList.compute() + super.computeFinalClassNames();
+        }
 	}
 }

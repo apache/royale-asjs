@@ -20,9 +20,15 @@
 
 package marmotinni;
 
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.StaleElementReferenceException;
 
 import org.xml.sax.Attributes;
 
@@ -40,22 +46,40 @@ public class DispatchMouseClickEvent extends TestStep {
     protected void doStep()
     {
 		
-		Long x;
-		Long y;
+		Double x;
+		Double y;
 		if (hasLocal)
 		{
 			StringBuilder script = new StringBuilder();
 			insertTargetScript(script, target);
-			script.append("return target.element.offsetLeft");
+			script.append("return target.element.getBoundingClientRect().left");
 			if (TestStep.showScripts)
 				System.out.println(script);
-			x = (Long)((JavascriptExecutor)webDriver).executeScript(script.toString());
+            Object any = ((JavascriptExecutor)webDriver).executeScript(script.toString());
+            if (any instanceof Long)
+                x = ((Long)any).doubleValue();
+            else if (any instanceof Double)
+                x = (Double)any;
+            else
+            {
+                System.out.println("x is not Long or Double");
+                x = 0.0;
+            }
 			script = new StringBuilder();
 			insertTargetScript(script, target);
-			script.append("return target.element.offsetTop");
+			script.append("return target.element.getBoundingClientRect().top");
 			if (TestStep.showScripts)
 				System.out.println(script);
-			y = (Long)((JavascriptExecutor)webDriver).executeScript(script.toString());
+            any = ((JavascriptExecutor)webDriver).executeScript(script.toString());
+            if (any instanceof Long)
+                y = ((Long)any).doubleValue();
+            else if (any instanceof Double)
+                y = (Double)any;
+            else
+            {
+                System.out.println("y is not Long or Double");
+                y = 0.0;
+            }
 			x += localX;
 			y += localY;
 		}
@@ -71,20 +95,69 @@ public class DispatchMouseClickEvent extends TestStep {
 		script.append("var n = all.length;");
 		script.append("for(var i=n-1;i>=0;i--) { ");
 		script.append("    var e = all[i];");
-		script.append("     if (" + x + " >= e.offsetLeft && " + x + " <= e.offsetLeft + e.offsetWidth && " + y + " >= e.offsetTop && " + y + " <= e.offsetTop + e.offsetHeight)");
+        script.append("    var bounds = e.getBoundingClientRect();");
+		script.append("     if (" + x + " >= bounds.left && " + x + " <= bounds.right && " + y + " >= bounds.top && " + y + " <= bounds.bottom) {");
+        script.append("         marmotinni_mouse_target = e;");
 		script.append("         return e;");
+        script.append("    }");
 		script.append("};");
 		script.append("return null;");
 		if (TestStep.showScripts)
 			System.out.println(script);
-		WebElement mouseTarget = (WebElement)((JavascriptExecutor)webDriver).executeScript(script.toString());
+		RemoteWebElement mouseTarget = (RemoteWebElement)((JavascriptExecutor)webDriver).executeScript(script.toString());
         if (mouseTarget == null)
             TestOutput.logResult("DispatchMouseClickEvent: mouseTarget = null");
         else
             TestOutput.logResult("DispatchMouseClickEvent: mouseTarget = " + mouseTarget.getTagName() + " " + mouseTarget.getText());
         try
         {
-			mouseTarget.click();
+            /*  a way to halt the test in the debugger.  Pick an element and have this code
+                wait for the title of some element that doesn't have a title.  This should
+                pause the test indefinitely so you can poke around in the debugger then
+                from the browser console, set the title to "foo"
+            if (target.contains("DataGrid"))
+            {
+                WebDriverWait wait = new WebDriverWait(webDriver, 1000);
+                wait.until(ExpectedConditions.attributeToBe(mouseTarget, "title", "foo"));
+            } */
+            script = new StringBuilder();
+            script.append("var init = {};");
+            script.append("init.screenX = ");
+            script.append(x.toString());
+            script.append(";");
+            script.append("init.screenY = ");
+            script.append(y.toString());
+            script.append(";");
+            script.append("marmotinni_mouse_target.dispatchEvent(new MouseEvent('mousedown', init));");
+            if (TestStep.showScripts)
+                System.out.println(script);
+            ((JavascriptExecutor)webDriver).executeScript(script.toString());
+            script = new StringBuilder();
+            script.append("var init = {};");
+            script.append("init.screenX = ");
+            script.append(x.toString());
+            script.append(";");
+            script.append("init.screenY = ");
+            script.append(y.toString());
+            script.append(";");
+            script.append("marmotinni_mouse_target.dispatchEvent(new MouseEvent('mouseup', init));");
+            if (TestStep.showScripts)
+                System.out.println(script);
+            ((JavascriptExecutor)webDriver).executeScript(script.toString());
+            try {
+                mouseTarget.click();
+            }
+            catch (StaleElementReferenceException sere)
+            {
+                // eat this if mousedown/up caused the object to go away
+            }
+            /*
+            if (target.contains("DataGrid"))
+            {
+                WebDriverWait wait = new WebDriverWait(webDriver, 1000);
+                wait.until(ExpectedConditions.attributeToBe(mouseTarget, "title", "bar"));
+            }
+            */
         }
         catch (Exception e1)
         {
@@ -117,25 +190,25 @@ public class DispatchMouseClickEvent extends TestStep {
 	 *  The localX property on the MouseEvent (optional)
 	 *  Either set stageX/stageY or localX/localY, but not both.
 	 */
-	public long localX;
+	public double localX;
 	
 	/**
 	 *  The localY property on the MouseEvent (optional)
 	 *  Either set stageX/stageY or localX/localY, but not both.
 	 */
-	public long localY;
+	public double localY;
 	
 	/**
 	 *  The stageX property on the MouseEvent (optional)
 	 *  Either set stageX/stageY or localX/localY, but not both.
 	 */
-	public long stageX;
+	public double stageX;
 	
 	/**
 	 *  The stageY property on the MouseEvent (optional)
 	 *  Either set stageX/stageY or localX/localY, but not both.
 	 */
-	public long stageY;
+	public double stageY;
 	
 	/**
 	 *  The shiftKey property on the MouseEvent (optional)
@@ -157,13 +230,13 @@ public class DispatchMouseClickEvent extends TestStep {
 		s += target;
 		if (hasLocal)
 		{
-			s += ", localX = " + Long.toString(localX);
-			s += ", localY = " + Long.toString(localY);
+			s += ", localX = " + Double.toString(localX);
+			s += ", localY = " + Double.toString(localY);
 		}
 		if (hasStage)
 		{
-			s += ", stageX = " + Long.toString(stageX);
-			s += ", stageY = " + Long.toString(stageY);
+			s += ", stageX = " + Double.toString(stageX);
+			s += ", stageY = " + Double.toString(stageY);
 		}
 		if (shiftKey)
 			s += ", shiftKey = true";
@@ -184,25 +257,25 @@ public class DispatchMouseClickEvent extends TestStep {
 		String value = attributes.getValue("localX");
 		if (value != null)
 		{
-			localX = Long.parseLong(value);
+			localX = Double.parseDouble(value);
 			hasLocal = true;
 		}
 		value = attributes.getValue("localY");
 		if (value != null)
 		{
-			localY = Long.parseLong(value);
+			localY = Double.parseDouble(value);
 			hasLocal = true;
 		}
 		value = attributes.getValue("stageX");
 		if (value != null)
 		{
-			stageX = Long.parseLong(value);
+			stageX = Double.parseDouble(value);
 			hasStage = true;
 		}
 		value = attributes.getValue("stageY");
 		if (value != null)
 		{
-			stageY = Long.parseLong(value);
+			stageY = Double.parseDouble(value);
 			hasStage = true;
 		}
 	}

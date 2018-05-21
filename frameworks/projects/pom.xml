@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.2-SNAPSHOT</version>
+    <version>0.9.3-SNAPSHOT</version>
   </parent>
 
   <artifactId>projects</artifactId>
-  <version>0.9.2-SNAPSHOT</version>
+  <version>0.9.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Libs</name>
@@ -61,6 +61,8 @@
     <module>TLF</module>
     <module>RoyaleSite</module>
     <module>MXRoyale</module>
+    <module>SparkRoyale</module>
+    <module>Jewel</module>
   </modules>
 
   <profiles>

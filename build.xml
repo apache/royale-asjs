@@ -444,6 +444,9 @@ limitations under the License.
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="js" />
         </ant>
+	<ant dir="${basedir}/frameworks" target="create-config">
+		<property name="configname" value="ace" />
+	</ant>
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="jquery" />
         </ant>
@@ -553,6 +556,7 @@ limitations under the License.
     
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin"/>
         <delete dir="${basedir}/bin" failonerror="false">
             <include name="**"/>
             <exclude name=".gitignore"/>
@@ -872,6 +876,8 @@ limitations under the License.
         <fix-config-file file="${staging-dir}/frameworks/js-config-template.xml" version="${build.version}" />
         <echo message="Updating config file jquery-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/jquery-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file ace-config.xml with version ${build.version}"/>
+        <fix-config-file file="${staging-dir}/frameworks/ace-config-template.xml" version="${build.version}" />
         <echo message="Updating config file createjs-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/createjs-config-template.xml" version="${build.version}" />
         <echo message="Updating config file node-config.xml with version ${build.version}"/>
@@ -964,6 +970,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -977,6 +984,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -989,6 +997,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -1514,7 +1523,7 @@ limitations under the License.
     
     <target name="mxtests-clean">
         <delete file="${basedir}/mustella/tests/mxtests/BasicTests.swf" failonerror="false"/>
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
     
     <target name="mxtests-mustella" depends="mustella-setup,mxtests" if="env.AIR_HOME" />
@@ -1580,15 +1589,20 @@ limitations under the License.
 
     <target name="mxtests-run-js" >
         <property name="profile_arg" value="dummy=false" />
-        <echo>url=file://${basedir}/mustella/tests/mxTests/bin/js-debug/index.html</echo>
-        <echo>script=${basedir}/mustella/tests/mxTests/halo/scripts/ButtonTestScript.mxml</echo>
-        <echo>script=${basedir}/mustella/tests/mxTests/halo/scripts/CheckBoxTestScript.mxml</echo>
+        <echo>url=file://${basedir}/mustella/tests/mxtests/bin/js-debug/index.html</echo>
         <java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
             <!--<arg value="browser=chrome" />-->
-            <arg value="url=file://${basedir}/mustella/tests/mxTests/basicTests/bin/js-debug/index.html" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ButtonTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
-            <!--<arg value="showSteps=true" />-->
+            <arg value="url=file://${basedir}/mustella/tests/mxtests/basicTests/bin/js-debug/index.html" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextInputTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ListAndDataGridTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/spark/scripts/ButtonTestScript.mxml" />
+            <arg value="showSteps=true" />
+            <arg value="showScripts=true" />
             <arg value="${profile_arg}" />
             <classpath>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
@@ -1655,10 +1669,10 @@ limitations under the License.
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <delete dir="${basedir}/mustella/tests/mxTests/bin" failonerror="false" />
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" />
         <mxmlc fork="true" debug="true"
             closure-lib="${env.GOOG_HOME}"
-            file="${basedir}/mustella/tests/mxTests/BasicTestsApp.mxml">
+            file="${basedir}/mustella/tests/mxtests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <targets>JSRoyale</targets>
             <library-path dir="${ROYALE_HOME}" append="true">
