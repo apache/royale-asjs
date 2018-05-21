@@ -33,8 +33,6 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
-	import mx.collections.ISortField; ISortField;
-	import mx.collections.ISort; ISort;
 	import mx.collections.SortField; SortField;
 	import mx.collections.Sort; Sort;
 	
