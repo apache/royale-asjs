@@ -35,9 +35,12 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.containers.ControlBar; ControlBar;
-    import mx.containers.Panel; Panel;
+  import mx.containers.Panel; Panel;
 	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.collections.SortField; SortField;
+	import mx.collections.Sort; Sort;
+	
 	import mx.effects.IEffectInstance; IEffectInstance;
 	import mx.events.EffectEvent; EffectEvent;
 	import mx.graphics.Stroke; Stroke;
