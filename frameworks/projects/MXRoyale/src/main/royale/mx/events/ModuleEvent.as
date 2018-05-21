@@ -35,7 +35,7 @@ import org.apache.royale.events.ProgressEvent;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class ModuleEvent //extends ProgressEvent
+public class ModuleEvent extends ProgressEvent
 {
 //
    // include "../core/Version.as";
@@ -258,7 +258,7 @@ public class ModuleEvent //extends ProgressEvent
                                 bytesLoaded:uint = 0, bytesTotal:uint = 0,
                                 errorText:String = null, module:IModuleInfo = null)
     {
-      //  super(type, bubbles, cancelable, bytesLoaded, bytesTotal);
+        super(type, bubbles, cancelable, bytesLoaded, bytesTotal);
 
         this.errorText = errorText;
         this._module = module;
