@@ -97,6 +97,11 @@ internal class MXRoyaleClasses
 	import mx.charts.HitData; HitData;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
+	import mx.events.MenuEvent; MenuEvent;
+	import mx.events.FlexEvent; FlexEvent;
+	import mx.controls.MenuBar; MenuBar; 
+	import mx.formatters.NumberFormatter; NumberFormatter;
+	import mx.managers.PopUpManager; PopUpManager; 
 
 	import mx.core.IVisualElementContainer; IVisualElementContainer;
 	import mx.managers.BrowserManager; BrowserManager;
