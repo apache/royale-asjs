@@ -43,6 +43,11 @@ limitations under the License.
 			{
 				_simple = value;
 			}
+
+			public function assignNewData():void
+			{
+				list.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
+			}
 		]]>
 	</fx:Script>
 
@@ -65,5 +70,7 @@ limitations under the License.
     </j:List>
 
     <j:Label id="selected"/>
+
+	<j:Button text="Assign new data" primary="true" click="assignNewData()"/>
 	
 </j:Group>
