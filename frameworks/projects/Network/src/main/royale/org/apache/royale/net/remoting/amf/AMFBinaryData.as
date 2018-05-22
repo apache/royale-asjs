@@ -814,7 +814,6 @@ public class AMFBinaryData
             this.rememberString(str);
             return str;
         }
-        return null;
     };
     
     private function rememberString(v:String):void
