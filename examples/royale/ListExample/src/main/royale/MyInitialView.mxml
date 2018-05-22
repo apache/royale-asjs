@@ -47,6 +47,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import models.ProductsModel;
+			import org.apache.royale.collections.ArrayList;
 			
 			private function addState():void
 			{
@@ -64,6 +65,13 @@ limitations under the License.
 			}
 			private function onScrollEnd():void{
 				trace("scroll end");
+			}
+
+			private function assignDataProvider():void{
+				trace("assign new DataProvider");
+
+				dynamicList.dataProvider = new ArrayList(['one', 'two', 'three', 'four']);
+				//(applicationModel as ProductsModel).states = new ArrayList(['one', 'two', 'three', 'four']);  <-- this way the list doesn't notice the change
 			}
 		]]>
 	</fx:Script>
@@ -88,7 +96,7 @@ limitations under the License.
 	
 	<js:Label x="300" y="20" text="A dynamic List" />
 	
-	<js:List x="300" y="40" width="200" height="300" className="DynamicList">
+	<js:List id="dynamicList" x="300" y="40" width="200" height="300" className="DynamicList">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -100,6 +108,7 @@ limitations under the License.
 	
 	<js:TextButton text="Add New Jersey" x="300" y="350" click="addState()" />
 	<js:TextButton text="Remove New Jersey" x="300" y="380" click="removeState()" />
+	<js:TextButton text="Assign New Data" x="300" y="410" click="assignDataProvider()" />
 	
 	<!-- A custom list built from DataContainer.
 	-->

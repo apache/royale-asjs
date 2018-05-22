@@ -66,6 +66,7 @@ package org.apache.royale.html.beads.models
 
 		private var _dataProvider:ICollectionView;
 
+		[Bindable("dataProviderChanged")]
         /**
          *  @copy org.apache.royale.core.ISelectionModel#dataProvider
          *
