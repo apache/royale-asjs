@@ -140,6 +140,9 @@ package
 					case "&":
 						outArr[i] = "&amp;";
 						break;
+					case '"':
+						outArr[i] = "&quot;";
+						break;
 					case "\u000A":
 						outArr[i] = "&#xA;";
 						break;
