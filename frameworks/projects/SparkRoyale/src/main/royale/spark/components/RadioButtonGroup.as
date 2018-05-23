@@ -100,7 +100,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Event(name="valueCommit", type="mx.events.FlexEvent")]
+ [Event(name="valueCommit", type="mx.events.FlexEvent")]
 
 //--------------------------------------
 //  Other metadata
@@ -423,11 +423,11 @@ public class RadioButtonGroup extends EventDispatcher
      *  @private
      *  Reference to the selected radio button.
      */
-    /* private var _selection:RadioButton;
+     private var _selection:Object;//RadioButton;
 
     [Bindable("change")]
     [Bindable("valueCommit")]
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")] 
 
     /**
      *  Contains a reference to the currently selected
@@ -444,22 +444,23 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get selection():RadioButton
+    public function get selection():Object//RadioButton
     {
         return _selection;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set selection(value:RadioButton):void
+	//public function set selection(value:RadioButton):void
+    public function set selection(value:Object):void
     {
         if ( _selection == value)
             return;
         
         // Going through the selection setter should never fire a change event.
-        setSelection(value, false);
-    } */
+       // setSelection(value, false);
+    } 
 
     //--------------------------------------------------------------------------
     //
