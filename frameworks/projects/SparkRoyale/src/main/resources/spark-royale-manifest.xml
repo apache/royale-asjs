@@ -26,5 +26,6 @@
 	<component id="Label" class="spark.components.Label" />
     	<component id="List" class="spark.components.List" />
    	<component id="ComboBox" class="spark.components.ComboBox" />
+	<component id="RadioButtonGroup" class="spark.components.RadioButtonGroup" />
 
 </componentPackage>
