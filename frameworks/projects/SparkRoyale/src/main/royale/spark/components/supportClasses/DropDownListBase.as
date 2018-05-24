@@ -53,9 +53,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
-//[Style(name="cornerRadius", type="Number", format="Length", inherit="no", theme="spark")]
+[Style(name="cornerRadius", type="Number", format="Length", inherit="no", theme="spark")]
 
 /**
  *  Controls the visibility of the drop shadow for this component.
@@ -65,7 +65,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="dropShadowVisible", type="Boolean", inherit="no", theme="spark")]
 
@@ -88,7 +88,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="close", type="spark.events.DropDownEvent")]
 
@@ -103,9 +103,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
-//[Event(name="open", type="spark.events.DropDownEvent")]
+[Event(name="open", type="spark.events.DropDownEvent")]
 
 //--------------------------------------
 //  SkinStates
@@ -117,7 +117,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //[SkinState("open")]
 
@@ -184,7 +184,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 public class DropDownListBase extends List
 {
@@ -214,7 +214,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function DropDownListBase()
     {
@@ -243,7 +243,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var dropDown:DisplayObject;
     
@@ -259,7 +259,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var openButton:ButtonBase;
        
@@ -421,7 +421,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
    /*  protected function get dropDownController():DropDownController
     {
@@ -459,7 +459,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function get isDropDownOpen():Boolean
     {
@@ -508,7 +508,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4.12
+     *  @productversion Royale 0.9.4
      */
     /* public function get closeDropDownOnResize():Boolean
 	{
@@ -571,7 +571,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4.12
+     *  @productversion Royale 0.9.4
      */
     /* override public function stylesInitialized():void
     {
@@ -585,7 +585,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4.12
+     *  @productversion Royale 0.9.4
      */
 	/* override public function styleChanged(styleProp:String):void
 	{
@@ -600,7 +600,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4.12
+     *  @productversion Royale 0.9.4
      */
     /* private function setInteractionMode():void
     {
@@ -615,7 +615,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4.12
+     *  @productversion Royale 0.9.4
      */
     /* override public function setSelectedIndex(rowIndex:int, dispatchChangeEvent:Boolean = false, changeCaret:Boolean = true):void
     {
@@ -727,7 +727,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */ 
     /* public function openDropDown():void
     {
@@ -743,7 +743,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function closeDropDown(commit:Boolean):void
     {
@@ -1014,7 +1014,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* mx_internal function dropDownController_openHandler(event:DropDownEvent):void
     {
@@ -1042,7 +1042,7 @@ public class DropDownListBase extends List
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* protected function dropDownController_closeHandler(event:DropDownEvent):void
     {
