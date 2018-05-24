@@ -97,7 +97,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
+[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
 
 /**
  *  The alpha of the content background for this component.
@@ -1094,7 +1094,7 @@ public class SkinnableTextBase extends SkinnableComponent
     //  maxChars
     //----------------------------------
     
-    //[Inspectable(category="General", defaultValue="0")]    
+    [Inspectable(category="General", defaultValue="0")]    
 
     /**
      *  @copy flash.text.TextField#maxChars
@@ -1106,16 +1106,16 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get maxChars():int 
+     public function get maxChars():int 
     {
-        if (textDisplay)
+        /* if (textDisplay)
             return textDisplay.maxChars;
             
         // want the default to be 0
         var v:* = textDisplayProperties.maxChars;
-        return (v === undefined) ? 0 : v;
-    } */
-    
+        return (v === undefined) ? 0 : v; */
+		return 0;
+    }     
     /**
      *  @private
      */
@@ -1369,7 +1369,7 @@ public class SkinnableTextBase extends SkinnableComponent
     //  text
     //----------------------------------
     
-    //[Inspectable(category="General", defaultValue="")]
+    [Inspectable(category="General", defaultValue="")]
     
     /**
      *  The text displayed by this text component.
@@ -1390,9 +1390,9 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get text():String
+    public function get text():String
     {
-        if (textDisplay)
+        /* if (textDisplay)
             return textDisplay.text;
             
         // If there is no textDisplay, it isn't possible to set one of
@@ -1400,8 +1400,9 @@ public class SkinnableTextBase extends SkinnableComponent
                     
         // want the default to be the empty string
         var v:* = textDisplayProperties.text;
-        return (v === undefined) ? "" : v;
-    } */
+        return (v === undefined) ? "" : v; */
+		return "";
+    }
 
     /**
      *  @private
