@@ -91,7 +91,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Event(name="changing", type="spark.events.IndexChangeEvent")]
+[Event(name="changing", type="spark.events.IndexChangeEvent")]
 
 /**
  *  Dispatched after the selection has changed. 
@@ -533,7 +533,7 @@ public class ListBase  extends SkinnableComponent
     /**
      *  @private
      */
-    //private var _labelField:String = "label";
+    private var _labelField:String = "label";
     
     /**
      *  @private
@@ -558,23 +558,23 @@ public class ListBase  extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get labelField():String
+     public function get labelField():String
     {
         return _labelField;
-    } */
+    } 
     
     /**
      *  @private
      */
-   /*  public function set labelField(value:String):void
+    public function set labelField(value:String):void
     {
         if (value == _labelField)
             return;
             
         _labelField = value;
-        labelFieldOrFunctionChanged = true;
-        invalidateProperties();
-    } */
+        //labelFieldOrFunctionChanged = true;
+        //invalidateProperties();
+    } 
     
     //----------------------------------
     //  labelFunction
@@ -685,7 +685,7 @@ public class ListBase  extends SkinnableComponent
      *  @private
      *  Storage for the requireSelection property.
      */
-    //private var _requireSelection:Boolean = false;
+    private var _requireSelection:Boolean = false;
     
     /**
      *  @private
@@ -709,15 +709,15 @@ public class ListBase  extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get requireSelection():Boolean
+    public function get requireSelection():Boolean
     {
         return _requireSelection;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set requireSelection(value:Boolean):void
+    public function set requireSelection(value:Boolean):void
     {
         if (value == _requireSelection)
             return;
@@ -726,15 +726,15 @@ public class ListBase  extends SkinnableComponent
         
         // We only need to update if the value is changing 
         // from false to true
-        if (value == true)
+        /* if (value == true)
         {
             //Make sure to disable preventSelection since these two properties are polar opposites.
             preventSelection = false;
 
             requireSelectionChanged = true;
             invalidateProperties();
-        }
-    } */
+        } */
+    } 
     
     //----------------------------------
     //  selectedIndex
