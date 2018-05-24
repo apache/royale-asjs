@@ -25,9 +25,9 @@ COMPILE::JS
 }
 
 /*
-import flash.display.DisplayObject;
-import flash.events.Event;
-import flash.geom.Point;
+import flash.display.DisplayObject;*/
+import org.apache.royale.events.Event;
+/*import flash.geom.Point;
 import flash.utils.*;
 import mx.core.FlexVersion;
 import mx.core.ILayoutElement;
@@ -353,6 +353,47 @@ public class SkinnableComponent extends UIComponent
             dataGroupProperties.itemRenderer = value; */
     }
     
+	
+	//----------------------------------
+    //  skin
+    //----------------------------------
+    
+    /**
+     * @private 
+     * Storage for skin instance
+     */ 
+    private var _skin:UIComponent;
+    
+    [Bindable("skinChanged")]
+    
+    /**
+     *  The instance of the skin class for this component instance. 
+     *  This is a read-only property that gets set automatically when Flex
+     *  calls the <code>attachSkin()</code> method.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */
+    public function get skin():UIComponent
+    {
+        return _skin;
+    }
+    
+    /**
+     *  @private
+     *  Setter for the skin instance.  This is so the bindable event
+     *  is dispatched
+     */ 
+    private function setSkin(value:UIComponent):void
+    {
+        if (value === _skin)
+           return;
+        
+        _skin = value;
+        dispatchEvent(new Event("skinChanged"));
+    }
 
 }
 
