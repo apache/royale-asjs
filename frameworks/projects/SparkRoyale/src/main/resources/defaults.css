@@ -83,5 +83,10 @@ List
 		font-size: 11px;
 		font-family: Arial;
 	}
+	RadioButton
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+		IBeadView:  ClassReference("mx.controls.beads.RadioButtonView");			
+	}
 	
 }
