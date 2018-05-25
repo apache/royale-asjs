@@ -44,7 +44,7 @@ import mx.core.IFactory;
 import mx.collections.IList;
 
 import mx.core.UIComponent;
-
+import spark.components.DataGroup;
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -394,6 +394,18 @@ public class SkinnableComponent extends UIComponent
         _skin = value;
         dispatchEvent(new Event("skinChanged"));
     }
+	//dataGroup copied from SkinnableDataContainer
+	/**
+     *  An optional skin part that defines the DataGroup in the skin class 
+     *  where data items get pushed into, rendered, and laid out.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     *  @royalesuppresspublicvarwarning
+     */
+    public var dataGroup:DataGroup;
 
 }
 
