@@ -31,5 +31,6 @@
 	<component id="RadioButtonGroup" class="spark.components.RadioButtonGroup" />
 	<component id="NumericStepper" class="spark.components.NumericStepper" />
 	<component id="TextArea" class="spark.components.TextArea" />
+	<component id="TextInput" class="spark.components.TextInput" />
 
 </componentPackage>
