@@ -76,7 +76,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="borderAlpha", type="Number", inherit="no", theme="spark", minValue="0.0", maxValue="1.0")]
+[Style(name="borderAlpha", type="Number", inherit="no", theme="spark", minValue="0.0", maxValue="1.0")]
 
 /**
  *  The color of the border for this component.
@@ -107,7 +107,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="contentBackgroundAlpha", type="Number", inherit="yes", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
+[Style(name="contentBackgroundAlpha", type="Number", inherit="yes", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
 
 /**
  *  @copy spark.components.supportClasses.GroupBase#style:contentBackgroundColor
@@ -117,7 +117,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
+[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
 
 /**
  *  The alpha of the focus ring for this component.
@@ -196,7 +196,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Event(name="change", type="spark.events.TextOperationEvent")]
+[Event(name="change", type="spark.events.TextOperationEvent")]
 
 /**
  *  Dispatched when a keystroke is about to be input to
@@ -920,22 +920,23 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get displayAsPassword():Boolean
+     public function get displayAsPassword():Boolean
     {
-        if (textDisplay)
+        /* if (textDisplay)
             return textDisplay.displayAsPassword;
 
         // want the default to be false
         var v:* = textDisplayProperties.displayAsPassword
-        return (v === undefined) ? false : v;
-    } */
+        return (v === undefined) ? false : v; */
+		return false;
+    }
 
     /**
      *  @private
      */
-    /* public function set displayAsPassword(value:Boolean):void
+    public function set displayAsPassword(value:Boolean):void
     {
-        if (textDisplay)
+        /* if (textDisplay)
         {
             textDisplay.displayAsPassword = value;
             textDisplayProperties = BitFlagUtil.update(
@@ -948,8 +949,8 @@ public class SkinnableTextBase extends SkinnableComponent
         }
 
         // Generate an UPDATE_COMPLETE event.
-        invalidateProperties();                    
-    } */
+        invalidateProperties();      */               
+    } 
 
     //----------------------------------
     //  editable
@@ -1140,7 +1141,7 @@ public class SkinnableTextBase extends SkinnableComponent
     //  restrict
     //----------------------------------
 
-   // [Inspectable(category="General", defaultValue="null")]
+    [Inspectable(category="General", defaultValue="null")]
 
     /**
      *  @copy flash.text.TextField#restrict
@@ -1152,22 +1153,23 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get restrict():String 
+    public function get restrict():String 
     {
-        if (textDisplay)
+        /* if (textDisplay)
             return textDisplay.restrict;
             
         // want the default to be null
         var v:* = textDisplayProperties.restrict;
-        return (v === undefined) ? null : v;
-    } */
+        return (v === undefined) ? null : v; */
+		return "";
+    } 
     
     /**
      *  @private
      */
-    /* public function set restrict(value:String):void
+     public function set restrict(value:String):void
     {
-        if (textDisplay)
+       /*  if (textDisplay)
         {
             textDisplay.restrict = value;
             textDisplayProperties = BitFlagUtil.update(
@@ -1179,8 +1181,8 @@ public class SkinnableTextBase extends SkinnableComponent
         }
 
         // Generate an UPDATE_COMPLETE event.
-        invalidateProperties();                    
-    } */
+        invalidateProperties();  */                   
+    } 
 
     //----------------------------------
     //  selectable
@@ -1407,11 +1409,11 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-    /* public function set text(value:String):void
+    public function set text(value:String):void
     {
         // text should never be null.  Convert null to the empty string.
         
-        if (textDisplay)
+        /* if (textDisplay)
         {
             textDisplay.text = value;
             textDisplayProperties = BitFlagUtil.update(
@@ -1430,8 +1432,8 @@ public class SkinnableTextBase extends SkinnableComponent
 
         // Generate an UPDATE_COMPLETE event.
         invalidateProperties();
-        invalidateSkinState();
-     } */
+        invalidateSkinState(); */
+     } 
 
     //----------------------------------
     //  Mobile soft-keyboard hints
