@@ -62,6 +62,7 @@ package
         }
 
         import org.apache.royale.jewel.beads.layouts.BasicLayout; BasicLayout;
+        import org.apache.royale.jewel.beads.layouts.TileLayout; TileLayout;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;
         import org.apache.royale.jewel.beads.layouts.VerticalLayout; VerticalLayout;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayoutWithPaddingAndGap; HorizontalLayoutWithPaddingAndGap;
