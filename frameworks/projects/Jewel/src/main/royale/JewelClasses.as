@@ -44,6 +44,7 @@ package
         import org.apache.royale.jewel.beads.views.ListView; ListView;
 
         import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
+        import org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel; SingleSelectionArrayListModel;
         import org.apache.royale.jewel.supportClasses.ScrollingViewport; ScrollingViewport;
         
         COMPILE::SWF

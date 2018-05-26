@@ -168,7 +168,7 @@ j|List {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
-  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.DataItemRendererFactoryForCollectionView");
 }
 
