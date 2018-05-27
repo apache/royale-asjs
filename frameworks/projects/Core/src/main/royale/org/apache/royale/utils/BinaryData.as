@@ -202,6 +202,22 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
+	 *  create a string representation of the binary data
+	 */
+	public function toString():String
+	{
+        COMPILE::SWF
+        {
+            return ba.toString();
+        }
+
+        COMPILE::JS
+        {
+            return String.fromCharCode.apply(null, new Uint16Array(ba));
+        }
+	}
+
+    /**
      *  Write a Boolean value (as a single byte) at the current position
      *
      *  @param {Boolean} value The boolean value to write into the BinaryData at the current position
