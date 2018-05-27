@@ -213,7 +213,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
         COMPILE::JS
         {
-            return String.fromCharCode.apply(null, new Uint16Array(ba));
+            return (new TextDecoder("utf-8")).decode(ba);
         }
 	}
 
@@ -804,7 +804,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            return _len;;
+            return _len;
         }
     }
 
