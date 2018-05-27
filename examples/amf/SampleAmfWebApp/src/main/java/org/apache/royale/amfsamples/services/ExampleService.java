@@ -79,7 +79,7 @@ public class ExampleService {
 
         product.setTaxonomy(taxonomy);
 
-        /*List<Zone> zones = new ArrayList<Zone>();
+        Set<Zone> zones = new HashSet<Zone>();
         
         Zone zone1 =  new Zone();
         zone1.setId(1);
@@ -95,9 +95,9 @@ public class ExampleService {
         zone3.setId(3);
         zone3.setName("Asia");
         zones.add(zone3);
-        */
+        
 
-        Object[] zones = new Object[3];
+        /*Object[] zones = new Object[3];
         for (int i = 0; i < zones.length; i++)
         {
             Zone zone = new Zone();
@@ -109,7 +109,7 @@ public class ExampleService {
             else if (i == 2)
                 zone.setName("Asia");
             zones[i] = zone;
-        }
+        }*/
 
         product.setZones(zones);
         

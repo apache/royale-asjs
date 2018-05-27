@@ -50,7 +50,24 @@ public class CompressedService {
 
         product.setTaxonomy(taxonomy);
 
-        Object[] zones = new Object[3];
+        Set<Zone> zones = new HashSet<Zone>();
+        
+        Zone zone1 =  new Zone();
+        zone1.setId(1);
+        zone1.setName("Europe");
+        zones.add(zone1);
+
+        Zone zone2 =  new Zone();
+        zone2.setId(2);
+        zone2.setName("USA");
+        zones.add(zone2);
+
+        Zone zone3 =  new Zone();
+        zone3.setId(3);
+        zone3.setName("Asia");
+        zones.add(zone3);
+
+        /*Object[] zones = new Object[3];
         for (int i = 0; i < zones.length; i++)
         {
             Zone zone = new Zone();
@@ -62,7 +79,7 @@ public class CompressedService {
             else if (i == 2)
                 zone.setName("Asia");
             zones[i] = zone;
-        }
+        }*/
 
         product.setZones(zones);
         

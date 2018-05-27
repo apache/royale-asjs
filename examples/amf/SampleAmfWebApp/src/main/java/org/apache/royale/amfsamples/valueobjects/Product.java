@@ -28,7 +28,7 @@ public class Product
     private String name;
     private String description;
     private Taxonomy taxonomy;
-    private Object[] zones;
+    private Set<Zone> zones;
 
     public Product()
     {
@@ -66,7 +66,7 @@ public class Product
     *
     * @return The zone list.
     */
-    public Object[] getZones() {
+    public Set<Zone> getZones() {
         return zones;
     }
 
@@ -75,7 +75,7 @@ public class Product
     *
     * @param zones The zones list.
     */
-    public void setZones(Object[] zones) {
+    public void setZones(Set<Zone> zones) {
         this.zones = zones;
     }
 
