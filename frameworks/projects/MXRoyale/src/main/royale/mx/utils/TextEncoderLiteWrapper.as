@@ -41,6 +41,12 @@ package mx.utils
 			return new (TextEncoder)(_encoding).encode(data);
 			
 		}
+
+		public function decode(data:Object):String
+		{
+			return new (TextDecoder)(_encoding).decode(data);
+			
+		}
 		
 	}
 }

@@ -40,5 +40,14 @@ package mx.utils
 			return base64js.fromByteArray(bytes);
 			
 		}
+
+		public function toByteArray(b64Str:String):Object
+		{
+			var base64js:Object = window["base64js"];
+			
+			return base64js.toByteArray(b64Str);
+			
+		}
+		
 	}
 }
