@@ -315,7 +315,7 @@ public class Line extends EventDispatcher
         }
     } */
 	
-	 //----------------------------------
+	//----------------------------------
     //  height copied from GraphicElement
     //----------------------------------
     
@@ -323,7 +323,7 @@ public class Line extends EventDispatcher
      *  @private
      *  Storage for the height property.
      */
-    mx_internal var _height:Number = 0;
+    /* mx_internal */ private var _height:Number = 0;
 
     [Bindable("propertyChange")]
     [Inspectable(category="General")]
@@ -433,7 +433,7 @@ public class Line extends EventDispatcher
      *  @private
      *  Storage for the width property.
      */
-     mx_internal  var _width:Number = 0;
+     /* mx_internal */ private var _width:Number = 0;
 
     [Bindable("propertyChange")]
     [Inspectable(category="General")]
@@ -490,7 +490,7 @@ public class Line extends EventDispatcher
     /**
      *  @private
      */
-     mx_internal var _stroke:IStroke;
+     /* mx_internal */ private var _stroke:IStroke;
     
     [Bindable("propertyChange")]    
     [Inspectable(category="General")]
