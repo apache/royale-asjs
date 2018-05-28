@@ -32,5 +32,6 @@
 	<component id="NumericStepper" class="spark.components.NumericStepper" />
 	<component id="TextArea" class="spark.components.TextArea" />
 	<component id="TextInput" class="spark.components.TextInput" />
+	<component id="Panel" class="spark.components.Panel" />
 
 </componentPackage>
