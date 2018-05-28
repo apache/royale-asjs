@@ -33,5 +33,6 @@
 	<component id="TextArea" class="spark.components.TextArea" />
 	<component id="TextInput" class="spark.components.TextInput" />
 	<component id="Panel" class="spark.components.Panel" />
+	<component id="TitleWindow" class="spark.components.TitleWindow" />
 
 </componentPackage>
