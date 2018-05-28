@@ -37,6 +37,7 @@ limitations under the License.
             import valueObjects.Product;
             import valueObjects.Zone;
             import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.net.remoting.messages.RoyaleClient;
 
             protected function sendName():void
 			{
@@ -45,7 +46,7 @@ limitations under the License.
 			
 			private function onResult(evt:ResultEvent):void
 			{
-				trace("Result=" + evt.data);
+				trace("[Client:" + RoyaleClient.getInstance().id + "] Result= " + evt.data);
 
                 var zone:Zone;
 
@@ -85,6 +86,7 @@ limitations under the License.
 			
 			private function onFault(evt:FaultEvent):void
 			{
+                trace("[Client:" + RoyaleClient.getInstance().id + "] Fault= " + evt.message);
 				for(var key:String in evt["message"])
 				{
 					var element:Object = evt["message"][key];
