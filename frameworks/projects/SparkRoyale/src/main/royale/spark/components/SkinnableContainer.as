@@ -691,7 +691,7 @@ public class SkinnableContainer extends SkinnableComponent
      *  @private
      *  Backing variable for the contentFactory property.
      */
-    //private var _mxmlContentFactory:IDeferredInstance;
+    private var _mxmlContentFactory:Object;//IDeferredInstance;
 
     /**
      *  @private
@@ -711,14 +711,14 @@ public class SkinnableContainer extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function set mxmlContentFactory(value:IDeferredInstance):void
+    public function set mxmlContentFactory(value:Object):void
     {
         if (value == _mxmlContentFactory)
             return;
         
         _mxmlContentFactory = value;
-        mxmlContentCreated = false;
-    } */
+       // mxmlContentCreated = false;
+    } 
          
     //--------------------------------------------------------------------------
     //
