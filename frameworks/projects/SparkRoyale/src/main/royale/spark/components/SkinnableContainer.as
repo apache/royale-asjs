@@ -1012,11 +1012,11 @@ public class SkinnableContainer extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* override protected function partRemoved(partName:String, instance:Object):void
+     /* override */ protected function partRemoved(partName:String, instance:Object):void
     {
         super.partRemoved(partName, instance);
 
-        if (instance == contentGroup)
+       /*  if (instance == contentGroup)
         {
             contentGroup.removeEventListener(
                 ElementExistenceEvent.ELEMENT_ADD, contentGroup_elementAddedHandler);
@@ -1051,9 +1051,9 @@ public class SkinnableContainer extends SkinnableComponent
             
             contentGroup.mxmlContent = null;
             contentGroup.layout = null;
-        }
+        } */
     }
-     */
+     
     //--------------------------------------------------------------------------
     //
     //  IDeferredContentOwner methods
