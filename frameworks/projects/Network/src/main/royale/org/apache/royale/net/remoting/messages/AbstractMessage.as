@@ -20,24 +20,16 @@
 package org.apache.royale.net.remoting.messages
 {
 
-COMPILE::SWF
-{
-    import flash.utils.ByteArray;
-    import flash.utils.IDataInput;
-    import flash.utils.IDataOutput;
-    import flash.utils.getQualifiedClassName;
-}
-
 import org.apache.royale.utils.ObjectUtil;
 import org.apache.royale.utils.UIDUtil;
+import org.apache.royale.net.utils.IDataInput;
+import org.apache.royale.net.utils.IDataOutput;
+import org.apache.royale.utils.BinaryData;
+import org.apache.royale.net.utils.RPCUIDUtil;
 
 /*
-import mx.core.mx_internal;
 import mx.utils.RPCObjectUtil;
 import mx.utils.RPCStringUtil;
-import mx.utils.RPCUIDUtil;
-
-use namespace mx_internal;
 */
 
 /**
@@ -52,6 +44,9 @@ use namespace mx_internal;
  *  delivered and processed by the remote destination.
  *  The <code>body</code> is an object and is the payload for a message.
  *  </p>
+ * 
+ *  Note: readExternal and writeExternal methods compile but are not tested and maybe not work
+ *  but is an initial work
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
@@ -94,7 +89,7 @@ public class AbstractMessage implements IMessage
 	public static const ENDPOINT_HEADER:String = "DSEndpoint";
 
 	/**
-	 *  This header is used to transport the global FlexClient Id value in outbound 
+	 *  This header is used to transport the global RoyaleClient Id value in outbound
 	 *  messages once it has been assigned by the server.
 	 *  
 	 *  @langversion 3.0
@@ -103,7 +98,7 @@ public class AbstractMessage implements IMessage
 	 *  @productversion BlazeDS 4
 	 *  @productversion LCDS 3 
 	 */
-	public static const FLEX_CLIENT_ID_HEADER:String = "DSId";
+	public static const ROYALE_CLIENT_ID_HEADER:String = "DSId";
 
     /**
      *  Messages sent by a MessageAgent can have a priority header with a 0-9
@@ -178,7 +173,6 @@ public class AbstractMessage implements IMessage
     // 
     //--------------------------------------------------------------------------
 
-    /*
     private static const HAS_NEXT_FLAG:uint = 128;
     private static const BODY_FLAG:uint = 1;
     private static const CLIENT_ID_FLAG:uint = 2;
@@ -189,7 +183,6 @@ public class AbstractMessage implements IMessage
     private static const TIME_TO_LIVE_FLAG:uint = 64;
     private static const CLIENT_ID_BYTES_FLAG:uint = 1;
     private static const MESSAGE_ID_BYTES_FLAG:uint = 2;
-    */
 
     //--------------------------------------------------------------------------
     //
@@ -262,8 +255,7 @@ public class AbstractMessage implements IMessage
 	/**
 	 * @private
 	 */
-    COMPILE::SWF
-    private var clientIdBytes:ByteArray;
+    private var clientIdBytes:BinaryData;
 
     /**
      *  The clientId indicates which MessageAgent sent the message.
@@ -373,8 +365,7 @@ public class AbstractMessage implements IMessage
     /**
      * @private
      */
-    COMPILE::SWF
-    private var messageIdBytes:ByteArray;
+    private var messageIdBytes:BinaryData;
 
     /**
      *  The unique id for the message.
@@ -496,7 +487,6 @@ public class AbstractMessage implements IMessage
      * functionality by implementing IExternalizable.readExternal(IDataInput) to
      * deserialize the properties for this abstract base class.
      */
-    /* LATER
     public function readExternal(input:IDataInput):void
     {
         var flagsArray:Array = readFlags(input);
@@ -537,13 +527,13 @@ public class AbstractMessage implements IMessage
             {
                 if ((flags & CLIENT_ID_BYTES_FLAG) != 0)
                 {
-                    clientIdBytes = input.readObject() as ByteArray;
+                    clientIdBytes = input.readObject() as BinaryData;
                     clientId = RPCUIDUtil.fromByteArray(clientIdBytes);
                 }
         
                 if ((flags & MESSAGE_ID_BYTES_FLAG) != 0)
                 {
-                    messageIdBytes = input.readObject() as ByteArray;
+                    messageIdBytes = input.readObject() as BinaryData;
                     messageId = RPCUIDUtil.fromByteArray(messageIdBytes);
                 }
 
@@ -564,7 +554,6 @@ public class AbstractMessage implements IMessage
             }
         }
     }
-    */
 
     /**
      *  Returns a string representation of the message.
@@ -591,7 +580,6 @@ public class AbstractMessage implements IMessage
      * functionality by implementing IExternalizable.writeExternal(IDataOutput)
      * to efficiently serialize the properties for this abstract base class.
      */
-    /*
     public function writeExternal(output:IDataOutput):void
     {
         var flags:uint = 0;
@@ -671,7 +659,6 @@ public class AbstractMessage implements IMessage
         if (messageIdBytes != null)
             output.writeObject(messageIdBytes);
     }
-    */
 
     //--------------------------------------------------------------------------
     //
@@ -728,12 +715,10 @@ public class AbstractMessage implements IMessage
     /**
      * @private
      */
-    /*
     protected function readExternalBody(input:IDataInput):void
     {
         body = input.readObject();
     }
-    */
     
     /**
      * @private
@@ -746,7 +731,6 @@ public class AbstractMessage implements IMessage
      * @return The Array of property flags. Each flags byte is stored as a uint
      * in the Array.
      */
-    /*
     protected function readFlags(input:IDataInput):Array
     {
         var hasNextFlag:Boolean = true;
@@ -765,17 +749,14 @@ public class AbstractMessage implements IMessage
 
         return flagsArray;
     }
-    */
 
     /**
      * @private
      */
-    /*
     protected function writeExternalBody(output:IDataOutput):void
     {
         output.writeObject(body);
     }
-    */
 }
 
 }
