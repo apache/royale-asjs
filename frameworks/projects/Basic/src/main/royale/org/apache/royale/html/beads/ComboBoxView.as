@@ -125,7 +125,11 @@ package org.apache.royale.html.beads
 			
 			COMPILE::JS 
 			{
-				host.element.style.position = "relative";
+				// inner components are absolutely positioned so we want to make sure the host is the offset parent
+				if (!host.element.style.position)
+				{
+					host.element.style.position = "relative";
+				}
 			}
 			host.addElement(input);
 			host.addElement(button);
