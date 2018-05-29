@@ -290,6 +290,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.TreeGridModel; TreeGridModel;
 	import org.apache.royale.html.beads.layouts.TreeGridLayout; TreeGridLayout;
 	import org.apache.royale.html.beads.TreeGridView; TreeGridView;
+
+	import org.apache.royale.html.util.getLabelFromData; getLabelFromData;
 }
 
 }
