@@ -25,11 +25,11 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -39,6 +39,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
+    import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -151,6 +152,8 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */		
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -158,23 +161,43 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererParent = view.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
         }
         
+        /**
+         *  Free an item renderer for a given index.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.0
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+         */
         public function freeItemRendererForIndex(index:int):void
         {
             var ir:ISelectableItemRenderer = rendererMap[index];
-            var list:IList = _strand as IList;
-            var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererParent = view.dataGroup;
             dataGroup.removeItemRenderer(ir);
             delete rendererMap[index];
         }
         
         private var rendererMap:Object = {};
         
+        /**
+         *  Get an item renderer for a given index.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.0
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+         */
         public function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer
         {
             var ir:ISelectableItemRenderer = rendererMap[index];
@@ -185,8 +208,8 @@ package org.apache.royale.html.beads
 			ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
             var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-            var list:IList = _strand as IList;
-            var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererParent = view.dataGroup;
 			dataGroup.addItemRendererAt(ir, elementIndex);
 			ir.index = index;
 			ir.labelField = labelField;

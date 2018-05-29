@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles(contentView.element, "layout horizontal");
+				addStyles(contentView, "layout horizontal");
 
 				/** 
 				 *  This Layout uses the following CSS rules

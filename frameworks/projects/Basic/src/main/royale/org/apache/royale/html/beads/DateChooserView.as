@@ -136,7 +136,7 @@ package org.apache.royale.html.beads
 			monthButtonsContainer = new Group();
 			monthButtonsContainer.height = controlHeight;
 			monthButtonsContainer.id = "dateChooserMonthButtons";
-			monthButtonsContainer.className = "opt_org-apache.royale-html-DateChooser_MonthButtons";
+			monthButtonsContainer.className = "opt_org-apache-royale-html-DateChooser_MonthButtons";
 			monthButtonsContainer.style = new SimpleCSSStylesWithFlex();
 			monthButtonsContainer.style.flexGrow = 0;
 			COMPILE::JS {

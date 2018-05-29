@@ -24,8 +24,13 @@ package org.apache.royale.utils.cssclasslist
     }
 
     /**
-     *  Removes all styles
+     *  Removes all styles (class selector names) from the component.
+     * 
+     *  This is a low-level operation and may interfere with proper
+     *  operation of the component.
      *  
+     *  @param element The HTMLElement that will have selectors added or removed.  
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
