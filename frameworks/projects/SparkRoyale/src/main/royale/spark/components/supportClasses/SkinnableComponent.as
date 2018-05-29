@@ -407,6 +407,11 @@ public class SkinnableComponent extends UIComponent
      */
     public var dataGroup:DataGroup;
 
+	// getCurrentSkinState copied from SkinnableContainerBase
+	/* override */ protected function getCurrentSkinState():String
+    {
+        return enabled ? "normal" : "disabled";
+    }
 }
 
 }

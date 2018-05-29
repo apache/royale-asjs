@@ -403,9 +403,7 @@ public class DataGroup extends GroupBase
      *  @private
      *  Sync the typicalLayoutElement var with this group's layout.
      */    
-	/*override public function set layout(value:LayoutBase):void
-	*/
-     public function set layout(value:Object):void
+	override public function set layout(value:Object):void
     {
         /* var oldLayout:LayoutBase = layout;
         if (value == oldLayout)
@@ -1522,16 +1520,15 @@ public class DataGroup extends GroupBase
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    //override public function getElementAt(index:int):IVisualElement
-	//is replaced with 
-	override public function getElementAt(index:int):IUIComponent
+    
+	/*  public function getElementAt(index:int):IVisualElement
     {
         if ((index < 0) || (index >= indexToRenderer.length))
             return null;
         
-        return indexToRenderer[index]; 
+        return indexToRenderer[index];  
 		
-    }
+    } */
     
     /**
      *  @private

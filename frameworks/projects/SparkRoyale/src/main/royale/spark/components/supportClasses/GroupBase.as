@@ -468,12 +468,12 @@ public class GroupBase extends UIComponent
     
     // layout is initialized in createChildren() if layout 
     // hasn't been set yet by someone else
-    /* private var _layout:LayoutBase;
-    private var _layoutProperties:Object = null;
-    private var layoutInvalidateSizeFlag:Boolean = false;
-    private var layoutInvalidateDisplayListFlag:Boolean = false;
+    private var _layout:Object;//LayoutBase;
+   // private var _layoutProperties:Object = null;
+   // private var layoutInvalidateSizeFlag:Boolean = false;
+   // private var layoutInvalidateDisplayListFlag:Boolean = false;
     
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     
     /**
      *  The layout object for this container.  
@@ -489,10 +489,10 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get layout():LayoutBase
+    public function get layout():Object//LayoutBase
     {
         return _layout;
-    } */
+    } 
         
     /**
      *  @private
@@ -506,12 +506,12 @@ public class GroupBase extends UIComponent
      *  If the new layout is null, then we
      *  temporarily store the delegated properties in _layoutProperties. 
      */
-    /* public function set layout(value:LayoutBase):void
+     public function set layout(value:Object):void
     {
         if (_layout == value)
             return;
         
-        if (_layout)
+       /*  if (_layout)
         {
             _layout.target = null;
             _layout.removeEventListener(PropertyChangeEvent.PROPERTY_CHANGE, redispatchLayoutEvent);
@@ -522,11 +522,11 @@ public class GroupBase extends UIComponent
                 // horizontalScrollPosition and verticalScrollPosition
                 _layoutProperties = {clipAndEnableScrolling: _layout.clipAndEnableScrolling};
             }
-        }
+        } */
 
         _layout = value; 
 
-        if (_layout)
+        /* if (_layout)
         {
             _layout.target = this;
             _layout.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, redispatchLayoutEvent);
@@ -547,9 +547,9 @@ public class GroupBase extends UIComponent
         }
 
         invalidateSize();
-        invalidateDisplayList();
+        invalidateDisplayList(); */
     }
-     */
+    
     /**
      *  @private
      *  Redispatch the bindable LayoutBase properties that we expose (that we "facade"). 
@@ -1745,10 +1745,10 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get numElements():int
+    override public function get numElements():int
     {
         return -1;
-    } */
+    } 
     
     /**
      *  @copy mx.core.IVisualElementContainer#getElementAt()
@@ -1758,10 +1758,10 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function getElementAt(index:int):IVisualElement
+    /*  public function getElementAt(index:int):IVisualElement
     {
-        return null;
-    } */
+		return null;
+    }   */
     
     /**
      *  Layouts that honor the <code>useVirtualLayout</code> flag will use this 
