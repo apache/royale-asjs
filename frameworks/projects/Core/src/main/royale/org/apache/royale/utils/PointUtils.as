@@ -71,18 +71,24 @@ package org.apache.royale.utils
                 var x:Number = pt.x;
                 var y:Number = pt.y;
                 var element:HTMLElement = local.element as HTMLElement;
+				if ( element.getBoundingClientRect ) {// TODO take scrollbar widths into account
+					var rect:Object = element.getBoundingClientRect();
+					x = x - rect.left - window.scrollX;
+					y = y - rect.top - window.scrollY;
+				} else { // for older browsers, but offsetParent is soon to be deprecated from chrome
 
-                do {
-                    x -= element.offsetLeft;
-                    y -= element.offsetTop;
-					if (local['parent'] !== undefined) {
-                        local = local.parent;
-                        element = local ? local.element as HTMLElement : null;
-                    } else {
-                        element = null;
+                    do {
+                        x -= element.offsetLeft;
+                        y -= element.offsetTop;
+                        if (local['parent'] !== undefined) {
+                            local = local.parent;
+                            element = local ? local.element as HTMLElement : null;
+                        } else {
+                            element = null;
+                        }
                     }
+                    while (element);
                 }
-                while (element);
                 return new org.apache.royale.geom.Point(x, y);
 
             }
@@ -119,8 +125,8 @@ package org.apache.royale.utils
 
 				if ( element.getBoundingClientRect ) {// TODO take scrollbar widths into account
 					var rect:Object = element.getBoundingClientRect();
-					x = rect.left + x;
-					y = rect.top + y;
+					x = rect.left + x + window.scrollX;
+					y = rect.top + y + window.scrollY;
 				} else { // for older browsers, but offsetParent is soon to be deprecated from from chrome
 	                do {
 	                    x += element.offsetLeft;
