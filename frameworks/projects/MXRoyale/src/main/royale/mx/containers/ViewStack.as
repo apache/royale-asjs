@@ -293,7 +293,7 @@ public class ViewStack extends Container //implements IHistoryManagerClient, ISe
      *  Later, when measure()
      *  is called, it causes the HistoryManager to save the state.
      */
-    private var bSaveState:Boolean = false;
+    //private var bSaveState:Boolean = false;
 
     /**
      *  @private
