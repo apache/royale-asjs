@@ -20,6 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.ITextItemRenderer;
+	import org.apache.royale.html.util.getLabelFromData;
 	
 	public class MenuBarItemRenderer extends DataItemRenderer implements ITextItemRenderer
 	{
@@ -43,13 +44,8 @@ package org.apache.royale.html.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-			var text:String;
-			if (value is String) text = value as String;
-			else if (labelField) text = String(value[labelField]);
-			else if (dataField) text = String(value[dataField]);
-			else text = String(value);
 			
-			label.text = text;
+			label.text = getLabelFromData(value);
 			
 			adjustSize();
 		}
