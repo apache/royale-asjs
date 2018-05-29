@@ -96,7 +96,7 @@
     <component id="DataGridColumnForceChangePropagator" class="org.apache.royale.html.beads.DataGridColumnForceChangePropagator" />
     <component id="SingleSelectionContainerBead" class="org.apache.royale.html.beads.SingleSelectionContainerBead" />
     <!--<component id="MultilineTextFieldView" class="org.apache.royale.html.beads.MultilineTextFieldView"/>-->
-
+    <component id="VerticalAlignChildren" class="org.apache.royale.html.beads.VerticalAlignChildren"/>
     <component id="ApplicationParameters" class="org.apache.royale.html.beads.ApplicationParametersBead"/>
     <component id="ApplicationParametersCaseInsensitive" class="org.apache.royale.html.beads.ApplicationParametersCaseInsensitiveBead"/>
     <component id="IEEventAdapter" class="org.apache.royale.html.beads.IEEventAdapterBead"/>
