@@ -125,10 +125,16 @@ package org.apache.royale.html
                 n = value.length;
                 for (i = 0; i < n; i++) {
                     opt = document.createElement('option') as HTMLOptionElement;
-                    if (lf)
-                        opt.text = value[i][lf];
-                    else
-                        opt.text = value[i];
+                    //TODO create DropDownListView for JS.
+                    // We need a spearate view for dropdown list with and without separators.
+                    var optionText:String = lf ? value[i][lf] : value[i];
+                    if(!optionText || optionText.indexOf("-") == 0)
+                    {
+                        opt.disabled = true;
+                        opt.text = "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
+                    } else {
+                        opt.text = optionText;
+                    }
                     dd.add(opt, null);
                 }
 
