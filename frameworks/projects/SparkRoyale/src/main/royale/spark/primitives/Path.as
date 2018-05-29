@@ -62,10 +62,10 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 public class Path extends EventDispatcher
-{
+{//extends FilledElement
    // include "../core/Version.as";
     
     //--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function Path()
     {
@@ -99,7 +99,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */ 
     //private var graphicsPathChanged:Boolean = true;
     
@@ -110,7 +110,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */ 
     //private var segments:PathSegmentsCollection;
     
@@ -211,7 +211,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function set data(value:String):void
     {
@@ -255,7 +255,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function set winding(value:String):void
     {
@@ -296,7 +296,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override protected function measure():void
     {
@@ -764,7 +764,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override public function getBoundsXAtSize(width:Number, height:Number, postLayoutTransform:Boolean = true):Number
     {
@@ -778,7 +778,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override public function getBoundsYAtSize(width:Number, height:Number, postLayoutTransform:Boolean = true):Number
     {
@@ -1078,7 +1078,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */    
     /* override protected function draw(g:Graphics):void
     {
@@ -1111,7 +1111,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override protected function endDraw(g:Graphics):void
     {
@@ -1135,7 +1135,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override protected function invalidateDisplayObjectSharing():void
     {
@@ -1260,7 +1260,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function get left():Object
     {
@@ -1297,7 +1297,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function get right():Object
     {
@@ -1333,7 +1333,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function get top():Object
     {
@@ -1370,7 +1370,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function get bottom():Object
     {
@@ -1465,7 +1465,7 @@ public class Path extends EventDispatcher
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     public function get fill():IFill
     {
@@ -1529,7 +1529,7 @@ public class Path extends EventDispatcher
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* public function PathSegmentsCollection(value:String)
 {
@@ -2036,7 +2036,7 @@ import mx.events.PropertyChangeEvent; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* class PathSegment extends Object
 { */
@@ -2057,7 +2057,7 @@ import mx.events.PropertyChangeEvent; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* public function PathSegment(_x:Number = 0, _y:Number = 0)
 {
@@ -2084,7 +2084,7 @@ import mx.events.PropertyChangeEvent; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //public var x:Number = 0;
 
@@ -2100,7 +2100,7 @@ import mx.events.PropertyChangeEvent; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 //public var y:Number = 0;
 
@@ -2120,7 +2120,7 @@ import mx.events.PropertyChangeEvent; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
 {
@@ -2139,7 +2139,7 @@ import mx.events.PropertyChangeEvent; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */    
 /* public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number, m:Matrix, rect:Rectangle):Rectangle
 {
@@ -2184,7 +2184,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* class LineSegment extends PathSegment
 {
@@ -2207,7 +2207,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* public function LineSegment(x:Number = 0, y:Number = 0)
 {
@@ -2226,7 +2226,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* override public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
 {
@@ -2239,7 +2239,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* override public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number, m:Matrix, rect:Rectangle):Rectangle
 {
@@ -2296,7 +2296,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* class MoveSegment extends PathSegment
 {
@@ -2317,7 +2317,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* public function MoveSegment(x:Number = 0, y:Number = 0)
 {
@@ -2339,7 +2339,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* override public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
 {
@@ -2376,7 +2376,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* class CubicBezierSegment extends PathSegment
 { */
@@ -2411,7 +2411,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
    /*  public function CubicBezierSegment(
         _control1X:Number = 0, _control1Y:Number = 0,
@@ -2451,7 +2451,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var control1X:Number = 0;
     
@@ -2465,7 +2465,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var control1Y:Number = 0;
     
@@ -2479,7 +2479,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var control2X:Number = 0;
     
@@ -2493,7 +2493,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var control2Y:Number = 0;
     
@@ -2513,7 +2513,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override public function draw(graphicsPath:GraphicsPath, dx:Number, dy:Number, sx:Number, sy:Number, prev:PathSegment):void
     {
@@ -2531,7 +2531,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number,
                                             m:Matrix, rect:Rectangle):Rectangle
@@ -2696,7 +2696,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* class QuadraticPoints
 {
@@ -2715,7 +2715,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
    /*  public function QuadraticPoints()
     {
@@ -2746,7 +2746,7 @@ import mx.utils.MatrixUtil; */
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.4
  */
 /* class QuadraticBezierSegment extends PathSegment
 { */
@@ -2776,7 +2776,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* public function QuadraticBezierSegment(
         _control1X:Number = 0, _control1Y:Number = 0, 
@@ -2804,7 +2804,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
    // public var control1X:Number = 0;
     
@@ -2818,7 +2818,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     //public var control1Y:Number = 0;
     
@@ -2841,7 +2841,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override public function draw(graphicsPath:GraphicsPath, dx:Number,dy:Number,sx:Number,sy:Number,prev:PathSegment):void
     {
@@ -2906,7 +2906,7 @@ import mx.utils.MatrixUtil; */
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.4
      */
     /* override public function getBoundingBox(prev:PathSegment, sx:Number, sy:Number,
                                             m:Matrix, rect:Rectangle):Rectangle
