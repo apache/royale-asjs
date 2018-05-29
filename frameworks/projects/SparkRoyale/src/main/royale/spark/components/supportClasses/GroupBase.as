@@ -1745,7 +1745,7 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function get numElements():int
+    override public function get numElements():int
     {
         return -1;
     } 
@@ -1758,10 +1758,10 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-     public function getElementAt(index:int):IVisualElement
+    /*  public function getElementAt(index:int):IVisualElement
     {
-        return null;
-    } 
+		return null;
+    }   */
     
     /**
      *  Layouts that honor the <code>useVirtualLayout</code> flag will use this 
