@@ -123,6 +123,10 @@ package org.apache.royale.html.beads
 			
 			if (isNaN(host.width)) input.width = 100;
 			
+			COMPILE::JS 
+			{
+				host.element.style.position = "relative";
+			}
 			host.addElement(input);
 			host.addElement(button);
 			
