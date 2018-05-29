@@ -157,18 +157,20 @@ public class Base64Decoder
         return result;
     }
 
+    /*
     COMPILE::SWF
     public function flush():ByteArray
     {
         if (count > 0)
         {
-            /*
+            
             var message:String = resourceManager.getString("utils", "partialBlockDropped", [ count ]);
             throw new Error(message);
-            */
+            
         }
         return drain();
     }
+    */
 
     /**
      * Clears all buffers and resets the decoder to its initial state.
