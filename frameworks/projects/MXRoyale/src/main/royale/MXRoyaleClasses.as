@@ -188,6 +188,7 @@ internal class MXRoyaleClasses
 	import mx.collections.ArrayCollection; ArrayCollection;
 	import mx.controls.Alert; Alert;
 	import mx.utils.Base64Encoder; Base64Encoder;
+	import mx.utils.Base64Decoder; Base64Decoder;
 
 	COMPILE::JS
     {

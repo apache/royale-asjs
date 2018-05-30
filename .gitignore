@@ -151,3 +151,7 @@ manualtests/RoyaleTest_SVG/bin
 #npm
 node_modules
 npm/cli/test
+
+frameworks/projects/MXRoyale/.vscode
+.gitignore
+.gitignore
