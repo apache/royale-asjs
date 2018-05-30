@@ -43,6 +43,11 @@ limitations under the License.
 			{
                 service.send("echo", [name_txt.text]);
 			}
+
+            protected function sendNameSimple():void
+			{
+                simpleService.send("echo", [nameSimple_txt.text]);
+			}
 			
 			private function onResult(evt:ResultEvent):void
 			{
@@ -84,6 +89,12 @@ limitations under the License.
 				}
 			}
 			
+            private function onResultSimple(evt:ResultEvent):void
+			{
+				if (evt.data is String)
+					receivedSimple.text = "Received Simple: " + evt.data;
+            }
+
 			private function onFault(evt:FaultEvent):void
 			{
                 trace("[Client:" + RoyaleClient.getInstance().id + "] Fault= " + evt.message);
@@ -125,13 +136,17 @@ limitations under the License.
 
     <j:beads>
         <js:ClassAliasBead />
+        <!-- use this with BlazeDS, LCDS, CF -->
         <js:RemoteObject id="service" result="onResult(event)" fault="onFault(event)"
                          endPoint = "http://localhost:8080/messagebroker/websocket-amf"
                          destination = "exampleService"/>
         <js:CompressedRemoteObject id="compressedService" result="onResult(event)" fault="onFault(event)"
                          endPoint = "http://localhost:8080/messagebroker/websocket-amf"
                          destination = "compressedService"/>
-                         <!--source = "exampleService" source is not needed when using JavaAdapter on BlazeDS-->
+        <!-- use this wih AMFPHP or oother basic implementations -->
+        <js:SimpleRemoteObject id="simpleService" result="onResultSimple(event)" fault="onFault(event)"
+                         endPoint = "http://localhost:8080/messagebroker/websocket-amf"
+                         destination = "exampleService"/>
     </j:beads>
 
     <j:initialView>
@@ -160,6 +175,26 @@ limitations under the License.
                 </j:Group>
 
                 <j:Label id="received" text="Received:"/>
+            </j:Group>
+
+            <j:Group className="container" width="400">
+                <j:beads>
+                    <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+                </j:beads>
+
+                <j:Group>
+                    <j:beads>
+                        <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+                    </j:beads>
+                    <j:TextInput id="nameSimple_txt">
+                        <j:beads>
+                            <j:TextPrompt prompt="Name via Simple RO"/>
+                        </j:beads>
+                    </j:TextInput>
+                    <j:Button text="Send SimpleRO" click="sendNameSimple()"/>
+                </j:Group>
+
+                <j:Label id="receivedSimple" text="Received Simple:"/>
             </j:Group>
 
             <j:Group className="container" width="400">
