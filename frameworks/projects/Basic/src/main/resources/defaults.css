@@ -613,14 +613,14 @@ Spinner
 	height: 32px;
 }
 
-.SpinnerButton
+SpinnerButton
 {
 	padding: 0;
 	margin: 0;
 	font-size: 6px;
 }
 
-.SpinnerButton:hover
+SpinnerButton:hover
 {
 	padding: 0;
 	margin: 0;

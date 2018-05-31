@@ -25,7 +25,7 @@ package org.apache.royale.html.supportClasses
 		public function SpinnerButton()
 		{
 			super();
-			className = 'SpinnerButton';
+			typeNames = 'TextButton SpinnerButton';
 		}
 	}
 }
