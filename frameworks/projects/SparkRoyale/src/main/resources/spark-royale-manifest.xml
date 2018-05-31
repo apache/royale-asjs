@@ -37,8 +37,24 @@
     	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
 	<component id="Path" class="spark.primitives.Path"/>
 	<component id="Rect" class="spark.primitives.Rect"/>
-   	<component id="Line" class="spark.primitives.Line"/>
+    	<component id="Line" class="spark.primitives.Line"/>
     	<component id="RectangularDropShadow" class="spark.primitives.RectangularDropShadow"/>
-	<component id="Range" class="spark.components.supportClasses.Range"/>
+    	<component id="Range" class="spark.components.supportClasses.Range"/>
+    	<component id="RichEditableText" class="spark.components.RichEditableText"/>
+	<component id="Skin" class="spark.components.supportClasses.Skin"/>
+    	<component id="SkinnableComponent" class="spark.components.supportClasses.SkinnableComponent"/>
+	<component id="ToggleButton" class="spark.components.ToggleButton"/>
+    	<component id="ToggleButtonBase" class="spark.components.supportClasses.ToggleButtonBase"/>
+    	<component id="DataRenderer" class="spark.components.DataRenderer"/>
+	<component id="SkinnableTextBase" class="spark.components.supportClasses.SkinnableTextBase"/>
+	<component id="TextBase" class="spark.components.supportClasses.TextBase"/>
+    	<component id="TextInput" class="spark.components.TextInput"/>
+	<component id="PopUpAnchor" class="spark.components.PopUpAnchor"/>
+	<component id="Group" class="spark.components.Group"/>
+    	<component id="GroupBase" class="spark.components.supportClasses.GroupBase"/>
+    	<component id="HGroup" class="spark.components.HGroup"/>
+	<component id="VGroup" class="spark.components.VGroup"/>
+    	<component id="ListBase" class="spark.components.supportClasses.ListBase"/>
+    	<component id="ItemRenderer" class="spark.components.supportClasses.ItemRenderer"/>
 
 </componentPackage>
