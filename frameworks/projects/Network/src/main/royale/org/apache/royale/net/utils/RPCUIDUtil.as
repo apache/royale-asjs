@@ -38,8 +38,7 @@ package org.apache.royale.net.utils
          *  @private
          *  Char codes for 0123456789ABCDEF
          */
-        private static const ALPHA_CHAR_CODES:Array = [48, 49, 50, 51, 52, 53, 54, 
-            55, 56, 57, 65, 66, 67, 68, 69, 70];
+        private static const ALPHA_CHAR_CODES:Array = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70];
 
         private static const DASH:int = 45;       // dash ascii
         private static const UIDBuffer:BinaryData = new BinaryData();       // static ByteArray used for UID generation to save memory allocation cost
@@ -91,7 +90,14 @@ package org.apache.royale.net.utils
 
             UIDBuffer.writeByte(DASH);
 
-            var time:uint = new Date().getTime(); // extract last 8 digits
+            COMPILE::JS
+            {
+                var time:uint = Math.floor(new Date().getTime()/1000); // extract last 8 digits
+            }
+            COMPILE::SWF
+            {
+                var time:uint = new Date().getTime(); // extract last 8 digits
+            }
             var timeString:String = time.toString(16).toUpperCase();
             // 0xFFFFFFFF milliseconds ~= 3 days, so timeString may have between 1 and 8 digits, hence we need to pad with 0s to 8 digits
             for (i = 8; i > timeString.length; i--)
