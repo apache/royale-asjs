@@ -47,7 +47,8 @@ internal class SparkRoyaleClasses
     import spark.skins.spark.DefaultItemRenderer;DefaultItemRenderer;
     import spark.components.supportClasses.ItemRenderer; ItemRenderer;
     import spark.components.VGroup; VGroup;
-	import spark.components.HGroup; HGroup;
+    import spark.components.HGroup; HGroup;
+    import spark.components.RichEditableText; RichEditableText;
 }
 
 }
