@@ -608,12 +608,6 @@ Slider
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.HSliderMouseController");
 	position: relative;
 }
-.SliderTrack {
-	position: absolute;
-}
-.SliderThumb {
-	position: absolute;
-}
 
 Spinner
 {

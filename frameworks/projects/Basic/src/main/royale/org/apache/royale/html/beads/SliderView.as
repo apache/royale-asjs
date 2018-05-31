@@ -100,10 +100,12 @@ package org.apache.royale.html.beads
 			COMPILE::JS {
 				_track = new Button();
 				_track.className = "SliderTrack";
+				_track.style = {"position": "absolute", "padding" : 0};
 				host.addElement(_track);
 				
 				_thumb = new TextButton();
 				_thumb.className = "SliderThumb";
+				_thumb.style = {"position" : "absolute", "padding" : 0};
 				_thumb.text = '\u29BF';
 				host.addElement(_thumb);
 			}

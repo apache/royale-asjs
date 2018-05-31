@@ -152,7 +152,7 @@ limitations under the License.
 		<js:Spacer height="10" />
 		<js:Label id="slideMe" text="slider value" />
 		<js:Label id="slideMe2" text="{slider.value}" />
-		<js:Slider id="slider" width="200"
+		<js:Slider id="slider" width="200" height="15"
 					  valueChange="sliderChanged(slider)"
 					  minimum="0"
 					  maximum="100"
