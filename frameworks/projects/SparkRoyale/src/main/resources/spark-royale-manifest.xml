@@ -35,5 +35,9 @@
 	<component id="Panel" class="spark.components.Panel" />
 	<component id="TitleWindow" class="spark.components.TitleWindow" />
     	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
-
+	<component id="Path" class="spark.primitives.Path"/>
+	<component id="Rect" class="spark.primitives.Rect"/>
+   	<component id="Line" class="spark.primitives.Line"/>
+    	<component id="RectangularDropShadow" class="spark.primitives.RectangularDropShadow"/>
+	
 </componentPackage>
