@@ -27,26 +27,12 @@ package
  */
 internal class SparkRoyaleClasses
 {
-    import spark.components.supportClasses.SkinnableComponent; SkinnableComponent;
-    import spark.components.supportClasses.ToggleButtonBase; ToggleButtonBase;
-    import spark.components.ToggleButton; ToggleButton;
-    import spark.events.IndexChangeEvent; IndexChangeEvent;
-    import spark.components.DataRenderer; DataRenderer;
-    import spark.components.supportClasses.SkinnableTextBase; SkinnableTextBase;
-    import spark.components.supportClasses.TextBase; TextBase;
-    import spark.components.PopUpAnchor; PopUpAnchor;
+   import spark.events.IndexChangeEvent; IndexChangeEvent;
     import spark.events.TextOperationEvent; TextOperationEvent;
-    import spark.components.supportClasses.GroupBase; GroupBase;
-    import spark.components.supportClasses.ListBase; ListBase;
     import spark.components.supportClasses.DropDownListBase; DropDownListBase;
-    import spark.components.Group; Group;
-    import spark.components.supportClasses.Skin; Skin;
     import spark.skins.spark.BorderContainerSkin;BorderContainerSkin; 
     import spark.skins.spark.DefaultItemRenderer;DefaultItemRenderer;
-    import spark.components.supportClasses.ItemRenderer; ItemRenderer;
-    import spark.components.VGroup; VGroup;
-    import spark.components.HGroup; HGroup;
-    import spark.components.RichEditableText; RichEditableText;
+	import spark.skins.spark.DropDownListButtonSkin; DropDownListButtonSkin;
 }
 
 }
