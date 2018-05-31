@@ -39,5 +39,6 @@
 	<component id="Rect" class="spark.primitives.Rect"/>
    	<component id="Line" class="spark.primitives.Line"/>
     	<component id="RectangularDropShadow" class="spark.primitives.RectangularDropShadow"/>
-	
+	<component id="Range" class="spark.components.supportClasses.Range"/>
+
 </componentPackage>
