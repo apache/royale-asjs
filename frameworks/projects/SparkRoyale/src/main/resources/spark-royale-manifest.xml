@@ -34,5 +34,6 @@
 	<component id="TextInput" class="spark.components.TextInput" />
 	<component id="Panel" class="spark.components.Panel" />
 	<component id="TitleWindow" class="spark.components.TitleWindow" />
+    	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
 
 </componentPackage>
