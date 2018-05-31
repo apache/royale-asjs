@@ -16,16 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.net.remoting.messages
+package org.apache.royale.net.remoting.messages 
 {
     import org.apache.royale.net.utils.IDataOutput;
     import org.apache.royale.net.utils.IExternalizable;
 
-    [RemoteClass(alias="DSK")]
+    [RemoteClass(alias="DSA")]
     /**
+     * A special serialization wrapper for AsyncMessages. This wrapper is used to
+     * enable the externalizable form of an AsyncMessage for serialization. The
+     * wrapper must be applied just before the message is serialized as it does not
+     * proxy any information to the wrapped message.
+     * 
      * @private
      */
-    public class AcknowledgeMessageExt extends AcknowledgeMessage implements IExternalizable
+    public class AsyncMessageExt extends AsyncMessage implements IExternalizable
     {
         //--------------------------------------------------------------------------
         //
@@ -33,7 +38,7 @@ package org.apache.royale.net.remoting.messages
         // 
         //--------------------------------------------------------------------------
 
-        public function AcknowledgeMessageExt(message:AcknowledgeMessage = null)
+        public function AsyncMessageExt(message:AsyncMessage=null)
         {
             super();
             _message = message;
@@ -65,7 +70,7 @@ package org.apache.royale.net.remoting.messages
             return super.messageId;
         }
 
-        private var _message:AcknowledgeMessage;
+        private var _message:AsyncMessage;
     }
 
 }

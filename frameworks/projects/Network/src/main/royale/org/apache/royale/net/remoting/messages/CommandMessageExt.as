@@ -21,11 +21,16 @@ package org.apache.royale.net.remoting.messages
     import org.apache.royale.net.utils.IDataOutput;
     import org.apache.royale.net.utils.IExternalizable;
 
-    [RemoteClass(alias="DSK")]
+    [RemoteClass(alias="DSC")]
     /**
+     * A special serialization wrapper for CommandMessage. This wrapper is used to
+     * enable the externalizable form of an CommandMessage for serialization. The
+     * wrapper must be applied just before the message is serialized as it does not
+     * proxy any information to the wrapped message.
+     * 
      * @private
      */
-    public class AcknowledgeMessageExt extends AcknowledgeMessage implements IExternalizable
+    public class CommandMessageExt extends CommandMessage implements IExternalizable
     {
         //--------------------------------------------------------------------------
         //
@@ -33,7 +38,7 @@ package org.apache.royale.net.remoting.messages
         // 
         //--------------------------------------------------------------------------
 
-        public function AcknowledgeMessageExt(message:AcknowledgeMessage = null)
+        public function CommandMessageExt(message:CommandMessage=null)
         {
             super();
             _message = message;
@@ -65,7 +70,6 @@ package org.apache.royale.net.remoting.messages
             return super.messageId;
         }
 
-        private var _message:AcknowledgeMessage;
+        private var _message:CommandMessage;
     }
-
 }

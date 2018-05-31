@@ -26,18 +26,17 @@ package org.apache.royale.net
     import org.apache.royale.net.events.ResultEvent;
     import org.apache.royale.net.remoting.Operation;
     import org.apache.royale.net.remoting.amf.AMFNetConnection;
-    import org.apache.royale.reflection.getClassByAlias;
-    import org.apache.royale.reflection.registerClassAlias;
-	import org.apache.royale.net.remoting.messages.AcknowledgeMessage;
-	import org.apache.royale.net.remoting.messages.RoyaleClient;
 
 	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
 	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
+	/**
+	 * This is the RemoteObject that has a similar behaviour that Flex RemoteObject
+	 * and can be use with BlazeDS, LCDS or CF backends
+	 */
 	public class RemoteObject extends EventDispatcher implements IBead
 	{
 		private var _endPoint:String;
 		private var _destination:String;
-		private var _source:String;
         
         /**
          *  @private
@@ -47,8 +46,18 @@ package org.apache.royale.net
          */
         public var nc:AMFNetConnection = new AMFNetConnection();
 		
-		/** 
+		/**
+		 * @private
+		 * A channel specific override to determine whether small messages should
+		 * be used. If set to false, small messages will not be used even if they
+		 * are supported by an endpoint.
 		 * 
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var enableSmallMessages:Boolean = true;
+
+		/** 
+		 * constructor
 		 */ 
 		public function RemoteObject()
 		{
@@ -79,15 +88,6 @@ package org.apache.royale.net
 			return _destination;	
 		}
 		
-		public function set source(value:String):void
-		{
-			_source = value;	
-		}
-		public function get source():String
-		{
-			return _source;	
-		}
-		
 		public function send(operation:String, params:Array):void
 		{
             nc.connect(endPoint);
@@ -98,16 +98,6 @@ package org.apache.royale.net
 		
 		public function resultHandler(param:Object):void
 		{
-			if (param is AcknowledgeMessage)
-			{
-				// Set the server assigned RoyaleClient Id.
-				if (RoyaleClient.getInstance().id == null && param.clientId)//msg.headers[AbstractMessage.ROYALE_CLIENT_ID_HEADER] != null)
-				{
-					RoyaleClient.getInstance().id = param.clientId;//msg.headers[AbstractMessage.ROYALE_CLIENT_ID_HEADER];
-					//trace("SET RoyaleClient.getInstance().id " + RoyaleClient.getInstance().id);
-				}
-			}
-
     		dispatchEvent(new ResultEvent(ResultEvent.RESULT, param.body));
 		}
 		

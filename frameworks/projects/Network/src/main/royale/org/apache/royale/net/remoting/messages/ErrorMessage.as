@@ -16,63 +16,59 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 package org.apache.royale.net.remoting.messages
 {
-
-[RemoteClass(alias="flex.messaging.messages.ErrorMessage")]
-
-/**
- *  ErrorMessages are sometimes returned from RPC requests to a remote endpoint.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion BlazeDS 4
- *  @productversion LCDS 3 
- * 
- *  @royalesuppresspublicvarwarning
- */
-public class ErrorMessage extends AbstractMessage
-{
-    //--------------------------------------------------------------------------
-    //
-    // Constructor
-    // 
-    //--------------------------------------------------------------------------
-    
+    [RemoteClass(alias="flex.messaging.messages.ErrorMessage")]
     /**
-     *  Constructs an uninitialized ErrorMessage.
+     *  ErrorMessages are sometimes returned from RPC requests to a remote endpoint.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
+     * 
+     *  @royalesuppresspublicvarwarning
      */
-    public function ErrorMessage()
+    public class ErrorMessage extends AcknowledgeMessage
     {
-        super();
+        //--------------------------------------------------------------------------
+        //
+        // Constructor
+        // 
+        //--------------------------------------------------------------------------
+        
+        /**
+         *  Constructs an uninitialized ErrorMessage.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public function ErrorMessage()
+        {
+            super();
+        }
+        
+        //--------------------------------------------------------------------------
+        //
+        // Variables
+        // 
+        //--------------------------------------------------------------------------    
+
+        /**
+         *  Provides the error message.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public var message:String;
+
+
     }
-    
-    //--------------------------------------------------------------------------
-    //
-    // Variables
-    // 
-    //--------------------------------------------------------------------------    
-
-    /**
-     *  Provides the error message.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public var message:String;
-
-
-}
-
 }

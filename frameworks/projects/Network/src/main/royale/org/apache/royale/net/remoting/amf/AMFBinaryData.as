@@ -20,9 +20,10 @@
 
 package org.apache.royale.net.remoting.amf
 {
-
     import org.apache.royale.reflection.getAliasByClass;
     import org.apache.royale.reflection.getClassByAlias;
+    import org.apache.royale.net.utils.IDataInput;
+    import org.apache.royale.net.utils.IDataOutput;
     
 /**
  *  A version of BinaryData specific to AMF.
@@ -35,7 +36,7 @@ package org.apache.royale.net.remoting.amf
  * 
  *  @royalesuppresspublicvarwarning
  */
-public class AMFBinaryData
+public class AMFBinaryData implements IDataInput, IDataOutput
 {
     //--------------------------------------------------------------------------
     //
@@ -93,7 +94,10 @@ public class AMFBinaryData
     public static const AMF3_VECTOR_DOUBLE:int = 15;
     public static const AMF3_VECTOR_OBJECT:int = 16;
     public static const AMF3_DICTIONARY:int = 17;
-    
+
+    public static const EXTERNALIZED_OBJECT_REFERENCE:int = 161;
+    public static const EXTERNALIZED_OBJECT:int = 168;
+
     public static const UNKNOWN_CONTENT_LENGTH:int = 1;
     
     public static const UINT29_MASK:int = 536870911;
@@ -450,7 +454,7 @@ public class AMFBinaryData
      * @royaleignorecoercion String
      * @royaleignorecoercion Number
      */
-    public function writeObject(v:Object):void
+    public function writeObject(v:*):void
     {
         if (v == null)
         {
@@ -790,7 +794,7 @@ public class AMFBinaryData
         return chararr.join("");
     };
     
-    public function readObject():Object
+    public function readObject():*
     {
         var type:uint = this.read();
         return this.readObjectValue(type);
@@ -884,12 +888,18 @@ public class AMFBinaryData
 			{
 				traits.alias = "";
 				this.flexTraitFound = true;
-			}
+			} else if(traits.alias == "DSK")
+            {
+                this.flexTraitFound = true;
+                traits.alias = "";
+            }
 			var obj:Object;
             if (traits.alias) {
                 var c:Class = getClassByAlias(traits.alias);
                 if (c)
+                {
                     obj = new c();
+                }
                 else 
                 {
                     obj = {};
@@ -902,14 +912,20 @@ public class AMFBinaryData
             }
             this.rememberObject(obj);
             if (traits.externalizable)
-				if (this.flexTraitFound)
+            {
+				if (this.flexTraitFound){
                     obj = this.readObject();
-                else
+                }
+                else {
 					obj[EXTERNALIZED_FIELD] = this.readObject();
+                }
+            }
             else 
             {
                 for (var i:int in traits.props)
+                {
                     obj[traits.props[i]] = this.readObject();
+                }
                 if (traits.dynamic)
                 {
                     for (; ;)
@@ -1100,7 +1116,7 @@ public class AMFBinaryData
                 } 
                 catch (e)
                 {
-                    throw "Failed to deserialize: " + e;
+                    throw new Error("Failed to deserialize: " + e);
                 }
                 break;
             case AMF3_ARRAY:
@@ -1140,8 +1156,14 @@ public class AMFBinaryData
             case AMF0_AMF3:
                 value = this.readObject();
                 break;
+            case EXTERNALIZED_OBJECT_REFERENCE:
+                trace("EXTERNALIZED_OBJECT_REFERENCE needs to be implemented")
+                //value = this.readObject();  //TODO
+                break;
+            case EXTERNALIZED_OBJECT://DSK
+                break;
             default:
-                throw "Unsupported AMF type: " + type;
+                throw new Error("Unsupported AMF type: " + type);
         }
         return value;
     };
@@ -1157,6 +1179,25 @@ public class AMFBinaryData
         return array;
     }
 
+    //IDataOutput -------------------------------------------------------------------------------------
+
+    public function writeBytes(bytes:AMFBinaryData, offset:uint = 0, length:uint = 0):void
+    {}
+
+    public function writeByte(value:int):void
+    {}
+
+    //IDataInput -------------------------------------------------------------------------------------
+
+    public function get bytesAvailable():uint
+    {
+        return 0;
+    }
+
+    public function readUnsignedByte():uint
+    {
+        return 0;
+    }
 }
 
 }

@@ -16,39 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.net.remoting.messages
+package org.apache.royale.net.remoting.messages 
 {
-    import org.apache.royale.net.utils.IDataOutput;
-    import org.apache.royale.net.utils.IExternalizable;
-
-    [RemoteClass(alias="DSK")]
     /**
-     * @private
+     * A marker interface that is used to indicate that an IMessage has an
+     * alternative smaller form for serialization.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion BlazeDS 4
+     *  @productversion LCDS 3 
      */
-    public class AcknowledgeMessageExt extends AcknowledgeMessage implements IExternalizable
+    public interface ISmallMessage extends IMessage
     {
         //--------------------------------------------------------------------------
         //
-        // Constructor
+        // Methods
         // 
         //--------------------------------------------------------------------------
 
-        public function AcknowledgeMessageExt(message:AcknowledgeMessage = null)
-        {
-            super();
-            _message = message;
-        }
-
-        override public function writeExternal(output:IDataOutput):void
-        {
-            if (_message != null)
-                _message.writeExternal(output);
-            else
-                super.writeExternal(output);
-        }
-
         /**
-         *  The unique id for the message.
+         * This method must be implemented by subclasses that have a "small" form,
+         * typically achieved through the use of
+         * <code>flash.utils.IExternalizable</code>. If a small form is not
+         * available this method should return null.
+         *
+         * @return Returns An alternative representation of an
+         * flex.messaging.messages.IMessage so that the serialized form
+         * is smaller than the regular message.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 9
@@ -56,16 +52,7 @@ package org.apache.royale.net.remoting.messages
          *  @productversion BlazeDS 4
          *  @productversion LCDS 3 
          */
-        override public function get messageId():String
-        {
-            /* If we are wrapping another message, use its messageId */
-            if (_message != null)
-                return _message.messageId;
-
-            return super.messageId;
-        }
-
-        private var _message:AcknowledgeMessage;
+        function getSmallMessage():IMessage;
     }
 
 }

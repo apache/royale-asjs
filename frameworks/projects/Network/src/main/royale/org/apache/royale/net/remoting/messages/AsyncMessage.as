@@ -23,7 +23,7 @@ package org.apache.royale.net.remoting.messages
 import org.apache.royale.net.utils.IDataInput;
 import org.apache.royale.net.utils.IDataOutput;
 import org.apache.royale.utils.BinaryData;
-import org.apache.royale.net.utils.RPCUIDUtil;
+import org.apache.royale.utils.UIDUtil;
 
 [RemoteClass(alias="flex.messaging.messages.AsyncMessage")]
 
@@ -38,7 +38,7 @@ import org.apache.royale.net.utils.RPCUIDUtil;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3 
  */
-public class AsyncMessage extends AbstractMessage // implements ISmallMessage
+public class AsyncMessage extends AbstractMessage implements ISmallMessage
 {
     //--------------------------------------------------------------------------
     //
@@ -161,7 +161,7 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
     /**
      * @private
      */
-    /*public function getSmallMessage():IMessage
+    public function getSmallMessage():IMessage
     {
         // If it is a subclass, it will need to override this itself if it wants to use
         // small messages.
@@ -169,7 +169,7 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
         if (o.constructor == AsyncMessage)
             return new AsyncMessageExt(this);
         return null;
-    }*/
+    }
     
     /**
      * @private
@@ -192,7 +192,7 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
                 if ((flags & CORRELATION_ID_BYTES_FLAG) != 0)
                 {
                     correlationIdBytes = input.readObject() as BinaryData;
-                    correlationId = RPCUIDUtil.fromByteArray(correlationIdBytes);
+                    correlationId = UIDUtil.fromBinary(correlationIdBytes);
                 }
 
                 reservedPosition = 2;
@@ -219,9 +219,8 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
     override public function writeExternal(output:IDataOutput):void
     {
         super.writeExternal(output);
-
         if (correlationIdBytes == null)
-            correlationIdBytes = RPCUIDUtil.toByteArray(_correlationId);
+            correlationIdBytes = UIDUtil.toBinary(_correlationId);
 
         var flags:uint = 0;
 

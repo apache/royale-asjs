@@ -17,117 +17,112 @@
 /***
  * AMF JavaScript library by Emil Malinov https://github.com/emilkm/amfjs
  */
-
-
 package org.apache.royale.net.remoting.messages
 {
-
-COMPILE::SWF
-{
-import flash.utils.IDataInput;
-import flash.utils.IDataOutput;
-}
-
-[RemoteClass(alias="flex.messaging.io.amf.MessageHeader")]
-
-/**
- *  The MessageHeader for an ActionMessage
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion BlazeDS 4
- *  @productversion LCDS 3 
- * 
- *  @royalesuppresspublicvarwarning
- */
-public class MessageHeader
-{
-    //--------------------------------------------------------------------------
-    //
-    // Constructor
-    // 
-    //--------------------------------------------------------------------------
-    
-    /**
-     *  Constructs an instance of a MessageHeader
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public function MessageHeader()
+    COMPILE::SWF
     {
-        super();
+    import flash.utils.IDataInput;
+    import flash.utils.IDataOutput;
     }
 
-    //--------------------------------------------------------------------------
-    //
-    // Variables
-    // 
-    //--------------------------------------------------------------------------   
+    [RemoteClass(alias="flex.messaging.io.amf.MessageHeader")]
 
     /**
-     *  The header name.
+     *  The MessageHeader for an ActionMessage
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
+     * 
+     *  @royalesuppresspublicvarwarning
      */
-    public var name:String = "";
-
-    /**
-     *  Whether the receipient must understand the header
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public var mustUnderstand:Boolean;
-    
-    //--------------------------------------------------------------------------
-    //
-    // Properties
-    // 
-    //--------------------------------------------------------------------------
-    
-    //----------------------------------
-    //  data
-    //----------------------------------
-    
-    /**
-     *  @private
-     */
-    private var _data:Object;
-    
-    /**
-     *  The data to be sent.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public function get data():Object
+    public class MessageHeader
     {
-        return _data;
+        //--------------------------------------------------------------------------
+        //
+        // Constructor
+        // 
+        //--------------------------------------------------------------------------
+        
+        /**
+         *  Constructs an instance of a MessageHeader
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public function MessageHeader()
+        {
+            super();
+        }
+
+        //--------------------------------------------------------------------------
+        //
+        // Variables
+        // 
+        //--------------------------------------------------------------------------   
+
+        /**
+         *  The header name.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public var name:String = "";
+
+        /**
+         *  Whether the receipient must understand the header
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public var mustUnderstand:Boolean;
+        
+        //--------------------------------------------------------------------------
+        //
+        // Properties
+        // 
+        //--------------------------------------------------------------------------
+        
+        //----------------------------------
+        //  data
+        //----------------------------------
+        
+        /**
+         *  @private
+         */
+        private var _data:Object;
+        
+        /**
+         *  The data to be sent.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public function get data():Object
+        {
+            return _data;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set data(value:Object):void
+        {
+            _data = value;
+        }   
     }
-    
-    /**
-     *  @private
-     */
-    public function set data(value:Object):void
-    {
-        _data = value;
-    }   
-      
-}
-
 }

@@ -29,6 +29,11 @@ package org.apache.royale.net
 
 	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
 	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
+	/**
+	 * This is the most simple implementation os a RemoteObject it can be use with
+	 * simple backends like AMFPHP. To use with BlazeDS better us RemoteObject since
+	 * it manages clientId and small messages
+	 */
 	public class SimpleRemoteObject extends EventDispatcher implements IBead
 	{
 		private var _endPoint:String;
