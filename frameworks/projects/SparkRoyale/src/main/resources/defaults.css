@@ -51,6 +51,8 @@ ComboBox
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
 	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ComboBoxList");
 }
+
+
 List
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
@@ -105,6 +107,14 @@ Panel .TitleBar
 	{
 		IBeadView:  ClassReference("mx.controls.beads.CheckBoxView");			
 	}
+	
+	Label
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
+		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
+	}
+	
 	List
 	{
 		iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
@@ -114,11 +124,20 @@ Panel .TitleBar
 		font-size: 11px;
 		font-family: Arial;
 	}
+		
+	Panel
+	{
+		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");    
+	}
+	
 	RadioButton
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
 		IBeadView:  ClassReference("mx.controls.beads.RadioButtonView");			
 	}
+	
 	TextArea
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.NonNullTextModel");
@@ -134,10 +153,19 @@ Panel .TitleBar
 		font-size: 11px;
 		font-family: Arial;
 	}
-	Panel
+	
+	TextInput
 	{
-		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
-		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");    
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.NonNullTextModel");
+		IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
+		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
+		IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		background-color: #FFFFFF;
+		font-size: 11px;
+		font-family: Arial;
 	}
 }
