@@ -33,6 +33,7 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.core.DataItemRenderer; 
+	import org.apache.royale.html.util.getLabelFromData;
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()
@@ -147,12 +148,7 @@ package org.apache.royale.html.supportClasses
 		{
 			super.data = value;
             var text:String;
-			if (value is String) text = value as String;
-			else if (labelField) text = "" + value[labelField];
-			else if (dataField) text = "" + value[dataField];
-			else text = "" + value;
-
-            this.text = text;
+            this.text = getLabelFromData(this,value);
 		}
 
         // COMPILE::JS

@@ -35,6 +35,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.beads.IComboBoxView;
+	import org.apache.royale.html.util.getLabelFromData;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.html.ComboBox 
@@ -107,6 +108,8 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -118,11 +121,22 @@ package org.apache.royale.html.beads
 			input.className = "ComboBoxTextInput";			
 			
 			button = new TextButton();
-			button.className = "opt_org-apache-royale-html-ComboBox_Button";
+			button.style = {
+				"padding": 0,
+				"margin": 0
+			};
 			button.text = '\u25BC';
 			
 			if (isNaN(host.width)) input.width = 100;
 			
+			COMPILE::JS 
+			{
+				// inner components are absolutely positioned so we want to make sure the host is the offset parent
+				if (!host.element.style.position)
+				{
+					host.element.style.position = "relative";
+				}
+			}
 			host.addElement(input);
 			host.addElement(button);
 			
@@ -156,6 +170,10 @@ package org.apache.royale.html.beads
 			if (list) return list.visible;
 			else return false;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value && !list.visible) {
@@ -200,15 +218,17 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 */
 		protected function itemChangeAction():void
 		{
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-			input.text = model.selectedItem as String;
+			input.text = getLabelFromData(model,model.selectedItem);
 		}
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		protected function sizeChangeAction():void
 		{

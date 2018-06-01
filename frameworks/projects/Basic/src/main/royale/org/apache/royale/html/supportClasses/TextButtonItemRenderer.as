@@ -27,6 +27,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.html.util.getLabelFromData;
 
 	COMPILE::JS
 	{
@@ -84,17 +85,8 @@ package org.apache.royale.html.supportClasses
 			var valueAsString:String;
 
 			if (data == null) return;
-
-			if (data is String) {
-				valueAsString = data as String;
-			}
-			else if (labelField != null) {
-				valueAsString = "" + data[labelField];
-			}
-			else if (data.hasOwnProperty("label")) {
-				valueAsString = "" + data["label"];
-			}
-			else if (data.hasOwnProperty("title")) {
+			valueAsString = getLabelFromData(this,data);
+			if (!valueAsString && data.hasOwnProperty("title")) {
 				valueAsString = "" + data["title"];
 			}
 
