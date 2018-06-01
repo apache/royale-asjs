@@ -172,7 +172,7 @@ CheckBox
 
 Container
 {
-    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+    IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
 	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
@@ -180,7 +180,7 @@ Container
 
 ControlBar
 {
-	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+	IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
 	
     background-color: #CECECE;
@@ -316,7 +316,7 @@ DateField {
   
 HContainer
 {
-    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+    IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 }
 
@@ -327,7 +327,7 @@ ImageButton
 
 VContainer
 {
-    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+    IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
 }
 
