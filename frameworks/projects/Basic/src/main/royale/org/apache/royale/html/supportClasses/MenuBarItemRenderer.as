@@ -45,7 +45,7 @@ package org.apache.royale.html.supportClasses
 		{
 			super.data = value;
 			
-			label.text = getLabelFromData(value);
+			label.text = getLabelFromData(this,value);
 			
 			adjustSize();
 		}

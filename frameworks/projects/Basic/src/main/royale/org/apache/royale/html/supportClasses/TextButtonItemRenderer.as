@@ -85,7 +85,7 @@ package org.apache.royale.html.supportClasses
 			var valueAsString:String;
 
 			if (data == null) return;
-			valueAsString = getLabelFromData(data);
+			valueAsString = getLabelFromData(this,data);
 			if (!valueAsString && data.hasOwnProperty("title")) {
 				valueAsString = "" + data["title"];
 			}

@@ -223,7 +223,7 @@ package org.apache.royale.html.beads
 		protected function itemChangeAction():void
 		{
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-			input.text = getLabelFromData(model.selectedItem);
+			input.text = getLabelFromData(model,model.selectedItem);
 		}
 		
 		/**

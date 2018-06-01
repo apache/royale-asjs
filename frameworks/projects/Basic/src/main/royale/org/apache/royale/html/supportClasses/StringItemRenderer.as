@@ -147,7 +147,7 @@ package org.apache.royale.html.supportClasses
 		{
 			super.data = value;
             var text:String;
-            this.text = getLabelFromData(value);
+            this.text = getLabelFromData(this,value);
 		}
 
         // COMPILE::JS

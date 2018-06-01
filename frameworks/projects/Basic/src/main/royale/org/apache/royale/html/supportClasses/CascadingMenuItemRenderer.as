@@ -101,7 +101,7 @@ package org.apache.royale.html.supportClasses
 					addElement(label);
 				}
 				
-				label.text = getLabelFromData(value);
+				label.text = getLabelFromData(this,value);
 				
 				if (value.hasOwnProperty("menu")) {
 					if (submenuIndicator == null) {
