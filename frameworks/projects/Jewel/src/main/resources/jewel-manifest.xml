@@ -42,7 +42,9 @@
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.DropDownListList"/>
     
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
+    
     <component id="TextPrompt" class="org.apache.royale.jewel.beads.controls.textinput.TextPrompt"/>
+    <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>
 
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
     <component id="TileLayout" class="org.apache.royale.jewel.beads.layouts.TileLayout"/>
