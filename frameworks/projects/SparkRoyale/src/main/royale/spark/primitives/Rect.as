@@ -972,7 +972,44 @@ public class Rect  extends EventDispatcher
         alphaChanged = true;
         invalidateProperties(); */
     }
-	//----------------------------------
+    //----------------------------------
+    //  left copied from GraphicElement
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the left property.
+     */
+    private var _left:Object;
+
+    [Inspectable(category="General")]
+
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */
+    public function get left():Object
+    {
+        return _left;
+    }
+
+    /**
+     *  @private
+     */
+    public function set left(value:Object):void
+    {
+        if (_left == value)
+            return;
+
+        _left = value;
+       // invalidateParentSizeAndDisplayList();
+    }
+	
+    //----------------------------------
     //  right copied from GraphicElement
     //----------------------------------
     
