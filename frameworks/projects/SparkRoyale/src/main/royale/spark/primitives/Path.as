@@ -1388,8 +1388,44 @@ public class Path extends EventDispatcher
         _bottom = value;
        // invalidateParentSizeAndDisplayList();
     }
-	
-	//----------------------------------
+    //----------------------------------
+    //  verticalCenter copied from GraphicElement
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the verticalCenter property.
+     */
+    private var _verticalCenter:Object;
+
+    [Inspectable(category="General")]
+
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */
+    public function get verticalCenter():Object
+    {
+        return _verticalCenter;
+    }
+
+    /**
+     *  @private
+     */
+    public function set verticalCenter(value:Object):void
+    {
+        if (_verticalCenter == value)
+            return;
+
+        _verticalCenter = value;
+       // invalidateParentSizeAndDisplayList();
+    }
+    
+    //----------------------------------
     //  stroke copied from StrokedElement
     //----------------------------------
 
