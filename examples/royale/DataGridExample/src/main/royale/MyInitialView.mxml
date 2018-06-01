@@ -120,10 +120,10 @@ limitations under the License.
 		
 	</js:HContainer>
 		
-	<!-- A dynamic DataGrid, responding to additions and deletions, using the .DynamicDataGrid style class
+	<!-- A dynamic DataGrid, responding to additions and deletions
 	-->
-	<js:DataGrid id="dataGrid2" x="520" y="50" width="400" height="350" change="dataGridChange(dataGrid2, output2)" 
-				 rowHeight="40" className="DynamicDataGrid DataGrid" >
+	<js:DynamicDataGrid id="dataGrid2" x="520" y="50" width="400" height="350" change="dataGridChange(dataGrid2, output2)" 
+				 rowHeight="40">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -135,7 +135,7 @@ limitations under the License.
 			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" />
 			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
 		</js:columns>
-	</js:DataGrid>
+	</js:DynamicDataGrid>
 	
 	
 	<!--
