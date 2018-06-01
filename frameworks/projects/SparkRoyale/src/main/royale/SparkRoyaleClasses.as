@@ -33,6 +33,8 @@ internal class SparkRoyaleClasses
     import spark.skins.spark.BorderContainerSkin;BorderContainerSkin; 
     import spark.skins.spark.DefaultItemRenderer;DefaultItemRenderer;
     import spark.skins.spark.DropDownListButtonSkin; DropDownListButtonSkin;
+    import spark.skins.spark.TitleWindowCloseButtonSkin; TitleWindowCloseButtonSkin; 
+
 }
 
 }
