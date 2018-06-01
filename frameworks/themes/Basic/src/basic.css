@@ -94,3 +94,30 @@ Menu
 	font-size: 12px;
 	font-family: sans-serif;
 }
+ToggleTextButton
+{
+	background-color: #f8f8f8;
+	border: 1px solid #808080;
+	padding: 4px;
+}
+
+ToggleTextButton:hover
+{
+	background-color: #e8e8e8;
+	border: 1px solid #808080;
+	padding: 4px;
+}
+
+ToggleTextButton.selected
+{
+	background-color: #d8d8d8;
+	border: 1px solid #808080;
+	padding: 4px;
+}
+
+ToggleTextButton.selected:hover
+{
+	background-color: #e8e8e8;
+	border: 1px solid #808080;
+	padding: 4px;
+}
