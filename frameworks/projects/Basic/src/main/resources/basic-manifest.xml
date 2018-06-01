@@ -219,6 +219,7 @@
     <component id="UIModuleLoader" class="org.apache.royale.html.UIModuleLoader"/>
     
     <component id="TreeGrid" class="org.apache.royale.html.TreeGrid" />
+    <component id="TreeGridListArea" class="org.apache.royale.html.beads.TreeGridListArea"/>
     <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
 
     <component id="HashChangeNotifierBead" class="org.apache.royale.routing.HashChangeNotifierBead" />
