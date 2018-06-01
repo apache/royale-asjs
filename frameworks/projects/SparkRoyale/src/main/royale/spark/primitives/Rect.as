@@ -840,7 +840,57 @@ public class Rect  extends EventDispatcher
         visibleChanged = true;
         invalidateProperties(); */
     }
-	//----------------------------------
+    //----------------------------------
+    //  height copied from GraphicElement
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the height property.
+     */
+    /* mx_internal */ private var _height:Number = 0;
+
+    [Bindable("propertyChange")]
+    [Inspectable(category="General")]
+    [PercentProxy("percentHeight")]
+
+    /**
+     *  The height of the graphic element.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     *  @royalesuppresspublicvarwarning
+	 */
+    public function get height():Number
+    {
+        return _height;
+    }
+
+    /**
+     *  @private
+     */
+    
+    public function set height(value:Number):void
+    {
+       // explicitHeight = value;
+
+        if (_height == value)
+            return;
+
+        var oldValue:Number = _height;
+        _height = value;
+       // dispatchPropertyChangeEvent("height", oldValue, value);
+
+        // Invalidate the display list, since we're changing the actual height
+        // and we're not going to correctly detect whether the layout sets
+        // new actual height different from our previous value.
+       // invalidateDisplayList();
+    }
+    //----------------------------------
     //  width copied from GraphicElement
     //----------------------------------
 
