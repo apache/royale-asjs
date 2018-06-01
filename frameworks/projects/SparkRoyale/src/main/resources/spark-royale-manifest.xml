@@ -60,4 +60,7 @@
      	<component id="LinearGradient" class="mx.graphics.LinearGradient" lookupOnly="true"/>
    	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke" lookupOnly="true"/> 
     	<component id="State" class="mx.states.State" lookupOnly="true"/>
+	<component id="SolidColor" class="mx.graphics.SolidColor" lookupOnly="true"/>
+	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke" lookupOnly="true"/>
+
 </componentPackage>
