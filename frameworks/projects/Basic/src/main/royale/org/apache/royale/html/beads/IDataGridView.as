@@ -20,7 +20,7 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.Container;
+	import org.apache.royale.html.Container;
 	
 	/**
 	 *  The IDataGridView interface marks as a component as being the bead that

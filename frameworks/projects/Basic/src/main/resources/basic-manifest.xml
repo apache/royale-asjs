@@ -24,7 +24,7 @@
     <component id="Application" class="org.apache.royale.core.Application"/>
     <component id="AirApplication" class="org.apache.royale.core.AirApplication"/>
     <component id="View" class="org.apache.royale.core.View"/>
-    <component id="Container" class="org.apache.royale.core.Container"/>
+    <component id="Container" class="org.apache.royale.html.Container"/>
     <component id="Button" class="org.apache.royale.html.Button"/>
     <component id="CloseButton" class="org.apache.royale.html.CloseButton"/>
     <component id="ButtonBar" class="org.apache.royale.html.ButtonBar"/>
