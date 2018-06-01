@@ -27,13 +27,15 @@ package
  */
 internal class SparkRoyaleClasses
 {
-   import spark.events.IndexChangeEvent; IndexChangeEvent;
+    import spark.events.IndexChangeEvent; IndexChangeEvent;
     import spark.events.TextOperationEvent; TextOperationEvent;
     import spark.components.supportClasses.DropDownListBase; DropDownListBase;
     import spark.skins.spark.BorderContainerSkin;BorderContainerSkin; 
     import spark.skins.spark.DefaultItemRenderer;DefaultItemRenderer;
     import spark.skins.spark.DropDownListButtonSkin; DropDownListButtonSkin;
     import spark.skins.spark.TitleWindowCloseButtonSkin; TitleWindowCloseButtonSkin; 
+	 import spark.skins.spark.ComboBoxButtonSkin; ComboBoxButtonSkin; 
+	 import spark.skins.spark.ComboBoxTextInputSkin; ComboBoxTextInputSkin; 
 
 }
 
