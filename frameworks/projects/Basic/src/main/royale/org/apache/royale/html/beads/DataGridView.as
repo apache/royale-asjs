@@ -27,13 +27,14 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.debugging.assert;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGrid;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
-	import org.apache.royale.html.supportClasses.DataGridColumnList;
+	import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.core.supportClasses.Viewport;
 
@@ -123,9 +124,8 @@ package org.apache.royale.html.beads
 				_header.labelField = "label";
 				sharedModel.headerModel = _header.model as IBeadModel;
 
-				_listArea = new Container();
+				_listArea = new DataGridListArea();
 				_listArea.percentWidth = 100;
-				_listArea.className = "opt_org-apache-royale-html-DataGrid_ListArea";
 
 				createLists();
 
@@ -164,7 +164,7 @@ package org.apache.royale.html.beads
 			/**
 			 * @private
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-			 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
+			 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumnList
 			 */
 			private function handleSelectedIndexChanged(event:Event):void
 			{
@@ -173,7 +173,7 @@ package org.apache.royale.html.beads
 
 				for (var i:int=0; i < _lists.length; i++)
 				{
-					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
+					var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
 					list.selectedIndex = newIndex;
 				}
 			}
@@ -181,17 +181,17 @@ package org.apache.royale.html.beads
 			/**
 			 * @private
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-			 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
+			 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumnList
 			 */
 			private function handleColumnListChange(event:Event):void
 			{
 				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-				var list:DataGridColumnList = event.target as DataGridColumnList;
+				var list:IDataGridColumnList = event.target as IDataGridColumnList;
 				sharedModel.selectedIndex = list.selectedIndex;
 
 				for(var i:int=0; i < _lists.length; i++) {
 					if (list != _lists[i]) {
-						var otherList:DataGridColumnList = _lists[i] as DataGridColumnList;
+						var otherList:IDataGridColumnList = _lists[i] as IDataGridColumnList;
 						otherList.selectedIndex = list.selectedIndex;
 					}
 				}
@@ -202,6 +202,7 @@ package org.apache.royale.html.beads
 			/**
 			 * @private
 			 * @royaleignorecoercion String
+			 * @royaleignorecoercion Class
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 			 * @royaleignorecoercion org.apache.royale.core.IBead
 			 * @royaleignorecoercion org.apache.royale.core.IChild
@@ -213,10 +214,8 @@ package org.apache.royale.html.beads
 				var host:DataGrid = _strand as DataGrid;
 				
 				// get the name of the class to use for the columns
-				var columnClassName:String = ValuesManager.valuesImpl.getValue(host, "columnClassName") as String;
-				if (columnClassName == null) {
-					columnClassName = "DataGridColumnList";
-				}
+				var columnClass:Class = ValuesManager.valuesImpl.getValue(host, "columnClass") as Class;
+				assert(columnClass != null,"ColumnClass for DataGrid must be set!")
 
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				var presentationModel:IDataGridPresentationModel = host.presentationModel;
@@ -226,22 +225,20 @@ package org.apache.royale.html.beads
 				for (var i:int=0; i < sharedModel.columns.length; i++)
 				{
 					var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
-					var useClassName:String = columnClassName;
-					if (dataGridColumn.className != null) useClassName = dataGridColumn.className;
 
-					var list:DataGridColumnList = new DataGridColumnList();
+					var list:IDataGridColumnList = new columnClass();
 					
 					if (i == 0)
 					{
-						list.className = "first "+useClassName;
+						list.className = "first";
 					}
 					else if (i == sharedModel.columns.length-1)
 					{
-						list.className = "last "+useClassName;
+						list.className = "last";
 					}
 					else
 					{
-						list.className = "middle "+useClassName;
+						list.className = "middle";
 					}
 					
 					list.id = "dataGridColumn" + i;

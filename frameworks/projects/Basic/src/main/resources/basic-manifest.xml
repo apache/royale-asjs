@@ -155,6 +155,8 @@
     <component id="ArrayListSelectionModel" class="org.apache.royale.html.beads.models.ArrayListSelectionModel" />
 
     <component id="DataGrid" class="org.apache.royale.html.DataGrid"/>
+    <component id="DynamicDataGrid" class="org.apache.royale.html.DynamicDataGrid"/>
+    <component id="DataGridListArea" class="org.apache.royale.html.beads.DataGridListArea"/>
     <component id="DataProviderChangeNotifier" class="org.apache.royale.html.beads.DataProviderChangeNotifier"/>
     <component id="EasyDataProviderChangeNotifier" class="org.apache.royale.html.beads.EasyDataProviderChangeNotifier"/>
     <component id="DataProviderCollectionChangeNotifier" class="org.apache.royale.html.beads.DataProviderCollectionChangeNotifier"/>
@@ -164,6 +166,7 @@
     <component id="DataGridColumn" class="org.apache.royale.html.supportClasses.DataGridColumn"/>
     <component id="DataGridLinesBead" class="org.apache.royale.html.beads.DataGridLinesBead"/>
     <component id="DataGridColumnList" class="org.apache.royale.html.supportClasses.DataGridColumnList"/>
+    <component id="DynamicDataGridColumnList" class="org.apache.royale.html.supportClasses.DynamicDataGridColumnList"/>
     <component id="DataGridPercentageView" class="org.apache.royale.html.beads.DataGridPercentageView" />
     <component id="DataGridCollectionViewModel" class="org.apache.royale.html.beads.models.DataGridCollectionViewModel" />
 

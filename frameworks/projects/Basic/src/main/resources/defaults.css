@@ -139,6 +139,7 @@ DataGrid
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
+	ColumnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
@@ -176,7 +177,7 @@ DataGridColumnList {
 	background-color: #FFFFFF;
 }
 
-.opt_org-apache-royale-html-DataGrid_ListArea {
+DataGridListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
@@ -184,19 +185,19 @@ DataGridColumnList {
 	flex-grow: 1;
 }
 
-.DynamicDataGrid {
+DynamicDataGrid {
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
-	ColumnClassName: "DynamicDataGridColumnList";
+	ColumnClass: ClassReference("org.apache.royale.html.supportClasses.DynamicDataGridColumnList");
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
 }
 
-.DynamicDataGridColumnList {
+DynamicDataGridColumnList {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");

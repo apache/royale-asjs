@@ -4,7 +4,7 @@
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
 //  The ASF licenses this file to You under the Apache License, Version 2.0
-//  (the "License"); you may not use this file except in compliance with
+//  (the "Licens"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -16,32 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package org.apache.royale.html.supportClasses
 {
-    import org.apache.royale.core.IList
-	import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.IListWithPresentationModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.IEventDispatcher;
 
     /**
-     *  The IListWithPresentationModel interface is implemented by any IList
-	 *  that supports a separate IListPresentationModel
+     *  The IDataGridColumnList interface is a marker interface for DataGrid Column Lists
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
-	public interface IListWithPresentationModel extends IList
-	{
-        /**
-         *  Returns the component within the list (maybe even the list shell itself)
-		 *  which will be the parent of each itemRenderer.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		function get presentationModel():IListPresentationModel;
-		
-	}
+    public interface IDataGridColumnList extends IListWithPresentationModel, IStrand, IEventDispatcher
+    {
+        function set className(value:String):void;
+        function set labelField(value:String):void;
+        function set dataProvider(value:Object):void;
+        function get selectedIndex():int;
+        function set selectedIndex(value:int):void;
+        function set id(value:String):void;
+    }
 }
