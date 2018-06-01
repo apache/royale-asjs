@@ -533,7 +533,7 @@ TreeGrid .TreeGridColumn {
 	border: none
 }
 
-.opt_org-apache-royale-html-TreeGrid_ListArea {
+TreeGridListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");

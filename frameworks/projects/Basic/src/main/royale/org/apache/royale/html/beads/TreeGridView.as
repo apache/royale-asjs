@@ -155,9 +155,8 @@ package org.apache.royale.html.beads
 			_header.labelField = "label";
 			sharedModel.headerModel = _header.model as IBeadModel;
 			
-			_listArea = new Container();
+			_listArea = new TreeGridListArea();
 			_listArea.percentWidth = 100;
-			_listArea.className = "opt_org-apache-royale-html-TreeGrid_ListArea";
 				
 			createColumns();
 			
