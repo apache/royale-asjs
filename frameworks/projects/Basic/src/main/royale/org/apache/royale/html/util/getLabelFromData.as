@@ -26,21 +26,17 @@ package org.apache.royale.html.util
 	 *  @productversion Royale 0.9.3
      * Utility function to get a label string from a value object
      */
-    public function getLabelFromData(data:Object):String
+    public function getLabelFromData(obj:Object,data:Object):String
     {
         // slightly more code, but we bail early if it's a string which is often
         if (data is String) return "" + data;
         if(!data) return "";
 
-        if (ownsProperty("labelField")) return "" + data[data["labelField"]];
-        if (ownsProperty("dataField")) return "" + data[data["dataField"]];
-        if (ownsProperty("label")) return "" + data["label"];
+        if (obj["labelField"]) return "" + data[obj["labelField"]];
+        if (obj["dataField"]) return "" + data[obj["dataField"]];
+        if (data.hasOwnProperty("label")) return "" + data["label"];
 
         return "" + data;
-        // a little less code with this function
-        function ownsProperty(val:String):Boolean{
-            return data.hasOwnProperty(val);
-        }
 
     }
 }
