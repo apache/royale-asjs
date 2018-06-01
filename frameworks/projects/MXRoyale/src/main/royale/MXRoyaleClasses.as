@@ -117,7 +117,6 @@ internal class MXRoyaleClasses
 	import mx.core.FlexVersion; FlexVersion;
 	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
 	import mx.charts.series.BarSeries; BarSeries;
-	import mx.states.State; State;
 	import mx.collections.XMLListCollection; XMLListCollection;
 	import mx.controls.treeClasses.TreeItemRenderer; TreeItemRenderer;
 	import mx.charts.events.ChartItemEvent; ChartItemEvent;
