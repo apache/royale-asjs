@@ -88,7 +88,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                this.typeNames = 'toggleTextButton';
+                this.typeNames = 'ToggleTextButton';
             }
 		}
 
@@ -158,33 +158,31 @@ package org.apache.royale.html
         {
             selected = !selected;
         }
-
+        COMPILE::SWF
+        private var savedClassName:String;
         private function internalSelected():void
         {
             COMPILE::SWF
             {
-                var name:String = super.className;
+                if(!savedClassName == null)
+                    savedClassName = className;
+                var name:String = savedClassName;
                 if (selected)
                 {
-                    className = "toggleTextButton_Selected" + (name ? " " + name : "");
+                    className = "selected" + (name ? " " + name : "");
                 }
                 else
                 {
-                    className = "toggleTextButton" + (name ? " " + name : "");
+                    className = (name ? " " + name : "");
                 }
             }
             COMPILE::JS
             {
-                var isToggleTextButtonSelected:Boolean = element.classList.contains("toggleTextButton_Selected");
+                var isToggleTextButtonSelected:Boolean = element.classList.contains("selected");
                 //sync the class with the state
                 if(isToggleTextButtonSelected != _selected)
-                    element.classList.toggle("toggleTextButton_Selected");
-                
-                var isToggleTextButton:Boolean = element.classList.contains("toggleTextButton");
-                // Need to toggle if we have the class and it's selected or we don't and it's not selected.
-                if(isToggleTextButton == _selected)
-                    element.classList.toggle("toggleTextButton");
-                
+                    element.classList.toggle("selected");
+                                
             }
         }
 
