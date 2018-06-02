@@ -398,7 +398,7 @@ List
 	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
 }
 
-.DynamicList
+DynamicList
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			

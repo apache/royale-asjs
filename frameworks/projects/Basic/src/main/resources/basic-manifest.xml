@@ -44,6 +44,7 @@
     <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
     <component id="DataContainer" class="org.apache.royale.html.DataContainer"/>
     <component id="List" class="org.apache.royale.html.List"/>
+    <component id="DynamicList" class="org.apache.royale.html.DynamicList"/>
     <component id="PopUpList" class="org.apache.royale.html.PopUpList"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
