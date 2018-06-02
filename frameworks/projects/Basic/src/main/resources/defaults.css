@@ -85,11 +85,6 @@ ComboBoxList
 	background-color: #FFFFFF;
 }
 
-.opt_org-apache-royale-html-ComboBox_Button {
-	padding: 0px;
-	margin: 0px;
-}
-
 Container
 {
 	IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
