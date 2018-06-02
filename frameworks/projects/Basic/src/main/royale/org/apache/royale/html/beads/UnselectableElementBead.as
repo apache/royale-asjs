@@ -34,6 +34,27 @@ package org.apache.royale.html.beads
 	public class UnselectableElementBead implements IBead
 	{
 		/**
+		 * @royaleignorecoercion HTMLStyleElement
+		 */
+		private static function insertRule():void
+		{
+			// only do this once...
+			if(ruleInserted)
+				return;
+			ruleInserted = true;
+			// Inject a new css selector
+			COMPILE::JS
+			{
+				var style:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
+				style.type = 'text/css';
+				style.innerHTML = '.unselectable {-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;}';
+				document.getElementsByTagName('head')[0].appendChild(style);
+			}
+
+		}
+		private static var ruleInserted:Boolean;
+
+		/**
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
@@ -57,6 +78,7 @@ package org.apache.royale.html.beads
 		 */
 		public function set strand(value:IStrand):void
 		{
+			insertRule();
 			_strand = value;
 
 			COMPILE::JS
