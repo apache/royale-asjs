@@ -41,15 +41,20 @@ package org.apache.royale.utils.cssclasslist
     {
         COMPILE::JS
         {
+            var element:HTMLElement = component.element as HTMLElement;
+
             if (value.indexOf(" ") >= 0)
             {
                 var classes:Array = value.split(" ");
-                var element:HTMLElement = component.element as HTMLElement
-                element.classList.add.apply(element.classList, classes);
+                //element.classList.add.apply(element.classList, classes); // IE11 has a bug with multiple names
+                for each(var clazz:Object in classes)
+                {
+                    element.classList.add(clazz);
+                }
             } 
             else
             {
-                component.element.classList.add(value);
+                element.classList.add(value);
             }
         }
     }
