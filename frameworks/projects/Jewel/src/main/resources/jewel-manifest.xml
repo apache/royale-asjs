@@ -28,7 +28,6 @@
 
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
-    <component id="MultilineLabel" class="org.apache.royale.jewel.MultilineLabel"/>
     <component id="TextInput" class="org.apache.royale.jewel.TextInput"/>
     <component id="Slider" class="org.apache.royale.jewel.Slider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>

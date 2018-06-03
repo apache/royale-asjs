@@ -28,10 +28,16 @@ j|Application *, .royale *, .royale *:before, .royale *:after {
   flex-flow: row nowrap;
   align-items: flex-start;
 }
+.layout.horizontal > * {
+  flex: 1 0 auto;
+}
 
 .layout.vertical {
   flex-flow: column nowrap;
   align-items: flex-start;
+}
+.layout.vertical > * {
+  flex: 1 0 auto;
 }
 
 .layout.horizontal.space {
@@ -164,6 +170,11 @@ j|ListItemRenderer {
 
 .jewel.label {
   white-space: nowrap;
+}
+
+.jewel.label.multiline {
+  white-space: normal;
+  width: 100%;
 }
 
 j|Label {

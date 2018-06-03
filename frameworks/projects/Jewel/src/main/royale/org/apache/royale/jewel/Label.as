@@ -23,6 +23,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.ClassSelectorList;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -70,8 +71,17 @@ package org.apache.royale.jewel
 		public function Label()
 		{
 			super();
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel label";
 		}
+
+        protected var classSelectorList:ClassSelectorList;
+
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
 
         COMPILE::JS
         protected var textNode:Text;
@@ -158,6 +168,31 @@ package org.apache.royale.jewel
             }
         }
 
+        private var _multiline:Boolean = false;
+        /**
+		 *  A boolean flag to activate "multiline" effect selector.
+		 *  Allow the label to have more than one line if needed
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get multiline():Boolean
+        {
+            return _multiline;
+        }
+
+        public function set multiline(value:Boolean):void
+        {
+            if (_multiline != value)
+            {
+                _multiline = value;
+                classSelectorList.toggle("multiline", _multiline);
+                trace("multiline: " + multiline);
+            }
+        }
+
         /**
          *  @private
          */
@@ -175,7 +210,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'span');
+			addElementToWrapper(this,'div');
 
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);

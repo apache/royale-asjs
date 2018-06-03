@@ -38,7 +38,7 @@ limitations under the License.
         
             // Event handler function for displaying the selected Alert button.
             private function alertClickHandler(event:CloseEvent):void {
-                if (event.detail==Alert.YES)
+                if (event.detail == Alert.YES)
                     status.text="You answered Yes";
                 else
                     status.text="You answered No";
@@ -48,10 +48,12 @@ limitations under the License.
 	
 	<html:H3 text="Jewel Alert"/>
 	
-    <j:MultilineLabel text="Click the button below to display a simple Alert window"/>
+    <j:Label text="Click the button below to display a simple Alert window"
+             multiline="true"/>
 	<j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
 
-    <j:MultilineLabel text="Click the button below to display an Alert window and capture the button pressed by the user."/>
+    <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user."
+             multiline="true"/>
 	<j:Button text="Click Me" click="clickHandler(event)"/>
     <j:Label id="status"/>
 	

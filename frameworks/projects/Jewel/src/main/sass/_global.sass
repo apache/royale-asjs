@@ -45,22 +45,16 @@ j|Application *, .royale *, .royale *:before, .royale *:after
 	flex-flow: row nowrap
 	//justify-content: flex-start // align main axis (default)
 	align-items: flex-start
-	// white-space: nowrap
-	// display: block
-	// > *
-	// 	align-self: flex-start
-	//	flex: 1 0 auto
-	// 	display: inline-block
+	> *
+		flex: 1 0 auto
+	
 .layout.vertical
 	flex-flow: column nowrap
 	//justify-content: flex-start // align main axis (default)
 	align-items: flex-start
-	// vertical-align: top
-	// > *
-	// 	align-self: flex-start
-	//	flex: 1 0 auto
-	// 	display: block !important
-
+	> *
+		flex: 1 0 auto
+	
 .layout.horizontal.space
 	justify-content: space-between
 	align-items: flex-start

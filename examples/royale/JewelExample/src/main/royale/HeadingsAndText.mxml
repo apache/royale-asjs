@@ -32,6 +32,7 @@ limitations under the License.
 
 	<html:Span text="Some span text."/>
 	
-    <j:MultilineLabel text="Normal text used in a div, texts and fields with single line or multiple lines."/>
+    <j:Label text="Normal text used in a div, texts and fields with single line or multiple lines."
+			 multiline="true"/>
 
 </j:Card>
