@@ -28,6 +28,9 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.ILayoutStyleProperties;
+	import org.apache.royale.events.Event;
+
 	COMPILE::JS
 	{
 		import org.apache.royale.utils.cssclasslist.addStyles;
@@ -44,7 +47,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class VerticalLayoutWithPaddingAndGap extends LayoutBase implements IBeadLayout
+	public class VerticalLayoutWithPaddingAndGap extends LayoutBase implements IBeadLayout, ILayoutStyleProperties
 	{
 		/**
 		 *  Constructor.
@@ -166,6 +169,8 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 *  @private
 		 */
+		private var gapInitialized:Boolean;
+		public static const GAP_STYLE:String = "gap"
 		private var _gap:Number = 0;
 
 		/**
@@ -187,6 +192,39 @@ package org.apache.royale.jewel.beads.layouts
 		public function set gap(value:Number):void
 		{
 			_gap = value;
+			gapInitialized = true;
+		}
+
+		/**
+		 *  Get the component layout style and apply to if exists
+		 * 
+		 *  @param component the IUIBase component that host this layout
+		 *  @param cssProperty the style property in css set for the component to retrieve
+		 * 
+		 *  @see org.apache.royale.core.layout.ILayoutStyleProperties#applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		{	
+			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
+			if (cssValue !== undefined)
+			{
+				switch(cssProperty)
+				{
+					case GAP_STYLE:
+						if(!gapInitialized)
+						{
+							gap = Number(cssValue);
+						}
+						break;
+					default:
+						break;
+				}	
+			}
 		}
 
 		/**

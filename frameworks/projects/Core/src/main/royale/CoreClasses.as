@@ -63,6 +63,9 @@ internal class CoreClasses
     import org.apache.royale.core.BeadViewBase; BeadViewBase;
     import org.apache.royale.core.ImageViewBase; ImageViewBase;
     import org.apache.royale.core.BrowserWindow; BrowserWindow;
+
+	import org.apache.royale.core.layout.ILayoutStyleProperties; ILayoutStyleProperties;
+
 	COMPILE::SWF
 	{
 		import org.apache.royale.core.UIButtonBase; UIButtonBase;
