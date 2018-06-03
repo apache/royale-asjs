@@ -59,8 +59,7 @@ package org.apache.royale.html.supportClasses
 		 */
 		public function createColumn():IUIBase
 		{
-			var list:List = new List();
-			return list;
+			return new List();
 		}
 		
 		private var _itemRenderer:IFactory;

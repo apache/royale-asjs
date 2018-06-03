@@ -516,10 +516,6 @@ TreeGrid
 	border: 1px solid #222222;
 }
 
-TreeGrid .TreeGridColumn {
-	border: none
-}
-
 TreeGridListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
