@@ -18,23 +18,58 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 @namespace j "library://ns.apache.org/royale/jewel"
+@namespace "http://www.w3.org/1999/xhtml"
+
+$global-gap: 10px !default
+$phone-max-width: 480px !default
+$tablet-max-width: 840px !default
+$desktop-columns: 12 !default
+$tablet-columns: 8 !default
+$phone-columns: 4 !default
+
+@media (max-width: $phone-max-width - 1)
+
+@media (max-width: $tablet-max-width - 1)
+
+j|Application *, .royale *, .royale *:before, .royale *:after
+	box-sizing: border-box
+
+.layout
+	display: flex	
+	//overflow-y: auto
+	//overflow-x: hidden
+	//position: relative
+	//-webkit-overflow-scrolling: touch
 
 .layout.horizontal
-	white-space: nowrap
-	display: block
-	> *
-		display: inline-block
+	flex-flow: row nowrap
+	//justify-content: flex-start // align main axis (default)
+	align-items: flex-start
+	// white-space: nowrap
+	// display: block
+	// > *
+	// 	align-self: flex-start
+	//	flex: 1 0 auto
+	// 	display: inline-block
 .layout.vertical
-	vertical-align: top
-	> *
-		display: block !important
+	flex-flow: column nowrap
+	//justify-content: flex-start // align main axis (default)
+	align-items: flex-start
+	// vertical-align: top
+	// > *
+	// 	align-self: flex-start
+	//	flex: 1 0 auto
+	// 	display: block !important
 
 .layout.horizontal.space
-	display: flex
 	justify-content: space-between
 	align-items: flex-start
 
-
+// Firefox
+// remove dotted outline
+::-moz-focus-inner, ::-moz-focus-outer
+	border: 0
+	
 j|Group
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
 

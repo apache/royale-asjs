@@ -15,25 +15,32 @@
  *  limitations under the License.
  */
 @namespace j "library://ns.apache.org/royale/jewel";
-.layout.horizontal {
-  white-space: nowrap;
-  display: block;
+@namespace "http://www.w3.org/1999/xhtml";
+j|Application *, .royale *, .royale *:before, .royale *:after {
+  box-sizing: border-box;
 }
-.layout.horizontal > * {
-  display: inline-block;
+
+.layout {
+  display: flex;
+}
+
+.layout.horizontal {
+  flex-flow: row nowrap;
+  align-items: flex-start;
 }
 
 .layout.vertical {
-  vertical-align: top;
-}
-.layout.vertical > * {
-  display: block !important;
+  flex-flow: column nowrap;
+  align-items: flex-start;
 }
 
 .layout.horizontal.space {
-  display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+::-moz-focus-inner, ::-moz-focus-outer {
+  border: 0;
 }
 
 j|Group {
@@ -59,7 +66,6 @@ j|Container {
   }
 }
 .jewel.alert {
-  display: block;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -112,6 +118,10 @@ j|Alert {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
+}
+
+j|Card {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayoutWithPaddingAndGap");
 }
 
 @media -royale-swf {

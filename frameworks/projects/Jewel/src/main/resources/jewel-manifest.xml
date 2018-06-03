@@ -39,6 +39,8 @@
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     
+    <component id="Card" class="org.apache.royale.jewel.Card"/>
+    
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.DropDownListList"/>
     
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
