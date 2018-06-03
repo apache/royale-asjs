@@ -17,30 +17,31 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-@namespace j "library://ns.apache.org/royale/jewel"
-@namespace "http://www.w3.org/1999/xhtml"
+// Jewel Card
 
-j|Application
-	background: $background-color
-	font:
-		family: $font-stack
-	color: $default-font-color
+// Card variables
+.jewel.card
+    flex-direction: column
+    
+    min-width: 300px
+    min-height: 100px
+    
+    //overflow: hidden
+    //position: relative
+    //z-index: 1
+    
+    font:
+        size: $font-size
+        weight: 400
+    
+    @if $dark
+        background: lighten($background-color, 10%)
+    @else
+        background: darken($background-color, 8%)
 
-h1
-	font-size: 2em
+    border: 0px
+    border-radius: 10px
+    padding: 20px
 
-h2
-	font-size: 1.5em
-
-h3
-	font-size: 1.17em
-
-h4
-	font-size: 15px
-
-span
-	font-size: 14px
-
-div
-	font-size: 14px
-
+j|Card
+    gap: 10
