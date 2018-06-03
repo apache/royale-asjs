@@ -17,12 +17,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:j="library://ns.apache.org/royale/jewel"
-		 xmlns:js="library://ns.apache.org/royale/basic"
-		 xmlns:html="library://ns.apache.org/royale/html"
-         xmlns:models="models.*"
-		 className="container" width="350">
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:j="library://ns.apache.org/royale/jewel"
+		xmlns:js="library://ns.apache.org/royale/basic"
+		xmlns:html="library://ns.apache.org/royale/html"
+		xmlns:models="models.*">
     
     <fx:Script>
 		<![CDATA[
@@ -55,10 +54,6 @@ limitations under the License.
         <models:ListsModel/>
 	</j:model>
 
-	<j:beads>
-		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</j:beads>
-	
 	<html:H3 text="Jewel List"/>
 	
     <j:List id="list" width="200" height="300" change="onChange(event)">
@@ -73,4 +68,4 @@ limitations under the License.
 
 	<j:Button text="Assign new data" primary="true" click="assignNewData()"/>
 	
-</j:Group>
+</j:Card>

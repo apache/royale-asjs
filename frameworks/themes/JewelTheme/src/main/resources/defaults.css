@@ -20,6 +20,8 @@ j|Application {
   background: white;
   font-family: "Lato", sans-serif;
   color: #808080;
+  padding: 10px;
+  margin: 10px;
 }
 
 h1 {

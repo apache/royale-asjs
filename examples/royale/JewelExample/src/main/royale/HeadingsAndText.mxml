@@ -17,14 +17,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:j="library://ns.apache.org/royale/jewel"
-		 xmlns:html="library://ns.apache.org/royale/html"
-         className="container" width="350">
-    
-	<j:beads>
-		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</j:beads>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:j="library://ns.apache.org/royale/jewel"
+		xmlns:html="library://ns.apache.org/royale/html"
+		width="350">
+
 	
     <html:H3 text="Headings and text"/>
 
@@ -37,4 +34,4 @@ limitations under the License.
 	
     <j:MultilineLabel text="Normal text used in a div, texts and fields with single line or multiple lines."/>
 
-</j:Group>
+</j:Card>

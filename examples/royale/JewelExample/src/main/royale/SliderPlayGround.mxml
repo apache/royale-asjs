@@ -17,10 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:j="library://ns.apache.org/royale/jewel"
-		 xmlns:html="library://ns.apache.org/royale/html"
-         className="container">
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:j="library://ns.apache.org/royale/jewel"
+		xmlns:html="library://ns.apache.org/royale/html">
     
 	<fx:Script>
 		<![CDATA[
@@ -52,10 +51,6 @@ limitations under the License.
     	]]>
 	</fx:Script>
 
-	<j:beads>
-		<j:VerticalLayoutWithPaddingAndGap gap="10"/>
-	</j:beads>
-	
 	<html:H3 text="Jewel Slider"/>
 	
 	<j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500"
@@ -76,4 +71,4 @@ limitations under the License.
 	<j:Button id="button" text="Slider to 400x200" width="250" height="80" primary="true"
 					click="clickHandler(event)"/>
 
-</j:Group>
+</j:Card>
