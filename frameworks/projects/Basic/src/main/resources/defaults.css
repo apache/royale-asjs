@@ -699,12 +699,6 @@ TitleBar .TitleBarCloseButton {
 	margin: 0px;
 }
 
-TitleBar .TitleBarTitle {
-	font-weight: bold;
-	padding: 0;
-	margin: 0;
-}
-
 ToolTip
 {
 	background-color: #FFFFCC;

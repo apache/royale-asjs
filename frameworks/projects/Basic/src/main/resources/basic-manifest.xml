@@ -66,6 +66,7 @@
     <component id="ControlBar" class="org.apache.royale.html.ControlBar"/>
     <component id="RangeStepper" class="org.apache.royale.html.RangeStepper" />
     <component id="TitleBar" class="org.apache.royale.html.TitleBar"/>
+    <component id="TitleBarTitle" class="org.apache.royale.html.beads.TitleBarTitle"/>
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
