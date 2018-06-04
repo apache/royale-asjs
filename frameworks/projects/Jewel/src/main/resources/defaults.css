@@ -28,16 +28,10 @@ j|Application *, .royale *, .royale *:before, .royale *:after {
   flex-flow: row nowrap;
   align-items: flex-start;
 }
-.layout.horizontal > * {
-  flex: 1 0 auto;
-}
 
 .layout.vertical {
   flex-flow: column nowrap;
   align-items: flex-start;
-}
-.layout.vertical > * {
-  flex: 1 0 auto;
 }
 
 .layout.horizontal.space {
@@ -164,6 +158,11 @@ j|ControlBar {
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   }
 }
+.jewel.item {
+  display: flex;
+  cursor: pointer;
+}
+
 j|ListItemRenderer {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
 }
@@ -179,6 +178,11 @@ j|ListItemRenderer {
 
 j|Label {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
+}
+
+.jewel.list {
+  align-items: stretch;
+  align-content: flex-start;
 }
 
 j|List {
