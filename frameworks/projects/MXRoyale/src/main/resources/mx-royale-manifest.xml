@@ -51,4 +51,9 @@
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	
     <component id="State" class="mx.states.State" /> 
+	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
+	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
+	<component id="DateValidator" class="mx.validators.DateValidator"/>
+	<component id="EmailValidator" class="mx.validators.EmailValidator"/>
+	
 </componentPackage>
