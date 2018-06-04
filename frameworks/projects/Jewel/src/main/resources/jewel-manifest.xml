@@ -32,17 +32,19 @@
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
     <component id="ControlBar" class="org.apache.royale.jewel.ControlBar"/>
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
+    <component id="List" class="org.apache.royale.jewel.List"/>
+    <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     
-    <component id="Disabled" class="org.apache.royale.jewel.beads.Disabled"/>
+    <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
 
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
     <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutWithPaddingAndGap"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.jewel.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
     <component id="HorizontalLayoutSpaceBetween" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween"/>
-
-    <component id="HorizontalSliderLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalSliderLayout" />
     
+    <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
+
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     
 </componentPackage>
