@@ -60,6 +60,8 @@
     <component id="VContainer" class="org.apache.royale.html.VContainer"/>
     <component id="Panel" class="org.apache.royale.html.Panel"/>
     <component id="PanelView" class="org.apache.royale.html.beads.PanelView"/>
+    <component id="PanelTitleBar" class="org.apache.royale.html.PanelTitleBar"/>
+    <component id="PanelContent" class="org.apache.royale.html.supportClasses.PanelContent"/>
     <component id="ImageView" class="org.apache.royale.html.beads.ImageView"/>
     <component id="PanelWithControlBar" class="org.apache.royale.html.PanelWithControlBar"/>
     <component id="PanelWithControlBarView" class="org.apache.royale.html.beads.PanelWithControlBarView"/>

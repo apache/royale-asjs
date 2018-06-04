@@ -84,6 +84,16 @@ Group
 	border-width: 1px;
 }
 
+PanelContent
+{
+	background-color: #FFFFFF;
+}
+
+PanelTitleBar
+{
+	border-bottom: 1px solid #333333;
+}
+
 RadioButton
 {
 	font-size: 12px;

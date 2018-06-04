@@ -549,16 +549,6 @@ PanelWithControlBar
 	border: 1px solid #333333;
 }
 
-Panel .TitleBar
-{
-	border-bottom: 1px solid #333333;
-}
-
-.PanelContent
-{
-	background-color: #FFFFFF;
-}
-
 PopUpList
 {
 	position: absolute;

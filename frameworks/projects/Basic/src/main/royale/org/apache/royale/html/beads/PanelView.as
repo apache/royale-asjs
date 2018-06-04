@@ -39,6 +39,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Group;
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.Panel;
+	import org.apache.royale.html.supportClasses.PanelContent;
+	import org.apache.royale.html.PanelTitleBar;
 	import org.apache.royale.html.TitleBar;
 	import org.apache.royale.utils.CSSUtils;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
@@ -158,10 +160,8 @@ package org.apache.royale.html.beads
 			}
 
             if (!_titleBar) {
-                _titleBar = new TitleBar();
+                _titleBar = new PanelTitleBar();
 			}
-
-			_titleBar.id = "panelTitleBar";
 
 			COMPILE::SWF {
 				_titleBar.percentWidth = 100;
@@ -189,9 +189,7 @@ package org.apache.royale.html.beads
 			}
 
 			if (!_contentArea) {
-				_contentArea = new Container();
-				_contentArea.id = "panelContent";
-				_contentArea.typeNames = "PanelContent";
+				_contentArea = new PanelContent();
 
 				// add the layout bead to the content area.
 				if (transferLayoutBead) _contentArea.addBead(transferLayoutBead);
