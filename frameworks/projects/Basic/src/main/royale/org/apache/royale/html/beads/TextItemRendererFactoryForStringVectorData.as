@@ -22,14 +22,15 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IList;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
+    import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -131,12 +132,16 @@ package org.apache.royale.html.beads
          */
         protected var dataGroup:IItemRendererParent;
 		
+        /**
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.core.IListView
+         */
 		private function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Vector.<String> = selectionModel.dataProvider as Vector.<String>;
 			
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererParent = view.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
 			
@@ -145,7 +150,9 @@ package org.apache.royale.html.beads
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                dataGroup.addItemRenderer(tf);
+                //TODO There is no itemsCreated event being dispatched once all the item renderers are added.
+                // Not sure why, but that would require dispatching events as they are added. This should probably be fixed.
+                dataGroup.addItemRenderer(tf, true);
 				tf.text = dp[i];
 				
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);

@@ -65,6 +65,7 @@ import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
+import org.apache.royale.textLayout.events.FocusEvent;
 /*
 import mx.managers.IToolTipManagerClient;
 import mx.managers.SystemManager;
@@ -110,6 +111,140 @@ use namespace mx_internal;
  */
 [Event(name="initialize", type="mx.events.FlexEvent")]
 
+/**
+ *  Dispatched when an object has had its <code>commitProperties()</code>,
+ *  <code>measure()</code>, and
+ *  <code>updateDisplayList()</code> methods called (if needed).
+ *
+ *  <p>This is the last opportunity to alter the component before it is
+ *  displayed. All properties have been committed and the component has
+ *  been measured and layed out.</p>
+ *
+ *  <p>This event is only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ * 
+ *  @eventType mx.events.FlexEvent.UPDATE_COMPLETE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="updateComplete", type="mx.events.FlexEvent")]
+
+
+/**
+ *  Dispatched when values are changed programmatically
+ *  or by user interaction.
+ *
+ *  <p>Because a programmatic change triggers this event, make sure
+ *  that any <code>valueCommit</code> event handler does not change
+ *  a value that causes another <code>valueCommit</code> event.
+ *  For example, do not change a control's <code>dataProvider</code>
+ *  property in a <code>valueCommit</code> event handler. </p>
+ *
+ *  @eventType mx.events.FlexEvent.VALUE_COMMIT
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="valueCommit", type="mx.events.FlexEvent")]
+
+
+
+[Event(name="focusOut", type="org.apache.royale.textLayout.events.FocusEvent")]
+
+[Event(name="change", type="org.apache.royale.events.Event")]
+
+//--------------------------------------
+//  Drag-and-drop events
+//--------------------------------------
+
+/**
+ *  Dispatched by a component when the user moves the mouse over the component
+ *  during a drag operation.
+ *  In an application running in Flash Player,
+ *  the event is dispatched many times when you move the mouse over any component.
+ *  In an application running in AIR, the event is dispatched only once.
+ *
+ *  <p>In order to be a valid drop target, you must define a handler
+ *  for this event.
+ *  In the handler, you can change the appearance of the drop target
+ *  to provide visual feedback to the user that the component can accept
+ *  the drag.
+ *  For example, you could draw a border around the drop target,
+ *  or give focus to the drop target.</p>
+ *
+ *  <p>If you want to accept the drag, you must call the
+ *  <code>DragManager.acceptDragDrop()</code> method. If you don't
+ *  call <code>acceptDragDrop()</code>, you do not get any of the
+ *  other drag events.</p>
+ *
+ *  <p>In Flash Player, the value of the <code>action</code> property is always
+ *  <code>DragManager.MOVE</code>, even if you are doing a copy.
+ *  This is because the <code>dragEnter</code> event occurs before
+ *  the control recognizes that the Control key is pressed to signal a copy.
+ *  The <code>action</code> property of the event object for the
+ *  <code>dragOver</code> event does contain a value that signifies the type of
+ *  drag operation. You can change the type of drag action by calling the
+ *  <code>DragManager.showFeedback()</code> method.</p>
+ *
+ *  <p>In AIR, the default value of the <code>action</code> property is
+ *  <code>DragManager.COPY</code>.</p>
+ *
+ *  <p>Because of the way data to a Tree control is structured,
+ *  the Tree control handles drag and drop differently from the other list-based controls.
+ *  For the Tree control, the event handler for the <code>dragDrop</code> event
+ *  only performs an action when you move or copy data in the same Tree control,
+ *  or copy data to another Tree control.
+ *  If you drag data from one Tree control and drop it onto another Tree control
+ *  to move the data, the event handler for the <code>dragComplete</code> event
+ *  actually performs the work to add the data to the destination Tree control,
+ *  rather than the event handler for the dragDrop event,
+ *  and also removes the data from the source Tree control.
+ *  This is necessary because to reparent the data being moved,
+ *  Flex must remove it first from the source Tree control.</p>
+ *
+ *  @see mx.managers.DragManager
+ *
+ *  @eventType mx.events.DragEvent.DRAG_ENTER
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragEnter", type="mx.events.DragEvent")]
+/**
+ *  Dispatched by the drop target when the user releases the mouse over it.
+ *
+ *  <p>You use this event handler to add the drag data to the drop target.</p>
+ *
+ *  <p>If you call <code>Event.preventDefault()</code> in the event handler
+ *  for the <code>dragDrop</code> event for
+ *  a Tree control when dragging data from one Tree control to another,
+ *  it prevents the drop.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_DROP
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragDrop", type="mx.events.DragEvent")]
+
+/**
+ *  The main color for a component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Style(name="chromeColor", type="uint", format="Color", inherit="yes", theme="spark")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
@@ -164,6 +299,8 @@ use namespace mx_internal;
  *    bottom="undefined"
  *
  *  <b>Events</b>
+ *    valueCommit="<i>No default</i>"
+ *  &gt;
  *  </pre>
  *
  *  @see mx.core.UIComponent
@@ -392,6 +529,186 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
 
+    //------------------------------------------------------------------------
+    //
+    //  Properties: Accessibility
+    //
+    //------------------------------------------------------------------------
+    
+    /**
+     *  A convenience accessor for the <code>silent</code> property
+     *  in this UIComponent's <code>accessibilityProperties</code> object.
+     *
+     *  <p>Note that <code>accessibilityEnabled</code> has the opposite sense from silent;
+     *  <code>accessibilityEnabled</code> is <code>true</code> 
+     *  when <code>silent</code> is <code>false</code>.</p>
+     *
+     *  <p>The getter simply returns <code>accessibilityProperties.silent</code>,
+     *  or <code>true</code> if <code>accessibilityProperties</code> is null.
+     *  The setter first checks whether <code>accessibilityProperties</code> is null, 
+     *  and if it is, sets it to a new AccessibilityProperties instance.
+     *  Then it sets <code>accessibilityProperties.silent</code>.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get accessibilityEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+        return false;
+    }
+    
+    public function set accessibilityEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+    }
+    
+    /**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get useHandCursor():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set useHandCursor(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+    }
+	
+	 /**
+     *  From flash.display.InteractiveObject
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get mouseEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set mouseEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+    }
+	
+	 /**
+     *  From flash.display.DisplayObjectContainer
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get mouseChildren():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set mouseChildren(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+    }
+	
+	
+	/**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get buttonMode():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set buttonMode(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+    }
+    
+    [Bindable("errorStringChanged")]
+    
+    /**
+     *  The text that displayed by a component's error tip when a
+     *  component is monitored by a Validator and validation fails.
+     *
+     *  <p>You can use the <code>errorString</code> property to show a
+     *  validation error for a component, without actually using a validator class.
+     *  When you write a String value to the <code>errorString</code> property,
+     *  Flex draws a red border around the component to indicate the validation error,
+     *  and the String appears in a tooltip as the validation error message when you move
+     *  the mouse over the component, just as if a validator detected a validation error.</p>
+     *
+     *  <p>To clear the validation error, write an empty String, "",
+     *  to the <code>errorString</code> property.</p>
+     *
+     *  <p>Note that writing a value to the <code>errorString</code> property
+     *  does not trigger the valid or invalid events; it only changes the border
+     *  color and displays the validation error message.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get errorString():String
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+        return "";
+    }
+    
+    /**
+     *  @private
+     */
+    public function set errorString(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+    }
+    
     //----------------------------------
     //  owner
     //----------------------------------
@@ -1173,7 +1490,12 @@ public class UIComponent extends UIBase
     public function get measuredWidth():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredWidth)) return width;
+			if (isNaN(_measuredWidth))
+            {
+                measure();
+                if (isNaN(_measuredWidth))
+                    return width;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredWidth)) {
@@ -1215,7 +1537,12 @@ public class UIComponent extends UIBase
     public function get measuredHeight():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredHeight)) return height;
+			if (isNaN(_measuredHeight))
+            {
+                measure();
+                if (isNaN(_measuredHeight))
+                    return height;
+            }
 		}
 		COMPILE::JS {
 			if (isNaN(_measuredHeight)) {
@@ -1886,7 +2213,46 @@ public class UIComponent extends UIBase
 		// always 1.0
 	}
 
+    //----------------------------------
+    //  alpha
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the alpha property.
+     */
+    private var _alpha:Number = 1.0;
+    
+    [Bindable("alphaChanged")]
+    [Inspectable(defaultValue="1.0", category="General", verbose="1", minValue="0.0", maxValue="1.0")]
+
+    /**
+     *  @private
+     */
+    override public function get alpha():Number
+    {
+        // Here we roundtrip alpha in the same manner as the 
+        // player (purposely introducing a rounding error).
+        return int(_alpha * 256.0) / 256.0;
+    }
+    
+    /**
+     *  @private
+     */
+    override public function set alpha(value:Number):void
+    { 
+        if (_alpha != value)
+        {
+            _alpha = value;
+        
+           /*  if (designLayer)
+                value = value * designLayer.effectiveAlpha; 
+            
+            $alpha = value;
+			*/
+            dispatchEvent(new Event("alphaChanged"));
+        }
+    }
     //----------------------------------
     //  includeInLayout
     //----------------------------------
@@ -3239,10 +3605,222 @@ public class UIComponent extends UIBase
         if (GOOG::DEBUG)
             trace("bottom not implemented");
     }
+	[Inspectable(category="General")]
+
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>horizontalCenter.s2="&#64;Clear()"</code> unsets the 
+     *  <code>horizontalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.horizontalCenter = undefined</code> unsets the 
+     *  <code>horizontalCenter</code> constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalCenter():Object
+    {
+        return 0;
+    }
+    public function set horizontalCenter(value:Object):void
+    {
+         if (GOOG::DEBUG)
+            trace("horizontalCenter not implemented");
+    }
 
     [Inspectable(category="General")]
 
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>verticalCenter.s2="&#64;Clear()"</code> unsets the <code>verticalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.verticalCenter = undefined</code> unsets the <code>verticalCenter</code>
+     *  constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalCenter():Object
+    {
+        return 0;
+    }
+    public function set verticalCenter(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalCenter not implemented");
+    }
+	
+    [Inspectable(category="General")]
 
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontWeight():Object
+    {
+        if (GOOG::DEBUG)
+            trace("fontWeight not implemented");
+        return 0;
+    }
+    public function set fontWeight(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("fontWeight not implemented");
+    }
+	[Inspectable(category="General")]
+
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get cornerRadius():Object
+    {
+        if (GOOG::DEBUG)
+            trace("cornerRadius not implemented");
+        return 0;
+    }
+    public function set cornerRadius(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("cornerRadius not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontFamily():Object
+    {
+        if (GOOG::DEBUG)
+            trace("fontFamily not implemented");
+        return 0;
+    }
+    public function set fontFamily(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("fontFamily not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get uid():Object
+    {
+        if (GOOG::DEBUG)
+            trace("uid not implemented");
+        return 0;
+    }
+    public function set uid(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("uid not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontSize():Object
+    {
+        if (GOOG::DEBUG)
+            trace("fontSize not implemented");
+        return 0;
+    }
+    public function set fontSize(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("fontSize not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get textAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+        return 0;
+    }
+    public function set textAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get color():Object
+    {
+        if (GOOG::DEBUG)
+            trace("color not implemented");
+        return 0;
+    }
+    public function set color(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("color not implemented");
+    }
+	[Inspectable(category="General")]
+
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectedField():Object
+    {
+        if (GOOG::DEBUG)
+            trace("selectedField not implemented");
+        return 0;
+    }
+    public function set selectedField(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("selectedField not implemented");
+    }
+	[Inspectable(category="General")]
+
+	
     //--------------------------------------------------------------------------
     //
     //  Methods: Moving and sizing
@@ -3331,7 +3909,23 @@ public class UIComponent extends UIBase
         }
     }
 
-
+	/**
+     *  Deletes a style property from this component instance.
+     *
+     *  <p>This does not necessarily cause the <code>getStyle()</code> method
+     *  to return <code>undefined</code>.</p>
+     *
+     *  @param styleProp The name of the style property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function clearStyle(styleProp:String):void
+    {
+        setStyle(styleProp, undefined);
+    }
     [Bindable(style="true")]
     /**
      *  Gets a style property that has been set anywhere in this

@@ -114,11 +114,12 @@ package mx.containers
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
+ *  @royalesuppresspublicvarwarning
  */
 public class GridItem extends HBox
 {
-    include "../core/Version.as";
+   // include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -132,7 +133,7 @@ public class GridItem extends HBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function GridItem()
     {
@@ -176,7 +177,7 @@ public class GridItem extends HBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get colSpan():int
     {
@@ -214,7 +215,7 @@ public class GridItem extends HBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get rowSpan():int
     {

@@ -53,8 +53,8 @@ $textfield-border-radius: 3px
 		color: $textfield-text-color
 
 		@if $flat
-			border: 0px solid
 			background: $default-color
+			border: 0px solid
 		@else
 			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
 			border: 1px solid darken($default-color, 15%)
@@ -82,11 +82,11 @@ $textfield-border-radius: 3px
 		&[disabled]
 			cursor: unset
 			@if $flat
+				background: $disabled-color
 				border: 0px solid
-				background: $disabled-color
 			@else
-				border: 1px solid $disabled-border-color// .094em
 				background: $disabled-color
+				border: 1px solid $disabled-border-color// .094em
 			box-shadow: none
 			color: $disabled-font-color
 			
