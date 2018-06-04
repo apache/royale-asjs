@@ -60,9 +60,9 @@ $radiobutton-label-font-size: 16px
 
         &:checked, &:checked:active
             @if $flat
-                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $default-color
+                background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $default-color
             @else
-                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($default-color, 12%)//linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+                background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($default-color, 12%)//linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
             background-repeat: no-repeat
             background-size: 60%
             background-position: center
@@ -70,9 +70,9 @@ $radiobutton-label-font-size: 16px
 
             &:checked:focus, &:checked:active:focus
                 @if $flat
-                    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%)
+                    background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%)
                 @else
-                    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%) //linear-gradient(lighten($default-color, 25%), lighten($default-color, 20%))
+                    background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%) //linear-gradient(lighten($default-color, 25%), lighten($default-color, 20%))
                 background-repeat: no-repeat
                 background-size: 60%
                 background-position: center
@@ -99,7 +99,7 @@ $radiobutton-label-font-size: 16px
                 color: $disabled-font-color
             
             &:checked
-                background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor(darken($disabled-color, 15%))}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $disabled-color
+                background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor(darken($disabled-color, 15%))}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $disabled-color
                 background-size: 60%
                 background-position: center
                 background-repeat: no-repeat

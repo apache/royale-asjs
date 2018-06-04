@@ -236,14 +236,14 @@ j|Card {
   border-radius: 3px;
 }
 .jewel.checkbox input:checked, .jewel.checkbox input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%233CADF1' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f8f8f8;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%233CADF1' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f8f8f8;
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
   background-attachment: fixed;
 }
 .jewel.checkbox input:checked:checked:focus, .jewel.checkbox input:checked:checked:active:focus, .jewel.checkbox input:checked:active:checked:focus, .jewel.checkbox input:checked:active:checked:active:focus {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%233CADF1' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #b3dffa;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%233CADF1' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #b3dffa;
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
@@ -263,7 +263,7 @@ j|Card {
   color: silver;
 }
 .jewel.checkbox input[disabled]:checked {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23cccccc' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f3f3f3;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23cccccc' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f3f3f3;
   background-size: 90%;
   background-position: center;
   background-repeat: no-repeat;
@@ -371,14 +371,14 @@ j|Card {
   border-radius: 50%;
 }
 .jewel.radiobutton input:checked, .jewel.radiobutton input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%233CADF1' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f8f8f8;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%233CADF1' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f8f8f8;
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
   background-attachment: fixed;
 }
 .jewel.radiobutton input:checked:checked:focus, .jewel.radiobutton input:checked:checked:active:focus, .jewel.radiobutton input:checked:active:checked:focus, .jewel.radiobutton input:checked:active:checked:active:focus {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%233CADF1' cx='11' cy='11' r='6'></circle></g></g></svg>"), #b3dffa;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%233CADF1' cx='11' cy='11' r='6'></circle></g></g></svg>"), #b3dffa;
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
@@ -398,7 +398,7 @@ j|Card {
   color: silver;
 }
 .jewel.radiobutton input[disabled]:checked {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23cccccc' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f3f3f3;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23cccccc' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f3f3f3;
   background-size: 60%;
   background-position: center;
   background-repeat: no-repeat;
