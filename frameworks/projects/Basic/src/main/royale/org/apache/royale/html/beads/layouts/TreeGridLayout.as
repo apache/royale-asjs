@@ -34,6 +34,10 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.html.beads.models.TreeGridModel;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
+	COMPILE::JS 
+	{
+		import org.apache.royale.core.IRenderedObject;
+	}
 	
 	/**
 	 * The TreeGridLayout class provides the sizing and positioning for the sub-components
@@ -109,9 +113,19 @@ package org.apache.royale.html.beads.layouts
 		 *  @productversion Royale 0.9
          *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 */
 		public function layout():Boolean
 		{
+
+			COMPILE::JS 
+			{
+				var renderedObject:IRenderedObject = IRenderedObject(host);
+				if (!renderedObject.element.style.position || renderedObject.element.style.position == 'static')
+				{
+					renderedObject.element.style.position = 'relative';
+				}
+			}
 			var model:TreeGridModel = uiHost.model as TreeGridModel;
 			var header:ButtonBar = (uiHost.view as TreeGridView).header as ButtonBar;
 			var contentArea:UIBase = (uiHost.view as TreeGridView).listArea;

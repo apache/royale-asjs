@@ -39,11 +39,6 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			treeGrid.dispatchEvent(new Event('layoutNeeded'));
-		}
 		]]>
 	</fx:Script>
     
