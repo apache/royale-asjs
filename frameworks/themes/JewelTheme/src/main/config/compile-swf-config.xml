@@ -75,6 +75,11 @@
     
     <include-lookup-only>true</include-lookup-only>
     
+    <include-file>
+        <name>defaults.css</name>
+        <path>../resources/defaults.css</path>
+    </include-file>
+    
     <include-classes>
         <class>JewelThemeClasses</class>
     </include-classes>

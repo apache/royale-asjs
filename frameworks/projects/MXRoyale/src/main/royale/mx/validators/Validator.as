@@ -26,10 +26,11 @@ package mx.validators
 	import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
-	
+	import mx.events.FlexEvent;
+	import mx.events.ValidationResultEvent;
    /*  import mx.core.IMXMLObject;
     import mx.events.FlexEvent;
-    import mx.events.ValidationResultEvent;
+    
     import mx.resources.IResourceManager;
     import mx.resources.ResourceManager;
     import mx.utils.ObjectUtil; */
@@ -660,7 +661,7 @@ public class Validator extends EventDispatcher
             
         //removeTriggerHandler();
         _triggerEvent = value;
-        addTriggerHandler();
+       // addTriggerHandler();
     }
 
     //--------------------------------------------------------------------------

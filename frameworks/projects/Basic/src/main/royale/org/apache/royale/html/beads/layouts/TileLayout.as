@@ -127,11 +127,11 @@ package org.apache.royale.html.beads.layouts
          */
 		override public function layout():Boolean
 		{
-			var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
-			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+			// var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
 			
 			COMPILE::SWF
 			{
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				var area:UIBase = layoutView as UIBase;
 
 				var xpos:Number = 0;
@@ -202,8 +202,6 @@ package org.apache.royale.html.beads.layouts
 				var ypos:Number;
 				var useWidth:Number;
 				var useHeight:Number;
-				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
-				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
 				
@@ -225,15 +223,22 @@ package org.apache.royale.html.beads.layouts
 				ypos = 0;
 				useWidth = columnWidth;
 				useHeight = rowHeight;
-
-				if (isNaN(useWidth)) {
-					useWidth = Math.floor(adjustedWidth / numColumns); // + gap
-				}
-				if (isNaN(useHeight)) {
-					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.ceil(realN / numColumns);
-					if (host.isHeightSizedToContent()) useHeight = 30; // default height
-					else useHeight = Math.floor(adjustedHeight / numRows);
+				var needWidth:Boolean = isNaN(useWidth);
+				var needHeight:Boolean = isNaN(useHeight);
+				if(needHeight || needWidth){
+					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+					var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+					var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
+					if (needWidth)
+						useWidth = Math.floor(adjustedWidth / numColumns); // + gap
+					
+					if (needHeight)
+					{
+						// given the width and total number of items, how many rows?
+						var numRows:Number = Math.ceil(realN / numColumns);
+						if (host.isHeightSizedToContent()) useHeight = 30; // default height
+						else useHeight = Math.floor(adjustedHeight / numRows);
+					}
 				}
 
 				for (i = 0; i < n; i++)

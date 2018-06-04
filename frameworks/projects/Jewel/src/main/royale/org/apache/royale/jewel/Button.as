@@ -19,11 +19,11 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.html.Button;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.utils.cssclasslist.toggleStyle;
     }
 
     /**
@@ -59,9 +59,11 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel button";
 		}
+        
+        protected var classSelectorList:ClassSelectorList;
 
         private var _primary:Boolean = false;
 
@@ -86,10 +88,7 @@ package org.apache.royale.jewel
             {
                 _primary = value;
 
-                COMPILE::JS
-                {
-                    toggleStyle(element, "primary", value);
-                }
+                classSelectorList.toggle("primary", value);
             }
         }
         
@@ -116,10 +115,7 @@ package org.apache.royale.jewel
             {
                 _secondary = value;
 
-                COMPILE::JS
-                {
-                    toggleStyle(element, "secondary", value);
-                }
+                classSelectorList.toggle("secondary", value);
             }
         }
 
@@ -146,11 +142,15 @@ package org.apache.royale.jewel
             {
                 _emphasized = value;
 
-                COMPILE::JS
-                {
-                    toggleStyle(element, "emphasized", value);
-                }
+                classSelectorList.toggle("emphasized", value);
             }
         }
+        
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
+
 	}
 }

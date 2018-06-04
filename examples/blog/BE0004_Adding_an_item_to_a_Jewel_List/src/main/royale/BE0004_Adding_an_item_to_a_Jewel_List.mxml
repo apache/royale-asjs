@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:js="library://ns.apache.org/royale/basic">
+    
+    <fx:Style source="../../main/resources/styles.css"/>
+
+    <fx:Script>
+		<![CDATA[
+            private function changeHandler(event:Event):void {
+                selected.text = "Selected: " + list.selectedItem;
+            }
+            
+            private function clickHandler(event:Event):void {
+                avengersCharacters.addItem("Hawkeye");
+            }
+		]]>
+	</fx:Script>
+
+    <js:initialView>
+        <js:View>
+
+            <js:beads>
+                <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+            </js:beads>
+            <html:H3 text="Avengers Character List"/>
+	
+            <j:List id="list" width="200" height="300" change="changeHandler(event)">
+                <j:dataProvider>
+                    <js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
+                </j:dataProvider>
+            </j:List>
+
+            <j:Label id="selected"/>
+
+            <j:TextButton width="200" primary="true" text="who is missing?" click="clickHandler(event)"/>
+        </js:View>
+    </js:initialView>
+
+</j:Application>

@@ -46,7 +46,7 @@ package org.apache.royale.html.beads
 				idx = 0;
 
 			var dg:IItemRendererParent = IListView(host.view).dataGroup as IItemRendererParent;
-			var numElems:int = dg.numElements;
+			var numElems:int = dg.numItemRenderers;
 			for(var i:int = 0; i < numElems; i++){
 				if(i == idx)
 					continue;
@@ -64,7 +64,7 @@ package org.apache.royale.html.beads
 		protected function selectedIndexChangedHandler(event:Event):void
 		{
 			var view:IListView = host.view as IListView;
-			var newChild:UIBase = view.dataGroup.getElementAt(host.selectedIndex) as UIBase;
+			var newChild:UIBase = view.dataGroup.getItemRendererAt(host.selectedIndex) as UIBase;
 			if (!newChild)
 			{
 				return;
