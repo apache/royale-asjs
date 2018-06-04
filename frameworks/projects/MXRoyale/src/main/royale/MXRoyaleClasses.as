@@ -86,10 +86,6 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
-	import mx.validators.NumberValidator; NumberValidator;
-	import mx.validators.PhoneNumberValidator; PhoneNumberValidator;
-	import mx.validators.DateValidator; DateValidator;
-	import mx.validators.EmailValidator; EmailValidator;
 
     COMPILE::SWF
     {
