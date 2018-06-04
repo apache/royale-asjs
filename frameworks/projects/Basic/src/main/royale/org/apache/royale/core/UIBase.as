@@ -38,6 +38,7 @@ package org.apache.royale.core
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
+        import org.apache.royale.utils.cssclasslist.addStyles;
     }
 	
 	/**
@@ -170,7 +171,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
+	public class UIBase extends HTMLElementWrapper implements IStrandWithModelView, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
 	{
         /**
          *  Constructor.
@@ -1030,13 +1031,25 @@ package org.apache.royale.core
          * 
          *  @royalesuppresspublicvarwarning
          */
-        public var typeNames:String;
+        public var typeNames:String = "";
         
         private var _className:String;
 
         /**
          *  The classname.  Often used for CSS
          *  class selector lookups.
+         * 
+         *  In Royale the list of class selectors actually applied to
+         *  the component can be more than what is specified in this
+         *  className property.   This property is primarily provided
+         *  to make it easy to specify class selectors in MXML.  If
+         *  you want to change the set of class selectors at runtime
+         *  it is more efficient to use the ClassList utility functions in
+         *  org.apache.royale.utils.classList.
+         * 
+         *  Do not mix usage of the ClassList utility functions and modifying
+         *  the className property at runtime.  It is best to think of this
+         *  className property as a write-once property.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1055,11 +1068,16 @@ package org.apache.royale.core
         {
             if (_className !== value)
             {
+                _className = value;
+
                 COMPILE::JS
                 {
-                    setClassName(typeNames ? StringUtil.trim(value + ' ' + typeNames) : value);             
+                    // set it now if it was set once in addedToParent
+                    // otherwise just wait for addedToParent
+                    if (parent)
+                        setClassName(computeFinalClassNames());             
                 }
-                _className = value;
+                
                 dispatchEvent(new Event("classNameChanged"));
             }
         }
@@ -1067,13 +1085,13 @@ package org.apache.royale.core
 		COMPILE::JS
         protected function computeFinalClassNames():String
 		{
-            return (_className ? _className + " " : "") + (typeNames ? typeNames : "");
+            return  _className ? _className + " " + typeNames : typeNames;
 		}
 
         COMPILE::JS
         protected function setClassName(value:String):void
         {
-            element.className = value;           
+            element.className = value;        
         }
 
         /**
@@ -1364,11 +1382,8 @@ package org.apache.royale.core
 			
             COMPILE::JS
             {
-				if (typeNames)
-                {
-                    setClassName(computeFinalClassNames());
-                }
-
+			    setClassName(computeFinalClassNames());
+                
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
             }

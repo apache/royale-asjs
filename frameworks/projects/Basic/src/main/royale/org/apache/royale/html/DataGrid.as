@@ -18,15 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
+	import org.apache.royale.core.GroupBase;
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChangePropagator;
+	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.GroupBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.html.beads.models.DataGridPresentationModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.core.IChangePropagator;
+	import org.apache.royale.html.beads.models.DataGridPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
@@ -45,7 +46,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGrid extends GroupBase
+	public class DataGrid extends GroupBase implements IDataGrid
 	{
 		/**
 		 *  constructor.
@@ -146,7 +147,7 @@ package org.apache.royale.html
 		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 */
-		public function get presentationModel():IDataGridPresentationModel
+		public function get presentationModel():IBead
 		{
 			if (_presentationModel == null) {
 				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
@@ -161,9 +162,9 @@ package org.apache.royale.html
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
-		public function set presentationModel(value:IDataGridPresentationModel):void
+		public function set presentationModel(value:IBead):void
 		{
-			_presentationModel = value;
+			_presentationModel = value as IDataGridPresentationModel;
 		}
 				
 		/**
@@ -173,14 +174,18 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
 		public function get rowHeight():Number
 		{
-			return presentationModel.rowHeight;
+			return (presentationModel as IDataGridPresentationModel).rowHeight;
 		}
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+         */
 		public function set rowHeight(value:Number):void
 		{
-			presentationModel.rowHeight = value;
+			(presentationModel as IDataGridPresentationModel).rowHeight = value;
 		}
 		
 		override public function addedToParent():void

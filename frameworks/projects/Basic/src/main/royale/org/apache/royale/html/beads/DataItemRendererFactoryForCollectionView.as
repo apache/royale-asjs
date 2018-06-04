@@ -209,10 +209,10 @@ package org.apache.royale.html.beads
 			fillRenderer(event.index, event.item, ir, presentationModel);
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = dataGroup.numElements;
+			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 				
 				// could let the IR know its index has been changed (eg, it might change its
@@ -241,14 +241,14 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(event.index) as ISelectableItemRenderer;
 			dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = dataGroup.numElements;
+			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 				
 				// could let the IR know its index has been changed (eg, it might change its
@@ -276,7 +276,7 @@ package org.apache.royale.html.beads
 
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
-			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(event.index) as ISelectableItemRenderer;
 			setData(ir, event.item, event.index);
 		}
 		

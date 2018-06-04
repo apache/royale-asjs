@@ -54,6 +54,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <targets>SWF,JSRoyale</targets>
+          <debug>false</debug>
         </configuration>
       </plugin>
       <plugin>

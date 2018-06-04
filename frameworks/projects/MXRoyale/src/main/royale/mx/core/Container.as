@@ -458,6 +458,43 @@ public class Container extends UIComponent
             trace("verticalGap not implemented");
     }
     
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get borderStyle():Object
+    {
+        if (GOOG::DEBUG)
+            trace("borderStyle not implemented");
+        return 0;
+    }
+    public function set borderStyle(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("borderStyle not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get backgroundColor():Object
+    {
+        if (GOOG::DEBUG)
+            trace("backgroundColor not implemented");
+        return 0;
+    }
+    public function set backgroundColor(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("backgroundColor not implemented");
+    }
+	[Inspectable(category="General")]
     /**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */

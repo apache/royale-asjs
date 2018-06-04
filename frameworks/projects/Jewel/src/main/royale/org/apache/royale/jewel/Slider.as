@@ -21,6 +21,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IRangeModel;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
@@ -33,7 +34,15 @@ package org.apache.royale.jewel
     //  Events
     //--------------------------------------
 
-	[Event(name="valueChange", type="org.apache.royale.events.Event")]
+	/**
+     *  Dispatched when Slider change its value.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+	[Event(name="valueChange", type="org.apache.royale.events.ValueChangeEvent")]
 
      /**
      *  Dispatched when Slider ends its change from one position to another.
@@ -41,7 +50,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9.3
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -51,7 +60,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9
      */
 	[Event(name="input", type="org.apache.royale.events.Event")]
 
@@ -69,7 +78,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.2
+	 *  @productversion Royale 0.9.3
 	 */
 	public class Slider extends UIBase
 	{
@@ -79,12 +88,13 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.2
+		 *  @productversion Royale 0.9.3
 		 */
 		public function Slider()
 		{
 			super();
 
+            classSelectorList = new ClassSelectorList(this);
 			typeNames = "jewel slider";
 
 			IRangeModel(model).value = 0;
@@ -94,13 +104,15 @@ package org.apache.royale.jewel
 			IRangeModel(model).snapInterval = 1;
 		}
 		
+        protected var classSelectorList:ClassSelectorList;
+        
 		/**
 		 *  The current value of the Slider.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		[Bindable("valueChange")]
 		public function get value():Number
@@ -118,7 +130,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get minimum():Number
 		{
@@ -135,7 +147,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get maximum():Number
 		{
@@ -171,7 +183,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
         public function get stepSize():Number
         {
@@ -198,9 +210,10 @@ package org.apache.royale.jewel
 			_positioner = value;
 		}
 
-
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * @royaleignorecoercion HTMLInputElement
+		 * @royaleignorecoercion HTMLDivElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -210,10 +223,6 @@ package org.apache.royale.jewel
             var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'range');
 			
-			//attach input handler to dispatch royale change event when user write in textinput
-            //goog.events.listen(element, 'change', killChangeHandler);
-            //goog.events.listen(input, 'input', textChangeHandler);
-            
 			div.appendChild(input);
 
             positioner = div as WrappedHTMLElement;
@@ -222,14 +231,10 @@ package org.apache.royale.jewel
 			return element;
         }
 
-		/**
-         * since we have a div surronding the main input, we need to 
-         * route the class assignaments to div
-         */
         COMPILE::JS
         override protected function setClassName(value:String):void
         {
-            addStyles(positioner, value);
+            classSelectorList.addNames(value);
         }
     }
 }

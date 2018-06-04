@@ -25,6 +25,8 @@ package org.apache.royale.html
         public function NodeElementBase()
         {
             super();
+
+            typeNames = "";
         }
 
         COMPILE::SWF
