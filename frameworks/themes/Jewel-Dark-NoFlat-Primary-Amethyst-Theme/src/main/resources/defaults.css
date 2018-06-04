@@ -196,6 +196,22 @@ div {
   text-shadow: unset;
 }
 
+.jewel.card {
+  flex-direction: column;
+  min-width: 300px;
+  min-height: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  background: #1a1a1a;
+  border: 0px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+j|Card {
+  gap: 10;
+}
+
 .jewel.checkbox {
   display: inline-block;
   margin: 0;
