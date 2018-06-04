@@ -16,45 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.utils.cssclasslist
+package org.apache.royale.utils.css
 {
     import org.apache.royale.core.IUIBase;
     
     /**
-     *  Add one or more class selectors to the component. If the specified class already 
-     *  exist, the class will not be added.
-     * 
-     *  Use of these utility functions should not be mixed with modifying the component's
-     *  className property at runtime.  Also the component's className property will not
-     *  reflect modifications made with this API.
+     *  Adds a CSS selector dynamically at runtime.
      *  
-     *  @param component The component that will have selectors added or removed.  
+     *  @param selector The CSS selector.
      * 
-     *  @param value A String with the style (or list of styles separated by an space) to
-     *  add to the component.
+     *  @param rule The CSS rule to apply.
      *  
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
-     *  @royaleignorecoercion HTMLElement
+     *  @royaleignorecoercion CSSStyleSheet
+	 *  @royaleignorecoercion HTMLStyleElement
      */
-    public function addStyles(component:IUIBase, value:String):void
+    public function addDynamicSelector(selector:String, rule:String):void
     {
         COMPILE::JS
         {
-            var element:HTMLElement = component.element as HTMLElement;
-
-            if (value.indexOf(" ") >= 0)
+            var selectorString:String = selector + ' { ' + rule + ' }'
+            var element:HTMLStyleElement = document.getElementById("royale_dynamic_css") as HTMLStyleElement;
+            if(element)
             {
-                var classes:Array = value.split(" ");
-                //element.classList.add.apply(element.classList, classes); // IE11 has a bug with multiple names
-                for each(var clazz:Object in classes)
-                {
-                    element.classList.add(clazz);
-                }
-            } 
+                var sheet:CSSStyleSheet = element.sheet as CSSStyleSheet;
+                sheet.insertRule(selectorString);
+            }
             else
             {
-                element.classList.add(value);
+				var style:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
+				style.type = 'text/css';
+                style.id = "royale_dynamic_css";
+				style.innerHTML = selectorString;
+				document.getElementsByTagName('head')[0].appendChild(style);
             }
         }
     }
