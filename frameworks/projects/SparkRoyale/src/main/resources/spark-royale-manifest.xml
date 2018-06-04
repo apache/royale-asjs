@@ -62,5 +62,5 @@
     	<component id="State" class="mx.states.State" lookupOnly="true"/>
 	<component id="SolidColor" class="mx.graphics.SolidColor" lookupOnly="true"/>
 	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke" lookupOnly="true"/>
-
+	<component id="NavigatorContent" class="spark.components.NavigatorContent"/>
 </componentPackage>
