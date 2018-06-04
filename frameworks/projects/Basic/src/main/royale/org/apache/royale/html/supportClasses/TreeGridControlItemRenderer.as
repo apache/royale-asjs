@@ -75,9 +75,14 @@ package org.apache.royale.html.supportClasses
 		
 		// IItemRendererParent implementation
 		
-		public function addItemRenderer(renderer:IItemRenderer):void
+        public function get numItemRenderers():int
+        {
+            return 1;
+        }
+        
+		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
-			this.addElement(renderer);
+			this.addElement(renderer, dispatchAdded);
 		}
 
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
@@ -95,6 +100,11 @@ package org.apache.royale.html.supportClasses
 			return child as IItemRenderer;
 		}
 		
+        public function getItemRendererAt(index:int):IItemRenderer
+        {
+            return child as IItemRenderer;
+        }
+        
 		public function removeAllItemRenderers():void
 		{
 			this.removeElement(child);

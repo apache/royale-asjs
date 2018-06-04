@@ -34,7 +34,7 @@ limitations under the License.
             private function clickHandler(event:MouseEvent):void {
                 var alert:Alert = Alert.show("Do you want to save your changes?", "Save Changes", 3);
 				alert.addEventListener(CloseEvent.CLOSE, alertClickHandler);
-                alert.height = 300;
+                // alert.height = 300;
             }
         
             // Event handler function for displaying the selected Alert button.

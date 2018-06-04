@@ -31,7 +31,7 @@ package mx.core
 	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStatesImpl;
-	import org.apache.royale.core.IStrandPrivate;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -315,7 +315,7 @@ use namespace mx_internal;
 public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
-					   IStrandPrivate, IMXMLDocument, IFocusManagerContainer
+					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer
                        //implements IContainer, IDataRenderer,
                        //IListItemRenderer,
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
@@ -458,6 +458,43 @@ public class Container extends UIComponent
             trace("verticalGap not implemented");
     }
     
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get borderStyle():Object
+    {
+        if (GOOG::DEBUG)
+            trace("borderStyle not implemented");
+        return 0;
+    }
+    public function set borderStyle(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("borderStyle not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get backgroundColor():Object
+    {
+        if (GOOG::DEBUG)
+            trace("backgroundColor not implemented");
+        return 0;
+    }
+    public function set backgroundColor(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("backgroundColor not implemented");
+    }
+	[Inspectable(category="General")]
     /**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */
@@ -867,7 +904,7 @@ public class Container extends UIComponent
     }
 
 	/*
-	* IStrandPrivate
+	* IContainerBaseStrandChildrenHost
 	*
 	* These "internal" function provide a backdoor way for proxy classes to
 	* operate directly at strand level. While these function are available on

@@ -134,7 +134,7 @@ package org.apache.royale.jewel.supportClasses
 		override protected function setClassName(value:String):void
 		{
 			//positioner.className = value;
-            addStyles(positioner, value);
+            addStyles(this, value);
 		}
 
         private var _isInvalid:Boolean = false;
@@ -158,7 +158,7 @@ package org.apache.royale.jewel.supportClasses
 
             COMPILE::JS
             {
-                toggleStyle(positioner, "is-invalid", _isInvalid);
+                toggleStyle(this, "is-invalid", _isInvalid);
                 //positioner.classList.toggle("is-invalid", _isInvalid);
                 //typeNames = positioner.className;
             }

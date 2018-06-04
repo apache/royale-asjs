@@ -97,6 +97,13 @@ package org.apache.royale.charts.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.charts.core.IChartDataGroup
+		 * @royaleignorecoercion org.apache.royale.charts.core.IChartItemRenderer
+		 * @royaleignorecoercion org.apache.royale.charts.core.IChartSeries
+		 * @royaleemitcoercion org.apache.royale.collections.ArrayList
 		 */
 		private function dataProviderChangeHandler(event:Event):void
 		{
@@ -122,7 +129,7 @@ package org.apache.royale.charts.beads
 					if (chartSeries.itemRenderer)
 					{
 						var ir:IChartItemRenderer = chartSeries.itemRenderer.newInstance() as IChartItemRenderer;
-						dataGroup.addItemRenderer(ir);
+						dataGroup.addItemRenderer(ir, false);
 						ir.itemRendererParent = dataGroup;
 						ir.index = i;
 						ir.data = dp.getItemAt(i)
@@ -133,6 +140,7 @@ package org.apache.royale.charts.beads
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			//TODO (Harbs) I think layoutNeeded is always dispatched when itemsCreated is handled.
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
 		}
 	}

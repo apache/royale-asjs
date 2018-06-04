@@ -71,7 +71,7 @@ package org.apache.royale.core
         {
             _strand = value;
             
-            if (_strand is IItemRendererProvider && (_strand as IItemRendererProvider).hasItemRenderer) {
+            if (_strand is IItemRendererProvider && (_strand as IItemRendererProvider).itemRenderer) {
             	itemRendererFactory = (_strand as IItemRendererProvider).itemRenderer;
             	createFunction = createFromClass;
             }

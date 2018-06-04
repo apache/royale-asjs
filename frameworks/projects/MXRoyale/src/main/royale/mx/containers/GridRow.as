@@ -20,8 +20,9 @@
 package mx.containers
 {
 
-import flash.display.DisplayObject;
-import mx.containers.gridClasses.GridColumnInfo;
+/* import flash.display.DisplayObject;
+ */
+ import mx.containers.gridClasses.GridColumnInfo;
 import mx.containers.gridClasses.GridRowInfo;
 import mx.containers.utilityClasses.Flex;
 import mx.core.EdgeMetrics;
@@ -43,7 +44,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Style(name="horizontalAlign", type="String", enumeration="left,center,right", inherit="no")]
 
@@ -56,7 +57,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Style(name="verticalAlign", type="String", enumeration="bottom,middle,top", inherit="no")]
 
@@ -169,11 +170,11 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class GridRow extends HBox
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -187,14 +188,14 @@ public class GridRow extends HBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function GridRow()
     {
         super();
 
         // Set this to false so Container doesn't clip.
-        super.clipContent = false;
+       // super.clipContent = false;
     }
 
     //--------------------------------------------------------------------------
@@ -207,24 +208,24 @@ public class GridRow extends HBox
      *  @private
      *  Width of columns in the row.
      */
-    internal var columnWidths:Array /* of GridColumnInfo */;
+   // internal var columnWidths:Array /* of GridColumnInfo */;
 
     /**
      *  @private
      *  Height of rows.
      */
-    internal var rowHeights:Array /* of GridRowInfo */;
+   // internal var rowHeights:Array /* of GridRowInfo */;
 
     /**
      *  @private
      *  Index of this row.
      */
-    internal var rowIndex:int = 0;
+  //  internal var rowIndex:int = 0;
 
     /**
      *  @private
      */
-    internal var numGridItems:int;
+  //  internal var numGridItems:int;
 
     //--------------------------------------------------------------------------
     //
@@ -236,15 +237,15 @@ public class GridRow extends HBox
     //  clipContent
     //----------------------------------
 
-    [Inspectable(environment="none")]
+  //  [Inspectable(environment="none")]
 
     /**
      *  @private
      */
-    override public function get clipContent():Boolean
+    /* override public function get clipContent():Boolean
     {
         return false;
-    }
+    } */
 
     /**
      *  @private
@@ -253,53 +254,53 @@ public class GridRow extends HBox
      *  We don't want GridRows to do clipping, because GridItems with
      *  rowSpan > 1 will extend outside the borders of the GridRow.
      */
-    override public function set clipContent(value:Boolean):void
+   /*  override public function set clipContent(value:Boolean):void
     {
-    }
+    } */
 
     //----------------------------------
     //  horizontalScrollPolicy
     //----------------------------------
 
-    [Inspectable(environment="none")]
+   // [Inspectable(environment="none")]
 
     /**
      *  @private
      */
-    override public function get horizontalScrollPolicy():String
+    /* override public function get horizontalScrollPolicy():String
     {
         return ScrollPolicy.OFF;
     }
-
+ */
     /**
      *  @private
      *  Don't allow user to set horizontalScrollPolicy.
      */
-    override public function set horizontalScrollPolicy(value:String):void
+    /* override public function set horizontalScrollPolicy(value:String):void
     {
-    }
+    } */
 
     //----------------------------------
     //  verticalScrollPolicy
     //----------------------------------
 
-    [Inspectable(environment="none")]
+    //[Inspectable(environment="none")]
 
     /**
      *  @private
      */
-    override public function get verticalScrollPolicy():String
+   /*  override public function get verticalScrollPolicy():String
     {
         return ScrollPolicy.OFF;
-    }
+    } */
 
     /**
      *  @private
      *  Don't allow user to set verticalScrollPolicy.
      */
-    override public function set verticalScrollPolicy(value:String):void
+    /* override public function set verticalScrollPolicy(value:String):void
     {
-    }
+    } */
 
     //--------------------------------------------------------------------------
     //
@@ -313,14 +314,14 @@ public class GridRow extends HBox
      *  the column size and arrange children in proper order.
      *  Hence invalidate the size and layout of the Grid.
      */
-    override public function setChildIndex(child:DisplayObject,
+    /* override public function setChildIndex(child:DisplayObject,
                                            newIndex:int):void
     {
         super.setChildIndex(child, newIndex);
 
         Grid(parent).invalidateSize();
         Grid(parent).invalidateDisplayList();
-    }
+    } */
 
     //--------------------------------------------------------------------------
     //
@@ -340,22 +341,22 @@ public class GridRow extends HBox
      *  The Grid.measure() contains code that calls measure()
      *  on each child GridRow.
      */
-    override public function invalidateSize():void
+    /* override public function invalidateSize():void
     {
         super.invalidateSize();
         if (parent)
             Grid(parent).invalidateSize();
-    }
+    } */
   
     /**
      *  @private
      */
-    override public function invalidateDisplayList():void
+    /* override public function invalidateDisplayList():void
     {
         super.invalidateDisplayList();
         if (parent)
             Grid(parent).invalidateDisplayList();
-    }
+    } */
 
     /**
      *  Sets the size and position of each child of the GridRow container.
@@ -393,27 +394,27 @@ public class GridRow extends HBox
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    override protected function updateDisplayList(unscaledWidth:Number,
+    /* override protected function updateDisplayList(unscaledWidth:Number,
                                                   unscaledHeight:Number):void
     {
         // Don't do any layout at the usual time.
         // Instead, we'll do our layout
         // when Grid.updateDisplayList() calls GridRow.doRowLayout().
-    }
+    } */
 
     /**
      *  @private
      *  Use the horizontalGap from my parent grid;
      *  ignore any horizontalGap that is set on the GridRow.
      */
-    override public function getStyle(styleProp:String):*
+    /* override public function getStyle(styleProp:String):*
     {
         return styleProp == "horizontalGap" && parent ?
                Grid(parent).getStyle("horizontalGap") :
                super.getStyle(styleProp);
-    }
+    } */
 
     //--------------------------------------------------------------------------
     //
@@ -426,7 +427,7 @@ public class GridRow extends HBox
      *  Calculates the preferred, minimum and maximum sizes
      *  of the GridRow container.
      */
-    internal function updateRowMeasurements():void
+    /* internal function updateRowMeasurements():void
     {
         var numChildren:Number = columnWidths.length;
 
@@ -448,12 +449,12 @@ public class GridRow extends HBox
         measuredMinHeight = rowInfo.min + hPadding;
         measuredWidth = preferredWidth + wPadding;
         measuredHeight = rowInfo.preferred + hPadding;
-    }
+    } */
 
     /**
      *  @private
      */
-    internal function doRowLayout(unscaledWidth:Number,
+    /* internal function doRowLayout(unscaledWidth:Number,
                                   unscaledHeight:Number):void
     {       
         // Call layoutChrome() to size and position the border.
@@ -551,12 +552,12 @@ public class GridRow extends HBox
 
         invalidateSizeFlag = oldSizeFlag;
         invalidateDisplayListFlag = oldDisplayListFlag;
-    }
+    } */
 
     /**
      *  @private
      */
-    private function calculateColumnWidths():void
+    /* private function calculateColumnWidths():void
     {
         var vm:EdgeMetrics = viewMetricsAndPadding;
         var gap:Number = getStyle("horizontalGap");
@@ -621,7 +622,7 @@ public class GridRow extends HBox
             columnInfo.x = left;
             left += columnInfo.width + gap;
         }
-    }
+    } */
 }
 
 }
