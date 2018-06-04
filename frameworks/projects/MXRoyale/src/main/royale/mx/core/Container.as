@@ -457,6 +457,18 @@ public class Container extends UIComponent
         if (GOOG::DEBUG)
             trace("verticalGap not implemented");
     }
+	
+	 public function get horizontalGap():Object
+    {
+        if (GOOG::DEBUG)
+            trace("horizontalGap not implemented");
+        return 0;
+    }
+    public function set horizontalGap(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("horizontalGap not implemented");
+    }
     
 	/*	  
      *  @langversion 3.0
