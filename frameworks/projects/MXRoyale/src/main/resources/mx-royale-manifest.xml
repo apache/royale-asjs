@@ -54,6 +54,5 @@
 	
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
-	<component id="SwatchPanel" class="mx.controls.colorPickerClasses.SwatchPanel" />
 	
 </componentPackage>
