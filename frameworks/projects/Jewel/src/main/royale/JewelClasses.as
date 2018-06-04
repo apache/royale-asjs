@@ -63,10 +63,10 @@ package
 
         import org.apache.royale.jewel.beads.layouts.BasicLayout; BasicLayout;
         import org.apache.royale.jewel.beads.layouts.TileLayout; TileLayout;
+        import org.apache.royale.jewel.beads.layouts.SimpleHorizontalLayout; SimpleHorizontalLayout;
+        import org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout; SimpleVerticalLayout;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;
         import org.apache.royale.jewel.beads.layouts.VerticalLayout; VerticalLayout;
-        import org.apache.royale.jewel.beads.layouts.HorizontalLayoutWithPaddingAndGap; HorizontalLayoutWithPaddingAndGap;
-        import org.apache.royale.jewel.beads.layouts.VerticalLayoutWithPaddingAndGap; VerticalLayoutWithPaddingAndGap;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween; HorizontalLayoutSpaceBetween;
         
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;

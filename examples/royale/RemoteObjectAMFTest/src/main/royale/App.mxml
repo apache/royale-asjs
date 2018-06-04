@@ -152,7 +152,7 @@ limitations under the License.
     <j:initialView>
         <j:View>
             <js:beads>
-                <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+                <j:VerticalLayout gap="10"/>
             </js:beads>
 
             <html:H3 text="RemoteObject AMF Test"/>
@@ -160,7 +160,7 @@ limitations under the License.
             <j:Card width="400">
                 <j:Group>
                     <j:beads>
-                        <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+                        <j:HorizontalLayout gap="10"/>
                     </j:beads>
                     <j:TextInput id="name_txt">
                         <j:beads>
@@ -176,7 +176,7 @@ limitations under the License.
             <j:Card width="400">
                 <j:Group>
                     <j:beads>
-                        <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+                        <j:HorizontalLayout gap="10"/>
                     </j:beads>
                     <j:TextInput id="nameSimple_txt">
                         <j:beads>

@@ -43,7 +43,7 @@
 
             <j:Group id="loginForm" includeIn="login">
                 <j:beads>
-                    <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+                    <j:VerticalLayout gap="10"/>
                 </j:beads>
                 <html:H1 text="Royale login"/>
                 <j:TextInput id="username" text="someuser"/>
@@ -57,7 +57,7 @@
 
             <j:Group id="loggedInForm" includeIn="loggedIn">
                 <j:beads>
-                    <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+                    <j:VerticalLayout gap="10"/>
                 </j:beads>
                 <html:H1 text="You are logged!! :)"/>
                 <j:Button text="Logout" click="view.currentState = 'login'"/>

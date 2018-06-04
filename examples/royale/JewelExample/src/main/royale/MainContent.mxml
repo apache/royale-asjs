@@ -22,12 +22,12 @@ limitations under the License.
          xmlns:local="*">
     
     <j:beads>
-        <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+        <j:HorizontalLayout gap="10"/>
     </j:beads>
 
     <j:Group>
         <j:beads>
-            <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+            <j:VerticalLayout gap="10"/>
         </j:beads>
         <local:LabelPlayGround/>
         <local:ButtonPlayGround/>
@@ -36,7 +36,7 @@ limitations under the License.
 
      <j:Group>
         <j:beads>
-            <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+            <j:VerticalLayout gap="10"/>
         </j:beads>
         <local:TextInputPlayGround/>
         <local:CheckBoxPlayGround/>
@@ -45,7 +45,7 @@ limitations under the License.
 
     <j:Group>
         <j:beads>
-            <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+            <j:VerticalLayout gap="10"/>
         </j:beads>
         <local:SliderPlayGround/>
         <local:ListPlayGround/>
@@ -53,7 +53,7 @@ limitations under the License.
     
     <j:Group>
         <j:beads>
-            <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+            <j:VerticalLayout gap="10"/>
         </j:beads>
         <local:AlertPlayGround/>
         <local:HeadingsAndText/>

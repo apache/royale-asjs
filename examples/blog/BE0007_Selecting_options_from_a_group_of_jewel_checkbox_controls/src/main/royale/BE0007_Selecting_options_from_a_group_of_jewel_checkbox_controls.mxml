@@ -42,7 +42,7 @@
     <j:initialView>
         <j:View>
             <j:beads>
-                <j:VerticalLayoutWithPaddingAndGap gap="10"/>
+                <j:VerticalLayout gap="10"/>
             </j:beads>
 
             <html:H2 text="Selecting options from a group of Jewel Checkbox controls"/>

@@ -25,7 +25,7 @@ limitations under the License.
 
 	<j:Group>
 		<j:beads>
-			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+			<j:HorizontalLayout gap="10"/>
 		</j:beads>
 		<j:Button text="Check it!" primary="true"/>
 		<j:TextInput text="A TextInput"/>
@@ -33,7 +33,7 @@ limitations under the License.
 
 	<j:Group>
 		<j:beads>
-			<j:HorizontalLayoutWithPaddingAndGap gap="10"/>
+			<j:HorizontalLayout gap="10"/>
 		</j:beads>
 		<j:TextInput>
 			<j:beads>

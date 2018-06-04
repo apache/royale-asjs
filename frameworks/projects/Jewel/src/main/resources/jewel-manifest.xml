@@ -48,11 +48,11 @@
     <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>
 
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
-    <component id="TileLayout" class="org.apache.royale.jewel.beads.layouts.TileLayout"/>
+    <component id="SimpleHorizontalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleHorizontalLayout"/>
+    <component id="SimpleVerticalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout"/>
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
-    <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutWithPaddingAndGap"/>
-    <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.jewel.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
+    <component id="TileLayout" class="org.apache.royale.jewel.beads.layouts.TileLayout"/>
     
     <component id="HorizontalLayoutSpaceBetween" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween"/>
     
