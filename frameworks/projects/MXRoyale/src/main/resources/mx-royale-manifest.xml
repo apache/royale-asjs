@@ -52,6 +52,8 @@
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
+	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
+	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
 	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" lookupOnly="true"/>
 	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" lookupOnly="true"/>
 	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
