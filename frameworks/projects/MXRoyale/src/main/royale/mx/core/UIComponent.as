@@ -158,6 +158,84 @@ use namespace mx_internal;
 
 [Event(name="change", type="org.apache.royale.events.Event")]
 
+//--------------------------------------
+//  Drag-and-drop events
+//--------------------------------------
+
+/**
+ *  Dispatched by a component when the user moves the mouse over the component
+ *  during a drag operation.
+ *  In an application running in Flash Player,
+ *  the event is dispatched many times when you move the mouse over any component.
+ *  In an application running in AIR, the event is dispatched only once.
+ *
+ *  <p>In order to be a valid drop target, you must define a handler
+ *  for this event.
+ *  In the handler, you can change the appearance of the drop target
+ *  to provide visual feedback to the user that the component can accept
+ *  the drag.
+ *  For example, you could draw a border around the drop target,
+ *  or give focus to the drop target.</p>
+ *
+ *  <p>If you want to accept the drag, you must call the
+ *  <code>DragManager.acceptDragDrop()</code> method. If you don't
+ *  call <code>acceptDragDrop()</code>, you do not get any of the
+ *  other drag events.</p>
+ *
+ *  <p>In Flash Player, the value of the <code>action</code> property is always
+ *  <code>DragManager.MOVE</code>, even if you are doing a copy.
+ *  This is because the <code>dragEnter</code> event occurs before
+ *  the control recognizes that the Control key is pressed to signal a copy.
+ *  The <code>action</code> property of the event object for the
+ *  <code>dragOver</code> event does contain a value that signifies the type of
+ *  drag operation. You can change the type of drag action by calling the
+ *  <code>DragManager.showFeedback()</code> method.</p>
+ *
+ *  <p>In AIR, the default value of the <code>action</code> property is
+ *  <code>DragManager.COPY</code>.</p>
+ *
+ *  <p>Because of the way data to a Tree control is structured,
+ *  the Tree control handles drag and drop differently from the other list-based controls.
+ *  For the Tree control, the event handler for the <code>dragDrop</code> event
+ *  only performs an action when you move or copy data in the same Tree control,
+ *  or copy data to another Tree control.
+ *  If you drag data from one Tree control and drop it onto another Tree control
+ *  to move the data, the event handler for the <code>dragComplete</code> event
+ *  actually performs the work to add the data to the destination Tree control,
+ *  rather than the event handler for the dragDrop event,
+ *  and also removes the data from the source Tree control.
+ *  This is necessary because to reparent the data being moved,
+ *  Flex must remove it first from the source Tree control.</p>
+ *
+ *  @see mx.managers.DragManager
+ *
+ *  @eventType mx.events.DragEvent.DRAG_ENTER
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragEnter", type="mx.events.DragEvent")]
+/**
+ *  Dispatched by the drop target when the user releases the mouse over it.
+ *
+ *  <p>You use this event handler to add the drag data to the drop target.</p>
+ *
+ *  <p>If you call <code>Event.preventDefault()</code> in the event handler
+ *  for the <code>dragDrop</code> event for
+ *  a Tree control when dragging data from one Tree control to another,
+ *  it prevents the drop.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_DROP
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragDrop", type="mx.events.DragEvent")]
+
 /**
  *  The main color for a component.
  *  
