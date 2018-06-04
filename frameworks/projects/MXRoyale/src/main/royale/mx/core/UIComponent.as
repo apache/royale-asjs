@@ -65,6 +65,7 @@ import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
+import org.apache.royale.textLayout.events.FocusEvent;
 /*
 import mx.managers.IToolTipManagerClient;
 import mx.managers.SystemManager;
@@ -111,6 +112,28 @@ use namespace mx_internal;
 [Event(name="initialize", type="mx.events.FlexEvent")]
 
 /**
+ *  Dispatched when an object has had its <code>commitProperties()</code>,
+ *  <code>measure()</code>, and
+ *  <code>updateDisplayList()</code> methods called (if needed).
+ *
+ *  <p>This is the last opportunity to alter the component before it is
+ *  displayed. All properties have been committed and the component has
+ *  been measured and layed out.</p>
+ *
+ *  <p>This event is only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ * 
+ *  @eventType mx.events.FlexEvent.UPDATE_COMPLETE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="updateComplete", type="mx.events.FlexEvent")]
+
+
+/**
  *  Dispatched when values are changed programmatically
  *  or by user interaction.
  *
@@ -128,6 +151,12 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 [Event(name="valueCommit", type="mx.events.FlexEvent")]
+
+
+
+[Event(name="focusOut", type="org.apache.royale.textLayout.events.FocusEvent")]
+
+[Event(name="change", type="org.apache.royale.events.Event")]
 
 /**
  *  The main color for a component.
@@ -3561,7 +3590,159 @@ public class UIComponent extends UIBase
 	
     [Inspectable(category="General")]
 
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontWeight():Object
+    {
+        if (GOOG::DEBUG)
+            trace("fontWeight not implemented");
+        return 0;
+    }
+    public function set fontWeight(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("fontWeight not implemented");
+    }
+	[Inspectable(category="General")]
 
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get cornerRadius():Object
+    {
+        if (GOOG::DEBUG)
+            trace("cornerRadius not implemented");
+        return 0;
+    }
+    public function set cornerRadius(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("cornerRadius not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontFamily():Object
+    {
+        if (GOOG::DEBUG)
+            trace("fontFamily not implemented");
+        return 0;
+    }
+    public function set fontFamily(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("fontFamily not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get uid():Object
+    {
+        if (GOOG::DEBUG)
+            trace("uid not implemented");
+        return 0;
+    }
+    public function set uid(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("uid not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontSize():Object
+    {
+        if (GOOG::DEBUG)
+            trace("fontSize not implemented");
+        return 0;
+    }
+    public function set fontSize(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("fontSize not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get textAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+        return 0;
+    }
+    public function set textAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get color():Object
+    {
+        if (GOOG::DEBUG)
+            trace("color not implemented");
+        return 0;
+    }
+    public function set color(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("color not implemented");
+    }
+	[Inspectable(category="General")]
+
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectedField():Object
+    {
+        if (GOOG::DEBUG)
+            trace("selectedField not implemented");
+        return 0;
+    }
+    public function set selectedField(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("selectedField not implemented");
+    }
+	[Inspectable(category="General")]
+
+	
     //--------------------------------------------------------------------------
     //
     //  Methods: Moving and sizing
