@@ -21,17 +21,17 @@
 
 <componentPackage>
 
-   	<component id="Application" class="mx.core.Application" />   
-   	<component id="Button" class="mx.controls.Button" />
-   	<component id="CheckBox" class="mx.controls.CheckBox" />
-   	<component id="ComboBox" class="mx.controls.ComboBox" />
-   	<component id="DataGrid" class="mx.controls.DataGrid" />
-   	<component id="DataGridColumn" class="mx.controls.dataGridClasses.DataGridColumn" />
+  <component id="Application" class="mx.core.Application" />   
+  <component id="Button" class="mx.controls.Button" />
+  <component id="CheckBox" class="mx.controls.CheckBox" />
+  <component id="ComboBox" class="mx.controls.ComboBox" />
+  <component id="DataGrid" class="mx.controls.DataGrid" />
+  <component id="DataGridColumn" class="mx.controls.dataGridClasses.DataGridColumn" />
 	<component id="DateChooser" class="mx.controls.DateChooser" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
 	<component id="LinkButton" class="mx.controls.LinkButton" />
-    	<component id="List" class="mx.controls.List" />
+  <component id="List" class="mx.controls.List" />
 	<component id="NumericStepper" class="mx.controls.NumericStepper" />
 	<component id="ProgressBar" class="mx.controls.ProgressBar" />
 	<component id="RadioButton" class="mx.controls.RadioButton" />
@@ -47,12 +47,16 @@
 	<component id="HDividedBox" class="mx.containers.HDividedBox" />
 	<component id="VBox" class="mx.containers.VBox" />	
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
-    	<component id="Panel" class="mx.containers.Panel" />
+  <component id="Panel" class="mx.containers.Panel" />
 	<!--<component id="ViewStack" class="mx.containers.ViewStack" /> waiting for commit -->
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="State" class="mx.states.State" />
+  <component id="PlotChart" class="mx.charts.PlotChart" lookupOnly="true"/>
+	<component id="PieSeries" class="mx.charts.series.PieSeries" lookupOnly="true"/>
+	<component id="PlotSeries" class="mx.charts.series.PlotSeries" lookupOnly="true"/>
+	<component id="AreaChart" class="mx.charts.AreaChart" lookupOnly="true"/>
 	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
 	<component id="ArrayList" class="mx.collections.ArrayList"/>
 	<component id="UIComponent" class="mx.core.UIComponent"/>
@@ -126,4 +130,5 @@
 	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
 	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
 	<component id="Alert" class="mx.controls.Alert" />
+
 </componentPackage>

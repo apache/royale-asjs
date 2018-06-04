@@ -86,7 +86,7 @@ internal class MXRoyaleClasses
 	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
 	import mx.charts.events.ChartItemEvent; ChartItemEvent;
 	import mx.charts.chartClasses.DataTip; DataTip;
-  	import mx.controls.textClasses.TextRange; TextRange;
+  import mx.controls.textClasses.TextRange; TextRange;
 	import mx.managers.CursorManagerPriority; CursorManagerPriority;
 	import mx.logging.Log; Log;
 	import mx.charts.chartClasses.Series; Series;
@@ -122,6 +122,7 @@ internal class MXRoyaleClasses
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
 		import mx.utils.Base64JSWrapper; Base64JSWrapper;
 	}
+
 
     COMPILE::SWF
     {
