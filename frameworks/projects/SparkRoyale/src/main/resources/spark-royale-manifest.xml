@@ -63,4 +63,5 @@
 	<component id="SolidColor" class="mx.graphics.SolidColor" lookupOnly="true"/>
 	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke" lookupOnly="true"/>
 	<component id="NavigatorContent" class="spark.components.NavigatorContent"/>
+	<component id="BorderContainer" class="spark.components.BorderContainer"/>
 </componentPackage>
