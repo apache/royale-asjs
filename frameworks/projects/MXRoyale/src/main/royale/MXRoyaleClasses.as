@@ -86,10 +86,8 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
-	import mx.modules.Module; Module; 
 	import mx.events.ModuleEvent; ModuleEvent;
 	import mx.modules.IModule; IModule;
-	import mx.modules.ModuleLoader; ModuleLoader; 
 	import mx.modules.ModuleManager; ModuleManager;
 
     COMPILE::SWF
