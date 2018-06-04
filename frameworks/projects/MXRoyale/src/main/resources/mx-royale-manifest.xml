@@ -51,4 +51,7 @@
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	
     <component id="State" class="mx.states.State" /> 
+	<component id="Module" class="mx.modules.Module"/>
+	<component id="ModuleLoader" class="mx.modules.ModuleLoader"/>
+	
 </componentPackage>
