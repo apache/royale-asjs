@@ -160,7 +160,7 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				controlBar = new ControlBar();
-				//controlBar.addBead(new HorizontalLayoutSpaceBetween());
+				controlBar.addBead(new HorizontalLayoutSpaceBetween());
 			}
 
             var flags:uint = alertModel.flags;
