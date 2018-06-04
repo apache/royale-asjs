@@ -21,7 +21,6 @@ package mx.controls
 {
 	import org.apache.royale.events.Event;
 	import mx.controls.ComboBase;
-	import mx.controls.colorPickerClasses.SwatchPanel;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
