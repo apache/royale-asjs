@@ -123,7 +123,6 @@ internal class MXRoyaleClasses
 		import mx.utils.Base64JSWrapper; Base64JSWrapper;
 	}
 
-
     COMPILE::SWF
     {
         import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
