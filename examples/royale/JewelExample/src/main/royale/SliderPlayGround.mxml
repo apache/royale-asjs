@@ -34,9 +34,6 @@ limitations under the License.
         private function onInput(event:Event):void
         {
 			trace("onInput");
-        	button.width = slider_w.value;
-			button.height = slider_h.value;
-			button.text = slider_w.value + "x" + slider_h.value;
         }
 
 		private function onChange(event:Event):void
@@ -46,7 +43,10 @@ limitations under the License.
 
 		private function onValueChange(event:Event):void
         {
-			trace("onValueChange");
+			trace("onValueChange"); // if target IE11 you must use this event handler
+			button.width = slider_w.value;
+			button.height = slider_h.value;
+			button.text = slider_w.value + "x" + slider_h.value;
 		}
     	]]>
 	</fx:Script>

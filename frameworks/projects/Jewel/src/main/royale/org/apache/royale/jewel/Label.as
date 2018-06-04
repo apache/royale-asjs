@@ -189,7 +189,6 @@ package org.apache.royale.jewel
             {
                 _multiline = value;
                 classSelectorList.toggle("multiline", _multiline);
-                trace("multiline: " + multiline);
             }
         }
 
