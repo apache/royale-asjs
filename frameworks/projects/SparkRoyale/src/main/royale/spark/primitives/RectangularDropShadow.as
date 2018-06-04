@@ -163,42 +163,7 @@ package spark.primitives
             }
         }
     
-        //----------------------------------
-        //  color
-        //----------------------------------
-    
-        /**
-         *  @private
-         *  Storage for the color property.
-         */
-        private var _color:int = 0;
-    
-        [Inspectable]
-    
-        /**
-         *  @copy spark.filters.DropShadowFilter#color
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10
-         *  @playerversion AIR 1.5
-         *  @productversion Royale 0.9.4
-         */
-        public function get color():int
-        {
-            return _color;
-        }
-    
-        /**
-         *  @private
-         */
-        public function set color(value:int):void
-        {
-            if (_color != value)
-            {
-                _color = value;
-               // invalidateDisplayList();
-            }
-        }
+        
     
         //----------------------------------
         //  distance
