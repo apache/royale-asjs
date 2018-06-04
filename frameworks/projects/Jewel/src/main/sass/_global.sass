@@ -41,6 +41,12 @@ j|Application *, .royale *, .royale *:before, .royale *:after
 	//position: relative
 	//-webkit-overflow-scrolling: touch
 
+.layout.absolute
+	position: relative
+	//justify-content: flex-start // align main axis (default)
+	> *
+		position: absolute
+	
 .layout.horizontal
 	flex-flow: row nowrap
 	//justify-content: flex-start // align main axis (default)
@@ -63,12 +69,13 @@ j|Application *, .royale *, .royale *:before, .royale *:after
 ::-moz-focus-inner, ::-moz-focus-outer
 	border: 0
 	
-j|Group
-	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
-
 j|View
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+
+j|Group
+	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
+
 
 j|Container
 	IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView")

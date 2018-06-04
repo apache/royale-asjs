@@ -30,7 +30,6 @@
             </j:states>
             
             <j:beads>
-                <j:VerticalLayout/>
                 <js:SimpleStatesImpl/>
             </j:beads>
 

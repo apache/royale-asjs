@@ -19,13 +19,18 @@
 package org.apache.royale.jewel.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
-	
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IParentIUIBase;
+
+	COMPILE::JS {
+		import org.apache.royale.utils.cssclasslist.addStyles;
+		import org.apache.royale.core.WrappedHTMLElement;
+    }
 
     /**
      *  The BasicLayout class is a simple layout
@@ -175,21 +180,17 @@ package org.apache.royale.jewel.beads.layouts
 
             COMPILE::JS
             {
-                var i:int
-                var n:int;
-				var contentView:ILayoutView = layoutView;
+                var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				addStyles (contentView, "layout absolute");
 
-                n = contentView.numElements;
-
-				// host must have either have position:absolute or position:relative
-				if (contentView.element.style.position != "absolute" && contentView.element.style.position != "relative") {
-					contentView.element.style.position = "relative";
-				}
-
-				// each child must have position:absolute for BasicLayout to work
-				for (i=0; i < n; i++) {
-					var child:UIBase = contentView.getElementAt(i) as UIBase;
-					child.positioner.style.position = "absolute";
+				// without this a state change in a View with BasicLayout will have a wrong behaviour
+				var children:Array = contentView.internalChildren();
+				var i:int;
+				var n:int = children.length;
+				for (i = 0; i < n; i++)
+				{
+					var child:WrappedHTMLElement = children[i];
+					child.royale_wrapper.dispatchEvent('sizeChanged');
 				}
 
                 return true;
