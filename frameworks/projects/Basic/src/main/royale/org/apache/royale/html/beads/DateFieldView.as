@@ -186,10 +186,19 @@ package org.apache.royale.html.beads
 		{
 			return _popUpVisible;
 		}
+		private var _showingPopup:Boolean;
 		public function set popUpVisible(value:Boolean):void
 		{
+			// prevent resursive calls
+			// setting _popUp.selectedDate below triggers a change event
+			// which tries to close the popup causing a recursive call.
+			// There might be a better way to resolve this problem, but this works for now...
+			if(_showingPopup)
+				return;
+
 			if (value != _popUpVisible)
 			{
+				_showingPopup = true;
 				_popUpVisible = value;
 				if (value)
 				{
@@ -220,6 +229,7 @@ package org.apache.royale.html.beads
 					UIUtils.removePopUp(_popUp);
 				}
 			}
+			_showingPopup = false;
 		}
 
 		/**
