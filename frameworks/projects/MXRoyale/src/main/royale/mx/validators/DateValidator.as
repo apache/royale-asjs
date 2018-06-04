@@ -276,7 +276,7 @@ public class DateValidator extends Validator
      *  @playerversion AIR 1.1
     *  @productversion Royale 0.9.3
      */
-    public function get requiredFieldError():String
+    override public function get requiredFieldError():String
     {
         return _requiredFieldError;
     }
@@ -284,7 +284,7 @@ public class DateValidator extends Validator
     /**
      *  @private
      */
-    public function set requiredFieldError(value:String):void
+    override public function set requiredFieldError(value:String):void
     {
         //requiredFieldErrorOverride = value;
 
