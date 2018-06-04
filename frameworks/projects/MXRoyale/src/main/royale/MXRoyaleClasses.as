@@ -86,11 +86,8 @@ internal class MXRoyaleClasses
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.collections.GroupingField; GroupingField;
 	import mx.collections.Grouping; Grouping;
-	import mx.containers.ViewStack; ViewStack;
 	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
-	import mx.rpc.remoting.mxml.RemoteObject; mx.rpc.remoting.mxml.RemoteObject;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
-	import mx.rpc.http.mxml.HTTPService; mx.rpc.http.mxml.HTTPService; 
 
     COMPILE::SWF
     {
