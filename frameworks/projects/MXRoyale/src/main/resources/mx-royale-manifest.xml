@@ -51,4 +51,8 @@
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	
     <component id="State" class="mx.states.State" /> 
+	<component id="ViewStack" class="mx.containers.ViewStack"/>
+	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" lookupOnly="true"/>
+	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" lookupOnly="true"/>
+	
 </componentPackage>
