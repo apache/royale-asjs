@@ -42,6 +42,19 @@ Button:active
 	padding: 4px;
 }
 
+CloseButton
+{
+	width: 12px;
+	height: 12px;
+}
+
+TitleBar CloseButton
+{
+	width: 16px;
+	height: 16px;
+	margin: 0px;
+}
+
 CheckBox
 {
 	font-size: 12px;

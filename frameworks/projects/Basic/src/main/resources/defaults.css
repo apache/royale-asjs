@@ -693,12 +693,6 @@ TitleBar
 	min-height: 30px;
 }
 
-TitleBar .TitleBarCloseButton {
-	width: 16px;
-	height: 16px;
-	margin: 0px;
-}
-
 ToolTip
 {
 	background-color: #FFFFCC;

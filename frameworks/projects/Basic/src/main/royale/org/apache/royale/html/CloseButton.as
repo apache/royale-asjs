@@ -20,7 +20,8 @@ package org.apache.royale.html
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;            
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -45,22 +46,19 @@ package org.apache.royale.html
 		public function CloseButton()
 		{
 			super();
+            typeNames = "Button CloseButton";
 		}
-        
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
+
+		COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            super.createElement();
-            element.textContent = 'x';
-            
-            element.style.padding = 0;
-            height = 11;
-            width = 11;
+			addElementToWrapper(this,'button');
+            element.setAttribute('type', 'button');
+            element.style.lineHeight = "0";
+            element.style.padding = "0";
+			var data:String = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBvbHlnb24gcG9pbnRzPSI2MCA2LjIyIDUzLjc4IDAgMzAgMjMuNzcgNi4yMiAwIDAgNi4yMiAyMy43OCAzMCAwIDUzLjc4IDYuMjIgNjAgMzAgMzYuMjMgNTMuNzggNjAgNjAgNTMuNzggMzYuMjIgMzAgNjAgNi4yMiIvPjwvc3ZnPg==';
+            element.innerHTML = "<img style='height:60%;width:60%' src='" + data + "'/>";
             return element;
-        }        
-
+        }
 	}
 }
