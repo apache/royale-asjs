@@ -20,7 +20,7 @@
 <project>
   <output>
     <movie disabled="False"/>
-    <movie path="bin-debug/BE0008_Using_View_States_in_a_Royale_Application.swf"/>
+    <movie path="bin-debug/BE0008_Using_View_States_to_show_or_hide_content.swf"/>
     <movie version="11"/>
     <movie input=""/>
     <movie width="800"/>
@@ -69,7 +69,7 @@
   </intrinsics>
   <library></library>
   <compileTargets>
-    <compile path="src/main/royale/BE0008_Using_View_States_in_a_Royale_Application.mxml"/>
+    <compile path="src/main/royale/BE0008_Using_View_States_to_show_or_hide_content.mxml"/>
   </compileTargets>
   <hiddenPaths></hiddenPaths>
   <preBuildCommand>null</preBuildCommand>

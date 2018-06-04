@@ -22,14 +22,6 @@
                xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:html="library://ns.apache.org/royale/html">
     
-    <fx:Style source="../../main/resources/styles.css"/>
-
-    <fx:Style>
-        global {
-    		IStatesImpl: ClassReference("org.apache.royale.core.SimpleStatesImpl");
-		}
-	</fx:Style>
-
     <j:initialView>
         <j:View id="view" >
             <j:states>
@@ -39,12 +31,10 @@
             
             <j:beads>
                 <j:VerticalLayout/>
+                <js:SimpleStatesImpl/>
             </j:beads>
 
-            <j:Group id="loginForm" includeIn="login">
-                <j:beads>
-                    <j:VerticalLayout gap="10"/>
-                </j:beads>
+            <j:Card id="loginForm" includeIn="login">
                 <html:H1 text="Royale login"/>
                 <j:TextInput id="username" text="someuser"/>
                 <j:TextInput id="password" text="somepass">
@@ -53,15 +43,12 @@
                     </j:beads>
                 </j:TextInput>
                 <j:Button text="Login" primary="true" click="view.currentState = 'loggedIn'" />
-            </j:Group>
+            </j:Card>
 
-            <j:Group id="loggedInForm" includeIn="loggedIn">
-                <j:beads>
-                    <j:VerticalLayout gap="10"/>
-                </j:beads>
+            <j:Card id="loggedInForm" includeIn="loggedIn">
                 <html:H1 text="You are logged!! :)"/>
                 <j:Button text="Logout" click="view.currentState = 'login'"/>
-            </j:Group>
+            </j:Card>
         </j:View>
     </j:initialView>
 

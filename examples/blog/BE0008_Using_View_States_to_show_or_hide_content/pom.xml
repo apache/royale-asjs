@@ -26,11 +26,11 @@
     <version>0.9.3-SNAPSHOT</version>
   </parent>
 
-  <artifactId>BE0008_Using_View_States_in_a_Royale_Application</artifactId>
+  <artifactId>BE0008_Using_View_States_to_show_or_hide_content</artifactId>
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Blog: 0008: Using View States in a Royale Application</name>
+  <name>Apache Royale: Examples: Blog: 0008: Using View States to show or hide content</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -40,7 +40,7 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>BE0008_Using_View_States_in_a_Royale_Application.mxml</mainClass>
+          <mainClass>BE0008_Using_View_States_to_show_or_hide_content.mxml</mainClass>
           <targets>JSRoyale,SWF</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
@@ -56,20 +56,6 @@
       <version>${flash.version}</version>
       <type>swc</type>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Effects</artifactId>
-      <version>0.9.3-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Effects</artifactId>
-      <version>0.9.3-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>

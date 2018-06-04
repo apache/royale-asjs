@@ -19,7 +19,7 @@
 -->
 
 
-<project name="BE0007_Selecting_options_from_a_group_of_jewel_checkbox_controls" default="main" basedir=".">
+<project name="BE0008_Using_View_States_to_show_or_hide_content" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="App" />
     
