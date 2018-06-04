@@ -66,6 +66,8 @@ internal class MXRoyaleClasses
 	import mx.core.ClassFactory; ClassFactory;
 	import mx.effects.Tween; Tween;
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
+	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.charts.chartClasses.RenderData; RenderData;

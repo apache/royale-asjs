@@ -48,10 +48,12 @@
 	<component id="VBox" class="mx.containers.VBox" />	
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
   <component id="Panel" class="mx.containers.Panel" />
-	<!--<component id="ViewStack" class="mx.containers.ViewStack" /> waiting for commit -->
+	<component id="ViewStack" class="mx.containers.ViewStack" /> 
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
+	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" lookupOnly="true"/>
+	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" lookupOnly="true"/>
 	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
 	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
 	<component id="DateValidator" class="mx.validators.DateValidator"/>
