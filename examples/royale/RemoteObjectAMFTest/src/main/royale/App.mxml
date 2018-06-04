@@ -157,11 +157,7 @@ limitations under the License.
 
             <html:H3 text="RemoteObject AMF Test"/>
 
-            <j:Group className="container" width="400">
-                <j:beads>
-                    <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-                </j:beads>
-
+            <j:Card width="400">
                 <j:Group>
                     <j:beads>
                         <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
@@ -175,13 +171,9 @@ limitations under the License.
                 </j:Group>
 
                 <j:Label id="received" text="Received:"/>
-            </j:Group>
+            </j:Card>
 
-            <j:Group className="container" width="400">
-                <j:beads>
-                    <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-                </j:beads>
-
+            <j:Card width="400">
                 <j:Group>
                     <j:beads>
                         <j:HorizontalLayoutWithPaddingAndGap gap="10"/>
@@ -195,26 +187,20 @@ limitations under the License.
                 </j:Group>
 
                 <j:Label id="receivedSimple" text="Received Simple:"/>
-            </j:Group>
+            </j:Card>
 
-            <j:Group className="container" width="400">
-                <j:beads>
-                    <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-                </j:beads>
+            <j:Card width="400">
                 <j:Button text="Get Array of ValueObjects" emphasized="true" click="getVOs()" width="100%"/>
                 <j:List id="list" labelField="id" width="100%" height="200" 
                             change="reportChange()"/>
                 <j:Label id="received2" text="Selected:"/>
-            </j:Group>
+            </j:Card>
             
-            <j:Group className="container" width="400">
-                <j:beads>
-                    <j:VerticalLayoutWithPaddingAndGap gap="10"/>
-                </j:beads>
+            <j:Card width="400">
                 <j:Button text="Get Some Product" primary="true" click="getSomeProduct()"/>
                 <j:Button text="Get Some Compressed Product" primary="true" click="getSomeCompressedProduct()"/>
-                <j:MultilineLabel id="received3" text="Received:"/>
-            </j:Group>
+                <j:Label id="received3" text="Received:" multiline="true"/>
+            </j:Card>
 
         </j:View>
     </j:initialView>
