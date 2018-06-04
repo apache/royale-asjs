@@ -140,5 +140,5 @@
 	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
 	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
 	<component id="Alert" class="mx.controls.Alert" />
-
+	<component id="ToolBar" class="mx.controls.richTextEditorClasses.ToolBar"/>
 </componentPackage>
