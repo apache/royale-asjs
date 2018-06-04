@@ -227,11 +227,6 @@ DateChooserHeader {
 	background-color: #FFFFFF;
 }
 
-.opt_org-apache-royale-html-DateChooser_MonthButtons {				
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalFlexLayout");	
-	height: 20px;
-}
-
 DataItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
