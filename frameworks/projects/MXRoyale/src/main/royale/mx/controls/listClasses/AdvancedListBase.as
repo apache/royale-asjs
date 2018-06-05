@@ -36,7 +36,6 @@ import flash.utils.setInterval;
 
 import mx.collections.ArrayCollection;
 import mx.collections.CursorBookmark;
-import mx.collections.ICollectionView;
 import mx.collections.IList;
 import mx.collections.IViewCursor;
 import mx.collections.ItemResponder;
@@ -53,7 +52,6 @@ import mx.core.EventPriority;
 import mx.core.FlexShape;
 import mx.core.FlexSprite;
 import mx.core.IDataRenderer;
-import mx.core.IFactory;
 import mx.core.IFlexDisplayObject;
 import mx.core.IInvalidating;
 import mx.core.ILayoutDirectionElement;
@@ -86,6 +84,8 @@ import mx.utils.UIDUtil;
  */
 import org.apache.royale.events.MouseEvent;
 import mx.events.ListEvent;
+import mx.collections.ICollectionView;
+import mx.core.IFactory;
 
 import mx.core.mx_internal;
 use namespace mx_internal;
@@ -104,7 +104,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 [Event(name="change", type="mx.events.ListEvent")]
 
@@ -121,7 +121,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 [Event(name="dataChange", type="mx.events.FlexEvent")]
 
@@ -133,7 +133,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="itemRollOver", type="mx.events.ListEvent")]
 
@@ -145,7 +145,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Event(name="itemRollOut", type="mx.events.ListEvent")]
 
@@ -157,9 +157,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
-//[Event(name="itemClick", type="mx.events.ListEvent")]
+[Event(name="itemClick", type="mx.events.ListEvent")]
 
 /**
  *  Dispatched when the user double-clicks on an item in the control.
@@ -169,9 +169,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
-//[Event(name="itemDoubleClick", type="mx.events.ListEvent")]
+[Event(name="itemDoubleClick", type="mx.events.ListEvent")]
 
 //--------------------------------------
 //  Styles
@@ -205,7 +205,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
 
@@ -222,7 +222,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="dropIndicatorSkin", type="Class", inherit="no")]
 
@@ -235,7 +235,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="paddingBottom", type="Number", format="Length", inherit="no")]
 
@@ -248,7 +248,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
 
@@ -260,7 +260,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="rollOverColor", type="uint", format="Color", inherit="yes")]
 
@@ -272,7 +272,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="selectionColor", type="uint", format="Color", inherit="yes")]
 
@@ -284,7 +284,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="selectionDisabledColor", type="uint", format="Color", inherit="yes")]
 
@@ -299,7 +299,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="selectionDuration", type="Number", format="Time", inherit="no")]
 
@@ -314,7 +314,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="selectionEasingFunction", type="Function", inherit="no")]
 
@@ -326,7 +326,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="textRollOverColor", type="uint", format="Color", inherit="yes")]
 
@@ -338,7 +338,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="textSelectedColor", type="uint", format="Color", inherit="yes")]
 
@@ -353,7 +353,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="useRollOver", type="Boolean", inherit="no")]
 
@@ -373,7 +373,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="verticalAlign", type="String", enumeration="bottom,middle,top", inherit="no")]
 
@@ -389,7 +389,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 //[Style(name="dataChangeEffect", type="Object", inherit="no")]
 
@@ -484,7 +484,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
 public class AdvancedListBase /* extends ScrollControlBase
@@ -549,7 +549,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function AdvancedListBase()
     {
@@ -588,9 +588,9 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-  //  protected var collection:ICollectionView;
+    protected var collection:ICollectionView;
 
     /**
      *  The main IViewCursor instance used to fetch items from the
@@ -601,7 +601,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var iterator:IViewCursor;
 
@@ -617,7 +617,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var iteratorValid:Boolean = true;
 
@@ -630,7 +630,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var lastSeekPending:ListBaseSeekPending;
 
@@ -642,7 +642,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var visibleData:Object = {};
 
@@ -655,7 +655,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var listContent:AdvancedListBaseContentHolder;
 
@@ -666,7 +666,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var selectionLayer:Sprite;
 
@@ -679,7 +679,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var listItems:Array = [];
 
@@ -690,7 +690,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var rowInfo:Array = [];
 
@@ -702,7 +702,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var rowMap:Object = {};
 
@@ -716,7 +716,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var freeItemRenderers:Array = [];
 
@@ -728,7 +728,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var reservedItemRenderers:Object = {};
 
@@ -739,7 +739,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var unconstrainedRenderers:Object = {};
 
@@ -751,7 +751,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var dataItemWrappersByRenderer:Dictionary = new Dictionary(true);
 
@@ -762,7 +762,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var runDataEffectNextUpdate:Boolean = false;
 
@@ -772,7 +772,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var runningDataEffect:Boolean = false;
 
@@ -785,7 +785,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var cachedDataChangeEffect:Effect = null;
 
@@ -796,7 +796,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var modifiedCollectionView:ModifiedCollectionView;
 
@@ -808,7 +808,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var actualCollection:ICollectionView;
 
@@ -830,7 +830,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // public var offscreenExtraRows:int = 0;
 
@@ -848,7 +848,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var offscreenExtraRowsTop:int = 0;
 
@@ -859,7 +859,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var offscreenExtraRowsBottom:int = 0;
 
@@ -871,7 +871,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  public var offscreenExtraColumns:int = 0;
 
@@ -884,7 +884,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var offscreenExtraColumnsLeft:int = 0;
 
@@ -897,7 +897,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var offscreenExtraColumnsRight:int = 0;
         
@@ -908,7 +908,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var actualIterator:IViewCursor;
             
@@ -918,7 +918,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var highlightUID:String;
 
@@ -928,7 +928,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var highlightItemRenderer:IListItemRenderer;
 
@@ -939,7 +939,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var highlightIndicator:Sprite;
 
@@ -949,7 +949,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var caretUID:String;
 
@@ -986,7 +986,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
  //   protected var caretItemRenderer:IListItemRenderer;
 
@@ -997,7 +997,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
  //   protected var caretIndicator:Sprite;
 
@@ -1011,7 +1011,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var selectedData:Object = {};
 
@@ -1023,7 +1023,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var selectionIndicators:Object = {};
 
@@ -1035,7 +1035,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var selectionTweens:Object = {};
 
@@ -1046,7 +1046,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   //  protected var caretBookmark:CursorBookmark;
 
@@ -1060,7 +1060,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var anchorBookmark:CursorBookmark;
 
@@ -1073,7 +1073,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var showCaret:Boolean;
 
@@ -1084,7 +1084,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var lastDropIndex:int;
 
@@ -1097,7 +1097,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var itemsNeedMeasurement:Boolean = true;
 
@@ -1111,7 +1111,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var itemsSizeChanged:Boolean = false;
 
@@ -1124,7 +1124,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var rendererChanged:Boolean = false;
 
@@ -1138,7 +1138,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var dataEffectCompleted:Boolean = false;
 
@@ -1158,7 +1158,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var wordWrapChanged:Boolean = false;
 
@@ -1172,7 +1172,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var keySelectionPending:Boolean = false;
     
@@ -1186,7 +1186,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //protected var anchorIndex:int = -1;
 
@@ -1199,7 +1199,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var caretIndex:int = -1;
     
@@ -1225,7 +1225,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var defaultColumnCount:int = 4;
 
@@ -1241,7 +1241,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var defaultRowCount:int = 4;
 
@@ -1252,7 +1252,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var explicitColumnCount:int = -1;
 
@@ -1263,7 +1263,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var explicitColumnWidth:Number;
 
@@ -1274,7 +1274,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var explicitRowCount:int = -1;
 
@@ -1285,7 +1285,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // protected var explicitRowHeight:Number;
     
@@ -1409,7 +1409,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // mx_internal var lastHighlightItemRenderer:IListItemRenderer;
 
@@ -1420,7 +1420,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // mx_internal var lastHighlightItemRendererAtIndices:IListItemRenderer;
 
@@ -1430,7 +1430,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    // private var lastHighlightItemIndices:Point;
 
@@ -1463,7 +1463,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  mx_internal var collectionIterator:IViewCursor;
 
@@ -1705,9 +1705,10 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-   // public var allowDragSelection:Boolean = false;
+     *  @productversion Royale 0.9.4
+	 *	@royalesuppresspublicvarwarning 
+	 */
+    public var allowDragSelection:Boolean = false;
 
     //----------------------------------
     //  allowMultipleSelection
@@ -1717,9 +1718,9 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the allowMultipleSelection property.
      */
-   // private var _allowMultipleSelection:Boolean = false;
+   private var _allowMultipleSelection:Boolean = false;
 
-   // [Inspectable(category="General", enumeration="false,true", defaultValue="false")]
+   [Inspectable(category="General", enumeration="false,true", defaultValue="false")]
 
     /**
      *  A flag that indicates whether you can allow more than one item to be
@@ -1734,20 +1735,20 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-   /*  public function get allowMultipleSelection():Boolean
+     public function get allowMultipleSelection():Boolean
     {
         return _allowMultipleSelection;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set allowMultipleSelection(value:Boolean):void
+     public function set allowMultipleSelection(value:Boolean):void
     {
         _allowMultipleSelection = value;
-    } */
+    } 
 
     //----------------------------------
     //  columnCount
@@ -1773,7 +1774,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get columnCount():int
     {
@@ -1808,7 +1809,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  mx_internal function setColumnCount(value:int):void
     {
@@ -1823,7 +1824,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the columnWidth property.
      */
-    //private var _columnWidth:Number;
+    private var _columnWidth:Number;
 
     /**
      *  The width of the control's columns.
@@ -1836,19 +1837,19 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-   /*  public function get columnWidth():Number
+     public function get columnWidth():Number
     {
         return _columnWidth;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set columnWidth(value:Number):void
+    public function set columnWidth(value:Number):void
     {
-        explicitColumnWidth = value;
+        /* explicitColumnWidth = value;
 
         if (_columnWidth != value)
         {
@@ -1859,8 +1860,8 @@ public class AdvancedListBase /* extends ScrollControlBase
             invalidateDisplayList();
 
             dispatchEvent(new Event("columnWidthChanged"));
-        }
-    } */
+        } */
+    } 
 
     //----------------------------------
     //  data
@@ -1904,7 +1905,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get data():Object
     {
@@ -1932,9 +1933,9 @@ public class AdvancedListBase /* extends ScrollControlBase
     //  dataProvider
     //----------------------------------
 
-    /* [Bindable("collectionChange")]
+     [Bindable("collectionChange")]
     [Inspectable(category="Data", defaultValue="undefined")]
- */
+ 
     /**
      *  Set of data to be viewed.
      *  This property lets you use most types of objects as data providers.
@@ -1961,24 +1962,24 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-   /*  public function get dataProvider():Object
+     public function get dataProvider():Object
     {
         // if we are running a data change effect, return the true
         // data provider, rather than the ModifiedCollectionView wrapper.
-        if (actualCollection)
-            return actualCollection;
+       /*  if (actualCollection)
+            return actualCollection; */
             
         return collection;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set dataProvider(value:Object):void
+     public function set dataProvider(value:Object):void
     {
-        if (collection)
+        /* if (collection)
         {
             collection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
         }
@@ -2032,8 +2033,8 @@ public class AdvancedListBase /* extends ScrollControlBase
         itemsNeedMeasurement = true;
         invalidateProperties();
         invalidateSize();
-        invalidateDisplayList();
-    } */
+        invalidateDisplayList(); */
+    } 
 
     //----------------------------------
     //  dataTipField
@@ -2063,7 +2064,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function get dataTipField():String
     {
@@ -2091,11 +2092,11 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the dataTipFunction property.
      */
-    /* private var _dataTipFunction:Function;
+    private var _dataTipFunction:Function;
 
     [Bindable("dataTipFunctionChanged")]
     [Inspectable(category="Data")]
- */
+ 
     /**
      *  User-supplied function to run on each item to determine its dataTip.  
      *  By default, the list looks for a property named <code>label</code> 
@@ -2121,25 +2122,25 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-  /*   public function get dataTipFunction():Function
+     public function get dataTipFunction():Function
     {
         return _dataTipFunction;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set dataTipFunction(value:Function):void
+     public function set dataTipFunction(value:Function):void
     {
         _dataTipFunction = value;
 
-        itemsSizeChanged = true;
+        /* itemsSizeChanged = true;
         invalidateDisplayList();
 
-        dispatchEvent(new Event("dataTipFunctionChanged"));
-    } */
+        dispatchEvent(new Event("dataTipFunctionChanged")); */
+    } 
 
     //----------------------------------
     //  dragEnabled
@@ -2149,7 +2150,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the dragEnabled property.
      */
-    //private var _dragEnabled:Boolean = false;
+    private var _dragEnabled:Boolean = false;
 
     /**
      *  A flag that indicates whether you can drag items out of
@@ -2164,36 +2165,36 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-    /* public function get dragEnabled():Boolean
+     public function get dragEnabled():Boolean
     {
         return _dragEnabled;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set dragEnabled(value:Boolean):void
+     public function set dragEnabled(value:Boolean):void
     {
-        if (_dragEnabled && !value)
+        /* if (_dragEnabled && !value)
         {
             removeEventListener(DragEvent.DRAG_START, 
                                 dragStartHandler, false);   
             removeEventListener(DragEvent.DRAG_COMPLETE,
                                 dragCompleteHandler, false);                           
-        }
+        } */
 
         _dragEnabled = value;
 
-        if (value)
+        /* if (value)
         {
             addEventListener(DragEvent.DRAG_START, dragStartHandler, false,
                              EventPriority.DEFAULT_HANDLER);
             addEventListener(DragEvent.DRAG_COMPLETE, dragCompleteHandler,
                              false, EventPriority.DEFAULT_HANDLER);
-        }
-    } */
+        } */
+    } 
 
     //----------------------------------
     //  dragImage
@@ -2208,7 +2209,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function get dragImage():IUIComponent
     {
@@ -2228,7 +2229,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function get dragImageOffsets():Point
     {
@@ -2274,7 +2275,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get dragMoveEnabled():Boolean
     {
@@ -2323,7 +2324,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get dropEnabled():Boolean
     {
@@ -2391,7 +2392,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get iconField():String
     {
@@ -2442,7 +2443,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get iconFunction():Function
     {
@@ -2470,10 +2471,10 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the itemRenderer property.
      */
-    /* private var _itemRenderer:IFactory;
+     private var _itemRenderer:IFactory;
 
     [Inspectable(category="Data")]
- */
+ 
     /**
      *  The custom item renderer for the control.
      *  You can specify a drop-in, inline, or custom item renderer.
@@ -2485,28 +2486,28 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-    /* public function get itemRenderer():IFactory
+     public function get itemRenderer():IFactory
     {
         return _itemRenderer;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set itemRenderer(value:IFactory):void
+     public function set itemRenderer(value:IFactory):void
     {
         _itemRenderer = value;
 
-        invalidateSize();
+        /* invalidateSize();
         invalidateDisplayList();
 
         itemsSizeChanged = true;
         rendererChanged = true;
 
-        dispatchEvent(new Event("itemRendererChanged"));
-    } */
+        dispatchEvent(new Event("itemRendererChanged")); */
+    } 
 
     //----------------------------------
     //  labelField
@@ -2535,7 +2536,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function get labelField():String
     {
@@ -2599,7 +2600,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get labelFunction():Function
     {
@@ -2650,7 +2651,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get listData():BaseListData
     {
@@ -2688,7 +2689,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get lockedColumnCount():int
     {
@@ -2727,7 +2728,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get lockedRowCount():int
     {
@@ -2758,7 +2759,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     //public var menuSelectionMode:Boolean = false;
 
@@ -2770,7 +2771,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the rowCount property.
      */
-    //private var _rowCount:int = -1;
+    private var _rowCount:int = -1;
 
     /**
      *  Number of rows to be displayed.
@@ -2787,19 +2788,19 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-    /* public function get rowCount():int
+     public function get rowCount():int
     {
         return _rowCount;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set rowCount(value:int):void
+     public function set rowCount(value:int):void
     {
-        explicitRowCount = value;
+        /* explicitRowCount = value;
 
         if (_rowCount != value)
         {
@@ -2813,8 +2814,8 @@ public class AdvancedListBase /* extends ScrollControlBase
             invalidateDisplayList();
 
             dispatchEvent(new Event("rowCountChanged"));
-        }
-    } */
+        } */
+    } 
 
     //----------------------------------
     //  rowHeight
@@ -2824,7 +2825,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the rowHeight property.
      */
-    //private var _rowHeight:Number;
+    private var _rowHeight:Number;
     
     /**
      *  @private
@@ -2843,19 +2844,19 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-   /*  public function get rowHeight():Number
+     public function get rowHeight():Number
     {
         return _rowHeight;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set rowHeight(value:Number):void
+     public function set rowHeight(value:Number):void
     {
-        explicitRowHeight = value;
+        /* explicitRowHeight = value;
 
         if (_rowHeight != value)
         {
@@ -2865,9 +2866,9 @@ public class AdvancedListBase /* extends ScrollControlBase
             itemsSizeChanged = true;
             invalidateDisplayList();
 
-            dispatchEvent(new Event("rowHeightChanged"));
-        }
-    } */
+            dispatchEvent(new Event("rowHeightChanged")); 
+        }*/
+    } 
 
     //----------------------------------
     //  selectable
@@ -2891,7 +2892,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get selectable():Boolean
     {
@@ -2929,7 +2930,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function get selectedIndex():int
     {
@@ -2956,12 +2957,12 @@ public class AdvancedListBase /* extends ScrollControlBase
     //  selectedIndices
     //----------------------------------
 
-   /*  private var _selectedIndices:Array;
+     private var _selectedIndices:Array;
 
     [Bindable("change")]
     [Bindable("valueCommit")]
     [Inspectable(category="General")]
- */
+ 
     /**
      *  An array of indices in the data provider of the selected items.  The
      *  items are in the reverse order that the user selected the items.
@@ -2971,23 +2972,23 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-    /* public function get selectedIndices():Array
+     public function get selectedIndices():Array
     {
-        if (bSelectedIndicesChanged)
+        //if (bSelectedIndicesChanged)
             return _selectedIndices;
 
-        return copySelectedItems(false);
-    } */
+       // return copySelectedItems(false);
+    } 
 
     /**
      *  @private
      */
-   /*  public function set selectedIndices(indices:Array):void
+   public function set selectedIndices(indices:Array):void
     {
         // trace("queueing indices");
-        if (!collection || collection.length == 0)
+       /*  if (!collection || collection.length == 0)
         {
             _selectedIndices = indices;
             bSelectedIndicesChanged = true;
@@ -2997,9 +2998,9 @@ public class AdvancedListBase /* extends ScrollControlBase
             return;
         }
 
-        commitSelectedIndices(indices);
+        commitSelectedIndices(indices); */
     }
- */
+ 
     //----------------------------------
     //  selectedItem
     //----------------------------------
@@ -3022,7 +3023,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function get selectedItem():Object
     {
@@ -3066,7 +3067,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function get selectedItems():Array
     {
@@ -3117,7 +3118,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get showDataTips():Boolean
     {
@@ -3156,7 +3157,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function get value():Object
     {
@@ -3179,10 +3180,10 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the variableRowHeight property.
      */
-    /* private var _variableRowHeight:Boolean = false;
+     private var _variableRowHeight:Boolean = false;
 
     [Inspectable(category="General")]
- */
+ 
     /**
      *  A flag that indicates whether the individual rows can have different
      *  height.  This property is ignored by TileList and HorizontalList.
@@ -3193,25 +3194,25 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-   /*  public function get variableRowHeight():Boolean
+    public function get variableRowHeight():Boolean
     {
         return _variableRowHeight;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set variableRowHeight(value:Boolean):void
+     public function set variableRowHeight(value:Boolean):void
     {
         _variableRowHeight = value;
-        itemsSizeChanged = true;
+       /*  itemsSizeChanged = true;
 
         invalidateDisplayList();
 
-        dispatchEvent(new Event("variableRowHeightChanged"));
-    } */
+        dispatchEvent(new Event("variableRowHeightChanged")); */
+    } 
 
     //----------------------------------
     //  wordWrap
@@ -3221,9 +3222,9 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @private
      *  Storage for the wordWrap property.
      */
-    /* private var _wordWrap:Boolean = false;
+     private var _wordWrap:Boolean = false;
 
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")] 
 
     /**
      *  A flag that indicates whether text in the row should be word wrapped.
@@ -3236,30 +3237,30 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-   /*  public function get wordWrap():Boolean
+    public function get wordWrap():Boolean
     {
         return _wordWrap;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set wordWrap(value:Boolean):void
+     public function set wordWrap(value:Boolean):void
     {
-        if (value == _wordWrap)
-            return;
+       /*  if (value == _wordWrap)
+            return; */
 
         _wordWrap = value;
 
-        wordWrapChanged = true;
+       /*  wordWrapChanged = true;
         itemsSizeChanged = true;
 
         invalidateDisplayList();
 
-        dispatchEvent(new Event("wordWrapChanged"));
-    } */
+        dispatchEvent(new Event("wordWrapChanged")); */
+    } 
 
     //--------------------------------------------------------------------------
     //
@@ -3286,7 +3287,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* override protected function createChildren():void
     {
@@ -3329,7 +3330,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* override protected function commitProperties():void
     {
@@ -3389,7 +3390,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* override protected function measure():void
     {
@@ -3513,7 +3514,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  override protected function updateDisplayList(unscaledWidth:Number,
                                                   unscaledHeight:Number):void
@@ -3703,7 +3704,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function measureWidthOfItems(index:int = -1, count:int = 0):Number
     {
@@ -3731,7 +3732,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function measureHeightOfItems(index:int = -1, count:int = 0):Number
     {
@@ -3757,7 +3758,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function itemToLabel(data:Object):String
     {
@@ -3822,7 +3823,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function itemToDataTip(data:Object):String
     {
@@ -3874,7 +3875,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function itemToIcon(data:Object):Class
     {
@@ -4120,7 +4121,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function indicesToIndex(rowIndex:int, colIndex:int):int
     {
@@ -4137,7 +4138,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function indexToRow(index:int):int
     {
@@ -4154,7 +4155,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function indexToColumn(index:int):int
     {
@@ -4191,7 +4192,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function itemRendererToIndices(item:IListItemRenderer):Point
     {
@@ -4228,7 +4229,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function indexToItemRenderer(index:int):IListItemRenderer
     {
@@ -4258,7 +4259,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function itemRendererToIndex(itemRenderer:IListItemRenderer):int
     {
@@ -4318,7 +4319,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function itemToUID(data:Object):String
     {
@@ -4343,7 +4344,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function itemToItemRenderer(item:Object):IListItemRenderer
     {
@@ -4359,7 +4360,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function isItemVisible(item:Object):Boolean
     {
@@ -4384,7 +4385,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function mouseEventToItemRenderer(
                                 event:MouseEvent):IListItemRenderer
@@ -4488,7 +4489,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function itemRendererContains(renderer:IListItemRenderer,
                                          object:DisplayObject):Boolean
@@ -4514,7 +4515,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function addToFreeItemRenderers(item:IListItemRenderer):void
     {
@@ -4552,7 +4553,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function getReservedOrFreeItemRenderer(data:Object):IListItemRenderer
     {
@@ -4576,7 +4577,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  mx_internal function get rendererArray():Array 
     {
@@ -4597,7 +4598,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function drawRowBackgrounds():void
     {
@@ -4620,7 +4621,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     // protected function drawItem(item:IListItemRenderer,
                                 // selected:Boolean = false,
@@ -4831,7 +4832,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function drawHighlightIndicator(
                                 indicator:Sprite, x:Number, y:Number,
@@ -4865,7 +4866,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function drawSelectionIndicator(
                                 indicator:Sprite, x:Number, y:Number,
@@ -4900,7 +4901,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function drawCaretIndicator(
                                 indicator:Sprite, x:Number, y:Number,
@@ -4922,7 +4923,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function clearIndicators():void
     {
@@ -4958,7 +4959,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function removeIndicators(uid:String):void
     {
@@ -5030,13 +5031,13 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-   /*  public function invalidateList():void
+     public function invalidateList():void
     {
-        itemsSizeChanged = true;
-        invalidateDisplayList();
-    } */
+       // itemsSizeChanged = true;
+       // invalidateDisplayList();
+    } 
 
     /**
      *  Refreshes all rows now.  Calling this method can require substantial
@@ -5046,7 +5047,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function updateList():void
     {
@@ -5261,7 +5262,7 @@ public class AdvancedListBase /* extends ScrollControlBase
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.4
 	 */
 	/* public function isItemShowingCaret(data:Object):Boolean
 	{
@@ -5286,7 +5287,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function isItemHighlighted(data:Object):Boolean
     {
@@ -5315,7 +5316,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function isItemSelected(data:Object):Boolean
     {
@@ -5338,7 +5339,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function isItemSelectable(data:Object):Boolean
     {
@@ -5395,7 +5396,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function selectItem(item:IListItemRenderer,
                                   shiftKey:Boolean, ctrlKey:Boolean,
@@ -5597,7 +5598,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function clearSelected(transition:Boolean = false):void
     {
@@ -5646,7 +5647,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
                                                  ctrlKey:Boolean):void
@@ -5675,7 +5676,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
                                                ctrlKey:Boolean):void
@@ -5843,7 +5844,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function finishKeySelection():void
     {
@@ -6220,7 +6221,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function applySelectionEffect(indicator:Sprite, uid:String,
                                             itemRenderer:IListItemRenderer):void
@@ -6271,7 +6272,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function copySelectedItems(useDataField:Boolean = true):Array
     {
@@ -6311,7 +6312,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function scrollPositionToIndex(horizontalScrollPosition:int,
                                              verticalScrollPosition:int):int
@@ -6337,20 +6338,20 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
-    /* public function scrollToIndex(index:int):Boolean
+    public function scrollToIndex(index:int):Boolean
     {
-        var newVPos:int;
+       /*  var newVPos:int;
 
         if (index >= verticalScrollPosition + listItems.length - lockedRowCount - offscreenExtraRowsBottom || index < verticalScrollPosition)
         {
             newVPos = Math.min(index, maxVerticalScrollPosition);
             verticalScrollPosition = newVPos;
             return true;
-        }
-        return false;
-    } */
+        }*/
+        return false; 
+    } 
 
     /**
      *  Adjusts the renderers in response to a change
@@ -6378,7 +6379,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function scrollVertically(pos:int, deltaPos:int,
                                         scrollUp:Boolean):void
@@ -6715,7 +6716,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function moveIndicatorsVertically(uid:String, moveBlockDistance:Number):void
     {
@@ -6736,7 +6737,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function moveIndicatorsHorizontally(uid:String, moveBlockDistance:Number):void
     {
@@ -6785,7 +6786,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function scrollHorizontally(pos:int, deltaPos:int, scrollUp:Boolean):void
     {
@@ -6805,7 +6806,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function configureScrollBars():void
     {
@@ -6818,7 +6819,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function dragScroll():void
     {
@@ -6935,7 +6936,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function addDragData(dragSource:Object):void // actually a DragSource
     {
@@ -6972,7 +6973,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function calculateDropIndex(event:DragEvent = null):int
     {
@@ -7017,7 +7018,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function calculateDropIndicatorY(rowCount:Number,
                                                rowNum:int):Number
@@ -7051,7 +7052,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function showDropFeedback(event:DragEvent):void
     {
@@ -7099,7 +7100,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function hideDropFeedback(event:DragEvent):void
     {
@@ -7134,7 +7135,7 @@ public class AdvancedListBase /* extends ScrollControlBase
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.4
 	 */
 	/* protected function copyItemWithUID(item:Object):Object
 	{
@@ -7253,7 +7254,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function seekPendingFailureHandler(data:Object,
                                                  info:ListBaseSeekPending):void
@@ -7274,7 +7275,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function seekPendingResultHandler(data:Object,
                                                 info:ListBaseSeekPending):void
@@ -7413,7 +7414,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function findKey(eventCode:int):Boolean
     {
@@ -7436,7 +7437,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function findString(str:String):Boolean
     {
@@ -7723,7 +7724,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function initiateDataChangeEffect(unscaledWidth:Number,
                                                 unscaledHeight:Number):void
@@ -7889,7 +7890,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function removeDataEffectItem(item:Object):void
     {
@@ -7928,7 +7929,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function addDataEffectItem(item:Object):void
     {
@@ -7970,7 +7971,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  public function unconstrainRenderer(item:Object):void
     {
@@ -7998,7 +7999,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* public function getRendererSemanticValue(target:Object,semanticProperty:String):Object
     {
@@ -8020,7 +8021,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function isRendererUnconstrained(item:Object):Boolean
     {
@@ -8038,7 +8039,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function finishDataChangeEffect(event:EffectEvent):void
     {
@@ -8104,7 +8105,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function adjustListContent(unscaledWidth:Number = -1,
                                        unscaledHeight:Number = -1):void
@@ -8540,7 +8541,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  mx_internal function setColumnWidth(value:Number):void
     {
@@ -8557,7 +8558,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function setRowCount(v:int):void
     {
@@ -8575,7 +8576,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function setRowHeight(v:Number):void
     {
@@ -8677,7 +8678,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  override protected function mouseWheelHandler(event:MouseEvent):void
     {
@@ -8717,7 +8718,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function collectionChangeHandler(event:Event):void
     {
@@ -9215,7 +9216,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function mouseOverHandler(event:MouseEvent):void
     {
@@ -9308,7 +9309,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function mouseOutHandler(event:MouseEvent):void
     {
@@ -9351,7 +9352,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function mouseMoveHandler(event:MouseEvent):void
     {
@@ -9424,7 +9425,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function mouseDownHandler(event:MouseEvent):void
     {
@@ -9520,7 +9521,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function mouseUpHandler(event:MouseEvent):void
     {
@@ -9586,7 +9587,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function mouseClickHandler(event:MouseEvent):void
     {
@@ -9617,7 +9618,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function mouseDoubleClickHandler(event:MouseEvent):void
     {
@@ -9645,7 +9646,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function dragStartHandler(event:DragEvent):void
     {
@@ -9670,7 +9671,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     /* protected function dragEnterHandler(event:DragEvent):void
     {
@@ -9703,7 +9704,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
   /*   protected function dragOverHandler(event:DragEvent):void
     {
@@ -9734,7 +9735,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function dragExitHandler(event:DragEvent):void
     {
@@ -9759,7 +9760,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function dragDropHandler(event:DragEvent):void
     {
@@ -9800,7 +9801,7 @@ public class AdvancedListBase /* extends ScrollControlBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
    /*  protected function dragCompleteHandler(event:DragEvent):void
     {
