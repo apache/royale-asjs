@@ -22,8 +22,6 @@
                xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:html="library://ns.apache.org/royale/html">
     
-    <fx:Style source="../../main/resources/styles.css"/>
-
     <fx:Script>
 		<![CDATA[
             private function changeHandler(event:Event):void {

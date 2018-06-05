@@ -23,7 +23,7 @@
                xmlns:html="library://ns.apache.org/royale/html">
     
     <j:initialView>
-        <j:View id="view" >
+        <j:View id="view">
             <j:states>
                 <js:State name="login" />        
                 <js:State name="loggedIn" />        
