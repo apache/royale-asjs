@@ -383,7 +383,7 @@ limitations under the License.
         }
         
         .jsonly {
-            color: #0f0;
+            color: #009042;
         }
         
         .loading {
