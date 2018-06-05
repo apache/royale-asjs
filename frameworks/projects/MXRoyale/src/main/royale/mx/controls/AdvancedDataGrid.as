@@ -19,7 +19,10 @@
 
 package mx.controls
 {
-
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
     /* import flash.display.DisplayObject;
     import flash.display.Graphics;
     import flash.display.Shape;
@@ -80,7 +83,6 @@ package mx.controls
     import mx.core.SpriteAsset;
     import mx.core.UIComponent;
     import mx.core.UIComponentGlobals;
-    import mx.core.mx_internal;
     import mx.effects.Tween;
     import mx.events.AdvancedDataGridEvent;
     import mx.events.AdvancedDataGridEventReason;
@@ -101,10 +103,11 @@ package mx.controls
     import mx.styles.ISimpleStyleClient;
     import mx.styles.IStyleClient;
     import mx.utils.UIDUtil;
-
-    use namespace mx_internal; */
+ */
 import mx.controls.listClasses.AdvancedListBase;
+import mx.core.mx_internal;
 
+use namespace mx_internal;
 //--------------------------------------
 //  Events
 //--------------------------------------
@@ -170,6 +173,56 @@ import mx.controls.listClasses.AdvancedListBase;
 *  @productversion Royale 0.9.4
 */
 //[Event(name="headerDropOutside", type="mx.events.AdvancedDataGridEvent")]
+
+/**
+ *  Dispatched when the user releases the mouse button on a column header
+ *  to request the control to sort
+ *  the grid contents based on the contents of the column.
+ *  Only dispatched if the column is sortable and the data provider supports 
+ *  sorting. The AdvancedDataGrid control has a default handler for this event that implements
+ *  a single-column sort.  Multiple-column sort can be implemented by calling the 
+ *  <code>preventDefault()</code> method to prevent the single column sort and setting 
+ *  the <code>sort</code> property of the data provider.
+ * <p>
+ * <b>Note</b>: The sort arrows are defined by the default event handler for
+ * the <code>headerRelease</code> event. If you call the <code>preventDefault()</code> method
+ * in your event handler, the arrows are not drawn.
+ * </p>
+ *
+ *  @eventType mx.events.AdvancedDataGridEvent.HEADER_RELEASE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.4
+ */
+[Event(name="headerRelease", type="mx.events.AdvancedDataGridEvent")]
+
+/**
+ *  Dispatched when the user releases the mouse button while over an item 
+ *  renderer, tabs to the AdvancedDataGrid control or within the AdvancedDataGrid control, 
+ *  or in any other way attempts to edit an item.
+ *
+ *  @eventType mx.events.AdvancedDataGridEvent.ITEM_EDIT_BEGINNING
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.4
+ */
+[Event(name="itemEditBeginning", type="mx.events.AdvancedDataGridEvent")]
+
+/**
+ *  Dispatched when an item editing session ends for any reason.
+ *
+ *  @eventType mx.events.AdvancedDataGridEvent.ITEM_EDIT_END
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.4
+ */
+[Event(name="itemEditEnd", type="mx.events.AdvancedDataGridEvent")]
 
 //--------------------------------------
 //  Styles
@@ -9234,6 +9287,372 @@ public class AdvancedDataGrid extends AdvancedListBase
 
         finishCellKeySelection();
     }    */
+	
+	//----------------------------------
+    //  columns copied from AdvancedDataGridBaseEx
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    // copied from AdvancedDataGridBase
+    private var _columns:Array;  /* of AdvancedDataGridColumns */
+
+    [Bindable("columnsChanged")]
+    [Inspectable(category="General", arrayType="mx.controls.advancedDataGridClasses.AdvancedDataGridColumn")]
+
+    /**
+     *  An array of AdvancedDataGridColumn objects, one for each column that
+     *  can be displayed. If not explicitly set, the AdvancedDataGrid control 
+     *  attempts to examine the first data provider item to determine the
+     *  set of properties and display those properties in alphabetic
+     *  order.
+     *
+     *  <p>If you want to change the set of columns, you must get this Array,
+     *  make modifications to the columns and order of columns in the Array,
+     *  and then assign the new Array to the <code>columns</code> property.  This is because
+     *  the AdvancedDataGrid control returns a copy of the Array of columns, 
+     *  not a reference, and therefore cannot detect changes to the copy.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public function get columns():Array
+    {
+        return _columns.slice(0);
+    }
+
+    /**
+     *  @private
+     */
+    public function set columns(value:Array):void
+    {
+       /*  var n:int;
+        var i:int;
+        
+        // remove the header items
+        purgeHeaderRenderers();
+        
+        n = _columns.length;
+        for (i = 0; i < n; i++)
+        {
+            columnRendererChanged(_columns[i]);
+        }
+        
+        freeItemRenderersTable = new Dictionary(false);
+        itemRendererToFactoryMap = new Dictionary(true);
+        columnMap = {};
+
+        _columns = value.slice(0);
+        columnsInvalid = true;
+        generatedColumns = false;
+
+        n = value.length;
+        for (i = 0; i < n; i++)
+        {
+            var column:AdvancedDataGridColumn = _columns[i];
+            column.owner = this;
+            column.colNum = i;
+        }
+
+        updateSortIndexAndDirection();
+        itemsSizeChanged = true;
+        columnsChanged = true;
+        invalidateDisplayList();
+        dispatchEvent(new Event("columnsChanged")); */
+    }
+	//----------------------------------
+    //  selectionMode  copied from AdvancedDataGridBase
+    //----------------------------------
+    
+    /**
+     *  @private
+     */
+    protected var _selectionMode:String = "singleRow"; 	// SINGLE_ROW;
+
+    [Inspectable(category="General",
+        enumeration="none,singleRow,multipleRows,singleCell,multipleCells",
+        defaultValue="singleRow")]
+    /**
+     *  The selection mode of the control. Possible values are:
+     *  <code>MULTIPLE_CELLS</code>, <code>MULTIPLE_ROWS</code>, <code>NONE</code>, 
+     *  <code>SINGLE_CELL</code>, and <code>SINGLE_ROW</code>.
+     *  Changing the value of this property 
+     *  sets the <code>selectedCells</code> property to null.
+     *
+     *  <p>You must set the <code>allowMultipleSelection</code> property to <code>true</code> 
+     *  to select more than one item in the control at the same time.</p> 
+     *
+     *  <p>Information about the selected cells is written to the <code>selectedCells</code> property.</p>
+     *
+     *  @default SINGLE_ROW
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public function get selectionMode():String
+    {
+        return _selectionMode;
+    }
+
+    public function set selectionMode(value:String):void
+    {
+        /* setSelectionMode(value);
+        itemsSizeChanged = true;
+        invalidateDisplayList(); */
+    }
+	
+	//----------------------------------
+    //  sortableColumns copied from AdvancedDataGridBaseEx
+    //----------------------------------
+
+    // [Inspectable(category="General")]
+
+    /**
+     *  A flag that indicates whether the user can sort the data provider items
+     *  by clicking on a column header cell.
+     *  If <code>true</code>, the user can sort the data provider items by
+     *  clicking on a column header cell. 
+     *  The <code>AdvancedDataGridColumn.dataField</code> property of the column
+     *  or the <code>AdvancedDataGridColumn.sortCompareFunction</code> property 
+     *  of the column is used as the sort field.  
+     *  If a column is clicked more than once, 
+     *  the sort alternates between ascending and descending order.
+     *  If <code>true</code>, individual columns can be made to not respond
+     *  to a click on a header by setting the column's <code>sortable</code>
+     *  property to <code>false</code>.
+     *
+     *  <p>When a user releases the mouse button over a header cell, the AdvancedDataGrid
+     *  control dispatches a <code>headerRelease</code> event if both
+     *  this property and the column's sortable property are <code>true</code>.  
+     *  If no handler calls the <code>preventDefault()</code> method on the event, the 
+     *  AdvancedDataGrid sorts using that column's <code>AdvancedDataGridColumn.dataField</code> or  
+     *  <code>AdvancedDataGridColumn.sortCompareFunction</code> properties.</p>
+     * 
+     *  @default true
+     *
+     *  @see mx.controls.advancedDataGridClasses.AdvancedDataGridColumn#dataField
+     *  @see mx.controls.advancedDataGridClasses.AdvancedDataGridColumn#sortCompareFunction
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     * 	@royalesuppresspublicvarwarning 
+	 */
+    public var sortableColumns:Boolean = true;
+	
+    //----------------------------------
+    //  sortExpertMode copied from AdvancedDataGridBaseEx
+    //----------------------------------
+
+    // Type of sorting UI displayed
+    private var _sortExpertMode:Boolean = false;
+
+    /**
+     *  By default, the <code>sortExpertMode</code> property is set to <code>false</code>, 
+     *  which means you click in the header area of a column to sort the rows of 
+     *  the AdvancedDataGrid control by that column. 
+     *  You then click in the multiple-column sort area of the header to sort by additional columns. 
+     *  If you set the <code>sortExpertMode</code> property to <code>true</code>, 
+     *  you use the Control key to select every column after the first column to perform sort.
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    [Inspectable(enumeration="true,false", defaultValue="false")]
+    public function get sortExpertMode():Boolean
+    {
+        return _sortExpertMode;
+    }
+
+    /**
+     *  @private
+     */
+    public function set sortExpertMode(value:Boolean):void
+    {
+        _sortExpertMode = value;
+
+       /*  invalidateHeaders();
+        invalidateProperties();
+        invalidateDisplayList(); */
+    }
+	
+	
+	//----------------------------------
+    //  headerHeight copied from AdvancedDataGridBase
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the headerHeight property.
+     */
+    /* mx_internal */ private var _headerHeight:Number = 22;
+
+    [Bindable("resize")]
+    //[Inspectable(category="General", defaultValue="22")]
+
+    /**
+     *  The height of the header cell of the column, in pixels.
+     *  If set explicitly, that height will be used for all of
+     *  the headers.  If not set explicitly, 
+     *  the height will based on style settings and the header
+     *  renderer.  
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+	 */
+    public function get headerHeight():Number
+    {
+        return _headerHeight;
+    }
+
+    /**
+     *  @private
+     */
+    public function set headerHeight(value:Number):void
+    {
+        _headerHeight = value;
+        /* _explicitHeaderHeight = true;
+        itemsSizeChanged = true;
+
+        invalidateDisplayList(); */
+    }
+	//----------------------------------
+    //  headerWordWrap copied from AdvancedDataGridBase
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the headerWordWrap property.
+     */
+    private var _headerWordWrap:Boolean;
+
+    // [Inspectable(category="General")]
+
+    /**
+     *  If <code>true</code>, specifies that text in the header is
+     *  wrapped if it does not fit on one line.
+     *  
+     *  If the <code>headerWordWrap</code> property is set in AdvancedDataGridColumn,
+     *  this property will not have any effect.
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public function get headerWordWrap():Boolean
+    {
+        return _headerWordWrap;
+    }
+
+    /**
+     *  @private
+     */
+    public function set headerWordWrap(value:Boolean):void
+    {        
+        if (value == _headerWordWrap)
+            return;
+
+        _headerWordWrap = value;
+
+        /* itemsSizeChanged = true;
+
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("headerWordWrapChanged")); */
+    }
+	//----------------------------------
+    //  draggableColumns copied from AdvancedDataGridBaseEx
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the draggableColumns property.
+     */
+    private var _draggableColumns:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  Indicates whether you are allowed to reorder columns.
+     *  If <code>true</code>, you can reorder the columns
+     *  of the AdvancedDataGrid control by dragging the header cells.
+     *
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public function get draggableColumns():Boolean
+    {
+        return _draggableColumns;
+    }
+
+    /**
+     *  @private
+     */
+    public function set draggableColumns(value:Boolean):void
+    {
+        _draggableColumns = value;
+    }
+	    
+	public function get HeaderStyleName():Object
+    {
+        if (GOOG::DEBUG)
+            trace("HeaderStyleName not implemented");
+        return 0;
+    }
+	
+	
+    public function set HeaderStyleName(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("HeaderStyleName not implemented");
+    }
+
+	
+	//----------------------------------
+    //  resizableColumns copied from AdvancedDataGridBaseEx
+    //----------------------------------
+
+   // [Inspectable(category="General")]
+
+    /**
+     *  A flag that indicates whether the user can change the size of the
+     *  columns.
+     *  If <code>true</code>, the user can stretch or shrink the columns of 
+     *  the AdvancedDataGrid control by dragging the grid lines between the header cells.
+     *  If <code>true</code>, individual columns must also have their 
+     *  <code>resizeable</code> properties set to <code>false</code> to 
+     *  prevent the user from resizing a particular column.  
+     *
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public var resizableColumns:Boolean = true;
+	    
+	
+	
 }
 
 }
