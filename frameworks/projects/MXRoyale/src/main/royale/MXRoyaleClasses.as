@@ -88,7 +88,7 @@ internal class MXRoyaleClasses
 	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
 	import mx.charts.events.ChartItemEvent; ChartItemEvent;
 	import mx.charts.chartClasses.DataTip; DataTip;
-  import mx.controls.textClasses.TextRange; TextRange;
+  	import mx.controls.textClasses.TextRange; TextRange;
 	import mx.managers.CursorManagerPriority; CursorManagerPriority;
 	import mx.logging.Log; Log;
 	import mx.charts.chartClasses.Series; Series;
@@ -118,19 +118,21 @@ internal class MXRoyaleClasses
 	import mx.collections.ISort; ISort;
 	import mx.utils.Base64Encoder; Base64Encoder;
 	import mx.utils.Base64Decoder; Base64Decoder;
-
+	import mx.events.IndexChangedEvent; IndexChangedEvent;
+	import mx.events.ItemClickEvent; ItemClickEvent;
+	import mx.events.ModuleEvent; ModuleEvent;
 	COMPILE::JS
-    {
+    	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
 		import mx.utils.Base64JSWrapper; Base64JSWrapper;
 	}
 
-    COMPILE::SWF
-    {
-        import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
-        import mx.controls.beads.CheckBoxView; CheckBoxView;
-        import mx.controls.beads.RadioButtonView; RadioButtonView;
-    }
+	COMPILE::SWF
+	{
+	import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
+	import mx.controls.beads.CheckBoxView; CheckBoxView;
+	import mx.controls.beads.RadioButtonView; RadioButtonView;
+	}
 }
 
 }
