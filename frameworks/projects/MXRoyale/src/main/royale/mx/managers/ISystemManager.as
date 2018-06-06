@@ -22,7 +22,7 @@ package mx.managers
 
 import org.apache.royale.events.IEventDispatcher;
 import mx.core.IChildList;
-
+import mx.core.UIComponent;
 /**
  *  An ISystemManager manages an "application window".
  *  Every application that runs on the desktop or in a browser
@@ -70,7 +70,7 @@ import mx.core.IChildList;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexModuleFactory */
 {
@@ -92,7 +92,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     function get component():Object;
     
@@ -101,12 +101,24 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      */
     function set component(value:Object):void;
     
+	
 	//--------------------------------------------------------------------------
 	//
 	//  Methods
 	//
 	//--------------------------------------------------------------------------
-
+	/**
+     *  Gets the system manager that is the root of all
+     *  top level system managers in this SecurityDomain.
+     *
+     *  @return the highest-level systemManager in the sandbox
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    function getSandboxRoot():UIComponent;
 }
 
 }
