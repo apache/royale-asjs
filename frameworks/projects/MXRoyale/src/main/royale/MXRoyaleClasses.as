@@ -121,6 +121,8 @@ internal class MXRoyaleClasses
 	import mx.events.IndexChangedEvent; IndexChangedEvent;
 	import mx.events.ItemClickEvent; ItemClickEvent;
 	import mx.events.ModuleEvent; ModuleEvent;
+	import mx.events.MouseEvent; MouseEvent;
+
 	COMPILE::JS
     	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
