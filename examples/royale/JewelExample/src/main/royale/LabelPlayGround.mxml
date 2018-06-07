@@ -19,7 +19,8 @@ limitations under the License.
 -->
 <j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
-		xmlns:html="library://ns.apache.org/royale/html">
+		xmlns:html="library://ns.apache.org/royale/html"
+		width="320">
     
 	<fx:Script>
 		<![CDATA[
@@ -35,5 +36,8 @@ limitations under the License.
 	<html:H3 text="Jewel Label"/>
 	
 	<j:Label id="label" text="This is a Label" click="labelClick(event)"/>
+
+	<j:Label text="This is a multiline label with more text that wraps if container has set a width"
+             multiline="true"/>
 	
 </j:Card>

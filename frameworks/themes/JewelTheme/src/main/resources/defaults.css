@@ -49,14 +49,8 @@ div {
 }
 
 .jewel.alert {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   margin: 0;
   padding: 0;
-  max-width: 100%;
-  max-height: 100%;
   min-width: 420px;
   min-height: 240px;
   border: 0px solid;
@@ -74,12 +68,9 @@ div {
   font-weight: bold;
 }
 .jewel.alert .content {
-  position: absolute;
   padding: 20px;
   top: 50px;
   bottom: 80px;
-  width: 100%;
-  overflow-y: auto;
 }
 .jewel.alert .content .jewel.label {
   white-space: normal;
@@ -196,9 +187,6 @@ div {
 }
 
 .jewel.card {
-  flex-direction: column;
-  min-width: 300px;
-  min-height: 100px;
   font-size: 14px;
   font-weight: 400;
   background: #ebebeb;
@@ -223,6 +211,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   cursor: pointer;
   display: inline-block;
@@ -358,6 +347,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   cursor: pointer;
   display: inline-block;
@@ -428,6 +418,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   outline: 0;
   align-self: center;
@@ -528,6 +519,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   margin: 0;
   padding: 0.67em 1em;

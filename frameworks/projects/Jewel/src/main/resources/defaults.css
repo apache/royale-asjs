@@ -76,54 +76,38 @@ j|Container {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: 0;
-  padding: 0;
-  max-width: 100%;
-  max-height: 100%;
   min-width: 350px;
   min-height: 200px;
-  border: 0px solid;
-  border-radius: 3px;
-  box-shadow: 0px 6px 60px -10px rgba(112, 112, 112, 0.7);
-  background-color: #FFFFFF;
 }
 .jewel.alert .jewel.titlebar {
-  padding: 14px 14px 0px 14px;
   height: 50px;
-  color: #000000;
 }
-.jewel.alert .jewel.titlebar .jewel.label {
-  font-size: 1.9em;
-  font-weight: bold;
-}
-.jewel.alert .Group {
+.jewel.alert .content {
   position: absolute;
-  padding: 14px;
   top: 50px;
   bottom: 50px;
   width: 100%;
   overflow-y: auto;
 }
-.jewel.alert .Group .jewel.label {
+.jewel.alert .content .jewel.label {
   white-space: normal;
-  color: #000000;
-  font-size: 1.1em;
-  font-weight: normal;
 }
 .jewel.alert .jewel.controlbar {
-  padding: 0px 14px 14px 14px;
   position: absolute;
   bottom: 0;
   height: 50px;
-}
-.jewel.alert + .backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 j|Alert {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
+}
+
+.jewel.card {
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 180px;
 }
 
 j|Card {
