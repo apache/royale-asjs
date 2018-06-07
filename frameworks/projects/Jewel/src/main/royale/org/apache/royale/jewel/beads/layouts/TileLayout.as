@@ -26,6 +26,13 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.ILayoutStyleProperties;
+
+	COMPILE::JS
+	{
+		import org.apache.royale.utils.cssclasslist.addStyles;
+		import org.apache.royale.core.WrappedHTMLElement;
+	}
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -38,7 +45,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TileLayout extends LayoutBase implements IBeadLayout
+	public class TileLayout extends LayoutBase implements IBeadLayout, ILayoutStyleProperties
 	{
 		/**
 		 *  constructor.
@@ -112,14 +119,108 @@ package org.apache.royale.jewel.beads.layouts
 			_rowHeight = value;
 		}
 
-        /**
-         * @copy org.apache.royale.core.IBeadLayout#layout
-         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
-         */
+		/**
+		 *  @private
+		 */
+		private var verticalGapInitialized:Boolean;
+		public static const VERTICAL_GAP_STYLE:String = "verticalGap"
+		private var _verticalGap:Number = 0;
+
+		/**
+		 *  The verticalGap between items.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get verticalGap():Number
+		{
+			return _verticalGap;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set verticalGap(value:Number):void
+		{
+			_verticalGap = value;
+			verticalGapInitialized = true;
+		}
+
+		/**
+		 *  @private
+		 */
+		private var horizontalGapInitialized:Boolean;
+		public static const HORIZONTAL_GAP_STYLE:String = "horizontalGap"
+		private var _horizontalGap:Number = 0;
+
+		/**
+		 *  The horizontalGap between items.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get horizontalGap():Number
+		{
+			return _horizontalGap;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set horizontalGap(value:Number):void
+		{
+			_horizontalGap = value;
+			horizontalGapInitialized = true;
+		}
+
+		/**
+		 *  Get the component layout style and apply to if exists
+		 * 
+		 *  @param component the IUIBase component that host this layout
+		 *  @param cssProperty the style property in css set for the component to retrieve
+		 * 
+		 *  @see org.apache.royale.core.layout.ILayoutStyleProperties#applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		{	
+			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
+			if (cssValue !== undefined)
+			{
+				switch(cssProperty)
+				{
+					case VERTICAL_GAP_STYLE:
+						if(!verticalGapInitialized)
+						{
+							verticalGap = Number(cssValue);
+						}
+						break;
+					default:
+						break;
+				}	
+			}
+		}
+
+		/**
+		 *  Layout children
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
 		override public function layout():Boolean
 		{
-			// var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
-			
 			COMPILE::SWF
 			{
 				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
@@ -142,7 +243,7 @@ package org.apache.royale.jewel.beads.layouts
 					if (testChild == null || !testChild.visible) realN--;
 				}
 
-				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / numColumns); // + gap
+				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / numColumns); // + verticalGap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.ceil(realN/numColumns);
@@ -185,60 +286,90 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				var children:Array;
-				var i:int;
-				var n:int;
-				var child:UIBase;
-				var xpos:Number;
-				var ypos:Number;
-				var useWidth:Number;
-				var useHeight:Number;
+				var _paddingTop:Number = 10;
+				var _paddingRight:Number = 10;
+				var _paddingBottom:Number = 10;
+				var _paddingLeft:Number = 10;
 
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				addStyles (contentView, "layout tile");
 				
-				children = contentView.internalChildren();
-				n = children.length;
+				var children:Array = contentView.internalChildren();
+				var i:int;
+				var n:int = children.length;
 				if (n === 0) return false;
 
-				contentView.element.style["display"] = "flex";
-				contentView.element.style["flexFlow"] = "row wrap";
-				contentView.element.style["alignContent"] = "flex-start";
 				var realN:int = n;
 				for (i = 0; i < n; i++)
 				{
 					child = children[i].royale_wrapper;
 					if (!child.visible) realN--;
 				}
-
-				xpos = 0;
-				ypos = 0;
-				useWidth = columnWidth;
-				useHeight = rowHeight;
+				trace("realN: "+ realN);
+				var useWidth:Number = columnWidth;
+				var useHeight:Number = rowHeight;
 				var needWidth:Boolean = isNaN(useWidth);
 				var needHeight:Boolean = isNaN(useHeight);
-				if(needHeight || needWidth){
+				trace(needWidth + " o " + needHeight);
+				if(needWidth || needHeight)
+				{
 					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+					trace("borderMetrics: " + borderMetrics);
 					var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
 					var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 					if (needWidth)
-						useWidth = Math.floor(adjustedWidth / numColumns); // + gap
+						useWidth = Math.floor(adjustedWidth / numColumns);// + _horizontalGap;
 					
 					if (needHeight)
 					{
 						// given the width and total number of items, how many rows?
 						var numRows:Number = Math.ceil(realN / numColumns);
-						if (host.isHeightSizedToContent()) useHeight = 30; // default height
-						else useHeight = Math.floor(adjustedHeight / numRows);
+						if (host.isHeightSizedToContent()) 
+							useHeight = 30; // default height
+						else 
+							useHeight = Math.floor(adjustedHeight / numRows);// + _verticalGap;
 					}
 				}
 
+				var child:UIBase;
 				for (i = 0; i < n; i++)
 				{
 					child = children[i].royale_wrapper;
 					if (!child.visible) continue;
-					child.setDisplayStyleForLayout('inline-block');
+					//child.setDisplayStyleForLayout('inline-block');
 					child.width = useWidth;
 					child.height = useHeight;
+
+					var childW:WrappedHTMLElement = children[i];// as WrappedHTMLElement;
+					trace("childW: " + childW);
+					if (childW == null) continue;
+					
+					childW.style.marginBottom = _paddingBottom + 'px';
+					if(i == 0)
+					{
+						childW.style.marginTop = _paddingTop + 'px';
+						childW.style.marginLeft = _paddingLeft + 'px';
+					}
+					else
+					{
+						childW.style.marginTop = _verticalGap + 'px';
+						childW.style.marginLeft = _horizontalGap + 'px';
+					}
+					childW.style.marginRight = _paddingRight + 'px';
+					childW.style.marginTop = _paddingTop + 'px';
+					if(i === (n - 1))
+					{
+						childW.style.marginBottom = _paddingBottom + 'px';
+						childW.style.marginRight = _paddingRight + 'px';
+					}
+					else
+					{
+						childW.style.marginBottom = '0px';
+						childW.style.marginRight = '0px';
+					}
+					childW.style.marginLeft = _paddingLeft + 'px';
+
+					//childW.royale_wrapper.dispatchEvent('sizeChanged');				
 				}
 				return true;
 			}

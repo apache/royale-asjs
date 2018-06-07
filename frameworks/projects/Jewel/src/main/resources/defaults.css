@@ -41,6 +41,10 @@ j|Application *, .royale *, .royale *:before, .royale *:after {
   align-items: flex-start;
 }
 
+.layout.tile {
+  flex-flow: row wrap;
+}
+
 .layout.horizontal.space {
   justify-content: space-between;
 }
