@@ -86,7 +86,7 @@ import org.apache.royale.events.MouseEvent;
 import mx.events.ListEvent;
 import mx.collections.ICollectionView;
 import mx.core.IFactory;
-
+import mx.core.UIComponent; 
 import mx.core.mx_internal;
 use namespace mx_internal;
 
@@ -487,7 +487,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class AdvancedListBase /* extends ScrollControlBase
+public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
                       implements IDataRenderer, IFocusManagerComponent,
                       IListItemRenderer, IDropInListItemRenderer,
                       IEffectTargetHost */
