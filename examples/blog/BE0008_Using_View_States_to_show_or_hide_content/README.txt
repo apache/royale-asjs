@@ -1,4 +1,3 @@
-/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,12 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-*/
 
-@namespace "http://www.w3.org/1999/xhtml";
+DESCRIPTION
 
-.Application
-{
-    padding: 10px;
-	margin: 10px;
-}
+Using View States in a Royale Application
+
+
+---
+
+
+http://royale.apache.org/using-view-states-to-show-or-hide-content/
+
+Learn how to use view states in a royale application to show or hide content
