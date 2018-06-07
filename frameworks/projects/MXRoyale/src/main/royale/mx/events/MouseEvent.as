@@ -38,7 +38,16 @@ import org.apache.royale.events.MouseEvent;
 public class MouseEvent extends org.apache.royale.events.MouseEvent
 {
    /*  include "../core/Version.as"; */
-
+	public static const MOUSE_DOWN:String = org.apache.royale.events.MouseEvent.MOUSE_DOWN;
+	public static const MOUSE_MOVE:String = org.apache.royale.events.MouseEvent.MOUSE_MOVE;
+	public static const MOUSE_UP:String = org.apache.royale.events.MouseEvent.MOUSE_UP;
+	public static const MOUSE_OUT:String = org.apache.royale.events.MouseEvent.MOUSE_OUT;
+	public static const MOUSE_OVER:String = org.apache.royale.events.MouseEvent.MOUSE_OVER;
+	public static const ROLL_OVER:String = org.apache.royale.events.MouseEvent.ROLL_OVER;
+	public static const ROLL_OUT:String = org.apache.royale.events.MouseEvent.ROLL_OUT;
+	public static const CLICK:String = org.apache.royale.events.MouseEvent.CLICK;
+	public static const DOUBLE_CLICK:String = org.apache.royale.events.MouseEvent.DOUBLE_CLICK;
+	
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
