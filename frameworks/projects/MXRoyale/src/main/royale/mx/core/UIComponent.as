@@ -2466,6 +2466,73 @@ public class UIComponent extends UIBase
     {
         _transitions = value;
     }
+	
+	
+	//----------------------------------
+    //  horizontalScrollPolicy
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the horizontalScrollPolicy property.
+     */
+    private var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
+
+    [Bindable("horizontalScrollPolicyChanged")]
+    [Inspectable(enumeration="off,on,auto", defaultValue="off")]
+
+    /**
+     *  A property that indicates whether the horizontal scroll 
+     *  bar is always on, always off,
+     *  or automatically changes based on the parameters passed to the
+     *  <code>setScrollBarProperties()</code> method.
+     *  Allowed values are <code>ScrollPolicy.ON</code>,
+     *  <code>ScrollPolicy.OFF</code>, and <code>ScrollPolicy.AUTO</code>.
+     *  MXML values can be <code>"on"</code>, <code>"off"</code>,
+     *  and <code>"auto"</code>.
+     *
+     *  <p>Setting this property to <code>ScrollPolicy.OFF</code> for ListBase
+     *  subclasses does not affect the <code>horizontalScrollPosition</code>
+     *  property; you can still scroll the contents programmatically.</p>
+     *
+     *  <p>Note that the policy can affect the measured size of the component
+     *  If the policy is <code>ScrollPolicy.AUTO</code> the
+     *  scrollbar is not factored in the measured size.  This is done to
+     *  keep the layout from recalculating when the scrollbar appears.  If you
+     *  know that you will have enough data for scrollbars you should set
+     *  the policy to <code>ScrollPolicy.ON</code>.  If you
+     *  don't know, you may need to set an explicit width or height on
+     *  the component to allow for scrollbars to appear later.</p>
+     *
+     *  @default ScrollPolicy.OFF
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalScrollPolicy():String
+    {
+	 return _horizontalScrollPolicy;
+	     
+	}
+
+    /**
+     *  @private
+     */
+    public function set horizontalScrollPolicy(value:String):void
+    {
+         var newPolicy:String = value.toLowerCase();
+
+        if (_horizontalScrollPolicy != newPolicy)
+        {
+            _horizontalScrollPolicy = newPolicy;
+           // invalidateDisplayList();
+
+           // dispatchEvent(new Event("horizontalScrollPolicyChanged"));
+        } 
+    }
+	
     //--------------------------------------------------------------------------
     //
     //  Properties: Other
