@@ -123,7 +123,8 @@ internal class MXRoyaleClasses
 	import mx.events.ModuleEvent; ModuleEvent;
 	import mx.events.MouseEvent; MouseEvent;
 	import mx.managers.SystemManager; SystemManager;
-	
+	import mx.filters.BitmapFilter; BitmapFilter;
+	import mx.filters.ColorMatrixFilter; ColorMatrixFilter;
 	COMPILE::JS
     	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
