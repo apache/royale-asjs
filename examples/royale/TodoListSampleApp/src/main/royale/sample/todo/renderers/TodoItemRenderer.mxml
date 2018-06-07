@@ -58,7 +58,7 @@ limitations under the License.
 	             change="checkBoxChange()"
 				 />
 	
-	<js:Button className="RemoveButton"
+	<js:TextButton className="RemoveButton" text="X"
 	           click="removeClick()" />
 
 </js:MXMLItemRenderer>

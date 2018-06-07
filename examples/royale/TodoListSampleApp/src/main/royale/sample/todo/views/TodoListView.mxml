@@ -36,6 +36,7 @@ limitations under the License.
         
         .RendererText {
 			left: 10px;
+			top: 10px;
         }
         
         .RemoveButton {
@@ -43,6 +44,9 @@ limitations under the License.
         	height: 16px;
         	border: solid 1px red;
 			right: 10px;
+			top: 10px;
+			line-height: 0;
+			color: red;
         }
         
         .StatusText {
