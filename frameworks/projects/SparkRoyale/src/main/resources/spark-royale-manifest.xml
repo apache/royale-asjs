@@ -64,4 +64,6 @@
 	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke" lookupOnly="true"/>
 	<component id="NavigatorContent" class="spark.components.NavigatorContent"/>
 	<component id="BorderContainer" class="spark.components.BorderContainer"/>
+	<component id="Scroller" class="spark.components.Scroller"/>
+    	<component id="DataGroup" class="spark.components.DataGroup"/>
 </componentPackage>
