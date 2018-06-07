@@ -23,7 +23,7 @@
                xmlns:html="library://ns.apache.org/royale/html">
     
     <j:initialView>
-        <j:View id="view">
+        <j:View id="view" >
             <j:states>
                 <js:State name="login" />        
                 <js:State name="loggedIn" />        
@@ -45,7 +45,7 @@
             </j:Card>
 
             <j:Card id="loggedInForm" includeIn="loggedIn">
-                <html:H1 text="You are logged!! :)"/>
+                <html:H1 text="You are logged in!! :)"/>
                 <j:Button text="Logout" click="view.currentState = 'login'"/>
             </j:Card>
         </j:View>
