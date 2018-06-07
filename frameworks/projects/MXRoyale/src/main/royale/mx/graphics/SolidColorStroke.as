@@ -18,10 +18,13 @@
 
 package mx.graphics
 {
-  
+	import mx.graphics.IStroke;
 	import org.apache.royale.graphics.SolidColorStroke;
-    public class SolidColorStroke extends org.apache.royale.graphics.SolidColorStroke
+    public class SolidColorStroke extends org.apache.royale.graphics.SolidColorStroke implements IStroke
     {
-     
+		public function SolidColorStroke(color:uint = 0x000000,weight:Number = 1, alpha:Number = 1.0)
+        {
+			super(color,weight,alpha);
+		}
     }
 }
