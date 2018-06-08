@@ -415,7 +415,7 @@ package org.apache.royale.jewel
             {
                 _primary = value;
 
-                classSelectorList.toggle("primary", value);
+                toggleClass("primary", value);
             }
         }
         
@@ -442,7 +442,7 @@ package org.apache.royale.jewel
             {
                 _secondary = value;
 
-                classSelectorList.toggle("secondary", value);
+                toggleClass("secondary", value);
             }
         }
 
@@ -469,7 +469,7 @@ package org.apache.royale.jewel
             {
                 _emphasized = value;
 
-                classSelectorList.toggle("emphasized", value);
+                toggleClass("emphasized", value);
             }
         }
         

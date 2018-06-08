@@ -52,5 +52,29 @@ package org.apache.royale.core
         {
             classSelectorList.addNames(value);
         }
+
+        public function addClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.add(name);
+            }
+        }
+
+        public function removeClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.remove(name);
+            }
+        }
+
+        public function toggleClass(name:String, value:Boolean):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.toggle(name, value);
+            }
+        }
     }
 }
