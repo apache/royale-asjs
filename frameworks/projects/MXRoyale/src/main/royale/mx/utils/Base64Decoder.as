@@ -157,10 +157,10 @@ public class Base64Decoder
         return result;
     }
 
-    /*
     COMPILE::SWF
     public function flush():ByteArray
     {
+        /*
         if (count > 0)
         {
             
@@ -168,9 +168,9 @@ public class Base64Decoder
             throw new Error(message);
             
         }
+        */
         return drain();
     }
-    */
 
     /**
      * Clears all buffers and resets the decoder to its initial state.
