@@ -67,4 +67,5 @@
 	<component id="Scroller" class="spark.components.Scroller"/>
     	<component id="DataGroup" class="spark.components.DataGroup"/>
 	<component id="VerticalLayout" class="spark.layouts.VerticalLayout"/>
+	<component id="BitmapImage" class="spark.primitives.BitmapImage"/>
 </componentPackage>
