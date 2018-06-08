@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				(contentView as UIBase).className += " llayout horizontal space";
+				(contentView as UIBase).className += " layout horizontal space";
 
 				/** 
 				 *  This Layout uses the following CSS rules
