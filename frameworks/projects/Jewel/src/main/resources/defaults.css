@@ -62,6 +62,14 @@ j|Group {
   IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
 }
 
+j|HGroup {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+}
+
+j|VGroup {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+}
+
 j|Container {
   IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
