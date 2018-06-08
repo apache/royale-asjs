@@ -180,8 +180,9 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
                 var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				(contentView as UIBase).className += " layout absolute";
-				
+				var c:UIBase = (contentView as UIBase);
+				c.element.classList.add("layout");
+				c.element.classList.add("absolute");
 
 				// without this a state change in a View with BasicLayout will have a wrong behaviour
 				var children:Array = contentView.internalChildren();
