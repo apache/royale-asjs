@@ -27,6 +27,7 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.IStrand;
 
 	COMPILE::JS {
 		import org.apache.royale.core.UIBase;
@@ -58,10 +59,36 @@ package org.apache.royale.jewel.beads.layouts
 			super();
 		}
 
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+
+			COMPILE::JS
+			{
+				var contentView:UIBase = layoutView as UIBase;
+				contentView.element.classList.add("layout");
+				contentView.element.classList.add("horizontal");
+			}
+		}
+
         /**
-         * @copy org.apache.royale.core.IBeadLayout#layout
-         * @royaleignorecoercion org.apache.royale.core.ILayoutHost
-         */
+		 *  Layout children vertically
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
 		override public function layout():Boolean
 		{
             COMPILE::SWF
@@ -140,21 +167,17 @@ package org.apache.royale.jewel.beads.layouts
             }
             COMPILE::JS
             {
-				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				var c:UIBase = (contentView as UIBase);
-				c.element.classList.add("layout");
-				c.element.classList.add("horizontal");
-
 				/** 
 				 *  This Layout uses the following CSS rules
+				 *  no code needed in JS for layout
 				 * 
-				 *  .layout.horizontal {
-				 *		white-space: nowrap;
-				 *		display: block;
+				 *  .layout {
+				 *		display: flex;
 				 *	}
 				 *
-				 *	.layout.horizontal > * {
-				 *		display: inline-block;
+				 *	.layout.horizontal {
+				 *		flex-flow: row nowrap;
+				 *      align-items: flex-start
 				 *	}
 				 */
 
