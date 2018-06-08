@@ -19,12 +19,12 @@
 package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.MXMLItemRenderer;
+	import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.utils.cssclasslist.toggleStyle;
     }
 	
 	/**
@@ -49,8 +49,18 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
+			classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel item";
 		}
+
+		protected var classSelectorList:ClassSelectorList;
+
+
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
 		
 		private var _text:String = "";
 
@@ -140,7 +150,7 @@ package org.apache.royale.jewel.itemRenderers
             COMPILE::JS
             {
                 //element.className = "jewel item selected";
-                toggleStyle(this, "selected", selected);
+				classSelectorList.toggle("selected", selected);
             }
 		}
 
