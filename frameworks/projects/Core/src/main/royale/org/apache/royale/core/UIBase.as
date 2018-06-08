@@ -312,7 +312,7 @@ package org.apache.royale.core
 			}
 			COMPILE::JS {
 				this._percentWidth = value;
-				this.positioner.style.width = value.toString() + '%';
+				this.positioner.style.width = value + '%';
 				if (!isNaN(value))
 					this._explicitWidth = NaN;
 			}
@@ -356,7 +356,7 @@ package org.apache.royale.core
 				
 			COMPILE::JS {
 				this._percentHeight = value;
-				this.positioner.style.height = value.toString() + '%';
+				this.positioner.style.height = value + '%';
 				if (!isNaN(value))
 					this._explicitHeight = NaN;
 			}
@@ -567,7 +567,7 @@ package org.apache.royale.core
                 _height = value;
                 COMPILE::JS
                 {
-                    this.positioner.style.height = value.toString() + 'px';        
+                    this.positioner.style.height = value + 'px';        
                 }
                 if (!noEvent)
                     dispatchEvent(new Event("heightChanged"));
@@ -589,7 +589,7 @@ package org.apache.royale.core
                 _width = value;
                 COMPILE::JS
                 {
-                    this.positioner.style.width = value.toString() + 'px';        
+                    this.positioner.style.width = value + 'px';        
                 }
                 if (!noEvent)
                     dispatchEvent(new Event("widthChanged"));
@@ -611,7 +611,7 @@ package org.apache.royale.core
                 _width = newWidth;
                 COMPILE::JS
                 {
-                    this.positioner.style.width = newWidth.toString() + 'px';        
+                    this.positioner.style.width = newWidth + 'px';        
                 }
                 if (!noEvent) 
                     dispatchEvent(new Event("widthChanged"));
@@ -621,7 +621,7 @@ package org.apache.royale.core
                 _height = newHeight;
                 COMPILE::JS
                 {
-                    this.positioner.style.height = newHeight.toString() + 'px';        
+                    this.positioner.style.height = newHeight + 'px';        
                 }
                 if (!noEvent)
                     dispatchEvent(new Event("heightChanged"));
@@ -706,8 +706,6 @@ package org.apache.royale.core
             if (isNaN(pixels))
             {
                 pixels = positioner.offsetLeft;
-                if (positioner.parentNode != positioner.offsetParent)
-                    pixels -= (positioner.parentNode as HTMLElement).offsetLeft;
             }
             return pixels;
         }
@@ -730,9 +728,7 @@ package org.apache.royale.core
 			COMPILE::JS
 			{
 				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetLeft;
-				positioner.style.left = value.toString() + 'px';
+				positioner.style.left = value + 'px';
 			}
         }
         
@@ -775,8 +771,6 @@ package org.apache.royale.core
             if (isNaN(pixels))
             {
                 pixels = positioner.offsetTop;
-                if (positioner.parentNode != positioner.offsetParent)
-                    pixels -= (positioner.parentNode as HTMLElement).offsetTop;
             }
             return pixels;
         }
@@ -798,10 +792,7 @@ package org.apache.royale.core
 			}
 			COMPILE::JS
 			{
-				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetTop;
-				positioner.style.top = value.toString() + 'px';				
+				positioner.style.top = value + 'px';				
 			}
         }
         
