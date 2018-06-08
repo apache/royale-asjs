@@ -29,7 +29,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.LayoutBase;
 
 	COMPILE::JS {
-		import org.apache.royale.utils.cssclasslist.addStyles;
+		import org.apache.royale.core.UIBase;
 	}
 
     /**
@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles (contentView, "layout horizontal space");
+				(contentView as UIBase).className += " llayout horizontal space";
 
 				/** 
 				 *  This Layout uses the following CSS rules
