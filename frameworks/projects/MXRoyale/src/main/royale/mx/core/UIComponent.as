@@ -65,7 +65,6 @@ import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
-import org.apache.royale.textLayout.events.FocusEvent;
 /*
 import mx.managers.IToolTipManagerClient;
 import mx.managers.SystemManager;
@@ -154,7 +153,7 @@ use namespace mx_internal;
 
 
 
-[Event(name="focusOut", type="org.apache.royale.textLayout.events.FocusEvent")]
+[Event(name="focusOut", type="mx.events.FocusEvent")]
 
 [Event(name="change", type="org.apache.royale.events.Event")]
 
