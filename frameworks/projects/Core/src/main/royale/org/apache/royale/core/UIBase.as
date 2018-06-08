@@ -38,7 +38,6 @@ package org.apache.royale.core
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
-        import org.apache.royale.utils.cssclasslist.addStyles;
     }
 	
 	/**
