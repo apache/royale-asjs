@@ -173,6 +173,7 @@ package org.apache.royale.jewel.beads.layouts
 		public static const GAP_STYLE:String = "gap"
 		private var _gap:Number = 0;
 
+		// [Bindable(event="gapChanged")]
 		/**
 		 *  The gap between items.
 		 *
@@ -320,6 +321,8 @@ package org.apache.royale.jewel.beads.layouts
 				var c:UIBase = (contentView as UIBase);
 				c.element.classList.add("layout");
 				c.element.classList.add("vertical");
+
+				applyStyleToLayout(c, "gap");
 				
 				var children:Array = contentView.internalChildren();
 				var i:int;

@@ -317,6 +317,8 @@ package org.apache.royale.jewel.beads.layouts
 				c.element.classList.add("layout");
 				c.element.classList.add("horizontal");
 
+				applyStyleToLayout(c, "gap");
+
 				var children:Array = contentView.internalChildren();
 				var i:int;
 				var n:int = children.length;

@@ -82,13 +82,5 @@ package org.apache.royale.jewel
                 }
             }
         }
-
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			var layout:ILayoutStyleProperties = getBeadByType(IBeadLayout) as ILayoutStyleProperties;
-			layout.applyStyleToLayout(this, "gap");
-		}
 	}
 }
