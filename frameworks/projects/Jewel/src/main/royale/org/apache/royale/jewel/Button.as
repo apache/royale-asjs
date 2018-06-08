@@ -32,7 +32,7 @@ package org.apache.royale.jewel
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.core.UIBase;
+        import org.apache.royale.core.StyledUIBase;
         import org.apache.royale.html.util.addElementToWrapper;
     }
 
@@ -332,7 +332,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.3
      */
     COMPILE::JS
-    public class Button extends UIBase implements IStrand, IEventDispatcher, IUIBase
+    public class Button extends StyledUIBase implements IStrand, IEventDispatcher, IUIBase
     {
         /**
          *  Constructor.
@@ -345,12 +345,8 @@ package org.apache.royale.jewel
 		public function Button()
 		{
 			super();
-
-            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel button";
 		}
-        
-        protected var classSelectorList:ClassSelectorList;
 
         /**
          *  @copy org.apache.royale.html.Label#text
@@ -490,12 +486,6 @@ package org.apache.royale.jewel
                     getValue(this, 'iStatesImpl');
             }*/
             return element;
-        }       
-
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
         }
-
 	}
 }

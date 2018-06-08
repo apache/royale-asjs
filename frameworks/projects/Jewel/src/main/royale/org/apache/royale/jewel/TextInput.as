@@ -51,19 +51,9 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            classSelectorList = new ClassSelectorList(this);
-
             typeNames = "jewel textinput";
 		}
-
-        protected var classSelectorList:ClassSelectorList;
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
-        }
-
+        
         COMPILE::JS
 		private var _positioner:WrappedHTMLElement;
 

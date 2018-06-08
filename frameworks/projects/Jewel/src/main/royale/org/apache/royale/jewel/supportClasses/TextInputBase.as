@@ -17,7 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses
 {
-    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
     import org.apache.royale.jewel.supportClasses.ITextInput;
     import org.apache.royale.core.ITextModel;
@@ -26,8 +26,6 @@ package org.apache.royale.jewel.supportClasses
     {
         import goog.events;
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.utils.cssclasslist.toggleStyle;
-        import org.apache.royale.utils.cssclasslist.addStyles; 
     }
     
     /**
@@ -48,7 +46,7 @@ package org.apache.royale.jewel.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */    
-	public class TextInputBase extends UIBase implements ITextInput
+	public class TextInputBase extends StyledUIBase implements ITextInput
 	{
         /**
          *  Constructor.
@@ -231,22 +229,6 @@ package org.apache.royale.jewel.supportClasses
             _label = value;
         }
 
-        
-        /**
-		 *  override UIBase to affect positioner instead of element
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        COMPILE::JS
-		override protected function setClassName(value:String):void
-		{
-			//positioner.className = value;
-            addStyles(this, value);
-		}
-
         private var _isInvalid:Boolean = false;
         /**
 		 *  A boolean flag to activate "is-invalid" effect selector.
@@ -268,7 +250,7 @@ package org.apache.royale.jewel.supportClasses
 
             COMPILE::JS
             {
-                toggleStyle(this, "is-invalid", _isInvalid);
+                classSelectorList.toggle("is-invalid", _isInvalid);
                 //positioner.classList.toggle("is-invalid", _isInvalid);
                 //typeNames = positioner.className;
             }
