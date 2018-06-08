@@ -32,8 +32,8 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 
 	COMPILE::JS {
-		import org.apache.royale.utils.cssclasslist.addStyles;
         import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.core.UIBase;
     }
 
     /**
@@ -287,7 +287,7 @@ package org.apache.royale.jewel.beads.layouts
 						// the following code middle-aligns the child, but since HTML does not
 						// do this normally, this code is commented. (Use HorizontalFlexLayout for
 						// vertically centered elements in a horizontal row).
-//						childYpos = hostHeight/2 - (childHeight + mt + mb)/2;
+						//						childYpos = hostHeight/2 - (childHeight + mt + mb)/2;
 					}
 
 					if (ilc) {
@@ -313,7 +313,7 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
                 var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles (contentView, "layout horizontal");
+				(contentView as UIBase).className += " layout horizontal";
 
 				var children:Array = contentView.internalChildren();
 				var i:int;

@@ -33,8 +33,8 @@ package org.apache.royale.jewel.beads.layouts
 
 	COMPILE::JS
 	{
-		import org.apache.royale.utils.cssclasslist.addStyles;
 		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.core.UIBase;
 	}
 
 	/**
@@ -317,8 +317,8 @@ package org.apache.royale.jewel.beads.layouts
 			COMPILE::JS
 			{
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles (contentView, "layout vertical");
-
+				(contentView as UIBase).className += " layout vertical";
+				
 				var children:Array = contentView.internalChildren();
 				var i:int;
 				var n:int = children.length;

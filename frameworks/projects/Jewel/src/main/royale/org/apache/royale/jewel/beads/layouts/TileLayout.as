@@ -24,13 +24,12 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
-	import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
+	import org.apache.royale.core.UIBase;
 
 	COMPILE::JS
 	{
-		import org.apache.royale.utils.cssclasslist.addStyles;
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
@@ -117,6 +116,110 @@ package org.apache.royale.jewel.beads.layouts
 		public function set rowHeight(value:Number):void
 		{
 			_rowHeight = value;
+		}
+
+		/**
+		 *  @private
+		 */
+		private var _paddingTop:Number = 0;
+
+		/**
+		 *  The top padding value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get paddingTop():Number
+		{
+			return _paddingTop;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingTop(value:Number):void
+		{
+			_paddingTop = value;
+		}
+
+		/**
+		 *  @private
+		 */
+		private var _paddingRight:Number = 0;
+
+		/**
+		 *  The right padding value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get paddingRight():Number
+		{
+			return _paddingRight;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingRight(value:Number):void
+		{
+			_paddingRight = value;
+		}
+
+		/**
+		 *  @private
+		 */
+		private var _paddingBottom:Number = 0;
+
+		/**
+		 *  The top padding value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get paddingBottom():Number
+		{
+			return _paddingBottom;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingBottom(value:Number):void
+		{
+			_paddingBottom = value;
+		}
+
+		/**
+		 *  @private
+		 */
+		private var _paddingLeft:Number = 0;
+
+		/**
+		 *  The left padding value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get paddingLeft():Number
+		{
+			return _paddingLeft;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingLeft(value:Number):void
+		{
+			_paddingLeft = value;
 		}
 
 		/**
@@ -286,13 +389,8 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				var _paddingTop:Number = 10;
-				var _paddingRight:Number = 10;
-				var _paddingBottom:Number = 10;
-				var _paddingLeft:Number = 10;
-
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles (contentView, "layout tile");
+				(contentView as UIBase).className += " layout tile";
 				
 				var children:Array = contentView.internalChildren();
 				var i:int;
@@ -305,25 +403,25 @@ package org.apache.royale.jewel.beads.layouts
 					child = children[i].royale_wrapper;
 					if (!child.visible) realN--;
 				}
-				trace("realN: "+ realN);
+				
 				var useWidth:Number = columnWidth;
 				var useHeight:Number = rowHeight;
 				var needWidth:Boolean = isNaN(useWidth);
 				var needHeight:Boolean = isNaN(useHeight);
-				trace(needWidth + " o " + needHeight);
+				
+				// given the width and total number of items, how many rows?
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
+				var numRows:Number = Math.ceil(realN / (numColumns + _verticalGap));
+				
 				if(needWidth || needHeight)
 				{
-					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
-					trace("borderMetrics: " + borderMetrics);
-					var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
-					var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 					if (needWidth)
 						useWidth = Math.floor(adjustedWidth / numColumns);// + _horizontalGap;
 					
 					if (needHeight)
 					{
-						// given the width and total number of items, how many rows?
-						var numRows:Number = Math.ceil(realN / numColumns);
 						if (host.isHeightSizedToContent()) 
 							useHeight = 30; // default height
 						else 
@@ -332,44 +430,37 @@ package org.apache.royale.jewel.beads.layouts
 				}
 
 				var child:UIBase;
+				var numCols:Number = Math.floor(1+(adjustedWidth - useWidth) / (useWidth + _horizontalGap));
+				
 				for (i = 0; i < n; i++)
 				{
 					child = children[i].royale_wrapper;
 					if (!child.visible) continue;
-					//child.setDisplayStyleForLayout('inline-block');
 					child.width = useWidth;
 					child.height = useHeight;
 
-					var childW:WrappedHTMLElement = children[i];// as WrappedHTMLElement;
-					trace("childW: " + childW);
+					var childW:WrappedHTMLElement = children[i];
 					if (childW == null) continue;
 					
-					childW.style.marginBottom = _paddingBottom + 'px';
-					if(i == 0)
+					if(i < numCols)
 					{
 						childW.style.marginTop = _paddingTop + 'px';
-						childW.style.marginLeft = _paddingLeft + 'px';
 					}
 					else
 					{
 						childW.style.marginTop = _verticalGap + 'px';
-						childW.style.marginLeft = _horizontalGap + 'px';
 					}
-					childW.style.marginRight = _paddingRight + 'px';
-					childW.style.marginTop = _paddingTop + 'px';
-					if(i === (n - 1))
+
+					if(i % numCols)
 					{
-						childW.style.marginBottom = _paddingBottom + 'px';
-						childW.style.marginRight = _paddingRight + 'px';
+						childW.style.marginLeft = _horizontalGap + 'px';
 					}
 					else
 					{
-						childW.style.marginBottom = '0px';
-						childW.style.marginRight = '0px';
+						childW.style.marginLeft = _paddingLeft + 'px';
 					}
-					childW.style.marginLeft = _paddingLeft + 'px';
 
-					//childW.royale_wrapper.dispatchEvent('sizeChanged');				
+					childW.royale_wrapper.dispatchEvent('sizeChanged');				
 				}
 				return true;
 			}

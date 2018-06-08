@@ -19,6 +19,8 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.html.Group;
+    import org.apache.royale.utils.ClassSelectorList;
+
     /**
      *  The Group class provides a light-weight container for visual elements. By default
 	 *  the Group does not have a layout, allowing its children to be sized and positioned
@@ -45,7 +47,16 @@ package org.apache.royale.jewel
 		public function Group()
 		{
 			super();
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "";
 		}
+
+        protected var classSelectorList:ClassSelectorList;
+
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
 	}
 }

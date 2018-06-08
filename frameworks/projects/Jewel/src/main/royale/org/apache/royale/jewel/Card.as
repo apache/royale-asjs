@@ -45,11 +45,8 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel card";
 		}
-
-        protected var classSelectorList:ClassSelectorList;
 
 		protected var _shadow:Number = 0;
         /**
@@ -84,12 +81,6 @@ package org.apache.royale.jewel
                     }
                 }
             }
-        }
-
-        COMPILE::JS
-		override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
         }
 
 		override public function addedToParent():void

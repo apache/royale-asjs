@@ -24,12 +24,11 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IParentIUIBase;
 
 	COMPILE::JS {
-		import org.apache.royale.utils.cssclasslist.addStyles;
 		import org.apache.royale.core.WrappedHTMLElement;
+    	import org.apache.royale.core.UIBase;
     }
 
     /**
@@ -181,7 +180,8 @@ package org.apache.royale.jewel.beads.layouts
             COMPILE::JS
             {
                 var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				addStyles (contentView, "layout absolute");
+				(contentView as UIBase).className += " layout absolute";
+				
 
 				// without this a state change in a View with BasicLayout will have a wrong behaviour
 				var children:Array = contentView.internalChildren();
