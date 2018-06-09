@@ -22,9 +22,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
@@ -33,7 +31,6 @@ package org.apache.royale.jewel.beads.layouts
 	COMPILE::JS
 	{
 		import org.apache.royale.core.UIBase;
-		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
 	/**
@@ -77,8 +74,7 @@ package org.apache.royale.jewel.beads.layouts
 			COMPILE::JS
 			{
 				var contentView:UIBase = layoutView as UIBase;
-				contentView.element.classList.add("layout");
-				contentView.element.classList.add("vertical");
+				contentView.className = contentView.className ? contentView.className + " layout vertical" : "layout vertical";
 			}
 		}
 
@@ -89,7 +85,6 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
-		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		override public function layout():Boolean

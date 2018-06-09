@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
+	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.IStrand;
 
 	COMPILE::JS {
@@ -74,8 +73,7 @@ package org.apache.royale.jewel.beads.layouts
 			COMPILE::JS
 			{
 				var contentView:UIBase = layoutView as UIBase;
-				contentView.element.classList.add("layout");
-				contentView.element.classList.add("horizontal");
+				contentView.className = contentView.className ? contentView.className + " layout horizontal" : "layout horizontal";
 			}
 		}
 

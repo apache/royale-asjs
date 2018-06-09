@@ -21,13 +21,11 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
 
 	COMPILE::JS {
-		import org.apache.royale.core.WrappedHTMLElement;
     	import org.apache.royale.core.UIBase;
     }
 
@@ -57,9 +55,27 @@ package org.apache.royale.jewel.beads.layouts
 			super();
 		}
 
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+
+			COMPILE::JS
+			{
+				var contentView:UIBase = layoutView as UIBase;
+				contentView.className = contentView.className ? contentView.className + " layout absolute" : "layout absolute";
+			}
+		}
+
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
-		 * @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
          */
 		override public function layout():Boolean
@@ -179,20 +195,22 @@ package org.apache.royale.jewel.beads.layouts
 
             COMPILE::JS
             {
-                var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				var c:UIBase = (contentView as UIBase);
-				c.element.classList.add("layout");
-				c.element.classList.add("absolute");
-
-				// without this a state change in a View with BasicLayout will have a wrong behaviour
-				var children:Array = contentView.internalChildren();
-				var i:int;
-				var n:int = children.length;
-				for (i = 0; i < n; i++)
-				{
-					var child:WrappedHTMLElement = children[i];
-					child.royale_wrapper.dispatchEvent('sizeChanged');
-				}
+				/** 
+				 *  This Layout uses the following CSS rules
+				 *  no code needed in JS for layout
+				 * 
+				 *  .layout {
+				 *		display: flex;
+				 *	}
+				 *
+				 *	.layout.absolute {
+				 *		position: relative;
+				 *	}
+				 *  
+				 *	.layout.absolute > * {
+		         *      position: absolute  
+				 *  }
+				 */
 
                 return true;
             }
