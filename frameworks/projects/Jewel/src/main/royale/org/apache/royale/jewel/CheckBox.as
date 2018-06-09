@@ -19,9 +19,9 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.core.IToggleButtonModel;
-    import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.supportClasses.CheckBoxIcon;
+    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::SWF
     {
@@ -35,7 +35,7 @@ package org.apache.royale.jewel
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.core.UIBase;
+        import org.apache.royale.core.StyledUIBase;
     }
 
     //--------------------------------------
@@ -77,8 +77,12 @@ package org.apache.royale.jewel
 		{
 			super();
 
+            classSelectorList = new ClassSelectorList(this);
+
 			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
 		}
+
+        protected var classSelectorList:ClassSelectorList;
 
         /**
          *  The text label for the CheckBox.
@@ -157,7 +161,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.3
      */
     COMPILE::JS
-    public class CheckBox extends UIBase
+    public class CheckBox extends StyledUIBase
     {
         /**
          *  Constructor.
@@ -171,16 +175,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel checkbox";
-        }
-
-        protected var classSelectorList:ClassSelectorList;
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
         }
 
         private var _label:WrappedHTMLElement;

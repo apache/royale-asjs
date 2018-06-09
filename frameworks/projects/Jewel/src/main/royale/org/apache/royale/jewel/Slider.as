@@ -19,9 +19,8 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IRangeModel;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
@@ -79,7 +78,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Slider extends UIBase
+	public class Slider extends StyledUIBase
 	{
 		/**
 		 *  constructor.
@@ -93,8 +92,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            classSelectorList = new ClassSelectorList(this);
-			typeNames = "jewel slider";
+            typeNames = "jewel slider";
 
 			IRangeModel(model).value = 0;
 			IRangeModel(model).minimum = 0;
@@ -103,8 +101,6 @@ package org.apache.royale.jewel
 			IRangeModel(model).snapInterval = 1;
 		}
 		
-        protected var classSelectorList:ClassSelectorList;
-        
 		/**
 		 *  The current value of the Slider.
 		 *
@@ -228,12 +224,6 @@ package org.apache.royale.jewel
             _positioner.royale_wrapper = this;
 			
 			return element;
-        }
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
         }
     }
 }

@@ -19,11 +19,10 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.ITextModel;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.utils.ClassSelectorList;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -58,7 +57,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public class Label extends UIBase
+    public class Label extends StyledUIBase
 	{
         /**
          *  Constructor.
@@ -71,17 +70,8 @@ package org.apache.royale.jewel
 		public function Label()
 		{
 			super();
-            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel label";
 		}
-
-        protected var classSelectorList:ClassSelectorList;
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
-        }
 
         COMPILE::JS
         protected var textNode:Text;
@@ -188,7 +178,7 @@ package org.apache.royale.jewel
             if (_multiline != value)
             {
                 _multiline = value;
-                classSelectorList.toggle("multiline", _multiline);
+                toggleClass("multiline", _multiline);
             }
         }
 

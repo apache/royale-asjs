@@ -32,7 +32,7 @@ package org.apache.royale.jewel
 
     COMPILE::JS
     {
-        import org.apache.royale.core.UIBase;
+        import org.apache.royale.core.StyledUIBase;
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
@@ -286,7 +286,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.3
      */
     COMPILE::JS
-    public class RadioButton extends UIBase
+    public class RadioButton extends StyledUIBase
     {
         /**
          *  Constructor.
@@ -300,16 +300,7 @@ package org.apache.royale.jewel
 		{
             super();
 
-            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel radiobutton";
-        }
-
-        protected var classSelectorList:ClassSelectorList;
-        
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
         }
         
         /**

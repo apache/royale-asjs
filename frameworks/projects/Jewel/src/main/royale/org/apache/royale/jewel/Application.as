@@ -392,9 +392,9 @@ package org.apache.royale.jewel
          */
     	public function generateMXMLAttributes(data:Array):void
         {
-            // move the initialView to be the last thing to be
-            // the last thing instantiated so all other properties
-            // are set up first.  This more closely mimics the
+            // move the initialView to be the last thing
+            // instantiated so all other properties
+            // are set up first. This more closely mimics the
             // Flex timing
             var propCount:int = data[0];
             var n:int = data.length;
