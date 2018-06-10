@@ -109,22 +109,23 @@ package org.apache.royale.jewel.beads.layouts
 				{
 					if(hostComponent)
 						setGap(value);
-					else
-						_gap = value;
+					
+					_gap = value;
 				}
             }
 		}
 
 		COMPILE::JS
-		public function setGap(value:Number):void
-		{//if(hostComponent.className.indexOf("gap") == -1 && 
-			// if(gap)
-			// 	hostComponent.className += " gap-1dp";
-			// else
-			// 	hostComponent.className = StringUtil.removeWord(hostComponent.className, " gap-1dp");
-			hostComponent.positioner.classList.remove("gap-" + _gap + "dp");
-			hostComponent.positioner.classList.add("gap-" + value + "dp");
-			_gap = value;
+		private function setGap(value:Number):void
+		{
+			if (value >= 0 && value <= 20)
+			{
+				hostComponent.className = StringUtil.removeWord(hostComponent.className, " gap-" + _gap + "dp");
+				hostComponent.className += " gap-" + value + "dp";
+				// hostComponent.positioner.classList.remove("gap-" + _gap + "dp");
+				// hostComponent.positioner.classList.add("gap-" + value + "dp");
+			} else
+				throw new Error("Grid gap needs to be between 0 and 20");
 		}
 
         /**

@@ -23,16 +23,15 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.beads.layouts.GridLayout;
 
 	/**
-	 *  The Grid class is a container that uses Grid Layout.
-	 *  Grid Layout need other inmediate children to work as cells
-	 *  to host cell content.
+	 *  The Cell class is the inmediate container in a Grid Layout
+	 *  to host grid cell content.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Grid extends Group
+	public class Cell extends Group
 	{
 		/**
 		 *  constructor.
@@ -42,36 +41,11 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function Grid()
+		public function Cell()
 		{
 			super();
 
-            typeNames = "jewel";
-
-			layout = new GridLayout();
-			addBead(layout);
+            typeNames = "jewel cell";
 		}
-
-		protected var layout:GridLayout;
-
-        /**
-		 *  Assigns variable gap to grid from 1 to 20
-		 *  Activate "gap-Xdp" effect selector to set a numeric gap 
-		 *  between grid cells
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get gap():Number
-        {
-            return layout.gap;
-        }
-
-        public function set gap(value:Number):void
-        {
-			layout.gap = value;
-        }
 	}
 }

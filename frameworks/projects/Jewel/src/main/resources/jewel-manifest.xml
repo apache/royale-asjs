@@ -28,6 +28,7 @@
     <component id="VGroup" class="org.apache.royale.jewel.VGroup"/>
     <component id="Container" class="org.apache.royale.jewel.Container"/>
     <component id="Grid" class="org.apache.royale.jewel.Grid"/>
+    <component id="Cell" class="org.apache.royale.jewel.Cell"/>
 
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
