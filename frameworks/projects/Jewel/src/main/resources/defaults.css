@@ -16,37 +16,8 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-j|Application *, .royale *, .royale *:before, .royale *:after {
+*, :after, :before {
   box-sizing: border-box;
-}
-
-.layout {
-  display: flex;
-}
-
-.layout.absolute {
-  position: relative;
-}
-.layout.absolute > * {
-  position: absolute;
-}
-
-.layout.horizontal {
-  flex-flow: row nowrap;
-  align-items: flex-start;
-}
-
-.layout.vertical {
-  flex-flow: column nowrap;
-  align-items: flex-start;
-}
-
-.layout.tile {
-  flex-flow: row wrap;
-}
-
-.layout.horizontal.space {
-  justify-content: space-between;
 }
 
 ::-moz-focus-inner, ::-moz-focus-outer {
@@ -55,7 +26,6 @@ j|Application *, .royale *, .royale *:before, .royale *:after {
 
 j|View {
   IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
 }
 
 j|Group {
@@ -75,7 +45,6 @@ j|Container {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
   IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
-  align-items: flex-start;
 }
 
 @media -royale-swf {
@@ -182,6 +151,162 @@ j|Label {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
 
+.layout {
+  display: flex;
+}
+
+/* Absolute */
+.layout.absolute {
+  position: relative;
+}
+.layout.absolute > * {
+  position: absolute;
+}
+
+/* Horizontal */
+.layout.horizontal {
+  flex-flow: row nowrap;
+  align-items: flex-start;
+}
+
+/* Vertical */
+.layout.vertical {
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+.layout.horizontal.space {
+  justify-content: space-between;
+}
+
+/* Grid */
+.layout.grid {
+  flex-wrap: wrap;
+}
+.layout.grid > * {
+  flex: 1;
+}
+.layout.grid.gap-1dp {
+  margin: -1em 0 1em -1em;
+}
+.layout.grid.gap-1dp > * {
+  padding: 1em 0 0 1em;
+}
+.layout.grid.gap-2dp {
+  margin: -2em 0 2em -2em;
+}
+.layout.grid.gap-2dp > * {
+  padding: 2em 0 0 2em;
+}
+.layout.grid.gap-3dp {
+  margin: -3em 0 3em -3em;
+}
+.layout.grid.gap-3dp > * {
+  padding: 3em 0 0 3em;
+}
+.layout.grid.gap-4dp {
+  margin: -4em 0 4em -4em;
+}
+.layout.grid.gap-4dp > * {
+  padding: 4em 0 0 4em;
+}
+.layout.grid.gap-5dp {
+  margin: -5em 0 5em -5em;
+}
+.layout.grid.gap-5dp > * {
+  padding: 5em 0 0 5em;
+}
+.layout.grid.gap-6dp {
+  margin: -6em 0 6em -6em;
+}
+.layout.grid.gap-6dp > * {
+  padding: 6em 0 0 6em;
+}
+.layout.grid.gap-7dp {
+  margin: -7em 0 7em -7em;
+}
+.layout.grid.gap-7dp > * {
+  padding: 7em 0 0 7em;
+}
+.layout.grid.gap-8dp {
+  margin: -8em 0 8em -8em;
+}
+.layout.grid.gap-8dp > * {
+  padding: 8em 0 0 8em;
+}
+.layout.grid.gap-9dp {
+  margin: -9em 0 9em -9em;
+}
+.layout.grid.gap-9dp > * {
+  padding: 9em 0 0 9em;
+}
+.layout.grid.gap-10dp {
+  margin: -10em 0 10em -10em;
+}
+.layout.grid.gap-10dp > * {
+  padding: 10em 0 0 10em;
+}
+.layout.grid.gap-11dp {
+  margin: -11em 0 11em -11em;
+}
+.layout.grid.gap-11dp > * {
+  padding: 11em 0 0 11em;
+}
+.layout.grid.gap-12dp {
+  margin: -12em 0 12em -12em;
+}
+.layout.grid.gap-12dp > * {
+  padding: 12em 0 0 12em;
+}
+.layout.grid.gap-13dp {
+  margin: -13em 0 13em -13em;
+}
+.layout.grid.gap-13dp > * {
+  padding: 13em 0 0 13em;
+}
+.layout.grid.gap-14dp {
+  margin: -14em 0 14em -14em;
+}
+.layout.grid.gap-14dp > * {
+  padding: 14em 0 0 14em;
+}
+.layout.grid.gap-15dp {
+  margin: -15em 0 15em -15em;
+}
+.layout.grid.gap-15dp > * {
+  padding: 15em 0 0 15em;
+}
+.layout.grid.gap-16dp {
+  margin: -16em 0 16em -16em;
+}
+.layout.grid.gap-16dp > * {
+  padding: 16em 0 0 16em;
+}
+.layout.grid.gap-17dp {
+  margin: -17em 0 17em -17em;
+}
+.layout.grid.gap-17dp > * {
+  padding: 17em 0 0 17em;
+}
+.layout.grid.gap-18dp {
+  margin: -18em 0 18em -18em;
+}
+.layout.grid.gap-18dp > * {
+  padding: 18em 0 0 18em;
+}
+.layout.grid.gap-19dp {
+  margin: -19em 0 19em -19em;
+}
+.layout.grid.gap-19dp > * {
+  padding: 19em 0 0 19em;
+}
+.layout.grid.gap-20dp {
+  margin: -20em 0 20em -20em;
+}
+.layout.grid.gap-20dp > * {
+  padding: 20em 0 0 20em;
+}
+
 .jewel.list {
   align-items: stretch;
   align-content: flex-start;
@@ -209,6 +334,10 @@ j|List {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.RadioButtonView");
   }
 }
+.jewel.slider input::-ms-tooltip {
+  display: none;
+}
+
 j|Slider {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SliderView");

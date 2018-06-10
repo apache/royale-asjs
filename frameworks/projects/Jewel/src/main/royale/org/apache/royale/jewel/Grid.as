@@ -20,16 +20,19 @@ package org.apache.royale.jewel
 {
 	import org.apache.royale.jewel.Group;
 	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.jewel.beads.layouts.GridLayout;
 
 	/**
-	 *  The Card class is a container that surronds other components.
+	 *  The Grid class is a container that uses Grid Layout.
+	 *  Grid Layout need other inmediate children to work as cells
+	 *  to host cell content.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Card extends Group
+	public class Grid extends Group
 	{
 		/**
 		 *  constructor.
@@ -39,44 +42,45 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function Card()
+		public function Grid()
 		{
 			super();
 
-            typeNames = "jewel card";
+            typeNames = "jewel";
+
+			layout = new GridLayout();
+			addBead(layout);
 		}
 
-		protected var _shadow:Number = 0;
+		protected var layout:GridLayout;
+
+		protected var _gap:Number = 0;
         /**
-		 *  A boolean flag to activate "shadow-Xdp" effect selector.
-		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
+		 *  Assigns variable gap to grid from 1 to 20
+		 *  Activate "gap-Xdp" effect selector to set a numeric gap 
+		 *  between grid cells
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-        public function get shadow():Number
+        public function get gap():Number
         {
-            return _shadow;
+            return _gap;
         }
 
-        public function set shadow(value:Number):void
+        public function set gap(value:Number):void
         {
-			if (_shadow != value)
+			if (_gap != value)
             {
                 COMPILE::JS
                 {
-                    if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+					if (value > 0 && value < 20)
                     {
-                        var classVal:String = "shadow-" + _shadow + "dp";
-                        classSelectorList.remove(classVal);
-
-                        classVal = "shadow-" + value + "dp";
-						classSelectorList.add(classVal);
-
-                        _shadow = value;
-                    }
+						layout.gap = value;
+					} else
+						throw new Error("Grid gap needs to be between 0 and 20");
                 }
             }
         }

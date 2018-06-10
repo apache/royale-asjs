@@ -81,7 +81,7 @@ package org.apache.royale.jewel
 		{
 			COMPILE::JS
 			{
-				typeNames = 'Container';
+				typeNames = '';
 			}
 			super();
 		}

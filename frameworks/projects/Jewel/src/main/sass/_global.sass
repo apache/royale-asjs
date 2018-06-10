@@ -20,56 +20,9 @@
 @namespace j "library://ns.apache.org/royale/jewel"
 @namespace "http://www.w3.org/1999/xhtml"
 
-$global-gap: 10px !default
-$phone-max-width: 480px !default
-$tablet-max-width: 840px !default
-$desktop-columns: 12 !default
-$tablet-columns: 8 !default
-$phone-columns: 4 !default
-
-@media (max-width: $phone-max-width - 1)
-
-@media (max-width: $tablet-max-width - 1)
-
-j|Application *, .royale *, .royale *:before, .royale *:after
+//j|Application *, .royale *, .royale *:before, .royale *:after
+* , :after, :before
 	box-sizing: border-box
-
-.layout
-	display: flex	
-	//overflow-y: auto
-	//overflow-x: hidden
-	//position: relative
-	//-webkit-overflow-scrolling: touch
-
-.layout.absolute
-	position: relative
-	//justify-content: flex-start // align main axis (default)
-	> *
-		position: absolute
-	
-.layout.horizontal
-	flex-flow: row nowrap
-	//justify-content: flex-start // align main axis (default)
-	align-items: flex-start
-	//> *
-	//	flex: 1 0 auto
-	
-.layout.vertical
-	flex-flow: column nowrap
-	//justify-content: flex-start // align main axis (default)
-	align-items: flex-start
-	//> *
-	//	flex: 1 0 auto
-
-.layout.tile
-	flex-flow: row wrap
-	//justify-content: flex-start // align main axis (default)
-	//align-items: flex-start
-	//> *
-	//	flex: 1 0 auto
-	
-.layout.horizontal.space
-	justify-content: space-between
 
 // Firefox
 // remove dotted outline
@@ -78,7 +31,7 @@ j|Application *, .royale *, .royale *:before, .royale *:after
 	
 j|View
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+	//IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 
 j|Group
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
@@ -94,7 +47,11 @@ j|Container
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport")
 	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel")
-	align-items: flex-start
+	//align-items: flex-start
+
+
+//j|Grid
+//	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridLayout")
 
 @media -royale-swf
 	j|View
