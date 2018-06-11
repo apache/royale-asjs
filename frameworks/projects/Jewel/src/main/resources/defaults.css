@@ -132,6 +132,7 @@ j|ControlBar {
 .jewel.item {
   display: flex;
   cursor: pointer;
+  min-height: 34px;
 }
 
 j|ListItemRenderer {
