@@ -126,6 +126,7 @@ package org.apache.royale.mdl
 		public function showModal():void
 		{
 			prepareDialog();
+			_open = true;
 
 			COMPILE::JS
 			{
@@ -147,6 +148,7 @@ package org.apache.royale.mdl
 		public function show():void
 		{
 			prepareDialog();
+			_open = true;
 
 			COMPILE::JS
 			{
@@ -164,10 +166,26 @@ package org.apache.royale.mdl
 		 */
 		public function close():void
 		{
+			_open = false;
 			COMPILE::JS
 			{
 				dialog.close();
 			}
+		}
+		
+		private var _open:Boolean;
+		/**
+		 *  Indicates whether the dialog is open.
+		 *  see https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/open
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get open():Boolean
+		{
+			return _open;
 		}
 	}
 }
