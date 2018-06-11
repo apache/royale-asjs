@@ -445,8 +445,6 @@ j|Card {
   color: transparent;
 }
 .jewel.slider input::-ms-fill-lower {
-  position: relative;
-  flex: 0;
   padding: 0;
   background: linear-gradient(#4ab3f2, #2ea7f0);
   border: 1px solid #0f88d1;
@@ -454,8 +452,6 @@ j|Card {
   border-radius: 3px;
 }
 .jewel.slider input::-ms-fill-upper {
-  position: relative;
-  flex: 0;
   padding: 0;
   background: linear-gradient(white, #e6e6e6);
   border: 1px solid #b3b3b3;
@@ -475,11 +471,6 @@ j|Card {
   border-radius: 50%;
 }
 .jewel.slider input::-ms-thumb {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
   width: 18px;
   height: 18px;
   background: linear-gradient(#4ab3f2, #2ea7f0);
@@ -491,7 +482,7 @@ j|Card {
   transform: scale(1.4);
 }
 .jewel.slider input:active::-ms-thumb {
-  transform: scale(1.4);
+  transform: scale(0.9);
 }
 .jewel.slider input:focus {
   outline: none;

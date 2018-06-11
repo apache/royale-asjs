@@ -28,6 +28,7 @@ $slider-track-border-radius: 3px
 $slider-thumb-size: 18px
 $slider-border-radius: 50%
 $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
+$slider-scale-transform: 1.4
 
 .jewel.slider
     position: relative
@@ -69,13 +70,10 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
             width: 100%
             height: $slider-track-min-height
             background: none
-            border: none
+            border: none //($slider-thumb-size / 2) * $slider-scale-transform solid red
             color: transparent
 
         &::-ms-fill-lower
-            position: relative
-            flex: 0
-            
             padding: 0
             
             @if $flat
@@ -88,9 +86,6 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
             border-radius: $slider-track-border-radius
 
         &::-ms-fill-upper
-            position: relative
-            flex: 0
-            
             padding: 0
             
             @if $flat
@@ -121,7 +116,7 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
             border-radius: $slider-border-radius
         
         &::-ms-thumb
-            +appear(none)
+            //+appear(none)
             width: $slider-thumb-size
             height: $slider-thumb-size
             @if $flat
@@ -134,10 +129,10 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
             border-radius: $slider-border-radius
         
         &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
-            transform: scale(1.4)
+            transform: scale($slider-scale-transform)
         
         &:active::-ms-thumb
-            transform: scale(1.4)
+            transform: scale(.8) //$slider-scale-transform) in IE thumb is cut by track
         
         &:focus
             outline: none
