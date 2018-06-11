@@ -213,7 +213,10 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
         COMPILE::JS
         {
-            return (new TextDecoder("utf-8")).decode(ba);
+            if('TextDecoder' in window)
+                return (new TextDecoder("utf-8")).decode(ba); //this doesn't work on IE/Edge
+            else
+                return String.fromCharCode.apply(null, new Uint16Array(ba));
         }
 	}
 
