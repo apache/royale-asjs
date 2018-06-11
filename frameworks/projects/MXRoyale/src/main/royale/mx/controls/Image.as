@@ -65,7 +65,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 [Event(name="dataChange", type="mx.events.FlexEvent")]
 
@@ -153,7 +153,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 public class Image extends UIComponent
                    implements IImage
@@ -171,7 +171,7 @@ public class Image extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function Image()
     {
@@ -278,7 +278,52 @@ public class Image extends UIComponent
 		dispatchEvent(newEvent);
 	}
 
-
+	//----------------------------------
+    //  scaleContent copied from SWFLoader
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the scaleContent property.
+     */
+    private var _scaleContent:Boolean = true;
+    
+    [Bindable("scaleContentChanged")]
+    [Inspectable(category="General", defaultValue="true")]
+    
+    /**
+     *  A flag that indicates whether to scale the content to fit the
+     *  size of the control or resize the control to the content's size.
+     *  If <code>true</code>, the content scales to fit the SWFLoader control.
+     *  If <code>false</code>, the SWFLoader scales to fit the content. 
+     *
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public function get scaleContent():Boolean
+    {
+        return _scaleContent;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set scaleContent(value:Boolean):void
+    {
+        if (_scaleContent != value)
+        {
+            _scaleContent = value;
+            
+          //  scaleContentChanged = true;
+           // invalidateDisplayList();
+        }
+        
+       // dispatchEvent(new Event("scaleContentChanged"));
+    }
     //--------------------------------------------------------------------------
     //
     //  Inherited methods: UIComponent
