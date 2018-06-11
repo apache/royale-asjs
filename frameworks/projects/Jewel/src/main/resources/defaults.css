@@ -151,16 +151,16 @@ j|Label {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
 
-.layout {
-  display: flex;
-}
-
 /* Absolute */
 .layout.absolute {
   position: relative;
 }
 .layout.absolute > * {
   position: absolute;
+}
+
+.layout {
+  display: flex;
 }
 
 /* Horizontal */

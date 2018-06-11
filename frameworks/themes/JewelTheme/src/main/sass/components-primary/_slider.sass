@@ -52,7 +52,7 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
         padding: $slider-padding
         
         width: $slider-min-width
-        height: $slider-track-min-height
+        height: $slider-thumb-size*2//$slider-track-min-height //needed for IE11
         
         background: transparent
         color: $primary-color
@@ -64,6 +64,42 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
         &::-moz-range-track
             background: transparent
             border: none
+
+        &::-ms-track 
+            width: 100%
+            height: $slider-track-min-height
+            background: none
+            border: none
+            color: transparent
+
+        &::-ms-fill-lower
+            position: relative
+            flex: 0
+            
+            padding: 0
+            
+            @if $flat
+                background: $primary-color
+                border: 0
+            @else
+                background: linear-gradient(lighten($primary-color, 3%), darken($primary-color, 3%))
+                border: 1px solid darken($primary-color, 15%)
+                box-shadow: inset 0 1px 0 lighten($primary-color, 20%)
+            border-radius: $slider-track-border-radius
+
+        &::-ms-fill-upper
+            position: relative
+            flex: 0
+            
+            padding: 0
+            
+            @if $flat
+                background: $default-color
+                border: 0
+            @else
+                background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 5%))
+                border: 1px solid darken($default-color, 15%)
+            border-radius: $slider-track-border-radius
 
         // THUMB
         &::-webkit-slider-thumb, &::-moz-range-thumb
@@ -83,8 +119,24 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
                 border: 1px solid darken($primary-color, 15%)
                 box-shadow: inset 0 1px 0 lighten($primary-color, 20%), 0 0 0 1px lighten(rgba($default-color, 0.3), 20%)
             border-radius: $slider-border-radius
-            
+        
+        &::-ms-thumb
+            +appear(none)
+            width: $slider-thumb-size
+            height: $slider-thumb-size
+            @if $flat
+                background: $primary-color
+                border: 0
+            @else
+                background: linear-gradient(lighten($primary-color, 3%), darken($primary-color, 3%))
+                border: 1px solid darken($primary-color, 15%)
+                box-shadow: inset 0 1px 0 lighten($primary-color, 20%), 0 0 0 1px lighten(rgba($default-color, 0.3), 20%)
+            border-radius: $slider-border-radius
+        
         &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
+            transform: scale(1.4)
+        
+        &:active::-ms-thumb
             transform: scale(1.4)
         
         &:focus
@@ -93,12 +145,22 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
         &[disabled]
             cursor: unset
             
-            &::-webkit-slider-thumb, &::-moz-range-thumb
+            &::-ms-fill-lower
+                background: darken($disabled-color, 5%)
+                border: 1px solid darken($disabled-border-color, 10%)
+                box-shadow: none
+
+            &::-ms-fill-upper
+                background: $disabled-color
+                border: 1px solid $disabled-border-color
+                box-shadow: none
+
+            &::-webkit-slider-thumb, &::-moz-range-thumb, &::-ms-thumb
                 background: $disabled-color
                 border: 1px solid darken($disabled-border-color, 10%)
                 box-shadow: none
 
-            &:active::-webkit-slider-thumb, &:active::-moz-range-thumb
+            &:active::-webkit-slider-thumb, &:active::-moz-range-thumb, &:active::-ms-thumb
                 transform: scale(1.0)
 
             + .slider-track-container > .slider-track-fill
