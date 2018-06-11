@@ -49,14 +49,8 @@ div {
 }
 
 .jewel.alert {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   margin: 0;
   padding: 0;
-  max-width: 100%;
-  max-height: 100%;
   min-width: 420px;
   min-height: 240px;
   border: 0px solid;
@@ -74,12 +68,9 @@ div {
   font-weight: bold;
 }
 .jewel.alert .content {
-  position: absolute;
   padding: 20px;
   top: 50px;
   bottom: 80px;
-  width: 100%;
-  overflow-y: auto;
 }
 .jewel.alert .content .jewel.label {
   white-space: normal;
@@ -196,9 +187,6 @@ div {
 }
 
 .jewel.card {
-  flex-direction: column;
-  min-width: 300px;
-  min-height: 100px;
   font-size: 14px;
   font-weight: 400;
   background: #ebebeb;
@@ -223,6 +211,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   cursor: pointer;
   display: inline-block;
@@ -236,14 +225,14 @@ j|Card {
   border-radius: 3px;
 }
 .jewel.checkbox input:checked, .jewel.checkbox input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23F8B13F' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f8f8f8;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23F8B13F' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f8f8f8;
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
   background-attachment: fixed;
 }
 .jewel.checkbox input:checked:checked:focus, .jewel.checkbox input:checked:checked:active:focus, .jewel.checkbox input:checked:active:checked:focus, .jewel.checkbox input:checked:active:checked:active:focus {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23F8B13F' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #fce3ba;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23F8B13F' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #fce3ba;
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center;
@@ -263,7 +252,7 @@ j|Card {
   color: silver;
 }
 .jewel.checkbox input[disabled]:checked {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23cccccc' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f3f3f3;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23cccccc' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #f3f3f3;
   background-size: 90%;
   background-position: center;
   background-repeat: no-repeat;
@@ -281,10 +270,7 @@ j|Card {
 }
 
 .jewel.item {
-  cursor: pointer;
   padding: 8px;
-  flex-shrink: 0;
-  flex-grow: 1;
 }
 .jewel.item:hover {
   color: #FFFFFF;
@@ -319,6 +305,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   cursor: pointer;
   display: inline-block;
@@ -332,14 +319,14 @@ j|Card {
   border-radius: 50%;
 }
 .jewel.radiobutton input:checked, .jewel.radiobutton input:checked:active {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23F8B13F' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f8f8f8;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23F8B13F' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f8f8f8;
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
   background-attachment: fixed;
 }
 .jewel.radiobutton input:checked:checked:focus, .jewel.radiobutton input:checked:checked:active:focus, .jewel.radiobutton input:checked:active:checked:focus, .jewel.radiobutton input:checked:active:checked:active:focus {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23F8B13F' cx='11' cy='11' r='6'></circle></g></g></svg>"), #fce3ba;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23F8B13F' cx='11' cy='11' r='6'></circle></g></g></svg>"), #fce3ba;
   background-repeat: no-repeat;
   background-size: 60%;
   background-position: center;
@@ -359,7 +346,7 @@ j|Card {
   color: silver;
 }
 .jewel.radiobutton input[disabled]:checked {
-  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23cccccc' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f3f3f3;
+  background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='%23cccccc' cx='11' cy='11' r='6'></circle></g></g></svg>"), #f3f3f3;
   background-size: 60%;
   background-position: center;
   background-repeat: no-repeat;
@@ -389,6 +376,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   outline: 0;
   align-self: center;
@@ -396,7 +384,7 @@ j|Card {
   margin: 0 20px;
   padding: 0;
   width: calc(100% - 40px);
-  height: 6px;
+  height: 36px;
   background: transparent;
   color: #F8B13F;
 }
@@ -407,10 +395,48 @@ j|Card {
   background: transparent;
   border: none;
 }
+.jewel.slider input::-ms-track {
+  width: 100%;
+  height: 6px;
+  background: none;
+  border: none;
+  color: transparent;
+}
+.jewel.slider input::-ms-fill-lower {
+  position: relative;
+  flex: 0;
+  padding: 0;
+  background: linear-gradient(#f9b74e, #f7ab30);
+  border: 1px solid #e28f08;
+  box-shadow: inset 0 1px 0 #fcd9a1;
+  border-radius: 3px;
+}
+.jewel.slider input::-ms-fill-upper {
+  position: relative;
+  flex: 0;
+  padding: 0;
+  background: linear-gradient(white, #e6e6e6);
+  border: 1px solid #b3b3b3;
+  border-radius: 3px;
+}
 .jewel.slider input::-webkit-slider-thumb, .jewel.slider input::-moz-range-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(#f9b74e, #f7ab30);
+  border: 1px solid #e28f08;
+  box-shadow: inset 0 1px 0 #fcd9a1, 0 0 0 1px rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+.jewel.slider input::-ms-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   width: 18px;
   height: 18px;
@@ -422,18 +448,31 @@ j|Card {
 .jewel.slider input:active::-webkit-slider-thumb, .jewel.slider input:active::-moz-range-thumb {
   transform: scale(1.4);
 }
+.jewel.slider input:active::-ms-thumb {
+  transform: scale(1.4);
+}
 .jewel.slider input:focus {
   outline: none;
 }
 .jewel.slider input[disabled] {
   cursor: unset;
 }
-.jewel.slider input[disabled]::-webkit-slider-thumb, .jewel.slider input[disabled]::-moz-range-thumb {
+.jewel.slider input[disabled]::-ms-fill-lower {
+  background: #e6e6e6;
+  border: 1px solid silver;
+  box-shadow: none;
+}
+.jewel.slider input[disabled]::-ms-fill-upper {
+  background: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+}
+.jewel.slider input[disabled]::-webkit-slider-thumb, .jewel.slider input[disabled]::-moz-range-thumb, .jewel.slider input[disabled]::-ms-thumb {
   background: #f3f3f3;
   border: 1px solid silver;
   box-shadow: none;
 }
-.jewel.slider input[disabled]:active::-webkit-slider-thumb, .jewel.slider input[disabled]:active::-moz-range-thumb {
+.jewel.slider input[disabled]:active::-webkit-slider-thumb, .jewel.slider input[disabled]:active::-moz-range-thumb, .jewel.slider input[disabled]:active::-ms-thumb {
   transform: scale(1);
 }
 .jewel.slider input[disabled] + .slider-track-container > .slider-track-fill {
@@ -489,6 +528,7 @@ j|Card {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   margin: 0;
   padding: 0.67em 1em;
