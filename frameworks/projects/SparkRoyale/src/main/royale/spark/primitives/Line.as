@@ -29,7 +29,8 @@ import flash.geom.Rectangle;
 import spark.primitives.supportClasses.StrokedElement; */
 import org.apache.royale.events.EventDispatcher;
 import mx.core.mx_internal;
-import org.apache.royale.graphics.IStroke;
+import mx.graphics.IStroke;
+import mx.graphics.IFill;
 
 use namespace mx_internal;
 
@@ -482,6 +483,84 @@ public class Line extends EventDispatcher
         // new actual width different from our previous value.
         invalidateDisplayList(); */
     }
+	
+	//----------------------------------
+    //  x Copied From GraphicElement
+    //----------------------------------  
+
+    [Bindable("propertyChange")]
+    [Inspectable(category="General")]
+    
+    /**
+     *  The x position of the graphic element.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get x():Number
+    {
+        // return (layoutFeatures == null)? _x:layoutFeatures.layoutX;
+		return 0;
+    }
+
+    /**
+     *  @private
+     */
+    public function set x(value:Number):void
+    {
+       /*  var oldValue:Number = x;
+        if (oldValue == value)
+            return;
+
+        if (layoutFeatures != null)
+            layoutFeatures.layoutX = value;
+        else
+            _x = value;
+            
+        dispatchPropertyChangeEvent("x", oldValue, value);
+        invalidateTransform(false); */
+    }
+
+    //----------------------------------
+    //  y Copied From GraphicElement
+    //----------------------------------   
+
+    [Bindable("propertyChange")]
+    [Inspectable(category="General")]
+    
+    /**
+     *  The y position of the graphic element.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get y():Number
+    {
+        // return (layoutFeatures == null)? _y:layoutFeatures.layoutY;
+		return 0;
+    }
+
+    /**
+     *  @private
+     */
+    public function set y(value:Number):void
+    {
+       /*  var oldValue:Number = y;
+        if (oldValue == value)
+            return;
+
+        if (layoutFeatures != null)
+            layoutFeatures.layoutY = value;
+        else
+            _y = value;
+        dispatchPropertyChangeEvent("y", oldValue, value);
+        invalidateTransform(false); */
+    }
+	
 	
 	//----------------------------------
     //  stroke copied from StrokedElement
