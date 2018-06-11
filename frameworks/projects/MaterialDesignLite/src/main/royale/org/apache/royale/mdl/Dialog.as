@@ -187,5 +187,15 @@ package org.apache.royale.mdl
 		{
 			return _open;
 		}
+		
+		override public function get visible():Boolean{
+			return _open;
+		}
+		override public function set visible(value:Boolean):void{
+			if(value)
+				show();
+			else
+				close();
+		}
 	}
 }
