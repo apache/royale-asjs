@@ -81,7 +81,7 @@ $radiobutton-button-yoffset: 0px
             width: $radiobutton-button-size
             height: $radiobutton-button-size
             
-            background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><circle fill="#{$primary-color}" cx="11" cy="11" r="6"/></svg>') no-repeat center center
+            background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><circle fill='#{$primary-color}' cx='11' cy='11' r='6'/></svg>") no-repeat center center
             border: 1px solid transparent
             
             opacity: 0
@@ -117,7 +117,7 @@ $radiobutton-button-yoffset: 0px
                 color: $disabled-font-color
 
             & + span::after
-                background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><circle fill="#{darken($disabled-color, 15%)}" cx="11" cy="11" r="6"/></svg>') no-repeat center center
+                background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><circle fill='#{darken($disabled-color, 15%)}' cx='11' cy='11' r='6'/></svg>") no-repeat center center
 
     // -- LABEL
     span
