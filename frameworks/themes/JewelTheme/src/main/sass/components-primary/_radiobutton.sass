@@ -22,8 +22,10 @@
 // RadioButton variables
 $radiobutton-button-size: 22px
 $radiobutton-border-radius: 50%
-$radiobutton-label-separation: 6px
+$radiobutton-label-separation: 8px
 $radiobutton-label-font-size: 16px
+$radiobutton-button-xoffset: 0px
+$radiobutton-button-yoffset: 0px
 
 .jewel.radiobutton
     display: inline-block
@@ -49,75 +51,83 @@ $radiobutton-label-font-size: 16px
         height: $radiobutton-button-size
 
         line-height: $radiobutton-button-size
+        opacity: 0
 
-        @if $flat
-            background: $default-color
-            border: 1px solid transparent
-        @else
-            background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
-            border: 1px solid darken($default-color, 15%)
-        border-radius: $radiobutton-border-radius
+        + span::before
+            content: ' '
+            position: absolute
 
-        &:checked, &:checked:active
+            left: $radiobutton-button-xoffset
+            top: $radiobutton-button-yoffset
+
+            width: $radiobutton-button-size
+            height: $radiobutton-button-size
+
             @if $flat
-                background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $default-color
+                background: $default-color
+                border: 1px solid transparent
             @else
-                background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($default-color, 12%)//linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
-            background-repeat: no-repeat
-            background-size: 60%
-            background-position: center
-            background-attachment: fixed
+                background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+                border: 1px solid darken($default-color, 15%)
+            border-radius: $radiobutton-border-radius
 
-            &:checked:focus, &:checked:active:focus
-                @if $flat
-                    background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%)
-                @else
-                    background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor($primary-color)}' cx='11' cy='11' r='6'></circle></g></g></svg>"), lighten($primary-color, 25%) //linear-gradient(lighten($default-color, 25%), lighten($default-color, 20%))
-                background-repeat: no-repeat
-                background-size: 60%
-                background-position: center
-                background-attachment: fixed
+        + span::after
+            content: ' '
+            position: absolute
             
-        &:focus
+            left: $radiobutton-button-xoffset
+            top: $radiobutton-button-yoffset
+            
+            width: $radiobutton-button-size
+            height: $radiobutton-button-size
+            
+            background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><circle fill="#{$primary-color}" cx="11" cy="11" r="6"/></svg>') no-repeat center center
+            border: 1px solid transparent
+            
+            opacity: 0
+            
+            transition: all .3s ease
+            transform: scale(0)
+        
+        &:checked + span::after, &:checked:active + span::after
+            opacity: 1            
+            transform: scale(1)
+        
+        &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
             outline: none
             @if $flat
                 background: lighten($primary-color, 25%)
                 border: 1px solid transparent
             @else
+                background: linear-gradient(lighten($primary-color, 30%), lighten($primary-color, 20%))
                 border: 1px solid darken($primary-color, 15%)
 
         &[disabled]
             cursor: unset
-            background: $disabled-color
-            @if $flat
-                border: 1px solid transparent
-            @else
-                border: 1px solid $disabled-border-color// .094em
-            
-            & + span
-                cursor: unset
-                color: $disabled-font-color
-            
-            &:checked
-                background: url("data:image/svg+xml,<svg viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-616, -350)'><g transform='translate(611, 345)'><circle fill='#{encodecolor(darken($disabled-color, 15%))}' cx='11' cy='11' r='6'></circle></g></g></svg>"), $disabled-color
-                background-size: 60%
-                background-position: center
-                background-repeat: no-repeat
-                background-attachment: fixed
+
+            & + span::before
+                background: $disabled-color
                 @if $flat
                     border: 1px solid transparent
                 @else
                     border: 1px solid $disabled-border-color// .094em
-                
+
+            & + span
+                cursor: unset
+                color: $disabled-font-color
+
+            & + span::after
+                background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><circle fill="#{darken($disabled-color, 15%)}" cx="11" cy="11" r="6"/></svg>') no-repeat center center
+
     // -- LABEL
     span
         cursor: pointer
-        position: relative
         
         margin: 0
         padding-left: $radiobutton-label-separation
         
         vertical-align: top
-        line-height: $radiobutton-button-size
+        line-height: $radiobutton-button-size + 2
         
         font-size: $radiobutton-label-font-size
+        
