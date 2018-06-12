@@ -19,8 +19,31 @@
 
 // Firefox needs colors inside inline SVGs to be encoded changing # for %23, i.e: #FF0000 needs to be %23FF0000
 @function encodecolor($string)
-    
     @if type-of($string) == 'color'
         $string: unquote('#{str-slice('' + $string, 2)}')
-    
     @return '%23' + $string
+
+// Function to encode a SVG to use as inline data in CSS
+// This makes SVGs work in IE11, Chrome, Firefox, Safari,...
+// It procudces a shorter result than base64
+@function encodeSVG($svgImage)
+    $finalsvg: ''
+    $part: 3000
+    $i: 0
+    $len: ceil(str-length($svgImage) / $part)
+    @for $i from 1 through $len
+        $txt: str-slice($svgImage, $i, $i + $part - 1)
+        $txt: replace-text($txt, '"', "'")
+        $txt: replace-text($txt, '<', '%3C')
+        $txt: replace-text($txt, '>', '%3E')
+        $txt: replace-text($txt, '&', '%26')
+        $txt: replace-text($txt, '#', '%23')
+        $finalsvg: #{$finalsvg}#{$txt}
+        $i: $part + $i
+    @return url("data:image/svg+xml,#{$finalsvg}")
+    
+@function replace-text($s, $search, $r: '')
+    $i: str-index($s, $search)
+    @if $i
+        @return str-slice($s, 1, $i - 1) + $r + replace-text(str-slice($s, $i + str-length($search)), $search, $r)
+    @return $s

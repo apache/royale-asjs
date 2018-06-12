@@ -24,6 +24,8 @@ $checkbox-button-size: 22px
 $checkbox-border-radius: 3px
 $checkbox-label-separation: 6px
 $checkbox-label-font-size: 16px
+$checkbox-button-xoffset: 0px//-23px
+$checkbox-button-yoffset: 0px//-5px
 
 .jewel.checkbox
     display: inline-block
@@ -49,35 +51,56 @@ $checkbox-label-font-size: 16px
         height: $checkbox-button-size
 
         line-height: $checkbox-button-size
+        opacity: 0
 
-        @if $flat
-            background: $default-color
-            border: 1px solid transparent
-        @else
-            background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
-            border: 1px solid darken($default-color, 15%)
-        border-radius: $checkbox-border-radius
+        + span::before
+            content: ' '
+            position: absolute
 
-        &:checked, &:checked:active
+            left: $checkbox-button-xoffset
+            top: $checkbox-button-yoffset
+
+            width: $checkbox-button-size
+            height: $checkbox-button-size
+
             @if $flat
-                background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), $default-color
+                background: $default-color
+                border: 1px solid transparent
             @else
-                background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), lighten($default-color, 12%)//linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
-            background-repeat: no-repeat
-            background-size: 90%
-            background-position: center
-            background-attachment: fixed
+                background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+                border: 1px solid darken($default-color, 15%)
+            border-radius: $checkbox-border-radius
 
-            &:checked:focus, &:checked:active:focus
-                @if $flat
-                    background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), lighten($primary-color, 25%)
-                @else
-                    background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor($primary-color)}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), lighten($primary-color, 25%)//linear-gradient(lighten($default-color, 25%), lighten($default-color, 20%))
-                background-repeat: no-repeat
-                background-size: 90%
-                background-position: center
-                background-attachment: fixed
+        + span::after
+            content: ' '
+            position: absolute
             
+            left: $checkbox-button-xoffset
+            top: $checkbox-button-yoffset
+            
+            width: $checkbox-button-size
+            height: $checkbox-button-size
+            
+            background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><g><g><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><polygon fill="#{$primary-color}" points="3.51452637 12.5264893 9 17.9205322 18.9342041 8.02331543 16.0217285 4.96948242 9 12.0758057 6.47851562 9.51098633"/></g></g></g></svg>') no-repeat center center
+            border: 1px solid transparent
+            
+            opacity: 0
+            
+            transition: all .3s ease
+            transform: scale(0)
+        
+        &:checked + span::after
+            opacity: 1
+            
+            transform: scale(1)
+            
+        &:checked:active + span::after
+            opacity: 1
+            
+            transform: scale(1)
+
+        //&:checked:focus, &:checked:active:focus  
+
         &:focus
             outline: none
             @if $flat
@@ -98,21 +121,18 @@ $checkbox-label-font-size: 16px
                 cursor: unset
                 color: $disabled-font-color
 
+            & + span::after
+                background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><g><g><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><polygon fill="#{darken($disabled-color, 15%)}" points="3.51452637 12.5264893 9 17.9205322 18.9342041 8.02331543 16.0217285 4.96948242 9 12.0758057 6.47851562 9.51098633"/></g></g></g></svg>') no-repeat center center
+
             &:checked
-                background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='#{encodecolor(darken($disabled-color, 15%))}' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), $disabled-color
-                background-size: 90%
-                background-position: center
-                background-repeat: no-repeat
-                background-attachment: fixed
                 @if $flat
                     border: 1px solid transparent
                 @else
                     border: 1px solid $disabled-border-color// .094em
-                
     // -- LABEL
     span
         cursor: pointer
-        position: relative
+        // position: relative
         
         margin: 0
         padding-left: $checkbox-label-separation
@@ -121,3 +141,4 @@ $checkbox-label-font-size: 16px
         line-height: $checkbox-button-size
         
         font-size: $checkbox-label-font-size
+        
