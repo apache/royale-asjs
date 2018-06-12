@@ -22,7 +22,7 @@
 // CheckBox variables
 $checkbox-button-size: 22px
 $checkbox-border-radius: 3px
-$checkbox-label-separation: 6px
+$checkbox-label-separation: 8px
 $checkbox-label-font-size: 16px
 $checkbox-button-xoffset: 0px
 $checkbox-button-yoffset: 0px
@@ -96,8 +96,8 @@ $checkbox-button-yoffset: 0px
         &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
             outline: none
             @if $flat
-                border: 1px solid transparent
                 background: lighten($primary-color, 25%)
+                border: 1px solid transparent
             @else
                 background: linear-gradient(lighten($primary-color, 30%), lighten($primary-color, 20%))
                 border: 1px solid darken($primary-color, 15%)
