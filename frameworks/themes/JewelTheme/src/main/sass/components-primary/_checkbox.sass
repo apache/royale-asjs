@@ -24,8 +24,8 @@ $checkbox-button-size: 22px
 $checkbox-border-radius: 3px
 $checkbox-label-separation: 6px
 $checkbox-label-font-size: 16px
-$checkbox-button-xoffset: 0px//-23px
-$checkbox-button-yoffset: 0px//-5px
+$checkbox-button-xoffset: 0px
+$checkbox-button-yoffset: 0px
 
 .jewel.checkbox
     display: inline-block
@@ -81,7 +81,7 @@ $checkbox-button-yoffset: 0px//-5px
             width: $checkbox-button-size
             height: $checkbox-button-size
             
-            background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><g><g><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><polygon fill="#{$primary-color}" points="3.51452637 12.5264893 9 17.9205322 18.9342041 8.02331543 16.0217285 4.96948242 9 12.0758057 6.47851562 9.51098633"/></g></g></g></svg>') no-repeat center center
+            background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><g><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><polygon fill="#{$primary-color}" points="3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625"/></g></g></svg>') no-repeat center center
             border: 1px solid transparent
             
             opacity: 0
@@ -89,56 +89,45 @@ $checkbox-button-yoffset: 0px//-5px
             transition: all .3s ease
             transform: scale(0)
         
-        &:checked + span::after
-            opacity: 1
-            
+        &:checked + span::after, &:checked:active + span::after
+            opacity: 1            
             transform: scale(1)
-            
-        &:checked:active + span::after
-            opacity: 1
-            
-            transform: scale(1)
-
-        //&:checked:focus, &:checked:active:focus  
-
-        &:focus
+        
+        &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
             outline: none
             @if $flat
-                background: lighten($primary-color, 25%)
                 border: 1px solid transparent
+                background: lighten($primary-color, 25%)
             @else
+                background: linear-gradient(lighten($primary-color, 30%), lighten($primary-color, 20%))
                 border: 1px solid darken($primary-color, 15%)
 
         &[disabled]
             cursor: unset
-            background: $disabled-color
-            @if $flat
-                border: 1px solid transparent
-            @else
-                border: 1px solid $disabled-border-color// .094em
+
+            & + span::before
+                background: $disabled-color
+                @if $flat
+                    border: 1px solid transparent
+                @else
+                    border: 1px solid $disabled-border-color// .094em
 
             & + span
                 cursor: unset
                 color: $disabled-font-color
 
             & + span::after
-                background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><g><g><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><polygon fill="#{darken($disabled-color, 15%)}" points="3.51452637 12.5264893 9 17.9205322 18.9342041 8.02331543 16.0217285 4.96948242 9 12.0758057 6.47851562 9.51098633"/></g></g></g></svg>') no-repeat center center
+                background: encodeSVG('<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><g><rect x="0" y="0" width="22" height="22" fill-opacity="0"/><polygon fill="#{darken($disabled-color, 15%)}" points="3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625"/></g></g></svg>') no-repeat center center
 
-            &:checked
-                @if $flat
-                    border: 1px solid transparent
-                @else
-                    border: 1px solid $disabled-border-color// .094em
     // -- LABEL
     span
         cursor: pointer
-        // position: relative
         
         margin: 0
         padding-left: $checkbox-label-separation
         
         vertical-align: top
-        line-height: $checkbox-button-size
+        line-height: $checkbox-button-size + 2
         
         font-size: $checkbox-label-font-size
         
