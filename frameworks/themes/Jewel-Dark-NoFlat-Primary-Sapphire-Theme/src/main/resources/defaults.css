@@ -221,23 +221,39 @@ j|Card {
   width: 22px;
   height: 22px;
   line-height: 22px;
+  opacity: 0;
+}
+.jewel.checkbox input + span::before {
+  content: " ";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 22px;
+  height: 22px;
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   border-radius: 3px;
 }
-.jewel.checkbox input:checked, .jewel.checkbox input:checked:active {
-  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%232C74BE' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #787878;
-  background-repeat: no-repeat;
-  background-size: 90%;
-  background-position: center;
-  background-attachment: fixed;
+.jewel.checkbox input + span::after {
+  content: " ";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 22px;
+  height: 22px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%232C74BE' points='3.51452637 12.5264893 9 17.9205322 18.9342041 8.02331543 16.0217285 4.96948242 9 12.0758057 6.47851562 9.51098633'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  border: 1px solid transparent;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: scale(0);
 }
-.jewel.checkbox input:checked:checked:focus, .jewel.checkbox input:checked:checked:active:focus, .jewel.checkbox input:checked:active:checked:focus, .jewel.checkbox input:checked:active:checked:active:focus {
-  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%232C74BE' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #86b4e3;
-  background-repeat: no-repeat;
-  background-size: 90%;
-  background-position: center;
-  background-attachment: fixed;
+.jewel.checkbox input:checked + span::after {
+  opacity: 1;
+  transform: scale(1);
+}
+.jewel.checkbox input:checked:active + span::after {
+  opacity: 1;
+  transform: scale(1);
 }
 .jewel.checkbox input:focus {
   outline: none;
@@ -252,17 +268,14 @@ j|Card {
   cursor: unset;
   color: #737373;
 }
+.jewel.checkbox input[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23191919' points='3.51452637 12.5264893 9 17.9205322 18.9342041 8.02331543 16.0217285 4.96948242 9 12.0758057 6.47851562 9.51098633'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
 .jewel.checkbox input[disabled]:checked {
-  background: url("data:image/svg+xml,<svg viewBox='0 0 16 13' version='1.1' xmlns='http://www.w3.org/2000/svg'><g transform='translate(-763, -290)'><g transform='translate(760, 285)'><polygon fill='%23191919' points='3 13 9 18 19 7 16 5 9 13 6 10'></polygon></g></g></svg>"), #404040;
-  background-size: 90%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   border: 1px solid #0d0d0d;
 }
 .jewel.checkbox span {
   cursor: pointer;
-  position: relative;
   margin: 0;
   padding-left: 6px;
   vertical-align: top;
@@ -404,8 +417,6 @@ j|Card {
   color: transparent;
 }
 .jewel.slider input::-ms-fill-lower {
-  position: relative;
-  flex: 0;
   padding: 0;
   background: linear-gradient(#2f7cca, #296cb2);
   border: 1px solid #1e4e80;
@@ -413,8 +424,6 @@ j|Card {
   border-radius: 3px;
 }
 .jewel.slider input::-ms-fill-upper {
-  position: relative;
-  flex: 0;
   padding: 0;
   background: linear-gradient(#7f7f7f, #666666);
   border: 1px solid #333333;
@@ -434,11 +443,6 @@ j|Card {
   border-radius: 50%;
 }
 .jewel.slider input::-ms-thumb {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
   width: 18px;
   height: 18px;
   background: linear-gradient(#2f7cca, #296cb2);
@@ -450,7 +454,7 @@ j|Card {
   transform: scale(1.4);
 }
 .jewel.slider input:active::-ms-thumb {
-  transform: scale(1.4);
+  transform: scale(0.8);
 }
 .jewel.slider input:focus {
   outline: none;
