@@ -112,6 +112,7 @@ div {
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
   border-radius: 3px;
+  white-space: nowrap;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: bold;
@@ -154,6 +155,7 @@ div {
   border: 1px solid #0f88d1;
   box-shadow: inset 0 1px 0 #9bd5f8;
   border-radius: 3px;
+  white-space: nowrap;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: bold;
