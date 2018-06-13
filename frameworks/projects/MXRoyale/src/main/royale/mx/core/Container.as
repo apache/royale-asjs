@@ -1265,7 +1265,22 @@ public class Container extends UIComponent
             removeElementAt(i);
         }
     }
-    
+     /**
+     *  Removes all children from the child list of this container.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function removeAllChildren():void
+    {
+        while (numChildren > 0)
+        {
+            removeChildAt(0);
+        }
+    }
+
     /**
      *  Removes a child DisplayObject from the child list of this Container
      *  at the specified index.
