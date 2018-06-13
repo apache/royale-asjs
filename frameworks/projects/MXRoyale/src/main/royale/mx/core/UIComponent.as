@@ -44,6 +44,8 @@ import flash.events.IEventDispatcher;
 
 import mx.controls.beads.ToolTipBead;
 import mx.events.FlexEvent;
+import mx.events.ResizeEvent;
+import mx.events.MoveEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
@@ -235,6 +237,75 @@ use namespace mx_internal;
  */
 [Event(name="dragDrop", type="mx.events.DragEvent")]
 
+/**
+ *  Dispatched when the component is resized.
+ *
+ *  <p>You can resize the component by setting the <code>width</code> or
+ *  <code>height</code> property, by calling the <code>setActualSize()</code>
+ *  method, or by setting one of
+ *  the following properties either on the component or on other components
+ *  such that the LayoutManager needs to change the <code>width</code> or
+ *  <code>height</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>The <code>resize</code> event is not
+ *  dispatched until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.ResizeEvent.RESIZE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="resize", type="mx.events.ResizeEvent")]
+
+/**
+ *  Dispatched when the object has moved.
+ *
+ *  <p>You can move the component by setting the <code>x</code>
+ *  or <code>y</code> properties, by calling the <code>move()</code>
+ *  method, by setting one
+ *  of the following properties either on the component or on other
+ *  components such that the LayoutManager needs to change the
+ *  <code>x</code> or <code>y</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>When you call the <code>move()</code> method, the <code>move</code>
+ *  event is dispatched before the method returns.
+ *  In all other situations, the <code>move</code> event is not dispatched
+ *  until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.MoveEvent.MOVE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="move", type="mx.events.MoveEvent")]
 /**
  *  The main color for a component.
  *  
