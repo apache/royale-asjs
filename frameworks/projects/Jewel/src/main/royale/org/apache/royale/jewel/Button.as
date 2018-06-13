@@ -311,6 +311,110 @@ package org.apache.royale.jewel
                 classSelectorList.toggle("emphasized", value);
             }
         }
+
+        private var _xsmall:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "xsmall" effect selector.
+		 *  Makes the size of the button small
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get xsmall():Boolean
+        {
+            return _xsmall;
+        }
+
+        public function set xsmall(value:Boolean):void
+        {
+            if (_xsmall != value)
+            {
+                _xsmall = value;
+
+                classSelectorList.toggle("xsmall", value);
+            }
+        }
+
+        private var _small:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "small" effect selector.
+		 *  Makes the size of the button small
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get small():Boolean
+        {
+            return _small;
+        }
+
+        public function set small(value:Boolean):void
+        {
+            if (_small != value)
+            {
+                _small = value;
+
+                classSelectorList.toggle("small", value);
+            }
+        }
+
+        private var _large:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "large" effect selector.
+		 *  Makes the size of the button large
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get large():Boolean
+        {
+            return _large;
+        }
+
+        public function set large(value:Boolean):void
+        {
+            if (_large != value)
+            {
+                _large = value;
+
+                classSelectorList.toggle("large", value);
+            }
+        }
+
+        private var _xlarge:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "xlarge" effect selector.
+		 *  Makes the size of the button xlarge
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get xlarge():Boolean
+        {
+            return _xlarge;
+        }
+
+        public function set xlarge(value:Boolean):void
+        {
+            if (_xlarge != value)
+            {
+                _xlarge = value;
+
+                classSelectorList.toggle("xlarge", value);
+            }
+        }
 	}
 
     /**
@@ -470,6 +574,110 @@ package org.apache.royale.jewel
                 _emphasized = value;
 
                 toggleClass("emphasized", value);
+            }
+        }
+
+        private var _xsmall:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "xsmall" effect selector.
+		 *  Makes the size of the button small
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get xsmall():Boolean
+        {
+            return _xsmall;
+        }
+
+        public function set xsmall(value:Boolean):void
+        {
+            if (_xsmall != value)
+            {
+                _xsmall = value;
+
+                toggleClass("xsmall", value);
+            }
+        }
+
+        private var _small:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "small" effect selector.
+		 *  Makes the size of the button small
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get small():Boolean
+        {
+            return _small;
+        }
+
+        public function set small(value:Boolean):void
+        {
+            if (_small != value)
+            {
+                _small = value;
+
+                toggleClass("small", value);
+            }
+        }
+
+        private var _large:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "large" effect selector.
+		 *  Makes the size of the button large
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get large():Boolean
+        {
+            return _large;
+        }
+
+        public function set large(value:Boolean):void
+        {
+            if (_large != value)
+            {
+                _large = value;
+
+                toggleClass("large", value);
+            }
+        }
+
+        private var _xlarge:Boolean = false;
+
+        /**
+		 *  A boolean flag to activate "xlarge" effect selector.
+		 *  Makes the size of the button xlarge
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get xlarge():Boolean
+        {
+            return _xlarge;
+        }
+
+        public function set xlarge(value:Boolean):void
+        {
+            if (_xlarge != value)
+            {
+                _xlarge = value;
+
+                toggleClass("xlarge", value);
             }
         }
         

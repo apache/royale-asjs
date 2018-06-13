@@ -20,40 +20,19 @@
 // Jewel Button
 
 // Button variables
-$button-margin: 0 !default
-$button-padding: 10px 16px !default
-$button-min-height: 34px !default
-$button-min-width: 74px !default
+// $button-margin: 0 !default
+// $button-padding: 0.72em 1.12em !default
+// $button-min-height: 28px !default
+// $button-min-width: 74px !default
 
 $button-border-radius: 3px
 
 =button-theme($button-color, $text-color)
-	cursor: pointer
-	display: inline-block
-	
-	margin: $button-margin //1rem
-	padding: $button-padding //.938em 1.875em
-	
-	min-width: $button-min-width
-	min-height: $button-min-height
 	
 	+jewel-bg-border("normal", $button-color, $button-border-radius)
 	
-	@if $transitions-enable
-		transition:
-			duration: $transition-duration
-			timing-function: $transition-timing
-	
-	// -- BUTTON LABEL
-	white-space: nowrap
-	font:
-		family: $font-stack 
-		size: $font-size
-		weight: bold
 	color: $text-color
-	text:
-		transform: uppercase
-		decoration: none 
+		
 	@if not $flat and $text-color == $font-theme-color
 		text:
 			shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7) //0 .063em
@@ -65,21 +44,46 @@ $button-border-radius: 3px
 		+jewel-bg-border("active", $button-color)
 
 	&:focus
-		outline: none
 		+jewel-bg-border("focus", $button-color)
 		
 	&[disabled]
-		cursor: unset
 		+jewel-bg-border("disabled", $button-color)
 		color: $disabled-font-color
+
+.jewel.button
+	+button-theme($default-color, $default-font-color)
+
+	// -- BUTTON LABEL
+	font:
+		family: $font-stack 
+		size: $font-size
+		weight: bold
+	text:
+		transform: uppercase
+
+	@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+
+	&[disabled]
 		font:
 			weight: normal
 		text:
 			shadow: unset
 
-.jewel.button
-	+button-theme($default-color, $default-font-color)
-
 .jewel.button.primary
 	+button-theme($primary-color, $font-theme-color)
 
+.jewel.button.xsmall
+	font-size: 60%
+
+.jewel.button.small
+	font-size: 80%
+	
+.jewel.button.large
+	font-size: 120%
+	
+.jewel.button.xlarge
+	font-size: 140%
+	

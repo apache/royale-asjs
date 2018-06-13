@@ -41,4 +41,12 @@ limitations under the License.
 			<j:Disabled/>
 		</j:beads>
 	</j:Button>
+
+	<html:H4 text="Sizes"/>
+	
+	<j:Button text="xsmall" xsmall="true"/>
+	<j:Button text="small" small="true" primary="true"/>
+	<j:Button text="large" large="true" secondary="true"/>
+	<j:Button text="xlarge" xlarge="true" emphasized="true"/>		
+	
 </j:Card>

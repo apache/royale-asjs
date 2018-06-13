@@ -24,6 +24,10 @@
   border: 0;
 }
 
+button::-moz-focus-inner {
+  padding: 0;
+}
+
 j|View {
   IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
 }
@@ -83,6 +87,26 @@ j|Alert {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
+}
+
+.jewel.button {
+  margin: 0;
+  padding: 0.72em 1.12em;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  zoom: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  line-height: normal !important;
+  text-align: center;
+  text-decoration: none;
+}
+.jewel.button:focus {
+  outline: none;
+}
+.jewel.button[disabled] {
+  cursor: unset;
 }
 
 .jewel.card {
