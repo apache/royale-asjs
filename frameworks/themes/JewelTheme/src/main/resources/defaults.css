@@ -638,33 +638,6 @@ j|Card {
   color: silver;
 }
 
-.jewel.button {
-  background: linear-gradient(#e6e6e6, #cccccc);
-  border: 1px solid #b3b3b3;
-  box-shadow: inset 0 1px 0 white;
-  border-radius: 3px;
-  color: #808080;
-}
-.jewel.button:hover, .jewel.button:hover:focus {
-  background: linear-gradient(#d9d9d9, silver);
-  border: 1px solid #a6a6a6;
-}
-.jewel.button:active, .jewel.button:active:focus {
-  background: linear-gradient(silver, #a6a6a6);
-  border: 1px solid #8d8d8d;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
-}
-.jewel.button:focus {
-  border: 1px solid #b3b3b3;
-  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-.jewel.button[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
-  color: silver;
-}
-
 .jewel.button.emphasized {
   background: linear-gradient(#98cc50, #7eb435);
   border: 1px solid #638c29;
