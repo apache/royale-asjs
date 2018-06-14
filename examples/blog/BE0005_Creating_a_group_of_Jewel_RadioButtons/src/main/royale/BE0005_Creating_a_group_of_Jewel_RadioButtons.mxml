@@ -50,7 +50,7 @@
 
             <j:Label id="result" text="The radio button selected has the value:"/>
 
-            <j:Button text="disable/enable option 3" primary="true" click="opt3disable.disabled = !opt3disable.disabled"/>
+            <j:Button text="disable/enable option 3" emphasis ="primary" click="opt3disable.disabled = !opt3disable.disabled"/>
         </j:View>
     </j:initialView>
 

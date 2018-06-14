@@ -31,7 +31,7 @@ limitations under the License.
                 selected.text = "Selected: " + list.selectedItem;
             }
 
-            private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons"]);
+            private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons", "1", "2", "3", "4", "5", "6", "7"]);
 
 			public function get simple():ArrayList
 			{
@@ -54,6 +54,10 @@ limitations under the License.
         <models:ListsModel/>
 	</j:model>
 
+	<j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
 	<html:H3 text="Jewel List"/>
 	
     <j:List id="list" width="200" height="300" change="onChange(event)">
@@ -66,6 +70,6 @@ limitations under the License.
 
     <j:Label id="selected"/>
 
-	<j:Button text="Assign new data" primary="true" click="assignNewData()"/>
+	<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
 	
 </j:Card>

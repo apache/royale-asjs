@@ -25,7 +25,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[      
             private function clickHandler(event:MouseEvent):void {
-                button.primary = !button.primary;
+                button.emphasis = (button.emphasis == Button.PRIMARY) ? "" : Button.PRIMARY;
             }
 		]]>
 	</fx:Script>
@@ -38,10 +38,10 @@ limitations under the License.
 	
 	<j:Button text="Default" id="button" click="clickHandler(event)"/>
 	<j:Button text="Button With More Text"/>
-	<j:Button text="Primary" primary="true"/>
-	<j:Button text="Secondary" secondary="true"/>
-	<j:Button text="Emphasized" emphasized="true"/>
-	<j:Button text="Disabled" primary="true">
+	<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
+	<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
+	<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
+	<j:Button text="Disabled" emphasis="{Button.PRIMARY}">
 		<j:beads>
 			<j:Disabled/>
 		</j:beads>
@@ -50,8 +50,8 @@ limitations under the License.
 	<html:H4 text="Sizes"/>
 	
 	<j:Button text="xsmall" size="{Button.XSMALL}"/>
-	<j:Button text="small" size="{Button.SMALL}" primary="true"/>
-	<j:Button text="large" size="{Button.LARGE}" secondary="true"/>
-	<j:Button text="xlarge" size="{Button.XLARGE}" emphasized="true"/>		
+	<j:Button text="small" size="{Button.SMALL}" emphasis="{Button.PRIMARY}"/>
+	<j:Button text="large" size="{Button.LARGE}" emphasis="{Button.SECONDARY}"/>
+	<j:Button text="xlarge" size="{Button.XLARGE}" emphasis="{Button.EMPHASIZED}"/>		
 	
 </j:Card>

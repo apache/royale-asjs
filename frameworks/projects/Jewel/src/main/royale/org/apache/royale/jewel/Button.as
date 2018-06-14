@@ -175,6 +175,11 @@ package org.apache.royale.jewel
         public static const SMALL:String = "small";
         public static const LARGE:String = "large";
         public static const XLARGE:String = "xlarge";
+        
+        public static const PRIMARY:String = "primary";
+        public static const SECONDARY:String = "secondary";
+        public static const EMPHASIZED:String = "emphasized";
+
         /**
          *  Constructor.
          *  
@@ -235,11 +240,11 @@ package org.apache.royale.jewel
             ITextModel(model).html = value;
 		}
 
-        private var _primary:Boolean = false;
+        private var _emphasis:String;
 
         /**
-		 *  A boolean flag to activate "primary" effect selector.
-		 *  Applies primary color display effect.
+		 *  Activate "emphasis" effect selector. Applies emphasis color display effect.
+         *  Possible values are constants (PRIMARY, SECONDARY, EMPHASIZED)
          *  Colors are defined in royale-jewel.css
          *
 		 *  @langversion 3.0
@@ -247,75 +252,25 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-        public function get primary():Boolean
+        public function get emphasis():String
         {
-            return _primary;
+            return _emphasis;
         }
 
-        public function set primary(value:Boolean):void
+        public function set emphasis(value:String):void
         {
-            if (_primary != value)
+            if (_emphasis != value)
             {
-                _primary = value;
+                if(_emphasis)
+                {
+                    classSelectorList.toggle(_emphasis, false);
+                }
+                _emphasis = value;
 
-                classSelectorList.toggle("primary", value);
+                classSelectorList.toggle(_emphasis, value);
             }
         }
         
-        private var _secondary:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "secondary" effect selector.
-		 *  Applies secondary color display effect.
-         *  Colors are defined in royale-jewel.css
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get secondary():Boolean
-        {
-            return _secondary;
-        }
-
-        public function set secondary(value:Boolean):void
-        {
-            if (_secondary != value)
-            {
-                _secondary = value;
-
-                classSelectorList.toggle("secondary", value);
-            }
-        }
-
-        private var _emphasized:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "emphasized" effect selector.
-		 *  Applies emphasized color display effect.
-         *  Colors are defined in royale-jewel.css
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get emphasized():Boolean
-        {
-            return _emphasized;
-        }
-
-        public function set emphasized(value:Boolean):void
-        {
-            if (_emphasized != value)
-            {
-                _emphasized = value;
-
-                classSelectorList.toggle("emphasized", value);
-            }
-        }
-
         private var _size:String = false;
 
         /**
@@ -373,6 +328,10 @@ package org.apache.royale.jewel
         public static const SMALL:String = "small";
         public static const LARGE:String = "large";
         public static const XLARGE:String = "xlarge";
+
+        public static const PRIMARY:String = "primary";
+        public static const SECONDARY:String = "secondary";
+        public static const EMPHASIZED:String = "emphasized";
 
         /**
          *  Constructor.
@@ -432,11 +391,11 @@ package org.apache.royale.jewel
             this.dispatchEvent('textChange');
 		}
 
-        private var _primary:Boolean = false;
+        private var _emphasis:String;
 
         /**
-		 *  A boolean flag to activate "primary" effect selector.
-		 *  Applies primary color display effect.
+		 *  Activate "emphasis" effect selector. Applies emphasis color display effect.
+         *  Possible values are constants (PRIMARY, SECONDARY, EMPHASIZED)
          *  Colors are defined in royale-jewel.css
          *
 		 *  @langversion 3.0
@@ -444,72 +403,22 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-        public function get primary():Boolean
+        public function get emphasis():String
         {
-            return _primary;
+            return _emphasis;
         }
 
-        public function set primary(value:Boolean):void
+        public function set emphasis(value:String):void
         {
-            if (_primary != value)
+            if (_emphasis != value)
             {
-                _primary = value;
+                if(_emphasis)
+                {
+                    classSelectorList.toggle(_emphasis, false);
+                }
+                _emphasis = value;
 
-                toggleClass("primary", value);
-            }
-        }
-        
-        private var _secondary:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "secondary" effect selector.
-		 *  Applies secondary color display effect.
-         *  Colors are defined in royale-jewel.css
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get secondary():Boolean
-        {
-            return _secondary;
-        }
-
-        public function set secondary(value:Boolean):void
-        {
-            if (_secondary != value)
-            {
-                _secondary = value;
-
-                toggleClass("secondary", value);
-            }
-        }
-
-        private var _emphasized:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "emphasized" effect selector.
-		 *  Applies emphasized color display effect.
-         *  Colors are defined in royale-jewel.css
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get emphasized():Boolean
-        {
-            return _emphasized;
-        }
-
-        public function set emphasized(value:Boolean):void
-        {
-            if (_emphasized != value)
-            {
-                _emphasized = value;
-
-                toggleClass("emphasized", value);
+                classSelectorList.toggle(_emphasis, value);
             }
         }
 
@@ -536,11 +445,11 @@ package org.apache.royale.jewel
             {
                 if(_size)
                 {
-                    classSelectorList.toggle(_size, false);
+                    toggleClass(_size, false);
                 }
                 _size = value;
 
-                classSelectorList.toggle(_size, true);
+                toggleClass(_size, true);
             }
         }
         

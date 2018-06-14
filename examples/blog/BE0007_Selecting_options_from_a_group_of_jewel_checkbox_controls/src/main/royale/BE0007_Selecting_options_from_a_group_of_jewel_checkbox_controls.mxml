@@ -59,7 +59,7 @@
 
             <j:Label id="result" text="The options selected are:"/>
 
-            <j:Button text="disable/enable option 3" primary="true" click="opt3disable.disabled = !opt3disable.disabled"/>
+            <j:Button text="disable/enable option 3" emphasis="primary" click="opt3disable.disabled = !opt3disable.disabled"/>
         </j:View>
     </j:initialView>
 

@@ -50,7 +50,7 @@
             <j:Slider id="slider_h" width="250" value="80" minimum="40" maximum="300"
                 valueChange="onValueChange(event)"/>
 
-            <j:Button id="button" text="Slider to 400x200" width="250" height="80" secondary="true"
+            <j:Button id="button" text="Slider to 400x200" width="250" height="80" emphasis="secondary"
                 click="clickHandler(event)"/>
         </j:View>
     </j:initialView>

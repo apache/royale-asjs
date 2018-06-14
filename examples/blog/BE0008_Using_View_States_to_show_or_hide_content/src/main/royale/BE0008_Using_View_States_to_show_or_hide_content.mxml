@@ -41,7 +41,7 @@
                         <j:PasswordInput/>
                     </j:beads>
                 </j:TextInput>
-                <j:Button text="Login" primary="true" click="view.currentState = 'loggedIn'" />
+                <j:Button text="Login" emphasis="primary" click="view.currentState = 'loggedIn'" />
             </j:Card>
 
             <j:Card id="loggedInForm" includeIn="loggedIn">

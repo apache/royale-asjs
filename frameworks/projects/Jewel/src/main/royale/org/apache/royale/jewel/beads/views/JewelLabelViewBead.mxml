@@ -38,7 +38,7 @@ limitations under the License.
         <js:MXMLBeadViewDataBinding />
     </js:beads>
 
-    <j:Button id="textButton" text="JewelLabelViewBead" primary="true"/>
+    <j:Button id="textButton" text="JewelLabelViewBead" emphasis="primary"/>
     
 <!--
     

@@ -50,7 +50,7 @@
 
             <j:Label id="selected"/>
 
-            <j:Button width="200" primary="true" text="who is missing?" click="clickHandler(event)"/>
+            <j:Button width="200" emphasis ="primary" text="who is missing?" click="clickHandler(event)"/>
         </j:View>
     </j:initialView>
 

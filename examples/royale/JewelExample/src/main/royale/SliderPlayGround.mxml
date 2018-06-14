@@ -19,6 +19,7 @@ limitations under the License.
 -->
 <j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
+		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html">
     
 	<fx:Script>
@@ -51,6 +52,10 @@ limitations under the License.
     	]]>
 	</fx:Script>
 
+	<j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
 	<html:H3 text="Jewel Slider"/>
 	
 	<j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500"
@@ -68,7 +73,7 @@ limitations under the License.
 		</j:beads>
 	</j:Slider>
 
-	<j:Button id="button" text="Slider to 400x200" width="250" height="80" primary="true"
+	<j:Button id="button" text="Slider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}"
 					click="clickHandler(event)"/>
 
 </j:Card>

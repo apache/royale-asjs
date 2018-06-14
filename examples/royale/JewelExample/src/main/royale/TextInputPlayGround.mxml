@@ -19,15 +19,20 @@ limitations under the License.
 -->
 <j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
+		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html">
     
+	<j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
 	<html:H3 text="Jewel TextInput"/>
 
 	<j:Group>
 		<j:beads>
 			<j:HorizontalLayout gap="10"/>
 		</j:beads>
-		<j:Button text="Check it!" primary="true"/>
+		<j:Button text="Check it!" emphasis="{Button.PRIMARY}"/>
 		<j:TextInput text="A TextInput"/>
 	</j:Group>
 
@@ -40,7 +45,7 @@ limitations under the License.
 				<j:TextPrompt prompt="With prompt..."/>
 			</j:beads>
 		</j:TextInput>
-		<j:Button text="Send" primary="true"/>
+		<j:Button text="Send" emphasis="{Button.PRIMARY}"/>
 	</j:Group>
 
 	<j:TextInput text="Disabled with text...">
