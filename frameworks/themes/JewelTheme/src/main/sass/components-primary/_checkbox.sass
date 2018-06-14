@@ -20,49 +20,16 @@
 // Jewel CheckBox
 
 // CheckBox variables
-$checkbox-button-size: 22px
 $checkbox-border-radius: 3px
 $checkbox-label-separation: 8px
 $checkbox-label-font-size: 16px
-$checkbox-button-xoffset: 0px
-$checkbox-button-yoffset: 0px
 
 .jewel.checkbox
-    display: inline-block
-
-    margin: 0
-    padding: 0
-
-    position: relative
     
-    width: 100%
-    height: $checkbox-button-size
-
     // -- INPUT
     input
-        +appear(none)
-        cursor: pointer
-        display: inline-block
         
-        margin: 0
-        padding: 0
-        
-        width: $checkbox-button-size
-        height: $checkbox-button-size
-
-        line-height: $checkbox-button-size
-        opacity: 0
-
         + span::before
-            content: ' '
-            position: absolute
-
-            left: $checkbox-button-xoffset
-            top: $checkbox-button-yoffset
-
-            width: $checkbox-button-size
-            height: $checkbox-button-size
-
             @if $flat
                 background: $default-color
                 border: 1px solid transparent
@@ -72,29 +39,16 @@ $checkbox-button-yoffset: 0px
             border-radius: $checkbox-border-radius
 
         + span::after
-            content: ' '
-            position: absolute
-            
-            left: $checkbox-button-xoffset
-            top: $checkbox-button-yoffset
-            
-            width: $checkbox-button-size
-            height: $checkbox-button-size
-            
             background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{$primary-color}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
             border: 1px solid transparent
-            
-            opacity: 0
             
             transition: all .3s ease
             transform: scale(0)
         
         &:checked + span::after, &:checked:active + span::after
-            opacity: 1            
             transform: scale(1)
         
         &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
-            outline: none
             @if $flat
                 background: lighten($primary-color, 25%)
                 border: 1px solid transparent
@@ -103,7 +57,6 @@ $checkbox-button-yoffset: 0px
                 border: 1px solid darken($primary-color, 15%)
 
         &[disabled]
-            cursor: unset
 
             & + span::before
                 background: $disabled-color
@@ -113,7 +66,6 @@ $checkbox-button-yoffset: 0px
                     border: 1px solid $disabled-border-color// .094em
 
             & + span
-                cursor: unset
                 color: $disabled-font-color
 
             & + span::after
@@ -121,13 +73,6 @@ $checkbox-button-yoffset: 0px
 
     // -- LABEL
     span
-        cursor: pointer
-        
-        margin: 0
         padding-left: $checkbox-label-separation
-        
-        vertical-align: top
-        line-height: $checkbox-button-size + 2
-        
         font-size: $checkbox-label-font-size
         

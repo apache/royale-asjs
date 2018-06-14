@@ -20,36 +20,22 @@
 // Jewel textinput
 
 // textinput variables
-$textinput-margin: 0 !default
-$textinput-padding: .67em 1em !default
-//10px 16px
-$textinput-min-height: 34px !default
-$textinput-min-width: 74px !default
+// $textinput-margin: 0 !default
+// $textinput-padding: .67em 1em !default
+// $textinput-min-height: 34px !default
+// $textinput-min-width: 74px !default
 
 $textinput-border-radius: 3px
 
 =textinput-theme($textinput-text-color)
-	position: relative
-	display: inline-flex
 	
-	input
-		+appear(none)
-		margin: $textinput-margin
-		padding: $textinput-padding
-		
-		max-width: 100%
-		
-		flex: 1 0 auto
-		outline: none
-		-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
-		
-		text-align: left
-		line-height: 1.4em
-
+	input	
+		// -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 		font:
 			family: $font-stack
 			size: $font-size
 			weight: normal
+
 		color: $textinput-text-color
 
 		@if $flat
@@ -80,7 +66,6 @@ $textinput-border-radius: 3px
 			color: lighten($textinput-text-color, 15%)
 
 		&[disabled]
-			cursor: unset
 			@if $flat
 				background: $disabled-color
 				border: 0px solid

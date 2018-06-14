@@ -17,13 +17,105 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Jewel Slider
+
+// Slider variables
+$slider-margin: 20px
+$slider-padding: 0
+$slider-min-width: calc(100% - #{2 * $slider-margin})
+$slider-track-min-height: 6px
+$slider-thumb-size: 18px
+$slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
+
 .jewel.slider
-	//width: 100px
-	//height: 30px
-	//position: relative
+	position: relative
+	height: $slider-container-height
+
+	display: flex !important
+	flex-direction: row
+
+	background: none
+
+	// -- INPUT
 	input
+		+appear(none)
+		outline: 0
+
+		cursor: pointer
+		user-select: none
+
+		align-self: center
+		z-index: 1
+
+		margin: 0 $slider-margin
+		padding: $slider-padding
+
+		width: $slider-min-width
+		height: $slider-thumb-size * 2 //needed for IE11
+
+		background: transparent
+
+		// -- TRACK
+		&::-webkit-slider-runnable-track
+			background: transparent
+
+		&::-moz-range-track
+			background: transparent
+			border: none
+
+		&::-ms-track 
+			width: 100%
+			height: $slider-track-min-height
+			background: none
+			border: none
+			color: transparent
+		
+		&::-ms-fill-lower
+			padding: 0
+		&::-ms-fill-upper
+			padding: 0
+
+		// -- THUMB
+		&::-webkit-slider-thumb, &::-moz-range-thumb
+			+appear(none)
+		
+		&:focus
+			outline: none
+
+		&[disabled]
+			cursor: unset
+
 		&::-ms-tooltip
 			display: none
+
+.slider-track-container
+	position: absolute
+	display: flex
+
+	overflow: hidden
+	transform: translate(0, -#{ round($slider-track-min-height/2) })
+
+	margin: 0 #{ $slider-margin + round($slider-thumb-size/2) }
+	padding: 0
+
+	left: 0
+
+	width: calc(100% - #{ 2 * $slider-margin + $slider-thumb-size })
+	height: $slider-track-min-height
+
+	background: transparent
+	border: 0
+
+.slider-track-fill
+	position: relative
+	flex: 0
+	padding: 0
+
+.slider-track
+	position: relative
+	flex: 0
+	padding: 0
+
 
 j|Slider
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel")

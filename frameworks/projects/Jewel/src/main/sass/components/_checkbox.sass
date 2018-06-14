@@ -17,7 +17,80 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Jewel CheckBox
+
+// CheckBox variables
+$checkbox-button-size: 22px
+$checkbox-button-xoffset: 0px
+$checkbox-button-yoffset: 0px
+
 .jewel.checkbox
+	display: inline-block
+	position: relative
+
+	margin: 0
+	padding: 0
+
+	width: 100%
+	height: $checkbox-button-size
+
+	// -- INPUT
+	input
+		+appear(none)
+		cursor: pointer
+		display: inline-block
+
+		margin: 0
+		padding: 0
+
+		width: $checkbox-button-size
+		height: $checkbox-button-size
+
+		line-height: $checkbox-button-size
+		opacity: 0
+
+		+ span::before
+			content: ' '
+			position: absolute
+
+			left: $checkbox-button-xoffset
+			top: $checkbox-button-yoffset
+
+			width: $checkbox-button-size
+			height: $checkbox-button-size
+		
+		+ span::after
+			content: ' '
+			position: absolute
+
+			width: $checkbox-button-size
+			height: $checkbox-button-size
+
+			left: $checkbox-button-xoffset
+			top: $checkbox-button-yoffset
+
+			opacity: 0
+			
+		&:checked + span::after, &:checked:active + span::after
+			opacity: 1
+
+		&:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
+			outline: none
+
+		&[disabled]
+			cursor: unset
+
+			& + span
+				cursor: unset
+
+	// -- LABEL
+	span
+		cursor: pointer
+
+		margin: 0
+		vertical-align: top
+
+		line-height: $checkbox-button-size + 2
 
 @media -royale-swf
 	j|CheckBox

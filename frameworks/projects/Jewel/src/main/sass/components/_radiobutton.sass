@@ -17,7 +17,80 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Jewel RadioButton
+
+// RadioButton variables
+$radiobutton-button-size: 22px
+$radiobutton-button-xoffset: 0px
+$radiobutton-button-yoffset: 0px
+
 .jewel.radiobutton
+	display: inline-block
+	position: relative
+
+	margin: 0
+	padding: 0
+
+	width: 100%
+	height: $radiobutton-button-size
+
+	// -- INPUT
+	input
+		+appear(none)
+		cursor: pointer
+		display: inline-block
+
+		margin: 0
+		padding: 0
+
+		width: $radiobutton-button-size
+		height: $radiobutton-button-size
+
+		line-height: $radiobutton-button-size
+		opacity: 0
+
+		+ span::before
+			content: ' '
+			position: absolute
+
+			left: $radiobutton-button-xoffset
+			top: $radiobutton-button-yoffset
+
+			width: $radiobutton-button-size
+			height: $radiobutton-button-size
+
+		+ span::after
+			content: ' '
+			position: absolute
+
+			left: $radiobutton-button-xoffset
+			top: $radiobutton-button-yoffset
+
+			width: $radiobutton-button-size
+			height: $radiobutton-button-size
+
+			opacity: 0
+
+		&:checked + span::after, &:checked:active + span::after
+			opacity: 1            
+			
+		&:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
+			outline: none
+			
+		&[disabled]
+			cursor: unset
+
+			& + span
+				cursor: unset
+				
+	// -- LABEL
+	span
+		cursor: pointer
+
+		margin: 0
+		vertical-align: top
+
+		line-height: $radiobutton-button-size + 2
 
 @media -royale-swf
 	j|RadioButton

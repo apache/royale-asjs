@@ -119,6 +119,65 @@ j|Card {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
 }
 
+.jewel.checkbox {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 22px;
+}
+.jewel.checkbox input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  opacity: 0;
+}
+.jewel.checkbox input + span::before {
+  content: " ";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 22px;
+  height: 22px;
+}
+.jewel.checkbox input + span::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 0px;
+  top: 0px;
+  opacity: 0;
+}
+.jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
+  opacity: 1;
+}
+.jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
+  outline: none;
+}
+.jewel.checkbox input[disabled] {
+  cursor: unset;
+}
+.jewel.checkbox input[disabled] + span {
+  cursor: unset;
+}
+.jewel.checkbox span {
+  cursor: pointer;
+  margin: 0;
+  vertical-align: top;
+  line-height: 24px;
+}
+
 @media -royale-swf {
   j|CheckBox {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.CheckBoxView");
@@ -354,13 +413,155 @@ j|List {
     IContentView: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
   }
 }
+.jewel.radiobutton {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 22px;
+}
+.jewel.radiobutton input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  opacity: 0;
+}
+.jewel.radiobutton input + span::before {
+  content: " ";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 22px;
+  height: 22px;
+}
+.jewel.radiobutton input + span::after {
+  content: " ";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 22px;
+  height: 22px;
+  opacity: 0;
+}
+.jewel.radiobutton input:checked + span::after, .jewel.radiobutton input:checked:active + span::after {
+  opacity: 1;
+}
+.jewel.radiobutton input:focus + span::before, .jewel.radiobutton input:checked:focus + span::before, .jewel.radiobutton input:checked:active:focus + span::before {
+  outline: none;
+}
+.jewel.radiobutton input[disabled] {
+  cursor: unset;
+}
+.jewel.radiobutton input[disabled] + span {
+  cursor: unset;
+}
+.jewel.radiobutton span {
+  cursor: pointer;
+  margin: 0;
+  vertical-align: top;
+  line-height: 24px;
+}
+
 @media -royale-swf {
   j|RadioButton {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.RadioButtonView");
   }
 }
+.jewel.slider {
+  position: relative;
+  height: 27px;
+  display: flex !important;
+  flex-direction: row;
+  background: none;
+}
+.jewel.slider input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  user-select: none;
+  align-self: center;
+  z-index: 1;
+  margin: 0 20px;
+  padding: 0;
+  width: calc(100% - 40px);
+  height: 36px;
+  background: transparent;
+}
+.jewel.slider input::-webkit-slider-runnable-track {
+  background: transparent;
+}
+.jewel.slider input::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+.jewel.slider input::-ms-track {
+  width: 100%;
+  height: 6px;
+  background: none;
+  border: none;
+  color: transparent;
+}
+.jewel.slider input::-ms-fill-lower {
+  padding: 0;
+}
+.jewel.slider input::-ms-fill-upper {
+  padding: 0;
+}
+.jewel.slider input::-webkit-slider-thumb, .jewel.slider input::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+}
+.jewel.slider input:focus {
+  outline: none;
+}
+.jewel.slider input[disabled] {
+  cursor: unset;
+}
 .jewel.slider input::-ms-tooltip {
   display: none;
+}
+
+.slider-track-container {
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  transform: translate(0, -3px);
+  margin: 0 29px;
+  padding: 0;
+  left: 0;
+  width: calc(100% - 58px);
+  height: 6px;
+  background: transparent;
+  border: 0;
+}
+
+.slider-track-fill {
+  position: relative;
+  flex: 0;
+  padding: 0;
+}
+
+.slider-track {
+  position: relative;
+  flex: 0;
+  padding: 0;
 }
 
 j|Slider {
@@ -375,6 +576,28 @@ j|Slider {
     iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }
 }
+.jewel.textinput {
+  position: relative;
+  display: inline-flex;
+}
+.jewel.textinput input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0.72em 1.12em;
+  max-width: 100%;
+  flex: 1 0 auto;
+  outline: none;
+  text-align: left;
+  line-height: normal !important;
+}
+.jewel.textinput input[disabled] {
+  cursor: unset;
+}
+
 j|TextInput {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
