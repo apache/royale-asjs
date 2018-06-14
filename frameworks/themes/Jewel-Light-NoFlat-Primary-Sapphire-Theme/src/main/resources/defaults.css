@@ -193,82 +193,36 @@ j|Card {
   gap: 10;
 }
 
-.jewel.checkbox {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  width: 100%;
-  height: 22px;
-}
-.jewel.checkbox input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  width: 22px;
-  height: 22px;
-  line-height: 22px;
-  opacity: 0;
-}
 .jewel.checkbox input + span::before {
-  content: " ";
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 22px;
-  height: 22px;
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
   border-radius: 3px;
 }
 .jewel.checkbox input + span::after {
-  content: " ";
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 22px;
-  height: 22px;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%232C74BE' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
   border: 1px solid transparent;
-  opacity: 0;
   transition: all 0.3s ease;
   transform: scale(0);
 }
 .jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
-  opacity: 1;
   transform: scale(1);
 }
 .jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
-  outline: none;
   background: linear-gradient(#9bc1e8, #72a7de);
   border: 1px solid #1e4e80;
-}
-.jewel.checkbox input[disabled] {
-  cursor: unset;
 }
 .jewel.checkbox input[disabled] + span::before {
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
 }
 .jewel.checkbox input[disabled] + span {
-  cursor: unset;
   color: silver;
 }
 .jewel.checkbox input[disabled] + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23cccccc' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.checkbox span {
-  cursor: pointer;
-  margin: 0;
   padding-left: 8px;
-  vertical-align: top;
-  line-height: 24px;
   font-size: 16px;
 }
 
@@ -296,143 +250,54 @@ j|Card {
   border-radius: 3px;
 }
 
-.jewel.radiobutton {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  width: 100%;
-  height: 22px;
-}
-.jewel.radiobutton input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  width: 22px;
-  height: 22px;
-  line-height: 22px;
-  opacity: 0;
-}
 .jewel.radiobutton input + span::before {
-  content: " ";
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 22px;
-  height: 22px;
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
   border-radius: 50%;
 }
 .jewel.radiobutton input + span::after {
-  content: " ";
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 22px;
-  height: 22px;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Ccircle fill='%232C74BE' cx='11' cy='11' r='6'/%3E%3C/svg%3E") no-repeat center center;
   border: 1px solid transparent;
-  opacity: 0;
   transition: all 0.3s ease;
   transform: scale(0);
 }
 .jewel.radiobutton input:checked + span::after, .jewel.radiobutton input:checked:active + span::after {
-  opacity: 1;
   transform: scale(1);
 }
 .jewel.radiobutton input:focus + span::before, .jewel.radiobutton input:checked:focus + span::before, .jewel.radiobutton input:checked:active:focus + span::before {
-  outline: none;
   background: linear-gradient(#9bc1e8, #72a7de);
   border: 1px solid #1e4e80;
-}
-.jewel.radiobutton input[disabled] {
-  cursor: unset;
 }
 .jewel.radiobutton input[disabled] + span::before {
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
 }
 .jewel.radiobutton input[disabled] + span {
-  cursor: unset;
   color: silver;
 }
 .jewel.radiobutton input[disabled] + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Ccircle fill='%23cccccc' cx='11' cy='11' r='6'/%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.radiobutton span {
-  cursor: pointer;
-  margin: 0;
   padding-left: 8px;
-  vertical-align: top;
-  line-height: 24px;
   font-size: 16px;
 }
 
-.jewel.slider {
-  position: relative;
-  height: 27px;
-  display: flex !important;
-  flex-direction: row;
-  background: none;
-}
 .jewel.slider input {
-  cursor: pointer;
-  user-select: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: 0;
-  align-self: center;
-  z-index: 1;
-  margin: 0 20px;
-  padding: 0;
-  width: calc(100% - 40px);
-  height: 36px;
-  background: transparent;
   color: #2C74BE;
 }
-.jewel.slider input::-webkit-slider-runnable-track {
-  background: transparent;
-}
-.jewel.slider input::-moz-range-track {
-  background: transparent;
-  border: none;
-}
-.jewel.slider input::-ms-track {
-  width: 100%;
-  height: 6px;
-  background: none;
-  border: none;
-  color: transparent;
-}
 .jewel.slider input::-ms-fill-lower {
-  padding: 0;
   background: linear-gradient(#2f7cca, #296cb2);
   border: 1px solid #1e4e80;
   box-shadow: inset 0 1px 0 #72a7de;
   border-radius: 3px;
 }
 .jewel.slider input::-ms-fill-upper {
-  padding: 0;
   background: linear-gradient(white, #e6e6e6);
   border: 1px solid #b3b3b3;
   border-radius: 3px;
 }
 .jewel.slider input::-webkit-slider-thumb, .jewel.slider input::-moz-range-thumb {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
   width: 18px;
   height: 18px;
   background: linear-gradient(#2f7cca, #296cb2);
@@ -453,12 +318,6 @@ j|Card {
 }
 .jewel.slider input:active::-ms-thumb {
   transform: scale(0.8);
-}
-.jewel.slider input:focus {
-  outline: none;
-}
-.jewel.slider input[disabled] {
-  cursor: unset;
 }
 .jewel.slider input[disabled]::-ms-fill-lower {
   background: #e6e6e6;
@@ -490,24 +349,10 @@ j|Card {
 }
 
 .slider-track-container {
-  position: absolute;
-  display: flex;
-  overflow: hidden;
-  transform: translate(0, -3px);
-  margin: 0 29px;
-  padding: 0;
   top: 50%;
-  left: 0;
-  width: calc(100% - 58px);
-  height: 6px;
-  background: transparent;
-  border: 0;
 }
 
 .slider-track-fill {
-  position: relative;
-  flex: 0;
-  padding: 0;
   background: linear-gradient(#2f7cca, #296cb2);
   border: 1px solid #1e4e80;
   box-shadow: inset 0 1px 0 #72a7de;
@@ -515,32 +360,12 @@ j|Card {
 }
 
 .slider-track {
-  position: relative;
-  flex: 0;
-  padding: 0;
   background: linear-gradient(white, #e6e6e6);
   border: 1px solid #b3b3b3;
   border-radius: 3px;
 }
 
-.jewel.textinput {
-  position: relative;
-  display: inline-flex;
-}
 .jewel.textinput input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  margin: 0;
-  padding: 0.67em 1em;
-  max-width: 100%;
-  flex: 1 0 auto;
-  outline: none;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  text-align: left;
-  line-height: 1.4em;
   font-family: "Lato", sans-serif;
   font-size: 14px;
   font-weight: normal;
@@ -558,7 +383,6 @@ j|Card {
   color: #a6a6a6;
 }
 .jewel.textinput input[disabled] {
-  cursor: unset;
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
   box-shadow: none;
