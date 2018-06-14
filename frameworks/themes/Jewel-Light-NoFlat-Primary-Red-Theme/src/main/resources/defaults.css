@@ -379,7 +379,7 @@ j|Card {
 .jewel.textinput input:focus {
   border: 1px solid #ad0e15;
 }
-.jewel.textinput input::placeholder {
+.jewel.textinput input::placeholder, .jewel.textinput input:-ms-input-placeholder {
   color: #a6a6a6;
 }
 .jewel.textinput input[disabled] {
@@ -388,7 +388,34 @@ j|Card {
   box-shadow: none;
   color: silver;
 }
-.jewel.textinput input[disabled]::placeholder {
+.jewel.textinput input[disabled]::placeholder, .jewel.textinput input[disabled]:-ms-input-placeholder {
+  color: silver;
+}
+
+.jewel.textarea textarea {
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #808080;
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #b3b3b3;
+  border-radius: 3px;
+  transition-duration: 0.3s;
+  transition-timing-function: easein;
+}
+.jewel.textarea textarea:focus {
+  border: 1px solid #ad0e15;
+}
+.jewel.textarea textarea::placeholder, .jewel.textarea textarea:-ms-input-placeholder {
+  color: #a6a6a6;
+}
+.jewel.textarea textarea[disabled] {
+  background: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+  color: silver;
+}
+.jewel.textarea textarea[disabled]::placeholder, .jewel.textarea textarea[disabled]:-ms-input-placeholder {
   color: silver;
 }
 
