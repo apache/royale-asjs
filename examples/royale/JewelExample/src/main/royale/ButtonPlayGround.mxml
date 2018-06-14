@@ -19,7 +19,8 @@ limitations under the License.
 -->
 <j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
-		xmlns:html="library://ns.apache.org/royale/html">
+		xmlns:html="library://ns.apache.org/royale/html"
+		xmlns:js="library://ns.apache.org/royale/basic">
     
 	<fx:Script>
 		<![CDATA[      
@@ -29,6 +30,10 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
+	<j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
 	<html:H3 text="Jewel Button"/>
 	
 	<j:Button text="Default" id="button" click="clickHandler(event)"/>
@@ -44,9 +49,9 @@ limitations under the License.
 
 	<html:H4 text="Sizes"/>
 	
-	<j:Button text="xsmall" xsmall="true"/>
-	<j:Button text="small" small="true" primary="true"/>
-	<j:Button text="large" large="true" secondary="true"/>
-	<j:Button text="xlarge" xlarge="true" emphasized="true"/>		
+	<j:Button text="xsmall" size="{Button.XSMALL}"/>
+	<j:Button text="small" size="{Button.SMALL}" primary="true"/>
+	<j:Button text="large" size="{Button.LARGE}" secondary="true"/>
+	<j:Button text="xlarge" size="{Button.XLARGE}" emphasized="true"/>		
 	
 </j:Card>

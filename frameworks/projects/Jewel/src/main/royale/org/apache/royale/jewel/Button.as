@@ -171,6 +171,10 @@ package org.apache.royale.jewel
     COMPILE::SWF
 	public class Button extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase
 	{
+        public static const XSMALL:String = "xsmall";
+        public static const SMALL:String = "small";
+        public static const LARGE:String = "large";
+        public static const XLARGE:String = "xlarge";
         /**
          *  Constructor.
          *  
@@ -312,107 +316,34 @@ package org.apache.royale.jewel
             }
         }
 
-        private var _xsmall:Boolean = false;
+        private var _size:String = false;
 
         /**
-		 *  A boolean flag to activate "xsmall" effect selector.
-		 *  Makes the size of the button small
+         *  A size selector.
+         *  Sets the size of the button using one of the "size" 
+         *  constants (XSMALL, SMALL, LARGE and XLARGE)
          *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get xsmall():Boolean
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public function get size():String
         {
-            return _xsmall;
+            return _size;
         }
 
-        public function set xsmall(value:Boolean):void
+        public function set size(value:String):void
         {
-            if (_xsmall != value)
+            if (_size != value)
             {
-                _xsmall = value;
+                if(_size)
+                {
+                    classSelectorList.toggle(_size, false);
+                }
+                _size = value;
 
-                classSelectorList.toggle("xsmall", value);
-            }
-        }
-
-        private var _small:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "small" effect selector.
-		 *  Makes the size of the button small
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get small():Boolean
-        {
-            return _small;
-        }
-
-        public function set small(value:Boolean):void
-        {
-            if (_small != value)
-            {
-                _small = value;
-
-                classSelectorList.toggle("small", value);
-            }
-        }
-
-        private var _large:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "large" effect selector.
-		 *  Makes the size of the button large
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get large():Boolean
-        {
-            return _large;
-        }
-
-        public function set large(value:Boolean):void
-        {
-            if (_large != value)
-            {
-                _large = value;
-
-                classSelectorList.toggle("large", value);
-            }
-        }
-
-        private var _xlarge:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "xlarge" effect selector.
-		 *  Makes the size of the button xlarge
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get xlarge():Boolean
-        {
-            return _xlarge;
-        }
-
-        public function set xlarge(value:Boolean):void
-        {
-            if (_xlarge != value)
-            {
-                _xlarge = value;
-
-                classSelectorList.toggle("xlarge", value);
+                classSelectorList.toggle(_size, true);
             }
         }
 	}
@@ -438,6 +369,11 @@ package org.apache.royale.jewel
     COMPILE::JS
     public class Button extends StyledUIBase implements IStrand, IEventDispatcher, IUIBase
     {
+        public static const XSMALL:String = "xsmall";
+        public static const SMALL:String = "small";
+        public static const LARGE:String = "large";
+        public static const XLARGE:String = "xlarge";
+
         /**
          *  Constructor.
          *  
@@ -577,107 +513,34 @@ package org.apache.royale.jewel
             }
         }
 
-        private var _xsmall:Boolean = false;
+        private var _size:String;
 
         /**
-		 *  A boolean flag to activate "xsmall" effect selector.
-		 *  Makes the size of the button small
+         *  A size selector.
+         *  Sets the size of the button using one of the "size" 
+         *  constants (XSMALL, SMALL, LARGE and XLARGE)
          *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get xsmall():Boolean
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public function get size():String
         {
-            return _xsmall;
+            return _size;
         }
 
-        public function set xsmall(value:Boolean):void
+        public function set size(value:String):void
         {
-            if (_xsmall != value)
+            if (_size != value)
             {
-                _xsmall = value;
+                if(_size)
+                {
+                    classSelectorList.toggle(_size, false);
+                }
+                _size = value;
 
-                toggleClass("xsmall", value);
-            }
-        }
-
-        private var _small:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "small" effect selector.
-		 *  Makes the size of the button small
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get small():Boolean
-        {
-            return _small;
-        }
-
-        public function set small(value:Boolean):void
-        {
-            if (_small != value)
-            {
-                _small = value;
-
-                toggleClass("small", value);
-            }
-        }
-
-        private var _large:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "large" effect selector.
-		 *  Makes the size of the button large
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get large():Boolean
-        {
-            return _large;
-        }
-
-        public function set large(value:Boolean):void
-        {
-            if (_large != value)
-            {
-                _large = value;
-
-                toggleClass("large", value);
-            }
-        }
-
-        private var _xlarge:Boolean = false;
-
-        /**
-		 *  A boolean flag to activate "xlarge" effect selector.
-		 *  Makes the size of the button xlarge
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get xlarge():Boolean
-        {
-            return _xlarge;
-        }
-
-        public function set xlarge(value:Boolean):void
-        {
-            if (_xlarge != value)
-            {
-                _xlarge = value;
-
-                toggleClass("xlarge", value);
+                classSelectorList.toggle(_size, true);
             }
         }
         
