@@ -64,7 +64,7 @@ limitations under the License.
 
 	<html:H3 text="Jewel TextArea"/>
 
-	<j:TextArea text="A TextArea"/>
+	<j:TextArea text="A TextArea" rows="5"/>
 
 	<j:TextArea>
 		<j:beads>
