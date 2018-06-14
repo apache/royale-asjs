@@ -62,4 +62,21 @@ limitations under the License.
 		</j:beads>
 	</j:TextInput>
 
+	<html:H3 text="Jewel TextArea"/>
+
+	<j:TextArea text="A TextArea"/>
+
+	<j:TextArea>
+		<j:beads>
+			<j:TextPrompt prompt="With prompt..."/>
+		</j:beads>
+	</j:TextArea>
+
+	<j:TextArea text="A TextArea">
+		<j:beads>
+			<j:TextPrompt prompt="Disabled with prompt..."/>
+			<j:Disabled/>
+		</j:beads>
+	</j:TextArea>
+
 </j:Card>

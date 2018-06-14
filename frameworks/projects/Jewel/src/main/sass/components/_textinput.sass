@@ -17,15 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel textinput
+// Jewel TextInput
 
-// textinput variables
+// TextInput variables
 $textinput-margin: 0 !default
 $textinput-padding: .72em 1.12em !default
-// $textinput-min-height: 34px !default
-// $textinput-min-width: 74px !default
-
-$textinput-border-radius: 3px
 
 .jewel.textinput
 	position: relative
@@ -53,3 +49,36 @@ j|TextInput
 	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
 	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
 
+
+
+// Jewel TextArea
+
+// TextArea variables
+$textarea-margin: 0 !default
+$textarea-padding: .72em 1.12em !default
+
+.jewel.textarea
+	position: relative
+	display: inline-flex
+
+	textarea
+		+appear(none)
+		margin: $textarea-margin
+		padding: $textarea-padding
+
+		max-width: 100%
+
+		flex: 1 0 auto
+		outline: none
+		
+		text:
+			align: left
+		line-height: normal !important
+		
+		&[disabled]
+			cursor: unset
+
+j|TextArea
+	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
+	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
+	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")

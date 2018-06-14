@@ -271,7 +271,7 @@ package org.apache.royale.jewel
             }
         }
         
-        private var _size:String = false;
+        private var _size:String;
 
         /**
          *  A size selector.

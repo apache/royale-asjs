@@ -17,20 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel textinput
+// Jewel TextInput
 
-// textinput variables
-// $textinput-margin: 0 !default
-// $textinput-padding: .67em 1em !default
-// $textinput-min-height: 34px !default
-// $textinput-min-width: 74px !default
-
+// TextInput variables
 $textinput-border-radius: 3px
 
 =textinput-theme($textinput-text-color)
 	
 	input	
-		// -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 		font:
 			family: $font-stack
 			size: $font-size
@@ -89,3 +83,66 @@ $textinput-border-radius: 3px
 // 		+textinput-theme($primary-color, $font-dark-color)
 // 	@else
 // 		+textinput-theme($primary-color, $font-light-color)
+
+
+
+// Jewel TextArea
+
+// TextArea variables
+$textarea-border-radius: 3px
+
+=textarea-theme($textarea-text-color)
+	
+	textarea	
+		font:
+			family: $font-stack
+			size: $font-size
+			weight: normal
+
+		color: $textarea-text-color
+
+		@if $flat
+			background: $default-color
+			border: 0px solid
+		@else
+			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+			border: 1px solid darken($default-color, 15%)
+			//box-shadow: none
+		border-radius: $textarea-border-radius
+		
+		@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+		
+		&:focus
+			@if $flat
+				background: lighten($primary-color, 25%)
+			@else
+				border: 1px solid darken($primary-color, 15%)
+		
+		//&:hover 
+		//    padding: 5px;
+		//    background-color: #DFDFDF;
+
+		&::placeholder, &:-ms-input-placeholder
+			color: lighten($textarea-text-color, 15%)
+
+		&[disabled]
+			@if $flat
+				background: $disabled-color
+				border: 0px solid
+			@else
+				background: $disabled-color
+				border: 1px solid $disabled-border-color// .094em
+			box-shadow: none
+			color: $disabled-font-color
+			
+			&::placeholder, &:-ms-input-placeholder
+				color: $disabled-font-color
+
+.jewel.textarea
+	@if $dark
+		+textarea-theme($font-dark-color)
+	@else
+		+textarea-theme($font-light-color)

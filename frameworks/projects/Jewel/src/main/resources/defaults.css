@@ -602,6 +602,32 @@ j|TextInput {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
 
+.jewel.textarea {
+  position: relative;
+  display: inline-flex;
+}
+.jewel.textarea textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0.72em 1.12em;
+  max-width: 100%;
+  flex: 1 0 auto;
+  outline: none;
+  text-align: left;
+  line-height: normal !important;
+}
+.jewel.textarea textarea[disabled] {
+  cursor: unset;
+}
+
+j|TextArea {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
+}
+
 .jewel.titlebar {
   background-color: transparent;
   padding: 0px;
