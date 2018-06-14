@@ -421,7 +421,7 @@ j|Card {
 .jewel.textinput input:focus {
   border: 1px solid #0f88d1;
 }
-.jewel.textinput input::placeholder {
+.jewel.textinput input::placeholder, .jewel.textinput input:-ms-input-placeholder {
   color: #a6a6a6;
 }
 .jewel.textinput input[disabled] {
@@ -430,7 +430,7 @@ j|Card {
   box-shadow: none;
   color: silver;
 }
-.jewel.textinput input[disabled]::placeholder {
+.jewel.textinput input[disabled]::placeholder, .jewel.textinput input[disabled]:-ms-input-placeholder {
   color: silver;
 }
 

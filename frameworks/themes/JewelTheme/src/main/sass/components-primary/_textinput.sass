@@ -62,7 +62,7 @@ $textinput-border-radius: 3px
 		//    padding: 5px;
 		//    background-color: #DFDFDF;
 
-		&::placeholder
+		&::placeholder, &:-ms-input-placeholder
 			color: lighten($textinput-text-color, 15%)
 
 		&[disabled]
@@ -75,7 +75,7 @@ $textinput-border-radius: 3px
 			box-shadow: none
 			color: $disabled-font-color
 			
-			&::placeholder
+			&::placeholder, &:-ms-input-placeholder
 				color: $disabled-font-color
 
 .jewel.textinput
