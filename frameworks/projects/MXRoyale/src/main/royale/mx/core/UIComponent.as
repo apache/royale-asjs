@@ -67,6 +67,8 @@ import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
+import mx.display.Graphics;
+
 /*
 import mx.managers.IToolTipManagerClient;
 import mx.managers.SystemManager;
@@ -497,7 +499,18 @@ public class UIComponent extends UIBase
             dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
         }
     }
+	//----------------------------------
+    //  graphics copied from Sprite
+    //----------------------------------
+		private var _graphics:Graphics;
 
+	COMPILE::JS
+	{
+		public function get graphics():Graphics
+		{
+			return _graphics;
+		} 
+	}
     //----------------------------------
     //  name
     //----------------------------------
@@ -4278,4 +4291,6 @@ class MethodQueueElement
      *  @royalesuppresspublicvarwarning
      */
     public var args:Array /* of Object */;
+	
+	
 }
