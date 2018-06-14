@@ -197,8 +197,8 @@ limitations under the License.
             </j:Card>
             
             <j:Card width="400">
-                <j:Button text="Get Some Product" true" click="getSomeProduct()"/>
-                <j:Button text="Get Some Compressed Product" emphasis="primary" click="getSomeCompressedProduct()"/>
+                <j:Button text="Get Some Product" emphasis="primary" click="getSomeProduct()"/>
+                <j:Button text="Get Some Compressed Product" emphasis="emphasized" click="getSomeCompressedProduct()"/>
                 <j:Label id="received3" text="Received:" multiline="true"/>
             </j:Card>
 
