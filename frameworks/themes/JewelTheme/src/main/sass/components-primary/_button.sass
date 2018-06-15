@@ -55,7 +55,6 @@ $button-border-radius: 3px
 	// -- BUTTON LABEL
 	font:
 		family: $font-stack 
-		size: $font-size
 		weight: bold
 	text:
 		transform: uppercase
@@ -67,22 +66,11 @@ $button-border-radius: 3px
 
 	&[disabled]
 		font:
-			weight: normal
+			weight: $font-weight-normal
 		text:
 			shadow: unset
 
 .jewel.button.primary
 	+button-theme($primary-color, $font-theme-color)
 
-.jewel.button.xsmall
-	font-size: 60%
-
-.jewel.button.small
-	font-size: 80%
-	
-.jewel.button.large
-	font-size: 120%
-	
-.jewel.button.xlarge
-	font-size: 140%
 	

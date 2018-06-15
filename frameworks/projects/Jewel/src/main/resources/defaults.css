@@ -28,6 +28,10 @@ button::-moz-focus-inner {
   padding: 0;
 }
 
+button, input {
+  font-size: 100%;
+}
+
 j|View {
   IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
 }
@@ -580,7 +584,7 @@ j|Slider {
   position: relative;
   display: inline-flex;
 }
-.jewel.textinput input {
+.jewel.textinput > input {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -594,7 +598,7 @@ j|Slider {
   text-align: left;
   line-height: normal !important;
 }
-.jewel.textinput input[disabled] {
+.jewel.textinput > input[disabled] {
   cursor: unset;
 }
 
@@ -606,7 +610,7 @@ j|TextInput {
   position: relative;
   display: inline-flex;
 }
-.jewel.textarea textarea {
+.jewel.textarea > textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -620,7 +624,7 @@ j|TextInput {
   text-align: left;
   line-height: normal !important;
 }
-.jewel.textarea textarea[disabled] {
+.jewel.textarea > textarea[disabled] {
   cursor: unset;
 }
 

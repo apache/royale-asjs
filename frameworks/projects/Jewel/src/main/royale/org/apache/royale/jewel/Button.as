@@ -171,11 +171,6 @@ package org.apache.royale.jewel
     COMPILE::SWF
 	public class Button extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase
 	{
-        public static const XSMALL:String = "xsmall";
-        public static const SMALL:String = "small";
-        public static const LARGE:String = "large";
-        public static const XLARGE:String = "xlarge";
-        
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
         public static const EMPHASIZED:String = "emphasized";
@@ -269,39 +264,8 @@ package org.apache.royale.jewel
 
                 classSelectorList.toggle(_emphasis, value);
             }
-        }
-        
-        private var _size:String;
-
-        /**
-         *  A size selector.
-         *  Sets the size of the button using one of the "size" 
-         *  constants (XSMALL, SMALL, LARGE and XLARGE)
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        public function get size():String
-        {
-            return _size;
-        }
-
-        public function set size(value:String):void
-        {
-            if (_size != value)
-            {
-                if(_size)
-                {
-                    classSelectorList.toggle(_size, false);
-                }
-                _size = value;
-
-                classSelectorList.toggle(_size, true);
-            }
-        }
-	}
+        }    
+    }
 
     /**
      *  The Button class that should show text.  This is the lightest weight
@@ -324,11 +288,6 @@ package org.apache.royale.jewel
     COMPILE::JS
     public class Button extends StyledUIBase implements IStrand, IEventDispatcher, IUIBase
     {
-        public static const XSMALL:String = "xsmall";
-        public static const SMALL:String = "small";
-        public static const LARGE:String = "large";
-        public static const XLARGE:String = "xlarge";
-
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
         public static const EMPHASIZED:String = "emphasized";
@@ -422,37 +381,6 @@ package org.apache.royale.jewel
             }
         }
 
-        private var _size:String;
-
-        /**
-         *  A size selector.
-         *  Sets the size of the button using one of the "size" 
-         *  constants (XSMALL, SMALL, LARGE and XLARGE)
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        public function get size():String
-        {
-            return _size;
-        }
-
-        public function set size(value:String):void
-        {
-            if (_size != value)
-            {
-                if(_size)
-                {
-                    toggleClass(_size, false);
-                }
-                _size = value;
-
-                toggleClass(_size, true);
-            }
-        }
-        
         /**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */

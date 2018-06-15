@@ -49,9 +49,25 @@ limitations under the License.
 
 	<html:H4 text="Sizes"/>
 	
-	<j:Button text="xsmall" size="{Button.XSMALL}"/>
-	<j:Button text="small" size="{Button.SMALL}" emphasis="{Button.PRIMARY}"/>
-	<j:Button text="large" size="{Button.LARGE}" emphasis="{Button.SECONDARY}"/>
-	<j:Button text="xlarge" size="{Button.XLARGE}" emphasis="{Button.EMPHASIZED}"/>		
+	<j:Button text="xsmall">
+		<j:beads>
+			<j:Size size="xsmall"/>
+		</j:beads>
+	</j:Button>
+	<j:Button text="small" emphasis="{Button.PRIMARY}">
+		<j:beads>
+			<j:Size size="small"/>
+		</j:beads>
+	</j:Button>
+	<j:Button text="large" emphasis="{Button.SECONDARY}">
+		<j:beads>
+			<j:Size size="large"/>
+		</j:beads>
+	</j:Button>
+	<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
+		<j:beads>
+			<j:Size size="xlarge"/>
+		</j:beads>
+	</j:Button>
 	
 </j:Card>

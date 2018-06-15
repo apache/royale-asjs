@@ -20,18 +20,23 @@ package org.apache.royale.jewel.beads.controls
 {	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.StyledUIBase;
 	
 	/**
-	 *  The Disabled bead class is a specialty bead that can be used to disable a Jewel control.
+	 *  The Size bead class is a specialty bead that can be used to size a Jewel control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Disabled implements IBead
+	public class Size implements IBead
 	{
+		public static const XSMALL:String = "xsmall";
+        public static const SMALL:String = "small";
+        public static const LARGE:String = "large";
+        public static const XLARGE:String = "xlarge";
+
 		/**
 		 *  constructor.
 		 *
@@ -40,30 +45,37 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function Disabled()
+		public function Size()
 		{
 		}
 
-		private var _disabled:Boolean = true;
-        /**
-		 *  A boolean flag to enable or disable the host control.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get disabled():Boolean
-        {
-            return _disabled;
-        }
-        public function set disabled(value:Boolean):void
-        {
-            _disabled = value;
+		private var _oldSize:String;
+		private var _size:String;
 
+        /**
+         *  A size selector.
+         *  Sets the size of the button using one of the "size" 
+         *  constants (XSMALL, SMALL, LARGE and XLARGE)
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public function get size():String
+        {
+            return _size;
+        }
+
+        public function set size(value:String):void
+        {
 			COMPILE::JS
             {
-                updateHost();
+				_oldSize = _size;
+				_size = value;
+
+				if(_strand)
+                	sizeHost();
             }
         }
 
@@ -82,23 +94,21 @@ package org.apache.royale.jewel.beads.controls
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
 			COMPILE::JS
 			{
-				updateHost();
+				sizeHost();
 			}
 		}
 
 		COMPILE::JS
-		private function updateHost():void
+		private function sizeHost():void
 		{
-			var host:UIBase = _strand as UIBase;
-
+			var host:StyledUIBase = _strand as StyledUIBase;
 			if (host)
             {
-                _disabled ?
-				host.element.setAttribute('disabled', '') :
-				host.element.removeAttribute('disabled');
+				if(_oldSize)
+					host.removeClass(_oldSize);
+                host.addClass(_size);
             }
 		}
 	}

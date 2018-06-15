@@ -48,6 +48,7 @@
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.DropDownListList"/>
     
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
+    <component id="Size" class="org.apache.royale.jewel.beads.controls.Size"/>
     
     <component id="TextPrompt" class="org.apache.royale.jewel.beads.controls.textinput.TextPrompt"/>
     <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>

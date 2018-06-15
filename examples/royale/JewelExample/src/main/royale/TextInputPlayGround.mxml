@@ -21,10 +21,6 @@ limitations under the License.
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html">
-    
-	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
 
 	<html:H3 text="Jewel TextInput"/>
 
@@ -64,7 +60,7 @@ limitations under the License.
 
 	<html:H3 text="Jewel TextArea"/>
 
-	<j:TextArea text="A TextArea" rows="5"/>
+	<j:TextArea text="A TextArea with 5 rows" rows="5"/>
 
 	<j:TextArea>
 		<j:beads>
@@ -78,5 +74,41 @@ limitations under the License.
 			<j:Disabled/>
 		</j:beads>
 	</j:TextArea>
+
+	<html:H4 text="Sizes"/>
+
+	<j:TextInput>
+		<j:beads>
+			<j:TextPrompt prompt="Size xsmall"/>
+			<j:Size size="xsmall"/>
+		</j:beads>
+	</j:TextInput>
+	
+	<j:TextInput>
+		<j:beads>
+			<j:TextPrompt prompt="Size small"/>
+			<j:Size size="small"/>
+		</j:beads>
+	</j:TextInput>
+	
+	<j:TextInput>
+		<j:beads>
+			<j:TextPrompt prompt="Size normal"/>
+		</j:beads>
+	</j:TextInput>
+
+	<j:TextInput>
+		<j:beads>
+			<j:TextPrompt prompt="Size large"/>
+			<j:Size size="large"/>
+		</j:beads>
+	</j:TextInput>
+
+	<j:TextInput>
+		<j:beads>
+			<j:TextPrompt prompt="Size xlarge"/>
+			<j:Size size="xlarge"/>
+		</j:beads>
+	</j:TextInput>
 
 </j:Card>
