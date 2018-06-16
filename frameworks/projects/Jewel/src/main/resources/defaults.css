@@ -28,7 +28,7 @@ button::-moz-focus-inner {
   padding: 0;
 }
 
-button, input {
+button, input, textarea {
   font-size: 100%;
 }
 

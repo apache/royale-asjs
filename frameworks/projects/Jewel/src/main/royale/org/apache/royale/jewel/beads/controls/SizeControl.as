@@ -23,14 +23,14 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.StyledUIBase;
 	
 	/**
-	 *  The Size bead class is a specialty bead that can be used to size a Jewel control.
+	 *  The SizeControl bead class is a specialty bead that can be used to size a Jewel control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Size implements IBead
+	public class SizeControl implements IBead
 	{
 		public static const XSMALL:String = "xsmall";
         public static const SMALL:String = "small";
@@ -45,7 +45,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function Size()
+		public function SizeControl()
 		{
 		}
 

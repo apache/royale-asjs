@@ -58,36 +58,19 @@ limitations under the License.
 		</j:beads>
 	</j:TextInput>
 
-	<html:H3 text="Jewel TextArea"/>
-
-	<j:TextArea text="A TextArea with 5 rows" rows="5"/>
-
-	<j:TextArea>
-		<j:beads>
-			<j:TextPrompt prompt="With prompt..."/>
-		</j:beads>
-	</j:TextArea>
-
-	<j:TextArea text="A TextArea">
-		<j:beads>
-			<j:TextPrompt prompt="Disabled with prompt..."/>
-			<j:Disabled/>
-		</j:beads>
-	</j:TextArea>
-
 	<html:H4 text="Sizes"/>
 
 	<j:TextInput>
 		<j:beads>
 			<j:TextPrompt prompt="Size xsmall"/>
-			<j:Size size="xsmall"/>
+			<j:SizeControl size="xsmall"/>
 		</j:beads>
 	</j:TextInput>
 	
 	<j:TextInput>
 		<j:beads>
 			<j:TextPrompt prompt="Size small"/>
-			<j:Size size="small"/>
+			<j:SizeControl size="small"/>
 		</j:beads>
 	</j:TextInput>
 	
@@ -100,15 +83,32 @@ limitations under the License.
 	<j:TextInput>
 		<j:beads>
 			<j:TextPrompt prompt="Size large"/>
-			<j:Size size="large"/>
+			<j:SizeControl size="large"/>
 		</j:beads>
 	</j:TextInput>
 
 	<j:TextInput>
 		<j:beads>
 			<j:TextPrompt prompt="Size xlarge"/>
-			<j:Size size="xlarge"/>
+			<j:SizeControl size="xlarge"/>
 		</j:beads>
 	</j:TextInput>
 
+	<html:H3 text="Jewel TextArea"/>
+
+	<j:TextArea text="A TextArea with 5 rows" rows="5"/>
+
+	<j:TextArea>
+		<j:beads>
+			<j:TextPrompt prompt="With prompt..."/>
+		</j:beads>
+	</j:TextArea>
+
+	<j:TextArea text="A TextArea">
+		<j:beads>
+			<j:TextPrompt prompt="with prompt..."/>
+			<j:Disabled/>
+		</j:beads>
+	</j:TextArea>
+	
 </j:Card>

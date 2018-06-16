@@ -51,22 +51,22 @@ limitations under the License.
 	
 	<j:Button text="xsmall">
 		<j:beads>
-			<j:Size size="xsmall"/>
+			<j:SizeControl size="{SizeControl.XSMALL}"/>
 		</j:beads>
 	</j:Button>
 	<j:Button text="small" emphasis="{Button.PRIMARY}">
 		<j:beads>
-			<j:Size size="small"/>
+			<j:SizeControl size="{SizeControl.SMALL}"/>
 		</j:beads>
 	</j:Button>
 	<j:Button text="large" emphasis="{Button.SECONDARY}">
 		<j:beads>
-			<j:Size size="large"/>
+			<j:SizeControl size="{SizeControl.LARGE}"/>
 		</j:beads>
 	</j:Button>
 	<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
 		<j:beads>
-			<j:Size size="xlarge"/>
+			<j:SizeControl size="{SizeControl.XLARGE}"/>
 		</j:beads>
 	</j:Button>
 	
