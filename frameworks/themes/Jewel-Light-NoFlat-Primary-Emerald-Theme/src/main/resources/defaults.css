@@ -48,6 +48,26 @@ div {
   font-size: 14px;
 }
 
+.jewel.xsmall {
+  font-size: 0.6em;
+}
+
+.jewel.small {
+  font-size: 0.8em;
+}
+
+.jewel {
+  font-size: 1em;
+}
+
+.jewel.large {
+  font-size: 1.2em;
+}
+
+.jewel.xlarge {
+  font-size: 1.4em;
+}
+
 .jewel.alert {
   margin: 0;
   padding: 0;
@@ -76,7 +96,7 @@ div {
   white-space: normal;
   color: #808080;
   font-size: 1.1em;
-  font-weight: normal;
+  font-weight: 400;
 }
 .jewel.alert .jewel.controlbar {
   background: linear-gradient(#e6e6e6, #cccccc);
@@ -108,7 +128,6 @@ div {
   border-radius: 3px;
   color: #808080;
   font-family: "Lato", sans-serif;
-  font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -132,7 +151,7 @@ div {
   color: silver;
 }
 .jewel.button[disabled] {
-  font-weight: normal;
+  font-weight: 400;
   text-shadow: unset;
 }
 
@@ -164,24 +183,8 @@ div {
   color: silver;
 }
 
-.jewel.button.xsmall {
-  font-size: 60%;
-}
-
-.jewel.button.small {
-  font-size: 80%;
-}
-
-.jewel.button.large {
-  font-size: 120%;
-}
-
-.jewel.button.xlarge {
-  font-size: 140%;
-}
-
 .jewel.card {
-  font-size: 14px;
+  font-size: 1em;
   font-weight: 400;
   background: #ebebeb;
   border: 0px;
@@ -240,7 +243,7 @@ j|Card {
 
 .jewel.label {
   font-family: "Lato", sans-serif;
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .jewel.list {
@@ -365,57 +368,63 @@ j|Card {
   border-radius: 3px;
 }
 
-.jewel.textinput input {
-  font-family: "Lato", sans-serif;
-  font-size: 14px;
-  font-weight: normal;
+.jewel.textinput {
+  font-weight: 400;
   color: #808080;
+}
+.jewel.textinput > input {
+  font-family: "Lato", sans-serif;
+}
+.jewel.textinput > input {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
   border-radius: 3px;
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
-.jewel.textinput input:focus {
+.jewel.textinput > input:focus {
   border: 1px solid #638c29;
 }
-.jewel.textinput input::placeholder, .jewel.textinput input:-ms-input-placeholder {
+.jewel.textinput > input::placeholder, .jewel.textinput > input:-ms-input-placeholder {
   color: #a6a6a6;
 }
-.jewel.textinput input[disabled] {
+.jewel.textinput > input[disabled] {
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
 }
-.jewel.textinput input[disabled]::placeholder, .jewel.textinput input[disabled]:-ms-input-placeholder {
+.jewel.textinput > input[disabled]::placeholder, .jewel.textinput > input[disabled]:-ms-input-placeholder {
   color: silver;
 }
 
-.jewel.textarea textarea {
-  font-family: "Lato", sans-serif;
-  font-size: 14px;
-  font-weight: normal;
+.jewel.textarea {
+  font-weight: 400;
   color: #808080;
+}
+.jewel.textarea > textarea {
+  font-family: "Lato", sans-serif;
+}
+.jewel.textarea > textarea {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
   border-radius: 3px;
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
-.jewel.textarea textarea:focus {
+.jewel.textarea > textarea:focus {
   border: 1px solid #638c29;
 }
-.jewel.textarea textarea::placeholder, .jewel.textarea textarea:-ms-input-placeholder {
+.jewel.textarea > textarea::placeholder, .jewel.textarea > textarea:-ms-input-placeholder {
   color: #a6a6a6;
 }
-.jewel.textarea textarea[disabled] {
+.jewel.textarea > textarea[disabled] {
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
 }
-.jewel.textarea textarea[disabled]::placeholder, .jewel.textarea textarea[disabled]:-ms-input-placeholder {
+.jewel.textarea > textarea[disabled]::placeholder, .jewel.textarea > textarea[disabled]:-ms-input-placeholder {
   color: silver;
 }
 

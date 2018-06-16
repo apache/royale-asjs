@@ -48,6 +48,26 @@ div {
   font-size: 14px;
 }
 
+.jewel.xsmall {
+  font-size: 0.6em;
+}
+
+.jewel.small {
+  font-size: 0.8em;
+}
+
+.jewel {
+  font-size: 1em;
+}
+
+.jewel.large {
+  font-size: 1.2em;
+}
+
+.jewel.xlarge {
+  font-size: 1.4em;
+}
+
 .jewel.button.emphasized {
   background: linear-gradient(#45c354, #34a241);
   border: 1px solid #277b32;

@@ -48,6 +48,26 @@ div {
   font-size: 14px;
 }
 
+.jewel.xsmall {
+  font-size: 0.6em;
+}
+
+.jewel.small {
+  font-size: 0.8em;
+}
+
+.jewel {
+  font-size: 1em;
+}
+
+.jewel.large {
+  font-size: 1.2em;
+}
+
+.jewel.xlarge {
+  font-size: 1.4em;
+}
+
 .jewel.button.secondary {
   background: linear-gradient(#ee343b, #dc121a);
   border: 1px solid #ad0e15;
