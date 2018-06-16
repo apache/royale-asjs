@@ -20,11 +20,7 @@
 // Jewel Button
 
 // Button variables
-// $button-margin: 0 !default
-// $button-padding: 0.72em 1.12em !default
-// $button-min-height: 28px !default
-// $button-min-width: 74px !default
-$button-border-radius: 3px
+$button-border-radius: $border-radius
 
 =button-theme($button-color, $text-color)
 	
@@ -34,7 +30,7 @@ $button-border-radius: 3px
 		
 	@if not $flat and $text-color == $font-theme-color
 		text:
-			shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7) //0 .063em
+			shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7)
 	
 	&:hover, &:hover:focus
 		+jewel-bg-border("hover", $button-color)

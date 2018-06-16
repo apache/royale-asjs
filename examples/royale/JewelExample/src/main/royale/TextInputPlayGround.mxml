@@ -28,7 +28,7 @@ limitations under the License.
 		<j:beads>
 			<j:HorizontalLayout gap="10"/>
 		</j:beads>
-		<j:Button text="Check it!" emphasis="{Button.PRIMARY}"/>
+		<j:Button text="Check it!" emphasis="primary"/>
 		<j:TextInput text="A TextInput"/>
 	</j:Group>
 
@@ -41,7 +41,7 @@ limitations under the License.
 				<j:TextPrompt prompt="With prompt..."/>
 			</j:beads>
 		</j:TextInput>
-		<j:Button text="Send" emphasis="{Button.PRIMARY}"/>
+		<j:Button text="Send" emphasis="secondary"/>
 	</j:Group>
 
 	<j:TextInput text="Disabled with text...">
