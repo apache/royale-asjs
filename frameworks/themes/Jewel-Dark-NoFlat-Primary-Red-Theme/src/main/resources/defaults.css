@@ -125,7 +125,7 @@ div {
   background: linear-gradient(#666666, #4c4c4c);
   border: 1px solid #333333;
   box-shadow: inset 0 1px 0 #8c8c8c;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(13, 13, 13, 0.7);
   font-family: "Lato", sans-serif;
@@ -160,7 +160,7 @@ div {
   background: linear-gradient(#ee343b, #dc121a);
   border: 1px solid #ad0e15;
   box-shadow: inset 0 1px 0 #f47a7f;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(102, 9, 12, 0.7);
 }
@@ -379,7 +379,7 @@ j|Card {
 .jewel.textinput > input {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
@@ -409,7 +409,7 @@ j|Card {
 .jewel.textarea > textarea {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
