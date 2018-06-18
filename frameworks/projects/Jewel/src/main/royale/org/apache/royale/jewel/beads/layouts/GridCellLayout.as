@@ -30,18 +30,20 @@ package org.apache.royale.jewel.beads.layouts
     }
 
     /**
-     *  The BasicLayout class is a simple layout
-     *  bead.  It takes the set of children and lays them out
-     *  as specified by CSS properties like left, right, top
-     *  and bottom.
+     *  The GridCellLayout class is the layout used for childrens in a Grid
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class BasicLayout extends LayoutBase implements IBeadLayout
+	public class GridCellLayout extends LayoutBase implements IBeadLayout
 	{
+		public static const MAX_COLUMNS:Number = 12;
+		public static const PHONE:String = "phone";
+		public static const TABLET:String = "tablet";
+		public static const DESKTOP:String = "desktop";
+
         /**
          *  Constructor.
          *
@@ -50,7 +52,7 @@ package org.apache.royale.jewel.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
          */
-		public function BasicLayout()
+		public function GridCellLayout()
 		{
 			super();
 		}
@@ -58,7 +60,7 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-		public static const LAYOUT_TYPE_NAMES:String = "layout absolute";
+		public static const LAYOUT_TYPE_NAMES:String = "cell";
 
 		COMPILE::JS
 		private var hostComponent:UIBase;
@@ -82,14 +84,202 @@ package org.apache.royale.jewel.beads.layouts
 			{
 				hostComponent = host as UIBase;
 				hostClassList = hostComponent.positioner.classList;
-				if (hostClassList.contains("layout"))
-					hostClassList.remove("layout");
-				hostClassList.add("layout");
-				if(hostClassList.contains("absolute"))
-					hostClassList.remove("absolute");
-				hostClassList.add("absolute");
+				
+				setFractionForScreen(DESKTOP, _desktopNumerator, _desktopDenominator);
+				setFractionForScreen(TABLET, _tabletNumerator, _tabletDenominator);
+				setFractionForScreen(PHONE, _phoneNumerator, _phoneDenominator);
 			}
 		}
+
+		private var _desktopNumerator:Number;
+		/**
+		 *  The X Number for "desktop-col-X-Y" effect selector.
+		 *  Sets the desktop numerator for the X/Y fraction that indicates the cell's size in
+		 * 	desktop screen. Needs to be set in conjunction with desktop denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get desktopNumerator():Number
+        {
+            return _desktopNumerator;
+        }
+
+        public function set desktopNumerator(value:Number):void
+        {
+			if (_desktopNumerator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(DESKTOP, value, _desktopDenominator);
+					_desktopNumerator = value;
+				}
+			}
+		}
+
+		private var _desktopDenominator:Number;
+		/**
+		 *  The Y Number for "desktop-col-X-Y" effect selector.
+		 *  Sets the desktop denominator for the X/Y fraction that indicates the cell's size in
+		 *  desktop screen. Needs to be set in conjunction with desktop denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get desktopDenominator():Number
+        {
+            return _desktopDenominator;
+        }
+
+        public function set desktopDenominator(value:Number):void
+        {
+			if (_desktopDenominator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(DESKTOP, _desktopNumerator, value);
+					_desktopDenominator = value;
+				}
+			}
+		}
+
+		private var _tabletNumerator:Number;
+		/**
+		 *  The X Number for "tablet-col-X-Y" effect selector.
+		 *  Sets the tablet numerator for the X/Y fraction that indicates the cell's size in
+		 * 	tablet screen. Needs to be set in conjunction with tablet denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get tabletNumerator():Number
+        {
+            return _tabletNumerator;
+        }
+
+        public function set tabletNumerator(value:Number):void
+        {
+			if (_tabletNumerator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(TABLET, value, _tabletDenominator);
+					_tabletNumerator = value;
+				}
+			}
+		}
+
+		private var _tabletDenominator:Number;
+		/**
+		 *  The Y Number for "tablet-col-X-Y" effect selector.
+		 *  Sets the tablet denominator for the X/Y fraction that indicates the cell's size in
+		 *  tablet screen. Needs to be set in conjunction with tablet denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get tabletDenominator():Number
+        {
+            return _tabletDenominator;
+        }
+
+        public function set tabletDenominator(value:Number):void
+        {
+			if (_tabletDenominator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(TABLET, _tabletNumerator, value);
+					_tabletDenominator = value;
+				}
+			}
+		}
+
+		private var _phoneNumerator:Number;
+		/**
+		 *  The X Number for "phone-col-X-Y" effect selector.
+		 *  Sets the phone numerator for the X/Y fraction that indicates the cell's size in
+		 * 	phone screen. Needs to be set in conjunction with phone denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get phoneNumerator():Number
+        {
+            return _phoneNumerator;
+        }
+
+        public function set phoneNumerator(value:Number):void
+        {
+			if (_phoneNumerator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(PHONE, value, _phoneDenominator);
+					_phoneNumerator = value;
+				}
+			}
+		}
+
+		private var _phoneDenominator:Number;
+		/**
+		 *  The Y Number for "phone-col-X-Y" effect selector.
+		 *  Sets the phone denominator for the X/Y fraction that indicates the cell's size in
+		 *  phone screen. Needs to be set in conjunction with phone denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get phoneDenominator():Number
+        {
+            return _phoneDenominator;
+        }
+
+        public function set phoneDenominator(value:Number):void
+        {
+			if (_phoneDenominator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(PHONE, _phoneNumerator, value);
+					_phoneDenominator = value;
+				}
+			}
+		}
+
+		COMPILE::JS
+		private function setFractionForScreen(screen:String, num:Number, den:Number):void
+		{
+			if(num && den)
+			{
+				if (num <= 0 || num > MAX_COLUMNS)
+					throw new Error(screen + " numerator must be between 1 and " + MAX_COLUMNS);
+				if (den <= 0 || den > MAX_COLUMNS)
+					throw new Error(screen + " denominator must be between 1 and " + MAX_COLUMNS);
+				
+				if (hostClassList.contains(screen + "-col-" + _desktopNumerator + "-" + _desktopDenominator))
+					hostClassList.remove(screen + "-col-" + _desktopNumerator + "-" + _desktopDenominator);
+				hostClassList.add(screen + "-col-" + num + "-" + den);
+			}
+        }
 
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout

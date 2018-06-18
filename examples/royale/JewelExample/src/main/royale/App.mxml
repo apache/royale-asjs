@@ -32,7 +32,7 @@
 	<j:initialView>
 		<j:View>
 			<j:beads>
-				<j:VerticalLayout gap="10"/>
+				<j:VerticalLayout gap="3"/>
 			</j:beads>
 			<html:H1 text="Apache Royale Jewel UI Set Theme Showcase"/>
 			<local:MainContent/>

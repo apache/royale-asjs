@@ -18,9 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.Group;
-	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.jewel.beads.layouts.GridLayout;
+	import org.apache.royale.utils.StringUtil;
 
 	/**
 	 *  The Grid class is a container that uses Grid Layout.
@@ -46,7 +45,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel";
+			typeNames = "jewel " + GridLayout.LAYOUT_TYPE_NAMES;
 
 			layout = new GridLayout();
 			addBead(layout);
@@ -64,14 +63,42 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-        public function get gap():Number
+        public function get gap():Boolean
         {
             return layout.gap;
         }
 
-        public function set gap(value:Number):void
+        public function set gap(value:Boolean):void
         {
+			typeNames = StringUtil.removeWord(typeNames, " gap");
+			typeNames += " gap";
+
+			COMPILE::JS
+            {
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
+
 			layout.gap = value;
         }
+        // public function get gap():Number
+        // {
+        //     return layout.gap;
+        // }
+
+        // public function set gap(value:Number):void
+        // {
+		// 	typeNames = StringUtil.removeWord(typeNames, " gap-" + layout.gap + "dp");
+		// 	if(value != 0)
+		// 		typeNames += " gap-" + value + "dp";
+
+		// 	COMPILE::JS
+        //     {
+		// 		if (parent)
+        //         	setClassName(computeFinalClassNames()); 
+		// 	}
+
+		// 	layout.gap = value;
+        // }
 	}
 }

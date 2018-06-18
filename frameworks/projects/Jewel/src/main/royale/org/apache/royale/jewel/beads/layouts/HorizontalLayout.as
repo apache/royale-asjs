@@ -28,8 +28,11 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.utils.css.addDynamicSelector;
+	import org.apache.royale.utils.StringUtil;
+	import org.apache.royale.core.layout.ILayoutStyleProperties;
 
 	COMPILE::JS {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -46,7 +49,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class HorizontalLayout extends LayoutBase implements IBeadLayout, ILayoutStyleProperties
+	public class HorizontalLayout extends SimpleHorizontalLayout implements ILayoutStyleProperties
 	{
         /**
          *  Constructor.
@@ -59,6 +62,32 @@ package org.apache.royale.jewel.beads.layouts
 		public function HorizontalLayout()
 		{
 			super();
+		}
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal";
+
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+
+			COMPILE::JS
+			{
+				applyStyleToLayout(hostComponent, "gap");
+				setGap(_gap);
+			}
 		}
 
 		/**
@@ -165,34 +194,49 @@ package org.apache.royale.jewel.beads.layouts
 			_paddingLeft = value;
 		}
 
-		/**
-		 *  @private
-		 */
 		private var gapInitialized:Boolean;
-		public static const GAP_STYLE:String = "gap"
-		private var _gap:Number = 0;
-
+		// private var _gap:Boolean;
 		/**
-		 *  The gap between items.
+		 *  Assigns variable gap to grid from 1 to 20
+		 *  Activate "gap-Xdp" effect selector to set a numeric gap 
+		 *  between grid cells
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get gap():Number
-		{
-			return _gap;
-		}
+		// public function get gap():Boolean
+        // {
+        //     return _gap;
+        // }
 
-		/**
-		 *  @private
-		 */
-		public function set gap(value:Number):void
-		{
-			_gap = value;
-			gapInitialized = true;
-		}
+		// /**
+		//  *  @private
+		//  */
+		// public function set gap(value:Boolean):void
+		// {
+		// 	if (_gap != value)
+        //     {
+		// 		COMPILE::JS
+		// 		{
+		// 			if(hostComponent)
+		// 				setGap(value);
+					
+		// 			_gap = value;
+		// 			gapInitialized = true;
+		// 		}
+        //     }
+		// }
+
+		// COMPILE::JS
+		// private function setGap(value:Boolean):void
+		// {
+		// 	if (value)
+		// 		hostClassList.add("gap");
+		// 	else
+		// 		hostClassList.remove("gap");
+		// }
 
 		/**
 		 *  Get the component layout style and apply to if exists
@@ -202,11 +246,11 @@ package org.apache.royale.jewel.beads.layouts
 		 * 
 		 *  @see org.apache.royale.core.layout.ILayoutStyleProperties#applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
+ 		 *  @langversion 3.0
+ 		 *  @playerversion Flash 10.2
+ 		 *  @playerversion AIR 2.6
+ 		 *  @productversion Royale 0.9.3
+ 		 */
 		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
 			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
@@ -214,11 +258,9 @@ package org.apache.royale.jewel.beads.layouts
 			{
 				switch(cssProperty)
 				{
-					case GAP_STYLE:
+					case "gap":
 						if(!gapInitialized)
-						{
 							gap = Number(cssValue);
-						}
 						break;
 					default:
 						break;
@@ -226,6 +268,58 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
+		// number of gap styles available in CSS @see $gaps variable in _layout.sass
+		public static const GAPS:Number = 10;
+		// gap step size in each gap style rule in CSS @see $gap-step variable in _layout.sass
+		public static const GAP_STEP:Number = 3;
+
+		protected var _gap:Number = 0;
+		/**
+		 *  Assigns variable gap in steps of GAP_STEP. You have available GAPS*GAP_STEP gap styles
+		 *  Activate "gap-{X}x{GAP_STEP}px" effect selector to set a numeric gap between elements.
+		 *  i.e: gap-2x3px will result in a gap of 6px
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get gap():Number
+        {
+            return _gap;
+        }
+
+		/**
+		 *  @private
+		 */
+		public function set gap(value:Number):void
+		{
+			if (_gap != value)
+            {
+				COMPILE::JS
+				{
+					if(hostComponent)
+						setGap(value);
+					
+					_gap = value;
+					gapInitialized = true;
+				}
+            }
+		}
+
+		COMPILE::JS
+		private function setGap(value:Number):void
+		{
+			if (value >= 0 && value <= GAPS*GAP_STEP)
+			{
+				if (hostClassList.contains("gap-" + _gap + "x" + GAP_STEP + "px"))
+					hostClassList.remove("gap-" + _gap + "x" + GAP_STEP + "px");
+				if(value != 0)
+					hostClassList.add("gap-" + value + "x" + GAP_STEP + "px");
+			} else
+				throw new Error("Gap needs to be between 0 and " + GAPS*GAP_STEP);
+		}
+		
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.ILayoutHost
@@ -312,14 +406,9 @@ package org.apache.royale.jewel.beads.layouts
             }
             COMPILE::JS
             {
-                var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				var c:UIBase = (contentView as UIBase);
-				c.element.classList.add("layout");
-				c.element.classList.add("horizontal");
+				//applyStyleToLayout(c, "gap");
 
-				applyStyleToLayout(c, "gap");
-
-				var children:Array = contentView.internalChildren();
+				/*var children:Array = contentView.internalChildren();
 				var i:int;
 				var n:int = children.length;
 				for (i = 0; i < n; i++)
@@ -344,7 +433,7 @@ package org.apache.royale.jewel.beads.layouts
 					{
 						child.style.marginLeft = _gap + 'px';
 					}					
-				}
+				}*/
 
                 return true;
             }

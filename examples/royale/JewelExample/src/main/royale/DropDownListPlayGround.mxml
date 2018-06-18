@@ -40,7 +40,7 @@ limitations under the License.
 	</fx:Script>
 
 	<j:beads>
-		<j:HorizontalLayout gap="10"/>
+		<j:HorizontalLayout gap="3"/>
 		<js:ViewDataBinding />
 	</j:beads>
 	

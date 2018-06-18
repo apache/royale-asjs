@@ -28,7 +28,7 @@
     <component id="VGroup" class="org.apache.royale.jewel.VGroup"/>
     <component id="Container" class="org.apache.royale.jewel.Container"/>
     <component id="Grid" class="org.apache.royale.jewel.Grid"/>
-    <component id="Cell" class="org.apache.royale.jewel.Cell"/>
+    <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
 
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
@@ -60,6 +60,7 @@
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
     <component id="TileLayout" class="org.apache.royale.jewel.beads.layouts.TileLayout"/>
     <component id="GridLayout" class="org.apache.royale.jewel.beads.layouts.GridLayout"/>
+    <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     
     <component id="HorizontalLayoutSpaceBetween" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween"/>
     

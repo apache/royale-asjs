@@ -28,7 +28,8 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.IStrand;
 
-	COMPILE::JS {
+	COMPILE::JS 
+	{
 		import org.apache.royale.core.UIBase;
 	}
 
@@ -59,12 +60,25 @@ package org.apache.royale.jewel.beads.layouts
 		}
 
 		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal";
+
+		COMPILE::JS
+		protected var hostComponent:UIBase;
+
+		COMPILE::JS
+		protected var hostClassList:DOMTokenList;
+
+		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -72,8 +86,14 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				var contentView:UIBase = layoutView as UIBase;
-				contentView.className = contentView.className ? contentView.className + " layout horizontal" : "layout horizontal";
+				hostComponent = host as UIBase;
+				hostClassList = hostComponent.positioner.classList;
+				if (hostClassList.contains("layout"))
+					hostClassList.remove("layout");
+				hostClassList.add("layout");
+				if(hostClassList.contains("horizontal"))
+					hostClassList.remove("horizontal");
+				hostClassList.add("horizontal");
 			}
 		}
 

@@ -17,44 +17,104 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Jewel Layouts
+
+// Layouts variables
+$gaps: 10
+$gap-step: 3
+$gap: 0px
+
 /* Absolute */
 .layout.absolute
-	position: relative
 	> *
 		position: absolute
-		//width: 100%
 
 .layout
 	display: flex
+	position: relative
 
 /* Horizontal */
 .layout.horizontal
 	flex-flow: row nowrap
 	align-items: flex-start
 	
-//.layout.horizontal.gap
-//	justify-content: space-between
+	@for $i from 1 through $gaps
+		&.gap-#{$i}x#{$gap-step}px
+			> *:first-child
+				margin: 0px
+			> *
+				margin: 0px 0px 0px ($gap + $i * $gap-step)
 
 /* Vertical */	
 .layout.vertical
 	flex-flow: column nowrap
 	align-items: flex-start
 	
-//.layout.vertical.gap
-//	justify-content: space-between
+	@for $i from 1 through $gaps
+		&.gap-#{$i}x#{$gap-step}px
+			> *:first-child
+				margin: 0px
+			> *
+				margin: ($gap + $i * $gap-step) 0px 0px
+
+/* Vertical */	
+.layout.tile
+	flex-flow: row wrap
+	align-items: flex-start
+	
+	// this not compile******
+	// &.gap
+	// 	> *:first-child
+	// 		margin: 0px
+	// 	> *:nth-child(-n+3)
+	// 		margin: 0px 0px 0px $gap-size
+	// 	> *:nth-child(3n)
+	// 		margin: $gap-size 0px 0px
+	// 	> *
+	// 		margin: $gap-size 0px 0px $gap-size
 
 .layout.horizontal.space
 	justify-content: space-between
 
 /* Grid */
-$gut: 0em
+$phone: 0px
+$tablet: 768px
+$desktop: 992px
+$widescreen: 1200px
+$grid-columns: 12 !default
+$gap-size: 10px !default
+
+
+$devices: (phone: $phone, tablet: $tablet) !default
+$computers: (desktop: $desktop, lg: $widescreen) !default
+$sizes: map-merge($devices, $computers)
+$size-names: map-keys($sizes)
+
 .layout.grid
-	flex-wrap: wrap
+	flex-flow: row wrap
+	align-items: stretch
+	width: 100%
+	
 	> *
-		flex: 1
-		// max-width: 100%
-	@for $i from 1 through 20
-		&.gap-#{$i}dp
-			margin: $gut - $i 0 $gut + $i $gut - $i
-			> *
-				padding: $gut + $i 0 0 $gut + $i
+		max-width: 100%
+		width: 100%
+	
+	&.gap
+		
+		> .cell
+			margin: $gap-size / 2
+	
+		@each $size in $size-names
+			@media (min-width: map-get($sizes, $size))
+				@for $i from 1 through $grid-columns
+					@for $j from 1 through $i
+						.#{$size}-col-#{$j}-#{$i}
+							width: calc(#{percentage($j / $i)} - #{$gap-size})
+							
+	@each $size in $size-names
+		@media (min-width: map-get($sizes, $size))
+			@for $i from 1 through $grid-columns
+				@for $j from 1 through $i
+					.#{$size}-col-#{$j}-#{$i}
+						width: percentage($j / $i)
+		
