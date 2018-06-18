@@ -20,8 +20,8 @@ j|Application {
   background: white;
   font-family: "Lato", sans-serif;
   color: #808080;
-  padding: 10px;
-  margin: 10px;
+  padding: 0px;
+  margin: 0px;
 }
 
 h1 {
@@ -193,7 +193,7 @@ div {
 }
 
 j|Card {
-  gap: 10;
+  gap: 3;
 }
 
 .jewel.checkbox input + span::before {
