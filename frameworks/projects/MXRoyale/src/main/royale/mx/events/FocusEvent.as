@@ -21,7 +21,8 @@ package mx.events
 {
 COMPILE::SWF
 {
-import flash.events.Event;        
+import flash.events.FocusEvent;  
+import flash.display.InteractiveObject;      
 }
 /* import mx.events.Event;*/
 import org.apache.royale.events.Event;
@@ -39,8 +40,13 @@ import org.apache.royale.events.IRoyaleEvent;
  *  @royalesuppresspublicvarwarning
  */
 COMPILE::SWF
-public class FocusEvent extends flash.events.Event
+public class FocusEvent extends flash.events.FocusEvent
 {
+	public function FocusEvent(type:String, bubbles:Boolean = false,
+                              cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none")
+    {
+        super(type, bubbles, cancelable,relatedObject,shiftKey,keyCode,direction);
+    }
 }
 
 /**
@@ -91,8 +97,8 @@ public class FocusEvent extends org.apache.royale.events.Event
 	 *  @productversion Royale 0.9.3
 	 */
 	public function FocusEvent(type:String, bubbles:Boolean = false,
-							  cancelable:Boolean = false
-							  )
+							  cancelable:Boolean = false ,relatedObject:Object = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none")
+							  
 	{
 		super(type, bubbles, cancelable);
 	}
