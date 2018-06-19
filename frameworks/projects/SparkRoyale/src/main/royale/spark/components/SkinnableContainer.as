@@ -831,11 +831,11 @@ public class SkinnableContainer extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function removeAllElements():void
+    public function removeAllElements():void
     {
-        _contentModified = true;
-        currentContentGroup.removeAllElements();
-    } */
+        /* _contentModified = true;
+        currentContentGroup.removeAllElements(); */
+    } 
     
     /**
      *  @inheritDoc
