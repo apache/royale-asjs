@@ -1013,7 +1013,26 @@ public class UIComponent extends UIBase
             dispatchEvent(new Event("hasFocusableChildrenChange"));
         }
     }
+	
+	//----------------------------------
+    //  tabEnabled
+    //----------------------------------
+    private var _tabEnabled:Boolean = true;
+	COMPILE::JS
+	{
+	 public function get tabEnabled():Boolean
+    {
+        return _tabEnabled;
+    }
     
+    /**
+     *  @private
+     */
+    public function set tabEnabled(value:Boolean):void
+    {
+       _tabEnabled = value;
+    }
+	}
     //----------------------------------
     //  tabFocusEnabled
     //----------------------------------
