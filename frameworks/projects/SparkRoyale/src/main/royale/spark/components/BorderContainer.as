@@ -115,7 +115,7 @@ import spark.components.SkinnableContainer;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-//[Style(name="borderVisible", type="Boolean", inherit="no")]
+[Style(name="borderVisible", type="Boolean", inherit="no")]
 
 /**
  *  The stroke weight for the border. 
