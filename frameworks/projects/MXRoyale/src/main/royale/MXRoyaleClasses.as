@@ -128,6 +128,10 @@ internal class MXRoyaleClasses
 	import mx.events.IOErrorEvent; IOErrorEvent;
 	import mx.events.FocusEvent; FocusEvent;
 	import mx.errors.EOFError; EOFError;
+	import mx.events.TextEvent; TextEvent;
+	import mx.display.Bitmap; Bitmap;
+	import mx.external.ExternalInterface; ExternalInterface;
+	
 	COMPILE::JS
     	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
