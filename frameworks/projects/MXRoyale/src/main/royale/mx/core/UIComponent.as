@@ -113,6 +113,21 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 [Event(name="initialize", type="mx.events.FlexEvent")]
+/**
+ *  Dispatched when the component has finished its construction,
+ *  property processing, measuring, layout, and drawing.
+ *
+ *  <p>At this point, depending on its <code>visible</code> property,
+ *  the component is not visible even though it has been drawn.</p>
+ *
+ *  @eventType mx.events.FlexEvent.CREATION_COMPLETE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="creationComplete", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when an object has had its <code>commitProperties()</code>,
