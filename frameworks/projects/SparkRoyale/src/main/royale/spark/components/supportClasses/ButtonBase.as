@@ -422,7 +422,8 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
     {
         return ITextModel(model).text;
     }
-
+	
+	
     /**
      * @royaleignorecoercion HTMLImageElement
      */
@@ -457,6 +458,16 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
         if (!isNaN(explicitWidth)) setWidth(w);
         if (!isNaN(explicitHeight)) setHeight(h);
     }
+	
+	public function set fontStyle(value:String):void
+    {
+       
+    }
+	public function get fontStyle():String          
+    {
+        return "NORMAL";
+    }
+
 }
 
 }
