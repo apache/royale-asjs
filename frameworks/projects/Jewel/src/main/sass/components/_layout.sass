@@ -31,13 +31,16 @@ $gap: 0px
 
 .layout
 	display: flex
-	position: relative
+	//position: relative
 
 /* Horizontal */
 .layout.horizontal
 	flex-flow: row nowrap
 	align-items: flex-start
 	
+	> *
+		flex: 1 0 auto
+
 	@for $i from 1 through $gaps
 		&.gap-#{$i}x#{$gap-step}px
 			> *:first-child
@@ -50,6 +53,9 @@ $gap: 0px
 	flex-flow: column nowrap
 	align-items: flex-start
 	
+	> *
+		flex: 0 0 auto
+
 	@for $i from 1 through $gaps
 		&.gap-#{$i}x#{$gap-step}px
 			> *:first-child
@@ -57,7 +63,7 @@ $gap: 0px
 			> *
 				margin: ($gap + $i * $gap-step) 0px 0px
 
-/* Vertical */	
+/* Tile */	
 .layout.tile
 	flex-flow: row wrap
 	align-items: flex-start
@@ -94,16 +100,24 @@ $size-names: map-keys($sizes)
 	flex-flow: row wrap
 	align-items: stretch
 	width: 100%
+	height: 100%
 	
 	> *
+		flex: 0 0 auto // flex-grow, flex-shrink and flex-basis
 		max-width: 100%
 		width: 100%
-	
-	&.gap
 		
-		> .cell
-			margin: $gap-size / 2
 	
+	@each $size in $size-names
+		@media (min-width: map-get($sizes, $size))
+			@for $i from 1 through $grid-columns
+				@for $j from 1 through $i
+					.#{$size}-col-#{$j}-#{$i}
+						width: percentage($j / $i)
+	
+	&.gap	
+		> *
+			margin: $gap-size / 2
 		@each $size in $size-names
 			@media (min-width: map-get($sizes, $size))
 				@for $i from 1 through $grid-columns
@@ -111,10 +125,29 @@ $size-names: map-keys($sizes)
 						.#{$size}-col-#{$j}-#{$i}
 							width: calc(#{percentage($j / $i)} - #{$gap-size})
 							
-	@each $size in $size-names
-		@media (min-width: map-get($sizes, $size))
-			@for $i from 1 through $grid-columns
-				@for $j from 1 through $i
-					.#{$size}-col-#{$j}-#{$i}
-						width: percentage($j / $i)
 		
+	// // Visible classes
+	// =visible-classes($size)
+	// .visible-#{$size}
+	// display: block !important
+
+	// .frow.visible-#{$size}
+	// display: flex !important
+
+	// .hidden-#{$size},
+	// .frow.hidden-#{$size}
+	// display: none !important
+
+	// // Reponsive flex direction classes
+	// =flex-directions($size)
+	// .direction-row-#{$size}
+	// flex-direction: row
+
+	// .direction-reverse-#{$size}
+	// flex-direction: row-reverse
+
+	// .direction-column-#{$size}
+	// flex-direction: column
+
+	// .direction-column-reverse-#{$size}
+	// flex-direction: column-reverse
