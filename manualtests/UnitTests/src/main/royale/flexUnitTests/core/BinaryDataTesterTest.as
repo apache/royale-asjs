@@ -562,6 +562,24 @@ package flexUnitTests.core
 			}
 		}
 
+		[Test]
+		public function testReadOddBytes():void
+		{
+			var ba:BinaryData = new BinaryData();
+			for (var i:int=0;i<50;i++) ba.writeByte(i);
+			ba.endian = Endian.BIG_ENDIAN;
+			ba.position=0;
+			Assert.assertEquals("BinaryData readByte: should be 0", 0, ba.readByte());
+			Assert.assertEquals("BinaryData readShort: should be 258", 258, ba.readShort());
+			Assert.assertEquals("BinaryData readInt: should be 50595078", 50595078, ba.readInt());
+			ba.endian = Endian.LITTLE_ENDIAN;
+			ba.position=0;
+			Assert.assertEquals("BinaryData readByte: should be 0", 0, ba.readByte());
+			Assert.assertEquals("BinaryData readShort: should be 513", 513, ba.readShort());
+			Assert.assertEquals("BinaryData readInt: should be 100992003", 100992003, ba.readInt());
+
+		}
+
 
 	}
 }
