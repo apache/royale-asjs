@@ -591,11 +591,22 @@ package flexUnitTests.core
 			ba.writeByte(-25);
 			ba.writeShort(-1029);
 			ba.writeInt(-131072);
+			ba.writeFloat(12345.2);
+			ba.writeDouble(3.1415927410);
 			ba.position = 0;
 			Assert.assertEquals("BinaryData readByte: should be -25", -25, ba.readByte());
 			Assert.assertEquals("BinaryData readShort: should be -1029", -1029, ba.readShort());
 			Assert.assertEquals("BinaryData readInt: should be -131072", -131072, ba.readInt());
-
+			Assert.assertEquals("BinaryData readFloat: should be 12345.2", 12345.2, Math.round(ba.readFloat() * 100)/100);
+			Assert.assertEquals("BinaryData readDouble: should be 3.1415927410", 3.1415927410, ba.readDouble());
+			ba = new BinaryData()
+			ba.writeFloat(12345.2);
+			ba.position = 0;
+			Assert.assertEquals("BinaryData readFloat: should be 12345.2", 12345.2, Math.round(ba.readFloat() * 100)/100);
+			ba.position = 0;
+			ba.writeDouble(3.1415927410);
+			ba.position = 0;
+			Assert.assertEquals("BinaryData readDouble: should be 3.1415927410", 3.1415927410, ba.readDouble());
 		}
 
 
