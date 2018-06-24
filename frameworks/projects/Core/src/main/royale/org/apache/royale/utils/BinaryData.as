@@ -686,9 +686,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         {
             var arr:Uint8Array = getTypedArray();
             if(endian == Endian.BIG_ENDIAN){
-                return arr[_position++] * 16777216 + arr[_position++] * 65536 + arr[_position++] * 256 + arr[_position++];
+                return (arr[_position++] << 24) + (arr[_position++] << 16) + ( arr[_position++] << 8) + arr[_position++];
             } else {
-                return arr[_position++] + 256 * arr[_position++] + 65536 * arr[_position++] + 16777216 * arr[_position++];
+                return arr[_position++] + ( arr[_position++] << 8) + (arr[_position++] << 16) + (arr[_position++] << 24)
             }
             // var ret:uint = new Uint32Array(ba, _position, 1)[0];
             // if (!_sysEndian) {
@@ -718,9 +718,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         {
             var arr:Uint8Array = getTypedArray();
             if(endian == Endian.BIG_ENDIAN){
-                return arr[_position++] * 256 + arr[_position++];
+                return ( arr[_position++] << 8) + arr[_position++];
             } else {
-                return arr[_position++] + 256 * arr[_position++];
+                return arr[_position++] + ( arr[_position++] << 8);
             }
             // var ret:uint = new Uint16Array(ba, _position, 1)[0];
             // if (!_sysEndian) {
