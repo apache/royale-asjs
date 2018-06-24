@@ -262,8 +262,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             if (_position + 1 > _len) {
                 setBufferSize(_position + 1);
             }
-            new Uint8Array(ba, _position, 1)[0] = byte;
-            _position++;
+            getTypedArray()[_position++] = byte;
         }
     }
     /**
@@ -322,14 +321,18 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            if (!_sysEndian) {
-                short = (((short & 0xff00) >>> 8) | ((short & 0xff) <<8 ));
-            }
             if (_position + 2 > _len) {
                 setBufferSize(_position + 2);
             }
-            new Int16Array(ba, _position, 1)[0] = short;
-            _position += 2;
+            var arr:Uint8Array = getTypedArray();
+            if(endian == Endian.BIG_ENDIAN){
+                arr[_position++] = (short & 0x0000ff00) >> 8;
+                arr[_position++] = (short & 0x000000ff);
+            } else {
+                arr[_position++] = (short & 0x000000ff);
+                arr[_position++] = (short & 0x0000ff00) >> 8;
+            }
+
         }
     }
 
@@ -351,14 +354,15 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            if (!_sysEndian) {
-                val = ((val & 0xff000000) >>> 24) | ((val & 0x00ff0000) >> 8) | ((val & 0x0000ff00) << 8) | (val << 24);
-            }
-            if (_position + 4 > _len) {
-                setBufferSize(_position + 4);
-            }
-            new Uint32Array(ba, _position, 1)[0] = val;
-            _position += 4;
+            writeInt(val);
+            // if (!_sysEndian) {
+            //     val = ((val & 0xff000000) >>> 24) | ((val & 0x00ff0000) >> 8) | ((val & 0x0000ff00) << 8) | (val << 24);
+            // }
+            // if (_position + 4 > _len) {
+            //     setBufferSize(_position + 4);
+            // }
+            // new Uint32Array(ba, _position, 1)[0] = val;
+            // _position += 4;
         }
     }
 
@@ -380,14 +384,23 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            if (!_sysEndian) {
-                val = (((val & 0xff000000) >>> 24) | ((val & 0x00ff0000) >> 8) | ((val & 0x0000ff00) << 8) | (val << 24)) >> 0;
-            }
             if (_position + 4 > _len) {
                 setBufferSize(_position + 4);
             }
-            new Int32Array(ba, _position, 1)[0] = val;
-            _position += 4;
+            var arr:Uint8Array = getTypedArray();
+            if(endian == Endian.BIG_ENDIAN){
+
+                arr[_position++] = (val & 0xff000000) >> 24;
+                arr[_position++] = (val & 0x00ff0000) >> 16;
+                arr[_position++] = (val & 0x0000ff00) >> 8;
+                arr[_position++] = (val & 0x000000ff);
+            } else {
+                arr[_position++] = (val & 0x000000ff);
+                arr[_position++] = (val & 0x0000ff00) >> 8;
+                arr[_position++] = (val & 0x00ff0000) >> 16;
+                arr[_position++] = (val & 0xff000000) >> 24;
+            }
+
         }
     }
 
