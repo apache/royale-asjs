@@ -416,15 +416,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             if (_position + 4 > _len) {
                 setBufferSize(_position + 4);
             }
-
-            if(_sysEndian)
-            {
-                new Float32Array(ba, _position, 1)[0] = val;
-            }
-            else
-            {
-                new DataView(ba).setFloat32(_position,val,_endian == Endian.LITTLE_ENDIAN);
-            }
+            
+            new DataView(ba).setFloat32(_position,val,_endian == Endian.LITTLE_ENDIAN);
             _position += 4;
         }
     }
@@ -448,10 +441,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             if (_position + 8 > _len) {
                 setBufferSize(_position + 8);
             }
-            if(_sysEndian)
-                new Float64Array(ba, _position, 1)[0] = val;
-            else
-                new DataView(ba).setFloat64(_position,val,_endian == Endian.LITTLE_ENDIAN);
+            new DataView(ba).setFloat64(_position,val,_endian == Endian.LITTLE_ENDIAN);
             _position += 8;
         }
     }
@@ -736,11 +726,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             return ba.readFloat();
         }
         COMPILE::JS {
-            var ret :Number;
-            if(_sysEndian)
-            {
-                ret = new Float32Array(ba, _position, 1)[0];
-            }  else ret = new DataView(ba).getFloat32(_position,_endian == Endian.LITTLE_ENDIAN);
+            var ret :Number = new DataView(ba).getFloat32(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 4;
             return ret;
         }
@@ -763,10 +749,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             return ba.readDouble();
         }
         COMPILE::JS {
-            var ret : Number;
-            if(_sysEndian)
-                ret = new Float64Array(ba, _position, 1)[0];
-            else ret = new DataView(ba).getFloat64(_position,_endian == Endian.LITTLE_ENDIAN);
+            var ret:Number = new DataView(ba).getFloat64(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 8;
             return ret;
         }
