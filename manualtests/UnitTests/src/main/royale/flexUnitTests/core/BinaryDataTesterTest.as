@@ -580,11 +580,11 @@ package flexUnitTests.core
 
 			ba = new BinaryData();
 			ba.writeByte(25);
-			ba.writeShort(1029);
+			ba.writeShort(65535);
 			ba.writeUnsignedInt(4294967295);
 			ba.position = 0;
 			Assert.assertEquals("BinaryData readByte: should be 25", 25, ba.readByte());
-			Assert.assertEquals("BinaryData readShort: should be 1029", 1029, ba.readShort());
+			Assert.assertEquals("BinaryData readUnsignedShort: should be 65535", 65535, ba.readUnsignedShort());
 			Assert.assertEquals("BinaryData readInt: should be 4294967295", 4294967295, ba.readUnsignedInt());
 
 			ba = new BinaryData();
