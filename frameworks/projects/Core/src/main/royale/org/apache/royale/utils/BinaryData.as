@@ -417,7 +417,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
                 setBufferSize(_position + 4);
             }
             
-            new DataView(ba).setFloat32(_position,val,_endian == Endian.LITTLE_ENDIAN);
+            getDataView().setFloat32(_position,val,_endian == Endian.LITTLE_ENDIAN);
             _position += 4;
         }
     }
@@ -441,7 +441,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             if (_position + 8 > _len) {
                 setBufferSize(_position + 8);
             }
-            new DataView(ba).setFloat64(_position,val,_endian == Endian.LITTLE_ENDIAN);
+            getDataView().setFloat64(_position,val,_endian == Endian.LITTLE_ENDIAN);
             _position += 8;
         }
     }
@@ -587,6 +587,17 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         return _typedArray;
     }
 
+    COMPILE::JS
+    private var _dataView:DataView;
+
+    COMPILE::JS
+    private function getDataView():DataView
+    {
+        if(!_dataView)
+            _dataView = new DataView(ba);
+        return _dataView;
+    }
+
 
     /**
      *  Writes a byte of binary data at the specified index. Does not change the <code>position</code> property.
@@ -726,7 +737,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             return ba.readFloat();
         }
         COMPILE::JS {
-            var ret :Number = new DataView(ba).getFloat32(_position,_endian == Endian.LITTLE_ENDIAN);
+            var ret :Number = getDataView().getFloat32(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 4;
             return ret;
         }
@@ -749,7 +760,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             return ba.readDouble();
         }
         COMPILE::JS {
-            var ret:Number = new DataView(ba).getFloat64(_position,_endian == Endian.LITTLE_ENDIAN);
+            var ret:Number = getDataView().getFloat64(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 8;
             return ret;
         }
@@ -809,6 +820,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             ba = newView.buffer;
             if (_position > newSize) _position = newSize;
             _typedArray = newView;
+            _dataView = null;
             _len = newSize;
         }
     }
@@ -1067,6 +1079,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             dest.set(newBytes, offset);
             ba = dest.buffer;
             _typedArray = dest;
+            _dataView = null;
 			_len = mergeUpperBound;
         } else {
             dest = new Uint8Array(ba, offset, newContentLength);
