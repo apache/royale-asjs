@@ -167,7 +167,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
     public function set endian(value:String):void
     {
-        if (value == Endian.BIG_ENDIAN || Endian.LITTLE_ENDIAN) {
+        if (value == Endian.BIG_ENDIAN || value == Endian.LITTLE_ENDIAN) {
             COMPILE::JS {
                 _endian = value;
                 _sysEndian = value == Endian.systemEndian;
