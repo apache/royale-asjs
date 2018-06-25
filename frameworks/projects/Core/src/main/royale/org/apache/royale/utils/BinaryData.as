@@ -666,9 +666,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         {
             var arr:Uint8Array = getTypedArray();
             if(endian == Endian.BIG_ENDIAN){
-                return (arr[_position++] * 16777216) + (arr[_position++] << 16) + ( arr[_position++] << 8) + arr[_position++];
+                return ((arr[_position++] << 24) >>> 0) + (arr[_position++] << 16) + ( arr[_position++] << 8) + arr[_position++];
             } else {
-                return arr[_position++] + ( arr[_position++] << 8) + (arr[_position++] << 16) + (arr[_position++] * 16777216)
+                return arr[_position++] + ( arr[_position++] << 8) + (arr[_position++] << 16) + ((arr[_position++] << 24) >>> 0);
             }
         }
     }
