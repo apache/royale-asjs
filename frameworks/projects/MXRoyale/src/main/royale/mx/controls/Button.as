@@ -282,7 +282,7 @@ public class Button extends UIComponent implements IDataRenderer
 	}
 	
 	// ------------------------------------------------
-	//  icon
+	//  disabledIcon
 	// ------------------------------------------------
 	
 	/**
