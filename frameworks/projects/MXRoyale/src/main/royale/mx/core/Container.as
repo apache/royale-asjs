@@ -435,6 +435,52 @@ public class Container extends UIComponent
         if (GOOG::DEBUG)
             trace("paddingBottom not implemented");
     }
+	
+	/**
+     *  Number of pixels between the container's left border
+     *  and the left of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingLeft():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingLeft not implemented");
+        return 0;
+    }
+    public function set paddingLeft(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingLeft not implemented");
+    }
+	
+	/**
+     *  Number of pixels between the container's right border
+     *  and the right of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingRight():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingRight not implemented");
+        return 0;
+    }
+    public function set paddingRight(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingRight not implemented");
+    }
 
     /**
      *  Number of pixels between children in the vertical direction.
@@ -469,7 +515,17 @@ public class Container extends UIComponent
         if (GOOG::DEBUG)
             trace("horizontalGap not implemented");
     }
-    
+     public function get verticalAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+        return 0;
+    }
+    public function set verticalAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+    }
 	/*	  
      *  @langversion 3.0
      *  @playerversion Flash 9
