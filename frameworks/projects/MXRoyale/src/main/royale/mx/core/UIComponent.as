@@ -336,6 +336,27 @@ use namespace mx_internal;
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
 
+
+/**
+ *  Played when the user rolls the mouse over the component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Effect(name="rollOverEffect", event="rollOver")]
+
+/**
+ *  Played when the user rolls the mouse so it is no longer over the component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Effect(name="rollOutEffect", event="rollOut")]
+
 /**
  *  The UIComponent class is the base class for all visual components,
  *  both interactive and noninteractive.
