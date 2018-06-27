@@ -392,7 +392,19 @@ public class Label extends TextBase
         super();
 		
     }
-    
+    	
+	public function get verticalAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+        return 0;
+    }
+    public function set verticalAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+    }
+	
     //--------------------------------------------------------------------------
     //
     //  Variables
