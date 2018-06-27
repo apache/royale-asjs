@@ -21,6 +21,6 @@
 
 @namespace "http://www.w3.org/1999/xhtml";
 
-.royale {
-    /*padding: 20px;*/
+.mainContent {
+    margin: 20px;
 }

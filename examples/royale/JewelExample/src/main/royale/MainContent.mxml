@@ -47,12 +47,11 @@ limitations under the License.
                         <js:Icon text="{MaterialIconType.LOCK}" material="true"/>
                     </j:icon>
                 </j:Button>
-
             </j:TopAppBarSection>
         </j:TopAppBarRow>
     </j:TopAppBar>
     
-    <j:HGroup gap="3"> 
+    <j:HGroup gap="3" className="mainContent"> 
         <j:VGroup gap="3">
             <local:LabelPlayGround/>
             <local:ButtonPlayGround/>

@@ -2567,6 +2567,9 @@ j|TitleBar {
   width: 100%;
   z-index: 4;
 }
+.jewel.topappbar + * {
+  padding-top: 64px;
+}
 .jewel.topappbar.fixed {
   position: fixed;
   top: 0px;

@@ -31,6 +31,10 @@ $top-app-bar-button-size: 48px
     width: 100%
     z-index: 4
 
+    // this adjust the container declared after TopAppBar and with only one row (most common case)
+    + *
+        padding-top: $top-app-bar-row-height
+
     &.fixed
         position: fixed
         top: 0px
