@@ -39,6 +39,8 @@ internal class CoreClasses
 	import org.apache.royale.core.DataItemRenderer; DataItemRenderer;
 	import org.apache.royale.core.MXMLItemRenderer; MXMLItemRenderer;
 	import org.apache.royale.core.IList; IList;
+	import org.apache.royale.core.IIcon; IIcon;
+	import org.apache.royale.core.IIconSupport; IIconSupport;
 	import org.apache.royale.core.IListView; IListView;
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;

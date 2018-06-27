@@ -99,19 +99,25 @@ j|Alert {
   padding: 0.72em 1.12em;
   cursor: pointer;
   user-select: none;
-  display: inline-block;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
   zoom: 1;
   vertical-align: middle;
+  overflow: hidden;
+  outline: none;
   white-space: nowrap;
   line-height: normal !important;
   text-align: center;
   text-decoration: none;
 }
-.jewel.button:focus {
-  outline: none;
-}
 .jewel.button[disabled] {
   cursor: unset;
+}
+.jewel.button .icon {
+  margin-left: 0px;
+  margin-right: 8px;
 }
 
 .jewel.card {

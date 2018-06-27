@@ -16,43 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package
+{
 
-// Jewel Button
+    /**
+     *  @private
+     *  This class is used to link additional classes into icons.swc
+     *  beyond those that are found by dependecy analysis starting
+     *  from the classes specified in manifest.xml.
+     */
+    internal class IconsClasses
+    {
+        import org.apache.royale.icons.Icon; Icon;
+        import org.apache.royale.icons.IconBase; IconBase;
+        import org.apache.royale.icons.types.MaterialIconType; MaterialIconType;
+    }
 
-// Button variables
-$button-margin: 0 !default
-$button-padding: 0.72em 1.12em !default
-
-.jewel.button
-    margin: $button-margin
-    padding: $button-padding
-
-    cursor: pointer
-    user-select: none
-
-    display: inline-flex
-    position: relative
-    align-items: center
-    justify-content: center
-    zoom: 1
-    vertical-align: middle
-    overflow: hidden
-    outline: none
-
-    // -- BUTTON LABEL
-    white-space: nowrap
-    line-height: normal !important
-
-    text:
-        align: center
-        decoration: none
-
-    // &:focus
-
-    &[disabled]
-        cursor: unset
-
-    .icon
-        margin-left: 0px
-        margin-right: 8px
-
+}

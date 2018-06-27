@@ -16,43 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-// Jewel Button
-
-// Button variables
-$button-margin: 0 !default
-$button-padding: 0.72em 1.12em !default
-
-.jewel.button
-    margin: $button-margin
-    padding: $button-padding
-
-    cursor: pointer
-    user-select: none
-
-    display: inline-flex
-    position: relative
-    align-items: center
-    justify-content: center
-    zoom: 1
-    vertical-align: middle
-    overflow: hidden
-    outline: none
-
-    // -- BUTTON LABEL
-    white-space: nowrap
-    line-height: normal !important
-
-    text:
-        align: center
-        decoration: none
-
-    // &:focus
-
-    &[disabled]
-        cursor: unset
-
-    .icon
-        margin-left: 0px
-        margin-right: 8px
-
+package org.apache.royale.core
+{
+    /**
+     *  Implement if a class will need ability to display an icon
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+    public interface IIconSupport
+    {
+        function get icon():IIcon;
+        function set icon(value:IIcon):void;
+    }
+}
