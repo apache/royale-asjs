@@ -56,6 +56,10 @@ import spark.components.supportClasses.TextBase;
 
 use namespace mx_internal;
 
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 //--------------------------------------
 //  Styles
 //--------------------------------------
