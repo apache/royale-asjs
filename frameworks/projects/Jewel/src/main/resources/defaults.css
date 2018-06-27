@@ -241,6 +241,9 @@ j|Label {
 }
 
 /* Absolute */
+.layout.absolute {
+  position: absolute;
+}
 .layout.absolute > * {
   position: absolute;
 }
@@ -2548,6 +2551,76 @@ j|TitleBar {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TitleBarModel");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TitleBarView");
+}
+
+.jewel.topappbar {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 4;
+}
+
+.jewel.topappbarrow {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 64px;
+}
+
+.jewel.topappbarsection {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  z-index: 1;
+  justify-content: flex-start;
+  order: -1;
+}
+.jewel.topappbarsection.alignRight {
+  justify-content: flex-end;
+  order: 1;
+}
+.jewel.topappbarsection button {
+  will-change: transform, opacity;
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+.jewel.topappbarsection button:hover, .jewel.topappbarsection button:hover:focus, .jewel.topappbarsection button:active, .jewel.topappbarsection button:active:focus, .jewel.topappbarsection button:focus {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.topappbarsection button[disabled] {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.topappbarsection button .icon {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.jewel.topappbartitle {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 1;
+  line-height: 2rem;
+  letter-spacing: 0.0125em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=defaults.css.map */

@@ -1,0 +1,101 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel TopAppBar
+
+// TopAppBar variables
+$top-app-bar-row-height: 64px
+$top-app-bar-button-size: 48px
+
+.jewel.topappbar
+    display: flex
+    position: relative
+    flex-direction: column
+    justify-content: space-between
+    width: 100%
+    z-index: 4
+
+    &.fixed
+
+.jewel.topappbarrow 
+    display: flex
+    position: relative
+    width: 100%
+    height: $top-app-bar-row-height
+
+.jewel.topappbarsection 
+    display: inline-flex
+    flex: 1 1 auto
+    align-items: center
+    min-width: 0
+    z-index: 1
+    justify-content: flex-start
+    order: -1
+
+    &.alignRight
+        justify-content: flex-end
+        order: 1
+    
+    button
+        will-change: transform, opacity
+        display: flex
+        position: relative
+        flex-shrink: 0
+        align-items: center
+        justify-content: center
+        width: $top-app-bar-button-size
+        height: $top-app-bar-button-size
+        outline: none
+        text-decoration: none
+        cursor: pointer
+
+        &:hover, &:hover:focus, &:active, &:active:focus, &:focus
+            background: transparent
+            box-shadow: none
+            border: none
+
+        &[disabled]
+            background: transparent
+            box-shadow: none
+            border: none
+
+        .icon
+            margin-left: 0px
+            margin-right: 0px
+
+.jewel.topappbartitle
+    -moz-osx-font-smoothing: grayscale
+    -webkit-font-smoothing: antialiased
+    white-space: nowrap
+    overflow: hidden
+    z-index: 1
+    line-height: 2rem
+    letter-spacing: .0125em
+    text:
+        decoration: inherit
+        transform: inherit
+        overflow: ellipsis
+    
+j|ToolBar
+
+j|ToolBarRow
+
+j|ToolBarSection
+
+j|ToolBarTitle
