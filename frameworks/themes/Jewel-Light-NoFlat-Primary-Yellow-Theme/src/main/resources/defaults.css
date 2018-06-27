@@ -428,4 +428,43 @@ j|Card {
   color: silver;
 }
 
+.jewel.topappbar {
+  background: linear-gradient(#f4e813, #cac00a);
+  border-top: 1px solid #f6ed44;
+  border-bottom: 1px solid #817a06;
+  box-shadow: 0px 0px 4px 1px rgba(1, 1, 1, 0.7);
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(80, 76, 4, 0.7);
+}
+
+.jewel.topappbarsection {
+  padding: 8px 12px;
+}
+.jewel.topappbarsection button {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 12px;
+  fill: #FFFFFF;
+  color: inherit;
+}
+.jewel.topappbarsection button:hover, .jewel.topappbarsection button:hover:focus, .jewel.topappbarsection button:active, .jewel.topappbarsection button:active:focus, .jewel.topappbarsection button:focus {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.topappbarsection button[disabled] {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.jewel.topappbartitle {
+  font-family: "Lato", sans-serif;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding-left: 20px;
+  padding-right: 0;
+}
+
 /*# sourceMappingURL=defaults.css.map */
