@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.icons.types
+package
 {
     /**
      *  The MaterialIconType class list all possible icons

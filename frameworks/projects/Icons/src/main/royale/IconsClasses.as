@@ -29,7 +29,7 @@ package
     {
         import org.apache.royale.icons.Icon; Icon;
         import org.apache.royale.icons.IconBase; IconBase;
-        import org.apache.royale.icons.types.MaterialIconType; MaterialIconType;
+        MaterialIconType;
     }
 
 }

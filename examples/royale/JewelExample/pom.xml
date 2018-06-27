@@ -74,6 +74,20 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Icons</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Icons</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>

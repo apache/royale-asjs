@@ -43,12 +43,12 @@
         <configuration>
           <namespaces>
             <namespace>
-              <uri>library://ns.apache.org/royale/icons</uri>
+              <uri>library://ns.apache.org/royale/basic</uri>
               <manifest>${project.basedir}/src/main/resources/icons-manifest.xml</manifest>
             </namespace>
             <namespace>
               <type>as</type>
-              <uri>library://ns.apache.org/royale/icons</uri>
+              <uri>library://ns.apache.org/royale/basic</uri>
               <manifest>${project.basedir}/src/main/resources/icons-as-manifest.xml</manifest>
             </namespace>
           </namespaces>

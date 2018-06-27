@@ -47,6 +47,14 @@ limitations under the License.
 		</j:beads>
 	</j:Button>
 
+	<html:H4 text="Icons"/>
+	
+	<j:Button text="print" emphasis="primary">
+		<j:icon>
+			<js:Icon text="{MaterialIconType.PRINT}" material="true"/>
+		</j:icon>
+	</j:Button>
+
 	<html:H4 text="Sizes"/>
 	
 	<j:Button text="xsmall">

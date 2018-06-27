@@ -17,30 +17,63 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:View xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:j="library://ns.apache.org/royale/jewel"
-         xmlns:local="*" gap="3">
-    
-    <j:VGroup gap="3">
-        <local:LabelPlayGround/>
-        <local:ButtonPlayGround/>
-    </j:VGroup>
+         xmlns:js="library://ns.apache.org/royale/basic"
+         xmlns:local="*">
 
-     <j:VGroup gap="3">
-        <local:TextInputPlayGround/>
-        <local:CheckBoxPlayGround/>
-        <local:RadioButtonPlayGround/>
-    </j:VGroup>
+    <j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
 
-    <j:VGroup gap="3">
-        <local:SliderPlayGround/>
-        <local:ListPlayGround/>
-    </j:VGroup>
+    <j:TopAppBar id="topappbar" fixed="true">
+        <j:TopAppBarRow>
+            <j:TopAppBarSection>
+                <j:Button><!-- click="drawer.open = !drawer.open" -->
+                    <j:icon>
+                        <js:Icon text="{MaterialIconType.MENU}" material="true"/>
+                    </j:icon>
+                </j:Button>
+                <j:TopAppBarTitle text="Apache Royale Jewel UI Set Theme Showcase"/>
+            </j:TopAppBarSection>
+            <j:TopAppBarSection alignRight="true">
+                <j:Button click="topappbar.visible = !topappbar.visible">
+                    <j:icon>
+                        <js:Icon text="{MaterialIconType.VISIBILITY}" material="true"/>
+                    </j:icon>
+                </j:Button>
+                <j:Button click="topappbar.fixed = !topappbar.fixed">
+                    <j:icon>
+                        <js:Icon text="{MaterialIconType.LOCK}" material="true"/>
+                    </j:icon>
+                </j:Button>
+
+            </j:TopAppBarSection>
+        </j:TopAppBarRow>
+    </j:TopAppBar>
     
-    <j:VGroup gap="3">
-        <local:AlertPlayGround/>
-        <local:HeadingsAndText/>
-        <local:DropDownListPlayGround/>
-    </j:VGroup>
+    <j:HGroup gap="3"> 
+        <j:VGroup gap="3">
+            <local:LabelPlayGround/>
+            <local:ButtonPlayGround/>
+        </j:VGroup>
+
+        <j:VGroup gap="3">
+            <local:TextInputPlayGround/>
+            <local:CheckBoxPlayGround/>
+            <local:RadioButtonPlayGround/>
+        </j:VGroup>
+
+        <j:VGroup gap="3">
+            <local:SliderPlayGround/>
+            <local:ListPlayGround/>
+        </j:VGroup>
+        
+        <j:VGroup gap="3">
+            <local:AlertPlayGround/>
+            <local:HeadingsAndText/>
+            <local:DropDownListPlayGround/>
+        </j:VGroup>
+    </j:HGroup>
     
-</j:HGroup>
+</j:View>
