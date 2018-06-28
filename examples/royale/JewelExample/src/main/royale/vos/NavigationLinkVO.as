@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!---
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -17,19 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
--->
-<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-			   xmlns:j="library://ns.apache.org/royale/jewel"
-			   xmlns:js="library://ns.apache.org/royale/basic"
-			   xmlns:local="*">
+package vos
+{
+    [Bindable]
+    public class NavigationLinkVO
+    {
+        public var label:String;
+        public var href:String;
 
-	<fx:Style source="../../main/resources/jewel-example-styles.css"/>
-	
-	<j:valuesImpl>
-		<js:SimpleCSSValuesImpl />
-	</j:valuesImpl>
-
-	<j:initialView>
-		<local:MainContent/>
-	</j:initialView>
-</j:Application>
+        public function NavigationLinkVO(label:String, href:String)
+        {
+            this.label = label;
+            this.href = href;
+        }
+    }
+}

@@ -37,6 +37,22 @@ j|View {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
 }
 
+j|ApplicationView {
+  IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+}
+
+.responsive {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
 j|Group {
   IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
 }
@@ -209,6 +225,51 @@ j|ControlBar {
   j|ControlBar {
     IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
   }
+}
+.jewel.drawer {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: strict;
+  z-index: 5;
+}
+.jewel.drawer::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0;
+}
+.jewel.drawer .jewel.navigation {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  right: initial;
+  height: 100%;
+}
+.jewel.drawer.open {
+  pointer-events: auto;
+}
+.jewel.drawer.open::before {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .jewel.drawer .jewel.navigation {
+    width: calc(100% - 60px);
+    max-width: 310px;
+  }
+}
+.remove-app-scroll {
+  overflow: hidden;
 }
 @media -royale-swf {
   j|DropDownList {
@@ -2566,12 +2627,12 @@ j|TitleBar {
   width: 100%;
   z-index: 4;
 }
-.jewel.topappbar + div {
-  padding-top: 64px;
-}
 .jewel.topappbar.fixed {
   position: fixed;
   top: 0px;
+}
+.jewel.topappbar.fixed + div {
+  padding-top: 64px;
 }
 
 .jewel.topappbarrow {

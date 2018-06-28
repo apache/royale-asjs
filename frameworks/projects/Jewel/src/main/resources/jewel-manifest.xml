@@ -43,10 +43,12 @@
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     
+    <component id="ApplicationResponsiveView" class="org.apache.royale.jewel.ApplicationResponsiveView"/>
     <component id="TopAppBar" class="org.apache.royale.jewel.TopAppBar"/>
     <component id="TopAppBarRow" class="org.apache.royale.jewel.TopAppBarRow"/>
     <component id="TopAppBarSection" class="org.apache.royale.jewel.TopAppBarSection"/>
     <component id="TopAppBarTitle" class="org.apache.royale.jewel.TopAppBarTitle"/>
+    <component id="Drawer" class="org.apache.royale.jewel.Drawer"/>
     <component id="Card" class="org.apache.royale.jewel.Card"/>
     
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.DropDownListList"/>

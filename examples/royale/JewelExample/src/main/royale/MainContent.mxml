@@ -17,19 +17,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-         xmlns:j="library://ns.apache.org/royale/jewel"
-         xmlns:js="library://ns.apache.org/royale/basic"
-         xmlns:local="*">
+<j:ApplicationResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                            xmlns:j="library://ns.apache.org/royale/jewel"
+                            xmlns:js="library://ns.apache.org/royale/basic"
+                            xmlns:models="models.*"
+                            xmlns:local="*">
+    <j:model>
+        <models:MainNavigationModel id="mainNavigationModel"/>
+    </j:model>
 
     <j:beads>
 		<js:ContainerDataBinding/>
 	</j:beads>
 
+    <j:Drawer id="drawer">
+    </j:Drawer>
+
     <j:TopAppBar id="topappbar" fixed="true">
         <j:TopAppBarRow>
             <j:TopAppBarSection>
-                <j:Button><!-- click="drawer.open = !drawer.open" -->
+                <j:Button click="drawer.open = !drawer.open">
                     <j:icon>
                         <js:Icon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
@@ -75,4 +82,4 @@ limitations under the License.
         </j:VGroup>
     </j:HGroup>
     
-</j:View>
+</j:ApplicationResponsiveView>

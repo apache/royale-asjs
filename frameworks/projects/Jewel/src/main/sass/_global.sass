@@ -39,6 +39,21 @@ j|View
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 
+j|ApplicationView
+	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+	// IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+
+.responsive
+	width: 100%
+	height: 100%
+	display: flex
+	flex-direction: column
+	overflow-y: auto
+	overflow-x: hidden
+	position: relative
+	-webkit-overflow-scrolling: touch
+
 j|Group
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
 

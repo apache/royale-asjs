@@ -39,3 +39,9 @@
     @if $index
         @return str-slice($string, 1, $index - 1) + $replace + replace-text(str-slice($string, $index + str-length($search)), $search, $replace)
     @return $string
+
+
+//$animation-curve-timing-function: cubic-bezier(.3, 0, .1, 2) !default
+@function animation-standard($name, $duration, $delay: 0ms)
+    @return $name $duration $delay //$animation-curve-timing-function
+
