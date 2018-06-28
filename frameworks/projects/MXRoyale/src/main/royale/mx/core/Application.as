@@ -304,17 +304,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 
         super();
 		
-		COMPILE::SWF {
-			if (stage)
-			{
-				stage.align = StageAlign.TOP_LEFT;
-				stage.scaleMode = StageScaleMode.NO_SCALE;
-				// should be opt-in
-				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
-			}
-			
-			loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-		}
         typeNames += " Application";
 		
 		this.valuesImpl = new AllCSSValuesImpl();
@@ -322,6 +311,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		addBead(new ApplicationLayout());
 
         instanceParent = this;
+        
     }
 	
     private var _info:Object;
@@ -360,6 +350,13 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     }
     }
         
+    COMPILE::SWF
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        initHandler(null);    
+    }
+    
 	COMPILE::SWF
 	private function initHandler(event:flash.events.Event):void
 	{
@@ -394,11 +391,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     COMPILE::SWF
     public function initializeApplication():void
     {
-        addBead(new MixinManager());
-        // the application is never added to the dom via addChild
-        // because the parent is the browser, not an IUIBase, but we
-        // need to run most of the code that usually runs when added.
-        addedToParent();
+        //addBead(new MixinManager());  should now be handled by SystemManager
         
 		this.initManagers();
 
@@ -551,8 +544,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         addBead(new MixinManager());
         initManagers();
         
-		addedToParent();
-        		
 //		if (initialView)
 //		{
 //            initialView.applicationModel = model;
