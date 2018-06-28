@@ -2561,13 +2561,12 @@ j|TitleBar {
 
 .jewel.topappbar {
   display: flex;
-  position: relative;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   z-index: 4;
 }
-.jewel.topappbar + * {
+.jewel.topappbar + div {
   padding-top: 64px;
 }
 .jewel.topappbar.fixed {

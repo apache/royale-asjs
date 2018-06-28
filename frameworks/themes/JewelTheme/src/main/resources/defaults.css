@@ -489,6 +489,7 @@ j|Card {
   padding: 12px;
   fill: #FFFFFF;
   color: inherit;
+  text-shadow: 0 -1px 0 rgba(10, 90, 138, 0.7);
 }
 .jewel.topappbarsection button:hover, .jewel.topappbarsection button:hover:focus, .jewel.topappbarsection button:active, .jewel.topappbarsection button:active:focus, .jewel.topappbarsection button:focus {
   background: transparent;

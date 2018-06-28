@@ -60,6 +60,10 @@ $top-app-bar-button-padding: 12px
         fill: $font-theme-color
         color: inherit
         
+        @if not $flat //and $text-color == $font-theme-color
+            text:
+                shadow: 0 -1px 0 rgba(darken($primary-color, 30%), .7)
+                
         &:hover, &:hover:focus, &:active, &:active:focus, &:focus
             background: transparent
             box-shadow: none
