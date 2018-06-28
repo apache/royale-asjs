@@ -113,7 +113,7 @@ List
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.NumericStepperView");
+	IBeadView: ClassReference("mx.controls.beads.NumericStepperView");
 }
 
 Panel
@@ -186,6 +186,12 @@ Panel .TitleBar
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 		font-size: 11px;
 		font-family: Arial;
+	}
+	
+	NumericStepper
+	{
+		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
 	}
 	
 	Panel
