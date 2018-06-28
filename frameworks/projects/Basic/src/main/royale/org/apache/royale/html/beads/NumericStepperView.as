@@ -61,9 +61,9 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var label:Label;
-		private var input:TextInput;
-		private var spinner:Spinner;
+		protected var label:Label;
+        protected var input:TextInput;
+        protected var spinner:Spinner;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
