@@ -45,7 +45,9 @@ preloader="BasicTestsPreloader"
         <mx:State name="haloListAndDataGridTest" />
         <!--
         <mx:State name="haloColorPickerTest" />
+        -->
         <mx:State name="haloNumericStepperTest" />
+        <!--
         <mx:State name="haloDateFieldTest" />
         <mx:State name="haloMenuTest" />
         <mx:State name="haloMenuBarTest" />
@@ -121,7 +123,9 @@ preloader="BasicTestsPreloader"
     <haloviews:ListAndDataGridTests id="haloListAndDataGridTests" includeIn="haloListAndDataGridTest" />    
     <!--
     <haloviews:ColorPickerTests id="haloColorPickerTests" includeIn="haloColorPickerTest" />    
+    -->
     <haloviews:NumericStepperTests id="haloNumericStepperTests" includeIn="haloNumericStepperTest" />    
+    <!--
     <haloviews:DateFieldTests id="haloDateFieldTests" includeIn="haloDateFieldTest" />    
     <haloviews:MenuTests id="haloMenuTests" includeIn="haloMenuTest" />    
     <haloviews:MenuBarTests id="haloMenuBarTests" includeIn="haloMenuBarTest" />    
