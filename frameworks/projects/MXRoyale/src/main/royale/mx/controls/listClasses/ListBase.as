@@ -27,6 +27,7 @@ import mx.core.EdgeMetrics;
 import mx.core.IFactory;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
+import mx.core.IUIComponent;
 import mx.core.mx_internal;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
@@ -680,6 +681,16 @@ use namespace mx_internal;
             if (contentView == this)
                     return super.getElementAt(index);
             return contentView.getElementAt(index);
+        }
+        
+        /**
+         * @private
+         */
+        [SWFOverride(returns="flash.display.DisplayObject")]
+        COMPILE::SWF
+        override public function getChildAt(index:int):IUIComponent
+        {
+            return getElementAt(index) as IUIComponent;
         }
         
         /*
