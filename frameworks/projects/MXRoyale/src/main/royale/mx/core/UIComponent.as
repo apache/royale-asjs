@@ -719,8 +719,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::SWF
-    { override }
+    COMPILE::JS
     public function get mouseEnabled():Boolean
     {
         if (GOOG::DEBUG)
@@ -728,8 +727,7 @@ public class UIComponent extends UIBase
         return false;
     }
     
-    COMPILE::SWF
-    { override }
+    COMPILE::JS
     public function set mouseEnabled(value:Boolean):void
     {
         if (GOOG::DEBUG)
@@ -744,8 +742,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::SWF
-    { override }
+    COMPILE::JS
     public function get mouseChildren():Boolean
     {
         if (GOOG::DEBUG)
@@ -753,8 +750,7 @@ public class UIComponent extends UIBase
         return false;
     }
     
-    COMPILE::SWF
-    { override }
+    COMPILE::JS
     public function set mouseChildren(value:Boolean):void
     {
         if (GOOG::DEBUG)
@@ -3476,8 +3472,16 @@ public class UIComponent extends UIBase
     {
         measuredMinWidth = 0;
         measuredMinHeight = 0;
-        measuredWidth = 0;
-        measuredHeight = 0;
+        COMPILE::JS
+        {
+            measuredWidth = 0;
+            measuredHeight = 0;
+        }
+        COMPILE::SWF
+        {
+            measuredWidth = $width;
+            measuredHeight = $height;            
+        }
     }
 
 
