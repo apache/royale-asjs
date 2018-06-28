@@ -22,7 +22,7 @@ package mx.managers
 
 import org.apache.royale.events.IEventDispatcher;
 import mx.core.IChildList;
-import mx.core.UIComponent;
+
 /**
  *  An ISystemManager manages an "application window".
  *  Every application that runs on the desktop or in a browser
@@ -118,7 +118,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    function getSandboxRoot():UIComponent;
+    function getSandboxRoot():Object;
 }
 
 }

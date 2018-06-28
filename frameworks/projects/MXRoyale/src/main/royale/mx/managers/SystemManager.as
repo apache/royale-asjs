@@ -19,7 +19,24 @@
 
 package mx.managers
 {
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 
+COMPILE::SWF
+{
+    import flash.display.DisplayObject;
+    import flash.display.MovieClip;
+    import flash.display.Stage;
+    import flash.display.StageAlign;
+    import flash.display.StageQuality;
+    import flash.display.StageScaleMode;        
+    import flash.events.Event;
+    import flash.events.TimerEvent;
+    import flash.system.ApplicationDomain;
+    import flash.utils.Timer;
+}
 /* import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.Graphics;
@@ -73,10 +90,13 @@ import mx.utils.LoaderUtil;
 
 use namespace mx_internal;
 */
-import org.apache.royale.events.EventDispatcher;
+
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
-import mx.core.UIComponent;
+import mx.core.IUIComponent;
+
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.events.IEventDispatcher;
 
 //--------------------------------------
 //  Events
@@ -171,7 +191,7 @@ import mx.core.UIComponent;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class SystemManager 
+public class SystemManager extends SystemManagerBase implements ISystemManager, IEventDispatcher
 { //extends MovieClip implements IChildList, IFlexDisplayObject,IFlexModuleFactory, ISystemManager
    // include "../core/Version.as";
 
@@ -217,8 +237,11 @@ public class SystemManager
      *
      *  <p>This is the starting point for all Flex applications.
      *  This class is set to be the root class of a Flex SWF file.
-         *  Flash Player instantiates an instance of this class,
+     *  Flash Player instantiates an instance of this class,
      *  causing this constructor to be called.</p>
+     *  <p>In Royale Emulation, this class is not the starting point.
+     *  It is created by the Application's starting point and wraps
+     *  delegates work to the Application.</p>
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
@@ -227,71 +250,46 @@ public class SystemManager
      */
     public function SystemManager()
     {
-        /* CONFIG::performanceInstrumentation
-        {
-            var perfUtil:mx.utils.PerfUtil = mx.utils.PerfUtil.getInstance();
-            perfUtil.startSampling("Application Startup", true /*absoluteTime*//*);
-            perfUtil.markTime("SystemManager c-tor");
-        }
-
         super();
 
-        // Loaded SWFs don't get a stage right away
-        // and shouldn't override the main SWF's setting anyway.
-        if (stage)
+        COMPILE::SWF
         {
-            stage.scaleMode = StageScaleMode.NO_SCALE;
-            stage.align = StageAlign.TOP_LEFT;
-            stage.quality = StageQuality.HIGH;
+            // Loaded SWFs don't get a stage right away
+            // and shouldn't override the main SWF's setting anyway.
+            if (stage)
+            {
+                stage.scaleMode = StageScaleMode.NO_SCALE;
+                stage.align = StageAlign.TOP_LEFT;
+                stage.quality = StageQuality.HIGH;
+            }
+
+            // Make sure to stop the playhead on the current frame.
+            stop();
+
+            if (root && root.loaderInfo)
+                root.loaderInfo.addEventListener(Event.INIT, initHandler);
         }
-
-        // If we don't have a stage then we are not top-level,
-        // unless there are no other top-level managers, in which
-        // case we got loaded by a non-Flex shell or are sandboxed.
-        if (SystemManagerGlobals.topLevelSystemManagers.length > 0 && !stage)
-            topLevel = false;
-
-        if (!stage)
-            isStageRoot = false;
-
-        if (topLevel)
-            SystemManagerGlobals.topLevelSystemManagers.push(this);
-
-        // Make sure to stop the playhead on the current frame.
-        stop();
-
-        // Listen for the last frame (param is 0-indexed) to be executed.
-        //addFrameScript(totalFrames - 1, frameEndHandler);
-
-        if (root && root.loaderInfo)
-            root.loaderInfo.addEventListener(Event.INIT, initHandler); */
             
     }
+        
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
+    COMPILE::JS
+    public var mainClassName:String;
 
-    
-    
     /**
      *  @private
      */
-    /* private function deferredNextFrame():void
+    COMPILE::SWF
+    private function deferredNextFrame():void
     {
         if (currentFrame + 1 > totalFrames)
             return;
 
         if (currentFrame + 1 <= framesLoaded)
         {
-            CONFIG::performanceInstrumentation
-            {
-                var perfUtil:mx.utils.PerfUtil = mx.utils.PerfUtil.getInstance();
-                perfUtil.markTime("SystemManager.nextFrame().start");
-            }
-
             nextFrame();
-
-            CONFIG::performanceInstrumentation
-            {
-                perfUtil.markTime("SystemManager.nextFrame().end");
-            }
         }
         else
         {
@@ -301,7 +299,7 @@ public class SystemManager
                                             nextFrameTimerHandler);
             nextFrameTimer.start();
         }
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -430,13 +428,14 @@ public class SystemManager
      *  @private
      *  A timer used when it is necessary to wait before incrementing the frame
      */
-   // private var nextFrameTimer:Timer = null;
+    COMPILE::SWF
+    private var nextFrameTimer:Timer = null;
 
     /**
      *  @private
      *  Track which frame was last processed
      */
-   // private var lastFrame:int;
+    private var lastFrame:int;
 
     /**
      *  @private
@@ -813,14 +812,14 @@ public class SystemManager
     } */
     
     //----------------------------------
-    //  document
+    //  component (was 'document' in Flex, but collides with browser 'document'
     //----------------------------------
 
     /**
      *  @private
-     *  Storage for the document property.
+     *  Storage for the component property.
      */
-    // private var _document:Object;
+    private var _component:Object;
 
     /**
      *  @inheritDoc
@@ -830,18 +829,18 @@ public class SystemManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get document():Object
+    public function get component():Object
     {
-        return _document;
-    } */
+        return _component;
+    }
 
     /**
      *  @private
      */
-    /* public function set document(value:Object):void
+    public function set component(value:Object):void
     {
-        _document = value;
-    } */
+        _component = value;
+    }
 
     //----------------------------------
     //  embeddedFontList
@@ -1517,111 +1516,6 @@ public class SystemManager
     } */
 
     /**
-     * @private
-     *  Only create idle events if someone is listening.
-     */
-    /* override public function addEventListener(type:String, listener:Function,
-                                              useCapture:Boolean = false,
-                                              priority:int = 0,
-                                              useWeakReference:Boolean = false):void
-    {
-        if (type == MouseEvent.MOUSE_MOVE || type == MouseEvent.MOUSE_UP || type == MouseEvent.MOUSE_DOWN 
-                || type == Event.ACTIVATE || type == Event.DEACTIVATE)
-        {
-            // also listen to stage if allowed
-            try
-            {
-                if (stage)
-                {
-                    // Use weak listener because we don't always know when we
-                    // no longer need this listener
-                    stage.addEventListener(type, stageEventHandler, false, 0, true);
-                }
-            }
-            catch (error:SecurityError)
-            {
-            }
-        }
-
-        if (hasEventListener("addEventListener"))
-        {
-            var request:DynamicEvent = new DynamicEvent("addEventListener", false, true);
-            request.eventType = type;
-            request.listener = listener;
-            request.useCapture = useCapture;
-            request.priority = priority;
-            request.useWeakReference = useWeakReference;
-            if (!dispatchEvent(request))
-                return;
-        }
-
-        if (type == SandboxMouseEvent.MOUSE_UP_SOMEWHERE)
-        {
-            // If someone wants this event, also listen for mouseLeave.
-            // Use weak listener because we don't always know when we
-            // no longer need this listener
-            try
-            {
-                if (stage)
-                {
-                    stage.addEventListener(Event.MOUSE_LEAVE, mouseLeaveHandler, false, 0, true);
-                }
-                else
-                {
-                    super.addEventListener(Event.MOUSE_LEAVE, mouseLeaveHandler, false, 0, true);
-                }
-            }
-            catch (error:SecurityError)
-            {
-                super.addEventListener(Event.MOUSE_LEAVE, mouseLeaveHandler, false, 0, true);
-            }
-        }
-        
-        // These two events will dispatched to applications in sandboxes.
-        if (type == FlexEvent.RENDER || type == FlexEvent.ENTER_FRAME)
-        {
-            if (type == FlexEvent.RENDER)
-                type = Event.RENDER;
-            else
-                type = Event.ENTER_FRAME;
-                
-            try
-            {
-                if (stage)
-                    stage.addEventListener(type, listener, useCapture, priority, useWeakReference);
-                else
-                    super.addEventListener(type, listener, useCapture, priority, useWeakReference);
-            }
-            catch (error:SecurityError)
-            {
-                super.addEventListener(type, listener, useCapture, priority, useWeakReference);
-            }
-        
-            if (stage && type == Event.RENDER)
-                stage.invalidate();
-
-            return;
-        }
-
-        // When the first listener registers for 'idle' events,
-        // create a Timer that will fire every IDLE_INTERVAL.
-        if (type == FlexEvent.IDLE && !idleTimer)
-        {
-            idleTimer = new Timer(IDLE_INTERVAL);
-            idleTimer.addEventListener(TimerEvent.TIMER,
-                                       idleTimer_timerHandler);
-            idleTimer.start();
-
-            // Make sure we get all activity
-            // in case someone calls stopPropagation().
-            addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
-            addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true);
-        }
-
-        super.addEventListener(type, listener, useCapture, priority, useWeakReference);
-    } */
-
-    /**
      *  @private
      */
     /* mx_internal final function $removeEventListener(type:String, listener:Function,
@@ -1630,106 +1524,7 @@ public class SystemManager
         super.removeEventListener(type, listener, useCapture);
     } */
     
-    /**
-     *  @private
-     */
-    /* override public function removeEventListener(type:String, listener:Function,
-                                                 useCapture:Boolean = false):void
-    {
-        if (hasEventListener("removeEventListener"))
-        {
-            var request:DynamicEvent = new DynamicEvent("removeEventListener", false, true);
-            request.eventType = type;
-            request.listener = listener;
-            request.useCapture = useCapture;
-            if (!dispatchEvent(request))
-                return;
-        }
-
-        // These two events will dispatched to applications in sandboxes.
-        if (type == FlexEvent.RENDER || type == FlexEvent.ENTER_FRAME)
-        {
-            if (type == FlexEvent.RENDER)
-                type = Event.RENDER;
-            else
-                type = Event.ENTER_FRAME;
-                
-            try
-            {
-                if (stage)
-                    stage.removeEventListener(type, listener, useCapture);
-            }
-            catch (error:SecurityError)
-            {
-            }
-            // Remove both listeners in case the system manager was added
-            // or removed from the stage after the listener was added.
-            super.removeEventListener(type, listener, useCapture);
-        
-            return;
-        }
-
-        // When the last listener unregisters for 'idle' events,
-        // stop and release the Timer.
-        if (type == FlexEvent.IDLE)
-        {
-            super.removeEventListener(type, listener, useCapture);
-
-            if (!hasEventListener(FlexEvent.IDLE) && idleTimer)
-            {
-                idleTimer.stop();
-                idleTimer = null;
-
-                removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-                removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-            }
-        }
-        else
-        {
-            super.removeEventListener(type, listener, useCapture);
-        }
-
-        if (type == MouseEvent.MOUSE_MOVE || type == MouseEvent.MOUSE_UP || type == MouseEvent.MOUSE_DOWN 
-                || type == Event.ACTIVATE || type == Event.DEACTIVATE)
-        {
-            if (!hasEventListener(type))
-            {
-                // also listen to stage if allowed
-                try
-                {
-                    if (stage)
-                    {
-                        stage.removeEventListener(type, stageEventHandler, false);
-                    }
-                }
-                catch (error:SecurityError)
-                {
-                }
-            }
-        }
-
-        if (type == SandboxMouseEvent.MOUSE_UP_SOMEWHERE)
-        {
-            if (!hasEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE))
-            {
-                // nobody wants this event any more for now
-                try
-                {
-                    if (stage)
-                    {
-                        stage.removeEventListener(Event.MOUSE_LEAVE, mouseLeaveHandler);
-                    }
-                }
-                catch (error:SecurityError)
-                {
-                }
-                // Remove both listeners in case the system manager was added
-                // or removed from the stage after the listener was added.
-                super.removeEventListener(Event.MOUSE_LEAVE, mouseLeaveHandler);
-            }
-        }
-    } */
-
+    
     //--------------------------------------------------------------------------
     //
     //  Overridden methods: DisplayObjectContainer
@@ -1739,14 +1534,21 @@ public class SystemManager
     /**
      *  @private
      */
-    /* override public function addChild(child:DisplayObject):DisplayObject
+    COMPILE::SWF
+    override public function addChild(child:DisplayObject):DisplayObject
     {
+        /*
         var addIndex:int = numChildren;
         if (child.parent == this)
             addIndex--;
 
         return addChildAt(child, addIndex);
-    } */
+        */
+        var ret:DisplayObject = super.addChild(child);
+        if (ret is IUIBase)
+            (ret as IUIBase).addedToParent();
+        return ret;
+    }
 
     /**
      *  @private
@@ -1902,6 +1704,61 @@ public class SystemManager
         return false;
     } */
 
+    /**
+     *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
+     */
+    COMPILE::JS
+    public function addChild(child:IUIComponent):IUIComponent
+    {
+        return addElement(child) as IUIComponent;
+    }
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
+     */
+    COMPILE::JS
+    public function addChildAt(child:IUIComponent,
+                               index:int):IUIComponent
+    {
+        return addElementAt(child, index) as IUIComponent;
+    }
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
+     */
+    COMPILE::JS
+    public function removeChild(child:IUIComponent):IUIComponent
+    {
+        return removeElement(child) as IUIComponent;
+    }
+    
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
+     */
+    COMPILE::JS
+    public function removeChildAt(index:int):IUIComponent
+    {
+        if (GOOG::DEBUG)
+            trace("removeChildAt not implemented");
+        
+        return null;
+    }
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
+     */
+    COMPILE::JS
+    public function getChildAt(index:int):IUIComponent
+    {
+        return getElementAt(index) as IUIComponent;
+    }
+            
     //--------------------------------------------------------------------------
     //
     //  Methods: IFlexModuleFactory
@@ -1943,30 +1800,38 @@ public class SystemManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function create(... params):Object
+    public function create(... params):Object
     {
-        var mainClassName:String = info()["mainClassName"];
-
-        if (mainClassName == null)
+        COMPILE::SWF
         {
-            var url:String = loaderInfo.loaderURL;
-            var dot:int = url.lastIndexOf(".");
-            var slash:int = url.lastIndexOf("/");
-            mainClassName = url.substring(slash + 1, dot);
+            var mainClassName:String = info()["mainClassName"];
+    
+            if (mainClassName == null)
+            {
+                var url:String = loaderInfo.loaderURL;
+                var dot:int = url.lastIndexOf(".");
+                var slash:int = url.lastIndexOf("/");
+                mainClassName = url.substring(slash + 1, dot);
+            }
+    
+            var mainClass:Class = Class(getDefinitionByName(mainClassName));
+            
+            return mainClass ? new mainClass() : null;
         }
-
-        var mainClass:Class = Class(getDefinitionByName(mainClassName));
-        
-        return mainClass ? new mainClass() : null;
-    } */
+        COMPILE::JS
+        {
+            return mainClassName ? new mainClassName() : null
+        }
+        return null;
+    }
 
     /**
      *  @private
      */
-    /* public function info():Object
+    public function info():Object
     {
         return {};
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -2360,11 +2225,12 @@ public class SystemManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function getDefinitionByName(name:String):Object
+    COMPILE::SWF
+    public function getDefinitionByName(name:String):Object
     {
-        var domain:ApplicationDomain =
+        var domain:ApplicationDomain = /*
             !topLevel && parent is Loader ?
-            Loader(parent).contentLoaderInfo.applicationDomain :
+            Loader(parent).contentLoaderInfo.applicationDomain :*/
             info()["currentDomain"] as ApplicationDomain;
 
         //trace("SysMgr.getDefinitionByName domain",domain,"currentDomain",info()["currentDomain"]);    
@@ -2378,7 +2244,7 @@ public class SystemManager
         }
 
         return definition;
-    } */
+    }
 
     /**
      *  Returns the root DisplayObject of the SWF that contains the code
@@ -2543,14 +2409,10 @@ public class SystemManager
     /**
      *  @private
      */
-    /* private function initHandler(event:Event):void
+    COMPILE::SWF
+    private function initHandler(event:Event):void
     {
-        CONFIG::performanceInstrumentation
-        {
-            var perfUtil:mx.utils.PerfUtil = mx.utils.PerfUtil.getInstance();
-            perfUtil.markTime("SystemManager.initHandler().start");
-        }
-        
+        /*
         // we can still be the top level root if we can access our
         // parent and get a positive response to the query or
         // or there is not a listener for the new application event
@@ -2573,32 +2435,41 @@ public class SystemManager
         }
 
         allSystemManagers[this] = this.loaderInfo.url;
+        */
         root.loaderInfo.removeEventListener(Event.INIT, initHandler);
 
+        /*
         if (!SystemManagerGlobals.info)
             SystemManagerGlobals.info = info();
         if (!SystemManagerGlobals.parameters)
             SystemManagerGlobals.parameters = loaderInfo.parameters;
 
+        */
         var docFrame:int = (totalFrames == 1)? 0 : 1;
         addEventListener(Event.ENTER_FRAME, docFrameListener);
-
+        addFrameScript(docFrame, docFrameHandler);
         
-        // addFrameScript(docFrame, docFrameHandler);
+        /*
         // for (var f:int = docFrame + 1; f < totalFrames; ++f)
         // {
             // addFrameScript(f, extraFrameHandler);
         // }
         
-
         initialize();
+        */
 
+        /*
         CONFIG::performanceInstrumentation
         {
             perfUtil.markTime("SystemManager.initHandler().end");
         }
+        */
+        
+        // AJH until preloader is emulated, just try to go to doc frame
+        deferredNextFrame();
     }
 
+    COMPILE::SWF
     private function docFrameListener(event:Event):void
     {
         if (currentFrame == 2)
@@ -2611,6 +2482,7 @@ public class SystemManager
         }
     }
 
+    COMPILE::SWF
     private function extraFrameListener(event:Event):void
     {
         if (lastFrame == currentFrame)
@@ -2622,7 +2494,7 @@ public class SystemManager
             removeEventListener(Event.ENTER_FRAME, extraFrameListener);
 
         extraFrameHandler();
-    } */
+    }
 
     /**
      *  @private
@@ -2715,12 +2587,13 @@ public class SystemManager
      *  When this function is called, we know that the application
      *  class has been defined and read in by the Player.
      */
-    /* mx_internal function docFrameHandler(event:Event = null):void
+    COMPILE::SWF
+    private function docFrameHandler(event:Event = null):void
     {
         
-        if (readyForKickOff)
+        //if (readyForKickOff)
             kickOff();
-    } */
+    }
 
     /**
      *  @private
@@ -2739,18 +2612,14 @@ public class SystemManager
      *  @private
      *  kick off 
      */
-   /*  mx_internal function kickOff():void
+    COMPILE::SWF
+    private function kickOff():void
     {
         // already been here
-        if (document)
+        if (component)
             return;
 
-        CONFIG::performanceInstrumentation
-        {
-            var perfUtil:mx.utils.PerfUtil = mx.utils.PerfUtil.getInstance();
-            perfUtil.markTime("SystemManager.kickOff().start");
-        }
-        
+        /*
         if (!isTopLevel())
             SystemManagerGlobals.topLevelSystemManagers[0].
                 // dispatch a FocusEvent so we can pass ourselves along
@@ -2811,28 +2680,20 @@ public class SystemManager
         Singleton.registerClass("mx.core::ITextFieldFactory", 
             Class(getDefinitionByName("mx.core::TextFieldFactory")));
 
+        */
         var mixinList:Array = info()["mixins"];
         if (mixinList && mixinList.length > 0)
         {
             var n:int = mixinList.length;
             for (var i:int = 0; i < n; ++i)
             {
-                CONFIG::performanceInstrumentation
-                {
-                    var token:int = perfUtil.markStart();
-                }
-                
                 // trace("initializing mixin " + mixinList[i]);
                 var c:Class = Class(getDefinitionByName(mixinList[i]));
                 c["init"](this);
-
-                CONFIG::performanceInstrumentation
-                {
-                    perfUtil.markEnd(mixinList[i], token);
-                }
             }
         }
         
+        /*
         c = Singleton.getClass("mx.managers::IActiveWindowManager");
         if (c)
         {
@@ -2851,11 +2712,11 @@ public class SystemManager
             // Finish here, since initializeTopLevelWidnow is instrumented separately???
             perfUtil.markTime("SystemManager.kickOff().end");
         }
-
+        */
         initializeTopLevelWindow(null);
 
         deferredNextFrame();
-    } */
+    }
 
     /**
      *  @private
@@ -2930,7 +2791,9 @@ public class SystemManager
             e.target.dispatchEvent(cancelableEvent);               
         }
     }
-
+    */
+    
+    COMPILE::SWF
     private function extraFrameHandler(event:Event = null):void
     {
         var frameList:Object = info()["frames"];
@@ -2942,7 +2805,7 @@ public class SystemManager
         }
 
         deferredNextFrame();
-    } */
+    }
     
     /**
      *  @private
@@ -2952,7 +2815,8 @@ public class SystemManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* private function nextFrameTimerHandler(event:TimerEvent):void
+    COMPILE::SWF
+    private function nextFrameTimerHandler(event:TimerEvent):void
     {
         if (currentFrame + 1 <= framesLoaded)
         {
@@ -2960,8 +2824,8 @@ public class SystemManager
             nextFrameTimer.removeEventListener(TimerEvent.TIMER, nextFrameTimerHandler);
             // stop the timer
             nextFrameTimer.reset();
-                }
-    } */
+        }
+    }
     
 
     /**
@@ -2969,6 +2833,20 @@ public class SystemManager
      *  Instantiates an instance of the top level window
      *  and adds it as a child of the SystemManager.
      */
+    COMPILE::SWF
+    private function initializeTopLevelWindow(event:Event):void
+    {
+        component = IUIComponent(create());
+        // until preloader?
+        component.addEventListener("applicationComplete", applicationCompleteHandler);
+        addChild(component as DisplayObject);
+    }
+    
+    COMPILE::SWF
+    private function applicationCompleteHandler(event:Event):void
+    {
+        dispatchEvent(event);
+    }
     /* private function initializeTopLevelWindow(event:Event):void
     {
         // This listener is intended to run before any other KeyboardEvent listeners
@@ -3422,9 +3300,9 @@ public class SystemManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public function getSandboxRoot():UIComponent
+    public function getSandboxRoot():Object
     {
-	return null;
+    	return this;
         // work our say up the parent chain to the root. This way we
         // don't have to rely on this object being added to the stage.
         /* var sm:ISystemManager = this;
@@ -3632,6 +3510,58 @@ public class SystemManager
     {
         dispatchEvent(new SandboxMouseEvent(SandboxMouseEvent.MOUSE_UP_SOMEWHERE));
     } */
+
+    /**
+     *  @private
+     */
+    COMPILE::JS 
+    public function get numChildren():int
+    {
+        return numElements;
+    }
+        
+
+    /**
+     *  @private
+     */
+    COMPILE::JS 
+    public function setChildIndex(child:IUIComponent, index:int):void
+    {
+        if (GOOG::DEBUG)
+            trace("setChildIndex not implemented");
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    public function getChildIndex(child:IUIComponent):int
+    {
+        return getElementIndex(child);
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    public function getChildByName(name:String):IUIComponent
+    {
+        if (GOOG::DEBUG)
+            trace("getChildByName not implemented");
+        return null;
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS 
+    public function contains(child:IUIComponent):Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("contains not implemented");
+        return true;
+    }
+    
 
 }
 
