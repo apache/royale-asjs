@@ -515,7 +515,17 @@ public class Container extends UIComponent
         if (GOOG::DEBUG)
             trace("horizontalGap not implemented");
     }
-    
+     public function get verticalAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+        return 0;
+    }
+    public function set verticalAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+    }
 	/*	  
      *  @langversion 3.0
      *  @playerversion Flash 9
