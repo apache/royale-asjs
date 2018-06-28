@@ -3988,26 +3988,6 @@ public class UIComponent extends UIBase
 	[Inspectable(category="General")]
 	
 	
-	public function get verticalAlign():Object
-    {
-        return "top";
-    }
-    public function set verticalAlign(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("verticalAlign not implemented");
-    }
-	
-	public function get horizontalAlign():Object
-    {
-        return "left";
-    }
-    public function set horizontalAlign(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("horizontalAlign not implemented");
-    }
-	
 	/*	  
      *  @langversion 3.0
      *  @playerversion Flash 9
