@@ -1632,8 +1632,16 @@ public class UIComponent extends UIBase
             }
 		}
 		COMPILE::JS {
-			if (isNaN(_measuredWidth)) {
-				return this.positioner.offsetWidth;
+			if (isNaN(_measuredWidth)) 
+            {
+                var oldWidth:Object;
+                oldWidth = this.positioner.style.width;
+                if (oldWidth.length)
+                    this.positioner.style.width = "";
+                var mw:Number = this.positioner.offsetWidth;
+                if (oldWidth.length)
+                    this.positioner.style.width = oldWidth;
+                return mw;
 			}
 		}
         return _measuredWidth;
@@ -1679,9 +1687,17 @@ public class UIComponent extends UIBase
             }
 		}
 		COMPILE::JS {
-			if (isNaN(_measuredHeight)) {
-				return this.positioner.offsetHeight;
-			}
+            if (isNaN(_measuredHeight))
+            {
+                var oldHeight:Object;
+        		oldHeight = this.positioner.style.height;
+                if (oldHeight.length)
+                    this.positioner.style.height = "";
+                var mh:Number = this.positioner.offsetHeight;
+                if (oldHeight.length)
+                    this.positioner.style.height = oldHeight;
+                return mh;
+            }
 		}
         return _measuredHeight;
     }
