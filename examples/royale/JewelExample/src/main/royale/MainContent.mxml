@@ -35,7 +35,7 @@ limitations under the License.
             <j:Label text="Header Title"/>
         </j:DrawerHeader>
         <j:DrawerContent>
-            <j:Navigation id="nav" click="clickHandler(event);">
+            <j:Navigation id="nav">
                 <j:beads>
                     <js:ConstantBinding
                             sourceID="mainNavigationModel"
@@ -44,7 +44,7 @@ limitations under the License.
                 </j:beads>
             </j:Navigation>
             <j:Divider/>
-            <j:Navigation id="nav2" click="clickHandler(event);">
+            <j:Navigation id="nav2">
                 <j:beads>
                     <js:ConstantBinding
                             sourceID="mainNavigationModel"
