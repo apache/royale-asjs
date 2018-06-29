@@ -1295,17 +1295,18 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
+    /*
      public function get rawChildren():IChildList
     {
         //if (!topLevel)
         //  return _topLevelSystemManager.rawChildren;
 
-       /*  if (!_rawChildren)
+       if (!_rawChildren)
             _rawChildren = new SystemRawChildrenList(this);
 
-        return _rawChildren; */
-		return null;
+        return _rawChildren;
     } 
+    */
 
     //--------------------------------------------------------------------------
     //  screen
