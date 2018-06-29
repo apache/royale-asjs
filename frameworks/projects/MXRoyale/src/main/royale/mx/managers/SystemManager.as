@@ -1830,7 +1830,16 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      */
     public function info():Object
     {
-        return {};
+        COMPILE::SWF
+        {
+            return {};
+        }
+        COMPILE::JS
+        {
+            // this is a hack for now.  Probably should generate info() on
+            // the SystemManager subclass
+            return mainClassName.prototype.info();
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -2827,26 +2836,52 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         }
     }
     
-
+    /**
+     *  The JavaScript entry point.
+     */
+    COMPILE::JS
+    public function start():void
+    {
+        var body:HTMLElement = document.getElementsByTagName('body')[0];
+        body.appendChild(element);
+        
+        var mixinList:Array = info()["mixins"];
+        if (mixinList && mixinList.length > 0)
+        {
+            var n:int = mixinList.length;
+            for (var i:int = 0; i < n; ++i)
+            {
+                mixinList[i].init(this);
+            }
+        }
+        initializeTopLevelWindow(null);
+    }
+    
     /**
      *  @private
      *  Instantiates an instance of the top level window
      *  and adds it as a child of the SystemManager.
      */
-    COMPILE::SWF
     private function initializeTopLevelWindow(event:Event):void
     {
         component = IUIComponent(create());
         // until preloader?
         component.addEventListener("applicationComplete", applicationCompleteHandler);
-        addChild(component as DisplayObject);
+        COMPILE::SWF
+        {
+            addChild(component as DisplayObject);
+        }
+        COMPILE::JS
+        {
+            addChild(component as IUIComponent);
+        }
     }
     
-    COMPILE::SWF
     private function applicationCompleteHandler(event:Event):void
     {
         dispatchEvent(event);
     }
+    
     /* private function initializeTopLevelWindow(event:Event):void
     {
         // This listener is intended to run before any other KeyboardEvent listeners

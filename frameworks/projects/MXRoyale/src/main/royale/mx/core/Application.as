@@ -535,13 +535,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
-		var body:HTMLElement = document.getElementsByTagName('body')[0];
-		body.appendChild(element);
-        
-        // the application is never added to the dom via addChild
-        // because the parent is the browser, not an IUIBase, but we
-        // need to run most of the code that usually runs when added.
-        addBead(new MixinManager());
         initManagers();
         
 //		if (initialView)
