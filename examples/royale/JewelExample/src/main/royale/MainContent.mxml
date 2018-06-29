@@ -31,6 +31,28 @@ limitations under the License.
 	</j:beads>
 
     <j:Drawer id="drawer">
+        <j:DrawerHeader>
+            <j:Label text="Header Title"/>
+        </j:DrawerHeader>
+        <j:DrawerContent>
+            <j:Navigation id="nav" click="clickHandler(event);">
+                <j:beads>
+                    <js:ConstantBinding
+                            sourceID="mainNavigationModel"
+                            sourcePropertyName="controlsDrawerNavigation"
+                            destinationPropertyName="dataProvider" />
+                </j:beads>
+            </j:Navigation>
+            <j:Divider/>
+            <j:Navigation id="nav2" click="clickHandler(event);">
+                <j:beads>
+                    <js:ConstantBinding
+                            sourceID="mainNavigationModel"
+                            sourcePropertyName="containerDrawerNavigation"
+                            destinationPropertyName="dataProvider" />
+                </j:beads>
+            </j:Navigation>
+        </j:DrawerContent>
     </j:Drawer>
 
     <j:TopAppBar id="topappbar" fixed="true">

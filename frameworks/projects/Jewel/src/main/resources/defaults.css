@@ -247,7 +247,7 @@ j|ControlBar {
   content: "";
   opacity: 0;
 }
-.jewel.drawer .jewel.navigation {
+.jewel.drawer .drawermain {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -262,8 +262,35 @@ j|ControlBar {
   opacity: 1;
 }
 
+.jewel.drawerheader {
+  position: relative;
+}
+.jewel.drawerheader::before {
+  display: block;
+  padding-top: 56.25%;
+  content: "";
+}
+.jewel.drawerheader div {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: flex-end;
+}
+
+.jewel.drawercontent {
+  flex-grow: 1;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
 @media (min-width: 768px) {
-  .jewel.drawer .jewel.navigation {
+  .jewel.drawer .drawermain {
     width: calc(100% - 60px);
     max-width: 310px;
   }
@@ -271,6 +298,16 @@ j|ControlBar {
 .remove-app-scroll {
   overflow: hidden;
 }
+
+.jewel.divider {
+  height: 0;
+  margin: 0;
+  border: none;
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
 @media -royale-swf {
   j|DropDownList {
     IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
@@ -292,6 +329,17 @@ j|ControlBar {
 
 j|ListItemRenderer {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+}
+
+.jewel.navigationlink {
+  text-decoration: none;
+  margin: 0;
+  padding: 16px 0px;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
 }
 
 .jewel.label {
@@ -2382,6 +2430,18 @@ j|List {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.DataItemRendererFactoryForCollectionView");
+}
+
+j|Navigation {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel");

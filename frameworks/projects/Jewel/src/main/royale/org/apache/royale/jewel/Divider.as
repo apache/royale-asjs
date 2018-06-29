@@ -16,27 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.jewel
+{
+    COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
+    }
 
-// Jewel ListItemRenderer
+	/**
+	 *  The Divider class is a component that shows a clear separation between
+	 *  two zones
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.3
+	 */
+	public class Divider extends Group
+	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function Divider()
+		{
+			super();
 
-// ListItemRenderer variables
-$item-min-height: 34px
+            typeNames = "jewel divider";
+		}
 
-.jewel.item
-    display: flex
-    cursor: pointer
-    min-height: $item-min-height
-    
-j|ListItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
-
-
-.jewel.navigationlink
-    text-decoration: none
-    margin: 0
-    padding: 16px 0px
-    vertical-align: middle
-    font-size: 14px
-    font-weight: 400
-    line-height: 24px
-    letter-spacing: 0
+        /**
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			return addElementToWrapper(this,'hr');
+        }
+	}
+}

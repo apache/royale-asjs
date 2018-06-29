@@ -50,8 +50,8 @@ $drawer-max-width: 310px
         
         content: ""
         opacity: 0
-        
-    & .jewel.navigation
+
+    .drawermain
         position: absolute
         
         display: flex
@@ -61,16 +61,41 @@ $drawer-max-width: 310px
         right: initial
         
         height: 100%
-        
+
     &.open
         pointer-events: auto
 
         &::before
             opacity: 1
 
+.jewel.drawerheader
+    position: relative
+    
+    &::before 
+        display: block
+        padding-top: 9 / 16 * 100%
+        content: ""
+
+    div
+        display: flex
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        align-items: flex-end
+
+.jewel.drawercontent
+    flex-grow: 1
+    margin: 0
+    overflow-x: hidden
+    overflow-y: auto
+    -webkit-overflow-scrolling: touch
+    touch-action: pan-y
+
 @media (min-width: $tablet)
     .jewel.drawer
-        & .jewel.navigation
+        .drawermain
             width: calc(100% - #{$drawer-width-offset})
             max-width: $drawer-max-width
 
@@ -78,3 +103,7 @@ $drawer-max-width: 310px
     overflow: hidden
 
 j|Drawer
+
+j|DrawerHeader
+
+j|DrawerContent

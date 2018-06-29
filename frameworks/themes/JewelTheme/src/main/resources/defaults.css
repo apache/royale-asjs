@@ -237,8 +237,7 @@ j|Card {
   will-change: opacity;
   transition: opacity 0.4s 0ms;
 }
-.jewel.drawer .jewel.navigation {
-  border-right: 1px solid #a6a6a6;
+.jewel.drawer .drawermain {
   box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7);
   transform: translateX(-104%);
   will-change: transform;
@@ -247,12 +246,22 @@ j|Card {
   background-color: #d9d9d9;
   transition: transform 250ms 0ms;
 }
-.jewel.drawer.open .jewel.navigation {
+.jewel.drawer.open .drawermain {
   transform: none;
   transition: transform 300ms 0ms;
 }
-.jewel.drawer > * {
-  padding-left: 40px;
+
+.jewel.drawerheader {
+  background: linear-gradient(#54b7f3, #24a3ef);
+  border-bottom: 1px solid #0d79ba;
+  color: #FFFFFF;
+}
+.jewel.drawerheader div {
+  padding: 16px;
+}
+
+.jewel.drawercontent > * {
+  padding-left: 16px;
 }
 
 .jewel.dropdownlist {

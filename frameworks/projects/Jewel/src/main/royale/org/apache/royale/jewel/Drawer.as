@@ -20,6 +20,14 @@ package org.apache.royale.jewel
 {
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IUIBase;
+
+	COMPILE::SWF
+    {
+		import org.apache.royale.core.IRenderedObject;
+        import flash.display.DisplayObject;
+    }
 
 	COMPILE::JS
     {
@@ -56,7 +64,7 @@ package org.apache.royale.jewel
 			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
-		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
+		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent):void
 		{
 			COMPILE::JS
 			{
@@ -99,13 +107,56 @@ package org.apache.royale.jewel
             }
 		}
 
+		COMPILE::JS
+		private var nav:HTMLElement;
+
 		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'aside');
+			nav = addElementToWrapper(this,'nav');
+			nav.className = "drawermain";
+			
+			var aside:HTMLElement = document.createElement('aside') as HTMLElement;
+			aside.appendChild(nav);
+
+			positioner = aside as WrappedHTMLElement;
+			positioner.royale_wrapper = this;
+
+			return element;	
         }
+
+		/**
+         *  @copy org.apache.royale.core.IParent#addElement()
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+            COMPILE::SWF
+            {
+                if (c is IUIBase)
+                {
+                    if (c is IRenderedObject)
+                        $addChild(IRenderedObject(c).$displayObject);
+                    else
+                        $addChild(c as DisplayObject);                        
+                    IUIBase(c).addedToParent();
+                }
+                else
+                    $addChild(c as DisplayObject);
+            }
+            COMPILE::JS
+            {
+                nav.appendChild(c.positioner);
+                (c as IUIBase).addedToParent();
+            }
+		}
 	}
 }

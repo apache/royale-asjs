@@ -17,26 +17,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel ListItemRenderer
-
-// ListItemRenderer variables
-$item-min-height: 34px
-
-.jewel.item
-    display: flex
-    cursor: pointer
-    min-height: $item-min-height
-    
-j|ListItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
-
-
-.jewel.navigationlink
-    text-decoration: none
+.jewel.divider
+    height: 0
     margin: 0
-    padding: 16px 0px
-    vertical-align: middle
-    font-size: 14px
-    font-weight: 400
-    line-height: 24px
-    letter-spacing: 0
+    border: none
+    border-bottom-color: rgba(0, 0, 0, 0.12)
+    border-bottom-width: 1px
+    border-bottom-style: solid
+
+j|Divider
+
