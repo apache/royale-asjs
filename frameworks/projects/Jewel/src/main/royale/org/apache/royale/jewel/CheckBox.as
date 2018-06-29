@@ -191,21 +191,6 @@ package org.apache.royale.jewel
 
         COMPILE::JS
         protected var label:HTMLLabelElement;
-
-        COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
-		}
         
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -227,7 +212,7 @@ package org.apache.royale.jewel
             label.appendChild(checkbox);
             
             positioner = label as WrappedHTMLElement;
-            _positioner.royale_wrapper = this;
+            positioner.royale_wrapper = this;
             //(input as WrappedHTMLElement).royale_wrapper = this;
             //(checkbox as WrappedHTMLElement).royale_wrapper = this;
             return element;

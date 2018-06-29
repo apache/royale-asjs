@@ -313,21 +313,6 @@ package org.apache.royale.jewel
         private var label:HTMLLabelElement;
         private var textNode:Text;
 
-        COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
-		}
-
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLLabelElement
@@ -352,7 +337,7 @@ package org.apache.royale.jewel
             label.appendChild(radio);
             
             positioner = label as WrappedHTMLElement;
-            _positioner.royale_wrapper = this;
+            positioner.royale_wrapper = this;
             
             return element;
         }

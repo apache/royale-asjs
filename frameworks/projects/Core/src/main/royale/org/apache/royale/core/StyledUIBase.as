@@ -20,6 +20,11 @@ package org.apache.royale.core
 {
     import org.apache.royale.utils.ClassSelectorList;
 
+    COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+    }
+
     /**
      *  The StyledUIBase is the base class for UIBase components that makes
      *  heavy use of styles
@@ -43,6 +48,21 @@ package org.apache.royale.core
 		{
             super();
             classSelectorList = new ClassSelectorList(this);
+		}
+
+        COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
 		}
 
         protected var classSelectorList:ClassSelectorList;

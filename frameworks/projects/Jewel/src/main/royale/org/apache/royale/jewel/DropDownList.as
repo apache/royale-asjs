@@ -229,6 +229,7 @@ package org.apache.royale.jewel
             (element as HTMLSelectElement).size = 1;
             goog.events.listen(element, 'change',
                 changeHandler);
+            positioner = element;
             return element;
         }
 

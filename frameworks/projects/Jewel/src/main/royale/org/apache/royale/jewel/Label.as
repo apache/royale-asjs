@@ -204,6 +204,8 @@ package org.apache.royale.jewel
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);
             
+            positioner = element;
+
             return element;
         }
 

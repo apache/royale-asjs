@@ -107,21 +107,6 @@ package org.apache.royale.jewel
             }
         }
         
-        COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
-		}
-        
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLDivElement
@@ -154,7 +139,7 @@ package org.apache.royale.jewel
 
             positioner = div as WrappedHTMLElement;
             //(label as WrappedHTMLElement).royale_wrapper = this;
-            _positioner.royale_wrapper = this;
+            positioner.royale_wrapper = this;
             
             return element;
         }

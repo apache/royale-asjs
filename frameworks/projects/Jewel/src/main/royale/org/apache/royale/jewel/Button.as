@@ -444,6 +444,9 @@ package org.apache.royale.jewel
                 var impl:Object = org.apache.royale.core.ValuesManager.valuesImpl.
                     getValue(this, 'iStatesImpl');
             }*/
+            positioner = element;
+
+
             return element;
         }
 	}

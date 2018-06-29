@@ -190,21 +190,6 @@ package org.apache.royale.jewel
             IRangeModel(model).stepSize = value;
         }
 
-		COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
-		}
-
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLInputElement
@@ -221,7 +206,7 @@ package org.apache.royale.jewel
 			div.appendChild(input);
 
             positioner = div as WrappedHTMLElement;
-            _positioner.royale_wrapper = this;
+            positioner.royale_wrapper = this;
 			
 			return element;
         }
