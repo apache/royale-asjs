@@ -40,6 +40,10 @@ package mx.controls.beads
             {
                 input.width = 41;
             }
+            COMPILE::JS
+            {
+                input.width = 44; // should be same as SWF after we adjust defaults for spinner
+            }
         }
 	}
 }
