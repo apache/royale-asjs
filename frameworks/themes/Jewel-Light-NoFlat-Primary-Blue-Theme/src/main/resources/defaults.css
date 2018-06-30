@@ -237,22 +237,27 @@ j|Card {
   will-change: opacity;
   transition: opacity 0.4s 0ms;
 }
-.jewel.drawer .jewel.navigation {
-  border-right: 1px solid #a6a6a6;
+.jewel.drawer .drawermain {
   box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7);
   transform: translateX(-104%);
   will-change: transform;
   width: calc(100% - 54px);
   max-width: 280px;
-  background-color: #d9d9d9;
+  background-color: white;
   transition: transform 250ms 0ms;
 }
-.jewel.drawer.open .jewel.navigation {
+.jewel.drawer.open .drawermain {
   transform: none;
   transition: transform 300ms 0ms;
 }
-.jewel.drawer > * {
-  padding-left: 40px;
+
+.jewel.drawerheader {
+  background: linear-gradient(#54b7f3, #24a3ef);
+  border-bottom: 1px solid #0d79ba;
+  color: #FFFFFF;
+}
+.jewel.drawerheader div {
+  padding: 16px;
 }
 
 .jewel.item {
@@ -265,6 +270,21 @@ j|Card {
 .jewel.item:active, .jewel.item.selected {
   color: #FFFFFF;
   background: #24a3ef;
+}
+
+.jewel.navigationlink {
+  margin: 0;
+  padding: 0 16px;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+.jewel.navigationlink:hover {
+  background: #f3f3f3;
+}
+.jewel.navigationlink:active {
+  background: #d9d9d9;
 }
 
 .jewel.label {

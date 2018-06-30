@@ -23,11 +23,13 @@ package vos
     {
         public var label:String;
         public var href:String;
+        public var icon:String;
 
-        public function NavigationLinkVO(label:String, href:String)
+        public function NavigationLinkVO(label:String, href:String, icon:String = null)
         {
             this.label = label;
             this.href = href;
+            this.icon = icon;
         }
     }
 }

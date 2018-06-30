@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.core.MXMLItemRenderer;
+	import org.apache.royale.core.StyledMXMLItemRenderer;
     
     COMPILE::JS
     {
@@ -36,7 +36,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class NavigationLinkItemRenderer extends MXMLItemRenderer
+	public class NavigationLinkItemRenderer extends StyledMXMLItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -50,9 +50,9 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
-            typeNames = "jewel navigationlink";
+			typeNames = "jewel navigationlink";
 		}
-		
+
 		private var _href:String = "#";
         /**
          *  the navigation link url
@@ -71,24 +71,24 @@ package org.apache.royale.jewel.itemRenderers
             _href = value;
 		}
 
-		private var _label:String = "";
+		private var _text:String = "";
 
         /**
-         *  The label of the navigation link
+         *  The text of the navigation link
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
          */
-		public function get label():String
+		public function get text():String
 		{
-            return _label;
+            return _text;
 		}
 
-		public function set label(value:String):void
+		public function set text(value:String):void
 		{
-             _label = value;
+             _text = value;
 		}
 
 		COMPILE::JS
@@ -112,15 +112,15 @@ package org.apache.royale.jewel.itemRenderers
 
 			if (labelField)
 			{
-                label = String(value[labelField]);
+                text = String(value[labelField]);
             }
 			else if(value.label !== undefined)
 			{
-                label = String(value.label);
+                text = String(value.label);
 			}
 			else
 			{
-				label = String(value);
+				text = String(value);
 			}
 			
             if(value.href !== undefined)
@@ -132,7 +132,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				if(textNode != null)
 				{
-					textNode.nodeValue = label;
+					textNode.nodeValue = text;
                     (element as HTMLElement).setAttribute('href', href);
 				}	
 			}
@@ -156,5 +156,13 @@ package org.apache.royale.jewel.itemRenderers
 
             return element;
         }
+
+		/**
+		 * @private
+		 */
+		override public function updateRenderer():void
+		{
+			// override all and do nothing, all is managed in CSS
+		}
 	}
 }

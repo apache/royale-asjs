@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
 	import org.apache.royale.html.Group;
     import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
 
     /**
      *  The Group class provides a light-weight container for visual elements. By default
@@ -34,7 +35,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class Group extends org.apache.royale.html.Group
+	public class Group extends org.apache.royale.html.Group implements IClassSelectorListSupport
 	{
         /**
          *  Constructor.
@@ -59,6 +60,14 @@ package org.apache.royale.jewel
             classSelectorList.addNames(value);
         }
 
+        /**
+         *  adds a class name
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
         public function addClass(name:String):void
         {
             COMPILE::JS
@@ -67,6 +76,14 @@ package org.apache.royale.jewel
             }
         }
 
+        /**
+		 *  removes a class name
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+		 */
         public function removeClass(name:String):void
         {
             COMPILE::JS
@@ -75,6 +92,14 @@ package org.apache.royale.jewel
             }
         }
 
+        /**
+		 *  toggle a class name
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
         public function toggleClass(name:String, value:Boolean):void
         {
             COMPILE::JS

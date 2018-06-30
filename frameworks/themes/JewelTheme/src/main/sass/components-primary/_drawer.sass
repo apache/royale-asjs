@@ -19,7 +19,6 @@
 
 $drawer-width-offset: 54px
 $drawer-max-width: 280px
-$drawer-padding-left: 16px
 $drawer-transition-close-time: 250ms
 $drawer-transition-open-time: 300ms
 $drawer-transition-close: animation-standard(transform, $drawer-transition-close-time)
@@ -42,7 +41,7 @@ $drawer-overlay-opacity: .65 !default
         will-change: transform
         width: calc(100% - #{$drawer-width-offset})
         max-width: $drawer-max-width
-        background-color: $default-color
+        background-color: lighten($default-color, 20%)
         transition: $drawer-transition-close
     
     &.open        
@@ -65,8 +64,7 @@ $drawer-overlay-opacity: .65 !default
         padding: 16px
 
 .jewel.drawercontent
-    > *
-        padding-left: $drawer-padding-left
+
 
 j|Drawer
 
