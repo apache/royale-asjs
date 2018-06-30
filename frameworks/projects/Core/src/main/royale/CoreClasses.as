@@ -27,7 +27,10 @@ package {
 internal class CoreClasses
 {
 	import org.apache.royale.core.UIBase; UIBase;
+	import org.apache.royale.utils.IClassSelectorListSupport; IClassSelectorListSupport;
 	import org.apache.royale.core.StyledUIBase; StyledUIBase;
+	import org.apache.royale.core.supportClasses.StyledImageBase; StyledImageBase;
+	import org.apache.royale.core.StyledMXMLItemRenderer; StyledMXMLItemRenderer;
 	import org.apache.royale.core.LayoutBase; LayoutBase;
 	import org.apache.royale.core.ViewBase; ViewBase;
 	import org.apache.royale.core.GroupBase; GroupBase;

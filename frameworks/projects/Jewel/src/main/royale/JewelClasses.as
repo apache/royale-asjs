@@ -27,6 +27,7 @@ package
      */
     internal class JewelClasses
     {
+        import org.apache.royale.jewel.beads.models.ImageModel; ImageModel;
         import org.apache.royale.jewel.beads.models.SliderRangeModel; SliderRangeModel;
         import org.apache.royale.jewel.beads.models.AlertModel; AlertModel;
         import org.apache.royale.jewel.beads.models.TitleBarModel; TitleBarModel;
@@ -37,6 +38,7 @@ package
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
         
+        import org.apache.royale.jewel.beads.views.ImageView; ImageView;
         import org.apache.royale.jewel.beads.views.SliderView; SliderView;
         import org.apache.royale.jewel.beads.views.AlertView; AlertView;
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;

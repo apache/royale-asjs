@@ -44,15 +44,15 @@ j|ApplicationView
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
 	// IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 
-.responsive
-	width: 100%
-	height: 100%
-	display: flex
-	flex-direction: column
-	overflow-y: auto
-	overflow-x: hidden
-	position: relative
-	-webkit-overflow-scrolling: touch
+// .responsive
+// 	width: 100%
+// 	height: 100%
+// 	display: flex
+// 	flex-direction: column
+// 	overflow-y: auto
+// 	overflow-x: hidden
+// 	position: relative
+// 	-webkit-overflow-scrolling: touch
 
 j|Group
 	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView")
@@ -70,6 +70,10 @@ j|Container
 	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel")
 	//align-items: flex-start
 
+j|Image
+	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ImageModel")
+	IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ImageView")
+//vertical-align: top
 
 //j|Grid
 //	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridLayout")

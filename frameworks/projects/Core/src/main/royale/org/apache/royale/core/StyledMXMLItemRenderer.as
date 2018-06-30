@@ -20,50 +20,31 @@ package org.apache.royale.core
 {
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
-
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
-
-    /**
-     *  The StyledUIBase is the base class for UIBase components that makes
-     *  heavy use of styles
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public class StyledUIBase extends UIBase implements IClassSelectorListSupport
-    {
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function StyledUIBase()
+	
+	/**
+	 *  The StyledMXMLItemRenderer class is the base class for itemRenderers that are MXML-based
+	 *  and provides support for ClassSelectorList.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.3
+	 */
+	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport
+	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function StyledMXMLItemRenderer()
 		{
-            super();
+			super();
+            typeNames = "";
             classSelectorList = new ClassSelectorList(this);
-		}
-
-        COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
 		}
 
         protected var classSelectorList:ClassSelectorList;
@@ -121,5 +102,6 @@ package org.apache.royale.core
             classSelectorList.toggle(name, value);
             }
         }
-    }
+
+	}
 }
