@@ -24,3 +24,19 @@
 .mainContent {
     margin: 20px;
 }
+
+.navIconLinItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
+}
+
+.navIconLinItemRenderer .icon
+{
+    margin-right: 24px;
+}
+
+.jewel.drawerheader img
+{
+    height: 140px;
+    padding: 16px;
+}

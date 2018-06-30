@@ -258,11 +258,9 @@ j|ControlBar {
 
 .jewel.drawerheader {
   position: relative;
-}
-.jewel.drawerheader::before {
-  display: block;
-  padding-top: 56.25%;
-  content: "";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .jewel.drawerheader div {
   display: flex;
@@ -318,7 +316,7 @@ j|ControlBar {
 .jewel.item, .jewel.navigationlink {
   display: flex;
   cursor: pointer;
-  min-height: 34;
+  min-height: 34px;
   text-decoration: none;
   align-items: center;
   letter-spacing: 0;

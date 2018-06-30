@@ -18,10 +18,21 @@ limitations under the License.
 
 -->
 <j:ApplicationResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
-                            xmlns:j="library://ns.apache.org/royale/jewel"
-                            xmlns:js="library://ns.apache.org/royale/basic"
-                            xmlns:models="models.*"
-                            xmlns:local="*">
+                                xmlns:j="library://ns.apache.org/royale/jewel"
+                                xmlns:js="library://ns.apache.org/royale/basic"
+                                xmlns:html="library://ns.apache.org/royale/html"
+                                xmlns:models="models.*"
+                                xmlns:local="*">
+    
+    <fx:Script>
+        <![CDATA[
+            private function clickHandler(event:MouseEvent):void
+            {
+                event.preventDefault();
+            }
+        ]]>
+    </fx:Script>
+
     <j:model>
         <models:MainNavigationModel id="mainNavigationModel"/>
     </j:model>
@@ -32,23 +43,23 @@ limitations under the License.
 
     <j:Drawer id="drawer">
         <j:DrawerHeader>
-            <j:Label text="Header Title"/>
+            <j:Image src="assets/apache-royale-jewel-logo-white.svg"/>
         </j:DrawerHeader>
         <j:DrawerContent>
-            <j:Navigation id="nav">
-                <j:beads>
-                    <js:ConstantBinding
-                            sourceID="mainNavigationModel"
-                            sourcePropertyName="controlsDrawerNavigation"
-                            destinationPropertyName="dataProvider" />
-                </j:beads>
-            </j:Navigation>
-            <j:Divider/>
-            <j:Navigation id="nav2">
+            <j:Navigation id="nav2" click="clickHandler(event);" className="navIconLinItemRenderer">
                 <j:beads>
                     <js:ConstantBinding
                             sourceID="mainNavigationModel"
                             sourcePropertyName="containerDrawerNavigation"
+                            destinationPropertyName="dataProvider" />
+                </j:beads>
+            </j:Navigation>
+            <j:Divider/>
+            <j:Navigation id="nav" click="clickHandler(event);" className="navIconLinItemRenderer">
+                <j:beads>
+                    <js:ConstantBinding
+                            sourceID="mainNavigationModel"
+                            sourcePropertyName="controlsDrawerNavigation"
                             destinationPropertyName="dataProvider" />
                 </j:beads>
             </j:Navigation>

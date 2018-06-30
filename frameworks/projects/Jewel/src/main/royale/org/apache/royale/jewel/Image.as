@@ -48,7 +48,7 @@ package org.apache.royale.jewel
 		public function Image()
 		{
 			super();
-            typeNames = '';
+            typeNames = "jewel image";
 		}
 
         /**

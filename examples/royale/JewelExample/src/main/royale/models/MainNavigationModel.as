@@ -25,16 +25,16 @@ package models
     public class MainNavigationModel
     {
         private var _controlsDrawerNavigation:ArrayList = new ArrayList([
-            new NavigationLinkVO("Label", "label_panel"),
-            new NavigationLinkVO("Text", "text_panel"),
-            new NavigationLinkVO("Button", "button_panel"),
-            new NavigationLinkVO("TextInput", "textinput_panel")//,
-            // new NavigationLinkVO("CheckBox", "checkbox_panel"),
-            // new NavigationLinkVO("RadioButton", "radiobutton_panel"),
-            // new NavigationLinkVO("Slider", "slider_panel"),
-            // new NavigationLinkVO("Alert", "alert_panel"),
-            // new NavigationLinkVO("List", "list_panel"),
-            // new NavigationLinkVO("DropDownList", "dropdownlist_panel")
+            new NavigationLinkVO("Alert", "alert_panel", "web_asset"),
+            new NavigationLinkVO("Button", "button_panel", "crop_7_5"),
+            new NavigationLinkVO("DropDownList", "dropdownlist_panel", "credit_card"),
+            new NavigationLinkVO("CheckBox", "checkbox_panel", "check_box"),
+            new NavigationLinkVO("Label", "label_panel", "label"),
+            new NavigationLinkVO("List", "list_panel", "list_alt"),
+            new NavigationLinkVO("RadioButton", "radiobutton_panel", "radio_button_checked"),
+            new NavigationLinkVO("Slider", "slider_panel", "storage"),
+            new NavigationLinkVO("Text", "text_panel", "subject"),
+            new NavigationLinkVO("TextInput", "textinput_panel", "text_fields")
 
             // new NavigationLinkVO("Menu", "menus_panel"),
             // new NavigationLinkVO("Loading", "loading_panel"),
@@ -48,12 +48,12 @@ package models
         }
         
         private var _containerDrawerNavigation:ArrayList = new ArrayList([
-            new NavigationLinkVO("Grid", "grid_panel"),
-            new NavigationLinkVO("Card", "card_panel")
+            new NavigationLinkVO("Card", "card_panel", "web_asset"),
+            new NavigationLinkVO("Grid", "grid_panel", "grid_on"),
+            new NavigationLinkVO("Tables", "tables_panel", "view_quilt")
             
             // new NavigationLinkVO("Tabs", "tabs_panel"),
             // new NavigationLinkVO("Snackbar", "snackbar_panel"),
-            // new NavigationLinkVO("Tables", "tables_panel"),
             
         ]);
 
