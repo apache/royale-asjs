@@ -256,6 +256,7 @@ j|Card {
   background: linear-gradient(#3481d0, #2767a9);
   border-bottom: 1px solid #19416b;
   color: #FFFFFF;
+  padding: 16px;
 }
 .jewel.drawerheader div {
   padding: 16px;
