@@ -71,6 +71,10 @@ package
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;
         import org.apache.royale.jewel.beads.layouts.VerticalLayout; VerticalLayout;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween; HorizontalLayoutSpaceBetween;
+
+        import org.apache.royale.jewel.supportClasses.INavigationRenderer; INavigationRenderer;
+        import org.apache.royale.jewel.supportClasses.IActivable; IActivable;
+        import org.apache.royale.jewel.supportClasses.ITextInput; ITextInput;
         
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
         import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;

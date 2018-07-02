@@ -56,7 +56,6 @@ j|VGroup {
 
 j|Container {
   IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
   IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
 }
@@ -102,6 +101,12 @@ j|Alert {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
+}
+
+j|ApplicationMainContent {
+  IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+  IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
 }
 
 .jewel.button {
@@ -322,6 +327,9 @@ j|ControlBar {
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
+}
+.jewel.item > *, .jewel.navigationlink > * {
+  pointer-events: none;
 }
 
 .jewel.navigationlink {

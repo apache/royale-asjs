@@ -51,6 +51,7 @@
     <component id="TopAppBarRow" class="org.apache.royale.jewel.TopAppBarRow"/>
     <component id="TopAppBarSection" class="org.apache.royale.jewel.TopAppBarSection"/>
     <component id="TopAppBarTitle" class="org.apache.royale.jewel.TopAppBarTitle"/>
+    <component id="ApplicationMainContent" class="org.apache.royale.jewel.ApplicationMainContent"/>
     <component id="Drawer" class="org.apache.royale.jewel.Drawer"/>
     <component id="DrawerHeader" class="org.apache.royale.jewel.DrawerHeader"/>
     <component id="DrawerContent" class="org.apache.royale.jewel.DrawerContent"/>

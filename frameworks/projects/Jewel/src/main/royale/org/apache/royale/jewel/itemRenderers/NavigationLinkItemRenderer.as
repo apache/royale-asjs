@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
     
     COMPILE::JS
     {
@@ -29,14 +30,15 @@ package org.apache.royale.jewel.itemRenderers
     
 	/**
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 
-     *  Navigation List Component.
-	 *
+     *  Navigation List Component. It handles Objects with "label" and "href" data.
+	 *  Extend this (you can do it in MXML) to support more data like for example: icon data.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class NavigationLinkItemRenderer extends StyledMXMLItemRenderer
+	public class NavigationLinkItemRenderer extends StyledMXMLItemRenderer implements INavigationRenderer
 	{
 		/**
 		 *  constructor.
@@ -159,6 +161,9 @@ package org.apache.royale.jewel.itemRenderers
 
 		/**
 		 * @private
+		 * 
+		 * Styles are handled in CSS and usualy This renderer does not uses "selected" state
+	 	 * at least if the drawer is closed after selection.
 		 */
 		override public function updateRenderer():void
 		{

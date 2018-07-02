@@ -17,30 +17,21 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel ListItemRenderer
+// Jewel ApplicationMainContent
 
-// ListItemRenderer variables
-$item-min-height: 34px
+// ApplicationMainContent variables
 
-.jewel.item, .jewel.navigationlink
-    display: flex
-    cursor: pointer
-    min-height: $item-min-height
-    text-decoration: none
-    align-items: center
-    letter-spacing: 0
-    line-height: normal !important
-    overflow: hidden
+.jewel.main
+    // background: #55dede
+    // display: inline-block
+    // flex-grow: 1
+    // z-index: 1
+    // position: relative
+    // height: 100%
+    // overflow: hidden !important
 
-    > *
-        pointer-events: none
-
-
-.jewel.navigationlink
-    min-height: 48px
-    
-j|ListItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
-
-j|NavigationLinkItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
+j|ApplicationMainContent
+    IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView")
+    //IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout") // Basic layoutr doesn't work here
+    IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport")
+    IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel")

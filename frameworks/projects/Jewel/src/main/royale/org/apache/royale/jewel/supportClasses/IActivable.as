@@ -16,31 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.jewel.supportClasses
+{
+    import org.apache.royale.core.IId;
 
-// Jewel ListItemRenderer
-
-// ListItemRenderer variables
-$item-min-height: 34px
-
-.jewel.item, .jewel.navigationlink
-    display: flex
-    cursor: pointer
-    min-height: $item-min-height
-    text-decoration: none
-    align-items: center
-    letter-spacing: 0
-    line-height: normal !important
-    overflow: hidden
-
-    > *
-        pointer-events: none
-
-
-.jewel.navigationlink
-    min-height: 48px
-    
-j|ListItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
-
-j|NavigationLinkItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
+    /**
+     *  IActivable is the interface a container implements to mark
+     *  as the current active container 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+    public interface IActivable extends IId
+    {
+        /**
+         *  An id property for MXML documents.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        function get isActive():Boolean;
+        function set isActive(value:Boolean):void;
+    }
+}

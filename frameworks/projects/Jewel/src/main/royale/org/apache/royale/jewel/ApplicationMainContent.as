@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.jewel.supportClasses.IActivable;
 
     COMPILE::JS
     {
@@ -27,17 +27,16 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The Navigation class is a List used for navigate other organized content
-	 *  in a Royale Application. In HTML is represented by a <nav> tag in HTML and
-	 *  It parents a list of links.
-	 *  By default it uses NavigationLinkItemRenderer class to define each item.
+	 *  The ApplicationMainContent class is a Container component capable of parenting
+	 *  the other organized content that implements IActivable interface
+	 *  (i.e, a Section container)
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Navigation extends List
+	public class ApplicationMainContent extends Container
 	{
 		/**
 		 *  constructor.
@@ -47,23 +46,39 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function Navigation()
+		public function ApplicationMainContent()
 		{
 			super();
 
-            typeNames = "jewel navigation";
-
-			addEventListener(MouseEvent.CLICK, internalMouseHandler);
+            typeNames = "jewel main";
 		}
-
-		private function internalMouseHandler(event:MouseEvent):void
-		{
-			COMPILE::JS
+		
+		/**
+		 *  shows a concrete content and hides the rest
+		 * 
+		 *  @param id, the id of the container to show
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function showContent(id:String):void
+        {
+			for (var i:int = 0; i < numElements; i++)
 			{
-				// avoid a link tries to open a new page 
-				event.preventDefault();
+				var content:IActivable = getElementAt(i) as IActivable;
+				
+				if(content.id == id)
+				{
+					content.isActive = true;
+				}
+				else
+				{
+					content.isActive = false;
+				}
 			}
-		}
+        }
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -71,7 +86,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'nav');
+			return addElementToWrapper(this,'main');
         }
 	}
 }
