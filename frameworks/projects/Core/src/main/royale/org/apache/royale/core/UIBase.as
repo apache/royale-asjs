@@ -170,7 +170,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement
+	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IRoyaleElement, IId
 	{
         /**
          *  Constructor.
@@ -950,7 +950,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
 		public function get id():String
 		{
