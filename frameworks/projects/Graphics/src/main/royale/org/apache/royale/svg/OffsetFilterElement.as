@@ -30,21 +30,21 @@ package org.apache.royale.svg
 	}
 
 	/**
-	 *  The OffsetBead bead adds an offset to a filtered SVG element
+	 *  The OffsetFilterElement bead adds an offset to a filtered SVG element
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class OffsetBead implements IBead
+	public class OffsetFilterElement implements IBead
 	{
 		private var _strand:IStrand;
 		private var _dx:Number = 0;
 		private var _dy:Number = 0;
 		private var _offsetResult:String = "offsetResult";
 
-		public function OffsetBead()
+		public function OffsetFilterElement()
 		{
 		}
 		
@@ -69,7 +69,7 @@ package org.apache.royale.svg
 		{
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(DropShadowBead) as DropShadowBead).filterElement;
+				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElement;
 				var offset:Element = addSvgElementToElement(filter, "feOffset") as Element;
 				offset.setAttribute("dx", dx);
 				offset.setAttribute("dy", dy);

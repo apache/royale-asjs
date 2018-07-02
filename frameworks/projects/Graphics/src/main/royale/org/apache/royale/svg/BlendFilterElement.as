@@ -29,19 +29,19 @@ package org.apache.royale.svg
 	}
 
 	/**
-	 *  The BlendFilter blends several filter elements
+	 *  The BlendFilterElement blends several filter elements
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class BlendFilter implements IBead
+	public class BlendFilterElement implements IBead
 	{
 		private var _strand:IStrand;
 		private var _in2:String;
 
-		public function BlendFilter()
+		public function BlendFilterElement()
 		{
 		}
 		
@@ -66,7 +66,7 @@ package org.apache.royale.svg
 		{
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(DropShadowBead) as DropShadowBead).filterElement;
+				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElement;
 				var blend:Element = addSvgElementToElement(filter, "feBlend") as Element;
 				blend.setAttribute("in", "SourceGraphic");
 				blend.setAttribute("in2", in2);
