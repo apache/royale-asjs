@@ -2519,6 +2519,13 @@ j|Navigation {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.RadioButtonView");
   }
 }
+.jewel.section {
+  display: none;
+}
+.jewel.section.is-active {
+  display: block;
+}
+
 .jewel.slider {
   position: relative;
   height: 27px;

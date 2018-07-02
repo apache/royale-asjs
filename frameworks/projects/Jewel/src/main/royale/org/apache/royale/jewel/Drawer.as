@@ -61,10 +61,10 @@ package org.apache.royale.jewel
 
             typeNames = "jewel drawer";
 
-			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
+			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 
-		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent):void
+		private function internalMouseHandler(event:MouseEvent):void
 		{
 			COMPILE::JS
 			{

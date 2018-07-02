@@ -52,13 +52,14 @@
     <component id="TopAppBarSection" class="org.apache.royale.jewel.TopAppBarSection"/>
     <component id="TopAppBarTitle" class="org.apache.royale.jewel.TopAppBarTitle"/>
     <component id="ApplicationMainContent" class="org.apache.royale.jewel.ApplicationMainContent"/>
+    <component id="SectionContent" class="org.apache.royale.jewel.SectionContent"/>
     <component id="Drawer" class="org.apache.royale.jewel.Drawer"/>
     <component id="DrawerHeader" class="org.apache.royale.jewel.DrawerHeader"/>
     <component id="DrawerContent" class="org.apache.royale.jewel.DrawerContent"/>
     <component id="Divider" class="org.apache.royale.jewel.Divider"/>
 
     <component id="Image" class="org.apache.royale.jewel.Image"/>
-
+    
     <component id="Card" class="org.apache.royale.jewel.Card"/>
     
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.DropDownListList"/>

@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.supportClasses.IActivable;
-
+    import org.apache.royale.jewel.supportClasses.IActivable;
+    
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -27,16 +27,16 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The ApplicationMainContent class is a Container component capable of parenting
-	 *  the other organized content that implements IActivable interface
-	 *  (i.e, a SectionContent)
+	 *  The SectionContent class is a Container component capable of parenting other
+	 *  components. This class is used along with Tabs to separate content and
+	 *  present and organize data for the user.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class ApplicationMainContent extends Container
+	public class SectionContent extends Group implements IActivable
 	{
 		/**
 		 *  constructor.
@@ -46,39 +46,12 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function ApplicationMainContent()
+		public function SectionContent()
 		{
 			super();
 
-            typeNames = "jewel main";
+            typeNames = "jewel section";
 		}
-		
-		/**
-		 *  shows a concrete content and hides the rest
-		 * 
-		 *  @param id, the id of the container to show
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function showContent(id:String):void
-        {
-			for (var i:int = 0; i < numElements; i++)
-			{
-				var content:IActivable = getElementAt(i) as IActivable;
-				
-				if(content.id == id)
-				{
-					content.isActive = true;
-				}
-				else
-				{
-					content.isActive = false;
-				}
-			}
-        }
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -86,7 +59,36 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'main');
+			return addElementToWrapper(this,'section');
         }
+
+		private var _isActive:Boolean;
+
+        /**
+         *  a boolean flag to indicate if the container is active or not
+         *  defaults to false.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get isActive():Boolean
+		{
+            return _isActive;
+		}
+
+		public function set isActive(value:Boolean):void
+		{
+            if (_isActive != value)
+            {
+                _isActive = value;
+
+                COMPILE::JS
+                {
+                    toggleClass("is-active", _isActive);
+                }
+            }
+		}
 	}
 }

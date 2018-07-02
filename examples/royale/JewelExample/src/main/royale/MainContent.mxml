@@ -46,7 +46,7 @@ limitations under the License.
             <j:Image src="assets/apache-royale-jewel-logo-white.svg"/>
         </j:DrawerHeader>
         <j:DrawerContent>
-            <j:Navigation id="nav2" click="clickHandler(event)" className="navIconLinItemRenderer">
+            <j:Navigation click="clickHandler(event)" className="navIconLinItemRenderer">
                 <j:beads>
                     <js:ConstantBinding
                         sourceID="mainNavigationModel"
@@ -55,7 +55,7 @@ limitations under the License.
                 </j:beads>
             </j:Navigation>
             <j:Divider/>
-            <j:Navigation id="nav" click="clickHandler(event)" className="navIconLinItemRenderer">
+            <j:Navigation click="clickHandler(event)" className="navIconLinItemRenderer">
                 <j:beads>
                     <js:ConstantBinding
                         sourceID="mainNavigationModel"
