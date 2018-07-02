@@ -17,22 +17,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:html="library://ns.apache.org/royale/html"
 		width="350">
 
-	
-    <html:H3 text="Headings and text"/>
+	<j:Card>
+		<html:H3 text="Headings and text"/>
 
-	<html:H1 text="Heading H1"/>
-	<html:H2 text="Heading H2"/>
-	<html:H3 text="Heading H3"/>
-	<html:H4 text="Heading H4"/>
+		<html:H1 text="Heading H1"/>
+		<html:H2 text="Heading H2"/>
+		<html:H3 text="Heading H3"/>
+		<html:H4 text="Heading H4"/>
 
-	<html:Span text="Some span text."/>
-	
-    <j:Label text="Normal text used in a div, texts and fields with single line or multiple lines."
-			 multiline="true"/>
-
-</j:Card>
+		<html:Span text="Some span text."/>
+		
+		<j:Label text="Normal text used in a div, texts and fields with single line or multiple lines."
+				multiline="true"/>
+	</j:Card>
+</j:SectionContent>

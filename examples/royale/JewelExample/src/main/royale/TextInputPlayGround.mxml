@@ -17,98 +17,99 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html">
 
-	<html:H3 text="Jewel TextInput"/>
+	<j:Card>
+		<html:H3 text="Jewel TextInput"/>
 
-	<j:Group>
-		<j:beads>
-			<j:HorizontalLayout gap="3"/>
-		</j:beads>
-		<j:Button text="Check it!" emphasis="primary"/>
-		<j:TextInput text="A TextInput"/>
-	</j:Group>
+		<j:Group>
+			<j:beads>
+				<j:HorizontalLayout gap="3"/>
+			</j:beads>
+			<j:Button text="Check it!" emphasis="primary"/>
+			<j:TextInput text="A TextInput"/>
+		</j:Group>
 
-	<j:Group>
-		<j:beads>
-			<j:HorizontalLayout gap="3"/>
-		</j:beads>
+		<j:Group>
+			<j:beads>
+				<j:HorizontalLayout gap="3"/>
+			</j:beads>
+			<j:TextInput>
+				<j:beads>
+					<j:TextPrompt prompt="With prompt..."/>
+				</j:beads>
+			</j:TextInput>
+			<j:Button text="Send" emphasis="secondary"/>
+		</j:Group>
+
+		<j:TextInput text="Disabled with text...">
+			<j:beads>
+				<j:TextPrompt prompt="Disabled TextInput..."/>
+				<j:Disabled/>
+			</j:beads>
+		</j:TextInput>
+
 		<j:TextInput>
+			<j:beads>
+				<j:TextPrompt prompt="Disabled with prompt..."/>
+				<j:Disabled/>
+			</j:beads>
+		</j:TextInput>
+
+		<html:H4 text="Sizes"/>
+
+		<j:TextInput>
+			<j:beads>
+				<j:TextPrompt prompt="Size xsmall"/>
+				<j:SizeControl size="xsmall"/>
+			</j:beads>
+		</j:TextInput>
+		
+		<j:TextInput>
+			<j:beads>
+				<j:TextPrompt prompt="Size small"/>
+				<j:SizeControl size="small"/>
+			</j:beads>
+		</j:TextInput>
+		
+		<j:TextInput>
+			<j:beads>
+				<j:TextPrompt prompt="Size normal"/>
+			</j:beads>
+		</j:TextInput>
+
+		<j:TextInput>
+			<j:beads>
+				<j:TextPrompt prompt="Size large"/>
+				<j:SizeControl size="large"/>
+			</j:beads>
+		</j:TextInput>
+
+		<j:TextInput>
+			<j:beads>
+				<j:TextPrompt prompt="Size xlarge"/>
+				<j:SizeControl size="xlarge"/>
+			</j:beads>
+		</j:TextInput>
+
+		<html:H3 text="Jewel TextArea"/>
+
+		<j:TextArea text="A TextArea with 5 rows" rows="5"/>
+
+		<j:TextArea>
 			<j:beads>
 				<j:TextPrompt prompt="With prompt..."/>
 			</j:beads>
-		</j:TextInput>
-		<j:Button text="Send" emphasis="secondary"/>
-	</j:Group>
+		</j:TextArea>
 
-	<j:TextInput text="Disabled with text...">
-		<j:beads>
-			<j:TextPrompt prompt="Disabled TextInput..."/>
-			<j:Disabled/>
-		</j:beads>
-	</j:TextInput>
-
-	<j:TextInput>
-		<j:beads>
-			<j:TextPrompt prompt="Disabled with prompt..."/>
-			<j:Disabled/>
-		</j:beads>
-	</j:TextInput>
-
-	<html:H4 text="Sizes"/>
-
-	<j:TextInput>
-		<j:beads>
-			<j:TextPrompt prompt="Size xsmall"/>
-			<j:SizeControl size="xsmall"/>
-		</j:beads>
-	</j:TextInput>
-	
-	<j:TextInput>
-		<j:beads>
-			<j:TextPrompt prompt="Size small"/>
-			<j:SizeControl size="small"/>
-		</j:beads>
-	</j:TextInput>
-	
-	<j:TextInput>
-		<j:beads>
-			<j:TextPrompt prompt="Size normal"/>
-		</j:beads>
-	</j:TextInput>
-
-	<j:TextInput>
-		<j:beads>
-			<j:TextPrompt prompt="Size large"/>
-			<j:SizeControl size="large"/>
-		</j:beads>
-	</j:TextInput>
-
-	<j:TextInput>
-		<j:beads>
-			<j:TextPrompt prompt="Size xlarge"/>
-			<j:SizeControl size="xlarge"/>
-		</j:beads>
-	</j:TextInput>
-
-	<html:H3 text="Jewel TextArea"/>
-
-	<j:TextArea text="A TextArea with 5 rows" rows="5"/>
-
-	<j:TextArea>
-		<j:beads>
-			<j:TextPrompt prompt="With prompt..."/>
-		</j:beads>
-	</j:TextArea>
-
-	<j:TextArea text="A TextArea">
-		<j:beads>
-			<j:TextPrompt prompt="with prompt..."/>
-			<j:Disabled/>
-		</j:beads>
-	</j:TextArea>
-	
-</j:Card>
+		<j:TextArea text="A TextArea">
+			<j:beads>
+				<j:TextPrompt prompt="with prompt..."/>
+				<j:Disabled/>
+			</j:beads>
+		</j:TextArea>
+	</j:Card>
+</j:SectionContent>

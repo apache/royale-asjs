@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html"
@@ -58,18 +58,19 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<html:H3 text="Jewel List"/>
-	
-    <j:List id="list" width="200" height="300" change="onChange(event)">
-		<j:beads>
-			<js:ConstantBinding
-				sourcePropertyName="simple"
-				destinationPropertyName="dataProvider" />
-		</j:beads>
-    </j:List>
+	<j:Card>
+		<html:H3 text="Jewel List"/>
+		
+		<j:List id="list" width="200" height="300" change="onChange(event)">
+			<j:beads>
+				<js:ConstantBinding
+					sourcePropertyName="simple"
+					destinationPropertyName="dataProvider" />
+			</j:beads>
+		</j:List>
 
-    <j:Label id="selected"/>
+		<j:Label id="selected"/>
 
-	<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
-	
-</j:Card>
+		<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
+	</j:Card>
+</j:SectionContent>

@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:html="library://ns.apache.org/royale/html"
 		width="350">
@@ -46,15 +46,17 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<html:H3 text="Jewel Alert"/>
-	
-    <j:Label text="Click the button below to display a simple Alert window"
-             multiline="true"/>
-	<j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
+    <j:Card>
+        <html:H3 text="Jewel Alert"/>
+        
+        <j:Label text="Click the button below to display a simple Alert window"
+                multiline="true"/>
+        <j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
 
-    <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user."
-             multiline="true"/>
-	<j:Button text="Click Me" click="clickHandler(event)"/>
-    <j:Label id="status"/>
-	
-</j:Card>
+        <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user."
+                multiline="true"/>
+        <j:Button text="Click Me" click="clickHandler(event)"/>
+        <j:Label id="status"/>
+    </j:Card>
+    
+</j:SectionContent>

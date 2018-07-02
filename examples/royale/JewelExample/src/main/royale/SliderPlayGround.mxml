@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html">
@@ -56,24 +56,25 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<html:H3 text="Jewel Slider"/>
-	
-	<j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500"
-				change="onChange(event)" 
-				input="onInput(event)"
-				valueChange="onValueChange(event)"/>
-	<j:Slider id="slider_h" width="250" value="80" minimum="40" maximum="300"
-				change="onChange(event)" 
-				input="onInput(event)"
-				valueChange="onValueChange(event)"/>
+	<j:Card>
+		<html:H3 text="Jewel Slider"/>
+		
+		<j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500"
+					change="onChange(event)" 
+					input="onInput(event)"
+					valueChange="onValueChange(event)"/>
+		<j:Slider id="slider_h" width="250" value="80" minimum="40" maximum="300"
+					change="onChange(event)" 
+					input="onInput(event)"
+					valueChange="onValueChange(event)"/>
 
-	<j:Slider id="slider_dis" width="250" value="70" minimum="0" maximum="100">
-		<j:beads>
-			<j:Disabled/>
-		</j:beads>
-	</j:Slider>
+		<j:Slider id="slider_dis" width="250" value="70" minimum="0" maximum="100">
+			<j:beads>
+				<j:Disabled/>
+			</j:beads>
+		</j:Slider>
 
-	<j:Button id="button" text="Slider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}"
-					click="clickHandler(event)"/>
-
-</j:Card>
+		<j:Button id="button" text="Slider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}"
+						click="clickHandler(event)"/>
+	</j:Card>
+</j:SectionContent>

@@ -17,11 +17,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:j="library://ns.apache.org/royale/jewel"
-		xmlns:html="library://ns.apache.org/royale/html"
-		xmlns:js="library://ns.apache.org/royale/basic">
-    
+<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:j="library://ns.apache.org/royale/jewel"
+				xmlns:html="library://ns.apache.org/royale/html"
+				xmlns:js="library://ns.apache.org/royale/basic">
+
 	<fx:Script>
 		<![CDATA[      
             private function clickHandler(event:MouseEvent):void {
@@ -34,48 +34,50 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<html:H3 text="Jewel Button"/>
-	
-	<j:Button text="Default" id="button" click="clickHandler(event)"/>
-	<j:Button text="Button With More Text"/>
-	<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
-	<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
-	<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
-	<j:Button text="Disabled" emphasis="{Button.PRIMARY}">
-		<j:beads>
-			<j:Disabled/>
-		</j:beads>
-	</j:Button>
+	<j:Card>
+		<html:H3 text="Jewel Button"/>
+		
+		<j:Button text="Default" id="button" click="clickHandler(event)"/>
+		<j:Button text="Button With More Text"/>
+		<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
+		<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
+		<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
+		<j:Button text="Disabled" emphasis="{Button.PRIMARY}">
+			<j:beads>
+				<j:Disabled/>
+			</j:beads>
+		</j:Button>
 
-	<html:H4 text="Icons"/>
-	
-	<j:Button text="print" emphasis="primary">
-		<j:icon>
-			<js:Icon text="{MaterialIconType.PRINT}" material="true"/>
-		</j:icon>
-	</j:Button>
+		<html:H4 text="Icons"/>
+		
+		<j:Button text="print" emphasis="primary">
+			<j:icon>
+				<js:Icon text="{MaterialIconType.PRINT}" material="true"/>
+			</j:icon>
+		</j:Button>
 
-	<html:H4 text="Sizes"/>
+		<html:H4 text="Sizes"/>
+		
+		<j:Button text="xsmall">
+			<j:beads>
+				<j:SizeControl size="{SizeControl.XSMALL}"/>
+			</j:beads>
+		</j:Button>
+		<j:Button text="small" emphasis="{Button.PRIMARY}">
+			<j:beads>
+				<j:SizeControl size="{SizeControl.SMALL}"/>
+			</j:beads>
+		</j:Button>
+		<j:Button text="large" emphasis="{Button.SECONDARY}">
+			<j:beads>
+				<j:SizeControl size="{SizeControl.LARGE}"/>
+			</j:beads>
+		</j:Button>
+		<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
+			<j:beads>
+				<j:SizeControl size="{SizeControl.XLARGE}"/>
+			</j:beads>
+		</j:Button>
+	</j:Card>
 	
-	<j:Button text="xsmall">
-		<j:beads>
-			<j:SizeControl size="{SizeControl.XSMALL}"/>
-		</j:beads>
-	</j:Button>
-	<j:Button text="small" emphasis="{Button.PRIMARY}">
-		<j:beads>
-			<j:SizeControl size="{SizeControl.SMALL}"/>
-		</j:beads>
-	</j:Button>
-	<j:Button text="large" emphasis="{Button.SECONDARY}">
-		<j:beads>
-			<j:SizeControl size="{SizeControl.LARGE}"/>
-		</j:beads>
-	</j:Button>
-	<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
-		<j:beads>
-			<j:SizeControl size="{SizeControl.XLARGE}"/>
-		</j:beads>
-	</j:Button>
-	
-</j:Card>
+</j:SectionContent>

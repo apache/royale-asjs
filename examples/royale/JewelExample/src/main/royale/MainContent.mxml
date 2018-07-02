@@ -26,9 +26,15 @@ limitations under the License.
     
     <fx:Script>
         <![CDATA[
+            import org.apache.royale.jewel.supportClasses.INavigationRenderer;
+
             private function clickHandler(event:MouseEvent):void
             {
-                event.preventDefault();
+                var renderer:INavigationRenderer = event.target as INavigationRenderer;
+                //if (renderer == null) return;
+
+			    var link:String = renderer.href;
+                main.showContent(link);
             }
         ]]>
     </fx:Script>
@@ -90,29 +96,20 @@ limitations under the License.
             </j:TopAppBarSection>
         </j:TopAppBarRow>
     </j:TopAppBar>
-    
-    <j:HGroup gap="3" className="mainContent"> 
-        <j:VGroup gap="3">
-            <local:LabelPlayGround/>
-            <local:ButtonPlayGround/>
-        </j:VGroup>
 
-        <j:VGroup gap="3">
-            <local:TextInputPlayGround/>
-            <local:CheckBoxPlayGround/>
-            <local:RadioButtonPlayGround/>
-        </j:VGroup>
-
-        <j:VGroup gap="3">
-            <local:SliderPlayGround/>
-            <local:ListPlayGround/>
-        </j:VGroup>
-        
-        <j:VGroup gap="3">
-            <local:AlertPlayGround/>
-            <local:HeadingsAndText/>
-            <local:DropDownListPlayGround/>
-        </j:VGroup>
-    </j:HGroup>
+    <j:ApplicationMainContent id="main">
+        <local:AlertPlayGround id="alert_panel"/>
+        <local:ButtonPlayGround id="button_panel" isActive="true"/>
+        <local:DropDownListPlayGround id="dropdownlist_panel"/>
+        <local:CheckBoxPlayGround id="checkbox_panel"/>
+        <local:HeadingsAndText id="text_panel"/>
+        <local:LabelPlayGround id="label_panel"/>
+        <local:ListPlayGround id="list_panel"/>
+        <local:RadioButtonPlayGround id="radiobutton_panel"/>
+        <local:SliderPlayGround id="slider_panel"/>
+        <local:TextInputPlayGround id="textinput_panel"/>
+        <local:GridPlayGround id="grid_panel"/>
+        <local:CardPlayGround id="card_panel"/>
+    </j:ApplicationMainContent>
     
 </j:ApplicationResponsiveView>
