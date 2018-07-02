@@ -30,20 +30,20 @@ package org.apache.royale.svg
 	}
 
 	/**
-	 *  The BlurFilter bead adds a blur to a filtered SVG element
+	 *  The BlurFilterElement bead adds a blur to a filtered SVG element
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class BlurFilter implements IBead
+	public class BlurFilterElement implements IBead
 	{
 		private var _strand:IStrand;
 		private var _stdDeviation:Number = 3;
 		private var _blurResult:String = "blurResult";
 
-		public function BlurFilter()
+		public function BlurFilterElement()
 		{
 		}
 		
@@ -68,7 +68,7 @@ package org.apache.royale.svg
 		{
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(DropShadowBead) as DropShadowBead).filterElement;
+				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElement;
 				var offset:Element = addSvgElementToElement(filter, "feGaussianBlur") as Element;
 				offset.setAttribute("stdDeviation", stdDeviation);
 				offset.setAttribute("result", blurResult);

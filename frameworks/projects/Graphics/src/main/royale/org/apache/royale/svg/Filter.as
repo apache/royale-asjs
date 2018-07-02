@@ -23,12 +23,6 @@ package org.apache.royale.svg
 	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.IStrand;
 
-	COMPILE::SWF {
-		import flash.display.Graphics;
-		import flash.display.Sprite;
-		import flash.display.DisplayObject;
-	}
-
 	COMPILE::JS
 	{
 		import org.apache.royale.utils.UIDUtil;
@@ -36,14 +30,14 @@ package org.apache.royale.svg
 		import org.apache.royale.events.IEventDispatcher;
 	}
 	/**
-	 *  The DropShadowBead bead allows you to filter
+	 *  The Filter bead allows you to filter an SVG element. Filter elements should be added to the strand to achieve the desired effect.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
-	public class DropShadowBead implements IBead
+	public class Filter implements IBead
 	{
 		private var _strand:IStrand;
 		private var _width:String = "200%";
@@ -54,7 +48,7 @@ package org.apache.royale.svg
 			private var _filterElement:Element;
 		}
 		
-		public function DropShadowBead()
+		public function Filter()
 		{
 		}
 		
@@ -150,7 +144,7 @@ package org.apache.royale.svg
 		}
 		
 		
-		public function get host():IRenderedObject
+		private function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;
 		}
