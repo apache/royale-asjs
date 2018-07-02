@@ -328,9 +328,6 @@ j|ControlBar {
   line-height: normal !important;
   overflow: hidden;
 }
-.jewel.item > *, .jewel.navigationlink > * {
-  pointer-events: none;
-}
 
 .jewel.navigationlink {
   min-height: 48px;
