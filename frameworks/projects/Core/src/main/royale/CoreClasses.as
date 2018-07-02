@@ -26,6 +26,7 @@ package {
  */
 internal class CoreClasses
 {
+	import org.apache.royale.core.IId; IId;
 	import org.apache.royale.core.UIBase; UIBase;
 	import org.apache.royale.utils.IClassSelectorListSupport; IClassSelectorListSupport;
 	import org.apache.royale.core.StyledUIBase; StyledUIBase;
