@@ -41,6 +41,10 @@ internal class GraphicsClasses
 	{
 		import org.apache.royale.graphics.utils.PathHelper; PathHelper;
 	}
+	COMPILE::JS 
+	{
+		import org.apache.royale.graphics.utils.addSvgElementToElement; addSvgElementToElement;
+	}
 	import org.apache.royale.graphics.QuadraticCurve; QuadraticCurve;
 	import org.apache.royale.graphics.ICircle; ICircle;
 	import org.apache.royale.graphics.IDrawable; IDrawable;
