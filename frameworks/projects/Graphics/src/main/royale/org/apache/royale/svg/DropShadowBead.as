@@ -32,6 +32,8 @@ package org.apache.royale.svg
 	COMPILE::JS
 	{
 		import org.apache.royale.utils.UIDUtil;
+		import org.apache.royale.graphics.utils.addSvgElementToElement;
+		import org.apache.royale.events.IEventDispatcher;
 	}
 	/**
 	 *  The DropShadowBead bead allows you to filter
@@ -44,11 +46,13 @@ package org.apache.royale.svg
 	public class DropShadowBead implements IBead
 	{
 		private var _strand:IStrand;
-		private var _dx:Number = 0;
-		private var _dy:Number = 0;
-		private var _stdDeviation:Number = 0;
 		private var _width:String = "200%";
 		private var _height:String = "200%";
+//		private var floodColor:uint;
+		COMPILE::JS 
+		{
+			private var _filterElement:Element;
+		}
 		
 		public function DropShadowBead()
 		{
@@ -82,36 +86,25 @@ package org.apache.royale.svg
 		{
 			var svgElement:Node = host.element as Element;
 			var defs:Element = getChildNode(svgElement, "defs") as Element;
-			var filter:Element = getChildNode(defs, "filter") as Element;
-			filter.id = "myDropShadow" + UIDUtil.createUID();
-			filter.setAttribute("width", _width);
-			filter.setAttribute("height", _height);
+			filterElement = getChildNode(defs, "filter") as Element;
+			filterElement.id = "myDropShadow" + UIDUtil.createUID();
+			filterElement.setAttribute("width", _width);
+			filterElement.setAttribute("height", _height);
 			// clean up existing filter
-			if (filter.hasChildNodes())
+			if (filterElement.hasChildNodes())
 			{
-				var childNodes:Object = filter.childNodes;
+				var childNodes:Object = filterElement.childNodes;
 				for (var i:int = 0; i < childNodes.length; i++)
 				{
-					filter.removeChild(childNodes[i]);
+					filterElement.removeChild(childNodes[i]);
 				}
 			}
-			// create offset
-			var offset:Element = createChildNode(filter, "feOffset") as Element;
-			offset.setAttribute("dx", dx);
-			offset.setAttribute("dy", dy);
-			offset.setAttribute("in", "SourceAlpha");
-			offset.setAttribute("result", "offsetResult");
-			// create blur
-			var blur:Element = createChildNode(filter, "feGaussianBlur") as Element;
-			blur.setAttribute("stdDeviation", stdDeviation);
-			blur.setAttribute("result", "blurResult");
+//			var flood:Element = addSvgElementToWrapper(filterElement, "feFlood") as Element;
+//			flood.setAttribute("flood-color", floodColor);
+//			flood.setAttribute("flood-alpha", floodAlpha);
 			// create blend
-			var blend:Element = createChildNode(filter, "feBlend") as Element;
-			blend.setAttribute("in", "SourceGraphic");
-			blend.setAttribute("in2", "blurResult");
-			blend.setAttribute("mode", "normal");
 			// apply filter
-			host.element.style["filter"] = "url(#" + filter.id + ")";
+			host.element.style["filter"] = "url(#" + filterElement.id + ")";
 		}
 		
 		COMPILE::JS
@@ -119,7 +112,7 @@ package org.apache.royale.svg
 		{
 			if (!node.hasChildNodes())
 			{
-				return createChildNode(node, tagName);
+				return addSvgElementToElement(node as Element, tagName);
 			}
 			var childNodes:Object = node.childNodes;
 			for (var i:int = 0; i < childNodes.length; i++)
@@ -130,51 +123,25 @@ package org.apache.royale.svg
 				}
 					
 			}
-			return createChildNode(node, tagName);
+			return addSvgElementToElement(node as Element, tagName);
 		}
 		
-		COMPILE::JS
-		private function createChildNode(parent:Node, tagName:String):Node
-		{
-			var svgNs:String = "http://www.w3.org/2000/svg";
-			var element:Node = window.document.createElementNS(svgNs, tagName);
-			parent.appendChild(element);
-			return element;
-		}
 		
 		public function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;
 		}
 		
-		public function get stdDeviation():Number
+		COMPILE::JS
+		public function get filterElement():Element
 		{
-			return _stdDeviation;
+			return _filterElement;
 		}
 
-		public function set stdDeviation(value:Number):void
+		COMPILE::JS
+		public function set filterElement(value:Element):void
 		{
-			_stdDeviation = value;
-		}
-
-		public function get dx():Number
-		{
-			return _dx;
-		}
-
-		public function set dx(value:Number):void
-		{
-			_dx = value;
-		}
-
-		public function get dy():Number
-		{
-			return _dy;
-		}
-
-		public function set dy(value:Number):void
-		{
-			_dy = value;
+			_filterElement = value;
 		}
 
 	}
