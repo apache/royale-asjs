@@ -43,4 +43,5 @@ svg|DropShadowFilter
 	ColorMatrixFilterElement: ClassReference("org.apache.royale.svg.ColorMatrixFilterElement");
 	BlurFilterElement: ClassReference("org.apache.royale.svg.BlurFilterElement");
 	BlendFilterElement: ClassReference("org.apache.royale.svg.BlendFilterElement");
+	SpreadFilterElement: ClassReference("org.apache.royale.svg.SpreadFilterElement");
 }

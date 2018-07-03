@@ -41,6 +41,7 @@ package org.apache.royale.svg
 		private var _green:Number = 0;
 		private var _blue:Number = 0;
 		private var _opacity:Number = 1;
+		private var _spread:Number = 1;
 
 		public function DropShadowFilter()
 		{
@@ -74,8 +75,12 @@ package org.apache.royale.svg
 			colorMatrix.blue = blue;
 			colorMatrix.opacity = opacity;
 			colorMatrix.colorMatrixResult = "colorMatrixResult";
+			var spreadElement:SpreadFilterElement = loadBeadFromValuesManager(SpreadFilterElement, "spreadFilterElement", value) as SpreadFilterElement;
+			spreadElement.in1 = "colorMatrixResult";
+			spreadElement.spreadResult = "spreadResult";
+			spreadElement.spread = spread;
 			var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
-			blend.in2 = "colorMatrixResult";
+			blend.in2 = "spreadResult";
 			value.removeBead(this);
 		}
 
@@ -224,6 +229,24 @@ package org.apache.royale.svg
 		public function set opacity(value:Number):void
 		{
 			_opacity = value;
+		}
+
+		/**
+		 *  The spread component of the drop shadow. This can be a number between 0 and 255.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get spread():Number
+		{
+			return _spread;
+		}
+		
+		public function set spread(value:Number):void
+		{
+			_spread = value;
 		}
 	}
 }
