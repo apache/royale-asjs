@@ -18,14 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package {
 
-COMPILE::SWF
-{
-import flash.events.Event;
-}
-COMPILE::JS
-{
-    import org.apache.royale.events.Event;
-}
+import org.apache.royale.events.Event;
 
 /**
  *  The event passed into any code being
