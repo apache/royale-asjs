@@ -35,3 +35,11 @@ svg|BinaryImage
 	IBinaryImageLoader: ClassReference("org.apache.royale.html.beads.BinaryImageLoader");
 }
 
+svg|DropShadowFilter
+{
+	Filter: ClassReference("org.apache.royale.svg.Filter");
+	BlendFilterElement: ClassReference("org.apache.royale.svg.BlendFilterElement");
+	OffsetFilterElement: ClassReference("org.apache.royale.svg.OffsetFilterElement");
+	BlurFilterElement: ClassReference("org.apache.royale.svg.BlurFilterElement");
+	BlendFilterElement: ClassReference("org.apache.royale.svg.BlendFilterElement");
+}

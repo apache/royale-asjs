@@ -22,6 +22,7 @@
 <componentPackage>
 	<component id="TransformBead" class="org.apache.royale.svg.TransformBead" />
 	<component id="ClipBead" class="org.apache.royale.svg.ClipBead" />
+	<component id="DropShadowFilter" class="org.apache.royale.svg.DropShadowFilter" />
 	<component id="Filter" class="org.apache.royale.svg.Filter" />
 	<component id="OffsetFilterElement" class="org.apache.royale.svg.OffsetFilterElement" />
 	<component id="BlurFilterElement" class="org.apache.royale.svg.BlurFilterElement" />
@@ -29,5 +30,4 @@
 	<component id="MaskBead" class="org.apache.royale.svg.MaskBead" />
 	<component id="DisableClipBead" class="org.apache.royale.svg.DisableClipBead" />
 	<component id="LinearGradient" class="org.apache.royale.svg.LinearGradient" />
-	
 </componentPackage>
