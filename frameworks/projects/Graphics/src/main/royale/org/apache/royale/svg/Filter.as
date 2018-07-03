@@ -45,7 +45,7 @@ package org.apache.royale.svg
 //		private var floodColor:uint;
 		COMPILE::JS 
 		{
-			private var _filterElement:Element;
+			private var _filterElementWrapper:Element;
 		}
 		
 		public function Filter()
@@ -103,25 +103,25 @@ package org.apache.royale.svg
 		{
 			var svgElement:Node = host.element as Element;
 			var defs:Element = getChildNode(svgElement, "defs") as Element;
-			_filterElement = getChildNode(defs, "filter") as Element;
-			filterElement.id = "myDropShadow" + UIDUtil.createUID();
-			filterElement.setAttribute("width", _width);
-			filterElement.setAttribute("height", _height);
+			_filterElementWrapper = getChildNode(defs, "filter") as Element;
+			filterElementWrapper.id = "myDropShadow" + UIDUtil.createUID();
+			filterElementWrapper.setAttribute("width", _width);
+			filterElementWrapper.setAttribute("height", _height);
 			// clean up existing filter
-			if (filterElement.hasChildNodes())
+			if (filterElementWrapper.hasChildNodes())
 			{
-				var childNodes:Object = filterElement.childNodes;
+				var childNodes:Object = filterElementWrapper.childNodes;
 				for (var i:int = 0; i < childNodes.length; i++)
 				{
-					filterElement.removeChild(childNodes[i]);
+					filterElementWrapper.removeChild(childNodes[i]);
 				}
 			}
-//			var flood:Element = addSvgElementToWrapper(filterElement, "feFlood") as Element;
+//			var flood:Element = addSvgElementToWrapper(filterElementWrapper, "feFlood") as Element;
 //			flood.setAttribute("flood-color", floodColor);
 //			flood.setAttribute("flood-alpha", floodAlpha);
 			// create blend
 			// apply filter
-			host.element.style["filter"] = "url(#" + filterElement.id + ")";
+			host.element.style["filter"] = "url(#" + filterElementWrapper.id + ")";
 		}
 		
 		COMPILE::JS
@@ -158,9 +158,9 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get filterElement():Element
+		public function get filterElementWrapper():Element
 		{
-			return _filterElement;
+			return _filterElementWrapper;
 		}
 	}
 }

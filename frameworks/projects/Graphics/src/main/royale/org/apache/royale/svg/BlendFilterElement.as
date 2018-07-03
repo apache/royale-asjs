@@ -66,7 +66,7 @@ package org.apache.royale.svg
 		{
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElement;
+				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
 				var blend:Element = addSvgElementToElement(filter, "feBlend") as Element;
 				blend.setAttribute("in", "SourceGraphic");
 				blend.setAttribute("in2", in2);

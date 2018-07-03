@@ -69,7 +69,7 @@ package org.apache.royale.svg
 		{
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElement;
+				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
 				var offset:Element = addSvgElementToElement(filter, "feOffset") as Element;
 				offset.setAttribute("dx", dx);
 				offset.setAttribute("dy", dy);
