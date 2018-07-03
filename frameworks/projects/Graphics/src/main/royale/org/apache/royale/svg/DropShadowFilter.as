@@ -37,6 +37,10 @@ package org.apache.royale.svg
 		private var _dx:Number;
 		private var _dy:Number;
 		private var _stdDeviation:Number;
+		private var _red:Number = 0;
+		private var _green:Number = 0;
+		private var _blue:Number = 0;
+		private var _opacity:Number = 1;
 
 		public function DropShadowFilter()
 		{
@@ -63,8 +67,15 @@ package org.apache.royale.svg
 			var blur:BlurFilterElement = loadBeadFromValuesManager(BlurFilterElement, "blurFilterElement", value) as BlurFilterElement;
 			blur.stdDeviation = stdDeviation;
 			blur.blurResult = "blurResult";
+			var colorMatrix:ColorMatrixFilterElement = loadBeadFromValuesManager(ColorMatrixFilterElement, "colorMatrixFilterElement", value) as ColorMatrixFilterElement;
+			colorMatrix.in1 = "blurResult";
+			colorMatrix.red = red;
+			colorMatrix.green = green;
+			colorMatrix.blue = blue;
+			colorMatrix.opacity = opacity;
+			colorMatrix.colorMatrixResult = "colorMatrixResult";
 			var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
-			blend.in2 = "blurResult";
+			blend.in2 = "colorMatrixResult";
 			value.removeBead(this);
 		}
 
@@ -141,6 +152,78 @@ package org.apache.royale.svg
 		public function set stdDeviation(value:Number):void
 		{
 			_stdDeviation = value;
+		}
+
+		/**
+		 *  The red component of the drop shadow
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get red():Number
+		{
+			return _red;
+		}
+		
+		public function set red(value:Number):void
+		{
+			_red = value;
+		}
+
+		/**
+		 *  The green component of the drop shadow
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get green():Number
+		{
+			return _green;
+		}
+		
+		public function set green(value:Number):void
+		{
+			_green = value;
+		}
+
+		/**
+		 *  The blue component of the drop shadow
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get blue():Number
+		{
+			return _blue;
+		}
+		
+		public function set blue(value:Number):void
+		{
+			_blue = value;
+		}
+
+		/**
+		 *  The opacity component of the drop shadow
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get opacity():Number
+		{
+			return _opacity;
+		}
+		
+		public function set opacity(value:Number):void
+		{
+			_opacity = value;
 		}
 	}
 }
