@@ -68,7 +68,7 @@ package org.apache.royale.svg
 		{
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElement;
+				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
 				var offset:Element = addSvgElementToElement(filter, "feGaussianBlur") as Element;
 				offset.setAttribute("stdDeviation", stdDeviation);
 				offset.setAttribute("result", blurResult);
