@@ -75,6 +75,14 @@ package org.apache.royale.svg
 			}
 		}
 
+		/**
+		 *  The Gaussian blur standard deviation
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get stdDeviation():Number
 		{
 			return _stdDeviation;
@@ -85,6 +93,15 @@ package org.apache.royale.svg
 			_stdDeviation = value;
 		}
 
+		/**
+		 *  Where to write the result of this filter. 
+		 *  This is useful for using the result as a source for another filter element.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get blurResult():String
 		{
 			return _blurResult;

@@ -78,6 +78,14 @@ package org.apache.royale.svg
 			}
 		}
 
+		/**
+		 *  The x offset
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get dx():Number
 		{
 			return _dx;
@@ -88,6 +96,14 @@ package org.apache.royale.svg
 			_dx = value;
 		}
 
+		/**
+		 *  The y offset
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get dy():Number
 		{
 			return _dy;
@@ -98,6 +114,15 @@ package org.apache.royale.svg
 			_dy = value;
 		}
 
+		/**
+		 *  Where to write the result of this filter. 
+		 *  This is useful for using the result as a source for another filter element.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get offsetResult():String
 		{
 			return _offsetResult;
