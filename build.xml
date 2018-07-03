@@ -1601,6 +1601,7 @@ limitations under the License.
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ListAndDataGridTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/NumericStepperTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/DateFieldTestScript.mxml" />
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/spark/scripts/ButtonTestScript.mxml" />
             <arg value="showSteps=true" />
             <arg value="showScripts=true" />

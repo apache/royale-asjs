@@ -33,8 +33,8 @@
         <symbol>halo.scripts.ColorPickerTestScript</symbol>
          -->
         <symbol>halo.scripts.NumericStepperTestScript</symbol>
-        <!--
         <symbol>halo.scripts.DateFieldTestScript</symbol>
+        <!--
         <symbol>halo.scripts.MenuTestScript</symbol>
         <symbol>halo.scripts.MenuBarTestScript</symbol>
         <symbol>halo.scripts.FocusManagerTestScript</symbol>

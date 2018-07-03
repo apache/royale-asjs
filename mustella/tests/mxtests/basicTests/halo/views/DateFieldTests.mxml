@@ -19,8 +19,8 @@
 -->
 <mx:VBox 
     xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark"
-    xmlns:mx="library://ns.adobe.com/flex/mx"                >
+    xmlns:s="library://ns.apache.org/royale/spark"
+    xmlns:mx="library://ns.apache.org/royale/mx"                >
 
 <fx:Script>
 <![CDATA[
