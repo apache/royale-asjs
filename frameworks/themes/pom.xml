@@ -34,7 +34,8 @@
 
   <modules>
     <module>Basic</module>
-    
+    <module>MDL</module>
+
     <module>JewelTheme</module>
     
     	<module>Jewel-Light-NoFlat-Primary-Amethyst-Theme</module>
