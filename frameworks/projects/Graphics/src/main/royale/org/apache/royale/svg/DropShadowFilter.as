@@ -68,30 +68,35 @@ package org.apache.royale.svg
 			value.removeBead(this);
 		}
 
-		public function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
+		private function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
 		{
-			var result:IBead = strand.getBeadByType(classOrInterface);
-			if (!result)
+			var result:IBead;
+			var c:Class = ValuesManager.valuesImpl.getValue(this, classOrInterfaceName) as Class;
+			if (c)
 			{
-				var c:Class = ValuesManager.valuesImpl.getValue(this, classOrInterfaceName) as Class;
-				if (c)
-				{
-					COMPILE::JS
-						{
-							var f:Function = c as Function;
-							result = new f() as IBead;
-						}
-						COMPILE::SWF
-						{
-							result = new c() as IBead;
-						}
-						if (result)
-							strand.addBead(result);
-				}
+				COMPILE::JS
+					{
+						var f:Function = c as Function;
+						result = new f() as IBead;
+					}
+					COMPILE::SWF
+					{
+						result = new c() as IBead;
+					}
+					if (result)
+						strand.addBead(result);
 			}
 			return result;
 		}
 
+		/**
+		 *  The drop shadow x offset
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get dx():Number
 		{
 			return _dx;
@@ -102,6 +107,14 @@ package org.apache.royale.svg
 			_dx = value;
 		}
 		
+		/**
+		 *  The drop shadow y offset
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get dy():Number
 		{
 			return _dy;
@@ -112,6 +125,14 @@ package org.apache.royale.svg
 			_dy = value;
 		}
 
+		/**
+		 *  The Gaussian blur standard deviation for the drop shadow
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get stdDeviation():Number
 		{
 			return _stdDeviation;

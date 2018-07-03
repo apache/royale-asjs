@@ -103,7 +103,7 @@ package org.apache.royale.svg
 		{
 			var svgElement:Node = host.element as Element;
 			var defs:Element = getChildNode(svgElement, "defs") as Element;
-			filterElement = getChildNode(defs, "filter") as Element;
+			_filterElement = getChildNode(defs, "filter") as Element;
 			filterElement.id = "myDropShadow" + UIDUtil.createUID();
 			filterElement.setAttribute("width", _width);
 			filterElement.setAttribute("height", _height);
@@ -150,17 +150,18 @@ package org.apache.royale.svg
 		}
 		
 		COMPILE::JS
+		/**
+		 *  This is the DOM element where filter elements get added
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		public function get filterElement():Element
 		{
 			return _filterElement;
 		}
-
-		COMPILE::JS
-		public function set filterElement(value:Element):void
-		{
-			_filterElement = value;
-		}
-
 	}
 }
 
