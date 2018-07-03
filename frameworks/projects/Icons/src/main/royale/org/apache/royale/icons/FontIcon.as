@@ -29,7 +29,7 @@ package org.apache.royale.icons
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public class Icon extends IconBase
+    public class FontIcon extends FontIconBase
     {
         /**
          *  constructor.
@@ -39,12 +39,14 @@ package org.apache.royale.icons
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
          */
-        public function Icon()
+        public function FontIcon()
         {
             super();
+
+            typeNames = "fonticon";
         }
         
-        private var _text:String = "";
+        protected var _text:String = "";
         /**
          *  The text of the icon
          *  
@@ -63,13 +65,7 @@ package org.apache.royale.icons
 
 			COMPILE::JS
 			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-                
-                textNode.nodeValue = value;	
+                textNode.nodeValue = _text;	
 			}
 		}
 
