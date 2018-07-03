@@ -35,6 +35,7 @@ limitations under the License.
 
 			    var link:String = renderer.href;
                 main.showContent(link);
+                drawer.close();
             }
         ]]>
     </fx:Script>
@@ -75,7 +76,7 @@ limitations under the License.
     <j:TopAppBar id="topappbar" fixed="true">
         <j:TopAppBarRow>
             <j:TopAppBarSection>
-                <j:Button click="drawer.open = !drawer.open">
+                <j:Button click="drawer.open()">
                     <j:icon>
                         <js:Icon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>

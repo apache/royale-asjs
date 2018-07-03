@@ -72,13 +72,13 @@ package org.apache.royale.jewel
 				var hostClassList:DOMTokenList = hostComponent.positioner.classList;
 				if (hostClassList.contains("drawer"))
 				{
-					open = false;
+					close();
 					//dispatchEvent(new Event("closeDrawer"));
 				}
 			}
 		}
 
-		private var _open:Boolean;
+		private var _isOpen:Boolean;
         /**
          *  Open or close the drawer
          *
@@ -87,24 +87,34 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
          */
-		public function get open():Boolean
+		public function get isOpen():Boolean
 		{
-            return _open;
+            return _isOpen;
 		}
 
-		public function set open(value:Boolean):void
+		public function set isOpen(value:Boolean):void
 		{
-            if (_open != value)
+            if (_isOpen != value)
             {
-                _open = value;
+                _isOpen = value;
 
-                toggleClass("open", _open);
+                toggleClass("open", _isOpen);
 
 				COMPILE::JS
 				{//avoid scroll in html
-					document.body.classList.toggle("remove-app-scroll", _open);
+					document.body.classList.toggle("remove-app-scroll", _isOpen);
 				}
             }
+		}
+
+		public function open():void
+		{
+            isOpen = true;
+		}
+
+		public function close():void
+		{
+            isOpen = false;
 		}
 
 		COMPILE::JS
