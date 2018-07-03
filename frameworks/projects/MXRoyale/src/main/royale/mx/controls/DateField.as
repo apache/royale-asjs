@@ -31,34 +31,24 @@ import flash.geom.Rectangle;
 import flash.ui.Keyboard; */
 
 //import mx.controls.dataGridClasses.DataGridListData;
+import mx.controls.beads.DateFieldView;
 import mx.controls.listClasses.BaseListData;
-//import mx.controls.listClasses.IDropInListItemRenderer;
-//import mx.controls.listClasses.IListItemRenderer;
-//import mx.controls.listClasses.ListData;
 import mx.core.ClassFactory;
 import mx.core.IDataRenderer;
 import mx.core.IFactory;
-//import mx.core.LayoutDirection;
 import mx.core.mx_internal;
-//import mx.core.UIComponentGlobals;
 import mx.events.CalendarLayoutChangeEvent;
-//import mx.events.DateChooserEvent;
-//import mx.events.DropdownEvent;
 import mx.events.FlexEvent;
-//import mx.events.FlexMouseEvent;
-//import mx.events.InterManagerRequest;
 import mx.events.SandboxMouseEvent;
 import mx.managers.IFocusManagerComponent;
 import mx.managers.ISystemManager;
-//import mx.managers.PopUpManager;
-//import mx.resources.Locale;
-//import mx.resources.ResourceManager;
 import mx.styles.CSSStyleDeclaration;
-//import mx.styles.StyleManager;
 import mx.styles.StyleProxy;
 import mx.utils.ObjectUtil;
 
 use namespace mx_internal;
+
+import org.apache.royale.core.IDateChooserModel;
 
 //--------------------------------------
 //  Events
@@ -267,8 +257,8 @@ include "../styles/metadata/TextStyles.as" */
 
 [RequiresDataBinding(true)]
 
-[ResourceBundle("controls")]
-[ResourceBundle("SharedResources")]
+//[ResourceBundle("controls")]
+//[ResourceBundle("SharedResources")]
 
 /**
  *  The DateField control is a text field that shows the date
@@ -745,8 +735,7 @@ public class DateField extends ComboBase
      *  @productversion Flex 3
      */
     public function DateField()
-    {
-x=2;	
+    {	
         super();
      //   addEventListener(Event.REMOVED_FROM_STAGE, removedFromStageHandler);
     }
@@ -860,6 +849,7 @@ x=2;
        // invalidateProperties();
     }
 
+    
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -1239,12 +1229,6 @@ x=2;
     //----------------------------------
 
     /**
-     *  @private
-     *  Storage for the dropdown property.
-     */
-    private var _dropdown:DateChooser;
-
-    /**
      *  Contains a reference to the DateChooser control
      *  contained by the DateField control.  The class used 
      *  can be set with <code>dropdownFactory</code> as long as 
@@ -1257,7 +1241,7 @@ x=2;
      */
     public function get dropdown():DateChooser
     {
-        return _dropdown;
+        return (view as DateFieldView).popUp as DateChooser;
     }
 
     //----------------------------------
@@ -1873,17 +1857,6 @@ x=2;
     //  selectedDate
     //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the selectedDate property.
-     */
-    private var _selectedDate:Date = null;
-
-    /**
-     *  @private
-     */
-    private var selectedDateChanged:Boolean = false;
-
     [Bindable("change")]
     [Bindable("valueCommit")]
     [Bindable("selectedDateChanged")]
@@ -1908,7 +1881,7 @@ x=2;
      */
     public function get selectedDate():Date
     {
-        return _selectedDate;
+        return (model as IDateChooserModel).selectedDate;
     }
 
     /**
@@ -1916,6 +1889,7 @@ x=2;
      */
     public function set selectedDate(value:Date):void
     {
+        (model as IDateChooserModel).selectedDate = value;
        /*  if (ObjectUtil.dateCompare(_selectedDate, value) == 0) 
             return;
 
@@ -2889,7 +2863,20 @@ x=2;
         return showingDropdown;
     } */
 
-    
+    /**
+     *  @private
+     */
+    override public function get text():String
+    {
+        var s:String = (view as DateFieldView).textInput.text;
+        return s == null ? "" : s;
+    }
+   
+    override public function setFocus():void
+    {
+        return (view as DateFieldView).setFocus();
+        
+    }
 }
 
 }
