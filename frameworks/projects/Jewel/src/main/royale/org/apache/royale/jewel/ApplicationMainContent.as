@@ -68,14 +68,21 @@ package org.apache.royale.jewel
 			for (var i:int = 0; i < numElements; i++)
 			{
 				var content:IActivable = getElementAt(i) as IActivable;
-				
-				if(content.id == id)
+
+				try
 				{
-					content.isActive = true;
+					if(content.id == id)
+					{
+						content.isActive = true;
+					}
+					else
+					{
+						content.isActive = false;
+					}
 				}
-				else
+				catch (error:Error)
 				{
-					content.isActive = false;
+					throw new Error ("One or more content in ApplicationMainContent is not implementing IActivable interface.");	
 				}
 			}
         }

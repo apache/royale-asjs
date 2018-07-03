@@ -35,7 +35,7 @@ package org.apache.royale.jewel.beads.controllers
 
     /**
      *  The ListSingleSelectionMouseController class is a controller for
-     *  org.apache.royale.html.List.  Controllers
+     *  org.apache.royale.jewel.List.  Controllers
      *  watch for events from the interactive portions of a View and
      *  update the data model or dispatch a semantic event.
      *  This controller watches for events from the item renderers

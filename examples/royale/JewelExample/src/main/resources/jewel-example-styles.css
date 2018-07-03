@@ -25,12 +25,12 @@
     margin: 20px;
 }
 
-.navIconLinItemRenderer
+.navIconLinkItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
 }
 
-.navIconLinItemRenderer .icon
+.navIconLinkItemRenderer .icon
 {
     margin-right: 24px;
 }
