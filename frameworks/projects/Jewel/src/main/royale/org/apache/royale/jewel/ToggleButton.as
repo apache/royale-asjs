@@ -19,12 +19,9 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.ISelectable;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IToggleButtonModel;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.Event;
+    import org.apache.royale.core.IIcon;
 
     COMPILE::SWF
     {
@@ -61,7 +58,7 @@ package org.apache.royale.jewel
     [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
-     *  The ToggleButton class is a TextButton that supports
+     *  The ToggleButton class is a Button that supports
      *  a selected property.
      *
      *  @langversion 3.0
@@ -122,7 +119,7 @@ package org.apache.royale.jewel
             COMPILE::SWF
             {
                 IToggleButtonModel(model).selected = value;
-                internalSelected()
+                internalSelected();
                 dispatchEvent(new Event("change"));
             }
             COMPILE::JS
@@ -182,6 +179,22 @@ package org.apache.royale.jewel
                 if(isToggleTextButtonSelected != _selected)
                     toggleClass("selected", _selected);
                                 
+            }
+
+            if(icon && icon is ISelectable)
+            {
+               var selectableIcon:ISelectable = icon as ISelectable;
+               selectableIcon.selected = _selected;
+            }
+        }
+
+        override public function set icon(value:IIcon):void
+        {
+            super.icon = value;
+            if(icon && icon is ISelectable)
+            {
+               var selectableIcon:ISelectable = icon as ISelectable;
+               selectableIcon.selected = _selected;
             }
         }
 

@@ -81,7 +81,7 @@ limitations under the License.
             <j:TopAppBarSection>
                 <j:Button click="drawer.open()">
                     <j:icon>
-                        <js:Icon text="{MaterialIconType.MENU}" material="true"/>
+                        <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
                 </j:Button>
                 <j:TopAppBarTitle text="Apache Royale Jewel UI Set Theme Showcase"/>
@@ -89,12 +89,12 @@ limitations under the License.
             <j:TopAppBarSection alignRight="true">
                 <j:Button click="topappbar.visible = !topappbar.visible">
                     <j:icon>
-                        <js:Icon text="{MaterialIconType.VISIBILITY}" material="true"/>
+                        <js:FontIcon text="{MaterialIconType.VISIBILITY}" material="true"/>
                     </j:icon>
                 </j:Button>
                 <j:ToggleButton click="toggleTopAppBarFixed()">
                     <j:icon>
-                        <js:Icon text="{MaterialIconType.LOCK}" material="true"/>
+                        <js:ToggleFontIcon text="{MaterialIconType.LOCK}" selectedText="{MaterialIconType.LOCK_OPEN}" material="true"/>
                     </j:icon>
                 </j:ToggleButton>
             </j:TopAppBarSection>
