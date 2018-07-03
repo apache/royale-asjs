@@ -32,8 +32,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.PointUtils;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.html.DateChooser;
+	import org.apache.royale.html.supportClasses.IDateChooser;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TextInput;
 	COMPILE::SWF
@@ -157,7 +158,7 @@ package org.apache.royale.html.beads
 			_textInput.text = formatter.formattedString;
 		}
 
-		private var _popUp:DateChooser;
+		private var _popUp:IDateChooser;
 
 		/**
 		 *  The pop-up component that holds the selection list.
@@ -167,7 +168,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get popUp():DateChooser
+		public function get popUp():IDateChooser
 		{
 			return _popUp;
 		}
@@ -194,11 +195,9 @@ package org.apache.royale.html.beads
 				if (value)
 				{
 					if (!_popUp)
-					{
-						_popUp = new DateChooser();
-						_popUp.width = 210;
-						_popUp.height = 230;
-					}
+                    {
+                        _popUp = ValuesManager.valuesImpl.newInstance(_strand, "iPopUp") as IDateChooser;
+                    }
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;

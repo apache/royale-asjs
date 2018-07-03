@@ -69,7 +69,7 @@ package org.apache.royale.html.beads.controllers
 			_strand = value;
 			
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;			
-			IEventDispatcher(viewBead.menuButton).addEventListener("click", clickHandler);
+			IEventDispatcher(_strand).addEventListener("click", clickHandler);
 		}
 		
 		/**
