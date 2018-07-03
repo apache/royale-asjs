@@ -1,4 +1,3 @@
-/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,37 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-*/
 
-@namespace "http://www.w3.org/1999/xhtml";
+// Jewel Button
 
-.mainContent {
-    padding: 20px;
-}
+// Button variables
+$button-margin: 0 !default
+$button-padding: 0.72em 1.12em !default
 
-.navIconLinkItemRenderer
-{
-    IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
-}
+.jewel.togglebutton
+    margin: $button-margin
+    padding: $button-padding
 
-.navIconLinkItemRenderer .icon
-{
-    margin-right: 24px;
-}
+    cursor: pointer
+    user-select: none
 
-.jewel.drawerheader img
-{
-    height: 140px;
-    padding: 16px;
-}
+    display: inline-flex
+    position: relative
+    align-items: center
+    justify-content: center
+    zoom: 1
+    vertical-align: middle
+    overflow: hidden
+    outline: none
 
-.wrapper {
-    outline: 0px dashed navy;
-}
+    // -- BUTTON LABEL
+    white-space: nowrap
+    line-height: normal !important
 
-.box {
-    background: #dedede;
-    border-radius: 5px;
-    padding: 10px;
-    outline: 1px dashed navy;
-}
+    text:
+        align: center
+        decoration: none
+
+    // &:focus
+
+    &[disabled]
+        cursor: unset
+
+    .icon
+        margin-left: 0px
+        margin-right: 8px
+
+@media -royale-swf
+    j|ToggleTextButton
+        //IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ToggleButtonModel")
+        //IBeadView:  ClassReference("org.apache.royale.html.beads.CSSTextToggleButtonView")

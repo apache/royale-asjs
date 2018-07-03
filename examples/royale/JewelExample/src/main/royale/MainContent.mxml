@@ -34,6 +34,12 @@ limitations under the License.
                 main.showContent(item.href);
                 drawer.close();
             }
+
+            private function toggleTopAppBarFixed():void
+            {
+                topappbar.fixed = !topappbar.fixed;
+                main.hasTopAppBar = topappbar.fixed;
+            }
         ]]>
     </fx:Script>
 
@@ -86,16 +92,16 @@ limitations under the License.
                         <js:Icon text="{MaterialIconType.VISIBILITY}" material="true"/>
                     </j:icon>
                 </j:Button>
-                <j:Button click="topappbar.fixed = !topappbar.fixed">
+                <j:ToggleButton click="toggleTopAppBarFixed()">
                     <j:icon>
                         <js:Icon text="{MaterialIconType.LOCK}" material="true"/>
                     </j:icon>
-                </j:Button>
+                </j:ToggleButton>
             </j:TopAppBarSection>
         </j:TopAppBarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent id="main">
+    <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
         <local:AlertPlayGround id="alert_panel"/>
         <local:ButtonPlayGround id="button_panel" isActive="true"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>

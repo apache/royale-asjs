@@ -23,6 +23,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
 	
 	/**
 	 * The default property uses when additional MXML content appears within an element's
@@ -67,7 +69,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */    
-	public class Container extends ContainerBase implements IMXMLDocument
+	public class Container extends ContainerBase implements IMXMLDocument, IClassSelectorListSupport
 	{
         /**
          *  Constructor.
@@ -79,12 +81,66 @@ package org.apache.royale.jewel
          */
 		public function Container()
 		{
-			COMPILE::JS
-			{
-				typeNames = 'jewel container';
-			}
 			super();
+			classSelectorList = new ClassSelectorList(this);
+			typeNames = "";
 		}
+
+		protected var classSelectorList:ClassSelectorList;
+
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
+		
+		/**
+         *  adds a class name
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public function addClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.add(name);
+            }
+        }
+
+        /**
+		 *  removes a class name
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+		 */
+        public function removeClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.remove(name);
+            }
+        }
+
+        /**
+		 *  toggle a class name
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function toggleClass(name:String, value:Boolean):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.toggle(name, value);
+            }
+        }
 		
 		private var _mxmlDescriptor:Array;
 		private var _mxmlDocument:Object = this;

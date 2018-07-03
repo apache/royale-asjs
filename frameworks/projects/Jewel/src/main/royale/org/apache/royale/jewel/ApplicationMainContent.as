@@ -53,6 +53,35 @@ package org.apache.royale.jewel
             typeNames = "jewel main";
 		}
 		
+		private var _hasTopAppBar:Boolean;
+
+        /**
+         *  a boolean flag to indicate if the container needs to make some room
+		 *  for a TopAppBar so content doesn't be hide
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get hasTopAppBar():Boolean
+		{
+            return _hasTopAppBar;
+		}
+
+		public function set hasTopAppBar(value:Boolean):void
+		{
+            if (_hasTopAppBar != value)
+            {
+                _hasTopAppBar = value;
+
+                COMPILE::JS
+                {
+                    toggleClass("has-topappbar", _hasTopAppBar);
+                }
+            }
+		}
+
 		/**
 		 *  shows a concrete content and hides the rest
 		 * 
