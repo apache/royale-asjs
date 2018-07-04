@@ -104,7 +104,13 @@ package org.apache.royale.utils
         {
             COMPILE::JS
             {
-            component.positioner.classList.toggle(name, value);
+            //IE11 does not support second value so instead of
+            //component.positioner.classList.toggle(name, value);
+            if(value)
+                component.positioner.classList.add(name);
+            else
+                component.positioner.classList.remove(name);
+
             if (!component.parent && value)
                 startIndex++;
             }

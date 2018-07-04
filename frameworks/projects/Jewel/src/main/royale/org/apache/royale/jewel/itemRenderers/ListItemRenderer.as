@@ -137,10 +137,7 @@ package org.apache.royale.jewel.itemRenderers
 			//else
 			// 	useColor = backgroundColor;
 
-            COMPILE::JS
-            {
-                toggleClass("selected", selected);
-            }
+            toggleClass("selected", selected);
 		}
 	}
 }

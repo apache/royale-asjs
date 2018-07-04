@@ -84,10 +84,7 @@ package org.apache.royale.jewel
             {
                 _isActive = value;
 
-                COMPILE::JS
-                {
-                    toggleClass("is-active", _isActive);
-                }
+                toggleClass("is-active", _isActive);
             }
 		}
 	}

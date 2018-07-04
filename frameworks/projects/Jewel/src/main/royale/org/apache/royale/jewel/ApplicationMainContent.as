@@ -94,12 +94,12 @@ package org.apache.royale.jewel
 		 */
         public function showContent(id:String):void
         {
-			for (var i:int = 0; i < numElements; i++)
+			try
 			{
-				var content:IActivable = getElementAt(i) as IActivable;
-
-				try
+				for (var i:int = 0; i < numElements; i++)
 				{
+					var content:IActivable = getElementAt(i) as IActivable;
+					
 					if(content.id == id)
 					{
 						content.isActive = true;
@@ -109,10 +109,10 @@ package org.apache.royale.jewel
 						content.isActive = false;
 					}
 				}
-				catch (error:Error)
-				{
-					throw new Error ("One or more content in ApplicationMainContent is not implementing IActivable interface.");	
-				}
+			}
+			catch (error:Error)
+			{
+				throw new Error ("One or more content in ApplicationMainContent is not implementing IActivable interface.");	
 			}
         }
 

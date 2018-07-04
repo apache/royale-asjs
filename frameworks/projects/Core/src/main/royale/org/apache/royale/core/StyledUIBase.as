@@ -47,8 +47,8 @@ package org.apache.royale.core
          */
 		public function StyledUIBase()
 		{
-            super();
             classSelectorList = new ClassSelectorList(this);
+            super();
 		}
 
         COMPILE::JS
@@ -147,7 +147,7 @@ package org.apache.royale.core
         {
             COMPILE::JS
             {
-            return classSelectorList.contains(name);
+            return classSelectorList.contains(name);    
             }
             COMPILE::SWF
             {//not implemented

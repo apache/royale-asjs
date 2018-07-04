@@ -154,8 +154,10 @@ package org.apache.royale.jewel
         {
             selected = !selected;
         }
+
         COMPILE::SWF
         private var savedClassName:String;
+
         private function internalSelected():void
         {
             COMPILE::SWF
@@ -172,15 +174,12 @@ package org.apache.royale.jewel
                     className = (name ? " " + name : "");
                 }
             }
-            COMPILE::JS
-            {
-                var isToggleTextButtonSelected:Boolean = element.classList.contains("selected");
-                //sync the class with the state
-                if(isToggleTextButtonSelected != _selected)
-                    toggleClass("selected", _selected);
-                                
-            }
-
+            
+            var isToggleTextButtonSelected:Boolean = containsClass("selected");
+            //sync the class with the state
+            if(isToggleTextButtonSelected != _selected)
+                toggleClass("selected", _selected);
+            
             if(icon && icon is ISelectable)
             {
                var selectableIcon:ISelectable = icon as ISelectable;

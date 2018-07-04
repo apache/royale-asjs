@@ -165,13 +165,13 @@ package org.apache.royale.jewel
 		 */
 		public function containsClass(name:String):Boolean
         {
-            COMPILE::SWF
-            {//not implemented
-            return false;
-            }
             COMPILE::JS
             {
             return classSelectorList.contains(name);
+            }
+            COMPILE::SWF
+            {//not implemented
+            return false;
             }
         }
 

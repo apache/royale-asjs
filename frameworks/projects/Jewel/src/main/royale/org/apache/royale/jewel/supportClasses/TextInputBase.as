@@ -248,12 +248,9 @@ package org.apache.royale.jewel.supportClasses
         {
             _isInvalid = value;
 
-            COMPILE::JS
-            {
-                toggleClass("is-invalid", _isInvalid);
-                //positioner.classList.toggle("is-invalid", _isInvalid);
-                //typeNames = positioner.className;
-            }
+            toggleClass("is-invalid", _isInvalid);
+            //positioner.classList.toggle("is-invalid", _isInvalid);
+            //typeNames = positioner.className;
         }
 	}
 }
