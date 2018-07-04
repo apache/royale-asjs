@@ -39,7 +39,7 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </mdl:beads>
     
-    <js:Icon text="{navlink.icon}" material="true" visible="{navlink.icon != null}"/>
+    <js:FontIcon text="{navlink.icon}" material="true" visible="{navlink.icon != null}"/>
 
     <html:Span text="{navlink.label}"/>
     

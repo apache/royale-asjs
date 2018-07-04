@@ -31,6 +31,7 @@
     <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
 
     <component id="Button" class="org.apache.royale.jewel.Button"/>
+    <component id="ToggleButton" class="org.apache.royale.jewel.ToggleButton"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
     <component id="TextInput" class="org.apache.royale.jewel.TextInput"/>
     <component id="TextArea" class="org.apache.royale.jewel.TextArea"/>

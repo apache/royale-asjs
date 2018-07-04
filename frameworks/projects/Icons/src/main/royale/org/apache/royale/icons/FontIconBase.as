@@ -29,7 +29,7 @@ package org.apache.royale.icons
     }
 
     /**
-     *  IconBase is the base class to provide most common features 
+     *  FontIconBase is the base class to provide most common features 
      *  for all kinds of text based icons
      *
      *  @langversion 3.0
@@ -37,7 +37,7 @@ package org.apache.royale.icons
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public class IconBase extends UIBase implements IIcon
+    public class FontIconBase extends UIBase implements IIcon
     {
         /**
          *  constructor.
@@ -47,12 +47,11 @@ package org.apache.royale.icons
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
          */
-        public function IconBase()
+        public function FontIconBase()
         {
             super();
-
             
-            typeNames = "icon";
+            typeNames = "";
         }
 
         COMPILE::JS
@@ -74,8 +73,8 @@ package org.apache.royale.icons
         }
 
         /**
-         *  the icon text that matchs with MDL icon.
-         *  Check this url to see the icon list: https://material.io/icons/
+         *  the icon text that matchs with font icon.
+         *  override in extending classes
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

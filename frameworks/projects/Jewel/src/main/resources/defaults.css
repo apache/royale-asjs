@@ -103,6 +103,11 @@ j|Alert {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
 }
 
+.jewel.main {
+  width: 100%;
+  height: 100%;
+}
+
 j|ApplicationMainContent {
   IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
   IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
@@ -2686,6 +2691,32 @@ j|TitleBar {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TitleBarView");
 }
 
+.jewel.togglebutton {
+  margin: 0;
+  padding: 0.72em 1.12em;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  zoom: 1;
+  vertical-align: middle;
+  overflow: hidden;
+  outline: none;
+  white-space: nowrap;
+  line-height: normal !important;
+  text-align: center;
+  text-decoration: none;
+}
+.jewel.togglebutton[disabled] {
+  cursor: unset;
+}
+.jewel.togglebutton .icon {
+  margin-left: 0px;
+  margin-right: 8px;
+}
+
 .jewel.topappbar {
   display: flex;
   flex-direction: column;
@@ -2697,8 +2728,9 @@ j|TitleBar {
   position: fixed;
   top: 0px;
 }
-.jewel.topappbar.fixed + div {
-  padding-top: 64px;
+
+.has-topappbar {
+  padding-top: 64px !important;
 }
 
 .jewel.topappbarrow {

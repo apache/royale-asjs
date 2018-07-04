@@ -20,6 +20,6 @@
 
 
 <componentPackage>
-    <component id="Icon" class="org.apache.royale.icons.Icon"/>
-    
+    <component id="FontIcon" class="org.apache.royale.icons.FontIcon"/>
+    <component id="ToggleFontIcon" class="org.apache.royale.icons.ToggleFontIcon"/>
 </componentPackage>

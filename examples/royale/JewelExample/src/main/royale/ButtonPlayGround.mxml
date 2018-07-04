@@ -52,7 +52,7 @@ limitations under the License.
 		
 		<j:Button text="print" emphasis="primary">
 			<j:icon>
-				<js:Icon text="{MaterialIconType.PRINT}" material="true"/>
+				<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
 			</j:icon>
 		</j:Button>
 

@@ -26,8 +26,7 @@ package org.apache.royale.utils
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 1.0.0
+	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
 	public class ClassSelectorList
@@ -44,7 +43,13 @@ package org.apache.royale.utils
         
         /**
          * Add a class selector to the list.
+         * 
          * @param name Name of selector to add.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.3
          */
         public function add(name:String):void
         {
@@ -57,11 +62,17 @@ package org.apache.royale.utils
         }
         
         /**
-         * Add a class selector to the list.
+         * Removes a class selector from the list.
+         * 
          * @param name Name of selector to remove.
          *
          * @royaleignorecoercion HTMLElement
          * @royaleignorecoercion DOMTokenList
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.3
          */
         public function remove(name:String):void
         {
@@ -80,8 +91,14 @@ package org.apache.royale.utils
 
         /**
          * Add or remove a class selector to/from the list.
+         * 
          * @param name Name of selector to add or remove.
          * @param value True to add, False to remove.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.3
          */
         public function toggle(name:String, value:Boolean):void
         {
@@ -92,13 +109,42 @@ package org.apache.royale.utils
                 startIndex++;
             }
         }
+
+        /**
+		 *  Search for the name in the element class list 
+		 *
+         *  @param name Name of selector to find.
+         *  @return return true if the name is found or false otherwise.
+         * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function contains(name:String):Boolean
+        {
+            COMPILE::JS
+            {
+            return component.positioner.classList.contains(name);
+            }
+            COMPILE::SWF
+            {//not implemented
+            return false;
+            }
+        }
         
         
         /**
          * Add a space-separated list of names.
          * @param names Space-separated list of names to add.
+         * 
          * @royaleignorecoercion HTMLElement
          * @royaleignorecoercion DOMTokenList
+         * 
+         * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.3
          */
         public function addNames(names:String):void
         {

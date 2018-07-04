@@ -26,15 +26,19 @@ limitations under the License.
     
     <fx:Script>
         <![CDATA[
-            import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-
-            private function clickHandler(event:MouseEvent):void
+            import vos.NavigationLinkVO;
+            
+            private function changeHandler(event:Event):void
             {
-                var renderer:INavigationRenderer = event.target as INavigationRenderer;
-                //if (renderer == null) return;
+                var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
+                main.showContent(item.href);
+                drawer.close();
+            }
 
-			    var link:String = renderer.href;
-                main.showContent(link);
+            private function toggleTopAppBarFixed():void
+            {
+                topappbar.fixed = !topappbar.fixed;
+                main.hasTopAppBar = topappbar.fixed;
             }
         ]]>
     </fx:Script>
@@ -52,7 +56,7 @@ limitations under the License.
             <j:Image src="assets/apache-royale-jewel-logo-white.svg"/>
         </j:DrawerHeader>
         <j:DrawerContent>
-            <j:Navigation click="clickHandler(event)" className="navIconLinItemRenderer">
+            <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding
                         sourceID="mainNavigationModel"
@@ -61,7 +65,7 @@ limitations under the License.
                 </j:beads>
             </j:Navigation>
             <j:Divider/>
-            <j:Navigation click="clickHandler(event)" className="navIconLinItemRenderer">
+            <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding
                         sourceID="mainNavigationModel"
@@ -75,9 +79,9 @@ limitations under the License.
     <j:TopAppBar id="topappbar" fixed="true">
         <j:TopAppBarRow>
             <j:TopAppBarSection>
-                <j:Button click="drawer.open = !drawer.open">
+                <j:Button click="drawer.open()">
                     <j:icon>
-                        <js:Icon text="{MaterialIconType.MENU}" material="true"/>
+                        <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
                 </j:Button>
                 <j:TopAppBarTitle text="Apache Royale Jewel UI Set Theme Showcase"/>
@@ -85,19 +89,19 @@ limitations under the License.
             <j:TopAppBarSection alignRight="true">
                 <j:Button click="topappbar.visible = !topappbar.visible">
                     <j:icon>
-                        <js:Icon text="{MaterialIconType.VISIBILITY}" material="true"/>
+                        <js:FontIcon text="{MaterialIconType.VISIBILITY}" material="true"/>
                     </j:icon>
                 </j:Button>
-                <j:Button click="topappbar.fixed = !topappbar.fixed">
+                <j:ToggleButton click="toggleTopAppBarFixed()">
                     <j:icon>
-                        <js:Icon text="{MaterialIconType.LOCK}" material="true"/>
+                        <js:ToggleFontIcon text="{MaterialIconType.LOCK}" selectedText="{MaterialIconType.LOCK_OPEN}" material="true"/>
                     </j:icon>
-                </j:Button>
+                </j:ToggleButton>
             </j:TopAppBarSection>
         </j:TopAppBarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent id="main">
+    <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
         <local:AlertPlayGround id="alert_panel"/>
         <local:ButtonPlayGround id="button_panel" isActive="true"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>

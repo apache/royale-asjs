@@ -26,11 +26,11 @@
     <version>0.9.3-SNAPSHOT</version>
   </parent>
 
-  <artifactId>BasicTheme</artifactId>
+  <artifactId>MDLTheme</artifactId>
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <name>Apache Royale: Framework: Themes: Basic</name>
+  <name>Apache Royale: Framework: Themes: MDL</name>
 
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -43,8 +43,8 @@
         <configuration>
           <includeFiles>
             <include-file>
-              <name>basic.css</name>
-              <path>../src/basic.css</path>
+              <name>defaults.css</name>
+              <path>../src/defaults.css</path>
             </include-file>
           </includeFiles>
         </configuration>

@@ -27,8 +27,9 @@ package
      */
     internal class IconsClasses
     {
-        import org.apache.royale.icons.Icon; Icon;
-        import org.apache.royale.icons.IconBase; IconBase;
+        import org.apache.royale.icons.FontIconBase; FontIconBase;
+        import org.apache.royale.icons.FontIcon; FontIcon;
+        import org.apache.royale.icons.ToggleFontIcon; ToggleFontIcon;
         MaterialIconType;
     }
 

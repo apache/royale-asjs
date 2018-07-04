@@ -34,9 +34,10 @@ $top-app-bar-button-size: 48px
         position: fixed
         top: 0px
 
-        // this adjust the container declared after TopAppBar and with only one row (most common case)
-        + div
-            padding-top: $top-app-bar-row-height
+// this adjust the container declared after TopAppBar and with only one row (most common case)
+// used by ApplicationMainContent 
+.has-topappbar
+    padding-top: $top-app-bar-row-height !important
 
 .jewel.topappbarrow 
     display: flex
