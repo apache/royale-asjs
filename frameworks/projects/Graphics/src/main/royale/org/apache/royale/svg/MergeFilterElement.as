@@ -20,7 +20,6 @@ package org.apache.royale.svg
 {
 	
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
@@ -30,22 +29,19 @@ package org.apache.royale.svg
 	}
 
 	/**
-	 *  The OffsetFilterElement bead adds an offset to a filtered SVG element
+	 *  The BlendFilterElement blends several filter elements
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class OffsetFilterElement implements IBead
+	public class BlendFilterElement implements IBead
 	{
 		private var _strand:IStrand;
-		private var _dx:Number = 0;
-		private var _dy:Number = 0;
-		private var _in:String;
-		private var _offsetResult:String = "offsetResult";
+		private var _in2:String;
 
-		public function OffsetFilterElement()
+		public function BlendFilterElement()
 		{
 		}
 		
@@ -71,77 +67,29 @@ package org.apache.royale.svg
 			COMPILE::JS 
 			{
 				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var offset:Element = addSvgElementToElement(filter, "feOffset") as Element;
-				offset.setAttribute("dx", dx);
-				offset.setAttribute("dy", dy);
-//				offset.setAttribute("in", in);
-				offset.setAttribute("result", offsetResult);
+				var blend:Element = addSvgElementToElement(filter, "feBlend") as Element;
+				blend.setAttribute("in", "SourceGraphic");
+				blend.setAttribute("in2", in2);
+				blend.setAttribute("mode", "normal");
 			}
 		}
 
 		/**
-		 *  The x offset
+		 *  The filter element result which is blended with the source graphic.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get dx():Number
+		public function get in2():String
 		{
-			return _dx;
+			return _in2;
 		}
 
-		public function set dx(value:Number):void
+		public function set in2(value:String):void
 		{
-			_dx = value;
-		}
-
-		/**
-		 *  The y offset
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get dy():Number
-		{
-			return _dy;
-		}
-
-		public function set dy(value:Number):void
-		{
-			_dy = value;
-		}
-
-		/**
-		 *  Where to write the result of this filter. 
-		 *  This is useful for using the result as a source for another filter element.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get offsetResult():String
-		{
-			return _offsetResult;
-		}
-
-		public function set offsetResult(value:String):void
-		{
-			_offsetResult = value;
-		}
-
-		public function get in():String  
-		{
-			return _in;
-		}
-		
-		public function set in(value:String ):void 
-		{
-			_in = value;
+			_in2 = value;
 		}
 	}
 }
