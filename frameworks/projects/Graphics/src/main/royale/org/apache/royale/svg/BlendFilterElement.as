@@ -40,6 +40,7 @@ package org.apache.royale.svg
 	{
 		private var _strand:IStrand;
 		private var _in2:String;
+		private var _in:String;
 
 		public function BlendFilterElement()
 		{
@@ -68,7 +69,7 @@ package org.apache.royale.svg
 			{
 				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
 				var blend:Element = addSvgElementToElement(filter, "feBlend") as Element;
-				blend.setAttribute("in", "SourceGraphic");
+				blend.setAttribute("in", in);
 				blend.setAttribute("in2", in2);
 				blend.setAttribute("mode", "normal");
 			}
@@ -92,6 +93,15 @@ package org.apache.royale.svg
 			_in2 = value;
 		}
 
+		public function get in():String 
+		{
+			return _in;
+		}
+		
+		public function set in(value:String):void 
+		{
+			_in = value;
+		}
 	}
 }
 
