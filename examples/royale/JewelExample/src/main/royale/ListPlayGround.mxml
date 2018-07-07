@@ -51,7 +51,7 @@ limitations under the License.
 	</fx:Script>
 
     <j:model>
-        <models:ListsModel/>
+        <models:ListsModel id="listModel"/>
 	</j:model>
 
 	<j:beads>
@@ -72,5 +72,19 @@ limitations under the License.
 		<j:Label id="selected"/>
 
 		<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
+	</j:Card>
+
+	<j:Card>
+		<html:H3 text="Jewel List With ItemRenderer"/>
+		
+		<j:List width="200" height="300" className="iconListItemRenderer">
+			<j:beads>
+				<js:ConstantBinding
+					sourceID="listModel"
+					sourcePropertyName="iconListData"
+					destinationPropertyName="dataProvider" />
+			</j:beads>
+		</j:List>
+
 	</j:Card>
 </j:SectionContent>

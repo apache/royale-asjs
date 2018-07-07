@@ -1,4 +1,3 @@
-/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,46 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-*/
-
-@namespace "http://www.w3.org/1999/xhtml";
-
-.mainContent {
-    padding: 20px;
-}
-
-.iconListItemRenderer
+package vos
 {
-    IItemRenderer: ClassReference("itemRenderers.IconListItemRenderer");
-}
-.iconListItemRenderer .fonticon
-{
-    margin-right: 24px;
-}
+    [Bindable]
+    public class IconListVO
+    {
+        public var label:String;
+        public var icon:String;
 
-.navIconLinkItemRenderer
-{
-    IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
-}
-
-.navIconLinkItemRenderer .fonticon
-{
-    margin-right: 24px;
-}
-
-.jewel.drawerheader img
-{
-    height: 140px;
-    padding: 16px;
-}
-
-.wrapper {
-    outline: 0px dashed navy;
-}
-
-.box {
-    background: #dedede;
-    border-radius: 5px;
-    padding: 10px;
-    outline: 1px dashed navy;
+        public function IconListVO(label:String, icon:String = null)
+        {
+            this.label = label;
+            this.icon = icon;
+        }
+    }
 }

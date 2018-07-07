@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
+	import vos.IconListVO;
+	import org.apache.royale.collections.ArrayList;
+
 	public class ListsModel 
 	{
 		/**
@@ -37,5 +40,26 @@ package models
 			return _watchmen;
 		}
 
+		
+		/**
+		 * Used in the List example.
+		 */
+		private var _iconListData:ArrayList = new ArrayList([
+            new IconListVO("Alert", "web_asset"),
+            new IconListVO("Button", "crop_7_5"),
+            new IconListVO("DropDownList", "credit_card"),
+            new IconListVO("CheckBox", "check_box"),
+            new IconListVO("Label", "label"),
+            new IconListVO("List", "list_alt"),
+            new IconListVO("RadioButton", "radio_button_checked"),
+            new IconListVO("Slider", "storage"),
+            new IconListVO("Text", "subject"),
+            new IconListVO("TextInput", "text_fields")            
+        ]);
+
+		public function get iconListData():ArrayList
+		{
+			return _iconListData;
+		}
 	}
 }
