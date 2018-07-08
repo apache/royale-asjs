@@ -19,10 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IRenderedObject;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
 	{
@@ -37,47 +33,29 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class ColorMatrixFilterElement implements IBead
+	public class ColorMatrixFilterElement extends FilterElement
 	{
-		private var _strand:IStrand;
-		private var _in1:String = "SourceGraphic";
 		private var _red:Number = 0;
 		private var _green:Number = 0;
 		private var _blue:Number = 0;
 		private var _opacity:Number = 1;
-		private var _colorMatrixResult:String = "colorMatrixResult";
+		private var _filterElementResult:String = "filterElementResult";
 
 		public function ColorMatrixFilterElement()
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
 		
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		protected function onInitComplete(e:Event):void
+		override protected function onInitComplete(e:Event):void
 		{
+			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var colorMatrix:Element = addSvgElementToElement(filter, "feColorMatrix") as Element;
 				var matrixValues:String = "0 0 0 0 " + red / 255 + " 0 0 0 0 " + green  / 255 + " 0 0 0 0 " + blue / 255 + " 0 0 0 " + opacity + " 0";
-				colorMatrix.setAttribute("values", matrixValues);
-				colorMatrix.setAttribute("in1", in1);
-				colorMatrix.setAttribute("result", colorMatrixResult);
+				filterElement.setAttribute("values", matrixValues);
 			}
 		}
 
@@ -162,34 +140,21 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get colorMatrixResult():String
+		public function get filterElementResult():String
 		{
-			return _colorMatrixResult;
+			return _filterElementResult;
 		}
 
-		public function set colorMatrixResult(value:String):void
+		public function set filterElementResult(value:String):void
 		{
-			_colorMatrixResult = value;
+			_filterElementResult = value;
 		}
 
-		/**
-		 *  The source for this filter element
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get in1():String
+		COMPILE::JS
+		override protected function get filterElementType():String
 		{
-			return _in1;
+			return "feColorMatrix";
 		}
-
-		public function set in1(value:String):void
-		{
-			_in1 = value;
-		}
-
 	}
 }
 

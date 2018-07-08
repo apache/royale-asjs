@@ -19,9 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
 	{
@@ -36,56 +33,27 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class CompositeFilterElement implements IBead
+	public class CompositeFilterElement extends FilterElement
 	{
-		private var _strand:IStrand;
-		private var _in:String;
 		private var _in2:String;
-		private var _result:String;
 		private var _operator:String;
 
 		public function CompositeFilterElement()
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
 		
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		protected function onInitComplete(e:Event):void
+		override protected function onInitComplete(e:Event):void
 		{
+			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var compositeElement:Element = addSvgElementToElement(filter, "feComposite") as Element;
-				compositeElement.setAttribute("in", in);
-				compositeElement.setAttribute("in2", in2);
-				compositeElement.setAttribute("result", result);
-				compositeElement.setAttribute("operator", operator);
+				filterElement.setAttribute("in2", in2);
+				filterElement.setAttribute("operator", operator);
 			}
-		}
-
-		public function get in():String 
-		{
-			return _in;
-		}
-		
-		public function set in(value:String):void 
-		{
-			_in = value;
 		}
 
 		public function get in2():String 
@@ -108,14 +76,10 @@ package org.apache.royale.svg
 			_operator = value;
 		}
 
-		public function get result():String 
+		COMPILE::JS
+		override protected function get filterElementType():String
 		{
-			return _result;
-		}
-		
-		public function set result(value:String):void 
-		{
-			_result = value;
+			return "feComposite";
 		}
 	}
 }

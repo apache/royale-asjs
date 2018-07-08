@@ -19,10 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IRenderedObject;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
 	{
@@ -37,41 +33,24 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class BlurFilterElement implements IBead
+	public class BlurFilterElement extends FilterElement
 	{
-		private var _strand:IStrand;
 		private var _stdDeviation:Number = 3;
-		private var _blurResult:String = "blurResult";
 
 		public function BlurFilterElement()
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
 		
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		protected function onInitComplete(e:Event):void
+		override protected function onInitComplete(e:Event):void
 		{
+			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var offset:Element = addSvgElementToElement(filter, "feGaussianBlur") as Element;
-				offset.setAttribute("stdDeviation", stdDeviation);
-				offset.setAttribute("result", blurResult);
+				filterElement.setAttribute("stdDeviation", stdDeviation);
 			}
 		}
 
@@ -93,25 +72,12 @@ package org.apache.royale.svg
 			_stdDeviation = value;
 		}
 
-		/**
-		 *  Where to write the result of this filter. 
-		 *  This is useful for using the result as a source for another filter element.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get blurResult():String
-		{
-			return _blurResult;
-		}
 
-		public function set blurResult(value:String):void
+		COMPILE::JS
+		override protected function get filterElementType():String
 		{
-			_blurResult = value;
+			return "feGaussianBlur";
 		}
-
 	}
 }
 
