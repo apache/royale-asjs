@@ -72,7 +72,10 @@ package org.apache.royale.svg
 			{
 				var filter:Element = getFilterElementWrapper();
 				_filterElement = addSvgElementToElement(filter, filterElementType) as Element;
-				filterElement.setAttribute("result", result);
+				if (result)
+				{
+					filterElement.setAttribute("result", result);
+				}
 			}
 		}
 		
