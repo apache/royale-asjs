@@ -135,7 +135,7 @@ j|ApplicationMainContent {
 .jewel.button[disabled] {
   cursor: unset;
 }
-.jewel.button .icon {
+.jewel.button .fonticon {
   margin-left: 0px;
   margin-right: 8px;
 }
