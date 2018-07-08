@@ -19,10 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IRenderedObject;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
 	{
@@ -30,52 +26,33 @@ package org.apache.royale.svg
 	}
 
 	/**
-	 *  The OffsetFilterElement bead adds an offset to a filtered SVG element
+	 *  The OffsetFilterElement bead adds an filterElement to a filtered SVG element
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class OffsetFilterElement implements IBead
+	public class OffsetFilterElement extends FilterElement
 	{
-		private var _strand:IStrand;
 		private var _dx:Number = 0;
 		private var _dy:Number = 0;
-		private var _in:String;
-		private var _offsetResult:String = "offsetResult";
 
 		public function OffsetFilterElement()
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
 		
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		protected function onInitComplete(e:Event):void
+		override protected function onInitComplete(e:Event):void
 		{
+			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var offset:Element = addSvgElementToElement(filter, "feOffset") as Element;
-				offset.setAttribute("dx", dx);
-				offset.setAttribute("dy", dy);
-//				offset.setAttribute("in", in);
-				offset.setAttribute("result", offsetResult);
+				filterElement.setAttribute("dx", dx);
+				filterElement.setAttribute("dy", dy);
 			}
 		}
 
@@ -114,34 +91,11 @@ package org.apache.royale.svg
 		{
 			_dy = value;
 		}
-
-		/**
-		 *  Where to write the result of this filter. 
-		 *  This is useful for using the result as a source for another filter element.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get offsetResult():String
-		{
-			return _offsetResult;
-		}
-
-		public function set offsetResult(value:String):void
-		{
-			_offsetResult = value;
-		}
-
-		public function get in():String  
-		{
-			return _in;
-		}
 		
-		public function set in(value:String ):void 
+		COMPILE::JS
+		override protected function get filterElementType():String
 		{
-			_in = value;
+			return "feOffset";
 		}
 	}
 }

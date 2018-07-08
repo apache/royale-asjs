@@ -20,7 +20,6 @@ package org.apache.royale.svg
 {
 	
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
@@ -36,44 +35,33 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class InvertFilterElement implements IBead
+	public class InvertFilterElement extends FilterElement
 	{
-		private var _strand:IStrand;
-
+		
 		public function InvertFilterElement()
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
+		/*
+		* @royaleignorecoercion Element
+		*/
+		override protected function onInitComplete(e:Event):void
 		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
-		
-		/**
-		 * @royaleignorecoercion Element
-		 */
-		protected function onInitComplete(e:Event):void
-		{
+			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var componentTransfer:Element = addSvgElementToElement(filter, "feComponentTransfer") as Element;
-				componentTransfer.setAttribute("in", "SourceAlpha");
-				var funcA:Element = addSvgElementToElement(componentTransfer, "feFuncA") as Element;
+				filterElement.setAttribute("in", "SourceAlpha");
+				var funcA:Element = addSvgElementToElement(filterElement, "feFuncA") as Element;
 				funcA.setAttribute("type", "table");
 				funcA.setAttribute("tableValues", "1 0");
 			}
 		}
-
+			
+		COMPILE::JS
+		override protected function get filterElementType():String
+		{
+			return "feComponentTransfer";
+		}
 	}
 }
 

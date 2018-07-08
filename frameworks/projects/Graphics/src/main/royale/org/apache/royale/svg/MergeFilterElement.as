@@ -19,9 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
 	{
@@ -29,53 +26,38 @@ package org.apache.royale.svg
 	}
 
 	/**
-	 *  The BlendFilterElement blends several filter elements
+	 *  The BlendFilterElement filterElements several filter elements
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class BlendFilterElement implements IBead
+	public class BlendFilterElement extends FilterElement
 	{
-		private var _strand:IStrand;
 		private var _in2:String;
 
 		public function BlendFilterElement()
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
 		
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		protected function onInitComplete(e:Event):void
+		override protected function onInitComplete(e:Event):void
 		{
+			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var blend:Element = addSvgElementToElement(filter, "feBlend") as Element;
-				blend.setAttribute("in", "SourceGraphic");
-				blend.setAttribute("in2", in2);
-				blend.setAttribute("mode", "normal");
+				filterElement.setAttribute("in", "SourceGraphic");
+				filterElement.setAttribute("in2", in2);
+				filterElement.setAttribute("mode", "normal");
 			}
 		}
 
 		/**
-		 *  The filter element result which is blended with the source graphic.
+		 *  The filter element result which is filterElemented with the source graphic.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -90,6 +72,12 @@ package org.apache.royale.svg
 		public function set in2(value:String):void
 		{
 			_in2 = value;
+		}
+
+		COMPILE::JS
+		override protected function get filterElementType():String
+		{
+			return "feBlend";
 		}
 	}
 }
