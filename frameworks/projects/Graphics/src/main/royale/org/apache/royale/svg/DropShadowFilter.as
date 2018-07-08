@@ -76,6 +76,7 @@ package org.apache.royale.svg
 			spreadElement.result = "spreadResult";
 			spreadElement.spread = spread;
 			var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
+			blend.in = "SourceGraphic";
 			blend.in2 = "spreadResult";
 			value.removeBead(this);
 		}
