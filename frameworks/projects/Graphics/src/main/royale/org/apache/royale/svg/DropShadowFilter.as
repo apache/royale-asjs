@@ -42,6 +42,7 @@ package org.apache.royale.svg
 		private var _blue:Number = 0;
 		private var _opacity:Number = 1;
 		private var _spread:Number = 1;
+		private var _inset:Boolean;
 
 		public function DropShadowFilter()
 		{
@@ -62,6 +63,10 @@ package org.apache.royale.svg
 				return;
 			}
 			loadBeadFromValuesManager(Filter, "filter", value);
+			if (inset)
+			{
+				loadBeadFromValuesManager(InvertFilterElement, "invertFilterElement", value);
+			}
 			var offset:OffsetFilterElement = loadBeadFromValuesManager(OffsetFilterElement, "offsetFilterElement", value) as OffsetFilterElement;
 			offset.dx = dx;
 			offset.dy = dy;
@@ -73,11 +78,21 @@ package org.apache.royale.svg
 			colorMatrix.blue = blue;
 			colorMatrix.opacity = opacity;
 			var spreadElement:SpreadFilterElement = loadBeadFromValuesManager(SpreadFilterElement, "spreadFilterElement", value) as SpreadFilterElement;
-			spreadElement.result = "spreadResult";
+			if (!inset)
+			{
+				spreadElement.result = "spreadResult";
+			}
 			spreadElement.spread = spread;
+			if (inset)
+			{
+				var composite:CompositeFilterElement = loadBeadFromValuesManager(CompositeFilterElement, "compositeFilterElement", value) as CompositeFilterElement;
+				composite.in2 = "SourceAlpha";
+				composite.operator = "in";
+				composite.result = "compositeResult";
+			}
 			var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
-			blend.in = "SourceGraphic";
-			blend.in2 = "spreadResult";
+			blend.in = inset ? "compositeResult" : "SourceGraphic";
+			blend.in2 = inset ? "SourceGraphic" : "spreadResult";
 			value.removeBead(this);
 		}
 
@@ -88,16 +103,16 @@ package org.apache.royale.svg
 			if (c)
 			{
 				COMPILE::JS
-					{
-						var f:Function = c as Function;
-						result = new f() as IBead;
-					}
-					COMPILE::SWF
-					{
-						result = new c() as IBead;
-					}
-					if (result)
-						strand.addBead(result);
+				{
+				var f:Function = c as Function;
+					result = new f() as IBead;
+				}
+				COMPILE::SWF
+				{
+					result = new c() as IBead;
+				}
+				if (result)
+					strand.addBead(result);
 			}
 			return result;
 		}
@@ -244,6 +259,24 @@ package org.apache.royale.svg
 		public function set spread(value:Number):void
 		{
 			_spread = value;
+		}
+
+		/**
+		 *  Whether or not the drop shadow is inset.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get inset():Boolean 
+		{
+			return _inset;
+		}
+		
+		public function set inset(value:Boolean):void 
+		{
+			_inset = value;
 		}
 	}
 }

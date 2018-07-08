@@ -44,4 +44,6 @@ svg|DropShadowFilter
 	BlurFilterElement: ClassReference("org.apache.royale.svg.BlurFilterElement");
 	BlendFilterElement: ClassReference("org.apache.royale.svg.BlendFilterElement");
 	SpreadFilterElement: ClassReference("org.apache.royale.svg.SpreadFilterElement");
+	CompositeFilterElement: ClassReference("org.apache.royale.svg.CompositeFilterElement");
+	InvertFilterElement: ClassReference("org.apache.royale.svg.InvertFilterElement");
 }
