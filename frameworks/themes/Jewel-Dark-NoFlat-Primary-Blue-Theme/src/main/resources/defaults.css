@@ -230,15 +230,15 @@ j|Card {
   font-size: 16px;
 }
 
-.jewel.drawer {
+.jewel.drawer.float {
   color: rgba(0, 0, 0, 0.8);
 }
-.jewel.drawer::before {
+.jewel.drawer.float::before {
   background-color: rgba(0, 0, 0, 0.65);
   will-change: opacity;
   transition: opacity 0.4s 0ms;
 }
-.jewel.drawer .drawermain {
+.jewel.drawer.float .drawermain {
   box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7);
   transform: translateX(-104%);
   will-change: transform;
@@ -247,8 +247,23 @@ j|Card {
   background-color: #8c8c8c;
   transition: transform 250ms 0ms;
 }
-.jewel.drawer.open .drawermain {
+.jewel.drawer.float.open .drawermain {
   transform: none;
+  transition: transform 300ms 0ms;
+}
+.jewel.drawer.fixed .drawermain {
+  width: 240px;
+  transform: translateX(-104%);
+  will-change: transform;
+  transition: transform 250ms 0ms;
+  background-color: #8c8c8c;
+  border-left: 0;
+  border-right: 1px solid #595959;
+}
+.jewel.drawer.fixed.open {
+  width: 240px;
+}
+.jewel.drawer.fixed.open .drawermain {
   transition: transform 300ms 0ms;
 }
 
@@ -257,6 +272,9 @@ j|Card {
   border-bottom: 1px solid #0d79ba;
   color: #FFFFFF;
   padding: 16px;
+}
+.jewel.drawerheader::before {
+  padding-top: 56.25%;
 }
 .jewel.drawerheader div {
   padding: 16px;
@@ -476,11 +494,10 @@ j|Card {
   color: #737373;
 }
 
-.jewel.topappbar {
+.jewel.topappbar .topBarAppHeader {
   background: linear-gradient(#54b7f3, #24a3ef);
   border-top: 1px solid #83cbf6;
   border-bottom: 1px solid #0d79ba;
-  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7);
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(10, 90, 138, 0.7);
 }
