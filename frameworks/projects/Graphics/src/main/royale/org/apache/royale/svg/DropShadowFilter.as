@@ -22,6 +22,11 @@ package org.apache.royale.svg
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ValuesManager;
+	COMPILE::SWF 
+	{
+		import org.apache.royale.core.IRenderedObject;
+		import flash.filters.DropShadowFilter;
+	}
 
 	/**
 	 *  DropShadowFilter is a bead that injects a series of beads in the correct 
@@ -58,42 +63,57 @@ package org.apache.royale.svg
 		 */		
 		public function set strand(value:IStrand):void
 		{
-			if (!value)
+			COMPILE::JS 
 			{
-				return;
+				if (!value)
+				{
+					return;
+				}
+				loadBeadFromValuesManager(Filter, "filter", value);
+				if (inset)
+				{
+					loadBeadFromValuesManager(InvertFilterElement, "invertFilterElement", value);
+				}
+				if (!isNaN(dx) && !isNaN(dy) && (dx !=0 || dy !=0))
+				{
+					var offset:OffsetFilterElement = loadBeadFromValuesManager(OffsetFilterElement, "offsetFilterElement", value) as OffsetFilterElement;
+					offset.dx = dx;
+					offset.dy = dy;
+				}
+				var blur:BlurFilterElement = loadBeadFromValuesManager(BlurFilterElement, "blurFilterElement", value) as BlurFilterElement;
+				blur.stdDeviation = stdDeviation;
+				var colorMatrix:ColorMatrixFilterElement = loadBeadFromValuesManager(ColorMatrixFilterElement, "colorMatrixFilterElement", value) as ColorMatrixFilterElement;
+				colorMatrix.red = red;
+				colorMatrix.green = green;
+				colorMatrix.blue = blue;
+				colorMatrix.opacity = opacity;
+				var spreadElement:SpreadFilterElement = loadBeadFromValuesManager(SpreadFilterElement, "spreadFilterElement", value) as SpreadFilterElement;
+				if (!inset)
+				{
+					spreadElement.result = "spreadResult";
+				}
+				spreadElement.spread = spread;
+				if (inset)
+				{
+					var composite:CompositeFilterElement = loadBeadFromValuesManager(CompositeFilterElement, "compositeFilterElement", value) as CompositeFilterElement;
+					composite.in2 = "SourceAlpha";
+					composite.operator = "in";
+					composite.result = "compositeResult";
+				}
+				var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
+				blend.in = inset ? "compositeResult" : "SourceGraphic";
+				blend.in2 = inset ? "SourceGraphic" : "spreadResult";
+				value.removeBead(this);
 			}
-			loadBeadFromValuesManager(Filter, "filter", value);
-			if (inset)
+			COMPILE::SWF 
 			{
-				loadBeadFromValuesManager(InvertFilterElement, "invertFilterElement", value);
+				var distance:Number = Math.sqrt( (dx * dx) + (dy * dy) );
+				var radians:Number = Math.atan2(dy, dx);
+				var angle:Number =  (180/Math.PI) * radians;
+				var color:uint = red|green|blue;
+				var filter:flash.filters.DropShadowFilter = new flash.filters.DropShadowFilter(distance, angle, color, opacity, stdDeviation, stdDeviation, spread + 1, 1, inset);
+				(value as IRenderedObject).$displayObject.filters = [filter];
 			}
-			var offset:OffsetFilterElement = loadBeadFromValuesManager(OffsetFilterElement, "offsetFilterElement", value) as OffsetFilterElement;
-			offset.dx = dx;
-			offset.dy = dy;
-			var blur:BlurFilterElement = loadBeadFromValuesManager(BlurFilterElement, "blurFilterElement", value) as BlurFilterElement;
-			blur.stdDeviation = stdDeviation;
-			var colorMatrix:ColorMatrixFilterElement = loadBeadFromValuesManager(ColorMatrixFilterElement, "colorMatrixFilterElement", value) as ColorMatrixFilterElement;
-			colorMatrix.red = red;
-			colorMatrix.green = green;
-			colorMatrix.blue = blue;
-			colorMatrix.opacity = opacity;
-			var spreadElement:SpreadFilterElement = loadBeadFromValuesManager(SpreadFilterElement, "spreadFilterElement", value) as SpreadFilterElement;
-			if (!inset)
-			{
-				spreadElement.result = "spreadResult";
-			}
-			spreadElement.spread = spread;
-			if (inset)
-			{
-				var composite:CompositeFilterElement = loadBeadFromValuesManager(CompositeFilterElement, "compositeFilterElement", value) as CompositeFilterElement;
-				composite.in2 = "SourceAlpha";
-				composite.operator = "in";
-				composite.result = "compositeResult";
-			}
-			var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
-			blend.in = inset ? "compositeResult" : "SourceGraphic";
-			blend.in2 = inset ? "SourceGraphic" : "spreadResult";
-			value.removeBead(this);
 		}
 
 		private function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
