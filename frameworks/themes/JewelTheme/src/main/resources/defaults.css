@@ -584,6 +584,11 @@ j|Card {
   padding-right: 0;
 }
 
+.jewel.togglebutton .fonticon {
+  margin-left: 0px;
+  margin-right: 8px;
+}
+
 .jewel.button.secondary {
   background: linear-gradient(#f16c42, #ed4812);
   border: 1px solid #be390e;
