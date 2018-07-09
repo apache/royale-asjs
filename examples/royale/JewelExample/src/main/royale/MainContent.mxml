@@ -32,7 +32,8 @@ limitations under the License.
             {
                 var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
                 main.showContent(item.href);
-                drawer.close();
+                if(!drawer.fixed)
+                    drawer.close();
             }
 
             private function toggleTopAppBarFixed():void
@@ -51,7 +52,7 @@ limitations under the License.
 		<js:ContainerDataBinding/>
 	</j:beads>
 
-    <j:Drawer id="drawer">
+    <j:Drawer id="drawer" auto="true">
         <j:DrawerHeader>
             <j:Image src="assets/apache-royale-jewel-logo-white.svg"/>
         </j:DrawerHeader>
@@ -79,7 +80,7 @@ limitations under the License.
     <j:TopAppBar id="topappbar" fixed="true">
         <j:TopAppBarRow>
             <j:TopAppBarSection>
-                <j:Button click="drawer.open()">
+                <j:Button click="drawer.isOpen ? drawer.close() : drawer.open()">
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
@@ -87,7 +88,7 @@ limitations under the License.
                 <j:TopAppBarTitle text="Apache Royale Jewel UI Set Theme Showcase"/>
             </j:TopAppBarSection>
             <j:TopAppBarSection alignRight="true">
-                <j:Button click="topappbar.visible = !topappbar.visible">
+                <j:Button click="drawer.fixed = !drawer.fixed">
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.VISIBILITY}" material="true"/>
                     </j:icon>

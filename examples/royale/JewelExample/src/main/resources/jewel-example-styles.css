@@ -20,9 +20,16 @@
 */
 
 @namespace "http://www.w3.org/1999/xhtml";
+@namespace j "library://ns.apache.org/royale/jewel";
 
-.mainContent {
+.mainContent 
+{
     padding: 20px;
+}
+
+.jewel.section
+{
+    padding-top: 20px;
 }
 
 .iconListItemRenderer
@@ -47,7 +54,6 @@
 .jewel.drawerheader img
 {
     height: 140px;
-    padding: 16px;
 }
 
 .wrapper {

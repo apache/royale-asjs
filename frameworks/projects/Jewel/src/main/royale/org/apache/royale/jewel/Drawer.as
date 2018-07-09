@@ -19,34 +19,34 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IUIBase;
-
-	COMPILE::SWF
-    {
-		import org.apache.royale.core.IRenderedObject;
-        import flash.display.DisplayObject;
-    }
-
-	COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
+	import org.apache.royale.utils.StringUtil;
 
 	/**
 	 *  The Drawer class is a container component used for navigation
-	 *  can be opened with the menu icon on any screen size.
-	 *  If fixed could serve as sidebar navigation on larger screens.
+	 *  can be opened with the menu icon.
+	 * 
+	 *  It can be used in float or fixed modes. 
+	 *  
+	 *  float make the drawer appear over the screen without make anything change size
+	 *  and click outside the drawer will hide it. Usually clicking in some navigation option
+	 *  will hide it as well.
+	 * 
+	 *  fixed will need some place and make the other content shrink. click on navigation option 
+	 *  in the drawer usually doesn't hide it.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Drawer extends Group
+	public class Drawer extends DrawerBase
 	{
+		public static const FLOAT:String = "float";
+		public static const FIXED:String = "fixed";
+		public static const AUTO:String = "auto";
+
 		/**
 		 *  constructor.
 		 *
@@ -59,10 +59,26 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel drawer";
+			// defaults to float (notice that float or fixed is needed always)
+            typeNames = "jewel drawer " + FLOAT;
 
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
+
+			// TODO (carlosrovira) handle swipe touch gesture to close drawer in mobile (only on float)
+			// addEventListener("touchstart" handleTouchStart);
+			// addEventListener("touchmove" handleTouchMove);
+			// addEventListener("touchend" handleTouchEnd);
 		}
+
+		// private function handleTouchStart(event:Event):void
+		// {
+		// }
+		// private function handleTouchMove(event:Event):void
+		// {
+		// }
+		// private function handleTouchEnd(event:Event):void
+		// {
+		// }
 
 		private function internalMouseHandler(event:MouseEvent):void
 		{
@@ -73,7 +89,6 @@ package org.apache.royale.jewel
 				if (hostClassList.contains("drawer"))
 				{
 					close();
-					//dispatchEvent(new Event("closeDrawer"));
 				}
 			}
 		}
@@ -99,12 +114,26 @@ package org.apache.royale.jewel
                 _isOpen = value;
 
                 toggleClass("open", _isOpen);
+				
+				adjustAppScroll();
 
-				COMPILE::JS
-				{//avoid scroll in html
+				_isOpen ? dispatchEvent(new Event("openDrawer")) : dispatchEvent(new Event("closeDrawer"));
+            }
+		}
+
+		protected function adjustAppScroll():void
+		{
+			COMPILE::JS
+			{
+				//avoid scroll in html
+				if(fixed)
+				{
+					document.body.classList.remove("remove-app-scroll");
+				} else
+				{
 					document.body.classList.toggle("remove-app-scroll", _isOpen);
 				}
-            }
+			}
 		}
 
 		public function open():void
@@ -117,56 +146,124 @@ package org.apache.royale.jewel
             isOpen = false;
 		}
 
-		COMPILE::JS
-		private var nav:HTMLElement;
-
-		/**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
+		protected var _fixed:Boolean = false;
+        /**
+		 *  A boolean flag to switch between "float" and "fixed" effect selector.
+		 *  Optional. Makes the drawer always fixed instead of floating.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get fixed():Boolean
         {
-			nav = addElementToWrapper(this,'nav');
-			nav.className = "drawermain";
-			
-			var aside:HTMLElement = document.createElement('aside') as HTMLElement;
-			aside.appendChild(nav);
+            return _fixed;
+        }
+        public function set fixed(value:Boolean):void
+        {
+            if (_fixed != value)
+            {
+                _fixed = value;
 
-			positioner = aside as WrappedHTMLElement;
-			positioner.royale_wrapper = this;
+				if(_fixed)
+				{
+					typeNames = StringUtil.removeWord(typeNames, " " + FLOAT);
+					typeNames += " " + FIXED;
+				}
+				else
+				{
+					typeNames = StringUtil.removeWord(typeNames, " " + FIXED);
+					typeNames += " " + FLOAT;
+				}
 
-			return element;	
+				COMPILE::JS
+				{
+					if (parent)
+						setClassName(computeFinalClassNames()); 
+
+					toggleClass("open", _isOpen);
+				}
+            }
+        }
+
+		protected var _auto:Boolean = false;
+        /**
+		 *  A boolean flag to activate "auto" effect selector.
+		 *  Optional. Makes the drawer auto adapt using 
+		 *  a float behaviour on mobile and tablets and fixed
+		 *  behaviour on desktop.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get auto():Boolean
+        {
+            return _auto;
+        }
+        public function set auto(value:Boolean):void
+        {
+            if (_auto != value)
+            {
+                _auto = value;
+
+				COMPILE::JS
+				{
+				if(_auto)
+				{
+					window.addEventListener('resize', autoResizeHandler, false);
+				}
+				else
+				{
+					window.removeEventListener('resize', autoResizeHandler, false);
+				}
+				}
+
+                toggleClass("auto", _auto);
+            }
         }
 
 		/**
-         *  @copy org.apache.royale.core.IParent#addElement()
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-            COMPILE::SWF
-            {
-                if (c is IUIBase)
-                {
-                    if (c is IRenderedObject)
-                        $addChild(IRenderedObject(c).$displayObject);
-                    else
-                        $addChild(c as DisplayObject);                        
-                    IUIBase(c).addedToParent();
-                }
-                else
-                    $addChild(c as DisplayObject);
-            }
-            COMPILE::JS
-            {
-                nav.appendChild(c.positioner);
-                (c as IUIBase).addedToParent();
-            }
+		 *  When set to "auto" this resize handler monitors the width of the app window
+		 *  and switch between fixed and float modes.
+		 * 
+		 *  Note:This could be done with media queries, but since it handles open/close
+		 *  maybe this is the right way
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		private function autoResizeHandler(event:Event = null):void
+        {
+			COMPILE::JS
+			{
+				var outerWidth:Number = window.outerWidth;
+
+				var tmpFixed:Boolean = fixed;
+
+				// Desktop width size
+				if(outerWidth > 992)
+				{
+					fixed = true;
+					if(tmpFixed != fixed)
+					{
+						open();
+					}
+				}
+				else
+				{
+					fixed = false;
+					if(tmpFixed != fixed)
+					{
+						close();
+					}
+				}
+
+			}
 		}
 	}
 }

@@ -24,15 +24,19 @@ $top-app-bar-row-height: 64px
 $top-app-bar-button-size: 48px
 
 .jewel.topappbar
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    width: 100%
-    z-index: 4
-    
-    &.fixed
+    display: inline-flex
+    flex: 1 1 auto
+
+    .topBarAppHeader
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        width: 100%
+        z-index: 4
         position: fixed
-        top: 0px
+    
+        &.fixed
+            transition: box-shadow 200ms linear
 
 // this adjust the container declared after TopAppBar and with only one row (most common case)
 // used by ApplicationMainContent 
@@ -70,18 +74,52 @@ $top-app-bar-button-size: 48px
         outline: none
         text-decoration: none
         cursor: pointer
+        opacity: 1
 
-        &:hover, &:hover:focus, &:active, &:active:focus, &:focus
-            background: transparent
-            box-shadow: none
-            border: none
+        &:active, &:active:focus, &:focus
+            transition: opacity 0.4s 0ms
+            opacity: 0.5
 
-        &[disabled]
-            background: transparent
-            box-shadow: none
-            border: none
+        // &:before
+        //     content: ""
+        //     background: #90EE90
+        //     display: block
+        //     position: absolute
+        //     padding-top: 300%
+        //     padding-left: 350%
+        //     margin-left: -20px!important
+        //     margin-top: -120%
+        //     opacity: 0
+        //     transition: all 0.8s
+        // &:after
+        //     content: ""
+        //     background: #90EE90
+        //     display: block
+        //     position: absolute
+        //     padding-top: 300%
+        //     padding-left: 350%
+        //     margin-left: -20px!important
+        //     margin-top: -120%
+        //     opacity: 0
+        //     transition: all 0.8s
 
-        .icon
+        // &:active:after 
+        //     padding: 0
+        //     margin: 0
+        //     opacity: 1
+        //     transition: 0s
+
+        // &:hover, &:hover:focus, &:active, &:active:focus, &:focus
+        //     background: transparent
+        //     box-shadow: none
+        //     border: none
+
+        // &[disabled]
+        //     background: transparent
+        //     box-shadow: none
+        //     border: none
+
+        .fonticon
             margin-left: 0px
             margin-right: 0px
 

@@ -52,7 +52,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "" + VerticalLayout.LAYOUT_TYPE_NAMES;
+            typeNames = "applicationResponsiveView"; //+ VerticalLayout.LAYOUT_TYPE_NAMES;
 		}
         
 		private var _applicationModel:Object;

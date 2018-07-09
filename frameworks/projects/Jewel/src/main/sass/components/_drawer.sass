@@ -20,27 +20,14 @@
 // Jewel Drawer
 
 // Drawer variables
-$drawer-width-offset: 60px
-$drawer-max-width: 310px
+$drawer-float-width-offset: 60px
+$drawer-float-max-width: 310px
 
 .jewel.drawer
-    position: fixed
-    pointer-events: none
-    
-    top: 0
-    left: 0
-    
-    width: 100%
-    height: 100%
-    
-    overflow: hidden
-    contain: strict
-    
-    z-index: 5
 
-    &::before
-        position: absolute
-        display: block
+    &.float
+        position: fixed
+        pointer-events: none
         
         top: 0
         left: 0
@@ -48,35 +35,79 @@ $drawer-max-width: 310px
         width: 100%
         height: 100%
         
-        content: ""
-        opacity: 0
-
-    .drawermain
-        position: absolute
+        overflow: hidden
+        contain: strict
         
-        display: flex
-        flex-direction: column
-        
-        left: 0
-        right: initial
-        
-        height: 100%
-
-    &.open
-        pointer-events: auto
+        z-index: 5
 
         &::before
-            opacity: 1
+            position: absolute
+            display: block
+            
+            top: 0
+            left: 0
+            
+            width: 100%
+            height: 100%
+            
+            content: ""
+            opacity: 0
 
+        .drawermain
+            position: absolute
+            
+            display: flex
+            flex-direction: column
+            
+            left: 0
+            right: initial
+            
+            height: 100%
+
+        &.open
+            pointer-events: auto
+
+            &::before
+                opacity: 1
+
+    &.fixed
+        width: 0
+
+        .drawermain
+            display: inline-flex
+            flex-direction: column
+
+            left: 0
+            right: auto
+            
+            height: 100%
+            
+            overflow: hidden
+            touch-action: none
+  
+        &.open 
+            pointer-events: auto
+            
+            .drawermain
+                transform: none
+
+@media (min-width: $tablet)
+    .jewel.drawer
+        &.float
+            .drawermain
+                width: calc(100% - #{$drawer-float-width-offset})
+                max-width: $drawer-float-max-width
+
+// Used for float
+.remove-app-scroll
+    overflow: hidden
+
+// DrawerHeader
 .jewel.drawerheader
     position: relative
     display: flex
     flex-direction: column
     align-items: center
-    
-    // &::before 
-    //     display: block
-    //     content: ""
 
     div
         display: flex
@@ -87,6 +118,7 @@ $drawer-max-width: 310px
         left: 0
         align-items: flex-end
 
+// DrawerContent
 .jewel.drawercontent
     flex-grow: 1
     margin: 0
@@ -95,14 +127,7 @@ $drawer-max-width: 310px
     -webkit-overflow-scrolling: touch
     touch-action: pan-y
 
-@media (min-width: $tablet)
-    .jewel.drawer
-        .drawermain
-            width: calc(100% - #{$drawer-width-offset})
-            max-width: $drawer-max-width
 
-.remove-app-scroll
-    overflow: hidden
 
 j|Drawer
 

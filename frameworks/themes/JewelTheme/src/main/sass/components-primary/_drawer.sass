@@ -27,30 +27,56 @@ $drawer-transition-open: animation-standard(transform, $drawer-transition-open-t
 $drawer-overlay-color: #000 !default
 $drawer-overlay-opacity: .65 !default
 
+$drawer-fixed-width: 240px
+
 .jewel.drawer
-    color: rgba(0, 0, 0, 0.8)
-    
-    &::before
-        background-color: rgba($drawer-overlay-color, $drawer-overlay-opacity)
-        will-change: opacity
-        transition: animation-standard(opacity, .4s)
+
+    &.float
+        color: rgba(0, 0, 0, 0.8)
+        
+        &::before
+            background-color: rgba($drawer-overlay-color, $drawer-overlay-opacity)
+            will-change: opacity
+            transition: animation-standard(opacity, .4s)
 
 
-    .drawermain
-        box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7)
-        transform: translateX(-104%)
-        will-change: transform
-        width: calc(100% - #{$drawer-width-offset})
-        max-width: $drawer-max-width
-        background-color: lighten($default-color, 20%)
-        transition: $drawer-transition-close
-    
-    &.open        
         .drawermain
-            transform: none
-            transition: $drawer-transition-open
+            box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7)
+            transform: translateX(-104%)
+            will-change: transform
+            width: calc(100% - #{$drawer-width-offset})
+            max-width: $drawer-max-width
+            background-color: lighten($default-color, 20%)
+            transition: $drawer-transition-close
 
+        &.open        
+            .drawermain
+                transform: none
+                transition: $drawer-transition-open
 
+    &.fixed
+
+        .drawermain
+            width: $drawer-fixed-width
+            transform: translateX(-104%)
+            // transform: translateX(-100%) translateX(-20px)
+            will-change: transform
+            //max-width: $drawer-max-width
+            transition: $drawer-transition-close
+        
+            background-color: lighten($default-color, 20%)
+            border-left: 0
+            border-right: 1px solid $default-color
+
+        &.open
+            width: $drawer-fixed-width
+            
+            .drawermain
+                transition: $drawer-transition-open
+
+    // &.permanent
+
+// DrawerHeader
 .jewel.drawerheader
     @if $flat
         background: $primary-color
@@ -63,12 +89,14 @@ $drawer-overlay-opacity: .65 !default
     padding: $drawer-header-padding
 
     &::before 
-        // padding-top: 9 / 16 * 100%
+        padding-top: 9 / 16 * 100%
 
     div
         padding: $drawer-header-padding
 
+// DrawerContent
 .jewel.drawercontent
+
 
 
 j|Drawer

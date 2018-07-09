@@ -18,33 +18,53 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.events.Event;
 
 	COMPILE::SWF
     {
 		import org.apache.royale.core.IRenderedObject;
         import flash.display.DisplayObject;
     }
-    COMPILE::JS
+
+	COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	/**
-	 *  The TopAppBar class is a container component for different items like
-	 *  application title, navigation icon, and/or icon buttons.
-	 *  Normaly is located at the top of an application and use to fill all 
-	 *  horizontal availale space. It's responsive as screen size changes
-	 *
+     *  Dispatched when the drawer open
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+	[Event(name="openDrawer", type="org.apache.royale.events.Event")]
+
+	/**
+     *  Dispatched when the drawer close
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.3
+     */
+	[Event(name="closeDrawer", type="org.apache.royale.events.Event")]
+
+	/**
+	 *  The DrawerBase class is the base class for a container component 
+	 *  used for navigation.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class TopAppBar extends Group
+	public class DrawerBase extends Group
 	{
 		/**
 		 *  constructor.
@@ -54,100 +74,15 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function TopAppBar()
+		public function DrawerBase()
 		{
 			super();
 
-            typeNames = "jewel topappbar"
-			setListenersForFixed();
+            typeNames = "jewel drawer";
 		}
 
 		COMPILE::JS
-		private var currentOffset:Number = 0;
-		COMPILE::JS
-		private var lastPosition:Number = 0;
-
-		private function setListenersForFixed():void
-        {
-			COMPILE::JS
-			{
-			if(_fixed)
-			{
-				header.classList.add("fixed");
-				window.removeEventListener('scroll', scrollHandler, false);
-			}
-			else
-			{
-				header.classList.remove("fixed");
-				window.addEventListener('scroll', scrollHandler, false);
-			}
-			}
-		}
-
-		/**
-		 *  If not fixed this scroll handler manages that the top bar doesn't get lost above
-		 *  and will get back to screen sooner since only get scroll up by its size
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		private function scrollHandler(event:Event = null):void
-        {
-			COMPILE::JS
-            {
-				var offset:Number;
-				var currentPosition:Number = Math.max(window.pageYOffset, 0);
-				var diff:Number = currentPosition - lastPosition;
-				lastPosition = currentPosition;
-
-				currentOffset -= diff;
-				
-				if (currentOffset > 0) {
-					currentOffset = 0;
-				} else if (Math.abs(currentOffset) > header.clientHeight) {
-					currentOffset = -header.clientHeight;
-				}
-
-				offset = currentOffset;
-				if (Math.abs(offset) >= header.clientHeight) {
-					offset = -128;
-				}
-				
-				header.style.top = offset + "px";
-			}
-		}
-
-
-		protected var _fixed:Boolean = false;
-        /**
-		 *  A boolean flag to activate "fixed" effect selector.
-		 *  Optional. Makes the header always visible.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get fixed():Boolean
-        {
-            return _fixed;
-        }
-        public function set fixed(value:Boolean):void
-        {
-            if (_fixed != value)
-            {
-                _fixed = value;
-
-                //toggleClass("fixed", _fixed);
-				setListenersForFixed();
-            }
-        }
-
-
-		COMPILE::JS
-		private var header:HTMLElement;
+		protected var nav:HTMLElement;
 
 		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -155,17 +90,16 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			header = addElementToWrapper(this,'header');
-			header.className = "topBarAppHeader";
-			header.style.top = "0px";
+			nav = addElementToWrapper(this,'nav');
+			nav.className = "drawermain";
 			
-			var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-			div.appendChild(header);
+			var aside:HTMLElement = document.createElement('aside') as HTMLElement;
+			aside.appendChild(nav);
 
-			positioner = div as WrappedHTMLElement;
+			positioner = aside as WrappedHTMLElement;
 			positioner.royale_wrapper = this;
 
-			return element;
+			return element;	
         }
 
 		/**
@@ -194,7 +128,7 @@ package org.apache.royale.jewel
             }
             COMPILE::JS
             {
-                header.appendChild(c.positioner);
+                nav.appendChild(c.positioner);
                 (c as IUIBase).addedToParent();
             }
 		}
