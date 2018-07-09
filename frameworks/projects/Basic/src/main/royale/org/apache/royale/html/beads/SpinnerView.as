@@ -110,6 +110,8 @@ COMPILE::JS {
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			COMPILE::JS {
 				var host:UIBase = value as UIBase;
+				// depending on the surrounding layout, the element can be offset without this.
+				host.element.style.position = "absolute";
 
 				_increment = new SpinnerButton();
 				_increment.text = '\u25B2';
