@@ -31,6 +31,12 @@
     // position: relative
     // overflow: hidden !important
 
+// this adjust the container declared after TopAppBar and with only one row (most common case)
+// used by ApplicationMainContent 
+// depends on $top-app-bar-row-height
+.has-topappbar
+    padding-top: $top-app-bar-row-height !important
+
 j|ApplicationMainContent
     IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView")
     //IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout") // Basic layoutr doesn't work here

@@ -112,16 +112,6 @@ j|Alert {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
 }
 
-.jewel.main {
-  width: 100%;
-}
-
-j|ApplicationMainContent {
-  IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
-  IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
-}
-
 .jewel.button {
   margin: 0;
   padding: 0.72em 1.12em;
@@ -2753,10 +2743,6 @@ j|TitleBar {
   transition: box-shadow 200ms linear;
 }
 
-.has-topappbar {
-  padding-top: 64px !important;
-}
-
 .jewel.topappbarrow {
   display: flex;
   position: relative;
@@ -2811,6 +2797,20 @@ j|TitleBar {
   text-decoration: inherit;
   text-transform: inherit;
   text-overflow: ellipsis;
+}
+
+.jewel.main {
+  width: 100%;
+}
+
+.has-topappbar {
+  padding-top: 64px !important;
+}
+
+j|ApplicationMainContent {
+  IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+  IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
 }
 
 /*# sourceMappingURL=defaults.css.map */

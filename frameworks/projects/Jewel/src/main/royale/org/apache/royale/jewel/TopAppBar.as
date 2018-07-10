@@ -198,5 +198,41 @@ package org.apache.royale.jewel
                 (c as IUIBase).addedToParent();
             }
 		}
+
+		private var _hasDrawer:Boolean;
+
+        /**
+         *  a boolean flag to indicate if the container needs to make some room
+		 *  for a Drawer so content doesn't get lost on the right
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get hasDrawer():Boolean
+		{
+            return _hasDrawer;
+		}
+
+		public function set hasDrawer(value:Boolean):void
+		{
+            if (_hasDrawer != value)
+            {
+                _hasDrawer = value;
+
+                COMPILE::JS
+                {
+				if(_hasDrawer)
+				{
+					header.classList.add("has-drawer");
+				}
+				else
+				{
+					header.classList.remove("has-drawer");
+				}
+                }
+            }
+		}
 	}
 }

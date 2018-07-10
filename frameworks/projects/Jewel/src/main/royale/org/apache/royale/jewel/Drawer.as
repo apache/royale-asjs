@@ -94,6 +94,8 @@ package org.apache.royale.jewel
 		}
 
 		private var _isOpen:Boolean;
+
+		[Bindable]
         /**
          *  Open or close the drawer
          *
@@ -147,6 +149,8 @@ package org.apache.royale.jewel
 		}
 
 		protected var _fixed:Boolean = false;
+
+		[Bindable]
         /**
 		 *  A boolean flag to switch between "float" and "fixed" effect selector.
 		 *  Optional. Makes the drawer always fixed instead of floating.
@@ -222,6 +226,7 @@ package org.apache.royale.jewel
 				}
 
                 toggleClass("auto", _auto);
+				autoResizeHandler();
             }
         }
 

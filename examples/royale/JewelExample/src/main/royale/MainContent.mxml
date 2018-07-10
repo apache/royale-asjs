@@ -77,7 +77,7 @@ limitations under the License.
         </j:DrawerContent>
     </j:Drawer>
 
-    <j:TopAppBar id="topappbar" fixed="true">
+    <j:TopAppBar id="topappbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
         <j:TopAppBarRow>
             <j:TopAppBarSection>
                 <j:Button click="drawer.isOpen ? drawer.close() : drawer.open()">
@@ -104,7 +104,7 @@ limitations under the License.
 
     <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
         <local:AlertPlayGround id="alert_panel"/>
-        <local:ButtonPlayGround id="button_panel" isActive="true"/>
+        <local:ButtonPlayGround id="button_panel"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>
         <local:CheckBoxPlayGround id="checkbox_panel"/>
         <local:HeadingsAndText id="text_panel"/>
@@ -113,7 +113,7 @@ limitations under the License.
         <local:RadioButtonPlayGround id="radiobutton_panel"/>
         <local:SliderPlayGround id="slider_panel"/>
         <local:TextInputPlayGround id="textinput_panel"/>
-        <local:GridPlayGround id="grid_panel"/>
+        <local:GridPlayGround id="grid_panel" isActive="true"/>
         <local:CardPlayGround id="card_panel"/>
     </j:ApplicationMainContent>
     

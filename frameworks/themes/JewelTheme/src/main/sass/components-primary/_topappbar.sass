@@ -43,6 +43,11 @@ $top-app-bar-button-padding: 12px
             text:
                 shadow: 0 -1px 0 rgba(darken($primary-color, 30%), .7)
 
+        // this adjust the TopAppBar width when there's a drawer to avoid content on the right get lost (overflow the screen)
+        // used by TopAppBar
+        // depends on Drawer: $drawer-fixed-width
+        &.has-drawer
+            width: calc(100% - #{$drawer-fixed-width})
         //&.fixed
             // transition: box-shadow 200ms linear
 

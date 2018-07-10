@@ -57,12 +57,13 @@
 }
 
 .wrapper {
-    outline: 0px dashed navy;
+    /* outline: 0px dashed navy; */
 }
 
 .box {
     background: #dedede;
-    border-radius: 5px;
-    padding: 10px;
-    outline: 1px dashed navy;
+    border-radius: 3px;
+    padding: 12px;
+    color: white;
+    /* outline: 1px dashed navy; */
 }
