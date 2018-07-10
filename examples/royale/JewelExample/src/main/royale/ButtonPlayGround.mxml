@@ -34,50 +34,71 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<j:Card>
-		<html:H3 text="Jewel Button"/>
+	<j:Grid gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="100%">
+				<html:H3 text="Jewel Button"/>
+				
+				<j:Button text="Default" id="button" click="clickHandler(event)"/>
+				<j:Button text="Button With More Text"/>
+				<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
+				<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
+				<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
+				<j:Button text="Disabled" emphasis="{Button.PRIMARY}">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:Button>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="100%">
+				<html:H4 text="Button Sizes"/>
 		
-		<j:Button text="Default" id="button" click="clickHandler(event)"/>
-		<j:Button text="Button With More Text"/>
-		<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
-		<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
-		<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
-		<j:Button text="Disabled" emphasis="{Button.PRIMARY}">
-			<j:beads>
-				<j:Disabled/>
-			</j:beads>
-		</j:Button>
+				<j:Button text="xsmall">
+					<j:beads>
+						<j:SizeControl size="{SizeControl.XSMALL}"/>
+					</j:beads>
+				</j:Button>
+				<j:Button text="small" emphasis="{Button.PRIMARY}">
+					<j:beads>
+						<j:SizeControl size="{SizeControl.SMALL}"/>
+					</j:beads>
+				</j:Button>
+				<j:Button text="large" emphasis="{Button.SECONDARY}">
+					<j:beads>
+						<j:SizeControl size="{SizeControl.LARGE}"/>
+					</j:beads>
+				</j:Button>
+				<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
+					<j:beads>
+						<j:SizeControl size="{SizeControl.XLARGE}"/>
+					</j:beads>
+				</j:Button>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="100%">
+				<html:H4 text="Button with Icons"/>
+				
+				<j:Button text="print" emphasis="primary">
+					<j:icon>
+						<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
+					</j:icon>
+				</j:Button>
+				<j:Button emphasis="primary">
+					<j:icon>
+						<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
+					</j:icon>
+				</j:Button>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
 
-		<html:H4 text="Icons"/>
-		
-		<j:Button text="print" emphasis="primary">
-			<j:icon>
-				<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
-			</j:icon>
-		</j:Button>
-
-		<html:H4 text="Sizes"/>
-		
-		<j:Button text="xsmall">
-			<j:beads>
-				<j:SizeControl size="{SizeControl.XSMALL}"/>
-			</j:beads>
-		</j:Button>
-		<j:Button text="small" emphasis="{Button.PRIMARY}">
-			<j:beads>
-				<j:SizeControl size="{SizeControl.SMALL}"/>
-			</j:beads>
-		</j:Button>
-		<j:Button text="large" emphasis="{Button.SECONDARY}">
-			<j:beads>
-				<j:SizeControl size="{SizeControl.LARGE}"/>
-			</j:beads>
-		</j:Button>
-		<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
-			<j:beads>
-				<j:SizeControl size="{SizeControl.XLARGE}"/>
-			</j:beads>
-		</j:Button>
-	</j:Card>
-	
 </j:SectionContent>

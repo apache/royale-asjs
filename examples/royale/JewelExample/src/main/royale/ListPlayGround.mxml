@@ -56,36 +56,40 @@ limitations under the License.
 
 	<j:beads>
         <js:ContainerDataBinding/>
-		<j:VerticalLayout gap="3"/>
     </j:beads>
 
-	<j:Card>
-		<html:H3 text="Jewel List"/>
-		
-		<j:List id="list" width="200" height="300" change="onChange(event)">
-			<j:beads>
-				<js:ConstantBinding
-					sourcePropertyName="simple"
-					destinationPropertyName="dataProvider" />
-			</j:beads>
-		</j:List>
+	<j:Grid gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="100%">
+				<html:H3 text="Jewel List"/>
+				<j:List id="list" width="200" height="300" change="onChange(event)">
+					<j:beads>
+						<js:ConstantBinding
+							sourcePropertyName="simple"
+							destinationPropertyName="dataProvider" />
+					</j:beads>
+				</j:List>
+				<j:Label id="selected"/>
+				<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="100%">
+				<html:H3 text="Jewel List With ItemRenderer"/>
+				<j:List width="200" height="300" className="iconListItemRenderer">
+					<j:beads>
+						<js:ConstantBinding
+							sourceID="listModel"
+							sourcePropertyName="iconListData"
+							destinationPropertyName="dataProvider" />
+					</j:beads>
+				</j:List>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
 
-		<j:Label id="selected"/>
-
-		<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
-	</j:Card>
-
-	<j:Card>
-		<html:H3 text="Jewel List With ItemRenderer"/>
-		
-		<j:List width="200" height="300" className="iconListItemRenderer">
-			<j:beads>
-				<js:ConstantBinding
-					sourceID="listModel"
-					sourcePropertyName="iconListData"
-					destinationPropertyName="dataProvider" />
-			</j:beads>
-		</j:List>
-
-	</j:Card>
 </j:SectionContent>

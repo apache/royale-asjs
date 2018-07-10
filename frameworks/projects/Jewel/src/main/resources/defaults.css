@@ -133,16 +133,12 @@ j|Alert {
 .jewel.button[disabled] {
   cursor: unset;
 }
-.jewel.button .fonticon {
-  margin-left: 0px;
-  margin-right: 8px;
-}
 
 .jewel.card {
-  flex-direction: column;
-  min-width: 320px;
-  min-height: 180px;
-  width: 350px;
+  min-width: 240px;
+  min-height: 52px;
+  overflow: hidden;
+  position: relative;
 }
 
 j|Card {

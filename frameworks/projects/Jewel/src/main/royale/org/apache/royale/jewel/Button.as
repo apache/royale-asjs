@@ -489,7 +489,13 @@ package org.apache.royale.jewel
         {
             _icon = value;
 
-            toggleClass("icon", (_icon != null));
+            var iconClass:String = "icon"
+            if(text != "")
+            {
+                iconClass += "WithSpace";
+            }
+
+            toggleClass(iconClass, (_icon != null));
             
             COMPILE::JS
             {
