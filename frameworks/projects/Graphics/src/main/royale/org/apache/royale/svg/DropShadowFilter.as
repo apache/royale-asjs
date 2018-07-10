@@ -192,7 +192,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The red component of the drop shadow
+		 *  The red component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -210,7 +210,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The green component of the drop shadow
+		 *  The green component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -228,7 +228,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The blue component of the drop shadow
+		 *  The blue component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -246,7 +246,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The opacity component of the drop shadow
+		 *  The opacity component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

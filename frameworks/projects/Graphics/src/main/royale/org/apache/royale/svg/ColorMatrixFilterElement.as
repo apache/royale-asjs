@@ -54,13 +54,13 @@ package org.apache.royale.svg
 			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				var matrixValues:String = "0 0 0 0 " + red / 255 + " 0 0 0 0 " + green  / 255 + " 0 0 0 0 " + blue / 255 + " 0 0 0 " + opacity + " 0";
+				var matrixValues:String = "0 0 0 0 " + red + " 0 0 0 0 " + green + " 0 0 0 0 " + blue + " 0 0 0 " + opacity + " 0";
 				filterElement.setAttribute("values", matrixValues);
 			}
 		}
 
 		/**
-		 *  The red value
+		 *  The red value. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -78,7 +78,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The blue value
+		 *  The blue value. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -96,7 +96,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The green value
+		 *  The green value. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -114,7 +114,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The opacity value
+		 *  The opacity value. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
