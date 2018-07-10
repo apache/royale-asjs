@@ -501,6 +501,9 @@ j|Card {
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(11, 45, 43, 0.7);
 }
+.jewel.topappbar .topBarAppHeader.has-drawer {
+  width: calc(100% - 240px);
+}
 
 .jewel.topappbarsection {
   padding: 8px 12px;
