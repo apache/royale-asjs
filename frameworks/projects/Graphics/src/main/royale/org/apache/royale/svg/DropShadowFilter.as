@@ -124,7 +124,7 @@ package org.apache.royale.svg
 			{
 				COMPILE::JS
 				{
-				var f:Function = c as Function;
+					var f:Function = c as Function;
 					result = new f() as IBead;
 				}
 				COMPILE::SWF
