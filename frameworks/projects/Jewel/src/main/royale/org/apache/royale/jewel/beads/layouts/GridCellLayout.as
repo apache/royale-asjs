@@ -281,6 +281,129 @@ package org.apache.royale.jewel.beads.layouts
 			}
         }
 
+		private var _phoneVisible:Boolean;
+		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-phone" and "hidden-phone" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get phoneVisible():Boolean
+        {
+            return _phoneVisible;
+        }
+
+        public function set phoneVisible(value:Boolean):void
+        {
+			if (_phoneVisible != value)
+            {
+                COMPILE::JS
+                {
+					_phoneVisible = value;
+
+					if(hostComponent)
+					{
+						if(_phoneVisible)
+						{
+							if (hostClassList.contains("hidden-phone"))
+								hostClassList.remove("hidden-phone");
+							hostClassList.add("visible-phone");
+						} else
+						{
+							if (hostClassList.contains("visible-phone"))
+								hostClassList.remove("visible-phone");
+							hostClassList.add("hidden-phone");
+						}
+					}
+				}
+			}
+		}
+
+		private var _tabletVisible:Boolean;
+		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-tablet" and "hidden-tablet" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get tabletVisible():Boolean
+        {
+            return _tabletVisible;
+        }
+
+        public function set tabletVisible(value:Boolean):void
+        {
+			if (_tabletVisible != value)
+            {
+                COMPILE::JS
+                {
+					_tabletVisible = value;
+
+					if(hostComponent)
+					{
+						if(_tabletVisible)
+						{
+							if (hostClassList.contains("hidden-tablet"))
+								hostClassList.remove("hidden-tablet");
+							hostClassList.add("visible-tablet");
+						} else
+						{
+							if (hostClassList.contains("visible-tablet"))
+								hostClassList.remove("visible-tablet");
+							hostClassList.add("hidden-tablet");
+						}
+					}
+				}
+			}
+		}
+
+		private var _desktopVisible:Boolean;
+		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-desktop" and "hidden-desktop" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get desktopVisible():Boolean
+        {
+            return _desktopVisible;
+        }
+
+        public function set desktopVisible(value:Boolean):void
+        {
+			if (_desktopVisible != value)
+            {
+                COMPILE::JS
+                {
+					_desktopVisible = value;
+
+					if(hostComponent)
+					{
+						if(_desktopVisible)
+						{
+							if (hostClassList.contains("hidden-desktop"))
+								hostClassList.remove("hidden-desktop");
+							hostClassList.add("visible-desktop");
+						} else
+						{
+							if (hostClassList.contains("visible-desktop"))
+								hostClassList.remove("visible-desktop");
+							hostClassList.add("hidden-desktop");
+						}
+					}
+				}
+			}
+		}
+
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
 		 * @royaleignorecoercion org.apache.royale.core.UIBase

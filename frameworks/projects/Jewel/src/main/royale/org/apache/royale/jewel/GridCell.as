@@ -236,6 +236,120 @@ package org.apache.royale.jewel
         }
 
 		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-phone" and "hidden-phone" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get phoneVisible():Boolean
+        {
+            return layout.phoneVisible;
+        }
+
+        public function set phoneVisible(value:Boolean):void
+        {
+			if (layout.phoneVisible != value)
+            {
+                COMPILE::JS
+                {
+					layout.phoneVisible = value;
+
+					if(layout.phoneVisible)
+					{
+						typeNames = StringUtil.removeWord(typeNames, " hidden-phone");
+						typeNames += " visible-phone";
+					} else
+					{
+						typeNames = StringUtil.removeWord(typeNames, " visible-phone");
+						typeNames += " hidden-phone";
+					}
+
+					if (parent)
+                		setClassName(computeFinalClassNames()); 
+				}
+			}
+		}
+
+		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-tablet" and "hidden-tablet" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get tabletVisible():Boolean
+        {
+            return layout.tabletVisible;
+        }
+
+        public function set tabletVisible(value:Boolean):void
+        {
+			if (layout.tabletVisible != value)
+            {
+                COMPILE::JS
+                {
+					layout.tabletVisible = value;
+
+					if(layout.tabletVisible)
+					{
+						typeNames = StringUtil.removeWord(typeNames, " hidden-tablet");
+						typeNames += " visible-tablet";
+					} else
+					{
+						typeNames = StringUtil.removeWord(typeNames, " visible-tablet");
+						typeNames += " hidden-tablet";
+					}
+
+					if (parent)
+                		setClassName(computeFinalClassNames()); 
+				}
+			}
+		}
+
+		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-desktop" and "hidden-desktop" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get desktopVisible():Boolean
+        {
+            return layout.desktopVisible;
+        }
+
+        public function set desktopVisible(value:Boolean):void
+        {
+			if (layout.desktopVisible != value)
+            {
+                COMPILE::JS
+                {
+					layout.desktopVisible = value;
+
+					if(layout.desktopVisible)
+					{
+						typeNames = StringUtil.removeWord(typeNames, " hidden-desktop");
+						typeNames += " visible-desktop";
+					} else
+					{
+						typeNames = StringUtil.removeWord(typeNames, " visible-desktop");
+						typeNames += " hidden-desktop";
+					}
+
+					if (parent)
+                		setClassName(computeFinalClassNames());
+				}
+			}
+		}
+
+		/**
 		 *  Assigns variable gap to grid from 1 to 20
 		 *  Activate "gap-Xdp" effect selector to set a numeric gap 
 		 *  between grid cells
