@@ -22,3 +22,23 @@ $phone: 0px
 $tablet: 768px
 $desktop: 992px
 $widescreen: 1200px
+
+$devices: (phone: $phone, tablet: $tablet) !default
+$computers: (desktop: $desktop, widescreen: $widescreen) !default
+$sizes: map-merge($devices, $computers)
+$size-names: map-keys($sizes)
+
+// VIISBLE rules for responsive 
+$visible-sizes: ()
+@each $size in $size-names
+	$visible-sizes: append($visible-sizes, ".visible-#{$size}", comma)
+
+// HIDDEN rules for responsive 
+$hidden-sizes: ()
+@each $size in $size-names
+	$hidden-sizes: append($hidden-sizes, ".hidden-#{$size}", comma)
+
+// HIDDEN FLEX rules for responsive 
+$hidden-flex-sizes: ()
+@each $size in $size-names
+	$hidden-flex-sizes: append($hidden-flex-sizes, ".hidden-flex-#{$size}", comma)

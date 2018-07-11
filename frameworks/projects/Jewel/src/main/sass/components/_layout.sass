@@ -87,12 +87,6 @@ $gap: 0px
 $grid-columns: 12 !default
 $gap-size: 10px !default
 
-
-$devices: (phone: $phone, tablet: $tablet) !default
-$computers: (desktop: $desktop, lg: $widescreen) !default
-$sizes: map-merge($devices, $computers)
-$size-names: map-keys($sizes)
-
 .layout.grid
 	flex-flow: row wrap
 	align-items: stretch
@@ -111,7 +105,16 @@ $size-names: map-keys($sizes)
 				@for $j from 1 through $i
 					.#{$size}-col-#{$j}-#{$i}
 						width: percentage($j / $i)
-	
+						
+		@if index($size-names, $size) == 1
+			@media (max-width: nth(nth($sizes, 2), 2) - 1)
+				+visible-classes($size)
+		@else if index($size-names, $size) != 1 and index($size-names, $size) < length($sizes)
+			@media (min-width: map-get($sizes, $size)) and (max-width: nth(nth($sizes, index($size-names, $size) + 1), 2) - 1)
+				+visible-classes($size)
+		@else if index($size-names, $size) == length($sizes)
+			@media (min-width: nth(nth($sizes, length($sizes)), 2))
+				+visible-classes($size)
 	&.gap	
 		> *
 			margin: $gap-size / 2
@@ -121,30 +124,13 @@ $size-names: map-keys($sizes)
 					@for $j from 1 through $i
 						.#{$size}-col-#{$j}-#{$i}
 							width: calc(#{percentage($j / $i)} - #{$gap-size})
-							
-		
-	// // Visible classes
-	// =visible-classes($size)
-	// .visible-#{$size}
-	// display: block !important
 
-	// .frow.visible-#{$size}
-	// display: flex !important
+#{$visible-sizes}
+	display: none !important
 
-	// .hidden-#{$size},
-	// .frow.hidden-#{$size}
-	// display: none !important
+#{$hidden-sizes}
+	display: block !important
 
-	// // Reponsive flex direction classes
-	// =flex-directions($size)
-	// .direction-row-#{$size}
-	// flex-direction: row
+#{$hidden-flex-sizes}
+	display: flex !important
 
-	// .direction-reverse-#{$size}
-	// flex-direction: row-reverse
-
-	// .direction-column-#{$size}
-	// flex-direction: column
-
-	// .direction-column-reverse-#{$size}
-	// flex-direction: column-reverse

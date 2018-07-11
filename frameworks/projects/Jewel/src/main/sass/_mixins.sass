@@ -24,8 +24,10 @@
 	-ms-appearance: $val
 	appearance: $val
 
-//=trans($val...)
-//	-webkit-transition: $val
-//	-moz-transition: $val
-//	-o-transition: $val
-//	transition: $val
+// VISIBLE / HIDDEN responive rules
+=visible-classes($size)
+	.visible-#{$size}
+		display: flex !important
+
+	.hidden-#{$size}
+		display: none !important
