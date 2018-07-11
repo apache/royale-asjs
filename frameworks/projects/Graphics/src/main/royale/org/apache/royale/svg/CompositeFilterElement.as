@@ -46,14 +46,12 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		override protected function onInitComplete(e:Event):void
+		COMPILE::JS 
+		override protected function build():void
 		{
-			super.onInitComplete(e);
-			COMPILE::JS 
-			{
-				filterElement.setAttribute("in2", in2);
-				filterElement.setAttribute("operator", operator);
-			}
+			super.build();
+			filterElement.setAttribute("in2", in2);
+			filterElement.setAttribute("operator", operator);
 		}
 
 		public function get in2():String 
