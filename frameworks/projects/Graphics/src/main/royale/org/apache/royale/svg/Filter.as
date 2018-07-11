@@ -85,20 +85,12 @@ package org.apache.royale.svg
 			filterElementWrapper.setAttribute("width", _width);
 			filterElementWrapper.setAttribute("height", _height);
 			// clean up existing filter
-			if (filterElementWrapper.hasChildNodes())
-			{
-				var childNodes:Object = filterElementWrapper.childNodes;
-				for (var i:int = 0; i < childNodes.length; i++)
-				{
-					filterElementWrapper.removeChild(childNodes[i]);
-				}
-			}
-//			var flood:Element = addSvgElementToWrapper(filterElementWrapper, "feFlood") as Element;
-//			flood.setAttribute("flood-color", floodColor);
-//			flood.setAttribute("flood-alpha", floodAlpha);
-			// create blend
-			// apply filter
 			host.element.style["filter"] = "url(#" + filterElementWrapper.id + ")";
+			for (var i:int = 0; i < children.length; i++)
+			{
+				var filterElement:FilterElement = children[i] as FilterElement;
+				filterElement.buildOn(filterElementWrapper);
+			}
 		}
 		
 		COMPILE::JS
