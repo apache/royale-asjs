@@ -19,8 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
@@ -36,58 +34,35 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class FilterElement implements IBead
+	public class FilterElement
 	{
-		private var _strand:IStrand;
-		private var _result:String;
+		COMPILE::JS 
+		{
+			private var _filterElementWrapper:Element;
+		}
 		COMPILE::JS
 		{
 			private var _filterElement:Element;
 		}
+		private var _result:String;
 
 		public function FilterElement()
 		{
 		}
 		
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
-		
-		/**
 		 * @royaleignorecoercion Element
 		 */
-		protected function onInitComplete(e:Event):void
+		COMPILE::JS 
+		protected function build():void
 		{
-			COMPILE::JS 
+			_filterElement = addSvgElementToElement(filterElementWrapper, filterElementType) as Element;
+			if (result)
 			{
-				var filter:Element = getFilterElementWrapper();
-				_filterElement = addSvgElementToElement(filter, filterElementType) as Element;
-				if (result)
-				{
-					filterElement.setAttribute("result", result);
-				}
+				filterElement.setAttribute("result", result);
 			}
 		}
 		
-		/**
-		 * @royaleignorecoercion Element
-		 */
-		COMPILE::JS
-		protected function getFilterElementWrapper():Element
-		{
-			return (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-		}
-
 		/**
 		 *  Reference to the filter element result. This can later be used as input for a subsequent filter element.
 		 *  
@@ -120,6 +95,24 @@ package org.apache.royale.svg
 		protected function get filterElement():Element
 		{
 			return _filterElement;
+		}
+
+		/**
+		 * @royaleignorecoercion Element
+		 */
+		COMPIE::JS
+		public function get filterElementWrapper():Element 
+		{
+			return _filterElementWrapper;
+		}
+		
+		/**
+		 * @royaleignorecoercion Element
+		 */
+		COMPIE::JS
+		public function set filterElementWrapper(value:Element):void 
+		{
+			_filterElementWrapper = value;
 		}
 	}
 }

@@ -38,12 +38,4 @@ svg|BinaryImage
 svg|DropShadowFilter
 {
 	Filter: ClassReference("org.apache.royale.svg.Filter");
-	BlendFilterElement: ClassReference("org.apache.royale.svg.BlendFilterElement");
-	OffsetFilterElement: ClassReference("org.apache.royale.svg.OffsetFilterElement");
-	ColorMatrixFilterElement: ClassReference("org.apache.royale.svg.ColorMatrixFilterElement");
-	BlurFilterElement: ClassReference("org.apache.royale.svg.BlurFilterElement");
-	BlendFilterElement: ClassReference("org.apache.royale.svg.BlendFilterElement");
-	SpreadFilterElement: ClassReference("org.apache.royale.svg.SpreadFilterElement");
-	CompositeFilterElement: ClassReference("org.apache.royale.svg.CompositeFilterElement");
-	InvertFilterElement: ClassReference("org.apache.royale.svg.InvertFilterElement");
 }
