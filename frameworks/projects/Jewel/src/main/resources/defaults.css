@@ -2773,10 +2773,6 @@ j|TitleBar {
   cursor: pointer;
   opacity: 1;
 }
-.jewel.topappbarsection button:active, .jewel.topappbarsection button:active:focus, .jewel.topappbarsection button:focus {
-  transition: opacity 0.4s 0ms;
-  opacity: 0.5;
-}
 .jewel.topappbarsection button .fonticon {
   margin-left: 0px;
   margin-right: 0px;

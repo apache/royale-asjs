@@ -489,7 +489,7 @@ package org.apache.royale.jewel
         {
             _icon = value;
 
-            var iconClass:String = "icon"
+            var iconClass:String = "icon";
             if(text != "")
             {
                 iconClass += "WithSpace";
