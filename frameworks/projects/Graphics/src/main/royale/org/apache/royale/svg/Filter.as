@@ -81,7 +81,7 @@ package org.apache.royale.svg
 			var svgElement:Node = host.element as Element;
 			var defs:Element = getChildNode(svgElement, "defs") as Element;
 			_filterElementWrapper = getChildNode(defs, "filter") as Element;
-			filterElementWrapper.id = "myDropShadow" + UIDUtil.createUID();
+			filterElementWrapper.id = "myFilter" + UIDUtil.createUID();
 			filterElementWrapper.setAttribute("width", _width);
 			filterElementWrapper.setAttribute("height", _height);
 			// clean up existing filter
