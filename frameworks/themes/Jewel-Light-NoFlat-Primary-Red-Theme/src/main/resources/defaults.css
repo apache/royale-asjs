@@ -154,6 +154,14 @@ div {
   font-weight: 400;
   text-shadow: unset;
 }
+.jewel.button.icon i {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.jewel.button.iconWithSpace i {
+  margin-left: 0px;
+  margin-right: 8px;
+}
 
 .jewel.button.primary {
   background: linear-gradient(#ee343b, #dc121a);
