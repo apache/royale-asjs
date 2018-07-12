@@ -35,6 +35,7 @@ limitations under the License.
 
 
 	<html:H3 text="Grids"/>
+	<j:CheckBox text="Turn Gap on/off" change="useGap = !useGap;" selected="true"/>
 
 	<j:Grid className="wrapper" gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
@@ -461,9 +462,66 @@ limitations under the License.
 					phoneNumerator="1" phoneDenominator="4">
 			<html:Div className="box" text="12"/>
 		</j:GridCell>
-		
 	</j:Grid>
-	<j:Button text="gap: {useGap}" emphasis="primary" click="useGap = !useGap;"/>
 
+	<html:H3 text="Grids Responsive Visibility"/>
+
+	<j:Grid className="wrapper" gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="2">
+			<html:Div className="box" text="2a"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="2"
+					wideScreenVisible="false">
+			<html:Div className="box" text="2b - Hidden in WideScreen"/>
+		</j:GridCell>
+	</j:Grid>
+
+	<j:Grid className="wrapper" gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3"
+					phoneVisible="false">
+			<html:Div className="box" text="3a - Hidden in Phones"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3"
+					tabletVisible="false">
+			<html:Div className="box" text="3b - Hidden in Tablet"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="3c"/>
+		</j:GridCell>
+	</j:Grid>
+
+	<j:Grid className="wrapper" gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="4"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<html:Div className="box" text="4a"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="4"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<html:Div className="box" text="4b"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="4"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1"
+					desktopVisible="false">
+			<html:Div className="box" text="4c - Hidden in Desktop"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="4"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<html:Div className="box" text="4d"/>
+		</j:GridCell>
+	</j:Grid>
 	
 </j:SectionContent>

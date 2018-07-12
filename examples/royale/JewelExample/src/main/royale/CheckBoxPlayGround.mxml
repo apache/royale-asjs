@@ -21,7 +21,7 @@ limitations under the License.
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:html="library://ns.apache.org/royale/html">
 
-	<j:Card>   
+	<j:Card width="350">   
 		<html:H3 text="Jewel CheckBox"/>
 
 		<j:CheckBox text="Not Checkbox"/>

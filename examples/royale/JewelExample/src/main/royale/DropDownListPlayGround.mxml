@@ -39,7 +39,7 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:Card>
+	<j:Card width="350">
 		<j:beads>
 			<j:HorizontalLayout gap="3"/>
 			<js:ViewDataBinding />

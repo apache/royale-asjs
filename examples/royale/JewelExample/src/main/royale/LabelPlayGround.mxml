@@ -32,7 +32,7 @@ limitations under the License.
     	]]>
 	</fx:Script>
 	
-	<j:Card width="320">
+	<j:Card width="350">
 		<html:H3 text="Jewel Label"/>
 		
 		<j:Label id="label" text="This is a Label" click="labelClick(event)"/>

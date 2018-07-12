@@ -56,7 +56,7 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<j:Card>
+	<j:Card width="350">
 		<html:H3 text="Jewel Slider"/>
 		
 		<j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500"
