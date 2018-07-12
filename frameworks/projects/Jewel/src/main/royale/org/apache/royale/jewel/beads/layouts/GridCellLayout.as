@@ -404,6 +404,47 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
+		private var _wideScreenVisible:Boolean;
+		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-widescreen" and "hidden-widescreen" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get wideScreenVisible():Boolean
+        {
+            return _wideScreenVisible;
+        }
+
+        public function set wideScreenVisible(value:Boolean):void
+        {
+			if (_wideScreenVisible != value)
+            {
+                COMPILE::JS
+                {
+					_wideScreenVisible = value;
+
+					if(hostComponent)
+					{
+						if(_wideScreenVisible)
+						{
+							if (hostClassList.contains("hidden-widescreen"))
+								hostClassList.remove("hidden-widescreen");
+							hostClassList.add("visible-widescreen");
+						} else
+						{
+							if (hostClassList.contains("visible-widescreen"))
+								hostClassList.remove("visible-widescreen");
+							hostClassList.add("hidden-widescreen");
+						}
+					}
+				}
+			}
+		}
+
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
 		 * @royaleignorecoercion org.apache.royale.core.UIBase

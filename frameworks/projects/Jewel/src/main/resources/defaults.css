@@ -777,14 +777,6 @@ j|Label {
     width: 100%;
   }
 }
-@media (max-width: 767px) {
-  .layout.grid .visible-phone {
-    display: flex !important;
-  }
-  .layout.grid .hidden-phone {
-    display: none !important;
-  }
-}
 @media (min-width: 768px) {
   .layout.grid .tablet-col-1-1 {
     width: 100%;
@@ -1019,14 +1011,6 @@ j|Label {
   }
   .layout.grid .tablet-col-12-12 {
     width: 100%;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .layout.grid .visible-tablet {
-    display: flex !important;
-  }
-  .layout.grid .hidden-tablet {
-    display: none !important;
   }
 }
 @media (min-width: 992px) {
@@ -1265,14 +1249,6 @@ j|Label {
     width: 100%;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
-  .layout.grid .visible-desktop {
-    display: flex !important;
-  }
-  .layout.grid .hidden-desktop {
-    display: none !important;
-  }
-}
 @media (min-width: 1200px) {
   .layout.grid .widescreen-col-1-1 {
     width: 100%;
@@ -1507,14 +1483,6 @@ j|Label {
   }
   .layout.grid .widescreen-col-12-12 {
     width: 100%;
-  }
-}
-@media (min-width: 1200px) {
-  .layout.grid .visible-widescreen {
-    display: flex !important;
-  }
-  .layout.grid .hidden-widescreen {
-    display: none !important;
   }
 }
 .layout.grid.gap > * {
@@ -2465,16 +2433,48 @@ j|Label {
   }
 }
 
+@media (max-width: 767px) {
+  .visible-phone {
+    display: block !important;
+  }
+
+  .hidden-phone {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .visible-tablet {
+    display: block !important;
+  }
+
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .visible-desktop {
+    display: block !important;
+  }
+
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .visible-widescreen {
+    display: block !important;
+  }
+
+  .hidden-widescreen {
+    display: none !important;
+  }
+}
 .visible-phone, .visible-tablet, .visible-desktop, .visible-widescreen {
   display: none !important;
 }
 
 .hidden-phone, .hidden-tablet, .hidden-desktop, .hidden-widescreen {
   display: block !important;
-}
-
-.hidden-flex-phone, .hidden-flex-tablet, .hidden-flex-desktop, .hidden-flex-widescreen {
-  display: flex !important;
 }
 
 .jewel.list, .jewel.navigation {

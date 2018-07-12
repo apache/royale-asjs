@@ -81,6 +81,9 @@ limitations under the License.
         <j:TopAppBarRow>
             <j:TopAppBarSection>
                 <j:Button click="drawer.isOpen ? drawer.close() : drawer.open()">
+                    <js:beads>
+                        <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false"/>
+                    </js:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>

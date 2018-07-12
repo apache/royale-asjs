@@ -92,6 +92,10 @@ $gap-size: 10px !default
 	align-items: stretch
 	width: 100%
 	height: 100%
+	// align-content: stretch
+
+	// &.itemsFullHeight
+	// 	align-items: stretch
 	
 	> *
 		flex: 0 0 auto // flex-grow, flex-shrink and flex-basis
@@ -105,16 +109,6 @@ $gap-size: 10px !default
 				@for $j from 1 through $i
 					.#{$size}-col-#{$j}-#{$i}
 						width: percentage($j / $i)
-						
-		@if index($size-names, $size) == 1
-			@media (max-width: nth(nth($sizes, 2), 2) - 1)
-				+visible-classes($size)
-		@else if index($size-names, $size) != 1 and index($size-names, $size) < length($sizes)
-			@media (min-width: map-get($sizes, $size)) and (max-width: nth(nth($sizes, index($size-names, $size) + 1), 2) - 1)
-				+visible-classes($size)
-		@else if index($size-names, $size) == length($sizes)
-			@media (min-width: nth(nth($sizes, length($sizes)), 2))
-				+visible-classes($size)
 	&.gap	
 		> *
 			margin: $gap-size / 2
@@ -125,12 +119,23 @@ $gap-size: 10px !default
 						.#{$size}-col-#{$j}-#{$i}
 							width: calc(#{percentage($j / $i)} - #{$gap-size})
 
+@each $size in $size-names			
+	@if index($size-names, $size) == 1
+		@media (max-width: nth(nth($sizes, 2), 2) - 1)
+			+visible-hidden-responsive-rules($size)
+	@else if index($size-names, $size) != 1 and index($size-names, $size) < length($sizes)
+		@media (min-width: map-get($sizes, $size)) and (max-width: nth(nth($sizes, index($size-names, $size) + 1), 2) - 1)
+			+visible-hidden-responsive-rules($size)
+	@else if index($size-names, $size) == length($sizes)
+		@media (min-width: nth(nth($sizes, length($sizes)), 2))
+			+visible-hidden-responsive-rules($size)
+
 #{$visible-sizes}
 	display: none !important
 
 #{$hidden-sizes}
 	display: block !important
 
-#{$hidden-flex-sizes}
-	display: flex !important
+// #{$hidden-flex-sizes}
+// 	display: flex !important
 

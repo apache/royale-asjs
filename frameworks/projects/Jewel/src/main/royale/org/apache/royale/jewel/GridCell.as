@@ -350,6 +350,44 @@ package org.apache.royale.jewel
 		}
 
 		/**
+		 *  Makes the cell to be visible or hidden in phone size
+		 *  Uses "visible-widescreen" and "hidden-widescreen" effect selectors.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get wideScreenVisible():Boolean
+        {
+            return layout.wideScreenVisible;
+        }
+
+        public function set wideScreenVisible(value:Boolean):void
+        {
+			if (layout.wideScreenVisible != value)
+            {
+                COMPILE::JS
+                {
+					layout.wideScreenVisible = value;
+
+					if(layout.wideScreenVisible)
+					{
+						typeNames = StringUtil.removeWord(typeNames, " hidden-widescreen");
+						typeNames += " visible-widescreen";
+					} else
+					{
+						typeNames = StringUtil.removeWord(typeNames, " visible-widescreen");
+						typeNames += " hidden-widescreen";
+					}
+
+					if (parent)
+                		setClassName(computeFinalClassNames());
+				}
+			}
+		}
+
+		/**
 		 *  Assigns variable gap to grid from 1 to 20
 		 *  Activate "gap-Xdp" effect selector to set a numeric gap 
 		 *  between grid cells
