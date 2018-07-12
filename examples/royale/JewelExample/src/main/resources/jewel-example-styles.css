@@ -51,9 +51,10 @@
     margin-right: 24px;
 }
 
-.jewel.drawerheader img
+.jewel.drawerheader::before 
 {
-    height: 140px;
+    /*padding-top: 9 / 16 * 100%;*/
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
 }
 
 .wrapper {

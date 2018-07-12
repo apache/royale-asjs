@@ -54,7 +54,7 @@ limitations under the License.
 
     <j:Drawer id="drawer" auto="true">
         <j:DrawerHeader>
-            <j:Image src="assets/apache-royale-jewel-logo-white.svg"/>
+            <j:Image src="assets/apache-royale-jewel-logo-white.svg" height="140"/>
         </j:DrawerHeader>
         <j:DrawerContent>
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">

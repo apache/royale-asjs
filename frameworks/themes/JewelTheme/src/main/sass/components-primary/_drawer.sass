@@ -69,7 +69,7 @@ $drawer-fixed-width: 240px
             border-right: 1px solid $default-color
 
         &.open
-            width: $drawer-fixed-width
+            width: auto //$drawer-fixed-width
             
             .drawermain
                 transition: $drawer-transition-open
@@ -88,8 +88,8 @@ $drawer-fixed-width: 240px
     color: $font-theme-color
     padding: $drawer-header-padding
 
-    &::before 
-        padding-top: 9 / 16 * 100%
+    // &::before 
+    //     padding-top: 9 / 16 * 100%
 
     div
         padding: $drawer-header-padding
