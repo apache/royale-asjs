@@ -269,7 +269,7 @@ j|Card {
   border-right: 1px solid #595959;
 }
 .jewel.drawer.fixed.open {
-  width: 240px;
+  width: auto;
 }
 .jewel.drawer.fixed.open .drawermain {
   transition: transform 300ms 0ms;
@@ -280,9 +280,6 @@ j|Card {
   border-bottom: 1px solid #21682a;
   color: #FFFFFF;
   padding: 16px;
-}
-.jewel.drawerheader::before {
-  padding-top: 56.25%;
 }
 .jewel.drawerheader div {
   padding: 16px;
