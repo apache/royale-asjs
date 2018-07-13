@@ -34,35 +34,53 @@ $gap: 0px
 	display: flex
 	//position: relative
 
-/* Horizontal */
-.layout.horizontal
-	flex-flow: row nowrap
-	align-items: flex-start
-	
-	> *
-		flex: 1 0 auto
 
-	@for $i from 1 through $gaps
-		&.gap-#{$i}x#{$gap-step}px
-			> *:first-child
-				margin: 0px
+/* Horizontal */
+.layout
+	&.horizontal
+		flex-flow: row nowrap
+		align-items: flex-start
+	
+		> *
+			flex: 1 0 auto
+
+		&.centered
+			justify-content: center
+			align-items: center
+			align-content: center
+			height: 100%
 			> *
-				margin: 0px 0px 0px ($gap + $i * $gap-step)
+				flex: 0 0 auto
+
+		@for $i from 1 through $gaps
+			&.gap-#{$i}x#{$gap-step}px
+				> *:first-child
+					margin: 0px
+				> *
+					margin: 0px 0px 0px ($gap + $i * $gap-step)
 
 /* Vertical */	
-.layout.vertical
-	flex-flow: column nowrap
-	align-items: flex-start
-	
-	> *
-		flex: 0 0 auto
+.layout
+	&.vertical
+		flex-flow: column nowrap
+		align-items: flex-start
+		
+		> *
+			flex: 0 0 auto
 
-	@for $i from 1 through $gaps
-		&.gap-#{$i}x#{$gap-step}px
-			> *:first-child
-				margin: 0px
-			> *
-				margin: ($gap + $i * $gap-step) 0px 0px
+		&.centered
+			justify-content: center
+			align-items: center
+			align-content: center
+			flex-direction: column
+			height: 100%
+
+		@for $i from 1 through $gaps
+			&.gap-#{$i}x#{$gap-step}px
+				> *:first-child
+					margin: 0px
+				> *
+					margin: ($gap + $i * $gap-step) 0px 0px
 
 /* Tile */	
 .layout.tile

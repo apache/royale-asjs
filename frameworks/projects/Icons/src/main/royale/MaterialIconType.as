@@ -1069,5 +1069,7 @@ package
         public static const STAR:String = 'star';
         public static const STAR_BORDER:String = 'star_border';
         public static const STAR_HALF:String = 'star_half';
+        
+        public static const LIST_ALT:String = 'list_alt';
     }
 }

@@ -77,6 +77,8 @@
     <component id="SimpleVerticalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout"/>
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
+    <component id="HorizontalCenteredLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalCenteredLayout"/>
+    <component id="VerticalCenteredLayout" class="org.apache.royale.jewel.beads.layouts.VerticalCenteredLayout"/>
     <component id="TileLayout" class="org.apache.royale.jewel.beads.layouts.TileLayout"/>
     <component id="GridLayout" class="org.apache.royale.jewel.beads.layouts.GridLayout"/>
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>

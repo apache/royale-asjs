@@ -20,6 +20,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 ::-moz-focus-inner, ::-moz-focus-outer {
   border: 0;
 }
@@ -44,6 +48,7 @@ j|ApplicationResponsiveView {
 .applicationResponsiveView {
   display: inline-flex;
   width: 100%;
+  height: 100%;
 }
 
 j|ApplicationView {
@@ -390,6 +395,15 @@ j|Label {
 .layout.horizontal > * {
   flex: 1 0 auto;
 }
+.layout.horizontal.centered {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+}
+.layout.horizontal.centered > * {
+  flex: 0 0 auto;
+}
 .layout.horizontal.gap-1x3px > *:first-child {
   margin: 0px;
 }
@@ -458,6 +472,13 @@ j|Label {
 }
 .layout.vertical > * {
   flex: 0 0 auto;
+}
+.layout.vertical.centered {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  height: 100%;
 }
 .layout.vertical.gap-1x3px > *:first-child {
   margin: 0px;
