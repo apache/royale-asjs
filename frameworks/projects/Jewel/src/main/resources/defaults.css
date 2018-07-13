@@ -48,7 +48,6 @@ j|ApplicationResponsiveView {
 .applicationResponsiveView {
   display: inline-flex;
   width: 100%;
-  height: 100%;
 }
 
 j|ApplicationView {
