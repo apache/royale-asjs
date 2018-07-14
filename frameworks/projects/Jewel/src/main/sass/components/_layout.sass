@@ -42,7 +42,10 @@ $gap: 0px
 		align-items: flex-start
 	
 		> *
-			flex: 1 0 auto
+			flex: 0 0 auto
+
+		&.flow
+			flex-wrap: wrap
 
 		&.centered
 			justify-content: center
@@ -64,9 +67,12 @@ $gap: 0px
 	&.vertical
 		flex-flow: column nowrap
 		align-items: flex-start
-		
+
 		> *
 			flex: 0 0 auto
+		
+		&.flow
+			flex-wrap: wrap
 
 		&.centered
 			justify-content: center

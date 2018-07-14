@@ -392,7 +392,10 @@ j|Label {
   align-items: flex-start;
 }
 .layout.horizontal > * {
-  flex: 1 0 auto;
+  flex: 0 0 auto;
+}
+.layout.horizontal.flow {
+  flex-wrap: wrap;
 }
 .layout.horizontal.centered {
   justify-content: center;
@@ -471,6 +474,9 @@ j|Label {
 }
 .layout.vertical > * {
   flex: 0 0 auto;
+}
+.layout.vertical.flow {
+  flex-wrap: wrap;
 }
 .layout.vertical.centered {
   justify-content: center;
