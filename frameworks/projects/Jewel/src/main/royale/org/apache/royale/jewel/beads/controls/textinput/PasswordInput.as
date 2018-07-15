@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	COMPILE::SWF
 	{
 		import org.apache.royale.core.CSSTextField;			
-		import org.apache.royale.core.beads.ITextFieldView;
+		import org.apache.royale.html.beads.ITextFieldView;
 	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;

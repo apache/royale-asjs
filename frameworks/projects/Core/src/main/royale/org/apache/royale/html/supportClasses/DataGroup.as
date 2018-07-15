@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.supportClasses
+package org.apache.royale.html.supportClasses
 {	
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IItemRenderer;
@@ -25,7 +25,7 @@ package org.apache.royale.core.supportClasses
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 
     /**
      *  The DataGroup class is the IItemRendererParent used internally

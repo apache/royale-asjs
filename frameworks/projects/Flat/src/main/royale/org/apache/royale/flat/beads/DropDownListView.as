@@ -41,7 +41,7 @@ package org.apache.royale.flat.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Button;
-	import org.apache.royale.core.beads.IDropDownListView;
+	import org.apache.royale.html.beads.IDropDownListView;
 	import org.apache.royale.utils.CSSUtils;
     import org.apache.royale.utils.UIUtils;
     

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.beads.GroupView;
+	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutChild;

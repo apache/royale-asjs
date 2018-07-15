@@ -16,52 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-    import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.ILayoutView;
-
+	
     /**
-     *  The ContainerContentArea class implements the contentView for
-     *  a Container on the SWF platform.
-     *
+     *  The Border class is a class used internally by many
+     *  controls to draw a border.  The border actually drawn
+     *  is dictated by the IBeadView in the CSS.
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ContainerContentArea extends UIBase implements IBead, ILayoutView
+	public class Border extends UIBase
 	{
         /**
          *  Constructor.
-         *
+         *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function ContainerContentArea()
+		public function Border()
 		{
 			super();
-            addEventListener("layoutNeeded", forwardEventHandler);
-		}
-		
-		protected var host:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			host = value;
-		}
-
-        private function forwardEventHandler(event:Event):void
-        {
-            if (parent is IEventDispatcher)
-                (parent as IEventDispatcher).dispatchEvent(event);
-        }
-	}
+		}		
+        
+   	}
 }

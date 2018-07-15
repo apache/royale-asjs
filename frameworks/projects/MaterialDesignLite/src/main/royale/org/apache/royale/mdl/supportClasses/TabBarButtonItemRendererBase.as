@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.supportClasses
 {
-    import org.apache.royale.core.MXMLItemRenderer;;
+    import org.apache.royale.html.supportClasses.MXMLItemRenderer;;
 
     COMPILE::JS
     {

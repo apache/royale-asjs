@@ -19,11 +19,11 @@
 package org.apache.royale.core
 {
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.IListView;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**

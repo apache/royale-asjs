@@ -29,7 +29,7 @@ package org.apache.royale.charts.optimized
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.svg.CompoundGraphic;
 	
 	/**

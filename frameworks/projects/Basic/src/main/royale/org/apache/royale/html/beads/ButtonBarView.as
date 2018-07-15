@@ -26,7 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.core.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.Border;
 
 	/**
 	 *  The ButtonBarView class creates the visual elements of the org.apache.royale.html.ButtonBar 

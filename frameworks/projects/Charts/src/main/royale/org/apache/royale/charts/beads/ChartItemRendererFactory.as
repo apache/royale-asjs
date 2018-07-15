@@ -29,7 +29,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.core.IListView;
+	import org.apache.royale.html.beads.IListView;
 	
 	/**
 	 *  The ChartItemRendererFactory class implements IDataProviderItemRendererMapper

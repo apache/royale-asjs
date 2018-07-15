@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses
 {
-	import org.apache.royale.core.supportClasses.Viewport;
+	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;

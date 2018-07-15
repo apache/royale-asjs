@@ -50,7 +50,7 @@ limitations under the License.
 		.DragDropList
 		{
 			IBeadView: ClassReference("org.apache.royale.html.beads.DragDropListView");
-			IContentView: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
+			IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 			border: solid 1px black;
 		}
 		

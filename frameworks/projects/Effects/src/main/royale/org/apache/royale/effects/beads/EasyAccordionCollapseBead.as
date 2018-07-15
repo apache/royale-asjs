@@ -24,7 +24,7 @@ package org.apache.royale.effects.beads
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.AccordionCollapseBead;
-	import org.apache.royale.core.IListView;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.ICollapsible;
 	import org.apache.royale.utils.AbsoluteLayoutTweener;
 	

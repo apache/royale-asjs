@@ -25,7 +25,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.html.TextButton;
-	import org.apache.royale.core.UIItemRendererBase;
+	import org.apache.royale.html.supportClasses.UIItemRendererBase;
 
 	public class TreeGridControlItemRenderer extends UIItemRendererBase implements IItemRendererParent
 	{

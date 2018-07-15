@@ -30,7 +30,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.core.beads.IDropDownListView;
+	import org.apache.royale.html.beads.IDropDownListView;
 
     /**
      *  The DropDownListController class is the controller for

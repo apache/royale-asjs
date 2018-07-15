@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.beads.views
+package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.beads.GroupView;
+	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.core.ContainerBase;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
@@ -35,9 +35,9 @@ package org.apache.royale.core.beads.views
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Size;
-	import org.apache.royale.core.beads.models.ViewportModel;
-	import org.apache.royale.core.supportClasses.Border;
-	import org.apache.royale.core.supportClasses.Viewport;
+	import org.apache.royale.html.beads.models.ViewportModel;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**

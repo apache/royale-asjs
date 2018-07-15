@@ -152,7 +152,7 @@
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport" />
     <component id="HScrollViewport" class="org.apache.royale.html.supportClasses.HScrollViewport" />
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
-    <component id="ClippingViewport" class="org.apache.royale.core.supportClasses.Viewport" lookupOnly="true" />
+    <component id="ClippingViewport" class="org.apache.royale.html.supportClasses.Viewport" lookupOnly="true" />
     <component id="OverflowViewport" class="org.apache.royale.html.supportClasses.OverflowViewport" />
     <component id="InfiniteVScroller" class="org.apache.royale.html.beads.InfiniteVScroller" />
 

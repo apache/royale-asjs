@@ -75,11 +75,11 @@ Button:active
 
 ButtonBar
 {
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadView:  ClassReference("org.apache.royale.html.beads.ButtonBarView");			
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
-    IDataGroup: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
+    IDataGroup: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.ButtonBarButtonItemRenderer");
@@ -172,15 +172,15 @@ CheckBox
 
 Container
 {
-    IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
-	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 ControlBar
 {
-	IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
 	
     background-color: #CECECE;
@@ -192,13 +192,13 @@ ControlBar
 DataContainer
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataProviderModel");
-	IBeadView:  ClassReference("org.apache.royale.core.beads.views.DataContainerView");			
+	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView");			
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
-	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	border-style: solid;
 	border-color: #222222;
 }
@@ -316,7 +316,7 @@ DateField {
   
 HContainer
 {
-    IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 }
 
@@ -327,17 +327,17 @@ ImageButton
 
 VContainer
 {
-    IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
 }
 
 List
 {
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
-    IDataGroup: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
+    IDataGroup: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
@@ -451,11 +451,11 @@ RadioButton
 
 SimpleList
 {
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
-    IDataGroup: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
+    IDataGroup: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
@@ -514,7 +514,7 @@ ToolTip
 
 View
 {
-	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 }
 
@@ -595,12 +595,12 @@ ControlBar
 DataContainer {
 	IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 	IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-	IContentView: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
+	IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 }
 
 DropDownList
 {
-	IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
 	IBeadView: ClassReference("org.apache.royale.flat.beads.DropDownListView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DropDownListController");
     IPopUp: ClassReference("org.apache.royale.flat.supportClasses.DropDownListList");
@@ -609,7 +609,7 @@ DropDownList
 
 DropDownListList
 {
-	IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.flat.supportClasses.DropDownListStringItemRenderer");

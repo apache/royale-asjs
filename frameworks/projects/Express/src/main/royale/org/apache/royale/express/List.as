@@ -22,7 +22,7 @@ package org.apache.royale.express
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.List;
-	import org.apache.royale.core.beads.models.ArraySelectionModel;
+	import org.apache.royale.html.beads.models.ArraySelectionModel;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList;
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel;

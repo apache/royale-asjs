@@ -41,12 +41,12 @@ package org.apache.royale.html
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.beads.ListView;
-        import org.apache.royale.core.supportClasses.DataGroup;
+        import org.apache.royale.html.supportClasses.DataGroup;
     }
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.models.ListPresentationModel;
-	import org.apache.royale.core.IListView;
+	import org.apache.royale.html.beads.IListView;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.

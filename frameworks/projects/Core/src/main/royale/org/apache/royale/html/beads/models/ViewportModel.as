@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.beads.models
+package org.apache.royale.html.beads.models
 {
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;

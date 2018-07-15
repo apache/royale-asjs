@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    import org.apache.royale.core.beads.GroupView;
+    import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
@@ -43,8 +43,8 @@ package org.apache.royale.jewel.beads.views
 	
     COMPILE::SWF
 	{
-        import org.apache.royale.core.beads.IBackgroundBead;
-        import org.apache.royale.core.beads.IBorderBead;
+        import org.apache.royale.html.beads.IBackgroundBead;
+        import org.apache.royale.html.beads.IBorderBead;
         import org.apache.royale.core.IMeasurementBead;
         import org.apache.royale.core.ValuesManager;
         import org.apache.royale.utils.loadBeadFromValuesManager;

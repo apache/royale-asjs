@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.beads.layouts
+package org.apache.royale.html.beads.layouts
 {	
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadView;

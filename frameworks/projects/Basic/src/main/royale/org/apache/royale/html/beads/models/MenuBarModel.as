@@ -14,7 +14,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
-	import org.apache.royale.core.beads.models.ArraySelectionModel;
+	import org.apache.royale.html.beads.models.ArraySelectionModel;
 	import org.apache.royale.events.Event;
 
 	/**

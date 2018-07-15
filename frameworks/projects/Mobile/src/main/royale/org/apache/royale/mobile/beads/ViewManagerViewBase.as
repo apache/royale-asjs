@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mobile.beads
 {
-	import org.apache.royale.core.beads.GroupView;
+	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;

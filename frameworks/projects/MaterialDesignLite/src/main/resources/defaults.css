@@ -75,7 +75,7 @@ Slider
 List
 {
     IBeadView: ClassReference("org.apache.royale.mdl.beads.views.ListView");
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadLayout: ClassReference(null); /*"org.apache.royale.html.beads.layouts.VerticalLayout"*/
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
@@ -85,7 +85,7 @@ List
 Table
 {
     IBeadView: ClassReference("org.apache.royale.mdl.beads.views.TableView");
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadLayout: ClassReference(null); /*"org.apache.royale.html.beads.layouts.VerticalLayout"*/
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
@@ -95,7 +95,7 @@ Table
 Navigation
 {
     IBeadView: ClassReference("org.apache.royale.mdl.beads.views.ListView");
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadLayout: ClassReference(null); /*"org.apache.royale.html.beads.layouts.VerticalLayout"*/
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
@@ -110,7 +110,7 @@ MenuItemRenderer
 Menu
 {
     IBeadView: ClassReference("org.apache.royale.mdl.beads.views.ListView");
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadLayout: ClassReference(null); /*"org.apache.royale.html.beads.layouts.VerticalLayout"*/
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");

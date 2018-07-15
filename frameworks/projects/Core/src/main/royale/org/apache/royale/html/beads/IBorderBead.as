@@ -16,42 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IBead;
 
     /**
-     *  The IDropDownListView interface is the interface for views for
-     *  the org.apache.royale.html.DropDownList.
-     *  
+     *  The IBorderBead interface is a marker interface for beads
+     *  that draw borders.
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IDropDownListView extends IBeadView
+	public interface IBorderBead extends IBead
 	{
-        
-        /**
-         *  @copy org.apache.royale.html.beads.DropDownListView#popup
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        function get popUp():IStrand;
-        
-        /**
-         *  @copy org.apache.royale.html.beads.DropDownListView#popupVisible
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        function get popUpVisible():Boolean;
-        function set popUpVisible(value:Boolean):void;
 	}
 }

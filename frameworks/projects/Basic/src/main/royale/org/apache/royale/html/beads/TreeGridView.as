@@ -27,8 +27,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.beads.GroupView;
-	import org.apache.royale.core.supportClasses.Viewport;
+	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Container;

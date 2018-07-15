@@ -19,7 +19,7 @@
 package org.apache.royale.mdl.beads.models
 {
     import org.apache.royale.events.Event;
-    import org.apache.royale.core.beads.models.ArraySelectionModel;
+    import org.apache.royale.html.beads.models.ArraySelectionModel;
 
     /**
      *  The DropDownListModel class defines the data associated with an org.apache.royale.mdl.DropDownListModel

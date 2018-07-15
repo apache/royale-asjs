@@ -20,6 +20,7 @@ package org.apache.royale.core
 {
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
 	
 	/**
 	 *  The StyledMXMLItemRenderer class is the base class for itemRenderers that are MXML-based

@@ -33,7 +33,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
-    import org.apache.royale.core.DataItemRenderer;
+    import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	import org.apache.royale.core.IList;

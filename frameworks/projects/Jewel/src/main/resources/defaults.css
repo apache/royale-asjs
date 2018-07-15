@@ -37,12 +37,12 @@ button, input, textarea {
 }
 
 j|View {
-  IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
 }
 
 j|ApplicationResponsiveView {
-  IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
 }
 
 .applicationResponsiveView {
@@ -51,12 +51,12 @@ j|ApplicationResponsiveView {
 }
 
 j|ApplicationView {
-  IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
 }
 
 j|Group {
-  IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
 }
 
 j|HGroup {
@@ -68,9 +68,9 @@ j|VGroup {
 }
 
 j|Container {
-  IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
-  IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+  IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 j|Image {
@@ -220,7 +220,7 @@ j|Card {
 }
 
 j|ControlBar {
-  IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
 }
 
@@ -327,14 +327,14 @@ j|ControlBar {
 
 @media -royale-swf {
   j|DropDownList {
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
     IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.DropDownListList");
   }
 
   j|DropDownListList {
-    IBeadModel: ClassReference("org.apache.royale.core.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   }
 }
@@ -2516,7 +2516,7 @@ j|List {
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.DataItemRendererFactoryForCollectionView");
 }
@@ -2528,7 +2528,7 @@ j|Navigation {
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.DataItemRendererFactoryForCollectionView");
 }
@@ -2871,9 +2871,9 @@ j|TitleBar {
 }
 
 j|ApplicationMainContent {
-  IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
-  IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+  IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 /*# sourceMappingURL=defaults.css.map */

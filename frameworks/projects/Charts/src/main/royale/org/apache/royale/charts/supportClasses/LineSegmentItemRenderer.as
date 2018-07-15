@@ -21,7 +21,7 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.charts.core.IChartSeries;
 	import org.apache.royale.graphics.IStroke;
 	import org.apache.royale.svg.Path;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The LineSegmentItemRenderer class draws a line between the vertices of a LineSeries. 

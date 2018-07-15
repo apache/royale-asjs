@@ -41,8 +41,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.core.supportClasses.Border;
-	import org.apache.royale.core.supportClasses.DataGroup;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.DataGroup;
     COMPILE::SWF {
         import org.apache.royale.geom.Size;
     }

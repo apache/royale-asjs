@@ -26,7 +26,7 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.svg.Rect;
 	import org.apache.royale.graphics.SolidColor;
 	import org.apache.royale.svg.LinearGradient;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The BoxItemRenderer displays a colored rectangular area suitable for use as

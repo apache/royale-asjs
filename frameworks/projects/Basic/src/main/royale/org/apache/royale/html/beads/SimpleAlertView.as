@@ -37,8 +37,8 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.Label;
     import org.apache.royale.html.TextButton;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.core.beads.IBackgroundBead;
-	import org.apache.royale.core.beads.IBorderBead;
+	import org.apache.royale.html.beads.IBackgroundBead;
+	import org.apache.royale.html.beads.IBorderBead;
 	
 	/**
 	 *  The SimpleAlertView class creates the visual elements of the 

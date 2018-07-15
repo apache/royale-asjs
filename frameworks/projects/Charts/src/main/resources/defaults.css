@@ -30,7 +30,7 @@ BarChart
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 BoxItemRenderer
@@ -54,7 +54,7 @@ ColumnChart
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 LineChart
@@ -69,7 +69,7 @@ LineChart
     IConnectedItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.LineSegmentItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 PieChart
@@ -81,7 +81,7 @@ PieChart
     IContentView: ClassReference("org.apache.royale.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.WedgeItemRenderer");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 StackedColumnChart
@@ -95,7 +95,7 @@ StackedColumnChart
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 StackedBarChart
@@ -109,5 +109,5 @@ StackedBarChart
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }

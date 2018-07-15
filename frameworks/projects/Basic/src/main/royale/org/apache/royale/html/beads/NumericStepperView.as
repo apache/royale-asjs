@@ -34,7 +34,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.Label;
 	import org.apache.royale.html.Spinner;
 	import org.apache.royale.html.TextInput;
-	import org.apache.royale.core.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.Border;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 

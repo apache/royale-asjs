@@ -16,33 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
-{	
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IStrand;
+package org.apache.royale.html.beads
+{
+    COMPILE::SWF
+    {
+        import org.apache.royale.core.CSSTextField;
+    }
 
-	/**
-	 *  The IListView interface provides the protocol for any bead that
-	 *  creates the visual parts for a org.apache.royale.html.List control.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public interface IListView extends IBeadView
+    /**
+     *  The ITextFieldView interface is the interface for views for
+     *  the use a CSSTextField to display text.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    COMPILE::SWF
+	public interface ITextFieldView
 	{
-		/**
-		 *  The component which parents all of the itemRenderers for each
-		 *  datum being displayed by the List component.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		function get dataGroup():IItemRendererParent;
-		
+        /**
+         *  The org.apache.royale.core.CSSTextField used to display text.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		function get textField():CSSTextField;
 	}
 }

@@ -32,7 +32,7 @@ package dataTable.mapper
 	import org.apache.royale.html.TableCell;
 	import org.apache.royale.html.TableHeader;
 	import org.apache.royale.html.TableRow;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	public class DataTableMapperForArrayListData implements IBead
 	{

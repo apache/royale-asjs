@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.UIBase;

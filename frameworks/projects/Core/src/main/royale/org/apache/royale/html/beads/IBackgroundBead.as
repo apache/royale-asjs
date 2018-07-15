@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.beads
+package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
 

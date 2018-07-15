@@ -30,7 +30,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
 
-    import org.apache.royale.core.beads.IBackgroundBead;
+    import org.apache.royale.html.beads.IBackgroundBead;
     
 
     /**

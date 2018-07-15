@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.beads.views
+package org.apache.royale.html.beads
 {	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
@@ -28,8 +28,8 @@ package org.apache.royale.core.beads.views
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.supportClasses.DataGroup;
-	import org.apache.royale.core.IListView;
+	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.events.Event;
 
 	/**

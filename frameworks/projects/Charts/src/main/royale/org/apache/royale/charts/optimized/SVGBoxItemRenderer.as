@@ -25,7 +25,7 @@ package org.apache.royale.charts.optimized
 	import org.apache.royale.graphics.IStroke;
 	import org.apache.royale.graphics.SolidColor;
 	import org.apache.royale.graphics.SolidColorStroke;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.supportClasses.GraphicsItemRenderer;
 	
 	/**

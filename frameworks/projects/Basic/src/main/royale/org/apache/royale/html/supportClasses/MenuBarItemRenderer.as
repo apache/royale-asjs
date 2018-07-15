@@ -20,7 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.ITextItemRenderer;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
 	
 	public class MenuBarItemRenderer extends DataItemRenderer implements ITextItemRenderer

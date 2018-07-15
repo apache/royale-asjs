@@ -19,13 +19,13 @@
 package org.apache.royale.express
 {
 	import org.apache.royale.binding.ItemRendererDataBinding;
-	import org.apache.royale.core.MXMLItemRenderer;
+	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
 	
 	/**
 	 * This class extends MXMLItemRenderer and adds ItemRendererDataBinding
 	 * for convenience.
 	 */
-	public class MXMLItemRenderer extends org.apache.royale.core.MXMLItemRenderer
+	public class MXMLItemRenderer extends org.apache.royale.html.supportClasses.MXMLItemRenderer
 	{
 		public function MXMLItemRenderer()
 		{

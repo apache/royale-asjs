@@ -60,8 +60,8 @@ DataGrid
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
-	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	border-style: none;
 	background-color: #FFFFFF;
 }
@@ -73,10 +73,10 @@ DataGrid
 
 Container
 {	
-	IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
-	IViewport: ClassReference("org.apache.royale.core.supportClasses.Viewport");
-	IViewportModel: ClassReference("org.apache.royale.core.beads.models.ViewportModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	
 	background-color: #FFFFFF;
 }
@@ -116,7 +116,7 @@ TextInput
 
 View
 {
-	IBeadView: ClassReference("org.apache.royale.core.beads.GroupView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 }
 

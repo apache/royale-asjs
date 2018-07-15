@@ -19,7 +19,7 @@
 package products
 {
 	import org.apache.royale.html.Image;
-	import org.apache.royale.core.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 
 	public class ProductItemRenderer extends DataItemRenderer
 	{

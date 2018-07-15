@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package org.apache.royale.html
 {
 	import org.apache.royale.states.State;
 
@@ -26,7 +26,7 @@ package org.apache.royale.core
 	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.core.beads.GroupView;
+    import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.utils.MXMLDataInterpreter;
