@@ -19,16 +19,17 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IRenderedObject;
-	import org.apache.royale.core.IStrand;
-
 	COMPILE::JS
 	{
 		import org.apache.royale.utils.UIDUtil;
 		import org.apache.royale.graphics.utils.addSvgElementToElement;
 		import org.apache.royale.events.IEventDispatcher;
 	}
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IStrand;
+	[DefaultProperty("children")]
+
 	/**
 	 *  The Filter bead allows you to filter an SVG element. Filter elements should be added to the strand to achieve the desired effect.
 	 *  
@@ -42,6 +43,7 @@ package org.apache.royale.svg
 		private var _strand:IStrand;
 		private var _width:String = "200%";
 		private var _height:String = "200%";
+		private var _children:Array;
 //		private var floodColor:uint;
 		COMPILE::JS 
 		{
@@ -89,7 +91,8 @@ package org.apache.royale.svg
 			for (var i:int = 0; i < children.length; i++)
 			{
 				var filterElement:FilterElement = children[i] as FilterElement;
-				filterElement.buildOn(filterElementWrapper);
+				filterElement.filterElementWrapper = filterElementWrapper;
+				filterElement.build();
 			}
 		}
 		
@@ -130,6 +133,16 @@ package org.apache.royale.svg
 		public function get filterElementWrapper():Element
 		{
 			return _filterElementWrapper;
+		}
+
+		public function get children():Array 
+		{
+			return _children;
+		}
+		
+		public function set children(value:Array):void 
+		{
+			_children = value;
 		}
 	}
 }

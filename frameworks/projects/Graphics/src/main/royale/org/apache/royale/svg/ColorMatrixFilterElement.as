@@ -49,12 +49,14 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		COMPILE::JS 
-		override protected function build():void
+		override public function build():void
 		{
-			super.build();
-			var matrixValues:String = "0 0 0 0 " + red + " 0 0 0 0 " + green + " 0 0 0 0 " + blue + " 0 0 0 " + opacity + " 0";
-			filterElement.setAttribute("values", matrixValues);
+			COMPILE::JS 
+			{
+				super.build();
+				var matrixValues:String = "0 0 0 0 " + red + " 0 0 0 0 " + green + " 0 0 0 0 " + blue + " 0 0 0 " + opacity + " 0";
+				filterElement.setAttribute("values", matrixValues);
+			}
 		}
 
 		/**
