@@ -34,7 +34,7 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class DropShadowFilter extends Filter
+	public class DropShadowFilter extends Filter implements IChainableFilter
 	{
 		private var _dx:Number;
 		private var _dy:Number;
@@ -45,13 +45,14 @@ package org.apache.royale.svg
 		private var _opacity:Number = 1;
 		private var _spread:Number = 1;
 		private var _inset:Boolean;
+		private var _source:String;
+		private var _result:String;
 
 		public function DropShadowFilter()
 		{
 		}
 		
-		COMPILE::JS
-		override protected function filter():void
+		public function build():void
 		{
 			children = [];
 			if (inset)
@@ -92,8 +93,18 @@ package org.apache.royale.svg
 			}
 			var blend:BlendFilterElement = new BlendFilterElement();
 			children.push(blend);
-			blend.in = inset ? "compositeResult" : "SourceGraphic";
-			blend.in2 = inset ? "SourceGraphic" : "spreadResult";
+			blend.in = inset ? "compositeResult" : source ? source : "SourceGraphic";
+			blend.in2 = inset && !source ? "SourceGraphic" : inset && source ? source : "spreadResult";
+			if (result)
+			{
+				blend.result = result;
+			}
+		}
+
+		COMPILE::JS
+		override protected function filter():void
+		{
+			build();
 			super.filter();
 		}
 
@@ -267,6 +278,26 @@ package org.apache.royale.svg
 		public function set inset(value:Boolean):void 
 		{
 			_inset = value;
+		}
+
+		public function get source():String 
+		{
+			return _source;
+		}
+		
+		public function set source(value:String):void 
+		{
+			_source = value;
+		}
+
+		public function get result():String 
+		{
+			return _result;
+		}
+		
+		public function set result(value:String):void 
+		{
+			_result = value;
 		}
 	}
 }
