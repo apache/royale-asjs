@@ -34,4 +34,5 @@
 	<component id="MaskBead" class="org.apache.royale.svg.MaskBead" />
 	<component id="DisableClipBead" class="org.apache.royale.svg.DisableClipBead" />
 	<component id="LinearGradient" class="org.apache.royale.svg.LinearGradient" />
+	<component id="SuperimposeFilter" class="org.apache.royale.svg.SuperimposeFilter" />
 </componentPackage>
