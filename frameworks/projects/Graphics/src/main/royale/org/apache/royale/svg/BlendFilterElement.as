@@ -49,13 +49,15 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		COMPILE::JS 
-		override protected function build():void
+		override public function build():void
 		{
-			super.build();
-			filterElement.setAttribute("in", in);
-			filterElement.setAttribute("in2", in2);
-			filterElement.setAttribute("mode", "normal");
+			COMPILE::JS 
+			{
+				super.build();
+				filterElement.setAttribute("in", in);
+				filterElement.setAttribute("in2", in2);
+				filterElement.setAttribute("mode", "normal");
+			}
 		}
 
 		/**
