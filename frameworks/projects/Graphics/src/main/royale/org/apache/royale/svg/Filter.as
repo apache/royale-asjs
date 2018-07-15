@@ -69,7 +69,7 @@ package org.apache.royale.svg
 		}
 		
 		COMPILE::SWF
-		private function filter():void
+		protected function filter():void
 		{
 			// TODO
 		}
@@ -78,7 +78,7 @@ package org.apache.royale.svg
 		 * @royaleignorecoercion Object
 		 */
 		COMPILE::JS
-		private function filter():void
+		protected function filter():void
 		{
 			var svgElement:Node = host.element as Element;
 			var defs:Element = getChildNode(svgElement, "defs") as Element;
@@ -116,7 +116,7 @@ package org.apache.royale.svg
 		}
 		
 		
-		private function get host():IRenderedObject
+		protected function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;
 		}
