@@ -45,14 +45,16 @@ package org.apache.royale.svg
 		/*
 		* @royaleignorecoercion Element
 		*/
-		COMPILE::JS 
-		override protected function build():void
+		override public function build():void
 		{
-			super.build();
-			filterElement.setAttribute("in", "SourceAlpha");
-			var funcA:Element = addSvgElementToElement(filterElement, "feFuncA") as Element;
-			funcA.setAttribute("type", "table");
-			funcA.setAttribute("tableValues", "1 0");
+			COMPILE::JS 
+			{
+				super.build();
+				filterElement.setAttribute("in", "SourceAlpha");
+				var funcA:Element = addSvgElementToElement(filterElement, "feFuncA") as Element;
+				funcA.setAttribute("type", "table");
+				funcA.setAttribute("tableValues", "1 0");
+			}
 		}
 			
 		COMPILE::JS

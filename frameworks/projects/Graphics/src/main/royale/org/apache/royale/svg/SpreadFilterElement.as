@@ -45,13 +45,15 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		COMPILE::JS 
-		override protected function build():void
+		override public function build():void
 		{
-			super.build();
-			var funcA:Element = addSvgElementToElement(filterElement, "feFuncA") as Element;
-			funcA.setAttribute("type", "linear");
-			funcA.setAttribute("slope", spread);
+			COMPILE::JS 
+			{
+				super.build();
+				var funcA:Element = addSvgElementToElement(filterElement, "feFuncA") as Element;
+				funcA.setAttribute("type", "linear");
+				funcA.setAttribute("slope", spread);
+			}
 		}
 
 		/**

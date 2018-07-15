@@ -45,11 +45,13 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		COMPILE::JS 
-		override protected function build():void
+		override public function build():void
 		{
-			super.build();
-			filterElement.setAttribute("stdDeviation", stdDeviation);
+			COMPILE::JS 
+			{
+				super.build();
+				filterElement.setAttribute("stdDeviation", stdDeviation);
+			}
 		}
 
 		/**

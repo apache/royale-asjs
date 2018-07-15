@@ -53,13 +53,15 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		COMPILE::JS 
-		protected function build():void
+		public function build():void
 		{
-			_filterElement = addSvgElementToElement(filterElementWrapper, filterElementType) as Element;
-			if (result)
+			COMPILE::JS 
 			{
-				filterElement.setAttribute("result", result);
+				_filterElement = addSvgElementToElement(filterElementWrapper, filterElementType) as Element;
+				if (result)
+				{
+					filterElement.setAttribute("result", result);
+				}
 			}
 		}
 		
@@ -100,7 +102,7 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		COMPIE::JS
+		COMPILE::JS
 		public function get filterElementWrapper():Element 
 		{
 			return _filterElementWrapper;
@@ -109,7 +111,7 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		COMPIE::JS
+		COMPILE::JS
 		public function set filterElementWrapper(value:Element):void 
 		{
 			_filterElementWrapper = value;
