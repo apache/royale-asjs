@@ -19,9 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.ValuesManager;
 	COMPILE::SWF 
 	{
 		import org.apache.royale.core.IRenderedObject;
@@ -37,7 +34,7 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class DropShadowFilter implements IBead
+	public class DropShadowFilter extends Filter
 	{
 		private var _dx:Number;
 		private var _dy:Number;
@@ -53,90 +50,63 @@ package org.apache.royale.svg
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
+		COMPILE::JS
+		override protected function filter():void
 		{
-			COMPILE::JS 
+			children = [];
+			if (inset)
 			{
-				if (!value)
-				{
-					return;
-				}
-				loadBeadFromValuesManager(Filter, "filter", value);
-				if (inset)
-				{
-					loadBeadFromValuesManager(InvertFilterElement, "invertFilterElement", value);
-				}
-				if (!isNaN(dx) && !isNaN(dy) && (dx !=0 || dy !=0))
-				{
-					var offset:OffsetFilterElement = loadBeadFromValuesManager(OffsetFilterElement, "offsetFilterElement", value) as OffsetFilterElement;
-					offset.dx = dx;
-					offset.dy = dy;
-				}
-				var blur:BlurFilterElement = loadBeadFromValuesManager(BlurFilterElement, "blurFilterElement", value) as BlurFilterElement;
-				blur.stdDeviation = stdDeviation;
-				var colorMatrix:ColorMatrixFilterElement = loadBeadFromValuesManager(ColorMatrixFilterElement, "colorMatrixFilterElement", value) as ColorMatrixFilterElement;
-				colorMatrix.red = red;
-				colorMatrix.green = green;
-				colorMatrix.blue = blue;
-				colorMatrix.opacity = opacity;
-				var spreadElement:SpreadFilterElement = loadBeadFromValuesManager(SpreadFilterElement, "spreadFilterElement", value) as SpreadFilterElement;
-				if (!inset)
-				{
-					spreadElement.result = "spreadResult";
-				}
-				spreadElement.spread = spread;
-				if (inset)
-				{
-					var composite:CompositeFilterElement = loadBeadFromValuesManager(CompositeFilterElement, "compositeFilterElement", value) as CompositeFilterElement;
-					composite.in2 = "SourceAlpha";
-					composite.operator = "in";
-					composite.result = "compositeResult";
-				}
-				var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
-				blend.in = inset ? "compositeResult" : "SourceGraphic";
-				blend.in2 = inset ? "SourceGraphic" : "spreadResult";
-				value.removeBead(this);
+				var insetFilterElement:FilterElement = new InvertFilterElement();
+				children.push(insetFilterElement);
 			}
-			COMPILE::SWF 
+			if (!isNaN(dx) && !isNaN(dy) && (dx !=0 || dy !=0))
 			{
-				var distance:Number = Math.sqrt( (dx * dx) + (dy * dy) );
-				var radians:Number = Math.atan2(dy, dx);
-				var angle:Number =  (180/Math.PI) * radians;
-				var color:uint = red|green|blue;
-				var filter:flash.filters.DropShadowFilter = new flash.filters.DropShadowFilter(distance, angle, color, opacity, stdDeviation, stdDeviation, spread + 1, 1, inset);
-				(value as IRenderedObject).$displayObject.filters = [filter];
+				var offset:OffsetFilterElement = new OffsetFilterElement();
+				children.push(offset);
+				offset.dx = dx;
+				offset.dy = dy;
 			}
+			var blur:BlurFilterElement = new BlurFilterElement();
+			children.push(blur);
+			blur.stdDeviation = stdDeviation;
+			var colorMatrix:ColorMatrixFilterElement = new ColorMatrixFilterElement();
+			children.push(colorMatrix);
+			colorMatrix.red = red;
+			colorMatrix.green = green;
+			colorMatrix.blue = blue;
+			colorMatrix.opacity = opacity;
+			var spreadElement:SpreadFilterElement = new SpreadFilterElement();
+			children.push(spreadElement);
+			if (!inset)
+			{
+				spreadElement.result = "spreadResult";
+			}
+			spreadElement.spread = spread;
+			if (inset)
+			{
+				var composite:CompositeFilterElement = new CompositeFilterElement();
+				children.push(composite);
+				composite.in2 = "SourceAlpha";
+				composite.operator = "in";
+				composite.result = "compositeResult";
+			}
+			var blend:BlendFilterElement = new BlendFilterElement();
+			children.push(blend);
+			blend.in = inset ? "compositeResult" : "SourceGraphic";
+			blend.in2 = inset ? "SourceGraphic" : "spreadResult";
+			super.filter();
 		}
 
-		private function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
+		COMPILE::SWF
+		override protected function filter():void
 		{
-			var result:IBead;
-			var c:Class = ValuesManager.valuesImpl.getValue(this, classOrInterfaceName) as Class;
-			if (c)
-			{
-				COMPILE::JS
-				{
-					var f:Function = c as Function;
-					result = new f() as IBead;
-				}
-				COMPILE::SWF
-				{
-					result = new c() as IBead;
-				}
-				if (result)
-					strand.addBead(result);
-			}
-			return result;
+			var distance:Number = Math.sqrt( (dx * dx) + (dy * dy) );
+			var radians:Number = Math.atan2(dy, dx);
+			var angle:Number =  (180/Math.PI) * radians;
+			var color:uint = red|green|blue;
+			var filter:flash.filters.DropShadowFilter = new flash.filters.DropShadowFilter(distance, angle, color, opacity, stdDeviation, stdDeviation, spread + 1, 1, inset);
+			host.$displayObject.filters = [filter];
 		}
-
 		/**
 		 *  The drop shadow x offset
 		 *
