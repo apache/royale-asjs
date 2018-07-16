@@ -48,7 +48,7 @@
                 <js:ApplicationDataBinding/>
             </js:beads>
 
-            <j:Card width="350">
+            <j:Card width="270">
                 <html:H3 text="Jewel List With ItemRenderer"/>
                 
 				<j:List width="100%" height="300" className="iconListItemRenderer">
