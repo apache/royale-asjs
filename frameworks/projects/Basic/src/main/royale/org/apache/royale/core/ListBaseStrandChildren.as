@@ -52,7 +52,7 @@ package org.apache.royale.core
 		 */
 		public function get numElements():int
 		{
-			return owner.$numElements();
+			return owner.$numElements;
 		}
 		
 		/**

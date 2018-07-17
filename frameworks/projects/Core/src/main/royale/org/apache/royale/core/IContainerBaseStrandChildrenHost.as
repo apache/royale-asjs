@@ -32,7 +32,7 @@ package org.apache.royale.core
      */
 	public interface IContainerBaseStrandChildrenHost
 	{
-		function $numElements():int;
+		function get $numElements():int;
 		function $addElement(c:IChild, dispatchEvent:Boolean = true):void;
 		function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void;
 		function $removeElement(c:IChild, dispatchEvent:Boolean = true):void;

@@ -186,7 +186,7 @@ package org.apache.royale.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $numElements():int
+		public function get $numElements():int
 		{
 			return super.numElements;
 		}
