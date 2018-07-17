@@ -36,7 +36,9 @@
         <symbol>halo.scripts.DateFieldTestScript</symbol>
         <!--
         <symbol>halo.scripts.MenuTestScript</symbol>
+         -->
         <symbol>halo.scripts.MenuBarTestScript</symbol>
+        <!--
         <symbol>halo.scripts.FocusManagerTestScript</symbol>
         <symbol>halo.scripts.TreeTestScript</symbol>
         <symbol>halo.scripts.ImageTestScript</symbol>

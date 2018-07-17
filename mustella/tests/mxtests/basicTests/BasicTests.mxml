@@ -50,7 +50,9 @@ preloader="BasicTestsPreloader"
         <mx:State name="haloDateFieldTest" />
         <!--
         <mx:State name="haloMenuTest" />
+        -->
         <mx:State name="haloMenuBarTest" />
+        <!--
         <mx:State name="haloFocusManagerTest" />
         <mx:State name="haloTreeTest" />
         <mx:State name="haloImageTest" />
@@ -128,7 +130,9 @@ preloader="BasicTestsPreloader"
     <haloviews:DateFieldTests id="haloDateFieldTests" includeIn="haloDateFieldTest" />    
     <!--
     <haloviews:MenuTests id="haloMenuTests" includeIn="haloMenuTest" />    
+    -->
     <haloviews:MenuBarTests id="haloMenuBarTests" includeIn="haloMenuBarTest" />    
+    <!--
     <haloviews:FocusManagerTests id="haloFocusManagerTests" includeIn="haloFocusManagerTest" />    
     <haloviews:TreeTests id="haloTreeTests" includeIn="haloTreeTest" />    
     <haloviews:ImageTests id="haloImageTests" includeIn="haloImageTest" />    
