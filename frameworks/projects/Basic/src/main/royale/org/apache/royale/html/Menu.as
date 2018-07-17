@@ -20,7 +20,7 @@ package org.apache.royale.html
 {
 	import org.apache.royale.core.IMenu;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
@@ -148,7 +148,7 @@ package org.apache.royale.html
 		 */
 		public function show(component:IUIBase, xoffset:Number=0, yoffset:Number=0):void
 		{
-			var host:UIBase = UIUtils.findPopUpHost(component) as UIBase;
+			var host:IParent = UIUtils.findPopUpHost(component).popUpParent as IParent;
 			var orgPoint:Point = new Point(component.x+xoffset, component.y+yoffset);
 			var popupPoint:Point = PointUtils.localToGlobal(orgPoint, component.parent);
 			this.x = popupPoint.x;
@@ -167,8 +167,8 @@ package org.apache.royale.html
 		public function hide():void
 		{		
 			// dispatch the "hideMenus" event to trigger any exposed menu to be hidden.
-			var host:UIBase = UIUtils.findPopUpHost(this) as UIBase;
-			host.dispatchEvent(new Event("hideMenus"));
+			var host:IParent = UIUtils.findPopUpHost(this).popUpParent as IParent;
+			(host as IEventDispatcher).dispatchEvent(new Event("hideMenus"));
 		}
 	}
 }
