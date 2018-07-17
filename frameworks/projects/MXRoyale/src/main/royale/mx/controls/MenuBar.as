@@ -30,42 +30,28 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.ui.Keyboard;
 import flash.xml.XMLNode; */
-import org.apache.royale.events.Event;
-
-
-/* import mx.collections.ArrayCollection;
-import mx.collections.IViewCursor;
-import mx.collections.XMLListCollection;
-import mx.collections.errors.ItemPendingError;
-import mx.containers.ApplicationControlBar;
-import mx.controls.menuClasses.IMenuBarItemRenderer;
-import mx.controls.menuClasses.IMenuDataDescriptor;
-import mx.controls.menuClasses.MenuBarItem;
-import mx.controls.treeClasses.DefaultDataDescriptor;
-import mx.core.ClassFactory; 
-import mx.core.EventPriority;
-import mx.core.IFactory;
-import mx.core.IFlexDisplayObject;
-import mx.core.LayoutDirection;
-import mx.core.UIComponentGlobals;
-import mx.events.FlexEvent;
-import mx.events.InterManagerRequest;
-import mx.events.MenuEvent;
-import mx.managers.ISystemManager;
-import mx.managers.PopUpManager;
-import mx.styles.CSSStyleDeclaration;
- */
-
+import mx.collections.ICollectionView;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
-import mx.styles.ISimpleStyleClient;
-import mx.styles.StyleProxy;
-import mx.collections.ICollectionView;
-import mx.managers.IFocusManagerComponent;
-
+import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
-import mx.core.mx_internal;
+import mx.managers.IFocusManagerComponent;
+import mx.styles.ISimpleStyleClient;
+import mx.styles.StyleProxy;
+import mx.controls.beads.models.MenuBarModel;
+
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IContainer;
+import org.apache.royale.core.IDataProviderItemRendererMapper;
+import org.apache.royale.core.IItemRendererClassFactory;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.ILayoutParent;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.UIBase;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 
 use namespace mx_internal;
 
@@ -406,7 +392,7 @@ include "../styles/metadata/TextStyles.as"
  *  @productversion Royale 0.9.3
  *  @royalesuppresspublicvarwarning
  */
-public class MenuBar extends UIComponent implements IFocusManagerComponent
+public class MenuBar extends UIComponent implements IFocusManagerComponent, IContainer, ILayoutParent
 {
     //include "../core/Version.as";
 
@@ -456,6 +442,28 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
 		
     }
 
+    /**
+     * @copy org.apache.royale.core.IContentViewHost#strandChildren
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get strandChildren():IParent
+    {
+        return this;
+    }
+    
+    /**
+     *  @private
+     */
+    public function childrenAdded():void
+    {
+        dispatchEvent(new Event("childrenAdded"));
+    }
+    
+    
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -675,11 +683,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
      */
     public function get dataProvider():Object
     {
-        if (_rootModel)
-        {   
-            return _rootModel;
-        }
-        else return null;
+        return (model as MenuBarModel).dataProvider;
     }
 
     /**
@@ -687,62 +691,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
      */
     public function set dataProvider(value:Object):void
     {
-        /* if (_rootModel)
-        {
-            _rootModel.removeEventListener(CollectionEvent.COLLECTION_CHANGE, 
-                                           collectionChangeHandler);
-        }
-                            
-        // handle strings and xml
-        if (typeof(value)=="string")
-            value = new XML(value);
-        else if (value is XMLNode)
-            value = new XML(XMLNode(value).toString());
-        else if (value is XMLList)
-            value = new XMLListCollection(value as XMLList);
-        
-        if (value is XML)
-        {
-            _hasRoot = true;
-            var xl:XMLList = new XMLList();
-            xl += value;
-            _rootModel = new XMLListCollection(xl);
-        }
-        //if already a collection dont make new one
-        else if (value is ICollectionView)
-        {
-            _rootModel = ICollectionView(value);
-            if (_rootModel.length == 1)
-                _hasRoot = true;
-        }
-        else if (value is Array)
-        {
-            _rootModel = new ArrayCollection(value as Array);
-        }
-        //all other types get wrapped in an ArrayCollection
-        else if (value is Object)
-        {
-            _hasRoot = true;
-            // convert to an array containing this one item
-            var tmp:Array = [];
-            tmp.push(value);
-            _rootModel = new ArrayCollection(tmp);
-        }
-        else
-        {
-            _rootModel = new ArrayCollection();
-        }
-        //add listeners as weak references
-        _rootModel.addEventListener(CollectionEvent.COLLECTION_CHANGE,
-                                    collectionChangeHandler, false, 0, true);
-        //flag for processing in commitProps
-        dataProviderChanged = true;
-        invalidateProperties();
-        
-        var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
-        event.kind = CollectionEventKind.RESET;
-        collectionChangeHandler(event);
-        dispatchEvent(event); */
+        (model as MenuBarModel).dataProvider = value;
     }
 
     //----------------------------------
@@ -978,7 +927,15 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public var menuBarItems:Array = [];
+    public function get menuBarItems():Array
+    {
+        var arr:Array = [];
+        var itemHolder:UIBase = getChildAt(0) as UIBase;
+        var n:int = itemHolder.numElements;
+        for (var i:int = 0; i < n; i++)
+            arr.push(itemHolder.getElementAt(i));
+        return arr;
+    }
 
     //----------------------------------
     //  menuBarItemStyleFilters
@@ -1023,21 +980,12 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public var menus:Array = [];
+    public var menus:Array;
 
     //----------------------------------
     //  selectedIndex
     //----------------------------------
 
-    /**
-     *  @private
-     *  The index of the currently open menu item, or -1 if none is open.
-     */
-    /* private var openMenuIndex:int = -1;
-    
-    [Bindable("valueCommit")]
-    [Inspectable(category="General", defaultValue="-1")]
-	*/
     /**
      *  The index in the MenuBar control of the currently open Menu 
      *  or the last opened Menu if none are currently open.    
@@ -1049,30 +997,23 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get selectedIndex():int
+    public function get selectedIndex():int
     {
-        return openMenuIndex;
-    } */
+        return (model as MenuBarModel).selectedIndex;
+    }
     
     /**
      *  @private
      */
-    /* public function set selectedIndex(value:int):void
+    public function set selectedIndex(value:int):void
     {
-        openMenuIndex = value;
-        dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-    } */
+        (model as MenuBarModel).selectedIndex = value;
+    }
 
     //----------------------------------
     //  showRoot
     //----------------------------------
 
-    /**
-     *  @private
-     *  Storage variable for showRoot flag.
-     */
-    /* mx_internal var _showRoot:Boolean = true;
- */
     /**
      *  @private
      */
@@ -1099,23 +1040,18 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get showRoot():Boolean
+    public function get showRoot():Boolean
     {
-        return _showRoot;
-    } */
+        return (model as MenuBarModel).showRoot;
+    }
 
     /**
      *  @private
      */
-   /*  public function set showRoot(value:Boolean):void
+    public function set showRoot(value:Boolean):void
     {
-        if (_showRoot != value)
-        {
-            showRootChanged = true;
-            _showRoot = value;
-            invalidateProperties();
-        }
-    } */
+        (model as MenuBarModel).showRoot = value;
+    }
     
     //------------------------------------------------------------------------
     //
@@ -2210,6 +2146,30 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent
             event.stopPropagation();
         }
     } */
+
+   /**
+    * @private
+    */
+   override public function addedToParent():void
+   {
+       super.addedToParent();
+       
+       // Load the layout bead if it hasn't already been loaded.
+       loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+       
+       // Even though super.addedToParent dispatched "beadsAdded", DataContainer still needs its data mapper
+       // and item factory beads. These beads are added after super.addedToParent is called in case substitutions
+       // were made; these are just defaults extracted from CSS.
+       loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", this);
+       loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", this);
+       
+       dispatchEvent(new Event("initComplete"));
+   }
+
+   public function getLayoutHost():ILayoutHost
+   {
+       return view as ILayoutHost;
+   }
 
 }
 

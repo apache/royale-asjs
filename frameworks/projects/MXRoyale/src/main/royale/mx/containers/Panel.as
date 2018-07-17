@@ -59,12 +59,11 @@ import mx.styles.StyleProxy;
 use namespace mx_internal;
 */
     
+import mx.containers.beads.PanelView;
+import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
-import mx.core.ContainerLayout;
-import mx.containers.beads.BoxLayout;
-import mx.containers.beads.CanvasLayout;
-import org.apache.royale.core.IPanelModel;
-import org.apache.royale.core.LayoutBase;
+import org.apache.royale.core.IChild;
+import org.apache.royale.events.Event;
 
 //--------------------------------------
 //  Styles
@@ -523,10 +522,6 @@ public class Panel extends Container
     public function Panel()
     {
         super();
-
-
-        layoutObject = new BoxLayout();
-        addBead(layoutObject);
     }
     
     //--------------------------------------------------------------------------
@@ -534,11 +529,6 @@ public class Panel extends Container
     //  Variables
     //
     //--------------------------------------------------------------------------
-
-    /**
-     *  @private
-     */
-    private var layoutObject:LayoutBase;
 
     //--------------------------------------------------------------------------
     //
@@ -557,12 +547,6 @@ public class Panel extends Container
     //----------------------------------
     //  layout
     //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the layout property.
-     */
-    private var _layout:String = ContainerLayout.VERTICAL;
 
     [Bindable("layoutChanged")]
     [Inspectable(category="General", enumeration="vertical,horizontal,absolute", defaultValue="vertical")]
@@ -587,7 +571,7 @@ public class Panel extends Container
      */
     public function get layout():String
     {
-        return _layout;
+        return (model as PanelModel).layout;
     }
 
     /**
@@ -595,32 +579,7 @@ public class Panel extends Container
      */
     public function set layout(value:String):void
     {
-        if (_layout != value)
-        {
-            _layout = value;
-
-            if (layoutObject)
-                // Set target to null for cleanup.
-                removeBead(layoutObject);
-
-            if (_layout == ContainerLayout.ABSOLUTE)
-                layoutObject = new CanvasLayout();
-            else
-            {
-                layoutObject = new BoxLayout();
-
-                if (_layout == ContainerLayout.VERTICAL)
-                    BoxLayout(layoutObject).direction
-                        = BoxDirection.VERTICAL;
-                else
-                    BoxLayout(layoutObject).direction
-                        = BoxDirection.HORIZONTAL;
-            }
-
-            if (layoutObject)
-                addBead(layoutObject);
-
-        }
+        (model as PanelModel).layout = value;
     }
 
 
@@ -658,7 +617,7 @@ public class Panel extends Container
      */
     public function get title():String
     {
-        return IPanelModel(model).title;
+        return PanelModel(model).title;
     }
 
     /**
@@ -666,9 +625,70 @@ public class Panel extends Container
      */
     public function set title(value:String):void
     {
-        IPanelModel(model).title = value;
+        PanelModel(model).title = value;
     }
     
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var panelView:PanelView = view as PanelView;
+        panelView.contentArea.addElement(c, dispatchEvent);
+        panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        var panelView:PanelView = view as PanelView;
+        panelView.contentArea.addElementAt(c, index, dispatchEvent);
+        panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function getElementIndex(c:IChild):int
+    {
+        var panelView:PanelView = view as PanelView;
+        return panelView.contentArea.getElementIndex(c);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var panelView:PanelView = view as PanelView;
+        panelView.contentArea.removeElement(c, dispatchEvent);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function get numElements():int
+    {
+        var panelView:PanelView = view as PanelView;
+        return panelView.contentArea.numElements;
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function getElementAt(index:int):IChild
+    {
+        var panelView:PanelView = view as PanelView;
+        return panelView.contentArea.getElementAt(index);
+    }
 
 }
 

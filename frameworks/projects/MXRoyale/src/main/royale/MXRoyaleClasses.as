@@ -147,6 +147,10 @@ internal class MXRoyaleClasses
     import mx.controls.beads.NumericStepperView; NumericStepperView;
     import mx.controls.beads.DateFieldView; DateFieldView;
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
+    import mx.controls.beads.controllers.MenuBarMouseController;
+    
+    import mx.containers.beads.PanelView; PanelView;
+    import mx.containers.beads.models.PanelModel; PanelModel;
 }
 
 }
