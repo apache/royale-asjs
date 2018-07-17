@@ -16,12 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses
 {
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.jewel.Group;
 
 	COMPILE::SWF
     {

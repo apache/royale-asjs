@@ -52,7 +52,10 @@ limitations under the License.
 		<js:ContainerDataBinding/>
 	</j:beads>
 
-    <j:Drawer id="drawer" auto="true">
+    <j:Drawer id="drawer">
+        <j:beads>
+            <j:ResponsiveDrawer auto="true"/>
+        </j:beads>
         <j:DrawerHeader>
             <j:Image src="assets/apache-royale-jewel-logo-white.svg" height="140"/>
         </j:DrawerHeader>

@@ -69,6 +69,8 @@
     <component id="SizeControl" class="org.apache.royale.jewel.beads.controls.SizeControl"/>
     <component id="ResponsiveVisibility" class="org.apache.royale.jewel.beads.layouts.ResponsiveVisibility"/>
     
+    <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
+    
     <component id="TextPrompt" class="org.apache.royale.jewel.beads.controls.textinput.TextPrompt"/>
     <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>
 

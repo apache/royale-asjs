@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.jewel.supportClasses.DrawerBase;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.core.UIBase;
@@ -45,7 +46,6 @@ package org.apache.royale.jewel
 	{
 		public static const FLOAT:String = "float";
 		public static const FIXED:String = "fixed";
-		public static const AUTO:String = "auto";
 
 		/**
 		 *  constructor.
@@ -190,85 +190,5 @@ package org.apache.royale.jewel
 				}
             }
         }
-
-		protected var _auto:Boolean = false;
-        /**
-		 *  A boolean flag to activate "auto" effect selector.
-		 *  Optional. Makes the drawer auto adapt using 
-		 *  a float behaviour on mobile and tablets and fixed
-		 *  behaviour on desktop.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get auto():Boolean
-        {
-            return _auto;
-        }
-        public function set auto(value:Boolean):void
-        {
-            if (_auto != value)
-            {
-                _auto = value;
-
-				COMPILE::JS
-				{
-				if(_auto)
-				{
-					window.addEventListener('resize', autoResizeHandler, false);
-				}
-				else
-				{
-					window.removeEventListener('resize', autoResizeHandler, false);
-				}
-				}
-
-                toggleClass("auto", _auto);
-				autoResizeHandler();
-            }
-        }
-
-		/**
-		 *  When set to "auto" this resize handler monitors the width of the app window
-		 *  and switch between fixed and float modes.
-		 * 
-		 *  Note:This could be done with media queries, but since it handles open/close
-		 *  maybe this is the right way
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		private function autoResizeHandler(event:Event = null):void
-        {
-			COMPILE::JS
-			{
-				var outerWidth:Number = window.outerWidth;
-
-				var tmpFixed:Boolean = fixed;
-
-				// Desktop width size
-				if(outerWidth > 992)
-				{
-					fixed = true;
-					if(tmpFixed != fixed)
-					{
-						open();
-					}
-				}
-				else
-				{
-					fixed = false;
-					if(tmpFixed != fixed)
-					{
-						close();
-					}
-				}
-
-			}
-		}
 	}
 }
