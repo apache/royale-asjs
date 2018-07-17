@@ -1002,6 +1002,7 @@ global
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
 		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
 		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");    
+		IPanelContentArea: ClassReference("org.apache.royale.html.Container");
 	}
 	
 	PanelWithControlBar
@@ -1009,6 +1010,7 @@ global
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
 		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
 		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IPanelContentArea: ClassReference("org.apache.royale.html.Container");
 	}
 	
 	RadioButton

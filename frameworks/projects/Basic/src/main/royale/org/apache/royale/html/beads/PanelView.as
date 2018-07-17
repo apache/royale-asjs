@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -35,13 +36,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.geom.Size;
-	import org.apache.royale.html.Group;
 	import org.apache.royale.html.Container;
-	import org.apache.royale.html.Panel;
+	import org.apache.royale.html.Group;
 	import org.apache.royale.html.TitleBar;
-	import org.apache.royale.utils.CSSUtils;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy;
+	import org.apache.royale.utils.CSSUtils;
 
 	COMPILE::SWF {
 		import org.apache.royale.core.SimpleCSSStylesWithFlex;
@@ -97,7 +97,7 @@ package org.apache.royale.html.beads
             _titleBar = value;
         }
 
-		private var _contentArea:Container;
+		private var _contentArea:UIBase;
 
 		/**
 		 * The content area of the panel.
@@ -107,16 +107,14 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function get contentArea():Container
+		public function get contentArea():UIBase
 		{
 			return _contentArea;
 		}
-		public function set contentArea(value:Container):void
+		public function set contentArea(value:UIBase):void
 		{
 			_contentArea = value;
 		}
-
-		private var _strand:IStrand;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -129,13 +127,13 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.IBeadLayout
 		 *  @royaleignorecoercion org.apache.royale.core.IChild
 		 *  @royaleignorecoercion org.apache.royale.core.IViewport
-		 *  @royaleignorecoercion org.apache.royale.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 
-            var host:UIBase = UIBase(value);
+            var host:UIBase = value as UIBase;
 
 			// Look for a layout and/or viewport bead on the host's beads list. If one
 			// is found, pull it off so it will not be added permanently
@@ -184,11 +182,12 @@ package org.apache.royale.html.beads
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
 			if (titleBar.parent == null) {
-				(_strand as Panel).$addElement(titleBar);
+				(_strand as IContainerBaseStrandChildrenHost).$addElement(titleBar);
 			}
 
 			if (!_contentArea) {
-				_contentArea = new Container();
+                var cls:Class = ValuesManager.valuesImpl.getValue(_strand, "iPanelContentArea");
+				_contentArea = new cls() as UIBase;
 				_contentArea.id = "panelContent";
 				_contentArea.typeNames = "PanelContent";
 
@@ -225,7 +224,7 @@ package org.apache.royale.html.beads
             super.strand = value;
 
 			if (contentArea.parent == null) {
-				(_strand as Panel).$addElement(contentArea as IChild);
+				(_strand as IContainerBaseStrandChildrenHost).$addElement(contentArea as IChild);
 			}
 
 			// Now give the Panel its own layout

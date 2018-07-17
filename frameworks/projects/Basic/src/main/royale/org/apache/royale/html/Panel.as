@@ -20,6 +20,7 @@ package org.apache.royale.html
 {
 	import org.apache.royale.core.IPanelModel;
 	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 	import org.apache.royale.html.beads.PanelView;
 	import org.apache.royale.events.Event;
 
@@ -52,7 +53,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Panel extends Group
+	public class Panel extends Group implements IContainerBaseStrandChildrenHost
 	{
 		/**
 		 *  constructor.
@@ -74,16 +75,46 @@ package org.apache.royale.html
 			super.addElement(c, dispatchEvent);
 		}
 		
-		public function get $numElements():Number
+        /**
+         * @private
+         * @suppress {undefinedNames}
+         * Support strandChildren.
+         */
+        public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+        {
+            super.addElementAt(c, index, dispatchEvent);
+        }
+        
+		public function get $numElements():int
 		{
 			return super.numElements;
 		}
 		
-		public function $getElementAt(index:Number):IChild
+		public function $getElementAt(index:int):IChild
 		{
 			return super.getElementAt(index);
 		}
 		
+        /**
+         * @private
+         * @suppress {undefinedNames}
+         * Support strandChildren.
+         */
+        public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+            super.removeElement(c, dispatchEvent);
+        }
+        
+        /**
+         * @private
+         * @suppress {undefinedNames}
+         * Support strandChildren.
+         */
+        public function $getElementIndex(c:IChild):int
+        {
+            return super.getElementIndex(c);
+        }
+        
 		/**
 		 *  The string to display in the org.apache.royale.html.TitleBar.
 		 *
