@@ -709,7 +709,7 @@ use namespace mx_internal;
          * @suppress {undefinedNames}
          * Support strandChildren.
          */
-        public function $numElements():int
+        public function get $numElements():int
         {
             return super.numElements;
         }
