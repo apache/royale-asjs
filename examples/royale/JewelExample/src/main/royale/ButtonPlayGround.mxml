@@ -87,16 +87,16 @@ limitations under the License.
 			<j:Card>
 				<html:H4 text="Button with Icons"/>
 				
-				<j:Button text="print" emphasis="primary">
+				<j:IconButton text="print" emphasis="primary">
 					<j:icon>
 						<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
 					</j:icon>
-				</j:Button>
-				<j:Button emphasis="primary">
+				</j:IconButton>
+				<j:IconButton emphasis="primary">
 					<j:icon>
 						<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
 					</j:icon>
-				</j:Button>
+				</j:IconButton>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

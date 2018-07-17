@@ -83,22 +83,22 @@ limitations under the License.
     <j:TopAppBar id="topappbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
         <j:TopAppBarRow>
             <j:TopAppBarSection>
-                <j:Button click="drawer.isOpen ? drawer.close() : drawer.open()">
+                <j:IconButton click="drawer.isOpen ? drawer.close() : drawer.open()">
                     <js:beads>
                         <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false"/>
                     </js:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
-                </j:Button>
+                </j:IconButton>
                 <j:TopAppBarTitle text="Apache Royale Jewel UI Set Theme Showcase"/>
             </j:TopAppBarSection>
             <j:TopAppBarSection alignRight="true">
-                <j:Button click="drawer.fixed = !drawer.fixed">
+                <j:IconButton click="drawer.fixed = !drawer.fixed">
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.VISIBILITY}" material="true"/>
                     </j:icon>
-                </j:Button>
+                </j:IconButton>
                 <j:ToggleButton click="toggleTopAppBarFixed()">
                     <j:icon>
                         <js:ToggleFontIcon text="{MaterialIconType.LOCK}" selectedText="{MaterialIconType.LOCK_OPEN}" material="true"/>

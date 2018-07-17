@@ -66,7 +66,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class ToggleButton extends Button implements ISelectable
+	public class ToggleButton extends IconButton implements ISelectable
 	{
         /**
          *  Constructor.

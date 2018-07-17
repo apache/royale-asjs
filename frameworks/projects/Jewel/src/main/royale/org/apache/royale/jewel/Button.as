@@ -22,8 +22,6 @@ package org.apache.royale.jewel
     import org.apache.royale.core.ITextModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.IIconSupport;
-    import org.apache.royale.core.IIcon;
     import org.apache.royale.events.IEventDispatcher;
 
     COMPILE::SWF
@@ -172,7 +170,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.3
      */
     COMPILE::SWF
-	public class Button extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase, IIconSupport, IClassSelectorListSupport
+	public class Button extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase, IClassSelectorListSupport
 	{
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -269,28 +267,6 @@ package org.apache.royale.jewel
             }
         }
 
-        private var _icon:IIcon;
-        /**
-		 *  The icon to use with the button.
-         *  Optional
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get icon():IIcon
-        {
-            return _icon;
-        }
-        public function set icon(value:IIcon):void
-        {
-            _icon = value;
-
-            classSelectorList.toggle("icon", (_icon != null));
-            // todo set up icon on swf
-        }
-
         /**
          * Add a class selector to the list.
          * 
@@ -376,7 +352,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.3
      */
     COMPILE::JS
-    public class Button extends StyledUIBase implements IStrand, IEventDispatcher, IUIBase, IIconSupport
+    public class Button extends StyledUIBase implements IStrand, IEventDispatcher, IUIBase
     {
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -468,39 +444,6 @@ package org.apache.royale.jewel
                 _emphasis = value;
 
                 toggleClass(_emphasis, value);
-            }
-        }
-
-        private var _icon:IIcon;
-        /**
-		 *  The icon to use with the button.
-         *  Optional
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get icon():IIcon
-        {
-            return _icon;
-        }
-        public function set icon(value:IIcon):void
-        {
-            _icon = value;
-
-            var iconClass:String = "icon";
-            if(text != "")
-            {
-                iconClass += "WithSpace";
-            }
-
-            toggleClass(iconClass, (_icon != null));
-            
-            COMPILE::JS
-            {
-                // insert the icon before the text
-                addElementAt(_icon, 0);
             }
         }
 
