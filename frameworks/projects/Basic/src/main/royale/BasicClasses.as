@@ -254,6 +254,7 @@ internal class BasicClasses
 	import org.apache.royale.svg.Path; Path;
 	import org.apache.royale.svg.Text; Text;
 	import org.apache.royale.svg.CompoundGraphic; CompoundGraphic;
+	import org.apache.royale.svg.TransformableCompoundGraphic; TransformableCompoundGraphic;
 
     import org.apache.royale.html.beads.models.DataProviderModel; DataProviderModel;
 
