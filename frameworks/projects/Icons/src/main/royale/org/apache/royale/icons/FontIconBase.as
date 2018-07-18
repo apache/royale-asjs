@@ -151,5 +151,75 @@ package org.apache.royale.icons
             }
         }
 
+        private var _dark:Boolean;
+        /**
+         *  Activate "dark" class selector.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public function get dark():Boolean
+        {
+            return _dark;
+        }
+
+        public function set dark(value:Boolean):void
+        {
+            if (_dark != value)
+            {
+                _dark = value;
+
+                toggleClass("dark", _dark);
+            }
+        }
+
+        private var _light:Boolean;
+        /**
+         *  Activate "light" class selector.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public function get light():Boolean
+        {
+            return _light;
+        }
+        public function set light(value:Boolean):void
+        {
+            if (_light != value)
+            {
+                _light = value;
+
+                toggleClass("light", _light);
+            }
+        }
+
+        private var _inactive:Boolean;
+        /**
+         *  Activate "inactive" class selector.
+         *  To show the icon as inactive
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public function get inactive():Boolean
+        {
+            return _inactive;
+        }
+        public function set inactive(value:Boolean):void
+        {
+            if (_inactive != value)
+            {
+                _inactive = value;
+
+                toggleClass("inactive", _inactive);
+            }
+        }
     }
 }

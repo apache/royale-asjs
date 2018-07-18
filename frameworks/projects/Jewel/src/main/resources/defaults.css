@@ -354,6 +354,19 @@ j|ControlBar {
 .fonticon.size-48 {
   font-size: 48px;
 }
+.fonticon.dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+.fonticon.dark.inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+.fonticon.light {
+  color: white;
+}
+.fonticon.light.inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
 .jewel.item, .jewel.navigationlink {
   display: flex;
   cursor: pointer;
