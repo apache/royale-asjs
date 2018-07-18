@@ -19,6 +19,7 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IMenu;
+    import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
@@ -136,7 +137,8 @@ package org.apache.royale.html.beads.controllers
 				if (menu.parent != null) {
 					var controller:MenuSelectionMouseController = menu.getBeadByType(MenuSelectionMouseController) as MenuSelectionMouseController;
 					controller.removeClickOutHandler(menu);
-					menu.parent.removeElement(menu);
+                    var host:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+					host.popUpParent.removeElement(menu);
 				}
 			}
 			MenuModel.clearMenuList();
