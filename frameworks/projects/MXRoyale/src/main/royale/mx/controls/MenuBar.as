@@ -36,6 +36,7 @@ import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
+import mx.events.MenuEvent;
 import mx.managers.IFocusManagerComponent;
 import mx.styles.ISimpleStyleClient;
 import mx.styles.StyleProxy;
@@ -439,9 +440,17 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
        /*  menuBarItemRenderer = new ClassFactory(MenuBarItem);
         tabChildren = false; */
 		
-		
+		addEventListener("change", changeHandler);
     }
 
+    protected function changeHandler(event:Event):void
+    {
+        var item:Object = (model as MenuBarModel).selectedItem;
+        var menuEvent:MenuEvent = new MenuEvent("itemClick");
+        menuEvent.item = item;
+        dispatchEvent(menuEvent);
+    }
+    
     /**
      * @copy org.apache.royale.core.IContentViewHost#strandChildren
      *  
@@ -2170,6 +2179,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
    {
        return view as ILayoutHost;
    }
+   
 
 }
 

@@ -20,7 +20,9 @@ package mx.controls.beads.controllers
 {
     import mx.controls.MenuBar;
     
+    import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IMenu;
+    import org.apache.royale.core.IStrandWithPresentationModel;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.html.beads.controllers.MenuBarMouseController;
 	
@@ -58,6 +60,13 @@ package mx.controls.beads.controllers
 		override protected function showMenu(menu:IMenu, component:IUIBase):void
 		{
             super.showMenu(menu, component);
+            var swpm:IStrandWithPresentationModel = menu as IStrandWithPresentationModel;
+            if (swpm)
+            {
+                var lpm:IListPresentationModel = swpm.presentationModel as IListPresentationModel;
+                if (lpm)
+                    lpm.rowHeight = 20;
+            }
             (_strand as MenuBar).menus = [ menu ];
 		}
 	}

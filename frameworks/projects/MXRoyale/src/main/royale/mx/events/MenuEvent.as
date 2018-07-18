@@ -19,8 +19,9 @@
 
 package mx.events
 {
-import org.apache.royale.events.Event;
 import mx.controls.MenuBar;
+
+import org.apache.royale.events.Event;
 
 /*
 import flash.events.Event;
@@ -378,7 +379,8 @@ public class MenuEvent extends ListEvent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-	 public function MenuEvent()
+	public function MenuEvent(type:String, bubbles:Boolean = false, 
+                              cancelable:Boolean = false, item:Object = null)
 	{
 		super(type, bubbles, cancelable);
 		/*

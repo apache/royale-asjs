@@ -45,6 +45,7 @@ package mx.controls.beads.models
 		public function MenuBarModel()
 		{
             labelField = "label";
+            submenuField = "children";
 		}
 		
         private var _showRoot:Boolean;
