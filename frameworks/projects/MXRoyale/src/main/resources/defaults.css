@@ -16,7 +16,7 @@
 *  limitations under the License.
 *
 */
-
+@namespace Basic "library://ns.apache.org/royale/basic";
 @namespace "library://ns.apache.org/royale/mx";
 
 .royale *, . royale *:before, . royale *:after {
@@ -35,6 +35,11 @@ global {
  * -------------------------------------------------------
  */
 
+Basic|MenuItemRenderer
+{
+	height: 16px;
+	margin-top: 4px;
+}
 
 Button
 {
