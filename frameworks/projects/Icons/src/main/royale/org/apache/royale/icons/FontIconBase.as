@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
-    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.core.IIcon;
     import org.apache.royale.utils.StringUtil;
 
@@ -37,7 +37,7 @@ package org.apache.royale.icons
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public class FontIconBase extends UIBase implements IIcon
+    public class FontIconBase extends StyledUIBase implements IIcon
     {
         /**
          *  constructor.
@@ -69,6 +69,9 @@ package org.apache.royale.icons
             
             textNode = document.createTextNode(iconText) as Text;
             i.appendChild(textNode); 
+
+            positioner = element;
+            
             return i;
         }
 
@@ -115,6 +118,35 @@ package org.apache.royale.icons
                 {
                     if (parent)
                         setClassName(computeFinalClassNames()); 
+                }
+            }
+        }
+
+        private var _size:Number = 24;
+        /**
+         *  Activate "size-XX" size class selector. Although the icons in the 
+         *  font can be scaled to any size, recommended sizes are 18, 24, 36 or 48px.
+         *
+         *  The default being 24px.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         */
+        public function get size():Number
+        {
+            return _size;
+        }
+        public function set size(value:Number):void
+        {
+            if (_size != value)
+            {
+                COMPILE::JS
+                {
+                    removeClass("size-" + _size);
+                    _size = value;
+                    addClass("size-" + _size);
                 }
             }
         }

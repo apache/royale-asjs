@@ -113,6 +113,7 @@ limitations under the License.
         <local:ButtonPlayGround id="button_panel"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>
         <local:CheckBoxPlayGround id="checkbox_panel"/>
+        <local:MiscelaneaPlayGound id="miscelanea_panel"/>
         <local:HeadingsAndText id="text_panel"/>
         <local:LabelPlayGround id="label_panel"/>
         <local:ListPlayGround id="list_panel"/>

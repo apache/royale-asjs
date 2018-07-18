@@ -24,17 +24,18 @@ package models
 
     public class MainNavigationModel
     {
-        private var _controlsDrawerNavigation:ArrayList = new ArrayList([
-            new NavigationLinkVO("Alert", "alert_panel", "web_asset"),
-            new NavigationLinkVO("Button", "button_panel", "crop_7_5"),
-            new NavigationLinkVO("DropDownList", "dropdownlist_panel", "credit_card"),
-            new NavigationLinkVO("CheckBox", "checkbox_panel", "check_box"),
-            new NavigationLinkVO("Label", "label_panel", "label"),
-            new NavigationLinkVO("List", "list_panel", "list_alt"),
-            new NavigationLinkVO("RadioButton", "radiobutton_panel", "radio_button_checked"),
-            new NavigationLinkVO("Slider", "slider_panel", "storage"),
-            new NavigationLinkVO("Text", "text_panel", "subject"),
-            new NavigationLinkVO("TextInput", "textinput_panel", "text_fields")
+        private var _controlsDrawerNavigation:ArrayList = new ArrayList([            
+            new NavigationLinkVO("Alert", "alert_panel", MaterialIconType.WEB_ASSET),
+            new NavigationLinkVO("Button", "button_panel", MaterialIconType.CROP_7_5),
+            new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
+            new NavigationLinkVO("CheckBox", "checkbox_panel", MaterialIconType.CHECK_BOX),
+            new NavigationLinkVO("Icon", "miscelanea_panel", MaterialIconType.FACE),
+            new NavigationLinkVO("Label", "label_panel", MaterialIconType.LABEL),
+            new NavigationLinkVO("List", "list_panel", MaterialIconType.LIST_ALT),
+            new NavigationLinkVO("RadioButton", "radiobutton_panel", MaterialIconType.RADIO_BUTTON_CHECKED),
+            new NavigationLinkVO("Slider", "slider_panel", MaterialIconType.STORAGE),
+            new NavigationLinkVO("Text", "text_panel", MaterialIconType.SUBJECT),
+            new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS)
 
             // new NavigationLinkVO("Menu", "menus_panel"),
             // new NavigationLinkVO("Loading", "loading_panel"),

@@ -338,6 +338,22 @@ j|ControlBar {
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   }
 }
+.fonticon {
+  /* Rules for using icons as black on a light background. */
+  /* Rules for using icons as white on a dark background. */
+}
+.fonticon.size-18 {
+  font-size: 18px;
+}
+.fonticon.size-24 {
+  font-size: 24px;
+}
+.fonticon.size-36 {
+  font-size: 36px;
+}
+.fonticon.size-48 {
+  font-size: 48px;
+}
 .jewel.item, .jewel.navigationlink {
   display: flex;
   cursor: pointer;
