@@ -23,12 +23,14 @@ package org.apache.royale.express.beads.layouts
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.express.supportClasses.DataGridColumn;
+	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.IDrawingLayerBead;
@@ -65,6 +67,7 @@ package org.apache.royale.express.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -76,10 +79,17 @@ package org.apache.royale.express.beads.layouts
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		private function get host():IUIBase
 		{
 			return _strand as IUIBase;
 		}
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
 		private function get uiHost():UIBase
 		{
 			return _strand as UIBase;
@@ -101,7 +111,16 @@ package org.apache.royale.express.beads.layouts
 		 * been placed. For example, with three columns of widths, "50", "100%", and "80" the
 		 * 100% size represents the amount left over after the 130 pixels have been removed from
 		 * whatever width the DataGrid currently has at the time this layout is executed.
-         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 * 
+         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IParent
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumn
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDrawingLayerBead
 		 */
 		public function layout():Boolean
 		{
@@ -131,7 +150,7 @@ package org.apache.royale.express.beads.layouts
 			
 			for(i=0; i < displayedColumns.length; i++) {
 				columnDef = model.columns[i] as DataGridColumn;
-				var columnList:UIBase = displayedColumns[i] as UIBase;
+				var columnList:IUIBase = displayedColumns[i] as IUIBase;
 				
 				// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
 				columnList.x = xpos;
@@ -160,7 +179,7 @@ package org.apache.royale.express.beads.layouts
 				header.width = useWidth;
 			}
 			COMPILE::JS {
-				(header as UIBase).percentWidth = 100;
+				(header as ILayoutChild).percentWidth = 100;
 			}
 			// header's height is set in CSS
 			
@@ -170,7 +189,7 @@ package org.apache.royale.express.beads.layouts
 				listArea.width = useWidth;
 			}
 			COMPILE::JS {
-				(listArea as UIBase).percentWidth = 100;
+				(listArea as ILayoutChild).percentWidth = 100;
 			}
 			listArea.height = useHeight - header.height;
 			
@@ -180,8 +199,8 @@ package org.apache.royale.express.beads.layouts
 			
 			// Put the drawing layer back, sizing it to fit over the listArea.
 			if (layerBead != null && layerBead.layer != null) {				
-				UIBase(_strand).removeElement(layerBead.layer);
-				UIBase(_strand).addElement(layerBead.layer); // always keep it on top
+				IParent(_strand).removeElement(layerBead.layer);
+				IParent(_strand).addElement(layerBead.layer); // always keep it on top
 				
 				var layerX:Number = listArea.x;
 				var layerY:Number = listArea.y;
