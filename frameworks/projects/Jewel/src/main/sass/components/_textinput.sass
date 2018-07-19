@@ -21,28 +21,54 @@
 
 // TextInput variables
 $textinput-margin: 0 !default
-$textinput-padding: .72em 1.12em !default
+$textinput-padding-vertical: .72em !default
+$textinput-padding-horizontal: 1.12em !default
 
-.jewel.textinput
-	position: relative
-	display: inline-flex
+.jewel
+	&.textinput
+		position: relative
+		display: inline-flex
 
-	> input
-		+appear(none)
-		margin: $textinput-margin
-		padding: $textinput-padding
+		input
+			+appear(none)
+			margin: $textinput-margin
+			padding: $textinput-padding-vertical $textinput-padding-horizontal 
 
-		max-width: 100%
+			max-width: 100%
 
-		flex: 1 0 auto
-		outline: none
+			flex: 1 0 auto
+			outline: none
+			
+			text:
+				align: left
+			line-height: normal !important
+			
+			&[disabled]
+				cursor: unset
 		
-		text:
-			align: left
-		line-height: normal !important
+		&.icon
+			input
+				padding-left: $textinput-padding-horizontal + 1.5
+
+			i		
+				&.fonticon
+					position: absolute
+					left: 12px
+					right: auto
+					top: 7px
+					cursor: default
+					pointer-events: none
+					text-align: center
 		
-		&[disabled]
-			cursor: unset
+			&.right
+				input
+					padding-right: $textinput-padding-horizontal + 1.5
+					padding-left: $textinput-padding-horizontal
+
+				i
+					&.fonticon
+						left: auto
+						right: 12px
 
 j|TextInput
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
@@ -56,26 +82,27 @@ j|TextInput
 $textarea-margin: 0 !default
 $textarea-padding: .72em 1.12em !default
 
-.jewel.textarea
-	position: relative
-	display: inline-flex
+.jewel
+	&.textarea
+		position: relative
+		display: inline-flex
 
-	> textarea
-		+appear(none)
-		margin: $textarea-margin
-		padding: $textarea-padding
+		textarea
+			+appear(none)
+			margin: $textarea-margin
+			padding: $textarea-padding
 
-		max-width: 100%
+			max-width: 100%
 
-		flex: 1 0 auto
-		outline: none
-		
-		text:
-			align: left
-		line-height: normal !important
-		
-		&[disabled]
-			cursor: unset
+			flex: 1 0 auto
+			outline: none
+			
+			text:
+				align: left
+			line-height: normal !important
+			
+			&[disabled]
+				cursor: unset
 
 j|TextArea
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")

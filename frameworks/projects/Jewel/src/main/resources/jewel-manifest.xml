@@ -35,6 +35,7 @@
     <component id="ToggleButton" class="org.apache.royale.jewel.ToggleButton"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
     <component id="TextInput" class="org.apache.royale.jewel.TextInput"/>
+    <component id="IconTextInput" class="org.apache.royale.jewel.IconTextInput"/>
     <component id="TextArea" class="org.apache.royale.jewel.TextArea"/>
     <component id="Slider" class="org.apache.royale.jewel.Slider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>

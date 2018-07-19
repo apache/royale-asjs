@@ -338,10 +338,6 @@ j|ControlBar {
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   }
 }
-.fonticon {
-  /* Rules for using icons as black on a light background. */
-  /* Rules for using icons as white on a dark background. */
-}
 .fonticon.size-18 {
   font-size: 18px;
 }
@@ -353,18 +349,6 @@ j|ControlBar {
 }
 .fonticon.size-48 {
   font-size: 48px;
-}
-.fonticon.dark {
-  color: rgba(0, 0, 0, 0.54);
-}
-.fonticon.dark.inactive {
-  color: rgba(0, 0, 0, 0.26);
-}
-.fonticon.light {
-  color: white;
-}
-.fonticon.light.inactive {
-  color: rgba(255, 255, 255, 0.3);
 }
 
 .jewel.item, .jewel.navigationlink {
@@ -2741,7 +2725,7 @@ j|Slider {
   position: relative;
   display: inline-flex;
 }
-.jewel.textinput > input {
+.jewel.textinput input {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -2755,8 +2739,28 @@ j|Slider {
   text-align: left;
   line-height: normal !important;
 }
-.jewel.textinput > input[disabled] {
+.jewel.textinput input[disabled] {
   cursor: unset;
+}
+.jewel.textinput.icon input {
+  padding-left: 2.62em;
+}
+.jewel.textinput.icon i.fonticon {
+  position: absolute;
+  left: 12px;
+  right: auto;
+  top: 7px;
+  cursor: default;
+  pointer-events: none;
+  text-align: center;
+}
+.jewel.textinput.icon.right input {
+  padding-right: 2.62em;
+  padding-left: 1.12em;
+}
+.jewel.textinput.icon.right i.fonticon {
+  left: auto;
+  right: 12px;
 }
 
 j|TextInput {
@@ -2767,7 +2771,7 @@ j|TextInput {
   position: relative;
   display: inline-flex;
 }
-.jewel.textarea > textarea {
+.jewel.textarea textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -2781,7 +2785,7 @@ j|TextInput {
   text-align: left;
   line-height: normal !important;
 }
-.jewel.textarea > textarea[disabled] {
+.jewel.textarea textarea[disabled] {
   cursor: unset;
 }
 

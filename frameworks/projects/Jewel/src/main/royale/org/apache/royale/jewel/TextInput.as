@@ -18,7 +18,6 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.jewel.supportClasses.TextInputBase;
-    import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::JS
     {
@@ -64,7 +63,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
+            div = document.createElement('div') as HTMLDivElement;
             
             input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'text');

@@ -65,18 +65,23 @@ $textinput-border-radius: $border-radius
 			&::placeholder, &:-ms-input-placeholder
 				color: $disabled-font-color
 
-.jewel.textinput
-	font:
-		weight: $font-weight-normal
+			+ i
+				color: $disabled-font-color
 
-	> input
+.jewel
+	&.textinput
 		font:
-			family: $font-stack
+			weight: $font-weight-normal
 
-	@if $dark
-		+textinput-theme($font-dark-color)
-	@else
-		+textinput-theme($font-light-color)
+		input
+			font:
+				family: $font-stack
+
+		@if $dark
+			+textinput-theme($font-dark-color)
+		@else
+			+textinput-theme($font-light-color)
+
 
 // Jewel TextArea
 
