@@ -2365,6 +2365,11 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         if (target is UIComponent)
             target["element"].focus();
     }
+	 public function getNextFocusManagerComponent(
+                            backward:Boolean = false):IFocusManagerComponent
+	{
+       return null;
+	}
 }
 
 }
