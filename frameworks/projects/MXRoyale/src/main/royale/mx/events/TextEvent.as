@@ -57,7 +57,13 @@ public class TextEvent extends flash.events.TextEvent
 COMPILE::JS
 public class TextEvent extends org.apache.royale.events.Event
 {
-    public static const TEXT_INPUT : String = "textInput"
+   private static function platformConstant(s:String):String
+        {
+            return s;
+        }
+		
+    public static const TEXT_INPUT : String = platformConstant("textInput"); 
+		
 		
 	//--------------------------------------------------------------------------
 	//
