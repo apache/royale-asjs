@@ -523,5 +523,88 @@ limitations under the License.
 			<html:Div className="box" text="4d"/>
 		</j:GridCell>
 	</j:Grid>
+
+	<html:H3 text="Grids Horizontal Align"/>
+	
+	<html:H4 text=" itemsTop"/>
+
+	<j:Grid className="wrapper" gap="true" itemsAlign="itemsTop">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 100px" height="100"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 200px" height="200"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 300px" height="300"/>
+		</j:GridCell>
+	</j:Grid>
+
+	<html:H4 text=" itemsBottom"/>
+
+	<j:Grid className="wrapper" gap="true" itemsAlign="itemsBottom">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 100px" height="100"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 200px" height="200"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 300px" height="300"/>
+		</j:GridCell>
+	</j:Grid>
+	
+	<html:H4 text=" itemsCentered"/>
+
+	<j:Grid className="wrapper" gap="true" itemsAlign="itemsCentered">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 100px" height="100"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 200px" height="200"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="height: 300px" height="300"/>
+		</j:GridCell>
+	</j:Grid>
+	
+	<html:H4 text=" itemsSameHeight"/>
+
+	<j:Grid className="wrapper" gap="true" itemsAlign="itemsSameHeight" height="200">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="Same Height"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="Same Height"/>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="3">
+			<html:Div className="box" text="Same Height"/>
+		</j:GridCell>
+	</j:Grid>
+
 	
 </j:SectionContent>

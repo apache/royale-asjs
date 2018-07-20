@@ -113,13 +113,8 @@ $gap-size: 10px !default
 
 .layout.grid
 	flex-flow: row wrap
-	align-items: stretch
 	width: 100%
 	height: 100%
-	// align-content: stretch
-
-	// &.itemsFullHeight
-	// 	align-items: stretch
 	
 	> *
 		flex: 0 0 auto // flex-grow, flex-shrink and flex-basis
@@ -142,6 +137,19 @@ $gap-size: 10px !default
 					@for $j from 1 through $i
 						.#{$size}-col-#{$j}-#{$i}
 							width: calc(#{percentage($j / $i)} - #{$gap-size})
+
+	&.itemsSameHeight
+		//align-items: stretch  --> this doen't seems to work as expected
+
+		> *
+			> *
+				min-height: 100%
+	&.itemsCentered
+		align-items: center
+	&.itemsTop
+		align-items: flex-start
+	&.itemsBottom
+		align-items: flex-end
 
 @each $size in $size-names			
 	@if index($size-names, $size) == 1

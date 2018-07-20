@@ -572,7 +572,6 @@ j|Label {
 /* Grid */
 .layout.grid {
   flex-flow: row wrap;
-  align-items: stretch;
   width: 100%;
   height: 100%;
 }
@@ -2471,6 +2470,18 @@ j|Label {
   .layout.grid.gap .widescreen-col-12-12 {
     width: calc(100% - 10px);
   }
+}
+.layout.grid.itemsSameHeight > * > * {
+  min-height: 100%;
+}
+.layout.grid.itemsCentered {
+  align-items: center;
+}
+.layout.grid.itemsTop {
+  align-items: flex-start;
+}
+.layout.grid.itemsBottom {
+  align-items: flex-end;
 }
 
 @media (max-width: 767px) {

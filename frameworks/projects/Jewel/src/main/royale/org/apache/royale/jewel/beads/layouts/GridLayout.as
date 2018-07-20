@@ -130,6 +130,46 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			hostClassList.toggle("gap", value);
 		}
+
+		private var _itemsAlign:String;
+		/**
+		 *  Distribute all items horizontaly
+		 *  Possible values are:
+		 *  - itemsSameHeight
+		 *  - itemsCentered
+		 *  - itemsTop
+		 *  - itemsBottom
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get itemsAlign():String
+        {
+            return _itemsAlign;
+        }
+
+        public function set itemsAlign(value:String):void
+        {
+			if (_itemsAlign != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+					{
+						if (hostClassList.contains(_itemsAlign))
+							hostClassList.remove(_itemsAlign);
+				}
+						_itemsAlign = value;
+				COMPILE::JS
+                {
+						hostClassList.add(_itemsAlign);
+					}
+				}
+			}
+        }
+
 		// protected var _gap:Number = 0;
 		// /**
 		//  *  Assigns variable gap to grid from 1 to 20

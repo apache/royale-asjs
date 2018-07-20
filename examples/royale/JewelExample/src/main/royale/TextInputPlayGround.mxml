@@ -26,7 +26,7 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<j:Grid gap="true">
+	<j:Grid gap="true" itemsAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">

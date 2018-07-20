@@ -81,6 +81,38 @@ package org.apache.royale.jewel
 
 			layout.gap = value;
         }
+
+		/**
+		 *  Distribute all items horizontaly
+		 *  Possible values are:
+		 *  - itemsSameHeight
+		 *  - itemsCentered
+		 *  - itemsTop
+		 *  - itemsBottom
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get itemsAlign():String
+        {
+            return layout.itemsAlign;
+        }
+
+        public function set itemsAlign(value:String):void
+        {
+			typeNames = StringUtil.removeWord(typeNames, " " + layout.itemsAlign);
+			layout.itemsAlign = value;
+			typeNames += " " + layout.itemsAlign;
+
+			COMPILE::JS
+            {
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
+        }
+
         // public function get gap():Number
         // {
         //     return layout.gap;

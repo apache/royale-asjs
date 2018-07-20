@@ -115,8 +115,8 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					if(hostComponent)
 						setFractionForScreen(DESKTOP, value, _desktopDenominator);
-					_desktopNumerator = value;
 				}
+				_desktopNumerator = value;
 			}
 		}
 
@@ -144,8 +144,8 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					if(hostComponent)
 						setFractionForScreen(DESKTOP, _desktopNumerator, value);
-					_desktopDenominator = value;
 				}
+				_desktopDenominator = value;
 			}
 		}
 
@@ -173,8 +173,8 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					if(hostComponent)
 						setFractionForScreen(TABLET, value, _tabletDenominator);
-					_tabletNumerator = value;
 				}
+				_tabletNumerator = value;
 			}
 		}
 
@@ -202,8 +202,8 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					if(hostComponent)
 						setFractionForScreen(TABLET, _tabletNumerator, value);
-					_tabletDenominator = value;
 				}
+				_tabletDenominator = value;
 			}
 		}
 
@@ -231,8 +231,8 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					if(hostComponent)
 						setFractionForScreen(PHONE, value, _phoneDenominator);
-					_phoneNumerator = value;
 				}
+				_phoneNumerator = value;
 			}
 		}
 
@@ -260,8 +260,8 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					if(hostComponent)
 						setFractionForScreen(PHONE, _phoneNumerator, value);
-					_phoneDenominator = value;
 				}
+				_phoneDenominator = value;
 			}
 		}
 
@@ -300,10 +300,10 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_phoneVisible != value)
             {
+				_phoneVisible = value;
+
                 COMPILE::JS
                 {
-					_phoneVisible = value;
-
 					if(hostComponent)
 					{
 						if(_phoneVisible)
@@ -341,10 +341,10 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_tabletVisible != value)
             {
+				_tabletVisible = value;
+
                 COMPILE::JS
                 {
-					_tabletVisible = value;
-
 					if(hostComponent)
 					{
 						if(_tabletVisible)
@@ -382,10 +382,10 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_desktopVisible != value)
             {
-                COMPILE::JS
+				_desktopVisible = value;
+                
+				COMPILE::JS
                 {
-					_desktopVisible = value;
-
 					if(hostComponent)
 					{
 						if(_desktopVisible)
@@ -423,10 +423,10 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_wideScreenVisible != value)
             {
+				_wideScreenVisible = value;
+
                 COMPILE::JS
                 {
-					_wideScreenVisible = value;
-
 					if(hostComponent)
 					{
 						if(_wideScreenVisible)
