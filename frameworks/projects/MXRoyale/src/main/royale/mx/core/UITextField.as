@@ -436,6 +436,7 @@ public class UITextField  extends UIComponent
         //return (mirror) ? _x : super.x; 
 		return super.x;
     }
+	
     
     //----------------------------------
     //  width
@@ -554,6 +555,25 @@ public class UITextField  extends UIComponent
 
         if (invalidateDisplayListFlag)
             validateNow(); */
+    }
+	public function get text():String
+    {
+        // TextField's text property can't be set to null.
+       /*  if (!value)
+            value = "";
+        
+        // Performance optimization: if the text hasn't changed,
+        // don't let the player think that we're dirty.
+        if (!isHTML && super.text == value)
+            return;
+
+        super.text = value;
+
+        explicitHTMLText = null;
+
+        if (invalidateDisplayListFlag)
+            validateNow(); */
+			return "";
     }
 
 	//----------------------------------
@@ -2679,6 +2699,26 @@ public class UITextField  extends UIComponent
     {
         return true;
     } */
+    
+    /**
+     *  @private
+     */
+     public function set selectable(value:Boolean):void
+		{
+		}
+	
+	 public function get selectable():Boolean
+		{
+			return true;
+		} 
+	public function set getCharIndexAtPoint(value:int):void
+		{
+		}
+		
+	 public function get getCharIndexAtPoint():int
+		{
+			return 0;
+		} 
     
     /**
      *  @private
