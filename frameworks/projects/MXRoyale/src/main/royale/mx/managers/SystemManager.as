@@ -3336,10 +3336,9 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public function getSandboxRoot():UIComponent
+    public function getSandboxRoot():Object
     {
-    var temp:UIComponent;
-    	return temp;
+    return this;
         // work our say up the parent chain to the root. This way we
         // don't have to rely on this object being added to the stage.
         /* var sm:ISystemManager = this;
