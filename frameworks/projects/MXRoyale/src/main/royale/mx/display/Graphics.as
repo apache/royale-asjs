@@ -26,6 +26,9 @@ package mx.display
 		{
 			super();
 		}
+		public function  endFill(): void
+		{
+		}
 	}
 	
 }
