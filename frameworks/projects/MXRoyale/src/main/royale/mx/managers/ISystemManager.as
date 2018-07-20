@@ -118,7 +118,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    function getSandboxRoot():UIComponent;
+    function getSandboxRoot():Object;
 }
 
 }
