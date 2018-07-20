@@ -20,7 +20,7 @@
 
 
 <componentPackage>
-
+	<component id="Application" class="spark.components.Application"/>
 	<component id="Button" class="spark.components.Button" />
 	<component id="CheckBox" class="spark.components.CheckBox" />
 	<component id="Label" class="spark.components.Label" />
