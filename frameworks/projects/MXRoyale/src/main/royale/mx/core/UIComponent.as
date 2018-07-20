@@ -2868,7 +2868,11 @@ public class UIComponent extends UIBase
         return removeElement(child) as IUIComponent;
     }
 
-    
+    COMPILE::JS
+	public function swapChildren(child1:IUIComponent, child2:IUIComponent):void
+	{
+	
+	}
     /**
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
