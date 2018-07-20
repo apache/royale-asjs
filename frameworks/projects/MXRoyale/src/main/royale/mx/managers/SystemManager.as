@@ -94,7 +94,7 @@ use namespace mx_internal;
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
-
+import mx.core.UIComponent;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.IEventDispatcher;
 
@@ -1286,7 +1286,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  Storage for the rawChildren property.
      */
     // private var _rawChildren:SystemRawChildrenList;
-
+	private var _rawChildren:IChildList;
     /**
      *  @inheritDoc
      *  
@@ -1295,18 +1295,18 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /*
+   
      public function get rawChildren():IChildList
     {
         //if (!topLevel)
         //  return _topLevelSystemManager.rawChildren;
 
-       if (!_rawChildren)
-            _rawChildren = new SystemRawChildrenList(this);
+      /*  if (!_rawChildren)
+            _rawChildren = new SystemRawChildrenList(this); */
 
         return _rawChildren;
     } 
-    */
+    
 
     //--------------------------------------------------------------------------
     //  screen
@@ -3336,9 +3336,10 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public function getSandboxRoot():Object
+    public function getSandboxRoot():UIComponent
     {
-    	return this;
+    var temp:UIComponent;
+    	return temp;
         // work our say up the parent chain to the root. This way we
         // don't have to rely on this object being added to the stage.
         /* var sm:ISystemManager = this;
