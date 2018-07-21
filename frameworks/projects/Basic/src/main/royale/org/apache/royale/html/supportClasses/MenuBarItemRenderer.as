@@ -38,6 +38,10 @@ package org.apache.royale.html.supportClasses
 			super.addedToParent();
 			
 			addElement(label);
+            COMPILE::JS
+            {
+                label.setParentEventTarget(this);        
+            }
 		}
 		
 		override public function set data(value:Object):void
