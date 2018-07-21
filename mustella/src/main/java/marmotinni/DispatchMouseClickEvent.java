@@ -121,7 +121,7 @@ public class DispatchMouseClickEvent extends TestStep {
                 wait.until(ExpectedConditions.attributeToBe(mouseTarget, "title", "foo"));
             } */
             script = new StringBuilder();
-            script.append("var init = {};");
+            script.append("var init = { bubbles: true };");
             script.append("init.screenX = ");
             script.append(x.toString());
             script.append(";");
@@ -133,7 +133,7 @@ public class DispatchMouseClickEvent extends TestStep {
                 System.out.println(script);
             ((JavascriptExecutor)webDriver).executeScript(script.toString());
             script = new StringBuilder();
-            script.append("var init = {};");
+            script.append("var init = { bubbles: true };");
             script.append("init.screenX = ");
             script.append(x.toString());
             script.append(";");
