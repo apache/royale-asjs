@@ -202,7 +202,6 @@ COMPILE::JS {
 		COMPILE::JS
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
-			event.stopImmediatePropagation();
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
