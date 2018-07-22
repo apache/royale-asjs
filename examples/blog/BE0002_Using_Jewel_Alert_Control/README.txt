@@ -21,10 +21,8 @@ DESCRIPTION
 
 Using the Jewel Alert Control
 
-The following code shows the basic method for displaying an Alert dialog in a Royale application. It uses the new Jewel UI set that supports themes that will be available in the forthcoming 0.9.3 release. In the meanwhile you can find it in the develop branch.
+This basic example shows how to display an Alert dialog in a Royale application.
 
-In this example, the Jewel button adds a click handler that will be in charge of showing the Alert control. When the user clicks the button the Alert.show() static method is called. You can add a custom message, a custom title and choose which buttons will be created for that instance of the Alert.
-Finally, the Alert instance adds an event listener to manage the alert response when the dialog is closed. In this example we’re changing the label of the button according to the button the user clicks in the Alert.
+Source code of the code exposed in the following Apache Royale Blog Example post:
 
 http://royale.apache.org/using-jewel-alert-control/
-
