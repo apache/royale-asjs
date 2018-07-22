@@ -22,8 +22,7 @@ DESCRIPTION
 Binding the text property of a Jewel TextInput to update a Label
 
 Learn how to change a Label’s text with a Jewel TextInput using both a change event and data binding.
----
 
+Source code of the code exposed in the following Apache Royale Blog Example post:
 
-http://royale.apache.org/creating-a-group-of-jewel-radiobuttons/
-
+https://royale.codeoscopic.com/binding-the-text-property-of-a-jewel-textinput-to-update-a-text-label/
