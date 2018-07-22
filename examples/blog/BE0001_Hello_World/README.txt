@@ -19,14 +19,10 @@
 
 DESCRIPTION
 
-Hello World
+Creating a Hello World in Apache Royale
 
-In this example you can see the use of the following MXML tags:
+This is the classical Hello World code snippet done in Apache Royale with just MXML
 
-- Application: Is the main tag in your application. All content in Apache Royale is added inside this tag.
-- SimpleCSSValuesImpl: This class implements a minimal set of CSS rules that is sufficient for most applications.
-- View: This is the class for most views in a Royale application.
-- Label: Implements the basic control for show a label with text.
+Source code of the code exposed in the following Apache Royale Blog Example post:
 
 http://royale.apache.org/creating-a-hello-world-in-apache-royale/
-
