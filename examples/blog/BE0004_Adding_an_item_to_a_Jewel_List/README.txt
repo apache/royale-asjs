@@ -22,8 +22,7 @@ DESCRIPTION
 Adding an item to a Jewel List
 
 In this example we'll cover how to set up a Jewel List control that shows a list of basic string data in a Royale application, then will add and item to the list.
----
 
+Source code of the code exposed in the following Apache Royale Blog Example post:
 
 http://royale.apache.org/adding-an-item-to-a-jewel-list
-
