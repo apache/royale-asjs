@@ -401,7 +401,8 @@ j|Label {
 
 /* Horizontal */
 .layout.horizontal {
-  flex-flow: row nowrap;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
   align-items: flex-start;
 }
 .layout.horizontal > * {
@@ -482,7 +483,8 @@ j|Label {
 
 /* Vertical */
 .layout.vertical {
-  flex-flow: column nowrap;
+  flex-direction: column !important;
+  flex-wrap: nowrap;
   align-items: flex-start;
 }
 .layout.vertical > * {
@@ -2628,9 +2630,10 @@ j|Navigation {
 }
 .jewel.section {
   display: none;
+  flex-flow: column nowrap;
 }
 .jewel.section.is-active {
-  display: block;
+  display: flex;
 }
 
 .jewel.slider {

@@ -38,7 +38,8 @@ $gap: 0px
 /* Horizontal */
 .layout
 	&.horizontal
-		flex-flow: row nowrap
+		flex-direction: row !important
+		flex-wrap: nowrap
 		align-items: flex-start
 	
 		> *
@@ -65,7 +66,8 @@ $gap: 0px
 /* Vertical */	
 .layout
 	&.vertical
-		flex-flow: column nowrap
+		flex-direction: column !important
+		flex-wrap: nowrap
 		align-items: flex-start
 
 		> *
