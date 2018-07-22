@@ -24,6 +24,7 @@ package org.apache.royale.core
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -153,6 +154,18 @@ package org.apache.royale.core
             {//not implemented
             return false;
             }
+        }
+
+        /**
+         * @return The actual element to be parented.
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			addElementToWrapper(this,'div');
+            positioner = element;
+            return element;
         }
     }
 }
