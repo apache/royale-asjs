@@ -19,12 +19,10 @@
 
 DESCRIPTION
 
-Using View States in a Royale Application
+Using an Item Renderer with a List
 
+Learn how to use an item renderer in a Jewel List to display the items in your list in a pleasing and user-friendly way in a Royale application.
 
----
+Source code of the code exposed in the following Apache Royale Blog Example post:
 
-
-http://royale.apache.org/using-view-states-to-show-or-hide-content/
-
-Learn how to use view states in a royale application to show or hide content
+https://royale.apache.org/using-an-item-renderer-with-a-list/
