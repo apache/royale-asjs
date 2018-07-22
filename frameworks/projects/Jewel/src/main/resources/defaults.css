@@ -48,6 +48,7 @@ j|ApplicationResponsiveView {
 .applicationResponsiveView {
   display: inline-flex;
   width: 100%;
+  min-height: 100%;
 }
 
 j|ApplicationView {
@@ -2923,6 +2924,7 @@ j|TitleBar {
 
 .jewel.main {
   width: 100%;
+  min-height: 100%;
 }
 
 .has-topappbar {
