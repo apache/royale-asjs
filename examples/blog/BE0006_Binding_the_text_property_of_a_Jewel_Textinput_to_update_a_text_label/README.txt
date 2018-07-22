@@ -25,4 +25,4 @@ Learn how to change a Label’s text with a Jewel TextInput using both a change 
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-https://royale.codeoscopic.com/binding-the-text-property-of-a-jewel-textinput-to-update-a-text-label/
+https://royale.apache.org/binding-the-text-property-of-a-jewel-textinput-to-update-a-text-label/
