@@ -43,6 +43,7 @@ package org.apache.royale.jewel.beads.layouts
 		public static const PHONE:String = "phone";
 		public static const TABLET:String = "tablet";
 		public static const DESKTOP:String = "desktop";
+		public static const WIDESCREEN:String = "widescreen";
 
         /**
          *  Constructor.
@@ -85,9 +86,68 @@ package org.apache.royale.jewel.beads.layouts
 				hostComponent = host as UIBase;
 				hostClassList = hostComponent.positioner.classList;
 				
-				setFractionForScreen(DESKTOP, _desktopNumerator, _desktopDenominator);
+				setFractionForScreen(DESKTOP, _wideScreenNumerator, _wideScreenDenominator);
+				setFractionForScreen(WIDESCREEN, _desktopNumerator, _desktopDenominator);
 				setFractionForScreen(TABLET, _tabletNumerator, _tabletDenominator);
 				setFractionForScreen(PHONE, _phoneNumerator, _phoneDenominator);
+			}
+		}
+
+		private var _wideScreenNumerator:Number;
+		/**
+		 *  The X Number for "widescreen-col-X-Y" effect selector.
+		 *  Sets the widescreen numerator for the X/Y fraction that indicates the cell's size in
+		 * 	widescreen screen. Needs to be set in conjunction with widescreen denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get wideScreenNumerator():Number
+        {
+            return _wideScreenNumerator;
+        }
+
+        public function set wideScreenNumerator(value:Number):void
+        {
+			if (_wideScreenNumerator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(WIDESCREEN, value, _wideScreenDenominator);
+				}
+				_wideScreenNumerator = value;
+			}
+		}
+
+		private var _wideScreenDenominator:Number;
+		/**
+		 *  The Y Number for "widescreen-col-X-Y" effect selector.
+		 *  Sets the widescreen denominator for the X/Y fraction that indicates the cell's size in
+		 *  widescreen screen. Needs to be set in conjunction with widescreen denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get wideScreenDenominator():Number
+        {
+            return _wideScreenDenominator;
+        }
+
+        public function set wideScreenDenominator(value:Number):void
+        {
+			if (_wideScreenDenominator != value)
+            {
+                COMPILE::JS
+                {
+					if(hostComponent)
+						setFractionForScreen(WIDESCREEN, _wideScreenNumerator, value);
+				}
+				_wideScreenDenominator = value;
 			}
 		}
 

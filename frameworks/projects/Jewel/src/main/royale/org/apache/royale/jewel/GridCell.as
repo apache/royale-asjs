@@ -53,6 +53,62 @@ package org.apache.royale.jewel
 		protected var layout:GridCellLayout;
 
 		/**
+		 *  The X Number for "widescreen-col-X-Y" effect selector.
+		 *  Sets the widescreen numerator for the X/Y fraction that indicates the cell's size in
+		 * 	widescreen screen. Needs to be set in conjunction with widescreen denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get wideScreenNumerator():Number
+        {
+            return layout.wideScreenNumerator;
+        }
+
+		public function set wideScreenNumerator(value:Number):void
+        {
+			COMPILE::JS
+            {
+				setFractionForScreen(GridCellLayout.DESKTOP, value, layout.wideScreenDenominator);
+			
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
+
+			layout.wideScreenNumerator = value;
+		}
+
+		/**
+		 *  The Y Number for "widescreen-col-X-Y" effect selector.
+		 *  Sets the desktop denominator for the X/Y fraction that indicates the cell's size in
+		 *  desktop screen. Needs to be set in conjunction with desktop denominator
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get wideScreenDenominator():Number
+        {
+            return layout.wideScreenDenominator;
+        }
+
+		public function set wideScreenDenominator(value:Number):void
+        {
+			COMPILE::JS
+            {
+				setFractionForScreen(GridCellLayout.DESKTOP, layout.wideScreenNumerator, value);
+			
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
+
+			layout.wideScreenDenominator = value;
+		}
+
+		/**
 		 *  The X Number for "desktop-col-X-Y" effect selector.
 		 *  Sets the desktop numerator for the X/Y fraction that indicates the cell's size in
 		 * 	desktop screen. Needs to be set in conjunction with desktop denominator
