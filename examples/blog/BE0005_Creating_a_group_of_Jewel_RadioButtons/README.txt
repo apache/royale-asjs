@@ -22,8 +22,7 @@ DESCRIPTION
 Creating a group of Jewel RadioButtons
 
 In this example we'll Learn how to configure a group of Jewel RadioButton controls in a Royale application.
----
 
+Source code of the code exposed in the following Apache Royale Blog Example post:
 
 http://royale.apache.org/creating-a-group-of-jewel-radiobuttons/
-
