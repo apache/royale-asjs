@@ -109,6 +109,7 @@ limitations under the License.
     </j:TopAppBar>
 
     <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
+        <local:WelcomeSection isActive="true"/>
         <local:AlertPlayGround id="alert_panel"/>
         <local:ButtonPlayGround id="button_panel"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>
@@ -120,7 +121,7 @@ limitations under the License.
         <local:RadioButtonPlayGround id="radiobutton_panel"/>
         <local:SliderPlayGround id="slider_panel"/>
         <local:TextInputPlayGround id="textinput_panel"/>
-        <local:GridPlayGround id="grid_panel" isActive="true"/>
+        <local:GridPlayGround id="grid_panel"/>
         <local:CardPlayGround id="card_panel"/>
     </j:ApplicationMainContent>
     
