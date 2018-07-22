@@ -2735,6 +2735,18 @@ j|Slider {
     iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }
 }
+.alignTextLeft {
+  text-align: left;
+}
+
+.alignTextRight {
+  text-align: right;
+}
+
+.alignTextCenter {
+  text-align: center;
+}
+
 .jewel.textinput {
   position: relative;
   display: inline-flex;
