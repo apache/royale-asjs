@@ -21,10 +21,8 @@ DESCRIPTION
 
 Using the Jewel Slider Control
 
-In this example, you can push Jewel button to set up sliders values. By doing this ValueChangeEvent.VALUE_CHANGE will be fired calling “onValueChange” event handler and setting width, height and text in the Button.
+See the basic use of the Jewel Slider control in a Royale application.
 
-On the other hand, you can drag each Slider to change width and height in the Button, and as value in changing the “onValueChange” call back will be called continuously as you drag.
+Source code of the code exposed in the following Apache Royale Blog Example post:
 
-You can click in the track at any place for the same effect. And if you needed you have available “input” and “change” events handlers in Slider. The first fires each time user moves the slider thumb from one position to another the second fires when Slider ends its change from one position to another.
 http://royale.apache.org/using-the-jewel-slider-control/
-
