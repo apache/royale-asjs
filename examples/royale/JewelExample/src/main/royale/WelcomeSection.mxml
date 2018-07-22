@@ -31,9 +31,18 @@ limitations under the License.
 
     <j:Label width="400" 
              multiline="true"
-             text="Jewel is a themeizable set of user interface components built upon Apache Royale to quickly build Front-end Applications with AS3 &amp; MXML">
+             text="Jewel is a themeizable set of user interface components for Apache Royale to quickly build Front-end Applications with AS3 &amp; MXML.">
         <j:beads>
             <j:SizeControl size="large"/>
+            <j:TextAlign align="center"/>
+        </j:beads>
+    </j:Label>
+
+    <j:Label width="400" 
+             multiline="true"
+             text="Browser support: Chrome, Firefox, IE11 &amp; Edge, Safari, Opera. Mobile: iOS, Android &amp; Windows">
+        <j:beads>
+            <j:SizeControl size="small"/>
             <j:TextAlign align="center"/>
         </j:beads>
     </j:Label>
@@ -48,9 +57,9 @@ limitations under the License.
                 <js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
             </j:icon>
         </j:IconTextInput>
-        <j:Button text="Search" emphasis="primary">
+        <j:Button text="Search" emphasis="secondary">
             <j:beads>
-                <j:SizeControl size="xlarge"/> 
+                <j:SizeControl size="xlarge"/>
             </j:beads>
         </j:Button>
     </j:HGroup>

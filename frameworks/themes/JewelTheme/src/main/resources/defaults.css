@@ -53,23 +53,23 @@ div {
 }
 
 .jewel.xsmall {
-  font-size: 0.6em;
+  font-size: 0.6em !important;
 }
 
 .jewel.small {
-  font-size: 0.8em;
+  font-size: 0.8em !important;
 }
 
 .jewel {
-  font-size: 1em;
+  font-size: 1em !important;
 }
 
 .jewel.large {
-  font-size: 1.2em;
+  font-size: 1.2em !important;
 }
 
 .jewel.xlarge {
-  font-size: 1.4em;
+  font-size: 1.4em !important;
 }
 
 .jewel.alert {
@@ -606,7 +606,7 @@ j|Card {
 
 .jewel.topappbartitle {
   font-family: "Lato", sans-serif;
-  font-size: 1.4em;
+  font-size: 1.4em !important;
   font-weight: 800;
   padding-left: 20px;
   padding-right: 0;

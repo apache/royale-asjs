@@ -48,27 +48,28 @@ $textinput-padding-horizontal: 1.12em !default
 		
 		&.icon
 			input
-				padding-left: $textinput-padding-horizontal + 1.5
+				padding-left: $textinput-padding-horizontal + 1
 
 			i		
 				&.fonticon
-					position: absolute
-					left: 12px
-					right: auto
-					top: 7px
 					cursor: default
 					pointer-events: none
+					top: 50%
+					left: .45em
+					right: auto
+					position: absolute
 					text-align: center
+					margin-top: -.5em
 		
 			&.right
 				input
-					padding-right: $textinput-padding-horizontal + 1.5
+					padding-right: $textinput-padding-horizontal + 1
 					padding-left: $textinput-padding-horizontal
 
 				i
 					&.fonticon
 						left: auto
-						right: 12px
+						right: .45em
 
 j|TextInput
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")

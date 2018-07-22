@@ -2770,24 +2770,25 @@ j|Slider {
   cursor: unset;
 }
 .jewel.textinput.icon input {
-  padding-left: 2.62em;
+  padding-left: 2.12em;
 }
 .jewel.textinput.icon i.fonticon {
-  position: absolute;
-  left: 12px;
-  right: auto;
-  top: 7px;
   cursor: default;
   pointer-events: none;
+  top: 50%;
+  left: 0.45em;
+  right: auto;
+  position: absolute;
   text-align: center;
+  margin-top: -0.5em;
 }
 .jewel.textinput.icon.right input {
-  padding-right: 2.62em;
+  padding-right: 2.12em;
   padding-left: 1.12em;
 }
 .jewel.textinput.icon.right i.fonticon {
   left: auto;
-  right: 12px;
+  right: 0.45em;
 }
 
 j|TextInput {
