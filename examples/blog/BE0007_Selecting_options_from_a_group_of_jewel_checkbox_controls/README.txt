@@ -19,12 +19,10 @@
 
 DESCRIPTION
 
-Selecting options from a group of Jewel Checkbox controls
-
-
----
-
-
-http://royale.apache.org/selecting-options-from-a-group-of-jewel-checkbox-controls/
+Selecting options from a group of Jewel CheckBox controls
 
 Learn how to set up a group of Jewel Checkbox controls to select one or more options in a Royale application.
+
+Source code of the code exposed in the following Apache Royale Blog Example post:
+
+http://royale.apache.org/selecting-options-from-a-group-of-jewel-checkbox-controls/
