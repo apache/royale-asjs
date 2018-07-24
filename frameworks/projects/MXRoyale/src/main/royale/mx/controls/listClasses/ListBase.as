@@ -19,7 +19,7 @@
 package mx.controls.listClasses
 {   
 import mx.core.mx_internal;
-import org.apache.royale.core.ListBase;
+import org.apache.royale.core.DataContainerBase;
 
 use namespace mx_internal;
 
@@ -33,7 +33,7 @@ use namespace mx_internal;
      *  @productversion Royale 0.0
      *  @royalesuppresspublicvarwarning
 	*/
-	public class ListBase extends org.apache.royale.core.ListBase
+	public class ListBase extends DataContainerBase
 	{
 	
 	//----------------------------------
