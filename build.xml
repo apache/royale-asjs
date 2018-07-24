@@ -1498,7 +1498,7 @@ limitations under the License.
         </mxmlc>
          -->
         <!-- run the component smoke -->
-        <echo message="launching player and swf"/>
+        <echo message="launching player and swf ${flash.player} ${basedir}/mustella/tests/basicTests/BasicTestsApp.swf"/>
         <exec executable="${flash.player}" dir="${basedir}/mustella/tests/basicTests" failonerror="true">
             <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf"/>
         </exec>
@@ -1575,7 +1575,7 @@ limitations under the License.
         </mxmlc>
          -->
         <!-- run the component smoke -->
-        <echo message="launching player and swf"/>
+        <echo message="launching player and swf ${flash.player} ${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf"/>
         <exec executable="${flash.player}" dir="${basedir}/mustella/tests/mxtests/basicTests" failonerror="true">
             <arg value="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf"/>
         </exec>
