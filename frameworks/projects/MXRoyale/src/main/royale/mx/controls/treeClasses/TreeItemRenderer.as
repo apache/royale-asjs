@@ -49,6 +49,7 @@ import mx.utils.PopUpUtil;
 COMPILE::JS
 {
     import goog.DEBUG;
+    import mx.core.UIComponent;
 }
 
 import mx.core.IFlexDisplayObject;
@@ -204,7 +205,13 @@ public class TreeItemRenderer extends org.apache.royale.html.supportClasses.Tree
         if (GOOG::DEBUG)
             trace("setStyle not implemented");
     }
-   
+   COMPILE::JS{
+		public function addChild(child:UIComponent):UIComponent
+		{
+		var obj:UIComponent =  new UIComponent();
+		return obj;
+		}	
+    }
 
 }
 
