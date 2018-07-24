@@ -141,7 +141,11 @@ package org.apache.royale.html.beads.controllers
             var popup:IUIBase = IUIBase(viewBead.popUp);
             
             COMPILE::SWF {
-                var before:IUIBase = event.targetBeforeBubbling["royale_wrapper"] as IUIBase;
+                var before:IUIBase;
+                if ("royale_wrapper" in event.targetBeforeBubbling)
+                    before = event.targetBeforeBubbling["royale_wrapper"] as IUIBase;
+                else
+                    before = event.targetBeforeBubbling["parent"]["royale_wrapper"] as IUIBase;
                 if (before) {
                     while (before != null) {
                         if (before == popup) return;
