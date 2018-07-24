@@ -97,7 +97,7 @@
 
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.ScrollingViewport" />
 
-    <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.DataItemRendererFactoryForCollectionView" />
+    <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView" />
 
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     

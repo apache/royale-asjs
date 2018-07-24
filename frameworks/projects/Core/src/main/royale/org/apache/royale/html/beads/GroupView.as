@@ -19,8 +19,6 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
@@ -32,12 +30,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	COMPILE::SWF {
 		import org.apache.royale.geom.Size;
-		import org.apache.royale.geom.Rectangle;
 	}
 
 	/**
