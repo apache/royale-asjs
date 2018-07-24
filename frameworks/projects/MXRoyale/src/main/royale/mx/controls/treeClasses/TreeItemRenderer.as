@@ -145,6 +145,18 @@ public class TreeItemRenderer extends org.apache.royale.html.supportClasses.Tree
      *  @productversion Flex 3
      */
     protected var disclosureIcon:IFlexDisplayObject;
+    
+   COMPILE::JS{
+	public function get mouseEnabled():Boolean
+	{
+	return true;
+
+	}
+	public function set mouseEnabled(value:Boolean):void
+	{
+	}
+	}
+   
     //--------------------------------------------------------------------------
     //
     //  Overridden methods
