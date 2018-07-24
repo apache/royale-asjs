@@ -94,7 +94,6 @@ use namespace mx_internal;
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
-import mx.core.UIComponent;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.IEventDispatcher;
 
@@ -191,8 +190,8 @@ import org.apache.royale.events.IEventDispatcher;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class SystemManager extends SystemManagerBase implements ISystemManager, IEventDispatcher
-{ //extends MovieClip implements IChildList, IFlexDisplayObject,IFlexModuleFactory, ISystemManager
+public class SystemManager extends SystemManagerBase implements ISystemManager, IEventDispatcher, IChildList
+{ //extends MovieClip implements IFlexDisplayObject,IFlexModuleFactory, ISystemManager
    // include "../core/Version.as";
 
     //--------------------------------------------------------------------------
@@ -1296,7 +1295,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @productversion Royale 0.9.4
      */
    
-     public function get rawChildren():IChildList
+    public function get rawChildren():IChildList
     {
         //if (!topLevel)
         //  return _topLevelSystemManager.rawChildren;
@@ -1304,7 +1303,8 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
       /*  if (!_rawChildren)
             _rawChildren = new SystemRawChildrenList(this); */
 
-        return _rawChildren;
+        // return _rawChildren;
+        return this;
     } 
     
 
