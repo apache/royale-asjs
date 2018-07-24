@@ -46,6 +46,11 @@ import mx.managers.ISystemManager;
 import mx.utils.PopUpUtil;
 
  */
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
+
 import mx.core.IFlexDisplayObject;
 import mx.controls.listClasses.BaseListData;
 import org.apache.royale.html.supportClasses.TreeItemRenderer;
@@ -194,7 +199,11 @@ public class TreeItemRenderer extends org.apache.royale.html.supportClasses.Tree
         return label;
     }
     
-    
+    public function setStyle(styleProp:String, newValue:*):void
+    {
+        if (GOOG::DEBUG)
+            trace("setStyle not implemented");
+    }
    
 
 }
