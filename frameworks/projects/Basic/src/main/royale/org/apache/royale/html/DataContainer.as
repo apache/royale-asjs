@@ -34,7 +34,6 @@ package org.apache.royale.html
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.ListBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
     COMPILE::JS

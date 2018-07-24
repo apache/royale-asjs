@@ -233,7 +233,6 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.WebBrowserView; WebBrowserView;
 	import org.apache.royale.html.beads.models.WebBrowserModel; WebBrowserModel;
 
-	import org.apache.royale.core.ListBase; ListBase;
 	import org.apache.royale.core.Lookalike; Lookalike;
 	import org.apache.royale.core.FilledRectangle; FilledRectangle;
     

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	import org.apache.royale.core.DataContainerBase;
+
     /**
      *  The ListBaseStrandChildren exists so that Lists are compatible with
 	 *  the ListView/ContainerView beads. 
@@ -32,7 +34,7 @@ package org.apache.royale.core
         /**
          *  Constructor.
          *  
-         *  @royaleignorecoercion org.apache.royale.core.ListBase
+         *  @royaleignorecoercion org.apache.royale.core.DataContainerBase
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -42,10 +44,10 @@ package org.apache.royale.core
 		{
 			super();
 			
-			this.owner = owner as ListBase;
+			this.owner = owner as DataContainerBase;
 		}
 		
-		public var owner:ListBase;
+		public var owner:DataContainerBase;
 		
 		/**
 		 *  @private
