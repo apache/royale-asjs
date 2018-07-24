@@ -131,7 +131,20 @@ public class TreeItemRenderer extends org.apache.royale.html.supportClasses.Tree
      */
     protected var label:Object;
     
- 
+    //----------------------------------
+    //  disclosureIcon
+    //----------------------------------
+
+    /**
+     *  The internal IFlexDisplayObject that displays the disclosure icon
+     *  in this renderer.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var disclosureIcon:IFlexDisplayObject;
     //--------------------------------------------------------------------------
     //
     //  Overridden methods
