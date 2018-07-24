@@ -41,6 +41,7 @@
     <module>BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label</module>
     <module>BE0007_Selecting_options_from_a_group_of_jewel_checkbox_controls</module>
     <module>BE0008_Using_View_States_to_show_or_hide_content</module>
+    <module>BE0009_Using_an_Item_ Renderer_with_a_List</module>
   </modules>
 
   <build>
