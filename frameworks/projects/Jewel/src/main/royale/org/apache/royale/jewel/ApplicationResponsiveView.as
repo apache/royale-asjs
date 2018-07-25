@@ -19,8 +19,10 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IApplicationView;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.beads.layouts.VerticalLayout;
+	// import org.apache.royale.jewel.beads.layouts.VerticalLayout;
 
 	COMPILE::JS
     {
@@ -38,7 +40,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class ApplicationResponsiveView extends Group implements IApplicationView
+	public class ApplicationResponsiveView extends Group implements IPopUpHost, IApplicationView
 	{
 		/**
 		 *  constructor.
@@ -80,6 +82,19 @@ package org.apache.royale.jewel
         {
             _applicationModel = value;
             dispatchEvent(new Event("modelChanged"));
+        }
+
+		/**
+         *  ViewBase can host popups but they will be in the layout, if any
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get popUpParent():IParent
+        {
+            return this;
         }
 	}
 }
