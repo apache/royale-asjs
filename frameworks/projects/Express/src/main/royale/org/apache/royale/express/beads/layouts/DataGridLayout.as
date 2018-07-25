@@ -30,7 +30,7 @@ package org.apache.royale.express.beads.layouts
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.DataGridColumn;
+	import org.apache.royale.express.supportClasses.DataGridColumn;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.IDrawingLayerBead;
@@ -118,7 +118,7 @@ package org.apache.royale.express.beads.layouts
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumn
+		 * @royaleemitcoercion org.apache.royale.html.supportClasses.DataGridColumn
 		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDrawingLayerBead
 		 */
