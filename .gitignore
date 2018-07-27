@@ -16,7 +16,7 @@
 *.iws
 
 # VSCode conf files
-.vscode/settings.json
+**/.vscode/**
 
 # building
 target/
