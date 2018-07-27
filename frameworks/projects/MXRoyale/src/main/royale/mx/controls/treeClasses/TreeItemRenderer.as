@@ -49,13 +49,12 @@ import mx.utils.PopUpUtil;
 COMPILE::JS
 {
     import goog.DEBUG;
-    import mx.core.UIComponent;
 }
-
 import mx.core.IFlexDisplayObject;
 import mx.controls.listClasses.BaseListData;
 import org.apache.royale.html.supportClasses.TreeItemRenderer;
 import mx.core.mx_internal;
+	import mx.core.UIComponent;
 
 use namespace mx_internal;
 
@@ -75,7 +74,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class TreeItemRenderer extends org.apache.royale.html.supportClasses.TreeItemRenderer 
+public class TreeItemRenderer extends UIComponent 
 {
    
 
@@ -137,7 +136,8 @@ public class TreeItemRenderer extends org.apache.royale.html.supportClasses.Tree
      */
     protected var label:Object;
     
-    //----------------------------------
+ 
+	//----------------------------------
     //  disclosureIcon
     //----------------------------------
 
@@ -151,39 +151,13 @@ public class TreeItemRenderer extends org.apache.royale.html.supportClasses.Tree
      *  @productversion Flex 3
      */
     protected var disclosureIcon:IFlexDisplayObject;
-    
-   COMPILE::JS{
-	public function get mouseEnabled():Boolean
-	{
-	return true;
 
-	}
-	public function set mouseEnabled(value:Boolean):void
-	{
-	}
-	}
-   
     //--------------------------------------------------------------------------
     //
     //  Overridden methods
     //
     //--------------------------------------------------------------------------
 
-    /**
-     *  @private
-     */
-     protected function createChildren():void
-    {
-    }
-
-   
-    /**
-     *  @private
-     */
-     protected function updateDisplayList(unscaledWidth:Number,
-                                                  unscaledHeight:Number):void
-    {
-    }
     
     //--------------------------------------------------------------------------
     //
@@ -200,18 +174,8 @@ public class TreeItemRenderer extends org.apache.royale.html.supportClasses.Tree
         return label;
     }
     
-    public function setStyle(styleProp:String, newValue:*):void
-    {
-        if (GOOG::DEBUG)
-            trace("setStyle not implemented");
-    }
-   COMPILE::JS{
-		public function addChild(child:UIComponent):UIComponent
-		{
-		var obj:UIComponent =  new UIComponent();
-		return obj;
-		}	
-    }
+	
+   
 
 }
 
