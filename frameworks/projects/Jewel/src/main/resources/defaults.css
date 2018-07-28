@@ -79,6 +79,17 @@ j|Image {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ImageView");
 }
 
+j|DataContainer {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DataProviderModel");
+  IBeadView: ClassReference("org.apache.royale.html.beads.DataContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer");
+  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
 @media -royale-swf {
   j|Container {
     IContentView: ClassReference("org.apache.royale.core.supportClasses.ContainerContentArea");
@@ -230,6 +241,43 @@ j|ControlBar {
     IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
   }
 }
+.calendar.item {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  padding: 10px;
+}
+
+j|DateChooser {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateChooserView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalFlowLayout");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateChooserMouseController");
+}
+
+j|DateChooserHeader {
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DayNameItemRenderer");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+}
+
+j|DateChooserList {
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DateItemRenderer");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalFlowLayout");
+}
+
+j|DateField {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateFieldView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateFieldMouseController");
+  IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatDDMMYYYY");
+}
+
+.jewel.divider {
+  height: 0;
+  margin: 0;
+  border: none;
+}
+
 .jewel.drawer.float {
   position: fixed;
   pointer-events: none;
@@ -318,12 +366,6 @@ j|ControlBar {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
-}
-
-.jewel.divider {
-  height: 0;
-  margin: 0;
-  border: none;
 }
 
 @media -royale-swf {

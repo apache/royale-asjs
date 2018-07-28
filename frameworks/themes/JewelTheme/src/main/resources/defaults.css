@@ -241,6 +241,26 @@ j|Card {
   font-size: 16px;
 }
 
+.jewel.datechooser {
+  background: white;
+  width: 280px;
+}
+.jewel.datechooser .jewel.button, .jewel.datechooser .jewel.list {
+  background: white;
+  border: none;
+  box-shadow: none;
+}
+
+.calendar.item {
+  font-size: 1em;
+}
+.calendar.item.dayName {
+  font-weight: 600;
+}
+.calendar.item.date {
+  color: grey;
+}
+
 .jewel.divider {
   border-bottom-color: #d9d9d9;
   border-bottom-width: 1px;

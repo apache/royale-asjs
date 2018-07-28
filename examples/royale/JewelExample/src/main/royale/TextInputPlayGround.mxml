@@ -179,11 +179,14 @@ limitations under the License.
 					</j:icon>
 				</j:IconTextInput>
 
-				<!-- <j:IconTextInput text="Searching something">
+				<j:IconTextInput text="Searching something">
+					<j:beads>
+						<j:SizeControl size="xlarge"/>						
+					</j:beads>
 					<j:icon>
-						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true" size="48"/>
+						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
 					</j:icon>
-				</j:IconTextInput> -->
+				</j:IconTextInput>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

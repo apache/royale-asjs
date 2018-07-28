@@ -23,17 +23,46 @@ limitations under the License.
 				xmlns:html="library://ns.apache.org/royale/html">
     
 	<fx:Script>
-		<![CDATA[      
-            
+		<![CDATA[
+			private function dateChooserChanged():void
+			{
+				dateChooserSelectedDate.text = "DateChooser selected date: " + dateChooser.selectedDate;
+				//dateField.selectedDate = dateChooser.selectedDate;
+			}
+			
+			private function dateFieldChanged():void
+			{
+				dateFieldSelectedDate.text = "DateField selected date: " + dateField.selectedDate;
+				//dateChooser.selectedDate = dateField.selectedDate;
+			}
+			
+			private function toToday():void
+			{
+				dateChooser.selectedDate = new Date();
+			}
+			private function dateChooserInit():void
+			{
+				dateChooser.model.firstDayOfWeek = 1;
+				dateChooser.model.dayNames = ['S','M','T','W','T','F','S'];
+			}
 		]]>
 	</fx:Script>
 
-	<j:Card width="350">
-		
-		<html:H3 text="Jewel DateChooser"/>
-		
-		<j:DateChooser/>
+	<j:beads>
+        <j:HorizontalCenteredLayout gap="3"/>
+    </j:beads>
 
+	<j:Card width="400">
+		<html:H3 text="Jewel DateChooser"/>
+		<j:DateChooser id="dateChooser" change="dateChooserChanged()" initComplete="dateChooserInit()"/>
+		<j:Label id="dateChooserSelectedDate" text="DateChooser selected date: "/>
+	</j:Card>
+	
+	<j:Card width="400">
+		<html:H3 text="Jewel DateField"/>
+		<j:DateField id="dateField" change="dateFieldChanged()"/>
+		<j:Label id="dateFieldSelectedDate" text="DateField selected date: "/>
+		<j:Button text="Today!" click="toToday()"/>
 	</j:Card>
 	
 </j:SectionContent>

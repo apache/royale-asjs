@@ -33,8 +33,12 @@ package
         import org.apache.royale.jewel.beads.models.TitleBarModel; TitleBarModel;
         import org.apache.royale.jewel.beads.models.TextModel; TextModel;
         import org.apache.royale.jewel.beads.models.RangeModel; RangeModel;
+        import org.apache.royale.jewel.beads.models.DateChooserModel; DateChooserModel;
+        import org.apache.royale.jewel.beads.models.DataProviderModel; DataProviderModel;
 
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
+        import org.apache.royale.jewel.beads.controllers.DateChooserMouseController; DateChooserMouseController;
+        import org.apache.royale.jewel.beads.controllers.DateFieldMouseController; DateFieldMouseController;
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
         
@@ -44,10 +48,16 @@ package
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
         import org.apache.royale.jewel.beads.views.AlertTitleBarView; AlertTitleBarView;
         import org.apache.royale.jewel.beads.views.ListView; ListView;
+        import org.apache.royale.jewel.beads.views.DateChooserView; DateChooserView;
 
         import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
         import org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel; SingleSelectionArrayListModel;
         import org.apache.royale.jewel.supportClasses.ScrollingViewport; ScrollingViewport;
+
+        import org.apache.royale.jewel.itemRenderers.StringItemRenderer; StringItemRenderer;
+        import org.apache.royale.jewel.itemRenderers.ListItemRenderer; ListItemRenderer;
+        import org.apache.royale.jewel.itemRenderers.DateItemRenderer; DateItemRenderer;
+        import org.apache.royale.jewel.itemRenderers.DayNameItemRenderer; DayNameItemRenderer;
         
         COMPILE::SWF
 	    {
