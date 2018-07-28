@@ -46,10 +46,17 @@
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
+    <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
+    <component id="DateField" class="org.apache.royale.jewel.DateField"/>
+    <component id="DateChooserList" class="org.apache.royale.jewel.supportClasses.DateChooserList" />
+    <component id="DateChooserHeader" class="org.apache.royale.jewel.supportClasses.DateChooserHeader" />
+    <component id="DataContainer" class="org.apache.royale.jewel.DataContainer" />
 
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer"/>
     
+    <component id="DateChooserModel" class="org.apache.royale.jewel.beads.models.DateChooserModel"/>
+
     <component id="ApplicationResponsiveView" class="org.apache.royale.jewel.ApplicationResponsiveView"/>
     <component id="TopAppBar" class="org.apache.royale.jewel.TopAppBar"/>
     <component id="TopAppBarRow" class="org.apache.royale.jewel.TopAppBarRow"/>
@@ -93,10 +100,14 @@
     
     <component id="HorizontalLayoutSpaceBetween" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween"/>
     
+    <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
+    <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
+    <component id="DayNameItemRenderer" class="org.apache.royale.jewel.itemRenderers.DayNameItemRenderer"/>
 
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.ScrollingViewport" />
 
+    <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView" />
 
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
