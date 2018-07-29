@@ -36,6 +36,11 @@ $table-border-radius: $border-radius
     th:first-of-type
         border-left: 0px
     th
+        @if $flat
+            background: $default-color
+        @else
+            background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+            box-shadow: inset 0 1px 0 lighten($default-color, 20%)
         font-weight: 700
         line-height: 24px
         font-size: $font-size
