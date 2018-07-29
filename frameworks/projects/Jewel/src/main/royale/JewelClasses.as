@@ -49,6 +49,7 @@ package
         import org.apache.royale.jewel.beads.views.AlertTitleBarView; AlertTitleBarView;
         import org.apache.royale.jewel.beads.views.ListView; ListView;
         import org.apache.royale.jewel.beads.views.DateChooserView; DateChooserView;
+        import org.apache.royale.jewel.beads.views.TableView; TableView;
 
         import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
         import org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel; SingleSelectionArrayListModel;
@@ -82,11 +83,21 @@ package
         import org.apache.royale.jewel.beads.layouts.VerticalLayout; VerticalLayout;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween; HorizontalLayoutSpaceBetween;
         
+
+        // import org.apache.royale.html.beads.TableCellView; TableCellView;
+        // import org.apache.royale.html.beads.layouts.SimpleTableLayout; SimpleTableLayout;
+        // import org.apache.royale.html.beads.layouts.TableCellLayout; TableCellLayout;
+        // import org.apache.royale.html.beads.layouts.TableHeaderLayout; TableHeaderLayout;
+
         import org.apache.royale.jewel.ResponsiveSizes; ResponsiveSizes;
 
         import org.apache.royale.jewel.supportClasses.INavigationRenderer; INavigationRenderer;
         import org.apache.royale.jewel.supportClasses.IActivable; IActivable;
         import org.apache.royale.jewel.supportClasses.ITextInput; ITextInput;
+
+        import org.apache.royale.jewel.supportClasses.table.TBody;
+        import org.apache.royale.jewel.supportClasses.table.THead;
+        import org.apache.royale.jewel.supportClasses.table.TFoot;
         
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
         import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;

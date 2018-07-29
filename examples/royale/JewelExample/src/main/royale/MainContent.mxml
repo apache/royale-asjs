@@ -124,6 +124,7 @@ limitations under the License.
         <local:TextInputPlayGround id="textinput_panel"/>
         <local:GridPlayGround id="grid_panel"/>
         <local:CardPlayGround id="card_panel"/>
+        <local:TablePlayGround id="tables_panel"/>
     </j:ApplicationMainContent>
     
 </j:ApplicationResponsiveView>

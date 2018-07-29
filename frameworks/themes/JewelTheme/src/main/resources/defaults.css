@@ -527,6 +527,30 @@ j|Card {
   border-radius: 3px;
 }
 
+.jewel.table {
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #b3b3b3;
+  box-shadow: inset 0 1px 0 white;
+  border-radius: 0.25rem;
+}
+.jewel.table th:first-of-type {
+  border-left: 0px;
+}
+.jewel.table th {
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 1em;
+  color: #808080;
+  border-left: 1px solid #d9d9d9;
+}
+.jewel.table td:first-of-type {
+  border-left: 0px;
+}
+.jewel.table td {
+  border-top: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+}
+
 .jewel.textinput {
   font-weight: 400;
   color: #808080;
