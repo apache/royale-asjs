@@ -2812,11 +2812,6 @@ j|Slider {
   padding: 12px 18px;
 }
 
-j|SimpleTable {
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-}
-
 .alignTextLeft {
   text-align: left;
 }

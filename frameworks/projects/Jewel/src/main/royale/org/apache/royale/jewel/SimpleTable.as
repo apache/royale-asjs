@@ -35,7 +35,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class SimpleTable extends Container
+	public class SimpleTable extends Group
 	{
 		/**
 		 *  constructor.

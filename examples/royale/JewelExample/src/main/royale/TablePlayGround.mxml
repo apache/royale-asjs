@@ -26,7 +26,7 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<j:Card width="500">
+	<j:Card width="550">
 		<html:H3 text="Jewel Table"/>
 
 		<j:SimpleTable>
@@ -37,6 +37,9 @@ limitations under the License.
 					</j:TableHeader>
 					<j:TableHeader width="140">
 						<j:Label text="Text Column" />
+					</j:TableHeader>
+					<j:TableHeader width="140">
+						<j:Label text="Centered Text Column" />
 					</j:TableHeader>
 					<j:TableHeader>
 						<j:Label text="Number Column">
@@ -53,7 +56,14 @@ limitations under the License.
 						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
 					</j:TableCell>
 					<j:TableCell>
-						<j:Label text="Some Text" />
+						<j:Label text="Some text" />
+					</j:TableCell>
+					<j:TableCell>
+						<j:Label text="Some centered text">
+							<j:beads>
+								<j:TextAlign align="center"/>
+							</j:beads>
+						</j:Label>
 					</j:TableCell>
 					<j:TableCell>
 						<j:Label text="71">
@@ -68,7 +78,14 @@ limitations under the License.
 						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
 					</j:TableCell>
 					<j:TableCell>
-						<j:Label text="More Text" />
+						<j:Label text="More text" />
+					</j:TableCell>
+					<j:TableCell>
+						<j:Label text="More centered text">
+							<j:beads>
+								<j:TextAlign align="center"/>
+							</j:beads>
+						</j:Label>
 					</j:TableCell>
 					<j:TableCell>
 						<j:Label text="56">
@@ -83,7 +100,14 @@ limitations under the License.
 						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
 					</j:TableCell>
 					<j:TableCell>
-						<j:Label text="More Text 2" />
+						<j:Label text="More text 2" />
+					</j:TableCell>
+					<j:TableCell>
+						<j:Label text="More centered text 2" >
+							<j:beads>
+								<j:TextAlign align="center"/>
+							</j:beads>
+						</j:Label>
 					</j:TableCell>
 					<j:TableCell>
 						<j:Label text="346">
@@ -107,6 +131,13 @@ limitations under the License.
 							<j:Label text="Vertical" />
 							<j:Label text="Layout" />
 						</j:VGroup>
+					</j:TableCell>
+					<j:TableCell>
+						<j:Label text="More centered text 3" >
+							<j:beads>
+								<j:TextAlign align="center"/>
+							</j:beads>
+						</j:Label>
 					</j:TableCell>
 					<j:TableCell>
 						<j:Label text="240">
