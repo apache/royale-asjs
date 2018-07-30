@@ -81,6 +81,7 @@ package org.apache.royale.svg
 		{
 			return "feComposite";
 		}
+
 	}
 }
 

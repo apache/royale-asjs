@@ -45,6 +45,7 @@ package org.apache.royale.svg
 		private var _opacity:Number = 1;
 		private var _spread:Number = 1;
 		private var _inset:Boolean;
+		private var _knockout:Boolean;
 		private var _source:String;
 		private var _result:String;
 
@@ -55,21 +56,47 @@ package org.apache.royale.svg
 		public function build():void
 		{
 			children = [];
+			var knockoutResult:String;
+			if (!inset && knockout)
+			{
+				knockoutResult = "knockout_res1";
+//				var fullAlpha:ColorMatrixFilterElement = new ColorMatrixFilterElement();
+//				fullAlpha.opacity = 1000000;
+//				fullAlpha.result = knockoutResult;
+//				fullAlpha.in = "SourceAlpha";
+//				children.push(fullAlpha);
+			}
 			if (inset)
 			{
 				var insetFilterElement:FilterElement = new InvertFilterElement();
 				children.push(insetFilterElement);
 			}
+			var offset:OffsetFilterElement;
 			if (!isNaN(dx) && !isNaN(dy) && (dx !=0 || dy !=0))
 			{
-				var offset:OffsetFilterElement = new OffsetFilterElement();
+				offset = new OffsetFilterElement();
 				children.push(offset);
 				offset.dx = dx;
 				offset.dy = dy;
+				if (knockoutResult)
+				{
+					offset.in = source ? source : "SourceGraphic";
+				}
 			}
 			var blur:BlurFilterElement = new BlurFilterElement();
 			children.push(blur);
 			blur.stdDeviation = stdDeviation;
+			if (!offset)
+			{
+				blur.in = source ? source : "SourceGraphic";
+			}
+			if (!inset && knockout)
+			{
+				var outsetComposite:CompositeFilterElement = new CompositeFilterElement();
+				children.push(outsetComposite);
+				outsetComposite.in2 = knockoutResult;
+				outsetComposite.operator = "out";
+			}
 			var colorMatrix:ColorMatrixFilterElement = new ColorMatrixFilterElement();
 			children.push(colorMatrix);
 			colorMatrix.red = red;
@@ -80,7 +107,7 @@ package org.apache.royale.svg
 			children.push(spreadElement);
 			if (!inset)
 			{
-				spreadElement.result = "spreadResult";
+				spreadElement.result = result ? result : "spreadResult";
 			}
 			spreadElement.spread = spread;
 			if (inset)
@@ -89,15 +116,14 @@ package org.apache.royale.svg
 				children.push(composite);
 				composite.in2 = "SourceAlpha";
 				composite.operator = "in";
-				composite.result = "compositeResult";
+				composite.result = result ? result : "compositeResult";
 			}
-			var blend:BlendFilterElement = new BlendFilterElement();
-			children.push(blend);
-			blend.in = inset ? "compositeResult" : source ? source : "SourceGraphic";
-			blend.in2 = inset && !source ? "SourceGraphic" : inset && source ? source : "spreadResult";
-			if (result)
+			if (!result)
 			{
-				blend.result = result;
+				var blend:BlendFilterElement = new BlendFilterElement();
+				children.push(blend);
+				blend.in = inset ? "compositeResult" : source ? source : "SourceGraphic";
+				blend.in2 = inset && !source ? "SourceGraphic" : inset && source ? source : "spreadResult";
 			}
 		}
 
@@ -298,6 +324,16 @@ package org.apache.royale.svg
 		public function set result(value:String):void 
 		{
 			_result = value;
+		}
+
+		public function get knockout():Boolean 
+		{
+			return _knockout;
+		}
+		
+		public function set knockout(value:Boolean):void 
+		{
+			_knockout = value;
 		}
 	}
 }

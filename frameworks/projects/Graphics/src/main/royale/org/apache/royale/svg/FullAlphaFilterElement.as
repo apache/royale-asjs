@@ -19,53 +19,50 @@
 package org.apache.royale.svg
 {
 	
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	COMPILE::JS 
+	{
+		import org.apache.royale.graphics.utils.addSvgElementToElement;
+	}
+
 	/**
-	 *  SuperimposeFilter composes superimposes several filters one on top of the other.
+	 *  The FullAlphaFilterElement 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class SuperimposeFilter extends Filter
+	public class FullAlphaFilterElement extends FilterElement
 	{
-		public function SuperimposeFilter()
+		
+
+		public function FullAlphaFilterElement()
 		{
 		}
 		
-		COMPILE::JS
-		override protected function filter():void
+		/*
+		* @royaleignorecoercion Element
+		*/
+		override public function build():void
 		{
-			var newChildren:Array = [];
-			var results:Array = ["SourceGraphic"];
-			for (var i:int = 0; i < children.length; i++)
+			COMPILE::JS 
 			{
-				var chainable:IChainableFilter = children[i] as IChainableFilter;
-				var resultName:String = "chainableResult" + i;
-				chainable.result = resultName;
-				results.push(resultName);
-				if (i != 0)
-				{
-					chainable.source = "chainableResult" + (i - 1);
-				}
-				chainable.build();
-				addArray(newChildren, chainable.children);
-			}
-			var merge:MergeFilterElement = new MergeFilterElement();
-			merge.results = results;
-			newChildren.push(merge);
-			children = newChildren;
-			super.filter();
-		}
-		
-		COMPILE::JS
-		private function addArray(original:Array, addition:Array):void
-		{
-			for (var i:int = 0; i < addition.length; i++)
-			{
-				original.push(addition[i]);
+				super.build();
+				var funcA:Element = addSvgElementToElement(filterElement, "feFuncA") as Element;
+				funcA.setAttribute("type", "table");
+				funcA.setAttribute("tableValues", "1");
 			}
 		}
+			
+		COMPILE::JS
+		override protected function get filterElementType():String
+		{
+			return "feComponentTransfer";
+		}
+
 	}
 }
 
