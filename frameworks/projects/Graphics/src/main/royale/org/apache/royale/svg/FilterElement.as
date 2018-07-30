@@ -45,6 +45,7 @@ package org.apache.royale.svg
 			private var _filterElement:Element;
 		}
 		private var _result:String;
+		private var _in:String;
 
 		public function FilterElement()
 		{
@@ -61,6 +62,10 @@ package org.apache.royale.svg
 				if (result)
 				{
 					filterElement.setAttribute("result", result);
+				}
+				if (_in)
+				{
+					filterElement.setAttribute("in", _in);
 				}
 			}
 		}
@@ -115,6 +120,16 @@ package org.apache.royale.svg
 		public function set filterElementWrapper(value:Element):void 
 		{
 			_filterElementWrapper = value;
+		}
+
+		public function get in():String 
+		{
+			return _in;
+		}
+		
+		public function set in(value:String):void 
+		{
+			_in = value;
 		}
 	}
 }

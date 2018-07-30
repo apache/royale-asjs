@@ -29,6 +29,7 @@
 	<component id="SpreadFilterElement" class="org.apache.royale.svg.SpreadFilterElement" />
 	<component id="BlurFilterElement" class="org.apache.royale.svg.BlurFilterElement" />
 	<component id="InvertFilterElement" class="org.apache.royale.svg.InvertFilterElement" />
+	<component id="FullAlphaFilterElement" class="org.apache.royale.svg.FullAlphaFilterElement" />
 	<component id="CompositeFilterElement" class="org.apache.royale.svg.CompositeFilterElement" />
 	<component id="BlendFilterElement" class="org.apache.royale.svg.BlendFilterElement" />
 	<component id="MaskBead" class="org.apache.royale.svg.MaskBead" />

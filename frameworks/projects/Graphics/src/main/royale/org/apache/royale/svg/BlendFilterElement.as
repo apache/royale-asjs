@@ -40,7 +40,6 @@ package org.apache.royale.svg
 	{
 		private var _strand:IStrand;
 		private var _in2:String;
-		private var _in:String;
 
 		public function BlendFilterElement()
 		{
@@ -54,7 +53,6 @@ package org.apache.royale.svg
 			COMPILE::JS 
 			{
 				super.build();
-				filterElement.setAttribute("in", in);
 				filterElement.setAttribute("in2", in2);
 				filterElement.setAttribute("mode", "normal");
 			}
@@ -76,16 +74,6 @@ package org.apache.royale.svg
 		public function set in2(value:String):void
 		{
 			_in2 = value;
-		}
-
-		public function get in():String 
-		{
-			return _in;
-		}
-		
-		public function set in(value:String):void 
-		{
-			_in = value;
 		}
 
 		COMPILE::JS

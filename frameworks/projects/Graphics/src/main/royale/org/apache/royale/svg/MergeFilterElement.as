@@ -19,52 +19,62 @@
 package org.apache.royale.svg
 {
 	
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	COMPILE::JS 
+	{
+		import org.apache.royale.graphics.utils.addSvgElementToElement;
+	}
+
 	/**
-	 *  SuperimposeFilter composes superimposes several filters one on top of the other.
+	 *  The MergeFilterElement merges several filter elements
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class SuperimposeFilter extends Filter
+	public class MergeFilterElement extends FilterElement
 	{
-		public function SuperimposeFilter()
+		private var _strand:IStrand;
+		private var _results:Array;
+
+		public function MergeFilterElement()
 		{
 		}
 		
-		COMPILE::JS
-		override protected function filter():void
+		/**
+		 * @royaleignorecoercion Element
+		 */
+		override public function build():void
 		{
-			var newChildren:Array = [];
-			var results:Array = ["SourceGraphic"];
-			for (var i:int = 0; i < children.length; i++)
+			COMPILE::JS 
 			{
-				var chainable:IChainableFilter = children[i] as IChainableFilter;
-				var resultName:String = "chainableResult" + i;
-				chainable.result = resultName;
-				results.push(resultName);
-				if (i != 0)
+				super.build();
+				for (var i:int = 0; i < results.length; i++)
 				{
-					chainable.source = "chainableResult" + (i - 1);
+					var mergeNode:Element = addSvgElementToElement(filterElement, "feMergeNode") as Element;
+					mergeNode.setAttribute("in", results[i] as String);
 				}
-				chainable.build();
-				addArray(newChildren, chainable.children);
 			}
-			var merge:MergeFilterElement = new MergeFilterElement();
-			merge.results = results;
-			newChildren.push(merge);
-			children = newChildren;
-			super.filter();
+		}
+
+		COMPILE::JS
+		override protected function get filterElementType():String
+		{
+			return "feMerge";
+		}
+
+		public function get results():Array 
+		{
+			return _results;
 		}
 		
-		COMPILE::JS
-		private function addArray(original:Array, addition:Array):void
+		public function set results(value:Array):void 
 		{
-			for (var i:int = 0; i < addition.length; i++)
-			{
-				original.push(addition[i]);
-			}
+			_results = value;
 		}
 	}
 }
