@@ -729,6 +729,10 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
         return (view as IComboBoxView).textInputField;
     }
 
+    protected function set textInput(value:Object):void
+    {
+       
+    }
 
     //----------------------------------
     //  textInputStyleFilters
