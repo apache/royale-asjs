@@ -58,6 +58,7 @@
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
+            <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,IUIComponent" />
             <arg value="-compiler.define+=GOOG::DEBUG,goog.DEBUG" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />

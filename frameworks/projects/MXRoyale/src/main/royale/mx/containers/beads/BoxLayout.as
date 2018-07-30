@@ -415,7 +415,7 @@ package mx.containers.beads
 		/**
 		 *  @private
 		 */
-		protected function widthPadding(numChildren:Number):Number
+		public function widthPadding(numChildren:Number):Number
 		{
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
 			var padding:Number = vm.left + vm.right;
@@ -432,7 +432,7 @@ package mx.containers.beads
 		/**
 		 *  @private
 		 */
-		protected function heightPadding(numChildren:Number):Number
+		public function heightPadding(numChildren:Number):Number
 		{
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
 			var padding:Number = vm.top + vm.bottom;
@@ -451,7 +451,7 @@ package mx.containers.beads
 		 *  Returns a numeric value for the align setting.
 		 *  0 = left/top, 0.5 = center, 1 = right/bottom
 		 */
-		protected function getHorizontalAlignValue():Number
+		public function getHorizontalAlignValue():Number
 		{
 			var horizontalAlign:String = target.getStyle("horizontalAlign");
 			
@@ -470,7 +470,7 @@ package mx.containers.beads
 		 *  Returns a numeric value for the align setting.
 		 *  0 = left/top, 0.5 = center, 1 = right/bottom
 		 */
-		protected function getVerticalAlignValue():Number
+		public function getVerticalAlignValue():Number
 		{
 			var verticalAlign:String = target.getStyle("verticalAlign");
 			

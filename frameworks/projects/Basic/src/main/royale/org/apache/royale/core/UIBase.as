@@ -818,7 +818,7 @@ package org.apache.royale.core
         }
         
         COMPILE::JS
-        private var displayStyleForLayout:String;
+        protected var displayStyleForLayout:String;
 		
 		/**
 		 *  The display style is used for both visible

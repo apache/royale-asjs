@@ -149,6 +149,11 @@ public class Box extends Container
     //--------------------------------------------------------------------------
 	
 	private var _layout:BoxLayout;
+    
+    protected function get layoutObject():BoxLayout
+    {
+        return _layout;
+    }
 
     /**
      *  @private

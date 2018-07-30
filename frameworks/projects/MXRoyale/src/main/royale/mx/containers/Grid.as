@@ -35,9 +35,9 @@ import mx.core.EdgeMetrics;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-[Style(name="horizontalGap", type="Number", format="Length", inherit="no")]
+//[Style(name="horizontalGap", type="Number", format="Length", inherit="no")]
 
 /**
  *  Number of pixels between children in the vertical direction. 
@@ -46,9 +46,9 @@ import mx.core.EdgeMetrics;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-[Style(name="verticalGap", type="Number", format="Length", inherit="no")]
+//[Style(name="verticalGap", type="Number", format="Length", inherit="no")]
 
 //--------------------------------------
 //  Excluded APIs
@@ -165,11 +165,11 @@ import mx.core.EdgeMetrics;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 public class Grid extends Box
 {
-   /*  include "../core/Version.as"; */
+//    include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -183,7 +183,7 @@ public class Grid extends Box
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function Grid()
     {
@@ -200,18 +200,18 @@ public class Grid extends Box
      *  @private
      *  Minimum, maximum, and preferred width of each column.
      */
-   // private var columnWidths:Array /* of GridColumnInfo */;
+    private var columnWidths:Array /* of GridColumnInfo */;
 
     /**
      *  @private
      *  Minimum, maximum, and preferred height of each row.
      */
-  //  private var rowHeights:Array /* of GridRowInfo */;
+    private var rowHeights:Array /* of GridRowInfo */;
 
     /**
      *  @private
      */
-    //private var needToRemeasure:Boolean = true;
+    private var needToRemeasure:Boolean = true;
     
     //--------------------------------------------------------------------------
     //
@@ -222,7 +222,7 @@ public class Grid extends Box
     /**
      *  @private
      */
-    /* override public function invalidateSize():void
+    override public function invalidateSize():void
     {
         // When the Grid's size is invalidated, the rowHeights
         // and columnWidths arrays need to be recalculated.
@@ -233,7 +233,7 @@ public class Grid extends Box
             needToRemeasure = true;
         
         super.invalidateSize();
-    }  */  
+    }   
 
     /**
      *  Calculates the preferred, minimum, and maximum sizes of the Grid.
@@ -314,9 +314,9 @@ public class Grid extends Box
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* override protected function measure():void
+    override protected function measure():void
     {
         // 1. Determine the number of grid columns,
         // taking into account rowSpan and colSpan
@@ -572,7 +572,7 @@ public class Grid extends Box
         measuredHeight = Math.max(measuredHeight, preferredHeight);
         
         needToRemeasure = false;        
-    } */
+    }
 
     /**
      *  Sets the size and position of each child of the Grid.
@@ -621,9 +621,9 @@ public class Grid extends Box
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* override protected function updateDisplayList(unscaledWidth:Number,
+    override protected function updateDisplayList(unscaledWidth:Number,
                                                   unscaledHeight:Number):void
     {       
         // If the measure function wasn't called (because the widths
@@ -671,7 +671,7 @@ public class Grid extends Box
             child.doRowLayout(child.width * child.scaleX,
                               child.height * child.scaleY);
         }
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -682,7 +682,7 @@ public class Grid extends Box
     /**
      *  @private
      */
-    /* private function distributeItemHeight(item:GridItem, rowIndex:Number,
+    private function distributeItemHeight(item:GridItem, rowIndex:Number,
                                           verticalGap:Number,
                                           rowHeights:Array):void
     {
@@ -747,12 +747,12 @@ public class Grid extends Box
         // with a rowSpan of 1.
         if (rowSpan == 1 && maxHeight < rowInfo.max)
             rowInfo.max = maxHeight;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* private function distributeItemWidth(item:GridItem, colIndex:int,
+    private function distributeItemWidth(item:GridItem, colIndex:int,
                                          horizontalGap:Number, columnWidths:Array):void
     {
         var maxWidth:Number = item.maxWidth;
@@ -822,7 +822,7 @@ public class Grid extends Box
         // with a colSpan of 1.
         if (colSpan == 1 && maxWidth < columnInfo.max)
             columnInfo.max = maxWidth;
-    }  */  
+    }   
 }
 
 }

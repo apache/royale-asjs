@@ -49,6 +49,7 @@
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
   <component id="Panel" class="mx.containers.Panel" />
 	<component id="ViewStack" class="mx.containers.ViewStack" /> 
+    <component id="TabNavigator" class="mx.containers.TabNavigator" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
@@ -98,7 +99,9 @@
 	<component id="GroupingField" class="mx.collections.GroupingField" />
 	<component id="MenuBar" class="mx.controls.MenuBar"/>
 	<component id="NumberFormatter" class="mx.formatters.NumberFormatter"/>
+    <component id="Form" class="mx.containers.Form" />
 	<component id="FormHeading" class="mx.containers.FormHeading"/>
+    <component id="FormItem" class="mx.containers.FormItem" />
 	<component id="BarSeries" class="mx.charts.series.BarSeries" />
 	<component id="XMLListCollection" class="mx.collections.XMLListCollection"/>
 	<component id="TreeItemRenderer" class="mx.controls.treeClasses.TreeItemRenderer" />

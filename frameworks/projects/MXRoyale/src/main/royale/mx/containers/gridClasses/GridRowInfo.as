@@ -28,13 +28,11 @@ import mx.core.UIComponent;
  *  @private
  *  Internal helper class used to exchange information between
  *  Grid and GridRow.
- *  @royalesuppresspublicvarwarning
  */
-
 public class GridRowInfo
 {
-	/* include "../../core/Version.as";
- */
+//	include "../../core/Version.as";
+
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor
@@ -47,7 +45,7 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public function GridRowInfo()
 	{
@@ -75,7 +73,7 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var flex:Number;
 	
@@ -90,10 +88,10 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var height:Number;
-	
+
 	//----------------------------------
 	//  max
 	//----------------------------------
@@ -104,7 +102,7 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var max:Number;
 	
@@ -118,7 +116,7 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var min:Number;
 	
@@ -132,7 +130,7 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var preferred:Number;
 	
@@ -147,10 +145,9 @@ public class GridRowInfo
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var y:Number;
-	
 }
 
 }
