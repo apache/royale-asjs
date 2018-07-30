@@ -44,10 +44,6 @@ package org.apache.royale.svg
 				var resultName:String = "chainableResult" + i;
 				chainable.result = resultName;
 				results.push(resultName);
-				if (i != 0)
-				{
-					chainable.source = "chainableResult" + (i - 1);
-				}
 				chainable.build();
 				addArray(newChildren, chainable.children);
 			}

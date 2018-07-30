@@ -56,16 +56,7 @@ package org.apache.royale.svg
 		public function build():void
 		{
 			children = [];
-			var knockoutResult:String;
-			if (!inset && knockout)
-			{
-				knockoutResult = "knockout_res1";
-//				var fullAlpha:ColorMatrixFilterElement = new ColorMatrixFilterElement();
-//				fullAlpha.opacity = 1000000;
-//				fullAlpha.result = knockoutResult;
-//				fullAlpha.in = "SourceAlpha";
-//				children.push(fullAlpha);
-			}
+			var doKnockout:Boolean = !inset && knockout;
 			if (inset)
 			{
 				var insetFilterElement:FilterElement = new InvertFilterElement();
@@ -78,7 +69,7 @@ package org.apache.royale.svg
 				children.push(offset);
 				offset.dx = dx;
 				offset.dy = dy;
-				if (knockoutResult)
+				if (doKnockout)
 				{
 					offset.in = source ? source : "SourceGraphic";
 				}
@@ -90,11 +81,11 @@ package org.apache.royale.svg
 			{
 				blur.in = source ? source : "SourceGraphic";
 			}
-			if (!inset && knockout)
+			if (doKnockout)
 			{
 				var outsetComposite:CompositeFilterElement = new CompositeFilterElement();
 				children.push(outsetComposite);
-				outsetComposite.in2 = knockoutResult;
+				outsetComposite.in2 = "SourceAlpha";
 				outsetComposite.operator = "out";
 			}
 			var colorMatrix:ColorMatrixFilterElement = new ColorMatrixFilterElement();
