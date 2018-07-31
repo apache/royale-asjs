@@ -63,8 +63,8 @@ public interface IFlexModuleFactory
      *  @playerversion AIR 1.5
      *  @productversion Flex 3
      */
-    function callInContext(fn:Function, thisArg:Object,
-                           argArray:Array, returns:Boolean = true):*;
+    //function callInContext(fn:Function, thisArg:Object,
+    //                       argArray:Array, returns:Boolean = true):*;
     
     /**
      *  A factory method that requests
@@ -86,7 +86,7 @@ public interface IFlexModuleFactory
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function create(... parameters):Object;
+    //function create(... parameters):Object;
     
     /**
      *  Get the implementation for an interface.
@@ -145,8 +145,8 @@ public interface IFlexModuleFactory
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    function registerImplementation(interfaceName:String,
-                                    impl:Object):void;
+    //function registerImplementation(interfaceName:String,
+    //                                impl:Object):void;
     
 }
 

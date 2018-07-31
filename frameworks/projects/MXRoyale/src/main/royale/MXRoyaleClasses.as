@@ -105,6 +105,7 @@ internal class MXRoyaleClasses
 	import mx.skins.RectangularBorder; RectangularBorder;
 	import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
 	import mx.styles.StyleProxy; StyleProxy;
+    import mx.styles.StyleManagerImpl; StyleManagerImpl;
 	import mx.modules.IModuleInfo; IModuleInfo;
 	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
 	import mx.printing.FlexPrintJob; FlexPrintJob; 

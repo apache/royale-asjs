@@ -3400,7 +3400,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  such as "mx.managers::IPopUpManager",
      *  to instances,
      */
-    // private var implMap:Object = {};
+    private var implMap:Object = {};
         
     /**
      * @private
@@ -3427,11 +3427,11 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  This method should not be called at static initialization time,
      *  because the factory class may not have called registerClass() yet.
      */
-    /* public function getImplementation(interfaceName:String):Object
+    public function getImplementation(interfaceName:String):Object
     {
         var c:Object = implMap[interfaceName];
         return c;
-    } */
+    }
 
     /**
     *  @inheritDoc

@@ -82,8 +82,6 @@ import mx.styles.CSSStyleDeclaration;
 import mx.styles.IAdvancedStyleClient;
 import mx.styles.ISimpleStyleClient;
 import mx.styles.IStyleClient;
-import mx.styles.IStyleManager2;
-import mx.styles.StyleManager;
 import mx.styles.StyleProtoChain;
 import mx.utils.ColorUtil;
 import mx.utils.GraphicsUtil;
@@ -96,6 +94,8 @@ import mx.validators.ValidationResult;
     
 use namespace mx_internal;
 */
+import mx.styles.IStyleManager2;
+import mx.styles.StyleManager;
 
 /**
  *  Dispatched when the component has finished its construction
@@ -1279,6 +1279,31 @@ public class UIComponent extends UIBase
     public function set focusManager(value:IFocusManager):void
     {
         _focusManager = value;
+    }
+    
+    //----------------------------------
+    //  styleManager
+    //----------------------------------
+    
+    /**
+     *  @private
+     */
+    private var _styleManager:IStyleManager2;
+    
+    /**
+     *  Returns the StyleManager instance used by this component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get styleManager():IStyleManager2
+    {
+        if (!_styleManager)
+            _styleManager = StyleManager.getStyleManager(moduleFactory);
+        
+        return _styleManager;
     }
     
     //----------------------------------
