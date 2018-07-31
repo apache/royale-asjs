@@ -81,8 +81,6 @@ package
         import org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout; SimpleVerticalLayout;
         import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;
         import org.apache.royale.jewel.beads.layouts.VerticalLayout; VerticalLayout;
-        import org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween; HorizontalLayoutSpaceBetween;
-        
 
         // import org.apache.royale.html.beads.TableCellView; TableCellView;
         // import org.apache.royale.html.beads.layouts.SimpleTableLayout; SimpleTableLayout;

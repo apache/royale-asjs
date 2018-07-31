@@ -51,7 +51,14 @@ package org.apache.royale.jewel
 			addBead(layout);
 		}
 
-        protected var layout:VerticalLayout;
+        public function get layout():VerticalLayout
+        {
+            return _layout as VerticalLayout;
+        }
+		public function set layout(value:VerticalLayout):void
+        {
+            _layout = value;
+        }
 
         // public function get gap():Boolean
         // {

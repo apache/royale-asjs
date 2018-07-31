@@ -94,7 +94,7 @@ div {
 .jewel.alert .content {
   padding: 20px;
   top: 50px;
-  bottom: 80px;
+  bottom: 84px;
 }
 .jewel.alert .content .jewel.label {
   white-space: normal;
@@ -111,15 +111,7 @@ div {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 80px;
-  justify-content: flex-end;
-}
-.jewel.alert .jewel.controlbar > *:first-child {
-  margin-left: 0px;
-}
-.jewel.alert .jewel.controlbar > * {
-  flex: 0 0 100px;
-  margin-left: 6px;
+  height: 84px;
 }
 .jewel.alert + .backdrop {
   background-color: rgba(0, 0, 0, 0.5);
@@ -551,6 +543,11 @@ j|Card {
 .jewel.table td {
   border-top: 1px solid #d9d9d9;
   border-left: 1px solid #d9d9d9;
+}
+.jewel.table tfoot td {
+  border-left: 0px;
+  background: linear-gradient(white, white);
+  box-shadow: inset 0 1px 0 white;
 }
 
 .jewel.textinput {

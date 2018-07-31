@@ -107,8 +107,6 @@
     <component id="GridLayout" class="org.apache.royale.jewel.beads.layouts.GridLayout"/>
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     
-    <component id="HorizontalLayoutSpaceBetween" class="org.apache.royale.jewel.beads.layouts.HorizontalLayoutSpaceBetween"/>
-    
     <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>

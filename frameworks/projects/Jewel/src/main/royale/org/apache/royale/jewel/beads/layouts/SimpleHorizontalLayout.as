@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 	import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
@@ -44,7 +44,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class SimpleHorizontalLayout extends LayoutBase implements IBeadLayout
+	public class SimpleHorizontalLayout extends StyledLayoutBase implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -64,12 +64,6 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal";
 
-		COMPILE::JS
-		protected var hostComponent:UIBase;
-
-		COMPILE::JS
-		protected var hostClassList:DOMTokenList;
-
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -86,8 +80,6 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				hostComponent = host as UIBase;
-				hostClassList = hostComponent.positioner.classList;
 				if (hostClassList.contains("layout"))
 					hostClassList.remove("layout");
 				hostClassList.add("layout");

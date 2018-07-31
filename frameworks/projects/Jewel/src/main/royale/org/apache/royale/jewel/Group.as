@@ -21,6 +21,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.html.Group;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
+    import org.apache.royale.utils.StringUtil;
 
     /**
      *  The Group class provides a light-weight container for visual elements. By default
@@ -139,6 +141,71 @@ package org.apache.royale.jewel
             {//not implemented
             return false;
             }
+        }
+
+        protected var _layout:StyledLayoutBase;
+        
+        /**
+		 *  Distribute all items horizontally
+		 *  Possible values are:
+		 *  - itemsLeft
+		 *  - itemsCenter
+		 *  - itemsRight
+		 *  - itemsSpaceBetween
+		 *  - itemsSpaceAround
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get itemsHorizontalAlign():String
+        {
+            return _layout.itemsHorizontalAlign;
+        }
+
+        public function set itemsHorizontalAlign(value:String):void
+        {
+			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsHorizontalAlign);
+			_layout.itemsHorizontalAlign = value;
+			typeNames += " " + _layout.itemsHorizontalAlign;
+
+			COMPILE::JS
+            {
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
+        }
+
+		/**
+		 *  Distribute all items vertically
+		 *  Possible values are:
+		 *  - itemsSameHeight
+		 *  - itemsCentered
+		 *  - itemsTop
+		 *  - itemsBottom
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get itemsVerticalAlign():String
+        {
+            return _layout.itemsVerticalAlign;
+        }
+
+        public function set itemsVerticalAlign(value:String):void
+        {
+			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsVerticalAlign);
+			_layout.itemsVerticalAlign = value;
+			typeNames += " " + _layout.itemsVerticalAlign;
+
+			COMPILE::JS
+            {
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
         }
 	}
 }

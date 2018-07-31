@@ -55,8 +55,8 @@ limitations under the License.
 					<j:TableCell>
 						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
 					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="Some text" />
+					<j:TableCell expandRows="2">
+						<j:Label text="Some text in two rows" multiline="true"/>
 					</j:TableCell>
 					<j:TableCell>
 						<j:Label text="Some centered text">
@@ -77,9 +77,7 @@ limitations under the License.
 					<j:TableCell>
 						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
 					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="More text" />
-					</j:TableCell>
+					
 					<j:TableCell>
 						<j:Label text="More centered text">
 							<j:beads>
@@ -148,6 +146,23 @@ limitations under the License.
 					</j:TableCell>
 				</j:TableRow>
 			</j:TBody>
+			<j:TFoot>
+				<j:TableRow>
+					<j:TableCell expandColumns="4">
+						<j:HGroup gap="3" itemsHorizontalAlign="itemsRight">
+							<j:IconTextInput rightPosition="true">
+								<j:beads>
+									<j:TextPrompt prompt="Search..."/>						
+								</j:beads>
+								<j:icon>
+									<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+								</j:icon>
+							</j:IconTextInput>
+							<j:Button text="SEARCH" emphasis="{Button.PRIMARY}"/>
+						</j:HGroup>
+					</j:TableCell>
+				</j:TableRow>
+			</j:TFoot>
 		</j:SimpleTable>
 	</j:Card>
 </j:SectionContent>

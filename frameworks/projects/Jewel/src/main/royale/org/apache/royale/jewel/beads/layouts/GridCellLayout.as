@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
@@ -37,7 +37,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class GridCellLayout extends LayoutBase implements IBeadLayout
+	public class GridCellLayout extends StyledLayoutBase implements IBeadLayout
 	{
 		public static const MAX_COLUMNS:Number = 12;
 		public static const PHONE:String = "phone";
@@ -63,12 +63,6 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public static const LAYOUT_TYPE_NAMES:String = "cell";
 
-		COMPILE::JS
-		private var hostComponent:UIBase;
-
-		COMPILE::JS
-		protected var hostClassList:DOMTokenList;
-
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -83,9 +77,6 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				hostComponent = host as UIBase;
-				hostClassList = hostComponent.positioner.classList;
-				
 				setFractionForScreen(DESKTOP, _wideScreenNumerator, _wideScreenDenominator);
 				setFractionForScreen(WIDESCREEN, _desktopNumerator, _desktopDenominator);
 				setFractionForScreen(TABLET, _tabletNumerator, _tabletDenominator);

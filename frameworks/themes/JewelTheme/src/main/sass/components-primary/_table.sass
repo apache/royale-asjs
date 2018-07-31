@@ -52,6 +52,15 @@ $table-border-radius: $border-radius
     td
         border-top: 1px solid $default-color
         border-left: 1px solid $default-color
+
+    tfoot
+        td
+            border-left: 0px
+            @if $flat
+                background: lighten($default-color, 10%)
+            @else
+                background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 20%))
+                box-shadow: inset 0 1px 0 lighten($default-color, 30%)
         
         // border-bottom: 1px solid darken($light-color, 20%)
 

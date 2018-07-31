@@ -50,7 +50,61 @@ package org.apache.royale.jewel
 			
 			typeNames = "jewel tablecell";
 		}
+
+		private var _expandColumns:Number = 1;
+        /**
+         *  The columns this cell will expand to occupy
+		 *  notice that you must not define the ocuppied cells
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get expandColumns():Number
+		{
+            return _expandColumns;
+		}
+		public function set expandColumns(value:Number):void
+		{
+			if(_expandColumns != value)
+			{
+            	_expandColumns = value;
+
+				COMPILE::JS
+				{
+					element.setAttribute('colspan', _expandColumns);
+				}
+			}
+		}
 		
+		private var _expandRows:Number = 1;
+        /**
+         *  The rows this cell will expand to occupy
+		 *  notice that you must not define the ocuppied cells
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get expandRows():Number
+		{
+            return _expandRows;
+		}
+		public function set expandRows(value:Number):void
+		{
+			if(_expandRows != value)
+			{
+            	_expandRows = value;
+
+				COMPILE::JS
+				{
+					element.setAttribute('rowspan', _expandRows);
+				}
+			}
+		}
+
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */

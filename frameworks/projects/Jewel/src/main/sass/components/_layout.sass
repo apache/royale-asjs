@@ -34,6 +34,30 @@ $gap: 0px
 	display: flex
 	//position: relative
 
+	// Vertical Items Align
+	&.itemsSameHeight
+		//align-items: stretch  --> this doen't seems to work as expected
+		> *
+			> *
+				min-height: 100%
+	&.itemsCentered
+		align-items: center
+	&.itemsTop
+		align-items: flex-start
+	&.itemsBottom
+		align-items: flex-end
+
+	// Horizontal Items Align
+	&.itemsLeft
+		justify-content: flex-start
+	&.itemsCenter
+		justify-content: center
+	&.itemsRight
+		justify-content: flex-end
+	&.itemsSpaceBetween
+		justify-content: space-between
+	&.itemsSpaceAround
+		justify-content: space-around
 
 /* Horizontal */
 .layout
@@ -106,9 +130,6 @@ $gap: 0px
 	// 	> *
 	// 		margin: $gap-size 0px 0px $gap-size
 
-.layout.horizontal.space
-	justify-content: space-between
-
 /* Grid */
 $grid-columns: 12 !default
 $gap-size: 10px !default
@@ -140,18 +161,8 @@ $gap-size: 10px !default
 						.#{$size}-col-#{$j}-#{$i}
 							width: calc(#{percentage($j / $i)} - #{$gap-size})
 
-	&.itemsSameHeight
-		//align-items: stretch  --> this doen't seems to work as expected
 
-		> *
-			> *
-				min-height: 100%
-	&.itemsCentered
-		align-items: center
-	&.itemsTop
-		align-items: flex-start
-	&.itemsBottom
-		align-items: flex-end
+	
 
 @each $size in $size-names			
 	@if index($size-names, $size) == 1

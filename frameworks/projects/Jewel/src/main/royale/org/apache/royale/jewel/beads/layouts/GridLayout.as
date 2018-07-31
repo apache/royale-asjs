@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IParentIUIBase;
@@ -37,7 +37,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-	public class GridLayout extends LayoutBase implements IBeadLayout
+	public class GridLayout extends StyledLayoutBase implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -57,12 +57,6 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public static const LAYOUT_TYPE_NAMES:String = "layout grid";
 
-		COMPILE::JS
-		private var hostComponent:UIBase;
-
-		COMPILE::JS
-		protected var hostClassList:DOMTokenList;
-
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -79,8 +73,6 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				hostComponent = host as UIBase;
-				hostClassList = hostComponent.positioner.classList;
 				if (hostClassList.contains("layout"))
 					hostClassList.remove("layout");
 				hostClassList.add("layout");
@@ -130,45 +122,6 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			hostClassList.toggle("gap", value);
 		}
-
-		private var _itemsAlign:String;
-		/**
-		 *  Distribute all items horizontaly
-		 *  Possible values are:
-		 *  - itemsSameHeight
-		 *  - itemsCentered
-		 *  - itemsTop
-		 *  - itemsBottom
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-        public function get itemsAlign():String
-        {
-            return _itemsAlign;
-        }
-
-        public function set itemsAlign(value:String):void
-        {
-			if (_itemsAlign != value)
-            {
-                COMPILE::JS
-                {
-					if(hostComponent)
-					{
-						if (hostClassList.contains(_itemsAlign))
-							hostClassList.remove(_itemsAlign);
-				}
-						_itemsAlign = value;
-				COMPILE::JS
-                {
-						hostClassList.add(_itemsAlign);
-					}
-				}
-			}
-        }
 
 		// protected var _gap:Number = 0;
 		// /**

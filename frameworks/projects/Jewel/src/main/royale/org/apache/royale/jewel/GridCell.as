@@ -50,7 +50,14 @@ package org.apache.royale.jewel
 			addBead(layout);
 		}
 
-		protected var layout:GridCellLayout;
+		public function get layout():GridCellLayout
+        {
+            return _layout as GridCellLayout;
+        }
+		public function set layout(value:GridCellLayout):void
+        {
+            _layout = value;
+        }
 
 		/**
 		 *  The X Number for "widescreen-col-X-Y" effect selector.

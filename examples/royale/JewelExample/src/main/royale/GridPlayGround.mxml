@@ -528,7 +528,7 @@ limitations under the License.
 	
 	<html:H4 text=" itemsTop"/>
 
-	<j:Grid className="wrapper" gap="true" itemsAlign="itemsTop">
+	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsTop">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
@@ -548,7 +548,7 @@ limitations under the License.
 
 	<html:H4 text=" itemsBottom"/>
 
-	<j:Grid className="wrapper" gap="true" itemsAlign="itemsBottom">
+	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsBottom">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
@@ -568,7 +568,7 @@ limitations under the License.
 	
 	<html:H4 text=" itemsCentered"/>
 
-	<j:Grid className="wrapper" gap="true" itemsAlign="itemsCentered">
+	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsCentered">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
@@ -588,7 +588,7 @@ limitations under the License.
 	
 	<html:H4 text=" itemsSameHeight"/>
 
-	<j:Grid className="wrapper" gap="true" itemsAlign="itemsSameHeight" height="200">
+	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsSameHeight" height="200">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
