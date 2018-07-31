@@ -18,21 +18,66 @@
 
 -->
 <project name="TourDeFlex" default="compile" basedir=".">
-
-    <property file="${basedir}/env.properties"/>
+    <property name="ROYALE_HOME" location="../../.."/>
+    <property name="example" value="HelloWorld" />
+    
+    <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${basedir}/local.properties"/>
-    <property file="${basedir}/build.properties"/>
-    <condition property="FLEX_HOME" value="${env.FLEX_HOME}">
-        <isset property="env.FLEX_HOME" />
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+
+    <condition property="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}">
+        <and>
+            <not>
+                <isset property="ROYALE_COMPILER_HOME" />
+            </not>
+            <available file="${env.ROYALE_COMPILER_HOME}/lib/jsc.jar" type="file" />
+        </and>
     </condition>
+
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js">
+        <and>
+            <not>
+                <isset property="ROYALE_COMPILER_HOME" />
+            </not>
+            <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/../royale-compiler/compiler-jx">
+        <and>
+            <not>
+                <isset property="ROYALE_COMPILER_HOME" />
+            </not>
+            <available file="${ROYALE_HOME}/../royale-compiler/compiler-jx/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="GOOG_HOME" value="${env.GOOG_HOME}">
+        <and>
+            <not>
+                <isset property="GOOG_HOME" />
+            </not>
+            <available file="${env.GOOG_HOME}/closure/goog/base.js" type="file" />
+        </and>
+    </condition>
+
+    <condition property="GOOG_HOME" value="${ROYALE_HOME}/js/lib/google/closure-library">
+        <and>
+            <not>
+                <isset property="GOOG_HOME" />
+            </not>
+            <available file="${ROYALE_HOME}/js/lib/google/closure-library/closure/goog/base.js" type="file" />
+        </and>
+    </condition>
+
+
     <property name="version" value="1.2" />
 	
     <!-- additional tasks - mxmlc tag -->
     <path id="flexTasks.path">
-        <fileset dir="${FLEX_HOME}">
-            <include name="lib/flexTasks.jar" />
-            <include name="ant/lib/flexTasks.jar" />
+        <fileset dir="${ROYALE_HOME}">
+            <include name="js/lib/compiler-royaleTasks.jar" />
         </fileset>
     </path>
     <taskdef resource="flexTasks.tasks" classpathref="flexTasks.path"/>
@@ -43,7 +88,7 @@
         <sequential>
    			<mxmlc file="${basedir}/src/@{example}.mxml"
             	output="${basedir}/src/@{example}.swf" fork="true" failonerror="true">
-				<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
 			</mxmlc>
 		</sequential>
 	</macrodef>	
