@@ -1,0 +1,524 @@
+<?xml version="1.0" ?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project name="TourDeFlex" default="compile" basedir=".">
+
+    <property file="${basedir}/env.properties"/>
+    <property environment="env"/>
+    <property file="${basedir}/local.properties"/>
+    <property file="${basedir}/build.properties"/>
+    <condition property="FLEX_HOME" value="${env.FLEX_HOME}">
+        <isset property="env.FLEX_HOME" />
+    </condition>
+    <property name="version" value="1.2" />
+	
+    <!-- additional tasks - mxmlc tag -->
+    <path id="flexTasks.path">
+        <fileset dir="${FLEX_HOME}">
+            <include name="lib/flexTasks.jar" />
+            <include name="ant/lib/flexTasks.jar" />
+        </fileset>
+    </path>
+    <taskdef resource="flexTasks.tasks" classpathref="flexTasks.path"/>
+   
+    <macrodef name="compile-mxml">
+    	 <attribute name="example"/>
+        
+        <sequential>
+   			<mxmlc file="${basedir}/src/@{example}.mxml"
+            	output="${basedir}/src/@{example}.swf" fork="true" failonerror="true">
+				<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+			</mxmlc>
+		</sequential>
+	</macrodef>	
+	
+    <macrodef name="compile-mxml-locales">
+    	 <attribute name="example"/>
+    	 <attribute name="locales" default="en_US"/>
+        
+        <sequential>
+   			<mxmlc file="${basedir}/src/@{example}.mxml"
+            	output="${basedir}/src/@{example}.swf" fork="true" failonerror="true">
+   				<locale>en_US</locale>
+   				<locale>en_AU</locale>
+   				<locale>en_GB</locale>
+   				<locale>en_CA</locale>
+   				<locale>el_GR</locale>
+   				<locale>de_CH</locale>
+   				<locale>pt_PT</locale>
+				<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+			</mxmlc>
+		</sequential>
+	</macrodef>
+	
+	<target name="compile" description="compile all examples and the explorer shell" depends="compile-shell,compile-mx,compile-spark,compile-spark2,compile-spark3,compile-apache">
+	</target>
+	
+	<target name="compile-shell" description="compile explorer shell">
+		<compile-mxml example="/explorer"/>
+		<compile-mxml-locales example="/loaderPanel"/>
+		<compile-mxml example="/SourceTab"/>
+		<compile-mxml example="/Welcome"/>
+	</target>
+	
+	<target name="compile-mx" description="compile mx examples">
+		<compile-mxml example="/mx/charts/BubbleChartExample"/>
+		<compile-mxml example="/mx/charts/CandlestickChartExample"/>
+		<compile-mxml example="/mx/charts/Column_BarChartExample"/>
+		<compile-mxml example="/mx/charts/DateTimeAxisExample"/>
+		<compile-mxml example="/mx/charts/GridLinesExample"/>
+		<compile-mxml example="/mx/charts/HLOCChartExample"/>
+		<compile-mxml example="/mx/charts/Line_AreaChartExample"/>
+		<compile-mxml example="/mx/charts/LogAxisExample"/>
+		<compile-mxml example="/mx/charts/PieChartExample"/>
+		<compile-mxml example="/mx/charts/PlotChartExample"/>
+		<compile-mxml example="/mx/charts/SeriesInterpolateExample"/>
+		<compile-mxml example="/mx/charts/SeriesSlideExample"/>
+		<compile-mxml example="/mx/charts/SeriesZoomExample"/>
+		<compile-mxml example="/mx/containers/AccordionExample"/>
+		<compile-mxml example="/mx/containers/DividedBoxExample"/>
+		<compile-mxml example="/mx/containers/FormExample"/>
+		<compile-mxml example="/mx/containers/GridLayoutExample"/>
+		<compile-mxml example="/mx/containers/HBoxExample"/>
+		<compile-mxml example="/mx/containers/HDividedBoxExample"/>
+		<compile-mxml example="/mx/containers/SimpleApplicationControlBarExample"/>
+		<compile-mxml example="/mx/containers/SimpleBoxExample"/>
+		<compile-mxml example="/mx/containers/SimpleCanvasExample"/>
+		<compile-mxml example="/mx/containers/SimpleControlBarExample"/>
+		<compile-mxml example="/mx/containers/SimplePanelExample"/>
+		<compile-mxml example="/mx/containers/SimpleTitleWindowExample"/>
+		<compile-mxml example="/mx/containers/TabNavigatorExample"/>
+		<compile-mxml example="/mx/containers/TileLayoutExample"/>
+		<compile-mxml example="/mx/containers/TitleWindowApp"/>
+		<compile-mxml example="/mx/containers/VBoxExample"/>
+		<compile-mxml example="/mx/containers/VDividedBoxExample"/>
+		<compile-mxml example="/mx/containers/ViewStackExample"/>
+		<compile-mxml example="/mx/controls/AdvancedDataGridExample"/>
+		<compile-mxml example="/mx/controls/ButtonBarExample"/>
+		<compile-mxml example="/mx/controls/ButtonExample"/>
+		<compile-mxml example="/mx/controls/CheckBoxExample"/>
+		<compile-mxml example="/mx/controls/ColorPickerExample"/>
+		<compile-mxml example="/mx/controls/DateChooserExample"/>
+		<compile-mxml example="/mx/controls/DateFieldExample"/>
+		<compile-mxml example="/mx/controls/HorizontalListExample"/>
+		<compile-mxml example="/mx/controls/HScrollBarExample"/>
+		<compile-mxml example="/mx/controls/LabelExample"/>
+		<compile-mxml example="/mx/controls/LinkBarExample"/>
+		<compile-mxml example="/mx/controls/LinkButtonExample"/>
+		<compile-mxml example="/mx/controls/Local"/>
+		<compile-mxml example="/mx/controls/MenuBarExample"/>
+		<compile-mxml example="/mx/controls/NumericStepperExample"/>
+		<compile-mxml example="/mx/controls/OLAPDataGridExample"/>
+		<compile-mxml example="/mx/controls/PopUpButtonExample"/>
+		<compile-mxml example="/mx/controls/PopUpButtonMenuExample"/>
+		<compile-mxml example="/mx/controls/RadioButtonExample"/>
+		<compile-mxml example="/mx/controls/RadioButtonGroupExample"/>
+		<compile-mxml example="/mx/controls/RichTextEditorExample"/>
+		<compile-mxml example="/mx/controls/SimpleAlert"/>
+		<compile-mxml example="/mx/controls/SimpleComboBox"/>
+		<compile-mxml example="/mx/controls/SimpleDataGrid"/>
+		<compile-mxml example="/mx/controls/SimpleHRule"/>
+		<compile-mxml example="/mx/controls/SimpleImage"/>
+		<compile-mxml example="/mx/controls/SimpleImageHSlider"/>
+		<compile-mxml example="/mx/controls/SimpleImageVSlider"/>
+		<compile-mxml example="/mx/controls/SimpleList"/>
+		<compile-mxml example="/mx/controls/SimpleLoader"/>
+		<compile-mxml example="/mx/controls/SimpleMenuExample"/>
+		<compile-mxml example="/mx/controls/SimpleProgressBar"/>
+		<compile-mxml example="/mx/controls/SimpleVRule"/>
+		<compile-mxml example="/mx/controls/SpacerExample"/>
+		<compile-mxml example="/mx/controls/TabBarExample"/>
+		<compile-mxml example="/mx/controls/TextAreaExample"/>
+		<compile-mxml example="/mx/controls/TextExample"/>
+		<compile-mxml example="/mx/controls/TextInputExample"/>
+		<compile-mxml example="/mx/controls/TileListExample"/>
+		<compile-mxml example="/mx/controls/ToggleButtonBarExample"/>
+		<compile-mxml example="/mx/controls/TreeExample"/>
+		<compile-mxml example="/mx/controls/VideoDisplayExample"/>
+		<compile-mxml example="/mx/controls/VScrollBarExample"/>
+		<compile-mxml example="/mx/core/RepeaterExample"/>
+		<compile-mxml example="/mx/core/SimpleApplicationExample"/>
+		<compile-mxml example="/mx/effects/AddItemActionEffectExample"/>
+		<compile-mxml example="/mx/effects/AnimatePropertyEffectExample"/>
+		<compile-mxml example="/mx/effects/BlurEffectExample"/>
+		<compile-mxml example="/mx/effects/CompositeEffectExample"/>
+		<compile-mxml example="/mx/effects/DefaultListEffectExample"/>
+		<compile-mxml example="/mx/effects/DefaultTileListEffectExample"/>
+		<compile-mxml example="/mx/effects/DissolveEffectExample"/>
+		<compile-mxml example="/mx/effects/FadeEffectExample"/>
+		<compile-mxml example="/mx/effects/GlowEffectExample"/>
+		<compile-mxml example="/mx/effects/IrisEffectExample"/>
+		<compile-mxml example="/mx/effects/MoveEffectExample"/>
+		<compile-mxml example="/mx/effects/ParallelEffectExample"/>
+		<compile-mxml example="/mx/effects/PauseEffectExample"/>
+		<compile-mxml example="/mx/effects/ResizeEffectExample"/>
+		<compile-mxml example="/mx/effects/RotateEffectExample"/>
+		<compile-mxml example="/mx/effects/SequenceEffectExample"/>
+		<compile-mxml example="/mx/effects/SimpleEffectExample"/>
+		<compile-mxml example="/mx/effects/SimpleTweenEffectExample"/>
+		<compile-mxml example="/mx/effects/SoundEffectExample"/>
+		<compile-mxml example="/mx/effects/WipeDownExample"/>
+		<compile-mxml example="/mx/effects/WipeLeftExample"/>
+		<compile-mxml example="/mx/effects/WipeRightExample"/>
+		<compile-mxml example="/mx/effects/WipeUpExample"/>
+		<compile-mxml example="/mx/effects/ZoomEffectExample"/>
+		<compile-mxml example="/mx/formatters/CurrencyFormatterExample"/>
+		<compile-mxml example="/mx/formatters/DateFormatterExample"/>
+		<compile-mxml example="/mx/formatters/NumberFormatterExample"/>
+		<compile-mxml example="/mx/formatters/PhoneFormatterExample"/>
+		<compile-mxml example="/mx/formatters/SimpleFormatterExample"/>
+		<compile-mxml example="/mx/formatters/SwitchSymbolFormatterExample"/>
+		<compile-mxml example="/mx/formatters/ZipCodeFormatterExample"/>
+		<compile-mxml example="/mx/printing/AdvancedPrintDataGridExample"/>
+		<compile-mxml example="/mx/printing/FormPrintFooter"/>
+		<compile-mxml example="/mx/printing/FormPrintHeader"/>
+		<compile-mxml example="/mx/printing/FormPrintView"/>
+		<compile-mxml example="/mx/printing/PrintDataGridExample"/>
+		<compile-mxml example="/mx/states/StatesExample"/>
+		<compile-mxml example="/mx/states/TransitionExample"/>
+		<compile-mxml example="/mx/validators/CreditCardValidatorExample"/>
+		<compile-mxml example="/mx/validators/CurrencyValidatorExample"/>
+		<compile-mxml example="/mx/validators/DateValidatorExample"/>
+		<compile-mxml example="/mx/validators/EmailValidatorExample"/>
+		<compile-mxml example="/mx/validators/NumberValidatorExample"/>
+		<compile-mxml example="/mx/validators/PhoneNumberValidatorExample"/>
+		<compile-mxml example="/mx/validators/RegExValidatorExample"/>
+		<compile-mxml example="/mx/validators/SimpleValidatorExample"/>
+		<compile-mxml example="/mx/validators/SocialSecurityValidatorExample"/>
+		<compile-mxml example="/mx/validators/StringValidatorExample"/>
+		<compile-mxml example="/mx/validators/ZipCodeValidatorExample"/>
+	</target>
+		
+	<target name="compile-spark" description="compile first set of spark examples">
+		<compile-mxml example="/spark/controls/AccordionExample"/>
+		<compile-mxml example="/spark/controls/AdvancedDatagridExample"/>
+		<compile-mxml example="/spark/controls/ColorPickerExample"/>
+		<compile-mxml example="/spark/controls/ComboBoxExample"/>
+		<compile-mxml example="/spark/controls/DataGridExample"/>
+		<compile-mxml example="/spark/controls/DataGroupExample"/>
+		<compile-mxml example="/spark/controls/MenuExample"/>
+		<compile-mxml example="/spark/controls/RichEditableTextExample"/>
+		<compile-mxml example="/spark/controls/DateChooserExample"/>
+		<compile-mxml example="/spark/controls/DateFieldExample"/>
+		<compile-mxml example="/spark/controls/FormExample"/>
+		<compile-mxml example="/spark/controls/ImageExample"/>
+		<compile-mxml example="/spark/controls/LinkBarExample"/>
+		<compile-mxml example="/spark/controls/LinkButtonExample"/>
+		<compile-mxml example="/spark/controls/OLAPDataGridExample"/>
+		<compile-mxml example="/spark/controls/PopupButtonExample"/>
+		<compile-mxml example="/spark/controls/ProgressBarExample"/>
+		<!-- Currently broken <compile-mxml example="/spark/controls/SWFLoaderExample"/> -->
+		<compile-mxml example="/spark/controls/TitleWindowExample"/>
+		<compile-mxml example="/spark/controls/ToggleButtonBarExample"/>
+		<compile-mxml example="/spark/controls/ToolTipExample"/>
+		<compile-mxml example="/spark/controls/TreeExample"/>
+		<compile-mxml example="/spark/controls/ViewStackExample"/>
+		<compile-mxml example="/spark/controls/TextAreaExample"/>
+		<compile-mxml example="/spark/controls/TextInputExample"/>
+		<compile-mxml example="/spark/controls/TextLayout1Example"/>
+		<compile-mxml example="/spark/controls/TextLayout2Example"/>
+		<compile-mxml example="/spark/controls/TextLayout3Example"/>
+		<compile-mxml example="/spark/controls/TextLayout4Example"/>
+		<compile-mxml example="/spark/controls/VideoDisplayExample"/>
+		
+		<compile-mxml example="/spark/css/CSSDescendantSelectorExample"/>
+		<compile-mxml example="/spark/css/CSSTypeClassSelectorExample"/>
+		
+		<compile-mxml example="/spark/layouts/CustomLayoutAnimatedExample"/>
+		<compile-mxml example="/spark/layouts/CustomLayoutFlickrWheelExample"/>
+		<compile-mxml example="/spark/layouts/CustomLayoutFlowExample"/>
+		<compile-mxml example="/spark/layouts/CustomLayoutHBaselineExample"/>
+		
+		<compile-mxml example="/spark/itemRenderers/ItemRenderer1Example"/>
+		<compile-mxml example="/spark/itemRenderers/ItemRenderer2Example"/>
+		
+		<compile-mxml example="/spark/fxg/BitmapImageExample"/>
+		<compile-mxml example="/spark/fxg/EclipseExample"/>
+		<compile-mxml example="/spark/fxg/LineExample"/>
+		<compile-mxml example="/spark/fxg/RectExample"/>
+		<compile-mxml example="/spark/fxg/RichTextExample"/>
+		
+		<compile-mxml example="/spark/containers/SampleHGroup"/>
+		<compile-mxml example="/spark/containers/SampleVGroup"/>
+		<compile-mxml example="/spark/containers/SampleVerticalHorizontalAlign"/>
+		<compile-mxml example="/spark/containers/SkinnableDataContainerExample"/>
+		<compile-mxml example="/spark/containers/TileGroupExample"/>
+		
+		<compile-mxml example="/spark/effects/Move3DExample"/>
+		<compile-mxml example="/spark/effects/WipeExample"/>
+		
+		<compile-mxml example="/spark/charts/AreaChartExample"/>
+		<compile-mxml example="/spark/charts/BarChartExample"/>
+		<compile-mxml example="/spark/charts/BubbleChartExample"/>
+		<compile-mxml example="/spark/charts/CandleStickChartExample"/>
+		<compile-mxml example="/spark/charts/ColumnChartExample"/>
+		<compile-mxml example="/spark/charts/HLOCChartExample"/>
+		<compile-mxml example="/spark/charts/LineChartExample"/>
+		<compile-mxml example="/spark/charts/PieChartExample"/>
+		<compile-mxml example="/spark/charts/PlotChartExample"/>
+		<compile-mxml example="/spark/charts/SeriesInterpolateExample"/>
+		<compile-mxml example="/spark/charts/SeriesSlideExample"/>
+		<compile-mxml example="/spark/charts/SeriesZoomExample"/>
+			
+		<compile-mxml example="/spark/components/SearchExample"/>
+		<compile-mxml example="/spark/components/VideoPlayerExample"/>
+		
+		<compile-mxml example="/spark/validators/CreditCardValidatorExample"/>
+		<compile-mxml example="/spark/validators/CurrencyValidatorExample"/>
+		<compile-mxml example="/spark/validators/DateValidatorExample"/>
+		<compile-mxml example="/spark/validators/EmailValidatorExample"/>
+		<compile-mxml example="/spark/validators/NumberValidatorExample"/>
+		<compile-mxml example="/spark/validators/RegExpValidatorExample"/>
+		<compile-mxml example="/spark/validators/SocialSecurityValidatorExample"/>
+		<compile-mxml example="/spark/validators/StringValidatorExample"/>
+		<compile-mxml example="/spark/validators/FormValidatorExample"/>
+		<compile-mxml example="/spark/validators/ZipCodeValidatorExample"/>
+		
+		<compile-mxml example="/spark/formatters/CurrencyFormatterExample"/>
+		<compile-mxml example="/spark/formatters/DateFormatterExample"/>
+		<compile-mxml example="/spark/formatters/NumberFormatterExample"/>
+		<compile-mxml example="/spark/formatters/PhoneFormatterExample"/>
+		<compile-mxml example="/spark/formatters/SwitchFormatterExample"/>
+		<compile-mxml example="/spark/formatters/ZipCodeFormatterExample"/>
+		
+		<compile-mxml example="/spark/other/Cursor1Example"/>
+		<compile-mxml example="/spark/other/Cursor2Example"/>
+		<compile-mxml example="/spark/other/DragAndDrop1Example"/>
+		<compile-mxml example="/spark/other/DragAndDrop2Example"/>
+		<compile-mxml example="/spark/other/FilterExample"/>
+		<compile-mxml example="/spark/other/RepeaterExample"/>
+		<compile-mxml example="/spark/other/ScrollBarsExample"/>
+		
+		<compile-mxml example="/spark/events/EventExample1"/>
+		<compile-mxml example="/spark/events/EventExample2"/>
+		<compile-mxml example="/spark/events/EventExample3"/>
+		<compile-mxml example="/spark/events/EventExample4"/>
+		<compile-mxml example="/spark/events/EventExample5"/>
+		<compile-mxml example="/spark/events/EventExample6"/>
+		
+		<compile-mxml example="/spark/modules/ModuleExample"/>
+		<compile-mxml example="/spark/modules/Module1"/>
+		<compile-mxml example="/spark/modules/Module2"/>
+
+		<!-- currently broken <compile-mxml example="/spark/tlf/TextLayoutEditorSample"/> -->
+	</target>
+	
+	<target name="compile-spark2" description="compile second set of spark examples">
+		<compile-mxml example="/spark/i18n/SparkCollatorExample"/>
+		<compile-mxml example="/spark/i18n/SparkCollator2Example"/>
+		<compile-mxml example="/spark/i18n/SparkCurrencyValidatorExample"/>
+		<compile-mxml example="/spark/i18n/SparkCurrencyValidator2Example"/>
+		<compile-mxml example="/spark/i18n/SparkNumberValidatorExample"/>
+		<compile-mxml example="/spark/i18n/SparkNumberValidator2Example"/>
+		<compile-mxml example="/spark/i18n/SparkDateTimeFormatterExample"/>
+		<compile-mxml example="/spark/i18n/SparkDateTimeFormatter2Example"/>
+		<compile-mxml example="/spark/i18n/SparkCurrencyFormatterExample"/>
+		<compile-mxml example="/spark/i18n/SparkCurrencyFormatter2Example"/>
+		<compile-mxml example="/spark/i18n/SparkNumberFormatterExample"/>
+		<compile-mxml example="/spark/i18n/SparkNumberFormatter2Example"/>
+		<compile-mxml example="/spark/i18n/SparkSortandSortFieldExample"/>
+		<compile-mxml example="/spark/i18n/SparkSortandSortField2Example"/>
+		<compile-mxml example="/spark/i18n/SparkStringToolsExample"/>
+		<compile-mxml example="/spark/i18n/SparkFormatterExample"/>
+		
+		<compile-mxml example="/spark/controls/DataGridCustomRendererExample"/>
+		<compile-mxml example="/spark/controls/DataGridCustomRendererPrepareExample"/>
+		<compile-mxml example="/spark/controls/DataGridCustomSkinExample"/>
+		<compile-mxml example="/spark/controls/DataGridExample2"/>
+		<compile-mxml example="/spark/controls/DataGridSimpleColumnsExample"/>
+		<compile-mxml example="/spark/controls/DataGridSimpleNoWrapExample"/>
+		<compile-mxml example="/spark/controls/DataGridSizingExample"/>
+		
+		<compile-mxml example="/spark/controls/ListDataPagingExample"/>
+				
+		<compile-mxml example="/spark/controls/SampleHelpFormExample"/>
+		<compile-mxml example="/spark/controls/SampleSequenceFormExample"/>
+		<compile-mxml example="/spark/controls/SampleSimpleFormExample"/>
+		<compile-mxml example="/spark/controls/SampleStackedFormExample"/>
+		
+		<compile-mxml example="/spark/controls/OSMFExample"/>
+	</target>
+	
+	<target name="compile-spark3" description="compile third set of spark examples">
+		<compile-mxml example="/spark/other/BidirectionalBinding1Example"/>
+		<compile-mxml example="/spark/other/BidirectionalBinding2Example"/>
+		<compile-mxml example="/spark/other/ControllingViewportExample"/>
+		<compile-mxml example="/spark/itemRenderers/ListItemRendererExample"/>
+		<compile-mxml example="/spark/effects/AnimatePropertiesExample"/>
+		<compile-mxml example="/spark/effects/AnimateTransformExample"/>
+		<compile-mxml example="/spark/effects/CrossFadeExample"/>
+		<compile-mxml example="/spark/effects/FadeExample"/>
+		<compile-mxml example="/spark/effects/Rotate3DExample"/>
+		<compile-mxml example="/spark/effects/Scale3DExample"/>
+		<compile-mxml example="/spark/fxg/EllipseTransformExample"/>
+		<compile-mxml example="/spark/fxg/DropShadowGraphicExample"/>
+		<compile-mxml example="/spark/fxg/LinearGradientsSpreadMethodExample"/>
+		<compile-mxml example="/spark/fxg/StaticFXGExample"/>
+		<compile-mxml example="/spark/containers/BorderExample"/>
+		<compile-mxml example="/spark/containers/GroupExample"/>
+		<compile-mxml example="/spark/containers/PanelExample"/>
+		<compile-mxml example="/spark/containers/TabNavigator1Example"/>
+		<compile-mxml example="/spark/containers/TabNavigator2Example"/>
+		<compile-mxml example="/spark/skinning/ButtonWithIconExample"/>
+		<compile-mxml example="/spark/skinning/SkinningApplication1Example"/>
+		<compile-mxml example="/spark/skinning/SkinningApplication2Example"/>
+		<compile-mxml example="/spark/skinning/SkinningApplication3Example"/>
+		<compile-mxml example="/spark/skinning/SkinningContainerExample"/>
+		<compile-mxml example="/spark/css/CSSIDSelectorExample"/>
+		<compile-mxml example="/spark/controls/ButtonExample"/>
+		<compile-mxml example="/spark/controls/ButtonBarExample"/>
+		<compile-mxml example="/spark/controls/PopUpAnchor1Example"/>
+		<compile-mxml example="/spark/controls/PopUpAnchor2Example"/>
+		<compile-mxml example="/spark/controls/ToggleButtonExample"/>
+		<compile-mxml example="/spark/controls/CheckboxExample"/>
+		<compile-mxml example="/spark/controls/DropdownExample"/>
+		<compile-mxml example="/spark/controls/NumericStepperExample"/>
+		<compile-mxml example="/spark/controls/RadioButtonExample"/>
+		<compile-mxml example="/spark/controls/ToggleButton2Example"/>
+		<compile-mxml example="/spark/controls/ScrollBarExample"/>
+		<compile-mxml example="/spark/controls/Scroller1Example"/>
+		<compile-mxml example="/spark/controls/Scroller2Example"/>
+		<compile-mxml example="/spark/controls/SliderExample"/>
+		<compile-mxml example="/spark/controls/SpinnerExample"/>
+		<compile-mxml example="/spark/controls/VideoPlayerExample"/>
+		<compile-mxml example="/spark/controls/ListExample"/>
+	</target>
+	
+	<target name="compile-apache" description="compile apache examples">
+		<compile-mxml example="/apache/ApacheFlex4_8_0"/>
+		<compile-mxml example="/apache/ApacheFlex4_9_0"/>
+		<compile-mxml example="/apache/ApacheFlex4_10_0"/>
+		<compile-mxml example="/apache/ApacheFlex4_11_0"/>
+		<compile-mxml example="/apache/ApacheFlex4_12_1"/>
+		<compile-mxml example="/apache/ApacheFlex4_13_0"/>
+		<!-- <compile-mxml example="/apache/ApacheFlex4_13_0"/> -->
+		
+		<compile-mxml example="/apache/formatters/PostCodeFormatterExample"/>
+		<compile-mxml example="/apache/validators/PostCodeValidatorExample"/>
+		<compile-mxml-locales example="/apache/i18n/LocaleExample"/>
+		<compile-mxml example="/apache/i18n/DateExample"/>
+		<compile-mxml example="/apache/i18n/TimeZoneExample"/>
+		<compile-mxml example="/apache/i18n/MillisecondExample"/>
+		<compile-mxml example="/apache/i18n/ScientificExample"/>
+		<compile-mxml example="/apache/i18n/NumericStepperExample"/>
+		<compile-mxml example="/apache/containers/CalloutExample"/>
+		<compile-mxml example="/apache/controls/MaskedTextInputExample"/>
+		
+		<!-- Uncomment when Flex 4.14 is released -->
+		<!-- compile-mxml example="/apache/controls/SparkRichTextEditorExample"/-->
+	</target>
+	
+    <!--- don't worry about squiggly for now -->
+		
+	<target name="package" description="package up all source files" depends="package-dir,package-tar,package-zip">
+	</target>
+	
+	<target name="package-dir">
+		<delete dir="${basedir}/out"/>  
+		<mkdir dir="${basedir}/out"/> 
+	</target>
+		
+	<target name="package-tar" description="tar up all source files">     
+        <tar destfile="${basedir}/out/apache-flex-tour-de-flex-component-explorer-${version}-src.tar.gz" 
+         	compression="gzip"
+            longfile="gnu">
+            <tarfileset dir="${basedir}/..">
+                <include name="LICENSE" />
+            	<include name="NOTICE" />
+            	<include name="CONTRIB*" />
+            </tarfileset>
+            <tarfileset dir="${basedir}">
+                <include name="README" />
+                <include name="RELEASE_NOTES" />
+                <include name="build.xml" />
+            	<include name="src/favicon.ico" />
+                <include name="src/index.html" />
+                <include name="src/explorer.xml" />
+                <include name="src/swfobject.js" />
+                <include name="**/*.mxml" />
+                <include name="**/*.as" />
+                <include name="**/*.jpg" />
+                <include name="**/*.png" />
+                <include name="**/*.gif" />
+                <include name="**/*.ttf" />
+                <include name="**/*.mp4" />
+                <include name="**/*.mp3" />
+                <include name="**/*.fxg" />
+                <include name="**/*.xml" />
+            	<exclude name="**/*.swf" />
+            	<exclude name="installer.xml" />
+            	<exclude name="squiggly" />
+                <exclude name="dictionaries" />
+            	<exclude name="src/dictionaries" />
+            	<exclude name="src/apache/squiggly/dictionaries" />
+             </tarfileset>
+         </tar>
+	</target>
+	
+	<target name="package-zip" description="zip up all source files">    
+        <zip destfile="${basedir}/out/apache-flex-tour-de-flex-component-explorer-${version}-src.zip">
+            <fileset dir="${basedir}/..">
+                <include name="LICENSE" />
+                <include name="NOTICE" />
+            	<include name="CONTRIB*" />
+            </fileset>
+            <fileset dir="${basedir}">
+                <include name="README" />
+                <include name="RELEASE_NOTES" />
+                <include name="build.xml" />
+            	<include name="src/favicon.ico" />
+                <include name="src/index.html" />
+                <include name="src/explorer.xml" />
+                <include name="src/swfobject.js" />
+                <include name="**/*.mxml" />
+                <include name="**/*.as" />
+                <include name="**/*.jpg" />
+                <include name="**/*.png" />
+                <include name="**/*.gif" />
+                <include name="**/*.ttf" />
+                <include name="**/*.mp4" />
+                <include name="**/*.mp3" />
+                <include name="**/*.fxg" />
+                <include name="**/*.xml" />
+                <exclude name="**/*.swf" />
+            	<exclude name="installer.xml" />
+            	<exclude name="squiggly" />
+            	<exclude name="dictionaries" />
+                <exclude name="src/dictionaries" />
+            	<exclude name="src/apache/squiggly/dictionaries" />
+             </fileset>
+         </zip>
+	</target>
+   
+   <target name="create-md5" >
+       <echo message="Generating MD5 hashes for release artifacts"/>
+       <checksum algorithm="md5" file="${basedir}/out/apache-flex-tour-de-flex-component-explorer-${version}-src.tar.gz" forceOverwrite="yes"/>
+       <checksum algorithm="md5" file="${basedir}/out/apache-flex-tour-de-flex-component-explorer-${version}-src.zip" forceOverwrite="yes"/>
+   </target>
+
+    <target name="clean" description="clean up">
+    	<delete>
+    		<fileset dir="${basedir}" includes="**/*.swf" />
+    	</delete>
+    	<delete dir="${basedir}/squiggly" />
+    	<delete dir="${basedir}/dictionaries" />
+        <delete dir="${basedir}/src/dictionaries" />
+    	<delete dir="${basedir}/src/apache/squiggly/dictionaries" />
+    </target>
+</project>

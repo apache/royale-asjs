@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:textEditBar="textEditBar.*" 
+	addedToStage="onAddedToStage()" removedFromStage="onRemovedFromStage()" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	
+	<mx:Script>
+		<![CDATA[
+			import flashx.textLayout.edit.ElementRange;
+			import flashx.textLayout.edit.IEditManager;
+			import flashx.textLayout.elements.InlineGraphicElement;
+			import flashx.textLayout.elements.TextFlow;
+			import flashx.textLayout.formats.FormatValue;
+			import flashx.textLayout.tlf_internal;
+			
+			use namespace tlf_internal;
+			
+			public var activeFlow:TextFlow;
+			
+			protected function applyChange():void
+			{
+				changeForeignElement(imageURL.text, imageWidth.text, imageHeight.text, "none", doChangeImage);				
+			}
+			
+	  		protected function changeForeignElement(foreignElementUrl:String, width:String, height:String, float:String, changeCurrent:Boolean):void
+	 		{
+	 			if (activeFlow && activeFlow.interactionManager is IEditManager)
+	 			{
+					if (changeCurrent)
+	 					IEditManager(activeFlow.interactionManager).modifyInlineGraphic(foreignElementUrl, width, height, float);
+					else
+						IEditManager(activeFlow.interactionManager).insertInlineGraphic(foreignElementUrl, width, height, float);
+	 				activeFlow.interactionManager.setFocus();
+	 			}
+	 		}
+		
+			protected var doChangeImage:Boolean = false;
+			
+			public function update(range:ElementRange):void
+ 			{
+ 				if (onStage)
+ 				{
+ 					if (range ==  null)
+ 						visible = false;
+ 					else
+ 					{
+ 						if (!visible)
+ 							visible = true;
+
+	 					var makeItTheChangeButton:Boolean = false;
+	 					
+	 					// this logic is a complicated by the fact that we extend the end of the selection because the FE is at the end of the paragraph
+	 					if (range && range.firstLeaf is InlineGraphicElement && range.absoluteStart == range.firstLeaf.getAbsoluteStart())
+	 					{
+	 						// two cases just the FE and just the FE plus the paragraph terminator
+	 						if (range.absoluteEnd == range.absoluteStart+1 || (range.firstParagraph == range.lastParagraph && range.absoluteEnd == range.absoluteStart+2 && range.absoluteEnd == range.lastParagraph.getAbsoluteStart() + range.lastParagraph.textLength))
+	 							makeItTheChangeButton = true; 
+	 					}
+	 					
+	 					// block selection of just the FE
+	 					if (makeItTheChangeButton)
+	 						updateForChange(InlineGraphicElement(range.firstLeaf));
+	 					else
+	 						updateForInsert(range)
+ 					}
+ 				}
+				lastRange = range;	
+ 			}
+ 			
+ 			protected function updateForChange(inlineElement:InlineGraphicElement):void
+ 			{
+				var sourceString:String = inlineElement.source.toString()
+				var widthString:String = inlineElement.width === undefined ? FormatValue.AUTO : inlineElement.width.toString();
+				var heightString:String = inlineElement.height === undefined ? FormatValue.AUTO : inlineElement.height.toString();
+ 				doUpdate(sourceString, widthString, heightString, true, true);
+ 			}
+			
+ 			protected function updateForInsert(range:ElementRange):void
+ 			{
+ 				doUpdate("", 
+ 					InlineGraphicElement.tlf_internal::widthPropertyDefinition.defaultValue.toString(),
+ 					InlineGraphicElement.tlf_internal::heightPropertyDefinition.defaultValue.toString(),
+ 					false, range && range.firstLeaf);
+	 		}
+	 		
+ 			private function doUpdate(url:String, width:String, height:String, modify:Boolean, enableImage:Boolean):void
+ 			{
+  				imageURL.text = url;
+ 				imageWidth.text = width;
+ 				imageHeight.text = height;
+ 				imageButton.label = modify ? "Change" : "Insert";
+ 				doChangeImage = modify;
+ 				imageButton.enabled = enableImage;			
+ 			}
+
+			private var onStage:Boolean = false;
+			private var addedFrameEventListener:Boolean = false;
+			protected var lastRange:ElementRange = null;
+			private function onAddedToStage():void
+			{
+				// the dataProviders aren't set up yet - delay to the frame
+				onStage = true;
+				if (!addedFrameEventListener)
+				{
+					addedFrameEventListener = true;
+					addEventListener("enterFrame",onEnterFrame);
+				}
+			}
+				
+			private function onEnterFrame(p:Event):void
+			{
+				this.removeEventListener("enterFrame",onEnterFrame);
+				addedFrameEventListener = false;	
+				
+				var temp:ElementRange = lastRange;
+				lastRange = null;
+				update(temp);
+					
+			}
+			
+			private function onRemovedFromStage():void
+			{
+				onStage = false;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Label text="Image URL:" fontWeight="bold"/>
+	<mx:TextInput id="imageURL" width="140"/>
+	<mx:Label text="Width:" fontWeight="bold"/>
+	<mx:TextInput id="imageWidth" width="60"/>
+	<mx:Label text="Height:" fontWeight="bold"/>
+	<mx:TextInput id="imageHeight" width="60"/>			
+	<mx:Button id="imageButton" label="Insert Image" 
+		click="applyChange()" />
+</mx:HBox>

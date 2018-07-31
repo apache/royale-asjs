@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<Graphic version="1.0" xmlns="http://ns.adobe.com/fxg/2008" xmlns:fw="http://ns.adobe.com/fxg/2008/fireworks"  viewHeight= "134" viewWidth= "136">
+	<Library>
+	</Library>
+
+	<Group id="Page_1" fw:type="page">
+		<Group id="State_1" fw:type="state">
+			<Group id="Layer_1" fw:type="layer">
+				<Group id="undefined">
+					<Path winding="evenOdd" data="M 68 12 L 85 48 L 125 54 L 96 82 L 103 121 L 68 103 L 32 121 L 39 82 L 10 54 L 50 48 L 68 12 Z " blendMode="normal" alpha="1">
+						<fill>
+							<LinearGradient x = "67" y = "42" scaleX = "113" rotation = "70">
+								<GradientEntry color="#ff6600" ratio="0" alpha="1"/>
+								<GradientEntry color="#ff6600" ratio="0.08" alpha="1"/>
+								<GradientEntry color="#ffcc00" ratio="0.32" alpha="1"/>
+								<GradientEntry color="#ffff99" ratio="0.53" alpha="1"/>
+								<GradientEntry color="#dedede" ratio="0.99" alpha="1"/>
+								<GradientEntry color="#ffffcc" ratio="0.72" alpha="1"/>
+							</LinearGradient>
+						</fill>
+						<stroke>
+							<SolidColorStroke color="#ff6600" weight="6"/>
+						</stroke>
+					</Path>
+				</Group>
+			</Group>
+		</Group>
+	</Group>
+</Graphic>
