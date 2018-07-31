@@ -19,8 +19,8 @@
 -->
 <!-- Sample derived from: http://help.adobe.com/en_US/Flex/4.0/UsingSDK/WS02f7d8d4857b1677-165a04e1126951a2d98-7ff8.html --> 
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx"> 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx"> 
 	
 	<fx:Script> 
 		<![CDATA[ 
@@ -30,7 +30,7 @@
 		]]> 
 	</fx:Script> 
 	<fx:Style>
-		@namespace "library://ns.adobe.com/flex/spark";
+		@namespace "library://ns.apache.org/royale/spark";
 		Label { 
 			baseColor: #000000; 
 			fontFamily: "Verdana";

@@ -23,7 +23,7 @@
 
 <mx:Canvas
     xmlns="http://ns.adobe.com/mxml/2009"
- 	xmlns:mx="library://ns.adobe.com/flex/mx"
+ 	xmlns:mx="library://ns.apache.org/royale/mx"
 	xmlns:flow="library://ns.adobe.com/flashx/textLayout"
 	xmlns:textEditBar="textEditBar.*"
 	xmlns:txui="flashx.textLayout.ui.*"

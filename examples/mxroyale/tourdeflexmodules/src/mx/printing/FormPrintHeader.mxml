@@ -18,7 +18,7 @@
 
 <!-- Custom control for the header area of the printed page. -->
 
-<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
 	width="60%" horizontalAlign="right">
 
     <mx:Label text="This is a placeholder for first page contents"/>

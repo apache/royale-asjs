@@ -18,13 +18,13 @@
 
 -->
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx" 
 			   initialize="init()">
 	
 	<fx:Style>
 
-		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace s "library://ns.apache.org/royale/spark";
 		@namespace mx "library://ns.adobe.com/flex/halo";
 		
 		s|Application {

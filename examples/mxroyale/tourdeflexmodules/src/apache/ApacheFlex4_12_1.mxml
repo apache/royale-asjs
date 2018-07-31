@@ -18,8 +18,8 @@
 
 -->
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx">
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
 
 	<s:Panel title="Apache Flex 4.12" width="100%" height="100%">	
 		<s:layout>

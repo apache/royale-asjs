@@ -18,8 +18,8 @@
   -->
 
 <mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.apache.org/royale/mx"
+		 xmlns:s="library://ns.apache.org/royale/spark"
 		 label="3rd Party Example"
 		 paddingTop="10" paddingBottom="10" paddingLeft="20" paddingRight="20"
 		 borderStyle="solid"

@@ -20,8 +20,8 @@
 <!-- Also see http://blog.flexexamples.com/2009/07/29/enabling-tabbing-on-spark-scroller-children/ -->
 <s:Module name="Spark_Scroller_hasFocusableChildren_test"
 			   xmlns:fx="http://ns.adobe.com/mxml/2009"
-			   xmlns:mx="library://ns.adobe.com/flex/mx"
-			   xmlns:s="library://ns.adobe.com/flex/spark">
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   xmlns:s="library://ns.apache.org/royale/spark">
 	
 	
 	<fx:Script>

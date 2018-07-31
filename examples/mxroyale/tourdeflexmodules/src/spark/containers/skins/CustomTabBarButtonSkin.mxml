@@ -30,7 +30,7 @@ The default skin class for Spark TabBar buttons.
 
 <s:SparkSkin 
 	xmlns:fx="http://ns.adobe.com/mxml/2009" 
-	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:s="library://ns.apache.org/royale/spark" 
 	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
 	minWidth="21" minHeight="21" alpha.disabledStates="0.5">
 	

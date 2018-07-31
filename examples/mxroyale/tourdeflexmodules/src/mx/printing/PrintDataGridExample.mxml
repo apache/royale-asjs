@@ -18,7 +18,7 @@
 
 <!-- Main application to print a DataGrid control on multiple pages. -->
 
-<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
 				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0" initialize="initData()">
 
      <fx:Script>

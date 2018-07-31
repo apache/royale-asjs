@@ -17,7 +17,7 @@
   -->
 
 <!-- Simple example to demonstrate the ApplicationControlBar container. -->
-<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
 				borderStyle="solid"
 				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
 				height="100%" width="100%">
