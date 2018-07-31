@@ -24,6 +24,7 @@
      <fx:Script>
         <![CDATA[
 		import mx.core.FlexGlobals;
+        import org.apache.royale.core.BrowserWindow;
 
 		static protected const VERSION:String = "1.2";	
 		static protected const TITLE:String = "Tour De Flex Component Explorer";
@@ -143,8 +144,7 @@
 			
 		private function gotoHome(event:Event):void
 		{
-			var urlRequest:URLRequest = new URLRequest("http://flex.apache.org/download-tourdeflex.html");
-			navigateToURL(urlRequest);
+			BrowserWindow.open("http://flex.apache.org/download-tourdeflex.html");
 		}
 		
 		private function openNode(application:String):void
