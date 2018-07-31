@@ -606,6 +606,22 @@ public class Container extends UIComponent
         dispatchEvent(new Event("initComplete"));
     }
     
+    /**
+     *  Removes all children from the child list of this container.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function removeAllChildren():void
+    {
+        while (numChildren > 0)
+        {
+            removeChildAt(0);
+        }
+    }
+    
 	/**
 	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 	 *  
