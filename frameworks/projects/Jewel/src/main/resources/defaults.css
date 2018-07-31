@@ -468,6 +468,9 @@ j|Label {
 .layout.itemsSpaceAround {
   justify-content: space-around;
 }
+.layout.itemsExpand > * {
+  flex: 1 0 auto !important;
+}
 
 /* Horizontal */
 .layout.horizontal {

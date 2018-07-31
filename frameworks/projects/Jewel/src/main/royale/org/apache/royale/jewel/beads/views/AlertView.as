@@ -76,15 +76,45 @@ package org.apache.royale.jewel.beads.views
 
         protected var alertModel:IAlertModel;
 		
-		protected var titleBar:TitleBar;
-		protected var content:Group;
-		protected var label:Label;
-		protected var controlBar:UIBase;
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var titleBar:TitleBar;
 
-        protected var okButton:Button;
-        protected var cancelButton:Button;
-        protected var yesButton:Button;
-        protected var noButton:Button;
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var content:Group;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var label:Label;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var controlBar:UIBase;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+        public var okButton:Button;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+        public var cancelButton:Button;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+        public var yesButton:Button;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+        public var noButton:Button;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -131,10 +161,6 @@ package org.apache.royale.jewel.beads.views
 			titleBar.title = alertModel.title;
 			IParent(_strand).addElement(titleBar);
 
-			// var layout:HorizontalLayout = titleBar.getBeadByType(IBeadLayout) as HorizontalLayout;
-			// layout.itemsHorizontalAlign = "itemsSpaceBetween";
-			// layout.gap = 2;
-            
 			// Text
 			content = new Group();
 			content.typeNames = "content";

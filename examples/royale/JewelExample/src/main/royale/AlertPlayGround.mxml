@@ -26,13 +26,50 @@ limitations under the License.
 			import org.apache.royale.jewel.Alert;
 			import org.apache.royale.events.CloseEvent;
 			import org.apache.royale.events.MouseEvent;
+			import org.apache.royale.core.IBeadView;
+			import org.apache.royale.jewel.beads.views.AlertView;
+			import org.apache.royale.jewel.beads.layouts.HorizontalLayout;
+			import org.apache.royale.core.IBeadLayout;
+			import org.apache.royale.jewel.CheckBox;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.jewel.beads.layouts.VerticalLayout;
 
             // Event handler function uses a static method to show
             // a pop-up window with the title, message, and requested buttons.        
             private function clickHandler(event:MouseEvent):void {
                 var alert:Alert = Alert.show("Do you want to save your changes?", "Save Changes", 3);
 				alert.addEventListener(CloseEvent.CLOSE, alertClickHandler);
-                // alert.height = 300;
+            }
+            
+            private var alert:Alert;
+            private var check:CheckBox;
+            // changing ControlBar's Buttons Layout
+            private function clickHandler2(event:MouseEvent):void {
+                alert = Alert.show("This example shows access to AlertView and ControlBar to expand Buttons layout and change defaults. The height of the alert is set up to 300px too.", "Save Changes", 3);
+				alert.height = 300;
+
+                check = new CheckBox();
+                check.selected = true;
+                check.text = "Buttons must fill control bar space";
+                check.addEventListener(Event.CHANGE, expandButtons);
+
+                expandButtons();
+            }
+            
+            private function expandButtons(event:Event = null):void {
+                var alertView:AlertView = alert.getBeadByType(IBeadView) as AlertView;
+
+                var verticalLayout = new VerticalLayout();
+                verticalLayout.gap = 3;
+                alertView.content.addBead(verticalLayout);
+
+                if(event == null)
+                {
+                    alertView.content.addElement(check);
+                }
+
+                var layout:HorizontalLayout = alertView.controlBar.getBeadByType(IBeadLayout) as HorizontalLayout;
+			    layout.itemsExpand = check.selected;
             }
         
             // Event handler function for displaying the selected Alert button.
@@ -48,14 +85,21 @@ limitations under the License.
     <j:Card width="350">
         <html:H3 text="Jewel Alert"/>
         
+        <!-- Alert 1-->
         <j:Label text="Click the button below to display a simple Alert window"
                 multiline="true"/>
         <j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
 
+        <!-- Alert 2-->
         <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user."
                 multiline="true"/>
         <j:Button text="Click Me" click="clickHandler(event)"/>
         <j:Label id="status"/>
+        
+        <!-- Alert 3 (Complex Example)-->
+        <j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts."
+                multiline="true"/>
+        <j:Button text="Click Me" click="clickHandler2(event)"/>
     </j:Card>
 
 </j:SectionContent>

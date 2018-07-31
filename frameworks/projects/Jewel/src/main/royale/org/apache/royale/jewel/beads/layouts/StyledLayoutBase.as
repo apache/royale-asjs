@@ -158,5 +158,38 @@ package org.apache.royale.jewel.beads.layouts
 				}
 			}
         }
+
+		private var _itemsExpand:Boolean = false;
+        /**
+		 *  A boolean flag to activate "itemsExpand" effect selector.
+		 *  Make items resize to the fill all container space
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get itemsExpand():Boolean
+        {
+            return _itemsExpand;
+        }
+
+        public function set itemsExpand(value:Boolean):void
+        {
+            if (_itemsExpand != value)
+            {
+                _itemsExpand = value;
+				COMPILE::JS
+                {
+				if(_itemsExpand)
+				{
+					hostClassList.add("itemsExpand");
+				} else
+				{
+					hostClassList.remove("itemsExpand");
+				}
+				}
+            }
+        }
 	}
 }
