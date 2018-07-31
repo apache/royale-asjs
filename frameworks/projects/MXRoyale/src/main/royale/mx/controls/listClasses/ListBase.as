@@ -381,6 +381,34 @@ use namespace mx_internal;
     }
     
     //----------------------------------
+    //  selectedItem
+    //----------------------------------
+    
+    [Bindable("change")]
+    [Bindable("valueCommit")]
+    
+    /**
+     *  The selected item in the data provider.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectedItem():Object
+    {
+        return (model as ISelectionModel).selectedItem;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set selectedItem(item:Object):void
+    {
+        (model as ISelectionModel).selectedItem = item;
+    }
+    
+    //----------------------------------
     //  selectedItems
     //----------------------------------
     
@@ -572,6 +600,12 @@ use namespace mx_internal;
                 _strandChildren = new ContainerBaseStrandChildren(this);
             }
             return _strandChildren;
+        }
+        
+        public function scrollToIndex(index):void
+        {
+            if (GOOG::DEBUG)
+                trace("ListBase:scrollToIndex not implemented");
         }
         
         /**

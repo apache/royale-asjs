@@ -19,7 +19,10 @@
 
 package mx.controls
 {
-
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
 import flash.display.Shape;
@@ -79,6 +82,8 @@ import mx.managers.ISystemManager;
 //import mx.managers.SystemManager;
 
 use namespace mx_internal;
+
+import org.apache.royale.events.Event;
 
 //--------------------------------------
 //  Events
@@ -514,6 +519,28 @@ public class Tree extends List
                          false, EventPriority.DEFAULT_HANDLER); */
     }
 
+    /**
+     *  Border Style
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get borderStyle():String
+    {
+        if (GOOG::DEBUG)
+            trace("Tree:borderStyle not implemented");
+        return "none";
+    }
+    public function set borderStyle(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("Tree:borderStyle not implemented");
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -990,13 +1017,13 @@ public class Tree extends List
      *  @private
      *  Storage variable for showRoot flag.
      */
-    //mx_internal var _showRoot:Boolean = true;
+    mx_internal var _showRoot:Boolean = true;
 
     /**
      *  @private
      *  Storage variable for changes to showRoot.
      */
-    //mx_internal var showRootChanged:Boolean = false;
+    mx_internal var showRootChanged:Boolean = false;
     
     /** 
     *  @private
@@ -1029,15 +1056,15 @@ public class Tree extends List
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get showRoot():Boolean
+    public function get showRoot():Boolean
     {
         return _showRoot;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set showRoot(value:Boolean):void
+    public function set showRoot(value:Boolean):void
     {
         if (_showRoot != value)
         {
@@ -1045,7 +1072,7 @@ public class Tree extends List
             showRootChanged = true;
             invalidateProperties();
         }
-    } */
+    }
 
     /**
      *  Indicates that the current dataProvider has a root item; for example, 
@@ -1662,11 +1689,16 @@ public class Tree extends List
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function isItemOpen(item:Object):Boolean
+    public function isItemOpen(item:Object):Boolean
     {
+        if (GOOG::DEBUG)
+            trace("Tree:isItemOpen not implemented");
+        /*
         var uid:String = itemToUID(item);
         return _openItems[uid] != null;
-    } */
+        */
+        return false;
+    }
 
     /**
      *  @private
@@ -1718,11 +1750,14 @@ public class Tree extends List
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function expandItem(item:Object, open:Boolean,
+    public function expandItem(item:Object, open:Boolean,
                               animate:Boolean = false,
                               dispatchEvent:Boolean = false,    
                               cause:Event = null):void
     {
+        if (GOOG::DEBUG)
+            trace("Tree:getItemIndex not implemented");
+    /*
         //if the iterator is null, that indicates we have not been 
         //validated yet, so we will not continue. 
         if (iterator == null)
@@ -2183,7 +2218,8 @@ public class Tree extends List
         }
         //restore ItemSizeChangeNotification flag
         listContent.allowItemSizeChangeNotification = variableRowHeight;
-    } */
+        */
+    }
 
     /**
      *  @private
@@ -2510,8 +2546,11 @@ public class Tree extends List
     /**
     *  @private
     */
-    /* public function getItemIndex(item:Object):int
+    public function getItemIndex(item:Object):int
     {
+        if (GOOG::DEBUG)
+            trace("Tree:getItemIndex not implemented");
+        /*
         var cursor:IViewCursor = collection.createCursor();
         var i:int = 0;
         do
@@ -2525,7 +2564,9 @@ public class Tree extends List
 		// and causes the cursor to hit an unexpected IPE
 		cursor.seek(CursorBookmark.FIRST, 0);
         return i;
-    } */
+        */
+        return 0;
+    }
 
 	/**
     *  @private
