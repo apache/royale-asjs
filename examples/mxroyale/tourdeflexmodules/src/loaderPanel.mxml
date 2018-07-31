@@ -21,7 +21,8 @@
 		  width="100%" height="100%">
     <fx:Script>
      <![CDATA[
-		 import flash.net.navigateToURL;
+    import org.apache.royale.core.BrowserWindow;
+         
     private var _link:String;
 	//For third party components, we are loading an image.  Clicking on the image 
 	//would take the user to the demo app on the third party website
@@ -59,7 +60,7 @@
 		 
 	private function handleClick(event:MouseEvent):void
 	{
-		navigateToURL(new URLRequest(_link),"_blank");
+		BrowserWindow.open(_link,"_blank");
 	}
     
     ]]>
