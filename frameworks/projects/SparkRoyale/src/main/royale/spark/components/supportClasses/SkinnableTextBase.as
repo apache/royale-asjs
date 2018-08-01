@@ -117,7 +117,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
+//[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
 
 /**
  *  The alpha of the focus ring for this component.
@@ -432,6 +432,14 @@ public class SkinnableTextBase extends SkinnableComponent
     public function SkinnableTextBase()
     {
         super();
+    }
+    
+    public function get contentBackgroundColor():uint
+    {
+	return 0;
+    }
+    public function set contentBackgroundColor(val:uint):void
+    {
     }
     
     //--------------------------------------------------------------------------
