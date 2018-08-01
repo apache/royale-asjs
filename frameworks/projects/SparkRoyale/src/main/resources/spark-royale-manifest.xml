@@ -70,4 +70,20 @@
 	<component id="VerticalLayout" class="spark.layouts.VerticalLayout"/>
 	<component id="BitmapImage" class="spark.primitives.BitmapImage"/>
     
+    <!-- Text Layout Framework (TLF) -->
+    <component id="a" class="org.apache.royale.textLayout.elements.LinkElement" lookupOnly="true"/>
+    <component id="br" class="org.apache.royale.textLayout.elements.BreakElement" lookupOnly="true"/>
+    <component id="div" class="org.apache.royale.textLayout.elements.DivElement" lookupOnly="true"/>
+    <component id="img" class="org.apache.royale.textLayout.elements.InlineGraphicElement" lookupOnly="true"/>
+    <component id="list" class="org.apache.royale.textLayout.elements.ListElement" lookupOnly="true"/>
+    <component id="li" class="org.apache.royale.textLayout.elements.ListItemElement" lookupOnly="true"/>
+    <component id="p" class="org.apache.royale.textLayout.elements.ParagraphElement" lookupOnly="true"/>
+    <component id="span" class="org.apache.royale.textLayout.elements.SpanElement" lookupOnly="true"/>
+    <component id="tab" class="org.apache.royale.textLayout.elements.TabElement" lookupOnly="true"/>
+    <component id="tcy" class="org.apache.royale.textLayout.elements.TCYElement" lookupOnly="true"/>
+    <component id="ListMarkerFormat" class="org.apache.royale.textLayout.formats.ListMarkerFormat" lookupOnly="true"/>
+    <component id="g" class="org.apache.royale.textLayout.elements.SubParagraphGroupElement" lookupOnly="true"/>
+    <component id="TextFlow" class="org.apache.royale.textLayout.elements.TextFlow" lookupOnly="true"/>
+    <component id="TextLayoutFormat" class="org.apache.royale.textLayout.formats.TextLayoutFormat" lookupOnly="true"/>
+
 </componentPackage>
