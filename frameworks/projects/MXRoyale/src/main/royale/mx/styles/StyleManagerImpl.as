@@ -1654,14 +1654,14 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 			// Map "red" or "Red" to 0xFF0000;
 			// Map "haloGreen" or "HaLoGrEeN" to 0x46FF00.
 			var c:* = colorNames[colorName.toLowerCase()];
+            /*
 			if (c === undefined)
 			{
-                /*
 				// If not found then try our parent
 				if (parent)
 					c = parent.getColorName(colorName);
-                */
 			}
+            */
 			
 			if (c === undefined)
 				return StyleManager.NOT_A_COLOR;                

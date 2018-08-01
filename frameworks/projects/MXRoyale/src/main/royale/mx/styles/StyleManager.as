@@ -99,12 +99,14 @@ public class StyleManager
      */
     private static function get impl():IStyleManager2
     {
+        /*
         if (!_impl)
         {
-            //_impl = IStyleManager2(
-            //    Singleton.getInstance("mx.styles::IStyleManager2"));
+            _impl = IStyleManager2(
+                Singleton.getInstance("mx.styles::IStyleManager2"));
         }
-
+        */
+        
         return _impl;
     }
 
