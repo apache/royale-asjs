@@ -33,15 +33,15 @@
 		static protected const TITLE:String = "Tour De Flex Component Explorer";
 		static protected const FULL_TITLE:String = "Apache Flex® Tour De Flex Component Explorer " + VERSION;
 
-		[Embed(source="explorer.xml", mimeType="application/octet-stream")]
-		private var XMLData:Class;
+		[Embed(source="explorer.xml", mimeType="text/plain")]
+		private var XMLData:String;
 			
 		[Bindable]
 		protected var noExamples:int = 0;
 			
 		private function init():void
 		{
-			var data:XML = XML(new XMLData());
+			var data:XML = new XML(XMLData);
 			
             explorerTree = XML(data.node);
             compLibTree.dataProvider = explorerTree;
