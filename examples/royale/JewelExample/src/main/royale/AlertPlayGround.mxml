@@ -60,7 +60,7 @@ limitations under the License.
                 var alertView:AlertView = alert.getBeadByType(IBeadView) as AlertView;
 
                 var verticalLayout = new VerticalLayout();
-                verticalLayout.gap = 3;
+                verticalLayout.gap = 9;
                 alertView.content.addBead(verticalLayout);
 
                 if(event == null)

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:models="models.*">
+
+    <fx:Script>
+		<![CDATA[
+			import org.apache.royale.core.IBeadLayout;
+			import org.apache.royale.core.IBeadView;
+			import org.apache.royale.events.CloseEvent;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
+			import org.apache.royale.jewel.Alert;
+			import org.apache.royale.jewel.CheckBox;
+			import org.apache.royale.jewel.beads.layouts.HorizontalLayout;
+			import org.apache.royale.jewel.beads.layouts.VerticalLayout;
+			import org.apache.royale.jewel.beads.views.AlertView;
+
+            private var alert:Alert;
+            private var check:CheckBox;
+
+            // Adding content to Alert component and changing ControlBar's Buttons Layout
+            private function clickHandler(event:MouseEvent):void {
+                alert = Alert.show("This example shows access to AlertView and ControlBar to add a CheckBox to Alert's content area and expand Buttons layout and change defaults. The height of the alert is set up to 300px too.", "Cutomized Alert Example", 3);
+                alert.addEventListener(CloseEvent.CLOSE, alertClickHandler);
+				alert.height = 300;
+
+                check = new CheckBox();
+                check.selected = true;
+                check.text = "Buttons must fill ControlBar's availabe space";
+                check.addEventListener(Event.CHANGE, expandButtons);
+
+                expandButtons();
+            }
+            
+            private function expandButtons(event:Event = null):void {
+                var alertView:AlertView = alert.getBeadByType(IBeadView) as AlertView;
+
+                var verticalLayout = new VerticalLayout();
+                verticalLayout.gap = 9;
+                alertView.content.addBead(verticalLayout);
+
+                if(event == null)
+                {
+                    alertView.content.addElement(check);
+                }
+
+                var layout:HorizontalLayout = alertView.controlBar.getBeadByType(IBeadLayout) as HorizontalLayout;
+			    layout.itemsExpand = check.selected;
+            }
+
+            // Event handler function for displaying the selected Alert button.
+            private function alertClickHandler(event:CloseEvent):void {
+                alert.removeEventListener(CloseEvent.CLOSE, alertClickHandler);
+
+                if (event.detail == Alert.YES)
+                    status.text="You answered Yes";
+                else
+                    status.text="You answered No";
+            }
+		]]>
+	</fx:Script>
+
+    <j:initialView>
+        <j:View>
+            <js:beads>
+                <j:HorizontalCenteredLayout/>
+            </js:beads>
+
+            <j:Card width="350">
+                <html:H3 text="Customization through Royale API"/>
+                
+				<j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts."
+                        multiline="true"/>
+                <j:Button text="Click Me" click="clickHandler(event)"/>
+                <j:Label id="status"/>
+            </j:Card>
+        </j:View>
+    </j:initialView>
+
+</j:Application>
