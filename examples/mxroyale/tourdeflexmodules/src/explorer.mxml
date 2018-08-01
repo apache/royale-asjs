@@ -25,6 +25,8 @@
         <![CDATA[
 		import mx.core.FlexGlobals;
         import org.apache.royale.core.BrowserWindow;
+        import org.apache.royale.net.URLLoader;
+        import org.apache.royale.net.URLRequest;
 
 		static protected const VERSION:String = "1.2";	
 		static protected const TITLE:String = "Tour De Flex Component Explorer";
