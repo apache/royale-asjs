@@ -123,6 +123,10 @@ $alert-footer-height: 50px
     + .backdrop
         //background-color: rgba(0, 0, 0, $alert-modal-opacity)
 
+@media (min-width: $tablet)
+    .jewel.alert
+        min-width: $alert-min-width + 100
+
 j|Alert
     //IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel")

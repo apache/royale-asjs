@@ -122,6 +122,11 @@ j|DataContainer {
   height: 50px;
 }
 
+@media (min-width: 768px) {
+  .jewel.alert {
+    min-width: 450px;
+  }
+}
 j|Alert {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
