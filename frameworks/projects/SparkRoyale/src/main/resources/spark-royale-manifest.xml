@@ -41,6 +41,7 @@
     	<component id="RectangularDropShadow" class="spark.primitives.RectangularDropShadow"/>
     	<component id="Range" class="spark.components.supportClasses.Range"/>
     	<component id="RichEditableText" class="spark.components.RichEditableText"/>
+        <component id="RichText" class="spark.components.RichText"/>
 	<component id="Skin" class="spark.components.supportClasses.Skin"/>
     	<component id="SkinnableComponent" class="spark.components.supportClasses.SkinnableComponent"/>
 	<component id="ToggleButton" class="spark.components.ToggleButton"/>
@@ -68,4 +69,5 @@
     	<component id="DataGroup" class="spark.components.DataGroup"/>
 	<component id="VerticalLayout" class="spark.layouts.VerticalLayout"/>
 	<component id="BitmapImage" class="spark.primitives.BitmapImage"/>
+    
 </componentPackage>
