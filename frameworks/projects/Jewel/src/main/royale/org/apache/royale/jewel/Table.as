@@ -19,14 +19,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
+    import org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData;
+	import org.apache.royale.jewel.beads.models.TableModel;
+	
+	import org.apache.royale.events.Event;
+	
+	[DefaultProperty("columns")]
+	
+	/**
+	 * 
+	 */
 
 	/**
-	 *  The Table class represents an HTML <table> element
+	 *  The Table class represents an HTML <table> element.
+     *  
+     *  The able uses SimpleTable along with a data mapper and item renderers to generate
+     *  a Table from a data source.
      *  
 	 *  
      *  @toplevel
@@ -35,7 +43,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Table extends Group
+	public class Table extends SimpleTable
 	{
 		/**
 		 *  constructor.
@@ -52,13 +60,31 @@ package org.apache.royale.jewel
 			typeNames = "jewel table";
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            return addElementToWrapper(this,'table');
-        }
+        public function get columns():Array
+		{
+			return TableModel(model).columns;
+		}
+		public function set columns(value:Array):void
+		{
+			TableModel(model).columns = value;
+		}
+		
+		public function get dataProvider():Object
+		{
+			return TableModel(model).dataProvider;
+		}
+		public function set dataProvider(value:Object):void
+		{
+			TableModel(model).dataProvider = value;
+		}
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			addBead(new TableMapperForArrayListData());
+			
+			dispatchEvent( new Event("tableComplete") );
+		}
     }
 }

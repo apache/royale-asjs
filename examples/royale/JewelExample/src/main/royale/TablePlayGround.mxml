@@ -20,14 +20,20 @@ limitations under the License.
 <j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:js="library://ns.apache.org/royale/basic"
-		xmlns:html="library://ns.apache.org/royale/html">
+		xmlns:html="library://ns.apache.org/royale/html"
+		xmlns:models="models.*">
+
+	<j:model>
+        <models:TablesModel id="tablesModel"/>
+	</j:model>
 
 	<j:beads>
         <js:ContainerDataBinding/>
+		<j:HorizontalCenteredLayout gap="3"/>
     </j:beads>
 
 	<j:Card width="550">
-		<html:H3 text="Jewel Table"/>
+		<html:H3 text="Jewel SimpleTable"/>
 
 		<j:SimpleTable>
 			<j:THead>
@@ -164,5 +170,24 @@ limitations under the License.
 				</j:TableRow>
 			</j:TFoot>
 		</j:SimpleTable>
+	</j:Card>
+
+	<j:Card width="440">
+		<html:H3 text="Jewel Table"/>
+
+		<j:Table>
+			<j:TableColumn dataField="guitarrist" label="Guitarrist"
+							itemRenderer="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
+			<j:TableColumn dataField="album" label="Album"
+							itemRenderer="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
+			<j:TableColumn dataField="year" label="Year"
+							itemRenderer="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
+			<j:beads>
+				<js:ConstantBinding sourceID="tablesModel"
+									sourcePropertyName="guitarrists"
+									destinationPropertyName="dataProvider" />
+			</j:beads>
+		</j:Table>
+		
 	</j:Card>
 </j:SectionContent>

@@ -65,16 +65,12 @@ j|TBody
 j|THead
 j|TFoot
 
-j|Table
-    // IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.SimpleTableLayout")
-    // IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TableView")
-
 j|TableHeader
 
 j|TableCell
 
 @media -royale-swf
-    j|Table
+    j|SimpleTable
         // IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")
         // IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
 
@@ -85,3 +81,14 @@ j|TableCell
     j|TableHeader
         // IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.TableHeaderLayout")
         // IBeadView: ClassReference("org.apache.royale.html.beads.TableCellView")
+
+// Table Component
+j|Table
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel")
+    // IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.SimpleTableLayout")
+    // IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TableView")
+
+j|TableColumn
+    // IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+    // IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer")
+

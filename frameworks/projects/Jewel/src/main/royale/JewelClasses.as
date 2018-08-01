@@ -93,6 +93,8 @@ package
         import org.apache.royale.jewel.supportClasses.IActivable; IActivable;
         import org.apache.royale.jewel.supportClasses.ITextInput; ITextInput;
 
+        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
+
         import org.apache.royale.jewel.supportClasses.table.TBody;
         import org.apache.royale.jewel.supportClasses.table.THead;
         import org.apache.royale.jewel.supportClasses.table.TFoot;

@@ -2831,6 +2831,10 @@ j|Slider {
   padding: 12px 18px;
 }
 
+j|Table {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel");
+}
+
 .alignTextLeft {
   text-align: left;
 }
