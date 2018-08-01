@@ -297,7 +297,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
 //  Other metadata
 //--------------------------------------
 
-[ResourceBundle("components")]
+//[ResourceBundle("components")]
     
 [DefaultProperty("viewport")]
 

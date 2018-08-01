@@ -141,7 +141,7 @@ use namespace mx_internal;
 //  Other metadata
 //--------------------------------------
 
-[ResourceBundle("components")]
+//[ResourceBundle("components")]
 
 [DefaultProperty("mxmlContent")] 
 
