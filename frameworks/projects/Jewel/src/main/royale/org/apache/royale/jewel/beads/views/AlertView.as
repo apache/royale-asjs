@@ -165,6 +165,7 @@ package org.apache.royale.jewel.beads.views
 			content = new Group();
 			content.typeNames = "content";
 			label = new Label();
+			label.multiline = true;
 			label.text = alertModel.message;
 			content.addElement(label);
 			IParent(_strand).addElement(content);

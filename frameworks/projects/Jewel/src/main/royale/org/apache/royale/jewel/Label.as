@@ -158,7 +158,7 @@ package org.apache.royale.jewel
             }
         }
 
-        private var _multiline:Boolean = false;
+        private var _multiline:Boolean;
         /**
 		 *  A boolean flag to activate "multiline" effect selector.
 		 *  Allow the label to have more than one line if needed
