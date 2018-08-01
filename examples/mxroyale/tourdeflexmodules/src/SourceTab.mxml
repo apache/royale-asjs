@@ -23,6 +23,7 @@
 
     <fx:Script>
         <![CDATA[
+        import org.apache.royale.core.BrowserWindow;
 
         import mx.rpc.events.ResultEvent;
         import mx.rpc.events.FaultEvent;
@@ -66,8 +67,7 @@
 		private function viewInGitHub():void
 		{
 			var gitHubLink:String = "https://github.com/apache/flex-utilities/tree/master/TourDeFlex/TourDeFlex3/src/" + srv.url;
-			var urlRequest:URLRequest = new URLRequest(gitHubLink);
-			navigateToURL(urlRequest, "_blank");
+			BrowserWindow.open(gitHubLink, "_blank");
 		}
 
         ]]>
