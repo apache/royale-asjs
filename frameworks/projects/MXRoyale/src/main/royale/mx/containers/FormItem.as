@@ -323,7 +323,7 @@ public class FormItem extends Container
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /*override*/ public function get label():String
+    override public function get label():String
     {
         return _label;
     }
@@ -331,7 +331,7 @@ public class FormItem extends Container
     /**
      *  @private
      */
-    /*override*/ public function set label(value:String):void
+    override public function set label(value:String):void
     {
         _label = value;
         labelChanged = true;

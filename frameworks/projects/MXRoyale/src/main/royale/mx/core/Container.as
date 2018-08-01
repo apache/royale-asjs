@@ -562,6 +562,23 @@ public class Container extends UIComponent
         if (GOOG::DEBUG)
             trace("backgroundColor not implemented");
     }
+    
+    private var _label:String;
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get label():String
+    {
+        return _label;
+    }
+    public function set label(value:String):void
+    {
+        _label = value;
+    }
+
 	[Inspectable(category="General")]
     /**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
