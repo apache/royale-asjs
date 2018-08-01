@@ -92,7 +92,7 @@ j|DataContainer {
 
 @media -royale-swf {
   j|Container {
-    IContentView: ClassReference("org.apache.royale.core.supportClasses.ContainerContentArea");
+    IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
   }
 }
 .jewel.alert {
@@ -2618,7 +2618,7 @@ j|Navigation {
 
 @media -royale-swf {
   j|List {
-    IContentView: ClassReference("org.apache.royale.core.supportClasses.DataGroup");
+    IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
   }
 }
 .jewel.radiobutton {
