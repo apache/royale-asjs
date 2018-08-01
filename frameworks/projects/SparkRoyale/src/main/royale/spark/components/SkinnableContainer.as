@@ -384,6 +384,19 @@ public class SkinnableContainer extends SkinnableComponent
         super();
     }
     
+    
+     public function get backgroundColor():uint {
+		return 0;
+
+	}
+	public function set backgroundColor(val:uint):void {
+	}
+	
+	public function get contentBackgroundColor():uint{
+	return 0;
+	}
+	public function set contentBackgroundColor(val:uint):void {
+	}
     //--------------------------------------------------------------------------
     //
     //  Skin Parts
