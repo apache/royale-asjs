@@ -52,6 +52,7 @@
             Alert.show("Error loading source file");
         }
 			
+        /* shouldn't be needed in browser since you can select elements
 		private function copyCode():void
         {
         	System.setClipboard(ta.text);
@@ -63,7 +64,8 @@
 			
         	System.setClipboard(linkText);
         }
-			
+		*/
+            
 		private function viewInGitHub():void
 		{
 			var gitHubLink:String = "https://github.com/apache/flex-utilities/tree/master/TourDeFlex/TourDeFlex3/src/" + srv.url;
@@ -80,8 +82,10 @@
     <mx:TextArea id="ta" color="#0000A0" fontFamily="Courier" editable="false" wordWrap="false" width="100%" height="100%"/>
 	<mx:HBox width="100%" paddingBottom="5" paddingRight="20">
 		<mx:Spacer width="100%" />
+        <!--
 		<mx:Button label="Copy" click="copyCode()" />
 		<mx:Button label="Copy Link" click="copyLink()" />
+        -->
 		<mx:Button label="GitHub" click="viewInGitHub()" />
 	</mx:HBox>
 </mx:VBox>
