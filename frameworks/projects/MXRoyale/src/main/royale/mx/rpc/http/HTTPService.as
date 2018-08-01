@@ -191,6 +191,29 @@ public class HTTPService //extends AbstractInvoker
 		   }
     }
 	
+    [Inspectable(defaultValue="false", category="General")]
+    /**
+     *  Specifies whether to use the Flex proxy service. The default value is <code>false</code>. If you
+     *  do not specify <code>true</code> to proxy requests though the Flex server, you must ensure that the player 
+     *  can reach the target URL. You also cannot use destinations defined in the services-config.xml file if the
+     *  <code>useProxy</code> property is set to <code>false</code>.
+     *
+     *  @default false    
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get useProxy():Boolean
+    {
+        return false; // operation.useProxy;
+    }
+    public function set useProxy(u:Boolean):void
+    {
+        //operation.useProxy = u;
+    }
+    
     [Inspectable(defaultValue="undefined", category="General")]
     /**
      *  Location of the service. If you specify the <code>url</code> and a non-default destination,
