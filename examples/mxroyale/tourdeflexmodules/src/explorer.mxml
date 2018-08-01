@@ -25,6 +25,7 @@
         <![CDATA[
 		import mx.core.FlexGlobals;
         import org.apache.royale.core.BrowserWindow;
+        import org.apache.royale.events.MouseEvent;
         import org.apache.royale.net.URLLoader;
         import org.apache.royale.net.URLRequest;
 
@@ -144,7 +145,7 @@
             }
         }
 			
-		private function gotoHome(event:Event):void
+		private function gotoHome(event:MouseEvent):void
 		{
 			BrowserWindow.open("http://flex.apache.org/download-tourdeflex.html");
 		}
