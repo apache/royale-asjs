@@ -139,10 +139,10 @@ import mx.system.ApplicationDomain;
  *   after the module leak caused by the ResourceManager has been fixed.
  *   
  */
-[ResourceBundle("containers")]
+//[ResourceBundle("containers")]
 
 // Resource bundles used by this class.
-[ResourceBundle("modules")]
+//[ResourceBundle("modules")]
 
 //[IconFile("ModuleLoader.png")]
 
