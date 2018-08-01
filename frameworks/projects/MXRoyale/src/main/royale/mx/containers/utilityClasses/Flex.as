@@ -55,7 +55,7 @@ public class Flex
 	 *
 	 *  @param h height for all children.
 	 *
-	 *  @result Any extra space that's left over
+	 *  @return Any extra space that's left over
 	 *  after growing all children to their maxWidth.
 	 *  
 	 *  @langversion 3.0
