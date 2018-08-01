@@ -107,7 +107,7 @@
    				<locale>el_GR</locale>
    				<locale>de_CH</locale>
    				<locale>pt_PT</locale>
-				<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
 			</mxmlc>
 		</sequential>
 	</macrodef>
@@ -561,6 +561,7 @@
     	<delete>
     		<fileset dir="${basedir}" includes="**/*.swf" />
     	</delete>
+        <delete dir="${basedir}/bin" />
     	<delete dir="${basedir}/squiggly" />
     	<delete dir="${basedir}/dictionaries" />
         <delete dir="${basedir}/src/dictionaries" />
