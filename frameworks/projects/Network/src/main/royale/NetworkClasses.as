@@ -26,6 +26,7 @@ package
     */
     internal class NetworkClasses
     {	
+        import org.apache.royale.net.URLLoader; URLLoader;
         import org.apache.royale.net.URLBinaryLoader; URLBinaryLoader;
         import org.apache.royale.net.HTTPConstants; HTTPConstants;
         import org.apache.royale.net.URLBinaryUploader; URLBinaryUploader;

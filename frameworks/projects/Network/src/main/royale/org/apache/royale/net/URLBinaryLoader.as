@@ -35,7 +35,7 @@ package org.apache.royale.net
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.7.0
 	 */
-   public class URLBinaryLoader extends URLLoader
+   public class URLBinaryLoader extends URLLoaderBase
     {
         
 	   /**
