@@ -19,10 +19,10 @@
 
 DESCRIPTION
 
-Using an Item Renderer with a List
+Customization through the Royale API
 
-Learn how to use an item renderer in a Jewel List to display the items in your list in a pleasing and user-friendly way in a Royale application.
+Learn how to use the powerful Royale APIs to get access to internals and customize to your needs in a Royale application.
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-https://royale.apache.org/using-an-item-renderer-with-a-list/
+https://royale.apache.org//customization-through-the-royale-api/
