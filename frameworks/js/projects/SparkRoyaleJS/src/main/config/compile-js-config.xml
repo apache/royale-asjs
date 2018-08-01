@@ -94,6 +94,8 @@
     <include-file>
     </include-file>
 
+    <include-lookup-only>true</include-lookup-only>
+
     <include-classes>
         <class>SparkRoyaleClasses</class>
     </include-classes>
