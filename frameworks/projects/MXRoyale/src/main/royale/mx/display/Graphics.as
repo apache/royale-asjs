@@ -19,7 +19,8 @@
 package mx.display
 {
 	import org.apache.royale.svg.CompoundGraphic;
-	
+	import mx.geom.Matrix;
+
 	public class Graphics extends org.apache.royale.svg.CompoundGraphic
 	{
 		public function Graphics()
@@ -27,6 +28,17 @@ package mx.display
 			super();
 		}
 		public function  endFill(): void
+		{
+		}
+		public function beginFill(color:uint, alpha:Number = 1.0):void
+		{
+		}
+		
+		public function beginGradientFill(type:String, colors:Array, alphas:Array, ratios:Array, matrix:Matrix = null, spreadMethod:String = "pad", interpolationMethod:String = "rgb", focalPointRatio:Number = 0):void
+		{
+		} 
+		
+		public function lineStyle(thickness:Number = NaN, color:uint = 0, alpha:Number = 1.0, pixelHinting:Boolean = false, scaleMode:String = "normal", caps:String = null, joints:String = null, miterLimit:Number = 3):void
 		{
 		}
 	}
