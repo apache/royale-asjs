@@ -431,6 +431,9 @@ public interface IUIComponent extends IFlexDisplayObject, IChild
      */
     function set systemManager(value:ISystemManager):void;
     
+    function get rotation():Number
+    
+    function set rotation(value:Number):void
     //--------------------------------------------------------------------------
     //
     //  Methods
