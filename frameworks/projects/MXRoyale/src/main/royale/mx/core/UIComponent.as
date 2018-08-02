@@ -547,6 +547,34 @@ public class UIComponent extends UIBase
 			return _graphics;
 		} 
 	}
+	
+    	COMPILE::JS{
+	private var _mask:UIComponent;
+		 public function set mask(value:UIComponent):void
+		{
+			
+		}
+		
+		 public function get mask():UIComponent
+		{
+			return _mask
+		}
+	 
+	 }
+
+	COMPILE::JS{
+	 private var _rotation:Number;
+	 
+	 	public function get rotation():Number
+	 	{
+	    		return _rotation;
+	 	}
+     		public function set rotation(value:Number):void
+		{
+	   		_rotation = value;
+		}
+	}
+	
     //----------------------------------
     //  name
     //----------------------------------
