@@ -132,6 +132,7 @@ internal class MXRoyaleClasses
 	import mx.events.TextEvent; TextEvent;
 	import mx.display.Bitmap; Bitmap;
 	import mx.external.ExternalInterface; ExternalInterface;
+	import mx.events.KeyboardEvent; KeyboardEvent;
 	
 	COMPILE::JS
     	{
