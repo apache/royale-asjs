@@ -54,11 +54,6 @@ package
         import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
         import org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel; SingleSelectionArrayListModel;
         import org.apache.royale.jewel.supportClasses.ScrollingViewport; ScrollingViewport;
-
-        import org.apache.royale.jewel.itemRenderers.StringItemRenderer; StringItemRenderer;
-        import org.apache.royale.jewel.itemRenderers.ListItemRenderer; ListItemRenderer;
-        import org.apache.royale.jewel.itemRenderers.DateItemRenderer; DateItemRenderer;
-        import org.apache.royale.jewel.itemRenderers.DayNameItemRenderer; DayNameItemRenderer;
         
         COMPILE::SWF
 	    {
@@ -73,14 +68,6 @@ package
             import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
             import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
         }
-
-        import org.apache.royale.jewel.beads.layouts.BasicLayout; BasicLayout;
-        import org.apache.royale.jewel.beads.layouts.GridLayout; GridLayout;
-        import org.apache.royale.jewel.beads.layouts.TileLayout; TileLayout;
-        import org.apache.royale.jewel.beads.layouts.SimpleHorizontalLayout; SimpleHorizontalLayout;
-        import org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout; SimpleVerticalLayout;
-        import org.apache.royale.jewel.beads.layouts.HorizontalLayout; HorizontalLayout;
-        import org.apache.royale.jewel.beads.layouts.VerticalLayout; VerticalLayout;
 
         // import org.apache.royale.html.beads.TableCellView; TableCellView;
         // import org.apache.royale.html.beads.layouts.SimpleTableLayout; SimpleTableLayout;

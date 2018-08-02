@@ -32,10 +32,10 @@ limitations under the License.
 		<j:HorizontalCenteredLayout gap="3"/>
     </j:beads>
 
-	<j:Card width="550">
+	<j:Card >
 		<html:H3 text="Jewel SimpleTable"/>
 
-		<j:SimpleTable>
+		<j:SimpleTable width="500">
 			<j:THead>
 				<j:TableRow>
 					<j:TableHeader width="48">
@@ -172,16 +172,15 @@ limitations under the License.
 		</j:SimpleTable>
 	</j:Card>
 
-	<j:Card width="440">
+	<j:Card >
 		<html:H3 text="Jewel Table"/>
 
-		<j:Table>
-			<j:TableColumn dataField="guitarrist" label="Guitarrist"
-							itemRenderer="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
-			<j:TableColumn dataField="album" label="Album"
-							itemRenderer="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
-			<j:TableColumn dataField="year" label="Year"
-							itemRenderer="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
+		<j:Table width="440" height="300">
+			<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
+			<j:TableColumn dataField="album" label="Album" align="center"/>
+			<j:TableColumn dataField="year" label="Release Year" align="right"
+							itemRenderer="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
+							<!--item renderers can be get from CSS or declared in column but must extend TableItemRenderer -->
 			<j:beads>
 				<js:ConstantBinding sourceID="tablesModel"
 									sourcePropertyName="guitarrists"

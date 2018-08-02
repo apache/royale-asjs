@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.jewel.supportClasses.table.TBody;
@@ -33,7 +33,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class TableView extends BeadViewBase
+	public class TableView extends DataContainerView
 	{
 		/**
 		 *  constructor.

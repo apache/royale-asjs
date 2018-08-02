@@ -435,7 +435,6 @@ j|Label {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
 
-/* Absolute */
 .layout.absolute {
   position: absolute;
 }
@@ -476,8 +475,6 @@ j|Label {
 .layout.itemsExpand > * {
   flex: 1 0 auto !important;
 }
-
-/* Horizontal */
 .layout.horizontal {
   flex-direction: row !important;
   flex-wrap: nowrap;
@@ -558,8 +555,6 @@ j|Label {
 .layout.horizontal.gap-10x3px > * {
   margin: 0px 0px 0px 30px;
 }
-
-/* Vertical */
 .layout.vertical {
   flex-direction: column !important;
   flex-wrap: nowrap;
@@ -638,14 +633,10 @@ j|Label {
 .layout.vertical.gap-10x3px > * {
   margin: 30px 0px 0px;
 }
-
-/* Tile */
 .layout.tile {
   flex-flow: row wrap;
   align-items: flex-start;
 }
-
-/* Grid */
 .layout.grid {
   flex-flow: row wrap;
   width: 100%;
@@ -2547,6 +2538,9 @@ j|Label {
     width: calc(100% - 10px);
   }
 }
+.layout.table {
+  display: table;
+}
 
 @media (max-width: 767px) {
   .visible-phone {
@@ -2832,7 +2826,13 @@ j|Slider {
 }
 
 j|Table {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TableView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer");
+  IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .alignTextLeft {

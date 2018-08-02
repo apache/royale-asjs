@@ -22,12 +22,32 @@ package org.apache.royale.jewel.supportClasses.table
 	
 	/**
 	 * TableColumn is a DataGridColumn used in Table component
+	 * with special table properties
 	 */
 	public class TableColumn extends DataGridColumn
 	{
 		public function TableColumn()
 		{
 			super();
+		}
+
+		private var _align:String = ""
+		/**
+		 *  How text align in the column
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get align():String
+		{
+			return _align;
+		}
+
+		public function set align(value:String):void
+		{
+			_align = value;
 		}
 	}
 }

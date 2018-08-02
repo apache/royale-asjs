@@ -19,16 +19,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	
-	import org.apache.royale.events.Event;
+	COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
+    }
 	
 	[DefaultProperty("columns")]
-	
-	/**
-	 * 
-	 */
 
 	/**
 	 *  The Table class represents an HTML <table> element.
@@ -43,7 +44,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Table extends SimpleTable
+	public class Table extends DataContainer
 	{
 		/**
 		 *  constructor.
@@ -69,11 +70,11 @@ package org.apache.royale.jewel
 			TableModel(model).columns = value;
 		}
 		
-		public function get dataProvider():Object
+		override public function get dataProvider():Object
 		{
 			return TableModel(model).dataProvider;
 		}
-		public function set dataProvider(value:Object):void
+		override public function set dataProvider(value:Object):void
 		{
 			TableModel(model).dataProvider = value;
 		}
@@ -86,5 +87,14 @@ package org.apache.royale.jewel
 			
 			dispatchEvent( new Event("tableComplete") );
 		}
+
+		/**
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            return addElementToWrapper(this,'table');
+        }
     }
 }

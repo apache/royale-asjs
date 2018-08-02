@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.beads.models.TableModel;
 	
 	import org.apache.royale.collections.ArrayList;
+    import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
@@ -32,9 +33,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.TableCell;
 	import org.apache.royale.jewel.TableHeader;
 	import org.apache.royale.jewel.TableRow;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
+    import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IItemRendererClassFactory;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	
-	public class TableMapperForArrayListData implements IBead
+	public class TableMapperForArrayListData implements IBead, IDataProviderItemRendererMapper
 	{
 		public function TableMapperForArrayListData()
 		{
@@ -48,6 +52,34 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			IEventDispatcher(_strand).addEventListener("tableComplete", handleInitComplete);
 		}
+
+        private var _itemRendererFactory:IItemRendererClassFactory;
+		
+		/**
+		 *  The org.apache.royale.core.IItemRendererClassFactory used
+		 *  to generate instances of item renderers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
+		 */
+		public function get itemRendererFactory():IItemRendererClassFactory
+		{
+			if(!_itemRendererFactory)
+				_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
+			
+			return _itemRendererFactory;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set itemRendererFactory(value:IItemRendererClassFactory):void
+		{
+			_itemRendererFactory = value;
+		}
 		
 		private function handleInitComplete(event:Event):void
 		{
@@ -58,19 +90,22 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (dp == null || dp.length == 0) return;
 			
 			var table:Table = _strand as Table;
+            var dataGroup:IItemRendererParent = table.dataGroup;
 			
 			var createHeaderRow:Boolean = false;
+            var test:TableColumn;
 			for(var c:int=0; c < model.columns.length; c++)
 			{
-				var test:TableColumn = model.columns[c] as TableColumn;
+				test = model.columns[c] as TableColumn;
 				if (test.label != null) {
 					createHeaderRow = true;
 					break;
 				}
 			}
 			
+            var row:TableRow;
 			if (createHeaderRow) {
-				var headerRow:TableRow = new TableRow();
+				row = new TableRow();
 				
 				for(c=0; c < model.columns.length; c++)
 				{
@@ -79,31 +114,49 @@ package org.apache.royale.jewel.beads.itemRenderers
 					var label:Label = new Label();
 					tableHeader.addElement(label);
 					label.text = test.label == null ? "" : test.label;
-					headerRow.addElement(tableHeader);
+					row.addElement(tableHeader);
 				}
 				
-				table.addElement(headerRow);
+				table.addElement(row);
 			}
 			
+            var column:TableColumn;
+            var tableCell:TableCell;
+            var ir:TableItemRenderer;
+
 			for(var i:int=0; i < dp.length; i++)
 			{
-				var tableRow:TableRow = new TableRow();
+				row = new TableRow();
 				
 				for(var j:int=0; j < model.columns.length; j++)
 				{
-					var column:TableColumn = model.columns[j] as TableColumn;
-					var tableCell:TableCell = new TableCell();
+					column = model.columns[j] as TableColumn;
+					tableCell = new TableCell();
 					
-					var ir:DataItemRenderer = column.itemRenderer.newInstance() as DataItemRenderer;
+                    if(column.itemRenderer != null)
+                    {
+                        trace("1");
+    					ir = column.itemRenderer.newInstance() as TableItemRenderer;
+                    } else
+                    {
+                        trace("2");
+                        ir = itemRendererFactory.createItemRenderer(dataGroup) as TableItemRenderer;
+                    }
+                    
 					tableCell.addElement(ir);
-					tableRow.addElement(tableCell);
+					row.addElement(tableCell);
 					
 					ir.labelField = column.dataField;
 					ir.index = i;
 					ir.data = dp.getItemAt(i);
+
+                    if(column.align != "")
+                    {
+                        ir.align = column.align;
+                    }
 				}
 				
-				table.addElement(tableRow);
+				table.addElement(row);
 			}
 			
 			table.dispatchEvent(new Event("layoutNeeded"));
