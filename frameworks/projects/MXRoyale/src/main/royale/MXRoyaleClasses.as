@@ -133,6 +133,7 @@ internal class MXRoyaleClasses
 	import mx.display.Bitmap; Bitmap;
 	import mx.external.ExternalInterface; ExternalInterface;
 	import mx.events.KeyboardEvent; KeyboardEvent;
+	import mx.geom.Matrix; Matrix;
 	
 	COMPILE::JS
     	{
