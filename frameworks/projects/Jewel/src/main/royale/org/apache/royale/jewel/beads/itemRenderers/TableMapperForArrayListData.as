@@ -20,11 +20,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 	import org.apache.royale.jewel.beads.models.TableModel;
+    import org.apache.royale.jewel.supportClasses.table.THead;
+    import org.apache.royale.jewel.supportClasses.table.TBody;
+    import org.apache.royale.jewel.supportClasses.table.TFoot;
+	import org.apache.royale.jewel.beads.views.TableView;
 	
 	import org.apache.royale.collections.ArrayList;
     import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -85,6 +90,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			var model:TableModel = _strand.getBeadByType(IBeadModel) as TableModel;
 			if (model == null) return;
+
+			var view:TableView = _strand.getBeadByType(IBeadView) as TableView;
 			
 			var dp:ArrayList = model.dataProvider as ArrayList;
 			if (dp == null || dp.length == 0) return;
@@ -94,7 +101,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			var createHeaderRow:Boolean = false;
             var test:TableColumn;
-			for(var c:int=0; c < model.columns.length; c++)
+            var c:int;
+			for(c=0; c < model.columns.length; c++)
 			{
 				test = model.columns[c] as TableColumn;
 				if (test.label != null) {
@@ -102,9 +110,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 					break;
 				}
 			}
-			
+
+            var thead:THead;
             var row:TableRow;
 			if (createHeaderRow) {
+                thead = new THead();
 				row = new TableRow();
 				
 				for(c=0; c < model.columns.length; c++)
@@ -116,10 +126,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 					label.text = test.label == null ? "" : test.label;
 					row.addElement(tableHeader);
 				}
-				
-				table.addElement(row);
+
+				thead.addElement(row);
+				table.addElement(thead);
 			}
 			
+            var tbody:TBody = view.tbody;
+            table.addElement(tbody);
+
             var column:TableColumn;
             var tableCell:TableCell;
             var ir:TableItemRenderer;
@@ -135,11 +149,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 					
                     if(column.itemRenderer != null)
                     {
-                        trace("1");
-    					ir = column.itemRenderer.newInstance() as TableItemRenderer;
+                        ir = column.itemRenderer.newInstance() as TableItemRenderer;
                     } else
                     {
-                        trace("2");
                         ir = itemRendererFactory.createItemRenderer(dataGroup) as TableItemRenderer;
                     }
                     
@@ -156,7 +168,7 @@ package org.apache.royale.jewel.beads.itemRenderers
                     }
 				}
 				
-				table.addElement(row);
+				tbody.addElement(row);
 			}
 			
 			table.dispatchEvent(new Event("layoutNeeded"));

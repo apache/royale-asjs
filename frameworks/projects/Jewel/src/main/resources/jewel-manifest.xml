@@ -115,10 +115,11 @@
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.royale.jewel.itemRenderers.DayNameItemRenderer"/>
 
-    <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.ScrollingViewport" />
+    <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.ScrollingViewport"/>
 
-    <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData" />
-    <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView" />
+    <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>
+    <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView"/>
+    <component id="TableMapperForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData"/>
 
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     

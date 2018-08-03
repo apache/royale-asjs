@@ -20,7 +20,6 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	
 	COMPILE::JS
@@ -61,6 +60,17 @@ package org.apache.royale.jewel
 			typeNames = "jewel table";
 		}
 
+		/**
+		 *  The list of TableColumn objects displayed by this table. 
+		 *  Each column selects different data provider item properties to display.
+		 *  
+		 *  The default value is null.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
         public function get columns():Array
 		{
 			return TableModel(model).columns;
@@ -69,7 +79,62 @@ package org.apache.royale.jewel
 		{
 			TableModel(model).columns = value;
 		}
+
+		private var _fixedHeader:Boolean;
+		/**
+		 *  Makes the header of the table fixed so the data rows will scroll
+		 *  behind it.
+		 *  
+		 *  The default value is false.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get fixedHeader():Boolean
+		{
+			return _fixedHeader;
+		}
+		public function set fixedHeader(value:Boolean):void
+		{
+			_fixedHeader = value;
+
+			toggleClass("fixedHeader", _fixedHeader);
+		}
+
+		private var _tableDataHeight:Boolean;
+		/**
+		 *  Makes the header of the table fixed so the data rows will scroll
+		 *  behind it.
+		 *  
+		 *  The default value is false.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get tableDataHeight():Boolean
+		{
+			return _tableDataHeight;
+		}
+		public function set tableDataHeight(value:Boolean):void
+		{
+			_tableDataHeight = value;
+		}
 		
+		/**
+		 *  A list of data items that correspond to the rows in the table.
+		 *  Each table column is associated with a property of the data items to display that property in the table cells.
+		 *  
+		 *  The default value is null.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
 		override public function get dataProvider():Object
 		{
 			return TableModel(model).dataProvider;
@@ -82,8 +147,6 @@ package org.apache.royale.jewel
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
-			addBead(new TableMapperForArrayListData());
 			
 			dispatchEvent( new Event("tableComplete") );
 		}

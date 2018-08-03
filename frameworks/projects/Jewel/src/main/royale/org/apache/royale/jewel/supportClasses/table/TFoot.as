@@ -49,6 +49,8 @@ package org.apache.royale.jewel.supportClasses.table
 		public function TFoot()
 		{
 			super();
+
+			typeNames = "jewel tfoot";
 		}
 		
         COMPILE::JS

@@ -59,26 +59,26 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.strand = value;
 
-			//createChildren();
+			createChildren();
 		}
 
-		private var thead:THead;
-		private var tbody:TBody;
-		private var tfoot:TFoot;
+		// private var thead:THead;
+		public var tbody:TBody;
+		// private var tfoot:TFoot;
 
 		/**
 		 * @private
 		 */
 		private function createChildren():void
 		{
-			thead = new THead();
-			host.addElement(thead);
+			// thead = new THead();
+			// host.addElement(thead);
 
 			tbody = new TBody();
 			host.addElement(tbody);
 			
-			tfoot = new TFoot();
-			host.addElement(tfoot);
+			// tfoot = new TFoot();
+			// host.addElement(tfoot);
 		}
 	}
 }

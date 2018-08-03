@@ -175,7 +175,7 @@ limitations under the License.
 	<j:Card >
 		<html:H3 text="Jewel Table"/>
 
-		<j:Table width="440" height="300">
+		<j:Table width="440">
 			<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
 			<j:TableColumn dataField="album" label="Album" align="center"/>
 			<j:TableColumn dataField="year" label="Release Year" align="right"

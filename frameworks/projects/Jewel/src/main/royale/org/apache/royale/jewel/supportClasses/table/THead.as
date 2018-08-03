@@ -49,6 +49,8 @@ package org.apache.royale.jewel.supportClasses.table
 		public function THead()
 		{
 			super();
+
+			typeNames = "jewel thead";
 		}
 		
         COMPILE::JS

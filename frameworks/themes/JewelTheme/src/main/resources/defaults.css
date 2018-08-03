@@ -550,6 +550,10 @@ j|Card {
   box-shadow: inset 0 1px 0 white;
 }
 
+.jewel.thead tr {
+  border-bottom: 1px solid #d9d9d9;
+}
+
 .jewel.textinput {
   font-weight: 400;
   color: #808080;
