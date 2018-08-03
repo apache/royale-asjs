@@ -20,7 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.core.IToggleButtonModel;
     import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.supportClasses.CheckBoxIcon;
+    import org.apache.royale.jewel.supportClasses.checkbox.CheckBoxIcon;
     import org.apache.royale.utils.ClassSelectorList;
 
     COMPILE::SWF

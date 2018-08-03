@@ -29,8 +29,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.supportClasses.DateChooserHeader;
-	import org.apache.royale.jewel.supportClasses.DateChooserList;
+	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserHeader;
+	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserList;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.GroupView;
 	// import org.apache.royale.html.beads.layouts.HorizontalFlexLayout;

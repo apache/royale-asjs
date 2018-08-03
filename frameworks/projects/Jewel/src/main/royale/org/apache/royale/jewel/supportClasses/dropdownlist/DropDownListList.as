@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.dropdownlist
 {
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.jewel.List;

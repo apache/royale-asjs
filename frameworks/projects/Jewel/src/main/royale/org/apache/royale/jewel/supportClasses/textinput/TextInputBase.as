@@ -15,11 +15,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.textinput
 {
     import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.supportClasses.ITextInput;
+    import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
     import org.apache.royale.core.ITextModel;
     
     COMPILE::JS

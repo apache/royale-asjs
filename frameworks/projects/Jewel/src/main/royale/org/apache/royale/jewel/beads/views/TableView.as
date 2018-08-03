@@ -63,6 +63,10 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		// private var thead:THead;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
 		public var tbody:TBody;
 		// private var tfoot:TFoot;
 

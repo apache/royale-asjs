@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controllers
 {	
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
-    import org.apache.royale.jewel.supportClasses.DateChooserList;
+    import org.apache.royale.jewel.supportClasses.datechooser.DateChooserList;
 	
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IBeadModel;

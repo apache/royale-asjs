@@ -378,7 +378,7 @@ j|DateField {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
-    IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.DropDownListList");
+    IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList");
   }
 
   j|DropDownListList {
@@ -2597,7 +2597,7 @@ j|List {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
@@ -2609,7 +2609,7 @@ j|Navigation {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer");
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.ScrollingViewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");

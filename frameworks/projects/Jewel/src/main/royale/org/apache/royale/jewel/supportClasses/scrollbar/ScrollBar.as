@@ -16,49 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.scrollbar
 {
-	import org.apache.royale.jewel.DataContainer;
-	// import org.apache.royale.html.beads.layouts.HorizontalFlexLayout;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.IViewportScroller;
 	
 	/**
-	 *  The DateChooserHeader is the container for the days of the week labels
-	 *  in the DateChooser.
+	 *  The ScrollBar class represents either a vertical or horizontal control
+	 *  that allows the user to quickly scan through a component that does not
+	 *  wholly fit within its container.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
-	public class DateChooserHeader extends DataContainer
+	public class ScrollBar extends UIBase implements IChrome, IViewportScroller
 	{
 		/**
-		 * Constructor.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
-		public function DateChooserHeader()
+		public function ScrollBar()
 		{
 			super();
-			
-			// myLayout = new HorizontalFlexLayout();
-			// addBead(myLayout);
-		}
-		
-		/**
-		 * @private
-		 */
-		// private var myLayout:HorizontalFlexLayout;
-		
-		/**
-		 * @private
-		 */
-		// override public function set height(value:Number):void
-		// {
-		// 	super.height = value;
-		// }
-	}
+		}		
+   	}
 }

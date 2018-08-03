@@ -16,30 +16,55 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.radiobutton
 {
 	COMPILE::JS {
         import org.apache.royale.core.WrappedHTMLElement;
     }
 
-	public class CheckBoxIcon
+	/**
+	 *  The RadioButton class is a component that displays a selectable Button. RadioButtons
+	 *  are typically used in groups, identified by the groupName property. RadioButton use
+	 *  the following beads:
+	 *
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the groupName.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.3
+	 */
+	public class RadioButtonIcon
 	{
-		public function CheckBoxIcon()
+		public function RadioButtonIcon()
 		{
 			COMPILE::JS {
 				createElement();
 			}
 
-			className = 'CheckBoxIcon';
+			className = 'RadioButtonIcon';
 		}
 
-		COMPILE::JS {
-            public var element:WrappedHTMLElement;
-            public var positioner:WrappedHTMLElement;
+        /**
+         * @private
+         * 
+         * @royalesuppresspublicvarwarning
+         */
+		COMPILE::JS 
+		public var element:WrappedHTMLElement;
+		
+		COMPILE::JS
+		public function get positioner():WrappedHTMLElement
+		{
+			return element;
 		}
-
+		
 		private var _className:String;
 
+		/**
+		 * @private
+		 */
 		public function get className():String
 		{
 			return _className;
@@ -55,6 +80,9 @@ package org.apache.royale.jewel.supportClasses
 
 		private var _id:String;
 
+		/**
+		 * @private
+		 */
 		public function get id():String
 		{
 			return _id;
@@ -76,10 +104,13 @@ package org.apache.royale.jewel.supportClasses
 		COMPILE::JS
  		protected function createElement():WrappedHTMLElement
 		{
+			//This class does not subclass anything, so these properties must be set explicitly
 			var input:HTMLInputElement = document.createElement('input') as HTMLInputElement;
-			input.type = 'checkbox';
+			input.type = 'radio';
 
 			element = input as WrappedHTMLElement;
+			element.royale_wrapper = this;
+
 			return element;
 		}
 	}

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.supportClasses.DrawerBase;
+	import org.apache.royale.jewel.supportClasses.drawer.DrawerBase;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.core.UIBase;

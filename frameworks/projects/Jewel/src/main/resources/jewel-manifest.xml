@@ -58,8 +58,8 @@
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
-    <component id="DateChooserList" class="org.apache.royale.jewel.supportClasses.DateChooserList" />
-    <component id="DateChooserHeader" class="org.apache.royale.jewel.supportClasses.DateChooserHeader" />
+    <component id="DateChooserList" class="org.apache.royale.jewel.supportClasses.datechooser.DateChooserList" />
+    <component id="DateChooserHeader" class="org.apache.royale.jewel.supportClasses.datechooser.DateChooserHeader" />
     <component id="DataContainer" class="org.apache.royale.jewel.DataContainer" />
 
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
@@ -83,7 +83,7 @@
     
     <component id="Card" class="org.apache.royale.jewel.Card"/>
     
-    <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.DropDownListList"/>
+    <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList"/>
     
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
     <component id="SizeControl" class="org.apache.royale.jewel.beads.controls.SizeControl"/>
@@ -115,7 +115,7 @@
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.royale.jewel.itemRenderers.DayNameItemRenderer"/>
 
-    <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.ScrollingViewport"/>
+    <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView"/>

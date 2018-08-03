@@ -17,7 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.supportClasses.TextInputBase;
+    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
     COMPILE::JS
     {

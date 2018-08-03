@@ -16,23 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.scrollbar
 {
-	import org.apache.royale.jewel.List;
-	// import org.apache.royale.html.supportClasses.Viewport;
-	// import org.apache.royale.html.beads.layouts.TileLayout;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.IViewportScroller;
 	
-	public class DateChooserList extends List
+	/**
+	 *  The ScrollBar class represents either a vertical or horizontal control
+	 *  that allows the user to quickly scan through a component that does not
+	 *  wholly fit within its container.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.3
+	 */
+	public class HScrollBar extends ScrollBar implements IChrome, IViewportScroller
 	{
-		public function DateChooserList()
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function HScrollBar()
 		{
 			super();
-			
-			// addBead(new Viewport());
-			
-			// var tileLayout:TileLayout = new TileLayout();
-			// tileLayout.numColumns = 7;
-			// addBead(tileLayout);
-		}
-	}
+		}		
+   	}
 }

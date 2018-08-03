@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.textinput
 {
     /**
      *  ITextInput is the interface that all text jewel classes.
-     *  It's used mainly in org.apache.royale.jewel.supportClasses.TextInputBase
+     *  It's used mainly in org.apache.royale.jewel.supportClasses.textinput.TextInputBase
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2

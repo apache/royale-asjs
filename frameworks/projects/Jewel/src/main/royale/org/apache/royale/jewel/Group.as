@@ -30,8 +30,8 @@ package org.apache.royale.jewel
 	 *  using styles or CSS.
      *
      *  @toplevel
-     *  @see org.apache.royale.html.beads.layout
-     *  @see org.apache.royale.jewel.supportClasses.ScrollingViewport
+     *  @see org.apache.royale.jewel.beads.layout
+     *  @see org.apache.royale.jewel.supportClasses.jewel.ScrollingViewport
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

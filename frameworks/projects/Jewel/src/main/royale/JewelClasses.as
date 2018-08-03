@@ -53,7 +53,7 @@ package
 
         import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
         import org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel; SingleSelectionArrayListModel;
-        import org.apache.royale.jewel.supportClasses.ScrollingViewport; ScrollingViewport;
+        import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
         
         COMPILE::SWF
 	    {
@@ -78,7 +78,7 @@ package
 
         import org.apache.royale.jewel.supportClasses.INavigationRenderer; INavigationRenderer;
         import org.apache.royale.jewel.supportClasses.IActivable; IActivable;
-        import org.apache.royale.jewel.supportClasses.ITextInput; ITextInput;
+        import org.apache.royale.jewel.supportClasses.textinput.ITextInput; ITextInput;
 
         import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
 

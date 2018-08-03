@@ -62,8 +62,8 @@ package org.apache.royale.jewel
      *  support an arbitrary set of children.
      *  
      *  @toplevel
-     *  @see org.apache.royale.html.beads.layout
-     *  @see org.apache.royale.html.supportClasses.ScrollingViewport
+     *  @see org.apache.royale.jewel.beads.layout
+     *  @see org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

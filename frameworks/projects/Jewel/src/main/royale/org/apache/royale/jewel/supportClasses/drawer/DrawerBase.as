@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.drawer
 {
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.core.UIBase;

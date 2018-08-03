@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.scrollbar
 {
 	import org.apache.royale.core.IChrome;
 	import org.apache.royale.core.IViewportScroller;
