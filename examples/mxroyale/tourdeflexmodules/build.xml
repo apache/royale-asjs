@@ -86,7 +86,7 @@
     	 <attribute name="example"/>
         
         <sequential>
-   			<mxmlc file="${basedir}/src/@{example}.mxml"
+   			<mxmlc file="${basedir}/src/@{example}.mxml" debug="true"
             	output="${basedir}/src/@{example}.swf" fork="true" failonerror="true">
 				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
 			</mxmlc>
