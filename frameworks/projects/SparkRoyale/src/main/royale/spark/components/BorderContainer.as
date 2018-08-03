@@ -19,6 +19,10 @@
 
 package spark.components
 {
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 //import mx.graphics.IFill;
 //import mx.graphics.IStroke;
 
