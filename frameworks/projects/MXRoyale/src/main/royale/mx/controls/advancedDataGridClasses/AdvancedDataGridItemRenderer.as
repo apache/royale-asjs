@@ -28,7 +28,7 @@ import flash.utils.getQualifiedSuperclassName; */
 
 //import mx.controls.AdvancedDataGrid;
 import mx.controls.listClasses.BaseListData;
-//import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.listClasses.IDropInListItemRenderer;
 //import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.core.IFlexDisplayObject;
@@ -83,7 +83,7 @@ use namespace mx_internal;
  *  @productversion Royale 0.9.3
  */
 public class AdvancedDataGridItemRenderer extends UITextField
-                                  implements IDataRenderer
+                                  implements IDataRenderer,IDropInListItemRenderer
 {
  /* extends UITextField
                                   implements IDataRenderer,
