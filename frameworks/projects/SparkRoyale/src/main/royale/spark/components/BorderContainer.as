@@ -236,23 +236,40 @@ public class BorderContainer extends SkinnableContainer
     {
         super(); 
     }
-    public function get borderColor():uint {
+	public function get borderColor():uint 
+	{
 		return 0;
 
 	}
-	public function set borderColor(val:uint):void {
+	public function set borderColor(val:uint):void 
+	{
 	}
-	 public function get borderWeight():Number {
+	public function get borderWeight():Number 
+	{
 		return 0;
 
 	}
-	public function set borderWeight(val:Number):void {
+	public function set borderWeight(val:Number):void
+	{
 	}
-	public function get dropShadowVisible():Boolean {
+	public function get dropShadowVisible():Boolean 
+	{
 		return false;
 
 	}
-	public function set dropShadowVisible(val:Boolean):void {
+	public function set dropShadowVisible(val:Boolean):void 
+	{
+	}
+	public function get borderStyle():String
+	{
+	if (GOOG::DEBUG)
+	    trace("BorderContainer:borderStyle not implemented");
+	return "solid";
+	}
+	public function set borderStyle(value:String):void
+	{
+	if (GOOG::DEBUG)
+	    trace("BorderContainer:borderStyle not implemented");
 	}
    // private var _backgroundFill:IFill;
     
