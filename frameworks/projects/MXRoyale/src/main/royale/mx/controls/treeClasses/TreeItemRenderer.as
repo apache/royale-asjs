@@ -54,7 +54,9 @@ import mx.core.IFlexDisplayObject;
 import mx.controls.listClasses.BaseListData;
 import org.apache.royale.html.supportClasses.TreeItemRenderer;
 import mx.core.mx_internal;
-	import mx.core.UIComponent;
+import mx.core.UIComponent;
+import mx.core.IDataRenderer;
+import mx.controls.listClasses.IDropInListItemRenderer;
 
 use namespace mx_internal;
 
@@ -74,7 +76,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class TreeItemRenderer extends UIComponent 
+public class TreeItemRenderer extends UIComponent implements IDataRenderer,IDropInListItemRenderer
 {
    
 
@@ -104,9 +106,78 @@ public class TreeItemRenderer extends UIComponent
     //
     //--------------------------------------------------------------------------
 
-  
-    
-  
+  	private var _data:Object
+ 
+	public function get data():Object   
+	{     
+	return _data;    
+	}       
+	/**  
+	*  @private    
+	*/
+
+	public function set data(value:Object):void   
+	{       
+	_data = value;     
+	//dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));  
+	}
+
+
+	private var _listData:BaseListData 
+	//_listData:AdvancedDataGridListData;
+
+	[Bindable("dataChange")]
+
+
+	/**
+	*  
+	The implementation of the <code>listData</code> property as 
+	*  
+	defined by the IDropInListItemRenderer interface.
+	*  The text of the renderer is set to the <code>label</code>
+
+	*  property of this property.
+	*
+	*  @see mx.controls.listClasses.IDropInListItemRenderer
+	*  
+	*  @langversion 3.0
+
+	*  @playerversion Flash 9
+	*  @playerversion AIR 1.1
+	*  @productversion Royale 0.9.3
+	*/
+
+	public function get listData():BaseListData
+
+	{
+	return _listData;
+	}
+
+	/**
+	*  @private
+	*/
+
+
+	public function set listData(value:BaseListData):void
+	{
+	_listData = value;
+	/*_listData = AdvancedDataGridListData(value);
+
+	if (nestLevel && !invalidatePropertiesFlag)
+
+	{
+
+	UIComponentGlobals.layoutManager.invalidateProperties(this);
+
+	invalidatePropertiesFlag = true;
+
+	UIComponentGlobals.layoutManager.invalidateSize(this);
+
+	invalidateSizeFlag = true;
+
+	} 
+	*/
+	}
     
     //----------------------------------
     //  icon
