@@ -36,7 +36,7 @@ import mx.rpc.remoting.mxml.Operation;
 
 use namespace mx_internal;
 */
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 /**
  *  Use the &lt;mx:RemoteObject&gt; tag to represent an HTTPService object in an MXML file.
