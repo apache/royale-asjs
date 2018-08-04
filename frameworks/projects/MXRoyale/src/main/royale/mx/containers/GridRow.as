@@ -319,7 +319,7 @@ public class GridRow extends HBox
      *  the column size and arrange children in proper order.
      *  Hence invalidate the size and layout of the Grid.
      */
-    override public function setChildIndex(child:ROYALE::DISPLAYOBJECT,
+    override public function setChildIndex(child:IUIComponent,
                                            newIndex:int):void
     {
         super.setChildIndex(child, newIndex);

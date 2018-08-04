@@ -94,6 +94,7 @@ use namespace mx_internal;
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
+
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.IEventDispatcher;
 
@@ -1535,8 +1536,10 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    COMPILE::SWF
-    override public function addChild(child:DisplayObject):DisplayObject
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function addChild(child:IUIComponent):IUIComponent
     {
         /*
         var addIndex:int = numChildren;
@@ -1545,10 +1548,17 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
 
         return addChildAt(child, addIndex);
         */
-        var ret:DisplayObject = super.addChild(child);
-        if (ret is IUIBase)
-            (ret as IUIBase).addedToParent();
-        return ret;
+        COMPILE::JS
+        {
+            return addElement(child) as IUIComponent;
+        }
+        COMPILE::SWF
+        {
+            var ret:DisplayObject = super.addChild(child as DisplayObject);
+            if (ret is IUIBase)
+                (ret as IUIBase).addedToParent();
+            return ret as IUIComponent;
+        }
     }
 
     /**
@@ -1709,31 +1719,43 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
-    public function addChild(child:IUIComponent):IUIComponent
-    {
-        return addElement(child) as IUIComponent;
-    }
-    
-    /**
-     *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
-     */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function addChildAt(child:IUIComponent,
                                index:int):IUIComponent
     {
-        return addElementAt(child, index) as IUIComponent;
+        COMPILE::JS
+        {
+            return addElementAt(child, index) as IUIComponent;
+        }
+        COMPILE::SWF
+        {
+            var ret:DisplayObject = super.addChildAt(child as DisplayObject);
+            if (ret is IUIBase)
+                (ret as IUIBase).addedToParent();
+            return ret as IUIComponent;
+        }
     }
     
     /**
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function removeChild(child:IUIComponent):IUIComponent
     {
-        return removeElement(child) as IUIComponent;
+        COMPILE::JS
+        {
+            return removeElement(child) as IUIComponent;
+        }
+        COMPILE::SWF
+        {
+            var ret:DisplayObject = super.removeChild(child as DisplayObject);
+            return ret as IUIComponent;
+        }
     }
     
     
@@ -1741,7 +1763,9 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function removeChildAt(index:int):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -1754,10 +1778,20 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function getChildAt(index:int):IUIComponent
     {
-        return getElementAt(index) as IUIComponent;
+        COMPILE::JS
+        {
+            return getElementAt(index) as IUIComponent;
+        }
+        COMPILE::SWF
+        {
+            var ret:DisplayObject = super.getChildAt(index);
+            return ret as IUIComponent;
+        }
     }
             
     //--------------------------------------------------------------------------
@@ -2868,14 +2902,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         component = IUIComponent(create());
         // until preloader?
         component.addEventListener("applicationComplete", applicationCompleteHandler);
-        COMPILE::SWF
-        {
-            addChild(component as DisplayObject);
-        }
-        COMPILE::JS
-        {
-            addChild(component as IUIComponent);
-        }
+        addChild(component as IUIComponent);
     }
     
     private function applicationCompleteHandler(event:Event):void
@@ -3560,7 +3587,9 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    COMPILE::SWF 
+    { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
         if (GOOG::DEBUG)
@@ -3570,16 +3599,27 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    COMPILE::SWF 
+    { override }
     public function getChildIndex(child:IUIComponent):int
     {
-        return getElementIndex(child);
+        COMPILE::JS
+        {
+            return getElementIndex(child);
+        }
+        COMPILE::SWF
+        {
+            return super.getChildIndex(child as DisplayObject);
+        }
     }
     
     /**
      *  @private
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function getChildByName(name:String):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -3590,7 +3630,9 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    COMPILE::SWF 
+    { override }
     public function contains(child:IUIComponent):Boolean
     {
         if (GOOG::DEBUG)

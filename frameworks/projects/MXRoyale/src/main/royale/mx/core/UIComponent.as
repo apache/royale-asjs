@@ -2967,7 +2967,9 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function addChild(child:IUIComponent):IUIComponent
     {
         return addElement(child) as IUIComponent;
@@ -2977,7 +2979,9 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
@@ -2988,7 +2992,9 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function removeChild(child:IUIComponent):IUIComponent
     {
         return removeElement(child) as IUIComponent;
@@ -3003,7 +3009,9 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function removeChildAt(index:int):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -3016,7 +3024,9 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function getChildAt(index:int):IUIComponent
     {
         return getElementAt(index) as IUIComponent;
@@ -3035,7 +3045,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    COMPILE::SWF 
+    { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
         if (GOOG::DEBUG)
@@ -3045,7 +3057,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    COMPILE::SWF 
+    { override }
     public function getChildIndex(child:IUIComponent):int
     {
         return getElementIndex(child);
@@ -3054,7 +3068,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function getChildByName(name:String):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -3065,7 +3081,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    COMPILE::SWF 
+    { override }
     public function contains(child:IUIComponent):Boolean
     {
         if (GOOG::DEBUG)

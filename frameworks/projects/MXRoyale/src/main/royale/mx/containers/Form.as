@@ -290,65 +290,16 @@ public class Form extends Container
      *  Discard the cached measuredLabelWidth if a child
      *  is added or removed.
      */
-    COMPILE::SWF
-    override public function addChild(child:DisplayObject):DisplayObject
-    {
-        invalidateLabelWidth();
-        
-        return super.addChild(child);
-    }
-
-    /**
-     *  @private
-     */
-    COMPILE::SWF
-    override public function addChildAt(child:DisplayObject,
-                                        index:int):DisplayObject
-    {
-        invalidateLabelWidth();
-        
-        return super.addChildAt(child, index);
-    }
-
-    /**
-     *  @private
-     */
-    COMPILE::SWF
-    override public function removeChild(child:DisplayObject):DisplayObject
-    {
-        invalidateLabelWidth();
-        
-        return super.removeChild(child);
-    }
-
-    /**
-     *  @private
-     */
-    COMPILE::SWF
-    override public function removeChildAt(index:int):DisplayObject
-    {
-        invalidateLabelWidth();
-        
-        return super.removeChildAt(index);
-    }
-
-    /**
-     *  @private
-     *  Discard the cached measuredLabelWidth if a child
-     *  is added or removed.
-     */
-    COMPILE::JS
     override public function addChild(child:IUIComponent):IUIComponent
     {
         invalidateLabelWidth();
         
         return super.addChild(child);
     }
-    
+
     /**
      *  @private
      */
-    COMPILE::JS
     override public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
@@ -356,22 +307,20 @@ public class Form extends Container
         
         return super.addChildAt(child, index);
     }
-    
+
     /**
      *  @private
      */
-    COMPILE::JS
     override public function removeChild(child:IUIComponent):IUIComponent
     {
         invalidateLabelWidth();
         
         return super.removeChild(child);
     }
-    
+
     /**
      *  @private
      */
-    COMPILE::JS
     override public function removeChildAt(index:int):IUIComponent
     {
         invalidateLabelWidth();

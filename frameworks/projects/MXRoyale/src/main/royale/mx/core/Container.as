@@ -996,12 +996,13 @@ public class Container extends UIComponent
 		return contentView.getElementAt(index);
 	}
 	
+    [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF
-    override public function getChildAt(index:int):DisplayObject
+    override public function getChildAt(index:int):IUIComponent
     {
         var layoutHost:ILayoutHost = view as ILayoutHost;
         var contentView:IParent = layoutHost.contentView as IParent;
-        return contentView.getElementAt(index) as DisplayObject;
+        return contentView.getElementAt(index) as IUIComponent;
     }
 
 	/*

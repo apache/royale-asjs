@@ -647,7 +647,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
     public function set selectedChild(
                             value:INavigatorContent):void
     {
-        var newIndex:int = getChildIndex(ROYALE::DISPLAYOBJECT(value));
+        var newIndex:int = getChildIndex(IUIComponent(value));
 
         if (newIndex >= 0 && newIndex < numChildren)
             selectedIndex = newIndex;
@@ -1333,7 +1333,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
     /**
      *  @private
      */
-    private function childAddHandler(child:ROYALE::DISPLAYOBJECT):void
+    private function childAddHandler(child:IUIComponent):void
     {
         var index:int = getChildIndex(child);
 
@@ -1379,7 +1379,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
      *  next (or previous) child gets automatically selected; when the last
      *  remaining child is removed, the selectedIndex is set to -1.
      */
-    private function childRemoveHandler(child:ROYALE::DISPLAYOBJECT, index:int):void
+    private function childRemoveHandler(child:IUIComponent, index:int):void
     {
         if (child is INavigatorContent)
         {
@@ -1430,10 +1430,10 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
     /**
      *  @private
      */
-    override public function addChildAt(item:ROYALE::DISPLAYOBJECT, index:int):ROYALE::DISPLAYOBJECT
+    override public function addChildAt(item:IUIComponent, index:int):IUIComponent
     {
         addingChildren = true;
-        var obj:ROYALE::DISPLAYOBJECT = super.addChildAt(item, index);
+        var obj:IUIComponent = super.addChildAt(item, index);
         internalDispatchEvent(CollectionEventKind.ADD, obj, index);
         childAddHandler(item);
         addingChildren = false;
@@ -1443,10 +1443,10 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
     /**
      *  @private
      */
-    override public function removeChild(item:ROYALE::DISPLAYOBJECT):ROYALE::DISPLAYOBJECT
+    override public function removeChild(item:IUIComponent):IUIComponent
     {
         var index:int = getChildIndex(item);
-        var obj:ROYALE::DISPLAYOBJECT = super.removeChild(item);
+        var obj:IUIComponent = super.removeChild(item);
         internalDispatchEvent(CollectionEventKind.REMOVE, obj, index);
         childRemoveHandler(item, index);
         return obj;
@@ -1479,7 +1479,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
         pe.source = event.target;
         pe.property = (event.type == "labelChanged") ? "label" : "icon";
 
-        internalDispatchEvent(CollectionEventKind.UPDATE, pe, getChildIndex(event.target as ROYALE::DISPLAYOBJECT));
+        internalDispatchEvent(CollectionEventKind.UPDATE, pe, getChildIndex(event.target as IUIComponent));
     }
 
     /**
@@ -1536,7 +1536,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
      */
     public function addItem(item:Object):void
     {
-        addChild(item as ROYALE::DISPLAYOBJECT);
+        addChild(item as IUIComponent);
     }
 
     /**
@@ -1545,7 +1545,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
      */
     public function addItemAt(item:Object, index:int):void
     {
-        addChildAt(item as ROYALE::DISPLAYOBJECT, index);
+        addChildAt(item as IUIComponent, index);
     }
 
     /**
@@ -1564,7 +1564,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
     public function getItemIndex(item:Object):int
     {
 		if (isValidChild(item as ROYALE::DISPLAYOBJECT))
-        	return getChildIndex(item as ROYALE::DISPLAYOBJECT);
+        	return getChildIndex(item as IUIComponent);
 		else
 			return -1;
     }
@@ -1605,7 +1605,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
 	 */
 	public function removeItem(item:Object):Boolean
 	{
-		var displayObject:ROYALE::DISPLAYOBJECT = removeChild(item as ROYALE::DISPLAYOBJECT);
+		var displayObject:IUIComponent = removeChild(item as IUIComponent);
 		return displayObject != null;
 	}
 
@@ -1626,7 +1626,7 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
     public function setItemAt(item:Object, index:int):Object
     {
         var result:Object = removeChildAt(index);
-        addChildAt(item as ROYALE::DISPLAYOBJECT,index);
+        addChildAt(item as IUIComponent,index);
         return result;
     }
 
