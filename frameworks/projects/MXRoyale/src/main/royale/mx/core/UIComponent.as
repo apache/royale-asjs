@@ -4049,15 +4049,13 @@ public class UIComponent extends UIBase
      */
     public function get fontWeight():Object
     {
-        if (GOOG::DEBUG)
-            trace("fontWeight not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "fontWeight");
     }
     public function set fontWeight(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("fontWeight not implemented");
+        setStyle("fontWeight", value);
     }
+    
 	[Inspectable(category="General")]
 
 	/*	  
