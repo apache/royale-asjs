@@ -379,6 +379,49 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		}
 	}
 	
+    private var _parameters:Object;
+    
+    /**
+     *  The parameters property returns an Object containing name-value
+     *  pairs representing the parameters provided to this Application.
+     *
+     *  <p>You can use a for-in loop to extract all the names and values
+     *  from the parameters Object.</p>
+     *
+     *  <p>There are two sources of parameters: the query string of the
+     *  Application's URL, and the value of the FlashVars HTML parameter
+     *  (this affects only the main Application).</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get parameters():Object
+    {
+        COMPILE::SWF
+        {
+            return loaderInfo.parameters;
+        }
+        COMPILE::JS
+        {
+            if (!_parameters)
+            {
+                _parameters = {};
+                var query:String = location.search.substring(1);
+                if(query)
+                {
+                    var vars:Array = query.split("&");
+                    for (var i:int=0;i<vars.length;i++) {
+                        var pair:Array = vars[i].split("=");
+                        _parameters[pair[0]] = decodeURIComponent(pair[1]);
+                    }
+                }
+            }
+            return _parameters;
+        }
+    }
+
 	/**
 	 *  This method gets called when all preinitialize handlers
 	 *  no longer call preventDefault();
