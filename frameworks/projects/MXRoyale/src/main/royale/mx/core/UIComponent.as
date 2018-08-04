@@ -4125,14 +4125,11 @@ public class UIComponent extends UIBase
      */
     public function get fontSize():Object
     {
-        if (GOOG::DEBUG)
-            trace("fontSize not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "fontSize");
     }
     public function set fontSize(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("fontSize not implemented");
+        setStyle("fontSize", value);
     }
 	[Inspectable(category="General")]
 	
@@ -4370,8 +4367,14 @@ public class UIComponent extends UIBase
      */
     public function setStyle(styleProp:String, newValue:*):void
     {
-        if (GOOG::DEBUG)
-            trace("setStyle not implemented");
+        if (!style)
+            style = new FlexCSSStyles();
+        style[styleProp] = newValue;
+        COMPILE::JS
+        {
+        if (initialized)
+            ValuesManager.valuesImpl.applyStyles(this, style);
+        }
     }
 
 
