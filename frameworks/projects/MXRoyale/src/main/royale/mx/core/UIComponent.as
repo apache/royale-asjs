@@ -1846,12 +1846,6 @@ public class UIComponent extends UIBase
     //  percentWidth
     //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the percentWidth property.
-     */
-    private var _percentWidth:Number;
-
     [Bindable("resize")]
     [Inspectable(environment="none")]
 
@@ -1879,7 +1873,7 @@ public class UIComponent extends UIBase
      */
     override public function get percentWidth():Number
     {
-        return _percentWidth;
+        return super.percentWidth;
     }
 
     /**
@@ -1887,26 +1881,14 @@ public class UIComponent extends UIBase
      */
     override public function set percentWidth(value:Number):void
     {
-        if (_percentWidth == value)
-            return;
-
-        if (!isNaN(value))
-            _explicitWidth = NaN;
-
-        _percentWidth = value;
-
+        super.percentWidth = value;
+        
          invalidateParentSizeAndDisplayList();
     }
 
     //----------------------------------
     //  percentHeight
     //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the percentHeight property.
-     */
-    private var _percentHeight:Number;
 
     [Bindable("resize")]
     [Inspectable(environment="none")]
@@ -1935,7 +1917,7 @@ public class UIComponent extends UIBase
      */
     override public function get percentHeight():Number
     {
-        return _percentHeight;
+        return super.percentHeight;
     }
 
     /**
@@ -1943,13 +1925,7 @@ public class UIComponent extends UIBase
      */
     override public function set percentHeight(value:Number):void
     {
-        if (_percentHeight == value)
-            return;
-
-        if (!isNaN(value))
-            _explicitHeight = NaN;
-
-        _percentHeight = value;
+        super.percentHeight = value;
 
         invalidateParentSizeAndDisplayList();
     }
