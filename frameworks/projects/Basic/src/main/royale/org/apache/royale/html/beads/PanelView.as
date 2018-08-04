@@ -219,6 +219,7 @@ package org.apache.royale.html.beads
 				IEventDispatcher(value).addEventListener("heightChanged", handleSizeChange);
 				IEventDispatcher(value).addEventListener("sizeChanged", handleSizeChange);
 				IEventDispatcher(value).addEventListener("childrenAdded", handleChildrenAdded);
+                IEventDispatcher(value).addEventListener("initComplete", handleInitComplete);
 			}
 
             super.strand = value;
@@ -269,11 +270,19 @@ package org.apache.royale.html.beads
 
 			performLayout(event);
 		}
+        
+        private var sawInitComplete:Boolean;
 
 		private function handleChildrenAdded(event:Event):void
 		{
-			_contentArea.dispatchEvent(new Event("layoutNeeded"));
-			performLayout(event);
+            var host:UIBase = _strand as UIBase;
+            if (sawInitComplete || 
+                ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+                    (host.isWidthSizedToContent() || !isNaN(host.explicitWidth))))
+            {
+    			_contentArea.dispatchEvent(new Event("layoutNeeded"));
+	    		performLayout(event);
+            }
 		}
 
 		/**

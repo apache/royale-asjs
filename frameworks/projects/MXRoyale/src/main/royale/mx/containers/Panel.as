@@ -663,7 +663,9 @@ public class Panel extends Container
     {
         var panelView:PanelView = view as PanelView;
         panelView.contentArea.addElement(c, dispatchEvent);
-        panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
     }
     
     /**
@@ -674,7 +676,9 @@ public class Panel extends Container
     {
         var panelView:PanelView = view as PanelView;
         panelView.contentArea.addElementAt(c, index, dispatchEvent);
-        panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
     }
     
     /**

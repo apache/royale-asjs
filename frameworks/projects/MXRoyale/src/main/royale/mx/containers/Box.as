@@ -203,7 +203,10 @@ public class Box extends Container
 		_layout.direction = value;
 		
 		dispatchEvent(new Event("directionChanged"));
-		dispatchEvent(new Event("layoutNeeded"));
+        if (parent != null &&
+            ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth))))
+    		dispatchEvent(new Event("layoutNeeded"));
 
     }
 
