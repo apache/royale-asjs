@@ -174,12 +174,18 @@ package org.apache.royale.core
 			var hostSprite:Sprite = (host as IRenderedObject).$displayObject as Sprite;
 			
 			if (bitmap) {
-				hostSprite.removeChild(bitmap);
+                if ("$removeChild" in hostSprite)
+                    hostSprite["$removeChild"](bitmap);
+                else
+    				hostSprite.removeChild(bitmap);
 			}
 			
 			bitmap = Bitmap(LoaderInfo(event.target).content);
 			
-			hostSprite.addChild(bitmap);
+            if ("$addChild" in hostSprite)
+                hostSprite["$addChild"](bitmap);
+            else
+    			hostSprite.addChild(bitmap);
 			
             if (host.isWidthSizedToContent())
             {

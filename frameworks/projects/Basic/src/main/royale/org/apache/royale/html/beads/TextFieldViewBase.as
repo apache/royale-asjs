@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	import flash.text.StyleSheet;
 	
 	import org.apache.royale.core.CSSTextField;
@@ -95,7 +93,7 @@ package org.apache.royale.html.beads
             IEventDispatcher(_strand).addEventListener("widthChanged", widthChangeHandler);
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangeHandler);
             IEventDispatcher(_strand).addEventListener("sizeChanged", sizeChangeHandler);
-			DisplayObjectContainer(value).addChild(_textField);
+			UIBase(value).$addChild(_textField);
 
             var ilc:ILayoutChild = host as ILayoutChild;
             autoHeight = ilc.isHeightSizedToContent();
