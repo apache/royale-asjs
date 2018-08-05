@@ -2903,6 +2903,10 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         // until preloader?
         component.addEventListener("applicationComplete", applicationCompleteHandler);
         addChild(component as IUIComponent);
+        COMPILE::SWF
+        {
+            component.setActualSize(stage.stageWidth, stage.stageHeight);            
+        }
     }
     
     private function applicationCompleteHandler(event:Event):void
