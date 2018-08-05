@@ -58,8 +58,6 @@
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
-    <component id="DateChooserList" class="org.apache.royale.jewel.supportClasses.datechooser.DateChooserList" />
-    <component id="DateChooserHeader" class="org.apache.royale.jewel.supportClasses.datechooser.DateChooserHeader" />
     <component id="DataContainer" class="org.apache.royale.jewel.DataContainer" />
 
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>

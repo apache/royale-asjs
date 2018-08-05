@@ -49,6 +49,7 @@ package
         import org.apache.royale.jewel.beads.views.AlertTitleBarView; AlertTitleBarView;
         import org.apache.royale.jewel.beads.views.ListView; ListView;
         import org.apache.royale.jewel.beads.views.DateChooserView; DateChooserView;
+        import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.beads.views.TableView; TableView;
 
         import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;

@@ -26,13 +26,17 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
-	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserHeader;
-	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserList;
+	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
+	// import org.apache.royale.jewel.supportClasses.datechooser.DateChooserHeader;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
+	import org.apache.royale.core.ClassFactory;
 	// import org.apache.royale.html.beads.layouts.HorizontalFlexLayout;
 
 	/**
@@ -78,7 +82,7 @@ package org.apache.royale.jewel.beads.views
 		
 		private var monthButtonsContainer:Group;
 		private var monthLabel:Button;
-		private var dayNamesContainer:DateChooserHeader;
+		// private var dayNamesContainer:DateChooserHeader;
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
@@ -116,7 +120,7 @@ package org.apache.royale.jewel.beads.views
 			return _nextMonthButton;
 		}
 		
-		private var _dayList:DateChooserList;
+		private var _dayTable:DateChooserTable;
 		/**
 		 *  The List of days to display
 		 *
@@ -125,9 +129,9 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get dayList():List
+		public function get dayList():Table
 		{
-			return _dayList;
+			return _dayTable;
 		}
 		
 		// private const controlHeight:int = 26;
@@ -158,23 +162,23 @@ package org.apache.royale.jewel.beads.views
 			
 			// DAY NAMES
 			
-			dayNamesContainer = new DateChooserHeader();
-			//dayNamesContainer.id = "dateChooserDayNames";
-			COMPILE::SWF {
-			dayNamesContainer.percentWidth = 100;
-			}
+			// dayNamesContainer = new DateChooserHeader();
+			// //dayNamesContainer.id = "dateChooserDayNames";
+			// COMPILE::SWF {
+			// dayNamesContainer.percentWidth = 100;
+			// }
 			
-			getHost().addElement(dayNamesContainer, false);
+			// getHost().addElement(dayNamesContainer, false);
 
 			// DAYS
-			
-			_dayList = new DateChooserList();
+			createColumns();
+			_dayTable = new DateChooserTable();
 			COMPILE::SWF {
-			_dayList.percentWidth = 100;
+			_dayTable.percentWidth = 100;
 			}
-			getHost().addElement(_dayList, false);
+			getHost().addElement(_dayTable, false);
 			
-			IEventDispatcher(_dayList).dispatchEvent( new Event("itemsCreated") );
+			IEventDispatcher(_dayTable).dispatchEvent( new Event("itemsCreated") );
 			model.addEventListener("selectedDateChanged", selectionChangeHandler);
 
 			// monthButtonsContainer.id = "dateChooserMonthButtons";
@@ -220,15 +224,37 @@ package org.apache.royale.jewel.beads.views
 			// 	dayNamesContainer.element.style["align-items"] = "center";
 			// }
 			
-			// _dayList.className = "DateChooserList";
-			// _dayList.id = "dateChooserList";
-			// _dayList.style = new SimpleCSSStylesWithFlex();
-			// _dayList.style.flexGrow = 1;
+			// _dayTable.className = "DateChooserList";
+			// _dayTable.id = "dateChooserList";
+			// _dayTable.style = new SimpleCSSStylesWithFlex();
+			// _dayTable.style.flexGrow = 1;
 			// COMPILE::JS {
-			// 	_dayList.element.style["flex-grow"] = "1";
+			// 	_dayTable.element.style["flex-grow"] = "1";
 			// }
 		}
 		
+		private var columns:Array;
+		private var dayNamesInit:Boolean;
+
+		public function createColumns():void
+		{
+			if(!dayNamesInit)
+			{
+				columns = [];
+				var dateItemRenderer:ClassFactory = new ClassFactory(DateItemRenderer);
+				for (var i:int = 0; i < 7; i++)
+				{
+					var column:TableColumn = new TableColumn();
+					column.dataField = "d"+i;
+					column.align = "center";
+					column.itemRenderer = dateItemRenderer;
+					columns.push(column);
+				}
+
+				dayNamesInit = true;
+			}
+		}
+
 		/**
 		 * @private
 		 */
@@ -237,11 +263,31 @@ package org.apache.royale.jewel.beads.views
 			monthLabel.text = model.monthNames[model.displayedMonth] + " " +
 				String(model.displayedYear);
 
-			dayNamesContainer.dataProvider = model.dayNames;
+			var len:int = columns.length;
+			for(var index:int = 0; index < len; index++)
+			{
+				var column:TableColumn = columns[index];
+				column.label = model.dayNames[index];
+			}
 
-			_dayList.dataProvider = model.days;
+			_dayTable.columns = columns;
 
-			_dayList.selectedIndex = model.getIndexForSelectedDate();
+			var currrentMonth:Array = [];
+			var dayIndex:int = 0;
+			for(var i:int = 0; i < model.days.length/7; i++)
+			{
+				currrentMonth[i] = {};
+				for(var j:int = 0; j < columns.length; j++)
+				{
+					currrentMonth[i]["d"+j] = model.days[dayIndex];
+					dayIndex++;
+				}
+			}
+			trace("currrentMonth: " + currrentMonth);
+			_dayTable.dataProvider = new ArrayList(currrentMonth);
+			_dayTable.dispatchEvent( new Event("tableComplete") );
+
+			_dayTable.selectedIndex = model.getIndexForSelectedDate();
 		}
 
 		/**

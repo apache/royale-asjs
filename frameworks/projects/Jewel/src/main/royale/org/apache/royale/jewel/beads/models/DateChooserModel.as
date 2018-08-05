@@ -229,7 +229,8 @@ package org.apache.royale.jewel.beads.models
             var dayNumber:int = 1;
             var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
             
-            while(dayNumber <= numDays) {
+            while(dayNumber <= numDays) 
+			{
                 _days[i++] = new Date(displayedYear, displayedMonth, dayNumber++);
             }
             

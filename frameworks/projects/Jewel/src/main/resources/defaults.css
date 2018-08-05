@@ -260,14 +260,8 @@ j|DateChooser {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateChooserMouseController");
 }
 
-j|DateChooserHeader {
-  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DayNameItemRenderer");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
-}
-
-j|DateChooserList {
+j|DateChooserTable {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DateItemRenderer");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalFlowLayout");
 }
 
 j|DateField {

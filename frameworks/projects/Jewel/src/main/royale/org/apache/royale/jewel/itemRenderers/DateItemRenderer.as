@@ -31,7 +31,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateItemRenderer extends StringItemRenderer
+	public class DateItemRenderer extends TableItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -66,8 +66,8 @@ package org.apache.royale.jewel.itemRenderers
 				textField.autoSize = TextFieldAutoSize.CENTER;
 			}
 
-			if (value is Date) {
-				this.text = String( (value as Date).getDate() );
+			if (value[labelField] is Date) {
+				this.text = String( (value[labelField] as Date).getDate() );
 
 				COMPILE::SWF {
 					mouseEnabled = true;

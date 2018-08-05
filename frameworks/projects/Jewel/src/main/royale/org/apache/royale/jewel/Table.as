@@ -19,9 +19,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.core.DataContainerBase;
+	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.models.TableModel;
-	
+
 	COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -29,6 +31,27 @@ package org.apache.royale.jewel
     }
 	
 	[DefaultProperty("columns")]
+
+	/**
+	 *  Indicates that the initialization of the list is complete.
+	 *
+     *  @toplevel
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.3
+	 */
+	[Event(name="initComplete", type="org.apache.royale.events.Event")]
+
+	/**
+	 * The change event is dispatched whenever the list's selection changes.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.3
+	 */
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The Table class represents an HTML <table> element.
@@ -43,7 +66,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Table extends DataContainer
+	public class Table extends DataContainerBase
 	{
 		/**
 		 *  constructor.
@@ -100,7 +123,7 @@ package org.apache.royale.jewel
 		{
 			_fixedHeader = value;
 
-			toggleClass("fixedHeader", _fixedHeader);
+			// toggleClass("fixedHeader", _fixedHeader);
 		}
 
 		private var _tableDataHeight:Boolean;
@@ -135,13 +158,59 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		override public function get dataProvider():Object
+		public function get dataProvider():Object
 		{
 			return TableModel(model).dataProvider;
 		}
-		override public function set dataProvider(value:Object):void
+		public function set dataProvider(value:Object):void
 		{
 			TableModel(model).dataProvider = value;
+		}
+
+		/**
+		 *  The index of the currently selected item. Changing this value
+		 *  also changes the selectedItem property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		[Bindable("change")]
+        public function get selectedIndex():int
+		{
+			return ISelectionModel(model).selectedIndex;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function set selectedIndex(value:int):void
+		{
+			ISelectionModel(model).selectedIndex = value;
+		}
+
+		/**
+		 *  The item currently selected. Changing this value also
+		 *  changes the selectedIndex property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		[Bindable("change")]
+		public function get selectedItem():Object
+		{
+			return ISelectionModel(model).selectedItem;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function set selectedItem(value:Object):void
+		{
+			ISelectionModel(model).selectedItem = value;
 		}
 		
 		override public function addedToParent():void

@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.collections.ArrayList;
     import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
@@ -55,7 +56,15 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			_strand = value;
 			
-			IEventDispatcher(_strand).addEventListener("tableComplete", handleInitComplete);
+			model = _strand.getBeadByType(IBeadModel) as TableModel;
+			if (model == null) return;
+
+			view = _strand.getBeadByType(IBeadView) as TableView;
+
+			table = _strand as Table;
+            dataGroup = table.dataGroup;
+
+			IEventDispatcher(_strand).addEventListener("tableComplete", createTableFromData);
 		}
 
         private var _itemRendererFactory:IItemRendererClassFactory;
@@ -86,18 +95,37 @@ package org.apache.royale.jewel.beads.itemRenderers
 			_itemRendererFactory = value;
 		}
 		
-		private function handleInitComplete(event:Event):void
-		{
-			var model:TableModel = _strand.getBeadByType(IBeadModel) as TableModel;
-			if (model == null) return;
+		private var thead:THead;
+		private var tbody:TBody;
+		private var model:TableModel;
+		private var view:TableView;
+		private var table:Table;
+		private var dataGroup:IItemRendererParent;
 
-			var view:TableView = _strand.getBeadByType(IBeadView) as TableView;
+		private var headerRow:TableRow;
+		private var row:TableRow;
+		private var tableHeader:TableHeader;
+		private function cleanTable():void
+		{
+			//THead
+			dataGroup.removeAllItemRenderers();
+
+			//TBody
+			if(tbody != null)
+			{
+				while (tbody.numElements > 0) {
+					var child:IChild = tbody.getElementAt(0);
+					tbody.removeElement(child);
+				}
+
+			}
+		}
+		private function createTableFromData(event:Event):void
+		{
+			cleanTable();
 			
 			var dp:ArrayList = model.dataProvider as ArrayList;
 			if (dp == null || dp.length == 0) return;
-			
-			var table:Table = _strand as Table;
-            var dataGroup:IItemRendererParent = table.dataGroup;
 			
 			var createHeaderRow:Boolean = false;
             var test:TableColumn;
@@ -111,27 +139,25 @@ package org.apache.royale.jewel.beads.itemRenderers
 				}
 			}
 
-            var thead:THead;
-            var row:TableRow;
 			if (createHeaderRow) {
                 thead = new THead();
-				row = new TableRow();
+				headerRow = new TableRow();
 				
 				for(c=0; c < model.columns.length; c++)
 				{
 					test = model.columns[c] as TableColumn;
-					var tableHeader:TableHeader = new TableHeader();
+					tableHeader = new TableHeader();
 					var label:Label = new Label();
 					tableHeader.addElement(label);
 					label.text = test.label == null ? "" : test.label;
-					row.addElement(tableHeader);
+					headerRow.addElement(tableHeader);
 				}
 
-				thead.addElement(row);
+				thead.addElement(headerRow);
 				table.addElement(thead);
 			}
 			
-            var tbody:TBody = view.tbody;
+            tbody = view.tbody;
             table.addElement(tbody);
 
             var column:TableColumn;
@@ -154,7 +180,7 @@ package org.apache.royale.jewel.beads.itemRenderers
                     {
                         ir = itemRendererFactory.createItemRenderer(dataGroup) as TableItemRenderer;
                     }
-                    
+
 					tableCell.addElement(ir);
 					row.addElement(tableCell);
 					

@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controllers
 {	
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
-    import org.apache.royale.jewel.supportClasses.datechooser.DateChooserList;
+    import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
 	
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IBeadModel;
@@ -68,18 +68,21 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			_strand = value;
 			
+            model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+			                   
             var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
 			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
 			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
 			
-            IEventDispatcher(view.dayList).addEventListener("change", listHandler);
+            IEventDispatcher(view.dayList).addEventListener("change", tableHandler);
 		}
+
+		private var model:DateChooserModel;
 		
-        private function listHandler(event:Event):void
+        private function tableHandler(event:Event):void
         {
-            var list:DateChooserList = event.target as DateChooserList;
-            var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
-            model.selectedDate = list.selectedItem as Date;
+            var table:DateChooserTable = event.target as DateChooserTable;
+            model.selectedDate = table.selectedItem as Date;
         }
 
 		/**
