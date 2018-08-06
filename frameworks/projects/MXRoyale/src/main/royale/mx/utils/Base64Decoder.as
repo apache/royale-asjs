@@ -22,7 +22,7 @@ package mx.utils
 
 COMPILE::SWF
 {
-    import flash.utils.ByteArray;
+    import mx.utils.ByteArray;
 }
 
 COMPILE::JS
