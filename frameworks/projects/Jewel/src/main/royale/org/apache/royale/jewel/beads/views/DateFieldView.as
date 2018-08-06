@@ -203,8 +203,8 @@ package org.apache.royale.jewel.beads.views
 					if (!_popUp)
 					{
 						_popUp = new DateChooser();
-						_popUp.width = 210;
-						_popUp.height = 230;
+						// _popUp.width = 210;
+						// _popUp.height = 230;
 					}
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;

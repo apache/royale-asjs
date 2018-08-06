@@ -235,12 +235,21 @@ j|Card {
 
 .jewel.datechooser {
   background: white;
-  width: 280px;
+  width: 330px;
 }
-.jewel.datechooser .jewel.button, .jewel.datechooser .jewel.list {
+.jewel.datechooser .jewel.table {
   background: white;
   border: none;
   box-shadow: none;
+}
+.jewel.datechooser .jewel.table th {
+  background: white;
+  box-shadow: none;
+  border-left: 0px;
+}
+.jewel.datechooser .jewel.table td {
+  border-top: 0px;
+  border-left: 0px;
 }
 
 .calendar.item {

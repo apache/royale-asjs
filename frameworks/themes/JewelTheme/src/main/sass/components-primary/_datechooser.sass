@@ -22,13 +22,31 @@
 // DateChooser variables
 
 .jewel.datechooser
-    background: white
-    width: 280px
+    background: lighten($default-color, 20%)
+    width: 330px
 
-    .jewel.button, .jewel.list
-        background: white
+    // .jewel.button
+        // , .jewel.list
+        // background: white
+        // border: none
+        // box-shadow: none
+
+    .jewel.table
+        background: lighten($default-color, 20%)
         border: none
         box-shadow: none
+
+        th
+            @if $flat
+                background: lighten($default-color, 20%)
+            @else
+                background: lighten($default-color, 20%)
+                box-shadow: none
+            border-left: 0px
+        td
+            border-top: 0px
+            border-left: 0px
+
 
 .calendar
     &.item
