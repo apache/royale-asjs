@@ -19,6 +19,8 @@
 
 package mx.modules
 {
+    import org.apache.royale.core.IModule
+        
     /**
      *  An interface that marks a class as being a module.
      * 
@@ -29,7 +31,7 @@ package mx.modules
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    public interface IModule
+    public interface IModule extends org.apache.royale.core.IModule
     {
         
     }
