@@ -69,8 +69,9 @@
     	<component id="DataGroup" class="spark.components.DataGroup"/>
 	<component id="VerticalLayout" class="spark.layouts.VerticalLayout"/>
 	<component id="BitmapImage" class="spark.primitives.BitmapImage"/>
-    <component id="Image" class="spark.components.Image"/>
-    
+    	<component id="Image" class="spark.components.Image"/>
+        <component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
+
     <!-- Text Layout Framework (TLF) -->
     <component id="a" class="org.apache.royale.textLayout.elements.LinkElement" lookupOnly="true"/>
     <component id="br" class="org.apache.royale.textLayout.elements.BreakElement" lookupOnly="true"/>
