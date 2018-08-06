@@ -122,6 +122,8 @@
 		<compile-mxml example="/SourceTab"/>
          -->
 		<compile-mxml example="/Welcome"/>
+        <copy file="${basedir}/src/3rdparty.xml" toFile="${basedir}/bin/js-debug/3rdparty.xml" />
+        <!--<copy file="${basedir}/src/3rdparty.xml" toFile="${basedir}/bin/js-release/3rdparty.xml" />-->
 	</target>
 	
 	<target name="compile-mx" description="compile mx examples">
