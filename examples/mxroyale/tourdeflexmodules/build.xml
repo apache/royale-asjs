@@ -117,8 +117,10 @@
 	
 	<target name="compile-shell" description="compile explorer shell">
 		<compile-mxml example="/explorer"/>
-		<compile-mxml-locales example="/loaderPanel"/>
+		<!-- not sure why these were compiled, they are not apps or modules
+         <compile-mxml-locales example="/loaderPanel"/>
 		<compile-mxml example="/SourceTab"/>
+         -->
 		<compile-mxml example="/Welcome"/>
 	</target>
 	
