@@ -82,7 +82,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="close", type="mx.events.DropdownEvent")]
+[Event(name="close", type="mx.events.DropdownEvent")]
 
 /**
  *  Dispatched if the ColorPicker <code>editable</code>

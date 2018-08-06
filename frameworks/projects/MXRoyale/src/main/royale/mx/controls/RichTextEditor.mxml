@@ -203,9 +203,11 @@
  @productversion Flex 3
 
  -->
- <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" minWidth="220" minHeight="200" width="325" height="300">
+ <mx:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+           xmlns:mx="library://ns.apache.org/royale/mx"
+           xmlns="*" minWidth="220" minHeight="200" width="325" height="300">
 
-    <mx:Metadata>
+    <fx:Metadata>
         <![CDATA[
         /**
         * Dispatched when the user changes the contents or format of the text in the
@@ -235,7 +237,7 @@
          */
         [Style(name="textAreaStyleName", type="String", inherit="no")]
         
-        [IconFile("RichTextEditor.png")]
+//        [IconFile("RichTextEditor.png")]
         
         [Exclude(name="alignButtons", kind="property")]
         [Exclude(name="boldButton", kind="property")]
@@ -255,49 +257,51 @@
         [Exclude(name="toolBar2", kind="property")]
         [Exclude(name="underlineButton", kind="property")]
         ]]>
-    </mx:Metadata>
+    </fx:Metadata>
 
-    <mx:Array id="fontFamilyArray"> 
-        <mx:String>_sans</mx:String>
-        <mx:String>_serif</mx:String>
-        <mx:String>_typewriter</mx:String>
-        <mx:String>Arial</mx:String>
-        <mx:String>Courier</mx:String>
-        <mx:String>Courier New</mx:String>
-        <mx:String>Geneva</mx:String>
-        <mx:String>Georgia</mx:String>
-        <mx:String>Helvetica</mx:String>
-        <mx:String>Times New Roman</mx:String>
-        <mx:String>Times</mx:String>
-        <mx:String>Verdana</mx:String>
-    </mx:Array>
+     <fx:Declarations>
+    <fx:Array id="fontFamilyArray"> 
+        <fx:String>_sans</fx:String>
+        <fx:String>_serif</fx:String>
+        <fx:String>_typewriter</fx:String>
+        <fx:String>Arial</fx:String>
+        <fx:String>Courier</fx:String>
+        <fx:String>Courier New</fx:String>
+        <fx:String>Geneva</fx:String>
+        <fx:String>Georgia</fx:String>
+        <fx:String>Helvetica</fx:String>
+        <fx:String>Times New Roman</fx:String>
+        <fx:String>Times</fx:String>
+        <fx:String>Verdana</fx:String>
+    </fx:Array>
 
-    <mx:Array id="fontSizeArray"> 
-        <mx:String>8</mx:String>
-        <mx:String>9</mx:String>
-        <mx:String>10</mx:String>
-        <mx:String>11</mx:String>
-        <mx:String>12</mx:String>
-        <mx:String>14</mx:String>
-        <mx:String>16</mx:String>
-        <mx:String>18</mx:String>
-        <mx:String>20</mx:String>
-        <mx:String>22</mx:String>
-        <mx:String>24</mx:String>
-        <mx:String>26</mx:String>
-        <mx:String>28</mx:String>
-        <mx:String>36</mx:String>
-        <mx:String>48</mx:String>
-        <mx:String>72</mx:String>
-    </mx:Array>
+    <fx:Array id="fontSizeArray"> 
+        <fx:String>8</fx:String>
+        <fx:String>9</fx:String>
+        <fx:String>10</fx:String>
+        <fx:String>11</fx:String>
+        <fx:String>12</fx:String>
+        <fx:String>14</fx:String>
+        <fx:String>16</fx:String>
+        <fx:String>18</fx:String>
+        <fx:String>20</fx:String>
+        <fx:String>22</fx:String>
+        <fx:String>24</fx:String>
+        <fx:String>26</fx:String>
+        <fx:String>28</fx:String>
+        <fx:String>36</fx:String>
+        <fx:String>48</fx:String>
+        <fx:String>72</fx:String>
+    </fx:Array>         
+     </fx:Declarations>
 
-    <mx:Script>
+    <fx:Script>
     <![CDATA[
     
     import mx.controls.textClasses.TextRange;
     import mx.core.mx_internal;
-    import mx.core.IUITextField;
-    import mx.core.UITextFormat;
+    //import mx.core.IUITextField;
+    //import mx.core.UITextFormat;
 
     use namespace mx_internal;
     
@@ -424,7 +428,7 @@
     private var showToolTipsChanged:Boolean = false;
     private var textChanged:Boolean = false;
     private var htmlTextChanged:Boolean = false;
-    private var previousTextFormat:TextFormat = null;
+    //private var previousTextFormat:TextFormat = null;
     private var textFormatChanged:Boolean = false;
     // -1 is used to force updation of the ToolBar styles
     private var lastCaretIndex:int = -1;
@@ -661,7 +665,6 @@
 
     /**
      * @private
-     */
     override protected function commitProperties():void
     {
         super.commitProperties();
@@ -740,6 +743,7 @@
             }
         }
     }
+     */
     
     /**
      * @private
@@ -788,6 +792,7 @@
 
     private function setTextStyles(type:String, value:Object = null):void
     {
+        /*
         var tf:TextFormat;
 
         var beginIndex:int = textArea.getTextField().selectionBeginIndex;
@@ -876,10 +881,12 @@
         }
 
         callLater(textArea.setFocus);
+        */
     }
 
     private function getTextStyles():void
     {
+        /*
         if (!textArea)
             return;
             
@@ -952,6 +959,7 @@
         
         lastCaretIndex = textArea.getTextField().caretIndex;
         invalidateToolBarFlag = false;
+        */
     }
 
     private function setComboSelection(combo:ComboBox,val:String):void
@@ -978,6 +986,7 @@
      */
     private function systemManager_mouseUpHandler(event:MouseEvent):void
     {
+        /*
         if (lastCaretIndex != textArea.getTextField().caretIndex)
             getTextStyles();
         else
@@ -988,11 +997,12 @@
                 linkTextInput.enabled = true;   
         }
         systemManager.removeEventListener(
-            MouseEvent.MOUSE_UP, systemManager_mouseUpHandler, true);       
+            MouseEvent.MOUSE_UP, systemManager_mouseUpHandler, true);  
+        */
     }
     
     ]]>
-    </mx:Script>
+    </fx:Script>
 
     <!--- @private -->
     <mx:TextArea id="textArea" height="100%" width="100%" minHeight="0" minWidth="0"
@@ -1001,8 +1011,10 @@
                  keyUp="getTextStyles()"
                  keyDown="if (textFormatChanged) 
                     {
+/*
                         textArea.getTextField().defaultTextFormat=previousTextFormat;
                         textFormatChanged = false;
+*/
                     }"
                  mouseDown="systemManager.addEventListener(
                     MouseEvent.MOUSE_UP, systemManager_mouseUpHandler, true);"
@@ -1049,12 +1061,12 @@
             <mx:ToggleButtonBar id="alignButtons" buttonWidth="20"
                             itemClick="setTextStyles('align', ToggleButtonBar(event.currentTarget).dataProvider.getItemAt(ToggleButtonBar(event.currentTarget).selectedIndex).action); " >
                 <mx:dataProvider>
-                    <mx:Array> 
-                        <mx:Object icon="@Embed('assets/icon_align_left.png')" action="left"/>
-                        <mx:Object icon="@Embed('assets/icon_align_center.png')" action="center"/>
-                        <mx:Object icon="@Embed('assets/icon_align_right.png')" action="right"/>
-                        <mx:Object icon="@Embed('assets/icon_align_justify.png')" action="justify"/>
-                    </mx:Array>
+                    <fx:Array> 
+                        <fx:Object icon="@Embed('assets/icon_align_left.png')" action="left"/>
+                        <fx:Object icon="@Embed('assets/icon_align_center.png')" action="center"/>
+                        <fx:Object icon="@Embed('assets/icon_align_right.png')" action="right"/>
+                        <fx:Object icon="@Embed('assets/icon_align_justify.png')" action="justify"/>
+                    </fx:Array>
                 </mx:dataProvider>
             </mx:ToggleButtonBar>
 

@@ -145,6 +145,8 @@ use namespace mx_internal;
 //[Event(name="textInput", type="flash.events.TextEvent")]
 
 
+[Event(name="keyDown", type="mx.events.KeyboardEvent")]
+[Event(name="keyUp", type="mx.events.KeyboardEvent")]
 
 /**
  *  The TextArea control is a multiline text field
