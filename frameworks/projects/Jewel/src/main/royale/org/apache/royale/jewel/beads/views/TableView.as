@@ -62,12 +62,18 @@ package org.apache.royale.jewel.beads.views
 			createChildren();
 		}
 
-		// private var thead:THead;
+		/**
+		 * This os created in the mapper
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var thead:THead;
 
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
 		public var tbody:TBody;
+
+		
 		// private var tfoot:TFoot;
 
 		/**

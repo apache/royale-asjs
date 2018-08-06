@@ -242,6 +242,11 @@ j|Card {
   border: none;
   box-shadow: none;
 }
+.jewel.datechooser .jewel.table .jewel.button {
+  background: white;
+  border: none;
+  box-shadow: none;
+}
 .jewel.datechooser .jewel.table th {
   background: white;
   box-shadow: none;

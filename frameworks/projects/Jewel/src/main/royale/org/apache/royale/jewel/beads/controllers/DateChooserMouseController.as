@@ -18,17 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {	
-	import org.apache.royale.jewel.beads.views.DateChooserView;
-	import org.apache.royale.jewel.beads.models.DateChooserModel;
-    import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
-	
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.jewel.beads.models.DateChooserModel;
+	import org.apache.royale.jewel.beads.views.DateChooserView;
+	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
 	
 	/**
 	 *  The DateChooserMouseController class is responsible for listening to
@@ -74,7 +73,7 @@ package org.apache.royale.jewel.beads.controllers
 			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
 			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
 			
-            IEventDispatcher(view.dayList).addEventListener("change", tableHandler);
+            IEventDispatcher(view.daysTable).addEventListener("change", tableHandler);
 		}
 
 		private var model:DateChooserModel;

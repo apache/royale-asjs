@@ -18,26 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.ClassFactory;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
-	// import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.jewel.Group;
-	import org.apache.royale.jewel.beads.models.DateChooserModel;
-	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.Table;
-	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
-	// import org.apache.royale.jewel.supportClasses.datechooser.DateChooserHeader;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.GroupView;
-	import org.apache.royale.collections.ArrayList;
-	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.jewel.Button;
+	import org.apache.royale.jewel.Group;
+	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.TableRow;
+	import org.apache.royale.jewel.TableHeader;
+	import org.apache.royale.jewel.beads.models.DateChooserModel;
+	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
-	import org.apache.royale.core.ClassFactory;
-	// import org.apache.royale.html.beads.layouts.HorizontalFlexLayout;
+	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
+	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser.
@@ -80,16 +80,27 @@ package org.apache.royale.jewel.beads.views
 		
 		private var model:DateChooserModel;
 		
-		private var monthButtonsContainer:Group;
-		private var monthLabel:Button;
-		// private var dayNamesContainer:DateChooserHeader;
-		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		private function getHost():UIBase
 		{
 			return _strand as UIBase;
+		}
+
+		private var _monthLabel:Button;
+		/**
+		 *  The button to display month and year
+		 *  and select from a list of years
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get monthLabel():Button
+		{
+			return _monthLabel;
 		}
 
 		private var _prevMonthButton:Button;
@@ -120,22 +131,19 @@ package org.apache.royale.jewel.beads.views
 			return _nextMonthButton;
 		}
 		
-		private var _dayTable:DateChooserTable;
+		private var _daysTable:DateChooserTable;
 		/**
-		 *  The List of days to display
+		 *  The Table of days to display
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get dayList():Table
+		public function get daysTable():Table
 		{
-			return _dayTable;
+			return _daysTable;
 		}
-		
-		// private const controlHeight:int = 26;
-		// private const commonButtonWidth:int = 40;
 		
 		/**
 		 * @private
@@ -143,94 +151,52 @@ package org.apache.royale.jewel.beads.views
 		private function createChildren():void
 		{
 			// HEADER BUTTONS
-			
-			monthButtonsContainer = new Group();
-			
-			monthLabel = new Button();
-			monthLabel.text = "Month Here";
-			monthButtonsContainer.addElement(monthLabel);
+			_monthLabel = new Button();
+			_monthLabel.text = "Month Here";
 			
 			_prevMonthButton = new Button();
 			_prevMonthButton.text = "<";
-			monthButtonsContainer.addElement(_prevMonthButton);
 			
 			_nextMonthButton = new Button();
 			_nextMonthButton.text = ">";
-			monthButtonsContainer.addElement(_nextMonthButton);
-			
-			getHost().addElement(monthButtonsContainer, false);
-			
-			// DAY NAMES
-			
-			// dayNamesContainer = new DateChooserHeader();
-			// //dayNamesContainer.id = "dateChooserDayNames";
-			// COMPILE::SWF {
-			// dayNamesContainer.percentWidth = 100;
-			// }
-			
-			// getHost().addElement(dayNamesContainer, false);
 
 			// DAYS
 			createColumns();
-			_dayTable = new DateChooserTable();
+
+			_daysTable = new DateChooserTable();
 			COMPILE::SWF {
-			_dayTable.percentWidth = 100;
+			_daysTable.percentWidth = 100;
 			}
-			getHost().addElement(_dayTable, false);
+			getHost().addElement(_daysTable, false);
 			
-			IEventDispatcher(_dayTable).dispatchEvent( new Event("itemsCreated") );
+			IEventDispatcher(_daysTable).dispatchEvent( new Event("itemsCreated") );
 			model.addEventListener("selectedDateChanged", selectionChangeHandler);
 
-			// monthButtonsContainer.id = "dateChooserMonthButtons";
-			// monthButtonsContainer.addBead(new HorizontalFlexLayout());
-			// monthButtonsContainer.height = controlHeight;
-			// monthButtonsContainer.style = new SimpleCSSStylesWithFlex();
-			// monthButtonsContainer.style.flexGrow = 0;
-			// COMPILE::JS {
-			// 	monthButtonsContainer.element.style["flex-grow"] = "0";
-			// }
-			// _prevMonthButton.width = commonButtonWidth;
-			// if (_prevMonthButton.style == null) {
-			// 	_prevMonthButton.style = new SimpleCSSStylesWithFlex();
-			// }
-			// _prevMonthButton.style.flexGrow = 0;
-			// COMPILE::JS {
-			// 	_prevMonthButton.element.style["flex-grow"] = "0";
-			// }
+			createButtonsRow();
+		}
+
+		private var buttonsRow:TableRow;
+
+		private function createButtonsRow():void
+		{
+			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
+			buttonsRow = new TableRow();
+
+			var tableHeader:TableHeader = new TableHeader();
+			tableHeader.className = "buttonsRow";
+			tableHeader.addElement(_monthLabel);
+			tableHeader.expandColumns = 5;
+			buttonsRow.addElement(tableHeader);
+
+			tableHeader= new TableHeader();
+			tableHeader.className = "buttonsRow";
+			tableHeader.addElement(_prevMonthButton);
+			buttonsRow.addElement(tableHeader);
 			
-			// if (monthLabel.style == null) {
-			// 	monthLabel.style = new SimpleCSSStylesWithFlex();
-			// }
-			// monthLabel.style.flexGrow = 1;
-			// COMPILE::JS {
-			// 	monthLabel.element.style["flex-grow"] = "1";
-			// }
-			
-			// _nextMonthButton.width = commonButtonWidth;
-			// if (_nextMonthButton.style == null) {
-			// 	_nextMonthButton.style = new SimpleCSSStylesWithFlex();
-			// }
-			// COMPILE::JS {
-			// 	_nextMonthButton.element.style["flex-grow"] = "0";
-			// }
-			//_nextMonthButton.style.flexGrow = 0;
-			
-			// dayNamesContainer.className = "DateChooserHeader";
-			// dayNamesContainer.height = controlHeight;
-			// dayNamesContainer.style = new SimpleCSSStylesWithFlex();
-			// dayNamesContainer.style.flexGrow = 0;
-			// COMPILE::JS {
-			// 	dayNamesContainer.element.style["flex-grow"] = "0";
-			// 	dayNamesContainer.element.style["align-items"] = "center";
-			// }
-			
-			// _dayTable.className = "DateChooserList";
-			// _dayTable.id = "dateChooserList";
-			// _dayTable.style = new SimpleCSSStylesWithFlex();
-			// _dayTable.style.flexGrow = 1;
-			// COMPILE::JS {
-			// 	_dayTable.element.style["flex-grow"] = "1";
-			// }
+			tableHeader= new TableHeader();
+			tableHeader.className = "buttonsRow";
+			tableHeader.addElement(_nextMonthButton);
+			buttonsRow.addElement(tableHeader);
 		}
 		
 		private var columns:Array;
@@ -260,8 +226,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function updateDisplay():void
 		{
-			monthLabel.text = model.monthNames[model.displayedMonth] + " " +
-				String(model.displayedYear);
+			_monthLabel.text = model.monthNames[model.displayedMonth] + " " + String(model.displayedYear);
 
 			var len:int = columns.length;
 			for(var index:int = 0; index < len; index++)
@@ -270,7 +235,8 @@ package org.apache.royale.jewel.beads.views
 				column.label = model.dayNames[index];
 			}
 
-			_dayTable.columns = columns;
+			_daysTable.columns = columns;
+
 
 			var currrentMonth:Array = [];
 			var dayIndex:int = 0;
@@ -283,11 +249,14 @@ package org.apache.royale.jewel.beads.views
 					dayIndex++;
 				}
 			}
-			trace("currrentMonth: " + currrentMonth);
-			_dayTable.dataProvider = new ArrayList(currrentMonth);
-			_dayTable.dispatchEvent( new Event("tableComplete") );
+			_daysTable.dataProvider = new ArrayList(currrentMonth);
+			_daysTable.dispatchEvent( new Event("tableComplete") );
 
-			_dayTable.selectedIndex = model.getIndexForSelectedDate();
+			_daysTable.selectedIndex = model.getIndexForSelectedDate();
+			
+			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
+			view.thead.addElementAt(buttonsRow, 0, false);
+			
 		}
 
 		/**

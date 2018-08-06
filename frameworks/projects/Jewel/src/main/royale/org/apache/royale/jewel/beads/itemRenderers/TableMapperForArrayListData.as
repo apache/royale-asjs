@@ -18,19 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-	import org.apache.royale.jewel.supportClasses.table.TableColumn;
-	import org.apache.royale.jewel.beads.models.TableModel;
-    import org.apache.royale.jewel.supportClasses.table.THead;
-    import org.apache.royale.jewel.supportClasses.table.TBody;
-    import org.apache.royale.jewel.supportClasses.table.TFoot;
-	import org.apache.royale.jewel.beads.views.TableView;
-	
 	import org.apache.royale.collections.ArrayList;
-    import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -39,10 +34,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.TableCell;
 	import org.apache.royale.jewel.TableHeader;
 	import org.apache.royale.jewel.TableRow;
+	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
-    import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.jewel.supportClasses.table.TBody;
+	import org.apache.royale.jewel.supportClasses.table.THead;
+	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	public class TableMapperForArrayListData implements IBead, IDataProviderItemRendererMapper
 	{
@@ -140,7 +138,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 
 			if (createHeaderRow) {
-                thead = new THead();
+                view.thead = new THead();
+				thead = view.thead;
 				headerRow = new TableRow();
 				
 				for(c=0; c < model.columns.length; c++)

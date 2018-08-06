@@ -216,9 +216,7 @@ package org.apache.royale.jewel.beads.views
 					var p3:Point = PointUtils.globalToLocal(p2, host);
 					_popUp.x = p3.x;
 					_popUp.y = p3.y;
-					COMPILE::JS {
-						_popUp.element.style.position = "absolute";
-					}
+					_popUp.className = "dateChooserPopUp";
 
 					host.popUpParent.addElement(_popUp);
 				}

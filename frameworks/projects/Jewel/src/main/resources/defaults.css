@@ -246,6 +246,9 @@ j|ControlBar {
     IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
   }
 }
+.jewel.datechooser .jewel.table .jewel.tableheader.buttonsRow {
+  padding: 0px;
+}
 .jewel.datechooser .jewel.table td {
   padding: 0px;
 }
@@ -263,6 +266,10 @@ j|DateChooser {
 
 j|DateChooserTable {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DateItemRenderer");
+}
+
+.dateChooserPopUp {
+  position: absolute;
 }
 
 j|DateField {
