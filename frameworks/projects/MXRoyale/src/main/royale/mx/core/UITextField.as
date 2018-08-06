@@ -69,7 +69,7 @@ include "../styles/metadata/TextStyles.as"
 //  Other metadata
 //--------------------------------------
 
-[ResourceBundle("core")]
+//[ResourceBundle("core")]
     
 /**
  *  The UITextField class defines the component used by many Flex

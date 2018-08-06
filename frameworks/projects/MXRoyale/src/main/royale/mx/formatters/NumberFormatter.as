@@ -23,8 +23,8 @@ package mx.formatters
 import mx.managers.ISystemManager;
 //import mx.managers.SystemManager;
 
-[ResourceBundle("formatters")]
-[ResourceBundle("SharedResources")]
+//[ResourceBundle("formatters")]
+//[ResourceBundle("SharedResources")]
 
 [Alternative(replacement="spark.formatters.NumberFormatter", since="4.5")]
 /**

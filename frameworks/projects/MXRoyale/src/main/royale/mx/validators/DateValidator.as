@@ -26,8 +26,8 @@ package mx.validators
 //import mx.resources.IResourceManager;
 //import mx.resources.ResourceManager;
 
-[ResourceBundle("SharedResources")]
-[ResourceBundle("validators")]
+//[ResourceBundle("SharedResources")]
+//[ResourceBundle("validators")]
 
 /**
  *  The DateValidator class validates that a String, Date, or Object contains a 

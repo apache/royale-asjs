@@ -26,7 +26,7 @@ import mx.managers.SystemManager; */
 
 use namespace mx_internal;
 
-[ResourceBundle("SharedResources")]
+//[ResourceBundle("SharedResources")]
 
 [Alternative(replacement="spark.formatters.DateTimeFormatter", since="4.5")]
 /**
