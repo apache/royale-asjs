@@ -355,6 +355,33 @@ package
 			}
 		}
 
+        /**
+         *  mimics the top-level XML function
+         *  @royaleignorecoercion XMLList
+         */
+        public static function conversion(xml:*):XML
+        {
+            if (xml == null)
+            {
+                // throw TypeError
+                return null;
+            }
+            else if (xml.ROYALE_CLASS_INFO != null)
+            {
+                var className:String = xml.ROYALE_CLASS_INFO.names[0].name;
+                if (className == "XML")
+                    return xml;
+                else if (className == "XMLList")
+                {
+                    var xmlList:XMLList = xml as XMLList;
+                    if (xmlList.length() == 1)
+                        return xmlList[0];
+                    // throw TypeError
+                    return null;
+                }
+            }
+            return new XML(xml);
+        }
 
 		public function XML(xml:* = null)
 		{
