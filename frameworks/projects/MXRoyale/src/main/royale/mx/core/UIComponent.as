@@ -51,6 +51,8 @@ import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
 
+import org.apache.royale.html.beads.DisableBead;
+import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
@@ -946,9 +948,6 @@ public class UIComponent extends UIBase
      */
     public function get enabled():Boolean
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("enabled not implemented");
         return _enabled;
     }
 
@@ -957,10 +956,13 @@ public class UIComponent extends UIBase
      */
     public function set enabled(value:Boolean):void
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("enabled not implemented");
         _enabled = value;
+        if (_disableBead == null) {
+		_disableBead = new DisableBead();
+		addBead(_disableBead);
+		addBead(new DisabledAlphaBead());
+	}
+	_disableBead.disabled = !_enabled;
     }
 
     //----------------------------------
@@ -2854,6 +2856,7 @@ public class UIComponent extends UIBase
     private var _toolTip:String;
 	
 	private var _toolTipBead: ToolTipBead;
+	private var _disableBead: DisableBead;
 
     [Bindable("toolTipChanged")]
     [Inspectable(category="General", defaultValue="null")]
