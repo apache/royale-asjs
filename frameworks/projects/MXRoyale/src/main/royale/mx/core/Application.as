@@ -62,11 +62,12 @@ import flash.utils.getQualifiedClassName;
 import org.apache.royale.events.utils.MouseEventConverter;
 }
 
-import mx.managers.FocusManager;
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
+import mx.managers.FocusManager;
 
 import org.apache.royale.binding.ApplicationDataBinding;
+import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadLayout;
@@ -84,8 +85,8 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.states.State;
-import org.apache.royale.utils.MixinManager;
 import org.apache.royale.utils.MXMLDataInterpreter;
+import org.apache.royale.utils.MixinManager;
 import org.apache.royale.utils.Timer;
 import org.apache.royale.utils.loadBeadFromValuesManager;
     
@@ -523,7 +524,13 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	//  Initialization and Start-up
 	//
 	//--------------------------------------------------------------------------
-	
+
+    override protected function createChildren():void
+    {
+        super.createChildren();        
+        dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
+    }
+
 	/**
 	 *  @private
 	 */

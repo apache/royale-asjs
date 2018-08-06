@@ -19,6 +19,8 @@
 
 package mx.core
 {
+    import org.apache.royale.binding.DataBindingBase;
+    import org.apache.royale.binding.ContainerDataBinding;
 	import org.apache.royale.core.ContainerBaseStrandChildren;
 	import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl
@@ -622,7 +624,10 @@ public class Container extends UIComponent
     override protected function createChildren():void
     {
         MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-        
+
+        if (getBeadByType(DataBindingBase) == null)
+            addBead(new ContainerDataBinding());
+
         dispatchEvent(new Event("initBindings"));
         dispatchEvent(new Event("initComplete"));
     }
