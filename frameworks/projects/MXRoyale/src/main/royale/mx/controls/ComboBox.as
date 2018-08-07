@@ -20,7 +20,10 @@
 package mx.controls
 {
 import org.apache.royale.html.beads.IComboBoxView;
-
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 COMPILE::SWF
 {
 }
@@ -694,6 +697,99 @@ public class ComboBox extends ComboBase
         return (view as IComboBoxView).popUp;
     }
     
+    /**
+     *  Number of pixels between the container's top border
+     *  and the top of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingTop():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingTop not implemented");
+        return 0;
+    }
+    public function set paddingTop(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingTop not implemented");
+    }
+    
+    /**
+     *  Number of pixels between the container's bottom border
+     *  and the bottom of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingBottom():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingBottom not implemented");
+        return 0;
+    }
+    public function set paddingBottom(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingBottom not implemented");
+    }
+    
+    /**
+     *  Number of pixels between the container's left border
+     *  and the left of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingLeft():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingLeft not implemented");
+        return 0;
+    }
+    public function set paddingLeft(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingLeft not implemented");
+    }
+    
+    /**
+     *  Number of pixels between the container's right border
+     *  and the right of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingRight():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingRight not implemented");
+        return 0;
+    }
+    public function set paddingRight(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingRight not implemented");
+    }
+    
+
     //--------------------------------------------------------------------------
     //
     //  Overridden properties

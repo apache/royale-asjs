@@ -158,7 +158,7 @@ use namespace mx_internal; */
  */
 [Frame(factoryClass="mx.managers.SystemManager")]
 
-[ResourceBundle("components")]
+//[ResourceBundle("components")]
 
 /**
  *  Flex defines a default, or Application, container that lets you start

@@ -134,6 +134,8 @@ internal class MXRoyaleClasses
 	import mx.external.ExternalInterface; ExternalInterface;
 	import mx.events.KeyboardEvent; KeyboardEvent;
 	import mx.geom.Matrix; Matrix;
+	import mx.utils.ByteArray; mx.utils.ByteArray;
+	import mx.controls.RichTextEditor; RichTextEditor;
 	
 	COMPILE::JS
     	{

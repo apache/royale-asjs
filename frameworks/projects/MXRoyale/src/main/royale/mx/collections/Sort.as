@@ -36,7 +36,7 @@ package mx.collections
     use namespace mx_internal;
  
     [DefaultProperty("fields")]
-[ResourceBundle("collections")] 
+//[ResourceBundle("collections")] 
 /* [Alternative(replacement="spark.collections.Sort", since="4.5")]
  */
 /**

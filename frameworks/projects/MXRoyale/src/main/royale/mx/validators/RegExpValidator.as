@@ -24,7 +24,7 @@ import mx.events.ValidationResultEvent;
 /* import mx.managers.ISystemManager;
 import mx.managers.SystemManager;
  */
-[ResourceBundle("validators")]
+//[ResourceBundle("validators")]
 
 /** 
  *  The RegExpValidator class lets you use a regular expression

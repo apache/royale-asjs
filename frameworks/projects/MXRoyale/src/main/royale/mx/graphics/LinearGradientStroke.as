@@ -28,11 +28,11 @@ import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
  */
-import org.apache.royale.graphics.GradientBase;
+// import org.apache.royale.graphics.GradientBase;
 import mx.core.mx_internal;
+import mx.graphics.SolidColorStroke;
 
 use namespace mx_internal; 
-
 /**
  *  The LinearGradientStroke class lets you specify a gradient filled stroke.
  *  You use the LinearGradientStroke class, along with the GradientEntry class,
@@ -48,7 +48,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class LinearGradientStroke extends GradientBase
+public class LinearGradientStroke extends SolidColorStroke
 {	/* extends GradientStroke */
     //include "../core/Version.as";
 
@@ -132,45 +132,7 @@ public class LinearGradientStroke extends GradientBase
     }
 
 	
-	//----------------------------------
-    //  weight copied from GradientStroke
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the weight property.
-     */
-    private var _weight:Number;
-
-    [Bindable("propertyChange")]
-    [Inspectable(category="General", minValue="0.0")]
-
-    /**
-     *  The stroke weight, in pixels.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get weight():Number
-    {
-        return _weight;
-    }
-    
-    /**
-     *  @private
-     */
-    public function set weight(value:Number):void
-    {
-        var oldValue:Number = _weight;
-        if (value != oldValue)
-        {
-            _weight = value;
-            
-          //  dispatchGradientChangedEvent("weight", oldValue, value);
-        }
-    }
+	
 	
     /**
      *  @private
@@ -182,7 +144,19 @@ public class LinearGradientStroke extends GradientBase
     //  Properties
     //
     //--------------------------------------------------------------------------
-
+	
+	
+	
+    //----------------------------------
+    //  rotation
+    //----------------------------------
+    public function get rotation():Number
+	{
+	return 0;
+	}
+    public function set rotation(value:Number):void
+	{
+	}
     //----------------------------------
     //  matrix
     //----------------------------------
@@ -387,6 +361,7 @@ public class LinearGradientStroke extends GradientBase
             matrix.translate(targetOrigin.x, targetOrigin.y);
         }               
     } */
+	
     
 }
 

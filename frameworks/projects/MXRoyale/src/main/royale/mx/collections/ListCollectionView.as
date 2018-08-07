@@ -60,7 +60,7 @@ package mx.collections
  */
 [Event(name="collectionChange", type="mx.events.CollectionEvent")]
 
-[ResourceBundle("collections")]
+//[ResourceBundle("collections")]
     
 /**
  * The ListCollectionView class adds the properties and methods of the

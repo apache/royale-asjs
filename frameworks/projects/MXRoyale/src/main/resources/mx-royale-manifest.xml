@@ -146,5 +146,6 @@
 	<component id="ToolBar" class="mx.controls.richTextEditorClasses.ToolBar"/>
 	<component id="AdvancedDataGrid" class="mx.controls.AdvancedDataGrid" />
     <component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
+	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
 
 </componentPackage>

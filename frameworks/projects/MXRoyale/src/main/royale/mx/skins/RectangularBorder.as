@@ -52,7 +52,7 @@ use namespace mx_internal;
 import mx.core.IChildList;
 import org.apache.royale.events.Event;
 
-[ResourceBundle("skins")]
+//[ResourceBundle("skins")]
  
 /**
  *  The RectangularBorder class is an abstract base class for various classes

@@ -26,7 +26,7 @@ package mx.validators
     import mx.events.ValidationResultEvent;
 //import mx.managers.SystemManager;
 
-[ResourceBundle("validators")]
+//[ResourceBundle("validators")]
 
 [Alternative(replacement="spark.validators.NumberValidator", since="4.5")]
 /**

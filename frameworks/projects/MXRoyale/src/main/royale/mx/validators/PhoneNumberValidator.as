@@ -27,7 +27,7 @@ package mx.validators
 	import mx.utils.StringUtil;
     import mx.events.ValidationResultEvent;
 
-[ResourceBundle("validators")]
+//[ResourceBundle("validators")]
 
 /**
  *  The PhoneNumberValidator class validates that a string

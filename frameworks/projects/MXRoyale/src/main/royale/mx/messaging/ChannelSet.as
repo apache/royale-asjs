@@ -53,7 +53,7 @@ import mx.utils.Base64Encoder;
  */
 use namespace mx_internal;
 
-[DefaultProperty("channels")]
+//[DefaultProperty("channels")]
 
 /**
  *  Dispatched after a Channel in the ChannelSet has connected to its endpoint.
@@ -132,7 +132,7 @@ use namespace mx_internal;
  */
 //[Event(name="propertyChange", type="mx.events.PropertyChangeEvent")]
 
-[ResourceBundle("messaging")]
+//[ResourceBundle("messaging")]
 
 /**
  *  The ChannelSet is a set of Channels that are used to send messages to a
