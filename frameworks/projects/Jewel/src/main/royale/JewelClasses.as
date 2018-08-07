@@ -52,8 +52,6 @@ package
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.beads.views.TableView; TableView;
 
-        import org.apache.royale.jewel.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
-        import org.apache.royale.jewel.beads.models.SingleSelectionArrayListModel; SingleSelectionArrayListModel;
         import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
         
         COMPILE::SWF
