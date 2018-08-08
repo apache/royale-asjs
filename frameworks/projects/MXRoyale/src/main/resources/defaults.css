@@ -25,6 +25,11 @@
 	box-sizing: border-box;
 }
 
+* {
+	font-family:	Verdana;
+	font-size:		12px;
+}
+
 global {
     IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
 	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
@@ -211,6 +216,10 @@ Panel .TitleBar
 	background-color: #FFFFFF;
 }
 
+Basic|TitleBar
+{
+	font-weight: bold;
+}
 
 /* -------------------------------------------------------
 * SWF specific styles
