@@ -246,7 +246,7 @@ j|ControlBar {
     IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
   }
 }
-.jewel.datechooser .jewel.table .jewel.tableheader.buttonsRow {
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
   padding: 0px;
 }
 .jewel.datechooser .jewel.table td {
@@ -262,10 +262,6 @@ j|DateChooser {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateChooserView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalFlowLayout");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateChooserMouseController");
-}
-
-j|DateChooserTable {
-  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DateItemRenderer");
 }
 
 .dateChooserPopUp {
@@ -2793,58 +2789,83 @@ j|Slider {
     iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }
 }
+.jewel.simpletable {
+  position: relative;
+  white-space: nowrap;
+  border-spacing: 0px;
+  overflow: hidden;
+}
+.jewel.simpletable .jewel.tableheadercell {
+  position: relative;
+  vertical-align: bottom;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+  padding: 12px;
+  text-align: left;
+}
+.jewel.simpletable .jewel.tbody .jewel.tablerow {
+  position: relative;
+  transition-duration: 0.28s;
+  transition-property: background-color;
+}
+.jewel.simpletable .jewel.tablecell {
+  position: relative;
+}
+.jewel.simpletable .jewel.tablecell > * {
+  padding: 12px;
+}
+
 .jewel.table {
   position: relative;
   white-space: nowrap;
   border-spacing: 0px;
   overflow: hidden;
 }
-.jewel.table thead {
-  padding-bottom: 3px;
-}
-.jewel.table th:first-of-type, .jewel.table td:first-of-type {
-  padding-left: 20px;
-}
-.jewel.table th {
+.jewel.table .jewel.tableheadercell {
   position: relative;
   vertical-align: bottom;
   text-overflow: ellipsis;
   letter-spacing: 0;
-  height: 48px;
-  padding-bottom: 8px;
-  padding: 0 18px 12px 18px;
+  padding: 12px;
   text-align: left;
 }
-.jewel.table tbody tr {
+.jewel.table .jewel.tbody .jewel.tablerow {
   position: relative;
-  height: 48px;
   transition-duration: 0.28s;
   transition-property: background-color;
 }
-.jewel.table td {
+.jewel.table .jewel.tablecell {
   position: relative;
-  height: 48px;
-  padding: 12px 18px;
 }
-.jewel.table.fixedHeader {
-  table-layout: fixed;
-}
-.jewel.table.fixedHeader .jewel.thead tr {
-  display: block;
-}
-.jewel.table.fixedHeader .jewel.tbody {
-  display: block;
-  overflow: auto;
-  width: 100%;
+.jewel.table .jewel.tablecell > * {
+  padding: 12px;
 }
 
 j|Table {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout");
-  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TableView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView");
+}
+
+.jewel.tableitem {
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  letter-spacing: 0;
+  line-height: normal !important;
+  overflow: hidden;
+}
+
+.empty-cell {
+  pointer-events: none;
+}
+
+j|TableItemRenderer {
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
 }
 
 .alignTextLeft {

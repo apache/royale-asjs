@@ -31,13 +31,13 @@
     <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
 
     <component id="SimpleTable" class="org.apache.royale.jewel.SimpleTable"/>
+    <component id="Table" class="org.apache.royale.jewel.Table"/>
     <component id="THead" class="org.apache.royale.jewel.supportClasses.table.THead"/>
     <component id="TBody" class="org.apache.royale.jewel.supportClasses.table.TBody"/>
     <component id="TFoot" class="org.apache.royale.jewel.supportClasses.table.TFoot"/>
-    <component id="TableRow" class="org.apache.royale.jewel.TableRow"/>
-    <component id="TableCell" class="org.apache.royale.jewel.TableCell"/>
-    <component id="TableHeader" class="org.apache.royale.jewel.TableHeader"/>
-    <component id="Table" class="org.apache.royale.jewel.Table"/>
+    <component id="TableRow" class="org.apache.royale.jewel.supportClasses.table.TableRow"/>
+    <component id="TableCell" class="org.apache.royale.jewel.supportClasses.table.TableCell"/>
+    <component id="TableHeaderCell" class="org.apache.royale.jewel.supportClasses.table.TableHeaderCell"/>
     <component id="TableColumn" class="org.apache.royale.jewel.supportClasses.table.TableColumn"/>
 
     <component id="Button" class="org.apache.royale.jewel.Button"/>
@@ -117,6 +117,7 @@
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView"/>
+    <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
     <component id="TableMapperForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData"/>
 
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->

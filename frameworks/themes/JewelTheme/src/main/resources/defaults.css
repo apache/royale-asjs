@@ -235,7 +235,6 @@ j|Card {
 
 .jewel.datechooser {
   background: white;
-  width: 330px;
 }
 .jewel.datechooser .jewel.table {
   background: white;
@@ -246,6 +245,9 @@ j|Card {
   background: white;
   border: none;
   box-shadow: none;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
+  border-bottom: 1px solid #d9d9d9;
 }
 .jewel.datechooser .jewel.table th {
   background: white;
@@ -533,39 +535,81 @@ j|Card {
   border-radius: 3px;
 }
 
+.jewel.simpletable {
+  background: linear-gradient(white, #f3f3f3);
+  border: 1px solid #b3b3b3;
+  box-shadow: inset 0 1px 0 white;
+  border-radius: 0.25rem;
+}
+.jewel.simpletable .jewel.thead tr {
+  border-bottom: 1px solid #d9d9d9;
+}
+.jewel.simpletable .jewel.tableheadercell:first-of-type {
+  border-left: 0px;
+}
+.jewel.simpletable .jewel.tableheadercell {
+  background: linear-gradient(white, #f3f3f3);
+  box-shadow: inset 0 1px 0 white;
+  font-weight: 700;
+  line-height: normal !important;
+  font-size: 1em;
+  color: #808080;
+  border-left: 1px solid #d9d9d9;
+}
+.jewel.simpletable .jewel.tablecell:first-of-type {
+  border-left: 0px;
+}
+.jewel.simpletable .jewel.tablecell {
+  border-top: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+}
+.jewel.simpletable .jewel.tfoot .jewel.tablecell {
+  border-left: 0px;
+  background: linear-gradient(white, white);
+  box-shadow: inset 0 1px 0 white;
+}
+
 .jewel.table {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
   border-radius: 0.25rem;
 }
-.jewel.table th:first-of-type {
+.jewel.table .jewel.thead tr {
+  border-bottom: 1px solid #d9d9d9;
+}
+.jewel.table .jewel.tableheadercell:first-of-type {
   border-left: 0px;
 }
-.jewel.table th {
+.jewel.table .jewel.tableheadercell {
   background: linear-gradient(white, #f3f3f3);
   box-shadow: inset 0 1px 0 white;
   font-weight: 700;
-  line-height: 24px;
+  line-height: normal !important;
   font-size: 1em;
   color: #808080;
   border-left: 1px solid #d9d9d9;
 }
-.jewel.table td:first-of-type {
+.jewel.table .jewel.tablecell:first-of-type {
   border-left: 0px;
 }
-.jewel.table td {
+.jewel.table .jewel.tablecell {
   border-top: 1px solid #d9d9d9;
   border-left: 1px solid #d9d9d9;
 }
-.jewel.table tfoot td {
+.jewel.table .jewel.tfoot .jewel.tablecell {
   border-left: 0px;
   background: linear-gradient(white, white);
   box-shadow: inset 0 1px 0 white;
 }
 
-.jewel.thead tr {
-  border-bottom: 1px solid #d9d9d9;
+.jewel.tableitem:hover {
+  color: #FFFFFF;
+  background: #3CADF1;
+}
+.jewel.tableitem:active, .jewel.tableitem.selected {
+  color: #FFFFFF;
+  background: #24a3ef;
 }
 
 .jewel.textinput {

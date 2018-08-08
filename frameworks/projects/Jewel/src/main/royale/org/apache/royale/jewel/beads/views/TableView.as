@@ -21,19 +21,22 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.jewel.beads.views.ListView;
 	import org.apache.royale.jewel.supportClasses.table.TBody;
 	import org.apache.royale.jewel.supportClasses.table.THead;
 	import org.apache.royale.jewel.supportClasses.table.TFoot;
 	
 	/**
 	 *  The TableView class creates the visual elements of the org.apache.royale.jewel.Table component.
+	 * 
+	 *  It creates a TBody, and defines THead and TFoot optional parts to be created by a mapper
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class TableView extends DataContainerView
+	public class TableView extends ListView
 	{
 		/**
 		 *  constructor.
@@ -45,16 +48,17 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function TableView()
 		{
+			super();
         }
 
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
 		 */
-		private function get host():UIBase
-		{
-			return _strand as UIBase;
-		}
-
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -63,7 +67,6 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		/**
-		 * This os created in the mapper
 		 * @royalesuppresspublicvarwarning
 		 */
 		public var thead:THead;
@@ -72,23 +75,19 @@ package org.apache.royale.jewel.beads.views
 		 * @royalesuppresspublicvarwarning
 		 */
 		public var tbody:TBody;
-
 		
-		// private var tfoot:TFoot;
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var tfoot:TFoot;
 
 		/**
 		 * @private
 		 */
 		private function createChildren():void
 		{
-			// thead = new THead();
-			// host.addElement(thead);
-
 			tbody = new TBody();
-			host.addElement(tbody);
-			
-			// tfoot = new TFoot();
-			// host.addElement(tfoot);
+			(_strand as UIBase).addElement(tbody);
 		}
 	}
 }

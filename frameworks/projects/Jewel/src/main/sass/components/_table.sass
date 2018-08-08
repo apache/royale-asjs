@@ -17,78 +17,121 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel Table
+// Jewel SimpleTable
 
-// Table variables
+// SimpleTable variables
 
-.jewel.table
+.jewel.simpletable
     position: relative
     white-space: nowrap
-    // border-collapse: collapse
     border-spacing: 0px
     overflow: hidden
 
-    thead
-        padding-bottom: 3px
-
-    th:first-of-type, td:first-of-type
-        padding-left: 20px
-
-    th
+    .jewel.tableheadercell
         position: relative
         vertical-align: bottom
         text-overflow: ellipsis
         letter-spacing: 0
-        height: 48px
-        padding-bottom: 8px
-        padding: 0 18px 12px 18px
+        padding: 12px
+        text-align: left
+        
+    .jewel.tbody 
+        .jewel.tablerow
+            position: relative
+            transition-duration: .28s
+            // transition-timing-function: cubic-bezier(.4,0,.2,1)
+            transition-property: background-color
+    
+    //td
+    .jewel.tablecell
+        position: relative
+        > *
+            padding: 12px
+
+j|SimpleTable
+
+
+
+// Jewel Table
+
+// Table variables
+$tableitem-min-height: 34px
+.jewel.table
+    position: relative
+    white-space: nowrap
+    border-spacing: 0px
+    overflow: hidden
+
+    // th
+    .jewel.tableheadercell
+        position: relative
+        vertical-align: bottom
+        text-overflow: ellipsis
+        letter-spacing: 0
+        padding: 12px
         text-align: left
     
-    tbody 
-        tr
+    .jewel.tbody 
+        .jewel.tablerow
             position: relative
-            height: 48px
             transition-duration: .28s
             // transition-timing-function: cubic-bezier(.4,0,.2,1)
             transition-property: background-color
 
-    td
+    // td
+    .jewel.tablecell
         position: relative
-        height: 48px
-        padding: 12px 18px
-        // text-align: right
+        > *
+            padding: 12px
+        
+    // &.fixedHeader
+    //     table-layout: fixed
 
-    &.fixedHeader
-        table-layout: fixed
+    //     .jewel.thead tr
+    //         display: block
 
-        .jewel.thead tr
-            display: block
-
-        .jewel.tbody
-            display: block
-            overflow: auto
-            width: 100%
-            
-j|SimpleTable
+    //     .jewel.tbody
+    //         display: block
+    //         overflow: auto
+    //         width: 100%
 
 j|Table
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout")
-    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel")
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TableView")
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView")
     // IViewport: ClassReference("org.apache.royale.html.supportClasses.scrollbar.ScrollingViewport")
     // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 
-j|TBody
 
+.jewel.tableitem
+    cursor: pointer
+    text-decoration: none
+    align-items: center
+    letter-spacing: 0
+    line-height: normal !important
+    overflow: hidden
+    
+.empty-cell
+    pointer-events: none
+
+j|TableItemRenderer
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
+
+
+
+j|TBody
 j|THead
 j|TFoot
 
-j|TableHeader
-
 j|TableCell
+j|TableHeaderCell
+j|TableRow
+j|TableColumn
+
 
 @media -royale-swf
     j|SimpleTable
@@ -99,7 +142,7 @@ j|TableCell
         // IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.TableCellLayout")
         // IBeadView: ClassReference("org.apache.royale.html.beads.TableCellView")
 
-    j|TableHeader
+    j|TableHeaderCell
         // IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.TableHeaderLayout")
         // IBeadView: ClassReference("org.apache.royale.html.beads.TableCellView")
 
@@ -108,5 +151,4 @@ j|TableCell
     // IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.SimpleTableLayout")
     // IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TableView")
 
-j|TableColumn
 

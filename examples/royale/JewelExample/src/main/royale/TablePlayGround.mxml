@@ -38,22 +38,22 @@ limitations under the License.
 		<j:SimpleTable width="500">
 			<j:THead>
 				<j:TableRow>
-					<j:TableHeader width="48">
+					<j:TableHeaderCell width="48">
 						<j:Label text="Icons" />
-					</j:TableHeader>
-					<j:TableHeader width="140">
+					</j:TableHeaderCell>
+					<j:TableHeaderCell width="140">
 						<j:Label text="Text Column" />
-					</j:TableHeader>
-					<j:TableHeader width="140">
+					</j:TableHeaderCell>
+					<j:TableHeaderCell width="140">
 						<j:Label text="Centered Text Column" />
-					</j:TableHeader>
-					<j:TableHeader>
+					</j:TableHeaderCell>
+					<j:TableHeaderCell>
 						<j:Label text="Number Column">
 							<j:beads>
 								<j:TextAlign align="right"/>
 							</j:beads>
 						</j:Label>
-					</j:TableHeader>
+					</j:TableHeaderCell>
 				</j:TableRow>
 			</j:THead>
 			<j:TBody>

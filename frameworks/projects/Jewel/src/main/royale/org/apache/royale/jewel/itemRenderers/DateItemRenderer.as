@@ -45,7 +45,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
-			typeNames = "calendar item date";
+			// typeNames = "calendar item date";
 		}
 
 		/**
@@ -73,10 +73,6 @@ package org.apache.royale.jewel.itemRenderers
 					mouseEnabled = true;
 					mouseChildren = true;
 				}
-
-				// COMPILE::JS {
-				// 	element.style["pointer-events"] = "";
-				// }
 			} else {
 				this.text = "";
 
@@ -85,9 +81,7 @@ package org.apache.royale.jewel.itemRenderers
 					mouseChildren = false;
 				}
 
-				// COMPILE::JS {
-				//   element.style["pointer-events"] = "none";
-				// }
+				className = "empty-cell";
 			}
 		}
 

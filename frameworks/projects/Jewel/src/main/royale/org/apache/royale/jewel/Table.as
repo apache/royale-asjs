@@ -56,9 +56,11 @@ package org.apache.royale.jewel
 	/**
 	 *  The Table class represents an HTML <table> element.
      *  
-     *  The able uses SimpleTable along with a data mapper and item renderers to generate
-     *  a Table from a data source.
-     *  
+     *  This Table component uses a data mapper and item renderers to generate
+     *  a Table from a data source, in opposite to SimpleTable component that is a 
+	 *  declarative mxml.
+	 * 
+	 *  As well, DataGrid is a more complex component
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
@@ -103,7 +105,7 @@ package org.apache.royale.jewel
 			TableModel(model).columns = value;
 		}
 
-		private var _fixedHeader:Boolean;
+		// private var _fixedHeader:Boolean;
 		/**
 		 *  Makes the header of the table fixed so the data rows will scroll
 		 *  behind it.
@@ -115,18 +117,18 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get fixedHeader():Boolean
-		{
-			return _fixedHeader;
-		}
-		public function set fixedHeader(value:Boolean):void
-		{
-			_fixedHeader = value;
+		// public function get fixedHeader():Boolean
+		// {
+		// 	return _fixedHeader;
+		// }
+		// public function set fixedHeader(value:Boolean):void
+		// {
+		// 	_fixedHeader = value;
 
-			// toggleClass("fixedHeader", _fixedHeader);
-		}
+		// 	// toggleClass("fixedHeader", _fixedHeader);
+		// }
 
-		private var _tableDataHeight:Boolean;
+		// private var _tableDataHeight:Boolean;
 		/**
 		 *  Makes the header of the table fixed so the data rows will scroll
 		 *  behind it.
@@ -138,14 +140,14 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get tableDataHeight():Boolean
-		{
-			return _tableDataHeight;
-		}
-		public function set tableDataHeight(value:Boolean):void
-		{
-			_tableDataHeight = value;
-		}
+		// public function get tableDataHeight():Boolean
+		// {
+		// 	return _tableDataHeight;
+		// }
+		// public function set tableDataHeight(value:Boolean):void
+		// {
+		// 	_tableDataHeight = value;
+		// }
 		
 		/**
 		 *  A list of data items that correspond to the rows in the table.
@@ -212,13 +214,6 @@ package org.apache.royale.jewel
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			dispatchEvent( new Event("tableComplete") );
-		}
 
 		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -226,7 +221,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            return addElementToWrapper(this,'table');
+            return addElementToWrapper(this, 'table');
         }
     }
 }

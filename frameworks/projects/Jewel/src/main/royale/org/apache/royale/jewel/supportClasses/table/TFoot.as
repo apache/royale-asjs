@@ -27,8 +27,8 @@ package org.apache.royale.jewel.supportClasses.table
     }
 
 	/**
-	 *  The TFoot class is a building block of Jewel Table, is used in TableView
-     *  and represents an HTML <tfoot> element
+	 *  The TFoot class is a building block of Jewel SimpleTable and Table components, 
+	 *  is used in TableView and represents an HTML <tfoot> element
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.supportClasses.table
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'tfoot');
+			return addElementToWrapper(this, 'tfoot');
         }
     }
 }

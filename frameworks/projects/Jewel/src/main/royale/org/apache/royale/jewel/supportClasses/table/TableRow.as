@@ -16,8 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses.table
 {
+	import org.apache.royale.jewel.Group;
+
 	COMPILE::JS
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
@@ -25,7 +27,8 @@ package org.apache.royale.jewel
 	}
 	
 	/**
-	 *  The TableRow class defines a row of a Table. This will translate to a <tr> elemement
+	 *  The TableRow class is a building block of Jewel SimpleTable and Table components, 
+	 *  is used in TableView and represents an HTML <tr> element
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
@@ -56,7 +59,7 @@ package org.apache.royale.jewel
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			return addElementToWrapper(this,'tr');
+			return addElementToWrapper(this, 'tr');
 		}
     }
 }

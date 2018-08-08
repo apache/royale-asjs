@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
-    COMPILE::SWF
+	import org.apache.royale.jewel.beads.controls.TextAlign;
+	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
+    
+	COMPILE::SWF
     {
         import flash.text.TextFieldAutoSize;
         import flash.text.TextFieldType;
@@ -31,9 +34,6 @@ package org.apache.royale.jewel.itemRenderers
         import org.apache.royale.core.WrappedHTMLElement;
     	import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.jewel.beads.controls.TextAlign;
 
 	/**
 	 *  The TableItemRenderer class displays data in string form using the data's toString()
@@ -44,7 +44,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class TableItemRenderer extends DataItemRenderer implements ITextItemRenderer
+	public class TableItemRenderer extends ListItemRenderer implements ITextItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -114,7 +114,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get text():String
+		override public function get text():String
 		{
             COMPILE::SWF
             {
@@ -126,7 +126,7 @@ package org.apache.royale.jewel.itemRenderers
             }
 		}
 
-		public function set text(value:String):void
+		override public function set text(value:String):void
 		{
             COMPILE::SWF
             {

@@ -31,6 +31,7 @@ package org.apache.royale.jewel.itemRenderers
         import org.apache.royale.core.WrappedHTMLElement;
     	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
@@ -67,7 +68,12 @@ package org.apache.royale.jewel.itemRenderers
                 textField.selectable = false;
                 textField.parentDrawsBackground = true;
             }
+
+			textAlign = new TextAlign();
+			addBead(textAlign);
 		}
+
+		private var textAlign:TextAlign;
 
         COMPILE::SWF
 		public var textField:CSSTextField;
@@ -130,6 +136,24 @@ package org.apache.royale.jewel.itemRenderers
             {
                 this.element.textContent = value;
             }
+		}
+
+		/**
+		 *  How text align in the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get align():String
+		{
+			return textAlign.align;
+		}
+
+		public function set align(value:String):void
+		{
+			textAlign.align = value;
 		}
 
 		/**

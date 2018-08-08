@@ -52,7 +52,7 @@ limitations under the License.
         <j:HorizontalCenteredLayout gap="3"/>
     </j:beads>
 
-	<j:Card width="400">
+	<j:Card>
 		<html:H3 text="Jewel DateChooser"/>
 		<j:DateChooser id="dateChooser" change="dateChooserChanged()" initComplete="dateChooserInit()"/>
 		<j:Label id="dateChooserSelectedDate" text="DateChooser selected date: "/>

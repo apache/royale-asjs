@@ -28,14 +28,12 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.Group;
-	import org.apache.royale.jewel.Table;
-	import org.apache.royale.jewel.TableRow;
-	import org.apache.royale.jewel.TableHeader;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
 	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
+	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -133,14 +131,14 @@ package org.apache.royale.jewel.beads.views
 		
 		private var _daysTable:DateChooserTable;
 		/**
-		 *  The Table of days to display
+		 *  The DateChooserTable of days to display
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get daysTable():Table
+		public function get daysTable():DateChooserTable
 		{
 			return _daysTable;
 		}
@@ -182,18 +180,18 @@ package org.apache.royale.jewel.beads.views
 			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
 			buttonsRow = new TableRow();
 
-			var tableHeader:TableHeader = new TableHeader();
+			var tableHeader:TableHeaderCell = new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
 			tableHeader.addElement(_monthLabel);
 			tableHeader.expandColumns = 5;
 			buttonsRow.addElement(tableHeader);
 
-			tableHeader= new TableHeader();
+			tableHeader= new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
 			tableHeader.addElement(_prevMonthButton);
 			buttonsRow.addElement(tableHeader);
 			
-			tableHeader= new TableHeader();
+			tableHeader= new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
 			tableHeader.addElement(_nextMonthButton);
 			buttonsRow.addElement(tableHeader);

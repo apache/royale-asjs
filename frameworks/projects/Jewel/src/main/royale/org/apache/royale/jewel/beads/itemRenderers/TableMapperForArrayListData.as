@@ -31,9 +31,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Label;
 	import org.apache.royale.jewel.Table;
-	import org.apache.royale.jewel.TableCell;
-	import org.apache.royale.jewel.TableHeader;
-	import org.apache.royale.jewel.TableRow;
+	import org.apache.royale.jewel.supportClasses.table.TableCell;
+	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
@@ -102,7 +102,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 		private var headerRow:TableRow;
 		private var row:TableRow;
-		private var tableHeader:TableHeader;
+		private var tableHeader:TableHeaderCell;
 		private function cleanTable():void
 		{
 			//THead
@@ -145,7 +145,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				for(c=0; c < model.columns.length; c++)
 				{
 					test = model.columns[c] as TableColumn;
-					tableHeader = new TableHeader();
+					tableHeader = new TableHeaderCell();
 					var label:Label = new Label();
 					tableHeader.addElement(label);
 					label.text = test.label == null ? "" : test.label;

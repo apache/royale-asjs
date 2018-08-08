@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses.table
 {
     COMPILE::JS
     {
@@ -25,16 +25,15 @@ package org.apache.royale.jewel
     }
 	
 	/**
-	 *  The TableCell class defines a table data cell in the Table component. This element
-	 *  may have nearly any type of Royale component as children.
-	 *  
+	 *  The TableHeaderCell class defines a table header cell in the Table component. 
+     *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class TableCell extends Group
+	public class TableHeaderCell extends TableCell
 	{
 		/**
 		 *  constructor.
@@ -44,74 +43,20 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function TableCell()
+		public function TableHeaderCell()
 		{
 			super();
 			
-			typeNames = "jewel tablecell";
-		}
-
-		private var _expandColumns:Number = 1;
-        /**
-         *  The columns this cell will expand to occupy
-		 *  notice that you must not define the ocuppied cells
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get expandColumns():Number
-		{
-            return _expandColumns;
-		}
-		public function set expandColumns(value:Number):void
-		{
-			if(_expandColumns != value)
-			{
-            	_expandColumns = value;
-
-				COMPILE::JS
-				{
-					element.setAttribute('colspan', _expandColumns);
-				}
-			}
+			typeNames = "jewel tableheadercell";
 		}
 		
-		private var _expandRows:Number = 1;
-        /**
-         *  The rows this cell will expand to occupy
-		 *  notice that you must not define the ocuppied cells
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get expandRows():Number
-		{
-            return _expandRows;
-		}
-		public function set expandRows(value:Number):void
-		{
-			if(_expandRows != value)
-			{
-            	_expandRows = value;
-
-				COMPILE::JS
-				{
-					element.setAttribute('rowspan', _expandRows);
-				}
-			}
-		}
-
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			return addElementToWrapper(this,'td');
+			return addElementToWrapper(this, 'th');
 		}
     }
 }

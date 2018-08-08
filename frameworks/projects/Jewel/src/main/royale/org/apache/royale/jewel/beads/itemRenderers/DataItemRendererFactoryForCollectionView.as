@@ -34,9 +34,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.UIItemRendererBase;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	
 	/**
