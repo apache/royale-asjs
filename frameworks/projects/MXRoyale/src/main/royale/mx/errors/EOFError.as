@@ -32,7 +32,7 @@ import flash.errors.EOFError;
  * 
  *  @royalesuppresspublicvarwarning
  */
- COMPILE::SWF{
+COMPILE::SWF
 public class EOFError extends flash.errors.EOFError
 {
     //--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ public class EOFError extends flash.errors.EOFError
     
 
 }
-}
-COMPILE::JS{
+
+COMPILE::JS
 public class EOFError extends Object
 {
     //--------------------------------------------------------------------------
@@ -80,7 +80,6 @@ public class EOFError extends Object
     }
     
 
-}
 }
 
 }
