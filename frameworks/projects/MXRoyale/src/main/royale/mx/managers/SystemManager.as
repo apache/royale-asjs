@@ -91,6 +91,8 @@ import mx.utils.LoaderUtil;
 use namespace mx_internal;
 */
 
+import org.apache.royale.geom.Rectangle;
+
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
@@ -1327,8 +1329,9 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get screen():Rectangle
+    public function get screen():Rectangle
     {
+        /* Flex code (why so complicated?)
         if (!_screen)
             Stage_resizeHandler();
 
@@ -1337,7 +1340,16 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             Stage_resizeHandler();
         }
         return _screen;
-    } */
+        */
+        COMPILE::SWF
+        {
+            return new Rectangle(0, 0, stage.width, stage.height);
+        }
+        COMPILE::JS
+        {
+            return new Rectangle(0, 0, window.innerWidth, window.innerHeight);
+        }
+    }
 
     //----------------------------------
     //  toolTipChildren
@@ -2903,10 +2915,8 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         // until preloader?
         component.addEventListener("applicationComplete", applicationCompleteHandler);
         addChild(component as IUIComponent);
-        COMPILE::SWF
-        {
-            component.setActualSize(stage.stageWidth, stage.stageHeight);            
-        }
+        var screen:Rectangle = this.screen;
+        component.setActualSize(screen.width, screen.height);            
     }
     
     private function applicationCompleteHandler(event:Event):void

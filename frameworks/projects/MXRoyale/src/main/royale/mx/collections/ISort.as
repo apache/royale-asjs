@@ -31,7 +31,7 @@ package mx.collections
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
 public interface ISort
 {
@@ -125,15 +125,15 @@ public interface ISort
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-    //function get compareFunction():Function;
+    function get compareFunction():Function;
 
     /**
      *  @deprecated A future release of Apache Flex SDK will remove this function. Please use the constructor
      *  argument instead.
      */
-    //function set compareFunction(value:Function):void;
+    function set compareFunction(value:Function):void;
 
     /**
      *  An <code>Array</code> of <code>ISortField</code> objects that
@@ -151,7 +151,7 @@ public interface ISort
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
     function get fields():Array;
 
@@ -177,15 +177,15 @@ public interface ISort
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-   // function get unique():Boolean;
+    function get unique():Boolean;
 
     /**
      *  @deprecated A future release of Apache Flex SDK will remove this function. Please use the constructor
      *  argument instead.
      */
-   // function set unique(value:Boolean):void;
+    function set unique(value:Boolean):void;
 
     //--------------------------------------------------------------------------
     //
@@ -282,14 +282,14 @@ public interface ISort
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-  /*   function findItem(
+    function findItem(
                 items:Array,
                 values:Object,
                 mode:String,
                 returnInsertionIndex:Boolean = false,
-                compareFunction:Function = null):int; */
+                compareFunction:Function = null):int;
 
     /**
      *  Return whether the specified property is used to control the sort.
@@ -307,9 +307,9 @@ public interface ISort
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-    /* function propertyAffectsSort(property:String):Boolean; */
+    function propertyAffectsSort(property:String):Boolean;
 
     /**
      *  Goes through the <code>fields</code> array and calls 
@@ -328,9 +328,9 @@ public interface ISort
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-    /* function reverse():void; */
+    function reverse():void;
 
     /**
      *  Apply the current sort to the specified array (not a copy).
@@ -346,8 +346,8 @@ public interface ISort
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-   /* function sort(items:Array):void; */
+   function sort(items:Array):void;
 }
 }

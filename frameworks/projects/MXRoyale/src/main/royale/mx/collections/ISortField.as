@@ -27,7 +27,7 @@ package mx.collections
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.4
+ *  @productversion Flex 4.5
  */
 public interface ISortField
     {
@@ -47,9 +47,9 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-   // function get arraySortOnOptions():int;
+    function get arraySortOnOptions():int;
 
     /**
      *  The function that compares two items during a sort of items for the
@@ -74,15 +74,15 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-   // function get compareFunction():Function;
+    function get compareFunction():Function;
 
     /**
      *  @deprecated A future release of Apache Flex SDK will remove this function. Please use the constructor
      *  argument instead.
      */
-  //  function set compareFunction(c:Function):void;
+    function set compareFunction(c:Function):void;
 
     /**
      *  Specifies whether this field should be sorted in descending
@@ -93,15 +93,15 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-  //  function get descending():Boolean;
+    function get descending():Boolean;
 
     /**
      *  @deprecated A future release of Apache Flex SDK will remove this function. Please use the constructor
      *  argument instead.
      */
-   // function set descending(value:Boolean):void;
+    function set descending(value:Boolean):void;
 
     /**
      *  The name of the field to be sorted.
@@ -109,7 +109,7 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
     function get name():String;
 
@@ -149,7 +149,7 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
     function get numeric():Object;
 
@@ -169,15 +169,15 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 11.8
      *  @playerversion AIR 3.8
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.11
      */
-  //  function get sortCompareType():String;
+    function get sortCompareType():String;
 
     /**
      *  @deprecated A future release of Apache Flex SDK will remove this function. Please use the constructor
      *  argument instead.
      */
-  //  function set sortCompareType(value:String):void;
+    function set sortCompareType(value:String):void;
 
 
     /**
@@ -188,9 +188,9 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-  //  function get usingCustomCompareFunction():Boolean;
+    function get usingCustomCompareFunction():Boolean;
 
     //--------------------------------------------------------------------------
     //
@@ -214,9 +214,9 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-  //  function initializeDefaultCompareFunction(obj:Object):void;
+    function initializeDefaultCompareFunction(obj:Object):void;
 
     /**
      *  Reverse the criteria for this sort field.
@@ -234,9 +234,9 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.5
      */
-   // function reverse():void;
+    function reverse():void;
 
 
     /**
@@ -251,9 +251,9 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 11.8
      *  @playerversion AIR 3.8
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.11
      */
-   // function updateSortCompareType():Boolean;
+    function updateSortCompareType():Boolean;
 
     /**
      *  Returns true if the object has the field required by this <code>ISortField</code> instance.
@@ -265,8 +265,8 @@ public interface ISortField
      *  @langversion 3.0
      *  @playerversion Flash 11.8
      *  @playerversion AIR 3.8
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4.15
      */
-  //  function objectHasSortField(object:Object):Boolean;
+    function objectHasSortField(object:Object):Boolean;
 }
 }

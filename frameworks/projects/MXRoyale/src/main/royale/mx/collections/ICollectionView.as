@@ -19,11 +19,10 @@
 
 package mx.collections
 {
+import mx.events.CollectionEvent;
 
-/* import flash.events.IEventDispatcher;
- */
-  import org.apache.royale.events.IEventDispatcher;
- import mx.events.CollectionEvent;
+import org.apache.royale.collections.ICollectionView;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  Dispatched when the ICollectionView has been updated in some way.

@@ -36,7 +36,7 @@ import flash.ui.Keyboard;
 import flash.utils.clearInterval;
 import flash.utils.getTimer;
 import flash.xml.XMLNode; */
-//import mx.collections.ArrayCollection;
+import mx.collections.ArrayCollection;
 import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
 //import mx.collections.ItemResponder;
@@ -48,11 +48,11 @@ import mx.controls.listClasses.BaseListData;
 //import mx.controls.listClasses.IListItemRenderer;
 //import mx.controls.listClasses.ListRowInfo;
 //import mx.controls.listClasses.ListBaseSelectionDataPending;
-//import mx.controls.treeClasses.DefaultDataDescriptor;
-//import mx.controls.treeClasses.HierarchicalCollectionView;
-//import mx.controls.treeClasses.HierarchicalViewCursor;
+import mx.controls.treeClasses.DefaultDataDescriptor;
+import mx.controls.treeClasses.HierarchicalCollectionView;
+import mx.controls.treeClasses.HierarchicalViewCursor;
 import mx.controls.treeClasses.ITreeDataDescriptor;
-//import mx.controls.treeClasses.ITreeDataDescriptor2;
+import mx.controls.treeClasses.ITreeDataDescriptor2;
 import mx.controls.treeClasses.TreeItemRenderer;
 import mx.controls.treeClasses.TreeListData;
 import mx.core.ClassFactory;
@@ -690,7 +690,7 @@ public class Tree extends List
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //mx_internal var wrappedCollection:ICollectionView;
+    mx_internal var wrappedCollection:ICollectionView;
 
     /**
      *  @private
@@ -726,12 +726,11 @@ public class Tree extends List
     /**
      *  @private
      */
-/*     private var dataProviderChanged:Boolean = false;
+    private var dataProviderChanged:Boolean = false;
 
     [Bindable("collectionChange")]
     [Inspectable(category="Data", defaultValue="null")]
 
- */
 	/**
      *  An object that contains the data to be displayed.
      *  When you assign a value to this property, the Tree class handles
@@ -757,16 +756,20 @@ public class Tree extends List
     override public function set dataProvider(value:Object):void
     {
         // in all cases save off the original
-    /*     if (_rootModel)
+        /* later
+        if (_rootModel)
             _rootModel.removeEventListener(
                             CollectionEvent.COLLECTION_CHANGE, 
                             collectionChangeHandler);
-                                            
+        */
+        
         // handle strings and xml
         if (typeof(value)=="string")
             value = new XML(value);
+        /*
         else if (value is XMLNode)
             value = new XML(XMLNode(value).toString());
+        */
         else if (value is XMLList)
             value = new XMLListCollection(value as XMLList);
         
@@ -803,7 +806,11 @@ public class Tree extends List
         }
         //flag for processing in commitProps
         dataProviderChanged = true;
-        invalidateProperties(); */
+        //invalidateProperties();
+        
+        // the above is Flex code.  Only this line below was added
+        // to get it to work without the validation mechanism.
+        commitProperties();
     }
 
     /**
@@ -811,9 +818,8 @@ public class Tree extends List
      */
     override public function get dataProvider():Object
     {
-        /* if (_rootModel)
+        if (_rootModel)
             return _rootModel;
-		*/
         return null;
     }
 
@@ -1029,13 +1035,13 @@ public class Tree extends List
     *  @private
     *  Flag to indicate if the model has a root
     */
-    //mx_internal var _hasRoot:Boolean = false;
+    mx_internal var _hasRoot:Boolean = false;
 
     /**
      *  @private
      *  Storage variable for the original dataProvider
      */
-    //mx_internal var _rootModel:ICollectionView;
+    mx_internal var _rootModel:ICollectionView;
 
     //[Inspectable(category="Data", enumeration="true,false", defaultValue="false")]
 
@@ -1163,27 +1169,29 @@ public class Tree extends List
     /**
      *  @private
      */
-    /* override protected function commitProperties():void
+    override protected function commitProperties():void
     {
+        /*
         if (showRootChanged)
         {
             if (!_hasRoot)
                 showRootChanged = false;            
         }
+        */
         
-        if (dataProviderChanged || showRootChanged || openItemsChanged)
+        if (dataProviderChanged/* || showRootChanged || openItemsChanged*/)
         {
             var tmpCollection:ICollectionView;
             //reset flags 
             
             dataProviderChanged = false;
-            showRootChanged = false;
+            //showRootChanged = false;
             
             //we always reset the open and selected items on a dataprovider assignment
-            if (!openItemsChanged)
+            //if (!openItemsChanged)
                 _openItems = {};
             
-            openItemsChanged = false;
+            //openItemsChanged = false;
         
             // are we swallowing the root?
             if (_rootModel && !_showRoot && _hasRoot)
@@ -1214,11 +1222,13 @@ public class Tree extends List
 																   _openItems);
 
 
+                /* later
                 // not really a default handler, but we need to be later than the wrapper
                 wrappedCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE,
                                           collectionChangeHandler,
                                           false,
                                           EventPriority.DEFAULT_HANDLER, true);
+                */
             }
             else
             {
@@ -1226,8 +1236,8 @@ public class Tree extends List
             }
         }
         
-        super.commitProperties();
-    } */
+        //super.commitProperties();
+    }
 
     /**
      *  @private
@@ -1597,12 +1607,12 @@ public class Tree extends List
     * wraps calls to the descriptor 
     * mx_internal for automation delegate access
     */
-    /* mx_internal function getChildren(item:Object, view:Object):ICollectionView
+    mx_internal function getChildren(item:Object, view:Object):ICollectionView
     {
         //get the collection of children
         var children:ICollectionView = _dataDescriptor.getChildren(item, view);
         return children;
-    } */
+    }
 
     /**
     *  Determines the number of parents from root to the specified item.
