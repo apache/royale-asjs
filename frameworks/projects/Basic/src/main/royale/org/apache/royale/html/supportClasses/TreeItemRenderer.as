@@ -31,6 +31,7 @@ package org.apache.royale.html.supportClasses
 		public function TreeItemRenderer()
 		{
 			super();
+            typeNames += " TreeItemRenderer";
 		}
 		
 		/**
