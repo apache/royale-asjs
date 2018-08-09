@@ -20,14 +20,12 @@
 package mx.controls.treeClasses
 {
 
-import org.apache.royale.events.EventDispatcher;
-
+import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
-import mx.collections.IViewCursor;
 import mx.collections.ISort;
+import mx.collections.IViewCursor;
 import mx.collections.XMLListAdapter;
 import mx.collections.XMLListCollection;
-//import mx.collections.errors.ItemPendingError;
 import mx.core.EventPriority;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
@@ -35,6 +33,9 @@ import mx.events.CollectionEventKind;
 import mx.events.PropertyChangeEvent;
 import mx.utils.IXMLNotifiable;
 import mx.utils.XMLNotifier;
+
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.collections.ITreeData;
 
 use namespace mx_internal;
 
@@ -46,7 +47,7 @@ use namespace mx_internal;
  *  It is used by Tree to parse user data.
  */
 public class HierarchicalCollectionView extends EventDispatcher
-										implements ICollectionView, IXMLNotifiable
+										implements ICollectionView, IXMLNotifiable, ITreeData
 {
 //    include "../../core/Version.as";
 
@@ -1054,6 +1055,71 @@ public class HierarchicalCollectionView extends EventDispatcher
             }
         }
 	}
+    
+    private var iterator:IViewCursor;
+    
+    public function getDepth(node:Object):int
+    {
+        if (!iterator)
+            iterator = createCursor();
+        
+        if (iterator.current == node)
+            return getCurrentCursorDepth();
+        
+        var offset:int = getItemIndex(node);
+        //otherwise seek to offset and get the depth
+        var bookmark:CursorBookmark = iterator.bookmark;
+        iterator.seek(bookmark, offset);
+        var depth:int = getCurrentCursorDepth();
+        //put the cursor back
+        iterator.seek(bookmark, 0);
+        return depth;
+    }
+    
+    /**
+     *  @private
+     */
+    public function getItemIndex(item:Object):int
+    {
+        if (!iterator)
+            iterator = createCursor();
+        
+        iterator.seek(CursorBookmark.FIRST, 0);
+        
+        var i:int = 0;
+        do
+        {
+            if (iterator.current === item)
+                break;
+            i++;
+        }
+        while (iterator.moveNext());
+        return i;
+    }
+
+    /**
+     *  @private
+     *  Utility method to get the depth of the current item from the cursor.
+     */
+    private function getCurrentCursorDepth():int  //private
+    {
+        if (dataDescriptor is ITreeDataDescriptor2)
+            return ITreeDataDescriptor2(dataDescriptor).getNodeDepth(iterator.current, iterator, treeData);
+        
+        return HierarchicalViewCursor(iterator).currentDepth;
+    }
+
+    public function isOpen(node:Object):Boolean
+    {
+        var uid:String = itemToUID(node);
+        return (openNodes[uid] != null);
+    }
+    
+    public function hasChildren(node:Object):Boolean
+    {
+        return dataDescriptor.hasChildren(node, treeData)
+    }
+
 }
 
 }
