@@ -27,6 +27,7 @@ COMPILE::JS {
 import org.apache.royale.events.Event;
 
 import mx.core.mx_internal;
+import org.apache.royale.net.remoting.messages.IMessage;
 /* import mx.messaging.messages.IMessage;
 import mx.messaging.messages.AbstractMessage; */
 import mx.rpc.AsyncToken;
@@ -124,6 +125,18 @@ public class ResultEvent extends Event
     //  Properties
     //
     //--------------------------------------------------------------------------
+    
+    public function get message():IMessage
+      {
+          return null;
+      }
+      
+    public function set message(value:IMessage):void
+      { 
+      }
+
+
+
 
     /**
      * In certain circumstances, headers may also be returned with a result to
