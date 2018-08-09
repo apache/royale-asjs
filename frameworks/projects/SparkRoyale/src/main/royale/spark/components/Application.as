@@ -45,7 +45,6 @@ import mx.core.IInvalidating;
 import mx.core.InteractionMode;
 import mx.core.Singleton;
 import mx.core.UIComponentGlobals;
-import mx.core.mx_internal;
 import mx.managers.FocusManager;
 import mx.managers.IActiveWindowManager;
 import mx.managers.ILayoutManager;
@@ -56,10 +55,10 @@ import mx.utils.BitFlagUtil;
 import mx.utils.DensityUtil;
 import mx.utils.LoaderUtil;
 import mx.utils.Platform; 
+import spark.layouts.supportClasses.LayoutBase; */
 
-import spark.layouts.supportClasses.LayoutBase;
-
-use namespace mx_internal; */
+import mx.core.mx_internal;
+use namespace mx_internal; 
 
 //--------------------------------------
 //  Events
@@ -1258,7 +1257,7 @@ public class Application extends SkinnableContainer
      *  Storage for the url property.
      *  This variable is set in the initialize().
      */
-    // mx_internal var _url:String;
+     mx_internal var _url:String;
 
     /**
      *  The URL from which this Application's SWF file was loaded.
@@ -1268,10 +1267,10 @@ public class Application extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get url():String
+     public function get url():String
     {
         return _url;
-    } */
+    } 
 
     //----------------------------------
     //  viewSourceURL
