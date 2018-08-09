@@ -136,7 +136,9 @@ internal class MXRoyaleClasses
 	import mx.geom.Matrix; Matrix;
 	import mx.utils.ByteArray; mx.utils.ByteArray;
 	import mx.controls.RichTextEditor; RichTextEditor;
-	
+	import mx.events.SecurityErrorEvent; SecurityErrorEvent;
+	import mx.events.IOErrorEvent; IOErrorEvent;
+	import mx.events.HTTPStatusEvent; HTTPStatusEvent
 	COMPILE::JS
     	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
