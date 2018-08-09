@@ -71,6 +71,7 @@
             <path-element>../../../../../libs/ChartsJS.swc</path-element>
             <path-element>../../../../../libs/MXRoyaleJS.swc</path-element>
             <path-element>../../../../../libs/XMLJS.swc</path-element>
+	    <path-element>../../../../../libs/NetworkJS.swc</path-element>
         </library-path>
         
         <namespaces>
