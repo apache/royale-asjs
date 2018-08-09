@@ -80,7 +80,7 @@ public interface IBrowserManager extends org.apache.royale.events.IEventDispatch
  
  function setTitle(value:String):void;
  
- function get url():String;
+ 
 
    
 }
