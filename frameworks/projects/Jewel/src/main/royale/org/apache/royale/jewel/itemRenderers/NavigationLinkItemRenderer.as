@@ -168,6 +168,7 @@ package org.apache.royale.jewel.itemRenderers
 		override public function updateRenderer():void
 		{
 			// override all and do nothing, all is managed in CSS
+			// there's no selection only hover state
 		}
 	}
 }

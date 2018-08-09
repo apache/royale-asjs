@@ -84,15 +84,5 @@ package org.apache.royale.jewel.itemRenderers
 				className = "empty-cell";
 			}
 		}
-
-		/**
-		 * @private
-		 */
-		COMPILE::JS
-		override public function set height(value:Number):void
-		{
-			super.height = value;
-			// element.style["line-height"] = String(value)+"px";
-		}
 	}
 }
