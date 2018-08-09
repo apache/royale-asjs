@@ -26,8 +26,8 @@ import mx.collections.ICollectionView;
 import mx.collections.IList;
 import mx.collections.IViewCursor;
 import mx.collections.XMLListCollection;
-//import mx.controls.menuClasses.IMenuDataDescriptor;
 import mx.core.mx_internal;
+
 import org.apache.royale.utils.UIDUtil;
 
 use namespace mx_internal;
@@ -57,7 +57,7 @@ use namespace mx_internal;
  */
 public class DefaultDataDescriptor implements ITreeDataDescriptor2 //, IMenuDataDescriptor
 {
-    include "../../core/Version.as";
+//    include "../../core/Version.as";
 
     /**
      *  Constructor.
@@ -105,8 +105,9 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 //, IMenuData
         //first get the children based on the type of node. 
         if (node is XML)
         {
+            var xmlNode:XML = node as XML;
             //trace("getChildren", node.toXMLString());
-            children = node.*;
+            children = xmlNode.*;
         }
         else if (node is Object)
         {
@@ -131,7 +132,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 //, IMenuData
         }
         else if (children is Array)
         {
-            var oldArrayCollection:ArrayCollection = ChildCollectionCache.fetch(node);
+            var oldArrayCollection:ArrayCollection = ChildCollectionCache.fetch(node) as ArrayCollection;
             if (!oldArrayCollection)
             {
                 childrenCollection = new ArrayCollection(children);
@@ -147,7 +148,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 //, IMenuData
         }
         else if (children is XMLList)
         {
-            var oldXMLCollection:XMLListCollection = ChildCollectionCache.fetch(node);
+            var oldXMLCollection:XMLListCollection = ChildCollectionCache.fetch(node) as XMLListCollection;
             if (!oldXMLCollection)
             {
                 // double check since XML as dictionary keys is inconsistent
@@ -155,7 +156,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 //, IMenuData
                 {
                     if (p === node)
                     {
-                        oldXMLCollection = ChildCollectionCache.fetch(p);
+                        oldXMLCollection = ChildCollectionCache.fetch(p) as XMLListCollection;
                         break;
                     }
                 }
@@ -736,7 +737,7 @@ class CollectionCache
     private var cache:Dictionary = new Dictionary(true);
     
     // use Object.defineProperty some day to block iteration of this property?
-    private var propName = "__CollectionCache__";
+    private var propName:String = "__CollectionCache__";
     
     public function fetch(obj:Object):Object
     {
@@ -767,7 +768,7 @@ class CollectionCache
         var output:Array = [];
         COMPILE::SWF
         {
-            for (var p:* in ChildCollectionCache.keys)
+            for (var p:* in cache)
             {
                 output.push(p);
             }
