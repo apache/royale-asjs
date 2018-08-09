@@ -25,10 +25,11 @@ COMPILE::JS
 
 import mx.core.EdgeMetrics;
 import mx.core.IFactory;
+import mx.core.IUIComponent;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
-import mx.core.IUIComponent;
 import mx.core.mx_internal;
+import mx.utils.UIDUtil;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
 import org.apache.royale.core.IBeadLayout;
@@ -37,8 +38,8 @@ import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.IDataProviderItemRendererMapper;
 import org.apache.royale.core.IItemRendererClassFactory;
-import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutChild;
+import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.ILayoutView;
 import org.apache.royale.core.IParent;
@@ -1055,5 +1056,49 @@ use namespace mx_internal;
                 //    o.left + o.right;
             }
         }
+        
+        /**
+         *  Determines the UID for a data provider item.  All items
+         *  in a data provider must either have a unique ID (UID)
+         *  or one will be generated and associated with it.  This
+         *  means that you cannot have an object or scalar value
+         *  appear twice in a data provider. 
+         *
+         *  <p>For example, the following
+         *  data provider is not supported because the value "foo"
+         *  appears twice and the UID for a string is the string itself:</p>
+         *
+         *  <pre>var sampleDP:Array = ["foo", "bar", "foo"]</pre>
+         *
+         *  <p>Simple dynamic objects can appear twice if they are two
+         *  separate instances. The following is supported because
+         *  each of the instances will be given a different UID because
+         *  they are different objects:</p>
+         *
+         *  <pre>var sampleDP:Array = [{label: "foo"}, {label: "foo"}]</pre>
+         *
+         *  <p>Note that the following is not supported because the same instance
+         *  appears twice.</p>
+         *
+         *  <pre>
+         *  var foo:Object = {label: "foo"};
+         *  sampleDP:Array = [foo, foo];</pre>
+         *
+         *  @param data The data provider item.
+         *
+         *  @return The UID as a string.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        protected function itemToUID(data:Object):String
+        {
+            if (data == null)
+                return "null";
+            return UIDUtil.getUID(data);
+        }
+                
     }
 }

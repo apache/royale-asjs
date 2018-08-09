@@ -156,6 +156,9 @@ internal class MXRoyaleClasses
     
     import mx.containers.beads.PanelView; PanelView;
     import mx.containers.beads.models.PanelModel; PanelModel;
+    
+    import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
+    import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
 }
 
 }

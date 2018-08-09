@@ -26,9 +26,11 @@ package org.apache.royale.net.remoting
     import org.apache.royale.net.remoting.messages.RemotingMessage;
     import org.apache.royale.net.events.FaultEvent;
     import org.apache.royale.net.events.ResultEvent;
-    import org.apache.royale.reflection.getClassByAlias;
-    import org.apache.royale.reflection.registerClassAlias;
     
+    import org.apache.royale.net.remoting.messages.AbstractMessage;
+    import org.apache.royale.net.remoting.messages.IMessage;
+    import org.apache.royale.net.remoting.messages.RoyaleClient;
+
 
 	public class Operation extends EventDispatcher
 	{
@@ -46,8 +48,18 @@ package org.apache.royale.net.remoting
 		public function send():void
 		{
             var connectMessage:CommandMessage = new CommandMessage();
+
+            var id:String = RoyaleClient.getInstance().id;
+            //connectMessage.operation = (id != null) ? CommandMessage.TRIGGER_CONNECT_OPERATION : CommandMessage.CLIENT_PING_OPERATION;
+            connectMessage.operation = CommandMessage.TRIGGER_CONNECT_OPERATION 
+            // if(connectMessage.operation == CommandMessage.CLIENT_PING_OPERATION)
+            // {
+            connectMessage.correlationId = null;
+            setRoyaleClientIdOnMessage(connectMessage);
+            connectMessage.headers[CommandMessage.MESSAGING_VERSION] = messagingVersion;
+            // } else {
             connectMessage.destination = _ro.destination;
-            connectMessage.operation = CommandMessage.TRIGGER_CONNECT_OPERATION;
+            // }
             _ro.nc.call(null, new Responder(destinationResultHandler, destinationFaultHandler), connectMessage);
 		}
 		
@@ -60,6 +72,7 @@ package org.apache.royale.net.remoting
                 message.body = _args;
                 message.source = _ro.source;
                 message.destination = _ro.destination;
+                setRoyaleClientIdOnMessage(message);
                 _ro.nc.call(null, new Responder(_ro.resultHandler, _ro.faultHandler), message);
             }
             COMPILE::JS
@@ -71,6 +84,9 @@ package org.apache.royale.net.remoting
                     message.body = _args;
                     message.source = _ro.source;
                     message.destination = _ro.destination;
+
+                    setRoyaleClientIdOnMessage(message);
+
                     _ro.nc.call(null, new Responder(_ro.resultHandler, _ro.faultHandler), message);
                 }
                 else
@@ -83,5 +99,25 @@ package org.apache.royale.net.remoting
             trace("destination fault handler", param);            
         }
         
+        /**
+         *  @private
+         *  Utility method used to assign the RoyaleClient Id value to outbound messages.
+         * 
+         *  @param message The message to set the RoyaleClient Id on.
+         */
+        protected function setRoyaleClientIdOnMessage(message:IMessage):void
+        {
+            var id:String = RoyaleClient.getInstance().id;
+            //trace("[*setRoyaleClientIdOnMessage] RoyaleClient.getInstance().id: " + RoyaleClient.getInstance().id);
+            message.headers[AbstractMessage.ROYALE_CLIENT_ID_HEADER] = (id != null) ? id : RoyaleClient.NULL_ROYALECLIENT_ID;
+        }
+
+        /**
+         * @private
+         * The messaging version implies which features are enabled on this client
+         * channel. Channel endpoints exchange this information through headers on
+         * the ping CommandMessage exchanged during the connection handshake.
+         */
+        protected var messagingVersion:Number = 1.0;
     }
 }

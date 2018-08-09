@@ -17,69 +17,46 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package mx.errors
+package mx.core
 {
-COMPILE::SWF{
-import flash.errors.EOFError;
-}
 
-/* 
+/**
+ *  The IUID interface defines the interface for objects that must have 
+ *  Unique Identifiers (UIDs) to uniquely identify the object.
+ *  UIDs do not need to be universally unique for most uses in Flex.
+ *  One exception is for messages send by data services.
+ *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion BlazeDS 4
- *  @productversion LCDS 3 
- * 
- *  @royalesuppresspublicvarwarning
+ *  @productversion Flex 3
  */
-COMPILE::SWF
-public class EOFError extends flash.errors.EOFError
+public interface IUID
 {
-    //--------------------------------------------------------------------------
-    //
-    // Constructor
-    // 
-    //--------------------------------------------------------------------------
-    
-    /**
+	//--------------------------------------------------------------------------
+	//
+	//  Properties
+	//
+	//--------------------------------------------------------------------------
+
+	//----------------------------------
+	//  uid
+	//----------------------------------
+	
+	/**
+	 *  The unique identifier for this object.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion Flex 3
      */
-    public function EOFError(message:String = "")
-    {
-        super(message);
-    }
-    
-
-}
-
-COMPILE::JS
-public class EOFError extends Object
-{
-    //--------------------------------------------------------------------------
-    //
-    // Constructor
-    // 
-    //--------------------------------------------------------------------------
+    function get uid():String;
     
     /**
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @private
      */
-    public function EOFError(message:String = "")
-    {
-        super();
-    }
-    
-
+    function set uid(value:String):void;
 }
 
 }

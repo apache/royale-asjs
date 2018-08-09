@@ -131,10 +131,10 @@ public class ArrayCollection extends ListCollectionView //implements IExternaliz
      */
     public function get source():Array
     {
-        /*if (list && (list is ArrayList))
+        if (list && (list is ArrayList))
         {
             return ArrayList(list).source;
-        }*/
+        }
         return null;
     }
 
@@ -143,7 +143,7 @@ public class ArrayCollection extends ListCollectionView //implements IExternaliz
      */
     public function set source(s:Array):void
     {
-        //list = new ArrayList(s);
+        list = new ArrayList(s);
     }
 
 }

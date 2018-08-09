@@ -17,69 +17,43 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package mx.errors
+package mx.collections.errors
 {
-COMPILE::SWF{
-import flash.errors.EOFError;
-}
 
-/* 
+/**
+ *  This error is thrown by a collection Cursor.
+ *  Errors of this class are thrown by classes
+ *  that implement the IViewCursor interface.
+ *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion BlazeDS 4
- *  @productversion LCDS 3 
- * 
- *  @royalesuppresspublicvarwarning
+ *  @productversion Flex 3
  */
-COMPILE::SWF
-public class EOFError extends flash.errors.EOFError
+public class CursorError extends Error
 {
+//    include "../../core/Version.as";
+
     //--------------------------------------------------------------------------
     //
-    // Constructor
-    // 
+    // Constructor.
+    //
     //--------------------------------------------------------------------------
-    
+
     /**
+     *  Constructor.
+     *
+     *  @param message A message providing information about the error cause.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion Flex 3
      */
-    public function EOFError(message:String = "")
+    public function CursorError(message:String)
     {
         super(message);
     }
-    
-
-}
-
-COMPILE::JS
-public class EOFError extends Object
-{
-    //--------------------------------------------------------------------------
-    //
-    // Constructor
-    // 
-    //--------------------------------------------------------------------------
-    
-    /**
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public function EOFError(message:String = "")
-    {
-        super();
-    }
-    
-
 }
 
 }
