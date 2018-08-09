@@ -51,8 +51,8 @@ package org.apache.royale.html.supportClasses
 			var extraSpace:String = " ";
 			
 			COMPILE::JS {
-				indentSpace = "&nbsp;&nbsp;&nbsp;&nbsp;";
-				extraSpace = "&nbsp;";
+				indentSpace = "    ";
+				extraSpace = " ";
 			}
 				
 			var indent:String = "";
