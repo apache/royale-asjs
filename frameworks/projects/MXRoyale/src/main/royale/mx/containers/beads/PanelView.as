@@ -20,16 +20,17 @@
 package mx.containers.beads
 {
 
-import mx.core.ContainerLayout;
 import mx.containers.BoxDirection;
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.CanvasLayout;
 import mx.containers.beads.models.PanelModel;
+import mx.core.ContainerLayout;
 
-import org.apache.royale.html.beads.PanelView;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
+import org.apache.royale.html.beads.PanelView;
+import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 
 /**
  *  @private
@@ -82,6 +83,19 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
             
         if (layoutObject)
             contentArea.addBead(layoutObject);            
+    }
+    
+    override protected function setupLayout():void
+    {
+        titleBar.percentWidth = 100;
+            
+        contentArea.percentWidth = 100;
+        contentArea.percentHeight = 100;
+        
+        // Now give the Panel its own layout
+        var boxLayout:BoxLayout = new BoxLayout();
+        boxLayout.direction = "vertical";
+        _strand.addBead(boxLayout);
     }
 }
 

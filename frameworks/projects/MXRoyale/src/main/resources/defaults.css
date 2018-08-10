@@ -200,7 +200,7 @@ Panel
 {
 	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
 	IBeadView: ClassReference("mx.containers.beads.PanelView");
-	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IPanelLayout: ClassReference("mx.containers.beads.BoxLayout");
 	IPanelContentArea: ClassReference("mx.core.Container");	
 	background-color: #FFFFFF;
 	border: 1px solid #333333

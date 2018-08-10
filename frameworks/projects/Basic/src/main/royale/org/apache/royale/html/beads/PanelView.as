@@ -160,21 +160,6 @@ package org.apache.royale.html.beads
 
 			_titleBar.id = "panelTitleBar";
 
-			COMPILE::SWF {
-				_titleBar.percentWidth = 100;
-
-				if (_titleBar.style == null) {
-					_titleBar.style = new SimpleCSSStylesWithFlex();
-				}
-				_titleBar.style.flexGrow = 0;
-				_titleBar.style.order = 1;
-			}
-
-			COMPILE::JS {
-				_titleBar.element.style["flex-grow"] = "0";
-				_titleBar.element.style["order"] = "1";
-			}
-
 			_titleBar.addEventListener("close", handleClose);
 
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
@@ -197,21 +182,6 @@ package org.apache.royale.html.beads
 				// add the viewport bead to the content area.
 				if (transferViewportBead) _contentArea.addBead(transferViewportBead);
 
-				COMPILE::SWF {
-					_contentArea.percentWidth = 100;
-
-					if (_contentArea.style == null) {
-						_contentArea.style = new SimpleCSSStylesWithFlex();
-					}
-					_contentArea.style.flexGrow = 1;
-					_contentArea.style.order = 2;
-				}
-
-				COMPILE::JS {
-					_contentArea.element.style["flex-grow"] = "1";
-					_contentArea.element.style["order"] = "2";
-					_contentArea.element.style["overflow"] = "auto"; // temporary
-				}
 			}
 
 			COMPILE::SWF {
@@ -228,9 +198,45 @@ package org.apache.royale.html.beads
 				(_strand as IContainerBaseStrandChildrenHost).$addElement(contentArea as IChild);
 			}
 
+            setupLayout();
+        }
+        
+        protected function setupLayout():void
+        {
+            COMPILE::JS {
+                _titleBar.element.style["flex-grow"] = "0";
+                _titleBar.element.style["order"] = "1";
+            }
+                
+            COMPILE::SWF {
+                _contentArea.percentWidth = 100;
+                
+                if (_contentArea.style == null) {
+                    _contentArea.style = new SimpleCSSStylesWithFlex();
+                }
+                _contentArea.style.flexGrow = 1;
+                _contentArea.style.order = 2;
+            }
+                
+            COMPILE::SWF {
+                _titleBar.percentWidth = 100;
+                
+                if (_titleBar.style == null) {
+                    _titleBar.style = new SimpleCSSStylesWithFlex();
+                }
+                _titleBar.style.flexGrow = 0;
+                _titleBar.style.order = 1;
+            }
+            
+            COMPILE::JS {
+                _contentArea.element.style["flex-grow"] = "1";
+                _contentArea.element.style["order"] = "2";
+                _contentArea.element.style["overflow"] = "auto"; // temporary
+            }
+            
 			// Now give the Panel its own layout
 			var layoutBead:IBeadLayout = new VerticalFlexLayout();
-			value.addBead(layoutBead);
+			_strand.addBead(layoutBead);
 		}
 
 		private var _panelLayoutProxy:PanelLayoutProxy;
