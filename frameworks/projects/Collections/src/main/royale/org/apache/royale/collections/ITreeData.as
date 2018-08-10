@@ -32,5 +32,7 @@ package org.apache.royale.collections
         function getDepth(node:Object):int;
         function isOpen(node:Object):Boolean;
         function hasChildren(node:Object):Boolean;
+        function openNode(node:Object):void;
+        function closeNode(node:Object):void;
 	}
 }
