@@ -157,6 +157,7 @@ internal class MXRoyaleClasses
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
     import mx.controls.beads.controllers.MenuBarMouseController;
     
+    import mx.containers.PanelTitleBar; PanelTitleBar;
     import mx.containers.beads.PanelView; PanelView;
     import mx.containers.beads.models.PanelModel; PanelModel;
     

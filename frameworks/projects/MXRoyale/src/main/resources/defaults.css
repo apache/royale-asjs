@@ -216,9 +216,19 @@ Panel .TitleBar
 	background-color: #FFFFFF;
 }
 
-Basic|TitleBar
+PanelTitleBar
 {
-	font-weight: bold;
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.TitleBarView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
+	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TitleBarMeasurementBead");
+	background-color: #E2E2E2;
+	padding: 2px;
+	height: 30px;
+	flex-grow: 0;
+	min-height: 30px;
+    font-weight: bold;
+	border-bottom: 1px solid #333333;
 }
 
 Tree

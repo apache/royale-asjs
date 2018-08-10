@@ -38,7 +38,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.geom.Size;
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.Group;
-	import org.apache.royale.html.TitleBar;
+    import org.apache.royale.html.TitleBar;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy;
 	import org.apache.royale.utils.CSSUtils;
@@ -73,7 +73,7 @@ package org.apache.royale.html.beads
 			super();
 		}
 
-		private var _titleBar:TitleBar;
+		private var _titleBar:UIBase;
 
 		/**
 		 *  The org.apache.royale.html.TitleBar component of the
@@ -84,7 +84,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function get titleBar():TitleBar
+		public function get titleBar():UIBase
 		{
 			return _titleBar;
 		}
@@ -92,7 +92,7 @@ package org.apache.royale.html.beads
         /**
          *  @private
          */
-        public function set titleBar(value:TitleBar):void
+        public function set titleBar(value:UIBase):void
         {
             _titleBar = value;
         }

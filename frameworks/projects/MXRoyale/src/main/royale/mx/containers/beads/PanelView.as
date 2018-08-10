@@ -21,6 +21,8 @@ package mx.containers.beads
 {
 
 import mx.containers.BoxDirection;
+import mx.containers.Panel;
+import mx.containers.PanelTitleBar;
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.CanvasLayout;
 import mx.containers.beads.models.PanelModel;
@@ -63,6 +65,7 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
      */
     override public function set strand(value:IStrand):void
     {
+        titleBar = new PanelTitleBar();
         super.strand = value;
         var model:PanelModel = (value as UIBase).model as PanelModel;
         var _layout:String = model.layout;
