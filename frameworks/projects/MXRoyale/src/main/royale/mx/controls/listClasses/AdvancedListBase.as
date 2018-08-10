@@ -1685,7 +1685,17 @@ public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
     //  Properties
     //
     //--------------------------------------------------------------------------
+     public function get headerStyleName():String
+    {
+        return "";
+    } 
 
+    /**
+     *  @private
+     */
+    public function set headerStyleName(value:String):void
+    {
+    }
     //----------------------------------
     //  allowDragSelection
     //----------------------------------
