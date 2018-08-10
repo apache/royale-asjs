@@ -34,6 +34,7 @@ import mx.events.PropertyChangeEvent;
 import mx.utils.IXMLNotifiable;
 import mx.utils.XMLNotifier;
 
+import org.apache.royale.events.CollectionEvent;
 import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.collections.ITreeData;
 
@@ -93,10 +94,10 @@ public class HierarchicalCollectionView extends EventDispatcher
 								  0, 
 								  true);
         */
-        treeData.addEventListener(CollectionEvent.COLLECTION_CHANGE,
+        treeData.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE,
             collectionChangeHandler);
         
-        addEventListener(CollectionEvent.COLLECTION_CHANGE, 
+        addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, 
             expandEventHandler);
 				
 		dataDescriptor = treeDataDescriptor;
@@ -412,9 +413,9 @@ public class HierarchicalCollectionView extends EventDispatcher
                                 oldValue:Object = null,
                                 newValue:Object = null):void
     {
-	    var event:CollectionEvent =
-			new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
-	    event.kind = CollectionEventKind.UPDATE;
+	    var event:mx.events.CollectionEvent =
+			new mx.events.CollectionEvent(mx.events.CollectionEvent.COLLECTION_CHANGE);
+	    event.kind = mx.events.CollectionEventKind.UPDATE;
 
 		var objEvent:PropertyChangeEvent =
 			new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_CHANGE);
@@ -431,9 +432,9 @@ public class HierarchicalCollectionView extends EventDispatcher
 	 */
 	public function refresh():Boolean
 	{
-	    var event:CollectionEvent =
-			new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
-	    event.kind = CollectionEventKind.REFRESH;
+	    var event:mx.events.CollectionEvent =
+			new mx.events.CollectionEvent(mx.events.CollectionEvent.COLLECTION_CHANGE);
+	    event.kind = mx.events.CollectionEventKind.REFRESH;
 	    dispatchEvent(event);
 
 		return true;
@@ -451,7 +452,7 @@ public class HierarchicalCollectionView extends EventDispatcher
 		{
 		    if (oldChildren != null)
 		    {
-				oldChildren.removeEventListener(CollectionEvent.COLLECTION_CHANGE,
+				oldChildren.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE,
 									  nestedCollectionChangeHandler);
 			}
 			if (children)
@@ -459,7 +460,7 @@ public class HierarchicalCollectionView extends EventDispatcher
                 /*
     			children.addEventListener(CollectionEvent.COLLECTION_CHANGE,
     										  nestedCollectionChangeHandler, false, 0, true);*/
-                children.addEventListener(CollectionEvent.COLLECTION_CHANGE,
+                children.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE,
                     nestedCollectionChangeHandler);
 				childrenMap.put(node, children);
 			}
@@ -573,7 +574,7 @@ public class HierarchicalCollectionView extends EventDispatcher
 	/**
 	 *  @private
 	 */
-	public function collectionChangeHandler(event:CollectionEvent):void
+	public function collectionChangeHandler(event:mx.events.CollectionEvent):void
 	{
 		var i:int;
 		var n:int;
@@ -583,21 +584,21 @@ public class HierarchicalCollectionView extends EventDispatcher
 		var node:Object;
 		var items:Array;
 
-		var convertedEvent:CollectionEvent;
+		var convertedEvent:mx.events.CollectionEvent;
 		
-		if (event is CollectionEvent)
+		if (event is mx.events.CollectionEvent)
         {
-            var ce:CollectionEvent = CollectionEvent(event);
+            var ce:mx.events.CollectionEvent = mx.events.CollectionEvent(event);
             if (ce.kind == CollectionEventKind.RESET)
             {
             	updateLength();
             	dispatchEvent(event);
             }
-            else if (ce.kind == CollectionEventKind.ADD)
+            else if (ce.kind == mx.events.CollectionEventKind.ADD)
             {
 				n = ce.items.length;
-				convertedEvent = new CollectionEvent(
-        								CollectionEvent.COLLECTION_CHANGE,
+				convertedEvent = new mx.events.CollectionEvent(
+                    mx.events.CollectionEvent.COLLECTION_CHANGE,
 										false, 
 										true,
 										ce.kind);
@@ -612,11 +613,11 @@ public class HierarchicalCollectionView extends EventDispatcher
 				currentLength += convertedEvent.items.length;
             	dispatchEvent(convertedEvent);
             }
-            else if (ce.kind == CollectionEventKind.REMOVE)
+            else if (ce.kind == mx.events.CollectionEventKind.REMOVE)
             {
 				n = ce.items.length;
-				convertedEvent = new CollectionEvent(
-        								CollectionEvent.COLLECTION_CHANGE,
+				convertedEvent = new mx.events.CollectionEvent(
+                    mx.events.CollectionEvent.COLLECTION_CHANGE,
 										false, 
 										true,
 										ce.kind);
@@ -631,25 +632,25 @@ public class HierarchicalCollectionView extends EventDispatcher
 				currentLength -= convertedEvent.items.length;
             	dispatchEvent(convertedEvent);
             }
-            else if (ce.kind == CollectionEventKind.UPDATE)
+            else if (ce.kind == mx.events.CollectionEventKind.UPDATE)
             {
 				// so far, nobody cares about the details so just
 				// send it
 				//updateLength();
             	dispatchEvent(event);
             }
-            else if (ce.kind == CollectionEventKind.REPLACE)
+            else if (ce.kind == mx.events.CollectionEventKind.REPLACE)
             {
             	// someday handle case where node is marked as open
 				// before it becomes the replacement.
 				// for now, just pass on the data and remove
 				// old visible rows
 				n = ce.items.length;
-				convertedEvent = new CollectionEvent(
-        								CollectionEvent.COLLECTION_CHANGE,
+				convertedEvent = new mx.events.CollectionEvent(
+                    mx.events.CollectionEvent.COLLECTION_CHANGE,
 										false, 
 										true,
-										CollectionEventKind.REMOVE);
+                                        mx.events.CollectionEventKind.REMOVE);
 
 				for (i = 0; i < n; i++)
 				{
@@ -682,7 +683,7 @@ public class HierarchicalCollectionView extends EventDispatcher
 	/**
 	 *  @private
 	 */
-	public function nestedCollectionChangeHandler(event:CollectionEvent):void
+	public function nestedCollectionChangeHandler(event:mx.events.CollectionEvent):void
 	{
 		var i:int;
 		var n:int;
@@ -691,16 +692,16 @@ public class HierarchicalCollectionView extends EventDispatcher
 		var parent:Object;
 		var node:Object;
 		var items:Array;
-		var convertedEvent:CollectionEvent;
+		var convertedEvent:mx.events.CollectionEvent;
 
-		if (event is CollectionEvent)
+		if (event is mx.events.CollectionEvent)
         {
-            var ce:CollectionEvent = CollectionEvent(event);
-            if (ce.kind == CollectionEventKind.EXPAND)
+            var ce:mx.events.CollectionEvent = mx.events.CollectionEvent(event);
+            if (ce.kind == mx.events.CollectionEventKind.EXPAND)
             {
             	event.stopImmediatePropagation();
             }
-            else if (ce.kind == CollectionEventKind.ADD)
+            else if (ce.kind == mx.events.CollectionEventKind.ADD)
             {
 				// optimize someday.  We do a full tree walk so we can
 				// not only count how many but find the parents of the
@@ -709,8 +710,8 @@ public class HierarchicalCollectionView extends EventDispatcher
 				// don't have a good way to get the parents.
             	updateLength();
 				n = ce.items.length;
-				convertedEvent = new CollectionEvent(
-        								CollectionEvent.COLLECTION_CHANGE,
+				convertedEvent = new mx.events.CollectionEvent(
+                    mx.events.CollectionEvent.COLLECTION_CHANGE,
 										false, 
 										true,
 										ce.kind);
@@ -726,11 +727,11 @@ public class HierarchicalCollectionView extends EventDispatcher
 				convertedEvent.location = getVisibleLocationInSubCollection(parent, ce.location);
             	dispatchEvent(convertedEvent);
             }
-            else if (ce.kind == CollectionEventKind.REMOVE)
+            else if (ce.kind == mx.events.CollectionEventKind.REMOVE)
             {
 				n = ce.items.length;
-				convertedEvent = new CollectionEvent(
-        								CollectionEvent.COLLECTION_CHANGE,
+				convertedEvent = new mx.events.CollectionEvent(
+                    mx.events.CollectionEvent.COLLECTION_CHANGE,
 										false, 
 										true,
 										ce.kind);
@@ -747,24 +748,24 @@ public class HierarchicalCollectionView extends EventDispatcher
 				currentLength -= convertedEvent.items.length;
             	dispatchEvent(convertedEvent);
             }
-            else if (ce.kind == CollectionEventKind.UPDATE)
+            else if (ce.kind == mx.events.CollectionEventKind.UPDATE)
             {
 				// so far, nobody cares about the details so just
 				// send it
             	dispatchEvent(event);
             }
-	        else if (ce.kind == CollectionEventKind.REPLACE)
+	        else if (ce.kind == mx.events.CollectionEventKind.REPLACE)
             {
             	// someday handle case where node is marked as open
 				// before it becomes the replacement.
 				// for now, just pass on the data and remove
 				// old visible rows
 				n = ce.items.length;
-				convertedEvent = new CollectionEvent(
-        								CollectionEvent.COLLECTION_CHANGE,
+				convertedEvent = new mx.events.CollectionEvent(
+                    mx.events.CollectionEvent.COLLECTION_CHANGE,
 										false, 
 										true,
-										CollectionEventKind.REMOVE);
+                                        mx.events.CollectionEventKind.REMOVE);
 
 				for (i = 0; i < n; i++)
 				{
@@ -793,7 +794,7 @@ public class HierarchicalCollectionView extends EventDispatcher
 				}
             	dispatchEvent(event);
             }
-			else if (ce.kind == CollectionEventKind.RESET)
+			else if (ce.kind == mx.events.CollectionEventKind.RESET)
 			{
 				// removeAll() sends a RESET.
 				// when we get a reset we don't know what went away
@@ -801,11 +802,11 @@ public class HierarchicalCollectionView extends EventDispatcher
 				// we just fake a refresh as if there was a filter
 				// applied that filtered out whatever went away
             	updateLength();
-				convertedEvent = new CollectionEvent(
-        								CollectionEvent.COLLECTION_CHANGE,
+				convertedEvent = new mx.events.CollectionEvent(
+                    mx.events.CollectionEvent.COLLECTION_CHANGE,
 										false, 
 										true,
-										CollectionEventKind.REFRESH);
+                                        mx.events.CollectionEventKind.REFRESH);
            		dispatchEvent(convertedEvent);
 			}
         }
@@ -833,7 +834,7 @@ public class HierarchicalCollectionView extends EventDispatcher
         var newValue:Object;
 		var children:XMLListCollection;
 		var location:int;
-        var event:CollectionEvent;
+        var event:mx.events.CollectionEvent;
 		var list:XMLListAdapter;
         
 		// trace("currentTarget", currentTarget.toXMLString());
@@ -896,8 +897,8 @@ public class HierarchicalCollectionView extends EventDispatcher
 							// now we fake an event on behalf of the
 							// child collection
 							location = value.childIndex();
-							event = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
-							event.kind = CollectionEventKind.ADD;
+							event = new mx.events.CollectionEvent(mx.events.CollectionEvent.COLLECTION_CHANGE);
+							event.kind = mx.events.CollectionEventKind.ADD;
 							event.location = location;
 							event.items = [ value ];
 							children.dispatchEvent(event);
@@ -968,17 +969,17 @@ public class HierarchicalCollectionView extends EventDispatcher
 								if (!children)
 								{
 									// last item got removed so there's no child collection
-									oldChildren.addEventListener(CollectionEvent.COLLECTION_CHANGE,
+									oldChildren.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE,
 																  nestedCollectionChangeHandler);
                                     //oldChildren.addEventListener(CollectionEvent.COLLECTION_CHANGE,
                                     //    nestedCollectionChangeHandler, false, 0, true);
 
-									event = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
-									event.kind = CollectionEventKind.REMOVE;
+									event = new mx.events.CollectionEvent(mx.events.CollectionEvent.COLLECTION_CHANGE);
+									event.kind = mx.events.CollectionEventKind.REMOVE;
 									event.location = 0;
 									event.items = [ value ];
 									oldChildren.dispatchEvent(event);
-									oldChildren.removeEventListener(CollectionEvent.COLLECTION_CHANGE,
+									oldChildren.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE,
 																  nestedCollectionChangeHandler);
 
 								}
@@ -990,8 +991,8 @@ public class HierarchicalCollectionView extends EventDispatcher
 								{
 									if (xmllist[i] === value)
 									{
-										event = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
-										event.kind = CollectionEventKind.REMOVE;
+										event = new mx.events.CollectionEvent(mx.events.CollectionEvent.COLLECTION_CHANGE);
+										event.kind = mx.events.CollectionEventKind.REMOVE;
 										event.location = location;
 										event.items = [ value ];
 										children.dispatchEvent(event);
@@ -1043,12 +1044,12 @@ public class HierarchicalCollectionView extends EventDispatcher
 	/**
 	 *  @private
 	 */
-	public function expandEventHandler(event:CollectionEvent):void
+	public function expandEventHandler(event:mx.events.CollectionEvent):void
 	{
-		if (event is CollectionEvent)
+		if (event is mx.events.CollectionEvent)
         {
-            var ce:CollectionEvent = CollectionEvent(event);
-            if (ce.kind == CollectionEventKind.EXPAND)
+            var ce:mx.events.CollectionEvent = mx.events.CollectionEvent(event);
+            if (ce.kind == mx.events.CollectionEventKind.EXPAND)
             {
             	event.stopImmediatePropagation();
             	updateLength();  
@@ -1120,6 +1121,41 @@ public class HierarchicalCollectionView extends EventDispatcher
         return dataDescriptor.hasChildren(node, treeData)
     }
 
+    public function openNode(node:Object):void
+    {
+        var uid:String = itemToUID(node);
+        openNodes[uid] = 1;
+        var index:int = getItemIndex(node);
+        dispatchAddOrRemoveEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_ADDED);
+    }
+    
+    private function dispatchAddOrRemoveEvents(node:Object, index:int, type:String):int
+    {
+        var children:ICollectionView = getChildren(node);
+        var cursor:IViewCursor = children.createCursor();
+        do
+        {
+            var item:Object = cursor.current;
+            var collectionEvent:org.apache.royale.events.CollectionEvent = new org.apache.royale.events.CollectionEvent(type);
+            collectionEvent.item = item;
+            collectionEvent.index = index++;
+            dispatchEvent(collectionEvent);
+            if (isOpen(item))
+            {
+                index = dispatchAddOrRemoveEvents(node, index, type);
+            }
+   
+        } while (cursor.moveNext());
+        return index;
+    }
+    
+    public function closeNode(node:Object):void
+    {
+        var uid:String = itemToUID(node);
+        delete openNodes[uid];        
+        var index:int = getItemIndex(node);
+        dispatchAddOrRemoveEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_REMOVED);
+    }
 }
 
 }
