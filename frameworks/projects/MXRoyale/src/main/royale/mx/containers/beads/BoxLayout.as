@@ -198,10 +198,14 @@ package mx.containers.beads
 			updateDisplayList(target.width, target.height);
 			
 			// update the target's actual size if needed.
-			if (target.isWidthSizedToContent() || target.isHeightSizedToContent()) {
+			if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
 				target.setActualSize(target.getExplicitOrMeasuredWidth(), 
 					                 target.getExplicitOrMeasuredHeight());
 			}
+            else if (target.isWidthSizedToContent())
+                target.setWidth(target.getExplicitOrMeasuredWidth());
+            else if (target.isHeightSizedToContent())
+                target.setHeight(target.getExplicitOrMeasuredHeight());
 
 			return true;
 		}
