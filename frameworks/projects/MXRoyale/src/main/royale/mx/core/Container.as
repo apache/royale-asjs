@@ -615,6 +615,7 @@ public class Container extends UIComponent
 		// Load the layout bead if it hasn't already been loaded.
 		if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
         {
+            dispatchEvent(new Event("initComplete"));
             if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
                 (isWidthSizedToContent() || !isNaN(explicitWidth)))
     			dispatchEvent(new Event("layoutNeeded"));
@@ -629,7 +630,6 @@ public class Container extends UIComponent
             addBead(new ContainerDataBinding());
 
         dispatchEvent(new Event("initBindings"));
-        dispatchEvent(new Event("initComplete"));
     }
     
     /**
