@@ -1070,7 +1070,7 @@ public class HierarchicalCollectionView extends EventDispatcher
         var offset:int = getItemIndex(node);
         //otherwise seek to offset and get the depth
         var bookmark:CursorBookmark = iterator.bookmark;
-        iterator.seek(bookmark, offset);
+        iterator.seek(CursorBookmark.FIRST, offset);
         var depth:int = getCurrentCursorDepth();
         //put the cursor back
         iterator.seek(bookmark, 0);
@@ -1131,6 +1131,7 @@ public class HierarchicalCollectionView extends EventDispatcher
     
     private function dispatchAddOrRemoveEvents(node:Object, index:int, type:String):int
     {
+        var adding:Boolean = (type == org.apache.royale.events.CollectionEvent.ITEM_ADDED);
         var children:ICollectionView = getChildren(node);
         var cursor:IViewCursor = children.createCursor();
         do
@@ -1140,6 +1141,10 @@ public class HierarchicalCollectionView extends EventDispatcher
             collectionEvent.item = item;
             collectionEvent.index = index++;
             dispatchEvent(collectionEvent);
+            if (adding)
+                currentLength++;
+            else
+                currentLength--;
             if (isOpen(item))
             {
                 index = dispatchAddOrRemoveEvents(node, index, type);
