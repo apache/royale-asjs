@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -36,6 +37,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	// import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController;
+	// import org.apache.royale.jewel.beads.controllers.DateChooserTableCellSelectionMouseController;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser.
@@ -166,6 +169,9 @@ package org.apache.royale.jewel.beads.views
 			_daysTable.percentWidth = 100;
 			}
 			getHost().addElement(_daysTable, false);
+			// var controller:TableCellSelectionMouseController = _daysTable.getBeadByType(IBeadController) as TableCellSelectionMouseController;
+			// _daysTable.removeBead(controller);
+			// _daysTable.addBead(new DateChooserTableCellSelectionMouseController());
 			
 			IEventDispatcher(_daysTable).dispatchEvent( new Event("itemsCreated") );
 			model.addEventListener("selectedDateChanged", selectionChangeHandler);
@@ -224,6 +230,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function updateDisplay():void
 		{
+			trace("updateDisplay");
 			_monthLabel.text = model.monthNames[model.displayedMonth] + " " + String(model.displayedYear);
 
 			var len:int = columns.length;
@@ -234,8 +241,7 @@ package org.apache.royale.jewel.beads.views
 			}
 
 			_daysTable.columns = columns;
-
-
+			
 			var currrentMonth:Array = [];
 			var dayIndex:int = 0;
 			for(var i:int = 0; i < model.days.length/7; i++)
@@ -248,13 +254,11 @@ package org.apache.royale.jewel.beads.views
 				}
 			}
 			_daysTable.dataProvider = new ArrayList(currrentMonth);
-			_daysTable.dispatchEvent( new Event("tableComplete") );
-
-			_daysTable.selectedIndex = model.getIndexForSelectedDate();
 			
 			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
 			view.thead.addElementAt(buttonsRow, 0, false);
 			
+			_daysTable.selectedIndex = model.getIndexForSelectedDate();
 		}
 
 		/**
@@ -262,10 +266,11 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{
+			trace("*selectionChangeHandler*");
 			updateDisplay();
 
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
-			getHost().dispatchEvent( new Event("change") );
+			getHost().dispatchEvent(new Event("change"));
 		}
 
 		/**
@@ -273,6 +278,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function handleModelChange(event:Event):void
 		{
+			trace("*handleModelChange*");
 			updateDisplay();
 		}
 	}

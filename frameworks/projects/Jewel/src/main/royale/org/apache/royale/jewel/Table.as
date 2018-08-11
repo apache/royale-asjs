@@ -23,6 +23,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.utils.IClassSelectorListSupport;
 
 	COMPILE::JS
     {
@@ -68,7 +70,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class Table extends DataContainerBase
+	public class Table extends DataContainerBase implements IClassSelectorListSupport
 	{
 		/**
 		 *  constructor.
@@ -83,7 +85,16 @@ package org.apache.royale.jewel
 			super();
 			
 			typeNames = "jewel table";
+			classSelectorList = new ClassSelectorList(this);
 		}
+
+		protected var classSelectorList:ClassSelectorList;
+
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
 
 		/**
 		 *  The list of TableColumn objects displayed by this table. 
@@ -105,7 +116,7 @@ package org.apache.royale.jewel
 			TableModel(model).columns = value;
 		}
 
-		// private var _fixedHeader:Boolean;
+		private var _fixedHeader:Boolean;
 		/**
 		 *  Makes the header of the table fixed so the data rows will scroll
 		 *  behind it.
@@ -117,16 +128,16 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		// public function get fixedHeader():Boolean
-		// {
-		// 	return _fixedHeader;
-		// }
-		// public function set fixedHeader(value:Boolean):void
-		// {
-		// 	_fixedHeader = value;
+		public function get fixedHeader():Boolean
+		{
+			return _fixedHeader;
+		}
+		public function set fixedHeader(value:Boolean):void
+		{
+			_fixedHeader = value;
 
-		// 	// toggleClass("fixedHeader", _fixedHeader);
-		// }
+			toggleClass("fixedHeader", _fixedHeader);
+		}
 
 		// private var _tableDataHeight:Boolean;
 		/**
@@ -222,6 +233,87 @@ package org.apache.royale.jewel
         override protected function createElement():WrappedHTMLElement
         {
             return addElementToWrapper(this, 'table');
+        }
+
+		/**
+         * Add a class selector to the list.
+         * 
+         * @param name Name of selector to add.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.3
+         */
+        public function addClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.add(name);
+            }
+        }
+
+        /**
+         * Removes a class selector from the list.
+         * 
+         * @param name Name of selector to remove.
+         *
+         * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion DOMTokenList
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.3
+         */
+        public function removeClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.remove(name);
+            }
+        }
+
+        /**
+         * Add or remove a class selector to/from the list.
+         * 
+         * @param name Name of selector to add or remove.
+         * @param value True to add, False to remove.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.3
+         */
+        public function toggleClass(name:String, value:Boolean):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.toggle(name, value);
+            }
+        }
+
+        /**
+		 *  Search for the name in the element class list 
+		 *
+         *  @param name Name of selector to find.
+         *  @return return true if the name is found or false otherwise.
+         * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function containsClass(name:String):Boolean
+        {
+            COMPILE::JS
+            {
+            return classSelectorList.contains(name);
+            }
+            COMPILE::SWF
+            {//not implemented
+            return false;
+            }
         }
     }
 }

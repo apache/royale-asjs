@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
     import org.apache.royale.collections.ICollectionView;
     import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.SimpleCSSStyles;
@@ -36,9 +37,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
-	import org.apache.royale.jewel.supportClasses.table.TBody;
 	import org.apache.royale.jewel.supportClasses.table.THead;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 
     /**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
@@ -53,6 +55,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 			super(target);
 		}
 
+        protected var view:TableView;
+        protected var model:TableModel;
+        protected var table:Table;
+
+		private var tbody:TBodyContentArea;
+
         /**
 		 *  initialize bead
 		 *
@@ -66,18 +74,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		override protected function initComplete(event:Event):void
 		{
             view = _strand.getBeadByType(IListView) as TableView;
-            tbody = view.tbody;
             model = _strand.getBeadByType(IBeadModel) as TableModel;
             table = _strand as Table;
 
 			super.initComplete(event);
 		}
-
-        protected var view:TableView;
-        protected var model:TableModel;
-        protected var table:Table;
-
-        private var tbody:TBody;
 
         /**
 		 * @private
@@ -88,6 +89,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
+			// -- 1) CLEANING PHASE
             if (!dataProviderModel)
 				return;
 			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
@@ -101,32 +103,28 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
             // THEAD - remove header items
-			dataGroup.removeAllItemRenderers();
-
-            // TBody - remove data items
-			if(tbody != null)
-			{
-				while (tbody.numElements > 0) {
-					var child:IChild = tbody.getElementAt(0);
-					tbody.removeElement(child);
-				}
-			}
+			removeElements(view.thead);
+			
+            // TBodyContentArea - remove data items
+			tbody = dataGroup as TBodyContentArea;
+			//tbody.removeAllItemRenderers(); -- this doesn't work since we 're wrappint IR in other pieces
+			removeElements(tbody);
+			
+			// -- 2) CREATION PHASE
 
             // -- add the header
             createHeader();
 			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			labelField = dataProviderModel.labelField;
+			//labelField = dataProviderModel.labelField;
 			
-            // -- add the data items
-            table.addElement(tbody);
-
             var row:TableRow;
             var column:TableColumn;
             var tableCell:TableCell;
             var ir:ITextItemRenderer;
 
 			var n:int = dp.length;
+			var index:int = 0;
 			for (var i:int = 0; i < n; i++)
 			{
                 row = new TableRow();
@@ -141,20 +139,27 @@ package org.apache.royale.jewel.beads.itemRenderers
                         ir = column.itemRenderer.newInstance() as ITextItemRenderer;
                     } else
                     {
-                        ir = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
+                        ir = itemRendererFactory.createItemRenderer(tbody) as ITextItemRenderer;
                     }
 
                     tableCell.addElement(ir);
                     row.addElement(tableCell);
 
-                    ir.labelField = column.dataField;
+					labelField =  column.dataField;
+                    // ir.labelField = labelField;
                     var item:Object = dp.getItemAt(i);
-                    fillRenderer(i, item, ir, presentationModel);
+                    fillRenderer(index++, item, ir, presentationModel);
+
+                    (ir as DataItemRenderer).dataField = labelField;
+					(ir as DataItemRenderer).rowIndex = i;
+					(ir as DataItemRenderer).columnIndex = j;
                     
                     if(column.align != "")
                     {
                         ir.align = column.align;
                     }
+
+					tbody.dispatchItemAdded(ir);
                 }
                 tbody.addElement(row);
 			}
@@ -162,6 +167,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
             table.dispatchEvent(new Event("layoutNeeded"));
         }
+
+		public function removeElements(container: IParent):void
+		{
+			if(container != null)
+			{
+				trace(container);
+				trace(" removing all");
+				while (container.numElements > 0) {
+					var child:IChild = container.getElementAt(0);
+					container.removeElement(child);
+				}
+			}
+		}
 
         /**
 		 * @private
@@ -172,9 +190,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 										itemRenderer:ITextItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
-			// dataGroup.addItemRendererAt(itemRenderer, index);
+			// tbody.addItemRendererAt(itemRenderer, index);
 			
-			// itemRenderer.labelField = labelField;
+			itemRenderer.labelField = labelField;
 			
 			if (presentationModel) {
 				var style:SimpleCSSStyles = new SimpleCSSStyles();
@@ -204,7 +222,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 
             if (createHeaderRow) 
             {
-                view.thead = new THead();
+				if(view.thead == null)
+                	view.thead = new THead();
 				var thead:THead = view.thead;
 				var headerRow:TableRow = new TableRow();
 				

@@ -84,16 +84,22 @@ $tableitem-min-height: 34px
         > *
             padding: 12px
         
-    // &.fixedHeader
-    //     table-layout: fixed
+    &.fixedHeader
+        table-layout: fixed
 
-    //     .jewel.thead tr
-    //         display: block
+        // .jewel.thead tr
+        //     display: block
 
-    //     .jewel.tbody
-    //         display: block
-    //         overflow: auto
-    //         width: 100%
+        .jewel.tbody
+            display: block
+            overflow: auto
+            // width must be table width
+            
+            .jewel.tablerow
+                display: block
+            
+        .jewel.tablecell
+            display: inline-block
 
 j|Table
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout")
@@ -101,10 +107,11 @@ j|Table
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer")
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController")
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView")
-    // IViewport: ClassReference("org.apache.royale.html.supportClasses.scrollbar.ScrollingViewport")
-    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    IContentView: ClassReference("org.apache.royale.jewel.supportClasses.table.TBodyContentArea")
 
 
 .jewel.tableitem

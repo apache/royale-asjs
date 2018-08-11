@@ -21,10 +21,13 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.jewel.beads.views.ListView;
-	import org.apache.royale.jewel.supportClasses.table.TBody;
 	import org.apache.royale.jewel.supportClasses.table.THead;
 	import org.apache.royale.jewel.supportClasses.table.TFoot;
+	import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
+	import  org.apache.royale.jewel.beads.models.TableModel;
 	
 	/**
 	 *  The TableView class creates the visual elements of the org.apache.royale.jewel.Table component.
@@ -62,8 +65,21 @@ package org.apache.royale.jewel.beads.views
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+		}
 
-			createChildren();
+		protected var model:TableModel;
+
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		override protected function handleInitComplete(event:Event):void
+		{
+			model = _strand.getBeadByType(TableModel) as TableModel;
+			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			model.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+
+			super.handleInitComplete(event);
 		}
 
 		/**
@@ -74,20 +90,45 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-		public var tbody:TBody;
-		
-		/**
-		 * @royalesuppresspublicvarwarning
-		 */
 		public var tfoot:TFoot;
+
+		public var lastSelectedRenderer:ISelectableItemRenderer;
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
-		private function createChildren():void
+		override protected function selectionChangeHandler(event:Event):void
 		{
-			tbody = new TBody();
-			(_strand as UIBase).addElement(tbody);
+			trace("selectionChangeHandler 1");
+			if(lastSelectedRenderer)
+				lastSelectedRenderer.selected = false;
+
+			// var tbody:TBodyContentArea = contentView as TBodyContentArea;
+			// var renderers:Array = tbody.itemRenderers;
+			
+			var ir:ISelectableItemRenderer = model.selectedCellRenderer as ISelectableItemRenderer;
+			trace(ir);
+			if(ir)
+				ir.selected = true;
+
+			lastSelectedRenderer = ir;
+			trace(lastSelectedRenderer);
+			// trace(event);
+			// trace("lastSelectedIndex: " + lastSelectedIndex);
+
+			// // var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+			// var ir:ISelectableItemRenderer = renderers[lastSelectedIndex] as ISelectableItemRenderer;
+			// trace(ir);
+			// if(ir)
+			// 	ir.selected = false;
+			// // ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+			// ir = renderers[listModel.selectedIndex] as ISelectableItemRenderer;
+			// trace(ir);
+			// if(ir)
+			// 	ir.selected = true;
+
+			// lastSelectedIndex = listModel.selectedIndex;
 		}
 	}
 }

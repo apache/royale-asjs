@@ -26,14 +26,14 @@ limitations under the License.
 		<![CDATA[
 			private function dateChooserChanged():void
 			{
-				dateChooserSelectedDate.text = "DateChooser selected date: " + dateChooser.selectedDate;
-				//dateField.selectedDate = dateChooser.selectedDate;
+				dateChooserSelectedDate.html = "<strong>DateChooser selected date:</strong> " + dateChooser.selectedDate;
+				dateField.selectedDate = dateChooser.selectedDate;
 			}
 			
 			private function dateFieldChanged():void
 			{
-				dateFieldSelectedDate.text = "DateField selected date: " + dateField.selectedDate;
-				//dateChooser.selectedDate = dateField.selectedDate;
+				dateFieldSelectedDate.html = "<strong>DateField selected date:</strong> " + dateField.selectedDate;
+				dateChooser.selectedDate = dateField.selectedDate;
 			}
 			
 			private function toToday():void
@@ -42,8 +42,8 @@ limitations under the License.
 			}
 			private function dateChooserInit():void
 			{
-				dateChooser.model.firstDayOfWeek = 1;
-				dateChooser.model.dayNames = ['S','M','T','W','T','F','S'];
+				//dateChooser.model.firstDayOfWeek = 1;
+				//dateChooser.model.dayNames = ['S','M','T','W','T','F','S'];
 			}
 		]]>
 	</fx:Script>
@@ -55,13 +55,13 @@ limitations under the License.
 	<j:Card>
 		<html:H3 text="Jewel DateChooser"/>
 		<j:DateChooser id="dateChooser" change="dateChooserChanged()" initComplete="dateChooserInit()"/>
-		<j:Label id="dateChooserSelectedDate" text="DateChooser selected date: "/>
+		<j:Label id="dateChooserSelectedDate" multiline="true" html="&lt;strong>DateChooser selected date:&lt;/strong> "  width="275"/>
 	</j:Card>
 	
 	<j:Card width="400">
 		<html:H3 text="Jewel DateField"/>
 		<j:DateField id="dateField" change="dateFieldChanged()"/>
-		<j:Label id="dateFieldSelectedDate" text="DateField selected date: "/>
+		<j:Label id="dateFieldSelectedDate" multiline="true" html="&lt;strong>DateField selected date:&lt;/strong> "/>
 		<j:Button text="Today!" click="toToday()"/>
 	</j:Card>
 	

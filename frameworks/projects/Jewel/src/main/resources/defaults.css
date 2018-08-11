@@ -2840,6 +2840,19 @@ j|Slider {
 .jewel.table .jewel.tablecell > * {
   padding: 12px;
 }
+.jewel.table.fixedHeader {
+  table-layout: fixed;
+}
+.jewel.table.fixedHeader .jewel.tbody {
+  display: block;
+  overflow: auto;
+}
+.jewel.table.fixedHeader .jewel.tbody .jewel.tablerow {
+  display: block;
+}
+.jewel.table.fixedHeader .jewel.tablecell {
+  display: inline-block;
+}
 
 j|Table {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout");
@@ -2847,8 +2860,11 @@ j|Table {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer");
-  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+  IContentView: ClassReference("org.apache.royale.jewel.supportClasses.table.TBodyContentArea");
 }
 
 .jewel.tableitem {

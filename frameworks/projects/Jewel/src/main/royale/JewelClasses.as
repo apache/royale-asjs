@@ -42,6 +42,7 @@ package
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
         import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+        import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController; TableCellSelectionMouseController;
         
         import org.apache.royale.jewel.beads.views.ImageView; ImageView;
         import org.apache.royale.jewel.beads.views.SliderView; SliderView;

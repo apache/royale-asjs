@@ -183,12 +183,27 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'div');
+			addElementToWrapper(this,'div');
+
+			if(MXMLDescriptor == null)
+			{
+				textNode = document.createTextNode('') as Text;
+				element.appendChild(textNode);
+			}
             // itemRenderers should provide something for the background to handle
             // the selection and highlight
             // backgroundView = element;
-            // return element;
+            return element;
         }
+
+		/**
+		 * @private
+		 */
+		override public function updateRenderer():void
+		{
+            toggleClass("selected", selected);
+			
+		}
 
 	}
 }

@@ -175,7 +175,7 @@ limitations under the License.
 	<j:Card >
 		<html:H3 text="Jewel Table"/>
 
-		<j:Table width="440">
+		<j:Table id="table" width="440" change="onChange(event)">
 			<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
 			<j:TableColumn dataField="album" label="Album" align="center"/>
 			<j:TableColumn dataField="year" label="Release Year" align="right"
@@ -187,6 +187,31 @@ limitations under the License.
 									destinationPropertyName="dataProvider" />
 			</j:beads>
 		</j:Table>
+
+		<j:Button click="clearTable()" text="Clear Table"/>
 		
+		<j:Label id="selected"/>
 	</j:Card>
+
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.collections.ArrayList;
+
+			private function onChange(event:Event):void {
+                selected.text = "Selected: " + table.model.selectedCellItem;
+            }
+
+			private function clearTable():void
+			{
+				table.dataProvider = new ArrayList([
+					{guitarrist: "Ssi", album: "Paasadasdssion & Warfare", year: "1990"},
+					{guitarrist: "Steve Morse", album: "Southern Steel", year: "1991"},
+					{guitarrist: "Yngwie Malmsteen", album: "sfsdf Force", year: "2984"},
+					{guitarrist: "Joe sf", album: "Surfing With The Alien", year: "1987"},
+					{guitarrist: "Mark Knopfler", album: "Local sf", year: "1983"}
+				]);
+			}
+		]]>
+	</fx:Script>
+
 </j:SectionContent>
