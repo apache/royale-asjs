@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.supportClasses.table
 {
     import org.apache.royale.jewel.Group;
+	import org.apache.royale.core.IChrome;
 
     COMPILE::JS
     {
@@ -36,7 +37,7 @@ package org.apache.royale.jewel.supportClasses.table
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class THead extends Group
+	public class THead extends Group implements IChrome
 	{
 		/**
 		 *  constructor.

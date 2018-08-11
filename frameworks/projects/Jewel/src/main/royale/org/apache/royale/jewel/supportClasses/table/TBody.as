@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.supportClasses.table
 {
     import org.apache.royale.jewel.Group;
-	
 
     COMPILE::JS
     {

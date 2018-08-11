@@ -23,17 +23,23 @@ package org.apache.royale.jewel.supportClasses.util
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
-     * Utility function to get a label string from a value object
+     * 
+     *  Utility function to get a label string from a value object
      */
-    public function getLabelFromData(obj:Object,data:Object):String
+    public function getLabelFromData(obj:Object, data:Object):String
     {
         // slightly more code, but we bail early if it's a string which is often
         if (data is String) return "" + data;
         if(!data) return "";
 
-        if (obj["labelField"]) return "" + data[obj["labelField"]];
-        if (obj["dataField"]) return "" + data[obj["dataField"]];
-        if (data.hasOwnProperty("label")) return "" + data["label"];
+        if (obj["labelField"]) 
+            return "" + data[obj["labelField"]];
+        
+        if (obj["dataField"]) 
+            return "" + data[obj["dataField"]];
+        
+        if (data.hasOwnProperty("label")) 
+            return "" + data["label"];
 
         return "" + data;
 

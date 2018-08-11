@@ -66,6 +66,7 @@ package org.apache.royale.jewel.beads.models
 
 		private var _dataProvider:IArrayList;
 
+		[Bindable("dataProviderChanged")]
         /**
          *  @copy org.apache.royale.core.ISelectionModel#dataProvider
          *

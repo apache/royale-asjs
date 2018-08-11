@@ -73,7 +73,7 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
-        private var textNode:Text;
+        protected var textNode:Text;
 
 		/**
 		 *  Sets the data value and uses the String version of the data for display.

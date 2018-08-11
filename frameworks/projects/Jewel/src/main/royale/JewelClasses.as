@@ -40,6 +40,7 @@ package
         import org.apache.royale.jewel.beads.controllers.DateChooserMouseController; DateChooserMouseController;
         import org.apache.royale.jewel.beads.controllers.DateFieldMouseController; DateFieldMouseController;
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
+        import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
         
         import org.apache.royale.jewel.beads.views.ImageView; ImageView;
@@ -81,12 +82,9 @@ package
 
         import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
 
-        import org.apache.royale.jewel.supportClasses.table.TBody;
-        import org.apache.royale.jewel.supportClasses.table.THead;
-        import org.apache.royale.jewel.supportClasses.table.TFoot;
+        import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
-        import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     }
 
 }
