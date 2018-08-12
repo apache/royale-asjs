@@ -43,16 +43,18 @@ import flash.events.IEventDispatcher;
 */
 
 import mx.controls.beads.ToolTipBead;
+import mx.display.Graphics;
 import mx.events.FlexEvent;
-import mx.events.ResizeEvent;
 import mx.events.MoveEvent;
+import mx.events.PropertyChangeEvent;
+import mx.events.ResizeEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
+import mx.styles.IStyleManager2;
+import mx.styles.StyleManager;
 
-import org.apache.royale.html.beads.DisableBead;
-import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
@@ -65,39 +67,11 @@ import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
+import org.apache.royale.html.beads.DisableBead;
+import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
-
-import mx.display.Graphics;
-
-/*
-import mx.managers.IToolTipManagerClient;
-import mx.managers.SystemManager;
-import mx.managers.SystemManagerGlobals;
-import mx.managers.ToolTipManager;
-import mx.resources.IResourceManager;
-import mx.resources.ResourceManager;
-import mx.states.State;
-import mx.states.Transition;
-import mx.styles.CSSStyleDeclaration;
-import mx.styles.IAdvancedStyleClient;
-import mx.styles.ISimpleStyleClient;
-import mx.styles.IStyleClient;
-import mx.styles.StyleProtoChain;
-import mx.utils.ColorUtil;
-import mx.utils.GraphicsUtil;
-import mx.utils.MatrixUtil;
-import mx.utils.NameUtil;
-import mx.utils.StringUtil;
-import mx.utils.TransformUtil;
-import mx.validators.IValidatorListener;
-import mx.validators.ValidationResult;
-    
-use namespace mx_internal;
-*/
-import mx.styles.IStyleManager2;
-import mx.styles.StyleManager;
 
 /**
  *  Dispatched when the component has finished its construction
@@ -665,6 +639,43 @@ public class UIComponent extends UIBase
      *  Holds the last recorded value of the explicitHeight property.
      */
     private var oldExplicitHeight:Number;
+
+    //----------------------------------
+    //  baselinePosition
+    //----------------------------------
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get baselinePosition():Number
+    {
+        /*
+        if (!validateBaselinePosition())
+            return NaN;
+        
+        // Unless the height is very small, the baselinePosition
+        // of a generic UIComponent is calculated as if there was
+        // a UITextField using the component's styles
+        // whose top coincides with the component's top.
+        // If the height is small, the baselinePosition is calculated
+        // as if there were text within whose ascent the component
+        // is vertically centered.
+        // At the crossover height, these two calculations
+        // produce the same result.
+        
+        var lineMetrics:TextLineMetrics = measureText("Wj");
+        
+        if (height < 2 + lineMetrics.ascent + 2)
+            return int(height + (lineMetrics.ascent - height) / 2);
+        
+        return 2 + lineMetrics.ascent;*/
+        return 0;
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -4454,6 +4465,220 @@ public class UIComponent extends UIBase
         }
     }
 
+    //--------------------------------------------------------------------------
+    //
+    //  ILayoutElement
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getPreferredBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getPreferredBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getPreferredBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getPreferredBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMinBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMinBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMinBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMinBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMaxBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMaxBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMaxBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMaxBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getBoundsXAtSize(width:Number, height:Number, postLayoutTransform:Boolean = true):Number
+    {
+        return LayoutElementUIComponentUtils.getBoundsXAtSize(this, width, height/*,
+            postLayoutTransform ? nonDeltaLayoutMatrix() : null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getBoundsYAtSize(width:Number, height:Number, postLayoutTransform:Boolean = true):Number
+    {
+        return LayoutElementUIComponentUtils.getBoundsYAtSize(this, width, height/*,
+            postLayoutTransform ? nonDeltaLayoutMatrix() : null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsX(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsX(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsY(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsY(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function setLayoutBoundsPosition(x:Number, y:Number, postLayoutTransform:Boolean=true):void
+    {
+        LayoutElementUIComponentUtils.setLayoutBoundsPosition(this,x,y/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function setLayoutBoundsSize(width:Number,
+                                        height:Number,
+                                        postLayoutTransform:Boolean = true):void
+    {
+        LayoutElementUIComponentUtils.setLayoutBoundsSize(this,width,height/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+
+    /** 
+     *  Helper method for dispatching a PropertyChangeEvent
+     *  when a property is updated.
+     * 
+     *  @param prop Name of the property that changed.
+     *
+     *  @param oldValue Old value of the property.
+     *
+     *  @param value New value of the property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function dispatchPropertyChangeEvent(prop:String, oldValue:*,
+                                                   value:*):void
+    {
+        if (hasEventListener("propertyChange"))
+            dispatchEvent(PropertyChangeEvent.createUpdateEvent(
+                this, prop, oldValue, value));
+    }
 
 }
 

@@ -571,8 +571,8 @@ public class GroupBase extends UIComponent
     //  horizontalScrollPosition
     //----------------------------------
         
-    /* [Bindable]
-    [Inspectable(minValue="0.0")]      */
+    [Bindable]
+    [Inspectable(minValue="0.0")]
 
     /**
      *  @copy spark.core.IViewport#horizontalScrollPosition
@@ -582,22 +582,23 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get horizontalScrollPosition():Number 
+    public function get horizontalScrollPosition():Number 
     {
         if (_layout)
         {
             return _layout.horizontalScrollPosition;
         }
+        /*
         else if (_layoutProperties && 
                 _layoutProperties.horizontalScrollPosition !== undefined)
         {
             return _layoutProperties.horizontalScrollPosition;
         }
         else
-        {
+        {*/
             return 0;
-        }
-    } */
+        /*}*/
+    }
 
     /**
      *  @private
@@ -622,8 +623,8 @@ public class GroupBase extends UIComponent
     //  verticalScrollPosition
     //----------------------------------
     
-    /* [Bindable]
-    [Inspectable(minValue="0.0")]  */
+    [Bindable]
+    [Inspectable(minValue="0.0")]
     
     /**
      *  @copy spark.core.IViewport#verticalScrollPosition
@@ -633,22 +634,23 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get verticalScrollPosition():Number 
+    public function get verticalScrollPosition():Number 
     {
         if (_layout)
         {
             return _layout.verticalScrollPosition;
         }
+        /*
         else if (_layoutProperties && 
                 _layoutProperties.verticalScrollPosition !== undefined)
         {
             return _layoutProperties.verticalScrollPosition;
         }
         else
-        {
+        {*/
             return 0;
-        }
-    } */
+        /*}*/
+    }
 
     /**
      *  @private
@@ -1452,10 +1454,10 @@ public class GroupBase extends UIComponent
     //  contentWidth
     //---------------------------------- 
     
-    /* private var _contentWidth:Number = 0;
+    private var _contentWidth:Number = 0;
     
     [Bindable("propertyChange")]
-    [Inspectable(category="General")]     */
+    [Inspectable(category="General")]
 
     /**
      *  @copy spark.core.IViewport#contentWidth
@@ -1465,31 +1467,31 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get contentWidth():Number 
+    public function get contentWidth():Number 
     {
         return _contentWidth;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* private function setContentWidth(value:Number):void 
+    private function setContentWidth(value:Number):void 
     {
         if (value == _contentWidth)
             return;
         var oldValue:Number = _contentWidth;
         _contentWidth = value;
         dispatchPropertyChangeEvent("contentWidth", oldValue, value);        
-    } */
+    }
 
     //----------------------------------
     //  contentHeight
     //---------------------------------- 
     
-    /* private var _contentHeight:Number = 0;
+    private var _contentHeight:Number = 0;
     
     [Bindable("propertyChange")]
-    [Inspectable(category="General")]    */ 
+    [Inspectable(category="General")]
 
     /**
      *  @copy spark.core.IViewport#contentHeight
@@ -1499,22 +1501,22 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    // public function get contentHeight():Number 
-    // {
-        // return _contentHeight;
-    // }
+    public function get contentHeight():Number 
+    {
+        return _contentHeight;
+    }
     
     /**
      *  @private
      */
-    /* private function setContentHeight(value:Number):void 
+    private function setContentHeight(value:Number):void 
     {            
         if (value == _contentHeight)
             return;
         var oldValue:Number = _contentHeight;
         _contentHeight = value;
         dispatchPropertyChangeEvent("contentHeight", oldValue, value);        
-    }   */  
+    }
 
     /**
      *  Sets the <code>contentWidth</code> and <code>contentHeight</code>
@@ -1532,13 +1534,13 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function setContentSize(width:Number, height:Number):void
+    public function setContentSize(width:Number, height:Number):void
     {
         if ((width == _contentWidth) && (height == _contentHeight))
            return;
         setContentWidth(width);
         setContentHeight(height);
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1792,10 +1794,10 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function getVirtualElementAt(index:int, eltWidth:Number=NaN, eltHeight:Number=NaN):IVisualElement
+    public function getVirtualElementAt(index:int, eltWidth:Number=NaN, eltHeight:Number=NaN):IVisualElement
     {
-        return getElementAt(index);            
-    } */
+        return getElementAt(index) as IVisualElement;            
+    }
     
     /**
      *  @copy mx.core.IVisualElementContainer#getElementIndex()

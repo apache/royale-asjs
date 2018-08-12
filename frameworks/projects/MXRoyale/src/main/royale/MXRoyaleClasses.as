@@ -38,6 +38,7 @@ internal class MXRoyaleClasses
 	import mx.graphics.IFill; IFill;
 	import mx.core.EventPriority; EventPriority;
 	import mx.core.IFactory; IFactory;
+    import mx.core.ILayoutElement; ILayoutElement;
 	import mx.collections.CursorBookmark; CursorBookmark;
 	import mx.collections.ICollectionView; ICollectionView;
 	import mx.collections.IViewCursor; IViewCursor;

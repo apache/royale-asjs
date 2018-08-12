@@ -19,12 +19,12 @@
 
 package spark.layouts
 {
-/* import flash.events.Event;
-import flash.geom.Point;
-import flash.geom.Rectangle;
+import org.apache.royale.events.Event;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 
 import mx.containers.utilityClasses.Flex;
-import mx.core.FlexVersion;
+//import mx.core.FlexVersion;
 import mx.core.ILayoutElement;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
@@ -38,7 +38,7 @@ import spark.layouts.supportClasses.LayoutBase;
 import spark.layouts.supportClasses.LayoutElementHelper;
 import spark.layouts.supportClasses.LinearLayoutVector;
 
-use namespace mx_internal; */
+use namespace mx_internal;
 
 /**
  *  The VerticalLayout class arranges the layout elements in a vertical sequence,
@@ -123,9 +123,9 @@ use namespace mx_internal; */
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class VerticalLayout
-{ // extends LayoutBase
-    //include "../core/Version.as";
+public class VerticalLayout extends LayoutBase
+{
+//    include "../core/Version.as";
     
     /**
      *  @private
@@ -133,7 +133,7 @@ public class VerticalLayout
      *  useVirtualLayout=true.   See updateLLV(), resetCachedVirtualLayoutState(),
      *  etc.
      */
-    /* private var llv:LinearLayoutVector; */
+    private var llv:LinearLayoutVector;
     
     //--------------------------------------------------------------------------
     //
@@ -141,9 +141,10 @@ public class VerticalLayout
     //
     //--------------------------------------------------------------------------
     
-   /*  private static function calculatePercentWidth(layoutElement:ILayoutElement, width:Number):Number
+    private static function calculatePercentWidth(layoutElement:ILayoutElement, width:Number):Number
     {
         var percentWidth:Number;
+        /*
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_6)
         {
             percentWidth = LayoutElementHelper.pinBetween(Math.round(layoutElement.percentWidth * 0.01 * width),
@@ -152,15 +153,15 @@ public class VerticalLayout
             return percentWidth < width ? percentWidth : width;
         }
         else
-        {
+        {*/
             percentWidth = LayoutElementHelper.pinBetween(Math.min(Math.round(layoutElement.percentWidth * 0.01 * width), width),
                                                           layoutElement.getMinBoundsWidth(),
                                                           layoutElement.getMaxBoundsWidth() );
             return percentWidth;
-        }
-    } */
+        /*}*/
+    }
     
-   /*  private static function sizeLayoutElement(layoutElement:ILayoutElement, 
+    private static function sizeLayoutElement(layoutElement:ILayoutElement, 
                                               width:Number, 
                                               horizontalAlign:String, 
                                               restrictedWidth:Number, 
@@ -188,7 +189,7 @@ public class VerticalLayout
             layoutElement.setLayoutBoundsSize(newWidth, height);
         else
             layoutElement.setLayoutBoundsSize(newWidth, rowHeight);
-    } */
+    }
         
     //--------------------------------------------------------------------------
     //
@@ -206,10 +207,10 @@ public class VerticalLayout
      */    
     public function VerticalLayout():void
     {
-       // super();
+        super();
 
         // Don't drag-scroll in the horizontal direction
-       // dragScrollRegionSizeHorizontal = 0;
+        dragScrollRegionSizeHorizontal = 0;
     }
 
     //--------------------------------------------------------------------------
@@ -253,17 +254,17 @@ public class VerticalLayout
             return;
 
         _gap = value;
-      //  invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }
 
     //----------------------------------
     //  rowCount
     //----------------------------------
 
-   /*  private var _rowCount:int = -1;
+    private var _rowCount:int = -1;
 
     [Bindable("propertyChange")]
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     
     /**
      *  The current number of visible elements.
@@ -275,10 +276,10 @@ public class VerticalLayout
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get rowCount():int
+    public function get rowCount():int
     {
         return _rowCount;
-    } */
+    }
     
     /**
      *  @private
@@ -286,14 +287,14 @@ public class VerticalLayout
      *  Sets the <code>rowCount</code> property and dispatches a
      *  PropertyChangeEvent.
      */
-   /*  mx_internal function setRowCount(value:int):void
+    mx_internal function setRowCount(value:int):void
     {
         if (_rowCount == value)
             return;
         var oldValue:int = _rowCount;
         _rowCount = value;
         dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "rowCount", oldValue, value));
-    } */
+    }
     
     //----------------------------------
     //  horizontalAlign
@@ -302,7 +303,7 @@ public class VerticalLayout
     /**
      *  @private
      */
-    private var _horizontalAlign:String = "left"; // HorizontalAlign.LEFT;
+    private var _horizontalAlign:String = HorizontalAlign.LEFT;
 
     [Inspectable(category="General", enumeration="left,right,center,justify,contentJustify", defaultValue="left")]
 
@@ -344,9 +345,9 @@ public class VerticalLayout
         
         _horizontalAlign = value;
 
-        /* var layoutTarget:GroupBase = target;
+        var layoutTarget:GroupBase = target;
         if (layoutTarget)
-            layoutTarget.invalidateDisplayList(); */
+            layoutTarget.invalidateDisplayList();
     }
     
     //----------------------------------
@@ -356,7 +357,7 @@ public class VerticalLayout
     /**
      *  @private
      */
-    private var _verticalAlign:String = "top"; //VerticalAlign.TOP;
+    private var _verticalAlign:String = VerticalAlign.TOP;
     
     [Inspectable(category="General", enumeration="top,bottom,middle", defaultValue="top")]
     
@@ -394,9 +395,9 @@ public class VerticalLayout
         
         _verticalAlign = value;
         
-       /*  var layoutTarget:GroupBase = target;
+        var layoutTarget:GroupBase = target;
         if (layoutTarget)
-            layoutTarget.invalidateDisplayList(); */
+            layoutTarget.invalidateDisplayList();
     }
 	
 	//----------------------------------
@@ -438,7 +439,7 @@ public class VerticalLayout
 		paddingRight = _padding;
 		paddingTop = _padding;
 		
-		//invalidateTargetSizeAndDisplayList();
+		invalidateTargetSizeAndDisplayList();
 	}    
     
     //----------------------------------
@@ -474,7 +475,7 @@ public class VerticalLayout
             return;
                                
         _paddingLeft = value;
-       // invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }    
     
     //----------------------------------
@@ -510,7 +511,7 @@ public class VerticalLayout
             return;
                                
         _paddingRight = value;
-       // invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }    
     
     //----------------------------------
@@ -546,7 +547,7 @@ public class VerticalLayout
             return;
                                
         _paddingTop = value;
-       // invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }    
     
     //----------------------------------
@@ -582,16 +583,16 @@ public class VerticalLayout
             return;
                                
         _paddingBottom = value;
-      //  invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }    
     
     //----------------------------------
     //  requestedMaxRowCount
     //----------------------------------
     
-   /*  private var _requestedMaxRowCount:int = -1;
+    private var _requestedMaxRowCount:int = -1;
     
-    [Inspectable(category="General", minValue="-1")] */
+    [Inspectable(category="General", minValue="-1")]
     
     /**
      *  The measured height of this layout is large enough to display 
@@ -612,15 +613,15 @@ public class VerticalLayout
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-   /*  public function get requestedMaxRowCount():int
+    public function get requestedMaxRowCount():int
     {
         return _requestedMaxRowCount;
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  public function set requestedMaxRowCount(value:int):void
+    public function set requestedMaxRowCount(value:int):void
     {
         if (_requestedMaxRowCount == value)
             return;
@@ -629,7 +630,7 @@ public class VerticalLayout
         
         if (target)
             target.invalidateSize();
-    }    */ 
+    }    
     
     //----------------------------------
     //  requestedMinRowCount
@@ -673,17 +674,17 @@ public class VerticalLayout
                                
         _requestedMinRowCount = value;
 
-        /* if (target)
-            target.invalidateSize(); */
+        if (target)
+            target.invalidateSize();
     }    
 
     //----------------------------------
     //  requestedRowCount
     //----------------------------------
     
-    /* private var _requestedRowCount:int = -1;
+    private var _requestedRowCount:int = -1;
     
-    [Inspectable(category="General", minValue="-1")] */
+    [Inspectable(category="General", minValue="-1")]
     
     /**
      *  The measured size of this layout is tall enough to display 
@@ -704,15 +705,15 @@ public class VerticalLayout
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get requestedRowCount():int
+    public function get requestedRowCount():int
     {
         return _requestedRowCount;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set requestedRowCount(value:int):void
+    public function set requestedRowCount(value:int):void
     {
         if (_requestedRowCount == value)
             return;
@@ -721,15 +722,15 @@ public class VerticalLayout
         
         if (target)
             target.invalidateSize();
-    }    */ 
+    }    
 
     //----------------------------------
     //  rowHeight
     //----------------------------------
     
-    /* private var _rowHeight:Number;
+    private var _rowHeight:Number;
 
-    [Inspectable(category="General", minValue="0.0")] */
+    [Inspectable(category="General", minValue="0.0")]
 
     /**
      *  If <code>variableRowHeight</code> is <code>false</code>, then 
@@ -746,7 +747,7 @@ public class VerticalLayout
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get rowHeight():Number
+    public function get rowHeight():Number
     {
         if (!isNaN(_rowHeight))
             return _rowHeight;
@@ -755,19 +756,19 @@ public class VerticalLayout
             var elt:ILayoutElement = typicalLayoutElement
             return (elt) ? elt.getPreferredBoundsHeight() : 0;
         }
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set rowHeight(value:Number):void
+    public function set rowHeight(value:Number):void
     {
         if (_rowHeight == value)
             return;
             
         _rowHeight = value;
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
     
     //----------------------------------
     //  variableRowHeight
@@ -776,9 +777,9 @@ public class VerticalLayout
     /**
      *  @private
      */
-    /* private var _variableRowHeight:Boolean = true;
+    private var _variableRowHeight:Boolean = true;
 
-    [Inspectable(category="General", enumeration="true,false")] */
+    [Inspectable(category="General", enumeration="true,false")]
 
     /**
      *  Specifies whether layout elements are allocated their 
@@ -797,22 +798,22 @@ public class VerticalLayout
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get variableRowHeight():Boolean
+    public function get variableRowHeight():Boolean
     {
         return _variableRowHeight;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set variableRowHeight(value:Boolean):void
+    public function set variableRowHeight(value:Boolean):void
     {
         if (value == _variableRowHeight) 
             return;
         
         _variableRowHeight = value;
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
     
     //----------------------------------
     //  firstIndexInView
@@ -821,10 +822,10 @@ public class VerticalLayout
     /**
      *  @private
      */
-    /* private var _firstIndexInView:int = -1;
+    private var _firstIndexInView:int = -1;
 
     [Inspectable(category="General")]
-    [Bindable("indexInViewChanged")]    */ 
+    [Bindable("indexInViewChanged")]    
 
     /**
      *  The index of the first layout element that is part of the 
@@ -843,10 +844,10 @@ public class VerticalLayout
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get firstIndexInView():int
+    public function get firstIndexInView():int
     {
         return _firstIndexInView;
-    } */
+    }
     
     
     //----------------------------------
@@ -856,10 +857,10 @@ public class VerticalLayout
     /**
      *  @private
      */
-    /* private var _lastIndexInView:int = -1;
+    private var _lastIndexInView:int = -1;
     
     [Inspectable(category="General")]
-    [Bindable("indexInViewChanged")]   */  
+    [Bindable("indexInViewChanged")]    
 
     /**
      *  The index of the last row that's part of the layout and within
@@ -878,10 +879,10 @@ public class VerticalLayout
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get lastIndexInView():int
+    public function get lastIndexInView():int
     {
         return _lastIndexInView;
-    } */
+    }
 
     /**
      *  Sets the <code>firstIndexInView</code> and <code>lastIndexInView</code>
@@ -896,7 +897,7 @@ public class VerticalLayout
      *  
      *  @private
      */
-    /* mx_internal function setIndexInView(firstIndex:int, lastIndex:int):void
+    mx_internal function setIndexInView(firstIndex:int, lastIndex:int):void
     {
         if ((_firstIndexInView == firstIndex) && (_lastIndexInView == lastIndex))
             return;
@@ -904,7 +905,7 @@ public class VerticalLayout
         _firstIndexInView = firstIndex;
         _lastIndexInView = lastIndex;
         dispatchEvent(new Event("indexInViewChanged"));
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -915,7 +916,7 @@ public class VerticalLayout
     /**
      *  @private
      */
-    /* override public function set clipAndEnableScrolling(value:Boolean):void
+    override public function set clipAndEnableScrolling(value:Boolean):void
     {
         super.clipAndEnableScrolling = value;
         var vAlign:String = verticalAlign;
@@ -925,12 +926,12 @@ public class VerticalLayout
             if (g)
                 g.invalidateDisplayList();
         }
-    } */
+    }
 
     /**
      * @private
      */
-    /* override public function clearVirtualLayoutCache():void
+    override public function clearVirtualLayoutCache():void
     {
         llv = null;
 
@@ -940,12 +941,12 @@ public class VerticalLayout
         
         target.invalidateSize();
         target.invalidateDisplayList();
-    }   */   
+    }     
 
     /**
      *  @private
      */
-    /* override public function getElementBounds(index:int):Rectangle
+    override public function getElementBounds(index:int):Rectangle
     {
         if (!useVirtualLayout)
             return super.getElementBounds(index);
@@ -958,7 +959,7 @@ public class VerticalLayout
         updateLLV(g);
 		
         return llv.getBounds(index);
-    } */
+    }
 	
     /**
      *  Returns 1.0 if the specified index is completely in view, 0.0 if
@@ -985,7 +986,7 @@ public class VerticalLayout
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function fractionOfElementInView(index:int):Number 
+    public function fractionOfElementInView(index:int):Number 
     {
         var g:GroupBase = GroupBase(target);
         if (!g)
@@ -1021,7 +1022,7 @@ public class VerticalLayout
         }
         else 
         {
-            var elt:ILayoutElement = g.getElementAt(index);
+            var elt:ILayoutElement = g.getElementAt(index) as ILayoutElement;
             if (!elt || !elt.includeInLayout)
                 return 0.0;
             eltY = elt.getLayoutBoundsY();
@@ -1042,7 +1043,7 @@ public class VerticalLayout
             return 1.0;
         return (Math.min(y1, iy1) - Math.max(y0, iy0)) / (iy1 - iy0);
     }
-     */
+    
     /**
      *  @private
      * 
@@ -1056,10 +1057,10 @@ public class VerticalLayout
      * 
      *  Returns the index of the element that contains y, or -1.
      */
-    /* private static function findIndexAt(y:Number, gap:int, g:GroupBase, i0:int, i1:int):int
+    private static function findIndexAt(y:Number, gap:int, g:GroupBase, i0:int, i1:int):int
     {
         var index:int = (i0 + i1) / 2;
-        var element:ILayoutElement = g.getElementAt(index);     
+        var element:ILayoutElement = g.getElementAt(index) as ILayoutElement as ILayoutElement;     
         var elementY:Number = element.getLayoutBoundsY();
         var elementHeight:Number = element.getLayoutBoundsHeight();
         // TBD: deal with null element, includeInLayout false.
@@ -1071,7 +1072,7 @@ public class VerticalLayout
             return findIndexAt(y, gap, g, i0, Math.max(i0, index-1));
         else 
             return findIndexAt(y, gap, g, Math.min(index+1, i1), i1);
-    }  */
+    } 
     
     /**
      *  @private
@@ -1081,12 +1082,12 @@ public class VerticalLayout
      * 
      *  Returns -1 if no such element can be found.
      */
-    /* private static function findLayoutElementIndex(g:GroupBase, i:int, dir:int):int
+    private static function findLayoutElementIndex(g:GroupBase, i:int, dir:int):int
     {
         var n:int = g.numElements;
         while((i >= 0) && (i < n))
         {
-           var element:ILayoutElement = g.getElementAt(i);
+           var element:ILayoutElement = g.getElementAt(i) as ILayoutElement;
            if (element && element.includeInLayout)
            {
                return i;      
@@ -1094,7 +1095,7 @@ public class VerticalLayout
            i += dir;
         }
         return -1;
-    } */
+    }
 
     /**
      *  @private
@@ -1104,7 +1105,7 @@ public class VerticalLayout
      *  
      *  @see setIndexInView
      */
-    /* override protected function scrollPositionChanged():void
+    override protected function scrollPositionChanged():void
     {
         super.scrollPositionChanged();
         
@@ -1166,7 +1167,7 @@ public class VerticalLayout
             var index0:int = findLayoutElementIndex(g, 0, +1);
             if (index0 != -1)
             {
-                var element0:ILayoutElement = g.getElementAt(index0); 
+                var element0:ILayoutElement = g.getElementAt(index0) as ILayoutElement; 
                 var element0Y:Number = element0.getLayoutBoundsY();
                 var elementHeight:Number = element0.getLayoutBoundsHeight();                 
                 if ((element0Y < y1) && ((element0Y + elementHeight) > y0))
@@ -1180,7 +1181,7 @@ public class VerticalLayout
             var index1:int = findLayoutElementIndex(g, n, -1);
             if (index1 != -1)
             {
-                var element1:ILayoutElement = g.getElementAt(index1); 
+                var element1:ILayoutElement = g.getElementAt(index1) as ILayoutElement; 
                 var element1Y:Number = element1.getLayoutBoundsY();
                 var element1Height:Number = element1.getLayoutBoundsHeight();                 
                 if ((element1Y < y1) && ((element1Y + element1Height) > y0))
@@ -1190,14 +1191,14 @@ public class VerticalLayout
         
         if (useVirtualLayout)
         {
-            var firstElement:ILayoutElement = g.getElementAt(_firstIndexInView);
-            var lastElement:ILayoutElement = g.getElementAt(_lastIndexInView);
+            var firstElement:ILayoutElement = g.getElementAt(_firstIndexInView) as ILayoutElement;
+            var lastElement:ILayoutElement = g.getElementAt(_lastIndexInView) as ILayoutElement;
             var scrollRect:Rectangle = getScrollRect();
             
             /* If the scrollRect is within the bounds of the elements, we do
                not need to call invalidateDisplayList(). This considerably speeds
                up small scrolls. */
-          /*  if (!firstElement || !lastElement || 
+            if (!firstElement || !lastElement || 
                 scrollRect.top < firstElement.getLayoutBoundsY() || 
                 scrollRect.bottom >= (lastElement.getLayoutBoundsY() + lastElement.getLayoutBoundsHeight()))
             {
@@ -1206,7 +1207,7 @@ public class VerticalLayout
         }
         
         setIndexInView(i0, i1);
-    } */
+    }
     
     /**
      *  @private
@@ -1219,7 +1220,7 @@ public class VerticalLayout
      * 
      *  Returns null if no such element can be found.
      */
-    /* private function findLayoutElementBounds(g:GroupBase, i:int, dir:int, r:Rectangle):Rectangle
+    private function findLayoutElementBounds(g:GroupBase, i:int, dir:int, r:Rectangle):Rectangle
     {
         var n:int = g.numElements;
 
@@ -1252,29 +1253,29 @@ public class VerticalLayout
            i += dir;
         }
         return null;
-    } */
+    }
 
     /**
      *  @private 
      */
-    /* override protected function getElementBoundsAboveScrollRect(scrollRect:Rectangle):Rectangle
+    override protected function getElementBoundsAboveScrollRect(scrollRect:Rectangle):Rectangle
     {
         return findLayoutElementBounds(target, firstIndexInView, -1, scrollRect);
-    }  */
+    } 
 
     /**
      *  @private 
      */
-    /* override protected function getElementBoundsBelowScrollRect(scrollRect:Rectangle):Rectangle
+    override protected function getElementBoundsBelowScrollRect(scrollRect:Rectangle):Rectangle
     {
         return findLayoutElementBounds(target, lastIndexInView, +1, scrollRect);
-    }  */
+    } 
     
     /**
      *  @private
      *  Fills in the result with preferred and min sizes of the element.
      */
-    /* private function getElementWidth(element:ILayoutElement, justify:Boolean, result:SizesAndLimit):void
+    private function getElementWidth(element:ILayoutElement, justify:Boolean, result:SizesAndLimit):void
     {
         // Calculate preferred width first, as it's being used to calculate min width
         var elementPreferredWidth:Number = Math.ceil(element.getPreferredBoundsWidth());
@@ -1286,12 +1287,12 @@ public class VerticalLayout
         result.preferredSize = elementPreferredWidth;
         result.minSize = elementMinWidth;
     }
-     */
+    
     /**
      *  @private
      *  Fills in the result with preferred and min sizes of the element.
      */
-    /* private function getElementHeight(element:ILayoutElement, fixedRowHeight:Number, result:SizesAndLimit):void
+    private function getElementHeight(element:ILayoutElement, fixedRowHeight:Number, result:SizesAndLimit):void
     {
         // Calculate preferred height first, as it's being used to calculate min height below
         var elementPreferredHeight:Number = isNaN(fixedRowHeight) ? Math.ceil(element.getPreferredBoundsHeight()) :
@@ -1302,13 +1303,13 @@ public class VerticalLayout
                                                        elementPreferredHeight;
         result.preferredSize = elementPreferredHeight;
         result.minSize = elementMinHeight;
-    } */
+    }
 
     /**
      *  @private
      *  @return rows to measure based on elements in layout and any requested/min/max rowCount settings. 
      */
-    /* mx_internal function getRowsToMeasure(numElementsInLayout:int):int
+    mx_internal function getRowsToMeasure(numElementsInLayout:int):int
     {
         var rowsToMeasure:int;
         if (requestedRowCount != -1)
@@ -1322,7 +1323,7 @@ public class VerticalLayout
                 rowsToMeasure = Math.max(requestedMinRowCount, rowsToMeasure);
         }
         return rowsToMeasure;
-    } */
+    }
 
     /**
      *  @private
@@ -1336,7 +1337,7 @@ public class VerticalLayout
      * 
      *  If requestedRowCount is -1, we measure all of the layout elements.
      */
-    /* private function measureReal(layoutTarget:GroupBase):void
+    private function measureReal(layoutTarget:GroupBase):void
     {
         var size:SizesAndLimit = new SizesAndLimit();
         var justify:Boolean = horizontalAlign == HorizontalAlign.JUSTIFY;
@@ -1359,7 +1360,7 @@ public class VerticalLayout
         var element:ILayoutElement;
         for (var i:int = 0; i < numElements; i++)
         {
-            element = layoutTarget.getElementAt(i);
+            element = layoutTarget.getElementAt(i) as ILayoutElement;
             if (!element || !element.includeInLayout)
             {
                 numElementsInLayout--;
@@ -1420,7 +1421,7 @@ public class VerticalLayout
         layoutTarget.measuredWidth = preferredWidth + hPadding;
         layoutTarget.measuredMinHeight = minHeight + vPadding;
         layoutTarget.measuredMinWidth  = minWidth + hPadding;
-    } */
+    }
     
     /**
      *  @private
@@ -1429,7 +1430,7 @@ public class VerticalLayout
      *  for the possibility that the typicalLayoutElement has changed, or
      *  something that its preferred size depends on has changed.
      */
-    /* private function updateLLV(layoutTarget:GroupBase):void
+    private function updateLLV(layoutTarget:GroupBase):void
     {
         if (!llv)
         {
@@ -1458,25 +1459,25 @@ public class VerticalLayout
 
         llv.gap = gap;
         llv.majorAxisOffset = paddingTop;
-    } */
+    }
      
     /**
      *  @private
      */
-     /* override public function elementAdded(index:int):void
+     override public function elementAdded(index:int):void
      {
          if (llv && (index >= 0) && useVirtualLayout)
             llv.insert(index);  // insert index parameter is uint
-     }*/ 
+     }
 
     /**
      *  @private
      */
-    /* override public function elementRemoved(index:int):void
+     override public function elementRemoved(index:int):void
      {
         if (llv && (index >= 0) && useVirtualLayout)
             llv.remove(index);  // remove index parameter is uint
-     }    */  
+     }     
 
     /**
      *  @private
@@ -1492,7 +1493,7 @@ public class VerticalLayout
      *  llv's defaultMajorSize, minorSize, and minMinorSize 
      *  are based on typicalLayoutElement.
      */
-    /* private function measureVirtual(layoutTarget:GroupBase):void
+    private function measureVirtual(layoutTarget:GroupBase):void
     {
         var eltCount:int = layoutTarget.numElements;
         var measuredEltCount:int = getRowsToMeasure(eltCount);
@@ -1523,6 +1524,7 @@ public class VerticalLayout
             // Measured size according to the cached actual size:
             var measuredHeight:Number = llv.end(measuredEltCount - 1) + paddingBottom;
             
+            /*
             // For the live ItemRenderers use the preferred size
             // instead of the cached actual size:
             var dataGroupTarget:DataGroup = layoutTarget as DataGroup;
@@ -1539,6 +1541,7 @@ public class VerticalLayout
                     }
                 }
             }
+            */
             
             layoutTarget.measuredHeight = measuredHeight;
             
@@ -1555,7 +1558,7 @@ public class VerticalLayout
         layoutTarget.measuredMinWidth = (horizontalAlign == HorizontalAlign.JUSTIFY) ? 
                 llv.minMinorSize + hPadding : layoutTarget.measuredWidth;
         layoutTarget.measuredMinHeight = layoutTarget.measuredHeight;
-    } */
+    }
 
     /**
      *  @private
@@ -1595,7 +1598,7 @@ public class VerticalLayout
      *  As before the difference is due to the fact that flexible items are only
      *  guaranteed their minWidth.
      */
-    /* override public function measure():void
+    override public function measure():void
     {
         var layoutTarget:GroupBase = target;
         if (!layoutTarget)
@@ -1612,12 +1615,12 @@ public class VerticalLayout
         layoutTarget.measuredHeight = Math.ceil(layoutTarget.measuredHeight);    
         layoutTarget.measuredMinWidth = Math.ceil(layoutTarget.measuredMinWidth);    
         layoutTarget.measuredMinHeight = Math.ceil(layoutTarget.measuredMinHeight);    
-    } */
+    }
     
     /**
      *  @private 
      */  
-    /* override public function getNavigationDestinationIndex(currentIndex:int, navigationUnit:uint, arrowKeysWrapFocus:Boolean):int
+    override public function getNavigationDestinationIndex(currentIndex:int, navigationUnit:uint, arrowKeysWrapFocus:Boolean):int
     {
         if (!target || target.numElements < 1)
             return -1; 
@@ -1749,14 +1752,14 @@ public class VerticalLayout
             default: return super.getNavigationDestinationIndex(currentIndex, navigationUnit, arrowKeysWrapFocus);
         }
         return Math.max(0, Math.min(maxIndex, newIndex));  
-    } */
+    }
     
     /**
      *  @private
      * 
      *  Used only for virtual layout.
      */
-    /* private function calculateElementWidth(elt:ILayoutElement, targetWidth:Number, containerWidth:Number):Number
+    private function calculateElementWidth(elt:ILayoutElement, targetWidth:Number, containerWidth:Number):Number
     {
        // If percentWidth is specified then the element's width is the percentage
        // of targetWidth clipped to min/maxWidth and to (upper limit) targetWidth.
@@ -1774,14 +1777,14 @@ public class VerticalLayout
                return Math.max(elt.getPreferredBoundsWidth(), containerWidth);
        }
        return NaN;  // not constrained
-    } */
+    }
     
     /**
      *  @private
      * 
      *  Used only for virtual layout.
      */
-    /* private function calculateElementX(elt:ILayoutElement, eltWidth:Number, containerWidth:Number):Number
+    private function calculateElementX(elt:ILayoutElement, eltWidth:Number, containerWidth:Number):Number
     {
        switch(horizontalAlign)
        {
@@ -1791,7 +1794,7 @@ public class VerticalLayout
                return containerWidth - eltWidth;
        }
        return 0;  // HorizontalAlign.LEFT
-    } */
+    }
 
 
     /**
@@ -1837,7 +1840,7 @@ public class VerticalLayout
      *  for the initial layout and then, if it has changed, we loop through 
      *  the layout items again and fix up the x/width values.
      */
-    /* private function updateDisplayListVirtual():void
+    private function updateDisplayListVirtual():void
     {
         var layoutTarget:GroupBase = target; 
         var eltCount:int = layoutTarget.numElements;
@@ -1905,7 +1908,7 @@ public class VerticalLayout
             {
                 for (index = startIndex; index <= endIndex; index++)
                 {
-                    elt = layoutTarget.getElementAt(index);
+                    elt = layoutTarget.getElementAt(index) as ILayoutElement;
                     w = calculateElementWidth(elt, targetWidth, containerWidth);  // can be NaN
                     elt.setLayoutBoundsSize(w, elt.getLayoutBoundsHeight());
                     w = elt.getLayoutBoundsWidth();
@@ -1935,7 +1938,7 @@ public class VerticalLayout
             {
                 for (index = startIndex; index <= endIndex; index++)
                 {
-                    elt = layoutTarget.getElementAt(index);
+                    elt = layoutTarget.getElementAt(index) as ILayoutElement;
                     elt.setLayoutBoundsPosition(elt.getLayoutBoundsX(), dy + elt.getLayoutBoundsY());
                 }
                 contentHeight += dy;
@@ -1950,13 +1953,13 @@ public class VerticalLayout
         var paddedContentWidth:Number = Math.ceil(contentWidth + paddingLeft + paddingRight);
 		paddedContentHeight = Math.ceil(contentHeight + paddingTop + paddingBottom);
         layoutTarget.setContentSize(paddedContentWidth, paddedContentHeight);
-    } */
+    }
     
 
     /**
      *  @private
      */
-    /* private function updateDisplayListReal():void
+    private function updateDisplayListReal():void
     {
         var layoutTarget:GroupBase = target;
         var targetWidth:Number = Math.max(0, layoutTarget.width - paddingLeft - paddingRight);
@@ -1975,7 +1978,7 @@ public class VerticalLayout
         {
             for (var i:int = 0; i < count; i++)
             {
-                layoutElement = layoutTarget.getElementAt(i);
+                layoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
                 if (!layoutElement || !layoutElement.includeInLayout)
                     continue;
 
@@ -2030,7 +2033,7 @@ public class VerticalLayout
 
         for (var index:int = 0; index < count; index++)
         {
-            layoutElement = layoutTarget.getElementAt(index);
+            layoutElement = layoutTarget.getElementAt(index) as ILayoutElement;
             if (!layoutElement || !layoutElement.includeInLayout)
                 continue;
                 
@@ -2067,7 +2070,7 @@ public class VerticalLayout
         // the content size includes the whole pixel.
         layoutTarget.setContentSize(Math.ceil(maxX + paddingRight),
                                     Math.ceil(maxY + paddingBottom));
-    } */
+    }
     
     /**
      *  @private
@@ -2083,7 +2086,7 @@ public class VerticalLayout
      *  The return value is any extra space that's left over
      *  after growing all children to their maxHeight.
      */
-    /* private function distributeHeight(width:Number, 
+    private function distributeHeight(width:Number, 
                                       height:Number, 
                                       restrictedWidth:Number):Number
     {
@@ -2103,7 +2106,7 @@ public class VerticalLayout
         // width and height immediately.
         for (var index:int = 0; index < count; index++)
         {
-            layoutElement = target.getElementAt(index);
+            layoutElement = target.getElementAt(index) as ILayoutElement;
             if (!layoutElement || !layoutElement.includeInLayout)
             {
                 totalCount--;
@@ -2156,12 +2159,12 @@ public class VerticalLayout
             }
         }
         return spaceToDistribute;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* override public function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    override public function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
         
@@ -2183,7 +2186,7 @@ public class VerticalLayout
             updateDisplayListVirtual();
         else
             updateDisplayListReal();
-    } */
+    }
     
     /**
      *  @private 
@@ -2198,7 +2201,7 @@ public class VerticalLayout
      *  to ensure that the elements are re-arranged with the new setting and the
      *  target's default size is recomputed.</p> 
      */
-    /* private function invalidateTargetSizeAndDisplayList():void
+    private function invalidateTargetSizeAndDisplayList():void
     {
         var g:GroupBase = target;
         if (!g)
@@ -2206,7 +2209,7 @@ public class VerticalLayout
 
         g.invalidateSize();
         g.invalidateDisplayList();
-    } */
+    }
         
     //--------------------------------------------------------------------------
     //
@@ -2217,7 +2220,7 @@ public class VerticalLayout
     /**
      *  @private 
      */
-    /* override protected function calculateDropIndex(x:Number, y:Number):int
+    override protected function calculateDropIndex(x:Number, y:Number):int
     {
         // Iterate over the visible elements
         var layoutTarget:GroupBase = target;
@@ -2259,12 +2262,12 @@ public class VerticalLayout
             bestIndex = getElementBounds(0).y < y ? count : 0;
 
         return bestIndex;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function calculateDropIndicatorBounds(dropLocation:DropLocation):Rectangle
+    override protected function calculateDropIndicatorBounds(dropLocation:DropLocation):Rectangle
     {
         var dropIndex:int = dropLocation.dropIndex;
         var count:int = target.numElements;
@@ -2297,12 +2300,11 @@ public class VerticalLayout
         // Allow 1 pixel overlap with container border
         y = Math.max(-1, Math.min(target.contentHeight - height + 1, y));
         return new Rectangle(x, y, width, height);
-    } */
+    }
     
     /**
      *  @private
-     */
-    /* override protected function calculateDragScrollDelta(dropLocation:DropLocation,
+    override protected function calculateDragScrollDelta(dropLocation:DropLocation,
                                                          elapsedTime:Number):Point
     {
         var delta:Point = super.calculateDragScrollDelta(dropLocation, elapsedTime);
@@ -2310,14 +2312,15 @@ public class VerticalLayout
         if (delta)
             delta.x = 0;
         return delta;
-    } */
+    }
+     */
 
     /**
      *  @private
      *  Identifies the element which has its "compare point" located closest 
      *  to the specified position.
      */
-    /* override mx_internal function getElementNearestScrollPosition(
+    override mx_internal function getElementNearestScrollPosition(
         position:Point,
         elementComparePoint:String = "center"):int
     {
@@ -2361,13 +2364,13 @@ public class VerticalLayout
         }
         
         return index;
-    } */
+    }
 
 
 }
 }
 
-/* import mx.containers.utilityClasses.FlexChildInfo;
+import mx.containers.utilityClasses.FlexChildInfo;
 import mx.core.ILayoutElement;
 
 class LayoutElementFlexChildInfo extends FlexChildInfo
@@ -2379,7 +2382,7 @@ class SizesAndLimit
 {
     public var preferredSize:Number;
     public var minSize:Number;
-} */
+}
     
     
     

@@ -38,11 +38,21 @@ import spark.core.IDisplayText;
 import spark.utils.TextUtil;
 
 import flashx.textLayout.compose.TextLineRecycler; */
-import org.apache.royale.events.Event;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
+
+import org.apache.royale.events.Event;
 import org.apache.royale.svg.GraphicShape;
+
+COMPILE::JS
+{
+    import window.Text;
+    import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+}
+import org.apache.royale.core.ITextModel;
+
 use namespace mx_internal;
 
 //--------------------------------------
@@ -500,46 +510,98 @@ public class TextBase extends UIComponent
     //  text
     //----------------------------------
 
-    /**
-     *  @private
-     */
-    mx_internal var _text:String = "";
-        
-    [Inspectable(category="General", defaultValue="")]
-    
-    /**
-     *  The text displayed by this text component.
-	 *
-     *  <p>The formatting of this text is controlled by CSS styles.
-     *  The supported styles depend on the subclass.</p>
-	 *
-	 *  @default ""
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get text():String 
-    {
-        return _text;
-    }
-    
-    /**
-     *  @private
-     */
-    public function set text(value:String):void
-    {
-        if (value != _text)
-        {
-            _text = value;
+     //----------------------------------
+     //  text
+     //----------------------------------
+     
+     
+     COMPILE::JS
+     protected var textNode:window.Text;
+     
+     mx_internal var _text:String = "";
+     
+     [Bindable("textChange")]
+     /**
+      *  The text to display in the label.
+      *
+      *  @langversion 3.0
+      *  @playerversion Flash 10.2
+      *  @playerversion AIR 2.6
+      *  @productversion Royale 0.0
+      */
+     public function get text():String
+     {
+         COMPILE::SWF
+             {
+                 return ITextModel(model).text;
+             }
+             COMPILE::JS
+             {
+                 return _text;
+             }
+     }
+     
+     /**
+      *  @private
+      */
+     public function set text(value:String):void
+     {
+         COMPILE::SWF
+             {
+                 ITextModel(model).text = value;
+             }
+             COMPILE::JS
+             {
+                 if (textNode)
+                 {
+                     _text = value;
+                     textNode.nodeValue = value;
+                     this.dispatchEvent('textChange');
+                 }
+             }
+             
+             invalidateSize();
+         
+     }
 
-           // invalidateTextLines();
-            invalidateSize();
-            invalidateDisplayList();
-        }
-    }
-    
+     /**
+      *  @private
+      */
+     COMPILE::SWF
+     override public function addedToParent():void
+     {
+         super.addedToParent();
+         model.addEventListener("textChange", repeaterListener);
+         model.addEventListener("htmlChange", repeaterListener);
+     }
+     
+     /**
+      * @royaleignorecoercion window.Text
+      */
+     COMPILE::JS
+     override protected function createElement():WrappedHTMLElement
+     {
+         addElementToWrapper(this,'span');
+         
+         textNode = document.createTextNode(_text) as window.Text;
+         element.appendChild(textNode);
+         
+         element.style.whiteSpace = "nowrap";
+         element.style.display = "inline-block";
+         
+         return element;
+     }
+     
+     COMPILE::JS
+     override public function setActualSize(w:Number, h:Number):void
+     {
+         // For HTML/JS, we only set the size if there is an explicit
+         // size set. 
+         if (!isNaN(explicitWidth)) setWidth(w);
+         if (!isNaN(explicitHeight)) setHeight(h);
+     }
+     
+
     //--------------------------------------------------------------------------
     /**
      *  @private
