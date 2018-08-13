@@ -74,7 +74,7 @@ package org.apache.royale.utils
 
 			itIs = Language.is(leftOperand, rightOperand);
 
-			if (!itIs && coercion)
+			if (!itIs && coercion && leftOperand)
 			{
 				message = 'Type Coercion failed';
 
