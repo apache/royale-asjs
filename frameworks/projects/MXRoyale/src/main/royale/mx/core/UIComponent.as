@@ -299,6 +299,11 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @productversion Flex 3
  */
 [Event(name="move", type="mx.events.MoveEvent")]
+
+//Events Copied from InteractiveObject
+[Event(name="keyUp", type="mx.events.KeyboardEvent")]
+[Event(name="keyDown", type="mx.events.KeyboardEvent")]
+
 /**
  *  The main color for a component.
  *  
@@ -332,6 +337,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @productversion Flex 3
  */
 [Effect(name="rollOutEffect", event="rollOut")]
+
 
 /**
  *  The UIComponent class is the base class for all visual components,
