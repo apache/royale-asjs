@@ -1128,9 +1128,9 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-    /* public function set maxChars(value:int):void
+    public function set maxChars(value:int):void
     {
-        if (textDisplay)
+       /*  if (textDisplay)
         {
             textDisplay.maxChars = value;
             textDisplayProperties = BitFlagUtil.update(
@@ -1142,8 +1142,8 @@ public class SkinnableTextBase extends SkinnableComponent
         }
 
         // Generate an UPDATE_COMPLETE event.
-        invalidateProperties();                    
-    } */
+        invalidateProperties();   */                  
+    } 
 
     //----------------------------------
     //  restrict
