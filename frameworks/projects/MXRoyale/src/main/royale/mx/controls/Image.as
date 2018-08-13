@@ -270,7 +270,7 @@ public class Image extends UIComponent
 		// should we now set the image's measured sizes?
 		measuredWidth = (element as HTMLImageElement).naturalWidth;
 		measuredHeight = (element as HTMLImageElement).naturalHeight;
-		setActualSize(measuredWidth, measuredHeight);
+        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
 		
 		dispatchEvent(new Event("complete"));
 		
