@@ -28,7 +28,7 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
 
 /**
- *
+ // *
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
@@ -47,6 +47,26 @@ public class KeyboardEvent extends flash.events.KeyboardEvent
     {
         super(type, bubbles, cancelable,charCodeValue,keyCodeValue,keyLocationValue,ctrlKeyValue,altKeyValue,shiftKeyValue,controlKeyValue,commandKeyValue);
     }
+	
+	
+	public static const KEY_DOWN:String = platformConstant1("keyDown");
+	public function get KEY_DOWN():String
+	{
+		return "keyDown";
+	}
+		
+	public function set KEY_DOWN(val:String):void
+	{
+	} 
+	
+	private static function platformConstant(s:uint):uint
+        {
+            return s;
+        }
+    private static function platformConstant1(s:String):String
+        {
+            return s;
+        }	
 }
 
 /**
@@ -71,24 +91,24 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 		public function set keyCode(val:uint):void
 		{
 		}
-		/*public function get KEY_DOWN():String
+		 public function get KEY_DOWN():String
 		{
 		return "keyDown";
 		}
 		
 		public function set KEY_DOWN(val:String):void
 		{
-		}*/
+		} 
 		
 		
 		 private static function platformConstant(s:uint):uint
-        {
-            return s;
-        }
+        	{
+            	return s;
+       	 	}
 		 private static function platformConstant1(s:String):String
-        {
-            return s;
-        }		
+        	{
+            	return s;
+        	}		
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
