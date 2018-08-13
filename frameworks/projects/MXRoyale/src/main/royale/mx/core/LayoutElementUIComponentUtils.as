@@ -525,6 +525,10 @@ public class LayoutElementUIComponentUtils
         }
         */
         obj.move(x, y);
+        COMPILE::JS
+        {
+            obj.element.style.position = "absolute";
+        }
     }
 
     /**
