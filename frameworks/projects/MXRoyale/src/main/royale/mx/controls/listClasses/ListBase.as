@@ -525,7 +525,123 @@ use namespace mx_internal;
     {
         _allowMultipleSelection = value;
     }
+//----------------------------------
+    //  showDataTips
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the showDataTips property.
+     */
+    private var _showDataTips:Boolean = false;
+
+    [Bindable("showDataTipsChanged")]
+    [Inspectable(category="Data", defaultValue="false")]
+
+    /**
+     *  A flag that indicates whether dataTips are displayed for text in the rows.
+     *  If <code>true</code>, dataTips are displayed. DataTips
+     *  are tooltips designed to show the text that is too long for the row.
+     *  If you set a dataTipFunction, dataTips are shown regardless of whether the
+     *  text is too long for the row.
+     * 
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showDataTips():Boolean
+    {
+        return _showDataTips;
+    }
+
+    /**
+     *  @private
+     */
+    public function set showDataTips(value:Boolean):void
+    {
+        _showDataTips = value;
+
+       // itemsSizeChanged = true;
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("showDataTipsChanged"));
+    }
+	 //----------------------------------
+    //  rowCount
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the rowCount property.
+     */
+    private var _rowCount:int = -1;
+
+    /**
+     *  @private
+     */
+    private var rowCountChanged:Boolean = true;
+
+    /**
+     *  Number of rows to be displayed.
+     *  If the height of the component has been explicitly set,
+     *  this property might not have any effect.
+     *
+     *  <p>For a DataGrid control, the <code>rowCount</code> property does   
+     *  not include the header row. </p>
+     * 
+     *  @default 4
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get rowCount():int
+    {
+        return _rowCount;
+    }
+
+    /**
+     *  @private
+     */
+    public function set rowCount(value:int):void
+    {
+        explicitRowCount = value;
+
+        if (_rowCount != value)
+        {
+
+            setRowCount(value);
+            rowCountChanged = true;
+            invalidateProperties();
+
+            invalidateSize();
+           // itemsSizeChanged = true;
+            invalidateDisplayList();
+
+            dispatchEvent(new Event("rowCountChanged"));
+        }
+    }
+	/**
+     *  Sets the <code>rowCount</code> property without causing
+     *  invalidation or setting the <code>explicitRowCount</code>
+     *  property, which permanently locks in the number of rows.
+     *
+     *  @param v The row count.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function setRowCount(v:int):void
+    {
+        //trace("setRowCount " + v);
+        _rowCount = v;
+    }
 	
         /**
          *  Constructor.
