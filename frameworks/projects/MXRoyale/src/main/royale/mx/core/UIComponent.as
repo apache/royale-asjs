@@ -1753,7 +1753,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the measuredWidth property.
      */
-    private var _measuredWidth:Number = Number.NaN;
+    protected var _measuredWidth:Number = Number.NaN;
 
     [Inspectable(environment="none")]
 
@@ -1808,7 +1808,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the measuredHeight property.
      */
-    private var _measuredHeight:Number = Number.NaN;
+    protected var _measuredHeight:Number = Number.NaN;
 
     [Inspectable(environment="none")]
 

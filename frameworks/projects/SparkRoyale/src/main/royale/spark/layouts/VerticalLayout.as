@@ -345,9 +345,11 @@ public class VerticalLayout extends LayoutBase
         
         _horizontalAlign = value;
 
+        /*
         var layoutTarget:GroupBase = target;
         if (layoutTarget)
             layoutTarget.invalidateDisplayList();
+        */
     }
     
     //----------------------------------
@@ -395,9 +397,11 @@ public class VerticalLayout extends LayoutBase
         
         _verticalAlign = value;
         
+        /*
         var layoutTarget:GroupBase = target;
         if (layoutTarget)
             layoutTarget.invalidateDisplayList();
+        */
     }
 	
 	//----------------------------------
@@ -919,13 +923,14 @@ public class VerticalLayout extends LayoutBase
     override public function set clipAndEnableScrolling(value:Boolean):void
     {
         super.clipAndEnableScrolling = value;
+        /*
         var vAlign:String = verticalAlign;
         if (vAlign == VerticalAlign.MIDDLE || vAlign == VerticalAlign.BOTTOM)
         {
             var g:GroupBase = target;
             if (g)
                 g.invalidateDisplayList();
-        }
+        }*/
     }
 
     /**
@@ -939,8 +944,10 @@ public class VerticalLayout extends LayoutBase
         if (!g)
             return;
         
+        /*
         target.invalidateSize();
         target.invalidateDisplayList();
+        */
     }     
 
     /**
@@ -1197,13 +1204,13 @@ public class VerticalLayout extends LayoutBase
             
             /* If the scrollRect is within the bounds of the elements, we do
                not need to call invalidateDisplayList(). This considerably speeds
-               up small scrolls. */
+               up small scrolls.
             if (!firstElement || !lastElement || 
                 scrollRect.top < firstElement.getLayoutBoundsY() || 
                 scrollRect.bottom >= (lastElement.getLayoutBoundsY() + lastElement.getLayoutBoundsHeight()))
             {
                 g.invalidateDisplayList();
-            }
+            }*/
         }
         
         setIndexInView(i0, i1);
@@ -2207,8 +2214,10 @@ public class VerticalLayout extends LayoutBase
         if (!g)
             return;
 
+        /*
         g.invalidateSize();
         g.invalidateDisplayList();
+        */
     }
         
     //--------------------------------------------------------------------------

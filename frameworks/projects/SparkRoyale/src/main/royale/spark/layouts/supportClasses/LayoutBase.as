@@ -30,6 +30,7 @@ import spark.components.supportClasses.GroupBase;
 //import spark.components.supportClasses.OverlayDepth;
 import spark.core.NavigationUnit;
 
+import org.apache.royale.core.LayoutBase;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
@@ -231,8 +232,10 @@ public class LayoutBase extends /*OnDemand*/EventDispatcher
             clearVirtualLayoutCache();
                      
         _useVirtualLayout = value;
+        /*
         if (target)
             target.invalidateDisplayList();
+        */
     }
     
     /**
@@ -446,9 +449,11 @@ public class LayoutBase extends /*OnDemand*/EventDispatcher
             return;
 
         _typicalLayoutElement = value;
+        /*
         var g:GroupBase = target;
         if (g)
             g.invalidateSize();
+        */
     }
 
     //----------------------------------

@@ -859,9 +859,11 @@ public class HorizontalLayout extends LayoutBase
         
         _horizontalAlign = value;
         
+        /*
         var layoutTarget:GroupBase = target;
         if (layoutTarget)
             layoutTarget.invalidateDisplayList();
+        */
     }
     
     //----------------------------------
@@ -926,9 +928,11 @@ public class HorizontalLayout extends LayoutBase
         }
         else
         {
+            /*
             var layoutTarget:GroupBase = target;
             if (layoutTarget)
                 layoutTarget.invalidateDisplayList();
+            */
         }
     }
 
@@ -967,13 +971,14 @@ public class HorizontalLayout extends LayoutBase
     override public function set clipAndEnableScrolling(value:Boolean):void
     {
         super.clipAndEnableScrolling = value;
+        /*
         var hAlign:String = horizontalAlign;
         if (hAlign == HorizontalAlign.CENTER || hAlign == HorizontalAlign.RIGHT)
         {
             var g:GroupBase = target;
             if (g)
                 g.invalidateDisplayList();
-        }
+        }*/
     }
 
     /**
@@ -983,12 +988,14 @@ public class HorizontalLayout extends LayoutBase
     {
         llv = null;
 
+        /*
         var g:GroupBase = GroupBase(target);
         if (!g)
             return;
         
         target.invalidateSize();
         target.invalidateDisplayList();
+        */
     }     
 
     /**
@@ -1243,13 +1250,13 @@ public class HorizontalLayout extends LayoutBase
             
             /* If the scrollRect is within the bounds of the elements, we do
             not need to call invalidateDisplayList(). This considerably speeds
-            up small scrolls. */
+            up small scrolls.
             if (!firstElement || !lastElement || 
                 scrollRect.left < firstElement.getLayoutBoundsX() || 
                 scrollRect.right >= (lastElement.getLayoutBoundsX() + lastElement.getLayoutBoundsWidth()))
             {
                 g.invalidateDisplayList();
-            }
+            }*/
         }
                 
         setIndexInView(i0, i1);
@@ -2370,12 +2377,14 @@ public class HorizontalLayout extends LayoutBase
      */
     private function invalidateTargetSizeAndDisplayList():void
     {
+        /*
         var g:GroupBase = target;
         if (!g)
             return;
 
         g.invalidateSize();
         g.invalidateDisplayList();
+        */
     }
 
     //--------------------------------------------------------------------------
