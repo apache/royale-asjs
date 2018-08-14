@@ -4338,7 +4338,7 @@ public class UIComponent extends UIBase
 //            trace("getStyle not implemented");
 //        return 0;
 		var value:* = ValuesManager.valuesImpl.getValue(this,styleProp);
-		if (!value) value = 0;
+//		if (!value) value = 0;
 		return value;
     }
 
