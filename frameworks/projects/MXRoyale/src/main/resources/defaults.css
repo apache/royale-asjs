@@ -246,6 +246,11 @@ Tree
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TreeXMLItemRenderer");
 }
 
+ViewStack
+{
+	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
+}
+
 /* -------------------------------------------------------
 * SWF specific styles
 * -------------------------------------------------------
