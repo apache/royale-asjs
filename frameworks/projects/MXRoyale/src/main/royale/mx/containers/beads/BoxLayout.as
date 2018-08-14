@@ -27,9 +27,12 @@ package mx.containers.beads
 	import mx.core.EdgeMetrics;
 	import mx.core.IUIComponent;
 	
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.ValuesManager;
 
 	//import mx.core.mx_internal;
 	//import mx.core.ScrollPolicy;
@@ -221,9 +224,10 @@ package mx.containers.beads
 			if (n == 0) return;
 			
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
+            var pd:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(target);
 			
-			var paddingLeft:Number = target.getStyle("paddingLeft");
-			var paddingTop:Number = target.getStyle("paddingTop");
+			var paddingLeft:Number = pd.left;
+			var paddingTop:Number = pd.top;
 			
 			var horizontalAlign:Number = getHorizontalAlignValue();
 			var verticalAlign:Number = getVerticalAlignValue();
