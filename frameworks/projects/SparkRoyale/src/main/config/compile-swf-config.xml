@@ -36,6 +36,9 @@
             <path-element>../../../../../libs/Collections.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/MXRoyale.swc</path-element>
+            <path-element>../../../../../libs/Reflection.swc</path-element>
+            <path-element>../../../../../libs/Text.swc</path-element>
+            <path-element>../../../../../libs/TLF.swc</path-element>
             <path-element>../../../../../libs/XML.swc</path-element>
 	    <path-element>../../../../../libs/Network.swc</path-element>
         </external-library-path>

@@ -68,10 +68,13 @@
             <path-element>../../../../../libs/EffectsJS.swc</path-element>
             <path-element>../../../../../libs/ExpressJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ChartsJS.swc</path-element>
             <path-element>../../../../../libs/MXRoyaleJS.swc</path-element>
+            <path-element>../../../../../libs/ReflectionJS.swc</path-element>
+            <path-element>../../../../../libs/TextJS.swc</path-element>
+            <path-element>../../../../../libs/TLFJS.swc</path-element>
             <path-element>../../../../../libs/XMLJS.swc</path-element>
-	    <path-element>../../../../../libs/NetworkJS.swc</path-element>
         </library-path>
         
         <namespaces>

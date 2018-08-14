@@ -105,7 +105,8 @@ internal class MXRoyaleClasses
 	import mx.rpc.Responder; Responder;
 	import mx.printing.FlexPrintJobScaleType; FlexPrintJobScaleType; 
 	import mx.skins.RectangularBorder; RectangularBorder;
-	import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
+	import mx.styles.IStyleClient; IStyleClient; 
+    import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
 	import mx.styles.StyleProxy; StyleProxy;
     import mx.styles.StyleManagerImpl; StyleManagerImpl;
 	import mx.modules.IModuleInfo; IModuleInfo;
