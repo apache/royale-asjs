@@ -67,7 +67,11 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
     {
         titleBar = new PanelTitleBar();
         super.strand = value;
-        var model:PanelModel = (value as UIBase).model as PanelModel;
+    }
+    
+    override protected function setupContentAreaLayout():void
+    {
+        var model:PanelModel = (_strand as UIBase).model as PanelModel;
         var _layout:String = model.layout;
         var layoutObject:IBead;
         if (_layout == ContainerLayout.ABSOLUTE)
@@ -83,9 +87,10 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
                 BoxLayout(layoutObject).direction
                     = BoxDirection.HORIZONTAL;
         }
-            
+        
         if (layoutObject)
             contentArea.addBead(layoutObject);            
+        
     }
     
     override protected function setupLayout():void

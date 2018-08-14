@@ -177,8 +177,11 @@ package org.apache.royale.html.beads
 				_contentArea.typeNames = "PanelContent";
 
 				// add the layout bead to the content area.
-				if (transferLayoutBead) _contentArea.addBead(transferLayoutBead);
-
+				if (transferLayoutBead) 
+                    _contentArea.addBead(transferLayoutBead);
+                else
+                    setupContentAreaLayout();
+                
 				// add the viewport bead to the content area.
 				if (transferViewportBead) _contentArea.addBead(transferViewportBead);
 
@@ -199,6 +202,11 @@ package org.apache.royale.html.beads
 			}
 
             setupLayout();
+        }
+        
+        protected function setupContentAreaLayout():void
+        {
+            
         }
         
         protected function setupLayout():void
