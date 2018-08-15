@@ -21,13 +21,14 @@ package mx.rpc.http
 {
 
 import mx.core.mx_internal;
-//import mx.messaging.ChannelSet;
-//import mx.messaging.config.LoaderConfig;
-//import mx.messaging.events.MessageEvent;
-//import mx.messaging.messages.IMessage;
-// mx.rpc.AbstractInvoker;
-//import mx.rpc.AsyncRequest;
 import mx.rpc.AsyncToken;
+import mx.rpc.events.ResultEvent;
+
+import org.apache.royale.events.Event;
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.net.HTTPService;
+
+
 //import mx.utils.URLUtil;
 
 // namespace mx_internal;
@@ -88,7 +89,7 @@ import mx.rpc.AsyncToken;
   *  @playerversion AIR 1.1
   *  @productversion Royale 0.9.3
  */
-public class HTTPService //extends AbstractInvoker
+public class HTTPService extends EventDispatcher
 {
     //--------------------------------------------------------------------------
     //
@@ -115,6 +116,8 @@ public class HTTPService //extends AbstractInvoker
         super(); 
     }
 
+    private var royale:org.apache.royale.net.HTTPService = new org.apache.royale.net.HTTPService();
+    
     //--------------------------------------------------------------------------
     //
     // Constants
@@ -126,13 +129,13 @@ public class HTTPService //extends AbstractInvoker
      * @private
      * Propagate event listeners down to the operation since it is firing some of the
      * events.
-     */
     public function addEventListener(type:String, listener:Function,
         useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
     {
-       /* operation.addEventListener(type, listener, useCapture, priority, useWeakReference);
-        super.addEventListener(type, listener, useCapture, priority, useWeakReference);*/
+       operation.addEventListener(type, listener, useCapture, priority, useWeakReference);
+        super.addEventListener(type, listener, useCapture, priority, useWeakReference);
     } 
+*/
  
 
     /**
@@ -228,11 +231,6 @@ public class HTTPService //extends AbstractInvoker
     //  url
     //----------------------------------
 
-    /**
-     *  @private
-     */
-    private var _url:String;
-
     [Inspectable(defaultValue="undefined", category="General")]
     /**
      *  Location of the service. If you specify the <code>url</code> and a non-default destination,
@@ -245,7 +243,7 @@ public class HTTPService //extends AbstractInvoker
      */
     public function get url():String
     {
-        return _url;
+        return royale.url;
     }
 
     /**
@@ -253,7 +251,7 @@ public class HTTPService //extends AbstractInvoker
      */
     public function set url(value:String):void
     {
-        _url = value;
+        royale.url = value;
     }
       
     /**
@@ -276,9 +274,16 @@ public class HTTPService //extends AbstractInvoker
     {
         /*if (parameters == null)
             parameters = request;*/
-
+        royale.addEventListener("complete", completeHandler);
+        royale.send();
+        
         return null ; //operation.sendBody(parameters);
-    } 
+    }
+    
+    private function completeHandler(event:Event):void
+    {
+        dispatchEvent(new ResultEvent("result", false, false, royale.data));
+    }
   }
 }
 

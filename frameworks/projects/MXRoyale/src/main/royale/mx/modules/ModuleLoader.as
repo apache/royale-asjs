@@ -33,6 +33,8 @@ import mx.system.ApplicationDomain;
 //import flash.utils.ByteArray;
 //import mx.core.IDeferredInstantiationUIComponent;
 
+import org.apache.royale.utils.UIModuleUtils;
+
 //--------------------------------------
 //  Events
 //--------------------------------------
@@ -207,6 +209,8 @@ public class ModuleLoader extends VBox
         super();
     }
 
+    private var utils:UIModuleUtils = new UIModuleUtils();
+    
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -221,7 +225,7 @@ public class ModuleLoader extends VBox
     /**
      *  @private
      */
-    //private var loadRequested:Boolean = false;
+    private var loadRequested:Boolean = true;
 
     //--------------------------------------------------------------------------
     //
@@ -283,12 +287,6 @@ public class ModuleLoader extends VBox
     //----------------------------------
 
     /**
-     *  @private
-     *  Storage for the url property.
-     */
-    private var _url:String = null;
-
-    /**
      *  The location of the module, expressed as a URL.
      *  
      *  @langversion 3.0
@@ -298,7 +296,7 @@ public class ModuleLoader extends VBox
      */
     public function get url():String
     {
-        return _url;
+        return utils.modulePath + "/" + utils.moduleName + ".swf";
     }
 
     /**
@@ -306,8 +304,8 @@ public class ModuleLoader extends VBox
      */
      public function set url(value:String):void
     {
-        if (value == _url)
-            return;
+        //if (value == _url)
+        //    return;
 		/*
         var wasLoaded:Boolean = false;
         
@@ -331,12 +329,21 @@ public class ModuleLoader extends VBox
             }
         }
           */
-        _url = value;
+        var c:int = value.lastIndexOf("/");
+        if (c == -1)
+        {
+            utils.modulePath = "";
+            utils.moduleName = value.replace(".swf", "");
+        }
+        else
+        {
+            utils.modulePath = value.substring(0, c);
+            utils.moduleName = value.substring(c + 1).replace(".swf", "");;
+        }
 
         dispatchEvent(new FlexEvent(FlexEvent.URL_CHANGED));
 
-        //if (_url != null && _url != "" && loadRequested)
-        //   loadModule();
+        utils.loadModule(this);
     }
  
 }

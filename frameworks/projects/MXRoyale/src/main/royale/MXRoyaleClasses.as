@@ -38,6 +38,7 @@ internal class MXRoyaleClasses
 	import mx.graphics.IFill; IFill;
 	import mx.core.EventPriority; EventPriority;
 	import mx.core.IFactory; IFactory;
+    import mx.core.ILayoutElement; ILayoutElement;
 	import mx.collections.CursorBookmark; CursorBookmark;
 	import mx.collections.ICollectionView; ICollectionView;
 	import mx.collections.IViewCursor; IViewCursor;
@@ -70,6 +71,7 @@ internal class MXRoyaleClasses
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
+    import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
@@ -103,7 +105,8 @@ internal class MXRoyaleClasses
 	import mx.rpc.Responder; Responder;
 	import mx.printing.FlexPrintJobScaleType; FlexPrintJobScaleType; 
 	import mx.skins.RectangularBorder; RectangularBorder;
-	import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
+	import mx.styles.IStyleClient; IStyleClient; 
+    import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
 	import mx.styles.StyleProxy; StyleProxy;
     import mx.styles.StyleManagerImpl; StyleManagerImpl;
 	import mx.modules.IModuleInfo; IModuleInfo;
@@ -136,7 +139,9 @@ internal class MXRoyaleClasses
 	import mx.geom.Matrix; Matrix;
 	import mx.utils.ByteArray; mx.utils.ByteArray;
 	import mx.controls.RichTextEditor; RichTextEditor;
-	
+	import mx.events.SecurityErrorEvent; SecurityErrorEvent;
+	import mx.events.IOErrorEvent; IOErrorEvent;
+	import mx.events.HTTPStatusEvent; HTTPStatusEvent
 	COMPILE::JS
     	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
@@ -154,6 +159,7 @@ internal class MXRoyaleClasses
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
     import mx.controls.beads.controllers.MenuBarMouseController;
     
+    import mx.containers.PanelTitleBar; PanelTitleBar;
     import mx.containers.beads.PanelView; PanelView;
     import mx.containers.beads.models.PanelModel; PanelModel;
     

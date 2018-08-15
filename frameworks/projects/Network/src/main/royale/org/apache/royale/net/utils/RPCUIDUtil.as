@@ -103,7 +103,8 @@ package org.apache.royale.net.utils
                 UIDBuffer.writeByte(ALPHA_CHAR_CODES[int(Math.random() * 16)]);
             }
 
-            return UIDBuffer.toString();
+            UIDBuffer.position = 0;
+            return UIDBuffer.readUTFBytes(UIDBuffer.length);
         }
 
         /**
@@ -136,7 +137,8 @@ package org.apache.royale.net.utils
                     UIDBuffer.writeByte(ALPHA_CHAR_CODES[(b & 0xF0) >>> 4]);
                     UIDBuffer.writeByte(ALPHA_CHAR_CODES[(b & 0x0F)]);
                 }
-                return UIDBuffer.toString();
+                UIDBuffer.position = 0;
+                return UIDBuffer.readUTFBytes(UIDBuffer.length);
             }
 
             return null;

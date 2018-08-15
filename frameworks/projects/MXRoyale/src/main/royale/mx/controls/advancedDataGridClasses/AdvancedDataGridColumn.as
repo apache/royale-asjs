@@ -42,7 +42,10 @@ import mx.core.mx_internal;
 import mx.utils.StringUtil;
 
 use namespace mx_internal;
-
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -359,7 +362,17 @@ public class AdvancedDataGridColumn
      *  @productversion Royale 0.9.3
      */
    // public var sortDescending:Boolean = false;
-
+    public function get textAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+        return 0;
+    }
+    public function set textAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+    }
     //----------------------------------
     //  itemRenderer
     //----------------------------------

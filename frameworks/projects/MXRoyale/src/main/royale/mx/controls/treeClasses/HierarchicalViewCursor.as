@@ -20,13 +20,13 @@
 package mx.controls.treeClasses
 {
 
-	import org.apache.royale.events.EventDispatcher;
-
 	import mx.collections.CursorBookmark;
 	import mx.collections.ICollectionView;
 	import mx.collections.IViewCursor;
 	import mx.events.CollectionEvent;
 	import mx.events.CollectionEventKind;
+	
+	import org.apache.royale.events.EventDispatcher;
 
 	[ExcludeClass]
 
@@ -312,7 +312,8 @@ public class HierarchicalViewCursor extends EventDispatcher
 		var n:int;
 		var i:int;
 		var childNodes:ICollectionView;
-		var sameParent:Object;
+        var cursor:IViewCursor;
+        var sameParent:Object;
 
         var nodeParents:Array = getParentStack(node);
         var curParents:Array = getParentStack(currentNode);
@@ -343,16 +344,17 @@ public class HierarchicalViewCursor extends EventDispatcher
     				childNodes = model; 
     			}
 				// Walk it until you hit one or the other.
-                n = childNodes.length;
+                cursor = childNodes.createCursor();
+                do
                 {
-                    var child:Object = childNodes[i];
+                    var child:Object = cursor.current;
                     
 					if (child == curParent)
                         return false;
 
                     if (child == nodeParent)
                         return true;
-                }
+                } while (cursor.moveNext());
             }
         }
 
@@ -364,17 +366,18 @@ public class HierarchicalViewCursor extends EventDispatcher
         // If we get here, they have the same parentage or one or both
 		// had a root parent. Who's first?
 		childNodes = model; 
-        n = childNodes.length;
-		for (i = 0; i < n; i++)
+        cursor = childNodes.createCursor();
+        do 
         {
-            child = childNodes[i];
+            child = cursor.current;
 
             if (child == currentNode)
                 return false;
 
             if (child == node)
                 return true;
-        }
+        } while (cursor.moveNext());
+        
         return false;
     }
 
@@ -471,7 +474,7 @@ public class HierarchicalViewCursor extends EventDispatcher
 			dataDescriptor.hasChildren(currentNode, model))
 	    {
 	        	var previousChildNodes:Object = childNodes;
-	            childNodes = dataDescriptor.getChildren(currentNode, model);
+	            childNodes = arrayLike(dataDescriptor.getChildren(currentNode, model));
 				if (childNodes.length > 0)
 				{
 					childIndexStack.push(currentChildIndex);
@@ -514,7 +517,7 @@ public class HierarchicalViewCursor extends EventDispatcher
                 		dataDescriptor.isBranch(grandParent, model) &&
                 		dataDescriptor.hasChildren(grandParent, model))
                 	{
-	                	childNodes = dataDescriptor.getChildren(grandParent, model);
+	                	childNodes = arrayLike(dataDescriptor.getChildren(grandParent, model));
                		}
                		else
                		{
@@ -595,7 +598,7 @@ public class HierarchicalViewCursor extends EventDispatcher
                 	dataDescriptor.isBranch(grandParent, model) &&
                 	dataDescriptor.hasChildren(grandParent, model))
                 {
-        			childNodes = dataDescriptor.getChildren(grandParent, model);
+        			childNodes = arrayLike(dataDescriptor.getChildren(grandParent, model));
                 }
                	else
                 {
@@ -647,7 +650,7 @@ public class HierarchicalViewCursor extends EventDispatcher
 			    dataDescriptor.hasChildren(currentNode, model))
             {
 				var previousChildNodes:Object = childNodes;
-            	childNodes = dataDescriptor.getChildren(currentNode, model);
+            	childNodes = arrayLike(dataDescriptor.getChildren(currentNode, model));
 				if (childNodes.length > 0)
 				{
             		childIndexStack.push(currentChildIndex);
@@ -810,7 +813,7 @@ public class HierarchicalViewCursor extends EventDispatcher
 			   dataDescriptor.hasChildren(currentNode, model))
         {
         	var previousChildNodes:Object = childNodes;
-        	childNodes = dataDescriptor.getChildren(currentNode, model);
+        	childNodes = arrayLike(dataDescriptor.getChildren(currentNode, model));
         	if (childNodes != null && childNodes.length > 0)
         	{
         		parentNodes.push(currentNode);
@@ -975,6 +978,27 @@ public class HierarchicalViewCursor extends EventDispatcher
 				delete collection.parentMap[itemToUID(node)];
 			}
 			
+        }
+    }
+    
+    private function arrayLike(collection:ICollectionView):Object
+    {
+        // for SWF, we assume all collections implement Proxy and
+        // [] lookups will work.
+        COMPILE::SWF
+        {
+            return collection;
+        }
+        // for JS, the runtime can't know how to interpret [] lookups
+        // so we generate an array.
+        COMPILE::JS
+        {
+            var output:Array = [];
+            var cursor:IViewCursor = collection.createCursor();
+            do {
+                output.push(cursor.current);
+            } while (cursor.moveNext());
+            return output;
         }
     }
 }

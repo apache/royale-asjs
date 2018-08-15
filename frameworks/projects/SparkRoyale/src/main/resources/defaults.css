@@ -52,6 +52,18 @@ ComboBox
 	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ComboBoxList");
 }
 
+GroupBase
+{
+	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
+	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+}
+
+Image
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
+}
+
 
 List
 {

@@ -20,16 +20,15 @@
 package mx.collections 
 {
     
-import org.apache.royale.events.EventDispatcher;
-import org.apache.royale.reflection.getQualifiedClassName;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
 import mx.events.PropertyChangeEvent;
 import mx.events.PropertyChangeEventKind;
-//import mx.resources.IResourceManager;
-//import mx.resources.ResourceManager;
 import mx.utils.IXMLNotifiable;
 import mx.utils.XMLNotifier;
+
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.reflection.getQualifiedClassName;
 import org.apache.royale.utils.UIDUtil;
 
 //--------------------------------------
@@ -165,7 +164,7 @@ public class XMLListAdapter extends EventDispatcher implements IList, IXMLNotifi
                 stopTrackUpdates(_source[i]);
             }
         }
-        _source  = s ? s : XMLList(<></>);
+        _source  = s ? s : new XMLList(); // was XMLList(<></>);
 
 		// get a seed UID.  XML seems to have problems cleaning up
 		// UIDs, so this makes UIDs more similar and uses less

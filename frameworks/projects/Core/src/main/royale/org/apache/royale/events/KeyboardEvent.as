@@ -37,6 +37,15 @@ package org.apache.royale.events
         COMPILE::JS
         public static const KEY_UP:String = "keyup";
 
+        public static const KEYCODE_UP:uint = 38;
+        public static const KEYCODE_DOWN:uint = 40;
+        public static const KEYCODE_LEFT:uint = 37;
+        public static const KEYCODE_RIGHT:uint = 39;
+        public static const KEYCODE_PAGEUP:uint = 33;
+        public static const KEYCODE_PAGEDOWN:uint = 34;
+        public static const KEYCODE_HOME:uint = 36;
+        public static const KEYCODE_END:uint = 35;
+        
 		/**
 		 * @type {?goog.events.BrowserEvent}
 		 */

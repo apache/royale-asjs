@@ -29,19 +29,7 @@ package org.apache.royale.core
      *  @productversion Royale 0.0
      */
 	public interface IImage
-	{
-        /**
-         *  The BinaryData of the image.
-         *  This is used to set the image using binary content retrieved using HTTP requests or File APIs.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.7
-         */
-        function get src():String;
-        function set src(value:String):void;
-		
+	{		
 		COMPILE::JS
 		function get imageElement():Element;
 		COMPILE::JS

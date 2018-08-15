@@ -29,7 +29,7 @@ import org.apache.royale.core.IParent;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public interface IVisualElement /* extends ILayoutElement, ILayoutDirectionElement*/
+public interface IVisualElement extends ILayoutElement/*, ILayoutDirectionElement*/
 {
 
     /**

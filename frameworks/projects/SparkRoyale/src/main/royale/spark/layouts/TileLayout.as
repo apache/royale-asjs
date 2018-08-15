@@ -19,8 +19,8 @@
 
 package spark.layouts
 {
-/* import flash.geom.Point;
-import flash.geom.Rectangle; 
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 
 import mx.core.ILayoutElement;
 import mx.core.IVisualElement;
@@ -32,7 +32,7 @@ import spark.core.NavigationUnit;
 import spark.layouts.supportClasses.DropLocation;
 import spark.layouts.supportClasses.LayoutBase;
 
-use namespace mx_internal;*/
+use namespace mx_internal;
 
 /**
  *  The TileLayout class arranges layout elements in columns and rows
@@ -99,11 +99,11 @@ use namespace mx_internal;*/
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Royale 0.9.4
+ *  @productversion Flex 4
  */
-public class TileLayout
-{ // extends LayoutBase
- //   include "../core/Version.as";
+public class TileLayout extends LayoutBase
+{
+//    include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -117,7 +117,7 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
     public function TileLayout():void
     {
@@ -134,7 +134,7 @@ public class TileLayout
     //  horizontalGap
     //----------------------------------
 
-   // private var explicitHorizontalGap:Number = 6;
+    private var explicitHorizontalGap:Number = 6;
     private var _horizontalGap:Number = 6;
 
     [Bindable("propertyChange")]
@@ -150,7 +150,7 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
     public function get horizontalGap():Number
     {
@@ -162,19 +162,19 @@ public class TileLayout
      */
     public function set horizontalGap(value:Number):void
     {
-       // explicitHorizontalGap = value;
+        explicitHorizontalGap = value;
         if (value == _horizontalGap)
             return;
 
         _horizontalGap = value;
-        //invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }
 
     //----------------------------------
     //  verticalGap
     //----------------------------------
 
-   // private var explicitVerticalGap:Number = 6;
+    private var explicitVerticalGap:Number = 6;
     private var _verticalGap:Number = 6;
 
     [Bindable("propertyChange")]
@@ -190,7 +190,7 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
     public function get verticalGap():Number
     {
@@ -202,22 +202,22 @@ public class TileLayout
      */
     public function set verticalGap(value:Number):void
     {
-      //  explicitVerticalGap = value;
+        explicitVerticalGap = value;
         if (value == _verticalGap)
             return;
 
         _verticalGap = value;
-      //  invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }
 
     //----------------------------------
     //  columnCount
     //----------------------------------
 
-    /* private var _columnCount:int = -1;
+    private var _columnCount:int = -1;
 
     [Bindable("propertyChange")]
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
 
     /**
      *  Contain the actual column count.
@@ -229,12 +229,12 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get columnCount():int
+    public function get columnCount():int
     {
         return _columnCount;
-    } */
+    }
 
     //----------------------------------
     //  requestedColumnCount
@@ -244,9 +244,9 @@ public class TileLayout
      *  @private
      *  Storage for the requestedColumnCount property.
      */
-    /* private var _requestedColumnCount:int = -1;
+    private var _requestedColumnCount:int = -1;
     
-    [Inspectable(category="General", minValue="-1")] */
+    [Inspectable(category="General", minValue="-1")]
 
     /**
      *  Number of columns to be displayed.
@@ -266,17 +266,17 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get requestedColumnCount():int
+    public function get requestedColumnCount():int
     {
         return _requestedColumnCount;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set requestedColumnCount(value:int):void
+    public function set requestedColumnCount(value:int):void
     {
         if (_requestedColumnCount == value)
             return;
@@ -284,7 +284,7 @@ public class TileLayout
         _requestedColumnCount = value;
         _columnCount = value;
         invalidateTargetSizeAndDisplayList();
-    }   */  
+    }    
 
     //----------------------------------
     //  rowCount
@@ -294,10 +294,10 @@ public class TileLayout
      *  @private
      *  Storage for the rowCount property.
      */
-   /*  private var _rowCount:int = -1;
+    private var _rowCount:int = -1;
 
     [Bindable("propertyChange")]
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
 
     /**
      *  The row count.
@@ -309,12 +309,12 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get rowCount():int
+    public function get rowCount():int
     {
         return _rowCount;
-    } */
+    }
 
     //----------------------------------
     //  requestedRowCount
@@ -324,9 +324,9 @@ public class TileLayout
      *  @private
      *  Storage for the requestedRowCount property.
      */
-    /* private var _requestedRowCount:int = -1;
+    private var _requestedRowCount:int = -1;
     
-    [Inspectable(category="General", minValue="-1")] */
+    [Inspectable(category="General", minValue="-1")]
 
     /**
      *  Number of rows to be displayed.
@@ -346,17 +346,17 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get requestedRowCount():int
+    public function get requestedRowCount():int
     {
         return _requestedRowCount;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set requestedRowCount(value:int):void
+    public function set requestedRowCount(value:int):void
     {
         if (_requestedRowCount == value)
             return;
@@ -364,17 +364,17 @@ public class TileLayout
         _requestedRowCount = value;
         _rowCount = value;
         invalidateTargetSizeAndDisplayList();
-    }  */   
+    }    
 
     //----------------------------------
     //  columnWidth
     //----------------------------------
 
-    /* private var explicitColumnWidth:Number = NaN;
+    private var explicitColumnWidth:Number = NaN;
     private var _columnWidth:Number = NaN;
 
     [Bindable("propertyChange")]
-    [Inspectable(category="General", minValue="0.0")] */
+    [Inspectable(category="General", minValue="0.0")]
 
     /**
      *  Contain the actual column width, in pixels.
@@ -393,17 +393,17 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get columnWidth():Number
+    public function get columnWidth():Number
     {
         return _columnWidth;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set columnWidth(value:Number):void
+    public function set columnWidth(value:Number):void
     {
         explicitColumnWidth = value;
         if (value == _columnWidth)
@@ -411,17 +411,17 @@ public class TileLayout
 
         _columnWidth = value;
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
 
     //----------------------------------
     //  rowHeight
     //----------------------------------
 
-    /* private var explicitRowHeight:Number = NaN;
+    private var explicitRowHeight:Number = NaN;
     private var _rowHeight:Number = NaN;
 
     [Bindable("propertyChange")]
-    [Inspectable(category="General", minValue="0.0")] */
+    [Inspectable(category="General", minValue="0.0")]
 
     /**
      *  The row height, in pixels.
@@ -439,17 +439,17 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get rowHeight():Number
+    public function get rowHeight():Number
     {
         return _rowHeight;
     }
-	*/
+
     /**
      *  @private
      */
-    /* public function set rowHeight(value:Number):void
+    public function set rowHeight(value:Number):void
     {
         explicitRowHeight = value;
         if (value == _rowHeight)
@@ -457,15 +457,15 @@ public class TileLayout
 
         _rowHeight = value;
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
 	
 	//----------------------------------
 	//  padding
 	//----------------------------------
 	
-	/* private var _padding:Number = 0;
+	private var _padding:Number = 0;
 	
-	[Inspectable(category="General")] */
+	[Inspectable(category="General")]
 	
 	/**
 	 *  The minimum number of pixels between the container's edges and
@@ -476,17 +476,17 @@ public class TileLayout
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10
 	 *  @playerversion AIR 1.5
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Flex 4
 	 */
-	/* public function get padding():Number
+	public function get padding():Number
 	{
 		return _padding;
-	} */
+	}
 	
 	/**
 	 *  @private
 	 */
-	public/*  function set padding(value:Number):void
+	public function set padding(value:Number):void
 	{
 		if (_padding == value)
 			return;
@@ -499,15 +499,15 @@ public class TileLayout
 		paddingTop = _padding;
 		
 		invalidateTargetSizeAndDisplayList();
-	}   */  
+	}    
     
     //----------------------------------
     //  paddingLeft
     //----------------------------------
     
-    /* private var _paddingLeft:Number = 0;
+    private var _paddingLeft:Number = 0;
     
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     
     /**
      *  The minimum number of pixels between the container's left edge and
@@ -518,32 +518,32 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get paddingLeft():Number
+    public function get paddingLeft():Number
     {
         return _paddingLeft;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set paddingLeft(value:Number):void
+    public function set paddingLeft(value:Number):void
     {
         if (_paddingLeft == value)
             return;
         
         _paddingLeft = value;
         invalidateTargetSizeAndDisplayList();
-    } */    
+    }    
     
     //----------------------------------
     //  paddingRight
     //----------------------------------
     
-   /*  private var _paddingRight:Number = 0;
+    private var _paddingRight:Number = 0;
     
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     
     /**
      *  The minimum number of pixels between the container's right edge and
@@ -554,32 +554,32 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get paddingRight():Number
+    public function get paddingRight():Number
     {
         return _paddingRight;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set paddingRight(value:Number):void
+    public function set paddingRight(value:Number):void
     {
         if (_paddingRight == value)
             return;
         
         _paddingRight = value;
         invalidateTargetSizeAndDisplayList();
-    } */    
+    }    
     
     //----------------------------------
     //  paddingTop
     //----------------------------------
     
-   /*  private var _paddingTop:Number = 0;
+    private var _paddingTop:Number = 0;
     
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     
     /**
      *  Number of pixels between the container's top edge
@@ -590,32 +590,32 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get paddingTop():Number
+    public function get paddingTop():Number
     {
         return _paddingTop;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set paddingTop(value:Number):void
+    public function set paddingTop(value:Number):void
     {
         if (_paddingTop == value)
             return;
         
         _paddingTop = value;
         invalidateTargetSizeAndDisplayList();
-    } */    
+    }    
     
     //----------------------------------
     //  paddingBottom
     //----------------------------------
     
-   /*  private var _paddingBottom:Number = 0;
+    private var _paddingBottom:Number = 0;
     
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     
     /**
      *  Number of pixels between the container's bottom edge
@@ -626,17 +626,17 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get paddingBottom():Number
+    public function get paddingBottom():Number
     {
         return _paddingBottom;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set paddingBottom(value:Number):void
+    public function set paddingBottom(value:Number):void
     {
         if (_paddingBottom == value)
             return;
@@ -644,12 +644,12 @@ public class TileLayout
         _paddingBottom = value;
         invalidateTargetSizeAndDisplayList();
     }
-     */
+    
     //----------------------------------
     //  horizontalAlign
     //----------------------------------
 
-    private var _horizontalAlign:String = "justify";// HorizontalAlign.JUSTIFY;
+    private var _horizontalAlign:String = HorizontalAlign.JUSTIFY;
 
     [Inspectable(category="General", enumeration="left,right,center,justify", defaultValue="justify")]
 
@@ -669,7 +669,7 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
     public function get horizontalAlign():String
     {
@@ -685,14 +685,14 @@ public class TileLayout
             return;
 
         _horizontalAlign = value;
-      //  invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }
 
     //----------------------------------
     //  verticalAlign
     //----------------------------------
 
-    private var _verticalAlign:String = "justify"; //VerticalAlign.JUSTIFY;
+    private var _verticalAlign:String = VerticalAlign.JUSTIFY;
 
     [Inspectable(category="General", enumeration="top,bottom,middle,justify", defaultValue="justify")]
 
@@ -712,7 +712,7 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
     public function get verticalAlign():String
     {
@@ -728,16 +728,16 @@ public class TileLayout
             return;
 
         _verticalAlign = value;
-       // invalidateTargetSizeAndDisplayList();
+        invalidateTargetSizeAndDisplayList();
     }
 
     //----------------------------------
     //  columnAlign
     //----------------------------------
 
-   /*  private var _columnAlign:String = ColumnAlign.LEFT;
+    private var _columnAlign:String = ColumnAlign.LEFT;
 
-    [Inspectable(category="General", enumeration="left,justifyUsingGap,justifyUsingWidth", defaultValue="left")] */
+    [Inspectable(category="General", enumeration="left,justifyUsingGap,justifyUsingWidth", defaultValue="left")]
 
     /**
      *  Specifies how to justify the fully visible columns to the container width.
@@ -774,33 +774,33 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get columnAlign():String
+    public function get columnAlign():String
     {
         return _columnAlign;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set columnAlign(value:String):void
+    public function set columnAlign(value:String):void
     {
         if (_columnAlign == value)
             return;
 
         _columnAlign = value;
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
 
     //----------------------------------
     //  rowAlign
     //----------------------------------
 
-   /*  private var _rowAlign:String = RowAlign.TOP;
+    private var _rowAlign:String = RowAlign.TOP;
 
     [Inspectable(category="General", enumeration="top,justifyUsingGap,justifyUsingHeight", defaultValue="top")]
-	*/
+
     /**
      *  Specifies how to justify the fully visible rows to the container height.
      *  ActionScript values can be <code>RowAlign.TOP</code>, <code>RowAlign.JUSTIFY_USING_GAP</code>
@@ -835,33 +835,33 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-   /*  public function get rowAlign():String
+    public function get rowAlign():String
     {
         return _rowAlign;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set rowAlign(value:String):void
+    public function set rowAlign(value:String):void
     {
         if (_rowAlign == value)
             return;
 
         _rowAlign = value;
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
 
     //----------------------------------
     //  orientation
     //----------------------------------
 
-   /*private var _orientation:String = TileOrientation.ROWS;
+    private var _orientation:String = TileOrientation.ROWS;
 
     [Inspectable(category="General", enumeration="rows,columns", defaultValue="rows")]
-	*/
+
     /**
      *  Specifies whether elements are arranged row by row or
      *  column by column.
@@ -874,17 +874,17 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* public function get orientation():String
+    public function get orientation():String
     {
         return _orientation;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set orientation(value:String):void
+    public function set orientation(value:String):void
     {
         if (_orientation == value)
             return;
@@ -892,7 +892,7 @@ public class TileLayout
         _orientation = value;
         _tileWidthCached = _tileHeightCached = NaN;
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
     
     //----------------------------------
     //  useVirtualLayout
@@ -901,7 +901,7 @@ public class TileLayout
     /**
      *  @private
      */
-    /* override public function set useVirtualLayout(value:Boolean):void
+    override public function set useVirtualLayout(value:Boolean):void
     {
         if (useVirtualLayout == value)
             return;
@@ -918,7 +918,7 @@ public class TileLayout
             visibleStartX = 0;
             visibleStartY = 0;
         }
-    }   */   
+    }     
     
     //--------------------------------------------------------------------------
     //
@@ -929,28 +929,28 @@ public class TileLayout
     /**
      * @private
      */
-    /* override public function clearVirtualLayoutCache():void
+    override public function clearVirtualLayoutCache():void
     {
         _tileWidthCached = _tileHeightCached = NaN;
-    } */
+    }
     
     /**
      *  @private
      *  storage for old property values, in order to dispatch change events.
      */
-    /* private var oldColumnWidth:Number = NaN;
+    private var oldColumnWidth:Number = NaN;
     private var oldRowHeight:Number = NaN;
     private var oldColumnCount:int = -1;
     private var oldRowCount:int = -1;
     private var oldHorizontalGap:Number = NaN;
     private var oldVerticalGap:Number = NaN;
-	*/
+
     // Cache storage to avoid repeating work from measure() in updateDisplayList().
     // These are set the first time the value is calculated and are reset at the end
     // of updateDisplayList().
-    /* private var _tileWidthCached:Number = NaN;
+    private var _tileWidthCached:Number = NaN;
     private var _tileHeightCached:Number = NaN;
-    private var _numElementsCached:int = -1; */
+    private var _numElementsCached:int = -1;
     
     /**
      *  @private
@@ -958,10 +958,10 @@ public class TileLayout
      *  calculateDisplayParameters().   If virtualLayout=true they're based 
      *  on the current scrollRect.
      */
-    /* private var visibleStartIndex:int = -1;   // dataProvider/layout element index  
+    private var visibleStartIndex:int = -1;   // dataProvider/layout element index  
     private var visibleEndIndex:int = -1;     // ...
     private var visibleStartX:Number = 0;     // first tile/cell origin
-    private var visibleStartY:Number = 0;     // ... */
+    private var visibleStartY:Number = 0;     // ...
    
     //--------------------------------------------------------------------------
     //
@@ -977,9 +977,9 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* private function dispatchEventsForActualValueChanges():void
+    private function dispatchEventsForActualValueChanges():void
     {
         if (hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
         {
@@ -1003,7 +1003,7 @@ public class TileLayout
         oldRowCount      = _rowCount;
         oldHorizontalGap = _horizontalGap;
         oldVerticalGap   = _verticalGap;
-    } */
+    }
 
     /**
      *  This method is called from measure() and updateDisplayList() to calculate the
@@ -1019,9 +1019,9 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* private function updateActualValues(width:Number, height:Number):void
+    private function updateActualValues(width:Number, height:Number):void
     {
         var widthMinusPadding:Number = width - paddingLeft - paddingRight;
         var heightMinusPadding:Number = height - paddingTop - paddingBottom;
@@ -1073,7 +1073,7 @@ public class TileLayout
             else
                 _columnCount = Math.max(1, Math.ceil(elementCount / Math.max(1, _requestedRowCount)));
         }
-    } */
+    }
     
     /**
      *  @private
@@ -1081,7 +1081,7 @@ public class TileLayout
      *  Squareness is the difference between width and height of a tile layout
      *  with the specified number of columns and rows.
      */
-    /* private function closerToSquare(colCount1:int, rowCount1:int, colCount2:int, rowCount2:int):Boolean
+    private function closerToSquare(colCount1:int, rowCount1:int, colCount2:int, rowCount2:int):Boolean
     {
         var difference1:Number = Math.abs(colCount1 * (_columnWidth + _horizontalGap) - _horizontalGap - 
                                           rowCount1 * (_rowHeight   +   _verticalGap) + _verticalGap);
@@ -1089,7 +1089,7 @@ public class TileLayout
                                           rowCount2 * (_rowHeight   +   _verticalGap) + _verticalGap);
         
         return difference1 < difference2 || (difference1 == difference2 && rowCount1 <= rowCount2);
-    } */
+    }
 
     /**
      *  @private
@@ -1099,7 +1099,7 @@ public class TileLayout
      * 
      *  The width and height should not include padding.
      */
-    /* private function calculateColumnAndRowCount(width:Number, height:Number, elementCount:int):void
+    private function calculateColumnAndRowCount(width:Number, height:Number, elementCount:int):void
     {
         _columnCount = _rowCount = -1;
 
@@ -1197,7 +1197,7 @@ public class TileLayout
             _rowCount = Math.max(1, Math.ceil(elementCount / _columnCount));
         if (-1 == _columnCount)
             _columnCount = Math.max(1, Math.ceil(elementCount / _rowCount));
-    } */
+    }
 
     /**
      *  @private
@@ -1205,7 +1205,7 @@ public class TileLayout
      *  leaving no partially visible elements in view.
      *  @return Returs the new gap size.
      */
-    /* private function justifyByGapSize(totalSize:Number, elementSize:Number,
+    private function justifyByGapSize(totalSize:Number, elementSize:Number,
                                       gap:Number, elementCount:int):Number
     {
         // If element + gap collapses to zero, then don't adjust the gap.
@@ -1232,7 +1232,7 @@ public class TileLayout
         // <==> totalSize - visibleCount * elementSize == (visibleCount - 1) * gap
         // <==> (totalSize - visibleCount * elementSize) / (visibleCount - 1) == gap
         return (totalSize - visibleCount * elementSize) / (visibleCount - 1);
-    } */
+    }
 
     /**
      *  @private
@@ -1240,7 +1240,7 @@ public class TileLayout
      *  totalSize leaving no partially visible elements in view.
      *  @return Returns the the new element size.
      */
-    /* private function justifyByElementSize(totalSize:Number, elementSize:Number,
+    private function justifyByElementSize(totalSize:Number, elementSize:Number,
                                           gap:Number, elementCount:int):Number
     {
         var elementAndGapSize:Number = elementSize + gap;
@@ -1261,14 +1261,14 @@ public class TileLayout
         // <==> totalSize - (visibleCount - 1) * gap == visibleCount * elementSize
         // <==> (totalSize - (visibleCount - 1) * gap) / visibleCount == elementSize
         return (totalSize - (visibleCount - 1) * gap) / visibleCount;
-    } */
+    }
 
     /**
      *  @private
      *  Update _tileWidth,Height to be the maximum of their current
      *  value and the element's preferred bounds. 
      */
-    /* private function updateVirtualTileSize(elt:ILayoutElement):void
+    private function updateVirtualTileSize(elt:ILayoutElement):void
     {
         if (!elt || !elt.includeInLayout)
             return;
@@ -1276,12 +1276,12 @@ public class TileLayout
         var h:Number = elt.getPreferredBoundsHeight();
         _tileWidthCached = isNaN(_tileWidthCached) ? w : Math.max(w, _tileWidthCached);
         _tileHeightCached = isNaN(_tileHeightCached) ? h : Math.max(h, _tileHeightCached);
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  private function calculateVirtualTileSize():void
+    private function calculateVirtualTileSize():void
     {
         // If both dimensions are explicitly set, we're done
         _columnWidth = explicitColumnWidth;
@@ -1314,14 +1314,14 @@ public class TileLayout
             _columnWidth = _tileWidthCached;
         if (isNaN(_rowHeight))
             _rowHeight = _tileHeightCached;        
-    } */
+    }
 
     /**
      *  @private
      *  Calculates _columnWidth and _rowHeight from maximum of
      *  elements preferred size and any explicit overrides.
      */
-    /* private function calculateRealTileSize():void
+    private function calculateRealTileSize():void
     {
         _columnWidth = _tileWidthCached;
         _rowHeight = _tileHeightCached;
@@ -1361,15 +1361,15 @@ public class TileLayout
             _columnWidth = _tileWidthCached = columnWidth;
         if (isNaN(_rowHeight))
             _rowHeight = _tileHeightCached = rowHeight;
-    } */
+    }
     
-    /* private function calculateTileSize():void    
+    private function calculateTileSize():void    
     {
         if (useVirtualLayout)
             calculateVirtualTileSize();
         else 
             calculateRealTileSize();
-    }  */   
+    }    
 
     /**
      *  @private
@@ -1377,7 +1377,7 @@ public class TileLayout
      *  layout elements, for virtual layout just return the number of layout
      *  elements.
      */
-   /*  private function calculateElementCount():int
+    private function calculateElementCount():int
     {
         if (-1 != _numElementsCached)
             return _numElementsCached;
@@ -1397,7 +1397,7 @@ public class TileLayout
         }
 
         return _numElementsCached;
-    } */
+    }
     
     /**
      *  @private
@@ -1418,7 +1418,7 @@ public class TileLayout
      * 
      *  The logic for useVirtualLayout=true and orientation=COLS is similar.
      */
-    /* private function calculateDisplayParameters(unscaledWidth:int, unscaledHeight:int):void
+    private function calculateDisplayParameters(unscaledWidth:int, unscaledHeight:int):void
     {
         updateActualValues(unscaledWidth, unscaledHeight);
 
@@ -1454,7 +1454,7 @@ public class TileLayout
                 visibleStartX = visibleCol0 * cwg + paddingLeft;       
             }
         }
-    } */
+    }
     
     /**
      *  @private
@@ -1465,7 +1465,7 @@ public class TileLayout
      *  increase, the new visibleStart,EndIndex values will be greater than or
      *  equal to the old ones. 
      */
-     /* private function updateVirtualLayout(unscaledWidth:int, unscaledHeight:int):void
+     private function updateVirtualLayout(unscaledWidth:int, unscaledHeight:int):void
      {
         var oldVisibleStartIndex:int = visibleStartIndex;
         var oldVisibleEndIndex:int = visibleEndIndex;
@@ -1490,7 +1490,7 @@ public class TileLayout
             if (el is IVisualElement)
                 IVisualElement(el).visible = false; 
         }
-     }     */
+     }    
 
     /**
      *  Sets the size and the position of the specified layout element and cell bounds.
@@ -1503,9 +1503,9 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* private function sizeAndPositionElement(element:ILayoutElement,
+    private function sizeAndPositionElement(element:ILayoutElement,
                                               cellX:int,
                                               cellY:int,
                                               cellWidth:int,
@@ -1565,55 +1565,55 @@ public class TileLayout
 
         // Position the element
         element.setLayoutBoundsPosition(x, y);
-    } */
+    }
 
     /**
      *  @private
      *  @return Returns the x coordinate of the left edge for the specified column.
      */
-    /* final private function leftEdge(columnIndex:int):Number
+    final private function leftEdge(columnIndex:int):Number
     {
         if (columnIndex < 0)
             return 0;
         
         return Math.max(0, columnIndex * (_columnWidth + _horizontalGap)) + paddingLeft;
-    } */
+    }
 
     /**
      *  @private
      *  @return Returns the x coordinate of the right edge for the specified column.
      */
-    /* final private function rightEdge(columnIndex:int):Number
+    final private function rightEdge(columnIndex:int):Number
     {
         if (columnIndex < 0)
             return 0;
         
         return Math.min(target.contentWidth, columnIndex * (_columnWidth + _horizontalGap) + _columnWidth) + paddingLeft;
-    } */
+    }
 
     /**
      *  @private
      *  @return Returns the y coordinate of the top edge for the specified row.
      */
-    /* final private function topEdge(rowIndex:int):Number
+    final private function topEdge(rowIndex:int):Number
     {
         if (rowIndex < 0)
             return 0;
         
         return Math.max(0, rowIndex * (_rowHeight + _verticalGap)) + paddingTop;
-    } */
+    }
 
     /**
      *  @private
      *  @return Returns the y coordinate of the bottom edge for the specified row.
      */
-    /* final private function bottomEdge(rowIndex:int):Number
+    final private function bottomEdge(rowIndex:int):Number
     {
         if (rowIndex < 0)
             return 0;
         
         return Math.min(target.contentHeight, rowIndex * (_rowHeight + _verticalGap) + _rowHeight) + paddingTop;
-    } */
+    }
     
     /**
      *  @private 
@@ -1628,7 +1628,7 @@ public class TileLayout
      *  to ensure that the elements are re-arranged with the new setting and the
      *  target's default size is recomputed.</p> 
      */
-    /* private function invalidateTargetSizeAndDisplayList():void
+    private function invalidateTargetSizeAndDisplayList():void
     {
         var g:GroupBase = target;
         if (!g)
@@ -1636,7 +1636,7 @@ public class TileLayout
 
         g.invalidateSize();
         g.invalidateDisplayList();
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1647,7 +1647,7 @@ public class TileLayout
     /**
      *  @private
      */
-    /* override protected function scrollPositionChanged():void
+    override protected function scrollPositionChanged():void
     {
         super.scrollPositionChanged();
         
@@ -1657,12 +1657,12 @@ public class TileLayout
 
         if (useVirtualLayout)
             layoutTarget.invalidateDisplayList();
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override public function measure():void
+    override public function measure():void
     {
         // Save and restore these values so they're not modified 
         // as a sideeffect of measure().
@@ -1717,12 +1717,12 @@ public class TileLayout
         _verticalGap = savedVerticalGap;
         _columnWidth = savedColumnWidth;
         _rowHeight = savedRowHeight; 
-    } */
+    }
 
     /**
      *  @private 
      */  
-    /* override public function getNavigationDestinationIndex(currentIndex:int, navigationUnit:uint, arrowKeysWrapFocus:Boolean):int
+    override public function getNavigationDestinationIndex(currentIndex:int, navigationUnit:uint, arrowKeysWrapFocus:Boolean):int
     {
         if (!target || target.numElements < 1)
             return -1; 
@@ -1950,12 +1950,12 @@ public class TileLayout
 
             return newColumn * rowCount + newRow;
         }
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override public function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    override public function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
         var layoutTarget:GroupBase = target;
         if (!layoutTarget)
@@ -2063,12 +2063,12 @@ public class TileLayout
 
         // If actual values have chnaged, notify listeners
         dispatchEventsForActualValueChanges();
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override public function getElementBounds(index:int):Rectangle
+    override public function getElementBounds(index:int):Rectangle
     {
         if (!useVirtualLayout)
             return super.getElementBounds(index);
@@ -2090,12 +2090,12 @@ public class TileLayout
             row = index % _rowCount
         }
         return new Rectangle(leftEdge(col), topEdge(row), _columnWidth, _rowHeight);
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function getElementBoundsLeftOfScrollRect(scrollRect:Rectangle):Rectangle
+    override protected function getElementBoundsLeftOfScrollRect(scrollRect:Rectangle):Rectangle
     {
         var bounds:Rectangle = new Rectangle();
         // Find the column that spans or is to the left of the scrollRect left edge.
@@ -2103,12 +2103,12 @@ public class TileLayout
         bounds.left = leftEdge(column);
         bounds.right = rightEdge(column);
         return bounds;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function getElementBoundsRightOfScrollRect(scrollRect:Rectangle):Rectangle
+    override protected function getElementBoundsRightOfScrollRect(scrollRect:Rectangle):Rectangle
     {
         var bounds:Rectangle = new Rectangle();
         // Find the column that spans or is to the right of the scrollRect right edge.
@@ -2116,12 +2116,12 @@ public class TileLayout
         bounds.left = leftEdge(column);
         bounds.right = rightEdge(column);
         return bounds;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function getElementBoundsAboveScrollRect(scrollRect:Rectangle):Rectangle
+    override protected function getElementBoundsAboveScrollRect(scrollRect:Rectangle):Rectangle
     {
         var bounds:Rectangle = new Rectangle();
         // Find the row that spans or is above the scrollRect top edge
@@ -2129,12 +2129,12 @@ public class TileLayout
         bounds.top = topEdge(row);
         bounds.bottom = bottomEdge(row);
         return bounds;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function getElementBoundsBelowScrollRect(scrollRect:Rectangle):Rectangle
+    override protected function getElementBoundsBelowScrollRect(scrollRect:Rectangle):Rectangle
     {
         var bounds:Rectangle = new Rectangle();
         // Find the row that spans or is below the scrollRect bottom edge
@@ -2142,23 +2142,23 @@ public class TileLayout
         bounds.top = topEdge(row);
         bounds.bottom = bottomEdge(row);
         return bounds;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* override public function elementAdded(index:int):void
+    override public function elementAdded(index:int):void
     {
         invalidateTargetSizeAndDisplayList();
-    } */
+    }
     
     /**
      *  @private
      */
-    /* override public function elementRemoved(index:int):void
+    override public function elementRemoved(index:int):void
     {
         invalidateTargetSizeAndDisplayList();
-    }   */   
+    }     
     
     //--------------------------------------------------------------------------
     //
@@ -2171,7 +2171,7 @@ public class TileLayout
      *  Calculates the column and row and returns the corresponding cell index.
      *  Index may be out of range if there's no element for the cell.
      */
-    /* private function calculateDropCellIndex(x:Number, y:Number):Array
+    private function calculateDropCellIndex(x:Number, y:Number):Array
     {
         var xStart:Number = x - paddingLeft;
         var yStart:Number = y - paddingTop;
@@ -2229,7 +2229,7 @@ public class TileLayout
                 column = _columnCount - 1;
         }
         return [row, column];
-    } */
+    }
     
     /**
      *  @inheritDoc
@@ -2237,9 +2237,9 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* override protected function calculateDropIndex(x:Number, y:Number):int
+    override protected function calculateDropIndex(x:Number, y:Number):int
     {
         var result:Array = calculateDropCellIndex(x, y);
         var row:int = result[0]; 
@@ -2257,7 +2257,7 @@ public class TileLayout
         if (index > count)
             index = count;
         return index;
-    } */
+    }
     
     /**
      *  @inheritDoc
@@ -2265,9 +2265,9 @@ public class TileLayout
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 4
      */
-    /* override protected function calculateDropIndicatorBounds(dropLocation:DropLocation):Rectangle
+    override protected function calculateDropIndicatorBounds(dropLocation:DropLocation):Rectangle
     {
         var result:Array = calculateDropCellIndex(dropLocation.dropPoint.x, dropLocation.dropPoint.y);
         var row:int = result[0]; 
@@ -2366,7 +2366,7 @@ public class TileLayout
         }
         
         return new Rectangle(x, y, width, height);
-    } */
+    }
     
     /**
      *  @private
@@ -2374,7 +2374,7 @@ public class TileLayout
      *  containing the x/y point.  The associated index may be out 
      *  of range if there's no element for the cell.
      */
-    /* private function calculateCellIndex(x:Number, y:Number):Array
+    private function calculateCellIndex(x:Number, y:Number):Array
     {
         var xStart:Number = x - paddingLeft;
         var yStart:Number = y - paddingTop;
@@ -2392,7 +2392,7 @@ public class TileLayout
             row = _rowCount - 1;
         
         return [row, column];
-    } */
+    }
     
 
     /**
@@ -2400,7 +2400,7 @@ public class TileLayout
      *  Identifies the element which has its "compare point" located closest 
      *  to the specified position.
      */
-    /* override mx_internal function getElementNearestScrollPosition(
+    override mx_internal function getElementNearestScrollPosition(
         position:Point,
         elementComparePoint:String = "center"):int
     {
@@ -2507,7 +2507,7 @@ public class TileLayout
             index = newIndex;
         
         return index;
-    } */
+    }
 
 }
 }

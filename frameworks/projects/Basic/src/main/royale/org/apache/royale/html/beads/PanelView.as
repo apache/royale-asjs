@@ -38,7 +38,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.geom.Size;
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.Group;
-	import org.apache.royale.html.TitleBar;
+    import org.apache.royale.html.TitleBar;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy;
 	import org.apache.royale.utils.CSSUtils;
@@ -73,7 +73,7 @@ package org.apache.royale.html.beads
 			super();
 		}
 
-		private var _titleBar:TitleBar;
+		private var _titleBar:UIBase;
 
 		/**
 		 *  The org.apache.royale.html.TitleBar component of the
@@ -84,7 +84,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function get titleBar():TitleBar
+		public function get titleBar():UIBase
 		{
 			return _titleBar;
 		}
@@ -92,7 +92,7 @@ package org.apache.royale.html.beads
         /**
          *  @private
          */
-        public function set titleBar(value:TitleBar):void
+        public function set titleBar(value:UIBase):void
         {
             _titleBar = value;
         }
@@ -160,21 +160,6 @@ package org.apache.royale.html.beads
 
 			_titleBar.id = "panelTitleBar";
 
-			COMPILE::SWF {
-				_titleBar.percentWidth = 100;
-
-				if (_titleBar.style == null) {
-					_titleBar.style = new SimpleCSSStylesWithFlex();
-				}
-				_titleBar.style.flexGrow = 0;
-				_titleBar.style.order = 1;
-			}
-
-			COMPILE::JS {
-				_titleBar.element.style["flex-grow"] = "0";
-				_titleBar.element.style["order"] = "1";
-			}
-
 			_titleBar.addEventListener("close", handleClose);
 
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
@@ -192,26 +177,14 @@ package org.apache.royale.html.beads
 				_contentArea.typeNames = "PanelContent";
 
 				// add the layout bead to the content area.
-				if (transferLayoutBead) _contentArea.addBead(transferLayoutBead);
-
+				if (transferLayoutBead) 
+                    _contentArea.addBead(transferLayoutBead);
+                else
+                    setupContentAreaLayout();
+                
 				// add the viewport bead to the content area.
 				if (transferViewportBead) _contentArea.addBead(transferViewportBead);
 
-				COMPILE::SWF {
-					_contentArea.percentWidth = 100;
-
-					if (_contentArea.style == null) {
-						_contentArea.style = new SimpleCSSStylesWithFlex();
-					}
-					_contentArea.style.flexGrow = 1;
-					_contentArea.style.order = 2;
-				}
-
-				COMPILE::JS {
-					_contentArea.element.style["flex-grow"] = "1";
-					_contentArea.element.style["order"] = "2";
-					_contentArea.element.style["overflow"] = "auto"; // temporary
-				}
 			}
 
 			COMPILE::SWF {
@@ -228,9 +201,50 @@ package org.apache.royale.html.beads
 				(_strand as IContainerBaseStrandChildrenHost).$addElement(contentArea as IChild);
 			}
 
+            setupLayout();
+        }
+        
+        protected function setupContentAreaLayout():void
+        {
+            
+        }
+        
+        protected function setupLayout():void
+        {
+            COMPILE::JS {
+                _titleBar.element.style["flex-grow"] = "0";
+                _titleBar.element.style["order"] = "1";
+            }
+                
+            COMPILE::SWF {
+                _contentArea.percentWidth = 100;
+                
+                if (_contentArea.style == null) {
+                    _contentArea.style = new SimpleCSSStylesWithFlex();
+                }
+                _contentArea.style.flexGrow = 1;
+                _contentArea.style.order = 2;
+            }
+                
+            COMPILE::SWF {
+                _titleBar.percentWidth = 100;
+                
+                if (_titleBar.style == null) {
+                    _titleBar.style = new SimpleCSSStylesWithFlex();
+                }
+                _titleBar.style.flexGrow = 0;
+                _titleBar.style.order = 1;
+            }
+            
+            COMPILE::JS {
+                _contentArea.element.style["flex-grow"] = "1";
+                _contentArea.element.style["order"] = "2";
+                _contentArea.element.style["overflow"] = "auto"; // temporary
+            }
+            
 			// Now give the Panel its own layout
 			var layoutBead:IBeadLayout = new VerticalFlexLayout();
-			value.addBead(layoutBead);
+			_strand.addBead(layoutBead);
 		}
 
 		private var _panelLayoutProxy:PanelLayoutProxy;

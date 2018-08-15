@@ -20,14 +20,16 @@
 package spark.components.supportClasses
 {
 
-/* import flash.display.DisplayObject;
+import org.apache.royale.geom.Rectangle;
+COMPILE::SWF
+{
+    import flash.display.DisplayObject;      
+}
+/*
 import flash.display.Graphics;
 import flash.display.Shape;
 import flash.events.Event;
-import flash.geom.Rectangle;
 import flash.text.engine.FontLookup;
-import flash.text.engine.TextLine;
-import flash.text.engine.TextLineValidity;
 
 import mx.core.IFlexModuleFactory;
 
@@ -37,12 +39,26 @@ import mx.resources.ResourceManager;
 import spark.core.IDisplayText;
 import spark.utils.TextUtil;
 
-import flashx.textLayout.compose.TextLineRecycler; */
-import org.apache.royale.events.Event;
+*/
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
+
+import org.apache.royale.events.Event;
 import org.apache.royale.svg.GraphicShape;
+
+COMPILE::JS
+{
+    import window.Text;
+    import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+}
+import org.apache.royale.text.html.TextLine;
+import org.apache.royale.text.engine.ITextLine;
+import org.apache.royale.text.engine.TextLineValidity;
+import org.apache.royale.textLayout.compose.TextLineRecycler;
+import org.apache.royale.core.ITextModel;
+
 use namespace mx_internal;
 
 //--------------------------------------
@@ -191,16 +207,15 @@ public class TextBase extends UIComponent
      *  @private
      *  The composition bounds used when creating the TextLines.
      */
-   // mx_internal var bounds:Rectangle = new Rectangle(0, 0, NaN, NaN);
+    mx_internal var bounds:Rectangle = new Rectangle(0, 0, NaN, NaN);
 
     /**
      *  @private
 	 *  The TextLines and Shapes created to render the text.
 	 *  (Shapes are used to render the backgroundColor format for RichText.)
      */
-   /*  mx_internal var textLines:Vector.<DisplayObject> =
-    	new Vector.<DisplayObject>();
- */
+    mx_internal var textLines:Array = []; //Vector.<DisplayObject> = new Vector.<DisplayObject>();
+ 
     /**
      *  @private
      *  This flag is set to true if the text must be clipped.
@@ -226,13 +241,13 @@ public class TextBase extends UIComponent
      *  @private
      *  The value of bounds.width, before the compose was done.
      */
-  //  mx_internal var _composeWidth:Number;
+    mx_internal var _composeWidth:Number;
 
     /**
      *  @private
      *  The value of bounds.height, before the compose was done.
      */
-   // mx_internal var _composeHeight:Number;
+    mx_internal var _composeHeight:Number;
     
     /**
      *  @private
@@ -500,46 +515,98 @@ public class TextBase extends UIComponent
     //  text
     //----------------------------------
 
-    /**
-     *  @private
-     */
-    mx_internal var _text:String = "";
-        
-    [Inspectable(category="General", defaultValue="")]
-    
-    /**
-     *  The text displayed by this text component.
-	 *
-     *  <p>The formatting of this text is controlled by CSS styles.
-     *  The supported styles depend on the subclass.</p>
-	 *
-	 *  @default ""
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get text():String 
-    {
-        return _text;
-    }
-    
-    /**
-     *  @private
-     */
-    public function set text(value:String):void
-    {
-        if (value != _text)
-        {
-            _text = value;
+     //----------------------------------
+     //  text
+     //----------------------------------
+     
+     
+     COMPILE::JS
+     protected var textNode:window.Text;
+     
+     mx_internal var _text:String = "";
+     
+     [Bindable("textChange")]
+     /**
+      *  The text to display in the label.
+      *
+      *  @langversion 3.0
+      *  @playerversion Flash 10.2
+      *  @playerversion AIR 2.6
+      *  @productversion Royale 0.0
+      */
+     public function get text():String
+     {
+         COMPILE::SWF
+             {
+                 return ITextModel(model).text;
+             }
+             COMPILE::JS
+             {
+                 return _text;
+             }
+     }
+     
+     /**
+      *  @private
+      */
+     public function set text(value:String):void
+     {
+         COMPILE::SWF
+             {
+                 ITextModel(model).text = value;
+             }
+             COMPILE::JS
+             {
+                 if (textNode)
+                 {
+                     _text = value;
+                     textNode.nodeValue = value;
+                     this.dispatchEvent('textChange');
+                 }
+             }
+             
+             invalidateSize();
+         
+     }
 
-           // invalidateTextLines();
-            invalidateSize();
-            invalidateDisplayList();
-        }
-    }
-    
+     /**
+      *  @private
+      */
+     COMPILE::SWF
+     override public function addedToParent():void
+     {
+         super.addedToParent();
+         model.addEventListener("textChange", repeaterListener);
+         model.addEventListener("htmlChange", repeaterListener);
+     }
+     
+     /**
+      * @royaleignorecoercion window.Text
+      */
+     COMPILE::JS
+     override protected function createElement():WrappedHTMLElement
+     {
+         addElementToWrapper(this,'span');
+         
+         textNode = document.createTextNode(_text) as window.Text;
+         element.appendChild(textNode);
+         
+         element.style.whiteSpace = "nowrap";
+         element.style.display = "inline-block";
+         
+         return element;
+     }
+     
+     COMPILE::JS
+     override public function setActualSize(w:Number, h:Number):void
+     {
+         // For HTML/JS, we only set the size if there is an explicit
+         // size set. 
+         if (!isNaN(explicitWidth)) setWidth(w);
+         if (!isNaN(explicitHeight)) setHeight(h);
+     }
+     
+
     //--------------------------------------------------------------------------
     /**
      *  @private
@@ -887,22 +954,24 @@ public class TextBase extends UIComponent
      *  @private
      *  Returns false to indicate no lines were composed.
      */
-    /* mx_internal function composeTextLines(width:Number = NaN,
+    mx_internal function composeTextLines(width:Number = NaN,
 										height:Number = NaN):Boolean
 	{
 	    _composeWidth = width;
 	    _composeHeight = height;
-	    
+	 
+        /*
 	    setIsTruncated(false);
+        */
 	    
 	    return false;
-	} */
+	}
 
 	/**
 	 *  @private
 	 *  Adds the TextLines created by composeTextLines() to this container.
 	 */
-	/* mx_internal function addTextLines():void
+	mx_internal function addTextLines():void
 	{
 		var n:int = textLines.length;
         if (n == 0)
@@ -910,11 +979,18 @@ public class TextBase extends UIComponent
 
         for (var i:int = n - 1; i >= 0; i--)
         {
-            var textLine:DisplayObject = textLines[i];		
+            var textLine:ITextLine = textLines[i];
             // Add new TextLine accounting for our background Shape.
-            $addChildAt(textLine, 1);
+            COMPILE::SWF
+            {
+                $addChildAt(textLine as DisplayObject, 1);
+            }
+            COMPILE::JS
+            {
+                addElementAt(textLine, 1);
+            }
         }
-	} */
+	}
 
 	/**
 	 *  @private
@@ -923,7 +999,7 @@ public class TextBase extends UIComponent
      * 
 	 *  This does not empty the textLines Array.
 	 */
-	/* mx_internal function removeTextLines():void
+	mx_internal function removeTextLines():void
 	{
 		var n:int = textLines.length;		
 		if (n == 0)
@@ -931,19 +1007,28 @@ public class TextBase extends UIComponent
 
 		for (var i:int = 0; i < n; i++)
 		{
-			var textLine:DisplayObject = textLines[i];	
+			var textLine:ITextLine = textLines[i];	
             var parent:UIComponent = textLine.parent as UIComponent;
             if (parent)
-                UIComponent(textLine.parent).$removeChild(textLine);
+            {
+                COMPILE::SWF
+                {
+                    UIComponent(textLine.parent).$removeChild(textLine as DisplayObject);                        
+                }
+                COMPILE::JS
+                {
+                    UIComponent(textLine.parent).removeElement(textLine);                        
+                }
+            }
 		}
-	} */
+	}
 
     /**
      *  @private
      *  Adds the TextLines to the reuse cache, and clears the textLines array.
      */
-    /* mx_internal function releaseTextLines(
-    	textLinesVector:Vector.<DisplayObject> = null):void
+    mx_internal function releaseTextLines(
+    	textLinesVector:Array = null):void
     {
         if (!textLinesVector)
             textLinesVector = textLines;
@@ -968,7 +1053,7 @@ public class TextBase extends UIComponent
         }
         
         textLinesVector.length = 0;
-   } */
+   }
     
     /**
      *  @private

@@ -250,8 +250,13 @@ package org.apache.royale.core
             var rs:String = s.right;
             if (typeof(rs) === 'string' && rs.length > 0)
                 r = parseFloat(rs.substring(0, rs.length - 2));
+            var w:Number = NaN;
+            var ws:String = s.width;
+            if (typeof(ws) === 'string' && ws.length > 0)
+                w = parseFloat(ws.substring(0, ws.length - 2));
             if (!isNaN(l) &&
-                !isNaN(r)) {
+                !isNaN(r) && 
+                !isNaN(w)) {
                 // if just using size constraints and image will not shrink or grow
                 var computedWidth:Number = (host.positioner.offsetParent as HTMLElement).offsetWidth -
                     l - r;
@@ -265,8 +270,13 @@ package org.apache.royale.core
             var bs:String = s.right;
             if (typeof(bs) === 'string' && bs.length > 0)
                 b = parseFloat(bs.substring(0, bs.length - 2));
+            var h:Number = NaN;
+            var hs:String = s.height;
+            if (typeof(hs) === 'string' && hs.length > 0)
+                h = parseFloat(hs.substring(0, hs.length - 2));
             if (!isNaN(t) &&
-                !isNaN(b)) {
+                !isNaN(b) &&
+                !isNaN(h)) {
                 // if just using size constraints and image will not shrink or grow
                 var computedHeight:Number = (host.positioner.offsetParent as HTMLElement).offsetHeight -
                     t - b;

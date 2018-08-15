@@ -26,7 +26,7 @@ package org.apache.royale.collections
 	 * a HierarchicalData structure as its primary source, but then internally flattens
 	 * it for presentation.
 	 */
-	public class TreeData extends EventDispatcher implements ICollectionView
+	public class TreeData extends EventDispatcher implements ICollectionView, ITreeData
 	{
 		public function TreeData(source:HierarchicalData)
 		{

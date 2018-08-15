@@ -653,6 +653,11 @@ StringItemRenderer
 	cursor: pointer;
 }
 
+TreeItemRenderer
+{
+	white-space: pre;
+}
+
 AccordionItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.AccordionItemRendererMouseController");

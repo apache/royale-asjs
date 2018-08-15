@@ -615,6 +615,7 @@ public class Container extends UIComponent
 		// Load the layout bead if it hasn't already been loaded.
 		if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
         {
+            dispatchEvent(new Event("initComplete"));
             if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
                 (isWidthSizedToContent() || !isNaN(explicitWidth)))
     			dispatchEvent(new Event("layoutNeeded"));
@@ -629,7 +630,6 @@ public class Container extends UIComponent
             addBead(new ContainerDataBinding());
 
         dispatchEvent(new Event("initBindings"));
-        dispatchEvent(new Event("initComplete"));
     }
     
     /**
@@ -852,11 +852,12 @@ public class Container extends UIComponent
 		var o:EdgeMetrics = _viewMetricsAndPadding;
 		var ed:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this);
         var vm:EdgeMetrics = new EdgeMetrics(ed.left, ed.top, ed.right, ed.bottom);
+        var pd:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this);
 		
-		o.left = vm.left + getStyle("paddingLeft");
-		o.right = vm.right + getStyle("paddingRight");
-		o.top = vm.top + getStyle("paddingTop");
-		o.bottom = vm.bottom + getStyle("paddingBottom");
+		o.left = vm.left + pd.left;
+		o.right = vm.right + pd.right;
+		o.top = vm.top + pd.top;
+		o.bottom = vm.bottom + pd.bottom;
 		
 		return o;
 	}
