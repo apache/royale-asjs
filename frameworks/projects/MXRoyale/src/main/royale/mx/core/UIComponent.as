@@ -1393,7 +1393,17 @@ public class UIComponent extends UIBase
             trace("systemManager not implemented");
         _systemManager = value;
     }
-
+    
+COMPILE::JS
+{
+    public function get stage():Object
+    {
+        // TODO
+        if (GOOG::DEBUG)
+            trace("stage not implemented");
+        return null;
+    }
+}
     //--------------------------------------------------------------------------
     //
     //  Properties: Modules
