@@ -47,6 +47,28 @@ public class KeyboardEvent extends flash.events.KeyboardEvent
     {
         super(type, bubbles, cancelable,charCodeValue,keyCodeValue,keyLocationValue,ctrlKeyValue,altKeyValue,shiftKeyValue,controlKeyValue,commandKeyValue);
     }
+    
+    public static const KEY_DOWN:String = platformConstant1("keyDown");
+
+    private static function platformConstant(s:uint):uint
+         { 
+         return s; 
+         }
+    private static function platformConstant1(s:String):String
+        { 
+        return s; 
+        }
+        
+            
+    public function get KEY_DOWN():String
+        {
+	return "keyDown";
+	}
+    public function set KEY_DOWN(val:String):void
+        {
+	}
+
+
 }
 
 /**
@@ -71,14 +93,14 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 		public function set keyCode(val:uint):void
 		{
 		}
-		/*public function get KEY_DOWN():String
+		public function get KEY_DOWN():String
 		{
 		return "keyDown";
 		}
 		
 		public function set KEY_DOWN(val:String):void
 		{
-		}*/
+		}
 		
 		
 		 private static function platformConstant(s:uint):uint
