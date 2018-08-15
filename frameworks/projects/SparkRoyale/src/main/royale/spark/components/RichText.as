@@ -361,13 +361,7 @@ public class RichText extends TextBase implements IStyleClient
     {
         updateDisplayList(width, height);
     }
-    
-    COMPILE::JS
-    override public function setActualSize(w:Number, h:Number):void
-    {
-        setWidthAndHeight(w, h);
-    }
-    
+        
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement
     {
