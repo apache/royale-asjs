@@ -3262,6 +3262,14 @@ public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
         dispatchEvent(new Event("wordWrapChanged")); */
     } 
 
+    public function get verticalAlign():String
+    {
+        return "middle";
+    }
+    public function set verticalAlign(value:String):void
+    {
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Overridden methods: UIComponent
