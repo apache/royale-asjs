@@ -100,7 +100,10 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      *  @private
      */
     function set component(value:Object):void;
-    
+    function get rawChildren():IChildList;
+    function get numModalWindows():int;
+    function set numModalWindows(value:int):void;
+ 
 	
 	//--------------------------------------------------------------------------
 	//
@@ -119,6 +122,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      *  @productversion Royale 0.9.4
      */
     function getSandboxRoot():Object;
+    
 }
 
 }
