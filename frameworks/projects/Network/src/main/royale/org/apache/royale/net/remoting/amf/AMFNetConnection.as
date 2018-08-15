@@ -238,7 +238,7 @@ public class AMFNetConnection
         var readyState:int = xhr.readyState;
         if (readyState === 1)
         {
-            xhr.setRequestHeader("Content-Type", "application/x-amf; charset=UTF-8");
+            xhr.setRequestHeader("Content-Type", "application/x-amf");
             xhr.responseType = "arraybuffer";
             var actionMessage:ActionMessage = new ActionMessage();
             var messageBody:MessageBody = new MessageBody();
