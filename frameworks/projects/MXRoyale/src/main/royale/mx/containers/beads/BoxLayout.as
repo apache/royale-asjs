@@ -318,6 +318,9 @@ package mx.containers.beads
 				left = (w - child.width) * horizontalAlign + paddingLeft;
 				top = (h - child.height) * verticalAlign + paddingTop;
 				
+                COMPILE::JS {
+                    child.positioner.style.position = 'absolute';
+                }
 				child.move(Math.floor(left), Math.floor(top));
 			}
 				
@@ -354,12 +357,12 @@ package mx.containers.beads
 				{
 					obj = target.getLayoutChildAt(i);
 					left = (w - obj.width) * horizontalAlign + paddingLeft;
+                    COMPILE::JS {
+                        obj.positioner.style.position = 'absolute';
+                    }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
 						top += obj.height + gap;
-					COMPILE::JS {
-						obj.positioner.style.position = 'absolute';
-					}
 				}
 			}
 				
@@ -396,12 +399,12 @@ package mx.containers.beads
 				{
 					obj = target.getLayoutChildAt(i);
 					top = (h - obj.height) * verticalAlign + paddingTop;
+                    COMPILE::JS {
+                        obj.positioner.style.position = 'absolute';
+                    }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
 						left += obj.width + gap;
-					COMPILE::JS {
-						obj.positioner.style.position = 'absolute';
-					}
 				}
 			}
 		}

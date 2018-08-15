@@ -1553,6 +1553,14 @@ COMPILE::JS
     
     override public function addedToParent():void
     {
+        COMPILE::JS
+        {
+            // Flex layouts don't use percentages the way the browser
+            // does, so we have to absolute position everything.  Before
+            // layout runs, we want to establish the parent as the
+            // offsetParent.  Other code may set position="absolute" later.
+            element.style.position = "relative";
+        }
         super.addedToParent();
         
         if (!initialized)
