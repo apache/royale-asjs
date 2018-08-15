@@ -965,8 +965,7 @@ public class Tree extends List
     /**
      *  @private
      */
-    mx_internal var _dataDescriptor:ITreeDataDescriptor;
-       // new DefaultDataDescriptor();
+    mx_internal var _dataDescriptor:ITreeDataDescriptor = new DefaultDataDescriptor();
 
     [Inspectable(category="Data")]
 

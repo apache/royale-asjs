@@ -33,19 +33,25 @@ package spark.components.supportClasses
 //import flash.geom.Rectangle;
 
 //import mx.core.ILayoutElement;
+import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
-//import mx.core.UIComponentGlobals;
 import mx.core.mx_internal;
 import mx.events.PropertyChangeEvent;
-//import mx.graphics.shaderClasses.LuminosityMaskShader;
 
-//import spark.components.ResizeMode;
-//import spark.core.IViewport;
-//import spark.core.MaskType;
-//import spark.events.DisplayLayerObjectExistenceEvent;
-//import spark.layouts.BasicLayout;
-//import spark.layouts.supportClasses.LayoutBase;
+import spark.layouts.BasicLayout;
+import spark.layouts.supportClasses.LayoutBase;
+
+import org.apache.royale.binding.ContainerDataBinding;
+import org.apache.royale.binding.DataBindingBase;
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.ILayoutParent;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+import org.apache.royale.utils.MXMLDataInterpreter;
+import org.apache.royale.utils.loadBeadFromValuesManager;
+
 //import spark.utils.FTETextUtil;
 //import spark.utils.MaskUtil;
 
@@ -321,7 +327,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class GroupBase extends UIComponent 
+public class GroupBase extends UIComponent implements ILayoutParent
 { //implements IViewport
 
     //--------------------------------------------------------------------------
@@ -526,9 +532,11 @@ public class GroupBase extends UIComponent
 
         _layout = value; 
 
-        /* if (_layout)
+        if (_layout)
         {
             _layout.target = this;
+        }
+        /*
             _layout.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, redispatchLayoutEvent);
 
             if (_layoutProperties)
@@ -550,6 +558,33 @@ public class GroupBase extends UIComponent
         invalidateDisplayList(); */
     }
     
+     
+     /*
+     * ILayoutParent
+     */
+     
+     /**
+      * Returns the ILayoutHost which is its view. From ILayoutParent.
+      *
+      *  @langversion 3.0
+      *  @playerversion Flash 10.2
+      *  @playerversion AIR 2.6
+      *  @productversion Royale 0.8
+      */
+     public function getLayoutHost():ILayoutHost
+     {
+         return view as ILayoutHost;
+     }
+     
+     //----------------------------------
+     //  getLayoutChildAt for compatibility
+     //----------------------------------
+     
+     public function getLayoutChildAt(index:int):IUIComponent
+     {
+         return getElementAt(index) as IUIComponent;
+     }
+     
     /**
      *  @private
      *  Redispatch the bindable LayoutBase properties that we expose (that we "facade"). 
@@ -567,12 +602,30 @@ public class GroupBase extends UIComponent
             }
     }  */   
     
+    override public function get measuredWidth():Number
+    {
+        if (isNaN(_measuredWidth))
+            measure();
+        if (isNaN(_measuredWidth))
+             return width;
+        return _measuredWidth;
+    }
+
+    override public function get measuredHeight():Number
+    {
+        if (isNaN(_measuredHeight))
+            measure();
+        if (isNaN(_measuredHeight))
+            return height;
+        return _measuredHeight;
+    }
+    
     //----------------------------------
     //  horizontalScrollPosition
     //----------------------------------
         
-    /* [Bindable]
-    [Inspectable(minValue="0.0")]      */
+    [Bindable]
+    [Inspectable(minValue="0.0")]
 
     /**
      *  @copy spark.core.IViewport#horizontalScrollPosition
@@ -582,22 +635,23 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get horizontalScrollPosition():Number 
+    public function get horizontalScrollPosition():Number 
     {
         if (_layout)
         {
             return _layout.horizontalScrollPosition;
         }
+        /*
         else if (_layoutProperties && 
                 _layoutProperties.horizontalScrollPosition !== undefined)
         {
             return _layoutProperties.horizontalScrollPosition;
         }
         else
-        {
+        {*/
             return 0;
-        }
-    } */
+        /*}*/
+    }
 
     /**
      *  @private
@@ -622,8 +676,8 @@ public class GroupBase extends UIComponent
     //  verticalScrollPosition
     //----------------------------------
     
-    /* [Bindable]
-    [Inspectable(minValue="0.0")]  */
+    [Bindable]
+    [Inspectable(minValue="0.0")]
     
     /**
      *  @copy spark.core.IViewport#verticalScrollPosition
@@ -633,22 +687,23 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get verticalScrollPosition():Number 
+    public function get verticalScrollPosition():Number 
     {
         if (_layout)
         {
             return _layout.verticalScrollPosition;
         }
+        /*
         else if (_layoutProperties && 
                 _layoutProperties.verticalScrollPosition !== undefined)
         {
             return _layoutProperties.verticalScrollPosition;
         }
         else
-        {
+        {*/
             return 0;
-        }
-    } */
+        /*}*/
+    }
 
     /**
      *  @private
@@ -762,9 +817,9 @@ public class GroupBase extends UIComponent
      *  @private
      *  Storage for the autoLayout property.
      */
-   /*  private var _autoLayout:Boolean = true;
+    private var _autoLayout:Boolean = true;
 
-    [Inspectable(defaultValue="true")] */
+    [Inspectable(defaultValue="true")]
 
     /**
      *  If <code>true</code>, measurement and layout are done
@@ -779,29 +834,30 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get autoLayout():Boolean
+    public function get autoLayout():Boolean
     {
         return _autoLayout;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set autoLayout(value:Boolean):void
+    public function set autoLayout(value:Boolean):void
     {
         if (_autoLayout == value)
             return;
 
         _autoLayout = value;
 
+        /*
         // If layout is being turned back on, trigger a layout to occur now.
         if (value)
         {
             invalidateSize();
             invalidateDisplayList();
             invalidateParentSizeAndDisplayList();
-        }
-    } */
+        }*/
+    }
 
     //----------------------------------
     //  overlay
@@ -1108,6 +1164,28 @@ public class GroupBase extends UIComponent
         super.invalidateDisplayList();
     } */
     
+    override public function addedToParent():void
+    {
+        if (!initialized) {
+            // each MXML file can also have styles in fx:Style block
+            ValuesManager.valuesImpl.init(this);
+        }
+        
+        if (MXMLDescriptor)
+            component = this;
+        
+        super.addedToParent();		
+        
+        // Load the layout bead if it hasn't already been loaded.
+        if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
+        {
+            dispatchEvent(new Event("initComplete"));
+            if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+                (isWidthSizedToContent() || !isNaN(explicitWidth)))
+                dispatchEvent(new Event("layoutNeeded"));
+        }
+    }
+    
     /**
      *  <p>If the layout object has not been set yet, 
      *  createChildren() assigns this container a 
@@ -1120,14 +1198,69 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 2.5
      *  @productversion Royale 0.9.4.5
      */ 
-    /* override protected function createChildren():void
+    override protected function createChildren():void
     {
-        super.createChildren();
-        
         if (!layout)
             layout = new BasicLayout();
-    } */
+        
+        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        
+        if (getBeadByType(DataBindingBase) == null)
+            addBead(new ContainerDataBinding());
+        
+        dispatchEvent(new Event("initBindings"));
+    }
 
+    private var _mxmlDescriptor:Array;
+    private var _mxmlDocument:Object = this;
+
+    /**
+     *  @copy org.apache.royale.core.Application#MXMLDescriptor
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get MXMLDescriptor():Array
+    {
+        return _mxmlDescriptor;
+    }
+    
+    /**
+     *  @private
+     */
+    public function setMXMLDescriptor(document:Object, value:Array):void
+    {
+        _mxmlDocument = document;
+        _mxmlDescriptor = value;
+    }
+    
+    /**
+     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function generateMXMLAttributes(data:Array):void
+    {
+        MXMLDataInterpreter.generateMXMLProperties(this, data);
+    }
+    
+    /**
+     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
+    public var mxmlContent:Array;
+    
     /**
      *  @private
      */ 
@@ -1153,8 +1286,10 @@ public class GroupBase extends UIComponent
             super.measure();
         
             layoutInvalidateSizeFlag = false;
+        */
             _layout.measure();
             
+        /*
             // Special case: If the group clips content, or resizeMode is "scale"
             // then measured minimum size is zero
             if (clipAndEnableScrolling || resizeMode == ResizeMode.SCALE)
@@ -1298,9 +1433,10 @@ public class GroupBase extends UIComponent
         if (layoutInvalidateDisplayListFlag)
         {
             layoutInvalidateDisplayListFlag = false;
+        */
             if (autoLayout && _layout)
                 _layout.updateDisplayList(unscaledWidth, unscaledHeight);
-                
+        /*        
             if (_layout)
                 _layout.updateScrollRect(unscaledWidth, unscaledHeight);
         } */
@@ -1452,10 +1588,10 @@ public class GroupBase extends UIComponent
     //  contentWidth
     //---------------------------------- 
     
-    /* private var _contentWidth:Number = 0;
+    private var _contentWidth:Number = 0;
     
     [Bindable("propertyChange")]
-    [Inspectable(category="General")]     */
+    [Inspectable(category="General")]
 
     /**
      *  @copy spark.core.IViewport#contentWidth
@@ -1465,31 +1601,31 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get contentWidth():Number 
+    public function get contentWidth():Number 
     {
         return _contentWidth;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* private function setContentWidth(value:Number):void 
+    private function setContentWidth(value:Number):void 
     {
         if (value == _contentWidth)
             return;
         var oldValue:Number = _contentWidth;
         _contentWidth = value;
         dispatchPropertyChangeEvent("contentWidth", oldValue, value);        
-    } */
+    }
 
     //----------------------------------
     //  contentHeight
     //---------------------------------- 
     
-    /* private var _contentHeight:Number = 0;
+    private var _contentHeight:Number = 0;
     
     [Bindable("propertyChange")]
-    [Inspectable(category="General")]    */ 
+    [Inspectable(category="General")]
 
     /**
      *  @copy spark.core.IViewport#contentHeight
@@ -1499,22 +1635,22 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    // public function get contentHeight():Number 
-    // {
-        // return _contentHeight;
-    // }
+    public function get contentHeight():Number 
+    {
+        return _contentHeight;
+    }
     
     /**
      *  @private
      */
-    /* private function setContentHeight(value:Number):void 
+    private function setContentHeight(value:Number):void 
     {            
         if (value == _contentHeight)
             return;
         var oldValue:Number = _contentHeight;
         _contentHeight = value;
         dispatchPropertyChangeEvent("contentHeight", oldValue, value);        
-    }   */  
+    }
 
     /**
      *  Sets the <code>contentWidth</code> and <code>contentHeight</code>
@@ -1532,13 +1668,13 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function setContentSize(width:Number, height:Number):void
+    public function setContentSize(width:Number, height:Number):void
     {
         if ((width == _contentWidth) && (height == _contentHeight))
            return;
         setContentWidth(width);
         setContentHeight(height);
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1744,11 +1880,11 @@ public class GroupBase extends UIComponent
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
-     */
     override public function get numElements():int
     {
         return -1;
     } 
+     */
     
     /**
      *  @copy mx.core.IVisualElementContainer#getElementAt()
@@ -1792,10 +1928,10 @@ public class GroupBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function getVirtualElementAt(index:int, eltWidth:Number=NaN, eltHeight:Number=NaN):IVisualElement
+    public function getVirtualElementAt(index:int, eltWidth:Number=NaN, eltHeight:Number=NaN):IVisualElement
     {
-        return getElementAt(index);            
-    } */
+        return getElementAt(index) as IVisualElement;            
+    }
     
     /**
      *  @copy mx.core.IVisualElementContainer#getElementIndex()

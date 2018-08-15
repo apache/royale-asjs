@@ -37,6 +37,8 @@ internal class SparkRoyaleClasses
 	 import spark.skins.spark.ComboBoxButtonSkin; ComboBoxButtonSkin; 
 	 import spark.skins.spark.ComboBoxTextInputSkin; ComboBoxTextInputSkin; 
 
+     import spark.layouts.supportClasses.SparkLayoutBead; SparkLayoutBead;
+
 }
 
 }

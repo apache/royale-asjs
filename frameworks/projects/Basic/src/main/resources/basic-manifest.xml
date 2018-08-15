@@ -110,6 +110,7 @@
     <component id="DispatchInputFinishedBead" class="org.apache.royale.html.beads.DispatchInputFinishedBead"/>
     <component id="DispatchKeyboardEventBead" class="org.apache.royale.html.beads.DispatchKeyboardEventBead"/>
     <component id="TreeItemRenderer" class="org.apache.royale.html.supportClasses.TreeItemRenderer"/>
+    <component id="TreeXMLItemRenderer" class="org.apache.royale.html.supportClasses.TreeXMLItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
     <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.html.supportClasses.DateItemRenderer"/>

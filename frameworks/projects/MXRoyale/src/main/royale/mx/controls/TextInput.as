@@ -411,7 +411,39 @@ public class TextInput extends UIComponent implements ITextInput
     //  Properties
     //
     //--------------------------------------------------------------------------
-
+    
+    public function get paddingLeft():Number
+    {
+        return 0;
+    }
+    
+    public function set paddingLeft(value:Number):void
+    {
+    }
+	public function get paddingRight():Number
+    {
+        return 0;
+    }
+    
+    public function set paddingRight(value:Number):void
+    {
+    }
+	public function get paddingTop():Number
+    {
+        return 0;
+    }
+    
+    public function set paddingTop(value:Number):void
+    {
+    }
+	public function get paddingBottom():Number
+    {
+        return 0;
+    }
+    
+    public function set paddingBottom(value:Number):void
+    {
+    }
 
     //----------------------------------
     //  data
@@ -1781,15 +1813,6 @@ public class TextInput extends UIComponent implements ITextInput
     //  Overridden event handlers: UIComponent
     //
     //--------------------------------------------------------------------------
-
-    COMPILE::JS
-    override public function setActualSize(w:Number, h:Number):void
-    {
-        // For HTML/JS, we only set the size if there is an explicit
-        // size set. 
-        if (!isNaN(explicitWidth)) setWidth(w);
-        if (!isNaN(explicitHeight)) setHeight(h);
-    }
 
     //--------------------------------------------------------------------------
     //

@@ -987,6 +987,8 @@ package org.apache.royale.textLayout.formats
 					, textAlpha:textAlphaProperty
 					, backgroundAlpha:backgroundAlphaProperty
 					, fontSize:fontSizeProperty
+                    , xScale:xScaleProperty
+                    , yScale:yScaleProperty
 					, baselineShift:baselineShiftProperty
 					, trackingLeft:trackingLeftProperty
 					, trackingRight:trackingRightProperty

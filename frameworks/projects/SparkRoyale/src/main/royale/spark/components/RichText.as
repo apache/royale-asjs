@@ -26,35 +26,36 @@ import flash.text.TextFormat;
 import flashx.textLayout.compose.ISWFContext;
 import flashx.textLayout.conversion.ConversionType;
 import flashx.textLayout.conversion.ITextExporter;
-import flashx.textLayout.conversion.ITextImporter;
-import flashx.textLayout.conversion.TextConverter;
 import flashx.textLayout.elements.Configuration;
 import flashx.textLayout.elements.GlobalSettings;
-import flashx.textLayout.elements.TextFlow;
-import flashx.textLayout.events.DamageEvent;
-import flashx.textLayout.factory.StringTextLineFactory;
-import flashx.textLayout.factory.TextFlowTextLineFactory;
-import flashx.textLayout.factory.TextLineFactoryBase;
-import flashx.textLayout.factory.TruncationOptions;
-import flashx.textLayout.formats.ITextLayoutFormat;
-import flashx.textLayout.tlf_internal;
-
-import mx.core.IEmbeddedFontRegistry;
-import mx.core.IFlexModuleFactory;
-import mx.core.IUIComponent;
-import mx.core.Singleton;
-import mx.core.UIComponent;
-
-import spark.core.CSSTextLayoutFormat;
-import spark.core.MaskType;
-import spark.utils.MaskUtil;
-import spark.utils.TextUtil;
-
-use namespace tlf_internal
 */
-import spark.components.supportClasses.TextBase;
 import mx.core.mx_internal;
+import mx.styles.IStyleClient;
+
+import spark.components.supportClasses.TextBase;
+import spark.core.CSSTextLayoutFormat;
+
+import org.apache.royale.text.engine.ITextLine;
+import org.apache.royale.textLayout.conversion.ITextImporter;
+import org.apache.royale.textLayout.conversion.TextConverter;
+import org.apache.royale.textLayout.elements.ITextFlow;
+import org.apache.royale.textLayout.elements.TextFlow;
+import org.apache.royale.textLayout.events.DamageEvent;
+import org.apache.royale.textLayout.factory.StringTextLineFactory;
+import org.apache.royale.textLayout.factory.TLFFactory;
+import org.apache.royale.textLayout.factory.StandardTLFFactory;
+import org.apache.royale.textLayout.factory.TextFlowTextLineFactory;
+import org.apache.royale.textLayout.factory.TextLineFactoryBase;
+import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+
 use namespace mx_internal;
+
+COMPILE::JS
+{
+    import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;        
+}
+import org.apache.royale.events.Event;        
 
 //--------------------------------------
 //  Styles
@@ -232,7 +233,7 @@ include "../styles/metadata/AdvancedNonInheritingTextStyles.as"
  *  
  *  @includeExample examples/RichTextExample.mxml
  */
-public class RichText extends TextBase
+public class RichText extends TextBase implements IStyleClient
 {
 //    include "../core/Version.as";
 
@@ -245,7 +246,7 @@ public class RichText extends TextBase
     /**
      *  @private
      */
-    //private static var classInitialized:Boolean = false;
+    private static var classInitialized:Boolean = false;
     
     /**
      *  @private
@@ -253,7 +254,7 @@ public class RichText extends TextBase
      *  We use it when the 'text' property is set to a String
      *  that doesn't contain linebreaks.
      */
-    //private static var staticStringFactory:StringTextLineFactory;
+    private static var staticStringFactory:StringTextLineFactory;
     
     /**
      *  @private
@@ -263,14 +264,14 @@ public class RichText extends TextBase
      *  that contains linebreaks (and therefore is interpreted
      *  as multiple paragraphs).
      */
-    //private static var staticTextFlowFactory:TextFlowTextLineFactory;
+    private static var staticTextFlowFactory:TextFlowTextLineFactory;
     
     /**
      *  @private
      *  This TLF object is used to import a 'text' String
      *  containing linebreaks to create a multiparagraph TextFlow.
      */
-    //private static var staticPlainTextImporter:ITextImporter;
+    private static var staticPlainTextImporter:ITextImporter;
     
     /**
      *  @private
@@ -295,24 +296,28 @@ public class RichText extends TextBase
      *  By doing so, we avoid any static initialization issues
      *  related to whether this class or the TLF classes
      *  that it uses are initialized first.
+     */
     private static function initClass():void
     {
         if (classInitialized)
             return;
-            
+
+        if (!TLFFactory.defaultTLFFactory)
+            TLFFactory.defaultTLFFactory = new StandardTLFFactory();        
+
         // Set the TLF hook used for localizing runtime error messages.
         // TLF itself has English-only messages,
         // but higher layers like Flex can provide localized versions.
-        GlobalSettings.resourceStringFunction = TextUtil.getResourceString;
+        //GlobalSettings.resourceStringFunction = TextUtil.getResourceString;
 
         // Set the TLF hook used to specify the callback used for changing 
         // the FontLookup based on SWFContext.  
-        GlobalSettings.resolveFontLookupFunction = TextUtil.resolveFontLookup;
+        //GlobalSettings.resolveFontLookupFunction = TextUtil.resolveFontLookup;
 
         // Pre-FP10.1, set default tab stops in TLF.  Without this, if there
         // is a tab and TLF is measuring width, the tab will
         // measure as the rest of the remaining width up to 10000.
-        GlobalSettings.enableDefaultTabStops = !Configuration.playerEnablesArgoFeatures;
+        //GlobalSettings.enableDefaultTabStops = !Configuration.playerEnablesArgoFeatures;
         
         staticStringFactory = new StringTextLineFactory();
         
@@ -321,12 +326,11 @@ public class RichText extends TextBase
         staticPlainTextImporter =
             TextConverter.getImporter(TextConverter.PLAIN_TEXT_FORMAT);
         
-        staticPlainTextExporter =
-            TextConverter.getExporter(TextConverter.PLAIN_TEXT_FORMAT);
+        //staticPlainTextExporter =
+        //    TextConverter.getExporter(TextConverter.PLAIN_TEXT_FORMAT);
             
         classInitialized = true;
     }
-     */
     
     //--------------------------------------------------------------------------
     //
@@ -346,11 +350,34 @@ public class RichText extends TextBase
     {
         super();
         
-//        initClass();
+        initClass();
         
         text = "";
+        
+        addEventListener("sizeChanged", sizeChangedHandler);
     }
-     
+    
+    private function sizeChangedHandler(event:Event):void
+    {
+        updateDisplayList(width, height);
+    }
+        
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        addElementToWrapper(this,'div');
+                
+        return element;
+    }
+
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        if (isWidthSizedToContent() && isHeightSizedToContent())
+            updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -364,7 +391,7 @@ public class RichText extends TextBase
      *  It is set to null by stylesInitialized() and styleChanged(),
      *  and recreated whenever necessary in commitProperties().
      */
-    //private var hostFormat:ITextLayoutFormat;
+    private var hostFormat:ITextLayoutFormat;
 
     /**
      *  @private
@@ -372,7 +399,7 @@ public class RichText extends TextBase
      *  Used to determine whether to return immediately from damage event if 
      *  there have been no changes.
      */
-    //private var lastGeneration:uint = 0;    // 0 means not set
+    private var lastGeneration:uint = 0;    // 0 means not set
         
     /**
      *  @private
@@ -390,13 +417,13 @@ public class RichText extends TextBase
      *  and when 'text' is set to a string without linebreaks;
      *  otherwise, a TextFlowTextLineFactory is used.
      */
-    //private var factory:TextLineFactoryBase;
+    private var factory:TextLineFactoryBase;
 
     /**
      *  @private
      *  If true, the damage handler will return immediately.
      */
-    //private var ignoreDamageEvent:Boolean;
+    private var ignoreDamageEvent:Boolean;
     
     //--------------------------------------------------------------------------
     //
@@ -487,7 +514,6 @@ public class RichText extends TextBase
         textChanged = true;
         source = "text";
         
-        /*
         // If more than one of 'text', 'textFlow', and 'content' is set,
         // the last one set wins.
         textFlowChanged = false;
@@ -502,6 +528,7 @@ public class RichText extends TextBase
         
         factory = staticStringFactory;
         
+        /*
         invalidateTextLines();
         invalidateProperties();
         invalidateSize();
@@ -615,15 +642,15 @@ public class RichText extends TextBase
         textFlowChanged = false;
         
         // If there was a textFlow remove its damage handler.
-        //removeDamageHandler();
+        removeDamageHandler();
 
         // The other two are now invalid and must be recalculated when needed.
         _text = null;
         _textFlow = null;
         
-        /*
         factory = staticTextFlowFactory;
         
+        /*
         invalidateTextLines();
         invalidateProperties();
         invalidateSize();
@@ -877,7 +904,7 @@ public class RichText extends TextBase
      *  @private
      *  Storage for the textFlow property.
      */
-    private var _textFlow:String // TextFlow;
+    private var _textFlow:TextFlow;
     
     /**
      *  @private
@@ -928,7 +955,7 @@ public class RichText extends TextBase
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public function get textFlow():String //TextFlow
+    public function get textFlow():TextFlow
     {
         // We might not have a valid _textFlow for two reasons:
         // either because the 'text' was set (which is the state
@@ -962,7 +989,7 @@ public class RichText extends TextBase
     /**
      *  @private
      */
-    public function set textFlow(value:String /*TextFlow*/):void
+    public function set textFlow(value:TextFlow):void
     {
         // Treat setting the 'textFlow' to null
         // as if 'text' were being set to the empty String
@@ -977,7 +1004,7 @@ public class RichText extends TextBase
             return;
                     
         // If there was a textFlow remove its damage handler.
-        //removeDamageHandler();
+        removeDamageHandler();
         
         _textFlow = value;
         textFlowChanged = true;
@@ -1010,9 +1037,12 @@ public class RichText extends TextBase
     
     /**
      *  @private
+     */
     override protected function commitProperties():void
     {
+        /*
         super.commitProperties();
+        */
         
         // Only one of textChanged, textFlowChanged, and contentChanged
         // will be true; the other two will be false because each setter
@@ -1027,7 +1057,7 @@ public class RichText extends TextBase
             // and FTE performance will degrade on a large paragraph.
             if (_text.indexOf("\n") != -1 || _text.indexOf("\r") != -1)
             {
-                _textFlow = staticPlainTextImporter.importToFlow(_text);
+                _textFlow = staticPlainTextImporter.importToFlow(_text) as TextFlow;
                 factory = staticTextFlowFactory;
             }
             textChanged = false;
@@ -1072,6 +1102,7 @@ public class RichText extends TextBase
                                        textFlow_damageHandler);
         }
         
+        /*
         if (maskChanged)
         {
             if (mask && !mask.parent)
@@ -1097,8 +1128,8 @@ public class RichText extends TextBase
 
             maskTypeChanged = false;
         }
+        */
     }
-         */
 
     /**
      *  @private
@@ -1131,9 +1162,11 @@ public class RichText extends TextBase
 
     /**
      *  @private
+     */
     override protected function updateDisplayList(unscaledWidth:Number, 
                                                   unscaledHeight:Number):void
     {
+        /*
         // The factory will compose just enough lines to fill the 
         // compositionHeight.  If not all the text is composed, the reported
         // contentHeight will be an estimate of what the height will be when
@@ -1146,8 +1179,15 @@ public class RichText extends TextBase
         }
 
         super.updateDisplayList(unscaledWidth, unscaledHeight);
-    }    
-     */
+        */
+        
+        // Compose will add the new text lines to the display object container.
+        // Otherwise, if the text is in a shared container, make sure the 
+        // position of the lines has remained the same.
+        TLFFactory.defaultTLFFactory.currentContainer = this;
+        composeTextLines(unscaledWidth, unscaledHeight);
+
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -1158,6 +1198,7 @@ public class RichText extends TextBase
     /**
      *  @private
      *  Returns true to indicate all lines were composed.
+     */
     override mx_internal function composeTextLines(width:Number = NaN,
                                                    height:Number = NaN):Boolean
     {   
@@ -1194,7 +1235,7 @@ public class RichText extends TextBase
         // toFit.  So if we are measuring, create the text lines to figure
         // out their size and then recreate them using this size so truncation 
         // will be done.
-        if (maxDisplayedLines != 0 && !isTruncated &&
+        if (maxDisplayedLines != 0 && /*!isTruncated &&*/
             getStyle("lineBreak") == "toFit")
         {
             var bp:String = getStyle("blockProgression");
@@ -1210,10 +1251,10 @@ public class RichText extends TextBase
         addTextLines();
         
         // Figure out if the text overruns the available space for composition.
-        isOverset = isTextOverset(width, height);
+        //isOverset = isTextOverset(width, height);
         
         // Just recomposed so reset.
-        invalidateCompose = false;
+        //invalidateCompose = false;
         
         // Listen for "damage" events in case the textFlow is 
         // modified programatically.
@@ -1222,7 +1263,6 @@ public class RichText extends TextBase
         // Created all lines.
         return true;      
     }
-     */
     
     //--------------------------------------------------------------------------
     //
@@ -1232,6 +1272,7 @@ public class RichText extends TextBase
 
     /**
      *  @private
+     */
     private function createTextFlowFromContent(content:Object):TextFlow
     {
         var textFlow:TextFlow ;
@@ -1242,14 +1283,14 @@ public class RichText extends TextBase
         }
         else if (content is Array)
         {
-            textFlow = new TextFlow();
+            textFlow = new TextFlow(TLFFactory.defaultTLFFactory);
             textFlow.whiteSpaceCollapse = getStyle("whiteSpaceCollapse");
             textFlow.mxmlChildren = content as Array;
             textFlow.whiteSpaceCollapse = undefined;
         }
         else
         {
-            textFlow = new TextFlow();
+            textFlow = new TextFlow(TLFFactory.defaultTLFFactory);
             textFlow.whiteSpaceCollapse = getStyle("whiteSpaceCollapse");
             textFlow.mxmlChildren = [ content ];
             textFlow.whiteSpaceCollapse = undefined;
@@ -1257,12 +1298,12 @@ public class RichText extends TextBase
         
         return textFlow;
     }
-     */
     
     /**
      *  @private
      *  Uses TextLineFactory to compose the textFlow
      *  into as many TextLines as fit into the bounds.
+     */
     private function createTextLines():void
     {
         // Clear any previously generated TextLines from the textLines Array.
@@ -1278,6 +1319,7 @@ public class RichText extends TextBase
         factory.compositionBounds = bounds;   
         
         // Set up the truncation options.
+        /*
         var truncationOptions:TruncationOptions;
         if (maxDisplayedLines != 0)
         {
@@ -1287,37 +1329,37 @@ public class RichText extends TextBase
                 TextBase.truncationIndicatorResource;
         }        
         factory.truncationOptions = truncationOptions;
+        */
         
         // If the CSS styles for this component specify an embedded font,
         // embeddedFontContext will be set to the module factory that
         // should create TextLines (since they must be created in the
         // SWF where the embedded font is). Otherwise, this will be null.
-        embeddedFontContext = getEmbeddedFontContext();
+        //embeddedFontContext = getEmbeddedFontContext();
        
         if (factory is StringTextLineFactory)
         {
             // We know text is non-null since it got this far.
             staticStringFactory.text = _text;
             staticStringFactory.textFlowFormat = hostFormat;
-            staticStringFactory.swfContext = ISWFContext(embeddedFontContext);
+            //staticStringFactory.swfContext = ISWFContext(embeddedFontContext);
             staticStringFactory.createTextLines(addTextLine);
         }
         else if (factory is TextFlowTextLineFactory)
         {
             if (_textFlow && _textFlow.flowComposer)
             {
-                _textFlow.flowComposer.swfContext = 
-                    ISWFContext(embeddedFontContext);
+                //_textFlow.flowComposer.swfContext = 
+                //    ISWFContext(embeddedFontContext);
             }
             
-            staticTextFlowFactory.swfContext = ISWFContext(embeddedFontContext);
+            //staticTextFlowFactory.swfContext = ISWFContext(embeddedFontContext);
             staticTextFlowFactory.createTextLines(addTextLine, _textFlow);
         }
         
         bounds = factory.getContentBounds();
-        setIsTruncated(factory.isTruncated);
+        //setIsTruncated(factory.isTruncated);
     }
-     */
 
     /**
      *  @private
@@ -1358,15 +1400,16 @@ public class RichText extends TextBase
     /**
      *  @private
      *  Callback passed to createTextLines().
-    private function addTextLine(textLine:DisplayObject):void
+     */
+    private function addTextLine(textLine:ITextLine):void
     {
         textLines.push(textLine);
     }
-     */
 
     /**
      *  @private
      *  Make sure to remove the damage handler before resetting the text flow.
+     */
     private function removeDamageHandler():void
     {
         // Could check factory is TextFlowTextLineFactory but be safe and 
@@ -1377,7 +1420,6 @@ public class RichText extends TextBase
                 textFlow_damageHandler);
         }
     }
-     */
 
     //--------------------------------------------------------------------------
     //
@@ -1390,6 +1432,7 @@ public class RichText extends TextBase
      *  Called when the TextFlow dispatches a 'damage' event
      *  to indicate it has been modified.  This could mean the styles changed
      *  or the content changed, or both changed.
+     */
     private function textFlow_damageHandler(event:DamageEvent):void
     {
         // If there are no changes to the generation, don't recompose.  
@@ -1410,18 +1453,17 @@ public class RichText extends TextBase
         factory = staticTextFlowFactory;
         
         // Force recompose since text and/or styles may have changed.
-        invalidateTextLines();
+        //invalidateTextLines();
         
         // We don't need to call invalidateProperties()
         // because the hostFormat and the _textFlow are still valid.
 
         // This is smart enough not to remeasure if the explicit width/height
         // were specified.
-        invalidateSize();
+        //invalidateSize();
         
-        invalidateDisplayList();  
+        //invalidateDisplayList();  
     }    
-     */
 }
 
 }

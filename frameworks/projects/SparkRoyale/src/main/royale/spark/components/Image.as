@@ -38,6 +38,15 @@ import spark.components.supportClasses.Range;
 import spark.components.supportClasses.SkinnableComponent;
 import spark.primitives.BitmapImage;
 
+import org.apache.royale.core.IImage;
+import org.apache.royale.core.IImageModel;
+COMPILE::JS {
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.BrowserEvent;
+    import org.apache.royale.html.util.addElementToWrapper;
+}
+
 //use namespace mx_internal;
 
 //--------------------------------------
@@ -362,7 +371,7 @@ import spark.primitives.BitmapImage;
  *  @playerversion AIR 2.5
  *  @productversion Flex 4.5
  */
-public class Image extends SkinnableComponent
+public class Image extends SkinnableComponent implements IImage
 {
     //--------------------------------------------------------------------------
     //
@@ -406,6 +415,59 @@ public class Image extends SkinnableComponent
         super();
     }
     
+    //--------------------------------------------------------------------------
+    //
+    //  Inherited methods: UIComponent
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        addElementToWrapper(this,'img');
+        typeNames = 'Image';
+        return element;
+    }
+
+    COMPILE::JS
+    public function get imageElement():Element
+    {
+        return element;
+    }
+
+    COMPILE::JS
+    public function applyImageData(binaryDataAsString:String):void
+    {
+        element.addEventListener("load", handleImageLoaded);
+        (element as HTMLImageElement).src = binaryDataAsString;
+    }
+    
+    COMPILE::JS
+    public function get complete():Boolean
+    {
+        return (element as HTMLImageElement).complete;
+    }
+    
+    COMPILE::JS
+    private function handleImageLoaded(event:BrowserEvent):void
+    {
+        trace("The image src "+source+" is now loaded");
+        
+        trace("Image offset size is: "+(element as HTMLImageElement).naturalWidth+" x "+(element as HTMLImageElement).naturalHeight);
+        // should we now set the image's measured sizes?
+        measuredWidth = (element as HTMLImageElement).naturalWidth;
+        measuredHeight = (element as HTMLImageElement).naturalHeight;
+        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+        
+        dispatchEvent(new Event("complete"));
+        
+        var newEvent:Event = new Event("layoutNeeded",true);
+        dispatchEvent(newEvent);
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Variables 
@@ -894,7 +956,7 @@ public class Image extends SkinnableComponent
         else
             return imageDisplayProperties.source;
         */
-        return null;
+        return (model as IImageModel).url;
     }
     
     /**
@@ -907,10 +969,12 @@ public class Image extends SkinnableComponent
      */
     public function set source(value:Object):void
     {
+        (model as IImageModel).url = value as String;
+
+        /*
         if (source == value)
             return;
         
-        /*
         _loading = false;
         _invalid = false;
         _ready = false;

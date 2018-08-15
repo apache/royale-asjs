@@ -32,6 +32,31 @@ import mx.rpc.mxml.Concurrency;
 
 use namespace mx_internal;
 */
+
+/**
+ * The result event is dispatched when a service call successfully returns and
+ * isn't handled by the Operation itself.
+ * @eventType mx.rpc.events.ResultEvent.RESULT 
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="result", type="mx.rpc.events.ResultEvent")]
+
+/**
+ * The fault event is dispatched when a service call fails and isn't handled by
+ * the Operation itself.
+ * @eventType mx.rpc.events.FaultEvent.FAULT 
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="fault", type="mx.rpc.events.FaultEvent")]
+
 /**
  * The RemoteObject class gives you access to classes on a remote application server.
  *  

@@ -28,11 +28,18 @@
 * {
 	font-family:	Verdana;
 	font-size:		12px;
+
 }
 
 global {
     IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
 	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
+    whiteSpaceCollapse: "collapse";
+	horizontalAlign: "left";
+	horizontalGap: 8;
+	verticalAlign: "top";
+	verticalGap: 6;
+    padding : 0px;
 }
 
 /* -------------------------------------------------------
@@ -200,7 +207,7 @@ Panel
 {
 	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
 	IBeadView: ClassReference("mx.containers.beads.PanelView");
-	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IPanelLayout: ClassReference("mx.containers.beads.BoxLayout");
 	IPanelContentArea: ClassReference("mx.core.Container");	
 	background-color: #FFFFFF;
 	border: 1px solid #333333
@@ -216,17 +223,32 @@ Panel .TitleBar
 	background-color: #FFFFFF;
 }
 
-Basic|TitleBar
+PanelTitleBar
 {
-	font-weight: bold;
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.TitleBarView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
+	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TitleBarMeasurementBead");
+	background-color: #E2E2E2;
+	padding: 2px;
+	height: 30px;
+	flex-grow: 0;
+	min-height: 30px;
+    font-weight: bold;
+	border-bottom: 1px solid #333333;
 }
 
 Tree
 {
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TreeItemRenderer");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TreeXMLItemRenderer");
+}
+
+ViewStack
+{
+	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
 }
 
 /* -------------------------------------------------------

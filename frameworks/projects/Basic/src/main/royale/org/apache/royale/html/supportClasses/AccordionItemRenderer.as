@@ -141,7 +141,7 @@ package org.apache.royale.html.supportClasses
 		
 		public function get titleBar():TitleBar
 		{
-			return (getBeadByType(PanelView) as PanelView).titleBar;
+			return (getBeadByType(PanelView) as PanelView).titleBar as TitleBar;
 		}
 		
 		public function get collapsedHeight():Number

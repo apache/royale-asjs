@@ -20,16 +20,19 @@
 package mx.containers.beads
 {
 
-import mx.core.ContainerLayout;
 import mx.containers.BoxDirection;
+import mx.containers.Panel;
+import mx.containers.PanelTitleBar;
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.CanvasLayout;
 import mx.containers.beads.models.PanelModel;
+import mx.core.ContainerLayout;
 
-import org.apache.royale.html.beads.PanelView;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
+import org.apache.royale.html.beads.PanelView;
+import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 
 /**
  *  @private
@@ -62,8 +65,13 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
      */
     override public function set strand(value:IStrand):void
     {
+        titleBar = new PanelTitleBar();
         super.strand = value;
-        var model:PanelModel = (value as UIBase).model as PanelModel;
+    }
+    
+    override protected function setupContentAreaLayout():void
+    {
+        var model:PanelModel = (_strand as UIBase).model as PanelModel;
         var _layout:String = model.layout;
         var layoutObject:IBead;
         if (_layout == ContainerLayout.ABSOLUTE)
@@ -79,9 +87,23 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
                 BoxLayout(layoutObject).direction
                     = BoxDirection.HORIZONTAL;
         }
-            
+        
         if (layoutObject)
             contentArea.addBead(layoutObject);            
+        
+    }
+    
+    override protected function setupLayout():void
+    {
+        titleBar.percentWidth = 100;
+            
+        contentArea.percentWidth = 100;
+        contentArea.percentHeight = 100;
+        
+        // Now give the Panel its own layout
+        var boxLayout:BoxLayout = new BoxLayout();
+        boxLayout.direction = "vertical";
+        _strand.addBead(boxLayout);
     }
 }
 

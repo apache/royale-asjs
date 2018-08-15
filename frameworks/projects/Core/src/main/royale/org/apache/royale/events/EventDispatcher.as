@@ -60,10 +60,10 @@ package org.apache.royale.events
 	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
 	{
 		
-		private var _target:IEventDispatcher;
+		private var _dispatcher:IEventDispatcher;
         public function EventDispatcher(target:IEventDispatcher = null)
         {
-			_target = target || this;
+            _dispatcher = target || this;
         }
         
         public function hasEventListener(type:String):Boolean
@@ -77,15 +77,15 @@ package org.apache.royale.events
 			{
 				//we get quite a few string events here, "initialize" etc
 				//so this general approach doesn't work:
-				//event.target = _target;
+				//event.target = _dispatcher;
 				if (event) {
 					if (typeof event == "string") {
 						event = new Event("" + event);
-						event.target = _target;
+						event.target = _dispatcher;
 						//console.log("created event from string ",event);
 					}
 					else if ("target" in event) {
-						event.target = _target;
+						event.target = _dispatcher;
 						//console.log("assigned target to event ",event);
 					}
 				} else return false;

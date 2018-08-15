@@ -2365,11 +2365,47 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         if (target is UIComponent)
             target["element"].focus();
     }
-	 public function getNextFocusManagerComponent(
+	public function getNextFocusManagerComponent(
                             backward:Boolean = false):IFocusManagerComponent
 	{
        return null;
 	}
+	
+	
+	private var _getFocus:IFocusManagerComponent;
+        public function getFocus():IFocusManagerComponent
+    {
+                  return _getFocus;
+       //var stage:Stage = Sprite(form)./*systemManager.*/stage;
+        
+        /* if (!stage)
+            return null;
+            
+        var o:InteractiveObject = stage.focus;
+        
+        // If a Stage* object (such as StageText or StageWebView) has focus,
+        // stage.focus will be set to null. Much of the focus framework is not
+        // set up to handle this. So, if stage.focus is null, we return the last
+        // IFocusManagerComponent that had focus.  In ADL, focus works slightly
+        // different than it does on device when using StageText.  In ADL, when
+        // the focus is a StageText component, a TextField whose parent is the 
+        // stage is assigned focus.  
+        if ((!o && _lastFocus) || (o is TextField && o.parent == stage))
+            return _lastFocus;
+        
+        return findFocusManagerComponent(o); */
+    }
+
+    public function setFocus(o:IFocusManagerComponent):void
+    {
+        // trace("FM " + this + " setting focus to " + o);
+
+        o.setFocus();
+        
+        if (hasEventListener("setFocus"))
+    		dispatchEvent(new Event("setFocus"));
+        // trace("FM set focus");
+    }
 }
 
 }

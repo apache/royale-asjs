@@ -95,6 +95,9 @@ package org.apache.royale.core
 
 		}
 		
+        private var lastWidth:Number = -1;
+        private var lastHeight:Number = -1;
+        
 		/**
 		 * Changes in size to the host strand are handled (by default) by running the
 		 * layout sequence. Subclasses can override this function and use event.type
@@ -107,7 +110,11 @@ package org.apache.royale.core
 		 */
 		protected function handleSizeChange(event:Event):void
 		{
+            if (host.width == lastWidth &&
+                host.height == lastHeight) return;
 			performLayout();
+            lastWidth = host.width;
+            lastHeight = host.height;
 		}
 		
 		/**

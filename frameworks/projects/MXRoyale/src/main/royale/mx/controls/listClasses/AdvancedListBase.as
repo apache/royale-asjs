@@ -1685,7 +1685,17 @@ public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
     //  Properties
     //
     //--------------------------------------------------------------------------
+     public function get headerStyleName():String
+    {
+        return "";
+    } 
 
+    /**
+     *  @private
+     */
+    public function set headerStyleName(value:String):void
+    {
+    }
     //----------------------------------
     //  allowDragSelection
     //----------------------------------
@@ -2555,7 +2565,13 @@ public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
 
         dispatchEvent(new Event("labelFieldChanged"));
     } */
-
+    public function get verticalAlign():String
+    {
+        return "middle";
+    }
+    public function set verticalAlign(value:String):void
+    {
+    }
     //----------------------------------
     //  labelFunction
     //----------------------------------
