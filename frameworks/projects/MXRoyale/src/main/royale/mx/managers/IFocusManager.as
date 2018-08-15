@@ -49,7 +49,7 @@ public interface IFocusManager extends IEventDispatcher
     //
     //--------------------------------------------------------------------------
 	function getNextFocusManagerComponent(backward:Boolean = false):IFocusManagerComponent;
-
+        function getFocus():IFocusManagerComponent;
 }
 
 }
