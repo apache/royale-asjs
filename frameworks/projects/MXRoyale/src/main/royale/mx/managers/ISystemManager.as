@@ -81,7 +81,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
 	//--------------------------------------------------------------------------
 function get numModalWindows():int
 function set numModalWindows(value:int):void
-
+function get rawChildren():IChildList
     //----------------------------------
     //  component
     //----------------------------------
