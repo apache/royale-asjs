@@ -1319,7 +1319,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  Storage for the screen property.
      */
-    // mx_internal var _screen:Rectangle;
+    private var _screen:Rectangle;
 
     /**
      *  @inheritDoc
@@ -1347,7 +1347,28 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         }
         COMPILE::JS
         {
-            return new Rectangle(0, 0, window.innerWidth, window.innerHeight);
+            if (!_screen)
+            {
+                var w:Number = window.innerWidth;
+                var h:Number = window.innerHeight;
+                var s:Object = getComputedStyle(document.body);
+                var v:String = s["marginLeft"];
+                v = v.replace("px", "");
+                var ml:Number = parseFloat(v);
+                v = s["marginRight"];
+                v = v.replace("px", "");
+                var mr:Number = parseFloat(v);
+                v = s["marginTop"];
+                v = v.replace("px", "");
+                var mt:Number = parseFloat(v);
+                v = s["marginBottom"];
+                v = v.replace("px", "");
+                var mb:Number = parseFloat(v);
+                _screen = new Rectangle(0, 0,
+                    w - ml - mr,
+                    h - mt - mb);
+            }
+            return _screen;
         }
     }
 
