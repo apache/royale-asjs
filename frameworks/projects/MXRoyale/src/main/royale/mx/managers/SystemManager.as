@@ -1114,7 +1114,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  Storage for the numModalWindows property.
      */
-    // private var _numModalWindows:int = 0;
+    private var _numModalWindows:int = 0;
 
     /**
      *  The number of modal windows.  Modal windows don't allow
@@ -1127,18 +1127,18 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get numModalWindows():int
+    public function get numModalWindows():int
     {
         return _numModalWindows;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set numModalWindows(value:int):void
+     public function set numModalWindows(value:int):void
     {
         _numModalWindows = value;
-    } */
+    } 
 
     //----------------------------------
     //  preloadedRSLs
