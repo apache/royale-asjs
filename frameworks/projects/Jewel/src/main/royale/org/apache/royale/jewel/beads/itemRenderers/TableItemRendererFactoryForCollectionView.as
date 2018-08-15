@@ -31,6 +31,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
     import org.apache.royale.jewel.Label;
 	import org.apache.royale.jewel.Table;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.beads.views.TableView;
@@ -148,7 +149,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					labelField =  column.dataField;
                     // ir.labelField = labelField;
                     var item:Object = dp.getItemAt(i);
-                    fillRenderer(index++, item, ir, presentationModel);
+                    fillRenderer(index++, item, (ir as ISelectableItemRenderer), presentationModel);
 
                     (ir as DataItemRenderer).dataField = labelField;
 					(ir as DataItemRenderer).rowIndex = i;
@@ -187,7 +188,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function fillRenderer(index:int,
 										item:Object,
-										itemRenderer:ITextItemRenderer,
+										itemRenderer:ISelectableItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
 			// tbody.addItemRendererAt(itemRenderer, index);
