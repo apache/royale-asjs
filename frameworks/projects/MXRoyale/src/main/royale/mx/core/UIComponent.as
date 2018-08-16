@@ -1802,6 +1802,16 @@ COMPILE::JS
                 if (oldWidth.length)
                     this.positioner.style.width = "";
                 var mw:Number = this.positioner.offsetWidth;
+                if (mw == 0 && numChildren > 0)
+                {
+                    // if children are aboslute positioned, offsetWidth can be 0 in Safari
+                    for (var i:int = 0; i < numChildren; i++)
+                    {
+                        var child:IUIComponent = getChildAt(i);
+                        if (child) // child is null for TextNodes
+                            mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
+                    }
+                }
                 if (oldWidth.length)
                     this.positioner.style.width = oldWidth;
                 return mw;
@@ -1857,6 +1867,15 @@ COMPILE::JS
                 if (oldHeight.length)
                     this.positioner.style.height = "";
                 var mh:Number = this.positioner.offsetHeight;
+                if (mh == 0 && numChildren > 0)
+                {
+                    for (var i:int = 0; i < numChildren; i++)
+                    {
+                        var child:IUIComponent = getChildAt(i);
+                        if (child)
+                            mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
+                    }
+                }
                 if (oldHeight.length)
                     this.positioner.style.height = oldHeight;
                 return mh;
