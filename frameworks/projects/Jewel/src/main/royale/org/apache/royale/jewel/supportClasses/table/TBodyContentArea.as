@@ -165,7 +165,8 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function getItemRendererForIndex(index:int):IItemRenderer
 		{
-			if (index < 0 || index >= numElements) return null;
+			if (index < 0 || index >= itemRenderers.length) return null;
+			// if (index < 0 || index >= numElements) return null;
 			// return getElementAt(index) as IItemRenderer;
 			return itemRenderers[index] as IItemRenderer;
 		}

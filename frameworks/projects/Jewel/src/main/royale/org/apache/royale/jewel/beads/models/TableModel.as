@@ -37,27 +37,5 @@ package org.apache.royale.jewel.beads.models
 		{
 			_columns = value;
 		}
-
-		private var _selectedCellItem:Object;
-		public function get selectedCellItem():Object
-		{
-			return _selectedCellItem;
-		}
-		public function set selectedCellItem(value:Object):void
-		{
-			_selectedCellItem = value;
-		}
-
-		private var _selectedCellRenderer:DataItemRenderer;
-		public function get selectedCellRenderer():DataItemRenderer
-		{
-			return _selectedCellRenderer;
-		}
-		public function set selectedCellRenderer(value:DataItemRenderer):void
-		{
-			_selectedCellRenderer = value;
-		}
-
-		
 	}
 }

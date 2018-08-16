@@ -266,7 +266,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{
-			trace("*selectionChangeHandler*");
+			trace("DateChooserView - selectionChangeHandler");
 			updateDisplay();
 
 			getHost().dispatchEvent(new Event("selectedDateChanged"));

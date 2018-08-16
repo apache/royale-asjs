@@ -141,15 +141,14 @@ package org.apache.royale.jewel.beads.controllers
 			// if (renderer) {
 			// 	trace(renderer.rowIndex + ", " + renderer.columnIndex + " :: " + renderer.dataField + ", " + renderer.labelField);
 			// }
-			(model as TableModel).selectedCellRenderer = renderer;
-            model.labelField = renderer.labelField;
-			(model as TableModel).selectedCellItem = event.data[model.labelField];
+			model.labelField = renderer.labelField;
+			//event.data[model.labelField];
             trace("model.labelField: " + model.labelField);
             model.selectedIndex = event.index;
-            trace(model.selectedIndex);
+            trace("model.selectedIndex: " + model.selectedIndex);
 			model.selectedItem = event.data;
 
-            trace(model.selectedItem);
+            trace("model.selectedItem: " + model.selectedItem);
             view.host.dispatchEvent(new Event("change"));
         }
 		

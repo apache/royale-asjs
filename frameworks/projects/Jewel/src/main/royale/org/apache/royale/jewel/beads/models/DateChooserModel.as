@@ -265,24 +265,19 @@ package org.apache.royale.jewel.beads.models
          */
         public function getIndexForSelectedDate():Number
         {
-			trace("getIndexForSelectedDate");
             if (!_selectedDate) return -1;
-			trace("getIndexForSelectedDate 1");
 
             var str:String = _selectedDate.toDateString();
-			trace("getIndexForSelectedDate 2");
 
             for(var i:int=0; i < _days.length; i++) {
-				trace("getIndexForSelectedDate - i");
                 var test:Date = _days[i] as Date;
 				
 				if (test && test.toDateString() == str)
 				{
-					trace("getIndexForSelectedDate - index: " + i);
+					trace("getIndexForSelectedDate, index: " + i);
 					return i;
 				}
             }
-			trace("getIndexForSelectedDate 3");
             return -1;
 		}
 	}

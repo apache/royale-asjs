@@ -100,35 +100,16 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function selectionChangeHandler(event:Event):void
 		{
-			trace("selectionChangeHandler 1");
-			if(lastSelectedRenderer)
-				lastSelectedRenderer.selected = false;
-
-			// var tbody:TBodyContentArea = contentView as TBodyContentArea;
-			// var renderers:Array = tbody.itemRenderers;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+            if (ir)
+				ir.selected = false;
 			
-			var ir:ISelectableItemRenderer = model.selectedCellRenderer as ISelectableItemRenderer;
+			trace("TableView - selectionChangeHandler - listModel.selectedIndex: " + listModel.selectedIndex);
+			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
 			trace(ir);
-			if(ir)
+			if (ir)
 				ir.selected = true;
-
-			lastSelectedRenderer = ir;
-			trace(lastSelectedRenderer);
-			// trace(event);
-			// trace("lastSelectedIndex: " + lastSelectedIndex);
-
-			// // var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
-			// var ir:ISelectableItemRenderer = renderers[lastSelectedIndex] as ISelectableItemRenderer;
-			// trace(ir);
-			// if(ir)
-			// 	ir.selected = false;
-			// // ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
-			// ir = renderers[listModel.selectedIndex] as ISelectableItemRenderer;
-			// trace(ir);
-			// if(ir)
-			// 	ir.selected = true;
-
-			// lastSelectedIndex = listModel.selectedIndex;
+            lastSelectedIndex = listModel.selectedIndex;
 		}
 	}
 }
