@@ -207,5 +207,35 @@ package org.apache.royale.jewel
                 	setClassName(computeFinalClassNames()); 
 			}
         }
+
+        /**
+		 *  A boolean flag to activate "itemsExpand" effect selector.
+		 *  Make items resize to the fill all container space
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+        public function get itemsExpand():Boolean
+        {
+            return _layout.itemsExpand;
+        }
+
+        public function set itemsExpand(value:Boolean):void
+        {
+            typeNames = StringUtil.removeWord(typeNames, " itemsExpand");
+            _layout.itemsExpand = value;
+            if(_layout.itemsExpand)
+            {
+                typeNames += " itemsExpand";
+            }
+
+            COMPILE::JS
+            {
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
+        }
 	}
 }

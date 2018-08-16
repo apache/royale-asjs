@@ -59,12 +59,12 @@ limitations under the License.
             private function expandButtons(event:Event = null):void {
                 var alertView:AlertView = alert.getBeadByType(IBeadView) as AlertView;
 
-                var verticalLayout:VerticalLayout = new VerticalLayout();
-                verticalLayout.gap = 9;
-                alertView.content.addBead(verticalLayout);
-
                 if(event == null)
                 {
+                    var verticalLayout:VerticalLayout = new VerticalLayout();
+                    verticalLayout.gap = 9;
+                    alertView.content.addBead(verticalLayout);
+
                     alertView.content.addElement(check);
                 }
 

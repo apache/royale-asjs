@@ -52,7 +52,7 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal";
+		public static const LAYOUT_TYPE_NAMES:String = "";
 
 		protected var hostComponent:UIBase;
 
