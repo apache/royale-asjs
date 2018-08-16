@@ -447,28 +447,28 @@ j|Label {
   min-height: 100%;
 }
 .layout.itemsCentered {
-  align-items: center;
+  align-items: center !important;
 }
 .layout.itemsTop {
-  align-items: flex-start;
+  align-items: flex-start !important;
 }
 .layout.itemsBottom {
-  align-items: flex-end;
+  align-items: flex-end !important;
 }
 .layout.itemsLeft {
-  justify-content: flex-start;
+  justify-content: flex-start !important;
 }
 .layout.itemsCenter {
-  justify-content: center;
+  justify-content: center !important;
 }
 .layout.itemsRight {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 .layout.itemsSpaceBetween {
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 .layout.itemsSpaceAround {
-  justify-content: space-around;
+  justify-content: space-around !important;
 }
 .layout.itemsExpand > * {
   flex: 1 0 auto !important;
