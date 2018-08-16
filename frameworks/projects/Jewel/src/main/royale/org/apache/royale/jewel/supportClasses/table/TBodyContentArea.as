@@ -36,7 +36,10 @@ package org.apache.royale.jewel.supportClasses.table
 
 	/**
 	 *  The TBodyContentArea class is a building block of Jewel SimpleTable and Table components, 
-	 *  is used in TableView and represents an HTML <tbody> element
+	 *  is used in TableView and represents an HTML <tbody> element.
+	 * 
+	 *  The body part in a table use to be the "data" part and can be scrollable for this reason is implemented
+	 *  as a ContainerContentArea and provided via CSS as the IContentView.
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
@@ -61,14 +64,16 @@ package org.apache.royale.jewel.supportClasses.table
 			typeNames = "jewel tbody";
 		}
 		
+		/**
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
 			return addElementToWrapper(this, 'tbody');
         }
 
-		public var itemRenderers:Array = [];
-		public var rows:Array = [];
+		private var itemRenderers:Array = [];
 
 		/*
 		* IItemRendererParent
@@ -81,11 +86,19 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
-			// to implement, not needed for now
+			var tableCell:TableCell = new TableCell();
+			tableCell.addElement(renderer);
+
+			var row:TableRow = new TableRow();
+			row.addElement(tableCell, dispatchAdded);
+			addElement(row, false);
+			
+			addElement(renderer, dispatchAdded);
+			dispatchItemAdded(renderer);
 		}
 		
 		/**
@@ -95,21 +108,37 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.3
 		 */
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
+			var r:DataItemRenderer = renderer as DataItemRenderer;
 			var tableCell:TableCell = new TableCell();
-			tableCell.addElement(renderer);
+			tableCell.addElement(r);
 
-			if (rows[index] == null)
+			var row:TableRow;
+			try
 			{
-				rows[index] = new TableRow();
-				addElementAt(rows[index], index, false);
+				row = getElementAt(r.rowIndex) as TableRow;
+				
+				//this if only happens if numElemens == 0, so throw an Error to make a new TableRow in the catch section
+				if(row == null)
+				{
+					row = new TableRow();
+					addElementAt(row, r.rowIndex, false);
+				}
+			}
+			catch (error:Error)
+			{
+				// this is the only way I found to do this when checking getElementAt() for an index that doen't exists.
+				row = new TableRow();
+				addElementAt(row, r.rowIndex, false);
 			}
 
-			rows[index].addElementAt(tableCell, (renderer as DataItemRenderer).columnIndex, true);
-			dispatchItemAdded(renderer);
+			row.addElementAt(tableCell, r.columnIndex, true);
+			
+			itemRenderers.push(r);
+			dispatchItemAdded(r);
 		}
 		
 		/**
@@ -117,8 +146,6 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function dispatchItemAdded(renderer:IItemRenderer):void
 		{
-			itemRenderers.push(renderer);
-
 			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
 			newEvent.item = renderer;
 			
@@ -132,7 +159,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function removeItemRenderer(renderer:IItemRenderer):void
 		{
@@ -151,7 +178,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function removeAllItemRenderers():void
 		{
@@ -164,7 +191,6 @@ package org.apache.royale.jewel.supportClasses.table
 					cell.removeElement(ir);
 					processedRow.removeElement(cell);
 				}
-				rows.splice(rows.indexOf(processedRow), 1);
 				removeElement(processedRow);
 			}
 		}
@@ -175,24 +201,23 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function getItemRendererForIndex(index:int):IItemRenderer
 		{
 			if (index < 0 || index >= itemRenderers.length) return null;
-			// if (index < 0 || index >= numElements) return null;
-			// return getElementAt(index) as IItemRenderer;
 			return itemRenderers[index] as IItemRenderer;
 		}
 		
 		/**
 		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
+		 *  Not used for now. This should be revised in this case
 		 *
 		 *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		public function updateAllItemRenderers():void
 		{

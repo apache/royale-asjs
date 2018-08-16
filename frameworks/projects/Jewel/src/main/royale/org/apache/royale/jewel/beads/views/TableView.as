@@ -91,9 +91,7 @@ package org.apache.royale.jewel.beads.views
 		 * @royalesuppresspublicvarwarning
 		 */
 		public var tfoot:TFoot;
-
-		public var lastSelectedRenderer:ISelectableItemRenderer;
-
+		
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer

@@ -252,7 +252,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 										itemRenderer:ISelectableItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
-			tbody.addItemRendererAt(itemRenderer, (itemRenderer as DataItemRenderer).rowIndex);
+			tbody.addItemRendererAt(itemRenderer, index);
 			itemRenderer.labelField = labelField;
 			
 			if (presentationModel) {
