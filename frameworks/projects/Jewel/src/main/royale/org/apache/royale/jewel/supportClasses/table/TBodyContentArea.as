@@ -26,6 +26,7 @@ package org.apache.royale.jewel.supportClasses.table
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.supportClasses.ContainerContentArea;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 
     COMPILE::JS
     {
@@ -67,6 +68,7 @@ package org.apache.royale.jewel.supportClasses.table
         }
 
 		public var itemRenderers:Array = [];
+		public var rows:Array = [];
 
 		/*
 		* IItemRendererParent
@@ -83,10 +85,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
-			// var tableCell:TableCell = new TableCell();
-			// tableCell.addElement(renderer);
-			// addElement(tableCell, dispatchAdded);
-			// dispatchItemAdded(renderer);
+			// to implement, not needed for now
 		}
 		
 		/**
@@ -100,10 +99,17 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
-			// var tableCell:TableCell = new TableCell();
-			// tableCell.addElement(renderer);
-			// addElementAt(tableCell, index, true);
-			// dispatchItemAdded(renderer);
+			var tableCell:TableCell = new TableCell();
+			tableCell.addElement(renderer);
+
+			if (rows[index] == null)
+			{
+				rows[index] = new TableRow();
+				addElementAt(rows[index], index, false);
+			}
+
+			rows[index].addElementAt(tableCell, (renderer as DataItemRenderer).columnIndex, true);
+			dispatchItemAdded(renderer);
 		}
 		
 		/**
@@ -130,13 +136,13 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function removeItemRenderer(renderer:IItemRenderer):void
 		{
-			// removeElement(renderer, true);
-			
-			// var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
-			// newEvent.item = renderer;
-			
-			// (host as IEventDispatcher).dispatchEvent(newEvent);
+			itemRenderers.splice(itemRenderers.indexOf(renderer), 1);
+			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+			newEvent.item = renderer;
+			(host as IEventDispatcher).dispatchEvent(newEvent);
 		}
+
+		private var processedRow:TableRow;
 		
 		/**
 		 * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
@@ -150,8 +156,16 @@ package org.apache.royale.jewel.supportClasses.table
 		public function removeAllItemRenderers():void
 		{
 			while (numElements > 0) {
-				var child:IChild = getElementAt(0);
-				removeItemRenderer(child as IItemRenderer);
+				processedRow = getElementAt(0) as TableRow;
+				while (processedRow.numElements > 0) {
+					var cell:TableCell = processedRow.getElementAt(0) as TableCell;
+					var ir:IItemRenderer = cell.getElementAt(0) as IItemRenderer;
+					removeItemRenderer(ir);
+					cell.removeElement(ir);
+					processedRow.removeElement(cell);
+				}
+				rows.splice(rows.indexOf(processedRow), 1);
+				removeElement(processedRow);
 			}
 		}
 		

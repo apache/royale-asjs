@@ -278,7 +278,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function handleModelChange(event:Event):void
 		{
-			trace("*handleModelChange*");
+			trace("DateChooserView - handleModelChange");
 			updateDisplay();
 		}
 	}
