@@ -78,7 +78,7 @@ package org.apache.royale.jewel.beads.models
 		/**
          * @private
          */
-        public function getIndexForSelectedProperty():Number
+        public function getIndexForSelectedItemProperty():Number
         {
             if (!selectedItemProperty) return -1;
 
@@ -86,9 +86,9 @@ package org.apache.royale.jewel.beads.models
             for(var i:int=0; i < dataProvider.length; i++) {
 				for(var j:int=0; j < _columns.length; j++) {
 					var column:TableColumn = _columns[j] as TableColumn;
-					var test:Object = dataProvider.getItemAt(i)[column.dataField] as Object;
+					var test:Object = selectedItem[column.dataField] as Object;
 					
-					if (test === selectedItemProperty)
+					if (dataProvider.getItemAt(i) == selectedItem && labelField == column.dataField)
 					{
 						return index;
 					}

@@ -142,7 +142,7 @@ package org.apache.royale.jewel.beads.controllers
             model.labelField = renderer.labelField;
 			model.selectedItem = event.data;
             (model as TableModel).selectedItemProperty = model.selectedItem[model.labelField];
-            model.selectedIndex = (model as TableModel).getIndexForSelectedProperty();
+            model.selectedIndex = (model as TableModel).getIndexForSelectedItemProperty();
 
             view.host.dispatchEvent(new Event("change"));
         }
