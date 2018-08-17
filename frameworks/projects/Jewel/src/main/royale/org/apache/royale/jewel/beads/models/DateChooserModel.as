@@ -274,7 +274,6 @@ package org.apache.royale.jewel.beads.models
 				
 				if (test && test.toDateString() == str)
 				{
-					trace("getIndexForSelectedDate, index: " + i);
 					return i;
 				}
             }

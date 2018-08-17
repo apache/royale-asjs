@@ -45,7 +45,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
-			// typeNames = "calendar item date";
+			typeNames = "jewel tableitem calendar";
 		}
 
 		/**

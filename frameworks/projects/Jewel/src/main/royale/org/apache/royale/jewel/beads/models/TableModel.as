@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
+	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.models.ArrayListSelectionModel;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 	
 	public class TableModel extends ArrayListSelectionModel
 	{
@@ -36,6 +37,65 @@ package org.apache.royale.jewel.beads.models
 		public function set columns(value:Array):void
 		{
 			_columns = value;
+		}
+
+		private var _selectedItemProperty:Object;
+
+        /**
+         *  @copy org.apache.royale.core.ISelectionModel#selectedItem
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get selectedItemProperty():Object
+		{
+			return _selectedItemProperty;
+		}
+
+        /**
+         *  @private
+         */
+		public function set selectedItemProperty(value:Object):void
+		{
+			if(labelField == null || labelField == "") return;
+            if (value == _selectedItemProperty) return;
+
+			_selectedItemProperty = value;
+			var n:int = dataProvider.length;
+			for (var i:int = 0; i < n; i++)
+			{
+				if (dataProvider.getItemAt(i)[labelField] == value)
+				{
+					selectedIndex = i;
+					break;
+				}
+			}
+			dispatchEvent(new Event("selectedItemPropertyChanged"));
+		}
+
+		/**
+         * @private
+         */
+        public function getIndexForSelectedProperty():Number
+        {
+            if (!selectedItemProperty) return -1;
+
+			var index:int = 0;
+            for(var i:int=0; i < dataProvider.length; i++) {
+				for(var j:int=0; j < _columns.length; j++) {
+					var column:TableColumn = _columns[j] as TableColumn;
+					var test:Object = dataProvider.getItemAt(i)[column.dataField] as Object;
+					
+					if (test === selectedItemProperty)
+					{
+						return index;
+					}
+					index++;
+				}
+            }
+            return -1;
 		}
 	}
 }

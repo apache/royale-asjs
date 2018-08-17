@@ -230,7 +230,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function updateDisplay():void
 		{
-			trace("updateDisplay");
 			_monthLabel.text = model.monthNames[model.displayedMonth] + " " + String(model.displayedYear);
 
 			var len:int = columns.length;
@@ -266,7 +265,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{
-			trace("DateChooserView - selectionChangeHandler");
 			updateDisplay();
 
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
@@ -278,7 +276,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function handleModelChange(event:Event):void
 		{
-			trace("DateChooserView - handleModelChange");
 			updateDisplay();
 		}
 	}

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.table
 {
-    import org.apache.royale.core.IChild;
     import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.events.IEventDispatcher;
@@ -90,14 +89,33 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
+			// this method is not used for now, so it needs to be tested to see if it's correctly implemented
+			var r:DataItemRenderer = renderer as DataItemRenderer;
 			var tableCell:TableCell = new TableCell();
-			tableCell.addElement(renderer);
+			tableCell.addElement(r);
 
-			var row:TableRow = new TableRow();
+			var row:TableRow;
+			try
+			{
+				row = getElementAt(r.rowIndex) as TableRow;
+				
+				//this if only happens if numElemens == 0, so throw an Error to make a new TableRow in the catch section
+				if(row == null)
+				{
+					row = new TableRow();
+					addElementAt(row, r.rowIndex, false);
+				}
+			}
+			catch (error:Error)
+			{
+				// this is the only way I found to do this when checking getElementAt() for an index that doen't exists.
+				row = new TableRow();
+				addElementAt(row, r.rowIndex, false);
+			}
+
 			row.addElement(tableCell, dispatchAdded);
-			addElement(row, false);
 			
-			addElement(renderer, dispatchAdded);
+			itemRenderers.push(r);
 			dispatchItemAdded(renderer);
 		}
 		

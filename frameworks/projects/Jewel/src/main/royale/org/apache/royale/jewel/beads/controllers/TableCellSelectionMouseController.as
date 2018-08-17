@@ -137,19 +137,13 @@ package org.apache.royale.jewel.beads.controllers
 		
 		protected function selectedHandler(event:ItemClickedEvent):void
         {
-            trace("selectedHandler");
             var renderer:DataItemRenderer = event.currentTarget as DataItemRenderer;
-			// if (renderer) {
-			// 	trace(renderer.rowIndex + ", " + renderer.columnIndex + " :: " + renderer.dataField + ", " + renderer.labelField);
-			// }
+			
             model.labelField = renderer.labelField;
-			//event.data[model.labelField];
-            trace("model.labelField: " + model.labelField);
-            model.selectedIndex = event.index;
-            trace("model.selectedIndex: " + model.selectedIndex);
 			model.selectedItem = event.data;
+            (model as TableModel).selectedItemProperty = model.selectedItem[model.labelField];
+            model.selectedIndex = (model as TableModel).getIndexForSelectedProperty();
 
-            trace("model.selectedItem: " + model.selectedItem);
             view.host.dispatchEvent(new Event("change"));
         }
 		

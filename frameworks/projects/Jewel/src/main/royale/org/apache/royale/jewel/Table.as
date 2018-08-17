@@ -227,6 +227,29 @@ package org.apache.royale.jewel
 		}
 
 		/**
+		 *  The item property currently selected. Changing this value also
+		 *  changes the selectedIndex property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		[Bindable("change")]
+		public function get selectedItemProperty():Object
+		{
+			return TableModel(model).selectedItemProperty;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function set selectedItemProperty(value:Object):void
+		{
+			TableModel(model).selectedItemProperty = value;
+		}
+
+		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS

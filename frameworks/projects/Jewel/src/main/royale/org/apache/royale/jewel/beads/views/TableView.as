@@ -91,7 +91,7 @@ package org.apache.royale.jewel.beads.views
 		 * @royalesuppresspublicvarwarning
 		 */
 		public var tfoot:TFoot;
-		
+
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
@@ -102,9 +102,7 @@ package org.apache.royale.jewel.beads.views
             if (ir)
 				ir.selected = false;
 			
-			trace("TableView - selectionChangeHandler - listModel.selectedIndex: " + listModel.selectedIndex);
 			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
-			trace(ir);
 			if (ir)
 				ir.selected = true;
             lastSelectedIndex = listModel.selectedIndex;

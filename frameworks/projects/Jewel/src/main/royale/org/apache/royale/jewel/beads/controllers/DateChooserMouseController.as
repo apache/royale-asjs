@@ -81,8 +81,7 @@ package org.apache.royale.jewel.beads.controllers
         private function tableHandler(event:Event):void
         {
             var table:DateChooserTable = event.target as DateChooserTable;
-            model.selectedDate = table.selectedItem[table.model.labelField] as Date;
-			trace("tableHandler - model.selectedDate: " + model.selectedDate);
+            model.selectedDate = table.selectedItemProperty as Date;
         }
 
 		/**

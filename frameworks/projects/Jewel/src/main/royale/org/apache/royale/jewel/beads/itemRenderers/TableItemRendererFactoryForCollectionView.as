@@ -215,8 +215,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					labelField =  column.dataField;
                     var item:Object = dp.getItemAt(i);
 
-                    // ir.labelField = labelField;
-                    //(ir as DataItemRenderer).dataField = labelField;
+                    (ir as DataItemRenderer).dataField = labelField;
 					(ir as DataItemRenderer).rowIndex = i;
 					(ir as DataItemRenderer).columnIndex = j;
                     fillRenderer(index++, item, (ir as ISelectableItemRenderer), presentationModel);
