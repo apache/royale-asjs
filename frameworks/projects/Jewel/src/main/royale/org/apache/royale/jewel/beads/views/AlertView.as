@@ -197,7 +197,6 @@ package org.apache.royale.jewel.beads.views
 				
 				// var controlBarLayout:HorizontalLayout = new HorizontalLayout();
 				// controlBar.addBead(controlBarLayout);
-				// trace(controlBarLayout.hostComponent);
 				// controlBarLayout.itemsHorizontalAlign = "itemsSpaceBetween";
 			}
 

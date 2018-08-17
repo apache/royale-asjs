@@ -95,22 +95,14 @@ package org.apache.royale.jewel.supportClasses.table
 			tableCell.addElement(r);
 
 			var row:TableRow;
-			try
+			if(r.rowIndex > numElements -1)
 			{
-				row = getElementAt(r.rowIndex) as TableRow;
-				
-				//this if only happens if numElemens == 0, so throw an Error to make a new TableRow in the catch section
-				if(row == null)
-				{
-					row = new TableRow();
-					addElementAt(row, r.rowIndex, false);
-				}
-			}
-			catch (error:Error)
-			{
-				// this is the only way I found to do this when checking getElementAt() for an index that doen't exists.
 				row = new TableRow();
 				addElementAt(row, r.rowIndex, false);
+			} 
+			else
+			{
+				row = getElementAt(r.rowIndex) as TableRow;
 			}
 
 			row.addElement(tableCell, dispatchAdded);
@@ -135,22 +127,14 @@ package org.apache.royale.jewel.supportClasses.table
 			tableCell.addElement(r);
 
 			var row:TableRow;
-			try
+			if(r.rowIndex > numElements -1)
 			{
-				row = getElementAt(r.rowIndex) as TableRow;
-				
-				//this if only happens if numElemens == 0, so throw an Error to make a new TableRow in the catch section
-				if(row == null)
-				{
-					row = new TableRow();
-					addElementAt(row, r.rowIndex, false);
-				}
-			}
-			catch (error:Error)
-			{
-				// this is the only way I found to do this when checking getElementAt() for an index that doen't exists.
 				row = new TableRow();
 				addElementAt(row, r.rowIndex, false);
+			} 
+			else
+			{
+				row = getElementAt(r.rowIndex) as TableRow;
 			}
 
 			row.addElementAt(tableCell, r.columnIndex, true);

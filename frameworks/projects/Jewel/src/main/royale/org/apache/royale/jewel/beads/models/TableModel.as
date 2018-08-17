@@ -66,7 +66,7 @@ package org.apache.royale.jewel.beads.models
 			var n:int = dataProvider.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				if (dataProvider.getItemAt(i)[labelField] == value)
+				if (dataProvider.getItemAt(i) == selectedItem && dataProvider.getItemAt(i)[labelField] == value)
 				{
 					selectedIndex = i;
 					break;
@@ -86,7 +86,7 @@ package org.apache.royale.jewel.beads.models
             for(var i:int=0; i < dataProvider.length; i++) {
 				for(var j:int=0; j < _columns.length; j++) {
 					var column:TableColumn = _columns[j] as TableColumn;
-					var test:Object = selectedItem[column.dataField] as Object;
+					var test:Object = dataProvider.getItemAt(i)[column.dataField] as Object;
 					
 					if (dataProvider.getItemAt(i) == selectedItem && labelField == column.dataField)
 					{
