@@ -176,11 +176,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (!dp)
 				return;
 			
+			// remove this and better add beads when needed
 			// listen for individual items being added in the future.
-			var dped:IEventDispatcher = dp as IEventDispatcher;
-			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+			// var dped:IEventDispatcher = dp as IEventDispatcher;
+			// dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			// dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+			
 			
             // THEAD - remove header items
 			removeElements(view.thead);
@@ -207,6 +209,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					
 			        if(column.itemRenderer != null)
                     {
+						trace("create ir: " + column.itemRenderer);
                         ir = column.itemRenderer.newInstance() as ITextItemRenderer;
                     } else
                     {
@@ -324,9 +327,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function itemAddedHandler(event:CollectionEvent):void
-		{
-		}
+		// protected function itemAddedHandler(event:CollectionEvent):void
+		// {
+		// }
 
 		/**
 		 * @private
@@ -335,17 +338,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function itemRemovedHandler(event:CollectionEvent):void
-		{
-		}
+		// protected function itemRemovedHandler(event:CollectionEvent):void
+		// {
+		// }
 
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
-		protected function itemUpdatedHandler(event:CollectionEvent):void
-		{
-		}
+		// protected function itemUpdatedHandler(event:CollectionEvent):void
+		// {
+		// }
     }
 }
