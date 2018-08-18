@@ -42,8 +42,8 @@ limitations under the License.
 			}
 			private function dateChooserInit():void
 			{
-				//dateChooser.model.firstDayOfWeek = 1;
-				//dateChooser.model.dayNames = ['S','M','T','W','T','F','S'];
+				dateChooser.model.firstDayOfWeek = 1;
+				dateChooser.model.dayNames = ['S','M','T','W','T','F','S'];
 			}
 		]]>
 	</fx:Script>

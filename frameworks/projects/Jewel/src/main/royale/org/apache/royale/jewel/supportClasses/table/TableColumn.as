@@ -54,5 +54,24 @@ package org.apache.royale.jewel.supportClasses.table
 		{
 			_align = value;
 		}
+
+		private var _columnLabelAlign:String = ""
+		/**
+		 *  How column label text align in the header
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get columnLabelAlign():String
+		{
+			return _columnLabelAlign;
+		}
+
+		public function set columnLabelAlign(value:String):void
+		{
+			_columnLabelAlign = value;
+		}
 	}
 }

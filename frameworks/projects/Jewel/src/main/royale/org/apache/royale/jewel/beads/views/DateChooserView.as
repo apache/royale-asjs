@@ -153,13 +153,15 @@ package org.apache.royale.jewel.beads.views
 		{
 			// HEADER BUTTONS
 			_monthLabel = new Button();
-			_monthLabel.text = "Month Here";
+			_monthLabel.className = "monthLabel";
 			
 			_prevMonthButton = new Button();
 			_prevMonthButton.text = "<";
+			_prevMonthButton.className = "prevMonthButton";
 			
 			_nextMonthButton = new Button();
 			_nextMonthButton.text = ">";
+			_nextMonthButton.className = "nextMonthButton";
 
 			// DAYS
 			createColumns();
@@ -236,6 +238,7 @@ package org.apache.royale.jewel.beads.views
 			for(var index:int = 0; index < len; index++)
 			{
 				var column:TableColumn = columns[index];
+				column.columnLabelAlign = "center";
 				column.label = model.dayNames[index];
 			}
 

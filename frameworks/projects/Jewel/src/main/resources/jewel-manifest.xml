@@ -111,8 +111,7 @@
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
     <component id="TableItemRenderer" class="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
-    <component id="DayNameItemRenderer" class="org.apache.royale.jewel.itemRenderers.DayNameItemRenderer"/>
-
+    
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>

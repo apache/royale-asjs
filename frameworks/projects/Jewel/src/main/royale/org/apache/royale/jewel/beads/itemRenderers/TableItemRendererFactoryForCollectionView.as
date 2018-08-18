@@ -39,6 +39,7 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.html.supportClasses.DataItemRenderer;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
+    import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
     import org.apache.royale.jewel.beads.models.TableModel;
     import org.apache.royale.jewel.beads.views.TableView;
@@ -304,6 +305,10 @@ package org.apache.royale.jewel.beads.itemRenderers
                     var label:Label = new Label();
 					tableHeader.addElement(label);
 					label.text = test.label == null ? "" : test.label;
+					
+					var columnLabelTextAlign:TextAlign = new TextAlign();
+					columnLabelTextAlign.align = test.columnLabelAlign;
+					label.addBead(columnLabelTextAlign);
 					headerRow.addElement(tableHeader);
 				}
 
