@@ -58,7 +58,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
-            typeNames = "";
+            typeNames = "jewel item string";
 
             COMPILE::SWF
             {

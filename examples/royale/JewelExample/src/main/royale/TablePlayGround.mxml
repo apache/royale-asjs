@@ -177,25 +177,34 @@ limitations under the License.
 
 		<j:Table id="table" width="440" change="onChange(event)">
 			<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
-			<j:TableColumn dataField="album" label="Album" align="center"/>
-			<j:TableColumn dataField="year" label="Release Year" align="right"
-							itemRenderer="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
+			<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
+			<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"
+							itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
 							<!--item renderers can be get from CSS or declared in column but must extend TableItemRenderer -->
 			<j:beads>
 				<js:ConstantBinding sourceID="tablesModel"
 									sourcePropertyName="guitarrists"
 									destinationPropertyName="dataProvider" />
+				<j:DynamicRemoveAllItemRendererForArrayListData/>
 			</j:beads>
 		</j:Table>
 
-		<j:Button click="clearTable()" text="Clear Table"/>
-		
 		<j:Label id="selected"/>
+		<j:ControlBar>
+			<j:Button click="clearTable()" text="Change Data" emphasis="primary"/>
+			<j:Button text="Remove all data" click="removeAllData()"/>
+			<j:Button click="changeCell()" text="Change Cell"/>
+		</j:ControlBar>
+		
 	</j:Card>
 
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
+
+			private function changeCell():void
+			{
+			}
 
 			private function onChange(event:Event):void {
                 selected.text = "Selected: " + table.selectedItemProperty;
@@ -210,6 +219,11 @@ limitations under the License.
 					{guitarrist: "Joe sf", album: "Surfing With The Alien", year: "1987"},
 					{guitarrist: "Mark Knopfler", album: "Local sf", year: "1983"}
 				]);
+			}
+
+			public function removeAllData():void
+			{
+				tablesModel.guitarrists.removeAll();
 			}
 		]]>
 	</fx:Script>

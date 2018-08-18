@@ -118,6 +118,8 @@
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView"/>
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
     
+    <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicRemoveAllItemRendererForArrayListData" />
+    
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     
 </componentPackage>

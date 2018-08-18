@@ -68,7 +68,7 @@ package org.apache.royale.jewel
 		public function DataContainer()
 		{
 			super();
-            typeNames = "";
+            typeNames = "jewel datacontainer";
 			classSelectorList = new ClassSelectorList(this);
 		}
 
