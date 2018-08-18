@@ -162,6 +162,8 @@ internal class MXRoyaleClasses
     import mx.containers.PanelTitleBar; PanelTitleBar;
     import mx.containers.beads.PanelView; PanelView;
     import mx.containers.beads.models.PanelModel; PanelModel;
+    import mx.containers.beads.TabNavigatorView; TabNavigatorView;
+    import mx.controls.TabBar; TabBar;
     
     import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
     import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
