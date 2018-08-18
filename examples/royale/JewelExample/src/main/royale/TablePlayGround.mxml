@@ -186,6 +186,7 @@ limitations under the License.
 									sourcePropertyName="guitarrists"
 									destinationPropertyName="dataProvider" />
 				<j:DynamicRemoveAllItemRendererForArrayListData/>
+				<j:DynamicUpdateItemRendererForArrayListData/>
 			</j:beads>
 		</j:Table>
 
@@ -194,6 +195,7 @@ limitations under the License.
 			<j:Button click="clearTable()" text="Change Data" emphasis="primary"/>
 			<j:Button text="Remove all data" click="removeAllData()"/>
 			<j:Button click="changeCell()" text="Change Cell"/>
+			<j:Button text="Update first item" click="updateFirstItem()"/>
 		</j:ControlBar>
 		
 	</j:Card>
@@ -224,6 +226,13 @@ limitations under the License.
 			public function removeAllData():void
 			{
 				tablesModel.guitarrists.removeAll();
+			}
+
+			public function updateFirstItem():void
+			{
+				var item:Object = tablesModel.guitarrists.getItemAt(0);
+				item.guitarrist = "Mango";
+				tablesModel.guitarrists.itemUpdated(item);
 			}
 		]]>
 	</fx:Script>
