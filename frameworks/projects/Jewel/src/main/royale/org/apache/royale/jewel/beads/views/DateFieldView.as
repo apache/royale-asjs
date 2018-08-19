@@ -34,6 +34,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.DateChooser;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	COMPILE::SWF
 	{
 		//import org.apache.royale.jewel.beads.views.TextInputView;
@@ -115,6 +116,11 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
 			_textInput = new TextInput();
+			
+			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
+			maxNumberCharacters.maxlength = 10;
+			_textInput.addBead(maxNumberCharacters);
+			
 			getHost().addElement(_textInput);
 
 			_button = new Button();
@@ -141,7 +147,6 @@ package org.apache.royale.jewel.beads.views
 		{
 			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
 			formatter.addEventListener("formatChanged",handleFormatChanged);
-			_textInput.height = _button.height;
 
 			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);

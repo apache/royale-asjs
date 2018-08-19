@@ -292,6 +292,20 @@ j|DateChooser {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateChooserMouseController");
 }
 
+.jewel.datefield {
+  display: inline-flex;
+}
+.jewel.datefield .jewel.textinput input {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  border-right: 0px;
+  width: 8em;
+}
+.jewel.datefield .jewel.button {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
 .dateChooserPopUp {
   position: absolute;
 }
