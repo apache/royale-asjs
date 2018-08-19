@@ -116,8 +116,6 @@ package org.apache.royale.jewel.beads.views
 
 			_textInput = new TextInput();
 			getHost().addElement(_textInput);
-			_textInput.width = 100;
-			_textInput.height = 18;
 
 			_button = new Button();
 			_button.text = "⬇︎";
@@ -203,8 +201,6 @@ package org.apache.royale.jewel.beads.views
 					if (!_popUp)
 					{
 						_popUp = new DateChooser();
-						// _popUp.width = 210;
-						// _popUp.height = 230;
 					}
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;

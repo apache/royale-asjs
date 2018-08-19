@@ -20,6 +20,7 @@ package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
     COMPILE::JS
     {
@@ -70,6 +71,14 @@ package org.apache.royale.jewel.itemRenderers
 		public function set text(value:String):void
 		{
              _text = value;
+			
+			COMPILE::JS
+			{
+			if(textNode != null)
+			{
+				textNode.nodeValue = text;
+			}	
+			}
 		}
 
 		COMPILE::JS
@@ -88,21 +97,7 @@ package org.apache.royale.jewel.itemRenderers
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-
-            var text:String;
-			if (labelField || dataField) {
-                text = String(value[labelField]);
-            } else {
-                text = String(value);
-            }
-            
-			COMPILE::JS
-			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-				}	
-			}
+            text = getLabelFromData(this, value);
 		}
 
         /**

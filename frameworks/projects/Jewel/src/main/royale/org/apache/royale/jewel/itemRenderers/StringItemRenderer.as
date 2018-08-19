@@ -170,8 +170,7 @@ package org.apache.royale.jewel.itemRenderers
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-            var text:String;
-            this.text = getLabelFromData(this, value);
+            text = getLabelFromData(this, value);
 		}
 
         // COMPILE::JS

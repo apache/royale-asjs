@@ -17,31 +17,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                    xmlns:j="library://ns.apache.org/royale/jewel"
-                    xmlns:js="library://ns.apache.org/royale/basic"
-                    xmlns:html="library://ns.apache.org/royale/html"
-                    xmlns="http://www.w3.org/1999/xhtml">
+<j:TableItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                     xmlns:j="library://ns.apache.org/royale/jewel"
+                     xmlns:js="library://ns.apache.org/royale/basic"
+                     xmlns:html="library://ns.apache.org/royale/html"
+                     xmlns="http://www.w3.org/1999/xhtml">
 
     <fx:Script>
 		<![CDATA[
-			import vos.IconListVO;
-            
-            [Bindable("dataChange")]
-            public function get iconList():IconListVO
+			[Bindable("dataChange")]
+            public function get guitarrist():Object
             {
-                return data as IconListVO;
+                return data;
             }
 		]]>
 	</fx:Script>
 
-    <j:beads>
-        <js:ItemRendererDataBinding />
-    </j:beads>
+    <mdl:beads>
+        <js:ItemRendererDataBinding/>
+    </mdl:beads>
     
-    <js:FontIcon text="{iconList.icon}" material="true" visible="{iconList.icon != null}"/>
-
-    <html:Span text="{iconList.label}"/>
+    <html:Span text="{guitarrist.year}"/>
+    <js:FontIcon text="{MaterialIconType.CLOSE}" material="true"/>
     
-</j:ListItemRenderer>
+</j:TableItemRenderer>
 

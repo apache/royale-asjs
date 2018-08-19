@@ -20,15 +20,7 @@ package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.jewel.beads.controls.TextAlign;
 	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
     
-	COMPILE::SWF
-    {
-        import flash.text.TextFieldAutoSize;
-        import flash.text.TextFieldType;
-
-        import org.apache.royale.core.CSSTextField;
-    }
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -60,83 +52,11 @@ package org.apache.royale.jewel.itemRenderers
 
             typeNames = "jewel tableitem";
 
-            COMPILE::SWF
-            {
-                textField = new CSSTextField();
-                textField.type = TextFieldType.DYNAMIC;
-                textField.autoSize = TextFieldAutoSize.LEFT;
-                textField.selectable = false;
-                textField.parentDrawsBackground = true;
-            }
-
-			textAlign = new TextAlign();
+            textAlign = new TextAlign();
 			addBead(textAlign);
 		}
 
 		private var textAlign:TextAlign;
-
-        COMPILE::SWF
-		public var textField:CSSTextField;
-
-		/**
-		 * @private
-		 */
-        COMPILE::SWF
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
-			addChild(textField);
-
-			adjustSize();
-		}
-
-		/**
-		 * @private
-		 */
-        COMPILE::SWF
-		override public function adjustSize():void
-		{
-			var cy:Number = height/2;
-
-			textField.x = 0;
-			textField.y = cy - textField.height/2;
-			textField.width = width;
-
-			updateRenderer();
-		}
-
-		/**
-		 *  The text currently displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		override public function get text():String
-		{
-            COMPILE::SWF
-            {
-                return textField.text;
-            }
-            COMPILE::JS
-            {
-                return this.element.textContent;
-            }
-		}
-
-		override public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                textField.text = value;
-            }
-            COMPILE::JS
-            {
-                this.element.textContent = value;
-            }
-		}
 
 		/**
 		 *  How text align in the itemRenderer instance.
@@ -155,28 +75,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			textAlign.align = value;
 		}
-
-		/**
-		 *  Sets the data value and uses the String version of the data for display.
-		 *
-		 *  @param Object data The object being displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion String
-		 */
-		override public function set data(value:Object):void
-		{
-			super.data = value;
-            var text:String;
-            this.text = getLabelFromData(this, value);
-		}
-
-        // COMPILE::JS
-        // private var backgroundView:WrappedHTMLElement;
-
+		
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
@@ -195,15 +94,5 @@ package org.apache.royale.jewel.itemRenderers
             // backgroundView = element;
             return element;
         }
-
-		/**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-            toggleClass("selected", selected);
-			
-		}
-
 	}
 }

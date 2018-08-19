@@ -62,19 +62,15 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super.data = value;
 
-			COMPILE::SWF {
-				textField.autoSize = TextFieldAutoSize.CENTER;
-			}
-
 			if (value[labelField] is Date) {
-				this.text = String( (value[labelField] as Date).getDate() );
+				text = String( (value[labelField] as Date).getDate() );
 
 				COMPILE::SWF {
 					mouseEnabled = true;
 					mouseChildren = true;
 				}
 			} else {
-				this.text = "";
+				text = "";
 
 				COMPILE::SWF {
 					mouseEnabled = false;

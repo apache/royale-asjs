@@ -209,8 +209,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					
 			        if(column.itemRenderer != null)
                     {
-						trace("create ir: " + column.itemRenderer);
-                        ir = column.itemRenderer.newInstance() as ITextItemRenderer;
+						ir = column.itemRenderer.newInstance() as ITextItemRenderer;
                     } else
                     {
                         ir = itemRendererFactory.createItemRenderer(tbody) as ITextItemRenderer;
