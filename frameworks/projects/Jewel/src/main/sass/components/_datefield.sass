@@ -20,19 +20,42 @@
 // Jewel DateField
 
 // DateField variables
+$datefield-button-size: 22px
+$datefield-button-xoffset: calc(50% - #{$datefield-button-size/2})
+$datefield-button-yoffset: calc(50% - #{$datefield-button-size/2})
 
 .jewel.datefield
     display: inline-flex
 
     .jewel.textinput
         input
-            border-bottom-right-radius: 0px
-            border-top-right-radius: 0px
-            border-right: 0px
-            width: 8em
+            
     .jewel.button
-        border-bottom-left-radius: 0px
-        border-top-left-radius: 0px
+        
+        &::before
+            margin: 0
+            padding: 0
+            
+            line-height: $datefield-button-size
+            content: ' '
+            position: absolute
+
+            left: $datefield-button-xoffset
+            top: $datefield-button-yoffset
+
+            width: $datefield-button-size
+            height: $datefield-button-size
+
+        &::after
+            content: ' '
+            position: absolute
+
+            width: $datefield-button-size
+            height: $datefield-button-size
+
+            left: $datefield-button-xoffset
+            top: $datefield-button-yoffset
+
     
 .dateChooserPopUp
     position: absolute

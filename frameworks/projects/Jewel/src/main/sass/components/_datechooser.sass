@@ -25,14 +25,11 @@ $datechooser-button-xoffset: calc(50% - #{$datechooser-button-size/2})
 $datechooser-button-yoffset: calc(50% - #{$datechooser-button-size/2})
 $datechooser-tableitem-size: 42px
 
-
 .jewel.datechooser
 
     .jewel.table
 
         .jewel.tableheadercell.buttonsRow
-            .jewel.button
-                margin: 2px
             
             .prevMonthButton::before, .nextMonthButton::before
                 margin: 0
@@ -58,16 +55,9 @@ $datechooser-tableitem-size: 42px
                 left: $datechooser-button-xoffset
                 top: $datechooser-button-yoffset
         
-        thead
-
-
-        th
-        
         .jewel.tableheadercell.buttonsRow
-            padding: 0px
+            padding: 4px
 
-        tbody
-            tr
         // td
         .jewel.tableitem
             width: $datechooser-tableitem-size
