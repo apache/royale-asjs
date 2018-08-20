@@ -160,6 +160,18 @@ package org.apache.royale.core
 	[Event(name="doubleClick", type="org.apache.royale.events.MouseEvent")]
 	
     /**
+	 *  Set a different class for doubleClick events so that
+	 *  there aren't dependencies on the flash classes
+	 *  on the JS side.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[Event(name="beadsAdded", type="org.apache.royale.events.Event")]
+	
+    /**
      *  The UIBase class is the base class for most composite user interface
      *  components.  For the Flash Player, Buttons and Text controls may
      *  have a different base class and therefore may not extend UIBase.

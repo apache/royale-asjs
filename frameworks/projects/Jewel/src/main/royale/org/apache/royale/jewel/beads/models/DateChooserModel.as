@@ -162,6 +162,7 @@ package org.apache.royale.jewel.beads.models
 		{
 			if (value != _firstDayOfWeek) {
 				_firstDayOfWeek = value;
+				updateCalendar();
 				dispatchEvent( new Event("firstDayOfWeekChanged") );
 			}
 		}
@@ -225,7 +226,7 @@ package org.apache.royale.jewel.beads.models
             _days = new Array(42);
             
             // skip to the first day and renumber to the last day of the month
-			var i:int = firstDay.getDay();
+			var i:int = firstDay.getDay() - firstDayOfWeek;
             var dayNumber:int = 1;
             var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
             
