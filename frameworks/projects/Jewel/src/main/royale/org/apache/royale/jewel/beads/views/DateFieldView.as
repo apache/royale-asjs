@@ -124,7 +124,7 @@ package org.apache.royale.jewel.beads.views
 			getHost().addElement(_textInput);
 
 			_button = new Button();
-			_button.text = "⬇︎";
+			_button.text = "&darr;";
 			getHost().addElement(_button);
 
 			COMPILE::SWF {

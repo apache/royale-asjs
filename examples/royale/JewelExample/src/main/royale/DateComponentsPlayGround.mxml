@@ -60,9 +60,12 @@ limitations under the License.
 	
 	<j:Card width="400">
 		<html:H3 text="Jewel DateField"/>
-		<j:DateField id="dateField" change="dateFieldChanged()"/>
+
+		<j:HGroup gap="3">
+			<j:DateField id="dateField" change="dateFieldChanged()"/>
+			<j:Button text="Today!" click="toToday()" emphasis="primary"/>	
+		</j:HGroup>
 		<j:Label id="dateFieldSelectedDate" multiline="true" html="&lt;strong>DateField selected date:&lt;/strong> "/>
-		<j:Button text="Today!" click="toToday()"/>
 	</j:Card>
 	
 </j:SectionContent>

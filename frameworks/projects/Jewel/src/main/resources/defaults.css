@@ -320,7 +320,7 @@ j|DateField {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateFieldView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateFieldMouseController");
-  IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatDDMMYYYY");
+  IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatMMDDYYYY");
 }
 
 .jewel.divider {
