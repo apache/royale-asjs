@@ -442,29 +442,29 @@ j|Card {
 .jewel.textinput input {
   font-family: "Lato", sans-serif;
 }
-.jewel.textinput > input {
+.jewel.textinput input {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   border-radius: 0.25rem;
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
-.jewel.textinput > input:focus {
+.jewel.textinput input:focus {
   border: 1px solid #1e4e80;
 }
-.jewel.textinput > input::placeholder, .jewel.textinput > input:-ms-input-placeholder {
+.jewel.textinput input::placeholder, .jewel.textinput input:-ms-input-placeholder {
   color: white;
 }
-.jewel.textinput > input[disabled] {
+.jewel.textinput input[disabled] {
   background: #404040;
   border: 1px solid #0d0d0d;
   box-shadow: none;
   color: #737373;
 }
-.jewel.textinput > input[disabled]::placeholder, .jewel.textinput > input[disabled]:-ms-input-placeholder {
+.jewel.textinput input[disabled]::placeholder, .jewel.textinput input[disabled]:-ms-input-placeholder {
   color: #737373;
 }
-.jewel.textinput > input[disabled] + i {
+.jewel.textinput input[disabled] + i {
   color: #737373;
 }
 
@@ -472,29 +472,29 @@ j|Card {
   font-weight: 400;
   color: #FFFFFF;
 }
-.jewel.textarea > textarea {
+.jewel.textarea textarea {
   font-family: "Lato", sans-serif;
 }
-.jewel.textarea > textarea {
+.jewel.textarea textarea {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   border-radius: 0.25rem;
   transition-duration: 0.3s;
   transition-timing-function: easein;
 }
-.jewel.textarea > textarea:focus {
+.jewel.textarea textarea:focus {
   border: 1px solid #1e4e80;
 }
-.jewel.textarea > textarea::placeholder, .jewel.textarea > textarea:-ms-input-placeholder {
+.jewel.textarea textarea::placeholder, .jewel.textarea textarea:-ms-input-placeholder {
   color: white;
 }
-.jewel.textarea > textarea[disabled] {
+.jewel.textarea textarea[disabled] {
   background: #404040;
   border: 1px solid #0d0d0d;
   box-shadow: none;
   color: #737373;
 }
-.jewel.textarea > textarea[disabled]::placeholder, .jewel.textarea > textarea[disabled]:-ms-input-placeholder {
+.jewel.textarea textarea[disabled]::placeholder, .jewel.textarea textarea[disabled]:-ms-input-placeholder {
   color: #737373;
 }
 
