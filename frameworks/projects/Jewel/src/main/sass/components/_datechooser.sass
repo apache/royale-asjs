@@ -24,6 +24,10 @@ $datechooser-button-size: 22px
 $datechooser-button-xoffset: calc(50% - #{$datechooser-button-size/2})
 $datechooser-button-yoffset: calc(50% - #{$datechooser-button-size/2})
 $datechooser-tableitem-size: 42px
+ 
+//$animation-curve-timing-function: cubic-bezier(.3, 0, .1, 2) !default
+@function animation-standard($name, $duration, $delay: 0ms)
+    @return $name $duration $delay //$animation-curve-timing-function
 
 .jewel.datechooser
 

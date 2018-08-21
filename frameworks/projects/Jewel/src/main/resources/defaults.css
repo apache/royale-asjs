@@ -24,6 +24,10 @@ html, body {
   height: 100%;
 }
 
+.remove-app-scroll {
+  overflow: hidden;
+}
+
 ::-moz-focus-inner, ::-moz-focus-outer {
   border: 0;
 }
@@ -312,10 +316,63 @@ j|DateChooser {
   top: calc(50% - 11px);
 }
 
-.dateChooserPopUp {
+.datechooser-popup {
+  position: fixed;
+  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: strict;
+  z-index: 5;
+  color: rgba(0, 0, 0, 0.8);
+}
+.datechooser-popup::before {
   position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  will-change: opacity;
+  transition: opacity 0.4s 0ms;
+}
+.datechooser-popup .jewel.table {
+  transform: translate(-50%, 100%);
+  transition: transform 0.15s 0ms;
+  will-change: transform;
+  bottom: auto;
+  top: calc(100% - 10px);
+  left: 50%;
+  overflow: hidden;
+  touch-action: none;
+  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
+}
+.datechooser-popup.open {
+  pointer-events: auto;
+}
+.datechooser-popup.open::before {
+  opacity: 1;
+}
+.datechooser-popup.open .jewel.table {
+  transform: translate(-50%, -100%);
+  transition: transform 0.3s 0ms;
 }
 
+@media (max-width: 768px) {
+  .datechooser-popup .jewel.table {
+    width: calc(100% - 20px);
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .datechooser-popup .jewel.table {
+    width: calc(100% - 300px);
+  }
+}
 j|DateField {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateFieldView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
@@ -389,10 +446,6 @@ j|DateField {
     max-width: 310px;
   }
 }
-.remove-app-scroll {
-  overflow: hidden;
-}
-
 .jewel.drawerheader {
   position: relative;
   display: flex;

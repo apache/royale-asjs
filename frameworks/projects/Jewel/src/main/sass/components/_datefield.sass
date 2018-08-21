@@ -23,6 +23,9 @@
 $datefield-button-size: 22px
 $datefield-button-xoffset: calc(50% - #{$datefield-button-size/2})
 $datefield-button-yoffset: calc(50% - #{$datefield-button-size/2})
+$datechooser-popup-margin-offset: 10px
+$datechooser-popup-overlay-color: #000 !default
+$datechooser-popup-overlay-opacity: .65 !default
 
 .jewel.datefield
     display: inline-flex
@@ -56,10 +59,73 @@ $datefield-button-yoffset: calc(50% - #{$datefield-button-size/2})
             left: $datefield-button-xoffset
             top: $datefield-button-yoffset
 
-    
-.dateChooserPopUp
-    position: absolute
-    
+.datechooser-popup
+    position: fixed
+    pointer-events: none
+
+    bottom: 0
+    left: 0
+
+    width: 100%
+    height: 100%
+
+    overflow: hidden
+    contain: strict
+
+    z-index: 5
+
+    color: rgba(0, 0, 0, 0.8)
+
+    &::before
+        position: absolute
+        display: block
+
+        top: 0
+        left: 0
+
+        width: 100%
+        height: 100%
+
+        content: ""
+        opacity: 0
+
+        background-color: rgba($datechooser-popup-overlay-color, $datechooser-popup-overlay-opacity)
+        will-change: opacity
+        transition: animation-standard(opacity, .4s)
+
+
+    .jewel.table
+        transform: translate(-50%, 100%)
+        transition: animation-standard(transform, .15s)
+        will-change: transform
+        
+        bottom: auto
+        top: calc(100% - #{$datechooser-popup-margin-offset})
+        left: 50%
+        overflow: hidden
+        touch-action: none
+        box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
+
+    &.open
+        pointer-events: auto
+        &::before
+            opacity: 1
+
+        .jewel.table
+            transform: translate(-50%, -100%)
+            transition: animation-standard(transform, .3s)
+
+@media (max-width: $tablet)
+    .datechooser-popup
+        .jewel.table
+            width: calc(100% - #{2*$datechooser-popup-margin-offset})
+
+@media (min-width: $tablet) and (max-width: $desktop)
+    .datechooser-popup
+        .jewel.table
+            width: calc(100% - #{30*$datechooser-popup-margin-offset})
+
+
 j|DateField
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateFieldView")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel")

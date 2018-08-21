@@ -151,6 +151,11 @@ package org.apache.royale.jewel.beads.views
 			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
+		
+		private function handlePopUpInitComplete(event:Event):void
+		{
+			getHost().dispatchEvent(new Event("dateChooserInitComplete"));
+		}
 
 		private function handleFormatChanged(event:Event):void
 		{
@@ -208,25 +213,55 @@ package org.apache.royale.jewel.beads.views
 						_popUp = new DateChooser();
 					}
 
+					_popUp.className = "datechooser-popup";
+					_popUp.addEventListener("initComplete", handlePopUpInitComplete);
+
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
+					_popUp.model.dayNames = model.dayNames;
+					_popUp.model.monthNames = model.monthNames;
+					_popUp.model.firstDayOfWeek = model.firstDayOfWeek;
+
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
-					var point:Point = new Point(_textInput.width, _button.height);
-					var p2:Point = PointUtils.localToGlobal(point, _strand);
-					var p3:Point = PointUtils.globalToLocal(p2, host);
-					_popUp.x = p3.x;
-					_popUp.y = p3.y;
-					_popUp.className = "dateChooserPopUp";
+					// var point:Point = new Point(_textInput.width, _button.height);
+					// var p2:Point = PointUtils.localToGlobal(point, _strand);
+					// var p3:Point = PointUtils.globalToLocal(p2, host);
+					// _popUp.x = p3.x;
+					// _popUp.y = p3.y;
 
 					host.popUpParent.addElement(_popUp);
+					
+					COMPILE::JS
+					{
+						// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11
+						setTimeout(prepareForPopUp,  300)
+					}
+					
 				}
 				else
 				{
 					UIUtils.removePopUp(_popUp);
+					COMPILE::JS
+					{
+					document.body.classList.remove("remove-app-scroll");
+					}
 				}
 			}
 			_showingPopup = false;
+		}
+
+		COMPILE::JS
+		private var rq:int;
+		private function prepareForPopUp():void
+        {
+			//avoid scroll in html
+			_popUp.addClass("open");
+			COMPILE::JS
+			{
+				//cancelAnimationFrame(rq);
+				document.body.classList.add("remove-app-scroll");
+			}
 		}
 
 		/**
