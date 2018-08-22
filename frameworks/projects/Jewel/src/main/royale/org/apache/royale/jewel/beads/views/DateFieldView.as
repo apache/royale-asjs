@@ -272,6 +272,7 @@ package org.apache.royale.jewel.beads.views
 		private function selectionChangeHandler(event:Event):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
+			getHost().dispatchEvent(new Event("change"));
 		}
 	}
 }
