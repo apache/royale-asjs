@@ -28,21 +28,13 @@ $datefield-border-radius: $border-radius
     .jewel.textinput
         input
             width: $datefield-input-width
-            @if $flat
-                background: $default-color
-                border: 0px solid
-            @else
-                background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
-                //border: 1px solid darken($default-color, 15%)
             border-radius: $datefield-border-radius 0px 0px $datefield-border-radius
-
-            // &:focus
-            //     border-right: 1px
-            //     border-right-color: darken($default-color, 15%)
+            
     .jewel.button
         color: transparent
         border-bottom-left-radius: 0px
         border-top-left-radius: 0px
+        border-left: 0px
         
         &::before
                 

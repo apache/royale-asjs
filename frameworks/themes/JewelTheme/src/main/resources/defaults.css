@@ -289,13 +289,13 @@ j|Card {
 
 .jewel.datefield .jewel.textinput input {
   width: 8em;
-  background: linear-gradient(white, #f3f3f3);
   border-radius: 0.25rem 0px 0px 0.25rem;
 }
 .jewel.datefield .jewel.button {
   color: transparent;
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px;
+  border-left: 0px;
 }
 .jewel.datefield .jewel.button::after {
   background-size: 66%;

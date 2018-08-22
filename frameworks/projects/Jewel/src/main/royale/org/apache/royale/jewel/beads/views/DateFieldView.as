@@ -35,6 +35,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
+	import org.apache.royale.jewel.beads.controls.datefield.DateFieldTextInputRestrictBead;
 	COMPILE::SWF
 	{
 		//import org.apache.royale.jewel.beads.views.TextInputView;
@@ -98,10 +99,10 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		 protected function getHost():UIBase
-		 {
-			 return _strand as UIBase;
-		 }
+		protected function getHost():UIBase
+		{
+			return _strand as UIBase;
+		}
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -116,6 +117,7 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
 			_textInput = new TextInput();
+			_textInput.addBead(new DateFieldTextInputRestrictBead());
 			
 			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
 			maxNumberCharacters.maxlength = 10;
