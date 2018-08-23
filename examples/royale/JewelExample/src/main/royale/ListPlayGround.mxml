@@ -83,6 +83,7 @@ limitations under the License.
 			public function removeAllData():void
 			{
 				(iconList.dataProvider as ArrayList).removeAll();
+				// listModel.iconListData.removeAll();
 			}
 		]]>
 	</fx:Script>
