@@ -112,10 +112,10 @@ limitations under the License.
 							sourceID="listModel"
 							sourcePropertyName="iconListData"
 							destinationPropertyName="dataProvider" />
-						<j:DynamicAddItemRendererForArrayListData/>
+						<j:AddListItemRendererForArrayListData/>
 						<j:DynamicRemoveItemRendererForArrayListData/>
 						<j:DynamicUpdateItemRendererForArrayListData/>
-						<j:DynamicRemoveAllItemRendererForArrayListData/>
+						<j:RemoveAllItemRendererForArrayListData/>
 					</j:beads>
 				</j:List>
 				<j:Button text="Add item" click="addItem()"/>

@@ -120,10 +120,10 @@
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
     
 
-    <component id="DynamicAddItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicAddItemRendererForArrayListData" />
+    <component id="AddListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddListItemRendererForArrayListData" />
     <component id="DynamicRemoveItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicRemoveItemRendererForArrayListData" />
     <component id="DynamicUpdateItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicUpdateItemRendererForArrayListData" />
-    <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicRemoveAllItemRendererForArrayListData" />
+    <component id="RemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllItemRendererForArrayListData" />
     
     <component id="AddTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableItemRendererForArrayListData" />
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->

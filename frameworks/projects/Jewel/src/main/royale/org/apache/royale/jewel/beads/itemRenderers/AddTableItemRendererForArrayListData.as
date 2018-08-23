@@ -47,7 +47,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class AddTableItemRendererForArrayListData implements IBead
 	{
@@ -57,7 +57,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function AddTableItemRendererForArrayListData()
 		{
@@ -73,7 +73,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -121,7 +121,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
@@ -131,7 +131,6 @@ package org.apache.royale.jewel.beads.itemRenderers
             var ir:ITextItemRenderer;
 
 			var index:int = event.index * model.columns.length;
-			var rowIndex:int = index;
 			for(var j:int = 0; j < model.columns.length; j++)
 			{
 				column = model.columns[j] as TableColumn;
@@ -161,7 +160,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = tbody.numElements;
 			var d:DataItemRenderer;
-			index = event.index * model.columns.length;
 			for (var i:int = event.index; i < n; i++)
 			{
 				d = tbody.getItemRendererForIndex(i) as DataItemRenderer;
@@ -180,7 +178,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{

@@ -30,14 +30,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 	/**
 	 * Handles the removal of all itemRenderers once the all items has been removed
-	 * from the IDataProviderModel.
+	 * from the IDataProviderModel. This works the same for List and Table components
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.0
+	 *  @productversion Royale 0.9.3
 	 */
-	public class DynamicRemoveAllItemRendererForArrayListData implements IBead
+	public class RemoveAllItemRendererForArrayListData implements IBead
 	{
 		/**
 		 * Constructor
@@ -45,9 +45,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
-		public function DynamicRemoveAllItemRendererForArrayListData()
+		public function RemoveAllItemRendererForArrayListData()
 		{
 		}
 
@@ -59,7 +59,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -105,7 +105,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		protected function handleAllItemsRemoved(event:CollectionEvent):void
 		{
@@ -129,7 +129,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get dataProviderModel(): IDataProviderModel
 		{
@@ -148,7 +148,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{

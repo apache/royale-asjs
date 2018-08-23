@@ -35,15 +35,15 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
-	 * Handles the adding of an itemRenderer once the corresponding datum has been added
+	 * Handles the adding of an itemRenderer in a List component once the corresponding datum has been added
 	 * from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.0
+	 *  @productversion Royale 0.9.3
 	 */
-	public class DynamicAddItemRendererForArrayListData implements IBead
+	public class AddListItemRendererForArrayListData implements IBead
 	{
 		/**
 		 * Constructor
@@ -51,9 +51,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
-		public function DynamicAddItemRendererForArrayListData()
+		public function AddListItemRendererForArrayListData()
 		{
 		}
 
@@ -67,7 +67,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -115,7 +115,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
@@ -145,7 +145,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get dataProviderModel(): IDataProviderModel
 		{
@@ -164,7 +164,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{
