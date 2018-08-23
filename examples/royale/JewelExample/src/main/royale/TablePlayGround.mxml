@@ -175,16 +175,12 @@ limitations under the License.
 	<j:Card >
 		<html:H3 text="Jewel Table"/>
 
-		<j:Table id="table" width="440" change="onChange(event)">
+		<j:Table id="table" width="440" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
 			<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
 			<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
 			<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
 			<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
-							<!--item renderers can be get from CSS or declared in column but must extend TableItemRenderer -->
 			<j:beads>
-				<js:ConstantBinding sourceID="tablesModel"
-									sourcePropertyName="guitarrists"
-									destinationPropertyName="dataProvider" />
 				<j:AddTableItemRendererForArrayListData/>
 				<j:DynamicRemoveItemRendererForArrayListData/>
 				<j:DynamicUpdateItemRendererForArrayListData/>
@@ -194,7 +190,7 @@ limitations under the License.
 
 		<j:Label id="selected"/>
 		<j:ControlBar>
-			<j:Button click="clearTable()" text="Change Data" emphasis="primary"/>
+			<j:Button click="changeTableData()" text="Change Data" emphasis="primary"/>
 			<j:Button text="Add item" click="addItem()"/>
 			<j:Button text="Remove first item" click="removeItemAt()"/>
 			<j:Button text="Update first item" click="updateFirstItem()"/>
@@ -212,7 +208,7 @@ limitations under the License.
                 selected.text = "Selected: " + table.selectedItemProperty;
             }
 
-			private function clearTable():void
+			private function changeTableData():void
 			{
 				table.dataProvider = new ArrayList([
 					{icon: MaterialIconType.CLOSE, guitarrist: "Ssi", album: "Paasadasdssion & Warfare", year: "1990"},
@@ -225,7 +221,7 @@ limitations under the License.
 
 			private function addItem():void
 			{
-				tablesModel.guitarrists.addItem({icon: MaterialIconType.CLOSE, guitarrist: "Eric Johnson", album: "Venus Isle", year: "1996"});
+				(table.dataProvider as ArrayList).addItem({icon: MaterialIconType.CLOSE, guitarrist: "Eric Johnson", album: "Venus Isle", year: "1996"});
 			}
 
 			public function removeItemAt():void

@@ -155,8 +155,15 @@ package org.apache.royale.jewel.beads.itemRenderers
 				return;
 			var dp:ICollectionView = model.dataProvider as ICollectionView;
 			if (!dp)
+			{
+				model.selectedIndex = -1;
+				model.selectedItem = null;
+				model.selectedItemProperty = null;
+
+				// TBodyContentArea - remove data items
+				tbody.removeAllItemRenderers();
 				return;
-			
+			}
 			// remove this and better add beads when needed
 			// listen for individual items being added in the future.
 			// var dped:IEventDispatcher = dp as IEventDispatcher;
@@ -164,14 +171,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
+            // TBodyContentArea - remove data items
+			tbody.removeAllItemRenderers();
 			
             // THEAD - remove header items
 			removeElements(view.thead);
             // -- add the header
             createHeader();
 			
-            // TBodyContentArea - remove data items
-			tbody.removeAllItemRenderers();
 			
 			// -- 2) CREATION PHASE
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;

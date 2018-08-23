@@ -20,6 +20,7 @@ package models
 {
 	import org.apache.royale.collections.ArrayList;
 
+	[Bindable]
 	public class TablesModel 
 	{
 		private var _guitarrists:ArrayList = new ArrayList([

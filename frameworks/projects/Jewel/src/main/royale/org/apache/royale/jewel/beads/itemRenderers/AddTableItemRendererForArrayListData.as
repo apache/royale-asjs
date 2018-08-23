@@ -102,12 +102,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dataProviderChangeHandler(null);
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
 		 * @private
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = model.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
+			}
+			dp = model.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
