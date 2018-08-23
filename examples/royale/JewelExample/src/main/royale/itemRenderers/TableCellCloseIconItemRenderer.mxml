@@ -21,24 +21,19 @@ limitations under the License.
                      xmlns:j="library://ns.apache.org/royale/jewel"
                      xmlns:js="library://ns.apache.org/royale/basic"
                      xmlns:html="library://ns.apache.org/royale/html"
-                     xmlns="http://www.w3.org/1999/xhtml">
-
-    <fx:Script>
-		<![CDATA[
-			[Bindable("dataChange")]
-            public function get guitarrist():Object
-            {
-                return data;
-            }
-		]]>
-	</fx:Script>
-
+                     xmlns="http://www.w3.org/1999/xhtml"
+                     hoverable="false"
+                     selectable="false">
+    
     <mdl:beads>
         <js:ItemRendererDataBinding/>
     </mdl:beads>
     
-    <html:Span text="{guitarrist.year}"/>
-    <js:FontIcon text="{MaterialIconType.CLOSE}" material="true"/>
+    <j:IconButton emphasis="primary" width="24" height="24" style="padding: 0px; border-radius: 50%">
+        <j:icon>
+            <js:FontIcon text="{data.icon}" material="true" size="18"/>
+        </j:icon>
+    </j:IconButton>
     
 </j:TableItemRenderer>
 

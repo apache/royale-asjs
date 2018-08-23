@@ -105,25 +105,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dataProviderChangeHandler(null);
 		}
 		
-		protected var _dataProviderModel:IDataProviderModel;
-
-		/**
-		 * The model holding the dataProvider.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function get dataProviderModel():IDataProviderModel
-		{
-			if (_dataProviderModel == null) {
-				_dataProviderModel = _strand.getBeadByType(IBeadModel) as IDataProviderModel;
-			}
-			return _dataProviderModel;
-		}
-		
 		protected var labelField:String;
 		
 		private var _itemRendererFactory:IItemRendererClassFactory;
@@ -170,9 +151,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// -- 1) CLEANING PHASE
-            if (!dataProviderModel)
+            if (!model)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			var dp:ICollectionView = model.dataProvider as ICollectionView;
 			if (!dp)
 				return;
 			
@@ -194,7 +175,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			// -- 2) CREATION PHASE
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			labelField = dataProviderModel.labelField;
+			labelField = model.labelField;
 			
             var column:TableColumn;
             var ir:ITextItemRenderer;

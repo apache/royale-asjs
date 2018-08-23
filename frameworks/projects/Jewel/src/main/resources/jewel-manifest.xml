@@ -125,6 +125,7 @@
     <component id="DynamicUpdateItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicUpdateItemRendererForArrayListData" />
     <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicRemoveAllItemRendererForArrayListData" />
     
+    <component id="AddTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableItemRendererForArrayListData" />
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     
 </componentPackage>

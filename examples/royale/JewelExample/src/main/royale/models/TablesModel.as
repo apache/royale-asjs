@@ -23,14 +23,14 @@ package models
 	public class TablesModel 
 	{
 		private var _guitarrists:ArrayList = new ArrayList([
-			{guitarrist: "Steve Vai", album: "Passion & Warfare", year: "1990"},
-			{guitarrist: "Joe Satriani", album: "Surfing With The Alien", year: "1987"},
-			{guitarrist: "Yngwie Malmsteen", album: "Rising Force", year: "1984"},
-			{guitarrist: "Steve Morse", album: "Southern Steel", year: "1991"},
-			{guitarrist: "Mark Knopfler", album: "Local Hero", year: "1983"},
-			{guitarrist: "Eric Sardinas", album: "Treat Me Right", year: "1999"},
-			{guitarrist: "Mike Oldfield", album: "Tubular Bells", year: "1973"},
-			{guitarrist: "Van Halen", album: "1984", year: "1984"}
+			{icon: MaterialIconType.CLOSE, guitarrist: "Steve Vai", album: "Passion & Warfare", year: "1990"},
+			{icon: MaterialIconType.CLOSE, guitarrist: "Joe Satriani", album: "Surfing With The Alien", year: "1987"},
+			{icon: MaterialIconType.CLOSE, guitarrist: "Yngwie Malmsteen", album: "Rising Force", year: "1984"},
+			{icon: MaterialIconType.CLOSE, guitarrist: "Steve Morse", album: "Southern Steel", year: "1991"},
+			{icon: MaterialIconType.CLOSE, guitarrist: "Mark Knopfler", album: "Local Hero", year: "1983"},
+			{icon: MaterialIconType.CLOSE, guitarrist: "Eric Sardinas", album: "Treat Me Right", year: "1999"},
+			{icon: MaterialIconType.CLOSE, guitarrist: "Mike Oldfield", album: "Tubular Bells", year: "1973"},
+			{icon: MaterialIconType.CLOSE, guitarrist: "Van Halen", album: "1984", year: "1984"}
 		]);
 		
 		public function get guitarrists():ArrayList

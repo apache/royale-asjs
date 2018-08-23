@@ -2941,9 +2941,6 @@ j|Slider {
 .jewel.table .jewel.tablecell {
   position: relative;
 }
-.jewel.table .jewel.tablecell > * {
-  padding: 12px;
-}
 .jewel.table.fixedHeader {
   table-layout: fixed;
 }
@@ -2972,12 +2969,16 @@ j|Table {
 }
 
 .jewel.tableitem {
+  padding: 12px;
   cursor: pointer;
   text-decoration: none;
   align-items: center;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
+}
+.jewel.tableitem.with-childs {
+  padding: 6px;
 }
 .jewel.tableitem.calendar {
   border-radius: 10%;
