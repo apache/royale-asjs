@@ -222,6 +222,8 @@ limitations under the License.
 			private function addItem():void
 			{
 				(table.dataProvider as ArrayList).addItem({icon: MaterialIconType.CLOSE, guitarrist: "Eric Johnson", album: "Venus Isle", year: "1996"});
+
+				// tablesModel.guitarrists.addItem({icon: MaterialIconType.CLOSE, guitarrist: "Eric Johnson", album: "Venus Isle", year: "1996"}); // to test things are adding to right place
 			}
 
 			public function removeItemAt():void

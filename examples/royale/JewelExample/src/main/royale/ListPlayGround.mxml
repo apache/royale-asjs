@@ -49,11 +49,23 @@ limitations under the License.
 				list.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
 			}
 
+			private function changeListData():void
+			{
+				iconList.dataProvider = new ArrayList([
+					new IconListVO("CheckBox", "check_box"),
+					new IconListVO("Label", "label"),
+					new IconListVO("RadioButton", "radio_button_checked"),
+					new IconListVO("Text", "subject"),
+					new IconListVO("TextInput", "text_fields")            
+				]);
+			}
+
 			private function addItem():void
 			{
 				var iconListVO:IconListVO = new IconListVO("New Item", MaterialIconType.CLOSE);
 				
 				(iconList.dataProvider as ArrayList).addItem(iconListVO);
+				// listModel.iconListData.addItem(iconListVO); // to test things are adding to right place
 			}
 
 			public function removeItemAt():void
@@ -118,6 +130,7 @@ limitations under the License.
 						<j:RemoveAllItemRendererForArrayListData/>
 					</j:beads>
 				</j:List>
+				<j:Button text="change data" emphasis="{Button.PRIMARY}" click="changeListData()"/>
 				<j:Button text="Add item" click="addItem()"/>
 				<j:Button text="Remove first item" click="removeItemAt()"/>
 				<j:Button text="Update first item" click="updateFirstItem()"/>
