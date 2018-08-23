@@ -118,7 +118,7 @@ package org.apache.royale.jewel.beads.layouts
 				{
 					case "itemsExpand":
 						if(!itemsExpandInitialized)
-							itemsExpand = Boolean(cssValue);
+							itemsExpand = "true" == cssValue;
 						break;
 					case "itemsHorizontalAlign":
 						if (!itemsHorizontalAlign)
