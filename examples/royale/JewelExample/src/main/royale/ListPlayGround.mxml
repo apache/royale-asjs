@@ -145,15 +145,15 @@ limitations under the License.
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataContainer"/>
+				<html:H3 text="Jewel List (Horizontal)"/>
 				<j:List id="alist" percentWidth="100" height="100">  
-    <!-- <j:beads>  
-        <j:HorizontalLayout itemsExpand="true" />
-    </j:beads> -->
-    <j:dataProvider>
-        <js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America]" />
-    </j:dataProvider>
-</j:List>
+				<j:beads>  
+					<j:HorizontalLayout itemsExpand="true" />
+				</j:beads>
+				<j:dataProvider>
+					<js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Hawkeye]" />
+				</j:dataProvider>
+			</j:List>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
