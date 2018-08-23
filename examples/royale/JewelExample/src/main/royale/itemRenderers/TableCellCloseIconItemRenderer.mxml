@@ -21,9 +21,7 @@ limitations under the License.
                      xmlns:j="library://ns.apache.org/royale/jewel"
                      xmlns:js="library://ns.apache.org/royale/basic"
                      xmlns:html="library://ns.apache.org/royale/html"
-                     xmlns="http://www.w3.org/1999/xhtml"
-                     hoverable="false"
-                     selectable="false">
+                     xmlns="http://www.w3.org/1999/xhtml">
     
     <mdl:beads>
         <js:ItemRendererDataBinding/>
