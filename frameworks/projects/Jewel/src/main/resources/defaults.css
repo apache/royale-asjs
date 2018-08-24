@@ -2732,6 +2732,30 @@ j|Navigation {
     IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
   }
 }
+.jewel.numericstepper .jewel.textinput {
+  display: inline-flex;
+}
+
+j|NumericStepper {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.NumericStepperView");
+}
+
+.jewel.spinner {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+}
+.jewel.spinner .jewel.button {
+  display: flex;
+}
+
+j|Spinner {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SpinnerView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SpinnerMouseController");
+}
+
 .jewel.radiobutton {
   display: inline-flex;
   position: relative;

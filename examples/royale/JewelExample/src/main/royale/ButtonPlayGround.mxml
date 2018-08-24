@@ -97,6 +97,8 @@ limitations under the License.
 						<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
 					</j:icon>
 				</j:IconButton>
+
+				<j:NumericStepper/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

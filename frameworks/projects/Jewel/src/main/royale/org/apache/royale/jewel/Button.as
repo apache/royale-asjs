@@ -452,7 +452,7 @@ package org.apache.royale.jewel
          */
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'button');
+			addElementToWrapper(this, 'button');
             element.setAttribute('type', 'button');
             /* AJH comment out until we figure out why it is needed
             if (org.apache.royale.core.ValuesManager.valuesImpl.getValue) {

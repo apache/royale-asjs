@@ -36,6 +36,7 @@ package
         import org.apache.royale.jewel.beads.models.DateChooserModel; DateChooserModel;
         import org.apache.royale.jewel.beads.models.DataProviderModel; DataProviderModel;
 
+        import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
         import org.apache.royale.jewel.beads.controllers.DateChooserMouseController; DateChooserMouseController;
         import org.apache.royale.jewel.beads.controllers.DateFieldMouseController; DateFieldMouseController;
@@ -45,6 +46,8 @@ package
         import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController; TableCellSelectionMouseController;
         
         import org.apache.royale.jewel.beads.views.ImageView; ImageView;
+        import org.apache.royale.jewel.beads.views.SpinnerView; SpinnerView;
+        import org.apache.royale.jewel.beads.views.NumericStepperView; NumericStepperView;
         import org.apache.royale.jewel.beads.views.SliderView; SliderView;
         import org.apache.royale.jewel.beads.views.AlertView; AlertView;
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
