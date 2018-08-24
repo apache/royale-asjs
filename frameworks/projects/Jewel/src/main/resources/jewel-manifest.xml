@@ -112,6 +112,7 @@
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
     <component id="TableItemRenderer" class="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
+    <component id="DropDownListItemRenderer" class="org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer"/>
     
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
 

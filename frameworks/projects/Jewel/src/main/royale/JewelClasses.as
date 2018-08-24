@@ -50,10 +50,11 @@ package
         import org.apache.royale.jewel.beads.views.TitleBarView; TitleBarView;
         import org.apache.royale.jewel.beads.views.AlertTitleBarView; AlertTitleBarView;
         import org.apache.royale.jewel.beads.views.ListView; ListView;
+        import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
         import org.apache.royale.jewel.beads.views.DateChooserView; DateChooserView;
-        import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.beads.views.TableView; TableView;
 
+        import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
         
         COMPILE::SWF
@@ -66,7 +67,7 @@ package
             import org.apache.royale.jewel.beads.views.RadioButtonView; RadioButtonView;
 		    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
 
-            import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
+            // import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
             import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
         }
 

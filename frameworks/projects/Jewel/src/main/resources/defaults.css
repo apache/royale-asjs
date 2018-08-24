@@ -472,10 +472,17 @@ j|DateField {
   touch-action: pan-y;
 }
 
+j|DropDownList {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer");
+}
+
 @media -royale-swf {
   j|DropDownList {
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
     IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList");
   }

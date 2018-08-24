@@ -21,21 +21,22 @@ package models
 	import vos.IconListVO;
 	import org.apache.royale.collections.ArrayList;
 
+	[Bindable]
 	public class ListsModel 
 	{
 		/**
 		 * Used in the List example.
 		 */
-		private var _watchmen:Array = [
+		private var _watchmen:ArrayList = new ArrayList([
 			"The Comedian", 
 			"Doctor Manhattan", 
 			"Nite Owl",
 			"Ozymandias",
             "Rorschach",
             "Silk Spectre"
-		];
+		]);
 		
-		public function get watchmen():Array
+		public function get watchmen():ArrayList
 		{
 			return _watchmen;
 		}

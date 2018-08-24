@@ -20,11 +20,21 @@
 // Jewel DropDownList
 
 // DropDownList variables
+j|DropDownList
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView")
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer")
+    // IBeadController: ClassReference("org.apache.royale.mdl.beads.controllers.DropDownListController")
+
+    // IBeadModel: ClassReference("org.apache.royale.mdl.beads.models.DropDownListModel");
+    // IBeadLayout: ClassReference(null);
+    // IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
 
 @media -royale-swf	
     j|DropDownList
-        IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel")
-        IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView")
+        IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
         IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController")
         IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList")
         // font-size: 11px
