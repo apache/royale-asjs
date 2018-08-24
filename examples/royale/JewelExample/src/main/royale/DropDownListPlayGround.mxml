@@ -39,11 +39,11 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
+	<j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+	
 	<j:Card width="350">
-		<j:beads>
-			<j:HorizontalLayout gap="3"/>
-			<js:ViewDataBinding />
-		</j:beads>
 		
 		<html:H3 text="Jewel DropDownList"/>
 		
