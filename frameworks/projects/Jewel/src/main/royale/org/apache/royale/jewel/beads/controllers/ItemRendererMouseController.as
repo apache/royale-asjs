@@ -204,7 +204,7 @@ COMPILE::JS {
 		{
 			event.stopImmediatePropagation();
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
-			if (target)
+			if (target && target.selectable)
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;

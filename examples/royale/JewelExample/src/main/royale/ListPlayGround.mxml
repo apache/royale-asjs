@@ -119,23 +119,27 @@ limitations under the License.
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel List With ItemRenderer"/>
-				<j:List id="iconList" width="200" height="300" className="iconListItemRenderer">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="listModel"
-							sourcePropertyName="iconListData"
-							destinationPropertyName="dataProvider" />
-						<j:AddListItemRendererForArrayListData/>
-						<j:DynamicRemoveItemRendererForArrayListData/>
-						<j:DynamicUpdateItemRendererForArrayListData/>
-						<j:RemoveAllItemRendererForArrayListData/>
-					</j:beads>
-				</j:List>
-				<j:Button text="change data" emphasis="{Button.PRIMARY}" click="changeListData()"/>
-				<j:Button text="Add item" click="addItem()"/>
-				<j:Button text="Remove first item" click="removeItemAt()"/>
-				<j:Button text="Update first item" click="updateFirstItem()"/>
-				<j:Button text="Remove all data" click="removeAllData()"/>
+				<j:HGroup gap="3">
+					<j:List id="iconList" width="200" height="300" className="iconListItemRenderer">
+						<j:beads>
+							<js:ConstantBinding
+								sourceID="listModel"
+								sourcePropertyName="iconListData"
+								destinationPropertyName="dataProvider" />
+							<j:AddListItemRendererForArrayListData/>
+							<j:DynamicRemoveItemRendererForArrayListData/>
+							<j:DynamicUpdateItemRendererForArrayListData/>
+							<j:RemoveAllItemRendererForArrayListData/>
+						</j:beads>
+					</j:List>
+					<j:VGroup gap="3">
+						<j:Button text="change data" emphasis="{Button.PRIMARY}" click="changeListData()"/>
+						<j:Button text="Add item" click="addItem()"/>
+						<j:Button text="Remove first item" click="removeItemAt()"/>
+						<j:Button text="Update first item" click="updateFirstItem()"/>
+						<j:Button text="Remove all data" click="removeAllData()"/>
+					</j:VGroup>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

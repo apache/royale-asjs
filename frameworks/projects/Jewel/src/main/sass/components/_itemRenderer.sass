@@ -24,13 +24,16 @@ $item-min-height: 34px
 
 .jewel.item, .jewel.navigationlink
     display: flex
-    cursor: pointer
     min-height: $item-min-height
     text-decoration: none
     align-items: center
     letter-spacing: 0
     line-height: normal !important
     overflow: hidden
+    cursor: auto
+
+    &.selectable
+        cursor: pointer
 
 .jewel.navigationlink
     min-height: 48px

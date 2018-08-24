@@ -21,13 +21,24 @@ limitations under the License.
                      xmlns:j="library://ns.apache.org/royale/jewel"
                      xmlns:js="library://ns.apache.org/royale/basic"
                      xmlns:html="library://ns.apache.org/royale/html"
-                     xmlns="http://www.w3.org/1999/xhtml">
+                     xmlns="http://www.w3.org/1999/xhtml"
+                     hoverable="false"
+                     selectable="false">
     
+    <fx:Script>
+		<![CDATA[
+            private function clickCloseButton():void
+			{
+                trace("hello!");
+            }
+        ]]>
+	</fx:Script>
+
     <mdl:beads>
         <js:ItemRendererDataBinding/>
     </mdl:beads>
     
-    <j:IconButton emphasis="primary" width="24" height="24" style="padding: 0px; border-radius: 50%">
+    <j:IconButton emphasis="primary" width="24" height="24" style="padding: 0px; border-radius: 50%" click="clickCloseButton()">
         <j:icon>
             <js:FontIcon text="{data.icon}" material="true" size="18"/>
         </j:icon>

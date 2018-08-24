@@ -500,13 +500,16 @@ j|DateField {
 
 .jewel.item, .jewel.navigationlink {
   display: flex;
-  cursor: pointer;
   min-height: 34px;
   text-decoration: none;
   align-items: center;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
+  cursor: auto;
+}
+.jewel.item.selectable, .jewel.navigationlink.selectable {
+  cursor: pointer;
 }
 
 .jewel.navigationlink {

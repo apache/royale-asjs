@@ -121,12 +121,15 @@ $table-border-radius: $border-radius
 //     border: 1px solid black
 
 .jewel.tableitem
+    cursor: auto
     // padding: 12px 0px 14px 0px
-    
-    &:hover
+    &.selectable
+        cursor: pointer
+
+    &.hovered:hover
         color: $font-theme-color
         background: $primary-color
 
-    &:active, &.selected
+    &.selected, &.selectable:active
         color: $font-theme-color
         background: darken($primary-color, 5%)

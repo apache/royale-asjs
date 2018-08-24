@@ -21,6 +21,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.utils.ClassSelectorList;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
+	import org.apache.royale.events.MouseEvent;
 
     COMPILE::JS
     {
@@ -51,6 +52,7 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel item";
+			addClass("selectable");
 		}
 
 		private var _text:String = "";
@@ -117,6 +119,29 @@ package org.apache.royale.jewel.itemRenderers
             return element;
         }
 
+		private var _selectable:Boolean = true;
+		/**
+         *  <code>true</code> if the item renderer is can be selected
+         *  false otherwise. Use to configure a renderer to be non 
+         *  selectable.
+         *  
+         *  Defaults to true
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		override public function get selectable():Boolean
+		{
+			return _selectable;
+		}
+		override public function set selectable(value:Boolean):void
+		{
+			_selectable = value;
+			toggleClass("selectable", _selectable);	
+		}
+
         /**
 		 * @private
 		 */
@@ -132,7 +157,10 @@ package org.apache.royale.jewel.itemRenderers
 			//else
 			// 	useColor = backgroundColor;
 
-            toggleClass("selected", selected);
+			if(hoverable)
+            	toggleClass("hovered", hovered);
+			if(selectable)
+            	toggleClass("selected", selected);
 		}
 	}
 }
