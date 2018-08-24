@@ -54,6 +54,9 @@ package org.apache.royale.jewel.beads.controllers
 		{
 		}
 		
+		private var viewBead:DateFieldView;
+		private var model:IDateChooserModel;
+
 		private var _strand:IStrand;
 		
 		/**
@@ -68,8 +71,12 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			_strand = value;
 			
-			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;			
+			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+
+			viewBead = _strand.getBeadByType(DateFieldView) as DateFieldView;			
 			IEventDispatcher(viewBead.menuButton).addEventListener("click", clickHandler);
+
+			viewBead.textInput.addEventListener(Event.CHANGE, inputSelectionChangeHandler);
 		}
 		
 		/**
@@ -79,15 +86,14 @@ package org.apache.royale.jewel.beads.controllers
 		{
             event.stopImmediatePropagation();
             
-			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;
 			IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
             removeDismissHandler();
             
             // use a timer to delay the installation of the event handler, otherwise
             // the event handler is called immediately and will dismiss the popup.
-            var t:Timer = new Timer(0.25,1);
-            t.addEventListener("timer",addDismissHandler);
+            var t:Timer = new Timer(0.25, 1);
+            t.addEventListener("timer", addDismissHandler);
             t.start();
         }
         
@@ -120,9 +126,6 @@ package org.apache.royale.jewel.beads.controllers
 		{
             event.stopImmediatePropagation();
             
-			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
-			
-			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
 
 			viewBead.popUpVisible = false;
@@ -130,13 +133,26 @@ package org.apache.royale.jewel.beads.controllers
             
             removeDismissHandler();
 		}
+
+		/**
+		 * @private
+		 */
+		private function inputSelectionChangeHandler(event:Event):void
+		{
+			var len:int = viewBead.textInput.text.length;
+			if(len == 10)
+			{
+				trace(viewBead.textInput.text);
+				var date:Date = new Date(viewBead.textInput.text);
+				model.selectedDate = date;
+			}
+		}
         
         /**
          * @private
          */
         private function dismissHandler(event:MouseEvent):void
         {
-            var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
             var popup:IUIBase = IUIBase(viewBead.popUp);
             
             COMPILE::SWF {

@@ -47,8 +47,7 @@ package org.apache.royale.jewel.itemRenderers
 		public function DropDownListItemRenderer()
 		{
 			super();
-
-            //className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            typeNames = "jewel item";
         }
 
         private var item:Option;

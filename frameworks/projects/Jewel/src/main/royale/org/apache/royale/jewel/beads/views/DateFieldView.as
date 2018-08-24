@@ -35,7 +35,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
-	import org.apache.royale.jewel.beads.controls.datefield.DateFieldTextInputRestrictBead;
+	import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
 	COMPILE::SWF
 	{
 		//import org.apache.royale.jewel.beads.views.TextInputView;
@@ -117,7 +117,7 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
 			_textInput = new TextInput();
-			_textInput.addBead(new DateFieldTextInputRestrictBead());
+			_textInput.addBead(new DateFieldMaskedTextInput());
 			
 			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
 			maxNumberCharacters.maxlength = 10;
@@ -269,7 +269,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function selectionChangeHandler(event:Event):void
+		private function selectionChangeHandler(event:Event = null):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
 			getHost().dispatchEvent(new Event("change"));
