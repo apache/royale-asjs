@@ -142,7 +142,6 @@ package org.apache.royale.jewel.beads.controllers
 			var len:int = viewBead.textInput.text.length;
 			if(len == 10)
 			{
-				trace(viewBead.textInput.text);
 				var date:Date = new Date(viewBead.textInput.text);
 				model.selectedDate = date;
 			}
