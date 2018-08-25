@@ -112,6 +112,7 @@ limitations under the License.
         <local:WelcomeSection isActive="true"/>
         <local:AlertPlayGround id="alert_panel"/>
         <local:ButtonPlayGround id="button_panel"/>
+        <local:NumericStepperPlayGround id="numericstepper_panel"/>
         <local:DateComponentsPlayGround id="datecomponents_panel"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>
         <local:CheckBoxPlayGround id="checkbox_panel"/>
