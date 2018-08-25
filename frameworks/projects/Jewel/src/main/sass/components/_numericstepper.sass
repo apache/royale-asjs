@@ -20,6 +20,10 @@
 // Jewel NumericStepper
 
 // NumericStepper variables
+$numericstepper-button-width: 22px
+$numericstepper-button-height: 10px
+$numericstepper-button-xoffset: calc(50% - #{$numericstepper-button-width/2})
+$numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
 
 .jewel.numericstepper    
     .jewel.textinput
@@ -43,9 +47,32 @@ j|NumericStepper
 .jewel.spinner
     display: inline-flex
     flex-direction: column
-    vertical-align: middle
+    vertical-align: top
     .jewel.button
         display: flex
+
+        &.up
+
+            &::after
+                content: ' '
+                position: absolute
+
+                width: $numericstepper-button-width
+                height: $numericstepper-button-height
+
+                left: $numericstepper-button-xoffset
+                top: $numericstepper-button-yoffset
+        &.down
+
+            &::after
+                content: ' '
+                position: absolute
+
+                width: $numericstepper-button-width
+                height: $numericstepper-button-height
+
+                left: $numericstepper-button-xoffset
+                top: $numericstepper-button-yoffset
     
 j|Spinner
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")

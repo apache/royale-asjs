@@ -139,7 +139,7 @@ j|Alert {
 
 .jewel.button {
   margin: 0;
-  padding: 0.72em 1.12em;
+  padding: 0.68em 1.12em;
   cursor: pointer;
   user-select: none;
   display: inline-flex;
@@ -2744,10 +2744,26 @@ j|NumericStepper {
 .jewel.spinner {
   display: inline-flex;
   flex-direction: column;
-  vertical-align: middle;
+  vertical-align: top;
 }
 .jewel.spinner .jewel.button {
   display: flex;
+}
+.jewel.spinner .jewel.button.up::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 10px;
+  left: calc(50% - 11px);
+  top: calc(50% - 5px);
+}
+.jewel.spinner .jewel.button.down::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 10px;
+  left: calc(50% - 11px);
+  top: calc(50% - 5px);
 }
 
 j|Spinner {
@@ -3049,7 +3065,7 @@ j|TableItemRenderer {
   -ms-appearance: none;
   appearance: none;
   margin: 0;
-  padding: 0.72em 1.12em;
+  padding: 0.68em 1.12em;
   max-width: 100%;
   flex: 1 0 auto;
   outline: none;
@@ -3125,7 +3141,7 @@ j|TitleBar {
 
 .jewel.togglebutton {
   margin: 0;
-  padding: 0.72em 1.12em;
+  padding: 0.68em 1.12em;
   cursor: pointer;
   user-select: none;
   display: inline-flex;

@@ -458,27 +458,31 @@ j|Card {
   border-radius: 0.25rem 0px 0px 0.25rem;
 }
 
+.jewel.spinner {
+  width: 40px;
+}
 .jewel.spinner .jewel.button {
   color: transparent;
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px;
   border-left: 0px;
-  padding: 6px;
-  height: 20px;
+  height: 19px;
+  padding: 0px;
 }
 .jewel.spinner .jewel.button.up {
   border-bottom-right-radius: 0px;
 }
 .jewel.spinner .jewel.button.up::after {
-  background-size: 40%;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M18.3333333,2.75 L17.4166667,2.75 L17.4166667,0.916666667 L15.5833333,0.916666667 L15.5833333,2.75 L6.41666667,2.75 L6.41666667,0.916666667 L4.58333333,0.916666667 L4.58333333,2.75 L3.66666667,2.75 C2.65833333,2.75 1.83333333,3.575 1.83333333,4.58333333 L1.83333333,19.25 C1.83333333,20.2583333 2.65833333,21.0833333 3.66666667,21.0833333 L18.3333333,21.0833333 C19.3416667,21.0833333 20.1666667,20.2583333 20.1666667,19.25 L20.1666667,4.58333333 C20.1666667,3.575 19.3416667,2.75 18.3333333,2.75 Z M18.3333333,19.25 L3.66666667,19.25 L3.66666667,7.33333333 L18.3333333,7.33333333 L18.3333333,19.25 Z' fill='%23808080' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  background-size: 46%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23808080' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.spinner .jewel.button.down {
   border-top-right-radius: 0px;
+  border-top-style: groove;
 }
 .jewel.spinner .jewel.button.down::after {
-  background-size: 40%;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M18.3333333,2.75 L17.4166667,2.75 L17.4166667,0.916666667 L15.5833333,0.916666667 L15.5833333,2.75 L6.41666667,2.75 L6.41666667,0.916666667 L4.58333333,0.916666667 L4.58333333,2.75 L3.66666667,2.75 C2.65833333,2.75 1.83333333,3.575 1.83333333,4.58333333 L1.83333333,19.25 C1.83333333,20.2583333 2.65833333,21.0833333 3.66666667,21.0833333 L18.3333333,21.0833333 C19.3416667,21.0833333 20.1666667,20.2583333 20.1666667,19.25 L20.1666667,4.58333333 C20.1666667,3.575 19.3416667,2.75 18.3333333,2.75 Z M18.3333333,19.25 L3.66666667,19.25 L3.66666667,7.33333333 L18.3333333,7.33333333 L18.3333333,19.25 Z' fill='%23808080' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  background-size: 46%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23808080' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 
 .jewel.radiobutton input + span::before {
