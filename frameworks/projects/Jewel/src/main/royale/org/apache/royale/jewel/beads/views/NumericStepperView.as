@@ -82,28 +82,19 @@ package org.apache.royale.jewel.beads.views
             
 			// add an input field
 			input = new TextInput();
-            // input.className = "NumericStepperInput";
-            // input.typeNames = "NumericStepperInput";
-			(value as IParent).addElement(input);
-			// COMPILE::JS
-			// {
-	        //     input.positioner.style.display = 'inline-block';
-    	    //     input.positioner.style.width = '100px';
-			// }
+            (value as IParent).addElement(input);
+			
 			// add a spinner
 			spinner = new Spinner();
 			spinner.addBead( (value as UIBase).model as IBead);
 			(value as IParent).addElement(spinner);
+			
 			// delay this until the resize event in JS
 			COMPILE::SWF
 			{
 				spinner.height = input.height;
 				spinner.width = input.height/2;
 			}
-			// COMPILE::JS
-			// {
-	        //     spinner.positioner.style.display = 'inline-block';
-			// }
 			
 			// listen for changes to the text input field which will reset the
 			// value. ideally, we should either set the input to accept only
@@ -160,11 +151,6 @@ package org.apache.royale.jewel.beads.views
 			{
 				strandWidth = (_strand as UIBase).width;
 			}
-			// COMPILE::JS
-			// {
-			// 	spinner.height = inputHeight;
-			// 	spinner.width = inputHeight/2;
-			// }
 			
 			// input.x = 0;
 			// input.y = 0;

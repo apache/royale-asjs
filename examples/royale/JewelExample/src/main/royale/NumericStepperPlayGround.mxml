@@ -29,7 +29,7 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:Card width="600">
+	<j:Card>
 		<html:H3 text="Jewel NumericStepper"/>
 
 		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
@@ -44,7 +44,7 @@ limitations under the License.
 
 		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 			<j:NumericStepper minimum="10" maximum="100"/>
-			<j:Label text="NumericStepper minimum='10' and maximum='100'"/>
+			<j:Label text="NumericStepper minimum='10' and maximum='100'" multiline="true" width="300"/>
 		</j:HGroup>
 
 		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">

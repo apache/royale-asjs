@@ -97,10 +97,10 @@ COMPILE::JS {
 				// Button(_decrement).addBead(new DownArrowButtonView());
 				// Button(_decrement).addBead(new ButtonAutoRepeatController());
 
-				// Button(_increment).x = 0;
-				// Button(_increment).y = 0;
-				// Button(_decrement).x = 0;
-				// Button(_decrement).y = Button(_increment).height;
+				Button(_increment).x = 0;
+				Button(_increment).y = 0;
+				Button(_decrement).x = 0;
+				Button(_decrement).y = Button(_increment).height;
 
 				UIBase(_strand).addChild(_decrement);
 				UIBase(_strand).addChild(_increment);
@@ -112,24 +112,17 @@ COMPILE::JS {
 			
             COMPILE::JS {
 				var host:UIBase = value as UIBase;
-				// depending on the surrounding layout, the element can be offset without this.
-				//host.element.style.position = "absolute";
-
+				
 				_increment = new Button();
                 _increment.addClass("up");
 				_increment.text = '\u25B2';
 				host.addElement(_increment);
-				// _increment.positioner.style.display = 'block';
-
+				
 				_decrement = new Button();
                 _decrement.addClass("down");
 				_decrement.text = '\u25BC';
-				// _decrement.positioner.style.display = 'block';
+				
 				host.addElement(_decrement);
-
-// add this in CSS!
-				// controller = new SpinnerMouseController();
-				// host.addBead(controller);
 			}
 				
 			COMPILE::SWF

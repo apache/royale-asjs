@@ -29,6 +29,11 @@ $numericstepper-border-radius: $border-radius
             width: $numericstepper-input-width
             border-radius: $numericstepper-border-radius 0px 0px $numericstepper-border-radius
 
+@media (max-width: $desktop)
+    .jewel.numericstepper
+        .jewel.textinput
+            input
+                border-radius: 0
 
 
 // Jewel Spinner
@@ -38,12 +43,12 @@ $numericstepper-border-radius: $border-radius
     width: 34px
     
     .jewel.button
-        color: transparent
-        border-bottom-left-radius: 0px
-        border-top-left-radius: 0px
-        border-left: 0px
-        height: 19px
         padding: 0px
+        height: 19px
+
+        color: transparent
+        border-radius: 0 $numericstepper-border-radius $numericstepper-border-radius 0
+        border-left: 0px
 
         &.up
             border-bottom-right-radius: 0px
@@ -54,10 +59,19 @@ $numericstepper-border-radius: $border-radius
                 
         &.down
             border-top-right-radius: 0px
-            // border-top: 0px
             border-top-style: groove
             
             &::after
                 background-size: 46%
                 background: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$default-font-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center
         
+@media (max-width: $desktop)
+    .jewel.spinner
+        .jewel.button
+            &.up
+                border: 1px solid darken($default-color, 15%)
+                border-radius: $numericstepper-border-radius 0 0 $numericstepper-border-radius
+            &.down
+                border: 1px solid darken($default-color, 15%)
+                border-radius: 0 $numericstepper-border-radius $numericstepper-border-radius 0
+                border-top-style: solid 
