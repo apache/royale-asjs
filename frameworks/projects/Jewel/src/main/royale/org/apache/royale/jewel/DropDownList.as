@@ -90,7 +90,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.3
          */
         public function get prompt():String
         {
@@ -290,7 +290,7 @@ package org.apache.royale.jewel
 			addElementToWrapper(this, 'select');
             (element as HTMLSelectElement).size = 1;
             
-            //goog.events.listen(element, 'change', changeHandler);
+            goog.events.listen(element, 'change', changeHandler);
             
             positioner = element;
             return element;
@@ -299,10 +299,10 @@ package org.apache.royale.jewel
         /**
          * @royaleignorecoercion HTMLSelectElement
          */
-        // COMPILE::JS
-        // protected function changeHandler(event:Event):void
-        // {
-        //     model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
-        // }
+        COMPILE::JS
+        protected function changeHandler(event:Event):void
+        {
+            model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
+        }
     }
 }

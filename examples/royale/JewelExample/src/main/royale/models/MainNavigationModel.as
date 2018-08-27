@@ -29,7 +29,7 @@ package models
             new NavigationLinkVO("Button", "button_panel", MaterialIconType.CROP_7_5),
             new NavigationLinkVO("NumericStepper", "numericstepper_panel", MaterialIconType.UNFOLD_MORE),
             new NavigationLinkVO("Date Components", "datecomponents_panel", MaterialIconType.DATE_RANGE),
-            new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
+            new NavigationLinkVO("DropDownList/ComboBox", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
             new NavigationLinkVO("CheckBox", "checkbox_panel", MaterialIconType.CHECK_BOX),
             new NavigationLinkVO("Icon", "miscelanea_panel", MaterialIconType.FACE),
             new NavigationLinkVO("Label", "label_panel", MaterialIconType.LABEL),

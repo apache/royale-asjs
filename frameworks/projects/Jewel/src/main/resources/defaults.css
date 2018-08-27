@@ -256,6 +256,9 @@ j|ControlBar {
 .jewel.combobox .jewel.textinput {
   width: 190px;
 }
+.jewel.combobox .jewel.button {
+  width: 2.8em;
+}
 .jewel.combobox .jewel.button::before {
   margin: 0;
   padding: 0;
@@ -516,6 +519,20 @@ j|DateField {
   touch-action: pan-y;
 }
 
+.jewel.dropdownlist {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0.68em 1.12em;
+  cursor: pointer;
+  display: inline-flex;
+  line-height: normal !important;
+  outline: none;
+}
+
 j|DropDownList {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
@@ -529,11 +546,6 @@ j|DropDownList {
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
     IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList");
-  }
-
-  j|DropDownListList {
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
-    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   }
 }
 .fonticon.size-18 {
