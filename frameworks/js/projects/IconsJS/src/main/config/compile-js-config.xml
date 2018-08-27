@@ -66,7 +66,7 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
-                <manifest>${project.basedir}/src/main/resources/icons-manifest.xml</manifest>
+                <manifest>../../../../../../projects/Icons/src/main/resources/icons-manifest.xml</manifest>
             </namespace>
         </namespaces>
 
