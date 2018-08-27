@@ -18,21 +18,21 @@ limitations under the License.
 
 -->
 <j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:j="library://ns.apache.org/royale/jewel"
-				xmlns:js="library://ns.apache.org/royale/basic"
-				xmlns:html="library://ns.apache.org/royale/html"
-				xmlns:models="models.*">
+				  xmlns:j="library://ns.apache.org/royale/jewel"
+				  xmlns:js="library://ns.apache.org/royale/basic"
+				  xmlns:html="library://ns.apache.org/royale/html"
+				  xmlns:models="models.*">
     
 	<fx:Script>
 		<![CDATA[      
             import org.apache.royale.collections.ArrayList;
 
             private function dropDownListHandler(event:Event):void {
-                dropDownListResult.text = "<strong>DropDownList selecteItem:</strong> " + dropdownlist.selectedItem;
+                dropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + dropdownlist.selectedItem;
             }
 
             private function comboboxSelectedItem(event:Event):void {
-                comboBoxResult.text = "<strong>ComboBox selecteItem:</strong> " + combobox.selectedItem;
+				comboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + combobox.selectedItem;
             }
 		]]>
 	</fx:Script>
@@ -51,7 +51,7 @@ limitations under the License.
 		
 		<j:DropDownList id="dropdownlist" dataProvider="{listModel.watchmen}" change="dropDownListHandler(event)"/>
 		
-		<j:Label id="dropDownListResult" html="&lt;strong>DropDownList selecteItem:&lt;/strong> "/>
+		<j:Label id="dropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
 
 		<!-- <j:DropDownList change="changeHandler(event)">
 			<j:dataProvider>
@@ -65,7 +65,7 @@ limitations under the License.
 		
 		<j:ComboBox id="combobox" dataProvider="{listModel.watchmen}" change="comboboxSelectedItem(event)"/>
 
-		<j:Label id="comboBoxResult" html="&lt;strong>ComboBox selecteItem:&lt;/strong> "/>
+		<j:Label id="comboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
 		
 	</j:Card>
 	

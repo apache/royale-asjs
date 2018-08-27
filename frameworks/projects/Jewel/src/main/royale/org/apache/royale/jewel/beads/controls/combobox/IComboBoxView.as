@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		function get textInputField():Object;
+		function get textinput():Object;
 		
 		/**
 		 *  The sub-component used for the button to activate the pop-up.
@@ -50,7 +50,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		function get popupButton():Object;
+		function get button():Object;
 		
 		/**
 		 *  The component housing the selection list.
@@ -60,7 +60,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		function get popUp():Object;
+		function get popup():Object;
 		
 		/**
 		 *  Determines whether or not the pop-up with the selection list is visible or not.

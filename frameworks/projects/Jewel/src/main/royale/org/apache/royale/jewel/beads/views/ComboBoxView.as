@@ -55,8 +55,7 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 		
-		private var input:TextInput;
-		
+		private var _textinput:TextInput;
 		/**
 		 *  The TextInput component of the ComboBox.
 		 * 
@@ -67,13 +66,12 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get textInputField():Object
+		public function get textinput():Object
 		{
-			return input;
+			return _textinput;
 		}
 		
-		private var button:Button;
-		
+		private var _button:Button;
 		/**
 		 *  The Button component of the ComboBox.
 		 * 
@@ -84,12 +82,12 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get popupButton():Object
+		public function get button():Object
 		{
-			return button;
+			return _button;
 		}
 		
-		private var list:StyledUIBase;
+		private var _list:List;
 		
 		/**
 		 *  The pop-up list component of the ComboBox.
@@ -101,9 +99,9 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get popUp():Object
+		public function get popup():Object
 		{
-			return list;
+			return _list;
 		}
 		
 		/**
@@ -117,39 +115,26 @@ package org.apache.royale.jewel.beads.views
 			
 			var host:StyledUIBase = value as StyledUIBase;
 			
-			input = new TextInput();
-			// input.className = "ComboBoxTextInput";			
+			_textinput = new TextInput();
 			
-			button = new Button();
-			// button.style = {
-			// 	"padding": 0,
-			// 	"margin": 0
-			// };
-			button.text = '\u25BC';
+			_button = new Button();
+			_button.text = '\u25BC';
 			
 			// if (isNaN(host.width)) input.width = 100;
 			
-			// COMPILE::JS 
-			// {
-			// 	// inner components are absolutely positioned so we want to make sure the host is the offset parent
-			// 	if (!host.element.style.position)
-			// 	{
-			// 		host.element.style.position = "relative";
-			// 	}
-			// }
-			host.addElement(input);
-			host.addElement(button);
+			host.addElement(_textinput);
+			host.addElement(_button);
 			
 			var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-			list = new popUpClass() as StyledUIBase;
-			list.visible = false;
+			_list = new popUpClass() as List;
+			_list.visible = false;
             // list.addClass("hidden");
 			
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			
-			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
+			// IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
 			
 			// set initial value and positions using default sizes
 			itemChangeAction();
@@ -168,7 +153,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popUpVisible():Boolean
 		{
-			if (list) return list.visible;
+			if (_list) return _list.visible;
 			else return false;
 		}
 		/**
@@ -177,25 +162,25 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function set popUpVisible(value:Boolean):void
 		{
-			if (value && !list.visible) {
+			if (value && !_list.visible) {
 				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-				list.model = model;
+				_list.model = model;
 				// list.width = input.width;
 				// list.height = 200;
-                list.visible = true;
+                _list.visible = true;
                 // list.removeClass("hidden");
 				
 				var origin:Point = new Point(0, button.y+button.height);
 				var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-				list.x = relocated.x
-				list.y = relocated.y;
+				_list.x = relocated.x
+				_list.y = relocated.y;
 				
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-				popupHost.popUpParent.addElement(list);
+				popupHost.popUpParent.addElement(_list);
 			}
-			else if (list.visible) {
-				UIUtils.removePopUp(list);
-                list.visible = false;
+			else if (_list.visible) {
+				UIUtils.removePopUp(_list);
+                _list.visible = false;
                 // list.addClass("hidden");
 			}
 		}
@@ -223,7 +208,10 @@ package org.apache.royale.jewel.beads.views
 		protected function itemChangeAction():void
 		{
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-			input.text = getLabelFromData(model,model.selectedItem);
+			_textinput.text = getLabelFromData(model, model.selectedItem);
+
+			// var host:StyledUIBase = StyledUIBase(_strand);
+			// host.dispatchEvent(new Event("change"));
 		}
 		
 		/**
@@ -232,7 +220,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function sizeChangeAction():void
 		{
-			var host:StyledUIBase = StyledUIBase(_strand);
+			//var host:StyledUIBase = StyledUIBase(_strand);
 			
 			// input.x = 0;
 			// input.y = 0;
