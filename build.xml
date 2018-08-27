@@ -793,7 +793,7 @@ limitations under the License.
         <ant dir="${basedir}/../royale-typedefs" target="wipe" />
         <mkdir dir="${staging-dir}/../royale-typedefs"/>
         <copy todir="${staging-dir}/../royale-typedefs" includeEmptyDirs="false" >
-            <fileset dir="${basedir}/../royale-typedefs" includes="**" />
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}" includes="**" />
         </copy>
     </target>
     
