@@ -2742,14 +2742,6 @@ j|Label {
   display: flex !important;
 }
 
-.visible {
-  display: none !important;
-}
-
-.hidden {
-  display: flex !important;
-}
-
 .jewel.list, .jewel.navigation {
   align-items: stretch;
   align-content: flex-start;
