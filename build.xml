@@ -790,7 +790,7 @@ limitations under the License.
     </target>
     
     <target name="stage-typedefs" >
-        <ant dir="${basedir}/../royale-typedefs" target="wipe" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" target="wipe" />
         <mkdir dir="${staging-dir}/../royale-typedefs"/>
         <copy todir="${staging-dir}/../royale-typedefs" includeEmptyDirs="false" >
             <fileset dir="${ROYALE_TYPEDEFS_HOME}" includes="**" />
