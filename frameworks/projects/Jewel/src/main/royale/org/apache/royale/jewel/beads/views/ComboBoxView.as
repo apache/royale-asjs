@@ -120,15 +120,8 @@ package org.apache.royale.jewel.beads.views
 			_button = new Button();
 			_button.text = '\u25BC';
 			
-			// if (isNaN(host.width)) input.width = 100;
-			
 			host.addElement(_textinput);
 			host.addElement(_button);
-			
-			var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-			_list = new popUpClass() as List;
-			_list.visible = false;
-            // list.addClass("hidden");
 			
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
@@ -162,13 +155,12 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function set popUpVisible(value:Boolean):void
 		{
-			if (value && !_list.visible) {
+			if (value) {
+				var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+				_list = new popUpClass() as List;
+
 				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 				_list.model = model;
-				// list.width = input.width;
-				// list.height = 200;
-                _list.visible = true;
-                // list.removeClass("hidden");
 				
 				var origin:Point = new Point(0, button.y+button.height);
 				var relocated:Point = PointUtils.localToGlobal(origin,_strand);
@@ -178,10 +170,9 @@ package org.apache.royale.jewel.beads.views
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
 				popupHost.popUpParent.addElement(_list);
 			}
-			else if (_list.visible) {
+			else {
 				UIUtils.removePopUp(_list);
-                _list.visible = false;
-                // list.addClass("hidden");
+				_list = null;
 			}
 		}
 		
@@ -209,9 +200,6 @@ package org.apache.royale.jewel.beads.views
 		{
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			_textinput.text = getLabelFromData(model, model.selectedItem);
-
-			// var host:StyledUIBase = StyledUIBase(_strand);
-			// host.dispatchEvent(new Event("change"));
 		}
 		
 		/**
