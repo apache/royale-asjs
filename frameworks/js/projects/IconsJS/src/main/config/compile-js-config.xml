@@ -61,16 +61,15 @@
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
-            <path-element>../../../../../libs/ReflectionJS.swc</path-element>
         </library-path>
-        
+
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
-                <manifest>../../../../../../projects/Network/src/main/resources/basic-manifest.xml</manifest>
+                <manifest>${project.basedir}/src/main/resources/icons-manifest.xml</manifest>
             </namespace>
         </namespaces>
-        
+
         <source-path>
             <path-element>../../../../../../projects/Icons/src/main/royale</path-element>
         </source-path>
