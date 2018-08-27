@@ -250,6 +250,51 @@ j|ControlBar {
     IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
   }
 }
+.jewel.combobox {
+  display: inline-flex;
+}
+.jewel.combobox .jewel.button::before {
+  margin: 0;
+  padding: 0;
+  line-height: 22px;
+}
+.jewel.combobox .jewel.button::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: calc(50% - 11px);
+  top: calc(50% - 11px);
+}
+
+j|ComboBox {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController");
+  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxList");
+}
+
+.jewel.list.combobox {
+  position: absolute;
+}
+
+j|ComboBoxList {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListSelectionModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+@media -royale-swf {
+  ComboBoxList {
+    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+  }
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::before {
   margin: 0;
   padding: 0;
@@ -300,12 +345,6 @@ j|DateChooser {
   margin: 0;
   padding: 0;
   line-height: 22px;
-  content: " ";
-  position: absolute;
-  left: calc(50% - 11px);
-  top: calc(50% - 11px);
-  width: 22px;
-  height: 22px;
 }
 .jewel.datefield .jewel.button::after {
   content: " ";
@@ -2695,7 +2734,15 @@ j|Label {
 }
 
 .hidden-phone, .hidden-tablet, .hidden-desktop, .hidden-widescreen {
-  display: block !important;
+  display: flex !important;
+}
+
+.visible {
+  display: none !important;
+}
+
+.hidden {
+  display: flex !important;
 }
 
 .jewel.list, .jewel.navigation {

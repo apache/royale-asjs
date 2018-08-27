@@ -27,16 +27,13 @@ limitations under the License.
 		<![CDATA[      
             import org.apache.royale.collections.ArrayList;
 
-            private function changeHandler(event:Event):void {
-                trace("ddl change");
+            private function dropDownListHandler(event:Event):void {
+                dropDownListResult.text = "<strong>DropDownList selecteItem:</strong> " + dropdownlist.selectedItem;
             }
 
-			private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
-			[Bindable("__NoChangeEvent__")]
-			public function get strings():Array
-			{
-				return _strings;
-			}
+            private function comboboxSelectedItem(event:Event):void {
+                comboBoxResult.text = "<strong>ComboBox selecteItem:</strong> " + combobox.selectedItem;
+            }
 		]]>
 	</fx:Script>
 
@@ -52,13 +49,24 @@ limitations under the License.
 		
 		<html:H3 text="Jewel DropDownList"/>
 		
-		<j:DropDownList dataProvider="{listModel.watchmen}" change="changeHandler(event)"/>
+		<j:DropDownList id="dropdownlist" dataProvider="{listModel.watchmen}" change="dropDownListHandler(event)"/>
+		
+		<j:Label id="dropDownListResult" html="&lt;strong>DropDownList selecteItem:&lt;/strong> "/>
 
 		<!-- <j:DropDownList change="changeHandler(event)">
 			<j:dataProvider>
 				<j:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
 			</j:dataProvider>
 		</j:DropDownList> -->
+	</j:Card>
+	<j:Card width="350">
+		
+		<html:H3 text="Jewel ComboBox"/>
+		
+		<j:ComboBox id="combobox" dataProvider="{listModel.watchmen}" change="comboboxSelectedItem(event)"/>
+
+		<j:Label id="comboBoxResult" html="&lt;strong>ComboBox selecteItem:&lt;/strong> "/>
+		
 	</j:Card>
 	
 </j:SectionContent>
