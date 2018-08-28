@@ -19,17 +19,17 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.jewel.supportClasses.table.TableCell;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 
 	/**
 	 *  Handles the removal of an itemRenderer in a Table component once the corresponding 
@@ -122,20 +122,23 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var parent:UIBase = itemRendererParent as UIBase;
 			var ir:ISelectableItemRenderer;
-			
-			// for(var j:int = 0; j < model.columns.length; j++)
-			// {
-				ir = parent.getElementAt(event.index) as ISelectableItemRenderer;
+			var cell:TableCell;
+			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			while (processedRow.numElements > 0) {
+				cell = processedRow.getElementAt(0) as TableCell;
+				ir = cell.getElementAt(0) as ISelectableItemRenderer;
 				itemRendererParent.removeItemRenderer(ir);
-			// }
+				cell.removeElement(ir);
+				processedRow.removeElement(cell);
+			}
+			itemRendererParent.removeElement(processedRow);
 
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = parent.numElements;
+			var n:int = itemRendererParent.numElements;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = parent.getElementAt(i) as ISelectableItemRenderer;
+				ir = itemRendererParent.getElementAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
 
