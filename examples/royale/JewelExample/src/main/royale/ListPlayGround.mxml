@@ -111,7 +111,7 @@ limitations under the License.
 				</j:HGroup>
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 					<j:Label text="Select list by item: "/>
-					<j:NumericStepper valueChange="list.selectedItem = simple.getItemAt(event.target.value)" minimum="0" maximum="11"/>
+					<j:NumericStepper valueChange="list.selectedItem = list.dataProvider.getItemAt(event.target.value)" minimum="0" maximum="11"/>
 				</j:HGroup>
 				<j:Button text="Assign new data" click="assignNewData()"/>
 			</j:Card>
@@ -151,8 +151,8 @@ limitations under the License.
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataContainer"/>
-				<j:DataContainer width="450">
+				<html:H3 text="Jewel DataContainer (with Flow Layout)"/>
+				<j:DataContainer>
 					<j:beads>
 						<j:HorizontalFlowLayout gap="3"/>
 						<js:ConstantBinding
