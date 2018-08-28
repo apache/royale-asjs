@@ -29,6 +29,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.jewel.supportClasses.table.TableCell;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 
     /**
 	 *  Handles the update of an itemRenderer in a Table component once the corresponding 
@@ -53,7 +55,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
-		
 		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IStrand
@@ -122,10 +123,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-            var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer;
+			var cell:TableCell;
+			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			var n:int = processedRow.numElements;
+			for (var i:int = 0; i < n; i++)
+			{
+				cell = processedRow.getElementAt(i) as TableCell;
+				ir = cell.getElementAt(0) as ISelectableItemRenderer;
+				setData(ir, event.item, event.index);
+			}
 			
-            setData(ir, event.item, event.index);
-
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
