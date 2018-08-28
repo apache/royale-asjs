@@ -426,6 +426,15 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
+     
+    public function get borderVisible():Boolean
+    {
+        return true;
+    }
+    public function set borderVisible(value:Boolean):void
+    {
+    }
+
     public function get paddingBottom():Object
     {
         if (GOOG::DEBUG)
