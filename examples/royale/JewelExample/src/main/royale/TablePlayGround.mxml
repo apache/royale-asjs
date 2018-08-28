@@ -38,7 +38,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel SimpleTable"/>
 
-				<j:SimpleTable width="500">
+				<j:SimpleTable>
 					<j:THead>
 						<j:TableRow>
 							<j:TableHeaderCell width="48">
@@ -185,15 +185,15 @@ limitations under the License.
 				<html:H3 text="Jewel Table"/>
 				<j:HGroup gap="3">
 					<j:VGroup gap="3">
-						<j:Table id="table" width="440" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
+						<j:Table id="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
 							<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
 							<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
 							<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
 							<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
 							<j:beads>
 								<j:AddTableItemRendererForArrayListData/>
-								<j:DynamicRemoveItemRendererForArrayListData/>
-								<j:DynamicUpdateItemRendererForArrayListData/>
+								<!-- <j:RemoveTableItemRendererForArrayListData/>
+								<j:UpdateTableItemRendererForArrayListData/> -->
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
 						</j:Table>

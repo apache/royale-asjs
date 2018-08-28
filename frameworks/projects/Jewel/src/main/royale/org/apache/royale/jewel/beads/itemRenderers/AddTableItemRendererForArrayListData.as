@@ -87,7 +87,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.3
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -203,7 +203,7 @@ package org.apache.royale.jewel.beads.itemRenderers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
+         *  @productversion Royale 0.9.3
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {

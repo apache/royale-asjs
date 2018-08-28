@@ -19,9 +19,8 @@
 package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.events.MouseEvent;
 
     COMPILE::JS
     {
@@ -72,13 +71,13 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set text(value:String):void
 		{
-             _text = value;
+            _text = value;
 			
 			COMPILE::JS
 			{
 			if(textNode != null)
 			{
-				textNode.nodeValue = text;
+				textNode.nodeValue = _text;
 			}	
 			}
 		}
@@ -100,6 +99,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super.data = value;
             text = getLabelFromData(this, value);
+			dispatchEvent(new Event("dataChange"));
 		}
 
         /**
