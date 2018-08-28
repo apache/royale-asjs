@@ -147,13 +147,13 @@ public class AreaChart extends ChartBase
     /**
      *  @private
      */
-    /*override*/ public function set horizontalAxis(value:IAxis):void
+    /*override*/  /* public function set horizontalAxis(value:IAxis):void
     {
         //if (value is CategoryAxis)
         //    CategoryAxis(value).padding = 0;
 
         //super.horizontalAxis = value;
-    }   
+    } */   
 
     //--------------------------------------------------------------------------
     //
@@ -229,7 +229,7 @@ public class AreaChart extends ChartBase
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public function setStyle(styleProp:String, newValue:*):void
+    override public function setStyle(styleProp:String, newValue:*):void
     {
         if (GOOG::DEBUG)
             trace("setStyle not implemented");
