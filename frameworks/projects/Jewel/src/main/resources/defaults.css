@@ -2799,8 +2799,8 @@ j|Navigation {
   }
   .jewel.numericstepper .jewel.textinput {
     z-index: 1;
-    position: absolute;
-    left: 58px;
+    position: relative;
+    left: 38px;
   }
 }
 j|NumericStepper {
@@ -2834,17 +2834,18 @@ j|NumericStepper {
 }
 
 @media (max-width: 992px) {
+  .jewel.spinner {
+    position: relative;
+    left: -112px;
+    flex-direction: row;
+    width: auto;
+  }
   .jewel.spinner .jewel.button {
     width: 39px;
     height: 38px;
   }
-  .jewel.spinner .jewel.button.up {
-    position: absolute;
-    left: 20px;
-  }
   .jewel.spinner .jewel.button.down {
-    position: absolute;
-    left: 169px;
+    left: 110px;
   }
 }
 j|Spinner {
