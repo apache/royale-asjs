@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.StyledUIBase;
-
     import org.apache.royale.core.IComboBoxModel;
-    import org.apache.royale.jewel.beads.models.ComboBoxModel;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
@@ -40,7 +41,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.3
 	 */
 	public class ComboBox extends StyledUIBase
 	{
@@ -50,7 +51,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
 		 */
 		public function ComboBox()
 		{
@@ -65,15 +66,41 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProvider():Object
 		{
-			return IComboBoxModel(model).dataProvider;
+			return IDataProviderModel(model).dataProvider;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
 		public function set dataProvider(value:Object):void
 		{
-			IComboBoxModel(model).dataProvider = value;
+			IDataProviderModel(model).dataProvider = value;
+		}
+
+		/**
+		 *  The name of field within the data used for display. Each item of the
+		 *  data should have a property with this name.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function get labelField():String
+		{
+			return IDataProviderModel(model).labelField;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function set labelField(value:String):void
+		{
+            IDataProviderModel(model).labelField = value;
 		}
 		
         [Bindable("change")]
@@ -84,35 +111,58 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		public function get selectedIndex():int
 		{
-			return IComboBoxModel(model).selectedIndex;
+			return ISelectionModel(model).selectedIndex;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
 		public function set selectedIndex(value:int):void
 		{
-			IComboBoxModel(model).selectedIndex = value;
+			ISelectionModel(model).selectedIndex = value;
 		}
 		
         [Bindable("change")]
 		/**
-		 *  The item that is currently selected. Changing this item changes
-		 *  the selectedIndex.
+		 *  The item currently selected. Changing this value also
+		 *  changes the selectedIndex property.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		public function get selectedItem():Object
 		{
-			return IComboBoxModel(model).selectedItem;
+			return ISelectionModel(model).selectedItem;
 		}
 		public function set selectedItem(value:Object):void
 		{
-			IComboBoxModel(model).selectedItem = value;
+			ISelectionModel(model).selectedItem = value;
 		}
 		
+		/**
+		 *  The presentation model for the list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 */
+		public function get presentationModel():IListPresentationModel
+		{
+			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			if (presModel == null) {
+				presModel = new ListPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
+		}
 	}
 }

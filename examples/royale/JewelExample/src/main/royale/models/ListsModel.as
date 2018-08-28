@@ -41,6 +41,23 @@ package models
 			return _watchmen;
 		}
 
+		private var _avengers:ArrayList = new ArrayList([
+			{nickname: "Iron Man"},
+			{nickname: "Hulk"}, 
+			{nickname: "Thor"},
+			{nickname: "Captain America"},
+            {nickname: "Black Widow"},
+            {nickname: "Hawkeye"},
+            {nickname: "Vision"},
+            {nickname: "Scarlet Witch"},
+            {nickname: "Spiderman"}
+		]);
+		public function get avengers():ArrayList
+		{
+			return _avengers;
+		}
+		
+
 		
 		/**
 		 * Used in the List example.

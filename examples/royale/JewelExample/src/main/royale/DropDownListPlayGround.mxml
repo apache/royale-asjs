@@ -27,12 +27,20 @@ limitations under the License.
 		<![CDATA[      
             import org.apache.royale.collections.ArrayList;
 
-            private function dropDownListHandler(event:Event):void {
-                dropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + dropdownlist.selectedItem;
+            private function watchmenDropDownListHandler(event:Event):void {
+                watchmenDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem;
             }
 
-            private function comboboxSelectedItem(event:Event):void {
-				comboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + combobox.selectedItem;
+            private function watchmenComboBoxSelectedItem(event:Event):void {
+				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem;
+            }
+            
+			private function avengerswatchmenDropDownListHandler(event:Event):void {
+                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.nickname;
+            }
+
+            private function avengerswatchmenComboBoxSelectedItem(event:Event):void {
+				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.nickname;
             }
 		]]>
 	</fx:Script>
@@ -54,15 +62,9 @@ limitations under the License.
 				<html:H3 text="Jewel DropDownList"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:DropDownList id="dropdownlist" dataProvider="{listModel.watchmen}" change="dropDownListHandler(event)"/>
-					<j:Label id="dropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+					<j:DropDownList dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler(event)"/>
+					<j:Label id="watchmenDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
 				</j:HGroup>
-
-				<!-- <j:DropDownList change="changeHandler(event)">
-					<j:dataProvider>
-						<j:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
-					</j:dataProvider>
-				</j:DropDownList> -->
 			</j:Card>
 
 		</j:GridCell>
@@ -76,8 +78,42 @@ limitations under the License.
 				<html:H3 text="Jewel ComboBox"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:ComboBox id="combobox" dataProvider="{listModel.watchmen}" change="comboboxSelectedItem(event)"/>
-					<j:Label id="comboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
+					<j:ComboBox dataProvider="{listModel.watchmen}" change="watchmenComboBoxSelectedItem(event)"/>
+					<j:Label id="watchmenComboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
+				</j:HGroup>
+				
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+	
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				
+				<html:H3 text="Jewel DropDownList"/>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:DropDownList labelField="nickname" dataProvider="{listModel.avengers}" change="avengerswatchmenDropDownListHandler(event)"/>
+					<j:Label id="avengersDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+				</j:HGroup>
+
+			</j:Card>
+
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+
+			<j:Card>
+				
+				<html:H3 text="Jewel ComboBox"/>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:ComboBox labelField="nickname" dataProvider="{listModel.avengers}" change="avengerswatchmenComboBoxSelectedItem(event)"/>
+					<j:Label id="avengersComboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
 				</j:HGroup>
 				
 			</j:Card>
