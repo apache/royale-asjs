@@ -26,19 +26,19 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
             private function watchmenDropDownListHandler(event:Event):void {
-                watchmenDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + (event.target as DropDownList).selectedItem;
+                watchmenDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem;
             }
 
             private function watchmenComboBoxSelectedItem(event:Event):void {
-				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + (event.target as ComboBox).selectedItem;
+				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem;
             }
             
 			private function avengersDropDownListHandler(event:Event):void {
-                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + (event.target as DropDownList).selectedItem.nickname;
+                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.nickname;
             }
 
             private function avengersComboBoxSelectedItem(event:Event):void {
-				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + (event.target as ComboBox).selectedItem.nickname;
+				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.nickname;
             }
 		]]>
 	</fx:Script>

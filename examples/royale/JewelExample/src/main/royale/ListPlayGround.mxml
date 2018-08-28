@@ -34,6 +34,7 @@ limitations under the License.
 
             private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons", "Apples", "Cherries", "Coconuts", "Figs", "Grapes", "Kiwis", "Mangos"]);
 
+			[Bindable]
 			public function get simple():ArrayList
 			{
 				return _simple
@@ -102,13 +103,7 @@ limitations under the License.
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel List"/>
-				<j:List id="list" width="200" height="300" change="onChange(event)">
-					<j:beads>
-						<js:ConstantBinding
-							sourcePropertyName="simple"
-							destinationPropertyName="dataProvider" />
-					</j:beads>
-				</j:List>
+				<j:List id="list" width="200" height="300" dataProvider="{simple}" change="onChange(event)"/>
 				<j:Label id="selected"/>
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 					<j:Label text="Select List Index: "/>

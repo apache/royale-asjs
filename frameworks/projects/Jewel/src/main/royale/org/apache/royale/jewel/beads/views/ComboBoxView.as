@@ -25,7 +25,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
@@ -190,6 +189,8 @@ package org.apache.royale.jewel.beads.views
 		protected function handleItemChange(event:Event):void
 		{
 			itemChangeAction();
+
+			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 		}
 		
 		/**
