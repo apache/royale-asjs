@@ -20,25 +20,26 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 
-    /**
-	 *  Handles the update of an itemRenderer in a List component once the corresponding 
-	 *  datum has been updated from the IDataProviderModel.
+	/**
+	 *  Handles the removal of an itemRenderer in a Table component once the corresponding 
+	 *  datum has been removed from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class UpdateListItemRendererForArrayListData implements IBead
+	public class RemoveTableItemRendererForArrayListData implements IBead
 	{
 		/**
 		 *  Constructor
@@ -48,13 +49,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function UpdateListItemRendererForArrayListData()
+		public function RemoveTableItemRendererForArrayListData()
 		{
 		}
 
-		protected var _strand:IStrand;
-
-        protected var labelField:String;
+		private var _strand:IStrand;
 
 		/**
 		 *  @copy org.apache.royale.core.IStrand
@@ -83,10 +82,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			labelField = _dataProviderModel.labelField;
-
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
-
+			
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
@@ -100,28 +97,36 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (!dp)
 				return;
 			
-			// listen for individual items being updated in the future.
-			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
+			// listen for individual items being removed in the future.
+			dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 		}
 
 		/**
-		 *  Handles the itemUpdated event by updating the item.
+		 *  Handles the itemRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		protected function handleItemUpdated(event:CollectionEvent):void
+		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-            var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
+			var parent:UIBase = itemRendererParent as UIBase;
+			var ir:ISelectableItemRenderer = parent.getElementAt(event.index) as ISelectableItemRenderer;
+			itemRendererParent.removeItemRenderer(ir);
 			
-            setData(ir, event.item, event.index);
+			// adjust the itemRenderers' index to adjust for the shift
+			var n:int = parent.numElements;
+			for (var i:int = event.index; i < n; i++)
+			{
+				ir = parent.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
+			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
-		private var _dataProviderModel:IDataProviderModel;
+		private var _dataProviderModel: IDataProviderModel;
 
 		/**
 		 *  The org.apache.royale.core.IDataProviderModel that contains the
@@ -132,7 +137,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function get dataProviderModel():IDataProviderModel
+		public function get dataProviderModel(): IDataProviderModel
 		{
 			if (_dataProviderModel == null) {
 				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
@@ -159,14 +164,5 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 			return _itemRendererParent;
 		}
-
-        /**
-         * @private
-         */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
-        {
-            itemRenderer.index = index;
-            itemRenderer.data = data;
-        }
 	}
 }

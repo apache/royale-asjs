@@ -29,8 +29,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 
 	/**
-	 * Handles the removal of all itemRenderers once the all items has been removed
-	 * from the IDataProviderModel. This works the same for List and Table components
+	 *  Handles the removal of all itemRenderers once the all items has been removed
+	 *  from the IDataProviderModel. This works the same for List and Table components
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	public class RemoveAllItemRendererForArrayListData implements IBead
 	{
 		/**
-		 * Constructor
+		 *  Constructor
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		private var _strand:IStrand;
 
 		/**
-		 * @copy org.apache.royale.core.IStrand
+		 *  @copy org.apache.royale.core.IStrand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -105,7 +105,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

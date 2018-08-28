@@ -192,8 +192,8 @@ limitations under the License.
 							<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
 							<j:beads>
 								<j:AddTableItemRendererForArrayListData/>
-								<!-- <j:RemoveTableItemRendererForArrayListData/>
-								<j:UpdateTableItemRendererForArrayListData/> -->
+								<j:RemoveTableItemRendererForArrayListData/>
+								<j:UpdateTableItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
 						</j:Table>
@@ -240,14 +240,17 @@ limitations under the License.
 
 			public function removeItemAt():void
 			{
-				tablesModel.guitarrists.removeItemAt(0);
+				(table.dataProvider as ArrayList).removeAll();
+				// tablesModel.guitarrists.removeItemAt(0);
 			}
 
 			public function updateFirstItem():void
 			{
-				var item:Object = tablesModel.guitarrists.getItemAt(0);
+				var item:Object = (table.dataProvider as ArrayList).getItemAt(0);
 				item.guitarrist = "Mango";
-				tablesModel.guitarrists.itemUpdated(item);
+				item.year = 2001;
+				(table.dataProvider as ArrayList).itemUpdated(item);
+				// tablesModel.guitarrists.itemUpdated(item);
 			}
 
 			public function removeAllData():void

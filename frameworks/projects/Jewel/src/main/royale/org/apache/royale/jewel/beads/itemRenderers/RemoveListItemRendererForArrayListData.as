@@ -31,8 +31,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 
 	/**
-	 * Handles the removal of an itemRenderer once the corresponding datum has been removed
-	 * from the IDataProviderModel.
+	 *  Handles the removal of an itemRenderer in a List component once the corresponding 
+	 *  datum has been removed from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -42,7 +42,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	public class RemoveListItemRendererForArrayListData implements IBead
 	{
 		/**
-		 * Constructor
+		 *  Constructor
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		private var _strand:IStrand;
 
 		/**
-		 * @copy org.apache.royale.core.IStrand
+		 *  @copy org.apache.royale.core.IStrand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -97,12 +97,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (!dp)
 				return;
 			
-			// listen for individual items being added in the future.
+			// listen for individual items being removed in the future.
 			dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

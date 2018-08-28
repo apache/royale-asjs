@@ -30,7 +30,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 
     /**
-	 *  Handles the update of an itemRenderer in a List component once the corresponding 
+	 *  Handles the update of an itemRenderer in a Table component once the corresponding 
 	 *  datum has been updated from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
@@ -38,7 +38,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class UpdateListItemRendererForArrayListData implements IBead
+	public class UpdateTableItemRendererForArrayListData implements IBead
 	{
 		/**
 		 *  Constructor
@@ -48,7 +48,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
 		 */
-		public function UpdateListItemRendererForArrayListData()
+		public function UpdateTableItemRendererForArrayListData()
 		{
 		}
 
@@ -92,7 +92,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 		
 		/**
-		 *  @private
+		 * @private
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -100,7 +100,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (!dp)
 				return;
 			
-			// listen for individual items being updated in the future.
+			// listen for individual items being added in the future.
 			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 		}
 

@@ -72,6 +72,7 @@ limitations under the License.
 			public function removeItemAt():void
 			{
 				(iconList.dataProvider as ArrayList).removeItemAt(0);
+				// listModel.iconListData.removeItemAt(0);
 			}
 
 			public function updateFirstItem():void
@@ -80,6 +81,7 @@ limitations under the License.
 				item.label = "What??";
 				item.icon = MaterialIconType.ACCESSIBILITY;
 				(iconList.dataProvider as ArrayList).itemUpdated(item);
+				// listModel.iconListData.itemUpdated(item);
 			}
 
 			public function removeAllData():void

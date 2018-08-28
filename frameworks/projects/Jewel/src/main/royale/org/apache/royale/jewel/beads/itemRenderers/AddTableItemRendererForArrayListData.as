@@ -41,8 +41,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.collections.ICollectionView;
 
     /**
-	 * Handles the adding of an itemRenderer in a Table component once the corresponding datum has been added
-	 * from the IDataProviderModel.
+	 *  Handles the adding of an itemRenderer in a Table component once the corresponding datum has been added
+	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -52,7 +52,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	public class AddTableItemRendererForArrayListData implements IBead
 	{
 		/**
-		 * Constructor
+		 *  Constructor
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -68,7 +68,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         protected var labelField:String;
 
 		/**
-		 * @copy org.apache.royale.core.IStrand
+		 *  @copy org.apache.royale.core.IStrand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -121,7 +121,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
