@@ -106,8 +106,12 @@ limitations under the License.
 				<j:List id="list" width="200" height="300" dataProvider="{simple}" change="onChange(event)"/>
 				<j:Label id="selected"/>
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:Label text="Select List Index: "/>
+					<j:Label text="Select list by index: "/>
 					<j:NumericStepper valueChange="list.selectedIndex = event.target.value" minimum="0" maximum="11"/>
+				</j:HGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:Label text="Select list by item: "/>
+					<j:NumericStepper valueChange="list.selectedItem = simple.getItemAt(event.target.value)" minimum="0" maximum="11"/>
 				</j:HGroup>
 				<j:Button text="Assign new data" click="assignNewData()"/>
 			</j:Card>
