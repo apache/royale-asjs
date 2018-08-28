@@ -110,7 +110,11 @@ limitations under the License.
 					</j:beads>
 				</j:List>
 				<j:Label id="selected"/>
-				<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:Label text="Select List Index: "/>
+					<j:NumericStepper valueChange="list.selectedIndex = event.target.value" minimum="0" maximum="11"/>
+				</j:HGroup>
+				<j:Button text="Assign new data" click="assignNewData()"/>
 			</j:Card>
 		</j:GridCell>
 

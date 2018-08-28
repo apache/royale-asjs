@@ -34,7 +34,7 @@ package org.apache.royale.jewel.beads.views
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.9.3
      */
     public class DropDownListView extends DataContainerView
     {
@@ -51,7 +51,7 @@ package org.apache.royale.jewel.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
+         *  @productversion Royale 0.9.3
          */
         override public function set strand(value:IStrand):void
         {
@@ -113,11 +113,6 @@ package org.apache.royale.jewel.beads.views
             super.handleInitComplete(event);
             
             dataModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-
-            // COMPILE::JS
-            // {
-            //     host.element.classList.add("DropDownList");
-            // }
         }
 
         COMPILE::JS

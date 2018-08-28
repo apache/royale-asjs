@@ -24,23 +24,21 @@ limitations under the License.
 				  xmlns:models="models.*">
     
 	<fx:Script>
-		<![CDATA[      
-            import org.apache.royale.collections.ArrayList;
-
+		<![CDATA[
             private function watchmenDropDownListHandler(event:Event):void {
-                watchmenDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem;
+                watchmenDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + (event.target as DropDownList).selectedItem;
             }
 
             private function watchmenComboBoxSelectedItem(event:Event):void {
-				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem;
+				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + (event.target as ComboBox).selectedItem;
             }
             
-			private function avengerswatchmenDropDownListHandler(event:Event):void {
-                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.nickname;
+			private function avengersDropDownListHandler(event:Event):void {
+                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + (event.target as DropDownList).selectedItem.nickname;
             }
 
-            private function avengerswatchmenComboBoxSelectedItem(event:Event):void {
-				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.nickname;
+            private function avengersComboBoxSelectedItem(event:Event):void {
+				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + (event.target as ComboBox).selectedItem.nickname;
             }
 		]]>
 	</fx:Script>
@@ -54,31 +52,39 @@ limitations under the License.
 	</j:model>
 	
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				
-				<html:H3 text="Jewel DropDownList"/>
+				<html:H3 text="Jewel DropDownList (String Collection)"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:DropDownList dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler(event)"/>
+					<j:DropDownList id="watchmenDropDownList" dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler(event)"/>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+						<j:Label text="Select Index: "/>
+						<j:NumericStepper valueChange="watchmenDropDownList.selectedIndex = event.target.value" minimum="0" maximum="5"/>
+					</j:HGroup>
 					<j:Label id="watchmenDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
 				</j:HGroup>
 			</j:Card>
 
 		</j:GridCell>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
 				
-				<html:H3 text="Jewel ComboBox"/>
+				<html:H3 text="Jewel ComboBox (String Collection)"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:ComboBox dataProvider="{listModel.watchmen}" change="watchmenComboBoxSelectedItem(event)"/>
+					<j:ComboBox id="watchmenComboBox" dataProvider="{listModel.watchmen}" change="watchmenComboBoxSelectedItem(event)"/>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+						<j:Label text="Select Index: "/>
+						<j:NumericStepper valueChange="watchmenComboBox.selectedIndex = event.target.value" minimum="0" maximum="5"/>
+					</j:HGroup>
 					<j:Label id="watchmenComboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
 				</j:HGroup>
 				
@@ -87,15 +93,19 @@ limitations under the License.
 	</j:Grid>
 	
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				
-				<html:H3 text="Jewel DropDownList"/>
+				<html:H3 text="Jewel DropDownList (Object Collection)"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:DropDownList labelField="nickname" dataProvider="{listModel.avengers}" change="avengerswatchmenDropDownListHandler(event)"/>
+					<j:DropDownList id="avengersDropDownList" labelField="nickname" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler(event)"/>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+						<j:Label text="Select Index: "/>
+						<j:NumericStepper valueChange="avengersDropDownList.selectedIndex = event.target.value" minimum="0" maximum="8"/>
+					</j:HGroup>
 					<j:Label id="avengersDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
 				</j:HGroup>
 
@@ -103,16 +113,20 @@ limitations under the License.
 
 		</j:GridCell>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
 				
-				<html:H3 text="Jewel ComboBox"/>
+				<html:H3 text="Jewel ComboBox (Object Collection)"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:ComboBox labelField="nickname" dataProvider="{listModel.avengers}" change="avengerswatchmenComboBoxSelectedItem(event)"/>
+					<j:ComboBox id="avengersComboBox" labelField="nickname" dataProvider="{listModel.avengers}" change="avengersComboBoxSelectedItem(event)"/>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+						<j:Label text="Select Index: "/>
+						<j:NumericStepper valueChange="avengersComboBox.selectedIndex = event.target.value" minimum="0" maximum="8"/>
+					</j:HGroup>
 					<j:Label id="avengersComboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
 				</j:HGroup>
 				
