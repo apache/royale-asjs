@@ -62,11 +62,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		public function AddTableItemRendererForArrayListData()
 		{
 		}
-
+		
 		protected var _strand:IStrand;
-
-        protected var labelField:String;
-
 		/**
 		 *  @copy org.apache.royale.core.IStrand
 		 *
@@ -80,7 +77,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
+
+        protected var labelField:String;
 		
+		protected var model:TableModel;
+
 		/**
 		 *  finish setup
 		 *
@@ -132,8 +133,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			var column:TableColumn;
-			var tbody:TBodyContentArea = itemRendererParent as TBodyContentArea;
-            var ir:ITextItemRenderer;
+			var ir:ITextItemRenderer;
 
 			var index:int = event.index * model.columns.length;
 			for(var j:int = 0; j < model.columns.length; j++)
@@ -145,7 +145,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					ir = column.itemRenderer.newInstance() as ITextItemRenderer;
 				} else
 				{
-					ir = itemRendererFactory.createItemRenderer(tbody) as ITextItemRenderer;
+					ir = itemRendererFactory.createItemRenderer(itemRendererParent) as ITextItemRenderer;
 				}
 
 				labelField =  column.dataField;
@@ -163,11 +163,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = tbody.numElements;
+			var n:int = itemRendererParent.numElements;
 			var d:DataItemRenderer;
 			for (var i:int = event.index; i < n; i++)
 			{
-				d = tbody.getItemRendererForIndex(i) as DataItemRenderer;
+				d = itemRendererParent.getItemRendererForIndex(i) as DataItemRenderer;
 				d.index = i;
 			}
 
@@ -212,8 +212,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 
             return _itemRendererFactory;
         }
-
-		protected var model:TableModel;
 
         /**
          * @private

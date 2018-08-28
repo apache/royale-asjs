@@ -109,7 +109,7 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'li');
+			addElementToWrapper(this, 'li');
             
 			if(MXMLDescriptor == null)
 			{

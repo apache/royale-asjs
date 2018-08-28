@@ -91,12 +91,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dataProviderChangeHandler(null);
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
-		 *  @private
+		 * @private
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
+			}
+			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			

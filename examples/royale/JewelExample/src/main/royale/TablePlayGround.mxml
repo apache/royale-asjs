@@ -240,7 +240,7 @@ limitations under the License.
 
 			public function removeItemAt():void
 			{
-				(table.dataProvider as ArrayList).removeAll();
+				(table.dataProvider as ArrayList).removeItemAt(0);
 				// tablesModel.guitarrists.removeItemAt(0);
 			}
 

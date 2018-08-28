@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.beads.models.TableModel;
 
     /**
 	 *  Handles the update of an itemRenderer in a Table component once the corresponding 
@@ -52,10 +53,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
+		
 		protected var _strand:IStrand;
-
-        protected var labelField:String;
-
 		/**
 		 *  @copy org.apache.royale.core.IStrand
 		 *
@@ -69,7 +68,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
+
+        protected var labelField:String;
 		
+		protected var model:TableModel;
+
 		/**
 		 *  finish setup
 		 *
@@ -82,21 +85,26 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
-			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			labelField = _dataProviderModel.labelField;
+			model = _strand.getBeadByType(ISelectionModel) as TableModel;
+			labelField = model.labelField;
 
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
+			model.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
 		 * @private
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
+			}
+			dp = model.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
@@ -119,25 +127,6 @@ package org.apache.royale.jewel.beads.itemRenderers
             setData(ir, event.item, event.index);
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-		}
-
-		private var _dataProviderModel:IDataProviderModel;
-
-		/**
-		 *  The org.apache.royale.core.IDataProviderModel that contains the
-		 *  data source.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get dataProviderModel():IDataProviderModel
-		{
-			if (_dataProviderModel == null) {
-				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			}
-			return _dataProviderModel;
 		}
 
 		private var _itemRendererParent: IItemRendererParent;
