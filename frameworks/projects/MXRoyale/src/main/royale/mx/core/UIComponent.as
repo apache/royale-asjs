@@ -3070,10 +3070,7 @@ COMPILE::JS
     { override }
     public function removeChildAt(index:int):IUIComponent
     {
-        if (GOOG::DEBUG)
-            trace("removeChildAt not implemented");
-        
-        return null;
+        return removeElement(getElementAt(index)) as IUIComponent;
     }
 
     /**
