@@ -34,7 +34,7 @@ package org.apache.royale.jewel.supportClasses.table
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class TableCell extends Group
 	{
@@ -44,7 +44,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function TableCell()
 		{
@@ -61,7 +61,7 @@ package org.apache.royale.jewel.supportClasses.table
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get expandColumns():Number
 		{
@@ -88,7 +88,7 @@ package org.apache.royale.jewel.supportClasses.table
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get expandRows():Number
 		{

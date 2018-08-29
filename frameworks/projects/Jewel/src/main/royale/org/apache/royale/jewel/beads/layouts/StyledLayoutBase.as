@@ -34,7 +34,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class StyledLayoutBase extends LayoutBase implements IBeadLayout
 	{
@@ -44,7 +44,7 @@ package org.apache.royale.jewel.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function StyledLayoutBase()
 		{
@@ -67,7 +67,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
@@ -100,7 +100,7 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @langversion 3.0
  		 *  @playerversion Flash 10.2
  		 *  @playerversion AIR 2.6
- 		 *  @productversion Royale 0.9.3
+ 		 *  @productversion Royale 0.9.4
  		 */
 		protected function initStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
@@ -147,7 +147,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsHorizontalAlign():String
         {
@@ -178,7 +178,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsVerticalAlign():String
         {
@@ -206,7 +206,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsExpand():Boolean
         {

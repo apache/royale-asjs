@@ -28,7 +28,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public interface IComboBoxView extends IBeadView
 	{
@@ -38,7 +38,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		function get textinput():Object;
 		
@@ -48,7 +48,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		function get button():Object;
 		
@@ -58,7 +58,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		function get popup():Object;
 		
@@ -68,7 +68,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		function get popUpVisible():Boolean;
 		function set popUpVisible(value:Boolean):void;

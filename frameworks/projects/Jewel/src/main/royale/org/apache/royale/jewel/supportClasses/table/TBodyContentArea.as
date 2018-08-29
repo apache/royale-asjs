@@ -44,7 +44,7 @@ package org.apache.royale.jewel.supportClasses.table
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class TBodyContentArea extends ContainerContentArea implements IItemRendererParent
 	{
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function TBodyContentArea()
 		{
@@ -85,7 +85,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
@@ -119,7 +119,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
@@ -163,7 +163,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function removeItemRenderer(renderer:IItemRenderer):void
 		{
@@ -182,7 +182,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function removeAllItemRenderers():void
 		{
@@ -205,7 +205,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function getItemRendererForIndex(index:int):IItemRenderer
 		{
@@ -221,7 +221,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function updateAllItemRenderers():void
 		{

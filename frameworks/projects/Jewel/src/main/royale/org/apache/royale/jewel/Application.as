@@ -63,7 +63,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
     [Event(name="initialize", type="org.apache.royale.events.Event")]
 
@@ -77,7 +77,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
     [Event(name="preinitialize", type="org.apache.royale.events.Event")]
 
@@ -89,7 +89,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
     [Event(name="viewChanged", type="org.apache.royale.events.Event")]
 
@@ -100,7 +100,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
     [Event(name="applicationComplete", type="org.apache.royale.events.Event")]
     
@@ -121,7 +121,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
     public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IRenderedObject
     {
@@ -131,7 +131,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function Application()
         {
@@ -195,7 +195,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         COMPILE::SWF
         protected function initialize():void
@@ -247,7 +247,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function set valuesImpl(value:IValuesImpl):void
         {
@@ -264,7 +264,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function get initialView():IApplicationView
         {
@@ -281,7 +281,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         [Bindable("__NoChangeEvent__")]
         COMPILE::SWF
@@ -296,7 +296,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         [Bindable("__NoChangeEvent__")]
         COMPILE::JS
@@ -324,7 +324,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         [Bindable("__NoChangeEvent__")]
         public function get controller():Object
@@ -347,7 +347,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function get popUpParent():IParent
         {
@@ -364,7 +364,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function get MXMLDescriptor():Array
         {
@@ -388,7 +388,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
     	public function generateMXMLAttributes(data:Array):void
         {
@@ -418,7 +418,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          * 
          *  @royalesuppresspublicvarwarning
          */
@@ -433,7 +433,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         COMPILE::SWF
         public function addBead(bead:IBead):void
@@ -450,7 +450,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         COMPILE::SWF
         public function getBeadByType(classOrInterface:Class):IBead
@@ -469,7 +469,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         COMPILE::SWF
         public function removeBead(value:IBead):IBead
@@ -493,7 +493,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.core.IUIBase
          *  @royaleignorecoercion HTMLElement
          */
@@ -523,7 +523,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
@@ -560,7 +560,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function getElementAt(index:int):IChild
         {
@@ -579,7 +579,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function getElementIndex(c:IChild):int
         {
@@ -607,7 +607,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion HTMLElement
          */
         public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
@@ -631,7 +631,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function get numElements():int
         {

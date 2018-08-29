@@ -47,7 +47,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class HorizontalFlowLayout extends SimpleHorizontalLayout implements ILayoutStyleProperties
 	{
@@ -57,7 +57,7 @@ package org.apache.royale.jewel.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function HorizontalFlowLayout()
 		{
@@ -75,7 +75,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
@@ -105,7 +105,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get paddingTop():Number
 		{
@@ -131,7 +131,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get paddingRight():Number
 		{
@@ -157,7 +157,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get paddingBottom():Number
 		{
@@ -183,7 +183,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get paddingLeft():Number
 		{
@@ -208,7 +208,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		// public function get gap():Boolean
         // {
@@ -253,7 +253,7 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @langversion 3.0
  		 *  @playerversion Flash 10.2
  		 *  @playerversion AIR 2.6
- 		 *  @productversion Royale 0.9.3
+ 		 *  @productversion Royale 0.9.4
  		 */
 		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
@@ -286,7 +286,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get gap():Number
         {

@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.controls.spinner
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public interface ISpinnerView extends IBead
 	{
@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.controls.spinner
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         COMPILE::SWF
 		function get increment():DisplayObject;
@@ -59,7 +59,7 @@ package org.apache.royale.jewel.beads.controls.spinner
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         COMPILE::SWF
 		function get decrement():DisplayObject;

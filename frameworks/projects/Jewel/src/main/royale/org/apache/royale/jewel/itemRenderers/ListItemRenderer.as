@@ -36,7 +36,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class ListItemRenderer extends StyledMXMLItemRenderer implements ITextItemRenderer
 	{
@@ -46,7 +46,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function ListItemRenderer()
 		{
@@ -67,7 +67,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get text():String
 		{
@@ -98,7 +98,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get align():String
 		{
@@ -118,7 +118,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function set data(value:Object):void
 		{
@@ -155,7 +155,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		override public function get selectable():Boolean
 		{

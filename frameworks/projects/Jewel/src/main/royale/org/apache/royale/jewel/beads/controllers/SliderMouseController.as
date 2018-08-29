@@ -49,7 +49,7 @@ package org.apache.royale.jewel.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class SliderMouseController implements IBead, IBeadController
 	{
@@ -59,7 +59,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function SliderMouseController()
 		{
@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
          */
 		private var rangeModel:IRangeModel;
 		
@@ -86,7 +86,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get sliderView():ISliderView
         {
@@ -104,7 +104,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -164,7 +164,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
          */
         COMPILE::JS
         private function handleChange(event:BrowserEvent):void
@@ -184,7 +184,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
          */
         COMPILE::JS
         private function handleInput(event:BrowserEvent):void

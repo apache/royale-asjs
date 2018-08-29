@@ -22,7 +22,7 @@ package org.apache.royale.jewel.supportClasses.util
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
      * 
      *  Utility function to get a label string from a value object
      */
@@ -35,7 +35,7 @@ package org.apache.royale.jewel.supportClasses.util
         {
             if (obj["labelField"]) 
                 return String(data[obj["labelField"]]);
-                
+
             if (obj["dataField"]) 
                 return String(data[obj["dataField"]]);
             
