@@ -73,6 +73,20 @@ public class Effect extends org.apache.royale.effects.Effect
 	public function end(effectInstance:IEffectInstance = null):void
     {
     }
+    
+    //--------------------------------------------------------------------------
+    //  duration
+    //--------------------------------------------------------------------------
+	
+    public function get duration():Number
+	{
+	return 0;
+	}
+    public function set duration(value:Number):void
+	{
+	
+	}
+
 	
 }
 
