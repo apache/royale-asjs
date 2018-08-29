@@ -130,7 +130,7 @@ package org.apache.royale.jewel.beads.views
 			
 			// set initial value and positions using default sizes
 			itemChangeAction();
-			sizeChangeAction();
+			// sizeChangeAction();
 		}
 		
 		/**
@@ -178,10 +178,10 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		protected function handleSizeChange(event:Event):void
-		{
-			sizeChangeAction();
-		}
+		// protected function handleSizeChange(event:Event):void
+		// {
+		// 	sizeChangeAction();
+		// }
 		
 		/**
 		 * @private
@@ -207,8 +207,8 @@ package org.apache.royale.jewel.beads.views
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.StyledUIBase
 		 */
-		protected function sizeChangeAction():void
-		{
+		// protected function sizeChangeAction():void
+		// {
 			//var host:StyledUIBase = StyledUIBase(_strand);
 			
 			// input.x = 0;
@@ -235,6 +235,6 @@ package org.apache.royale.jewel.beads.views
 			// if (host.isWidthSizedToContent()) {
 			// 	host.width = input.width + button.width;
 			// }
-		}
+		// }
 	}
 }

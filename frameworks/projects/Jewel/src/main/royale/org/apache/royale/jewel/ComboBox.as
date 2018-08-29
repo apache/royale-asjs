@@ -72,27 +72,6 @@ package org.apache.royale.jewel
             
             typeNames = "jewel combobox";
 		}
-		
-		/**
-		 *  The data for display by the ComboBox.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function get dataProvider():Object
-		{
-			return IDataProviderModel(model).dataProvider;
-		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function set dataProvider(value:Object):void
-		{
-			IDataProviderModel(model).dataProvider = value;
-		}
 
 		/**
 		 *  The name of field within the data used for display. Each item of the
@@ -114,6 +93,27 @@ package org.apache.royale.jewel
 		public function set labelField(value:String):void
 		{
             IDataProviderModel(model).labelField = value;
+		}
+		
+		/**
+		 *  The data for display by the ComboBox.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function get dataProvider():Object
+		{
+			return IDataProviderModel(model).dataProvider;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function set dataProvider(value:Object):void
+		{
+			IDataProviderModel(model).dataProvider = value;
 		}
 		
         [Bindable("change")]

@@ -223,7 +223,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
-
+			import vos.GuitarristVO;
 
 			private function onChange(event:Event):void {
                 selected.text = "Selected: " + table.selectedItemProperty;
@@ -232,11 +232,10 @@ limitations under the License.
 			private function changeTableData():void
 			{
 				table.dataProvider = new ArrayList([
-					{icon: MaterialIconType.CLOSE, guitarrist: "Ssi", album: "Paasadasdssion & Warfare", year: "1990"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Steve Morse", album: "Southern Steel", year: "1991"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Yngwie Malmsteen", album: "sfsdf Force", year: "2984"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Joe sf", album: "Surfing With The Alien", year: "1987"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Mark Knopfler", album: "Local sf", year: "1983"}
+					new GuitarristVO("David Gilmour", "On an Island", 2006),
+					new GuitarristVO("Eric Clapton", "Journeyman", 1989),
+					new GuitarristVO("Frank Zappa", "Hot Rats", 1969),
+					new GuitarristVO("Jimi Hendrix", "Electric Ladyland", 1968)
 				]);
 			}
 
