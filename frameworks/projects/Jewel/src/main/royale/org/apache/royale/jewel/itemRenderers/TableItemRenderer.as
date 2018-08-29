@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.jewel.beads.controls.TextAlign;
-	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-    
-    COMPILE::JS
+	COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
     	import org.apache.royale.html.util.addElementToWrapper;
@@ -36,7 +33,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class TableItemRenderer extends ListItemRenderer implements ITextItemRenderer
+	public class TableItemRenderer extends ListItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -55,29 +52,6 @@ package org.apache.royale.jewel.itemRenderers
 			{
             	typeNames += " with-childs";
 			}
-
-            textAlign = new TextAlign();
-			addBead(textAlign);
-		}
-
-		private var textAlign:TextAlign;
-
-		/**
-		 *  How text align in the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get align():String
-		{
-			return textAlign.align;
-		}
-
-		public function set align(value:String):void
-		{
-			textAlign.align = value;
 		}
 		
         /**

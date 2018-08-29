@@ -29,19 +29,21 @@ package org.apache.royale.jewel.supportClasses.util
     public function getLabelFromData(obj:Object, data:Object):String
     {
         // slightly more code, but we bail early if it's a string which is often
-        if (data is String) return "" + data;
         if(!data) return "";
-
-        if (obj["labelField"]) 
-            return "" + data[obj["labelField"]];
         
-        if (obj["dataField"]) 
-            return "" + data[obj["dataField"]];
-        
-        if (data.hasOwnProperty("label")) 
-            return "" + data["label"];
+        if (!(data is String))
+        {
+            if (obj["labelField"]) 
+                return String(data[obj["labelField"]]);
+                
+            if (obj["dataField"]) 
+                return String(data[obj["dataField"]]);
+            
+            if (data.hasOwnProperty("label")) 
+                return String(data["label"]);
+        }
 
-        return "" + data;
+        return String(data);
 
     }
 }

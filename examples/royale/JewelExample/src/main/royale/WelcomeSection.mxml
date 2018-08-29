@@ -27,7 +27,11 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
     
-    <html:H1 text="Welcome to Apache Royale Jewel"/>
+    <html:H1 text="Welcome to Apache Royale Jewel">
+        <html:beads>
+            <j:TextAlign align="center"/>
+        </html:beads>
+    </html:H1>
 
     <j:Label width="400" 
              multiline="true"
