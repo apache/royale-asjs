@@ -26,6 +26,10 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ItemAddedEvent;
+    import org.apache.royale.events.ItemClickedEvent;
+    import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.supportClasses.DataGroup;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.geom.Point;
@@ -53,8 +57,8 @@ package org.apache.royale.charts.supportClasses
 		{
 			super();
 		}
-		
-		/*
+
+        /*
 		 * IChartDataGroup
 		 */
 		

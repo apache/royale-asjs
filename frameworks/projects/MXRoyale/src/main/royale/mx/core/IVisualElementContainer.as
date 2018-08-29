@@ -16,24 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+
+package mx.core
 {
-    /**
-     *  The IStrandPrivate interface is implemented by components that permit 
-	 *  access to their direct children.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-	public interface IStrandPrivate
-	{
-		function $numElements():int;
-		function $addElement(c:IChild, dispatchEvent:Boolean = true):void;
-		function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void;
-		function $removeElement(c:IChild, dispatchEvent:Boolean = true):void;
-		function $getElementIndex(c:IChild):int;
-		function $getElementAt(index:int):IChild;
-	}
+
+
+/**
+ *  The IVisualElementContainer interface defines the minimum properties and methods 
+ *  required for a container to manage Spark components for display.
+ *
+ *  <p>Note that the Spark SkinnableDataContainer and DataGroup containers 
+ *  do not implement this interface. 
+ *  Those containers manage their 
+ *  children through the <code>dataProvider</code> property.</p>
+ *
+ *  @see mx.core.IVisualElement
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Royale 0.9.3
+ */
+public interface IVisualElementContainer
+{
+   
+}
+
 }

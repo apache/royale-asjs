@@ -1,0 +1,68 @@
+------------------------------------------------
+Apache Flex Tour De Flex Component Explorer 1.2
+------------------------------------------------
+
+Apache Flex Tour De Flex 1.2 is an update to 1.1 adding a few minor improvements.
+
+Changes since the version 1.1
+- Added welcome page
+- Added support for 3rd party examples
+- Changed examples look and feel to be more consistent
+- Added Squiggly spelling engine examples
+
+Known issues:
+- Callout example in the Apache Flex 4.9 examples fails to show the callout.
+  The sample code will work externally. See FLEX-34539 for details.
+  
+Bugs fixed and improvements:
+FLEX-34505 Add squiggly example to Tour De Flex
+FLEX-34501 Allow 3rd parties to provide examples for inclusion in TourDeFlex
+FLEX-34596 Tour De Flex linking is broken
+FLEX-34493 Loading bar not centered in panel
+FLEX-34485 Improve TourDeFlex consistency and design
+
+------------------------------------------------
+Apache Flex Tour De Flex Component Explorer 1.1
+------------------------------------------------
+
+Apache Flex Tour De Flex 1.1 is an update to 1.0 adding a few improvements and
+fixing a few broken and non working examples.
+
+Changes since the version 1.0
+- Update README and RELEASE_NOTES
+- Added some Apache Flex specific examples (we would like to see more)
+- Added button to copy code in source tab
+- Added button to link to github code
+- Added button to copy link to example
+- Improved build file ant tasks descriptions
+- Removed broken view source URLs
+- Fixed a few other minor issues
+- Now contains over 300 examples!
+
+Known issues:
+- Callout example in the Apache Flex 4.9 examples fails to show the callout.
+  The sample code will work externally. See FLEX-34539 for details.
+
+Bugs fixed and improvements:
+FLEX-34530 TDF ScrollBarExample not setting up default vertical scroll and 2 warnings
+FLEX-34529 TDF Bidirectional binding example label/warning
+FLEX-34502 Add link to github in TourDeFlex
+FLEX-34500 Show total number of examples in Tour De Flex UI
+FLEX-34495 Error loading source file
+FLEX-34492 Need ability to link to examples
+FLEX-34491 The Spark Module Load example is non functional
+FLEX-34490 The Spark Video example produces a "Playback Error"
+FLEX-34489 Some examples are missing all source files tab
+FLEX-34488 Add favicon to TourDeFlex
+FLEX-34483 Make logo links to Apache Flex web site
+FLEX-34482 Add copy button to copy code examples to clipboard
+FLEX-34480 If TourDeFlex is run from an untrusted location you get an error
+FLEX-34479 Change naming format of TourDeFlex
+FLEX-34478 Wrong paths for video in TourDeFlex application
+FLEX-34474 TourDeFlex effects example bad styles and modifying default destination scaling
+
+------------------------------------------------
+Apache Flex Tour De Flex Component Explorer 1.0
+------------------------------------------------
+
+Initial parity release for Adobe's Tour De Flex Component Explorer.

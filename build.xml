@@ -556,7 +556,7 @@ limitations under the License.
     
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
-        <delete dir="${basedir}/mustella/tests/mxTests/basicTests/bin"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin"/>
         <delete dir="${basedir}/bin" failonerror="false">
             <include name="**"/>
             <exclude name=".gitignore"/>
@@ -780,20 +780,20 @@ limitations under the License.
     </target>
 
     <target name="stage-compiler" >
-        <echo file="${basedir}/../royale-compiler/env.properties">env.ASJS_HOME=${basedir}</echo>
+        <echo file="${ROYALE_COMPILER_REPO}/env.properties">env.ASJS_HOME=${basedir}</echo>
         <!-- windows needs backslashes escaped -->
-        <replaceregexp file="${basedir}/../royale-compiler/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
-        <ant dir="${basedir}/../royale-compiler" target="wipe-all" />
-        <ant dir="${basedir}/../royale-compiler" target="stage-all" >
+        <replaceregexp file="${ROYALE_COMPILER_REPO}/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="wipe-all" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="stage-all" >
             <property name="staging-dir" value="${basedir}/temp/royale-compiler" />
         </ant>
     </target>
     
     <target name="stage-typedefs" >
-        <ant dir="${basedir}/../royale-typedefs" target="wipe" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" target="wipe" />
         <mkdir dir="${staging-dir}/../royale-typedefs"/>
         <copy todir="${staging-dir}/../royale-typedefs" includeEmptyDirs="false" >
-            <fileset dir="${basedir}/../royale-typedefs" includes="**" />
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}" includes="**" />
         </copy>
     </target>
     
@@ -1499,7 +1499,7 @@ limitations under the License.
         </mxmlc>
          -->
         <!-- run the component smoke -->
-        <echo message="launching player and swf"/>
+        <echo message="launching player and swf ${flash.player} ${basedir}/mustella/tests/basicTests/BasicTestsApp.swf"/>
         <exec executable="${flash.player}" dir="${basedir}/mustella/tests/basicTests" failonerror="true">
             <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf"/>
         </exec>
@@ -1524,7 +1524,7 @@ limitations under the License.
     
     <target name="mxtests-clean">
         <delete file="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf" failonerror="false"/>
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
     
     <target name="mxtests-mustella" depends="mustella-setup,mxtests" if="env.AIR_HOME" />
@@ -1576,7 +1576,7 @@ limitations under the License.
         </mxmlc>
          -->
         <!-- run the component smoke -->
-        <echo message="launching player and swf"/>
+        <echo message="launching player and swf ${flash.player} ${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf"/>
         <exec executable="${flash.player}" dir="${basedir}/mustella/tests/mxtests/basicTests" failonerror="true">
             <arg value="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf"/>
         </exec>
@@ -1590,16 +1590,21 @@ limitations under the License.
 
     <target name="mxtests-run-js" >
         <property name="profile_arg" value="dummy=false" />
-        <echo>url=file://${basedir}/mustella/tests/mxTests/bin/js-debug/index.html</echo>
+        <echo>url=file://${basedir}/mustella/tests/mxtests/bin/js-debug/index.html</echo>
         <java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
             <!--<arg value="browser=chrome" />-->
-            <arg value="url=file://${basedir}/mustella/tests/mxTests/basicTests/bin/js-debug/index.html" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ButtonTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextInputTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
-            <arg value="script=${basedir}/mustella/tests/mxTests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
+            <arg value="url=file://${basedir}/mustella/tests/mxtests/basicTests/bin/js-debug/index.html" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextInputTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ListAndDataGridTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/NumericStepperTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/DateFieldTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/MenuBarTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/spark/scripts/ButtonTestScript.mxml" />
             <arg value="showSteps=true" />
             <arg value="showScripts=true" />
             <arg value="${profile_arg}" />
@@ -1668,10 +1673,10 @@ limitations under the License.
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <delete dir="${basedir}/mustella/tests/mxTests/bin" failonerror="false" />
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" />
         <mxmlc fork="true" debug="true"
             closure-lib="${env.GOOG_HOME}"
-            file="${basedir}/mustella/tests/mxTests/BasicTestsApp.mxml">
+            file="${basedir}/mustella/tests/mxtests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <targets>JSRoyale</targets>
             <library-path dir="${ROYALE_HOME}" append="true">
@@ -2002,12 +2007,12 @@ limitations under the License.
         </exec>
     </target>
 
-    <target name="build-all" depends="check-playerglobal-home,check-air-home">
+    <target name="build-all" depends="check-playerglobal-home,check-air-home,check-compiler-home,check-typedefs-home">
         <property name="font.donot.ask" value="set" />
         <antcall target="ask-before-build-all" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/royale-compiler" />
-        <ant dir="${base.folder.name}/royale-typedefs" />
+        <ant dir="${ROYALE_COMPILER_REPO}" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" />
     </target>
     <target name="ask-before-build-all" unless="release.target">
         <input

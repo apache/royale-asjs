@@ -77,6 +77,10 @@ import org.apache.royale.events.IEventDispatcher;
  */
 public interface IBrowserManager extends org.apache.royale.events.IEventDispatcher
 {
+ 
+ function setTitle(value:String):void;
+ 
+ 
 
    
 }

@@ -61,7 +61,11 @@ public class Tween extends org.apache.royale.effects.Tween
      *  @playerversion AIR 1.1
      *  @productversion Royale 1.0.0
      */
-    public function Tween()
+    public function Tween(listener:Object,
+                          startValue:Object, endValue:Object,
+                          duration:Number = -1, minFps:Number = -1,
+                          updateFunction:Function = null,
+                          endFunction:Function = null)
     {
 		super();
     }

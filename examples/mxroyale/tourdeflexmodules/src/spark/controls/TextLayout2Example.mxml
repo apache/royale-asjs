@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   creationComplete="init()">
+	
+<!-- This sample is based on this page: http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3_Flex/WS0d70b2a8565d75766ba6608d121cc29f375-8000.html -->
+	
+	<fx:Script>
+		<![CDATA[
+			import flash.display.StageAlign; 
+			import flash.display.StageScaleMode; 
+			import flash.events.Event; 
+			import flash.geom.Rectangle; 
+			
+			import flashx.textLayout.compose.StandardFlowComposer; 
+			import flashx.textLayout.container.ContainerController; 
+			import flashx.textLayout.container.ScrollPolicy; 
+			import flashx.textLayout.conversion.TextConverter; 
+			import flashx.textLayout.elements.TextFlow; 
+			import flashx.textLayout.formats.TextLayoutFormat; 
+			
+			import spark.core.SpriteVisualElement;
+			
+			private var hTextFlow:TextFlow; 
+			private var headContainer:SpriteVisualElement; 
+			private var headlineController:ContainerController; 
+			private var hContainerFormat:TextLayoutFormat; 
+			
+			private var bTextFlow:TextFlow; 
+			private var bodyTextContainer:SpriteVisualElement; 
+			private var bodyController:ContainerController; 
+			private var bodyTextContainerFormat:TextLayoutFormat; 
+			
+			private const headlineMarkup:String = "<flow:TextFlow xmlns:flow='http://ns.adobe.com/textLayout/2008'><flow:p textAlign='center'><flow:span fontFamily='Helvetica' fontSize='18'>TLF News Layout Example</flow:span><flow:br/><flow:span fontFamily='Helvetica' fontSize='14'>This example formats text like a newspaper page with a headline, a subtitle, and multiple columns</flow:span></flow:p></flow:TextFlow>"; 
+			
+			private const bodyMarkup:String = "<flow:TextFlow xmlns:flow='http://ns.adobe.com/textLayout/2008' fontSize='12' textIndent='10' marginBottom='15' paddingTop='4' paddingLeft='4'><flow:p marginBottom='inherit'><flow:span>There are many </flow:span><flow:span fontStyle='italic'>such</flow:span><flow:span> lime-kilns in that tract of country, for the purpose of burning the white marble which composes a large part of the substance of the hills. Some of them, built years ago, and long deserted, with weeds growing in the vacant round of the interior, which is open to the sky, and grass and wild-flowers rooting themselves into the chinks of the stones, look already like relics of antiquity, and may yet be overspread with the lichens of centuries to come. Others, where the lime-burner still feeds his daily and nightlong fire, afford points of interest to the wanderer among the hills, who seats himself on a log of wood or a fragment of marble, to hold a chat with the solitary man. It is a lonesome, and, when the character is inclined to thought, may be an intensely thoughtful occupation; as it proved in the case of Ethan Brand, who had mused to such strange purpose, in days gone by, while the fire in this very kiln was burning.</flow:span></flow:p><flow:p marginBottom='inherit'><flow:span>The man who now watched the fire was of a different order, and troubled himself with no thoughts save the very few that were requisite to his business. At frequent intervals, he flung back the clashing weight of the iron door, and, turning his face from the insufferable glare, thrust in huge logs of oak, or stirred the immense brands with a long pole.</flow:span></flow:p></flow:TextFlow>"; 
+			
+			public function init():void
+			{ 
+				// Headline text flow and flow composer 
+				hTextFlow = TextConverter.importToFlow(headlineMarkup, TextConverter.TEXT_LAYOUT_FORMAT); 
+				hTextFlow.flowComposer = new StandardFlowComposer(); 
+				
+				// initialize the headline container and controller objects 
+				headContainer = new SpriteVisualElement(); 
+				headlineController = new ContainerController(headContainer); 
+				headlineController.verticalScrollPolicy = ScrollPolicy.OFF; 
+				hContainerFormat = new TextLayoutFormat(); 
+				hContainerFormat.paddingTop = 4; 
+				hContainerFormat.paddingRight = 4; 
+				hContainerFormat.paddingBottom = 4; 
+				hContainerFormat.paddingLeft = 4; 
+				
+				headlineController.format = hContainerFormat; 
+				hTextFlow.flowComposer.addController(headlineController); 
+				panel.addElement(headContainer); 
+				this.addEventListener(flash.events.Event.RESIZE, resizeHandler); 
+				
+				// Body text TextFlow and flow composer 
+				bTextFlow = TextConverter.importToFlow(bodyMarkup, TextConverter.TEXT_LAYOUT_FORMAT); 
+				bTextFlow.flowComposer = new StandardFlowComposer(); 
+				
+				// The body text container is below, and has three columns 
+				bodyTextContainer = new SpriteVisualElement(); 
+				bodyController = new ContainerController(bodyTextContainer); 
+				bodyTextContainerFormat = new TextLayoutFormat(); 
+				bodyTextContainerFormat.columnCount = 4; 
+				bodyTextContainerFormat.columnGap = 30; 
+				
+				bodyController.format = bodyTextContainerFormat; 
+				bTextFlow.flowComposer.addController(bodyController); 
+				panel.addElement(bodyTextContainer); 
+				resizeHandler(null);
+			} 
+			
+			private function resizeHandler(event:Event):void 
+			{ 
+				trace("Resizing!");
+				const verticalGap:Number = 25; 
+				const stagePadding:Number = 16; 
+				var stageWidth:Number = this.width - stagePadding; 
+				var stageHeight:Number = this.height - stagePadding; 
+				var headlineWidth:Number = stageWidth; 
+				var headlineContainerHeight:Number = stageHeight; 
+				
+				// Initial compose to get height of headline after resize 
+				headlineController.setCompositionSize(headlineWidth, headlineContainerHeight); 
+				hTextFlow.flowComposer.compose(); 
+				var rect:Rectangle = headlineController.getContentBounds(); 
+				headlineContainerHeight = rect.height; 
+				
+				// Initial compose to get height of headline after resize 
+				headlineController.setCompositionSize(headlineWidth, headlineContainerHeight); 
+				hTextFlow.flowComposer.compose(); 
+				rect = headlineController.getContentBounds(); 
+				headlineContainerHeight = rect.height; 
+				
+				// Resize and place headline text container 
+				// Call setCompositionSize() again with updated headline height 
+				headlineController.setCompositionSize(headlineWidth, headlineContainerHeight ); 
+				headlineController.container.x = stagePadding / 2; 
+				headlineController.container.y = stagePadding / 2; 
+				hTextFlow.flowComposer.updateAllControllers(); 
+				
+				// Resize and place body text container 
+				var bodyContainerHeight:Number = (stageHeight - verticalGap - headlineContainerHeight); 
+				bodyController.format = bodyTextContainerFormat; 
+				bodyController.setCompositionSize(stageWidth, bodyContainerHeight ); 
+				bodyController.container.x = (stagePadding/2); 
+				bodyController.container.y = (stagePadding/2) + headlineContainerHeight + verticalGap; 
+				bTextFlow.flowComposer.updateAllControllers(); 
+			} 
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="News Layout Sample" width="100%" height="100%">
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:Group id="panel" width="100%" height="100%" />
+	</s:Panel>
+
+</s:Module>

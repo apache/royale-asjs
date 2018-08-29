@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+
+	<fx:Script>
+		<![CDATA[
+			protected function scoreClickHandler(event:MouseEvent):void
+			{
+				var score:Number = 0.0;
+				
+				if (group1.selectedValue=="True")
+					score=33.34;
+				if (group2.selectedValue=="South Africa")
+					score=score+33.34;
+				if (group3.selectedValue=="False")
+					score=score+33.34;
+				scoreText.text = "You scored " + numberFormatter.format(score).toString()+"%";
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:RadioButtonGroup id="group1"/>
+		<s:RadioButtonGroup id="group2"/>
+		<s:RadioButtonGroup id="group3"/>
+		<mx:NumberFormatter id="numberFormatter"
+							precision="0"
+							rounding="nearest"/>
+	</fx:Declarations>
+	<fx:Style>
+		@namespace "library://ns.apache.org/royale/spark";
+		
+		RadioButton{ 
+			baseColor: #FFFFFF; 
+		}
+		
+	</fx:Style>
+	
+	<s:Panel title="RadioButton Sample" width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:HGroup>
+			<s:VGroup>
+				<s:Label text="1) The sky is blue:"/>
+				<s:RadioButton id="trueRadioBtn" label="True" groupName="group1"/>
+				<s:RadioButton id="falseRadioBtn" label="False" groupName="group1"/>
+			</s:VGroup>	
+			<s:VGroup paddingLeft="20">
+				<s:Label text="2) Which of the following is not a continent?"/>
+				<s:RadioButton id="multiRadioBtnA" label="North America" groupName="group2"/>
+				<s:RadioButton id="multiRadioBtnB" label="Europe" groupName="group2"/>
+				<s:RadioButton id="multiRadioBtnC" label="Asia" groupName="group2"/>
+				<s:RadioButton id="multiRadioBtnD" label="South Africa" groupName="group2"/>
+			</s:VGroup>
+			<s:VGroup paddingLeft="20">
+				<s:Label text="3) Tallahasee is the capital of Alabama:"/>
+				<s:RadioButton id="trueRadioBtn3" label="True" groupName="group3" />
+				<s:RadioButton id="falseRadioBtn3" label="False" groupName="group3"/>
+			</s:VGroup>
+			<s:VGroup horizontalAlign="contentJustify">
+				<s:Button id="scoreBtn" label="Score Me!" click="scoreClickHandler(event)"/>
+				<s:Label id="scoreText"/>
+			</s:VGroup>
+		</s:HGroup>
+		
+		<s:Label width="100%" verticalAlign="justify"
+				 text="The RadioButton control is a single choice in a set of mutually 
+exclusive choices. A RadioButton group is composed of two or more RadioButton controls with
+the same group name. Only one member of the group can be selected at any given time." />
+	</s:Panel>
+	
+		
+</s:Module>

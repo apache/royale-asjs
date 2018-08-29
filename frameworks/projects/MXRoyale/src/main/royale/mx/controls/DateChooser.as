@@ -23,32 +23,17 @@ COMPILE::JS {
 	import goog.DEBUG;
 }
 	
+	import mx.core.UIComponent;
+	import mx.core.mx_internal;
+	import mx.events.CalendarLayoutChangeEvent;
+	
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.models.DateChooserModel;
-
-/*
-import flash.display.DisplayObject;
-import flash.display.GradientType;
-import flash.display.Graphics;
-import flash.display.Sprite;
-import flash.events.Event;
-import flash.events.EventPhase;
-import flash.events.KeyboardEvent;
-import flash.geom.ColorTransform;
-import flash.geom.Matrix;
-import flash.text.TextFormat;
-import flash.ui.Keyboard;
-import flash.utils.getQualifiedClassName;
-
-import mx.core.FlexSprite;
-import mx.core.FlexVersion;
-import mx.core.IFlexModuleFactory;
-import mx.core.IFontContextComponent;
-import mx.core.IUITextField;
-import mx.core.UITextField;
-*/
-import mx.core.UIComponent;
-import mx.core.mx_internal;
-import mx.events.CalendarLayoutChangeEvent;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 /*
 import mx.events.DateChooserEvent;
@@ -224,7 +209,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DateChooser extends UIComponent //implements IFocusManagerComponent, IFontContextComponent
+public class DateChooser extends UIComponent implements ILayoutParent, ILayoutView//implements IFocusManagerComponent, IFontContextComponent
 {
 
     //--------------------------------------------------------------------------
@@ -1013,6 +998,28 @@ public class DateChooser extends UIComponent //implements IFocusManagerComponent
     //--------------------------------------------------------------------------
 
     
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        // Load the layout bead if it hasn't already been loaded.
+        loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+        
+        dispatchEvent(new Event("initComplete"));
+    }
+    
+    /**
+     * Returns the ILayoutHost which is its view. From ILayoutParent.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+     */
+    public function getLayoutHost():ILayoutHost
+    {
+        return view as ILayoutHost;
+    }
 }
 
 }

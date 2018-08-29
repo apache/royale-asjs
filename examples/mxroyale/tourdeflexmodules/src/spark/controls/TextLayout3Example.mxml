@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"    
+	xmlns:mx="library://ns.apache.org/royale/mx"     
+	xmlns:s="library://ns.apache.org/royale/spark"
+	creationComplete="init()">
+	
+	<fx:Declarations>
+		<fx:XML id="textFlowAsXML" source="MyTextFlow.xml" />
+	</fx:Declarations>
+	
+	<fx:Style>
+		@namespace "library://ns.apache.org/royale/spark";
+		Label { 
+			baseColor: #000000; 
+			fontFamily: "Verdana";
+			fontSize: "12";
+			advancedAntiAliasing: true;
+		}
+		
+	</fx:Style>
+	<fx:Script><![CDATA[
+		import flashx.textLayout.conversion.TextConverter;
+		import flashx.textLayout.elements.TextFlow;
+		import spark.components.RichEditableText;
+		import spark.utils.TextFlowUtil;
+		
+		XML.ignoreWhitespace = false; 
+		
+		private function init():void {
+			// Creates a TextFlow by importing a String containing the markup language used by the Text Layout Framework.
+			// If you specify it, don't forget the namespace -> xmlns="http://ns.adobe.com/textLayout/2008"
+			var markup:String = "<TextFlow xmlns='http://ns.adobe.com/textLayout/2008'><p fontFamily='Arial'>This is TLF markup with paragraphs.</p><p color='0x663399'>The root TextFlow tag is inlcuded.</p></TextFlow>"; 
+			rt1.textFlow = TextFlowUtil.importFromString(markup);
+			
+			// This next string shows that if the root TextFlow tag is omitted, it will be added for you. 
+			markup = "<p color='0xCE267D'>This is TLF markup with paragraphs.</p><p fontSize='10' fontWeight='bold' fontFamily='Arial'>The root TextFlow tag is omitted and therefore created automatically.</p>"; 
+			rt2.textFlow = TextFlowUtil.importFromString(markup);
+			
+			// This line shows how you would import plain text with no paragraph spacing
+			var autoMarkup:String = "This is just a plain old string that has no markup within it."; 
+			RichEditableText(rt3.textDisplay).textFlow = TextFlowUtil.importFromString(autoMarkup);
+			
+			// This example shows how you can use the TextConverter class from TLF to import HTML formatted text
+			// See the docs for the subset of HTML that is supported: 
+			//		http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flashx/textLayout/conversion/TextConverter.html#TEXT_FIELD_HTML_FORMAT
+			var myHTML:String = "<p>This is <i>HTML</i> markup.<br><b>Hello Tour de Flex Users!</b></p>";
+			rt4.textFlow = TextConverter.importToFlow(myHTML,TextConverter.TEXT_FIELD_HTML_FORMAT);
+		}
+	]]></fx:Script>
+	
+	<s:Panel title="Importing Text using TLF and Flex 4" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:VGroup>
+			<s:RichText id="rt1" width="200"/>
+			<s:TextArea id="rt2" width="300" height="50"/>
+			<s:TextInput id="rt3" width="260"/>
+			<s:RichEditableText id="rt4" width="200"/>
+			
+			<s:RichText id="rt5" width="280"
+						textFlow="{TextFlowUtil.importFromXML(textFlowAsXML)}"
+						horizontalCenter="0" verticalCenter="0" />
+		</s:VGroup>
+		<s:Label width="200" verticalAlign="justify" text="This sample shows how you can use different types of text markup within
+the Flex 4 components that are based on TLF through an import. This can be especially useful for dynamically loading text
+that is returned from an HTTPService call at runtime for instance."/>
+		
+	</s:Panel>
+</s:Module>

@@ -144,6 +144,9 @@ internal class CoreClasses
 	import org.apache.royale.core.ITransformModel; ITransformModel;
 	import org.apache.royale.core.ITransformHost; ITransformHost;
     import org.apache.royale.core.IRollOverModel; IRollOverModel;
+    import org.apache.royale.core.IDataGrid; IDataGrid;
+	import org.apache.royale.core.IStrandWithPresentationModel; IStrandWithPresentationModel;
+
 	COMPILE::SWF
 	{
 	    import org.apache.royale.core.IScrollBarModel; IScrollBarModel;
@@ -152,8 +155,9 @@ internal class CoreClasses
     import org.apache.royale.core.ISelectable; ISelectable;
     import org.apache.royale.core.ISelectionModel; ISelectionModel;
     import org.apache.royale.core.IStrand; IStrand;
-	import org.apache.royale.core.IStrandPrivate; IStrandPrivate;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost; IContainerBaseStrandChildrenHost;
     import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
+    import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
     import org.apache.royale.core.ITextModel; ITextModel;
     import org.apache.royale.core.ITitleBarModel; ITitleBarModel;
     import org.apache.royale.core.IToggleButtonModel; IToggleButtonModel;

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the ApplicationControlBar container. -->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				borderStyle="solid"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+    <mx:ApplicationControlBar dock="true" paddingTop="0" paddingBottom="0">
+        <mx:Label text="Docked"/>
+
+        <mx:MenuBar id="myMenuBar" labelField="@label">
+            <fx:XMLList>
+                <menuitem label="MenuItem A" >
+                    <menuitem label="SubMenuItem A-1" type="check"/>
+                    <menuitem label="SubMenuItem A-2" type="check"/>
+                </menuitem>
+                <menuitem label="MenuItem B"/>
+                <menuitem label="MenuItem C"/>
+                <menuitem label="MenuItem D" >
+                    <menuitem label="SubMenuItem D-1" type="radio" groupName="one"/>
+                    <menuitem label="SubMenuItem D-2" type="radio" groupName="one"/>
+                    <menuitem label="SubMenuItem D-3" type="radio" groupName="one"/>
+                </menuitem>
+            </fx:XMLList>
+        </mx:MenuBar>
+    </mx:ApplicationControlBar>
+	
+    <mx:Label text="A docked ApplicationControlBar appears at the top of the application window."/>
+    <mx:Spacer height="100%" />
+
+    <mx:ApplicationControlBar width="80%">
+        <mx:Label text="Normal"/>
+        <mx:Label text="Search:" />
+        <mx:TextInput width="100%" maxWidth="200" />
+        <mx:Spacer width="100%" />
+        <mx:Button label="Go flex.apache.org" />
+    </mx:ApplicationControlBar>
+
+    <mx:Label text="A normal ApplicationControlBar can appear anywhere in the application."/>
+
+</mx:Application>

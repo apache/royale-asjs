@@ -157,7 +157,7 @@ package org.apache.royale.charts.beads.layouts
 				if (lcs.lineSegmentRenderer)
 				{
 					var renderer:ILineSegmentItemRenderer = lcs.lineSegmentRenderer.newInstance() as ILineSegmentItemRenderer;
-					chartDataGroup.addElement(renderer);
+					chartDataGroup.addItemRenderer(renderer, true);
 					renderer.itemRendererParent = chartDataGroup;
 					renderer.data = lcs;
 					renderer.points = seriesPoints[s].points;

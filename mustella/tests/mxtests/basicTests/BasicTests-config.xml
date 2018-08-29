@@ -28,14 +28,18 @@
         <symbol>halo.scripts.TextInputTestScript</symbol>
         <symbol>halo.scripts.TextAreaTestScript</symbol>
         <symbol>halo.scripts.ComboBoxTestScript</symbol>
+        <symbol>halo.scripts.ListAndDataGridTestScript</symbol>
         <!--
         <symbol>halo.scripts.ColorPickerTestScript</symbol>
+         -->
         <symbol>halo.scripts.NumericStepperTestScript</symbol>
         <symbol>halo.scripts.DateFieldTestScript</symbol>
+        <!--
         <symbol>halo.scripts.MenuTestScript</symbol>
+         -->
         <symbol>halo.scripts.MenuBarTestScript</symbol>
+        <!--
         <symbol>halo.scripts.FocusManagerTestScript</symbol>
-        <symbol>halo.scripts.ListAndDataGridTestScript</symbol>
         <symbol>halo.scripts.TreeTestScript</symbol>
         <symbol>halo.scripts.ImageTestScript</symbol>
         <symbol>halo.scripts.SWFLoaderTestScript</symbol>
@@ -51,7 +55,9 @@
         <symbol>spark.scripts.ListDragDropTestScript</symbol>
         <symbol>halo.scripts.MXItemRendererTestScript</symbol>
         <symbol>spark.scripts.BorderContainerTestScript</symbol>
+-->
         <symbol>spark.scripts.ButtonTestScript</symbol>
+<!--
         <symbol>spark.scripts.CheckBoxTestScript</symbol>
         <symbol>spark.scripts.EasingTestScript</symbol>
         <symbol>spark.scripts.RadioButtonTestScript</symbol>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the Zoom effect. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+        <![CDATA[		
+            import flash.events.MouseEvent;
+		
+            public function doZoom(event:MouseEvent):void {
+                if (zoomAll.isPlaying) {
+                    zoomAll.reverse();
+                }
+                else {
+                    // If this is a ROLL_OUT event, play the effect backwards. 
+                    // If this is a ROLL_OVER event, play the effect forwards.
+                    zoomAll.play([event.target], event.type == MouseEvent.ROLL_OUT ? true : false);
+                }
+            }
+        ]]>	
+    </fx:Script>
+
+	<fx:Declarations>
+   		<mx:Zoom id="zoomAll" zoomWidthTo="0.5" zoomHeightTo="0.5" zoomWidthFrom="0.25" zoomHeightFrom="0.25"  />
+	</fx:Declarations>
+	
+    <mx:Panel title="Zoom Effect Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Text width="100%"
+            text="Move the mouse over the image to enlarge it. Move the mouse off of the image to shrink it."/>
+
+        <mx:Image id="img"
+            source="@Embed(source='assets/ApacheFlexLogo.png')"
+            scaleX="0.25" scaleY="0.25"
+            rollOver="doZoom(event)"
+            rollOut="doZoom(event)"/>
+
+    </mx:Panel>
+</mx:Module>

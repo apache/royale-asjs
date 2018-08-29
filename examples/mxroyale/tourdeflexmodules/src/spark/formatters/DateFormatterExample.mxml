@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+        <![CDATA[
+
+            import mx.events.ValidationResultEvent;			
+            private var vResult:ValidationResultEvent;
+
+            // Event handler to validate and format input.            
+            private function Format():void
+            {
+                vResult = dateVal.validate();
+                if (vResult.type==ValidationResultEvent.VALID) {
+                    formattedDate.text=dateFormatter.format(dob.text);
+                }
+              
+                else {
+                    formattedDate.text= "";
+                }
+            }
+        ]]>
+    </fx:Script>
+	
+	<fx:Declarations>
+		<mx:DateFormatter id="dateFormatter" formatString="month: MM, day: DD, year: YYYY"/>
+		
+		<mx:DateValidator id="dateVal" source="{dob}" property="text" inputFormat="mm/dd/yyyy"/>
+	</fx:Declarations>
+    
+	<s:Panel title="DateFormatter Example" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+         
+         <mx:Form width="100%">
+            <mx:FormItem label="Enter date (mm/dd/yyyy):" width="100%">
+                <s:TextInput id="dob" text=""/>
+            </mx:FormItem>
+
+            <mx:FormItem label="Formatted date: " width="100%">
+                <s:Label id="formattedDate" text="" />
+            </mx:FormItem>
+
+            <mx:FormItem>
+                <s:Button label="Validate and Format" click="Format()"/>
+            </mx:FormItem>
+        </mx:Form>
+        
+	</s:Panel>
+</s:Module>

@@ -117,6 +117,7 @@
     <component id="DispatchInputFinishedBead" class="org.apache.royale.html.beads.DispatchInputFinishedBead"/>
     <component id="DispatchKeyboardEventBead" class="org.apache.royale.html.beads.DispatchKeyboardEventBead"/>
     <component id="TreeItemRenderer" class="org.apache.royale.html.supportClasses.TreeItemRenderer"/>
+    <component id="TreeXMLItemRenderer" class="org.apache.royale.html.supportClasses.TreeXMLItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.html.supportClasses.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.royale.html.supportClasses.DayNameItemRenderer"/>
     <component id="TextButtonItemRenderer" class="org.apache.royale.html.supportClasses.TextButtonItemRenderer"/>
@@ -192,6 +193,7 @@
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
     <component id="DateChooserHeader" class="org.apache.royale.html.supportClasses.DateChooserHeader" />
     <component id="DateField" class="org.apache.royale.html.DateField"/>
+    <component id="DateFieldDateChooser" class="org.apache.royale.html.supportClasses.DateFieldDateChooser"/>
     <component id="VerticalColumnLayout" class="org.apache.royale.html.beads.layouts.VerticalColumnLayout" />
 
     <component id="ToolTipBead" class="org.apache.royale.html.accessories.ToolTipBead" />

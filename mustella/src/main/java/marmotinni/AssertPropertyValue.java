@@ -71,7 +71,15 @@ public class AssertPropertyValue extends AssertStep {
 		String actualValue = ((JavascriptExecutor)webDriver).executeScript(getScript.toString()).toString();
 		String valueString = null;
 		if (valueExpression != null)
-			valueString = ((JavascriptExecutor)webDriver).executeScript(valueExpression).toString();
+        {
+            StringBuilder valueScript = new StringBuilder();
+            insertTargetScript(valueScript, target);
+            valueScript.append("var " + valueExpression + ";");
+            valueScript.append("return value;");
+            if (TestStep.showScripts)
+                System.out.println(valueScript.toString());
+			valueString = ((JavascriptExecutor)webDriver).executeScript(valueScript.toString()).toString();
+        }
 		else if (value != null)
 			valueString = value;
 		else

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.apache.org/royale/spark"
+			   xmlns:local="*"
+			   initialize="loadSecurity()">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.IList;
+			import mx.collections.errors.ItemPendingError;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			private function loadSecurity():void 
+			{
+				Security.loadPolicyFile("http://www.jamesward.com/census2-tests/crossdomain.xml");
+			}
+			
+			private function handleCreatePendingItemFunction(index:int, ipe:ItemPendingError):Object {
+				return {};
+			}
+			
+			private function loadItems(list:IList, start:uint, count:uint):void
+			{
+				var asyncToken:AsyncToken = ro.getElements(start, count);
+				asyncToken.addResponder(new AsyncResponder(function result(event:ResultEvent, token:Object = null):void {
+					var v:Vector.<Object> = new Vector.<Object>();
+					for each (var i:Object in event.result)
+					{
+						v.push(i);
+					}
+					pagedList.storeItemsAt(v, token as int);
+				}, function fault(event:FaultEvent, token:Object = null):void {
+					trace(event.fault.faultString);
+				}, start));
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<local:PagedList id="pagedList" pageSize="100" length="100000" loadItemsFunction="loadItems"/>
+		<s:AsyncListView id="asyncListView" list="{pagedList}" createPendingItemFunction="handleCreatePendingItemFunction"/>
+		<s:RemoteObject id="ro" destination="census" endpoint="http://www.jamesward.com/census2-tests/messagebroker/amf"/>
+	</fx:Declarations>
+	
+	<s:DataGrid dataProvider="{asyncListView}" width="100%" height="100%">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="id"/>
+				<s:GridColumn dataField="age"/>
+				<s:GridColumn dataField="classOfWorker"/>
+				<s:GridColumn dataField="education"/>
+				<s:GridColumn dataField="maritalStatus"/>
+				<s:GridColumn dataField="race"/>
+				<s:GridColumn dataField="sex"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	
+</s:Module>

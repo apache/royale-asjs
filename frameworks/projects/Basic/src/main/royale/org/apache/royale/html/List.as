@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
+	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 
@@ -131,14 +132,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
 		public function get rowHeight():Number
 		{
-			return presentationModel.rowHeight;
+			return (presentationModel as IListPresentationModel).rowHeight;
 		}
 		public function set rowHeight(value:Number):void
 		{
-			presentationModel.rowHeight = value;
+			(presentationModel as IListPresentationModel).rowHeight = value;
 		}
 
 		/**

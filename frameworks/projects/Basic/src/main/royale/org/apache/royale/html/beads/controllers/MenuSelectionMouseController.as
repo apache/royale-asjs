@@ -19,6 +19,7 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IMenu;
+	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
@@ -136,7 +137,8 @@ package org.apache.royale.html.beads.controllers
 				if (menu.parent != null) {
 					var controller:MenuSelectionMouseController = menu.getBeadByType(MenuSelectionMouseController) as MenuSelectionMouseController;
 					controller.removeClickOutHandler(menu);
-					menu.parent.removeElement(menu);
+                    var host:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+					host.popUpParent.removeElement(menu);
 				}
 			}
 			MenuModel.clearMenuList();
@@ -188,12 +190,23 @@ package org.apache.royale.html.beads.controllers
 		}
 
 		/**
+         * @royaleignorecoercion HTMLElement
 		 * @private
 		 */
 		COMPILE::JS
 		protected function hideMenu_internal(event:BrowserEvent):void
 		{			
-			event.stopImmediatePropagation();
+            var menu:IMenu = _strand as IMenu;
+            if (menu.parentMenuBar)
+            {
+                var menuBarElement:HTMLElement = (menu.parentMenuBar as IUIBase).element as HTMLElement;
+                var target:HTMLElement = event.target as HTMLElement;
+                while (target != null)
+                {
+                    if (target == menuBarElement) return;
+                    target = target.parentNode as HTMLElement;
+                }
+            }
 			hideOpenMenus();
 		}
 	}

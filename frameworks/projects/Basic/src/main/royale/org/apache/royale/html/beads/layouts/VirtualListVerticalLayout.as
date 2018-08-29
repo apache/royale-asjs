@@ -20,7 +20,7 @@ package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.ILayoutChild;
@@ -28,15 +28,15 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
-    import org.apache.royale.core.IScrollingViewport;
+	import org.apache.royale.core.IScrollingViewport;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	COMPILE::JS
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
@@ -46,6 +46,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.geom.Rectangle;
     import org.apache.royale.html.beads.VirtualListView;
 	import org.apache.royale.utils.CSSUtils;
+
     COMPILE::SWF {
         import org.apache.royale.geom.Size;
     }
@@ -113,6 +114,8 @@ package org.apache.royale.html.beads.layouts
 		 *  @productversion Royale 0.0
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithPresentationModel
 		 */
 		override public function layout():Boolean
 		{
@@ -131,7 +134,7 @@ package org.apache.royale.html.beads.layouts
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
                 var dp:Array = dataProviderModel.dataProvider as Array;
-                var presentationModel:IListPresentationModel = (host as IListWithPresentationModel).presentationModel;
+                var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
 				var hostWidth:Number = host.width;
@@ -251,7 +254,7 @@ package org.apache.royale.html.beads.layouts
                 // going off-screen
                 var contentView:ILayoutView = layoutView;
                 var dp:Array = dataProviderModel.dataProvider as Array;
-                var presentationModel:IListPresentationModel = (host as IListWithPresentationModel).presentationModel;
+                var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
                 var totalHeight:Number = presentationModel.rowHeight * dp.length;
                 var viewportTop:Number = Math.max(contentView.element.scrollTop, 0);
                 var viewportHeight:Number = contentView.element.clientHeight;

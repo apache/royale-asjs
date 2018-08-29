@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx" 
+			   xmlns:local="*">
+	
+	<fx:Style>
+		@namespace s "library://ns.apache.org/royale/spark";
+		@namespace mx "library://ns.apache.org/royale/mx";
+		@namespace local "*";
+		
+		s|Label {
+			color: #000000;
+		}
+		
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import mx.collections.ArrayCollection;
+			
+			private var names:ArrayCollection = new ArrayCollection( 
+				["John Smith", "Jane Doe", "Paul Dupont", "Liz Jones", "Marie Taylor"]);
+			
+			private function searchName(item:Object):Boolean
+			{
+				return item.toLowerCase().search(searchBox.text) != -1;
+			}
+			
+			private function textChangeHandler():void
+			{
+				names.filterFunction = searchName;
+				names.refresh();
+				searchBox.dataProvider = names;
+			}
+			
+			private function itemSelectedHandler(event:SearchBoxEvent):void
+			{
+				fullName.text = event.item as String;	
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="Components Samples" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:HGroup >
+			<s:Label text="Type a few characters to search:" />
+			<local:SearchBox id="searchBox" textChange="textChangeHandler()" itemSelected="itemSelectedHandler(event)"/>
+		</s:HGroup>
+		
+		<mx:FormItem label="You selected:" >
+			<s:TextInput id="fullName"/>
+		</mx:FormItem>
+		
+	</s:Panel>
+	
+</s:Module>

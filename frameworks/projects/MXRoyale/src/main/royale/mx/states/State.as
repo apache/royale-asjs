@@ -21,6 +21,24 @@ package mx.states
 {
 
 import org.apache.royale.states.State;
+import mx.core.mx_internal;
+import mx.events.FlexEvent;
+
+use namespace mx_internal;
+
+/**
+ *  Dispatched just before a view state is exited.
+ *  This event is dispatched before the changes
+ *  to the default view state have been removed.
+ *
+ *  @eventType mx.events.FlexEvent.EXIT_STATE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="exitState", type="mx.events.FlexEvent")]
 
 /**
  *  The State class defines a view state, a particular view of a component.
@@ -96,6 +114,7 @@ public class State extends org.apache.royale.states.State
         super(properties);
     }
 
+	 
 }
 
 }

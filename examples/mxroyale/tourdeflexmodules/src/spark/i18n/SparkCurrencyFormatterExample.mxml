@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.apache.org/royale/spark"
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   width="100%" height="100%">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			private var locales:ArrayCollection = new ArrayCollection(['en-US','de-DE','ja-JP','ru-RU','ar-SA','zh-CN','fr-FR']);
+			[Bindable]
+			private var groupPatternArrColl:ArrayCollection = new ArrayCollection(['3;*', '1;*', '3;2;*', '3;2;1;*','2;1']);
+			
+			protected function formatCurr():void
+			{
+				cf.useCurrencySymbol = false;
+				resultL.text = cf.format(inputTI.text);
+				cf.useCurrencySymbol = true;
+				resultSymbolL.text = cf.format(inputTI.text);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:CurrencyFormatter id="cf" locale="{localeCB.selectedItem}"/>
+		<s:CurrencyFormatter id="cf_default" locale="{localeCB.selectedItem}"/>
+	</fx:Declarations>
+
+
+	<s:Panel title="Spark CurrencyFormatter" width="100%" height="100%">
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" />
+		</s:layout>
+			
+		<s:Form height="100%" width="100%">
+			<s:Label text="Select a locale to see the property value and formatted currency: "/>
+			<s:Spacer height="15"/>
+			<s:FormItem label="Locale:">
+				<s:ComboBox id="localeCB" dataProvider="{locales}" selectedIndex="0" updateComplete="formatCurr()"/>
+			</s:FormItem>
+			<s:FormItem label="Input a number to format:">
+				<s:TextInput id="inputTI" text="12345" change="formatCurr()"/>
+			</s:FormItem>
+			<s:FormItem label="Fraction Digits: (default: {cf_default.fractionalDigits})">
+				<s:NumericStepper id="fdNS" maximum="10" minimum="0" change="cf.fractionalDigits = fdNS.value;formatCurr()"/>
+			</s:FormItem>
+			<s:FormItem label="Decimal Separator: (default: {cf_default.decimalSeparator})">
+				<s:TextInput id="dsTI" change="cf.decimalSeparator = dsTI.text;formatCurr()"/>
+			</s:FormItem>
+			<s:FormItem label="Grouping Pattern: (default: {cf_default.groupingPattern})">
+				<s:ComboBox id="gpCB" dataProvider="{groupPatternArrColl}" change="cf.groupingPattern = gpCB.selectedItem;formatCurr()"/>
+			</s:FormItem>
+			<s:FormItem label="Grouping Separator: (default: {cf_default.groupingSeparator})">
+				<s:TextInput id="gsTI" change="cf.groupingSeparator = gsTI.text;formatCurr()"/>
+			</s:FormItem>
+			<s:FormItem label="Negative Currency Format: (default: {cf_default.negativeCurrencyFormat})">
+				<s:NumericStepper id="ncfNS" minimum="0" maximum="15" change="cf.negativeCurrencyFormat = ncfNS.value;formatCurr()"/>
+			</s:FormItem>
+			<s:FormItem label="Positive Currency Format: (default: {cf_default.positiveCurrencyFormat})">
+				<s:NumericStepper id="pcfNS" middleClick="0" maximum="3" change="cf.positiveCurrencyFormat = pcfNS.value;formatCurr()"/>
+			</s:FormItem>
+			<s:Label text="==================================================================="/>
+			<s:FormItem label="Formatted Currency with ISO code is:">
+				<s:Label id="resultL"/>
+			</s:FormItem>
+			<s:FormItem label="Formatted Currency with currency symbol is:">
+				<s:Label id="resultSymbolL"/>
+			</s:FormItem>
+		</s:Form>
+
+	</s:Panel>
+</s:Module>

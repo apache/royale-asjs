@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="0xffffff" resize="handleResize()">
+	
+	<mx:Script>
+		<![CDATA[
+		import flashx.textLayout.elements.TextFlow;
+		import flashx.textLayout.compose.StandardFlowComposer;
+		import flashx.textLayout.container.ContainerController;
+		import textEditBar.SpriteWithIME;
+		
+		
+		private var _activeFlow:TextFlow;
+		
+		public function changeContainerSetup(newActiveFlow:TextFlow):void
+ 		{
+ 			_activeFlow = newActiveFlow;
+ 			if (_activeFlow)
+ 			{
+ 				if (!_activeFlow.flowComposer)
+ 					_activeFlow.flowComposer = new StandardFlowComposer();
+ 				if (_activeFlow.flowComposer.numControllers < 1)
+ 					_activeFlow.flowComposer.addController(new ContainerController(new SpriteWithIME()));
+				rawChildren.addChild(_activeFlow.flowComposer.getControllerAt(0).container);	
+				handleResize();
+ 			}
+  		}
+ 		
+		public function handleResize():void
+		{
+			if (!_activeFlow)
+				return;
+				
+			var newFrameWidth:Number = width;
+			var newFrameHeight:Number = height;
+
+			var cont:ContainerController = _activeFlow.flowComposer.getControllerAt(0);
+			if (cont.container)
+				updateFrameDimensions(cont,0,0,newFrameWidth,newFrameHeight);
+
+			_activeFlow.flowComposer.updateAllControllers();
+				
+			if (_activeFlow.interactionManager && _activeFlow.interactionManager.hasSelection())
+				_activeFlow.flowComposer.getControllerAt(0).scrollToRange(_activeFlow.interactionManager.activePosition,_activeFlow.interactionManager.anchorPosition);	
+
+		}
+				
+ 		/** helper function to update a frame's dimensions */
+ 		private function updateFrameDimensions(controller:ContainerController,x:Number,y:Number,w:Number,h:Number):void
+ 		{
+ 			var tc:DisplayObject = controller.container;
+ 			
+   			if (tc.x != x)
+ 				tc.x = x;
+ 			if (tc.y != y)
+ 				tc.y = y;
+			controller.setCompositionSize(w,h);
+ 		}
+ 		
+		]]>
+	</mx:Script>
+</mx:Canvas>

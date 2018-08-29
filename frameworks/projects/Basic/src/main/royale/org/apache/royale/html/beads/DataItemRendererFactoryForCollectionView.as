@@ -213,7 +213,7 @@ package org.apache.royale.html.beads
 			var n:int = dataGroup.numElements;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererForIndex(i) as ISelectableItemRenderer;
 				ir.index = i;
 				
 				// could let the IR know its index has been changed (eg, it might change its
@@ -242,14 +242,14 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
 			dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
 			var n:int = dataGroup.numElements;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererForIndex(i) as ISelectableItemRenderer;
 				ir.index = i;
 				
 				// could let the IR know its index has been changed (eg, it might change its
@@ -277,7 +277,7 @@ package org.apache.royale.html.beads
 
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
-			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
 			setData(ir, event.item, event.index);
 		}
 		

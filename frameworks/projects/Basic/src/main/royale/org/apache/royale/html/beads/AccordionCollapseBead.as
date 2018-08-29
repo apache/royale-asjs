@@ -65,7 +65,7 @@ package org.apache.royale.html.beads
 		protected function selectedIndexChangedHandler(event:Event):void
 		{
 			var view:IListView = host.view as IListView;
-			var newChild:UIBase = view.dataGroup.getElementAt(host.selectedIndex) as UIBase;
+			var newChild:UIBase = view.dataGroup.getItemRendererForIndex(host.selectedIndex) as UIBase;
 			if (!newChild)
 			{
 				return;

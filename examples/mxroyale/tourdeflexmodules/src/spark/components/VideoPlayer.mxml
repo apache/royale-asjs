@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"  
+				   xmlns:s="library://ns.apache.org/royale/spark" 
+				   xmlns:mx="library://ns.apache.org/royale/mx" 
+				   borderStyle="solid" 
+				   backgroundColor="#333333"
+				   initialize="init(event)">
+	
+	<fx:Metadata>
+		[Event(name="complete", type="mx.events.VideoEvent")]
+		[Event(name="mediaPlayerStateChange", type="org.osmf.events.MediaPlayerStateChangeEvent")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.ItemClickEvent;
+			import mx.events.FlexEvent;
+			import mx.events.VideoEvent;
+			
+			import org.osmf.events.MediaPlayerStateChangeEvent;
+			import org.osmf.events.TimeEvent;
+			import org.osmf.utils.OSMFSettings;
+			
+			[Bindable] public var videoWidth:int = 240;
+			[Bindable] public var videoHeight:int = 180;
+			[Bindable] public var source:String; 
+			
+			protected function init(event:FlexEvent):void {
+				OSMFSettings.enableStageVideo = false;
+			}	
+			
+			private function buttonBarClick(event:ItemClickEvent):void
+			{
+				switch (event.index)
+				{
+					case 0:
+						videoDisplay.play();
+						break;
+					case 1:
+						videoDisplay.pause();
+						break;
+					case 2:
+						videoDisplay.stop();
+						break;
+				}
+			}
+			
+			private function playHeadUpdateHandler(event:TimeEvent):void
+			{
+				progressBar.setProgress(event.time, videoDisplay.duration);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center" />
+	</s:layout>
+	
+	<s:VideoDisplay id="videoDisplay" width="{videoWidth}" height="{videoHeight}" autoPlay="false"
+					currentTimeChange="playHeadUpdateHandler(event)"
+					source="{source}"
+					complete="dispatchEvent(event)"
+					mediaPlayerStateChange="dispatchEvent(event)"/>
+	
+	<mx:ProgressBar id="progressBar" mode="manual" minimum="0" maximum="{videoDisplay.duration}" 
+					label="" top="{videoHeight + 8}" left="4" right="4"/>
+	
+	<mx:ButtonBar id="bb" itemClick="buttonBarClick(event)" top="{videoHeight + 20}" bottom="4" 
+				  horizontalCenter="0" toolTipField="toolTip">
+		<mx:dataProvider>
+			<fx:Object icon="@Embed('assets/control_play_blue.png')" toolTip="Play"/>
+			<fx:Object icon="@Embed('assets/control_pause_blue.png')" toolTip="Pause"/>
+			<fx:Object icon="@Embed('assets/control_stop_blue.png')" toolTip="Stop"/>
+		</mx:dataProvider>
+	</mx:ButtonBar>
+	
+</s:BorderContainer>

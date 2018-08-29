@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- 
+The default skin class for Spark TabBar buttons.  
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4
+-->
+
+<s:SparkSkin 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.apache.org/royale/spark" 
+	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+	minWidth="21" minHeight="21" alpha.disabledStates="0.5">
+	
+	<!-- host component -->
+	<fx:Metadata>
+		<![CDATA[ 
+		/** 
+		* @copy spark.skins.spark.ApplicationSkin#hostComponent
+		*/
+		[HostComponent("spark.components.ButtonBarButton")]
+		]]>
+	</fx:Metadata>
+	
+	<fx:Script fb:purpose="styling" >
+        
+		import spark.components.TabBar;
+		
+		static private const exclusions:Array = ["labelDisplay"];
+		
+		/** 
+		 * @private
+		 */     
+		override public function get colorizeExclusions():Array {return exclusions;}
+		
+		/**
+		 * @private
+		 */
+		override protected function initializationComplete():void
+		{
+			//useBaseColor = true;
+			super.initializationComplete();
+		}
+		
+		private var cornerRadius:Number = 4
+		
+		/**
+		 *  @private
+		 *  The borderTop s:Path is just a s:Rect with the bottom edge left out.
+		 *  Given the rounded corners per the cornerRadius style, the result is 
+		 *  roughly an inverted U with the specified width, height, and cornerRadius.
+		 * 
+		 *  Circular arcs are drawn with two curves per flash.display.Graphics.GraphicsUtil.
+		 */        
+		private function updateBorderTop(width:Number, height:Number):void
+		{
+			var left:Number = -0.5;
+			var right:Number = width - 0.5;
+			var top:Number = 0.5;
+			var bottom:Number = height;
+			
+			var a:Number = cornerRadius * 0.292893218813453;
+			var s:Number = cornerRadius * 0.585786437626905;
+			
+			var path:String = "";
+			path +=  "M " + left + " " + bottom;
+			path += " L " + left + " " + (top + cornerRadius);
+			path += " Q " + left + " " + (top + s) + " " + (left + a) + " " + (top + a);
+			path += " Q " + (left + s) + " " + top + " " + (left + cornerRadius) + " " + top;
+			path += " L " + (right - cornerRadius) + " " + top;
+			path += " Q " + (right - s) + " " + top + " " + (right - a) + " " + (top + a);
+			path += " Q " + right + " " + (top + s) + " " + right + " " + (top + cornerRadius);
+			path += " L " + right + " " + bottom;
+			borderTop.data = path;
+		}
+		
+		/**
+		 *  @private
+		 *  The cornerRadius style is specified by the TabBar, not the button itself.   
+		 * 
+		 *  Rather than bind the corner radius properties of the s:Rect's in the markup 
+		 *  below to hostComponent.owner.getStyle("cornerRadius"), we reset them here, 
+		 *  each time a change in the value of the style is detected.  Note that each 
+		 *  corner radius property is explicitly initialized to the default value of 
+		 *  the style; the initial value of the private cornerRadius property.
+		 */
+		private function updateCornerRadius():void
+		{
+			var cr:Number = getStyle("cornerRadius");
+			if (cornerRadius != cr)
+			{
+				cornerRadius = cr;
+				fill.topLeftRadiusX = cornerRadius;
+				fill.topRightRadiusX = cornerRadius;
+				lowlight.radiusX = cornerRadius;
+				highlight.radiusX = cornerRadius;
+				highlightStroke.topLeftRadiusX = cornerRadius;
+				highlightStroke.topRightRadiusX = cornerRadius;
+			}
+		}
+		
+		/**
+		 *  @private
+		 */
+		override protected function updateDisplayList(unscaledWidth:Number, unscaleHeight:Number):void
+		{
+			updateCornerRadius();
+			updateBorderTop(unscaledWidth, unscaledHeight);
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+		}
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" stateGroups="overStates" />
+		<s:State name="down" stateGroups="downStates" />
+		<s:State name="disabled" stateGroups="disabledStates" />
+		<s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+		<s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+		<s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+		<s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+	</s:states>
+	
+	<s:Group left="-1" right="0" top="-1" bottom="-1">
+		
+		<!-- layer 2: fill -->
+		<s:Rect id="fill" left="2" right="1" top="2" bottom="2" topLeftRadiusX="4" topRightRadiusX="4" width="69" height="21">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0xFFFFFF" 
+									 color.selectedUpStates="0xFFFFFF"
+									 color.overStates="0xCC0000"
+									 color.downStates="0xCC0000" 
+									 alpha="0.85" 
+									 alpha.overAndSelected="1" />
+					<s:GradientEntry color="0xCCCCCC" 
+									 color.selectedUpStates="0x9FA0A1"
+									 color.over="0xCC0000" 
+									 color.overAndSelected="0xFFFFFF"
+									 color.downStates="0xCC0000" 
+									 alpha="0.85"
+									 alpha.overAndSelected="1" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+		<!-- layer 3: fill lowlight -->
+		<s:Rect id="lowlight" left="2" right="1" bottom="2" height="9" radiusX="4">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0xCC0000" alpha="0.0099" />
+					<s:GradientEntry color="0xCC0000" alpha="0.0627" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+		<!-- layer 4: fill highlight -->
+		<s:Rect id="highlight" left="2" right="1" top="2" height="9" radiusX="4">
+			<s:fill>
+				<s:SolidColor color="0xCC0000" 
+							  alpha="0.33" 
+							  alpha.selectedUpStates="0.22"
+							  alpha.overStates="0.22" 
+							  alpha.downStates="0.12" />
+			</s:fill>
+		</s:Rect>
+		
+		<!-- layer 5: highlight stroke (all states except down) -->
+		<s:Rect id="highlightStroke" left="2" right="1" top="2" bottom="2" topLeftRadiusX="4" topRightRadiusX="4">
+			<s:stroke>
+				<s:LinearGradientStroke rotation="90" weight="1">
+					<s:GradientEntry color="0xCC0000" alpha.overStates="0.22" alpha.selectedUpStates="0.33" />
+				</s:LinearGradientStroke>
+			</s:stroke>
+		</s:Rect>
+		
+		<!-- layer 6: highlight stroke (down state only) -->
+		<s:Rect left="2" top="2" bottom="2" width="1" includeIn="downStates, selectedUpStates, overAndSelected">
+			<s:fill>
+				<s:SolidColor color="0xCC0000" alpha="0.07" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect right="1" top="2" bottom="2" width="1" includeIn="downStates, selectedUpStates, overAndSelected">
+			<s:fill>
+				<s:SolidColor color="0xCC0000" alpha="0.07" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect left="3" top="2" right="1" height="1" includeIn="downStates, selectedUpStates, overAndSelected">
+			<s:fill>
+				<s:SolidColor color="0xCC0000" alpha="0.25" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect left="2" top="3" right="1" height="1" includeIn="downStates, selectedUpStates, overAndSelected">
+			<s:fill>
+				<s:SolidColor color="0xCC0000" alpha="0.09" />
+			</s:fill>
+		</s:Rect>
+		
+		<!-- layer 7: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
+		<s:Line id="borderBottom" left="1" right="0" bottom="1">
+			<s:stroke>
+				<s:SolidColorStroke weight="1" 
+									color="0xCC0000" 
+									color.selectedStates="0x434343"
+									alpha="0.75" 
+									alpha.down="0.85"
+									alpha.selectedStates="0.5" />
+			</s:stroke>
+		</s:Line>
+		<s:Path id="borderTop" left="1" right="0" top="1" bottom="1" width="69" height="21">
+			<s:stroke>
+				<s:LinearGradientStroke rotation="90" weight="1">
+					<s:GradientEntry color="0xCC0000" 
+									 alpha="0.5625"
+									 />
+					<s:GradientEntry color="0xFFFFFF" 
+									 color.selectedUpStates="0xFFFFFF"
+									 color.overStates="0xFFFFFF" 
+									 color.downStates="0xCC0000" 
+									 alpha="0.85" 
+									 alpha.overAndSelected="1" />					
+				</s:LinearGradientStroke>
+			</s:stroke>
+		</s:Path>
+	</s:Group>
+	
+	<!-- layer 8: text -->
+	<!--- The defines the appearance of the label for the first button in the ButtonBar component. -->
+	<s:Group left="2" top="2">
+		<s:BitmapImage source="@Embed('../personIcon.png')" width="16" height="16"/>		 
+				 
+		<s:Label id="labelDisplay"
+				 textAlign="right"
+				 verticalAlign="middle"
+				 maxDisplayedLines="1"
+				 horizontalCenter="7" verticalCenter="1" 
+				 left="10" right="10" top="2" bottom="2" color.down="#FFFFFF">
+		</s:Label>
+	</s:Group>
+	
+</s:SparkSkin>

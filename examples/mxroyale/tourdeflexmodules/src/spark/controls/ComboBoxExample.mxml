@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+		[Bindable]
+		public var cards:ArrayCollection = new ArrayCollection(
+			[ {label:"Visa", data:1}, 
+			{label:"MasterCard", data:2}, 
+			{label:"American Express", data:3} ]);
+		
+		private function changeHandler(event:Event):void {
+		
+			myLabel.text = "You selected: " +  ComboBox(event.target).selectedItem.label;
+			myData.text = "Data: " +  ComboBox(event.target).selectedItem.data;
+		}     
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="ComboBox Sample" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:VGroup>
+			<s:Label  width="200" color="0x336699" text="Select credit card type:"/>
+			<s:ComboBox dataProvider="{cards}" width="150" color="0x000000"
+						change="changeHandler(event)" selectedIndex="0"/>
+			<s:Label id="myLabel" text="You selected:" fontWeight="bold"/>
+			<s:Label id="myData" text="Data:" fontWeight="bold"/>	
+		</s:VGroup>
+
+		<s:Label width="75%" bottom="20" horizontalCenter="0"
+				 text="The ComboBox component is similar to a DropDownList but includes a TextInput instead of a Label. A user can type into the TextInput and the drop-down will scroll to and highlight the closest match.
+Users are allowed to type in an item not found in the dataProvider. With this behavior, a ComboBox acts as a list of suggested values, while a DropDownList acts as a list of possible values.  "/>
+			
+	</s:Panel>    
+</s:Module>

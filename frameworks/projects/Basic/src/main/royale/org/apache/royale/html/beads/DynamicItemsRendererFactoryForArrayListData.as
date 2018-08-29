@@ -194,7 +194,7 @@ package org.apache.royale.html.beads
 			var n:int = dataGroup.numElements;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererForIndex(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<s:Panel title="HSlider/VSlider Sample" width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+	
+				
+		<s:HGroup>
+			<s:Label text="Width:"/>
+			<s:HSlider id="slider2"
+					   minimum="50"
+					   maximum="250"
+					   value="200"
+					   liveDragging="true" />	
+			
+		</s:HGroup>
+		
+		<s:HGroup>
+			<s:VGroup>
+				<s:Label text="Height:"/>
+				<s:VSlider id="slider3"
+						   minimum="50"
+						   maximum="180"
+						   value="160"
+						   liveDragging="true"/>
+			</s:VGroup>
+			
+			<s:Group width="200">
+				<s:Ellipse id="rect"
+						   width="{slider2.value}"
+						   height="{slider3.value}">
+					<s:fill>
+						<s:LinearGradient rotation="45">
+							<s:GradientEntry color="0x5008f3" />
+							<s:GradientEntry color="0x7a2a84" />
+							<s:GradientEntry color="0xfe08a4" />
+						</s:LinearGradient>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+		</s:HGroup>
+		
+		<s:Label verticalAlign="justify"
+				 text="The slider controls can be used to select a value by moving a slider thumb between 
+the end points of the slider track. The current value of the slider is determined by the relative location 
+of the thumb between the end points of the slider. The slider end points correspond to the slider’s minimum and maximum values."/>
+	</s:Panel>
+	
+</s:Module>

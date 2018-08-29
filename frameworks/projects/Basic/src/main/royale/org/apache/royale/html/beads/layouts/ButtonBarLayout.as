@@ -115,7 +115,7 @@ package org.apache.royale.html.beads.layouts
 							if (widthValue != null) ilc.percentWidth = Number(widthValue);
 							IStyleableObject(ilc).style.flexGrow = 0;
 						}
-					} else {
+					} else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
 						IStyleableObject(ilc).style.flexGrow = 1;
 					}
 				}
@@ -134,11 +134,12 @@ package org.apache.royale.html.beads.layouts
 						else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
 							if (widthValue != null) ilc.percentWidth = Number(widthValue);
 						}
-					} else {
+					} else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
 						ilc.element.style["flex-grow"] = "1";
 					}
-					
-					ilc.height = contentView.height;
+
+                    if (!host.isHeightSizedToContent())
+    					ilc.height = contentView.height;
 				}
 			}
 

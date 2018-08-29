@@ -40,7 +40,7 @@ package org.apache.royale.effects.beads
 			var n:int = view.dataGroup.numElements;
 			for (var i:int = 0; i < n; i++)
 			{
-				var collapsible:ICollapsible = view.dataGroup.getElementAt(i) as ICollapsible;
+				var collapsible:ICollapsible = view.dataGroup.getItemRendererForIndex(i) as ICollapsible;
 				if (collapsible.collapsedHeight != (collapsible as ILayoutChild).height)
 				{
 					return i;
@@ -56,9 +56,9 @@ package org.apache.royale.effects.beads
 		
 		override protected function selectedIndexChangedHandler(event:Event):void
 		{
-			var newChild:UIBase = view.dataGroup.getElementAt(host.selectedIndex) as UIBase;
+			var newChild:UIBase = view.dataGroup.getItemRendererForIndex(host.selectedIndex) as UIBase;
 			var oldChildIndex:int = findPreviousNonCollapsedIndex();
-			var oldCollapsible:ICollapsible = view.dataGroup.getElementAt(oldChildIndex) as ICollapsible;
+			var oldCollapsible:ICollapsible = view.dataGroup.getItemRendererForIndex(oldChildIndex) as ICollapsible;
 			if (!newChild || oldChildIndex < 0)
 			{
 				return;

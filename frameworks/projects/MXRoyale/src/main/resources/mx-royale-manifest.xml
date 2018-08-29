@@ -21,14 +21,17 @@
 
 <componentPackage>
 
-    <component id="Application" class="mx.core.Application" />
-	<component id="Button" class="mx.controls.Button" />
-	<component id="CheckBox" class="mx.controls.CheckBox" />
-    <component id="ComboBox" class="mx.controls.ComboBox" />
+  <component id="Application" class="mx.core.Application" />   
+  <component id="Button" class="mx.controls.Button" />
+  <component id="CheckBox" class="mx.controls.CheckBox" />
+  <component id="ComboBox" class="mx.controls.ComboBox" />
+  <component id="DataGrid" class="mx.controls.DataGrid" />
+  <component id="DataGridColumn" class="mx.controls.dataGridClasses.DataGridColumn" />
 	<component id="DateChooser" class="mx.controls.DateChooser" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
 	<component id="LinkButton" class="mx.controls.LinkButton" />
+  <component id="List" class="mx.controls.List" />
 	<component id="NumericStepper" class="mx.controls.NumericStepper" />
 	<component id="ProgressBar" class="mx.controls.ProgressBar" />
 	<component id="RadioButton" class="mx.controls.RadioButton" />
@@ -37,7 +40,6 @@
 	<component id="Text" class="mx.controls.Text" />
 	<component id="TextArea" class="mx.controls.TextArea" />
 	<component id="TextInput" class="mx.controls.TextInput" />
-	
 	<component id="Box" class="mx.containers.Box" />
 	<component id="Canvas" class="mx.containers.Canvas" />
 	<component id="Container" class="mx.core.Container" />
@@ -46,10 +48,107 @@
     <component id="Panel" class="mx.containers.Panel" />
 	<component id="VBox" class="mx.containers.VBox" />
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
-	<!--<component id="ViewStack" class="mx.containers.ViewStack" /> waiting for commit -->
+  <component id="Panel" class="mx.containers.Panel" />
+	<component id="ViewStack" class="mx.containers.ViewStack" /> 
+    <component id="TabNavigator" class="mx.containers.TabNavigator" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
-	
-    <component id="State" class="mx.states.State" /> 
+	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
+	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
+	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
+	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
+	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
+	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
+	<component id="DateValidator" class="mx.validators.DateValidator"/>
+	<component id="EmailValidator" class="mx.validators.EmailValidator"/>
+	<component id="Module" class="mx.modules.Module"/>
+	<component id="ModuleLoader" class="mx.modules.ModuleLoader"/>
+	<component id="State" class="mx.states.State" />
+  <component id="PlotChart" class="mx.charts.PlotChart" />
+	<component id="PieSeries" class="mx.charts.series.PieSeries" />
+	<component id="PlotSeries" class="mx.charts.series.PlotSeries" />
+	<component id="AreaChart" class="mx.charts.AreaChart" />
+	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
+	<component id="ArrayList" class="mx.collections.ArrayList"/>
+	<component id="UIComponent" class="mx.core.UIComponent"/>
+	<component id="Container" class="mx.core.Container"/>
+	<component id="ControlBar" class="mx.containers.ControlBar"/>
+	<component id="Panel" class="mx.containers.Panel"/>
+	<component id="ToolTip" class="mx.controls.ToolTip" />
+	<component id="SortField" class="mx.collections.SortField"/>
+	<component id="Sort" class="mx.collections.Sort"/>
+	<component id="Stroke" class="mx.graphics.Stroke"/>
+	<component id="SolidColor" class="mx.graphics.SolidColor"/>
+	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke"/>
+	<component id="GradientEntry" class="mx.graphics.GradientEntry"/>
+	<component id="Tile" class="mx.containers.Tile"/>
+	<component id="DividedBox" class="mx.containers.DividedBox"/>
+	<component id="ToolTip" class="mx.controls.ToolTip" />
+	<component id="VRule" class="mx.controls.VRule"/>
+	<component id="HRule" class="mx.controls.HRule"/>
+	<component id="Sequence" class="mx.effects.Sequence"/>
+	<component id="LineChart" class="mx.charts.LineChart" />
+	<component id="PieChart" class="mx.charts.PieChart" />
+	<component id="BarChart" class="mx.charts.BarChart" />
+	<component id="ColumnChart" class="mx.charts.ColumnChart" />
+	<component id="Resize" class="mx.effects.Resize"/>
+	<component id="Move" class="mx.effects.Move"/>
+	<component id="LinearGradient" class="mx.graphics.LinearGradient"/>
+	<component id="ListBase" class="mx.controls.listClasses.ListBase" />
+	<component id="Grouping" class="mx.collections.Grouping" />
+	<component id="GroupingField" class="mx.collections.GroupingField" />
+	<component id="MenuBar" class="mx.controls.MenuBar"/>
+	<component id="NumberFormatter" class="mx.formatters.NumberFormatter"/>
+    <component id="Form" class="mx.containers.Form" />
+	<component id="FormHeading" class="mx.containers.FormHeading"/>
+    <component id="FormItem" class="mx.containers.FormItem" />
+	<component id="BarSeries" class="mx.charts.series.BarSeries" />
+	<component id="XMLListCollection" class="mx.collections.XMLListCollection"/>
+	<component id="TreeItemRenderer" class="mx.controls.treeClasses.TreeItemRenderer" />
+	<component id="ColumnSeries" class="mx.charts.series.ColumnSeries" />
+	<component id="CategoryAxis" class="mx.charts.CategoryAxis" />
+	<component id="LinearAxis" class="mx.charts.LinearAxis" />
+	<component id="ShadowLineRenderer" class="mx.charts.renderers.ShadowLineRenderer" />
+	<component id="Legend" class="mx.charts.Legend" />
+	<component id="AreaSeries" class="mx.charts.series.AreaSeries" />
+	<component id="ToggleButtonBar" class="mx.controls.ToggleButtonBar"/>
+	<component id="DragManager" class="mx.managers.DragManager" />
+	<component id="TraceTarget" class="mx.logging.targets.TraceTarget"/>
+	<component id="GroupingCollection2" class="mx.collections.GroupingCollection2" />
+	<component id="AdvancedListBase" class="mx.controls.listClasses.AdvancedListBase" />
+	<component id="AsyncToken" class="mx.rpc.AsyncToken" />
+	<component id="VScrollBar" class="mx.controls.VScrollBar"/>
+	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke"/>
+	<component id="CursorManager" class="mx.managers.CursorManager" />
+	<component id="Validator" class="mx.validators.Validator"/>
+	<component id="DateFormatter" class="mx.formatters.DateFormatter"/>
+	<component id="MenuBar" class="mx.controls.MenuBar"/>
+	<component id="Glow" class="mx.effects.Glow"/>
+	<component id="StringValidator" class="mx.validators.StringValidator"/>
+	<component id="RegExpValidator" class="mx.validators.RegExpValidator"/>
+	<component id="AdvancedDataGridHeaderRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer" />
+	<component id="AdvancedDataGridColumn" class="mx.controls.advancedDataGridClasses.AdvancedDataGridColumn" />
+	<component id="AdvancedDataGridColumnGroup" class="mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup" />
+	<component id="DateChooser" class="mx.controls.DateChooser"/>
+	<component id="DateField" class="mx.controls.DateField"/>
+	<component id="Grid" class="mx.containers.Grid"/>
+	<component id="GridItem" class="mx.containers.GridItem"/>
+	<component id="GridRow" class="mx.containers.GridRow"/>
+	<component id="Parallel" class="mx.effects.Parallel"/>
+	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
+	<component id="LineSeries" class="mx.charts.series.LineSeries" />
+	<component id="Tree" class="mx.controls.Tree"/>
+	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
+	<component id="ChannelSet" class="mx.messaging.ChannelSet" />
+	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
+	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
+	<component id="Alert" class="mx.controls.Alert" />
+	<component id="ToolBar" class="mx.controls.richTextEditorClasses.ToolBar"/>
+	<component id="AdvancedDataGrid" class="mx.controls.AdvancedDataGrid" />
+    <component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
+	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
+    <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
+
+
 </componentPackage>

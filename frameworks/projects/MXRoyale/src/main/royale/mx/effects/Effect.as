@@ -36,6 +36,40 @@ public class Effect extends org.apache.royale.effects.Effect
 {
 	public var instanceClass:Class = IEffectInstance;
 	
+	//--------------------------------------------------------------------------
+    //
+    //  Constructor
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  Constructor.
+     *
+     *  <p>Starting an effect is usually a three-step process:</p>
+     *
+     *  <ul>
+     *    <li>Create an instance of the effect object
+     *    with the <code>new</code> operator.</li>
+     *    <li>Set properties on the effect object,
+     *    such as <code>duration</code>.</li>
+     *    <li>Call the <code>play()</code> method
+     *    or assign the effect to a trigger.</li>
+     *  </ul>
+     *
+     *  @param target The Object to animate with this effect.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function Effect(target:Object = null)
+    {
+        super();
+	
+	//this.target = target;
+        
+    }
 	public function end(effectInstance:IEffectInstance = null):void
     {
     }

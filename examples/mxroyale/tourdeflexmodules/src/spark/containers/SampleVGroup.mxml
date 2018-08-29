@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+
+	<fx:Script>
+		<![CDATA[
+			private function applyProperties():void
+			{
+				this.mainVGroup.paddingTop = this.padTop.value;
+				this.mainVGroup.paddingLeft = this.padLeft.value;
+				this.mainVGroup.paddingRight = this.padRight.value;
+				this.mainVGroup.paddingBottom = this.padBottom.value;
+				this.mainVGroup.gap = this.gap.value;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="VGroup Sample" width="100%" height="100%">
+		
+		<s:HGroup width="100%" height="100%" top="10" left="10">
+			<s:VGroup top="10" left="10" width="172">
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Gap:"/>
+					<s:NumericStepper id="gap" maximum="400"/>
+				</s:HGroup>	
+				
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Padding Top:"/>
+					<s:NumericStepper id="padTop" maximum="400"/>
+				</s:HGroup>
+				
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Padding Left:"/>
+					<s:NumericStepper id="padLeft" maximum="400"/>
+				</s:HGroup>
+				
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Padding Right:"/>
+					<s:NumericStepper id="padRight" maximum="400"/>
+				</s:HGroup>
+				
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Padding Bottom:"/>
+					<s:NumericStepper id="padBottom" maximum="400"/>
+				</s:HGroup>	
+				
+				<s:Button label="Apply Properties" click="this.applyProperties()"/>
+			</s:VGroup>
+			<s:VGroup left="300" top="10" id="mainVGroup">
+				<s:Rect width="100" height="75">
+					<s:fill>
+						<s:SolidColor color="0xd54f4f"/>
+					</s:fill>
+				</s:Rect>
+				<s:Rect width="100" height="75">
+					<s:fill>
+						<s:SolidColor color="0x2f977d"/>
+					</s:fill>
+				</s:Rect>
+				<s:Rect width="100" height="75">
+					<s:fill>
+						<s:SolidColor color="0xfffca2"/>
+					</s:fill>
+				</s:Rect>
+			</s:VGroup>	
+			<mx:Spacer width="10"/>
+			<s:Label width="40%" horizontalCenter="0" 
+					 text="The VGroup container is an instance of the Group container that uses the VerticalLayout class. You can use the properties of the VGroup class to modify the characteristics of the VerticalLayout class." height="100%"/>
+				
+		</s:HGroup>
+	</s:Panel>
+	
+</s:Module>

@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -36,7 +37,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
 	
-	import org.apache.royale.core.IList;
+    import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IParentIUIBase;
@@ -158,7 +159,8 @@ package org.apache.royale.html.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 *  @royaleignorecoercion Array
-		 *  @royaleignorecoercion org.apache.royale.core.IList
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
@@ -171,8 +173,8 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererParent = view.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
 			

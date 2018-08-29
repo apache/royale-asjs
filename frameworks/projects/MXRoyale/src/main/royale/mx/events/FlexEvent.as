@@ -30,7 +30,7 @@ import org.apache.royale.events.IRoyaleEvent;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class FlexEvent extends Event
 {
@@ -68,9 +68,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const ADD:String = "add";
+    //public static const ADD:String = "add";
 
     /**
      *  The <code>FlexEvent.ADD_FOCUS_MANAGER</code> constant defines the value of the
@@ -100,7 +100,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public static const ADD_FOCUS_MANAGER:String = "addFocusManager";
+    //public static const ADD_FOCUS_MANAGER:String = "addFocusManager";
 
     /**
      *  The <code>FlexEvent.APPLICATION_COMPLETE</code> constant defines the value of the
@@ -126,9 +126,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const APPLICATION_COMPLETE:String = "applicationComplete";
+    //public static const APPLICATION_COMPLETE:String = "applicationComplete";
     
     /**
      *  The <code>FlexEvent.BUTTON_DOWN</code> constant defines the value of the
@@ -154,9 +154,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const BUTTON_DOWN:String = "buttonDown";
+    //public static const BUTTON_DOWN:String = "buttonDown";
     
     /**
      *  The <code>FlexEvent.BACK_KEY_PRESSED</code> constant defines the value of the
@@ -184,7 +184,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const BACK_KEY_PRESSED:String = "backKeyPressed";
+    //public static const BACK_KEY_PRESSED:String = "backKeyPressed";
     
     /**
      *  The <code>FlexEvent.CHANGE_END</code> constant defines the value of the
@@ -212,7 +212,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public static const CHANGE_END:String = "changeEnd";
+    //public static const CHANGE_END:String = "changeEnd";
 
     /**
      *  The <code>FlexEvent.CHANGE_START</code> constant defines the value of the
@@ -240,7 +240,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public static const CHANGE_START:String = "changeStart";
+    //public static const CHANGE_START:String = "changeStart";
 
     /**
      *  The <code>FlexEvent.CHANGING</code> constant defines the value of the
@@ -268,7 +268,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public static const CHANGING:String = "changing";
+    //public static const CHANGING:String = "changing";
 
     /**
      *  The <code>FlexEvent.CREATION_COMPLETE</code> constant defines the value of the
@@ -294,7 +294,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const CREATION_COMPLETE:String = "creationComplete";
 
@@ -324,7 +324,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    public static const CONTENT_CREATION_COMPLETE:String = "contentCreationComplete";
+    //public static const CONTENT_CREATION_COMPLETE:String = "contentCreationComplete";
 
     
     /**
@@ -351,9 +351,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const CURSOR_UPDATE:String = "cursorUpdate";
+    //public static const CURSOR_UPDATE:String = "cursorUpdate";
 
     /**
      *  The <code>FlexEvent.DATA_CHANGE</code> constant defines the value of the
@@ -379,7 +379,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const DATA_CHANGE:String = "dataChange";
     
@@ -407,9 +407,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const ENTER:String = "enter";
+    //public static const ENTER:String = "enter";
 
     /**
      *  The <code>FlexEvent.ENTER_FRAME</code> constant defines the value of the
@@ -425,9 +425,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const ENTER_FRAME:String = "flexEventEnterFrame";
+    //public static const ENTER_FRAME:String = "flexEventEnterFrame";
 
     /**
      *  The <code>FlexEvent.ENTER_STATE</code> constant defines the value of the
@@ -456,9 +456,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const ENTER_STATE:String = "enterState";
+    //public static const ENTER_STATE:String = "enterState";
 
     /**
      *  The <code>FlexEvent.EXIT_STATE</code> constant defines the value of the
@@ -487,9 +487,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const EXIT_STATE:String = "exitState";
+    //public static const EXIT_STATE:String = "exitState";
 
     /**
      *  The <code>FlexEvent.FLEX_WINDOW_ACTIVATE</code> constant defines the value of the
@@ -583,7 +583,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const HIDE:String = "hide";
 
@@ -611,9 +611,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const IDLE:String = "idle";
+    //public static const IDLE:String = "idle";
 
     /**
      *  Dispatched when a Flex application finishes initialization.
@@ -659,9 +659,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const INIT_COMPLETE:String = "initComplete";
+    //public static const INIT_COMPLETE:String = "initComplete";
 
     /**
      *  Dispatched when the Flex application completes an initialization phase,
@@ -694,9 +694,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const INIT_PROGRESS:String = "initProgress";
+    //public static const INIT_PROGRESS:String = "initProgress";
 
     /**
      *  The <code>FlexEvent.INITIALIZE</code> constant defines the value of the
@@ -722,7 +722,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const INITIALIZE:String = "initialize";
 
@@ -750,9 +750,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const INVALID:String = "invalid";
+    //public static const INVALID:String = "invalid";
 
     /**
      *  The <code>FlexEvent.LOADING</code> constant defines the value of the
@@ -779,9 +779,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const LOADING:String = "loading";
+    //public static const LOADING:String = "loading";
     
     /**
      *  The <code>FlexEvent.MENU_KEY_PRESSED</code> constant defines the value of the
@@ -809,7 +809,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const MENU_KEY_PRESSED:String = "menuKeyPressed";
+    //public static const MENU_KEY_PRESSED:String = "menuKeyPressed";
     
     /**
      *  The <code>FlexEvent.MUTED_CHANGE</code> constant defines the value of the 
@@ -837,7 +837,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public static const MUTED_CHANGE:String = "mutedChange";
+    //public static const MUTED_CHANGE:String = "mutedChange";
     
     /**
      *  The <code>FlexEvent.NAVIGATOR_STATE_LOADING</code> constant defines the value of the
@@ -865,7 +865,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const NAVIGATOR_STATE_LOADING:String = "navigatorStateLoading";
+    //public static const NAVIGATOR_STATE_LOADING:String = "navigatorStateLoading";
     
     /**
      *  The <code>FlexEvent.NAVIGATOR_STATE_SAVING</code> constant defines the value of the
@@ -893,12 +893,12 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const NAVIGATOR_STATE_SAVING:String = "navigatorStateSaving";
+    //public static const NAVIGATOR_STATE_SAVING:String = "navigatorStateSaving";
     
     /**
      *  @private
      */
-    public static const NEW_CHILD_APPLICATION:String = "newChildApplication";
+    //public static const NEW_CHILD_APPLICATION:String = "newChildApplication";
 
     /**
      *  The <code>FlexEvent.PREINITIALIZE</code> constant defines the value of the
@@ -924,19 +924,19 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const PREINITIALIZE:String = "preinitialize";
 
     /**
      *  @private
      */
-    public static const PRELOADER_DONE:String = "preloaderDone";
+    //public static const PRELOADER_DONE:String = "preloaderDone";
 
     /**
      *  @private
      */
-    public static const PRELOADER_DOC_FRAME_READY:String = "preloaderDocFrameReady";
+    //public static const PRELOADER_DOC_FRAME_READY:String = "preloaderDocFrameReady";
 
     /**
      *  The <code>FlexEvent.READY</code> constant defines the value of the
@@ -969,7 +969,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 4.5
      */
-    public static const READY:String = "ready";
+    //public static const READY:String = "ready";
     
     /**
      *  The <code>FlexEvent.RENDER</code> constant defines the value of the
@@ -985,9 +985,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const RENDER:String = "flexEventRender";
+    //public static const RENDER:String = "flexEventRender";
 
     /**
      *  The <code>FlexEvent.REMOVE</code> constant defines the value of the
@@ -1016,9 +1016,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const REMOVE:String = "remove";
+    //public static const REMOVE:String = "remove";
 
     /**
      *  The <code>FlexEvent.REPEAT</code> constant defines the value of the
@@ -1044,9 +1044,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const REPEAT:String = "repeat";
+    //public static const REPEAT:String = "repeat";
 
     /**
      *  The <code>FlexEvent.REPEAT_END</code> constant defines the value of the
@@ -1072,9 +1072,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const REPEAT_END:String = "repeatEnd";
+    //public static const REPEAT_END:String = "repeatEnd";
 
     /**
      *  The <code>FlexEvent.REPEAT_START</code> constant defines the value of the
@@ -1100,9 +1100,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const REPEAT_START:String = "repeatStart";
+    //public static const REPEAT_START:String = "repeatStart";
 
     /**
      *  The <code>FlexEvent.SELECTION_CHANGE</code> constant defines the value of the
@@ -1128,9 +1128,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const SELECTION_CHANGE:String = "selectionChange";
+    //public static const SELECTION_CHANGE:String = "selectionChange";
 
     /**
      *  The <code>FlexEvent.SHOW</code> constant defines the value of the
@@ -1156,7 +1156,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const SHOW:String = "show";
     
@@ -1189,7 +1189,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const STATE_CHANGE_COMPLETE:String = "stateChangeComplete";
+    //public static const STATE_CHANGE_COMPLETE:String = "stateChangeComplete";
     
     /**
      *  The <code>FlexEvent.STATE_CHANGE_INTERRUPTED</code> constant defines the value of the
@@ -1220,7 +1220,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const STATE_CHANGE_INTERRUPTED:String = "stateChangeInterrupted";
+    //public static const STATE_CHANGE_INTERRUPTED:String = "stateChangeInterrupted";
 
     /**
      *  The <code>FlexEvent.TRANSFORM_CHANGE</code> constant defines the value of the
@@ -1246,9 +1246,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const TRANSFORM_CHANGE:String = "transformChange";
+    //public static const TRANSFORM_CHANGE:String = "transformChange";
 
     /**
      *  The <code>FlexEvent.TRANSITION_START</code> constant defines the value of the
@@ -1279,7 +1279,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const TRANSITION_START:String = "transitionStart";
+    //public static const TRANSITION_START:String = "transitionStart";
     
     /**
      *  The <code>FlexEvent.TRANSITION_END</code> constant defines the value of the
@@ -1310,7 +1310,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    public static const TRANSITION_END:String = "transitionEnd";
+    //public static const TRANSITION_END:String = "transitionEnd";
     
     /**
      *  The <code>FlexEvent.UPDATE_COMPLETE</code> constant defines the value of the
@@ -1339,9 +1339,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const UPDATE_COMPLETE:String = "updateComplete";
+    //public static const UPDATE_COMPLETE:String = "updateComplete";
 
     /**
      *  The <code>FlexEvent.URL_CHANGED</code> constant defines the value of the
@@ -1368,7 +1368,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const URL_CHANGED:String = "urlChanged";
 
@@ -1396,9 +1396,9 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
-    public static const VALID:String = "valid";
+    //public static const VALID:String = "valid";
 
     /**
      *  The <code>FlexEvent.VALUE_COMMIT</code> constant defines the value of the
@@ -1425,7 +1425,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public static const VALUE_COMMIT:String = "valueCommit";
     
@@ -1449,7 +1449,7 @@ public class FlexEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function FlexEvent(type:String, bubbles:Boolean = false,
                               cancelable:Boolean = false)
@@ -1457,19 +1457,6 @@ public class FlexEvent extends Event
         super(type, bubbles, cancelable);
     }
 
-    //--------------------------------------------------------------------------
-    //
-    //  Overridden methods: Event
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  @private
-     */
-    override public function cloneEvent():IRoyaleEvent
-    {
-        return new FlexEvent(type, bubbles, cancelable);
-    }
 }
 
 }

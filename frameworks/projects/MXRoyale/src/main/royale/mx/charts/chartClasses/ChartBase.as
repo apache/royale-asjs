@@ -98,6 +98,54 @@ package mx.charts.chartClasses
 
 			updateDataTips(); */
 		}
+		
+		public function get paddingLeft():Number
+		{
+			return 0;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingLeft(value:Number):void
+		{
+		}
+		
+		public function get paddingRight():Number
+		{
+			return 0;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingRight(value:Number):void
+		{
+		}
+		
+		public function get paddingTop():Number
+		{
+			return 0;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingTop(value:Number):void
+		{
+		}
+		
+		public function get paddingBottom():Number
+		{
+			return 0;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set paddingBottom(value:Number):void
+		{
+		}
     
 	}
 }

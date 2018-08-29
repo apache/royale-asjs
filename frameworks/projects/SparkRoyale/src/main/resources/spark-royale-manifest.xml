@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+	<component id="Application" class="spark.components.Application"/>
+	<component id="Button" class="spark.components.Button" />
+	<component id="CheckBox" class="spark.components.CheckBox" />
+	<component id="Label" class="spark.components.Label" />
+    	<component id="List" class="spark.components.List" />
+   	<component id="ComboBox" class="spark.components.ComboBox" />
+	<component id="DropDownList" class="spark.components.DropDownList" />
+	<component id="RadioButton" class="spark.components.RadioButton" />
+	<component id="RadioButtonGroup" class="spark.components.RadioButtonGroup" />
+	<component id="NumericStepper" class="spark.components.NumericStepper" />
+	<component id="TextArea" class="spark.components.TextArea" />
+	<component id="TextInput" class="spark.components.TextInput" />
+	<component id="Panel" class="spark.components.Panel" />
+	<component id="TitleWindow" class="spark.components.TitleWindow" />
+    	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
+	<component id="Path" class="spark.primitives.Path"/>
+	<component id="Rect" class="spark.primitives.Rect"/>
+    	<component id="Line" class="spark.primitives.Line"/>
+    	<component id="RectangularDropShadow" class="spark.primitives.RectangularDropShadow"/>
+    	<component id="Range" class="spark.components.supportClasses.Range"/>
+    	<component id="RichEditableText" class="spark.components.RichEditableText"/>
+        <component id="RichText" class="spark.components.RichText"/>
+	<component id="Skin" class="spark.components.supportClasses.Skin"/>
+    	<component id="SkinnableComponent" class="spark.components.supportClasses.SkinnableComponent"/>
+	<component id="ToggleButton" class="spark.components.ToggleButton"/>
+    	<component id="ToggleButtonBase" class="spark.components.supportClasses.ToggleButtonBase"/>
+    	<component id="DataRenderer" class="spark.components.DataRenderer"/>
+	<component id="SkinnableTextBase" class="spark.components.supportClasses.SkinnableTextBase"/>
+	<component id="TextBase" class="spark.components.supportClasses.TextBase"/>
+    	<component id="TextInput" class="spark.components.TextInput"/>
+	<component id="PopUpAnchor" class="spark.components.PopUpAnchor"/>
+	<component id="Group" class="spark.components.Group"/>
+    	<component id="GroupBase" class="spark.components.supportClasses.GroupBase"/>
+    	<component id="HGroup" class="spark.components.HGroup"/>
+	<component id="VGroup" class="spark.components.VGroup"/>
+    	<component id="ListBase" class="spark.components.supportClasses.ListBase"/>
+    	<component id="ItemRenderer" class="spark.components.supportClasses.ItemRenderer"/>
+ 	<component id="GradientEntry" class="mx.graphics.GradientEntry" lookupOnly="true"/>
+     	<component id="LinearGradient" class="mx.graphics.LinearGradient" lookupOnly="true"/>
+   	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke" lookupOnly="true"/> 
+    	<component id="State" class="mx.states.State" lookupOnly="true"/>
+	<component id="SolidColor" class="mx.graphics.SolidColor" lookupOnly="true"/>
+	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke" lookupOnly="true"/>
+	<component id="NavigatorContent" class="spark.components.NavigatorContent"/>
+	<component id="BorderContainer" class="spark.components.BorderContainer"/>
+	<component id="Scroller" class="spark.components.Scroller"/>
+    	<component id="DataGroup" class="spark.components.DataGroup"/>
+	<component id="VerticalLayout" class="spark.layouts.VerticalLayout"/>
+	<component id="BitmapImage" class="spark.primitives.BitmapImage"/>
+    	<component id="Image" class="spark.components.Image"/>
+        <component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
+
+    <!-- Text Layout Framework (TLF) -->
+    <component id="a" class="org.apache.royale.textLayout.elements.LinkElement" lookupOnly="true"/>
+    <component id="br" class="org.apache.royale.textLayout.elements.BreakElement" lookupOnly="true"/>
+    <component id="div" class="org.apache.royale.textLayout.elements.DivElement" lookupOnly="true"/>
+    <component id="img" class="org.apache.royale.textLayout.elements.InlineGraphicElement" lookupOnly="true"/>
+    <component id="list" class="org.apache.royale.textLayout.elements.ListElement" lookupOnly="true"/>
+    <component id="li" class="org.apache.royale.textLayout.elements.ListItemElement" lookupOnly="true"/>
+    <component id="p" class="org.apache.royale.textLayout.elements.ParagraphElement" lookupOnly="true"/>
+    <component id="span" class="org.apache.royale.textLayout.elements.SpanElement" lookupOnly="true"/>
+    <component id="tab" class="org.apache.royale.textLayout.elements.TabElement" lookupOnly="true"/>
+    <component id="tcy" class="org.apache.royale.textLayout.elements.TCYElement" lookupOnly="true"/>
+    <component id="ListMarkerFormat" class="org.apache.royale.textLayout.formats.ListMarkerFormat" lookupOnly="true"/>
+    <component id="g" class="org.apache.royale.textLayout.elements.SubParagraphGroupElement" lookupOnly="true"/>
+    <component id="TextFlow" class="org.apache.royale.textLayout.elements.TextFlow" lookupOnly="true"/>
+    <component id="TextLayoutFormat" class="org.apache.royale.textLayout.formats.TextLayoutFormat" lookupOnly="true"/>
+
+</componentPackage>

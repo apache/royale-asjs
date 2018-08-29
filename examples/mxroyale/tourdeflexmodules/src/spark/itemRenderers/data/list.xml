@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<list>
+    <employee employeeId="1">
+    	<firstName>Michael</firstName>
+    	<lastName>Scott</lastName>
+    	<image>assets/2.jpg</image>
+    </employee>
+    <employee employeeId="2">
+    	<firstName>Pam</firstName>
+    	<lastName>Beesly</lastName>
+    	<image>assets/3.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Andy</firstName>
+    	<lastName>Bernard</lastName>
+    	<image>assets/4.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Creed</firstName>
+    	<lastName>Bratton</lastName>
+    	<image>assets/5.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Toby</firstName>
+    	<lastName>Flenderson</lastName>
+    	<image>assets/6.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Jim</firstName>
+    	<lastName>Halpert</lastName>
+    	<image>assets/7.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Ryan</firstName>
+    	<lastName>Howard</lastName>
+    	<image>assets/8.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Stanley</firstName>
+    	<lastName>Hudson</lastName>
+    	<image>assets/9.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Kelly</firstName>
+    	<lastName>Kapoor</lastName>
+    	<image>assets/1.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Phyllis</firstName>
+    	<lastName>Lapin</lastName>
+    	<image>assets/2.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Kevin</firstName>
+    	<lastName>Malone</lastName>
+    	<image>assets/3.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Angela</firstName>
+    	<lastName>Martin</lastName>
+    	<image>assets/4.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Oscar</firstName>
+    	<lastName>Martinez</lastName>
+    	<image>assets/5.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Meredith</firstName>
+    	<lastName>Palmer</lastName>
+    	<image>assets/6.jpg</image>
+    </employee>
+    <employee employeeId="3">
+    	<firstName>Dwight</firstName>
+    	<lastName>Schrute</lastName>
+    	<image>assets/7.jpg</image>
+    </employee>
+</list>

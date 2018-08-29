@@ -291,6 +291,9 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.TreeGridView; TreeGridView;
 
 	import org.apache.royale.html.util.getLabelFromData; getLabelFromData;
+    
+    import org.apache.royale.utils.UIModuleUtils; UIModuleUtils;
+
 }
 
 }

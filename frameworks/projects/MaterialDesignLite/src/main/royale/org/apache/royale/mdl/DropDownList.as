@@ -171,33 +171,6 @@ package org.apache.royale.mdl
             ISelectionModel(model).selectedItem = value;
         }
 
-        override public function removeAllItemRenderers():void
-        {
-            COMPILE::JS
-            {
-                var optionsCount:int = dropDown.numElements;
-                
-                for (var i:int = 1; i < optionsCount; i++)
-                {
-                   var item:UIBase = dropDown.getElementAt(i) as UIBase;
-                   dropDown.removeElement(item);
-                }
-            }
-        }
-
-        override public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
-        {
-            COMPILE::JS
-            {
-                dropDown.addElement(renderer, dispatchAdded);
-            }
-            
-            var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-            newEvent.item = renderer;
-
-            dispatchEvent(newEvent);
-        }
-
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */

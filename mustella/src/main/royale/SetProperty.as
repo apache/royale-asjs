@@ -27,7 +27,7 @@ import flash.display.DisplayObject;
  *  Instead of a property, we use an event so the MXML
  *  compiler will wrap the code in a function for us
  */
-[Event(name="valueExpression", type="flash.events.Event")]
+[Event(name="valueExpression", type="org.apache.royale.events.Event")]
 
 /**
  *  The test step that sets a property to some value

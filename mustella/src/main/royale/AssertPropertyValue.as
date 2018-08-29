@@ -33,7 +33,7 @@ import flash.events.EventDispatcher;
  *  Instead of a property, we use an event so the MXML
  *  compiler will wrap the code in a function for us
  */
-[Event(name="valueExpression", type="flash.events.Event")]
+[Event(name="valueExpression", type="org.apache.royale.events.Event")]
 
 /**
  *  Tests that the value of a property is as expected

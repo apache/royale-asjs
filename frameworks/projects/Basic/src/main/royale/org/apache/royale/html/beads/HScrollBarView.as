@@ -86,10 +86,10 @@ package org.apache.royale.html.beads
 			_thumb = new Button();				
 			Button(_thumb).addBead(new HScrollBarThumbView());
             
-            UIBase(value).addChild(_decrement);
-            UIBase(value).addChild(_increment);
-            UIBase(value).addChild(_track);
-            UIBase(value).addChild(_thumb);
+            UIBase(value).$addChild(_decrement);
+            UIBase(value).$addChild(_increment);
+            UIBase(value).$addChild(_track);
+            UIBase(value).$addChild(_thumb);
             
             IEventDispatcher(_strand).addEventListener("widthChanged", changeHandler);
 

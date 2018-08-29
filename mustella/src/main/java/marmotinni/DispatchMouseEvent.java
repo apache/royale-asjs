@@ -32,7 +32,7 @@ import org.xml.sax.Attributes;
  * Dispatch mouse event
  */
 public class DispatchMouseEvent extends TestStep { 
-
+    
     /**
      *  Dispatch a mouse event
      */
@@ -104,7 +104,7 @@ public class DispatchMouseEvent extends TestStep {
 		
 		script = new StringBuilder();
 		script.append("var e = document.createEvent('MouseEvent');");
-		script.append("e.initMouseEvent(\"" + type + "\", true, false, window, " + delta + ", " + x + ", " + y + ", " + localX + ", " + localY + ", " + ctrlKey + ", false, " + shiftKey + ", false, " + type.equals("mouseDown") + ", " + relatedObject + ");");
+		script.append("e.initMouseEvent(\"" + type.toLowerCase() + "\", true, false, window, " + delta + ", " + x + ", " + y + ", " + localX + ", " + localY + ", " + ctrlKey + ", false, " + shiftKey + ", false, " + type.equals("mouseDown") + ", " + relatedObject + ");");
 		script.append("document.getElementById('" + actualId + "').dispatchEvent(e);");
 		if (TestStep.showScripts)
 			System.out.println(script);

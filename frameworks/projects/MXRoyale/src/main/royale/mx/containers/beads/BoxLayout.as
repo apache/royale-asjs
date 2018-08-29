@@ -27,9 +27,12 @@ package mx.containers.beads
 	import mx.core.EdgeMetrics;
 	import mx.core.IUIComponent;
 	
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.ValuesManager;
 
 	//import mx.core.mx_internal;
 	//import mx.core.ScrollPolicy;
@@ -130,11 +133,11 @@ package mx.containers.beads
 			var preferredWidth:Number = 0;
 			var preferredHeight:Number = 0;
 			
-			var n:int = target.numChildren;
+			var n:int = layoutView.numElements;
 			var numChildrenWithOwnSpace:int = n;
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:IUIComponent = target.getLayoutChildAt(i);
+				var child:IUIComponent = layoutView.getElementAt(i) as IUIComponent;
 				
 				if (!child.includeInLayout)
 				{
@@ -191,17 +194,21 @@ package mx.containers.beads
 		
 		override public function layout():Boolean
 		{
-			var n:int = target.numChildren;
+			var n:int = layoutView.numElements;
 			if (n == 0)
 				return false;
 			
 			updateDisplayList(target.width, target.height);
 			
 			// update the target's actual size if needed.
-			if (target.isWidthSizedToContent() || target.isHeightSizedToContent()) {
+			if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
 				target.setActualSize(target.getExplicitOrMeasuredWidth(), 
 					                 target.getExplicitOrMeasuredHeight());
 			}
+            else if (target.isWidthSizedToContent())
+                target.setWidth(target.getExplicitOrMeasuredWidth());
+            else if (target.isHeightSizedToContent())
+                target.setHeight(target.getExplicitOrMeasuredHeight());
 
 			return true;
 		}
@@ -213,13 +220,14 @@ package mx.containers.beads
 		public function updateDisplayList(unscaledWidth:Number,
 												   unscaledHeight:Number):void
 		{			
-			var n:int = target.numChildren;
+			var n:int = layoutView.numElements;
 			if (n == 0) return;
 			
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
+            var pd:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(target);
 			
-			var paddingLeft:Number = target.getStyle("paddingLeft");
-			var paddingTop:Number = target.getStyle("paddingTop");
+			var paddingLeft:Number = pd.left;
+			var paddingTop:Number = pd.top;
 			
 			var horizontalAlign:Number = getHorizontalAlignValue();
 			var verticalAlign:Number = getVerticalAlignValue();
@@ -258,7 +266,7 @@ package mx.containers.beads
 				// a GridItem. This code path works for both horizontal and
 				// vertical layout.
 				
-				var child:IUIComponent = target.getLayoutChildAt(0);
+				var child:IUIComponent = layoutView.getElementAt(0) as IUIComponent;
 				
 				var percentWidth:Number = child.percentWidth;
 				var percentHeight:Number = child.percentHeight;
@@ -310,6 +318,9 @@ package mx.containers.beads
 				left = (w - child.width) * horizontalAlign + paddingLeft;
 				top = (h - child.height) * verticalAlign + paddingTop;
 				
+                COMPILE::JS {
+                    child.positioner.style.position = 'absolute';
+                }
 				child.move(Math.floor(left), Math.floor(top));
 			}
 				
@@ -320,13 +331,13 @@ package mx.containers.beads
 				numChildrenWithOwnSpace = n;
 				for (i = 0; i < n; i++)
 				{
-					if (!IUIComponent(target.getChildAt(i)).includeInLayout)
+					if (!IUIComponent(layoutView.getElementAt(i)).includeInLayout)
 						numChildrenWithOwnSpace--;
 				}
 				
 				// Stretch everything as needed, including widths.
 				excessSpace = Flex.flexChildHeightsProportionally(
-					target, h - (numChildrenWithOwnSpace - 1) * gap, w);
+					layoutView, h - (numChildrenWithOwnSpace - 1) * gap, w);
 				
 				// Ignore scrollbar sizes for child alignment purpose.
 //				if (horizontalScrollBar != null &&
@@ -344,14 +355,14 @@ package mx.containers.beads
 				
 				for (i = 0; i < n; i++)
 				{
-					obj = target.getLayoutChildAt(i);
+					obj = layoutView.getElementAt(i) as IUIComponent;
 					left = (w - obj.width) * horizontalAlign + paddingLeft;
+                    COMPILE::JS {
+                        obj.positioner.style.position = 'absolute';
+                    }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
 						top += obj.height + gap;
-					COMPILE::JS {
-						obj.positioner.style.position = 'absolute';
-					}
 				}
 			}
 				
@@ -362,13 +373,13 @@ package mx.containers.beads
 				numChildrenWithOwnSpace = n;
 				for (i = 0; i < n; i++)
 				{
-					if (!IUIComponent(target.getChildAt(i)).includeInLayout)
+					if (!IUIComponent(layoutView.getElementAt(i)).includeInLayout)
 						numChildrenWithOwnSpace--;
 				}
 				
 				// stretch everything as needed including heights
 				excessSpace = Flex.flexChildWidthsProportionally(
-					target, w - (numChildrenWithOwnSpace - 1) * gap, h);
+					layoutView, w - (numChildrenWithOwnSpace - 1) * gap, h);
 				
 				// Ignore scrollbar sizes for child alignment purpose.
 //				if (horizontalScrollBar != null &&
@@ -386,14 +397,14 @@ package mx.containers.beads
 				
 				for (i = 0; i < n; i++)
 				{
-					obj = target.getLayoutChildAt(i);
+					obj = layoutView.getElementAt(i) as IUIComponent;
 					top = (h - obj.height) * verticalAlign + paddingTop;
+                    COMPILE::JS {
+                        obj.positioner.style.position = 'absolute';
+                    }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
 						left += obj.width + gap;
-					COMPILE::JS {
-						obj.positioner.style.position = 'absolute';
-					}
 				}
 			}
 		}
@@ -415,7 +426,7 @@ package mx.containers.beads
 		/**
 		 *  @private
 		 */
-		protected function widthPadding(numChildren:Number):Number
+		public function widthPadding(numChildren:Number):Number
 		{
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
 			var padding:Number = vm.left + vm.right;
@@ -432,7 +443,7 @@ package mx.containers.beads
 		/**
 		 *  @private
 		 */
-		protected function heightPadding(numChildren:Number):Number
+		public function heightPadding(numChildren:Number):Number
 		{
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
 			var padding:Number = vm.top + vm.bottom;
@@ -451,7 +462,7 @@ package mx.containers.beads
 		 *  Returns a numeric value for the align setting.
 		 *  0 = left/top, 0.5 = center, 1 = right/bottom
 		 */
-		protected function getHorizontalAlignValue():Number
+		public function getHorizontalAlignValue():Number
 		{
 			var horizontalAlign:String = target.getStyle("horizontalAlign");
 			
@@ -470,7 +481,7 @@ package mx.containers.beads
 		 *  Returns a numeric value for the align setting.
 		 *  0 = left/top, 0.5 = center, 1 = right/bottom
 		 */
-		protected function getVerticalAlignValue():Number
+		public function getVerticalAlignValue():Number
 		{
 			var verticalAlign:String = target.getStyle("verticalAlign");
 			

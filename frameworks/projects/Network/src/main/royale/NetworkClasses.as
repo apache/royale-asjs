@@ -26,6 +26,7 @@ package
     */
     internal class NetworkClasses
     {	
+        import org.apache.royale.net.URLLoader; URLLoader;
         import org.apache.royale.net.URLBinaryLoader; URLBinaryLoader;
         import org.apache.royale.net.HTTPConstants; HTTPConstants;
         import org.apache.royale.net.URLBinaryUploader; URLBinaryUploader;
@@ -48,6 +49,16 @@ package
         registerClassAlias("DSA", AsyncMessageExt);
         registerClassAlias("DSC", CommandMessageExt);
         
+
+        import org.apache.royale.net.remoting.messages.RoyaleClient; RoyaleClient;
+        import org.apache.royale.net.utils.RPCUIDUtil; RPCUIDUtil;
+        
+        
+        import org.apache.royale.reflection.registerClassAlias;
+        //RpcClassAliasInitializer
+        registerClassAlias("org.apache.royale.net.remoting.messages.CommandMessage", CommandMessage);
+        registerClassAlias("DSK", AcknowledgeMessageExt);
+
     }
 }
 

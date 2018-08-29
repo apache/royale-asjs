@@ -26,6 +26,8 @@ package org.apache.royale.net
     import org.apache.royale.net.events.ResultEvent;
     import org.apache.royale.net.remoting.Operation;
     import org.apache.royale.net.remoting.amf.AMFNetConnection;
+	import org.apache.royale.net.remoting.messages.AcknowledgeMessage;
+	import org.apache.royale.net.remoting.messages.RoyaleClient;
 
 	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
 	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
@@ -98,6 +100,16 @@ package org.apache.royale.net
 		
 		public function resultHandler(param:Object):void
 		{
+			if (param is AcknowledgeMessage)
+			{
+				// Set the server assigned RoyaleClient Id.
+				if (RoyaleClient.getInstance().id == null && param.clientId)//msg.headers[AbstractMessage.ROYALE_CLIENT_ID_HEADER] != null)
+				{
+					RoyaleClient.getInstance().id = param.clientId;//msg.headers[AbstractMessage.ROYALE_CLIENT_ID_HEADER];
+					//trace("SET RoyaleClient.getInstance().id " + RoyaleClient.getInstance().id);
+				}
+			}
+
     		dispatchEvent(new ResultEvent(ResultEvent.RESULT, param.body));
 		}
 		
