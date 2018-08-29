@@ -1730,6 +1730,21 @@ public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
      *  @productversion Royale 0.9.4
 	 *	@royalesuppresspublicvarwarning 
 	 */
+	 
+    //----------------------------------
+    //  editable
+    //----------------------------------
+    
+    public function get editable():String
+	{
+	  return "";
+	}
+    public function set editable(value:String):void
+	{
+	
+	}
+	
+	
     public var allowDragSelection:Boolean = false;
 
     //----------------------------------
