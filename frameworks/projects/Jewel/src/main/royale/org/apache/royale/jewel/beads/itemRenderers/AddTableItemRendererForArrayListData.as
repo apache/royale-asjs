@@ -23,7 +23,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.SimpleCSSStyles;
@@ -31,10 +30,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
-	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
+	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
@@ -130,7 +130,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			var column:TableColumn;
-			var ir:ITextItemRenderer;
+			var ir:TableItemRenderer;
 
 			var index:int = event.index * model.columns.length;
 			for(var j:int = 0; j < model.columns.length; j++)
@@ -139,19 +139,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 				
 				if(column.itemRenderer != null)
 				{
-					ir = column.itemRenderer.newInstance() as ITextItemRenderer;
+					ir = column.itemRenderer.newInstance() as TableItemRenderer;
 				} else
 				{
-					ir = itemRendererFactory.createItemRenderer(itemRendererParent) as ITextItemRenderer;
+					ir = itemRendererFactory.createItemRenderer(itemRendererParent) as TableItemRenderer;
 				}
 
 				labelField =  column.dataField;
 		
-				(ir as DataItemRenderer).dataField = labelField;
-				(ir as DataItemRenderer).rowIndex = event.index;
-				(ir as DataItemRenderer).columnIndex = j;
+				ir.dataField = labelField;
+				ir.rowIndex = event.index;
+				ir.columnIndex = j;
 		
-				fillRenderer(index++, event.item, (ir as ISelectableItemRenderer), presentationModel);
+				fillRenderer(index++, event.item, ir, presentationModel);
 				
 				if(column.align != "")
 				{
@@ -160,12 +160,21 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = itemRendererParent.numElements;
-			var d:DataItemRenderer;
-			for (var i:int = event.index; i < n; i++)
+			// adjust the itemRenderers' index to adjust for the shift
+			var cell:TableCell;
+			var processedRow:TableRow;
+			var len:int = itemRendererParent.numElements;
+			for (var i:int = event.index; i < len; i++)
 			{
-				d = itemRendererParent.getItemRendererForIndex(i) as DataItemRenderer;
-				d.index = i;
+				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				var n:int = processedRow.numElements;
+				for (j = 0; j < n; j++)
+				{
+					cell = processedRow.getElementAt(j) as TableCell;
+					ir = cell.getElementAt(0) as TableItemRenderer;
+					ir.index = i;
+					ir.rowIndex = i;
+				}
 			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
@@ -215,7 +224,7 @@ package org.apache.royale.jewel.beads.itemRenderers
          */
         protected function fillRenderer(index:int,
                                         item:Object,
-                                        itemRenderer:ISelectableItemRenderer,
+                                        itemRenderer:TableItemRenderer,
                                         presentationModel:IListPresentationModel):void
         {
             itemRendererParent.addItemRendererAt(itemRenderer, index);
@@ -236,7 +245,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:TableItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
             itemRenderer.data = data;

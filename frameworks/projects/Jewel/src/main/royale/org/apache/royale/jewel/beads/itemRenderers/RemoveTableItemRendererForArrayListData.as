@@ -21,12 +21,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
-	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
@@ -122,12 +122,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var ir:ISelectableItemRenderer;
+			var ir:DataItemRenderer;
 			var cell:TableCell;
 			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
 			while (processedRow.numElements > 0) {
 				cell = processedRow.getElementAt(0) as TableCell;
-				ir = cell.getElementAt(0) as ISelectableItemRenderer;
+				ir = cell.getElementAt(0) as DataItemRenderer;
 				itemRendererParent.removeItemRenderer(ir);
 				cell.removeElement(ir);
 				processedRow.removeElement(cell);
@@ -135,11 +135,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 			itemRendererParent.removeElement(processedRow);
 
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = itemRendererParent.numElements;
-			for (var i:int = event.index; i < n; i++)
+			var len:int = itemRendererParent.numElements;
+			for (var i:int = event.index; i < len; i++)
 			{
-				ir = itemRendererParent.getElementAt(i) as ISelectableItemRenderer;
-				ir.index = i;
+				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				var n:int = processedRow.numElements;
+				for (var j:int = 0; j < n; j++)
+				{
+					cell = processedRow.getElementAt(j) as TableCell;
+					ir = cell.getElementAt(0) as DataItemRenderer;
+					ir.index = i;
+					ir.rowIndex = i;
+				}
 			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
