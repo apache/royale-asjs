@@ -337,10 +337,10 @@ public class Series  extends UIComponent
      *  @private
      *  Storage for the displayName property.
      */
-    /* private var _displayName:String;
+    private var _displayName:String;
 
-    [Inspectable(category="Display")]
-	*/
+    //[Inspectable(category="Display")]
+	
     /**
      *  The name of the series, for display to the user.
      *  This property is used to represent the series in user-visible labels,
@@ -351,22 +351,35 @@ public class Series  extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get displayName():String
+     public function get displayName():String
     {
         return _displayName;
-    } */
+    } 
     
     /**
      *  @private
      */
-    /* public function set displayName(value:String):void
+    public function set displayName(value:String):void
     {
         _displayName = value;
 
-        var c:ChartBase = chart;
-        if (c)
-            c.legendDataChanged();
-    } */
+     //   var c:ChartBase = chart;
+       // if (c)
+           // c.legendDataChanged();
+    } 
+    
+    //----------------------------------
+    //  DataProvider
+    //----------------------------------
+    private var _dataProvider:Object; 
+    public function get dataProvider():Object
+	{
+	  return _dataProvider;  
+	}
+    public function set dataProvider(value:Object):void
+	{
+	}
+
     
     //----------------------------------
     //  filterDataValues

@@ -19,6 +19,7 @@
 package mx.charts.chartClasses
 {
 	import org.apache.royale.charts.core.ChartBase;
+	import mx.core.UIComponent;
 	/**
 	 *  The ChartBase class contains all of the properties common to most
 	 *  charts. Some charts may not make any or full use of the properties
@@ -36,7 +37,7 @@ package mx.charts.chartClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ChartBase extends org.apache.royale.charts.core.ChartBase
+	public class ChartBase extends UIComponent //org.apache.royale.charts.core.ChartBase
 	{
 	 /**
      *  @private
@@ -146,6 +147,25 @@ package mx.charts.chartClasses
 		public function set paddingBottom(value:Number):void
 		{
 		}
+		
+          public function get series():Array
+	     {
+	     return null;
+	     }
+          public function set series(value:Array):void
+	     {
+	   
+	     }
+	   
+	  public function get dataProvider():Object
+	    {
+	    return null;
+	    }
+          public function set dataProvider(value:Object):void
+	    {
+	  
+	    }
+
     
 	}
 }

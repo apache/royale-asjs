@@ -118,7 +118,7 @@ public class PlotChart extends ChartBase//extends CartesianChart
      *  @private
      *  Storage for the horizontalAxis property.
      */
-    private var _horizontalAxis:IAxis;
+    //private var _horizontalAxis:IAxis;
     
     /**
      *  Defines the labels, tick marks, and data position
@@ -133,19 +133,19 @@ public class PlotChart extends ChartBase//extends CartesianChart
      *  @productversion Royale 0.9.3
      */
 	
-    public function get horizontalAxis():IAxis
+    /* public function get horizontalAxis():IAxis
     {
         return _horizontalAxis;
-    }
+    } */
     
     /**
      *  @private
      */
 	
-    public function set horizontalAxis(value:IAxis):void
+    /* public function set horizontalAxis(value:IAxis):void
     {
         _horizontalAxis = value;
-    }
+    } */
 	
 }
 
