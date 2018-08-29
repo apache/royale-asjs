@@ -138,22 +138,7 @@ public class ColumnSeries extends org.apache.royale.charts.supportClasses.Column
     {
         _displayName = value;
     }  
-  Override public function get xField():String
-	{
-	return null;
-	}
-  Override  public function set xField(value:String):void
-	{
-	}
-	
-	 Override  public function get yField():String
-	{
-	return null;
-	}
-  Override  public function set yField(value:String):void
-	{
-	}
-
+  
     
 }
 
