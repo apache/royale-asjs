@@ -35,6 +35,9 @@
 
   <properties>
     <compiler.output-dir>${basedir}/target/javascript/bin/js-debug</compiler.output-dir>
+    <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
+    <!-- In Release mode we only want to copy assets folder content to assets destination folder, the rest is managed by compiler -->
+    <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
     <royale.framework.version>0.9.3-SNAPSHOT</royale.framework.version>
   </properties>
 
@@ -51,12 +54,6 @@
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
     <pluginManagement>
       <plugins>
         <!-- Copy the resources to the compiler output directory -->
@@ -64,9 +61,41 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.1</version>
-          <configuration>
-            <outputDirectory>${compiler.output-dir}</outputDirectory>
-          </configuration>
+          <executions>
+            <execution>
+              <id>copy-resources-debug</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>src/main/resources</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>copy-resources-release</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <!-- Copy the assets to the assets output directory -->
+                <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>src/main/resources/assets</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
