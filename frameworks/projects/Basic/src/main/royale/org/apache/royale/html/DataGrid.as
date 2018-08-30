@@ -29,7 +29,8 @@ package org.apache.royale.html
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.models.DataGridPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	
+	import org.apache.royale.core.IListPresentationModel;
+
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
 	/**
@@ -147,7 +148,7 @@ package org.apache.royale.html
 		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 */
-		public function get presentationModel():IBead
+		public function get presentationModel():IListPresentationModel
 		{
 			if (_presentationModel == null) {
 				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
@@ -157,12 +158,12 @@ package org.apache.royale.html
 				}
 			}
 			
-			return _presentationModel;
+			return _presentationModel as IListPresentationModel;
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
-		public function set presentationModel(value:IBead):void
+		public function set presentationModel(value:IListPresentationModel):void
 		{
 			_presentationModel = value as IDataGridPresentationModel;
 		}
