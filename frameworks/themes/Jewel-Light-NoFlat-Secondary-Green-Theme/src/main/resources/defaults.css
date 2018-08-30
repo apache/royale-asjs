@@ -100,4 +100,16 @@ div {
   color: silver;
 }
 
+a:visited {
+  color: #2e8e39;
+}
+
+a:hover {
+  color: #3AB549;
+}
+
+a:active {
+  color: #58ca66;
+}
+
 /*# sourceMappingURL=defaults.css.map */

@@ -686,6 +686,14 @@ j|Card {
   background: #cac00a;
 }
 
+a:link {
+  color: #E2D70B;
+}
+
+a:active {
+  color: #999207;
+}
+
 .jewel.textinput {
   font-weight: 400;
   color: #FFFFFF;
