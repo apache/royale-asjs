@@ -56,15 +56,33 @@
                   <name>GOOG::DEBUG</name>
                   <value>true</value>
               </define>
+              <define>
+                  <name>ROYALE::DISPLAYOBJECT</name>
+                  <value>IUIComponent</value>
+              </define>
           </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <additionalCompilerOptions>-compiler.targets=SWF,JSRoyale;-compiler.define+=GOOG::DEBUG,true;-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject;-js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent;-js-compiler-define+=GOOG::DEBUG,goog.DEBUG;-js-compiler-define+=COMPILE::SWF,false;-js-compiler-define+=COMPILE::JS,true;</additionalCompilerOptions>
+          <additionalCompilerOptions>-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG;-js-compiler-define=ROYALE::DISPLAYOBJECT,IUIComponent</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Binding</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Binding</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
@@ -89,6 +107,48 @@
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Basic</artifactId>
+        <version>0.9.3-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>js</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>Graphics</artifactId>
+        <version>0.9.3-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>Graphics</artifactId>
+        <version>0.9.3-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>js</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>Collections</artifactId>
+        <version>0.9.3-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>Collections</artifactId>
+        <version>0.9.3-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>js</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>DragDrop</artifactId>
+        <version>0.9.3-SNAPSHOT</version>
+        <type>swc</type>
+        <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.royale.framework</groupId>
+        <artifactId>DragDrop</artifactId>
         <version>0.9.3-SNAPSHOT</version>
         <type>swc</type>
         <classifier>js</classifier>
@@ -162,13 +222,6 @@
           <version>0.9.3-SNAPSHOT</version>
           <type>swc</type>
           <classifier>js</classifier>
-      </dependency>
-      <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>XML</artifactId>
-          <version>0.9.3-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
       </dependency>
       <dependency>
           <groupId>org.apache.royale.framework</groupId>
