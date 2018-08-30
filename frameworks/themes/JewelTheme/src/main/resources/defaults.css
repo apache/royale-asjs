@@ -685,6 +685,14 @@ j|Card {
   background: #24a3ef;
 }
 
+a:link {
+  color: #3CADF1;
+}
+
+a:active {
+  color: #0f88d1;
+}
+
 .jewel.textinput {
   font-weight: 400;
   color: #808080;
@@ -821,6 +829,18 @@ j|Card {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+}
+
+a:visited {
+  color: #d64010;
+}
+
+a:hover {
+  color: #EF5A2A;
+}
+
+a:active {
+  color: #f37f59;
 }
 
 .jewel.button.emphasized {
