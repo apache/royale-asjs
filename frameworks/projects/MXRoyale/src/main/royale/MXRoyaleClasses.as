@@ -141,7 +141,10 @@ internal class MXRoyaleClasses
 	import mx.controls.RichTextEditor; RichTextEditor;
 	import mx.events.SecurityErrorEvent; SecurityErrorEvent;
 	import mx.events.IOErrorEvent; IOErrorEvent;
-	import mx.events.HTTPStatusEvent; HTTPStatusEvent
+	import mx.events.HTTPStatusEvent; HTTPStatusEvent;
+	import mx.net.FileReference; FileReference;
+	import mx.net.FileFilter; FileFilter;
+	
 	COMPILE::JS
     	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
