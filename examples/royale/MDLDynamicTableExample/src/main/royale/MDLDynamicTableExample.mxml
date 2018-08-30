@@ -21,7 +21,7 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/royale/basic" 
 				xmlns:local="*">
 				
-	<fx:Style source="resources/mdl-styles.css"/>
+	<fx:Style source="../../main/resources/mdl-styles.css"/>
 	
 	<js:valuesImpl>
 		<js:SimpleCSSValuesImpl />
