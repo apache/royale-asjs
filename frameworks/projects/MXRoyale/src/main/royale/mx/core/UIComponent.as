@@ -54,6 +54,7 @@ import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
+import mx.charts.chartClasses.IAxis;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
@@ -487,6 +488,8 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the initialized property.
      */
+     
+ 
     private var _initialized:Boolean = false;
 
     [Inspectable(environment="none")]
@@ -517,6 +520,26 @@ public class UIComponent extends UIBase
             dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
         }
     }
+    
+    private var _VerticalAxis:IAxis;
+    public function get verticalAxis():IAxis
+	 {
+	    return _VerticalAxis;
+	 }
+    public function set verticalAxis(value:IAxis):void
+	 {
+	    _VerticalAxis = value;
+	 }
+    private var _horizontalAxis:IAxis;
+    public function get horizontalAxis():IAxis
+	 {
+	    return _horizontalAxis;
+	 }
+    public function set horizontalAxis(value:IAxis):void
+	 {
+	    _horizontalAxis = value;
+	 }
+
 	//----------------------------------
     //  graphics copied from Sprite
     //----------------------------------
@@ -1393,7 +1416,17 @@ public class UIComponent extends UIBase
             trace("systemManager not implemented");
         _systemManager = value;
     }
-
+    
+COMPILE::JS
+{
+    public function get stage():Object
+    {
+        // TODO
+        if (GOOG::DEBUG)
+            trace("stage not implemented");
+        return null;
+    }
+}
     //--------------------------------------------------------------------------
     //
     //  Properties: Modules
@@ -1543,6 +1576,14 @@ public class UIComponent extends UIBase
     
     override public function addedToParent():void
     {
+        COMPILE::JS
+        {
+            // Flex layouts don't use percentages the way the browser
+            // does, so we have to absolute position everything.  Before
+            // layout runs, we want to establish the parent as the
+            // offsetParent.  Other code may set position="absolute" later.
+            element.style.position = "relative";
+        }
         super.addedToParent();
         
         if (!initialized)
@@ -1784,6 +1825,16 @@ public class UIComponent extends UIBase
                 if (oldWidth.length)
                     this.positioner.style.width = "";
                 var mw:Number = this.positioner.offsetWidth;
+                if (mw == 0 && numChildren > 0)
+                {
+                    // if children are aboslute positioned, offsetWidth can be 0 in Safari
+                    for (var i:int = 0; i < numChildren; i++)
+                    {
+                        var child:IUIComponent = getChildAt(i);
+                        if (child) // child is null for TextNodes
+                            mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
+                    }
+                }
                 if (oldWidth.length)
                     this.positioner.style.width = oldWidth;
                 return mw;
@@ -1839,6 +1890,15 @@ public class UIComponent extends UIBase
                 if (oldHeight.length)
                     this.positioner.style.height = "";
                 var mh:Number = this.positioner.offsetHeight;
+                if (mh == 0 && numChildren > 0)
+                {
+                    for (var i:int = 0; i < numChildren; i++)
+                    {
+                        var child:IUIComponent = getChildAt(i);
+                        if (child)
+                            mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
+                    }
+                }
                 if (oldHeight.length)
                     this.positioner.style.height = oldHeight;
                 return mh;
@@ -3010,10 +3070,7 @@ public class UIComponent extends UIBase
     { override }
     public function removeChildAt(index:int):IUIComponent
     {
-        if (GOOG::DEBUG)
-            trace("removeChildAt not implemented");
-        
-        return null;
+        return removeElement(getElementAt(index)) as IUIComponent;
     }
 
     /**

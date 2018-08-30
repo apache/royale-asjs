@@ -22,7 +22,7 @@
 				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
 				height="100%" width="100%">
 
-    <mx:Panel title="Welcome to Tour De Flex"
+    <mx:Panel title="Welcome to Tour De Flex (Apache Royale version)"
 			  paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
 			  height="100%" width="100%">
 		<s:HGroup>

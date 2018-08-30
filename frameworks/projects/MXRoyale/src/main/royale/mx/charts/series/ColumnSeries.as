@@ -114,7 +114,31 @@ public class ColumnSeries extends org.apache.royale.charts.supportClasses.Column
     }
     
   
+    private var _displayName:String;
+
+    /**
+     *  The name of the series, for display to the user.
+     *  This property is used to represent the series in user-visible labels,
+     *  such as data tips.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+     public function get displayName():String
+    {
+        return _displayName;
+    }  
     
+    /**
+     *  @private
+     */
+     public function set displayName(value:String):void
+    {
+        _displayName = value;
+    }  
+  
     
 }
 

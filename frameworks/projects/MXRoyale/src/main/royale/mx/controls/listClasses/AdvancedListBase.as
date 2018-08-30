@@ -1596,6 +1596,18 @@ public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
 
         addClipMask(false);
     } */
+    
+    
+    //----------------------------------
+    //  borderVisible
+    //----------------------------------
+    public function get borderVisible():Boolean
+    {
+        return true;
+    }
+    public function set borderVisible(value:Boolean):void
+    {
+    }
 
     //----------------------------------
     //  verticalScrollPolicy
@@ -1718,6 +1730,21 @@ public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
      *  @productversion Royale 0.9.4
 	 *	@royalesuppresspublicvarwarning 
 	 */
+	 
+    //----------------------------------
+    //  editable
+    //----------------------------------
+    
+    public function get editable():String
+	{
+	  return "";
+	}
+    public function set editable(value:String):void
+	{
+	
+	}
+	
+	
     public var allowDragSelection:Boolean = false;
 
     //----------------------------------

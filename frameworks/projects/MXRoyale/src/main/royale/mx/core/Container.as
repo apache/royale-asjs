@@ -426,6 +426,15 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
+     
+    public function get borderVisible():Boolean
+    {
+        return true;
+    }
+    public function set borderVisible(value:Boolean):void
+    {
+    }
+
     public function get paddingBottom():Object
     {
         if (GOOG::DEBUG)
@@ -613,13 +622,11 @@ public class Container extends UIComponent
 		super.addedToParent();		
 		
 		// Load the layout bead if it hasn't already been loaded.
-		if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
-        {
-            dispatchEvent(new Event("initComplete"));
-            if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
-                (isWidthSizedToContent() || !isNaN(explicitWidth)))
-    			dispatchEvent(new Event("layoutNeeded"));
-        }
+		loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+        dispatchEvent(new Event("initComplete"));
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+			dispatchEvent(new Event("layoutNeeded"));
 	}
 	
     override protected function createChildren():void

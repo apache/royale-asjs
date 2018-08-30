@@ -89,6 +89,9 @@
    			<mxmlc file="${basedir}/src/@{example}.mxml" debug="true"
             	output="${basedir}/src/@{example}.swf" fork="true" failonerror="true">
 				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
+                <arg value="+playerglobal.version=${playerglobal.version}" />
+                <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+                <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
 			</mxmlc>
 		</sequential>
 	</macrodef>	

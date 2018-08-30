@@ -71,12 +71,15 @@ package org.apache.royale.html.beads.controllers
 			
 			var node:Object = event.data;
 			
-			if (treeData.isOpen(node)) {
-				treeData.closeNode(node);
-			} else {
-				treeData.openNode(node);
-			}
-			
+            if (treeData.hasChildren(node))
+            {
+    			if (treeData.isOpen(node)) {
+    				treeData.closeNode(node);
+    			} else {
+    				treeData.openNode(node);
+    			}
+            }
+            
 			// reset the selection
 			listModel.selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
