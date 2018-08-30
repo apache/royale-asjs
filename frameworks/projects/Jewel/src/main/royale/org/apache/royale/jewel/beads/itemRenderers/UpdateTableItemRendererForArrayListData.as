@@ -20,24 +20,28 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.jewel.supportClasses.table.TableCell;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 
-	/**
-	 *  Handles the removal of all itemRenderers once the all items has been removed
-	 *  from the IDataProviderModel. This works the same for List and Table components
+    /**
+	 *  Handles the update of an itemRenderer in a Table component once the corresponding 
+	 *  datum has been updated from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class RemoveAllItemRendererForArrayListData implements IBead
+	public class UpdateTableItemRendererForArrayListData implements IBead
 	{
 		/**
 		 *  Constructor
@@ -47,12 +51,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function RemoveAllItemRendererForArrayListData()
+		public function UpdateTableItemRendererForArrayListData()
 		{
 		}
 
-		private var _strand:IStrand;
-
+		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IStrand
 		 *
@@ -66,7 +69,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
+
+        protected var labelField:String;
 		
+		protected var model:TableModel;
+
 		/**
 		 *  finish setup
 		 *
@@ -79,9 +86,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
-			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
-			
+			model = _strand.getBeadByType(ISelectionModel) as TableModel;
+			labelField = model.labelField;
+
+			model.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
@@ -94,54 +103,38 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			if(dp)
 			{
-				dp.removeEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+				dp.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 			}
-			dp = dataProviderModel.dataProvider as IEventDispatcher;
+			dp = model.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
-			// listen for all items being removed in the future.
-			dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+			// listen for individual items being added in the future.
+			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 		}
 
 		/**
-		 *  Handles the itemRemoved event by removing the item.
+		 *  Handles the itemUpdated event by updating the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		protected function handleAllItemsRemoved(event:CollectionEvent):void
+		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-			if (dataProviderModel is ISelectionModel)
+			var ir:ISelectableItemRenderer;
+			var cell:TableCell;
+			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			var n:int = processedRow.numElements;
+			for (var i:int = 0; i < n; i++)
 			{
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-				model.selectedItem = null;
+				cell = processedRow.getElementAt(i) as TableCell;
+				ir = cell.getElementAt(0) as ISelectableItemRenderer;
+				setData(ir, event.item, event.index);
 			}
-
-			itemRendererParent.removeAllItemRenderers();
+			
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-		}
-
-		private var _dataProviderModel: IDataProviderModel;
-
-		/**
-		 *  The org.apache.royale.core.IDataProviderModel that contains the
-		 *  data source.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get dataProviderModel(): IDataProviderModel
-		{
-			if (_dataProviderModel == null) {
-				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			}
-			return _dataProviderModel;
 		}
 
 		private var _itemRendererParent: IItemRendererParent;
@@ -163,5 +156,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 			return _itemRendererParent;
 		}
+
+        /**
+         * @private
+         */
+        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        {
+            itemRenderer.index = index;
+            itemRenderer.data = data;
+        }
 	}
 }

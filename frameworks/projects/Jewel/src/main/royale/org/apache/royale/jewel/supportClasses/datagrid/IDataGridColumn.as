@@ -30,7 +30,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 */
 		function get itemRenderer():IFactory;
 		function set itemRenderer(value:IFactory):void;
@@ -41,7 +41,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 */
 		function get columnWidth():Number;
 		function set columnWidth(value:Number):void;
@@ -52,7 +52,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 */
 		function get label():String;
 		function set label(value:String):void;
@@ -64,7 +64,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 */
 		function get dataField():String;
 		function set dataField(value:String):void;
@@ -76,7 +76,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
 		function get className():String;
 		function set className(value:String):void;
@@ -88,7 +88,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 */
 		function createColumn():IUIBase;
 	}

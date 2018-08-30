@@ -16,34 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.scrollbar
+package vos
 {
-	import org.apache.royale.core.IChrome;
-	import org.apache.royale.core.IViewportScroller;
-	
-	/**
-	 *  The ScrollBar class represents either a vertical or horizontal control
-	 *  that allows the user to quickly scan through a component that does not
-	 *  wholly fit within its container.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
-	 */
-	public class HScrollBar extends ScrollBar implements IChrome, IViewportScroller
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function HScrollBar()
-		{
-			super();
-		}		
-   	}
+    [Bindable]
+    public class GuitarristVO
+    {
+        public var guitarrist:String;
+        public var album:String;
+        public var year:int;
+
+        public function GuitarristVO(guitarrist:String, album:String, year:int)
+        {
+            this.guitarrist = guitarrist;
+            this.album = album;
+            this.year = year;
+        }
+    }
 }

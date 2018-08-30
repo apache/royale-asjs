@@ -35,7 +35,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class GridLayout extends StyledLayoutBase implements IBeadLayout
 	{
@@ -45,7 +45,7 @@ package org.apache.royale.jewel.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function GridLayout()
 		{
@@ -63,7 +63,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
@@ -93,7 +93,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get gap():Boolean
         {
@@ -132,7 +132,7 @@ package org.apache.royale.jewel.beads.layouts
 		//  *  @langversion 3.0
 		//  *  @playerversion Flash 10.2
 		//  *  @playerversion AIR 2.6
-		//  *  @productversion Royale 0.9.3
+		//  *  @productversion Royale 0.9.4
 		//  */
 		// public function get gap():Number
         // {

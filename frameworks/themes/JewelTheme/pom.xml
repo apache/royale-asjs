@@ -56,10 +56,10 @@
             <includeClass>JewelThemeClasses</includeClass>
           </includeClasses>
           <includeFiles>
-            <!-- <include-file>
+            <include-file>
               <name>assets/*</name>
               <path>../src/main/resources/assets/*</path>
-            </include-file> -->
+            </include-file>
             <include-file>
               <name>defaults.css</name>
               <path>../src/main/resources/defaults.css</path>

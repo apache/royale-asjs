@@ -35,7 +35,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
@@ -53,7 +53,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class DataContainer extends DataContainerBase implements IListWithPresentationModel, IClassSelectorListSupport
 	{
@@ -63,7 +63,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function DataContainer()
 		{
@@ -88,7 +88,7 @@ package org.apache.royale.jewel
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
+         * @productversion Royale 0.9.4
          */
         public function addClass(name:String):void
         {
@@ -109,7 +109,7 @@ package org.apache.royale.jewel
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
+         * @productversion Royale 0.9.4
          */
         public function removeClass(name:String):void
         {
@@ -128,7 +128,7 @@ package org.apache.royale.jewel
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
+         * @productversion Royale 0.9.4
          */
         public function toggleClass(name:String, value:Boolean):void
         {
@@ -147,7 +147,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function containsClass(name:String):Boolean
         {

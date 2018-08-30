@@ -19,12 +19,10 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.SimpleCSSStyles;
@@ -32,62 +30,62 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
+	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
-	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-	import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
-	import org.apache.royale.collections.ICollectionView;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
-	 * Handles the adding of an itemRenderer in a Table component once the corresponding datum has been added
-	 * from the IDataProviderModel.
+	 *  Handles the adding of an itemRenderer in a Table component once the corresponding datum has been added
+	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class AddTableItemRendererForArrayListData implements IBead
 	{
 		/**
-		 * Constructor
+		 *  Constructor
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function AddTableItemRendererForArrayListData()
 		{
 		}
-
+		
 		protected var _strand:IStrand;
-
-        protected var labelField:String;
-
 		/**
-		 * @copy org.apache.royale.core.IStrand
+		 *  @copy org.apache.royale.core.IStrand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
+
+        protected var labelField:String;
 		
+		protected var model:TableModel;
+
 		/**
 		 *  finish setup
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.4
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -121,19 +119,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			var column:TableColumn;
-			var tbody:TBodyContentArea = itemRendererParent as TBodyContentArea;
-            var ir:ITextItemRenderer;
+			var ir:TableItemRenderer;
 
 			var index:int = event.index * model.columns.length;
 			for(var j:int = 0; j < model.columns.length; j++)
@@ -142,19 +139,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 				
 				if(column.itemRenderer != null)
 				{
-					ir = column.itemRenderer.newInstance() as ITextItemRenderer;
+					ir = column.itemRenderer.newInstance() as TableItemRenderer;
 				} else
 				{
-					ir = itemRendererFactory.createItemRenderer(tbody) as ITextItemRenderer;
+					ir = itemRendererFactory.createItemRenderer(itemRendererParent) as TableItemRenderer;
 				}
 
 				labelField =  column.dataField;
 		
-				(ir as DataItemRenderer).dataField = labelField;
-				(ir as DataItemRenderer).rowIndex = event.index;
-				(ir as DataItemRenderer).columnIndex = j;
+				ir.dataField = labelField;
+				ir.rowIndex = event.index;
+				ir.columnIndex = j;
 		
-				fillRenderer(index++, event.item, (ir as ISelectableItemRenderer), presentationModel);
+				fillRenderer(index++, event.item, ir, presentationModel);
 				
 				if(column.align != "")
 				{
@@ -163,12 +160,21 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = tbody.numElements;
-			var d:DataItemRenderer;
-			for (var i:int = event.index; i < n; i++)
+			// adjust the itemRenderers' index to adjust for the shift
+			var cell:TableCell;
+			var processedRow:TableRow;
+			var len:int = itemRendererParent.numElements;
+			for (var i:int = event.index; i < len; i++)
 			{
-				d = tbody.getItemRendererForIndex(i) as DataItemRenderer;
-				d.index = i;
+				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				var n:int = processedRow.numElements;
+				for (j = 0; j < n; j++)
+				{
+					cell = processedRow.getElementAt(j) as TableCell;
+					ir = cell.getElementAt(0) as TableItemRenderer;
+					ir.index = i;
+					ir.rowIndex = i;
+				}
 			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
@@ -183,7 +189,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{
@@ -203,7 +209,7 @@ package org.apache.royale.jewel.beads.itemRenderers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
+         *  @productversion Royale 0.9.4
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
@@ -213,14 +219,12 @@ package org.apache.royale.jewel.beads.itemRenderers
             return _itemRendererFactory;
         }
 
-		protected var model:TableModel;
-
         /**
          * @private
          */
         protected function fillRenderer(index:int,
                                         item:Object,
-                                        itemRenderer:ISelectableItemRenderer,
+                                        itemRenderer:TableItemRenderer,
                                         presentationModel:IListPresentationModel):void
         {
             itemRendererParent.addItemRendererAt(itemRenderer, index);
@@ -241,7 +245,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:TableItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
             itemRenderer.data = data;

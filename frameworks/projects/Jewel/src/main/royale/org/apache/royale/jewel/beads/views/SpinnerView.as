@@ -46,7 +46,7 @@ COMPILE::JS {
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class SpinnerView extends BeadViewBase implements ISpinnerView, IBeadView
 	{
@@ -56,7 +56,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function SpinnerView()
 		{
@@ -81,7 +81,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -148,7 +148,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		COMPILE::SWF
 		public function get decrement():DisplayObject
@@ -167,7 +167,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		COMPILE::SWF
 		public function get increment():DisplayObject

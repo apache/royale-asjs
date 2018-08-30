@@ -44,7 +44,7 @@ package org.apache.royale.jewel.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9
+     *  @productversion Royale 0.9.4
      */
 	public class ListSingleSelectionMouseController implements IBeadController
 	{
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.4
          */
 		public function ListSingleSelectionMouseController()
 		{
@@ -66,7 +66,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.4
          */
 		protected var listModel:ISelectionModel;
 
@@ -76,7 +76,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.4
          */
         protected var listView:IListView;
 
@@ -86,7 +86,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.4
          */
         protected var dataGroup:IItemRendererParent;
 
@@ -98,7 +98,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          *  @royaleignorecoercion org.apache.royale.core.IListView

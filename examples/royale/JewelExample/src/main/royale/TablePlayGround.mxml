@@ -38,7 +38,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel SimpleTable"/>
 
-				<j:SimpleTable width="500">
+				<j:SimpleTable>
 					<j:THead>
 						<j:TableRow>
 							<j:TableHeaderCell width="48">
@@ -185,15 +185,15 @@ limitations under the License.
 				<html:H3 text="Jewel Table"/>
 				<j:HGroup gap="3">
 					<j:VGroup gap="3">
-						<j:Table id="table" width="440" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
+						<j:Table id="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
 							<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
 							<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
 							<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
 							<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
 							<j:beads>
 								<j:AddTableItemRendererForArrayListData/>
-								<j:DynamicRemoveItemRendererForArrayListData/>
-								<j:DynamicUpdateItemRendererForArrayListData/>
+								<j:RemoveTableItemRendererForArrayListData/>
+								<j:UpdateTableItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
 						</j:Table>
@@ -205,6 +205,14 @@ limitations under the License.
 						<j:Button text="Remove first item" click="removeItemAt()"/>
 						<j:Button text="Update first item" click="updateFirstItem()"/>
 						<j:Button text="Remove all data" click="removeAllData()"/>
+						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+							<j:Label text="Select table by index: "/>
+							<j:NumericStepper valueChange="table.selectedIndex = event.target.value" minimum="0"/>
+						</j:HGroup>
+						<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+							<j:Label text="Select table by item: "/>
+							<j:NumericStepper valueChange="table.selectedItemProperty = table.dataProvider.getItemAt(event.target.value)" minimum="0"/>
+						</j:HGroup> -->
 					</j:VGroup>
 				</j:HGroup>
 			</j:Card>
@@ -215,7 +223,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
-
+			import vos.GuitarristVO;
 
 			private function onChange(event:Event):void {
                 selected.text = "Selected: " + table.selectedItemProperty;
@@ -224,11 +232,10 @@ limitations under the License.
 			private function changeTableData():void
 			{
 				table.dataProvider = new ArrayList([
-					{icon: MaterialIconType.CLOSE, guitarrist: "Ssi", album: "Paasadasdssion & Warfare", year: "1990"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Steve Morse", album: "Southern Steel", year: "1991"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Yngwie Malmsteen", album: "sfsdf Force", year: "2984"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Joe sf", album: "Surfing With The Alien", year: "1987"},
-					{icon: MaterialIconType.CLOSE, guitarrist: "Mark Knopfler", album: "Local sf", year: "1983"}
+					new GuitarristVO("David Gilmour", "On an Island", 2006),
+					new GuitarristVO("Eric Clapton", "Journeyman", 1989),
+					new GuitarristVO("Frank Zappa", "Hot Rats", 1969),
+					new GuitarristVO("Jimi Hendrix", "Electric Ladyland", 1968)
 				]);
 			}
 
@@ -240,14 +247,17 @@ limitations under the License.
 
 			public function removeItemAt():void
 			{
-				tablesModel.guitarrists.removeItemAt(0);
+				(table.dataProvider as ArrayList).removeItemAt(0);
+				// tablesModel.guitarrists.removeItemAt(0);
 			}
 
 			public function updateFirstItem():void
 			{
-				var item:Object = tablesModel.guitarrists.getItemAt(0);
+				var item:Object = (table.dataProvider as ArrayList).getItemAt(0);
 				item.guitarrist = "Mango";
-				tablesModel.guitarrists.itemUpdated(item);
+				item.year = 2001;
+				(table.dataProvider as ArrayList).itemUpdated(item);
+				// tablesModel.guitarrists.itemUpdated(item);
 			}
 
 			public function removeAllData():void

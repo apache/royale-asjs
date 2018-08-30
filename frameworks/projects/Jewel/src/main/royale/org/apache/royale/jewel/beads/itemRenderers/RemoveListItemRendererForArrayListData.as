@@ -22,22 +22,24 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 
 	/**
-	 *  Handles the removal of all itemRenderers once the all items has been removed
-	 *  from the IDataProviderModel. This works the same for List and Table components
+	 *  Handles the removal of an itemRenderer in a List component once the corresponding 
+	 *  datum has been removed from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class RemoveAllItemRendererForArrayListData implements IBead
+	public class RemoveListItemRendererForArrayListData implements IBead
 	{
 		/**
 		 *  Constructor
@@ -47,7 +49,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function RemoveAllItemRendererForArrayListData()
+		public function RemoveListItemRendererForArrayListData()
 		{
 		}
 
@@ -94,14 +96,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			if(dp)
 			{
-				dp.removeEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+				dp.removeEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 			}
 			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
-			// listen for all items being removed in the future.
-			dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+			// listen for individual items being removed in the future.
+			dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 		}
 
 		/**
@@ -112,16 +114,20 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		protected function handleAllItemsRemoved(event:CollectionEvent):void
+		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			if (dataProviderModel is ISelectionModel)
+			var parent:UIBase = itemRendererParent as UIBase;
+			var ir:ISelectableItemRenderer = parent.getElementAt(event.index) as ISelectableItemRenderer;
+			itemRendererParent.removeItemRenderer(ir);
+			
+			// adjust the itemRenderers' index to adjust for the shift
+			var n:int = parent.numElements;
+			for (var i:int = event.index; i < n; i++)
 			{
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-				model.selectedItem = null;
+				ir = parent.getElementAt(i) as ISelectableItemRenderer;
+				ir.index = i;
 			}
 
-			itemRendererParent.removeAllItemRenderers();
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 

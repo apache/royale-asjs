@@ -42,15 +42,15 @@ package models
 		}
 
 		private var _avengers:ArrayList = new ArrayList([
-			{nickname: "Iron Man"},
-			{nickname: "Hulk"}, 
-			{nickname: "Thor"},
-			{nickname: "Captain America"},
-            {nickname: "Black Widow"},
-            {nickname: "Hawkeye"},
-            {nickname: "Vision"},
-            {nickname: "Scarlet Witch"},
-            {nickname: "Spiderman"}
+			{nickname: "Iron Man", value: 0},
+			{nickname: "Hulk", value: 1}, 
+			{nickname: "Thor", value: 2},
+			{nickname: "Captain America", value: 3},
+            {nickname: "Black Widow", value: 4},
+            {nickname: "Hawkeye", value: 5},
+            {nickname: "Vision", value: 6},
+            {nickname: "Scarlet Witch", value: 7},
+            {nickname: "Spiderman", value: 8}
 		]);
 		public function get avengers():ArrayList
 		{

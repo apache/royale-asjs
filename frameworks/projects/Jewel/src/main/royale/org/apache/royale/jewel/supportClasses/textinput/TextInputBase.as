@@ -34,7 +34,7 @@ package org.apache.royale.jewel.supportClasses.textinput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -44,7 +44,7 @@ package org.apache.royale.jewel.supportClasses.textinput
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */    
 	public class TextInputBase extends StyledUIBase implements ITextInput
 	{
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function TextInputBase()
 		{
@@ -72,7 +72,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion HTMLInputElement
          */
 		[Bindable(event="change")]
@@ -113,7 +113,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion HTMLInputElement
          */
 		[Bindable(event="change")]
@@ -154,7 +154,7 @@ package org.apache.royale.jewel.supportClasses.textinput
 		 *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
 		 */
 		public function textChangeHandler(event:Event):void
 		{
@@ -171,7 +171,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         COMPILE::JS
         public function get textNode():Text
@@ -193,7 +193,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         COMPILE::JS
         public function get input():HTMLInputElement
@@ -215,7 +215,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         COMPILE::JS
         public function get label():HTMLLabelElement
@@ -234,7 +234,7 @@ package org.apache.royale.jewel.supportClasses.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
          *  @royalesuppresspublicvarwarning
 		 */
         public var div:HTMLDivElement;
@@ -248,7 +248,7 @@ package org.apache.royale.jewel.supportClasses.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get isInvalid():Boolean
         {
