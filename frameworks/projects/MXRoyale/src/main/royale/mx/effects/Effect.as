@@ -73,6 +73,9 @@ public class Effect extends org.apache.royale.effects.Effect
 	public function end(effectInstance:IEffectInstance = null):void
     {
     }
+    
+  
+
 	
 }
 

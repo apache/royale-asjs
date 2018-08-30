@@ -19,18 +19,89 @@
 
 package mx.controls
 {
-    COMPILE::JS
-    {
-        import goog.DEBUG;
-    }
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
+/*
+import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
+import flash.display.InteractiveObject;
+import flash.display.Graphics;
+import flash.display.Shape;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.events.FocusEvent;
+import flash.events.KeyboardEvent;
+import flash.events.MouseEvent;
+import flash.geom.Point;
+import flash.ui.Keyboard;
+import flash.utils.Dictionary;
+import flash.utils.describeType;
 
-    import mx.controls.listClasses.ListBase;
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IDataGrid;
-    import org.apache.royale.core.IDataGridPresentationModel;
-    import org.apache.royale.core.IDataGridModel;
-    import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.core.IListPresentationModel;
+import mx.collections.CursorBookmark;
+import mx.collections.ICollectionView;
+import mx.collections.ISort;
+import mx.collections.ISortField;
+import mx.collections.ItemResponder;
+import mx.collections.Sort;
+import mx.collections.SortField;
+import mx.collections.errors.ItemPendingError;
+import mx.controls.dataGridClasses.DataGridBase;
+import mx.controls.dataGridClasses.DataGridColumn;
+import mx.controls.dataGridClasses.DataGridDragProxy;
+import mx.controls.dataGridClasses.DataGridHeader;
+import mx.controls.dataGridClasses.DataGridItemRenderer;
+import mx.controls.dataGridClasses.DataGridListData;
+import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.listClasses.ListBaseContentHolder;
+import mx.controls.listClasses.ListBaseSeekPending;
+import mx.controls.listClasses.ListRowInfo;
+import mx.controls.scrollClasses.ScrollBar;
+import mx.core.ContextualClassFactory;
+import mx.core.EdgeMetrics;
+import mx.core.EventPriority;
+import mx.core.FlexShape;
+import mx.core.FlexSprite;
+import mx.core.IFactory;
+import mx.core.IFlexDisplayObject;
+import mx.core.IFlexModuleFactory;
+import mx.core.IIMESupport;
+import mx.core.IInvalidating;
+import mx.core.IPropertyChangeNotifier;
+import mx.core.IRectangularBorder;
+import mx.core.IUIComponent;
+import mx.core.ScrollPolicy;
+import mx.core.UIComponent;
+import mx.core.UIComponentGlobals;
+import mx.core.mx_internal;
+import mx.events.CollectionEvent;
+import mx.events.CollectionEventKind;
+import mx.events.DataGridEvent;
+import mx.events.DataGridEventReason;
+import mx.events.DragEvent;
+import mx.events.IndexChangedEvent;
+import mx.events.ListEvent;
+import mx.events.SandboxMouseEvent;
+import mx.events.ScrollEvent;
+import mx.events.ScrollEventDetail;
+import mx.managers.IFocusManager;
+import mx.managers.IFocusManagerComponent;
+import mx.skins.halo.ListDropIndicator;
+import mx.styles.ISimpleStyleClient;
+import mx.utils.ObjectUtil;
+import mx.utils.StringUtil;
+
+use namespace mx_internal;
+*/
+    
+import mx.controls.listClasses.ListBase;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IDataGrid;
+import org.apache.royale.core.IDataGridPresentationModel;
+import org.apache.royale.core.IDataGridModel;
+import org.apache.royale.core.ValuesManager;
 
 //--------------------------------------
 //  Events
@@ -735,7 +806,7 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
      *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
      *  @royaleignorecoercion org.apache.royale.core.IBead
      */
-    public function get presentationModel():IListPresentationModel
+    public function get presentationModel():IBead
     {
         if (_presentationModel == null) {
             var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
@@ -745,13 +816,13 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
             }
         }
         
-        return _presentationModel as IListPresentationModel;
+        return _presentationModel;
     }
     /**
      *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
      *  @royaleignorecoercion org.apache.royale.core.IBead
      */
-    public function set presentationModel(value:IListPresentationModel):void
+    public function set presentationModel(value:IBead):void
     {
         _presentationModel = value as IDataGridPresentationModel;
     }

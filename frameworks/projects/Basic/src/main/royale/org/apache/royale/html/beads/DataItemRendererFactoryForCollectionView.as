@@ -210,7 +210,7 @@ package org.apache.royale.html.beads
 			fillRenderer(event.index, event.item, ir, presentationModel);
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = dataGroup.numElements;
+			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
 				ir = dataGroup.getItemRendererForIndex(i) as ISelectableItemRenderer;
@@ -246,7 +246,7 @@ package org.apache.royale.html.beads
 			dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = dataGroup.numElements;
+			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
 				ir = dataGroup.getItemRendererForIndex(i) as ISelectableItemRenderer;

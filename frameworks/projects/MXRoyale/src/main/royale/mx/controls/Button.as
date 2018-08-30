@@ -253,6 +253,30 @@ public class Button extends UIComponent implements IDataRenderer
 		typeNames = "Button";
 	}
 	
+	
+	// ------------------------------------------------
+	//  paddingRight
+	// ------------------------------------------------
+	
+	public function get paddingRight():Number
+	{
+		return 0;
+	}
+	public function set paddingRight(value:Number):void
+	{
+	}
+
+	// ------------------------------------------------
+	//  fontStyle
+	// ------------------------------------------------
+	
+	public function get fontStyle():String
+	{
+		return "BOLD";
+	}
+	public function set fontStyle(value:String):void
+	{
+	}
 	// ------------------------------------------------
 	//  fontStyle
 	// ------------------------------------------------

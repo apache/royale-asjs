@@ -37,7 +37,7 @@ package org.apache.royale.effects.beads
 		
 		private function findPreviousNonCollapsedIndex():int
 		{
-			var n:int = view.dataGroup.numElements;
+			var n:int = view.dataGroup.numItemRenderers;
 			for (var i:int = 0; i < n; i++)
 			{
 				var collapsible:ICollapsible = view.dataGroup.getItemRendererForIndex(i) as ICollapsible;

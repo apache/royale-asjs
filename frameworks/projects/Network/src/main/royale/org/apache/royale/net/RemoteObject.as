@@ -28,6 +28,8 @@ package org.apache.royale.net
     import org.apache.royale.net.remoting.amf.AMFNetConnection;
 	import org.apache.royale.net.remoting.messages.AcknowledgeMessage;
 	import org.apache.royale.net.remoting.messages.RoyaleClient;
+	import org.apache.royale.net.remoting.messages.AcknowledgeMessage;
+	import org.apache.royale.net.remoting.messages.RoyaleClient;
 
 	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
 	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]

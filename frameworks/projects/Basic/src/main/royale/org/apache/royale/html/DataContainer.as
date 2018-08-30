@@ -142,7 +142,7 @@ package org.apache.royale.html
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
-		public function get presentationModel():IListPresentationModel
+		public function get presentationModel():IBead
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {

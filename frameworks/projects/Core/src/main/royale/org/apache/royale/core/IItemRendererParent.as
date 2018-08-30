@@ -29,7 +29,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IItemRendererParent extends IParent, IEventDispatcher
+	public interface IItemRendererParent extends IEventDispatcher
 	{
         /**
          *  The IItemRendererParent interface is the basic interface for the 
@@ -51,5 +51,6 @@ package org.apache.royale.core
         function getItemRendererForIndex(index:int):IItemRenderer;
         function removeAllItemRenderers():void;
         function updateAllItemRenderers():void;
+        function get numItemRenderers():int;
 	}
 }

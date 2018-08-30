@@ -59,6 +59,16 @@ package
         registerClassAlias("org.apache.royale.net.remoting.messages.CommandMessage", CommandMessage);
         registerClassAlias("DSK", AcknowledgeMessageExt);
 
+
+        import org.apache.royale.net.remoting.messages.RoyaleClient; RoyaleClient;
+        import org.apache.royale.net.utils.RPCUIDUtil; RPCUIDUtil;
+        
+        
+        import org.apache.royale.reflection.registerClassAlias;
+        //RpcClassAliasInitializer
+        registerClassAlias("org.apache.royale.net.remoting.messages.CommandMessage", CommandMessage);
+        registerClassAlias("DSK", AcknowledgeMessageExt);
+
     }
 }
 

@@ -54,6 +54,7 @@ import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
+import mx.charts.chartClasses.IAxis;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
@@ -487,6 +488,8 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the initialized property.
      */
+     
+ 
     private var _initialized:Boolean = false;
 
     [Inspectable(environment="none")]
@@ -517,6 +520,26 @@ public class UIComponent extends UIBase
             dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
         }
     }
+    
+    private var _VerticalAxis:IAxis;
+    public function get verticalAxis():IAxis
+	 {
+	    return _VerticalAxis;
+	 }
+    public function set verticalAxis(value:IAxis):void
+	 {
+	    _VerticalAxis = value;
+	 }
+    private var _horizontalAxis:IAxis;
+    public function get horizontalAxis():IAxis
+	 {
+	    return _horizontalAxis;
+	 }
+    public function set horizontalAxis(value:IAxis):void
+	 {
+	    _horizontalAxis = value;
+	 }
+
 	//----------------------------------
     //  graphics copied from Sprite
     //----------------------------------
@@ -3047,10 +3070,7 @@ COMPILE::JS
     { override }
     public function removeChildAt(index:int):IUIComponent
     {
-        if (GOOG::DEBUG)
-            trace("removeChildAt not implemented");
-        
-        return null;
+        return removeElement(getElementAt(index)) as IUIComponent;
     }
 
     /**
