@@ -74,7 +74,23 @@ public class Effect extends org.apache.royale.effects.Effect
     {
     }
     
+
+    
+   //--------------------------------------------------------------------------
+   //  duration
+   //--------------------------------------------------------------------------
+	 
+  override public function get duration():Number
+	  {
+	  return super.duration();
+	  }
+  override public function set duration(value:Number):void
+	  {
+	  super.duration(value);
+	  } 
+
   
+
 
 	
 }
