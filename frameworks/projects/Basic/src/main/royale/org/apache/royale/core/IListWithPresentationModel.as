@@ -18,22 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.core.IList
+	import org.apache.royale.core.IListPresentationModel;
+
     /**
-     *  The IStrandWithPresentationModel interface is implemented by any IStrand
-	 *  that supports a separate bead that is a presentationModel.  A presentationModel
-     *  is a set of properties that act as parameters to the View as opposed to the
-     *  regular model that is the data to be displayed by the view.  A simple example
-     *  is the rowHeight of a vertical list.
+     *  The IListWithPresentationModel interface is implemented by any IList
+	 *  that supports a separate IListPresentationModel
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IStrandWithPresentationModel
+	public interface IListWithPresentationModel extends IList
 	{
         /**
-         *  Returns the bead that holds the properties for the presentationModel.
+         *  Returns the component within the list (maybe even the list shell itself)
+		 *  which will be the parent of each itemRenderer.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

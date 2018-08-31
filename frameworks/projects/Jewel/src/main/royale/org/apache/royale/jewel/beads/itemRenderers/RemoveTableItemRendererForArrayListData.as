@@ -124,7 +124,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			var ir:DataItemRenderer;
 			var cell:TableCell;
-			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			var processedRow:TableRow = itemRendererParent.getItemRendererForIndex(event.index) as TableRow;
 			while (processedRow.numElements > 0) {
 				cell = processedRow.getElementAt(0) as TableCell;
 				ir = cell.getElementAt(0) as DataItemRenderer;
@@ -132,13 +132,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 				cell.removeElement(ir);
 				processedRow.removeElement(cell);
 			}
-			itemRendererParent.removeElement(processedRow);
+			//itemRendererParent.removeItemRenderer(processedRow);
 
 			// adjust the itemRenderers' index to adjust for the shift
-			var len:int = itemRendererParent.numElements;
+			var len:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				processedRow = itemRendererParent.getItemRendererForIndex(i) as TableRow;
 				var n:int = processedRow.numElements;
 				for (var j:int = 0; j < n; j++)
 				{

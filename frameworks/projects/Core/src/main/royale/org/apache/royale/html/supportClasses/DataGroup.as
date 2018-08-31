@@ -55,6 +55,11 @@ package org.apache.royale.html.supportClasses
         * IItemRendererParent
         */
 
+        public function get numItemRenderers():int
+        {
+            return this.numElements;
+        }
+
         /**
          * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
          * @private

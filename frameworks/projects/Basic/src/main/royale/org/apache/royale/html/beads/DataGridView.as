@@ -34,7 +34,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
-	import org.apache.royale.html.supportClasses.IDataGridColumnList;
+    import org.apache.royale.html.supportClasses.DataGridColumnList;
+    import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.Viewport;
 
@@ -227,7 +228,7 @@ package org.apache.royale.html.beads
 				{
 					var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
 
-					var list:IDataGridColumnList = new columnClass();
+					var list:DataGridColumnList = new columnClass();
 					
 					if (i == 0)
 					{

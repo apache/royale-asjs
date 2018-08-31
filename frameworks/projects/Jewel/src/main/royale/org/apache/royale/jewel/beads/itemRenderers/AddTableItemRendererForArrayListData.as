@@ -163,10 +163,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// adjust the itemRenderers' index to adjust for the shift
 			var cell:TableCell;
 			var processedRow:TableRow;
-			var len:int = itemRendererParent.numElements;
+			var len:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				processedRow = itemRendererParent.getItemRendererForIndex(i) as TableRow;
 				var n:int = processedRow.numElements;
 				for (j = 0; j < n; j++)
 				{

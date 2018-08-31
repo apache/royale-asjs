@@ -208,16 +208,6 @@ DateChooser {
 	height: 240px;
 }
 
-DateFieldDateChooser {
-	IBeadView:   ClassReference("org.apache.royale.html.beads.DateChooserView");
-	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");			
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");	
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateChooserMouseController");
-	width:  210px;
-	height: 230px;
-}
-
-
 DateChooserList {
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
@@ -269,7 +259,6 @@ DateField {
 	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateFieldMouseController");
 	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
-	IPopUp: ClassReference("org.apache.royale.html.supportClasses.DateFieldDateChooser");
 }
 
 /** DividedContainer */

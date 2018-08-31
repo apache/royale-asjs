@@ -125,7 +125,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			var ir:ISelectableItemRenderer;
 			var cell:TableCell;
-			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			var processedRow:TableRow = itemRendererParent.getItemRendererForIndex(event.index) as TableRow;
 			var n:int = processedRow.numElements;
 			for (var i:int = 0; i < n; i++)
 			{

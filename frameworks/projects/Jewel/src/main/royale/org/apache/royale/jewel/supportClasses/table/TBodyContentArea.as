@@ -77,7 +77,12 @@ package org.apache.royale.jewel.supportClasses.table
 		/*
 		* IItemRendererParent
 		*/
-		
+
+		public function get numItemRenderers():int
+		{
+			return this.numElements;
+		}
+
 		/**
 		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
 		 * @private

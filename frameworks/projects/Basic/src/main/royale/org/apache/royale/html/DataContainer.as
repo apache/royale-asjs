@@ -46,6 +46,7 @@ package org.apache.royale.html
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.models.ListPresentationModel;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IListPresentationModel;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -142,7 +143,7 @@ package org.apache.royale.html
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
-		public function get presentationModel():IBead
+		public function get presentationModel():IListPresentationModel
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
