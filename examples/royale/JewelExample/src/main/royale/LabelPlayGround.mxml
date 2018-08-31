@@ -35,7 +35,7 @@ limitations under the License.
 	<j:Card width="350">
 		<html:H3 text="Jewel Label"/>
 		
-		<j:Label id="label" text="This is a Label" click="labelClick(event)"/>
+		<j:Label id="label" text="This is a Label" click="labelClick(event)" className="cursor-pointer"/>
 
 		<j:Label text="This is a multiline label with more text that wraps if container has set a width"
 				multiline="true"/>

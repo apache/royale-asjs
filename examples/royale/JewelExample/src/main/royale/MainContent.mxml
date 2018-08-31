@@ -41,6 +41,11 @@ limitations under the License.
                 topappbar.fixed = !topappbar.fixed;
                 main.hasTopAppBar = topappbar.fixed;
             }
+
+            private function goToHome():void
+            {
+                main.showContent("welcome_panel");
+            }
         ]]>
     </fx:Script>
 
@@ -57,7 +62,7 @@ limitations under the License.
             <j:ResponsiveDrawer auto="true"/>
         </j:beads>
         <j:DrawerHeader>
-            <j:Image src="assets/apache-royale-jewel-logo-white.svg" height="140"/>
+            <j:Image src="assets/apache-royale-jewel-logo-white.svg" height="140" click="goToHome()" className="cursor-pointer"/>
         </j:DrawerHeader>
         <j:DrawerContent>
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
@@ -109,7 +114,7 @@ limitations under the License.
     </j:TopAppBar>
 
     <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
-        <local:WelcomeSection isActive="true"/>
+        <local:WelcomeSection id="welcome_panel" isActive="true"/>
         <local:AlertPlayGround id="alert_panel"/>
         <local:ButtonPlayGround id="button_panel"/>
         <local:NumericStepperPlayGround id="numericstepper_panel"/>

@@ -44,7 +44,7 @@
           <includeFiles>
             <include-file>
               <name>assets/*</name>
-              <path>../src/main/resources/assets/*</path>
+              <path>../../JewelTheme/src/main/resources/assets/*</path>
             </include-file>
             <include-file>
               <name>defaults.css</name>

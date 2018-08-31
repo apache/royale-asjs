@@ -17,17 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-.jewel.label
-	cursor: default
-	white-space: nowrap
-
-.jewel.label.multiline
-	white-space: normal
-	width: 100%
-
-
-j|Label
-	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-	//IMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
-	//IBeadView: ClassReference("org.apache.royale.jewel.beads.views.JewelLabelViewBead")
-
+// visited link
+a:visited
+    color: darken($secondary-color, 10%)
+// mouse over link
+a:hover
+    color: $secondary-color
+// selected link
+a:active
+    color: lighten($secondary-color, 10%)
