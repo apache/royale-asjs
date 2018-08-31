@@ -51,6 +51,7 @@ package org.apache.royale.events
 
 		public static const CHANGE:String = "change";
 		public static const COMPLETE:String = "complete";
+		public static const SELECT:String = "select";
 		//--------------------------------------
 		//   Constructor
 		//--------------------------------------
@@ -156,6 +157,7 @@ package org.apache.royale.events
 
 		public static const CHANGE:String = "change";
 		public static const COMPLETE:String = "complete";
+		public static const SELECT:String = "select";
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);
