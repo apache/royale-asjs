@@ -35,16 +35,16 @@ package org.apache.royale.jewel.beads.controls.datefield
 	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
-	 *  The DateFieldTextInputRestrictBead class is a specialty bead that is used
-     *  by DateField control. The bead prevents non-numeric entry into the text input
-	 *  area.
+	 *  The DateFieldMaskedTextInput class is a specialty bead that is used
+     *  by DateField control. The bead mask the input of the user to conform
+	 *  to numbers and slashes in the following pattern: 'NN/NN/NNNN'
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldTextInputRestrictBead implements IBead
+	public class DateFieldMaskedTextInput implements IBead
 	{
 		/**
 		 *  constructor.
@@ -52,9 +52,9 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
-		public function DateFieldTextInputRestrictBead()
+		public function DateFieldMaskedTextInput()
 		{
 		}
 		
@@ -66,7 +66,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
@@ -80,7 +80,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 			COMPILE::JS
 			{
                 var host:UIBase = _strand as UIBase;
-                host.element.addEventListener("keypress", validateInput, false);
+                host.element.addEventListener("keypress", dateInputMask, false);
 			}
 		}
 		
@@ -149,6 +149,36 @@ package org.apache.royale.jewel.beads.controls.datefield
 				if (event.preventDefault) event.preventDefault();
 			}
 
+		}
+
+		COMPILE::JS
+		/**
+		 * (TODO carlosrovira): this should take into account IFormatBead
+		 */
+		private function dateInputMask(event:BrowserEvent):void {
+			if(event.keyCode < 47 || event.keyCode > 57) {
+				event.preventDefault();
+			}
+			
+			var len:int = event.target.value.length;
+			
+			// If we're at a particular place, let the user type the slash
+			// i.e., 12/12/1212
+			if(len !== 1 || len !== 3) {
+				if(event.keyCode == 47) {
+					event.preventDefault();
+				}
+			}
+			
+			// If they don't add the slash, do it for them...
+			if(len === 2) {
+				event.target.value += '/';
+			}
+
+			// If they don't add the slash, do it for them...
+			if(len === 5) {
+				event.target.value += '/';
+			}
 		}
 	}
 }

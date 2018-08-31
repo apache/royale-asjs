@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
@@ -86,7 +86,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
@@ -105,25 +105,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dataProviderChangeHandler(null);
 		}
 		
-		protected var _dataProviderModel:IDataProviderModel;
-
-		/**
-		 * The model holding the dataProvider.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function get dataProviderModel():IDataProviderModel
-		{
-			if (_dataProviderModel == null) {
-				_dataProviderModel = _strand.getBeadByType(IBeadModel) as IDataProviderModel;
-			}
-			return _dataProviderModel;
-		}
-		
 		protected var labelField:String;
 		
 		private var _itemRendererFactory:IItemRendererClassFactory;
@@ -135,7 +116,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
 		 */
 		public function get itemRendererFactory():IItemRendererClassFactory
@@ -170,12 +151,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// -- 1) CLEANING PHASE
-            if (!dataProviderModel)
+            if (!model)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			var dp:ICollectionView = model.dataProvider as ICollectionView;
 			if (!dp)
+			{
+				model.selectedIndex = -1;
+				model.selectedItem = null;
+				model.selectedItemProperty = null;
+
+				// TBodyContentArea - remove data items
+				tbody.removeAllItemRenderers();
 				return;
-			
+			}
 			// remove this and better add beads when needed
 			// listen for individual items being added in the future.
 			// var dped:IEventDispatcher = dp as IEventDispatcher;
@@ -183,18 +171,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
+            // TBodyContentArea - remove data items
+			tbody.removeAllItemRenderers();
 			
             // THEAD - remove header items
 			removeElements(view.thead);
             // -- add the header
             createHeader();
 			
-            // TBodyContentArea - remove data items
-			tbody.removeAllItemRenderers();
 			
 			// -- 2) CREATION PHASE
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			labelField = dataProviderModel.labelField;
+			labelField = model.labelField;
 			
             var column:TableColumn;
             var ir:ITextItemRenderer;

@@ -1,0 +1,86 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel ComboBox
+
+// ComboBox variables
+$combobox-button-width: 2.8em
+$combobox-button-size: 22px
+$combobox-input-width: 13.7em
+$combobox-button-xoffset: calc(50% - #{$combobox-button-size/2})
+$combobox-button-yoffset: calc(50% - #{$combobox-button-size/2})
+
+.jewel.combobox
+    display: inline-flex
+
+    .jewel.textinput
+        width: $combobox-input-width
+            
+    .jewel.button
+        width: $combobox-button-width
+        &::before
+            margin: 0
+            padding: 0
+            
+            line-height: $combobox-button-size
+            
+        &::after
+            content: ' '
+            position: absolute
+
+            width: $combobox-button-size
+            height: $combobox-button-size
+
+            left: $combobox-button-xoffset
+            top: $combobox-button-yoffset
+
+j|ComboBox
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel")
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController")
+    IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxList")
+
+
+.jewel.list.combobox
+    position: absolute
+    width: $combobox-input-width + $combobox-button-width
+    height: 200px
+    z-index: 5
+    
+
+j|ComboBoxList
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListSelectionModel")
+    IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ListView")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // border-style: solid
+    // border-radius: 4px
+    // border-color: #000000
+    // border-width: 1px
+    // background-color: #FFFFFF
+
+@media -royale-swf
+    ComboBoxList
+        IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
+	

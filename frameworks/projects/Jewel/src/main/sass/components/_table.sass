@@ -81,8 +81,8 @@ $tableitem-min-height: 34px
     // td
     .jewel.tablecell
         position: relative
-        > *
-            padding: 12px
+        // > *
+        //     padding: 12px
         
     &.fixedHeader
         table-layout: fixed
@@ -115,6 +115,7 @@ j|Table
 
 
 .jewel.tableitem
+    padding: 12px
     cursor: pointer
     text-decoration: none
     align-items: center
@@ -122,6 +123,8 @@ j|Table
     line-height: normal !important
     overflow: hidden
 
+    &.with-childs
+        padding: 6px
     &.calendar
         border-radius: 10%
     

@@ -141,6 +141,7 @@
         <antcall target="MXRoyale"/>
         <antcall target="Jewel"/>
         <antcall target="JewelTheme"/>
+		<antcall target="Icons"/>
     </target>
     
     <target name="fonts">
@@ -197,6 +198,7 @@
         <ant dir="${basedir}/projects/RoyaleSite" target="clean"/>
         <ant dir="${basedir}/projects/MXRoyale" target="clean"/>
         <ant dir="${basedir}/projects/Jewel" target="clean"/>
+		<ant dir="${basedir}/projects/Icons" target="clean"/>
         <ant dir="${basedir}/themes/JewelTheme" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
@@ -346,7 +348,9 @@
     <target name="JewelTheme" description="Clean build of JewelTheme.swc">
         <ant dir="${basedir}/themes/JewelTheme"/>
     </target>
-
+	<target name="Icons" description="Clean build of Icons.swc">
+        <ant dir="${basedir}/projects/Icons"/>
+    </target>
     <target name="create-config" depends="playerglobal-setswfversion" description="Copy the config template and inject version numbers">
         <copy file="${basedir}/${configname}-config-template.xml" tofile="${basedir}/${configname}-config.xml" overwrite="true">
             <filterset>

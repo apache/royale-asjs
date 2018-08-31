@@ -26,11 +26,19 @@ limitations under the License.
     <fx:Script>
 		<![CDATA[
 			import vos.IconListVO;
+			import org.apache.royale.jewel.List;
+			import org.apache.royale.collections.ArrayList;
             
             [Bindable("dataChange")]
             public function get iconList():IconListVO
             {
                 return data as IconListVO;
+            }
+
+            private function clickCloseButton():void
+			{
+                var list:List = itemRendererParent as List;
+                (list.dataProvider as ArrayList).removeItemAt(index);
             }
 		]]>
 	</fx:Script>
@@ -39,7 +47,7 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
     
-    <js:FontIcon text="{iconList.icon}" material="true" visible="{iconList.icon != null}"/>
+    <js:FontIcon text="{iconList.icon}" material="true" visible="{iconList.icon != null}" click="clickCloseButton()"/>
 
     <html:Span text="{iconList.label}"/>
     

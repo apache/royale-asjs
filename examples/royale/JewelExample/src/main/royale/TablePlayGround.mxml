@@ -29,210 +29,241 @@ limitations under the License.
 
 	<j:beads>
         <js:ContainerDataBinding/>
-		<j:HorizontalCenteredLayout gap="3"/>
     </j:beads>
 
-	<j:Card >
-		<html:H3 text="Jewel SimpleTable"/>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel SimpleTable"/>
 
-		<j:SimpleTable width="500">
-			<j:THead>
-				<j:TableRow>
-					<j:TableHeaderCell width="48">
-						<j:Label text="Icons" />
-					</j:TableHeaderCell>
-					<j:TableHeaderCell width="140">
-						<j:Label text="Text Column" />
-					</j:TableHeaderCell>
-					<j:TableHeaderCell width="140">
-						<j:Label text="Centered Text Column" />
-					</j:TableHeaderCell>
-					<j:TableHeaderCell>
-						<j:Label text="Number Column">
+				<j:SimpleTable>
+					<j:THead>
+						<j:TableRow>
+							<j:TableHeaderCell width="48">
+								<j:Label text="Icons" />
+							</j:TableHeaderCell>
+							<j:TableHeaderCell width="140">
+								<j:Label text="Text Column" />
+							</j:TableHeaderCell>
+							<j:TableHeaderCell width="140">
+								<j:Label text="Centered Text Column" />
+							</j:TableHeaderCell>
+							<j:TableHeaderCell>
+								<j:Label text="Number Column">
+									<j:beads>
+										<j:TextAlign align="right"/>
+									</j:beads>
+								</j:Label>
+							</j:TableHeaderCell>
+						</j:TableRow>
+					</j:THead>
+					<j:TBody>
+						<j:TableRow>
+							<j:TableCell>
+								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+							</j:TableCell>
+							<j:TableCell expandRows="2">
+								<j:Label text="Some text in two rows" multiline="true"/>
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="Some centered text">
+									<j:beads>
+										<j:TextAlign align="center"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="71">
+									<j:beads>
+										<j:TextAlign align="right"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+						</j:TableRow>
+						<j:TableRow>
+							<j:TableCell>
+								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+							</j:TableCell>
+							
+							<j:TableCell>
+								<j:Label text="More centered text">
+									<j:beads>
+										<j:TextAlign align="center"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="56">
+									<j:beads>
+										<j:TextAlign align="right"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+						</j:TableRow>
+						<j:TableRow>
+							<j:TableCell>
+								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="More text 2" />
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="More centered text 2" >
+									<j:beads>
+										<j:TextAlign align="center"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="346">
+									<j:beads>
+										<j:TextAlign align="right"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+						</j:TableRow>
+						<j:TableRow>
+							<j:TableCell>
+								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+							</j:TableCell>
+							<j:TableCell>
+								<!-- By using a Group within a cell you have better control of the
+									layout.
+								-->
+								<j:VGroup>
+									<j:Label text="Labels" />
+									<j:Label text="with" />
+									<j:Label text="Vertical" />
+									<j:Label text="Layout" />
+								</j:VGroup>
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="More centered text 3" >
+									<j:beads>
+										<j:TextAlign align="center"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+							<j:TableCell>
+								<j:Label text="240">
+									<j:beads>
+										<j:TextAlign align="right"/>
+									</j:beads>
+								</j:Label>
+							</j:TableCell>
+						</j:TableRow>
+					</j:TBody>
+					<j:TFoot>
+						<j:TableRow>
+							<j:TableCell expandColumns="4">
+								<j:HGroup gap="3" itemsHorizontalAlign="itemsRight">
+									<j:IconTextInput rightPosition="true">
+										<j:beads>
+											<j:TextPrompt prompt="Search..."/>						
+										</j:beads>
+										<j:icon>
+											<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+										</j:icon>
+									</j:IconTextInput>
+									<j:Button text="SEARCH" emphasis="{Button.PRIMARY}"/>
+								</j:HGroup>
+							</j:TableCell>
+						</j:TableRow>
+					</j:TFoot>
+				</j:SimpleTable>
+			</j:Card>
+
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+
+			<j:Card>
+				<html:H3 text="Jewel Table"/>
+				<j:HGroup gap="3">
+					<j:VGroup gap="3">
+						<j:Table id="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
+							<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
+							<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
+							<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
+							<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
 							<j:beads>
-								<j:TextAlign align="right"/>
+								<j:AddTableItemRendererForArrayListData/>
+								<j:RemoveTableItemRendererForArrayListData/>
+								<j:UpdateTableItemRendererForArrayListData/>
+								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
-						</j:Label>
-					</j:TableHeaderCell>
-				</j:TableRow>
-			</j:THead>
-			<j:TBody>
-				<j:TableRow>
-					<j:TableCell>
-						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
-					</j:TableCell>
-					<j:TableCell expandRows="2">
-						<j:Label text="Some text in two rows" multiline="true"/>
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="Some centered text">
-							<j:beads>
-								<j:TextAlign align="center"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="71">
-							<j:beads>
-								<j:TextAlign align="right"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-				</j:TableRow>
-				<j:TableRow>
-					<j:TableCell>
-						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
-					</j:TableCell>
-					
-					<j:TableCell>
-						<j:Label text="More centered text">
-							<j:beads>
-								<j:TextAlign align="center"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="56">
-							<j:beads>
-								<j:TextAlign align="right"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-				</j:TableRow>
-				<j:TableRow>
-					<j:TableCell>
-						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="More text 2" />
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="More centered text 2" >
-							<j:beads>
-								<j:TextAlign align="center"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="346">
-							<j:beads>
-								<j:TextAlign align="right"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-				</j:TableRow>
-				<j:TableRow>
-					<j:TableCell>
-						<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
-					</j:TableCell>
-					<j:TableCell>
-						<!-- By using a Group within a cell you have better control of the
-							layout.
-						-->
-						<j:VGroup>
-							<j:Label text="Labels" />
-							<j:Label text="with" />
-							<j:Label text="Vertical" />
-							<j:Label text="Layout" />
-						</j:VGroup>
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="More centered text 3" >
-							<j:beads>
-								<j:TextAlign align="center"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-					<j:TableCell>
-						<j:Label text="240">
-							<j:beads>
-								<j:TextAlign align="right"/>
-							</j:beads>
-						</j:Label>
-					</j:TableCell>
-				</j:TableRow>
-			</j:TBody>
-			<j:TFoot>
-				<j:TableRow>
-					<j:TableCell expandColumns="4">
-						<j:HGroup gap="3" itemsHorizontalAlign="itemsRight">
-							<j:IconTextInput rightPosition="true">
-								<j:beads>
-									<j:TextPrompt prompt="Search..."/>						
-								</j:beads>
-								<j:icon>
-									<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
-								</j:icon>
-							</j:IconTextInput>
-							<j:Button text="SEARCH" emphasis="{Button.PRIMARY}"/>
+						</j:Table>
+						<j:Label id="selected"/>
+					</j:VGroup>
+					<j:VGroup gap="3">
+						<j:Button click="changeTableData()" text="Change Data" emphasis="primary"/>
+						<j:Button text="Add item" click="addItem()"/>
+						<j:Button text="Remove first item" click="removeItemAt()"/>
+						<j:Button text="Update first item" click="updateFirstItem()"/>
+						<j:Button text="Remove all data" click="removeAllData()"/>
+						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+							<j:Label text="Select table by index: "/>
+							<j:NumericStepper valueChange="table.selectedIndex = event.target.value" minimum="0"/>
 						</j:HGroup>
-					</j:TableCell>
-				</j:TableRow>
-			</j:TFoot>
-		</j:SimpleTable>
-	</j:Card>
+						<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+							<j:Label text="Select table by item: "/>
+							<j:NumericStepper valueChange="table.selectedItemProperty = table.dataProvider.getItemAt(event.target.value)" minimum="0"/>
+						</j:HGroup> -->
+					</j:VGroup>
+				</j:HGroup>
+			</j:Card>
 
-	<j:Card >
-		<html:H3 text="Jewel Table"/>
-
-		<j:Table id="table" width="440" change="onChange(event)">
-			<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
-			<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
-			<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"
-							itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
-							<!--item renderers can be get from CSS or declared in column but must extend TableItemRenderer -->
-			<j:beads>
-				<js:ConstantBinding sourceID="tablesModel"
-									sourcePropertyName="guitarrists"
-									destinationPropertyName="dataProvider" />
-				<j:DynamicRemoveAllItemRendererForArrayListData/>
-				<j:DynamicUpdateItemRendererForArrayListData/>
-			</j:beads>
-		</j:Table>
-
-		<j:Label id="selected"/>
-		<j:ControlBar>
-			<j:Button click="clearTable()" text="Change Data" emphasis="primary"/>
-			<j:Button text="Remove all data" click="removeAllData()"/>
-			<j:Button click="changeCell()" text="Change Cell"/>
-			<j:Button text="Update first item" click="updateFirstItem()"/>
-		</j:ControlBar>
-		
-	</j:Card>
+		</j:GridCell>
+	</j:Grid>
 
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
-
-			private function changeCell():void
-			{
-			}
+			import vos.GuitarristVO;
 
 			private function onChange(event:Event):void {
                 selected.text = "Selected: " + table.selectedItemProperty;
             }
 
-			private function clearTable():void
+			private function changeTableData():void
 			{
 				table.dataProvider = new ArrayList([
-					{guitarrist: "Ssi", album: "Paasadasdssion & Warfare", year: "1990"},
-					{guitarrist: "Steve Morse", album: "Southern Steel", year: "1991"},
-					{guitarrist: "Yngwie Malmsteen", album: "sfsdf Force", year: "2984"},
-					{guitarrist: "Joe sf", album: "Surfing With The Alien", year: "1987"},
-					{guitarrist: "Mark Knopfler", album: "Local sf", year: "1983"}
+					new GuitarristVO("David Gilmour", "On an Island", 2006),
+					new GuitarristVO("Eric Clapton", "Journeyman", 1989),
+					new GuitarristVO("Frank Zappa", "Hot Rats", 1969),
+					new GuitarristVO("Jimi Hendrix", "Electric Ladyland", 1968)
 				]);
 			}
 
-			public function removeAllData():void
+			private function addItem():void
 			{
-				tablesModel.guitarrists.removeAll();
+				(table.dataProvider as ArrayList).addItem(new GuitarristVO("Eric Johnson", "Venus Isle", 1996));
+				// tablesModel.guitarrists.addItem(new GuitarristVO("Eric Johnson", "Venus Isle", 1996)); // to test things are adding to right place
+			}
+
+			public function removeItemAt():void
+			{
+				(table.dataProvider as ArrayList).removeItemAt(0);
+				// tablesModel.guitarrists.removeItemAt(0);
 			}
 
 			public function updateFirstItem():void
 			{
-				var item:Object = tablesModel.guitarrists.getItemAt(0);
-				item.guitarrist = "Mango";
-				tablesModel.guitarrists.itemUpdated(item);
+				var item:GuitarristVO = (table.dataProvider as ArrayList).getItemAt(0) as GuitarristVO;
+				item.guitarrist = "Robert Frip";
+				item.year = 1980;
+				(table.dataProvider as ArrayList).itemUpdated(item);
+				// tablesModel.guitarrists.itemUpdated(item);
+			}
+
+			public function removeAllData():void
+			{
+				(table.dataProvider as ArrayList).removeAll();
+				// tablesModel.guitarrists.removeAll();
 			}
 		]]>
 	</fx:Script>

@@ -20,60 +20,74 @@
 // Jewel DropDownList
 
 // DropDownList variables
-$textbutton-margin: 0 !default
-$textbutton-padding: 10px 16px !default
-$textbutton-min-height: 34px !default
-$textbutton-min-width: 74px !default
+$dropdownlist-border-radius: $border-radius
 
-$textbutton-border-radius: 3px
+// =dropdownlist-theme($dropdownlist-color, $text-color)
+    
+//     // +jewel-bg-border("normal", $dropdownlist-color, $dropdownlist-border-radius)
 
-=textbutton-theme($textbutton-color, $text-color)
-    cursor: pointer
-    display: inline-block
+//     // @if $transitions-enable
+//     //     transition:
+//     //         duration: $transition-duration
+//     //         timing-function: $transition-timing
 
-    margin: $textbutton-margin //1rem
-    padding: $textbutton-padding //.938em 1.875em
+//     font:
+//         family: $font-stack 
+//         size: $font-size
+//         // weight: bold
+//     color: $text-color
+//     text:
+//         // transform: uppercase
+//         weight: $font-weight-normal
+//         decoration: none 
+//     @if not $flat and $text-color == $font-theme-color
+//         text:
+//             shadow: 0 -1px 0 rgba(darken($dropdownlist-color, 30%), .7) //0 .063em
 
-    min-width: $textbutton-min-width
-    min-height: $textbutton-min-height
+//     // &:hover, &:hover:focus
+//     //     +jewel-bg-border("hover", $dropdownlist-color)
 
-    +jewel-bg-border("normal", $textbutton-color, $textbutton-border-radius)
+//     // &:active, &:active:focus
+//     //     +jewel-bg-border("active", $dropdownlist-color)
 
-    @if $transitions-enable
-        transition:
-            duration: $transition-duration
-            timing-function: $transition-timing
-
-    font:
-        family: $font-stack 
-        size: $font-size
-        weight: bold
-    color: $text-color
-    text:
-        transform: uppercase
-        decoration: none 
-    @if not $flat and $text-color == $font-theme-color
-        text:
-            shadow: 0 -1px 0 rgba(darken($textbutton-color, 30%), .7) //0 .063em
-
-    &:hover, &:hover:focus
-        +jewel-bg-border("hover", $textbutton-color)
-
-    &:active, &:active:focus
-        +jewel-bg-border("active", $textbutton-color)
-
-    &:focus
-        outline: none
-        +jewel-bg-border("focus", $textbutton-color)
+//     &:focus
+//         outline: none
+//         // +jewel-bg-border("focus", $dropdownlist-color)
         
-    &[disabled]
-        cursor: unset
-        +jewel-bg-border("disabled", $textbutton-color)
-        color: $disabled-font-color
-        font:
-            weight: $font-weight-normal
-        text:
-            shadow: unset
+//     &[disabled]
+//         cursor: unset
+//         // +jewel-bg-border("disabled", $dropdownlist-color)
+//         color: $disabled-font-color
+//         // font:
+//         //     weight: $font-weight-normal
+//         // text:
+//         //     shadow: unset
 
 .jewel.dropdownlist
-    +textbutton-theme($default-color, $default-font-color)
+    // +dropdownlist-theme($default-color, $default-font-color)
+    width: 200px
+    height: 38px
+    @if $flat
+        background: $default-color
+        border: 0px solid
+    @else
+        background-color: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%)) 
+        background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
+        background-size: 8%
+        background-position: 170px center
+        background-repeat: no-repeat
+        border: 1px solid darken($default-color, 15%)
+    border-radius: $dropdownlist-border-radius
+
+    // &::before
+                
+    // &::after
+    //     background-size: 66%
+    //     background: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center
+
+
+    &:focus
+        @if $flat
+            background: lighten($primary-color, 25%)
+        @else
+            border: 1px solid darken($primary-color, 15%)

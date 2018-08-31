@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectionModel;
@@ -27,45 +26,52 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.jewel.supportClasses.table.TableCell;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 
 	/**
-	 * Handles the removal of all itemRenderers once the all items has been removed
-	 * from the IDataProviderModel.
+	 *  Handles the removal of an itemRenderer in a Table component once the corresponding 
+	 *  datum has been removed from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.0
+	 *  @productversion Royale 0.9.4
 	 */
-	public class DynamicRemoveAllItemRendererForArrayListData implements IBead
+	public class RemoveTableItemRendererForArrayListData implements IBead
 	{
 		/**
-		 * Constructor
+		 *  Constructor
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
-		public function DynamicRemoveAllItemRendererForArrayListData()
+		public function RemoveTableItemRendererForArrayListData()
 		{
 		}
 
 		private var _strand:IStrand;
-
 		/**
-		 * @copy org.apache.royale.core.IStrand
+		 *  @copy org.apache.royale.core.IStrand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
+
+		protected var labelField:String;
+
+		protected var model:TableModel;
 		
 		/**
 		 *  finish setup
@@ -73,70 +79,77 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.4
 		 */
 		protected function initComplete(event:Event):void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
-			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
+			model = _strand.getBeadByType(ISelectionModel) as TableModel;
+			labelField = model.labelField;
+
+			model.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
 			
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
 		 * @private
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
+			}
+			dp = model.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
-			// listen for all items being removed in the future.
-			dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+			// listen for individual items being removed in the future.
+			dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
-		protected function handleAllItemsRemoved(event:CollectionEvent):void
+		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			if (dataProviderModel is ISelectionModel)
+			var ir:DataItemRenderer;
+			var cell:TableCell;
+			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			while (processedRow.numElements > 0) {
+				cell = processedRow.getElementAt(0) as TableCell;
+				ir = cell.getElementAt(0) as DataItemRenderer;
+				itemRendererParent.removeItemRenderer(ir);
+				cell.removeElement(ir);
+				processedRow.removeElement(cell);
+			}
+			itemRendererParent.removeElement(processedRow);
+
+			// adjust the itemRenderers' index to adjust for the shift
+			var len:int = itemRendererParent.numElements;
+			for (var i:int = event.index; i < len; i++)
 			{
-				var model:ISelectionModel = dataProviderModel as ISelectionModel;
-				model.selectedIndex = -1;
-				model.selectedItem = null;
+				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				var n:int = processedRow.numElements;
+				for (var j:int = 0; j < n; j++)
+				{
+					cell = processedRow.getElementAt(j) as TableCell;
+					ir = cell.getElementAt(0) as DataItemRenderer;
+					ir.index = i;
+					ir.rowIndex = i;
+				}
 			}
 
-			itemRendererParent.removeAllItemRenderers();
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-		}
-
-		private var _dataProviderModel: IDataProviderModel;
-
-		/**
-		 *  The org.apache.royale.core.IDataProviderModel that contains the
-		 *  data source.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-		 */
-		public function get dataProviderModel(): IDataProviderModel
-		{
-			if (_dataProviderModel == null) {
-				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			}
-			return _dataProviderModel;
 		}
 
 		private var _itemRendererParent: IItemRendererParent;
@@ -148,7 +161,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{

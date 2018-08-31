@@ -100,6 +100,7 @@
         <antcall target="Text"/>
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
+        <antcall target="Icons" />
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -149,6 +150,7 @@
         <ant dir="${basedir}/projects/TextJS" target="clean"/>
         <ant dir="${basedir}/projects/TLFJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
+        <ant dir="${basedir}/projects/IconsJS" target="clean"/>
 
         <delete dir="${basedir}/libs"/>
         <delete dir="${basedir}/generated-sources"/>
@@ -237,17 +239,24 @@
     <target name="Storage" description="Clean build of StorageJS.swc">
         <ant dir="${basedir}/projects/StorageJS"/>
     </target>
+
     <target name="XML" description="Clean build of XMLJS.swc">
         <ant dir="${basedir}/projects/XMLJS"/>
     </target>
+
     <target name="Testing" description="Clean build of TestingJS.swc">
         <ant dir="${basedir}/projects/TestingJS"/>
     </target>
+
     <target name="Text" description="Clean build of TextJS.swc">
         <ant dir="${basedir}/projects/TextJS"/>
     </target>
+
     <target name="TLF" description="Clean build of TLFJS.swc">
         <ant dir="${basedir}/projects/TLFJS"/>
     </target>
 
+    <target name="Icons" description="Clean build of IconsJS.swc">
+        <ant dir="${basedir}/projects/IconsJS"/>
+    </target>
 </project>

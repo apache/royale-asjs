@@ -21,40 +21,59 @@ package models
 	import vos.IconListVO;
 	import org.apache.royale.collections.ArrayList;
 
+	[Bindable]
 	public class ListsModel 
 	{
 		/**
 		 * Used in the List example.
 		 */
-		private var _watchmen:Array = [
+		private var _watchmen:ArrayList = new ArrayList([
 			"The Comedian", 
 			"Doctor Manhattan", 
 			"Nite Owl",
 			"Ozymandias",
             "Rorschach",
             "Silk Spectre"
-		];
+		]);
 		
-		public function get watchmen():Array
+		public function get watchmen():ArrayList
 		{
 			return _watchmen;
 		}
+
+		private var _avengers:ArrayList = new ArrayList([
+			new IconListVO("Iron Man", MaterialIconType.WEB_ASSET),
+			new IconListVO("Hulk", MaterialIconType.WEB_ASSET), 
+			new IconListVO("Thor", MaterialIconType.WEB_ASSET),
+			new IconListVO("Captain America", MaterialIconType.WEB_ASSET),
+            new IconListVO("Black Widow", MaterialIconType.WEB_ASSET),
+            new IconListVO("Hawkeye", MaterialIconType.WEB_ASSET),
+            new IconListVO("Vision", MaterialIconType.WEB_ASSET),
+            new IconListVO("Scarlet Witch", MaterialIconType.WEB_ASSET),
+            new IconListVO("Spiderman", MaterialIconType.WEB_ASSET)
+		]);
+		
+		public function get avengers():ArrayList
+		{
+			return _avengers;
+		}
+		
 
 		
 		/**
 		 * Used in the List example.
 		 */
 		private var _iconListData:ArrayList = new ArrayList([
-            new IconListVO("Alert", "web_asset"),
-            new IconListVO("Button", "crop_7_5"),
-            new IconListVO("DropDownList", "credit_card"),
-            new IconListVO("CheckBox", "check_box"),
-            new IconListVO("Label", "label"),
-            new IconListVO("List", "list_alt"),
-            new IconListVO("RadioButton", "radio_button_checked"),
-            new IconListVO("Slider", "storage"),
-            new IconListVO("Text", "subject"),
-            new IconListVO("TextInput", "text_fields")            
+            new IconListVO("Alert", MaterialIconType.WEB_ASSET),
+            new IconListVO("Button", MaterialIconType.CROP_7_5),
+            new IconListVO("DropDownList", MaterialIconType.CREDIT_CARD),
+            new IconListVO("CheckBox", MaterialIconType.CHECK_BOX),
+            new IconListVO("Label", MaterialIconType.LABEL),
+            new IconListVO("List", MaterialIconType.LIST_ALT),
+            new IconListVO("RadioButton", MaterialIconType.RADIO_BUTTON_CHECKED),
+            new IconListVO("Slider", MaterialIconType.STORAGE),
+            new IconListVO("Text", MaterialIconType.SUBJECT),
+            new IconListVO("TextInput", MaterialIconType.TEXT_FIELDS)            
         ]);
 
 		public function get iconListData():ArrayList

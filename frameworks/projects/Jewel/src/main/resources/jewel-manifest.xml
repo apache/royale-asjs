@@ -47,6 +47,8 @@
     <component id="TextInput" class="org.apache.royale.jewel.TextInput"/>
     <component id="IconTextInput" class="org.apache.royale.jewel.IconTextInput"/>
     <component id="TextArea" class="org.apache.royale.jewel.TextArea"/>
+    <component id="Spinner" class="org.apache.royale.jewel.Spinner" />
+    <component id="NumericStepper" class="org.apache.royale.jewel.NumericStepper" />
     <component id="Slider" class="org.apache.royale.jewel.Slider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>
     <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
@@ -55,6 +57,7 @@
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
+    <component id="ComboBox" class="org.apache.royale.jewel.ComboBox"/>
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
@@ -112,18 +115,23 @@
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
     <component id="TableItemRenderer" class="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
+    <component id="DropDownListItemRenderer" class="org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer"/>
     
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView"/>
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
-    
 
-    <component id="DynamicAddItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicAddItemRendererForArrayListData" />
-    <component id="DynamicRemoveItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicRemoveItemRendererForArrayListData" />
-    <component id="DynamicUpdateItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicUpdateItemRendererForArrayListData" />
-    <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.DynamicRemoveAllItemRendererForArrayListData" />
+    <component id="AddListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddListItemRendererForArrayListData" />
+    <component id="RemoveListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveListItemRendererForArrayListData" />
+    <component id="UpdateListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateListItemRendererForArrayListData" />
+    
+    <component id="AddTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableItemRendererForArrayListData" />
+    <component id="RemoveTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveTableItemRendererForArrayListData" />
+    <component id="UpdateTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateTableItemRendererForArrayListData" />
+    
+    <component id="RemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllItemRendererForArrayListData" />
     
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     

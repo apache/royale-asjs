@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class SliderView extends BeadViewBase implements ISliderView, IBeadView
 	{
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function SliderView()
 		{
@@ -75,7 +75,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get track():IUIBase
 		{
@@ -88,7 +88,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get thumb():IUIBase
 		{
@@ -101,7 +101,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion HTMLDivElement
 		 */
 		override public function set strand(value:IStrand):void
@@ -162,7 +162,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		COMPILE::JS
         public function get sliderTrackFill():HTMLDivElement
@@ -184,7 +184,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		COMPILE::JS
         public function get sliderTrack():HTMLDivElement
@@ -213,7 +213,7 @@ package org.apache.royale.jewel.beads.views
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.9.3
+		 * @productversion Royale 0.9.4
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{

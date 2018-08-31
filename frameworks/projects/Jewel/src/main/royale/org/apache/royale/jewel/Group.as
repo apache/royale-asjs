@@ -35,7 +35,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class Group extends org.apache.royale.html.Group implements IClassSelectorListSupport
 	{
@@ -45,7 +45,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function Group()
 		{
@@ -70,7 +70,7 @@ package org.apache.royale.jewel
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
+         * @productversion Royale 0.9.4
          */
         public function addClass(name:String):void
         {
@@ -91,7 +91,7 @@ package org.apache.royale.jewel
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
+         * @productversion Royale 0.9.4
          */
         public function removeClass(name:String):void
         {
@@ -110,7 +110,7 @@ package org.apache.royale.jewel
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
+         * @productversion Royale 0.9.4
          */
         public function toggleClass(name:String, value:Boolean):void
         {
@@ -129,7 +129,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function containsClass(name:String):Boolean
         {
@@ -157,7 +157,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsHorizontalAlign():String
         {
@@ -188,7 +188,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsVerticalAlign():String
         {
@@ -215,7 +215,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsExpand():Boolean
         {

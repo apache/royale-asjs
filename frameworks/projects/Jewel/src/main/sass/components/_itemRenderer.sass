@@ -24,19 +24,25 @@ $item-min-height: 34px
 
 .jewel.item, .jewel.navigationlink
     display: flex
-    cursor: pointer
     min-height: $item-min-height
     text-decoration: none
     align-items: center
     letter-spacing: 0
     line-height: normal !important
     overflow: hidden
+    cursor: auto
 
-.jewel.navigationlink
-    min-height: 48px
+    &.selectable
+        cursor: pointer
+    
+    .fonticon
+        cursor: inherit
     
 j|ListItemRenderer
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
+
+.jewel.navigationlink
+    min-height: 48px
 
 j|NavigationLinkItemRenderer
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")

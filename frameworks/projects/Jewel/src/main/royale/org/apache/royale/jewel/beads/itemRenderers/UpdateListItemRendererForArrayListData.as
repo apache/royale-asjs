@@ -30,25 +30,25 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 
     /**
-	 * Handles the update of an itemRenderer once the corresponding datum has been updated
-	 * from the IDataProviderModel.
+	 *  Handles the update of an itemRenderer in a List component once the corresponding 
+	 *  datum has been updated from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.0
+	 *  @productversion Royale 0.9.4
 	 */
-	public class DynamicUpdateItemRendererForArrayListData implements IBead
+	public class UpdateListItemRendererForArrayListData implements IBead
 	{
 		/**
-		 * Constructor
+		 *  Constructor
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
-		public function DynamicUpdateItemRendererForArrayListData()
+		public function UpdateListItemRendererForArrayListData()
 		{
 		}
 
@@ -57,12 +57,12 @@ package org.apache.royale.jewel.beads.itemRenderers
         protected var labelField:String;
 
 		/**
-		 * @copy org.apache.royale.core.IStrand
+		 *  @copy org.apache.royale.core.IStrand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -76,7 +76,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.4
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -91,31 +91,36 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dataProviderChangeHandler(null);
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
 		 * @private
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
+			}
+			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
-			// listen for individual items being added in the future.
-			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemAdded);
+			// listen for individual items being updated in the future.
+			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemUpdated event by updating the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
-		protected function handleItemAdded(event:CollectionEvent):void
+		protected function handleItemUpdated(event:CollectionEvent):void
 		{
             var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
-
+			
             setData(ir, event.item, event.index);
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
@@ -130,7 +135,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get dataProviderModel():IDataProviderModel
 		{
@@ -149,7 +154,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{

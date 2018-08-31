@@ -42,7 +42,7 @@ package org.apache.royale.jewel.supportClasses.drawer
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	[Event(name="openDrawer", type="org.apache.royale.events.Event")]
 
@@ -52,7 +52,7 @@ package org.apache.royale.jewel.supportClasses.drawer
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	[Event(name="closeDrawer", type="org.apache.royale.events.Event")]
 
@@ -63,7 +63,7 @@ package org.apache.royale.jewel.supportClasses.drawer
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class DrawerBase extends Group
 	{
@@ -73,7 +73,7 @@ package org.apache.royale.jewel.supportClasses.drawer
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function DrawerBase()
 		{
@@ -109,7 +109,7 @@ package org.apache.royale.jewel.supportClasses.drawer
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void

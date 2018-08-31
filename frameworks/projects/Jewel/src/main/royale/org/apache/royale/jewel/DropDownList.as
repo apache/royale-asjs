@@ -19,12 +19,16 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.DataContainerBase;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.jewel.beads.models.ListPresentationModel;
+    import org.apache.royale.html.elements.Select;
 
     COMPILE::JS
     {
         import goog.events;
         import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.beads.models.ArraySelectionModel;
         import org.apache.royale.html.util.addElementToWrapper;
     }
 
@@ -39,7 +43,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
     [Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -60,9 +64,9 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
-	public class DropDownList extends Button
+	public class DropDownList extends DataContainerBase
 	{
         /**
          *  Constructor.
@@ -70,32 +74,87 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function DropDownList()
 		{
+            super();
             typeNames = "jewel dropdownlist";
-
-            COMPILE::JS
-            {
-                model = new ArraySelectionModel();
-            }
 		}
 
+        private var _prompt:String = "";
+
         /**
-         *  The data set to be displayed.  Usually a simple
-         *  array of strings.  A more complex component
-         *  would allow more complex data and data sets.
+         *  The prompt for the DropDownList control.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         *  @productversion Royale 0.9.4
          */
+        public function get prompt():String
+        {
+            return _prompt;
+        }
+
+        public function set prompt(value:String):void
+        {
+            _prompt = value;
+        }
+
+        protected var _dropDown:Select;
+
+        public function get dropDown():Select
+        {
+            return _dropDown;
+        }
+
+        public function set dropDown(value:Select):void
+        {
+            _dropDown = value;
+        }
+
+        /**
+		 *  The name of field within the data used for display. Each item of the
+		 *  data should have a property with this name.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function get labelField():String
+		{
+			return IDataProviderModel(model).labelField;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function set labelField(value:String):void
+		{
+            IDataProviderModel(model).labelField = value;
+		}
+
+        /**
+		 *  The data being display by the List.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
         public function get dataProvider():Object
         {
-            return ISelectionModel(model).dataProvider;
+            return IDataProviderModel(model).dataProvider;
+        }
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+        public function set dataProvider(value:Object):void
+        {
+            IDataProviderModel(model).dataProvider = value;
         }
 
         /**
@@ -104,47 +163,50 @@ package org.apache.royale.jewel
          *  @royaleignorecoercion HTMLSelectElement
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
-        public function set dataProvider(value:Object):void
-        {
-            ISelectionModel(model).dataProvider = value;
-            COMPILE::JS
-            {
-                var dp:HTMLOptionsCollection;
-                var i:int;
-                var n:int;
-                var opt:HTMLOptionElement;
-                var dd:HTMLSelectElement = element as HTMLSelectElement;
+        // public function set dataProvider(value:Object):void
+        // {
+        //     ISelectionModel(model).dataProvider = value;
+        //     COMPILE::JS
+        //     {
+        //         var dp:HTMLOptionsCollection;
+        //         var i:int;
+        //         var n:int;
+        //         var opt:HTMLOptionElement;
+        //         var dd:HTMLSelectElement = element as HTMLSelectElement;
 
-                dp = dd.options;
-                n = dp.length;
-                for (i = 0; i < n; i++) {
-                    dd.remove(0);
-                }
-                // The value could be undefined if data binding is used and the variable is not initialized.
-                if(!value)return;
+        //         dp = dd.options;
+        //         n = dp.length;
+        //         for (i = 0; i < n; i++) {
+        //             dd.remove(0);
+        //         }
+        //         // The value could be undefined if data binding is used and the variable is not initialized.
+        //         if(!value)return;
                 
-                var lf:String = labelField;
-                n = value.length;
-                for (i = 0; i < n; i++) {
-                    opt = document.createElement('option') as HTMLOptionElement;
-                    if (lf)
-                        opt.text = value[i][lf];
-                    else
-                        opt.text = value[i];
-                    dd.add(opt, null);
-                }
+        //         var lf:String = labelField;
+        //         n = value.length;
+        //         for (i = 0; i < n; i++) {
+        //             opt = document.createElement('option') as HTMLOptionElement;
+        //             if (lf)
+        //                 opt.text = value[i][lf];
+        //             else
+        //                 opt.text = value[i];
+        //             dd.add(opt, null);
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
         [Bindable("change")]
         /**
+         *  The index of the currently selected item. Changing this value
+		 *  also changes the selectedItem property.
+         *  
          *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function get selectedIndex():int
@@ -160,21 +222,23 @@ package org.apache.royale.jewel
         public function set selectedIndex(value:int):void
         {
             ISelectionModel(model).selectedIndex = value;
-            COMPILE::JS
-            {
-                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
-            }
+            // COMPILE::JS
+            // {
+            //     (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            // }
         }
-
 
         [Bindable("change")]
         /**
+         *  The item currently selected. Changing this value also
+		 *  changes the selectedIndex property.
+         * 
          *  @copy org.apache.royale.core.ISelectionModel#selectedItem
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function get selectedItem():Object
@@ -190,33 +254,31 @@ package org.apache.royale.jewel
         public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
-            COMPILE::JS
-            {
-                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
-            }
+            // COMPILE::JS
+            // {
+            //     (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            // }
         }
 
         /**
-         *  The name of field within the data used for display. Each item of the
-         *  data should have a property with this name.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
-         */
-        public function get labelField():String
-        {
-            return ISelectionModel(model).labelField;
-        }
-        /**
-         * @royaleignorecoercion org.apache.royale.core.ISelectionModel
-         */
-        public function set labelField(value:String):void
-        {
-            ISelectionModel(model).labelField = value;
-        }
+		 *  The presentation model for the list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 */
+		public function get presentationModel():IListPresentationModel
+		{
+			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			if (presModel == null) {
+				presModel = new ListPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
+		}
+        
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -225,10 +287,11 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'select');
+			addElementToWrapper(this, 'select');
             (element as HTMLSelectElement).size = 1;
-            goog.events.listen(element, 'change',
-                changeHandler);
+            
+            goog.events.listen(element, 'change', changeHandler);
+            
             positioner = element;
             return element;
         }

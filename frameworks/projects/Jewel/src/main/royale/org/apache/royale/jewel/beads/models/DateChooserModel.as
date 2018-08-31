@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class DateChooserModel extends EventDispatcher implements IDateChooserModel
 	{
@@ -51,7 +51,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -73,7 +73,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get dayNames():Array
 		{
@@ -92,7 +92,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get monthNames():Array
 		{
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get displayedYear():Number
 		{
@@ -131,7 +131,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get displayedMonth():Number
 		{
@@ -152,7 +152,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get firstDayOfWeek():Number
 		{
@@ -185,7 +185,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get selectedDate():Date
 		{

@@ -43,7 +43,7 @@ COMPILE::JS {
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.4
 	 *  @royaleignoreimport goog.events.Event
 	 */
 	public class ItemRendererMouseController implements IBeadController
@@ -54,7 +54,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 */
 		public function ItemRendererMouseController()
 		{
@@ -69,7 +69,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
@@ -91,7 +91,7 @@ COMPILE::JS {
 				goog.events.listen(element, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
 				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
 				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
-				goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
+				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseUp);
 			}
 		}
 		
@@ -204,7 +204,7 @@ COMPILE::JS {
 		{
 			event.stopImmediatePropagation();
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
-			if (target)
+			if (target && target.selectable)
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;

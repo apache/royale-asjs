@@ -233,6 +233,20 @@ j|Card {
   font-size: 16px;
 }
 
+.jewel.combobox .jewel.textinput input {
+  border-radius: 0.25rem 0px 0px 0.25rem;
+}
+.jewel.combobox .jewel.button {
+  color: transparent;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-left: 0px;
+}
+.jewel.combobox .jewel.button::after {
+  background-size: 66%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+
 .jewel.datechooser .jewel.table {
   background: white;
   border: 1px solid #d9d9d9;
@@ -356,45 +370,18 @@ j|Card {
 }
 
 .jewel.dropdownlist {
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: 10px 16px;
-  min-width: 74px;
-  min-height: 34px;
-  background: linear-gradient(#e6e6e6, #cccccc);
+  width: 200px;
+  height: 38px;
+  background-color: linear-gradient(white, #f3f3f3);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 8%;
+  background-position: 170px center;
+  background-repeat: no-repeat;
   border: 1px solid #b3b3b3;
-  box-shadow: inset 0 1px 0 white;
-  border-radius: 3px;
-  font-family: "Lato", sans-serif;
-  font-size: 1em;
-  font-weight: bold;
-  color: #808080;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.jewel.dropdownlist:hover, .jewel.dropdownlist:hover:focus {
-  background: linear-gradient(#d9d9d9, silver);
-  border: 1px solid #a6a6a6;
-}
-.jewel.dropdownlist:active, .jewel.dropdownlist:active:focus {
-  background: linear-gradient(silver, #a6a6a6);
-  border: 1px solid #8d8d8d;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  border-radius: 0.25rem;
 }
 .jewel.dropdownlist:focus {
-  outline: none;
-  border: 1px solid #b3b3b3;
-  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-.jewel.dropdownlist[disabled] {
-  cursor: unset;
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
-  color: silver;
-  font-weight: 400;
-  text-shadow: unset;
+  border: 1px solid #0f88d1;
 }
 
 .fonticon.dark {
@@ -453,6 +440,53 @@ j|Card {
   background-color: #ffffff;
 }
 
+.jewel.numericstepper .jewel.textinput input {
+  width: 8em;
+  border-radius: 0.25rem 0px 0px 0.25rem;
+}
+
+@media (max-width: 992px) {
+  .jewel.numericstepper .jewel.textinput input {
+    border-radius: 0;
+  }
+}
+.jewel.spinner {
+  width: 34px;
+}
+.jewel.spinner .jewel.button {
+  padding: 0px;
+  height: 19px;
+  color: transparent;
+  border-radius: 0 0.25rem 0.25rem 0;
+  border-left: 0px;
+}
+.jewel.spinner .jewel.button.up {
+  border-bottom-right-radius: 0px;
+}
+.jewel.spinner .jewel.button.up::after {
+  background-size: 46%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23808080' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.spinner .jewel.button.down {
+  border-top-right-radius: 0px;
+  border-top-style: groove;
+}
+.jewel.spinner .jewel.button.down::after {
+  background-size: 46%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23808080' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+
+@media (max-width: 992px) {
+  .jewel.spinner .jewel.button.up {
+    border: 1px solid #b3b3b3;
+    border-radius: 0.25rem 0 0 0.25rem;
+  }
+  .jewel.spinner .jewel.button.down {
+    border: 1px solid #b3b3b3;
+    border-radius: 0 0.25rem 0.25rem 0;
+    border-top-style: solid;
+  }
+}
 .jewel.radiobutton input + span::before {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
@@ -636,13 +670,27 @@ j|Card {
   box-shadow: inset 0 1px 0 white;
 }
 
-.jewel.tableitem:hover {
+.jewel.tableitem {
+  cursor: auto;
+}
+.jewel.tableitem.selectable {
+  cursor: pointer;
+}
+.jewel.tableitem.hovered:hover {
   color: #FFFFFF;
   background: #3CADF1;
 }
-.jewel.tableitem:active, .jewel.tableitem.selected {
+.jewel.tableitem.selected, .jewel.tableitem.selectable:active {
   color: #FFFFFF;
   background: #24a3ef;
+}
+
+a:link {
+  color: #3CADF1;
+}
+
+a:active {
+  color: #0f88d1;
 }
 
 .jewel.textinput {
@@ -781,6 +829,18 @@ j|Card {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+}
+
+a:visited {
+  color: #d64010;
+}
+
+a:hover {
+  color: #EF5A2A;
+}
+
+a:active {
+  color: #f37f59;
 }
 
 .jewel.button.emphasized {
