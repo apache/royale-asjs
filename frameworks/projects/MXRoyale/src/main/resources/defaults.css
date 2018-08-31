@@ -238,12 +238,35 @@ PanelTitleBar
 	border-bottom: 1px solid #333333;
 }
 
+TabNavigator
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
+	IBeadView: ClassReference("mx.containers.beads.TabNavigatorView");
+	ITabNavigatorContentArea: ClassReference("mx.core.Container");
+	verticalGap: 0;	
+	background-color: #FFFFFF;
+	border: 1px solid #333333
+}
+
 Tree
 {
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TreeXMLItemRenderer");
+}
+
+ToggleButtonBar
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ButtonBarView");			
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TextButtonItemRenderer");
+	
+	border-style: none;
 }
 
 ViewStack
@@ -360,4 +383,10 @@ ViewStack
 		font-size: 11px;
 		font-family: Arial;
 	}
+	
+	ToggleButtonBar
+	{
+		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+	}
+
 }

@@ -24,10 +24,14 @@ COMPILE::JS
     import goog.DEBUG;
 }
 
+import mx.containers.beads.TabNavigatorView;
 import mx.controls.Button;
 import mx.core.Container;
 import mx.core.EdgeMetrics;
 import mx.managers.IFocusManagerComponent;
+
+import org.apache.royale.core.IChild;
+import org.apache.royale.events.Event;
 
 //--------------------------------------
 //  Styles
@@ -416,6 +420,79 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
         if (GOOG::DEBUG)
             trace("cacheAsBitmap not implemented");
         return null;
+    }
+
+    
+    //--------------------------------------------------------------------------
+    //
+    //  ILayoutView  (pass to view)
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+     */
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var tnView:TabNavigatorView = view as TabNavigatorView;
+        tnView.contentArea.addElement(c, dispatchEvent);
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            this.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        var tnView:TabNavigatorView = view as TabNavigatorView;
+        tnView.contentArea.addElementAt(c, index, dispatchEvent);
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            this.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+     */
+    override public function getElementIndex(c:IChild):int
+    {
+        var tnView:TabNavigatorView = view as TabNavigatorView;
+        return tnView.contentArea.getElementIndex(c);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+     */
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var tnView:TabNavigatorView = view as TabNavigatorView;
+        tnView.contentArea.removeElement(c, dispatchEvent);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+     */
+    override public function get numElements():int
+    {
+        var tnView:TabNavigatorView = view as TabNavigatorView;
+        return tnView.contentArea.numElements;
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+     */
+    override public function getElementAt(index:int):IChild
+    {
+        var tnView:TabNavigatorView = view as TabNavigatorView;
+        return tnView.contentArea.getElementAt(index);
     }
 
 }

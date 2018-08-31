@@ -133,11 +133,11 @@ package mx.containers.beads
 			var preferredWidth:Number = 0;
 			var preferredHeight:Number = 0;
 			
-			var n:int = target.numChildren;
+			var n:int = layoutView.numElements;
 			var numChildrenWithOwnSpace:int = n;
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:IUIComponent = target.getLayoutChildAt(i);
+				var child:IUIComponent = layoutView.getElementAt(i) as IUIComponent;
 				
 				if (!child.includeInLayout)
 				{
@@ -194,7 +194,7 @@ package mx.containers.beads
 		
 		override public function layout():Boolean
 		{
-			var n:int = target.numChildren;
+			var n:int = layoutView.numElements;
 			if (n == 0)
 				return false;
 			
@@ -220,7 +220,7 @@ package mx.containers.beads
 		public function updateDisplayList(unscaledWidth:Number,
 												   unscaledHeight:Number):void
 		{			
-			var n:int = target.numChildren;
+			var n:int = layoutView.numElements;
 			if (n == 0) return;
 			
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
@@ -266,7 +266,7 @@ package mx.containers.beads
 				// a GridItem. This code path works for both horizontal and
 				// vertical layout.
 				
-				var child:IUIComponent = target.getLayoutChildAt(0);
+				var child:IUIComponent = layoutView.getElementAt(0) as IUIComponent;
 				
 				var percentWidth:Number = child.percentWidth;
 				var percentHeight:Number = child.percentHeight;
@@ -318,6 +318,9 @@ package mx.containers.beads
 				left = (w - child.width) * horizontalAlign + paddingLeft;
 				top = (h - child.height) * verticalAlign + paddingTop;
 				
+                COMPILE::JS {
+                    child.positioner.style.position = 'absolute';
+                }
 				child.move(Math.floor(left), Math.floor(top));
 			}
 				
@@ -328,13 +331,13 @@ package mx.containers.beads
 				numChildrenWithOwnSpace = n;
 				for (i = 0; i < n; i++)
 				{
-					if (!IUIComponent(target.getChildAt(i)).includeInLayout)
+					if (!IUIComponent(layoutView.getElementAt(i)).includeInLayout)
 						numChildrenWithOwnSpace--;
 				}
 				
 				// Stretch everything as needed, including widths.
 				excessSpace = Flex.flexChildHeightsProportionally(
-					target, h - (numChildrenWithOwnSpace - 1) * gap, w);
+					layoutView, h - (numChildrenWithOwnSpace - 1) * gap, w);
 				
 				// Ignore scrollbar sizes for child alignment purpose.
 //				if (horizontalScrollBar != null &&
@@ -352,14 +355,14 @@ package mx.containers.beads
 				
 				for (i = 0; i < n; i++)
 				{
-					obj = target.getLayoutChildAt(i);
+					obj = layoutView.getElementAt(i) as IUIComponent;
 					left = (w - obj.width) * horizontalAlign + paddingLeft;
+                    COMPILE::JS {
+                        obj.positioner.style.position = 'absolute';
+                    }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
 						top += obj.height + gap;
-					COMPILE::JS {
-						obj.positioner.style.position = 'absolute';
-					}
 				}
 			}
 				
@@ -370,13 +373,13 @@ package mx.containers.beads
 				numChildrenWithOwnSpace = n;
 				for (i = 0; i < n; i++)
 				{
-					if (!IUIComponent(target.getChildAt(i)).includeInLayout)
+					if (!IUIComponent(layoutView.getElementAt(i)).includeInLayout)
 						numChildrenWithOwnSpace--;
 				}
 				
 				// stretch everything as needed including heights
 				excessSpace = Flex.flexChildWidthsProportionally(
-					target, w - (numChildrenWithOwnSpace - 1) * gap, h);
+					layoutView, w - (numChildrenWithOwnSpace - 1) * gap, h);
 				
 				// Ignore scrollbar sizes for child alignment purpose.
 //				if (horizontalScrollBar != null &&
@@ -394,14 +397,14 @@ package mx.containers.beads
 				
 				for (i = 0; i < n; i++)
 				{
-					obj = target.getLayoutChildAt(i);
+					obj = layoutView.getElementAt(i) as IUIComponent;
 					top = (h - obj.height) * verticalAlign + paddingTop;
+                    COMPILE::JS {
+                        obj.positioner.style.position = 'absolute';
+                    }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
 						left += obj.width + gap;
-					COMPILE::JS {
-						obj.positioner.style.position = 'absolute';
-					}
 				}
 			}
 		}

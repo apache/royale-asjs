@@ -524,11 +524,11 @@ public class LayoutElementUIComponentUtils
             y = y - getLayoutBoundsY(obj,transformMatrix) + obj.y;
         }
         */
-        obj.move(x, y);
         COMPILE::JS
         {
             obj.element.style.position = "absolute";
         }
+        obj.move(x, y);
     }
 
     /**

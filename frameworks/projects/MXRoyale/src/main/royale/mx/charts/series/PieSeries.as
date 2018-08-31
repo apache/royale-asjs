@@ -645,7 +645,7 @@ public class PieSeries extends Series
      *  @private
      *  Storage for the displayName property.
      */
-     private var _displayName:String;
+     //private var _displayName:String;
 
     /**
      *  The name of the series, for display to the user.
@@ -657,18 +657,18 @@ public class PieSeries extends Series
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public function get displayName():String
+   /* public function get displayName():String
     {
         return _displayName;
-    } 
+    } */
     
     /**
      *  @private
      */
-    public function set displayName(value:String):void
+    /* public function set displayName(value:String):void
     {
         _displayName = value;
-    } 
+    } */
     
 }
 

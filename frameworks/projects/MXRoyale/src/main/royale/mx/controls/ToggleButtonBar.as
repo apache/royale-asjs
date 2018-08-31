@@ -24,14 +24,26 @@ package mx.controls
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent; 
 import flash.ui.Keyboard;*/
+import mx.collections.IList;
 import mx.core.IFlexDisplayObject;
+import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
-import org.apache.royale.html.ButtonBar;
 import mx.events.ItemClickEvent;
-import mx.collections.IList;
 use namespace mx_internal;
 
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IDataProviderItemRendererMapper;
+import org.apache.royale.core.IItemRendererClassFactory;
+import org.apache.royale.core.ILayoutParent;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.ILayoutView;
+import org.apache.royale.core.ISelectionModel;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+import org.apache.royale.html.beads.models.ButtonBarModel;
+import org.apache.royale.utils.loadBeadFromValuesManager;
+import org.apache.royale.core.ILayoutHost;
 
 
 //--------------------------------------
@@ -190,21 +202,9 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class ToggleButtonBar extends org.apache.royale.html.ButtonBar
+public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayoutView
 {
   //  include "../core/Version.as";
-
-  
-  //----------------------------------
-    //  dataProvider copied from flexsdk NavBar
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the dataProvider property.
-     */
-    private var _dataProvider:IList;
-
 	
     //--------------------------------------------------------------------------
     //
@@ -223,9 +223,140 @@ public class ToggleButtonBar extends org.apache.royale.html.ButtonBar
     public function ToggleButtonBar()
     {
         super();
+        widthType == ButtonBarModel.NATURAL_WIDTHS;
     }
 
+    /**
+     *  @see org.apache.royale.html.beads.models.ButtonBarModel#buttonWidths
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+     */
+    public function get buttonWidths():Array
+    {
+        return ButtonBarModel(model).buttonWidths;
+    }
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+     */
+    public function set buttonWidths(value:Array):void
+    {
+        ButtonBarModel(model).buttonWidths = value;
+    }
+    
+    /**
+     *  @see org.apache.royale.html.beads.models.ButtonBarModel#widthType
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+     */
+    public function get widthType():Number
+    {
+        return ButtonBarModel(model).widthType;
+    }
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+     */
+    public function set widthType(value:Number):void
+    {
+        ButtonBarModel(model).widthType = value;
+    }
    
+    //----------------------------------
+    //  dataProvider
+    //----------------------------------
+    
+    [Bindable("collectionChange")]
+    [Inspectable(category="Data", defaultValue="undefined")]
+    
+    /**
+     *  Set of data to be viewed.
+     *  This property lets you use most types of objects as data providers.
+     *  If you set the <code>dataProvider</code> property to an Array, 
+     *  it will be converted to an ArrayCollection. If you set the property to
+     *  an XML object, it will be converted into an XMLListCollection with
+     *  only one item. If you set the property to an XMLList, it will be 
+     *  converted to an XMLListCollection.  
+     *  If you set the property to an object that implements the 
+     *  IList or ICollectionView interface, the object will be used directly.
+     *
+     *  <p>As a consequence of the conversions, when you get the 
+     *  <code>dataProvider</code> property, it will always be
+     *  an ICollectionView, and therefore not necessarily be the type of object
+     *  you used to  you set the property.
+     *  This behavior is important to understand if you want to modify the data 
+     *  in the data provider: changes to the original data may not be detected, 
+     *  but changes to the ICollectionView object that you get back from the 
+     *  <code>dataProvider</code> property will be detected.</p>
+     * 
+     *  @default null
+     *  @see mx.collections.ICollectionView
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+     */
+    public function get dataProvider():Object
+    {
+        return (model as ISelectionModel).dataProvider;
+    }
+    /**
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+     */
+    public function set dataProvider(value:Object):void
+    {
+        (model as ISelectionModel).dataProvider = value;
+    }
+
+    //----------------------------------
+    //  selectedIndex
+    //----------------------------------
+    
+    [Bindable("change")]
+    [Bindable("valueCommit")]
+    [Inspectable(category="General", defaultValue="-1")]
+    
+    /**
+     *  The index in the data provider of the selected item.
+     * 
+     *  <p>The default value is -1 (no selected item).</p>
+     *
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+     */
+    public function get selectedIndex():int
+    {
+        return (model as ISelectionModel).selectedIndex;
+    }
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+     */
+    public function set selectedIndex(value:int):void
+    {
+        // if (!collection || collection.length == 0)
+        // {
+        (model as ISelectionModel).selectedIndex = value;
+        //   bSelectionChanged = true;
+        //   bSelectedIndexChanged = true;
+        //  invalidateDisplayList();
+        return;
+        // }
+        //commitSelectedIndex(value);
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -233,48 +364,6 @@ public class ToggleButtonBar extends org.apache.royale.html.ButtonBar
     //
     //--------------------------------------------------------------------------
 
-    //----------------------------------
-    //  selectedIndex
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the selectedIndex property.
-     */
-    private var _selectedIndex:int = -2;
-
-    
-    /**
-     *  Index of the selected button.
-     *  Indexes are in the range of 0, 1, 2, ..., n - 1,
-     *  where <i>n</i> is the number of buttons.
-     *
-     *  <p>The default value is 0.
-	 *  A value of -1 deselects all the buttons in the bar.</p>
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    override public function get selectedIndex():int
-    {
-      return super.selectedIndex;
-      //return _selectedIndex;
-    }
-
-    /**
-     *  @private.
-     */
-    override public function set selectedIndex(value:int):void
-    {  
-    	//#SDK-15690 - if the user has asked for -1 (no child selected) then we must preserve this
-		if (value == selectedIndex && value != -1)
-			return;
-    	
-		_selectedIndex = value;
-       
-    }
 
     //--------------------------------------------------------------------------
     //
@@ -323,6 +412,39 @@ public class ToggleButtonBar extends org.apache.royale.html.ButtonBar
     public function set toggleOnClick(value:Boolean):void
     {
         _toggleOnClick = value;
+    }
+
+    /**
+     * Returns the ILayoutHost which is its view. From ILayoutParent.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+     */
+    public function getLayoutHost():ILayoutHost
+    {
+        return view as ILayoutHost;
+    }
+    
+    /**
+     * @private
+     */
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        
+        // Load the layout bead if it hasn't already been loaded.
+        loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+        
+        // Even though super.addedToParent dispatched "beadsAdded", DataContainer still needs its data mapper
+        // and item factory beads. These beads are added after super.addedToParent is called in case substitutions
+        // were made; these are just defaults extracted from CSS.
+        loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", this);
+        loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", this);
+        
+        dispatchEvent(new Event("initComplete"));
     }
 
 }

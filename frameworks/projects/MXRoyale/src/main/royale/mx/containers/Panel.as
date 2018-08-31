@@ -666,7 +666,7 @@ public class Panel extends Container
         panelView.contentArea.addElement(c, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
-            panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+            this.dispatchEvent(new Event("layoutNeeded"));
     }
     
     /**
@@ -679,7 +679,7 @@ public class Panel extends Container
         panelView.contentArea.addElementAt(c, index, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
-            panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+            this.dispatchEvent(new Event("layoutNeeded"));
     }
     
     /**

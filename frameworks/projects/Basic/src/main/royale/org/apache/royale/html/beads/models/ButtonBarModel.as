@@ -41,6 +41,7 @@ package org.apache.royale.html.beads.models
 		public static const PIXEL_WIDTHS:Number = 0;
 		public static const PROPORTIONAL_WIDTHS:Number = 1;
 		public static const PERCENT_WIDTHS:Number = 2;
+        public static const NATURAL_WIDTHS:Number = 3;
 		
         /**
          *  Constructor.
