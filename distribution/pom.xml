@@ -37,6 +37,10 @@
     <distributionFileName>apache-royale-${project.version}</distributionFileName>
     <timestamp>${maven.build.timestamp}</timestamp>
     <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+    
+    <playerglobalHome>libs/player</playerglobalHome>
+    <targetPlayerMajorVersion>20</targetPlayerMajorVersion>
+    <targetPlayerMinorVersion>0</targetPlayerMinorVersion>
   </properties>
 
   <modules>
