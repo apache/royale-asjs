@@ -309,6 +309,9 @@ j|ComboBoxList {
     IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
   }
 }
+.jewel.datechooser .jewel.table .jewel.tableheadercell {
+  padding: 12px 0px;
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::before {
   margin: 0;
   padding: 0;
