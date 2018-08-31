@@ -19,28 +19,27 @@
 package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IDateChooserModel;
-	import org.apache.royale.core.IFormatBead;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.jewel.DateChooser;
-	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.TextInput;
-	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
-	import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
+    import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IDateChooserModel;
+    import org.apache.royale.core.IFormatBead;
+    import org.apache.royale.core.IPopUpHost;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.jewel.Button;
+    import org.apache.royale.jewel.DateChooser;
+    import org.apache.royale.jewel.TextInput;
+    import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
+    import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
+    import org.apache.royale.utils.UIUtils;
 	COMPILE::SWF
 	{
 		//import org.apache.royale.jewel.beads.views.TextInputView;
 		import flash.text.TextFieldType;
-	}
+		import flash.utils.setTimeout;
+    }
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -234,12 +233,9 @@ package org.apache.royale.jewel.beads.views
 
 					host.popUpParent.addElement(_popUp);
 					
-					COMPILE::JS
-					{
-						// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11
-						setTimeout(prepareForPopUp,  300)
-					}
 					
+					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
+					setTimeout(prepareForPopUp,  300);
 				}
 				else
 				{
@@ -248,6 +244,8 @@ package org.apache.royale.jewel.beads.views
 					{
 					document.body.classList.remove("remove-app-scroll");
 					}
+					_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
+					_popUp = null;
 				}
 			}
 			_showingPopup = false;

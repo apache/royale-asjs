@@ -23,7 +23,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -33,9 +32,9 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
 	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
-	import org.apache.royale.jewel.supportClasses.table.TableRow;
-	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	// import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController;
 	// import org.apache.royale.jewel.beads.controllers.DateChooserTableCellSelectionMouseController;
