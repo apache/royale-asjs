@@ -254,8 +254,8 @@ limitations under the License.
 			public function updateFirstItem():void
 			{
 				var item:GuitarristVO = (table.dataProvider as ArrayList).getItemAt(0) as GuitarristVO;
-				item.guitarrist = "Mango";
-				item.year = 2001;
+				item.guitarrist = "Robert Frip";
+				item.year = 1980;
 				(table.dataProvider as ArrayList).itemUpdated(item);
 				// tablesModel.guitarrists.itemUpdated(item);
 			}
