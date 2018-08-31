@@ -34,11 +34,11 @@ limitations under the License.
             }
             
 			private function avengersDropDownListHandler(event:Event):void {
-                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.nickname;
+                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
             }
 
             private function avengersComboBoxSelectedItem(event:Event):void {
-				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.nickname;
+				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.label;
             }
 		]]>
 	</fx:Script>
@@ -101,7 +101,7 @@ limitations under the License.
 				<html:H3 text="Jewel DropDownList (Object Collection)"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:DropDownList id="avengersDropDownList" labelField="nickname" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler(event)"/>
+					<j:DropDownList id="avengersDropDownList" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler(event)"/>
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="avengersDropDownList.selectedIndex = event.target.value" minimum="0" maximum="8"/>
@@ -122,7 +122,7 @@ limitations under the License.
 				<html:H3 text="Jewel ComboBox (Object Collection)"/>
 				
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:ComboBox id="avengersComboBox" labelField="nickname" dataProvider="{listModel.avengers}" change="avengersComboBoxSelectedItem(event)"/>
+					<j:ComboBox id="avengersComboBox" labelField="label" dataProvider="{listModel.avengers}" change="avengersComboBoxSelectedItem(event)"/>
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="avengersComboBox.selectedIndex = event.target.value" minimum="0" maximum="8"/>

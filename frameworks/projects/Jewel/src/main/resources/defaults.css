@@ -586,12 +586,12 @@ j|DropDownList {
   cursor: inherit;
 }
 
-.jewel.navigationlink {
-  min-height: 48px;
-}
-
 j|ListItemRenderer {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+}
+
+.jewel.navigationlink {
+  min-height: 48px;
 }
 
 j|NavigationLinkItemRenderer {
