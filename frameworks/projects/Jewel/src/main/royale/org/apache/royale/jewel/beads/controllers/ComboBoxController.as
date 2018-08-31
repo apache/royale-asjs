@@ -27,8 +27,11 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
-	import org.apache.royale.jewel.supportClasses.util.callLater;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	COMPILE::SWF
+	{
+		import flash.utils.setTimeout;
+    }
 	
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -92,10 +95,12 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			IEventDispatcher(viewBead.popup).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			callLater(callLaterCallBack);
+			
+			// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
+			setTimeout(prepareForPopUp,  300);
 		}
 
-		private function callLaterCallBack():void {
+		private function prepareForPopUp():void {
 			IUIBase(viewBead.popup).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 		}
 		
