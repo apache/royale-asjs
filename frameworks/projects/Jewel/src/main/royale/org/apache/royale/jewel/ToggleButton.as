@@ -120,7 +120,7 @@ package org.apache.royale.jewel
             {
                 IToggleButtonModel(model).selected = value;
                 internalSelected();
-                dispatchEvent(new Event("change"));
+                dispatchEvent(new Event(Event.CHANGE));
             }
             COMPILE::JS
             {
@@ -128,7 +128,7 @@ package org.apache.royale.jewel
                 {
                     _selected = value;
                     internalSelected();
-                    dispatchEvent(new Event("change"));
+                    dispatchEvent(new Event(Event.CHANGE));
                 }
             }
         }
@@ -137,7 +137,7 @@ package org.apache.royale.jewel
         override protected function createElement():WrappedHTMLElement
         {
             super.createElement();
-            element.addEventListener("click", clickHandler, false);
+            element.addEventListener(MouseEvent.CLICK, clickHandler, false);
             internalSelected();
             
             return element;

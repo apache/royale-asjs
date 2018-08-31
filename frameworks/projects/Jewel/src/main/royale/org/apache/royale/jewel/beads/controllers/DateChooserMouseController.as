@@ -70,10 +70,10 @@ package org.apache.royale.jewel.beads.controllers
             model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			                   
             var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
-			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
-			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
+			view.prevMonthButton.addEventListener(MouseEvent.CLICK, prevMonthClickHandler);
+			view.nextMonthButton.addEventListener(MouseEvent.CLICK, nextMonthClickHandler);
 			
-            IEventDispatcher(view.daysTable).addEventListener("change", tableHandler);
+            IEventDispatcher(view.daysTable).addEventListener(Event.CHANGE, tableHandler);
 		}
 
 		private var model:DateChooserModel;

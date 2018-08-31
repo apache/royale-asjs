@@ -275,7 +275,7 @@ package org.apache.royale.jewel.beads.views
 			updateDisplay();
 
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
-			getHost().dispatchEvent(new Event("change"));
+			getHost().dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		/**

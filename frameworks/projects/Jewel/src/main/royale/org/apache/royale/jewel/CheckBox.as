@@ -131,7 +131,7 @@ package org.apache.royale.jewel
 		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
 		{
 			selected = !selected;
-			dispatchEvent(new Event("change"));
+			dispatchEvent(new Event(Event.CHANGE));
 		}
 	}
 
