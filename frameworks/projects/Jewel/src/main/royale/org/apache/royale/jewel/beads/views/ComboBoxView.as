@@ -145,8 +145,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popUpVisible():Boolean
 		{
-			if (_list) return _list.visible;
-			else return false;
+			return _list == null ? false : true;
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
@@ -169,7 +168,7 @@ package org.apache.royale.jewel.beads.views
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
 				popupHost.popUpParent.addElement(_list);
 			}
-			else {
+			else if(_list != null) {
 				UIUtils.removePopUp(_list);
 				_list = null;
 			}

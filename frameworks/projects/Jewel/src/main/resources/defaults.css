@@ -259,7 +259,7 @@ j|ControlBar {
   display: inline-flex;
 }
 .jewel.combobox .jewel.textinput {
-  width: 190px;
+  width: 13.7em;
 }
 .jewel.combobox .jewel.button {
   width: 2.8em;
@@ -287,7 +287,7 @@ j|ComboBox {
 
 .jewel.list.combobox {
   position: absolute;
-  width: 190px;
+  width: 16.5em;
   height: 200px;
 }
 

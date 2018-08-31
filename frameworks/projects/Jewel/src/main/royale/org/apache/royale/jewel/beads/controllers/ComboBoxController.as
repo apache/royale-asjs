@@ -20,12 +20,15 @@ package org.apache.royale.jewel.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+	import org.apache.royale.jewel.supportClasses.util.callLater;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -64,7 +67,6 @@ package org.apache.royale.jewel.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
 			viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
 			if (viewBead) {
 				finishSetup();
@@ -77,23 +79,64 @@ package org.apache.royale.jewel.beads.controllers
 		
 		protected function finishSetup(event:Event = null):void
 		{
-			if (viewBead == null) {
-				viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
-			}
-			
 			IEventDispatcher(viewBead.button).addEventListener("click", handleButtonClick);
             IEventDispatcher(viewBead.textinput).addEventListener("click", handleButtonClick);
 		}
+
+		protected function handleControlMouseDown(event:MouseEvent):void
+		{			
+			event.stopImmediatePropagation();
+		}
+		
+		protected function prepareVisiblePopUp():void
+		{
+			IEventDispatcher(viewBead.popup).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			callLater(callLaterCallBack);
+		}
+
+		private function callLaterCallBack():void {
+			IUIBase(viewBead.popup).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+		}
+		
+		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void
+		{
+			viewBead.popUpVisible = false;
+		}
+		
+		protected function prepareHiddenPopUp():void
+		{
+			IEventDispatcher(viewBead.popup).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IUIBase(viewBead.popup).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+		}
 		
 		protected function handleButtonClick(event:MouseEvent):void
-		{			
+		{
+			if(viewBead.popup != null)
+			{
+				IEventDispatcher(viewBead.popup).removeEventListener("change", handleListChange);
+			}
 			viewBead.popUpVisible = !viewBead.popUpVisible;
-			IEventDispatcher(viewBead.popup).addEventListener("change", handleListChange);
+
+			if(viewBead.popUpVisible)
+			{
+				prepareVisiblePopUp();
+			} else
+			{
+				prepareHiddenPopUp();
+			}
+
+			if(viewBead.popup != null)
+			{
+				IEventDispatcher(viewBead.popup).addEventListener("change", handleListChange);
+			}
 		}
 		
 		private function handleListChange(event:Event):void
 		{
-			viewBead.popUpVisible = false;
+			if(viewBead.popUpVisible)
+				viewBead.popUpVisible = false;
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 		}
