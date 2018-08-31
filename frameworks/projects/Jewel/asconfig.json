@@ -24,9 +24,9 @@
             "SWF"
         ],
         "include-classes": [
-            "JewelClasses"
+            "src/main/royale/JewelClasses.as"
         ],
-        "include-sources": [
+        "source-path": [
             "src/main/royale"
         ],
         "output": "target/Jewel.swc"
