@@ -134,6 +134,11 @@ package org.apache.royale.jewel.beads.controllers
             removeDismissHandler();
 		}
 
+		private function isValidDate(d:*):Boolean
+		{
+			return (d is Date) && !isNaN(d);
+		}
+
 		/**
 		 * @private
 		 */
@@ -143,7 +148,7 @@ package org.apache.royale.jewel.beads.controllers
 			if(len == 10)
 			{
 				var date:Date = new Date(viewBead.textInput.text);
-				model.selectedDate = date;
+				model.selectedDate = isValidDate(date) ? date : null;
 			}
 		}
         
@@ -163,17 +168,18 @@ package org.apache.royale.jewel.beads.controllers
                     }
                 }
             }
-                COMPILE::JS {
-                    var before:IUIBase = event.target as IUIBase;
-                    if (before) {
-                        while (before != null) {
-                            if (before == popup) return;
-                            before = before.parent as IUIBase;
-                        }
-                    }
-                }
-                
-                viewBead.popUpVisible = false;
+
+			COMPILE::JS {
+				var before:IUIBase = event.target as IUIBase;
+				if (before) {
+					while (before != null) {
+						if (before == popup) return;
+						before = before.parent as IUIBase;
+					}
+				}
+			}
+			
+			viewBead.popUpVisible = false;
             removeDismissHandler();
         }
 	}
