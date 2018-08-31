@@ -241,8 +241,8 @@ limitations under the License.
 
 			private function addItem():void
 			{
-				(table.dataProvider as ArrayList).addItem({icon: MaterialIconType.CLOSE, guitarrist: "Eric Johnson", album: "Venus Isle", year: "1996"});
-				// tablesModel.guitarrists.addItem({icon: MaterialIconType.CLOSE, guitarrist: "Eric Johnson", album: "Venus Isle", year: "1996"}); // to test things are adding to right place
+				(table.dataProvider as ArrayList).addItem(new GuitarristVO("Eric Johnson", "Venus Isle", 1996));
+				// tablesModel.guitarrists.addItem(new GuitarristVO("Eric Johnson", "Venus Isle", 1996)); // to test things are adding to right place
 			}
 
 			public function removeItemAt():void
@@ -253,7 +253,7 @@ limitations under the License.
 
 			public function updateFirstItem():void
 			{
-				var item:Object = (table.dataProvider as ArrayList).getItemAt(0);
+				var item:GuitarristVO = (table.dataProvider as ArrayList).getItemAt(0) as GuitarristVO;
 				item.guitarrist = "Mango";
 				item.year = 2001;
 				(table.dataProvider as ArrayList).itemUpdated(item);
