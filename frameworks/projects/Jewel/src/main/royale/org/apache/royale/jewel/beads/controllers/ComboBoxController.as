@@ -86,9 +86,17 @@ package org.apache.royale.jewel.beads.controllers
 		}
 		
 		protected function handleButtonClick(event:MouseEvent):void
-		{			
+		{
+			if(viewBead.popup != null)
+			{
+				IEventDispatcher(viewBead.popup).removeEventListener("change", handleListChange);
+			}
 			viewBead.popUpVisible = !viewBead.popUpVisible;
-			IEventDispatcher(viewBead.popup).addEventListener("change", handleListChange);
+
+			if(viewBead.popup != null)
+			{
+				IEventDispatcher(viewBead.popup).addEventListener("change", handleListChange);
+			}
 		}
 		
 		private function handleListChange(event:Event):void
