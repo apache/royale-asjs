@@ -189,6 +189,73 @@ limitations under the License.
 				</j:IconTextInput>
 			</j:Card>
 		</j:GridCell>
+
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2"
+					desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel Form"/>
+
+				<j:Form>
+					<j:beads>
+						<j:FormValidator trigger="{btn}" triggerEvent="click"/>
+					</j:beads>
+					
+					<html:H4 text="Your name"/>
+					<j:TextInput>
+						<j:beads>
+							<j:TextPrompt prompt="Name"/>
+							<j:StringValidator required="3" autoTrim="true" requiredFieldError="Need more than 3 characters"/>
+						</j:beads>
+					</j:TextInput>
+
+					<html:H4 text="Favorite movies (at least 2)"/>
+					<j:VGroup gap="3">
+						<j:beads>
+							<j:CheckBoxValidator required="2" requiredFieldError="Please choose at least 2 movies"/>
+						</j:beads>
+
+						<j:CheckBox text="The Godfather"/>
+						<j:CheckBox text="Scent of a woman"/>
+						<j:CheckBox text="Star Wars"/>
+						<j:CheckBox text="The Shawshank Redemption"/>
+					</j:VGroup>
+
+					<html:H4 text="Verification code: {randomCode}"/>
+					<j:HGroup gap="3">
+						<j:TextInput>
+							<j:beads>
+								<j:TextPrompt prompt="Enter Verification Code"/>
+								<j:StringValidator validateFunction="{customValidate}"/>
+							</j:beads>
+						</j:TextInput>
+
+						<j:Button id="btn" text="send" emphasis="primary"/>
+
+					</j:HGroup>
+
+				</j:Form>
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
+
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.utils.StringPadder;
+			import org.apache.royale.jewel.Alert;
+
+			[Bindable]
+			public var randomCode:String = StringPadder.pad(String(Math.round(Math.random() * 10000)), "0", 5);
+
+            public function customValidate(host:TextInput):String {
+				return (host.text == randomCode) ? "" : "The entered code doesn't match" + randomCode;
+            }
+
+            public function doSummit(event:Event):void {
+				Alert.show("Data is valid submitted");
+            }
+		]]>
+	</fx:Script>
 
 </j:SectionContent>
