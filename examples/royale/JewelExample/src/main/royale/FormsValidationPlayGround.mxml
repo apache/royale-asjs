@@ -38,8 +38,8 @@ limitations under the License.
 				return (host.text == randomCode) ? "" : "The entered code doesn't match " + randomCode;
             }
 
-            public function doSummit(event:Event):void {
-				Alert.show("Data is valid submitted");
+            public function doSubmit(event:Event):void {
+				Alert.show("Data is valid submitted", "Sending Form!");
             }
 		]]>
 	</fx:Script>
@@ -47,7 +47,7 @@ limitations under the License.
 	<j:Card width="600">
 		<html:H3 text="Jewel Form And Validators"/>
 
-		<j:Form>
+		<j:Form valid="doSubmit(event)">
 			<j:beads>
 				<j:FormValidator trigger="{btn}" triggerEvent="click"/>
 			</j:beads>
