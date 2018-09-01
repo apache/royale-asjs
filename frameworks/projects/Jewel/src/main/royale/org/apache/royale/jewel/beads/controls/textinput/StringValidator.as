@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.controls.Validator;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	import org.apache.royale.utils.StringUtil;
 
 	/**
 	 *  The StringValidator class is a specialty bead that can be used with
@@ -123,7 +124,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 			var str:String = txt.text;
 
 			if (autoTrim) {
-				str = str.trim();
+				str = StringUtil.trim(str);
 				if (str != txt.text) txt.text = str;
 			}
 

@@ -189,6 +189,100 @@ limitations under the License.
 				</j:IconTextInput>
 			</j:Card>
 		</j:GridCell>
+
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2"
+					desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel Form"/>
+
+				<j:Form>
+					<j:beads>
+						<j:FormValidator trigger="{btn}" triggerEvent="click"/>
+					</j:beads>
+					
+					<html:H4 text="Your name"/>
+					<j:TextInput>
+						<j:beads>
+							<j:TextPrompt prompt="Name"/>
+							<j:StringValidator required="3" autoTrim="true" requiredFieldError="Need more than 3 characters"/>
+						</j:beads>
+					</j:TextInput>
+
+					<html:H4 text="Favorite movies (at least 2)"/>
+					<j:Group>
+						<j:beads>
+							<j:CheckBoxValidator required="2" requiredFieldError="Please choose at least 2 movies"/>
+						</j:beads>
+
+						<j:CheckBox text="The Godfather"/>
+						<j:CheckBox text="Scent of a woman"/>
+						<j:CheckBox text="Star Wars"/>
+						<j:CheckBox text="The Shawshank Redemption"/>
+					</j:Group>
+
+					<html:H4 text="Verification code: {randomCode}"/>
+					<j:HGroup gap="3">
+						<j:TextInput>
+							<j:beads>
+								<j:TextPrompt prompt="Enter Verification Code"/>
+								<j:StringValidator validateFunction="{customValidate}"/>
+							</j:beads>
+						</j:TextInput>
+
+						<j:Button id="btn" text="send" emphasis="primary"/>
+
+					</j:HGroup>
+
+				</j:Form>
+
+				<!-- <j:Group>
+					<j:beads>
+						<j:HorizontalLayout gap="3"/>
+					</j:beads>
+					<j:Button text="Check it!" emphasis="primary"/>
+					<j:TextInput text="A TextInput"/>
+				</j:Group>
+
+				<j:Group>
+					<j:beads>
+						<j:HorizontalLayout gap="3"/>
+					</j:beads>
+					<j:TextInput>
+						<j:beads>
+							<j:TextPrompt prompt="With prompt..."/>
+						</j:beads>
+					</j:TextInput>
+					<j:Button text="Send" emphasis="secondary"/>
+				</j:Group>
+
+				<j:TextInput text="Disabled with text...">
+					<j:beads>
+						<j:TextPrompt prompt="Disabled TextInput..."/>
+						<j:Disabled/>
+					</j:beads>
+				</j:TextInput>
+
+				<j:TextInput>
+					<j:beads>
+						<j:TextPrompt prompt="Disabled with prompt..."/>
+						<j:Disabled/>
+					</j:beads>
+				</j:TextInput> -->
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
+
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var randomCode:String = String(Math.round(Math.random() * 10000)).padStart(5, "0");
+
+            public function customValidate(host:TextInput):String {
+				return (host.text == randomCode) ? "" : "The entered code doesn't match" + randomCode;
+            }
+		]]>
+	</fx:Script>
 
 </j:SectionContent>

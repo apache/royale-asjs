@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.group
 {
-	import org.apache.royale.core.HTMLElementWrapper;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
 	import org.apache.royale.jewel.beads.controls.Validator;
+	import org.apache.royale.core.IChild;
 
 
 	/**
@@ -138,7 +139,7 @@ package org.apache.royale.jewel.beads.controls.group
 
 		protected function validateAll(group:Group):void {
 			for(var i:int=0; i < group.numElements; i++) {
-				var child:HTMLElementWrapper = group.getElementAt(i) as HTMLElementWrapper;
+				var child:UIBase = group.getElementAt(i) as UIBase;
 				var validator:Validator = child.getBeadByType(Validator) as Validator;
 				if (validator && !(validator is FormValidator)) {
 					if(!validator.validate()) {
