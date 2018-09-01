@@ -20,8 +20,8 @@
     "compilerOptions": {
         "debug": true,
         "targets": [
-            "JSRoyale",
-            "SWF"
+            "SWF", 
+            "JSRoyale"
         ],
         "include-classes": [
             "src/main/royale/JewelClasses.as"
