@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.textinpu
+package org.apache.royale.jewel.beads.controls.textinput
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
