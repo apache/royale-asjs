@@ -131,6 +131,7 @@ limitations under the License.
         <local:GridPlayGround id="grid_panel"/>
         <local:CardPlayGround id="card_panel"/>
         <local:TablePlayGround id="tables_panel"/>
+        <local:FormsValidationPlayGround id="form_validation_panel"/>
     </j:ApplicationMainContent>
     
 </j:ApplicationResponsiveView>
