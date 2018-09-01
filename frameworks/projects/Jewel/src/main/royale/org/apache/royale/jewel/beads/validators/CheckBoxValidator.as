@@ -16,25 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.textinput
+package org.apache.royale.jewel.beads.validators
 {
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.beads.controls.Validator;
-	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-	import org.apache.royale.utils.StringUtil;
+	import org.apache.royale.jewel.CheckBox;
 
 	/**
-	 *  The StringValidator class is a specialty bead that can be used with
-	 *  TextInput control.
+	 *  The CheckBoxValidator class is a specialty bead that can be used with
+	 *  Group control.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class StringValidator extends Validator implements IBead
+	public class CheckBoxValidator extends Validator
 	{
 		/**
 		 *  constructor.
@@ -44,13 +41,12 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function StringValidator()
+		public function CheckBoxValidator()
 		{
-			super();
+			super()
 		}
 
-
-		/**                         	
+		       /**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
@@ -65,54 +61,12 @@ package org.apache.royale.jewel.beads.controls.textinput
 			COMPILE::JS
 			{
 				hostComponent.addEventListener(Event.CHANGE, validate, false);
-				updateHost();
 			}
 		}
 
-		private var _autoTrim:Boolean;
-
-		public function get autoTrim():Boolean
-		{
-			return _autoTrim;
-		}
-		/**
-		 *  Auto trim the entered text before validation
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function set autoTrim(value:Boolean):void
-		{
-			_autoTrim = value;
-		}
-
-		private var _maxLength:int;
-
-		public function get maxLength():int
-		{
-			return _maxLength;
-		}
-		/**
-		 *  Maximum length for a valid String.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function set maxLength(value:int):void
-		{
-			_maxLength = value;
-			COMPILE::JS
-			{
-				updateHost();
-			}	
-		}
 
 		/**
-		 *  Override of the base class validate() method to validate a String.
+		 *  Override of the base class validate() method to validate if selected.
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -120,33 +74,22 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @productversion Royale 0.9.4
 		 */
 		override public function validate(event:Event = null):Boolean {
-			var txt:TextInputBase = hostComponent as TextInputBase;
-			var str:String = txt.text;
-
-			if (autoTrim) {
-				str = StringUtil.trim(str);
-				if (str != txt.text) txt.text = str;
-			}
-
 			if (super.validate(event)) {
-				if (str.length < required) {
+				var selectedCount:int = 0;
+				var i:int = hostComponent.numElements;
+				while(--i > -1) {
+					var checkBox:CheckBox = hostComponent.getElementAt(i) as CheckBox;
+					if (!checkBox) continue;
+					if (checkBox.selected)
+						selectedCount++;
+				}
+				if (selectedCount < required) {
 					createErrorTip(requiredFieldError);
 				} else {
 					destroyErrorTip();
 				}	
 			}
 			return !isError;
-		}
-
-		COMPILE::JS
-		private function updateHost():void
-		{
-			if (hostComponent)
-            {
-                (_maxLength > 0) ?
-				hostComponent.element.setAttribute('maxlength', _maxLength) :
-				hostComponent.element.removeAttribute('maxlength');
-            }
 		}		
 	}
 }
