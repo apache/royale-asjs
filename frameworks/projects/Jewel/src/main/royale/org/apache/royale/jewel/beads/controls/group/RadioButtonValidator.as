@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.controls.group
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class RadioButtonValidator extends Validator
 	{
@@ -41,7 +41,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function RadioButtonValidator()
 		{
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
@@ -79,7 +79,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set groupName(value:String):void
 		{
@@ -92,7 +92,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function validate(event:Event = null):Boolean {
 			if (super.validate(event)) {

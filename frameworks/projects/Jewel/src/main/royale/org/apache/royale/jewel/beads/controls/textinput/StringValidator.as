@@ -32,7 +32,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class StringValidator extends Validator implements IBead
 	{
@@ -42,7 +42,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function StringValidator()
 		{
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set autoTrim(value:Boolean):void
 		{
@@ -100,7 +100,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set maxLength(value:int):void
 		{
@@ -117,7 +117,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function validate(event:Event = null):Boolean {
 			var txt:TextInputBase = hostComponent as TextInputBase;

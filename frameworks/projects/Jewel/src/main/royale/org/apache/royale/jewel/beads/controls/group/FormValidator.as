@@ -33,7 +33,7 @@ package org.apache.royale.jewel.beads.controls.group
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class FormValidator extends Validator
 	{
@@ -43,7 +43,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function FormValidator()
 		{
@@ -64,7 +64,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set trigger(value:IEventDispatcher):void
 		{
@@ -89,7 +89,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set triggerEvent(value:String):void
 		{
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function get isError():Boolean {
 			return _isError;
@@ -123,7 +123,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function validate(event:Event = null):Boolean {
 			_isError = false;
