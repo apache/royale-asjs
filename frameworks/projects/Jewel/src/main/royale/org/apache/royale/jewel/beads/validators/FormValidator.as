@@ -132,7 +132,7 @@ package org.apache.royale.jewel.beads.validators
 				if (requiredFieldError)
 					Alert.show(requiredFieldError);
 			} else {
-				hostComponent.dispatchEvent(new Event("action"));
+				hostComponent.dispatchEvent(new Event("valid"));
 			}
 			
 			return !isError;
