@@ -16,14 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.group
+package org.apache.royale.jewel.beads.validators
 {
-	import org.apache.royale.core.HTMLElementWrapper;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
-	import org.apache.royale.jewel.beads.controls.Validator;
-
+	import org.apache.royale.core.IChild;
 
 	/**
 	 *  The FormValidator class is a specialty bead that can be used with
@@ -32,7 +31,7 @@ package org.apache.royale.jewel.beads.controls.group
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class FormValidator extends Validator
 	{
@@ -42,7 +41,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function FormValidator()
 		{
@@ -63,7 +62,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set trigger(value:IEventDispatcher):void
 		{
@@ -88,7 +87,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set triggerEvent(value:String):void
 		{
@@ -109,7 +108,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function get isError():Boolean {
 			return _isError;
@@ -122,7 +121,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function validate(event:Event = null):Boolean {
 			_isError = false;
@@ -138,7 +137,7 @@ package org.apache.royale.jewel.beads.controls.group
 
 		protected function validateAll(group:Group):void {
 			for(var i:int=0; i < group.numElements; i++) {
-				var child:HTMLElementWrapper = group.getElementAt(i) as HTMLElementWrapper;
+				var child:UIBase = group.getElementAt(i) as UIBase;
 				var validator:Validator = child.getBeadByType(Validator) as Validator;
 				if (validator && !(validator is FormValidator)) {
 					if(!validator.validate()) {

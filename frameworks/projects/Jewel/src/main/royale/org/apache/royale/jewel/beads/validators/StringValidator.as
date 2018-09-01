@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.group
+package org.apache.royale.jewel.beads.validators
 {
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.RadioButton;
-	import org.apache.royale.jewel.beads.controls.Validator;
-
+	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	import org.apache.royale.utils.StringUtil;
 
 	/**
-	 *  The RadioButtonValidator class is a specialty bead that can be used with
-	 *  Group control.
+	 *  The StringValidator class is a specialty bead that can be used with
+	 *  TextInput control.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
-	public class RadioButtonValidator extends Validator
+	public class StringValidator extends Validator implements IBead
 	{
 		/**
 		 *  constructor.
@@ -41,12 +41,13 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
-		public function RadioButtonValidator()
+		public function StringValidator()
 		{
 			super();
 		}
+
 
 		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -54,7 +55,7 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
@@ -63,57 +64,88 @@ package org.apache.royale.jewel.beads.controls.group
 			COMPILE::JS
 			{
 				hostComponent.addEventListener(Event.CHANGE, validate, false);
+				updateHost();
 			}
 		}
 
+		private var _autoTrim:Boolean;
 
-		private var _groupName:String;
-
-		public function get groupName():String
+		public function get autoTrim():Boolean
 		{
-			return _groupName;
+			return _autoTrim;
 		}
 		/**
-		 * 	Specifies the radio button group to be validated.
+		 *  Auto trim the entered text before validation
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
-		public function set groupName(value:String):void
+		public function set autoTrim(value:Boolean):void
 		{
-			_groupName = value;
+			_autoTrim = value;
 		}
 
+		private var _maxLength:int;
+
+		public function get maxLength():int
+		{
+			return _maxLength;
+		}
 		/**
-		 *  Override of the base class validate() method to validate if selected.
+		 *  Maximum length for a valid String.
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
+		 */
+		public function set maxLength(value:int):void
+		{
+			_maxLength = value;
+			COMPILE::JS
+			{
+				updateHost();
+			}	
+		}
+
+		/**
+		 *  Override of the base class validate() method to validate a String.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function validate(event:Event = null):Boolean {
+			var txt:TextInputBase = hostComponent as TextInputBase;
+			var str:String = txt.text;
+
+			if (autoTrim) {
+				str = StringUtil.trim(str);
+				if (str != txt.text) txt.text = str;
+			}
+
 			if (super.validate(event)) {
-				var selectedCount:int = 0;
-				var i:int = hostComponent.numElements;
-				while(--i > -1) {
-					var rb:RadioButton = hostComponent.getElementAt(i) as RadioButton;
-					if (!rb) continue;
-					if (groupName && rb.groupName != groupName) continue;
-					if (rb.selected) {
-						selectedCount++;
-						break;
-					}
-				}
-				if (selectedCount < 1) {
+				if (str.length < required) {
 					createErrorTip(requiredFieldError);
 				} else {
 					destroyErrorTip();
 				}	
 			}
 			return !isError;
+		}
+
+		COMPILE::JS
+		private function updateHost():void
+		{
+			if (hostComponent)
+            {
+                (_maxLength > 0) ?
+				hostComponent.element.setAttribute('maxlength', _maxLength) :
+				hostComponent.element.removeAttribute('maxlength');
+            }
 		}		
 	}
 }

@@ -140,7 +140,7 @@ package org.apache.royale.jewel.beads.layouts
         // }
 
 		// /**
-		//  *  @private
+		//  * 
 		//  */
 		// public function set gap(value:Number):void
 		// {

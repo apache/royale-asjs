@@ -16,24 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.group
+package org.apache.royale.jewel.beads.validators
 {
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.CheckBox;
-	import org.apache.royale.jewel.beads.controls.Validator;
-
+	import org.apache.royale.jewel.RadioButton;
 
 	/**
-	 *  The CheckBoxValidator class is a specialty bead that can be used with
+	 *  The RadioButtonValidator class is a specialty bead that can be used with
 	 *  Group control.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
-	public class CheckBoxValidator extends Validator
+	public class RadioButtonValidator extends Validator
 	{
 		/**
 		 *  constructor.
@@ -41,20 +39,20 @@ package org.apache.royale.jewel.beads.controls.group
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
-		public function CheckBoxValidator()
+		public function RadioButtonValidator()
 		{
-			super()
+			super();
 		}
 
-		       /**                         	
+		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
@@ -67,25 +65,47 @@ package org.apache.royale.jewel.beads.controls.group
 		}
 
 
+		private var _groupName:String;
+
+		public function get groupName():String
+		{
+			return _groupName;
+		}
+		/**
+		 * 	Specifies the radio button group to be validated.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function set groupName(value:String):void
+		{
+			_groupName = value;
+		}
+
 		/**
 		 *  Override of the base class validate() method to validate if selected.
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function validate(event:Event = null):Boolean {
 			if (super.validate(event)) {
 				var selectedCount:int = 0;
 				var i:int = hostComponent.numElements;
 				while(--i > -1) {
-					var checkBox:CheckBox = hostComponent.getElementAt(i) as CheckBox;
-					if (!checkBox) continue;
-					if (checkBox.selected)
+					var rb:RadioButton = hostComponent.getElementAt(i) as RadioButton;
+					if (!rb) continue;
+					if (groupName && rb.groupName != groupName) continue;
+					if (rb.selected) {
 						selectedCount++;
+						break;
+					}
 				}
-				if (selectedCount < required) {
+				if (selectedCount < 1) {
 					createErrorTip(requiredFieldError);
 				} else {
 					destroyErrorTip();

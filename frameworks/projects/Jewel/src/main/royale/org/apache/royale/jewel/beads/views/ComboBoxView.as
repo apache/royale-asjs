@@ -189,7 +189,7 @@ package org.apache.royale.jewel.beads.views
 		{
 			itemChangeAction();
 
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
 		
 		/**

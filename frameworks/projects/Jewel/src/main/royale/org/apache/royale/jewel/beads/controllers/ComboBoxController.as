@@ -27,8 +27,11 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
-	import org.apache.royale.jewel.supportClasses.util.callLater;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	COMPILE::SWF
+	{
+		import flash.utils.setTimeout;
+    }
 	
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -79,8 +82,8 @@ package org.apache.royale.jewel.beads.controllers
 		
 		protected function finishSetup(event:Event = null):void
 		{
-			IEventDispatcher(viewBead.button).addEventListener("click", handleButtonClick);
-            IEventDispatcher(viewBead.textinput).addEventListener("click", handleButtonClick);
+			IEventDispatcher(viewBead.button).addEventListener(MouseEvent.CLICK, handleButtonClick);
+            IEventDispatcher(viewBead.textinput).addEventListener(MouseEvent.CLICK, handleButtonClick);
 		}
 
 		protected function handleControlMouseDown(event:MouseEvent):void
@@ -92,10 +95,12 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			IEventDispatcher(viewBead.popup).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			callLater(callLaterCallBack);
+			
+			// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
+			setTimeout(prepareForPopUp,  300);
 		}
 
-		private function callLaterCallBack():void {
+		private function prepareForPopUp():void {
 			IUIBase(viewBead.popup).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 		}
 		
@@ -115,7 +120,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			if(viewBead.popup != null)
 			{
-				IEventDispatcher(viewBead.popup).removeEventListener("change", handleListChange);
+				IEventDispatcher(viewBead.popup).removeEventListener(Event.CHANGE, handleListChange);
 			}
 			viewBead.popUpVisible = !viewBead.popUpVisible;
 
@@ -129,7 +134,7 @@ package org.apache.royale.jewel.beads.controllers
 
 			if(viewBead.popup != null)
 			{
-				IEventDispatcher(viewBead.popup).addEventListener("change", handleListChange);
+				IEventDispatcher(viewBead.popup).addEventListener(Event.CHANGE, handleListChange);
 			}
 		}
 		
@@ -138,7 +143,7 @@ package org.apache.royale.jewel.beads.controllers
 			if(viewBead.popUpVisible)
 				viewBead.popUpVisible = false;
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
 	}
 }

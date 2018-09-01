@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls
+package org.apache.royale.jewel.beads.validators
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IPopUpHost;
@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class Validator implements IBead
 	{
@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function Validator()
 		{
@@ -74,7 +74,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
@@ -91,7 +91,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get isError():Boolean {
 			return (_errorTip != null);
@@ -107,7 +107,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		private var _validateFunction:Function;
 
@@ -120,7 +120,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set validateFunction(func:Function):void{
 			_validateFunction = func;
@@ -138,7 +138,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set required(value:int):void {
 			_required = value;
@@ -151,7 +151,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get requiredFieldError():String
 		{
@@ -170,7 +170,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function validate(event:Event = null):Boolean {
 			if (validateFunction) {
@@ -187,14 +187,14 @@ package org.apache.royale.jewel.beads.controls
 			return true;
 		}
 
-				/**
+		/**
 		 *  Sets the errortip y relative position to one of
 		 *  LEFT, MIDDLE or RIGHT.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set xPos(pos:int):void
 		{
@@ -208,7 +208,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set yPos(pos:int):void
 		{
@@ -222,7 +222,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		protected function createErrorTip(errorText:String):void
 		{
@@ -257,7 +257,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		protected function determinePosition():Point
 		{
@@ -297,7 +297,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
          */
         protected function destroyErrorTip():void
         {
