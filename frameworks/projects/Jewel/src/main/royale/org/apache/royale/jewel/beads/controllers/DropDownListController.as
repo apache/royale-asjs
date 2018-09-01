@@ -90,7 +90,7 @@ package org.apache.royale.jewel.beads.controllers
             pt = DisplayObject(_strand).parent.localToGlobal(pt);
 			DisplayObject(viewBead.popUp).x = pt.x;
 			DisplayObject(viewBead.popUp).y = pt.y;
-            IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+            IEventDispatcher(viewBead.popUp).addEventListener(Event.CHANGE, changeHandler);
             IUIBase(_strand).topMostEventDispatcher.addEventListener(org.apache.royale.events.MouseEvent.CLICK, dismissHandler);
         }
         
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.controllers
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             selectionModel.selectedIndex = popUpModel.selectedIndex;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
         }
 	
 	}

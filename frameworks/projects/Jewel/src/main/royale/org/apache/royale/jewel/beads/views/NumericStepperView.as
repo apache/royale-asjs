@@ -100,7 +100,7 @@ package org.apache.royale.jewel.beads.views
 			// value. ideally, we should either set the input to accept only
 			// numeric values or, barring that, reject non-numeric entries. we
 			// cannot do that right now however.
-			input.addEventListener("change",inputChangeHandler);
+			input.addEventListener(Event.CHANGE,inputChangeHandler);
 			
 			// listen for change events on the spinner so the value can be updated as
 			// as resizing the component

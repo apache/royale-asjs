@@ -309,6 +309,9 @@ j|ComboBoxList {
     IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
   }
 }
+.jewel.datechooser .jewel.table .jewel.tableheadercell {
+  padding: 12px 0px;
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::before {
   margin: 0;
   padding: 0;
@@ -332,13 +335,13 @@ j|ComboBoxList {
   padding: 4px;
 }
 .jewel.datechooser .jewel.table .jewel.tableitem {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
 }
 .jewel.datechooser .jewel.table .jewel.tableitem .jewel.tableitem {
   padding: 2px;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
 }
 
 .calendar.item {
@@ -3112,7 +3115,7 @@ j|Table {
 }
 
 .jewel.tableitem {
-  padding: 12px;
+  padding: 10px;
   cursor: pointer;
   text-decoration: none;
   align-items: center;

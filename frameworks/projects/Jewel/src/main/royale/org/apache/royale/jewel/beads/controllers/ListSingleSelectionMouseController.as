@@ -136,7 +136,7 @@ package org.apache.royale.jewel.beads.controllers
         {
             listModel.selectedIndex = event.index;
 			listModel.selectedItem = event.data;
-            listView.host.dispatchEvent(new Event("change"));
+            listView.host.dispatchEvent(new Event(Event.CHANGE));
         }
 		
 		/**
