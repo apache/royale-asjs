@@ -29,7 +29,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    [Event("valid","org.apache.royale.events.Event")]
+    [Event("action","org.apache.royale.events.Event")]
 
     /**
      *  Dispatched when the form validation fails.
