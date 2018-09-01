@@ -65,11 +65,12 @@
     
     <component id="Form" class="org.apache.royale.jewel.Form"/>
     <component id="ErrorTip" class="org.apache.royale.jewel.ErrorTip"/>
-    <component id="Validator" class="org.apache.royale.jewel.beads.controls.Validator"/>
-    <component id="FormValidator" class="org.apache.royale.jewel.beads.controls.group.FormValidator"/>
-    <component id="StringValidator" class="org.apache.royale.jewel.beads.controls.textinput.StringValidator"/>
-    <component id="CheckBoxValidator" class="org.apache.royale.jewel.beads.controls.group.CheckBoxValidator"/>
-    <component id="RadioButtonValidator" class="org.apache.royale.jewel.beads.controls.group.RadioButtonValidator"/>
+
+    <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
+    <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>
+    <component id="StringValidator" class="org.apache.royale.jewel.beads.validators.StringValidator"/>
+    <component id="CheckBoxValidator" class="org.apache.royale.jewel.beads.validators.CheckBoxValidator"/>
+    <component id="RadioButtonValidator" class="org.apache.royale.jewel.beads.validators.RadioButtonValidator"/>
 
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer"/>

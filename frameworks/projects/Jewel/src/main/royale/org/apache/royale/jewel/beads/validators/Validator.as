@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls
+package org.apache.royale.jewel.beads.validators
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IPopUpHost;
@@ -187,7 +187,7 @@ package org.apache.royale.jewel.beads.controls
 			return true;
 		}
 
-				/**
+		/**
 		 *  Sets the errortip y relative position to one of
 		 *  LEFT, MIDDLE or RIGHT.
 		 *

@@ -71,6 +71,7 @@ $textinput-padding-horizontal: 1.12em !default
 						left: auto
 						right: .45em
 
+
 j|TextInput
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
 	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
@@ -109,34 +110,3 @@ j|TextArea
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
 	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
 	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
-
-.jewel.textinput.errorBorder
-	input
-	border: 1px #EC1C24 solid
-
-.jewel.errorTip
-	padding: 6px
-	box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4)
-	color: #fff
-	background: #EC1C24
-	box-sizing: border-box
-	animation: slide-up 0.4s ease
-	z-index: 1
-	margin-top: -31px !important
-
-.jewel.errorTip::before
-	border: solid 8px transparent
-	top: 100%
-	left: 8px
-	border-top-color: #EC1C24
-	position: absolute
-	content: ""
-	margin-top: 0px
-
-@keyframes slide-up
-	0%
-		opacity: 0
-		transform: translateY(20px)
-	100%
-		opacity: 1
-		transform: translateY(0)
