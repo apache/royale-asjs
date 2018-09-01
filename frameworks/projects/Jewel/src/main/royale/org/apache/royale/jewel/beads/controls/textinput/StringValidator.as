@@ -1,0 +1,151 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.jewel.beads.controls.textinpu
+{
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.beads.controls.Validator;
+	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+
+	/**
+	 *  The StringValidator class is a specialty bead that can be used with
+	 *  TextInput control.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.3
+	 */
+	public class StringValidator extends Validator implements IBead
+	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function StringValidator()
+		{
+			super();
+		}
+
+
+		/**                         	
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			COMPILE::JS
+			{
+				hostComponent.addEventListener(Event.CHANGE, validate, false);
+				updateHost();
+			}
+		}
+
+		private var _autoTrim:Boolean;
+
+		public function get autoTrim():Boolean
+		{
+			return _autoTrim;
+		}
+		/**
+		 *  Auto trim the entered text before validation
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function set autoTrim(value:Boolean):void
+		{
+			_autoTrim = value;
+		}
+
+		private var _maxLength:int;
+
+		public function get maxLength():int
+		{
+			return _maxLength;
+		}
+		/**
+		 *  Maximum length for a valid String.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function set maxLength(value:int):void
+		{
+			_maxLength = value;
+			COMPILE::JS
+			{
+				updateHost();
+			}	
+		}
+
+		/**
+		 *  Override of the base class validate() method to validate a String.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		override public function validate(event:Event = null):Boolean {
+			var txt:TextInputBase = hostComponent as TextInputBase;
+			var str:String = txt.text;
+
+			if (autoTrim) {
+				str = str.trim();
+				if (str != txt.text) txt.text = str;
+			}
+
+			if (super.validate(event)) {
+				if (str.length < required) {
+					createErrorTip(requiredFieldError);
+				} else {
+					destroyErrorTip();
+				}	
+			}
+			return !isError;
+		}
+
+		COMPILE::JS
+		private function updateHost():void
+		{
+			if (hostComponent)
+            {
+                (_maxLength > 0) ?
+				hostComponent.element.setAttribute('maxlength', _maxLength) :
+				hostComponent.element.removeAttribute('maxlength');
+            }
+		}		
+	}
+}
