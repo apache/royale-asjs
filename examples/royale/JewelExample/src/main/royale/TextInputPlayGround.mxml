@@ -249,7 +249,7 @@ limitations under the License.
 			public var randomCode:String = StringPadder.pad(String(Math.round(Math.random() * 10000)), "0", 5);
 
             public function customValidate(host:TextInput):String {
-				return (host.text == randomCode) ? "" : "The entered code doesn't match" + randomCode;
+				return (host.text == randomCode) ? "" : "The entered code doesn't match " + randomCode;
             }
 
             public function doSummit(event:Event):void {

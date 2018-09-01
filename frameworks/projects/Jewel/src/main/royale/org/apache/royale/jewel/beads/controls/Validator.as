@@ -187,7 +187,7 @@ package org.apache.royale.jewel.beads.controls
 			return true;
 		}
 
-				/**
+		/**
 		 *  Sets the errortip y relative position to one of
 		 *  LEFT, MIDDLE or RIGHT.
 		 *
