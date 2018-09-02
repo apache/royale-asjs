@@ -100,7 +100,7 @@
       <library-path>
           <path-element>${royalelib}/libs/core.swc</path-element>
           <path-element>${royalelib}/libs/framework.swc</path-element>
-         <path-element>{playerglobalHome}/${targetPlayerMajorVersion}.${targetPlayerMinorVersion}</path-element>
+         <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
       </library-path>
 
         <!-- namespace declaration for asdoc -->

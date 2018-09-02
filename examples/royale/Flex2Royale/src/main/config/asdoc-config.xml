@@ -135,7 +135,7 @@
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
-         <path-element>{playerglobalHome}/${targetPlayerMajorVersion}.${targetPlayerMinorVersion}</path-element>
+         <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
       </library-path>
 
         <!-- namespace declaration for asdoc -->
