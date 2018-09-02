@@ -27,7 +27,7 @@ package {
 internal class CoreClasses
 {
 	import org.apache.royale.core.IId; IId;
-	import org.apache.royale.core.UIBase; UIBase;
+	import org.apache.royale.core.HTMLElementWrapper; HTMLElementWrapper;
 	import org.apache.royale.utils.IClassSelectorListSupport; IClassSelectorListSupport;
 	import org.apache.royale.core.LayoutBase; LayoutBase;
 	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;

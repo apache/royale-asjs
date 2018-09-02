@@ -301,7 +301,6 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function performLayout():void
