@@ -2007,12 +2007,12 @@ limitations under the License.
         </exec>
     </target>
 
-    <target name="build-all" depends="check-playerglobal-home,check-air-home,check-compiler-home,check-typedefs-home">
+    <target name="build-all" depends="check-playerglobal-home,check-air-home">
         <property name="font.donot.ask" value="set" />
         <antcall target="ask-before-build-all" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${ROYALE_COMPILER_REPO}" />
-        <ant dir="${ROYALE_TYPEDEFS_HOME}" />
+        <ant dir="${base.folder.name}/royale-compiler" />
+        <ant dir="${base.folder.name}/royale-typedefs" />
     </target>
     <target name="ask-before-build-all" unless="release.target">
         <input
