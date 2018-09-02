@@ -78,7 +78,7 @@ j|VGroup {
 
 j|Container {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
@@ -94,7 +94,7 @@ j|DataContainer {
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer");
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
@@ -614,6 +614,13 @@ j|NavigationLinkItemRenderer {
 
 j|Label {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
+}
+
+.viewport {
+  overflow: hidden;
+}
+.viewport.scroll {
+  overflow: auto;
 }
 
 .layout.absolute {
@@ -3348,7 +3355,7 @@ j|TitleBar {
 
 j|ApplicationMainContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 

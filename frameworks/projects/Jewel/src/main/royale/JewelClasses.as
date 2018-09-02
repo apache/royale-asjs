@@ -82,9 +82,10 @@ package
         import org.apache.royale.jewel.supportClasses.IActivable; IActivable;
         import org.apache.royale.jewel.supportClasses.textinput.ITextInput; ITextInput;
 
+        import org.apache.royale.jewel.supportClasses.Viewport; Viewport;
+        import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
         import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
-        import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList; ComboBoxList;
 
