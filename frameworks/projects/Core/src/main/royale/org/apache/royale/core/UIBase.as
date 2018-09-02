@@ -741,9 +741,16 @@ package org.apache.royale.core
 			COMPILE::JS
 			{
 				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetLeft;
-				positioner.style.left = value.toString() + 'px';
+                if(!isNaN(value))
+                {
+                    if (positioner.parentNode != positioner.offsetParent)
+                        value += (positioner.parentNode as HTMLElement).offsetLeft;
+                    positioner.style.left = value.toString() + 'px';
+                } else
+                {
+                    // is NaN remove style
+                    positioner.style.left = "initial";
+                }
 			}
         }
         
@@ -810,9 +817,16 @@ package org.apache.royale.core
 			COMPILE::JS
 			{
 				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetTop;
-				positioner.style.top = value.toString() + 'px';				
+                if(!isNaN(value))
+                {
+                    if (positioner.parentNode != positioner.offsetParent)
+                        value += (positioner.parentNode as HTMLElement).offsetTop;
+                    positioner.style.top = value.toString() + 'px';
+                } else
+                {
+                    // is NaN remove style
+                    positioner.style.top = "initial";
+                }
 			}
         }
         
