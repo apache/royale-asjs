@@ -76,7 +76,7 @@ package
             import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
         }
         
-        import org.apache.royale.jewel.ResponsiveSizes; ResponsiveSizes;
+        import org.apache.royale.jewel.supportClasses.ResponsiveSizes; ResponsiveSizes;
 
         import org.apache.royale.jewel.supportClasses.INavigationRenderer; INavigationRenderer;
         import org.apache.royale.jewel.supportClasses.IActivable; IActivable;

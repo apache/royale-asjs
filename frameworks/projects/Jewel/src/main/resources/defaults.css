@@ -338,6 +338,19 @@ j|ComboBox {
     width: calc(100% - 300px);
   }
 }
+@media (min-width: 992px) {
+  .combobox-popup::before {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .combobox-popup .jewel.list {
+    box-shadow: none !important;
+  }
+  .combobox-popup.open .jewel.list {
+    transform: none;
+    top: auto;
+    left: auto;
+  }
+}
 j|ComboBoxList {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
   IContentView: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup");

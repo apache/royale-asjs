@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses
 {
 	/**
 	 *  The ResponsiveSizes declares consants that are related to SASS variables

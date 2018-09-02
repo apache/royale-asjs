@@ -21,8 +21,8 @@ package org.apache.royale.jewel.beads.controls.drawer
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.ResponsiveSizes;
 	import org.apache.royale.jewel.Drawer;
+	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	
 	/**
 	 *  The ResponsiveDrawer class is a bead to use with Jewel Drawer to make it fixed or

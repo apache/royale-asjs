@@ -131,6 +131,19 @@ $combobox-popup-overlay-opacity: .65 !default
         .jewel.list
             width: calc(100% - #{30*$combobox-popup-margin-offset})
 
+@media (min-width: $desktop)
+    .combobox-popup
+        &::before
+            background-color: rgba($combobox-popup-overlay-color, 0)
+        .jewel.list
+            box-shadow: none !important
+        &.open
+            .jewel.list
+                transform: none
+                top: auto
+                left: auto
+
+
 
 j|ComboBoxList
     // IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ListView")
