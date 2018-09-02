@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup;
-
+	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox 
@@ -132,11 +132,11 @@ package org.apache.royale.jewel.beads.views
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			
-			// IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
+			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
 			
 			// set initial value and positions using default sizes
 			itemChangeAction();
-			// sizeChangeAction();
+			sizeChangeAction();
 		}
 		
 		/**
@@ -166,25 +166,29 @@ package org.apache.royale.jewel.beads.views
 				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 				_list.model = model;
 				
-				// var origin:Point = new Point(0, button.y+button.height);
-				// var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-				// _list.x = relocated.x
-				// _list.y = relocated.y;
 				
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
 				popupHost.popUpParent.addElement(_list);
 
 				// popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside to adjust height
-				var dataGroup:ComboBoxListDataGroup = (popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
+				dataGroup = (popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
 				dataGroup.height = 250;
-
+				
 				setTimeout(prepareForPopUp,  300);
+
+				COMPILE::JS
+				{
+				window.addEventListener('resize', autoResizeHandler, false);
+				}
+
+				autoResizeHandler();
 			}
 			else if(_list != null) {
 				UIUtils.removePopUp(_list);
 				COMPILE::JS
 				{
 				document.body.classList.remove("viewport");
+				window.removeEventListener('resize', autoResizeHandler, false);
 				}
 				_list = null;
 			}
@@ -199,14 +203,14 @@ package org.apache.royale.jewel.beads.views
 				document.body.classList.add("viewport");
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
-		// protected function handleSizeChange(event:Event):void
-		// {
-		// 	sizeChangeAction();
-		// }
+		protected function handleSizeChange(event:Event):void
+		{
+			sizeChangeAction();
+		}
 		
 		/**
 		 * @private
@@ -229,11 +233,13 @@ package org.apache.royale.jewel.beads.views
 		}
 		
 		/**
+		 * reposition list dataGroup in desktop and widescreen screens
+		 * 
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.StyledUIBase
 		 */
-		// protected function sizeChangeAction():void
-		// {
+		protected function sizeChangeAction():void
+		{
 			//var host:StyledUIBase = StyledUIBase(_strand);
 			
 			// input.x = 0;
@@ -260,6 +266,43 @@ package org.apache.royale.jewel.beads.views
 			// if (host.isWidthSizedToContent()) {
 			// 	host.width = input.width + button.width;
 			// }
-		// }
+		}
+
+		private var dataGroup:ComboBoxListDataGroup;
+		/**
+		 *  When set to "auto" this resize handler monitors the width of the app window
+		 *  and switch between fixed and float modes.
+		 * 
+		 *  Note:This could be done with media queries, but since it handles open/close
+		 *  maybe this is the right way
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		private function autoResizeHandler(event:Event = null):void
+        {
+			COMPILE::JS
+			{
+				var outerWidth:Number = window.outerWidth;
+				
+				// Desktop width size
+				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
+				{
+					var origin:Point = new Point(0, button.y+button.height);
+					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
+					dataGroup.x = relocated.x;
+					dataGroup.y = relocated.y;
+					// dataGroup.element.style.left = relocated.x+"px";
+					// dataGroup.element.style.top = relocated.y+"px";
+				}
+				else
+				{
+					dataGroup.positioner.style["top"] = "calc(100% - 10px)";
+					dataGroup.positioner.style["left"] = "50%";
+				}
+			}
+		}
 	}
 }
