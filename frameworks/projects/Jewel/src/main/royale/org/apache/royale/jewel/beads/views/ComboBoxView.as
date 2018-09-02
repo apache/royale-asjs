@@ -166,7 +166,6 @@ package org.apache.royale.jewel.beads.views
 				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 				_list.model = model;
 				
-				
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
 				popupHost.popUpParent.addElement(_list);
 
@@ -292,15 +291,15 @@ package org.apache.royale.jewel.beads.views
 				{
 					var origin:Point = new Point(0, button.y+button.height);
 					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-					dataGroup.x = relocated.x;
-					dataGroup.y = relocated.y;
-					// dataGroup.element.style.left = relocated.x+"px";
-					// dataGroup.element.style.top = relocated.y+"px";
+					// dataGroup.x = relocated.x;
+					// dataGroup.y = relocated.y;
+					dataGroup.positioner.style["left"] = relocated.x + "px";
+					dataGroup.positioner.style["top"] = relocated.y + "px";
 				}
 				else
 				{
-					dataGroup.positioner.style["top"] = "calc(100% - 10px)";
 					dataGroup.positioner.style["left"] = "50%";
+					dataGroup.positioner.style["top"] = "calc(100% - 10px)";
 				}
 			}
 		}

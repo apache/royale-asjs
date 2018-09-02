@@ -308,14 +308,15 @@ j|ComboBox {
 }
 .combobox-popup .jewel.list {
   transform: translate(-50%, 100%);
-  transition: transform 0.15s 0ms;
-  will-change: transform;
+  transition: none;
+  will-change: transform, opacity;
   bottom: auto;
   top: calc(100% - 10px);
   left: 50%;
   touch-action: none;
   box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
   width: 16.5em;
+  opacity: 0;
 }
 .combobox-popup.open {
   pointer-events: auto;
@@ -325,7 +326,8 @@ j|ComboBox {
 }
 .combobox-popup.open .jewel.list {
   transform: translate(-50%, -100%);
-  transition: transform 0.3s 0ms;
+  transition: transform 0.4s 0ms, opacity 0.4s 0ms;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -343,12 +345,22 @@ j|ComboBox {
     background-color: rgba(0, 0, 0, 0);
   }
   .combobox-popup .jewel.list {
+    transform: none;
+    transition: none;
     box-shadow: none !important;
+  }
+  .combobox-popup .jewel.list .jewel.item {
+    height: 0;
+    overflow: hidden;
+    transition: height 200ms ease-in;
   }
   .combobox-popup.open .jewel.list {
     transform: none;
     top: auto;
     left: auto;
+  }
+  .combobox-popup.open .jewel.list .jewel.item {
+    height: 34px;
   }
 }
 j|ComboBoxList {
@@ -451,14 +463,14 @@ j|DateChooser {
 }
 .datechooser-popup .jewel.table {
   transform: translate(-50%, 100%);
-  transition: transform 0.15s 0ms;
-  will-change: transform;
+  transition: none;
+  will-change: transform, opacity;
   bottom: auto;
   top: calc(100% - 10px);
   left: 50%;
-  overflow: hidden;
   touch-action: none;
   box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
+  opacity: 0;
 }
 .datechooser-popup.open {
   pointer-events: auto;
@@ -468,7 +480,8 @@ j|DateChooser {
 }
 .datechooser-popup.open .jewel.table {
   transform: translate(-50%, -100%);
-  transition: transform 0.3s 0ms;
+  transition: transform 0.4s 0ms, opacity 0.4s 0ms;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -479,6 +492,29 @@ j|DateChooser {
 @media (min-width: 768px) and (max-width: 992px) {
   .datechooser-popup .jewel.table {
     width: calc(100% - 300px);
+  }
+}
+@media (min-width: 992px) {
+  .datechooser-popup::before {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .datechooser-popup .jewel.table {
+    transform: none;
+    transition: none;
+    box-shadow: none !important;
+  }
+  .datechooser-popup .jewel.table .jewel.item {
+    height: 0;
+    overflow: hidden;
+    transition: height 200ms ease-in;
+  }
+  .datechooser-popup.open .jewel.table {
+    transform: none;
+    top: auto;
+    left: auto;
+  }
+  .datechooser-popup.open .jewel.table .jewel.item {
+    height: 34px;
   }
 }
 j|DateField {

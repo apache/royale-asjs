@@ -26,6 +26,7 @@ $datefield-button-yoffset: calc(50% - #{$datefield-button-size/2})
 $datechooser-popup-margin-offset: 10px
 $datechooser-popup-overlay-color: #000 !default
 $datechooser-popup-overlay-opacity: .65 !default
+$datechooser-item-min-heigh: 34px
 
 .jewel.datefield
     display: inline-flex
@@ -88,24 +89,27 @@ $datechooser-popup-overlay-opacity: .65 !default
 
     .jewel.table
         transform: translate(-50%, 100%)
-        transition: animation-standard(transform, .15s)
-        will-change: transform
+        transition: none
+        will-change: transform, opacity
         
         bottom: auto
         top: calc(100% - #{$datechooser-popup-margin-offset})
         left: 50%
-        overflow: hidden
         touch-action: none
         box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
 
+        opacity: 0
+
     &.open
         pointer-events: auto
+
         &::before
             opacity: 1
 
         .jewel.table
             transform: translate(-50%, -100%)
-            transition: animation-standard(transform, .3s)
+            transition: animation-standard(transform, .4s), animation-standard(opacity, .4s)
+            opacity: 1
 
 @media (max-width: $tablet)
     .datechooser-popup
@@ -116,6 +120,30 @@ $datechooser-popup-overlay-opacity: .65 !default
     .datechooser-popup
         .jewel.table
             width: calc(100% - #{30*$datechooser-popup-margin-offset})
+
+@media (min-width: $desktop)
+    .datechooser-popup
+        &::before
+            background-color: rgba($datechooser-popup-overlay-color, 0)
+        .jewel.table
+            // transform: translate(0px, -200px)
+            transform: none
+            transition: none
+            box-shadow: none !important
+
+            .jewel.item
+                height: 0
+                overflow: hidden
+                transition: height 200ms ease-in
+
+        &.open
+            .jewel.table
+                transform: none
+                top: auto
+                left: auto
+
+                .jewel.item
+                    height: $datechooser-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
 
 
 j|DateField
