@@ -242,7 +242,7 @@ package org.apache.royale.jewel.beads.views
 					UIUtils.removePopUp(_popUp);
 					COMPILE::JS
 					{
-					document.body.classList.remove("remove-app-scroll");
+					document.body.classList.remove("viewport");
 					}
 					_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
 					_popUp = null;
@@ -251,16 +251,16 @@ package org.apache.royale.jewel.beads.views
 			_showingPopup = false;
 		}
 
-		COMPILE::JS
-		private var rq:int;
+		// COMPILE::JS
+		// private var rq:int;
 		private function prepareForPopUp():void
         {
-			//avoid scroll in html
 			_popUp.addClass("open");
 			COMPILE::JS
 			{
+				//avoid scroll in html
+				document.body.classList.add("viewport");
 				//cancelAnimationFrame(rq);
-				document.body.classList.add("remove-app-scroll");
 			}
 		}
 

@@ -130,10 +130,10 @@ package org.apache.royale.jewel
 				//avoid scroll in html
 				if(fixed)
 				{
-					document.body.classList.remove("remove-app-scroll");
+					document.body.classList.remove("viewport");
 				} else
 				{
-					document.body.classList.toggle("remove-app-scroll", _isOpen);
+					document.body.classList.toggle("viewport", _isOpen);
 				}
 			}
 		}

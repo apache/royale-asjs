@@ -96,7 +96,7 @@ package org.apache.royale.jewel.beads.controllers
             // t.addEventListener("timer", addDismissHandler);
             // t.start();
 
-			// viewBead.popUp is DateChooser that fills 100% of browser windew-> We want Table inside
+			// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
 			daysTable = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
 
 			IEventDispatcher(daysTable).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
@@ -104,7 +104,7 @@ package org.apache.royale.jewel.beads.controllers
         }
 
 		protected function handleControlMouseDown(event:MouseEvent):void
-		{			
+		{
 			event.stopImmediatePropagation();
 		}
         
@@ -115,29 +115,7 @@ package org.apache.royale.jewel.beads.controllers
 			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
 			viewBead.popUpVisible = false;
 		}
-
-        /**
-         * @private
-         */
-        // private function addDismissHandler(event:Event):void
-        // {
-        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-        //     if (host) {
-        //         host.addEventListener(MouseEvent.CLICK, dismissHandler);
-        //     }
-        // }
-        
-        /**
-         * @private
-         */
-        // private function removeDismissHandler():void
-        // {
-        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-        //     if (host) {
-        //         host.removeEventListener(MouseEvent.CLICK, dismissHandler);
-        //     }
-		// }
-		
+	
 		/**
 		 * @private
 		 */
@@ -174,6 +152,28 @@ package org.apache.royale.jewel.beads.controllers
 			}
 		}
         
+		/**
+         * @private
+         */
+        // private function addDismissHandler(event:Event):void
+        // {
+        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+        //     if (host) {
+        //         host.addEventListener(MouseEvent.CLICK, dismissHandler);
+        //     }
+        // }
+        
+        /**
+         * @private
+         */
+        // private function removeDismissHandler():void
+        // {
+        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+        //     if (host) {
+        //         host.removeEventListener(MouseEvent.CLICK, dismissHandler);
+        //     }
+		// }
+
         /**
          * @private
          */

@@ -24,10 +24,6 @@ html, body {
   height: 100%;
 }
 
-.remove-app-scroll {
-  overflow: hidden;
-}
-
 ::-moz-focus-inner, ::-moz-focus-outer {
   border: 0;
 }
