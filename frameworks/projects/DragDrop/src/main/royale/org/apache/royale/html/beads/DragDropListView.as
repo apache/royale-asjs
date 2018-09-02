@@ -19,6 +19,7 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.html.beads.ListView;
 
@@ -43,6 +44,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -63,6 +65,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function afterLayout():void
 		{
@@ -97,6 +100,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IContainer
+
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -114,6 +119,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function afterLayout():void
 		{
