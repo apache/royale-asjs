@@ -58,6 +58,7 @@
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     <component id="ComboBox" class="org.apache.royale.jewel.ComboBox"/>
+    <component id="ComboBoxList" class="org.apache.royale.jewel.supportClasses.combobox.ComboBoxList"/>
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>

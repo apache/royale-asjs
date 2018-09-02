@@ -18,20 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
+	COMPILE::SWF
+	{
+		import flash.utils.setTimeout;
+    }
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.jewel.TextInput;
-	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-	COMPILE::SWF
-	{
-		import flash.utils.setTimeout;
-    }
+	import org.apache.royale.jewel.beads.views.ListView;
+	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup;
 	
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -57,6 +56,9 @@ package org.apache.royale.jewel.beads.controllers
 		{
 		}
 		
+		protected var viewBead:IComboBoxView;
+		private var dataGroup:ComboBoxListDataGroup;
+		
 		private var _strand:IStrand;
 		
 		/**
@@ -78,70 +80,48 @@ package org.apache.royale.jewel.beads.controllers
 			}
 		}
 
-		protected var viewBead:IComboBoxView;
-		
 		protected function finishSetup(event:Event = null):void
 		{
-			IEventDispatcher(viewBead.button).addEventListener(MouseEvent.CLICK, handleButtonClick);
-            IEventDispatcher(viewBead.textinput).addEventListener(MouseEvent.CLICK, handleButtonClick);
+			IEventDispatcher(viewBead.button).addEventListener(MouseEvent.CLICK, clickHandler);
+            IEventDispatcher(viewBead.textinput).addEventListener(MouseEvent.CLICK, clickHandler);
+		}
+		
+		protected function clickHandler(event:MouseEvent):void
+		{
+			event.stopImmediatePropagation();
+			
+			viewBead.popUpVisible = true;
+			
+			IEventDispatcher(viewBead.popup).addEventListener(Event.CHANGE, changeHandler);
+
+			// viewBead.popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside
+			dataGroup = (viewBead.popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
+
+			IEventDispatcher(dataGroup).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IUIBase(viewBead.popup).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 		}
 
 		protected function handleControlMouseDown(event:MouseEvent):void
-		{			
+		{
 			event.stopImmediatePropagation();
 		}
-		
-		protected function prepareVisiblePopUp():void
-		{
-			IEventDispatcher(viewBead.popup).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			
-			// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
-			setTimeout(prepareForPopUp,  300);
-		}
 
-		private function prepareForPopUp():void {
-			IUIBase(viewBead.popup).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
-		}
-		
-		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void
+		protected function removePopUpWhenClickOutside(event:MouseEvent = null):void
 		{
+			IEventDispatcher(dataGroup).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IUIBase(viewBead.popup).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
+			IEventDispatcher(viewBead.popup).removeEventListener(Event.CHANGE, changeHandler);
 			viewBead.popUpVisible = false;
 		}
 		
-		protected function prepareHiddenPopUp():void
+		private function changeHandler(event:Event):void
 		{
-			IEventDispatcher(viewBead.popup).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IUIBase(viewBead.popup).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
-		}
-		
-		protected function handleButtonClick(event:MouseEvent):void
-		{
-			if(viewBead.popup != null)
-			{
-				IEventDispatcher(viewBead.popup).removeEventListener(Event.CHANGE, handleListChange);
-			}
-			viewBead.popUpVisible = !viewBead.popUpVisible;
+			event.stopImmediatePropagation();
+			IEventDispatcher(dataGroup).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IUIBase(viewBead.popup).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
+			IEventDispatcher(viewBead.popup).removeEventListener(Event.CHANGE, changeHandler);
 
-			if(viewBead.popUpVisible)
-			{
-				prepareVisiblePopUp();
-			} else
-			{
-				prepareHiddenPopUp();
-			}
-
-			if(viewBead.popup != null)
-			{
-				IEventDispatcher(viewBead.popup).addEventListener(Event.CHANGE, handleListChange);
-			}
-		}
-		
-		private function handleListChange(event:Event):void
-		{
-			if(viewBead.popUpVisible)
-				viewBead.popUpVisible = false;
+			viewBead.popUpVisible = false;
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}

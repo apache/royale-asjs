@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.supportClasses.combobox
 {
     import org.apache.royale.core.IPopUp;
+    import org.apache.royale.events.Event;
     import org.apache.royale.jewel.List;
     
     //--------------------------------------
@@ -57,7 +58,7 @@ package org.apache.royale.jewel.supportClasses.combobox
 		public function ComboBoxList()
 		{
 			super();
-            typeNames = "jewel list combobox"
-		}
+            typeNames = "combobox-popup"
+        }
 	}
 }

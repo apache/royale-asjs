@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	COMPILE::SWF
+	{
+		import flash.utils.setTimeout;
+    }
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IStrand;
@@ -35,6 +39,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
+	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup;
+
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox 
@@ -160,17 +166,37 @@ package org.apache.royale.jewel.beads.views
 				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 				_list.model = model;
 				
-				var origin:Point = new Point(0, button.y+button.height);
-				var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-				_list.x = relocated.x
-				_list.y = relocated.y;
+				// var origin:Point = new Point(0, button.y+button.height);
+				// var relocated:Point = PointUtils.localToGlobal(origin,_strand);
+				// _list.x = relocated.x
+				// _list.y = relocated.y;
 				
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
 				popupHost.popUpParent.addElement(_list);
+
+				// popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside to adjust height
+				var dataGroup:ComboBoxListDataGroup = (popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
+				dataGroup.height = 250;
+
+				setTimeout(prepareForPopUp,  300);
 			}
 			else if(_list != null) {
 				UIUtils.removePopUp(_list);
+				COMPILE::JS
+				{
+				document.body.classList.remove("viewport");
+				}
 				_list = null;
+			}
+		}
+
+		private function prepareForPopUp():void
+        {
+			COMPILE::JS
+			{
+				_list.element.classList.add("open");
+				//avoid scroll in html
+				document.body.classList.add("viewport");
 			}
 		}
 		
