@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<catalog>
+
+    <product productId="1">
+        <name>Phone A</name>
+        <color></color>
+        <description>Easy to use without sacrificing style, this phone offers functional voice communication supported by text messaging, multimedia messaging, mobile internet, games and more.</description>
+        <price>99.99</price>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>MMS</highlight1>
+		<highlight2>Large color display</highlight2>
+    </product>
+
+    <product productId="2">
+        <name>Phone B</name>
+        <color>Blue</color>
+        <description>Light up the night with a glow-in-the-dark cover - when it&#39;s charged with light you can easily find your phone in the dark. When you get a call, this phone flashes in tune with your ringing tone. And when you snap on a gaming cover, you&#39;ll get luminescent light effects in time to the gaming action.</description>
+        <price>139</price>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Glow-in-the-dark</highlight1>
+		<highlight2>Flashing lights</highlight2>
+    </product>
+
+    <product productId="3">
+        <name>Phone C</name>
+        <color>Pink</color>
+        <description>Light up the night with a glow-in-the-dark cover - when it&#39;s charged with light you can easily find your phone in the dark. When you get a call, this phone flashes in tune with your ringing tone. And when you snap on a gaming cover, you&#39;ll get luminescent light effects in time to the gaming action.</description>
+        <price>139</price>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Glow-in-the-dark</highlight1>
+		<highlight2>Flashing lights</highlight2>
+    </product>
+
+    <product productId="4">
+        <name>Phone D</name>
+        <color></color>
+        <description>Designed for both business and pleasure, this phone offers a pleasing mix of features. Enclosed within its chic, compact body, you will discover the benefits of tri-band compatibility, a color screen, MMS, XHTML browsing, cheerful screensavers, and much more.</description>
+        <price>159.99</price>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Multimedia messaging</highlight1>
+		<highlight2>Animated screensavers</highlight2>
+    </product>
+
+    <product productId="5">
+        <name>Phone E</name>
+        <color></color>
+        <description>This phone is a fresh new cut on some familiar ideas - animate your MMS messages with cute characters, see the music with lights that flash in time with your ringing tone, download wallpapers and screensavers with matching color schemes for the interface.</description>
+        <price>159.99</price>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>false</video>
+        <highlight1>MIDI tones</highlight1>
+		<highlight2>Cut-out covers</highlight2>
+    </product>
+
+    <product productId="6">
+        <name>Phone F</name>
+        <color></color>
+        <description>Messaging is more personal, versatile and fun with this camera phone.  Capture experiences as soon as you see them and send the photos you take to you friends and family.</description>
+        <price>199.99</price>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Infrared or Bluetooth</highlight1>
+		<highlight2>Built-in XHTML browser</highlight2>
+    </product>
+
+    <product productId="7">
+        <name>Phone G</name>
+        <color></color>
+        <description>Messaging just got a whole lot smarter. This messaging device puts the tools you need for rich communication - full messaging keyboard, digital camera, mobile email, MMS, SMS, and Instant Messaging - right at your fingertips, in a small, sleek device.</description>
+        <price>299.99</price>
+        <series>6000</series>
+        <triband>true</triband>
+        <camera>true</camera>
+        <video>false</video>
+        <highlight1>Messaging keyboard</highlight1>
+		<highlight2>Bluetooth</highlight2>
+    </product>
+
+    <product productId="8">
+        <name>Phone F</name>
+        <color></color>
+        <description>Classic business tools meet your creative streak in this imaging smartphone. It has a Web browser with PDF support, document viewer applications for email attachments, a direct printing application, and a megapixel still camera that also shoots up to 10 minutes of video.</description>
+        <price>309.99</price>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>PDF support</highlight1>
+		<highlight2>4x digital zoom</highlight2>
+    </product>
+
+    <product productId="9">
+        <name>Phone G</name>
+        <color></color>
+        <description>Shoot a basket. Shoot a movie. This video phone is the perfect way to save and share life&#39;s playful moments. Feel connected.</description>
+        <price>329.99</price>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Bluetooth technology</highlight1>
+		<highlight2>Up to 10 minutes video</highlight2>
+    </product>
+
+    <product productId="10">
+        <name>Phone H</name>
+        <color>Silver</color>
+        <description>Get creative with this smartphone. Create your own ringing tones, print your mobile images, play multiplayer games over a wireless Bluetooth connection, and browse HTML and xHTML Web pages. Plus, with a 32 MB MMC card and expandable memory, you&#39;ll have lots of space to be creative.</description>
+        <price>369</price>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>Expandable memory</highlight2>
+    </product>
+
+    <product productId="11">
+        <name>Phone I</name>
+        <color>Bronze</color>
+        <description>Get creative with this smartphone. Create your own ringing tones, print your mobile images, play multiplayer games over a wireless Bluetooth connection, and browse HTML and xHTML Web pages. Plus, with a 32 MB MMC card and expandable memory, you&#39;ll have lots of space to be creative.</description>
+        <price>369</price>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>Expandable memory</highlight2>
+    </product>
+
+    <product productId="12">
+        <name>Phone J</name>
+        <color></color>
+        <description>Not only is this imaging smartphone have a 1.3 megapixel digital imaging device (1.3 megapixel camera sensor, effective resolution 1.23 megapixels for image capture, image size 1280 x 960 pixels), it&#39;s also a portable office and a modern rich-media machine.</description>
+        <price>379</price>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>6x smooth digital zoom</highlight2>
+    </product>
+
+</catalog>

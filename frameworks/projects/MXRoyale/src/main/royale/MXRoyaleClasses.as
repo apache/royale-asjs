@@ -27,27 +27,18 @@ package
  */
 internal class MXRoyaleClasses
 {
-	import mx.collections.ArrayList; ArrayList;
-  import mx.core.mx_internal; mx_internal;
-  import mx.core.UIComponent; UIComponent;
-	import mx.core.Container; Container;
+	import mx.core.mx_internal; mx_internal;
 	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
-	import mx.containers.ControlBar; ControlBar;
-    import mx.containers.Panel; Panel;
-	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	import mx.effects.IEffectInstance; IEffectInstance;
 	import mx.events.EffectEvent; EffectEvent;
-	import mx.graphics.Stroke; Stroke;
-	import mx.graphics.SolidColor; SolidColor;
-	import mx.graphics.SolidColorStroke; SolidColorStroke;
 	import mx.graphics.IStroke; IStroke;
 	import mx.graphics.IFill; IFill;
-	import mx.graphics.GradientEntry; GradientEntry;
 	import mx.core.EventPriority; EventPriority;
 	import mx.core.IFactory; IFactory;
+    import mx.core.ILayoutElement; ILayoutElement;
 	import mx.collections.CursorBookmark; CursorBookmark;
 	import mx.collections.ICollectionView; ICollectionView;
 	import mx.collections.IViewCursor; IViewCursor;
@@ -59,57 +50,127 @@ internal class MXRoyaleClasses
 	import mx.events.ScrollEvent; ScrollEvent;
 	import mx.events.MoveEvent; MoveEvent;
 	import mx.events.ValidationResultEvent; ValidationResultEvent;
-	import mx.containers.Tile; Tile;
-	import mx.containers.DividedBox; DividedBox;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
-	import mx.controls.ToolTip; ToolTip;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
 	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
 	import mx.events.CloseEvent; CloseEvent;
-	import mx.controls.VRule; VRule;
 	import mx.controls.HRule; HRule;
 	import mx.events.ListEvent; ListEvent;
 	import mx.events.SliderEvent; SliderEvent;
-  import mx.managers.FocusManager; FocusManager;
+	import mx.managers.FocusManager; FocusManager;
 	import mx.utils.ArrayUtil; ArrayUtil;
 	import mx.effects.Effect; Effect; 
-	import mx.effects.Sequence; Sequence; 
 	import mx.charts.ChartItem; ChartItem;
 	import mx.core.ClassFactory; ClassFactory;
-	import mx.charts.LineChart; LineChart;
-	import mx.charts.PieChart; PieChart;
-	import mx.charts.BarChart; BarChart;
-	import mx.charts.ColumnChart; ColumnChart;
-	import mx.effects.Resize; Resize;
 	import mx.effects.Tween; Tween;
-	import mx.effects.Move; Move;
-	import mx.graphics.LinearGradient; LinearGradient;
 	import mx.system.ApplicationDomain; ApplicationDomain;
-	import mx.controls.listClasses.ListBase; ListBase;
+	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
+	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
+    import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
 	import mx.charts.HitData; HitData;
-	import mx.collections.GroupingField; GroupingField;
-	import mx.collections.Grouping; Grouping;
+	import mx.events.MenuEvent; MenuEvent;
+	import mx.events.FlexEvent; FlexEvent;
+	import mx.managers.PopUpManager; PopUpManager; 
+	import mx.core.IVisualElementContainer; IVisualElementContainer;
 	import mx.managers.BrowserManager; BrowserManager;
-	import mx.containers.FormHeading; FormHeading;
 	import mx.charts.chartClasses.DataTransform; DataTransform;
 	import mx.skins.Border; Border;
 	import mx.effects.CompositeEffect; CompositeEffect;
 	import mx.logging.LogEventLevel; LogEventLevel;
 	import mx.logging.ILogger; ILogger;
-    COMPILE::SWF
-    {
-        import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
-        import mx.controls.beads.CheckBoxView; CheckBoxView;
-        import mx.controls.beads.RadioButtonView; RadioButtonView;
-    }
+	import mx.core.FlexVersion; FlexVersion;
+	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
+	import mx.charts.events.ChartItemEvent; ChartItemEvent;
+	import mx.charts.chartClasses.DataTip; DataTip;
+  	import mx.controls.textClasses.TextRange; TextRange;
+	import mx.managers.CursorManagerPriority; CursorManagerPriority;
+	import mx.logging.Log; Log;
+	import mx.charts.chartClasses.Series; Series;
+	import mx.charts.chartClasses.GraphicsUtilities; GraphicsUtilities; 
+	import mx.effects.easing.Exponential; Exponential;
+	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
+	import mx.effects.TweenEffect; TweenEffect; 
+	import mx.rpc.Fault; Fault;
+	import mx.rpc.events.InvokeEvent; InvokeEvent;
+	import mx.rpc.events.ResultEvent; ResultEvent;
+	import mx.rpc.AsyncResponder; AsyncResponder;
+	import mx.rpc.Responder; Responder;
+	import mx.printing.FlexPrintJobScaleType; FlexPrintJobScaleType; 
+	import mx.skins.RectangularBorder; RectangularBorder;
+	import mx.styles.IStyleClient; IStyleClient; 
+    import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
+	import mx.styles.StyleProxy; StyleProxy;
+    import mx.styles.StyleManagerImpl; StyleManagerImpl;
+	import mx.modules.IModuleInfo; IModuleInfo;
+	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
+	import mx.printing.FlexPrintJob; FlexPrintJob; 
+	import mx.utils.URLUtil; URLUtil;
+	import mx.core.UITextField; UITextField;
+	import mx.effects.Parallel; Parallel; 
+	import mx.rpc.events.FaultEvent; FaultEvent;
+	import mx.events.AdvancedDataGridEvent; AdvancedDataGridEvent;
+	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
+	import mx.rpc.soap.WebService; WebService;
+	import mx.collections.ISort; ISort;
+	import mx.utils.Base64Encoder; Base64Encoder;
+	import mx.utils.Base64Decoder; Base64Decoder;
+	import mx.events.IndexChangedEvent; IndexChangedEvent;
+	import mx.events.ItemClickEvent; ItemClickEvent;
+	import mx.events.ModuleEvent; ModuleEvent;
+	import mx.events.MouseEvent; MouseEvent;
+	import mx.managers.SystemManager; SystemManager;
+	import mx.filters.BitmapFilter; BitmapFilter;
+	import mx.filters.ColorMatrixFilter; ColorMatrixFilter;
+	import mx.events.IOErrorEvent; IOErrorEvent;
+	import mx.events.FocusEvent; FocusEvent;
+	import mx.errors.EOFError; EOFError;
+	import mx.events.TextEvent; TextEvent;
+	import mx.display.Bitmap; Bitmap;
+	import mx.external.ExternalInterface; ExternalInterface;
+	import mx.events.KeyboardEvent; KeyboardEvent;
+	import mx.geom.Matrix; Matrix;
+	import mx.utils.ByteArray; mx.utils.ByteArray;
+	import mx.controls.RichTextEditor; RichTextEditor;
+	import mx.events.SecurityErrorEvent; SecurityErrorEvent;
+	import mx.events.IOErrorEvent; IOErrorEvent;
+	import mx.events.HTTPStatusEvent; HTTPStatusEvent;
+	import mx.net.FileReference; FileReference;
+	import mx.net.FileFilter; FileFilter;
+	import mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
+	
+	COMPILE::JS
+    	{
+		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
+		import mx.utils.Base64JSWrapper; Base64JSWrapper;
+	}
+
+	COMPILE::SWF
+	{
+	import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
+	import mx.controls.beads.CheckBoxView; CheckBoxView;
+	import mx.controls.beads.RadioButtonView; RadioButtonView;
+	}
+    import mx.controls.beads.NumericStepperView; NumericStepperView;
+    import mx.controls.beads.DateFieldView; DateFieldView;
+    import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
+    import mx.controls.beads.controllers.MenuBarMouseController;
+    
+    import mx.containers.PanelTitleBar; PanelTitleBar;
+    import mx.containers.beads.PanelView; PanelView;
+    import mx.containers.beads.models.PanelModel; PanelModel;
+    import mx.containers.beads.TabNavigatorView; TabNavigatorView;
+    import mx.controls.TabBar; TabBar;
+    
+    import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
+    import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
 }
 
 }

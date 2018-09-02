@@ -19,17 +19,18 @@
 package org.apache.royale.html.beads
 {
     import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererParent;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -137,7 +138,8 @@ package org.apache.royale.html.beads
          *  @royaleignorecoercion Array
          *  @royaleignorecoercion org.apache.royale.html.beads.ITextItemRenderer
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         * @royaleignorecoercion org.apache.royale.core.IList
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
 		private function dataProviderChangeHandler(event:Event):void
 		{
@@ -145,8 +147,8 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererParent = view.dataGroup;
 
 			dataGroup.removeAllItemRenderers();
 

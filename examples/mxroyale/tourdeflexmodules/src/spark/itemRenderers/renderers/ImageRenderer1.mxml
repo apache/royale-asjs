@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.apache.org/royale/spark"
+				xmlns:mx="library://ns.apache.org/royale/mx" 
+				autoDrawBackground="false" 
+				depth="0" depth.hovered="1">
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+	</s:states>
+
+	<s:postLayoutTransformOffsets>
+		<mx:TransformOffsets id="offsets" x.hovered="-40" y.hovered="-40" scaleX.hovered="2" scaleY.hovered="2" />
+	</s:postLayoutTransformOffsets>	
+	
+	<s:transitions>
+		<mx:Transition fromState="normal" toState="hovered" autoReverse="true">
+			<s:Animate target="{offsets}" duration="200">
+				<s:SimpleMotionPath property="scaleX" />
+				<s:SimpleMotionPath property="scaleY" />
+				<s:SimpleMotionPath property="x" />
+				<s:SimpleMotionPath property="y" />
+			</s:Animate>
+		</mx:Transition>
+		<mx:Transition fromState="hovered" toState="normal" autoReverse="true">
+			<s:Animate target="{offsets}" duration="200">
+				<s:SimpleMotionPath property="scaleX" />
+				<s:SimpleMotionPath property="scaleY" />
+				<s:SimpleMotionPath property="x" />
+				<s:SimpleMotionPath property="y" />
+			</s:Animate>
+		</mx:Transition>
+	</s:transitions>	
+	
+	<mx:Image id="image" source="{data.image}" width="60" height="60" horizontalCenter="0" verticalCenter="0"/>
+
+</s:ItemRenderer>

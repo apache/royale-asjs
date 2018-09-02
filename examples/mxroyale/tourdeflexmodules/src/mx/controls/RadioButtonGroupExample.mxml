@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate RadioButtonGroup control. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+	    <![CDATA[
+	
+	    import mx.controls.Alert;
+	    import  mx.events.ItemClickEvent;
+	
+        // Event handler function to display the selected button
+        // in an Alert control.
+		private function handleCard(event:ItemClickEvent):void {
+			if (event.currentTarget.selectedValue == "AmEx") {
+					Alert.show("You selected American Express") 
+			} 
+			else {
+				if (event.currentTarget.selectedValue == "MC") {
+					Alert.show("You selected MasterCard") 
+				} 
+				else {
+					Alert.show("You selected Visa") 
+				}
+			} 
+		}
+	    ]]>
+    </fx:Script>
+
+    <mx:Panel title="RadioButtonGroup Control Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+    
+        <mx:Label width="100%" 
+            text="Select a type of credit card."/>
+
+        <mx:RadioButtonGroup id="cardtype" itemClick="handleCard(event)"/>
+        <mx:RadioButton groupName="cardtype" id="americanExpress" value="AmEx" 
+            label="American Express" width="150" />
+        <mx:RadioButton groupName="cardtype" id="masterCard" value="MC" 
+            label="MasterCard" width="150" />
+        <mx:RadioButton groupName="cardtype" id="visa" value="Visa" 
+            label="Visa" width="150" />
+		
+    </mx:Panel>		
+</mx:Module>

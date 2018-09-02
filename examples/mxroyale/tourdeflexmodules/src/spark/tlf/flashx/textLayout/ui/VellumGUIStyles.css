@@ -1,0 +1,254 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace "library://ns.adobe.com/flex/mx";
+@namespace bxf "bxf.ui.controls.*";
+@namespace tlfui "flashx.textLayout.ui.rulers.*";
+
+bxf|BxPopupMenu
+{
+	borderSkin:			ClassReference("flashx.textLayout.ui.styles.PopupMenuSkin");
+	borderStyle:		"solid";
+	backColor:			"0xd9d9d9";
+	backAlpha:			"1.0";
+	lineColor:			"0x000000";
+	lineAlpha:			"0.9";
+	lineWidth:			"1";
+	rollOverColor: 		"0x0000b0";
+	rollOverAlpha: 		"1.0";
+	selectionColor: 	"0x0000b0";
+	selectionAlpha:		"0.8";
+	separatorAlpha:		"0.1";
+	separatorColor:		"0xffffff";
+	separatorThickness:	"1";
+	color:				"0x2e2e2e";
+	textSelectedColor:	"0xffffff";
+	textRollOverColor: 	"0xffffff";
+	leftIconGap:		"5";
+	rightIconGap:		"5";
+	openDuration:		"10";
+	closeDuration:		"10";
+}
+
+CheckBox
+{
+	textRollOverColor:	#000000;
+}
+
+
+TabNavigator {
+   tabHeight: 18;
+   backgroundColor: #d6d6d6;
+   tabStyleName: "myTabs";
+   firstTabStyleName: "myTabs";
+   lastTabStyleName: "myTabs";
+   selectedTabTextStyleName: "mySelectedTabs";
+}
+
+
+tlfui|TabMarker
+{
+	borderSkin:			ClassReference("flashx.textLayout.ui.rulers.TabMarkerSkin");	
+	borderStyle:		"solid";
+}
+
+tlfui|ParagraphPropertyMarker
+{
+	borderSkin:			ClassReference("flashx.textLayout.ui.rulers.ParagraphPropertyMarkerSkin");	
+	borderStyle:		"solid";
+}
+
+.stringPropertyEditor {
+	color: 				#262626;
+	fontFamily:			"Myriad Pro";
+	fontSize:			12;
+}
+
+.myTabs {
+   cornerRadius: 0;
+   fillColors: #b0b0b0, #989898;
+   backgroundColor: #d9d9d9;
+   borderColor: #666666;
+   color: #181818;
+   textRollOverColor: #000000;
+   themeColor: #484848;
+   fontFamily: "Myriad Pro";
+   fontSize: 10;
+   fontWeight: "bold";
+}
+
+.mySelectedTabs {
+   color: #202020;
+   textRollOverColor: #202020;
+   fontFamily: "Myriad Pro";
+   fontSize: 10;
+   fontWeight: "bold";
+}
+
+.comboPropEditorValue
+{
+	fontFamily:			"Myriad Pro";
+	fontWeight:			"bold";
+}
+
+.unitComboValue
+{
+	fontFamily:			"Myriad Pro";
+	fontWeight:			"bold";
+}
+
+
+.toggleIconButton {
+	cornerRadius:		2;
+}
+
+.toggleButtonRow {
+	horizontalGap:		2;
+}
+
+.iconButtonGroup {
+	cornerRadius:		2;
+	horizontalGap:		20;
+}
+
+.multiPanel {
+	headerHeight:		17;
+	border-style:		solid;
+	border-color:		#D6D6D6;
+	headerTextAlign:	"left";
+	openDuration:		200;
+	closeDuration:		200;
+	paddingTop:			0;
+	
+	fontFamily:			"Myriad Pro";
+	font-size:			12px;
+	letter-spacing:		0px;
+	color:				#2A2A2A;
+}
+
+.multiPanelHeader {
+	upSkin:				ClassReference("flashx.textLayout.ui.MultiPanelHeaderSkin");
+	downSkin:			ClassReference("flashx.textLayout.ui.MultiPanelHeaderSkin");
+	overSkin:			ClassReference("flashx.textLayout.ui.MultiPanelHeaderSkin");
+	disabledSkin:		ClassReference("flashx.textLayout.ui.MultiPanelHeaderSkin");
+	fillAlphas:			1,1;
+	fillColors: 		#c8c8c8, #b8b8b8;
+	borderAlpha:		1;
+	borderColor:		#D6D6D6;
+	cornerRadius:		0;
+	
+	padding-left:		3;
+	padding-top:		5px;
+
+	fontFamily:			"Myriad Pro";
+	font-size:			11px;
+	letter-spacing:		0px;
+	color:				#262626;
+}
+
+.hotTextStyle {
+	fontFamily:			"Myriad Pro";
+	fontWeight:			"bold";
+	color:				#0071BC;
+	backColor:			#D9D9D9;
+	text-decoration:	none;
+	border-bottom:		solid 1px;
+}
+
+.fontComboStyle {
+	fontFamily:					"Helvetica";
+	fontWeight:					"normal";
+	fontSize:					12;
+	openDuration:				10;
+	closeDuration:				10;
+	
+	padding-top:					-10;
+	
+	upSkin:						Embed(source="assets/combo_drop_down_arrow.png");
+	disabledSkin:				Embed(source="assets/combo_drop_down_arrow.png");
+	overSkin:					Embed(source="assets/combo_drop_down_arrow.png");
+	disabledSkin:				Embed(source="assets/combo_drop_down_arrow.png");
+	editableUpSkin:				Embed(source="assets/combo_drop_down_arrow.png");
+	editableDisabledSkin:		Embed(source="assets/combo_drop_down_arrow.png");
+	editableOverSkin:			Embed(source="assets/combo_drop_down_arrow.png");
+	editableDisabledSkin:		Embed(source="assets/combo_drop_down_arrow.png");
+	arrowButtonWidth:			18;
+	
+	cornerRadius:				2;
+	borderColor:				#737373;
+	
+	textInputStyleName:			"fontComboTextInputStyle";
+}
+
+.fontDropDownStyle {
+	fontFamily:					"Helvetica";
+	fontWeight:					"normal";
+	fontSize:					12;
+	borderColor:				#66ffff;
+	backgroundColor:			#D6D6D6;
+	verticalScrollBarStyleName:	scrollbarStyle;
+}
+
+.fontComboTextInputStyle {
+	borderStyle:				solid;
+	borderColor:				#737373;
+}
+
+.scrollbarStyle {
+	thumbUpSkin:				ClassReference("flashx.textLayout.ui.styles.ScrollbarThumbUpSkin");
+	thumbOverSkin:				ClassReference("flashx.textLayout.ui.styles.ScrollbarThumbOverSkin");
+	thumbDownSkin:				ClassReference("flashx.textLayout.ui.styles.ScrollbarThumbUpSkin");
+	trackSkin:					ClassReference("flashx.textLayout.ui.styles.ScrollbarTrackSkin");
+	upArrowUpSkin: 				Embed(source="assets/scroll_arrow_up.png");
+	upArrowDownSkin: 			Embed(source="assets/scroll_arrow_up.png");
+	upArrowOverSkin: 			Embed(source="assets/scroll_arrow_up_over.png");
+	upArrowDisabledSkin: 		Embed(source="assets/scroll_arrow_up.png");
+	downArrowUpSkin: 			Embed(source="assets/scroll_arrow_down.png");
+	downArrowOverSkin: 			Embed(source="assets/scroll_arrow_down_over.png");
+	downArrowDownSkin: 			Embed(source="assets/scroll_arrow_down.png");
+	downArrowDisabledSkin: 		Embed(source="assets/scroll_arrow_down.png");
+
+
+	trackFill:					#CECECE;
+	trackFillAlpha:				1.0;
+	trackStroke:				#7B7B7B;
+	trackStrokeAlpha:			1.0;
+
+	thumbFill:					#DFDFDF;
+	thumbFillAlpha:				1.0;
+	thumbStroke:				#F4F4F4;
+	thumbStrokeAlpha:			1.0;
+
+	thumbOverFill:				#E5E5E5;
+	thumbOverFillAlpha:			1.0;
+	thumbOverStroke:			#F4F4F4;
+	thumbOverStrokeAlpha:		1.0;
+}
+
+@font-face
+{
+	src:				url("assets/Fonts.swf");
+	fontFamily:			"Myriad Pro";
+}
+
+@font-face
+{
+	src:				url("assets/Fonts.swf");
+	fontFamily:			"Myriad Pro";
+	fontWeight:			"bold";
+}
+

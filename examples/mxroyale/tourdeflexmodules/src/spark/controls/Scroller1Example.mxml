@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+		
+	<s:Panel title="Scroller Sample" width="100%" height="100%">
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:VGroup horizontalCenter="0">
+			<s:HGroup>
+				<s:Label text="Min Viewport Inset:"/>
+				<s:HSlider id="slider1"
+						   maximum="50"
+						   liveDragging="true" />
+				<s:Label text="Viewport Width:"/>
+				<s:HSlider id="slider2"
+						   minimum="100"
+						   maximum="550"
+						   value="300"
+						   liveDragging="true" />
+				<s:Label text="Viewport Height:"/>
+				<s:HSlider id="slider3"
+						   minimum="100"
+						   maximum="550"
+						   value="200"
+						   liveDragging="true" />
+			</s:HGroup>
+			<s:HGroup>
+			<s:Scroller id="scroller"
+						minViewportInset="{slider1.value}"
+						width="300" height="200">
+				<s:Group>
+					<s:Rect id="rect"
+							width="{slider2.value}"
+							height="{slider3.value}">
+						<s:fill>
+							<s:LinearGradient rotation="45">
+								<s:GradientEntry color="red" />
+								<s:GradientEntry color="yellow" />
+								<s:GradientEntry color="haloBlue" />
+							</s:LinearGradient>
+						</s:fill>
+					</s:Rect>
+				</s:Group>
+			</s:Scroller>
+			<s:Label textAlign="justify" width="280" verticalAlign="justify"
+						  text="The Scroller control contains a pair of scroll bars and a viewport. A viewport displays a rectangular subset of the area of
+a component, rather than displaying the entire component. You can use the Scroller control to make any container that implements the IViewport interface,
+such as Group, scrollable. The Scroller's horizontal and vertical scroll policies are set to auto which indicates that scroll bars are displayed when the
+content within a viewport is larger than the actual size of the viewport."/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+	
+</s:Module>

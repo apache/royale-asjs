@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:s="library://ns.apache.org/royale/spark"
+                xmlns:mx="library://ns.apache.org/royale/mx" click="itemrenderer1_clickHandler(event)">
+
+     <fx:Script>
+        <![CDATA[
+            import spark.components.supportClasses.GroupBase;
+            import spark.effects.Animate;
+            import spark.effects.animation.MotionPath;
+            import spark.effects.animation.SimpleMotionPath;
+            protected function itemrenderer1_clickHandler(event:MouseEvent):void
+            {
+                var g:GroupBase = parent as GroupBase;
+                var p:Point = g.layout.getScrollPositionDeltaToElement(this.itemIndex);
+                if (p)
+                {
+                    var startX:Number = g.horizontalScrollPosition;
+                    var startY:Number = g.verticalScrollPosition;
+                    var anim:Animate = new Animate();
+                    anim.motionPaths = new <MotionPath>[
+                        new SimpleMotionPath("horizontalScrollPosition", startX, startX + p.x, 500),
+                        new SimpleMotionPath("verticalScrollPosition", startY, startY + p.y, 500)
+                    ];
+                    
+                    var interpolator:NumberInterpolatorWrapping = new NumberInterpolatorWrapping(0, g.contentWidth - g.width);
+                    var scrollLength:Number = interpolator.getLength(startX, startX + p.x);
+                    anim.interpolator = interpolator;
+                    anim.duration = Math.max(550, Math.min(2500, scrollLength * 2));
+                    
+                    anim.play([g]);
+                }
+            }
+        ]]>
+    </fx:Script>
+
+	
+	<s:states>
+	    <s:State name="normal"/>
+        <s:State name="hovered"/>
+        <s:State name="selected"/>
+	</s:states>
+	
+    <s:Rect id="border" left="0" right="0" top="0" bottom="0">
+        <s:fill>
+            <s:SolidColor color="0xDFDFDF" color.hovered="0xFF0000" color.selected="0x00FF00"/>
+        </s:fill>
+    </s:Rect>
+
+	<s:Group left="1" right="1" top="1" bottom="1">
+    	<s:layout>
+    	    <s:VerticalLayout horizontalAlign="center"/>
+    	</s:layout>
+    	
+    	<mx:Image 
+    		width="75" height="75"
+    		source="{data.thumbnail.url}" />
+    	<s:Label text="{data.credit}" maxWidth="100" textAlign="center"/>
+    </s:Group>
+	
+</s:ItemRenderer>
+

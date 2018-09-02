@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the HorizontalList Control. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+        <![CDATA[
+             
+             [Bindable]
+             [Embed(source="assets/ApacheFlexLogo.png")]
+             public var logo1:Class;
+             
+             [Bindable]
+             [Embed(source="assets/ApacheFlexLogo.png")]
+             public var logo2:Class;
+             
+             [Bindable]
+             [Embed(source="assets/ApacheFlexLogo.png")]
+             public var logo3:Class;
+	     
+             [Bindable]
+	         [Embed(source="assets/ApacheFlexLogo.png")]
+             public var logo4:Class;
+
+             [Bindable]
+	         [Embed(source="assets/ApacheFlexLogo.png")]
+             public var logo5:Class;
+        ]]>
+    </fx:Script>
+
+    <mx:Panel title="HorizontalList Control Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Label width="100%"
+           text="A HorizontalList control displays items in a single row."/>
+
+        <mx:HorizontalList id="CameraSelection" height="250" columnCount="3" columnWidth="125">
+            <mx:dataProvider>
+                <fx:Array>
+                    <fx:Object label="Logo 1" icon="{logo1}"/>
+                    <fx:Object label="Logo 2" icon="{logo2}"/>
+                    <fx:Object label="Logo 3" icon="{logo3}"/>
+                    <fx:Object label="Logo 4" icon="{logo4}"/>
+                    <fx:Object label="Logo 5" icon="{logo5}"/>
+                </fx:Array>
+            </mx:dataProvider>
+        </mx:HorizontalList>
+        
+    </mx:Panel>
+</mx:Module>
+       

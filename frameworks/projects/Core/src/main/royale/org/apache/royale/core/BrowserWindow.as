@@ -46,7 +46,7 @@ package org.apache.royale.core
 		{
 		}
 		
-        public static function open(url:String, options:String):void
+        public static function open(url:String, options:String = "_blank"):void
         {
             COMPILE::SWF
             {

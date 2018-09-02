@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			private var expensesAC:ArrayCollection = new ArrayCollection( [
+				{ Month: "Jan", Profit: 2000, Expenses: 1500, Amount: 450 },
+				{ Month: "Feb", Profit: 1000, Expenses: 200, Amount: 600 },
+				{ Month: "Mar", Profit: 1500, Expenses: 500, Amount: 300 },
+				{ Month: "Apr", Profit: 1800, Expenses: 1200, Amount: 900 },
+				{ Month: "May", Profit: 2400, Expenses: 575, Amount: 500 } ]);
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="AreaChart Control" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<mx:AreaChart id="Areachart" color="0x323232" height="100%"
+					  showDataTips="true" dataProvider="{expensesAC}">
+			
+			<mx:horizontalAxis>
+				<mx:CategoryAxis categoryField="Month"/>
+			</mx:horizontalAxis>
+			
+			<mx:series>
+				<mx:AreaSeries yField="Profit" form="curve" displayName="Profit"/>
+				<mx:AreaSeries yField="Expenses" form="curve" displayName="Expenses"/>
+				<mx:AreaSeries yField="Amount" form="curve" displayName="Amount"/>
+			</mx:series>
+		</mx:AreaChart>
+		
+		<mx:Legend dataProvider="{Areachart}" color="0x323232"/>
+		
+	</s:Panel>
+	
+</s:Module>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx" 
+			   preinitialize="init()">
+	
+	<!-- Based on samples from Peter DeHaan's blog: http://blog.flexexamples.com/ --> 
+	
+	<fx:Script>
+		import flashx.textLayout.elements.Configuration;
+		import flashx.textLayout.elements.TextFlow;
+		import flashx.textLayout.formats.TextDecoration;
+		import flashx.textLayout.formats.TextLayoutFormat;
+		
+		import spark.events.TextOperationEvent;
+		
+		[Bindable]
+		protected static var lineCount:uint = 0;
+		
+		protected function richEdTxt_changeHandler(evt:TextOperationEvent):void {
+			lineCount = richEdTxt.mx_internal::textContainerManager.numLines;
+			lineCnt.text = lineCount.toString();
+		}
+		
+		protected function init():void {
+			var cfg:Configuration = TextFlow.defaultConfiguration;
+			
+			var normalTLF:TextLayoutFormat = new TextLayoutFormat(cfg.defaultLinkNormalFormat);
+			normalTLF.color = 0xFF0000;
+			
+			var hoverTLF:TextLayoutFormat = new TextLayoutFormat(cfg.defaultLinkHoverFormat);
+			hoverTLF.color = 0xFF00FF;
+			hoverTLF.textDecoration = TextDecoration.NONE;
+			
+			var activeTLF:TextLayoutFormat = new TextLayoutFormat(cfg.defaultLinkActiveFormat);
+			activeTLF.color = 0x00FF00;
+			
+			cfg.defaultLinkNormalFormat = normalTLF;
+			cfg.defaultLinkHoverFormat = hoverTLF;
+			cfg.defaultLinkActiveFormat = activeTLF;
+			TextFlow.defaultConfiguration = cfg;
+		}
+	</fx:Script>
+	
+	<s:Panel title="RichEditableText Sample" width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:VGroup id="vgrp" width="100%" height="100%" top="10" left="15">
+			<s:HGroup>
+				<s:Label text="Uneditable text with formatted link:"/>
+				<s:RichEditableText editable="false">
+					<s:content>
+						<s:p>The quick brown <s:a href="http://www.adobe.com/">fox</s:a> jumps over the lazy dog.</s:p>
+					</s:content>
+				</s:RichEditableText>
+			</s:HGroup>
+			<s:HGroup>
+				<s:Label text="Editable text:"/>
+				<s:RichEditableText id="richEdTxt" widthInChars="20" heightInLines="10" 
+									change="richEdTxt_changeHandler(event)" backgroundColor="0xCCCCCC" text="Hello world!">
+				</s:RichEditableText>	
+			</s:HGroup>
+			<s:HGroup>
+				<s:Label text="Line Count of editable text:"/>
+				<s:Label id="lineCnt"/>	
+			</s:HGroup>
+			
+		</s:VGroup>
+		<s:Label width="266" height="180" right="10" top="38" text="RichEditableText is a low-level UIComponent for displaying, scrolling, selecting, and editing richly-formatted text.
+The rich text can contain clickable hyperlinks and inline graphics that are either embedded or loaded from URLs. RichEditableText does not have scrollbars, but it implements 
+the IViewport interface for programmatic scrolling so that it can be controlled by a Scroller, which does provide scrollbars. It also supports vertical scrolling with the mouse wheel." />
+	</s:Panel>
+	
+</s:Module>

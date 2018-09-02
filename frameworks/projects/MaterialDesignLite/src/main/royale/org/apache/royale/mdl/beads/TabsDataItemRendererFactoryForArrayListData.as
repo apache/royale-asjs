@@ -20,17 +20,17 @@ package org.apache.royale.mdl.beads
 {
     import org.apache.royale.collections.IArrayList;
     import org.apache.royale.core.IItemRendererParent;
-    import org.apache.royale.core.IList;
     import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.IStrandWithModelView;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
-
+    import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList;
+    import org.apache.royale.html.beads.IListView;
     import org.apache.royale.html.supportClasses.DataItemRenderer;
     import org.apache.royale.mdl.beads.models.ITabModel;
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
-    import org.apache.royale.events.Event;
 
     /**
      *  The TabsDataItemRendererFactoryForArrayListData class reads an
@@ -69,7 +69,8 @@ package org.apache.royale.mdl.beads
 
         /**
          * @royaleignorecoercion org.apache.royale.core.UIBase
-         * @royaleignorecoercion org.apache.royale.core.IList
+         * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         * @royaleignorecoercion org.apache.royale.html.beads.IListView
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
@@ -81,8 +82,8 @@ package org.apache.royale.mdl.beads
             if (!dp)
                 return;
 
-            var list:IList = _strand as IList;
-            var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererParent = view.dataGroup;
 
             dataGroup.removeAllItemRenderers();
 

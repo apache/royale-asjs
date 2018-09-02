@@ -65,7 +65,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ContainerBase extends GroupBase implements IStrandPrivate
+	public class ContainerBase extends GroupBase implements IContainerBaseStrandChildrenHost
 	{
         /**
          *  Constructor.
@@ -186,7 +186,7 @@ package org.apache.royale.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $numElements():int
+		public function get $numElements():int
 		{
 			return super.numElements;
 		}

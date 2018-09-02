@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<!-- Simple custom MXML TitleWindow component.
+     The TitleWindowApp application displays this component. 
+     You cannot run it independently. -->
+     
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"  
+				xmlns:s="library://ns.apache.org/royale/spark" 
+				xmlns:mx="library://ns.apache.org/royale/mx"  
+    			title="Title Window"
+				close="PopUpManager.removePopUp(this)" >
+
+     <fx:Script>
+        <![CDATA[       
+			import mx.managers.PopUpManager;
+			
+			import spark.components.RichText;
+	       
+            // A reference to the TextInput control in which to put the result.
+            public var loginName:RichText;
+		   
+            // Event handler for the OK button.
+            private function returnName():void {
+                loginName.text="Name entered: " + userName.text; 
+                PopUpManager.removePopUp(this);
+            }
+        ]]>
+    </fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" 
+						  paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" />
+	</s:layout>
+
+    <s:HGroup>
+		<s:Label text="Enter Name: "/>
+		<s:TextInput id="userName" width="100%"/>
+	</s:HGroup>
+   
+	<s:HGroup>
+        <s:Button label="OK" click="returnName()"/>
+        <s:Button label="Cancel" click="PopUpManager.removePopUp(this)"/>
+	</s:HGroup>
+
+</s:TitleWindow>  

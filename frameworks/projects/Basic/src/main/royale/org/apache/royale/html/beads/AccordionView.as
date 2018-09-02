@@ -95,7 +95,7 @@ package org.apache.royale.html.beads
 		 */
 		override protected function itemsCreatedHandler(event:Event):void
 		{
-			var n:int = dataGroup.numElements;
+			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:ICollapsible = dataGroup.getItemRendererForIndex(i) as ICollapsible;

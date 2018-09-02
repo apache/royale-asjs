@@ -20,9 +20,9 @@ package mx.graphics
 {
 	import mx.graphics.IFill;
 	import org.apache.royale.graphics.SolidColor;
-	public class SolidColor extends org.apache.royale.graphics.SolidColor
+	public class SolidColor extends org.apache.royale.graphics.SolidColor implements IFill
 	{
-    public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
+		public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
 	 	{
 			super(color,alpha);
 		}

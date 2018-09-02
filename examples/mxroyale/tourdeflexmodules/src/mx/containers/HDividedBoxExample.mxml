@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the HDividedBox layout -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+    <mx:Panel title="HDividedBox Container Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Text width="100%"
+            text="Drag the divider side to side to resize the children."/>
+
+        <mx:HDividedBox width="100%" height="100%">
+
+            <mx:Canvas label="Canvas 1" width="100%" height="100%" backgroundColor="#FFFFCC">
+                <mx:Label text="Add components here" fontWeight="bold"/>
+            </mx:Canvas>
+
+            <mx:Canvas label="Canvas 2" width="100%" height="100%" backgroundColor="#99CCFF">
+                <mx:Label text="Add components here" fontWeight="bold"/>
+            </mx:Canvas>
+
+        </mx:HDividedBox>
+
+    </mx:Panel>
+</mx:Module>

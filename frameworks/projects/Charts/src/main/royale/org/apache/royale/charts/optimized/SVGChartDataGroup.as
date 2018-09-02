@@ -82,6 +82,19 @@ package org.apache.royale.charts.optimized
 			return _strand;
 		}
 		
+        /**
+         *  @copy org.apache.royale.core.IItemRendererParent#numItemRenderers()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get numItemRenderers():int
+        {
+            return _children.length;
+        }
+        
 		/**
 		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
 		 *  
@@ -96,6 +109,20 @@ package org.apache.royale.charts.optimized
 			return _children[index] as IItemRenderer;
 		}
 		
+        /**
+         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererAt()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function getItemRendererAt(index:int):IItemRenderer
+        {
+            if (index < 0 || index >= _children.length) return null;
+            return _children[index] as IItemRenderer;
+        }
+        
 		/**
 		 *  Returns the itemRenderer that matches both the series and child index. A null return is
 		 *  valid since some charts have optional itemRenderers for their series.

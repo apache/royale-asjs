@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:textEditBar="textEditBar.*"
+		addedToStage="onAddedToStage()" removedFromStage="onRemovedFromStage()">
+	
+	<mx:Array id="targetArray"> 
+		<mx:String>_blank</mx:String>
+		<mx:String>_self</mx:String>
+		<mx:String>_parent</mx:String>
+		<mx:String>_top</mx:String>
+	</mx:Array>	
+	
+	<mx:Script>
+		<![CDATA[
+		    import mx.controls.Alert;
+			import flashx.textLayout.edit.ElementRange;
+			import flashx.textLayout.edit.IEditManager;
+			import flashx.textLayout.elements.LinkElement;
+			import flashx.textLayout.elements.FlowElement;
+			import flashx.textLayout.elements.ParagraphElement;
+			import flashx.textLayout.events.FlowElementMouseEvent;
+			import flashx.textLayout.elements.TextFlow;
+			
+			public var activeFlow:TextFlow;
+			
+	 		private function changeLink(urlText:String, targetText:String, extendToOverlappingLinks:Boolean):void
+	 		{
+	 			if (activeFlow && activeFlow.interactionManager is IEditManager)
+	 			{
+	  				IEditManager(activeFlow.interactionManager).applyLink(urlText, targetText, extendToOverlappingLinks);			
+	 				activeFlow.interactionManager.setFocus();
+	 			}
+	 		}
+ 		
+		    private var onStage:Boolean = false;
+    		private var addedFrameEventListener:Boolean = false;
+    		private var lastRange:ElementRange;
+    		
+			private function onAddedToStage():void
+			{
+				// the dataProviders aren't set up yet - delay to the frame
+				onStage = true;
+				if (!addedFrameEventListener)
+				{
+					addedFrameEventListener = true;
+					addEventListener("enterFrame",onEnterFrame);
+				}
+			}
+		
+			private function onEnterFrame(p:Event):void
+			{
+				this.removeEventListener("enterFrame",onEnterFrame);
+				addedFrameEventListener = false;
+			
+				update(lastRange);
+			}
+	
+			private function onRemovedFromStage():void
+			{
+				onStage = false;
+			}    		
+
+			protected function setTargetCombo(val:String):void
+			{
+				var length:uint = linkTargetCombo.dataProvider.length;
+		
+				for (var i:uint = 0; i < length; i++)
+				{
+					if (linkTargetCombo.dataProvider.getItemAt(i).toLowerCase() == val.toLowerCase())
+					{
+						linkTargetCombo.selectedIndex = i;
+						return;
+					}
+				}
+				linkTargetCombo.selectedIndex = -1;
+				linkTargetCombo.validateNow();
+				linkTargetCombo.text = val;
+			}
+    					
+			public function update(range:ElementRange):void
+			{
+				if (!range)
+				{
+					if (onStage)
+						visible = false;
+					lastRange = null;
+					return;
+				}
+				
+				var linkString:String = "";
+				var linkTarget:String = "";
+				var linkEl:LinkElement = range.firstLeaf.getParentByType(LinkElement) as LinkElement;
+				if (linkEl != null)
+				{
+					var linkElStart:int = linkEl.getAbsoluteStart();
+					var linkElEnd:int = linkElStart + linkEl.textLength;
+					if (linkElEnd < linkElStart)
+					{
+						var temp:int = linkElStart;
+						linkElStart = linkElEnd;
+						linkElEnd = temp;
+					}
+					
+					var beginRange:int = range.absoluteStart;
+					var endRange:int = range.absoluteEnd;
+					
+					var beginPara:ParagraphElement = range.firstParagraph;
+					if (endRange == (beginPara.getAbsoluteStart() + beginPara.textLength))
+					{
+						endRange--;
+					}
+					
+					if ((beginRange == endRange) || (endRange <= linkElEnd))
+					{
+						linkString = LinkElement(linkEl).href;
+						linkTarget = LinkElement(linkEl).target;
+					}
+				}
+				
+				if (onStage)
+				{
+					if (!visible)
+						visible = true;
+					linkTextInput.text = linkString ? linkString : "";
+					setTargetCombo(linkTarget ? linkTarget : "");
+				}
+				lastRange = range;
+			}			
+		]]>
+	</mx:Script>
+
+	<mx:Label text="Link Url:" fontWeight="bold"/>
+	<mx:TextInput id="linkTextInput" width="140"/>
+	<mx:Label text="Link Target:" fontWeight="bold"/>
+	<mx:ComboBox id="linkTargetCombo" editable="true"
+		selectedIndex="0" dataProvider = "{targetArray}"/>
+	<mx:CheckBox id = "linkExtendCheckBox" label="Extend"/>
+	<mx:Button label="Apply Link" 
+		click="changeLink(linkTextInput.text, linkTargetCombo.text, linkExtendCheckBox.selected)" />
+</mx:HBox>

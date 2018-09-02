@@ -112,10 +112,8 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
 	function addChild(child:IUIComponent):IUIComponent;
-    COMPILE::SWF
-    function addChild(child:DisplayObject):DisplayObject;
 	
     /**
      *  Adds a child DisplayObject to this child list at the index specified.
@@ -138,10 +136,8 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
 	function addChildAt(child:IUIComponent, index:int):IUIComponent;
-    COMPILE::SWF
-    function addChildAt(child:DisplayObject, index:int):DisplayObject;
 	
     /**
      *  Removes the specified child DisplayObject from this child list.
@@ -162,10 +158,8 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
 	function removeChild(child:IUIComponent):IUIComponent;
-    COMPILE::SWF
-    function removeChild(child:DisplayObject):DisplayObject;
 	
     /**
      *  Removes the child DisplayObject at the specified index
@@ -186,10 +180,8 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */	     
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
 	function removeChildAt(index:int):IUIComponent;
-    COMPILE::SWF
-    function removeChildAt(index:int):DisplayObject;
 	
 	/**
 	 *  Gets the child DisplayObject at the specified index in this child list.
@@ -204,10 +196,8 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
   	function getChildAt(index:int):IUIComponent;
-    COMPILE::SWF
-    function getChildAt(index:int):DisplayObject;
 	
     /**
      *  Gets the child DisplayObject with the specified name
@@ -222,10 +212,8 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
   	function getChildByName(name:String):IUIComponent;
-    COMPILE::SWF
-    function getChildByName(name:String):DisplayObject;
   	
 	/**
 	 *  Gets the index of a specific child in this child list.
@@ -269,10 +257,8 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
   	function getChildIndex(child:IUIComponent):int;
-    COMPILE::SWF
-    function getChildIndex(child:DisplayObject):int;
   	
 	/**
 	 *  Changes the index of a particular child in this child list.
@@ -289,10 +275,8 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
 	function setChildIndex(child:IUIComponent, newIndex:int):void;
-    COMPILE::SWF
-    function setChildIndex(child:DisplayObject, newIndex:int):void;
 	
 	/**
 	 *  Determines if a DisplayObject is in this child list,
@@ -309,10 +293,8 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
 	function contains(child:IUIComponent):Boolean;
-    COMPILE::SWF
-    function contains(child:DisplayObject):Boolean;
 }
 
 }

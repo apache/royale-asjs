@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   initialize="init(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.conversion.TextConverter;
+			
+			import mx.events.ItemClickEvent;
+			import mx.events.FlexEvent;
+			import mx.collections.ArrayCollection;
+			
+			import org.osmf.utils.OSMFSettings;
+			
+			protected function init(event:FlexEvent):void {
+				OSMFSettings.enableStageVideo = false;
+			}	
+			
+			private function playPauseChange(event:Event):void 
+			{
+				videoPlayer.playPauseButton.enabled = checkPlay.selected;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="VideoPlayer Sample" width="100%" height="100%">
+		
+		<s:Label top="10" right="10" width="250" verticalAlign="justify" 
+					  text="The VideoPlayer control lets you play progressively downloaded or streaming
+video, live or recorded video. It supports multi-bit rate streaming when used with a server that supports
+multi-bit rate streaming, such as Flash Media Server 3.5. The VideoPlayer control contains a full UI 
+to let users control playback of video. It contains a play/pause toggle button; a scrub bar to let 
+users seek through video; a volume bar; a timer; and a button to toggle in and out of fullscreen mode."/>
+		
+		<!-- note: source can point to a server location or URL -->
+		<s:VGroup left="10">
+			<s:HGroup width="35%">
+				<s:CheckBox id="checkRewind"
+							label="Auto-Rewind"
+							selected="true" />
+				<s:CheckBox id="checkPlay"
+							label="Play/Pause Button"
+							selected="true"
+							change="playPauseChange(event)" />	
+			</s:HGroup>
+			<s:VideoPlayer id="videoPlayer" width="66%" height="66%" y="50"
+						   source="./spark/controls/assets/FlexInstaller.mp4"
+						   autoPlay="false"
+						   autoRewind="{checkRewind.selected}"/>	
+			</s:VGroup>
+		</s:Panel>
+	
+</s:Module>

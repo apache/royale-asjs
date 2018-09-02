@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark"
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	<fx:Style>
+		#submitButton {
+			baseColor: #1E407E;
+			color: #003399;
+		}
+		
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			private function clickHandler():void
+			{
+				text1.text = "Thank you " + firstName.text + " " + lastName.text;
+			}
+			private function resetClickHandler():void
+			{
+				firstName.text = "";
+				lastName.text = "";
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Panel height="100%" width="100%"
+			 horizontalCenter="0" verticalCenter="0"
+			 title="Advanced CSS: ID Selector Example">
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:Label verticalAlign="justify" 
+					  text="Only the Button with the id 'submitButton' will have custom colors."/>
+		
+		<s:VGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="First Name:"/>
+					<s:TextInput id="firstName" width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Last Name:"/>
+					<s:TextInput id="lastName" width="100"/>
+				</s:HGroup>
+			<s:HGroup>
+				<s:Button id="submitButton" label="Submit Form" click="clickHandler()"/>
+				<s:Button id="resetButton" label="Reset" click="resetClickHandler()"/>
+			</s:HGroup>
+			<s:Label id="text1"/>
+		</s:VGroup>
+		
+	</s:Panel>
+</s:Module>

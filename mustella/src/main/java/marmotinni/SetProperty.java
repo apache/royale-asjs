@@ -44,7 +44,9 @@ public class SetProperty extends TestStep {
     {
 		String valueString = null;
 		if (valueExpression != null)
-			valueString = ((JavascriptExecutor)webDriver).executeScript(valueExpression).toString();
+        {
+            valueString = valueExpression.replace("value =", "");
+        }
 		else if (value != null)
 		{
 			if (value.equalsIgnoreCase("false") || value.equalsIgnoreCase("true"))

@@ -19,11 +19,11 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+    import org.apache.royale.core.ILayoutView;
+    import org.apache.royale.core.IParent;
 	import org.apache.royale.events.IEventDispatcher;
-
-	import org.apache.royale.html.Panel;
 
 	COMPILE::JS {
 		import org.apache.royale.core.WrappedHTMLElement;
@@ -42,7 +42,7 @@ package org.apache.royale.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class PanelLayoutProxy implements ILayoutView
+	public class PanelLayoutProxy implements ILayoutView, IParent
 	{
         /**
          *  Constructor.
@@ -66,7 +66,7 @@ package org.apache.royale.html.supportClasses
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.royale.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  The width of the bounding box.
 		 *
 		 *  @langversion 3.0
@@ -75,11 +75,11 @@ package org.apache.royale.html.supportClasses
 		 *  @productversion Royale 0.0
 		 */
 		public function get width():Number {
-			return (host as Panel).width;
+			return (host as UIBase).width;
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.royale.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 * The height of the bounding box.
 		 *
 		 *  @langversion 3.0
@@ -88,11 +88,11 @@ package org.apache.royale.html.supportClasses
 		 *  @productversion Royale 0.0
 		 */
 		public function get height():Number {
-			return (host as Panel).height;
+			return (host as UIBase).height;
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.royale.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
 		 *  The number of elements in the parent.
 		 *
 		 *  @langversion 3.0
@@ -102,11 +102,11 @@ package org.apache.royale.html.supportClasses
 		 */
 		public function get numElements():int
 		{
-			return (host as Panel).$numElements;
+			return (host as IContainerBaseStrandChildrenHost).$numElements;
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.royale.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
 		 *  Get a component from the parent.
 		 *
 		 *  @param c The index of the subcomponent.
@@ -118,29 +118,99 @@ package org.apache.royale.html.supportClasses
 		 */
 		public function getElementAt(index:int):IChild
 		{
-			return (host as Panel).$getElementAt(index);
+			return (host as IContainerBaseStrandChildrenHost).$getElementAt(index);
 		}
 
+        /**
+         *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
+         *  Gets the index of this subcomponent.
+         * 
+         *  @param c The subcomponent to add.
+         *  @return The index (zero-based).
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function getElementIndex(c:IChild):int
+        {
+            return (host as IContainerBaseStrandChildrenHost).$getElementIndex(c);
+        }
+        
+        /**
+         *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
+         *  Add a component to the parent.
+         * 
+         *  @param c The subcomponent to add.
+         *  @param dispatchEvent Whether to dispatch an event after adding the child.
+         * 
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+            (host as IContainerBaseStrandChildrenHost).$addElement(c);
+        }
+        
+        /**
+         *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
+         *  Add a component to the parent.
+         * 
+         *  @param c The subcomponent to add.
+         *  @param index The index where the subcomponent should be added.
+         *  @param dispatchEvent Whether to dispatch an event after adding the child.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+        {
+            return (host as IContainerBaseStrandChildrenHost).$addElementAt(c, index);
+        }
+        
+        /**
+         *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
+         *  Remove a component from the parent.
+         * 
+         *  @param c The subcomponent to remove.
+         *  @param dispatchEvent Whether to dispatch an event after removing the child.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+            return (host as IContainerBaseStrandChildrenHost).$removeElement(c);
+        }
+        
 		/**
-		 * @royaleignorecoercion org.apache.royale.html.Panel
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		public function get somethingelse():WrappedHTMLElement
 		{
-			return (host as Panel).element;
+			return (host as UIBase).element;
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.royale.html.Panel
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		public function get element():WrappedHTMLElement
 		{
-			return (host as Panel).element;
+			return (host as UIBase).element;
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.royale.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  The display style is used for both visible
 		 *  and layout so is managed as a special case.
 		 *  
@@ -152,7 +222,7 @@ package org.apache.royale.html.supportClasses
 		COMPILE::JS
 		public function setDisplayStyleForLayout(value:String):void
 		{
-			(host as Panel).setDisplayStyleForLayout(value);
+			(host as UIBase).setDisplayStyleForLayout(value);
 		}
 
 	}

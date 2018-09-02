@@ -118,7 +118,7 @@ package mx.containers
  */
 public class GridItem extends HBox
 {
-    include "../core/Version.as";
+//    include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //

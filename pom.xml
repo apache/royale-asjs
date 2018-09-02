@@ -211,6 +211,8 @@
             <exclude>**/.idea/**</exclude>
             <!-- SASS cc.map generated files by sass-maven-plugin-->
             <exclude>**/*.css.map</exclude>
+            <!-- swfobject.js is MIT License-->
+            <exclude>**/swfobject.js</exclude>
             <!--
                 Exclude any eventually existing content of target directories.
                 Some times when building with a bigger maven reactor and then

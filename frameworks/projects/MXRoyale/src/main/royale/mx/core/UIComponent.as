@@ -43,11 +43,18 @@ import flash.events.IEventDispatcher;
 */
 
 import mx.controls.beads.ToolTipBead;
+import mx.display.Graphics;
 import mx.events.FlexEvent;
+import mx.events.MoveEvent;
+import mx.events.PropertyChangeEvent;
+import mx.events.ResizeEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
+import mx.styles.IStyleManager2;
+import mx.styles.StyleManager;
+import mx.charts.chartClasses.IAxis;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
@@ -61,37 +68,11 @@ import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
+import org.apache.royale.html.beads.DisableBead;
+import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
-
-/*
-import mx.managers.IToolTipManagerClient;
-import mx.managers.SystemManager;
-import mx.managers.SystemManagerGlobals;
-import mx.managers.ToolTipManager;
-import mx.resources.IResourceManager;
-import mx.resources.ResourceManager;
-import mx.states.State;
-import mx.states.Transition;
-import mx.styles.CSSStyleDeclaration;
-import mx.styles.IAdvancedStyleClient;
-import mx.styles.ISimpleStyleClient;
-import mx.styles.IStyleClient;
-import mx.styles.IStyleManager2;
-import mx.styles.StyleManager;
-import mx.styles.StyleProtoChain;
-import mx.utils.ColorUtil;
-import mx.utils.GraphicsUtil;
-import mx.utils.MatrixUtil;
-import mx.utils.NameUtil;
-import mx.utils.StringUtil;
-import mx.utils.TransformUtil;
-import mx.validators.IValidatorListener;
-import mx.validators.ValidationResult;
-    
-use namespace mx_internal;
-*/
 
 /**
  *  Dispatched when the component has finished its construction
@@ -109,10 +90,255 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 [Event(name="initialize", type="mx.events.FlexEvent")]
+/**
+ *  Dispatched when the component has finished its construction,
+ *  property processing, measuring, layout, and drawing.
+ *
+ *  <p>At this point, depending on its <code>visible</code> property,
+ *  the component is not visible even though it has been drawn.</p>
+ *
+ *  @eventType mx.events.FlexEvent.CREATION_COMPLETE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="creationComplete", type="mx.events.FlexEvent")]
 
+/**
+ *  Dispatched when an object has had its <code>commitProperties()</code>,
+ *  <code>measure()</code>, and
+ *  <code>updateDisplayList()</code> methods called (if needed).
+ *
+ *  <p>This is the last opportunity to alter the component before it is
+ *  displayed. All properties have been committed and the component has
+ *  been measured and layed out.</p>
+ *
+ *  <p>This event is only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ * 
+ *  @eventType mx.events.FlexEvent.UPDATE_COMPLETE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="updateComplete", type="mx.events.FlexEvent")]
+
+
+/**
+ *  Dispatched when values are changed programmatically
+ *  or by user interaction.
+ *
+ *  <p>Because a programmatic change triggers this event, make sure
+ *  that any <code>valueCommit</code> event handler does not change
+ *  a value that causes another <code>valueCommit</code> event.
+ *  For example, do not change a control's <code>dataProvider</code>
+ *  property in a <code>valueCommit</code> event handler. </p>
+ *
+ *  @eventType mx.events.FlexEvent.VALUE_COMMIT
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="valueCommit", type="mx.events.FlexEvent")]
+
+
+
+[Event(name="focusOut", type="mx.events.FocusEvent")]
+
+[Event(name="change", type="org.apache.royale.events.Event")]
+
+//--------------------------------------
+//  Drag-and-drop events
+//--------------------------------------
+
+/**
+ *  Dispatched by a component when the user moves the mouse over the component
+ *  during a drag operation.
+ *  In an application running in Flash Player,
+ *  the event is dispatched many times when you move the mouse over any component.
+ *  In an application running in AIR, the event is dispatched only once.
+ *
+ *  <p>In order to be a valid drop target, you must define a handler
+ *  for this event.
+ *  In the handler, you can change the appearance of the drop target
+ *  to provide visual feedback to the user that the component can accept
+ *  the drag.
+ *  For example, you could draw a border around the drop target,
+ *  or give focus to the drop target.</p>
+ *
+ *  <p>If you want to accept the drag, you must call the
+ *  <code>DragManager.acceptDragDrop()</code> method. If you don't
+ *  call <code>acceptDragDrop()</code>, you do not get any of the
+ *  other drag events.</p>
+ *
+ *  <p>In Flash Player, the value of the <code>action</code> property is always
+ *  <code>DragManager.MOVE</code>, even if you are doing a copy.
+ *  This is because the <code>dragEnter</code> event occurs before
+ *  the control recognizes that the Control key is pressed to signal a copy.
+ *  The <code>action</code> property of the event object for the
+ *  <code>dragOver</code> event does contain a value that signifies the type of
+ *  drag operation. You can change the type of drag action by calling the
+ *  <code>DragManager.showFeedback()</code> method.</p>
+ *
+ *  <p>In AIR, the default value of the <code>action</code> property is
+ *  <code>DragManager.COPY</code>.</p>
+ *
+ *  <p>Because of the way data to a Tree control is structured,
+ *  the Tree control handles drag and drop differently from the other list-based controls.
+ *  For the Tree control, the event handler for the <code>dragDrop</code> event
+ *  only performs an action when you move or copy data in the same Tree control,
+ *  or copy data to another Tree control.
+ *  If you drag data from one Tree control and drop it onto another Tree control
+ *  to move the data, the event handler for the <code>dragComplete</code> event
+ *  actually performs the work to add the data to the destination Tree control,
+ *  rather than the event handler for the dragDrop event,
+ *  and also removes the data from the source Tree control.
+ *  This is necessary because to reparent the data being moved,
+ *  Flex must remove it first from the source Tree control.</p>
+ *
+ *  @see mx.managers.DragManager
+ *
+ *  @eventType mx.events.DragEvent.DRAG_ENTER
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragEnter", type="mx.events.DragEvent")]
+/**
+ *  Dispatched by the drop target when the user releases the mouse over it.
+ *
+ *  <p>You use this event handler to add the drag data to the drop target.</p>
+ *
+ *  <p>If you call <code>Event.preventDefault()</code> in the event handler
+ *  for the <code>dragDrop</code> event for
+ *  a Tree control when dragging data from one Tree control to another,
+ *  it prevents the drop.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_DROP
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragDrop", type="mx.events.DragEvent")]
+
+/**
+ *  Dispatched when the component is resized.
+ *
+ *  <p>You can resize the component by setting the <code>width</code> or
+ *  <code>height</code> property, by calling the <code>setActualSize()</code>
+ *  method, or by setting one of
+ *  the following properties either on the component or on other components
+ *  such that the LayoutManager needs to change the <code>width</code> or
+ *  <code>height</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>The <code>resize</code> event is not
+ *  dispatched until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.ResizeEvent.RESIZE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="resize", type="mx.events.ResizeEvent")]
+
+/**
+ *  Dispatched when the object has moved.
+ *
+ *  <p>You can move the component by setting the <code>x</code>
+ *  or <code>y</code> properties, by calling the <code>move()</code>
+ *  method, by setting one
+ *  of the following properties either on the component or on other
+ *  components such that the LayoutManager needs to change the
+ *  <code>x</code> or <code>y</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>When you call the <code>move()</code> method, the <code>move</code>
+ *  event is dispatched before the method returns.
+ *  In all other situations, the <code>move</code> event is not dispatched
+ *  until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.MoveEvent.MOVE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="move", type="mx.events.MoveEvent")]
+
+//Events Copied from InteractiveObject
+[Event(name="keyUp", type="mx.events.KeyboardEvent")]
+[Event(name="keyDown", type="mx.events.KeyboardEvent")]
+
+/**
+ *  The main color for a component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Style(name="chromeColor", type="uint", format="Color", inherit="yes", theme="spark")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
+
+
+/**
+ *  Played when the user rolls the mouse over the component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Effect(name="rollOverEffect", event="rollOver")]
+
+/**
+ *  Played when the user rolls the mouse so it is no longer over the component.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Effect(name="rollOutEffect", event="rollOut")]
+
 
 /**
  *  The UIComponent class is the base class for all visual components,
@@ -164,6 +390,8 @@ use namespace mx_internal;
  *    bottom="undefined"
  *
  *  <b>Events</b>
+ *    valueCommit="<i>No default</i>"
+ *  &gt;
  *  </pre>
  *
  *  @see mx.core.UIComponent
@@ -178,7 +406,7 @@ public class UIComponent extends UIBase
     IFlexDisplayObject,
     IInvalidating,
     IStatesObject,
-    IUIComponent, IVisualElement
+    IUIComponent, IVisualElement, IFlexModule
 {
     //--------------------------------------------------------------------------
     //
@@ -260,6 +488,8 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the initialized property.
      */
+     
+ 
     private var _initialized:Boolean = false;
 
     [Inspectable(environment="none")]
@@ -290,7 +520,66 @@ public class UIComponent extends UIBase
             dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
         }
     }
+    
+    private var _VerticalAxis:IAxis;
+    public function get verticalAxis():IAxis
+	 {
+	    return _VerticalAxis;
+	 }
+    public function set verticalAxis(value:IAxis):void
+	 {
+	    _VerticalAxis = value;
+	 }
+    private var _horizontalAxis:IAxis;
+    public function get horizontalAxis():IAxis
+	 {
+	    return _horizontalAxis;
+	 }
+    public function set horizontalAxis(value:IAxis):void
+	 {
+	    _horizontalAxis = value;
+	 }
 
+	//----------------------------------
+    //  graphics copied from Sprite
+    //----------------------------------
+		private var _graphics:Graphics;
+
+	COMPILE::JS
+	{
+		public function get graphics():Graphics
+		{
+			return _graphics;
+		} 
+	}
+	
+    	COMPILE::JS{
+	private var _mask:UIComponent;
+		 public function set mask(value:UIComponent):void
+		{
+			
+		}
+		
+		 public function get mask():UIComponent
+		{
+			return _mask
+		}
+	 
+	 }
+
+	COMPILE::JS{
+	 private var _rotation:Number;
+	 
+	 	public function get rotation():Number
+	 	{
+	    		return _rotation;
+	 	}
+     		public function set rotation(value:Number):void
+		{
+	   		_rotation = value;
+		}
+	}
+	
     //----------------------------------
     //  name
     //----------------------------------
@@ -380,6 +669,43 @@ public class UIComponent extends UIBase
      */
     private var oldExplicitHeight:Number;
 
+    //----------------------------------
+    //  baselinePosition
+    //----------------------------------
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get baselinePosition():Number
+    {
+        /*
+        if (!validateBaselinePosition())
+            return NaN;
+        
+        // Unless the height is very small, the baselinePosition
+        // of a generic UIComponent is calculated as if there was
+        // a UITextField using the component's styles
+        // whose top coincides with the component's top.
+        // If the height is small, the baselinePosition is calculated
+        // as if there were text within whose ascent the component
+        // is vertically centered.
+        // At the crossover height, these two calculations
+        // produce the same result.
+        
+        var lineMetrics:TextLineMetrics = measureText("Wj");
+        
+        if (height < 2 + lineMetrics.ascent + 2)
+            return int(height + (lineMetrics.ascent - height) / 2);
+        
+        return 2 + lineMetrics.ascent;*/
+        return 0;
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Variables: Styles
@@ -392,6 +718,182 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
 
+    //------------------------------------------------------------------------
+    //
+    //  Properties: Accessibility
+    //
+    //------------------------------------------------------------------------
+    
+    /**
+     *  A convenience accessor for the <code>silent</code> property
+     *  in this UIComponent's <code>accessibilityProperties</code> object.
+     *
+     *  <p>Note that <code>accessibilityEnabled</code> has the opposite sense from silent;
+     *  <code>accessibilityEnabled</code> is <code>true</code> 
+     *  when <code>silent</code> is <code>false</code>.</p>
+     *
+     *  <p>The getter simply returns <code>accessibilityProperties.silent</code>,
+     *  or <code>true</code> if <code>accessibilityProperties</code> is null.
+     *  The setter first checks whether <code>accessibilityProperties</code> is null, 
+     *  and if it is, sets it to a new AccessibilityProperties instance.
+     *  Then it sets <code>accessibilityProperties.silent</code>.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get accessibilityEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+        return false;
+    }
+    
+    public function set accessibilityEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("accessibilityEnabled not implemented");
+    }
+    
+    /**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get useHandCursor():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set useHandCursor(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("useHandCursor not implemented");
+    }
+	
+	 /**
+     *  From flash.display.InteractiveObject
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::JS
+    public function get mouseEnabled():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+        return false;
+    }
+    
+    COMPILE::JS
+    public function set mouseEnabled(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseEnabled not implemented");
+    }
+	
+	 /**
+     *  From flash.display.DisplayObjectContainer
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::JS
+    public function get mouseChildren():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+        return false;
+    }
+    
+    COMPILE::JS
+    public function set mouseChildren(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("mouseChildren not implemented");
+    }
+	
+	
+	/**
+     *  From flash.display.Sprite
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    { override }
+    public function get buttonMode():Boolean
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+        return false;
+    }
+    
+    COMPILE::SWF
+    { override }
+    public function set buttonMode(value:Boolean):void
+    {
+        if (GOOG::DEBUG)
+            trace("buttonMode not implemented");
+    }
+    
+    [Bindable("errorStringChanged")]
+    
+    /**
+     *  The text that displayed by a component's error tip when a
+     *  component is monitored by a Validator and validation fails.
+     *
+     *  <p>You can use the <code>errorString</code> property to show a
+     *  validation error for a component, without actually using a validator class.
+     *  When you write a String value to the <code>errorString</code> property,
+     *  Flex draws a red border around the component to indicate the validation error,
+     *  and the String appears in a tooltip as the validation error message when you move
+     *  the mouse over the component, just as if a validator detected a validation error.</p>
+     *
+     *  <p>To clear the validation error, write an empty String, "",
+     *  to the <code>errorString</code> property.</p>
+     *
+     *  <p>Note that writing a value to the <code>errorString</code> property
+     *  does not trigger the valid or invalid events; it only changes the border
+     *  color and displays the validation error message.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get errorString():String
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+        return "";
+    }
+    
+    /**
+     *  @private
+     */
+    public function set errorString(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("errorString not implemented");
+    }
+    
     //----------------------------------
     //  owner
     //----------------------------------
@@ -486,9 +988,6 @@ public class UIComponent extends UIBase
      */
     public function get enabled():Boolean
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("enabled not implemented");
         return _enabled;
     }
 
@@ -497,10 +996,13 @@ public class UIComponent extends UIBase
      */
     public function set enabled(value:Boolean):void
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("enabled not implemented");
         _enabled = value;
+        if (_disableBead == null) {
+		_disableBead = new DisableBead();
+		addBead(_disableBead);
+		addBead(new DisabledAlphaBead());
+	}
+	_disableBead.disabled = !_enabled;
     }
 
     //----------------------------------
@@ -613,7 +1115,26 @@ public class UIComponent extends UIBase
             dispatchEvent(new Event("hasFocusableChildrenChange"));
         }
     }
+	
+	//----------------------------------
+    //  tabEnabled
+    //----------------------------------
+    private var _tabEnabled:Boolean = true;
+	COMPILE::JS
+	{
+	 public function get tabEnabled():Boolean
+    {
+        return _tabEnabled;
+    }
     
+    /**
+     *  @private
+     */
+    public function set tabEnabled(value:Boolean):void
+    {
+       _tabEnabled = value;
+    }
+	}
     //----------------------------------
     //  tabFocusEnabled
     //----------------------------------
@@ -831,6 +1352,31 @@ public class UIComponent extends UIBase
     }
     
     //----------------------------------
+    //  styleManager
+    //----------------------------------
+    
+    /**
+     *  @private
+     */
+    private var _styleManager:IStyleManager2;
+    
+    /**
+     *  Returns the StyleManager instance used by this component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get styleManager():IStyleManager2
+    {
+        if (!_styleManager)
+            _styleManager = StyleManager.getStyleManager(moduleFactory);
+        
+        return _styleManager;
+    }
+    
+    //----------------------------------
     //  systemManager
     //----------------------------------
 
@@ -869,6 +1415,89 @@ public class UIComponent extends UIBase
         if (GOOG::DEBUG)
             trace("systemManager not implemented");
         _systemManager = value;
+    }
+    
+COMPILE::JS
+{
+    public function get stage():Object
+    {
+        // TODO
+        if (GOOG::DEBUG)
+            trace("stage not implemented");
+        return null;
+    }
+}
+    //--------------------------------------------------------------------------
+    //
+    //  Properties: Modules
+    //
+    //--------------------------------------------------------------------------
+    
+    //----------------------------------
+    //  moduleFactory
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the moduleFactory property.
+     */
+    private var _moduleFactory:IFlexModuleFactory;
+    
+    [Inspectable(environment="none")]
+    
+    /**
+     *  A module factory is used as context for using embedded fonts and for
+     *  finding the style manager that controls the styles for this 
+     *  component. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get moduleFactory():IFlexModuleFactory
+    {
+        return _moduleFactory;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set moduleFactory(factory:IFlexModuleFactory):void
+    {
+        //_styleManager = null;
+        
+        var n:int = numChildren;
+        for (var i:int = 0; i < n; i++)
+        {
+            var child:IFlexModule = getChildAt(i) as IFlexModule;
+            if (!child)
+                continue;
+            
+            if (child.moduleFactory == null || child.moduleFactory == _moduleFactory)
+            {
+                child.moduleFactory = factory;
+            }
+        }
+        /*
+        if (advanceStyleClientChildren != null)
+        {
+            for (var styleClient:Object in advanceStyleClientChildren)
+            {
+                var iAdvanceStyleClientChild:IFlexModule = styleClient
+                    as IFlexModule;
+                
+                if (iAdvanceStyleClientChild && 
+                    (iAdvanceStyleClientChild.moduleFactory == null 
+                        || iAdvanceStyleClientChild.moduleFactory == _moduleFactory))
+                {
+                    iAdvanceStyleClientChild.moduleFactory = factory;
+                }
+            }
+        }*/
+        _moduleFactory = factory;
+        
+        //setDeferredStyles();
     }
 
     //--------------------------------------------------------------------------
@@ -947,6 +1576,14 @@ public class UIComponent extends UIBase
     
     override public function addedToParent():void
     {
+        COMPILE::JS
+        {
+            // Flex layouts don't use percentages the way the browser
+            // does, so we have to absolute position everything.  Before
+            // layout runs, we want to establish the parent as the
+            // offsetParent.  Other code may set position="absolute" later.
+            element.style.position = "relative";
+        }
         super.addedToParent();
         
         if (!initialized)
@@ -1157,7 +1794,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the measuredWidth property.
      */
-    private var _measuredWidth:Number = Number.NaN;
+    protected var _measuredWidth:Number = Number.NaN;
 
     [Inspectable(environment="none")]
 
@@ -1173,11 +1810,34 @@ public class UIComponent extends UIBase
     public function get measuredWidth():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredWidth)) return width;
+			if (isNaN(_measuredWidth))
+            {
+                measure();
+                if (isNaN(_measuredWidth))
+                    return width;
+            }
 		}
 		COMPILE::JS {
-			if (isNaN(_measuredWidth)) {
-				return this.positioner.offsetWidth;
+			if (isNaN(_measuredWidth)) 
+            {
+                var oldWidth:Object;
+                oldWidth = this.positioner.style.width;
+                if (oldWidth.length)
+                    this.positioner.style.width = "";
+                var mw:Number = this.positioner.offsetWidth;
+                if (mw == 0 && numChildren > 0)
+                {
+                    // if children are aboslute positioned, offsetWidth can be 0 in Safari
+                    for (var i:int = 0; i < numChildren; i++)
+                    {
+                        var child:IUIComponent = getChildAt(i);
+                        if (child) // child is null for TextNodes
+                            mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
+                    }
+                }
+                if (oldWidth.length)
+                    this.positioner.style.width = oldWidth;
+                return mw;
 			}
 		}
         return _measuredWidth;
@@ -1199,7 +1859,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the measuredHeight property.
      */
-    private var _measuredHeight:Number = Number.NaN;
+    protected var _measuredHeight:Number = Number.NaN;
 
     [Inspectable(environment="none")]
 
@@ -1215,12 +1875,34 @@ public class UIComponent extends UIBase
     public function get measuredHeight():Number
     {
 		COMPILE::SWF {
-			if (isNaN(_measuredHeight)) return height;
+			if (isNaN(_measuredHeight))
+            {
+                measure();
+                if (isNaN(_measuredHeight))
+                    return height;
+            }
 		}
 		COMPILE::JS {
-			if (isNaN(_measuredHeight)) {
-				return this.positioner.offsetHeight;
-			}
+            if (isNaN(_measuredHeight))
+            {
+                var oldHeight:Object;
+        		oldHeight = this.positioner.style.height;
+                if (oldHeight.length)
+                    this.positioner.style.height = "";
+                var mh:Number = this.positioner.offsetHeight;
+                if (mh == 0 && numChildren > 0)
+                {
+                    for (var i:int = 0; i < numChildren; i++)
+                    {
+                        var child:IUIComponent = getChildAt(i);
+                        if (child)
+                            mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
+                    }
+                }
+                if (oldHeight.length)
+                    this.positioner.style.height = oldHeight;
+                return mh;
+            }
 		}
         return _measuredHeight;
     }
@@ -1242,12 +1924,6 @@ public class UIComponent extends UIBase
     //----------------------------------
     //  percentWidth
     //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the percentWidth property.
-     */
-    private var _percentWidth:Number;
 
     [Bindable("resize")]
     [Inspectable(environment="none")]
@@ -1276,7 +1952,7 @@ public class UIComponent extends UIBase
      */
     override public function get percentWidth():Number
     {
-        return _percentWidth;
+        return super.percentWidth;
     }
 
     /**
@@ -1284,26 +1960,14 @@ public class UIComponent extends UIBase
      */
     override public function set percentWidth(value:Number):void
     {
-        if (_percentWidth == value)
-            return;
-
-        if (!isNaN(value))
-            _explicitWidth = NaN;
-
-        _percentWidth = value;
-
+        super.percentWidth = value;
+        
          invalidateParentSizeAndDisplayList();
     }
 
     //----------------------------------
     //  percentHeight
     //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the percentHeight property.
-     */
-    private var _percentHeight:Number;
 
     [Bindable("resize")]
     [Inspectable(environment="none")]
@@ -1332,7 +1996,7 @@ public class UIComponent extends UIBase
      */
     override public function get percentHeight():Number
     {
-        return _percentHeight;
+        return super.percentHeight;
     }
 
     /**
@@ -1340,13 +2004,7 @@ public class UIComponent extends UIBase
      */
     override public function set percentHeight(value:Number):void
     {
-        if (_percentHeight == value)
-            return;
-
-        if (!isNaN(value))
-            _explicitHeight = NaN;
-
-        _percentHeight = value;
+        super.percentHeight = value;
 
         invalidateParentSizeAndDisplayList();
     }
@@ -1596,7 +2254,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the minWidth property.
      */
-    private var _explicitMinWidth:Number;
+    protected var _explicitMinWidth:Number;
 
     [Bindable("explicitMinWidthChanged")]
     [Inspectable(environment="none")]
@@ -1886,7 +2544,46 @@ public class UIComponent extends UIBase
 		// always 1.0
 	}
 
+    //----------------------------------
+    //  alpha
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for the alpha property.
+     */
+    private var _alpha:Number = 1.0;
+    
+    [Bindable("alphaChanged")]
+    [Inspectable(defaultValue="1.0", category="General", verbose="1", minValue="0.0", maxValue="1.0")]
+
+    /**
+     *  @private
+     */
+    override public function get alpha():Number
+    {
+        // Here we roundtrip alpha in the same manner as the 
+        // player (purposely introducing a rounding error).
+        return int(_alpha * 256.0) / 256.0;
+    }
+    
+    /**
+     *  @private
+     */
+    override public function set alpha(value:Number):void
+    { 
+        if (_alpha != value)
+        {
+            _alpha = value;
+        
+           /*  if (designLayer)
+                value = value * designLayer.effectiveAlpha; 
+            
+            $alpha = value;
+			*/
+            dispatchEvent(new Event("alphaChanged"));
+        }
+    }
     //----------------------------------
     //  includeInLayout
     //----------------------------------
@@ -2100,6 +2797,73 @@ public class UIComponent extends UIBase
     {
         _transitions = value;
     }
+	
+	
+	//----------------------------------
+    //  horizontalScrollPolicy
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the horizontalScrollPolicy property.
+     */
+    private var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
+
+    [Bindable("horizontalScrollPolicyChanged")]
+    [Inspectable(enumeration="off,on,auto", defaultValue="off")]
+
+    /**
+     *  A property that indicates whether the horizontal scroll 
+     *  bar is always on, always off,
+     *  or automatically changes based on the parameters passed to the
+     *  <code>setScrollBarProperties()</code> method.
+     *  Allowed values are <code>ScrollPolicy.ON</code>,
+     *  <code>ScrollPolicy.OFF</code>, and <code>ScrollPolicy.AUTO</code>.
+     *  MXML values can be <code>"on"</code>, <code>"off"</code>,
+     *  and <code>"auto"</code>.
+     *
+     *  <p>Setting this property to <code>ScrollPolicy.OFF</code> for ListBase
+     *  subclasses does not affect the <code>horizontalScrollPosition</code>
+     *  property; you can still scroll the contents programmatically.</p>
+     *
+     *  <p>Note that the policy can affect the measured size of the component
+     *  If the policy is <code>ScrollPolicy.AUTO</code> the
+     *  scrollbar is not factored in the measured size.  This is done to
+     *  keep the layout from recalculating when the scrollbar appears.  If you
+     *  know that you will have enough data for scrollbars you should set
+     *  the policy to <code>ScrollPolicy.ON</code>.  If you
+     *  don't know, you may need to set an explicit width or height on
+     *  the component to allow for scrollbars to appear later.</p>
+     *
+     *  @default ScrollPolicy.OFF
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalScrollPolicy():String
+    {
+	 return _horizontalScrollPolicy;
+	     
+	}
+
+    /**
+     *  @private
+     */
+    public function set horizontalScrollPolicy(value:String):void
+    {
+         var newPolicy:String = value.toLowerCase();
+
+        if (_horizontalScrollPolicy != newPolicy)
+        {
+            _horizontalScrollPolicy = newPolicy;
+           // invalidateDisplayList();
+
+           // dispatchEvent(new Event("horizontalScrollPolicyChanged"));
+        } 
+    }
+	
     //--------------------------------------------------------------------------
     //
     //  Properties: Other
@@ -2169,6 +2933,7 @@ public class UIComponent extends UIBase
     private var _toolTip:String;
 	
 	private var _toolTipBead: ToolTipBead;
+	private var _disableBead: DisableBead;
 
     [Bindable("toolTipChanged")]
     [Inspectable(category="General", defaultValue="null")]
@@ -2258,7 +3023,9 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function addChild(child:IUIComponent):IUIComponent
     {
         return addElement(child) as IUIComponent;
@@ -2268,7 +3035,9 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
@@ -2279,31 +3048,38 @@ public class UIComponent extends UIBase
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function removeChild(child:IUIComponent):IUIComponent
     {
         return removeElement(child) as IUIComponent;
     }
 
-    
+    COMPILE::JS
+	public function swapChildren(child1:IUIComponent, child2:IUIComponent):void
+	{
+	
+	}
     /**
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function removeChildAt(index:int):IUIComponent
     {
-        if (GOOG::DEBUG)
-            trace("removeChildAt not implemented");
-        
-        return null;
+        return removeElement(getElementAt(index)) as IUIComponent;
     }
 
     /**
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function getChildAt(index:int):IUIComponent
     {
         return getElementAt(index) as IUIComponent;
@@ -2322,7 +3098,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    COMPILE::SWF 
+    { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
         if (GOOG::DEBUG)
@@ -2332,7 +3110,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    COMPILE::SWF 
+    { override }
     public function getChildIndex(child:IUIComponent):int
     {
         return getElementIndex(child);
@@ -2341,7 +3121,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
     public function getChildByName(name:String):IUIComponent
     {
         if (GOOG::DEBUG)
@@ -2352,7 +3134,9 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    COMPILE::SWF 
+    { override }
     public function contains(child:IUIComponent):Boolean
     {
         if (GOOG::DEBUG)
@@ -2905,8 +3689,16 @@ public class UIComponent extends UIBase
     {
         measuredMinWidth = 0;
         measuredMinHeight = 0;
-        measuredWidth = 0;
-        measuredHeight = 0;
+        COMPILE::JS
+        {
+            measuredWidth = 0;
+            measuredHeight = 0;
+        }
+        COMPILE::SWF
+        {
+            measuredWidth = $width;
+            measuredHeight = $height;            
+        }
     }
 
 
@@ -3239,10 +4031,218 @@ public class UIComponent extends UIBase
         if (GOOG::DEBUG)
             trace("bottom not implemented");
     }
+	[Inspectable(category="General")]
+
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>horizontalCenter.s2="&#64;Clear()"</code> unsets the 
+     *  <code>horizontalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.horizontalCenter = undefined</code> unsets the 
+     *  <code>horizontalCenter</code> constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalCenter():Object
+    {
+        return 0;
+    }
+    public function set horizontalCenter(value:Object):void
+    {
+         if (GOOG::DEBUG)
+            trace("horizontalCenter not implemented");
+    }
 
     [Inspectable(category="General")]
 
+    /**
+     *  <p>For components, this layout constraint property is a
+     *  facade on top of the similarly-named style. To set
+     *  the property to its default value of <code>undefined</code>,
+     *  use the &#64;Clear() directive in MXML or the <code>undefined</code>
+     *  value in ActionScript code. For example, in MXML code,
+     *  <code>verticalCenter.s2="&#64;Clear()"</code> unsets the <code>verticalCenter</code>
+     *  constraint in state s2. Or in ActionScript code, 
+     *  <code>button.verticalCenter = undefined</code> unsets the <code>verticalCenter</code>
+     *  constraint on <code>button</code>.</p>
+     *  
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalCenter():Object
+    {
+        return 0;
+    }
+    public function set verticalCenter(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalCenter not implemented");
+    }
+	
+    [Inspectable(category="General")]
 
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontWeight():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "fontWeight");
+    }
+    public function set fontWeight(value:Object):void
+    {
+        setStyle("fontWeight", value);
+    }
+    
+	[Inspectable(category="General")]
+
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get cornerRadius():Object
+    {
+        if (GOOG::DEBUG)
+            trace("cornerRadius not implemented");
+        return 0;
+    }
+    public function set cornerRadius(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("cornerRadius not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontFamily():Object
+    {
+        if (GOOG::DEBUG)
+            trace("fontFamily not implemented");
+        return 0;
+    }
+    public function set fontFamily(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("fontFamily not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get uid():Object
+    {
+        if (GOOG::DEBUG)
+            trace("uid not implemented");
+        return 0;
+    }
+    public function set uid(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("uid not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get fontSize():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "fontSize");
+    }
+    public function set fontSize(value:Object):void
+    {
+        setStyle("fontSize", value);
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get textAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+        return 0;
+    }
+    public function set textAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("textAlign not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get color():Object
+    {
+        if (GOOG::DEBUG)
+            trace("color not implemented");
+        return 0;
+    }
+    public function set color(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("color not implemented");
+    }
+	[Inspectable(category="General")]
+
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectedField():Object
+    {
+        if (GOOG::DEBUG)
+            trace("selectedField not implemented");
+        return 0;
+    }
+    public function set selectedField(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("selectedField not implemented");
+    }
+	[Inspectable(category="General")]
+
+	
     //--------------------------------------------------------------------------
     //
     //  Methods: Moving and sizing
@@ -3331,7 +4331,23 @@ public class UIComponent extends UIBase
         }
     }
 
-
+	/**
+     *  Deletes a style property from this component instance.
+     *
+     *  <p>This does not necessarily cause the <code>getStyle()</code> method
+     *  to return <code>undefined</code>.</p>
+     *
+     *  @param styleProp The name of the style property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function clearStyle(styleProp:String):void
+    {
+        setStyle(styleProp, undefined);
+    }
     [Bindable(style="true")]
     /**
      *  Gets a style property that has been set anywhere in this
@@ -3379,7 +4395,7 @@ public class UIComponent extends UIBase
 //            trace("getStyle not implemented");
 //        return 0;
 		var value:* = ValuesManager.valuesImpl.getValue(this,styleProp);
-		if (!value) value = 0;
+//		if (!value) value = 0;
 		return value;
     }
 
@@ -3402,8 +4418,14 @@ public class UIComponent extends UIBase
      */
     public function setStyle(styleProp:String, newValue:*):void
     {
-        if (GOOG::DEBUG)
-            trace("setStyle not implemented");
+        if (!style)
+            style = new FlexCSSStyles();
+        style[styleProp] = newValue;
+        COMPILE::JS
+        {
+        if (initialized)
+            ValuesManager.valuesImpl.applyStyles(this, style);
+        }
     }
 
 
@@ -3471,6 +4493,254 @@ public class UIComponent extends UIBase
         if (GOOG::DEBUG)
             trace("owns not implemented");
         return true;
+    }
+    
+    /**
+     *  Same as visible setter but does not dispatch events
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function setVisible(value:Boolean):void
+    {
+        COMPILE::JS
+        {
+        var oldValue:Boolean = positioner.style.display !== 'none';
+        if (value !== oldValue) 
+        {
+            if (!value) 
+            {
+                displayStyleForLayout = positioner.style.display;
+                positioner.style.display = 'none';
+            } 
+            else 
+            {
+                if (displayStyleForLayout != null)
+                    positioner.style.display = displayStyleForLayout;
+            }
+        }
+        }
+        COMPILE::SWF
+        {
+            super.visible = value;
+        }
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  ILayoutElement
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getPreferredBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getPreferredBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getPreferredBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getPreferredBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMinBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMinBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMinBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMinBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMaxBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMaxBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getMaxBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getMaxBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getBoundsXAtSize(width:Number, height:Number, postLayoutTransform:Boolean = true):Number
+    {
+        return LayoutElementUIComponentUtils.getBoundsXAtSize(this, width, height/*,
+            postLayoutTransform ? nonDeltaLayoutMatrix() : null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getBoundsYAtSize(width:Number, height:Number, postLayoutTransform:Boolean = true):Number
+    {
+        return LayoutElementUIComponentUtils.getBoundsYAtSize(this, width, height/*,
+            postLayoutTransform ? nonDeltaLayoutMatrix() : null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsWidth(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsWidth(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsHeight(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsHeight(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsX(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsX(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function getLayoutBoundsY(postLayoutTransform:Boolean=true):Number
+    {
+        return LayoutElementUIComponentUtils.getLayoutBoundsY(this/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function setLayoutBoundsPosition(x:Number, y:Number, postLayoutTransform:Boolean=true):void
+    {
+        LayoutElementUIComponentUtils.setLayoutBoundsPosition(this,x,y/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function setLayoutBoundsSize(width:Number,
+                                        height:Number,
+                                        postLayoutTransform:Boolean = true):void
+    {
+        LayoutElementUIComponentUtils.setLayoutBoundsSize(this,width,height/*,postLayoutTransform? nonDeltaLayoutMatrix():null*/);
+    }
+
+    /** 
+     *  Helper method for dispatching a PropertyChangeEvent
+     *  when a property is updated.
+     * 
+     *  @param prop Name of the property that changed.
+     *
+     *  @param oldValue Old value of the property.
+     *
+     *  @param value New value of the property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function dispatchPropertyChangeEvent(prop:String, oldValue:*,
+                                                   value:*):void
+    {
+        if (hasEventListener("propertyChange"))
+            dispatchEvent(PropertyChangeEvent.createUpdateEvent(
+                this, prop, oldValue, value));
     }
 
 }
@@ -3547,4 +4817,6 @@ class MethodQueueElement
      *  @royalesuppresspublicvarwarning
      */
     public var args:Array /* of Object */;
+	
+	
 }

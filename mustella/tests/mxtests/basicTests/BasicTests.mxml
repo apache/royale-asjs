@@ -17,7 +17,6 @@
   limitations under the License.
 
 xmlns:s="library://ns.adobe.com/flex/spark"
-xmlns:sparkviews="spark.views.*"
 xmlns:graphicsviews="graphics.views.*"
 xmlns:fxgviews="fxg.views.*"
 xmlns:dmvviews="dmv.views.*"
@@ -26,6 +25,7 @@ preloader="BasicTestsPreloader"
 <mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:mx="library://ns.apache.org/royale/mx"
     xmlns:haloviews="halo.views.*"
+    xmlns:sparkviews="spark.views.*"
     height="800" width="1000"
     paddingTop="8" verticalGap="0"
     >
@@ -42,14 +42,18 @@ preloader="BasicTestsPreloader"
         <mx:State name="haloTextInputTest" />
         <mx:State name="haloTextAreaTest" />
         <mx:State name="haloComboBoxTest" />
+        <mx:State name="haloListAndDataGridTest" />
         <!--
         <mx:State name="haloColorPickerTest" />
+        -->
         <mx:State name="haloNumericStepperTest" />
         <mx:State name="haloDateFieldTest" />
+        <!--
         <mx:State name="haloMenuTest" />
+        -->
         <mx:State name="haloMenuBarTest" />
+        <!--
         <mx:State name="haloFocusManagerTest" />
-        <mx:State name="haloListAndDataGridTest" />
         <mx:State name="haloTreeTest" />
         <mx:State name="haloImageTest" />
         <mx:State name="haloSWFLoaderTest" />
@@ -67,7 +71,9 @@ preloader="BasicTestsPreloader"
         <mx:State name="dmvChartsTest" />        
         <mx:State name="sparkListDragDropTest" />
         <mx:State name="sparkBorderContainerTest" />
+        -->
         <mx:State name="sparkButtonTest" />
+        <!--
         <mx:State name="sparkCheckBoxTest" />
         <mx:State name="sparkAnimateConstraintsTest" />
         <mx:State name="sparkEasingTest" />
@@ -116,14 +122,18 @@ preloader="BasicTestsPreloader"
     <haloviews:TextInputTests id="haloTextInputTests" includeIn="haloTextInputTest" />    
     <haloviews:TextAreaTests id="haloTextAreaTests" includeIn="haloTextAreaTest" />    
     <haloviews:ComboBoxTests id="haloComboBoxTests" includeIn="haloComboBoxTest" />    
+    <haloviews:ListAndDataGridTests id="haloListAndDataGridTests" includeIn="haloListAndDataGridTest" />    
     <!--
     <haloviews:ColorPickerTests id="haloColorPickerTests" includeIn="haloColorPickerTest" />    
+    -->
     <haloviews:NumericStepperTests id="haloNumericStepperTests" includeIn="haloNumericStepperTest" />    
     <haloviews:DateFieldTests id="haloDateFieldTests" includeIn="haloDateFieldTest" />    
+    <!--
     <haloviews:MenuTests id="haloMenuTests" includeIn="haloMenuTest" />    
+    -->
     <haloviews:MenuBarTests id="haloMenuBarTests" includeIn="haloMenuBarTest" />    
+    <!--
     <haloviews:FocusManagerTests id="haloFocusManagerTests" includeIn="haloFocusManagerTest" />    
-    <haloviews:ListAndDataGridTests id="haloListAndDataGridTests" includeIn="haloListAndDataGridTest" />    
     <haloviews:TreeTests id="haloTreeTests" includeIn="haloTreeTest" />    
     <haloviews:ImageTests id="haloImageTests" includeIn="haloImageTest" />    
     <haloviews:SWFLoaderTests id="haloSWFLoaderTests" includeIn="haloSWFLoaderTest" />    
@@ -139,7 +149,9 @@ preloader="BasicTestsPreloader"
     <sparkviews:ListDragDropTests id="sparkListDragDropTests" includeIn="sparkListDragDropTest" />
     <haloviews:MXItemRendererTests id="mxItemRendererTests" includeIn="mxItemRendererTest" /> 
     <sparkviews:BorderContainerTests id="sparkBorderContainerTests" includeIn="sparkBorderContainerTest" />    
+    -->
     <sparkviews:ButtonTests id="sparkButtonTests" includeIn="sparkButtonTest" />    
+    <!--
     <sparkviews:CheckBoxTests id="sparkCheckBoxTests" includeIn="sparkCheckBoxTest" />    
     <sparkviews:EasingTests id="sparkEasingTests" includeIn="sparkEasingTest" />    
     <sparkviews:AnimateConstraintsTests id="sparkAnimateConstraintsTests" includeIn="sparkAnimateConstraintsTest" />    

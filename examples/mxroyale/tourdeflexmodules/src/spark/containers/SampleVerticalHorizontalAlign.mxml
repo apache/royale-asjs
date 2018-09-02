@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<!-- http://evtimmy.com/2010/01/verticalalign-for-vgroup-and-horizontalalign-for-hgroup/ -->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<s:Panel id="mainPanel" title="Panel Sample" width="100%" height="100%">
+
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" />
+		</s:layout>
+			
+		<s:HGroup verticalAlign="middle" height="100%" >
+			<s:Label text="VGroup" rotation="-90" />
+			<s:BorderContainer minWidth="0" minHeight="0">
+				<s:VGroup height="{heightSlider.value}"
+						  verticalAlign="{verticalAlignChoice.selectedItem}"
+						  gap="0">
+					<s:Label text="Lorem ipsum dolor sit amet, " height="22" verticalAlign="middle"/>
+					<s:Label text="consectetur adipiscing elit." height="22" verticalAlign="middle"/>
+				</s:VGroup>
+			</s:BorderContainer>
+			
+			<s:Label text="VGroup in Scroller" rotation="-90" />
+			<s:BorderContainer minWidth="0" minHeight="0">
+				<s:Scroller height="{heightSlider.value}">
+					<s:VGroup verticalAlign="{verticalAlignChoice.selectedItem}"
+							  gap="0">
+						<s:Label text="Lorem ipsum dolor sit amet, " height="22" verticalAlign="middle"/>
+						<s:Label text="consectetur adipiscing elit." height="22" verticalAlign="middle"/>
+					</s:VGroup>
+				</s:Scroller>
+			</s:BorderContainer>
+			
+			<s:Label text="List" rotation="-90" />
+			
+			<s:List minWidth="0" minHeight="0" height="{heightSlider.value+2}">
+				<s:layout>
+					<s:VerticalLayout requestedMinRowCount="0"
+									  verticalAlign="{verticalAlignChoice.selectedItem}"
+									  gap="0"/>
+				</s:layout>
+				<s:ArrayCollection>
+					<fx:String>Lorem ipsum dolor sit amet, </fx:String>
+					<fx:String>consectetur adipiscing elit.</fx:String>					
+				</s:ArrayCollection>
+			</s:List>
+		</s:HGroup>
+
+		<s:HGroup paddingTop="10" paddingLeft="10">
+			<s:HGroup>
+				<s:Label text="VerticalAlign:"/>
+				<s:DropDownList id="verticalAlignChoice" requireSelection="true" color="0x000000">
+					<s:dataProvider>
+						<s:ArrayCollection source="{'top bottom middle'.split(' ')}"/>
+					</s:dataProvider>
+				</s:DropDownList>
+			</s:HGroup>
+			<s:HGroup>
+				<s:Label text="Height:"/>
+				<s:HSlider id="heightSlider" minimum="0" maximum="425" value="100" width="300"/>
+			</s:HGroup>
+		</s:HGroup>	
+			
+		<s:Label text="This sample show the use of the verticalAlign and horizontalAlign properties for use with a VGroup and
+	HGroup accordingly."/>
+		
+	</s:Panel>
+</s:Module>

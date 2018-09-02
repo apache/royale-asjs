@@ -179,14 +179,14 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get rowHeight():Number
-		{
-			return presentationModel.rowHeight;
-		}
-		public function set rowHeight(value:Number):void
-		{
-			presentationModel.rowHeight = value;
-		}
+        public function get rowHeight():Number
+        {
+            return (presentationModel as IListPresentationModel).rowHeight;
+        }
+        public function set rowHeight(value:Number):void
+        {
+            (presentationModel as IListPresentationModel).rowHeight = value;
+        }
 
 		/**
 		 *  The item currently selected. Changing this value also

@@ -1,0 +1,88 @@
+<?xml version="1.0"?> 
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the RegExpValidator. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.events.ValidationResultEvent;
+			import mx.validators.*;
+	
+            // Write the results to the 
+			private function handleResult(eventObj:ValidationResultEvent):void {
+				if (eventObj.type == ValidationResultEvent.VALID)
+				{
+					// For valid events, the results Array contains
+					// RegExpValidationResult objects.
+					var xResult:RegExpValidationResult;
+					reResults.text="";
+					for (var i:uint = 0; i < eventObj.results.length; i++)
+					{
+						xResult = eventObj.results[i];
+						reResults.text=reResults.text + xResult.matchedIndex + " " +
+							xResult.matchedString + "\n";
+					}
+				}
+				else
+				{
+					reResults.text="";			
+				}		
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<mx:RegExpValidator id="regExpV" 
+			source="{regex_text}" property="text" 
+			flags="g" expression="{regex.text}" 
+			valid="handleResult(event)" invalid="handleResult(event)"
+			trigger="{myButton}" triggerEvent="click"/>
+	</fx:Declarations>
+	
+   <mx:Panel title="RegExpValidator Example"	
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+   
+        <mx:Text width="100%" text="Instructions:"/>
+        <mx:Text width="100%" text="1. Enter text to search. By default, enter  a string containing the letters ABC in sequence followed by any digit."/>
+        <mx:Text width="100%" text="2. Enter the regular expression. By default, enter ABC\d."/>
+        <mx:Text width="100%" text="3. Click the Button control to trigger the validation."/>
+        <mx:Text width="100%" text="4. The results show the index in the text where the matching pattern begins, and the matching pattern. "/>
+   
+        <mx:Form>
+            <mx:FormItem label="Enter text: ">
+                <mx:TextInput id="regex_text" text="xxxxABC4xxx" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem label="Enter regular expression: ">
+                <mx:TextInput id="regex" text="ABC\d" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem label="Results: ">
+                <mx:TextInput id="reResults" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem >
+                <mx:Button id="myButton" label="Validate"/>
+            </mx:FormItem>
+        </mx:Form>
+	</mx:Panel>
+</mx:Module>

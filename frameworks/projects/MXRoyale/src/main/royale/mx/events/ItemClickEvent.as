@@ -21,6 +21,8 @@ package mx.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
+
 /*
 import flash.display.InteractiveObject;
 import flash.events.Event;
@@ -37,7 +39,7 @@ import flash.events.Event;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.4
  */
 public class ItemClickEvent extends Event
 {
@@ -76,7 +78,7 @@ public class ItemClickEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.4
 	 */
 	public static const ITEM_CLICK:String = "itemClick";
 
@@ -108,7 +110,7 @@ public class ItemClickEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.4
 	 */
 	public function ItemClickEvent(type:String, bubbles:Boolean = false,
 								   cancelable:Boolean = false,
@@ -140,7 +142,8 @@ public class ItemClickEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.4
+	 *  @royalesuppresspublicvarwarning
 	 */
 	public var index:int;
 
@@ -154,7 +157,8 @@ public class ItemClickEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.4
+	 *  @royalesuppresspublicvarwarning
 	 */
 	public var item:Object;
 
@@ -168,7 +172,8 @@ public class ItemClickEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.4
+	 *  @royalesuppresspublicvarwarning
 	 */
 	public var label:String;
 
@@ -183,8 +188,9 @@ public class ItemClickEvent extends Event
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
-	 */
+	 *  @productversion Royale 0.9.4
+	 *  @royalesuppresspublicvarwarning
+	*/
 	public var relatedObject:Object;
 
 	//--------------------------------------------------------------------------
@@ -196,7 +202,7 @@ public class ItemClickEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():IRoyaleEvent
 	{
 		return new ItemClickEvent(type, bubbles, cancelable,
 								  label, index, relatedObject, item);

@@ -90,8 +90,10 @@
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-compiler.define+=GOOG::DEBUG,true" />
+            <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
+            <arg value="-js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent" />
             <arg value="-js-compiler-define+=GOOG::DEBUG,goog.DEBUG" />
             <arg value="-js-compiler-define+=COMPILE::SWF,false" />
             <arg value="-js-compiler-define+=COMPILE::JS,true" />

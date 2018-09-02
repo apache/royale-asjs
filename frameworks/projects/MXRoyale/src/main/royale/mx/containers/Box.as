@@ -149,6 +149,11 @@ public class Box extends Container
     //--------------------------------------------------------------------------
 	
 	private var _layout:BoxLayout;
+    
+    protected function get layoutObject():BoxLayout
+    {
+        return _layout;
+    }
 
     /**
      *  @private
@@ -198,9 +203,35 @@ public class Box extends Container
 		_layout.direction = value;
 		
 		dispatchEvent(new Event("directionChanged"));
-		dispatchEvent(new Event("layoutNeeded"));
+        if (parent != null &&
+            ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth))))
+    		dispatchEvent(new Event("layoutNeeded"));
 
     }
+
+    /**
+     *  horizontalAlign (was a style in Flex)
+     * 
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalAlign():String
+    {
+        if (GOOG::DEBUG)
+            trace("Box:horizontalAlign not implemented");
+        return null;
+    }
+    public function set horizontalAlign(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("Box:horizontalAlign not implemented");
+    }
+    
 
     //--------------------------------------------------------------------------
     //

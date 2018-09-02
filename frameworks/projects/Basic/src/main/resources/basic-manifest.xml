@@ -53,6 +53,7 @@
     <component id="RadioButton" class="org.apache.royale.html.RadioButton"/>
     <component id="ComboBox" class="org.apache.royale.html.ComboBox"/>
     <component id="ComboBoxList" class="org.apache.royale.html.supportClasses.ComboBoxList"/>
+    <component id="Container" class="org.apache.royale.html.Container"/>
     <component id="Group" class="org.apache.royale.html.Group"/>
     <component id="HGroup" class="org.apache.royale.html.HGroup"/>
     <component id="VGroup" class="org.apache.royale.html.VGroup"/>
@@ -124,6 +125,9 @@
     <component id="DispatchInputFinishedBead" class="org.apache.royale.html.beads.DispatchInputFinishedBead"/>
     <component id="DispatchKeyboardEventBead" class="org.apache.royale.html.beads.DispatchKeyboardEventBead"/>
     <component id="TreeItemRenderer" class="org.apache.royale.html.supportClasses.TreeItemRenderer"/>
+    <component id="TreeXMLItemRenderer" class="org.apache.royale.html.supportClasses.TreeXMLItemRenderer"/>
+    <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
+    <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.html.supportClasses.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.royale.html.supportClasses.DayNameItemRenderer"/>
     <component id="TextButtonItemRenderer" class="org.apache.royale.html.supportClasses.TextButtonItemRenderer"/>
@@ -200,6 +204,7 @@
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
     <component id="DateChooserHeader" class="org.apache.royale.html.supportClasses.DateChooserHeader" />
     <component id="DateField" class="org.apache.royale.html.DateField"/>
+    <component id="DateFieldDateChooser" class="org.apache.royale.html.supportClasses.DateFieldDateChooser"/>
     <component id="VerticalColumnLayout" class="org.apache.royale.html.beads.layouts.VerticalColumnLayout" />
 
     <component id="ToolTipBead" class="org.apache.royale.html.accessories.ToolTipBead" />

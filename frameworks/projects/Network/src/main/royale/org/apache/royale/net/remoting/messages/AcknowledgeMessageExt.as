@@ -18,14 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net.remoting.messages
 {
+<<<<<<< HEAD
     import org.apache.royale.net.utils.IDataOutput;
     import org.apache.royale.net.utils.IExternalizable;
+=======
+    // import flash.utils.IDataOutput;
+    // import flash.utils.IExternalizable;
+    import org.apache.royale.net.utils.IDataOutput;
+>>>>>>> feature/MXRoyale
 
     [RemoteClass(alias="DSK")]
     /**
      * @private
      */
+<<<<<<< HEAD
     public class AcknowledgeMessageExt extends AcknowledgeMessage implements IExternalizable
+=======
+    public class AcknowledgeMessageExt extends AcknowledgeMessage// implements IExternalizable
+>>>>>>> feature/MXRoyale
     {
         //--------------------------------------------------------------------------
         //

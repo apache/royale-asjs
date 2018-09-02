@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.html.beads.GroupView;
-	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -36,15 +36,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.geom.Size;
-	import org.apache.royale.html.Group;
 	import org.apache.royale.html.Container;
-	import org.apache.royale.html.Panel;
-	import org.apache.royale.html.supportClasses.PanelContent;
-	import org.apache.royale.html.PanelTitleBar;
-	import org.apache.royale.html.TitleBar;
-	import org.apache.royale.utils.CSSUtils;
+	import org.apache.royale.html.Group;
+    import org.apache.royale.html.TitleBar;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy;
+	import org.apache.royale.utils.CSSUtils;
 
 	COMPILE::SWF {
 		import org.apache.royale.core.SimpleCSSStylesWithFlex;
@@ -76,7 +73,7 @@ package org.apache.royale.html.beads
 			super();
 		}
 
-		private var _titleBar:TitleBar;
+		private var _titleBar:UIBase;
 
 		/**
 		 *  The org.apache.royale.html.TitleBar component of the
@@ -87,7 +84,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function get titleBar():TitleBar
+		public function get titleBar():UIBase
 		{
 			return _titleBar;
 		}
@@ -95,12 +92,12 @@ package org.apache.royale.html.beads
         /**
          *  @private
          */
-        public function set titleBar(value:TitleBar):void
+        public function set titleBar(value:UIBase):void
         {
             _titleBar = value;
         }
 
-		private var _contentArea:Container;
+		private var _contentArea:UIBase;
 
 		/**
 		 * The content area of the panel.
@@ -110,16 +107,14 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function get contentArea():Container
+		public function get contentArea():UIBase
 		{
 			return _contentArea;
 		}
-		public function set contentArea(value:Container):void
+		public function set contentArea(value:UIBase):void
 		{
 			_contentArea = value;
 		}
-
-		private var _strand:IStrand;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -132,13 +127,13 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.IBeadLayout
 		 *  @royaleignorecoercion org.apache.royale.core.IChild
 		 *  @royaleignorecoercion org.apache.royale.core.IViewport
-		 *  @royaleignorecoercion org.apache.royale.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 
-            var host:UIBase = UIBase(value);
+            var host:UIBase = value as UIBase;
 
 			// Look for a layout and/or viewport bead on the host's beads list. If one
 			// is found, pull it off so it will not be added permanently
@@ -160,23 +155,10 @@ package org.apache.royale.html.beads
 			}
 
             if (!_titleBar) {
-                _titleBar = new PanelTitleBar();
+                _titleBar = new TitleBar();
 			}
 
-			COMPILE::SWF {
-				_titleBar.percentWidth = 100;
-
-				if (_titleBar.style == null) {
-					_titleBar.style = new SimpleCSSStylesWithFlex();
-				}
-				_titleBar.style.flexGrow = 0;
-				_titleBar.style.order = 1;
-			}
-
-			COMPILE::JS {
-				_titleBar.element.style["flex-grow"] = "0";
-				_titleBar.element.style["order"] = "1";
-			}
+			_titleBar.id = "panelTitleBar";
 
 			_titleBar.addEventListener("close", handleClose);
 
@@ -185,33 +167,24 @@ package org.apache.royale.html.beads
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
 			if (titleBar.parent == null) {
-				(_strand as Panel).$addElement(titleBar);
+				(_strand as IContainerBaseStrandChildrenHost).$addElement(titleBar);
 			}
 
 			if (!_contentArea) {
-				_contentArea = new PanelContent();
+                var cls:Class = ValuesManager.valuesImpl.getValue(_strand, "iPanelContentArea");
+				_contentArea = new cls() as UIBase;
+				_contentArea.id = "panelContent";
+				_contentArea.typeNames = "PanelContent";
 
 				// add the layout bead to the content area.
-				if (transferLayoutBead) _contentArea.addBead(transferLayoutBead);
-
+				if (transferLayoutBead) 
+                    _contentArea.addBead(transferLayoutBead);
+                else
+                    setupContentAreaLayout();
+                
 				// add the viewport bead to the content area.
 				if (transferViewportBead) _contentArea.addBead(transferViewportBead);
 
-				COMPILE::SWF {
-					_contentArea.percentWidth = 100;
-
-					if (_contentArea.style == null) {
-						_contentArea.style = new SimpleCSSStylesWithFlex();
-					}
-					_contentArea.style.flexGrow = 1;
-					_contentArea.style.order = 2;
-				}
-
-				COMPILE::JS {
-					_contentArea.element.style["flex-grow"] = "1";
-					_contentArea.element.style["order"] = "2";
-					_contentArea.element.style["overflow"] = "auto"; // temporary
-				}
 			}
 
 			COMPILE::SWF {
@@ -219,17 +192,59 @@ package org.apache.royale.html.beads
 				IEventDispatcher(value).addEventListener("heightChanged", handleSizeChange);
 				IEventDispatcher(value).addEventListener("sizeChanged", handleSizeChange);
 				IEventDispatcher(value).addEventListener("childrenAdded", handleChildrenAdded);
+                IEventDispatcher(value).addEventListener("initComplete", handleInitComplete);
 			}
 
             super.strand = value;
 
 			if (contentArea.parent == null) {
-				(_strand as Panel).$addElement(contentArea as IChild);
+				(_strand as IContainerBaseStrandChildrenHost).$addElement(contentArea as IChild);
 			}
 
+            setupLayout();
+        }
+        
+        protected function setupContentAreaLayout():void
+        {
+            
+        }
+        
+        protected function setupLayout():void
+        {
+            COMPILE::JS {
+                _titleBar.element.style["flex-grow"] = "0";
+                _titleBar.element.style["order"] = "1";
+            }
+                
+            COMPILE::SWF {
+                _contentArea.percentWidth = 100;
+                
+                if (_contentArea.style == null) {
+                    _contentArea.style = new SimpleCSSStylesWithFlex();
+                }
+                _contentArea.style.flexGrow = 1;
+                _contentArea.style.order = 2;
+            }
+                
+            COMPILE::SWF {
+                _titleBar.percentWidth = 100;
+                
+                if (_titleBar.style == null) {
+                    _titleBar.style = new SimpleCSSStylesWithFlex();
+                }
+                _titleBar.style.flexGrow = 0;
+                _titleBar.style.order = 1;
+            }
+            
+            COMPILE::JS {
+                _contentArea.element.style["flex-grow"] = "1";
+                _contentArea.element.style["order"] = "2";
+                _contentArea.element.style["overflow"] = "auto"; // temporary
+            }
+            
 			// Now give the Panel its own layout
 			var layoutBead:IBeadLayout = new VerticalFlexLayout();
-			value.addBead(layoutBead);
+			_strand.addBead(layoutBead);
 		}
 
 		private var _panelLayoutProxy:PanelLayoutProxy;
@@ -269,11 +284,19 @@ package org.apache.royale.html.beads
 
 			performLayout(event);
 		}
+        
+        private var sawInitComplete:Boolean;
 
 		private function handleChildrenAdded(event:Event):void
 		{
-			_contentArea.dispatchEvent(new Event("layoutNeeded"));
-			performLayout(event);
+            var host:UIBase = _strand as UIBase;
+            if (sawInitComplete || 
+                ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+                    (host.isWidthSizedToContent() || !isNaN(host.explicitWidth))))
+            {
+    			_contentArea.dispatchEvent(new Event("layoutNeeded"));
+	    		performLayout(event);
+            }
 		}
 
 		/**

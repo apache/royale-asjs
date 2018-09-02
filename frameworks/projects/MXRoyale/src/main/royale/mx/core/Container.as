@@ -19,6 +19,8 @@
 
 package mx.core
 {
+    import org.apache.royale.binding.DataBindingBase;
+    import org.apache.royale.binding.ContainerDataBinding;
 	import org.apache.royale.core.ContainerBaseStrandChildren;
 	import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl
@@ -31,7 +33,7 @@ package mx.core
 	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStatesImpl;
-	import org.apache.royale.core.IStrandPrivate;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -128,7 +130,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="childAdd", type="mx.events.ChildExistenceChangedEvent")]
 
@@ -148,7 +150,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Event(name="childIndexChange", type="mx.events.IndexChangedEvent")]
 
@@ -164,7 +166,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="childRemove", type="mx.events.ChildExistenceChangedEvent")]
 
@@ -180,7 +182,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 [Event(name="dataChange", type="mx.events.FlexEvent")]
 
@@ -205,7 +207,7 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 //[Event(name="scroll", type="mx.events.ScrollEvent")]
 
@@ -310,12 +312,12 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Flex 3
+ *  @productversion Royale 0.9.3
  */
 public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
-					   IStrandPrivate, IMXMLDocument, IFocusManagerContainer
+					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer
                        //implements IContainer, IDataRenderer,
                        //IListItemRenderer,
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
@@ -382,7 +384,7 @@ public class Container extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function Container()
     {
@@ -399,7 +401,7 @@ public class Container extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get paddingTop():Object
     {
@@ -422,8 +424,17 @@ public class Container extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
+     
+    public function get borderVisible():Boolean
+    {
+        return true;
+    }
+    public function set borderVisible(value:Boolean):void
+    {
+    }
+
     public function get paddingBottom():Object
     {
         if (GOOG::DEBUG)
@@ -435,6 +446,52 @@ public class Container extends UIComponent
         if (GOOG::DEBUG)
             trace("paddingBottom not implemented");
     }
+	
+	/**
+     *  Number of pixels between the container's left border
+     *  and the left of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingLeft():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingLeft not implemented");
+        return 0;
+    }
+    public function set paddingLeft(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingLeft not implemented");
+    }
+	
+	/**
+     *  Number of pixels between the container's right border
+     *  and the right of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingRight():Object
+    {
+        if (GOOG::DEBUG)
+            trace("paddingRight not implemented");
+        return 0;
+    }
+    public function set paddingRight(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("paddingRight not implemented");
+    }
 
     /**
      *  Number of pixels between children in the vertical direction.
@@ -444,7 +501,7 @@ public class Container extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.3
      */
     public function get verticalGap():Object
     {
@@ -457,7 +514,83 @@ public class Container extends UIComponent
         if (GOOG::DEBUG)
             trace("verticalGap not implemented");
     }
+	
+	 public function get horizontalGap():Object
+    {
+        if (GOOG::DEBUG)
+            trace("horizontalGap not implemented");
+        return 0;
+    }
+    public function set horizontalGap(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("horizontalGap not implemented");
+    }
+     public function get verticalAlign():Object
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+        return 0;
+    }
+    public function set verticalAlign(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");
+    }
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get borderStyle():Object
+    {
+        if (GOOG::DEBUG)
+            trace("borderStyle not implemented");
+        return 0;
+    }
+    public function set borderStyle(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("borderStyle not implemented");
+    }
+	[Inspectable(category="General")]
+	
+	/*	  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get backgroundColor():Object
+    {
+        if (GOOG::DEBUG)
+            trace("backgroundColor not implemented");
+        return 0;
+    }
+    public function set backgroundColor(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("backgroundColor not implemented");
+    }
     
+    private var _label:String;
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get label():String
+    {
+        return _label;
+    }
+    public function set label(value:String):void
+    {
+        _label = value;
+    }
+
+	[Inspectable(category="General")]
     /**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */
@@ -489,16 +622,37 @@ public class Container extends UIComponent
 		super.addedToParent();		
 		
 		// Load the layout bead if it hasn't already been loaded.
-		if (loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this))
+		loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+        dispatchEvent(new Event("initComplete"));
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
 			dispatchEvent(new Event("layoutNeeded"));
 	}
 	
     override protected function createChildren():void
     {
         MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-        
+
+        if (getBeadByType(DataBindingBase) == null)
+            addBead(new ContainerDataBinding());
+
         dispatchEvent(new Event("initBindings"));
-        dispatchEvent(new Event("initComplete"));
+    }
+    
+    /**
+     *  Removes all children from the child list of this container.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function removeAllChildren():void
+    {
+        while (numChildren > 0)
+        {
+            removeChildAt(0);
+        }
     }
     
 	/**
@@ -609,7 +763,7 @@ public class Container extends UIComponent
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function get data():Object
 	{
@@ -679,7 +833,7 @@ public class Container extends UIComponent
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @productversion Royale 0.9.3
 	 */
 	public function get viewMetricsAndPadding():EdgeMetrics
 	{		
@@ -705,11 +859,12 @@ public class Container extends UIComponent
 		var o:EdgeMetrics = _viewMetricsAndPadding;
 		var ed:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this);
         var vm:EdgeMetrics = new EdgeMetrics(ed.left, ed.top, ed.right, ed.bottom);
+        var pd:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this);
 		
-		o.left = vm.left + getStyle("paddingLeft");
-		o.right = vm.right + getStyle("paddingRight");
-		o.top = vm.top + getStyle("paddingTop");
-		o.bottom = vm.bottom + getStyle("paddingBottom");
+		o.left = vm.left + pd.left;
+		o.right = vm.right + pd.right;
+		o.top = vm.top + pd.top;
+		o.bottom = vm.bottom + pd.bottom;
 		
 		return o;
 	}
@@ -858,16 +1013,17 @@ public class Container extends UIComponent
 		return contentView.getElementAt(index);
 	}
 	
+    [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF
-    override public function getChildAt(index:int):DisplayObject
+    override public function getChildAt(index:int):IUIComponent
     {
         var layoutHost:ILayoutHost = view as ILayoutHost;
         var contentView:IParent = layoutHost.contentView as IParent;
-        return contentView.getElementAt(index) as DisplayObject;
+        return contentView.getElementAt(index) as IUIComponent;
     }
 
 	/*
-	* IStrandPrivate
+	* IContainerBaseStrandChildrenHost
 	*
 	* These "internal" function provide a backdoor way for proxy classes to
 	* operate directly at strand level. While these function are available on
@@ -882,7 +1038,7 @@ public class Container extends UIComponent
 	 * @suppress {undefinedNames}
 	 * Support strandChildren.
 	 */
-	public function $numElements():int
+	public function get $numElements():int
 	{
 		return super.numElements;
 	}
@@ -936,6 +1092,142 @@ public class Container extends UIComponent
 	{
 		return super.getElementAt(index);
 	}
+
+    //----------------------------------
+    //  childDescriptors
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the childDescriptors property.
+     *  This variable is initialized in the construct() method
+     *  using the childDescriptors in the initObj, which is autogenerated.
+     *  If this Container was not created by createComponentFromDescriptor(),
+     *  its childDescriptors property is null.
+     */
+    private var _childDescriptors:Array /* of UIComponentDescriptor */;
+
+    /**
+     *  Array of UIComponentDescriptor objects produced by the MXML compiler.
+     *
+     *  <p>Each UIComponentDescriptor object contains the information 
+     *  specified in one child MXML tag of the container's MXML tag.
+     *  The order of the UIComponentDescriptor objects in the Array
+     *  is the same as the order of the child tags.
+     *  During initialization, the child descriptors are used to create
+     *  the container's child UIComponent objects and its Repeater objects, 
+     *  and to give them the initial property values, event handlers, effects, 
+     *  and so on, that were specified in MXML.</p>
+     *
+     *  @see mx.core.UIComponentDescriptor
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get childDescriptors():Array /* of UIComponentDescriptor */
+    {
+        return _childDescriptors;
+    }
+
+
+    //----------------------------------
+    //  creationPolicy
+    //----------------------------------
+
+    // Internal flag used when creationPolicy="none".
+    // When set, the value of the backing store _creationPolicy
+    // style is "auto" so descendants inherit the correct value.
+    private var creationPolicyNone:Boolean = false;
+    
+    [Inspectable(enumeration="all,auto,none")]
+    
+    /**
+     *  The child creation policy for this MX Container.
+     *  ActionScript values can be <code>ContainerCreationPolicy.AUTO</code>, 
+     *  <code>ContainerCreationPolicy.ALL</code>,
+     *  or <code>ContainerCreationPolicy.NONE</code>.
+     *  MXML values can be <code>auto</code>, <code>all</code>, 
+     *  or <code>none</code>.
+     *
+     *  <p>If no <code>creationPolicy</code> is specified for a container,
+     *  that container inherits its parent's <code>creationPolicy</code>.
+     *  If no <code>creationPolicy</code> is specified for the Application,
+     *  it defaults to <code>ContainerCreationPolicy.AUTO</code>.</p>
+     *
+     *  <p>A <code>creationPolicy</code> of <code>ContainerCreationPolicy.AUTO</code> means
+     *  that the container delays creating some or all descendants
+     *  until they are needed, a process which is known as <i>deferred
+     *  instantiation</i>.
+     *  This policy produces the best startup time because fewer
+     *  UIComponents are created initially.
+     *  However, this introduces navigation delays when a user navigates
+     *  to other parts of the application for the first time.
+     *  Navigator containers such as Accordion, TabNavigator, and ViewStack
+     *  implement the <code>ContainerCreationPolicy.AUTO</code> policy by creating all their
+     *  children immediately, but wait to create the deeper descendants
+     *  of a child until it becomes the selected child of the navigator
+     *  container.</p>
+     *
+     *  <p>A <code>creationPolicy</code> of <code>ContainerCreationPolicy.ALL</code> means
+     *  that the navigator containers immediately create deeper descendants
+     *  for each child, rather than waiting until that child is
+     *  selected. For single-view containers such as a VBox container,
+     *  there is no difference  between the <code>ContainerCreationPolicy.AUTO</code> and
+     *  <code>ContainerCreationPolicy.ALL</code> policies.</p>
+     *
+     *  <p>A <code>creationPolicy</code> of <code>ContainerCreationPolicy.NONE</code> means
+     *  that the container creates none of its children.
+     *  In that case, it is the responsibility of the MXML author
+     *  to create the children by calling the
+     *  <code>createComponentsFromDescriptors()</code> method.</p>
+     *  
+     *  @default ContainerCreationPolicy.AUTO
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get creationPolicy():String
+    {
+        // Use an inheriting style as the backing storage for this property.
+        // This allows the property to be inherited by either mx or spark
+        // containers, and also to correctly cascade through containers that
+        // don't have this property (ie Group).
+        // This style is an implementation detail and should be considered
+        // private. Do not set it from CSS.
+        /*if (creationPolicyNone)
+            return ContainerCreationPolicy.NONE;*/
+        return getStyle("_creationPolicy");
+    }
+
+    /**
+     *  @private
+     */
+    public function set creationPolicy(value:String):void
+    {
+        var styleValue:String = value;
+        
+        /*if (value == ContainerCreationPolicy.NONE)
+        {
+            // creationPolicy of none is not inherited by descendants.
+            // In this case, set the style to "auto" and set a local
+            // flag for subsequent access to the creationPolicy property.
+            creationPolicyNone = true;
+            styleValue = ContainerCreationPolicy.AUTO;
+        }
+        else
+        {
+            creationPolicyNone = false;
+        }*/
+        
+        setStyle("_creationPolicy", styleValue);
+
+        //setActualCreationPolicies(value);
+    }
+
 }
 
 }

@@ -20,8 +20,8 @@
 package mx.containers.utilityClasses
 {
 
-import mx.core.IChildList;
 import mx.core.IUIComponent;
+import org.apache.royale.core.ILayoutView;
 
 [ExcludeClass]
 
@@ -55,7 +55,7 @@ public class Flex
 	 *
 	 *  @param h height for all children.
 	 *
-	 *  @result Any extra space that's left over
+	 *  @return Any extra space that's left over
 	 *  after growing all children to their maxWidth.
 	 *  
 	 *  @langversion 3.0
@@ -64,7 +64,7 @@ public class Flex
 	 *  @productversion Flex 3
 	 */
 	public static function flexChildWidthsProportionally(
-								parent:IChildList,
+								parent:ILayoutView,
 								spaceForChildren:Number,
 								h:Number):Number
 	{
@@ -81,10 +81,10 @@ public class Flex
 		//
 		// Also calculate the sum of all widthFlexes, and calculate the 
 		// sum of the width of all non-flexible children.
-		var n:int = parent.numChildren;
+		var n:int = parent.numElements;
 		for (i = 0; i < n; i++)
 		{
-			child = IUIComponent(parent.getChildAt(i));
+			child = IUIComponent(parent.getElementAt(i));
 
 			var percentWidth:Number = child.percentWidth;
 			var percentHeight:Number = child.percentHeight;
@@ -195,7 +195,7 @@ public class Flex
 	 *  @productversion Flex 3
 	 */
 	public static function flexChildHeightsProportionally(
-								parent:IChildList,
+								parent:ILayoutView,
 								spaceForChildren:Number,
 								w:Number):Number
 	{
@@ -212,10 +212,10 @@ public class Flex
 		//
 		// Also calculate the sum of all percentHeights, and calculate the 
 		// sum of the height of all non-flexible children.
-		var n:int = parent.numChildren;
+		var n:int = parent.numElements;
 		for (i = 0; i < n; i++)
 		{
-			child = IUIComponent(parent.getChildAt(i));
+			child = IUIComponent(parent.getElementAt(i));
 
 			var percentWidth:Number = child.percentWidth;
 			var percentHeight:Number = child.percentHeight;
@@ -465,7 +465,7 @@ public class Flex
 	 *  @productversion Flex 3
 	 */
 	public static function distributeExtraHeight(
-								parent:IChildList,
+								parent:ILayoutView,
 								spaceForChildren:Number):void
 	{
 		// We should only get here after distributing the majority of the 
@@ -485,7 +485,7 @@ public class Flex
 		
 		// First check if we should distribute any extra space.  To do 
 		// this, we check to see if someone suffers from rounding error.
-		var n:int = parent.numChildren;
+		var n:int = parent.numElements;
 		var wantToGrow:Boolean = false;
 		var i:int;
 		var percentHeight:Number;
@@ -497,7 +497,7 @@ public class Flex
 		
 		for (i = 0; i < n; i++)
 		{
-			child = IUIComponent(parent.getChildAt(i));
+			child = IUIComponent(parent.getElementAt(i));
 			
 			if (!child.includeInLayout)
 				continue;
@@ -534,7 +534,7 @@ public class Flex
 			
 			for (i = 0; i < n; i++)
 			{
-				child = IUIComponent(parent.getChildAt(i));
+				child = IUIComponent(parent.getElementAt(i));
 				childHeight = child.height;
 				percentHeight = child.percentHeight
 				
@@ -578,7 +578,7 @@ public class Flex
 	 *  @productversion Flex 3
 	 */
 	public static function distributeExtraWidth(
-								parent:IChildList,
+								parent:ILayoutView,
 								spaceForChildren:Number):void
 	{
 		// We should only get here after distributing the majority of the 
@@ -598,7 +598,7 @@ public class Flex
 		
 		// First check if we should distribute any extra space.  To do 
 		// this, we check to see if someone suffers from rounding error.
-		var n:int = parent.numChildren;
+		var n:int = parent.numElements;
 		var wantToGrow:Boolean = false;
 		var i:int;
 		var percentWidth:Number;
@@ -610,7 +610,7 @@ public class Flex
 		
 		for (i = 0; i < n; i++)
 		{
-			child = IUIComponent(parent.getChildAt(i));
+			child = IUIComponent(parent.getElementAt(i));
 			
 			if (!child.includeInLayout)
 				continue;
@@ -647,7 +647,7 @@ public class Flex
 			
 			for (i = 0; i < n; i++)
 			{
-				child = IUIComponent(parent.getChildAt(i));
+				child = IUIComponent(parent.getElementAt(i));
 				childWidth = child.width;
 				percentWidth = child.percentWidth
 				
