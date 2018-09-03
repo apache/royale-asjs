@@ -119,7 +119,7 @@ limitations under the License.
         <local:ButtonPlayGround id="button_panel"/>
         <local:NumericStepperPlayGround id="numericstepper_panel"/>
         <local:DateComponentsPlayGround id="datecomponents_panel"/>
-        <local:DropDownListPlayGround id="dropdownlist_panel"/>
+        <local:ComboBoxPlayGround id="combobox_panel"/>
         <local:CheckBoxPlayGround id="checkbox_panel"/>
         <local:MiscelaneaPlayGound id="miscelanea_panel"/>
         <local:HeadingsAndText id="text_panel"/>
@@ -132,6 +132,7 @@ limitations under the License.
         <local:CardPlayGround id="card_panel"/>
         <local:TablePlayGround id="tables_panel"/>
         <local:FormsValidationPlayGround id="form_validation_panel"/>
+        <local:DropDownListPlayGround id="dropdownlist_panel"/>
     </j:ApplicationMainContent>
     
 </j:ApplicationResponsiveView>

@@ -62,6 +62,7 @@ j|ComboBox
 $combobox-popup-margin-offset: 10px
 $combobox-popup-overlay-color: #000 !default
 $combobox-popup-overlay-opacity: .65 !default
+$combobox-item-min-heigh: 34px
     
 .combobox-popup
     position: fixed
@@ -100,8 +101,8 @@ $combobox-popup-overlay-opacity: .65 !default
 
     .jewel.list
         transform: translate(-50%, 100%)
-        transition: animation-standard(transform, .15s)
-        will-change: transform
+        transition: none
+        will-change: transform, opacity
 
         bottom: auto
         top: calc(100% - #{$combobox-popup-margin-offset})
@@ -110,6 +111,7 @@ $combobox-popup-overlay-opacity: .65 !default
         box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
 
         width: $combobox-input-width + $combobox-button-width
+        opacity: 0
 
     &.open
         pointer-events: auto
@@ -119,7 +121,8 @@ $combobox-popup-overlay-opacity: .65 !default
 
         .jewel.list
             transform: translate(-50%, -100%)
-            transition: animation-standard(transform, .3s)
+            transition: animation-standard(transform, .4s), animation-standard(opacity, .4s)
+            opacity: 1
 
 @media (max-width: $tablet)
     .combobox-popup
@@ -136,12 +139,24 @@ $combobox-popup-overlay-opacity: .65 !default
         &::before
             background-color: rgba($combobox-popup-overlay-color, 0)
         .jewel.list
+            // transform: translate(0px, -200px)
+            transform: none
+            transition: none
             box-shadow: none !important
+
+            .jewel.item
+                height: 0
+                overflow: hidden
+                transition: height 200ms ease-in
+
         &.open
             .jewel.list
                 transform: none
                 top: auto
                 left: auto
+
+                .jewel.item
+                    height: $combobox-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
 
 
 

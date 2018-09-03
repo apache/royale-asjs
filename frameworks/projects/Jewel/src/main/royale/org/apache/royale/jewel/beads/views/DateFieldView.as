@@ -34,6 +34,12 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
     import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
     import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.beads.views.DateChooserView;
+
 	COMPILE::SWF
 	{
 		//import org.apache.royale.jewel.beads.views.TextInputView;
@@ -223,19 +229,21 @@ package org.apache.royale.jewel.beads.views
 					_popUp.model.monthNames = model.monthNames;
 					_popUp.model.firstDayOfWeek = model.firstDayOfWeek;
 
-
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
-					// var point:Point = new Point(_textInput.width, _button.height);
-					// var p2:Point = PointUtils.localToGlobal(point, _strand);
-					// var p3:Point = PointUtils.globalToLocal(p2, host);
-					// _popUp.x = p3.x;
-					// _popUp.y = p3.y;
-
 					host.popUpParent.addElement(_popUp);
 					
-					
+					// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
+					daysTable = (popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
+
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					setTimeout(prepareForPopUp,  300);
+
+					COMPILE::JS
+					{
+					window.addEventListener('resize', autoResizeHandler, false);
+					}
+
+					autoResizeHandler();
 				}
 				else
 				{
@@ -243,6 +251,7 @@ package org.apache.royale.jewel.beads.views
 					COMPILE::JS
 					{
 					document.body.classList.remove("viewport");
+					window.removeEventListener('resize', autoResizeHandler, false);
 					}
 					_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
 					_popUp = null;
@@ -271,6 +280,49 @@ package org.apache.royale.jewel.beads.views
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
 			getHost().dispatchEvent(new Event(Event.CHANGE));
+		}
+
+		private var daysTable:Table;
+		/**
+		 *  When set to "auto" this resize handler monitors the width of the app window
+		 *  and switch between fixed and float modes.
+		 * 
+		 *  Note:This could be done with media queries, but since it handles open/close
+		 *  maybe this is the right way
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		private function autoResizeHandler(event:Event = null):void
+        {
+			COMPILE::JS
+			{
+				var outerWidth:Number = window.outerWidth;
+				
+				// Desktop width size
+				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
+				{
+					// var point:Point = new Point(_textInput.width, _button.height);
+					// var p2:Point = PointUtils.localToGlobal(point, _strand);
+					// _popUp.x = p3.x;
+					// _popUp.y = p3.y;
+					// var p3:Point = PointUtils.globalToLocal(p2, host);
+
+					var origin:Point = new Point(0, _button.y + _button.height);
+					var relocated:Point = PointUtils.localToGlobal(origin, _strand);
+					// daysTable.x = relocated.x;
+					// daysTable.y = relocated.y;
+					daysTable.positioner.style["left"] = relocated.x + "px";
+					daysTable.positioner.style["top"] = relocated.y + "px";
+				}
+				else
+				{
+					daysTable.positioner.style["left"] = "50%";
+					daysTable.positioner.style["top"] = "calc(100% - 10px)";
+				}
+			}
 		}
 	}
 }
