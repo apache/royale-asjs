@@ -19,6 +19,7 @@
 package org.apache.royale.core
 {
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
@@ -42,7 +43,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataContainerBase extends ContainerBase
+	public class DataContainerBase extends ContainerBase implements IItemRendererProvider
 	{
         /**
          *  Constructor.
