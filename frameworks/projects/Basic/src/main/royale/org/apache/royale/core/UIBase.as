@@ -858,12 +858,14 @@ package org.apache.royale.core
 		COMPILE::JS
 		public function setDisplayStyleForLayout(value:String):void
 		{
+			displayStyleForLayout = value;
 			if (positioner.style.display !== 'none')
 				positioner.style.display = value;
-			else
-				displayStyleForLayout = value;
 		}
-        
+        COMPILE::JS
+        public function getDisplayStyleForLayout():String{
+            return displayStyleForLayout;
+        }
         [Bindable("visibleChanged")]
         COMPILE::JS
         public function get visible():Boolean
