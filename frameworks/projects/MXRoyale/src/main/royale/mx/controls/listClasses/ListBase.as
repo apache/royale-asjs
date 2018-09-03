@@ -35,7 +35,6 @@ import org.apache.royale.core.ContainerBaseStrandChildren;
 import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
-import org.apache.royale.core.IContainer.IItemRendererProvider;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.IDataProviderItemRendererMapper;
 import org.apache.royale.core.IItemRendererClassFactory;
@@ -85,7 +84,7 @@ use namespace mx_internal;
      *  @productversion Royale 0.0
      *  @royalesuppresspublicvarwarning
 	*/
-	public class ListBase extends UIComponent implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView, IItemRendererProvider
+	public class ListBase extends UIComponent implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
 	{
 	
         //----------------------------------
