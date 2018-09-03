@@ -21,13 +21,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.IListView;
 
     /**
 	 *  Handles the update of an itemRenderer in a List component once the corresponding 
@@ -63,6 +63,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -77,6 +78,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -94,6 +96,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		private var dp:IEventDispatcher;
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -116,10 +119,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-            var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
+            var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererAt(event.index) as ISelectableItemRenderer;
 			
             setData(ir, event.item, event.index);
 
@@ -155,12 +159,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var list:IList = _strand as IList;
-				_itemRendererParent = list.dataGroup;
+				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+				_itemRendererParent = listView.dataGroup;
 			}
 			return _itemRendererParent;
 		}

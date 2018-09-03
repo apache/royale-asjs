@@ -200,6 +200,20 @@ package org.apache.royale.jewel.supportClasses.table
 		}
 		
 		/**
+		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererAt()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function getItemRendererAt(index:int):IItemRenderer
+		{
+			if (index < 0 || index >= itemRenderers.length) return null;
+			return itemRenderers[index] as IItemRenderer;
+		}
+
+		/**
 		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
 		 *
 		 *  @langversion 3.0
@@ -212,7 +226,7 @@ package org.apache.royale.jewel.supportClasses.table
 			if (index < 0 || index >= itemRenderers.length) return null;
 			return itemRenderers[index] as IItemRenderer;
 		}
-		
+
 		/**
 		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
 		 *  Not used for now. This should be revised in this case
@@ -228,12 +242,15 @@ package org.apache.royale.jewel.supportClasses.table
 			var n:Number = numElements;
 			for (var i:Number = 0; i < n; i++)
 			{
-				var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
+				var renderer:DataItemRenderer = getItemRendererAt(i) as DataItemRenderer;
 				if (renderer) {
 					renderer.setWidth(this.width,true);
 					renderer.adjustSize();
 				}
 			}
+		}
+		public function get numItemRenderers():int{
+			return numElements;
 		}
     }
 }

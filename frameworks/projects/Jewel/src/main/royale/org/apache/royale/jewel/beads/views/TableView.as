@@ -97,11 +97,11 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
             if (ir)
 				ir.selected = false;
 			
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as ISelectableItemRenderer;
 			if (ir)
 				ir.selected = true;
             lastSelectedIndex = listModel.selectedIndex;

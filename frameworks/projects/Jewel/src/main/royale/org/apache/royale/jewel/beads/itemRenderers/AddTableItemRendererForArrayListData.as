@@ -21,7 +21,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -36,6 +35,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.html.beads.IListView;
 
     /**
 	 *  Handles the adding of an itemRenderer in a Table component once the corresponding datum has been added
@@ -163,10 +163,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// adjust the itemRenderers' index to adjust for the shift
 			var cell:TableCell;
 			var processedRow:TableRow;
-			var len:int = itemRendererParent.numElements;
+			var len:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				processedRow = itemRendererParent.getItemRendererAt(i) as TableRow;
 				var n:int = processedRow.numElements;
 				for (j = 0; j < n; j++)
 				{
@@ -194,8 +194,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var list:IList = _strand as IList;
-				_itemRendererParent = list.dataGroup;
+				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+				_itemRendererParent = listView.dataGroup;
 			}
 			return _itemRendererParent;
 		}

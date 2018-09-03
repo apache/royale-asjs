@@ -21,7 +21,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -31,6 +30,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
+	import org.apache.royale.html.beads.IListView;
 
     /**
 	 *  Handles the update of an itemRenderer in a Table component once the corresponding 
@@ -63,6 +63,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -81,6 +82,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -98,6 +100,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		private var dp:IEventDispatcher;
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -120,12 +123,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.table.TableCell
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.table.TableRow
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
 			var ir:ISelectableItemRenderer;
 			var cell:TableCell;
-			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			var processedRow:TableRow = itemRendererParent.getItemRendererAt(event.index) as TableRow;
 			var n:int = processedRow.numElements;
 			for (var i:int = 0; i < n; i++)
 			{
@@ -147,12 +154,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var list:IList = _strand as IList;
-				_itemRendererParent = list.dataGroup;
+				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+				_itemRendererParent = listView.dataGroup;
 			}
 			return _itemRendererParent;
 		}

@@ -69,10 +69,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.selected = false;
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.selected = true;
 
@@ -90,10 +90,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastRollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt((listModel as IRollOverModel).rollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = true;
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
@@ -143,10 +143,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
             if (ir)
 				ir.selected = false;
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as ISelectableItemRenderer;
 			if (ir)
 				ir.selected = true;
             lastSelectedIndex = listModel.selectedIndex;
@@ -159,10 +159,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastRollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = true;
 			

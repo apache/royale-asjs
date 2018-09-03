@@ -20,7 +20,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CollectionEvent;
@@ -30,6 +29,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IItemRenderer;
 
 	/**
 	 *  Handles the removal of an itemRenderer in a Table component once the corresponding 
@@ -124,7 +125,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			var ir:DataItemRenderer;
 			var cell:TableCell;
-			var processedRow:TableRow = itemRendererParent.getElementAt(event.index) as TableRow;
+			var processedRow:TableRow = itemRendererParent.getItemRendererAt(event.index) as TableRow;
 			while (processedRow.numElements > 0) {
 				cell = processedRow.getElementAt(0) as TableCell;
 				ir = cell.getElementAt(0) as DataItemRenderer;
@@ -132,13 +133,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 				cell.removeElement(ir);
 				processedRow.removeElement(cell);
 			}
-			itemRendererParent.removeElement(processedRow);
+			itemRendererParent.removeItemRenderer(processedRow as IItemRenderer);
 
 			// adjust the itemRenderers' index to adjust for the shift
-			var len:int = itemRendererParent.numElements;
+			var len:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				processedRow = itemRendererParent.getElementAt(i) as TableRow;
+				processedRow = itemRendererParent.getItemRendererAt(i) as TableRow;
 				var n:int = processedRow.numElements;
 				for (var j:int = 0; j < n; j++)
 				{
@@ -166,8 +167,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var list:IList = _strand as IList;
-				_itemRendererParent = list.dataGroup;
+				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+				_itemRendererParent = listView.dataGroup;
 			}
 			return _itemRendererParent;
 		}

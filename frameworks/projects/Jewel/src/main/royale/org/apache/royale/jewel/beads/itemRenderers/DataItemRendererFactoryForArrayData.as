@@ -33,10 +33,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	
-	import org.apache.royale.core.IList;
     import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
+    import org.apache.royale.html.beads.IListView;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
@@ -153,7 +153,7 @@ package org.apache.royale.jewel.beads.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion Array
-		 *  @royaleignorecoercion org.apache.royale.core.IList
+		 *  @royaleignorecoercion org.apache.royale.core.IListView
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
@@ -166,8 +166,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (!dp)
 				return;
 			
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
+			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+			var dataGroup:IItemRendererParent = listView.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
 			
