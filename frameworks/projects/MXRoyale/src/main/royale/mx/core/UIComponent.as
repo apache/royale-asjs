@@ -743,6 +743,18 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+     
+    COMPILE::JS{
+    public function get tabChildren():Boolean
+	{
+	  return 0;
+	}
+    public function set tabChildren(value:Boolean):void
+	{
+	}
+    }
+    
+    
     public function get accessibilityEnabled():Boolean
     {
         if (GOOG::DEBUG)
