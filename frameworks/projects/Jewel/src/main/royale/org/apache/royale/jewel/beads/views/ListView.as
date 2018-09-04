@@ -26,6 +26,10 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IContentView;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.ILayoutView;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -45,6 +49,37 @@ package org.apache.royale.jewel.beads.views
 		{
 			super();
 		}
+
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+
+		}
+		private var _dataGroup:IItemRendererParent;
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererParent
+		 */
+		override public function get dataGroup():IItemRendererParent
+		{
+			if(!_dataGroup)
+			{
+				var c:ILayoutView = contentView;
+				if(c && c is IItemRendererParent)
+					_dataGroup = c as IItemRendererParent;
+				else
+					_dataGroup = super.dataGroup;
+			}
+			return _dataGroup;
+		}
+
 
 		protected var listModel:ISelectionModel;
 
@@ -122,6 +157,19 @@ package org.apache.royale.jewel.beads.views
 		{
 			_strand = value;
 			super.strand = value;
+		}
+		private var _dataGroup:IItemRendererParent;
+		override public function get dataGroup():IItemRendererParent
+		{
+			if(!_dataGroup)
+			{
+				var c:ILayoutView = contentView;
+				if(c && c is IItemRendererParent)
+					_dataGroup = c as IItemRendererParent;
+				else
+					_dataGroup = super.dataGroup;
+			}
+			return _dataGroup;
 		}
 
 		/**
