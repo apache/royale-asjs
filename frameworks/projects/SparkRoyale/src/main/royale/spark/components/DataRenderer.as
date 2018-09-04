@@ -21,7 +21,8 @@ package spark.components {
     
 import mx.core.IDataRenderer;
 import mx.events.FlexEvent;
-import org.apache.royale.events.EventDispatcher;
+//import org.apache.royale.events.EventDispatcher;
+import mx.core.UIComponent;
 /**
  *  Dispatched when the <code>data</code> property changes.
  *  
@@ -58,7 +59,8 @@ import org.apache.royale.events.EventDispatcher;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class DataRenderer extends EventDispatcher implements IDataRenderer
+public class DataRenderer extends UIComponent implements IDataRenderer //extends EventDispatcher
+
 { // replacing extends Group with extends EventDispatcher for now
 
    // include "../core/Version.as";
