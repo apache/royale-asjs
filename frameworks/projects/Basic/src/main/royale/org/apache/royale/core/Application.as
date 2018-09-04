@@ -693,7 +693,7 @@ package org.apache.royale.core
 				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
 					this.element.style.height = window.innerHeight.toString() + 'px';
 					this.element.style.width = window.innerWidth.toString() + 'px';
-					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+					this.initialView.dispatchEvent(new Event("sizeChanged")); // kick off layout if % sizes
 				}
 				
 				dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
