@@ -99,5 +99,23 @@ package org.apache.royale.events
 		{
 			return new ProgressEvent(type, bubbles, cancelable, current, total);
 		}
+		
+		
+		public function get bytesTotal():Number{
+		    return null;
+		 }
+		 
+                 public function set bytesTotal(value:Number):void{
+	         }
+		 
+		 
+		
+		 public function get bytesLoaded():Number{
+		     return null;
+		 }
+		 
+		 public function set bytesLoaded(value:Number):void{
+		}
+		
 	}
 }
