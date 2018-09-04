@@ -19,11 +19,13 @@
 package org.apache.royale.jewel.supportClasses.list
 {
 	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.html.DataContainer;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
+		import org.apache.royale.html.beads.DataContainerView;
     }
 
 	/**
@@ -36,7 +38,7 @@ package org.apache.royale.jewel.supportClasses.list
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DataGroup extends org.apache.royale.html.supportClasses.DataGroup
+	public class DataGroup extends DataContainer
 	{
 		/**
 		 *  constructor.

@@ -170,7 +170,8 @@ package org.apache.royale.jewel.beads.views
 				popupHost.popUpParent.addElement(_list);
 
 				// popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside to adjust height
-				dataGroup = (popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
+				dataGroup = popup.view.contentView.view.contentView;
+				// dataGroup = (popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
 				dataGroup.height = 250;
 				
 				setTimeout(prepareForPopUp,  300);

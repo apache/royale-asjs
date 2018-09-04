@@ -68,6 +68,8 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+         *  @royaleignorecoercion org.apache.royale.jewel.beads.controls.combobox.IComboBoxView
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -80,12 +82,19 @@ package org.apache.royale.jewel.beads.controllers
 			}
 		}
 
+		/**
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function finishSetup(event:Event = null):void
 		{
 			IEventDispatcher(viewBead.button).addEventListener(MouseEvent.CLICK, clickHandler);
             IEventDispatcher(viewBead.textinput).addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
+		/**
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function clickHandler(event:MouseEvent):void
 		{
 			event.stopImmediatePropagation();
@@ -95,7 +104,7 @@ package org.apache.royale.jewel.beads.controllers
 			IEventDispatcher(viewBead.popup).addEventListener(Event.CHANGE, changeHandler);
 
 			// viewBead.popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside
-			dataGroup = (viewBead.popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
+			dataGroup = viewBead.popup.view.contentView.view.contentView;
 
 			IEventDispatcher(dataGroup).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popup).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
@@ -105,7 +114,10 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			event.stopImmediatePropagation();
 		}
-
+		/**
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function removePopUpWhenClickOutside(event:MouseEvent = null):void
 		{
 			IEventDispatcher(dataGroup).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
@@ -114,6 +126,10 @@ package org.apache.royale.jewel.beads.controllers
 			viewBead.popUpVisible = false;
 		}
 		
+		/**
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		private function changeHandler(event:Event):void
 		{
 			event.stopImmediatePropagation();
