@@ -40,7 +40,7 @@ import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.html.supportClasses.DropDownListList;
 import org.apache.royale.html.supportClasses.DataGroup;
 import org.apache.royale.html.supportClasses.ScrollingViewport;
-import org.apache.royale.core.supportClasses.Viewport;
+import org.apache.royale.html.supportClasses.Viewport;
 import org.apache.royale.html.supportClasses.StringItemRenderer;
 import org.apache.royale.net.HTTPService;
 import org.apache.royale.collections.parsers.JSONInputParser;
