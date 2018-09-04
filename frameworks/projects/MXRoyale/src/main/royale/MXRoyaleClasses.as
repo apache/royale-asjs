@@ -145,6 +145,7 @@ internal class MXRoyaleClasses
 	import mx.net.FileReference; FileReference;
 	import mx.net.FileFilter; FileFilter;
 	import mx.events.ProgressEvent; ProgressEvent;
+	import mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
 	
 	COMPILE::JS
     	{
