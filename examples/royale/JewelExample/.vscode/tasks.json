@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build with AS3 & MXML Extension",
+            "label": "Build Debug with AS3 Extension",
             "type": "actionscript",
             "debug": true,
             "problemMatcher": [
@@ -27,6 +27,40 @@
                 "panel": "new"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Build Release with AS3 Extension",
+            "type": "actionscript",
+            "debug": false,
+            "problemMatcher": [
+                "$nextgenas_nomatch"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "build with asconfigc",
+            "type": "shell",
+            "command": "asconfigc",
+            "windows": {
+                "args": [
+                    "--sdk=C:\\Apache\\royale-asjs"
+                ]
+            },
+            "osx": {
+                "args": [
+                    "--sdk=/Apache/royale-asjs"
+                ]
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "problemMatcher": [
+                "$nextgenas_nomatch"
+            ],
+            "group": "build"
         }
     ]
 }
