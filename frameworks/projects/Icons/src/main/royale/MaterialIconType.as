@@ -1075,5 +1075,7 @@ package
         public static const UNFOLD_LESS:String = 'unfold_less';
         public static const ALL_INBOX:String = 'all_inbox';
         public static const WORK_OUTLINE:String = 'work_outline';
+        public static const ARROW_FORWARD_IOS:String = 'arrow_fordward_ios';
+        public static const ARROW_BACK_IOS:String = 'arrow_back_ios';
     }
 }
