@@ -69,6 +69,16 @@ package org.apache.royale.svg
          *  @productversion Royale 0.9.3
          */
 		function set source(value:String):void
+			
+		/**
+		 *  Nice filters are generally less visible (e.g. behind the source graphic).
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		function get isNice():Boolean
 
 	}
 }
