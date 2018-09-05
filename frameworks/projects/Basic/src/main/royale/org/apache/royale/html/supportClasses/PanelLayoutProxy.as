@@ -224,6 +224,14 @@ package org.apache.royale.html.supportClasses
 		{
 			(host as UIBase).setDisplayStyleForLayout(value);
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		COMPILE::JS
+		public function get displayStyleForLayout():String
+		{
+			return (host as UIBase).displayStyleForLayout;
+		}
 
 	}
 }

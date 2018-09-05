@@ -169,7 +169,7 @@ package org.apache.royale.html.beads.layouts
 				{
 					var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
 					if (child == null) continue;
-					if(!child.royale_wrapper.getDisplayStyleForLayout())
+					if(!child.royale_wrapper.displayStyleForLayout)
 					{
 						if (!child.royale_wrapper.visible)
 						{

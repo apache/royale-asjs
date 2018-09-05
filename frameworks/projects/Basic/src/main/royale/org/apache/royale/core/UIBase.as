@@ -842,9 +842,12 @@ package org.apache.royale.core
 			dispatchEvent(new Event(value?"show":"hide"));
 			dispatchEvent(new Event("visibleChanged"));
         }
-        
+        /**
+         * @private
+         * @royalesuppresspublicvarwarning
+         */
         COMPILE::JS
-        protected var displayStyleForLayout:String;
+        public var displayStyleForLayout:String;
 		
 		/**
 		 *  The display style is used for both visible
@@ -862,10 +865,7 @@ package org.apache.royale.core
 			if (positioner.style.display !== 'none')
 				positioner.style.display = value;
 		}
-        COMPILE::JS
-        public function getDisplayStyleForLayout():String{
-            return displayStyleForLayout;
-        }
+
         [Bindable("visibleChanged")]
         COMPILE::JS
         public function get visible():Boolean
