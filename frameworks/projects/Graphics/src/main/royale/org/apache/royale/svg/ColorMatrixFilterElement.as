@@ -54,7 +54,7 @@ package org.apache.royale.svg
 			COMPILE::JS 
 			{
 				super.build();
-				var matrixValues:String = red + " 0 0 0 0 0 " + green + " 0 0 0 0 0 " + blue + " 0 0 0 0 0 " + opacity + " 0"; 
+				var matrixValues:String =  "0 0 0 0 " + red +  " 0 0 0 0 " + green +  " 0 0 0 0 " + blue + " 0 0 0 " + opacity + " 0";
 				filterElement.setAttribute("values", matrixValues);
 			}
 		}
