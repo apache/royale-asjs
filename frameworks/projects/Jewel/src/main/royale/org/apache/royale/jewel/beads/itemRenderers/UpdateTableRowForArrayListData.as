@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ISelectableItemRenderer;
@@ -31,6 +32,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
 
     /**
 	 *  Handles the update of an itemRenderer in a Table component once the corresponding 
@@ -41,7 +43,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class UpdateTableItemRendererForArrayListData implements IBead
+	public class UpdateTableRowForArrayListData implements IBead
 	{
 		/**
 		 *  Constructor
@@ -51,7 +53,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function UpdateTableItemRendererForArrayListData()
+		public function UpdateTableRowForArrayListData()
 		{
 		}
 
@@ -131,9 +133,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
 			var ir:ISelectableItemRenderer;
+			var processedRow:TableRow = (itemRendererParent as UIBase).getElementAt(event.index) as TableRow;
 			var cell:TableCell;
-			var processedRow:TableRow = itemRendererParent.getItemRendererAt(event.index) as TableRow;
 			var n:int = processedRow.numElements;
+
 			for (var i:int = 0; i < n; i++)
 			{
 				cell = processedRow.getElementAt(i) as TableCell;

@@ -191,9 +191,9 @@ limitations under the License.
 							<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
 							<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
 							<j:beads>
-								<j:AddTableItemRendererForArrayListData/>
-								<j:RemoveTableItemRendererForArrayListData/>
-								<j:UpdateTableItemRendererForArrayListData/>
+								<j:AddTableRowForArrayListData/>
+								<j:RemoveTableRowForArrayListData/>
+								<j:UpdateTableRowForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
 						</j:Table>

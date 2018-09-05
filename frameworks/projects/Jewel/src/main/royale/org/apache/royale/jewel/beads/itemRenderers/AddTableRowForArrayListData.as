@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
@@ -46,7 +47,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class AddTableItemRendererForArrayListData implements IBead
+	public class AddTableRowForArrayListData implements IBead
 	{
 		/**
 		 *  Constructor
@@ -56,7 +57,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function AddTableItemRendererForArrayListData()
+		public function AddTableRowForArrayListData()
 		{
 		}
 		
@@ -161,20 +162,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			// adjust the itemRenderers' index to adjust for the shift
-			var cell:TableCell;
-			var processedRow:TableRow;
 			var len:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				processedRow = itemRendererParent.getItemRendererAt(i) as TableRow;
-				var n:int = processedRow.numElements;
-				for (j = 0; j < n; j++)
-				{
-					cell = processedRow.getElementAt(j) as TableCell;
-					ir = cell.getElementAt(0) as TableItemRenderer;
-					ir.index = i;
-					ir.rowIndex = i;
-				}
+				ir = itemRendererParent.getItemRendererAt(i) as TableItemRenderer;
+				ir.index = i;
+				ir.rowIndex = i;
 			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
@@ -194,8 +187,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-				_itemRendererParent = listView.dataGroup;
+				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+				_itemRendererParent = view.dataGroup;
 			}
 			return _itemRendererParent;
 		}

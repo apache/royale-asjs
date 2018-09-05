@@ -139,9 +139,9 @@
     <component id="RemoveListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveListItemRendererForArrayListData" />
     <component id="UpdateListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateListItemRendererForArrayListData" />
     
-    <component id="AddTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableItemRendererForArrayListData" />
-    <component id="RemoveTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveTableItemRendererForArrayListData" />
-    <component id="UpdateTableItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateTableItemRendererForArrayListData" />
+    <component id="AddTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableRowForArrayListData" />
+    <component id="RemoveTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveTableRowForArrayListData" />
+    <component id="UpdateTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateTableRowForArrayListData" />
     
     <component id="RemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllItemRendererForArrayListData" />
     

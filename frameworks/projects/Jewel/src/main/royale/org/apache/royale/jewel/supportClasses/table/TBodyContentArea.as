@@ -129,7 +129,7 @@ package org.apache.royale.jewel.supportClasses.table
 			tableCell.addElement(r);
 
 			var row:TableRow;
-			if(r.rowIndex > numElements -1)
+			if(r.rowIndex > numElements - 1)
 			{
 				row = new TableRow();
 				addElementAt(row, r.rowIndex, false);
@@ -249,6 +249,14 @@ package org.apache.royale.jewel.supportClasses.table
 				}
 			}
 		}
+
+		/**
+         *  @copy org.apache.royale.core.IItemRendererParent#numItemRenderers()
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
 		public function get numItemRenderers():int{
 			return numElements;
 		}

@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -164,8 +165,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-				_itemRendererParent = listView.dataGroup;
+				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+				_itemRendererParent = view.dataGroup;
 			}
 			return _itemRendererParent;
 		}
