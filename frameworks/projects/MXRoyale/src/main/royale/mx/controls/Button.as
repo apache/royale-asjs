@@ -253,6 +253,17 @@ public class Button extends UIComponent implements IDataRenderer
 		typeNames = "Button";
 	}
 	
+	// ------------------------------------------------
+	//  textDecoration
+	// ------------------------------------------------
+	
+	public function get textDecoration():String
+	{
+		return "none";
+	}
+	public function set textDecoration(value:String):void
+	{
+	}
 	
 	// ------------------------------------------------
 	//  paddingRight
