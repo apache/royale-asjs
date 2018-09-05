@@ -26,6 +26,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
@@ -130,11 +131,10 @@ package org.apache.royale.jewel.beads.itemRenderers
             fillRenderer(event.index, event.item, ir, presentationModel);
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var dataGroup:UIBase = itemRendererParent as UIBase;
-			var n:int = dataGroup.numElements;
+			var n:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
 
@@ -174,8 +174,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-				_itemRendererParent = listView.dataGroup;
+				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+				_itemRendererParent = view.dataGroup;
 			}
 			return _itemRendererParent;
 		}

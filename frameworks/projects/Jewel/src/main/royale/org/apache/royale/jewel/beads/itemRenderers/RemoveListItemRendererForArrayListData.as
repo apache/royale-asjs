@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
@@ -116,15 +117,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var parent:UIBase = itemRendererParent as UIBase;
-			var ir:ISelectableItemRenderer = parent.getElementAt(event.index) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererAt(event.index) as ISelectableItemRenderer;
 			itemRendererParent.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = parent.numElements;
+			var n:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = parent.getElementAt(i) as ISelectableItemRenderer;
+				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
 
@@ -164,8 +164,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-				_itemRendererParent = listView.dataGroup;
+				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+				_itemRendererParent = view.dataGroup;
 			}
 			return _itemRendererParent;
 		}
