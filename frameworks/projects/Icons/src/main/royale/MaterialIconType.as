@@ -1073,5 +1073,7 @@ package
         public static const LIST_ALT:String = 'list_alt';
         public static const UNFOLD_MORE:String = 'unfold_more';
         public static const UNFOLD_LESS:String = 'unfold_less';
+        public static const ALL_INBOX:String = 'all_inbox';
+        public static const WORK_OUTLINE:String = 'work_outline';
     }
 }
