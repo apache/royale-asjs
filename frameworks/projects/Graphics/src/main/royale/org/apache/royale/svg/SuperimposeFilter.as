@@ -43,7 +43,13 @@ package org.apache.royale.svg
 				var chainable:IChainableFilter = children[i] as IChainableFilter;
 				var resultName:String = "chainableResult" + i;
 				chainable.result = resultName;
-				results.push(resultName);
+				if (chainable.isNice)
+				{
+					results.unshift(resultName);
+				} else
+				{
+					results.push(resultName);
+				}
 				chainable.build();
 				addArray(newChildren, chainable.children);
 			}

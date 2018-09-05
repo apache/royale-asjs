@@ -36,6 +36,7 @@ package org.apache.royale.svg
 	 */
 	public class DropShadowFilter extends Filter implements IChainableFilter
 	{
+		private var _isNice:Boolean;
 		private var _dx:Number;
 		private var _dy:Number;
 		private var _stdDeviation:Number;
@@ -325,6 +326,16 @@ package org.apache.royale.svg
 		public function set knockout(value:Boolean):void 
 		{
 			_knockout = value;
+		}
+
+		public function get isNice():Boolean 
+		{
+			return _isNice;
+		}
+		
+		public function set isNice(value:Boolean):void 
+		{
+			_isNice = value;
 		}
 	}
 }
