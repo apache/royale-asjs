@@ -62,7 +62,7 @@ limitations under the License.
             <j:ResponsiveDrawer auto="true"/>
         </j:beads>
         <j:DrawerHeader>
-            <j:Image src="assets/apache-royale-jewel-logo-white.svg" height="140" click="goToHome()" className="cursor-pointer"/>
+            <j:Image src="assets/apache-royale-jewel-logo-white.svg" height="140" click="goToHome()"/>
         </j:DrawerHeader>
         <j:DrawerContent>
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
