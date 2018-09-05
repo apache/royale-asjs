@@ -93,13 +93,6 @@ j|DataContainer {
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
-j|DataGroup
-{
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
-	IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer");
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-}
-
 
 @media -royale-swf {
   j|Container {
