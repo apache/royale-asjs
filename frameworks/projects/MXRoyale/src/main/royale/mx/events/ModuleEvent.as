@@ -36,7 +36,7 @@ import mx.events.ProgressEvent;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class ModuleEvent extends import mx.events.ProgressEvent
+public class ModuleEvent extends mx.events.ProgressEvent
 {
 //
    // include "../core/Version.as";
