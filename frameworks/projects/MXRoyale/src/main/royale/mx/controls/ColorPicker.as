@@ -82,7 +82,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-[Event(name="close", type="mx.events.DropdownEvent")]
+[Event(name="close", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched if the ColorPicker <code>editable</code>
@@ -580,6 +580,45 @@ public class ColorPicker extends ComboBase
     //
     //--------------------------------------------------------------------------
 
+    //----------------------------------
+    //  showTextField
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the showTextField property.
+     */
+    private var _showTextField:Boolean = true;
+    
+    [Inspectable(category="General", defaultValue="true")]
+    
+    /**
+     *  Specifies whether to show the text box that displays the color
+     *  label or hexadecimal color value.
+     *
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showTextField():Boolean
+    {
+        return _showTextField;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set showTextField(value:Boolean):void
+    {
+        _showTextField = value;
+        
+        //if (dropdownSwatch)
+        //    dropdownSwatch.showTextField = value;
+    }
+    
     //----------------------------------
     //  selectedColor
     //----------------------------------

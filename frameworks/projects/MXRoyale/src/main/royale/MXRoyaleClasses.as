@@ -95,7 +95,8 @@ internal class MXRoyaleClasses
 	import mx.logging.Log; Log;
 	import mx.charts.chartClasses.Series; Series;
 	import mx.charts.chartClasses.GraphicsUtilities; GraphicsUtilities; 
-	import mx.effects.easing.Exponential; Exponential;
+	import mx.effects.easing.Bounce; Bounce;
+    import mx.effects.easing.Exponential; Exponential;
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
 	import mx.effects.TweenEffect; TweenEffect; 
 	import mx.rpc.Fault; Fault;

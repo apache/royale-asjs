@@ -38,7 +38,7 @@
             visible="{cb1.selected}"
             hideEffect="{wipeOut}" showEffect="{wipeIn}"/>
 			
-        <mx:Image source="@Embed(source='assets/ApacheFlexLogo.png')" 
+        <mx:Image source="assets/ApacheFlexLogo.png" 
 			width="50%" height="50%"
             visible="{cb1.selected}"
             hideEffect="{wipeOut}" showEffect="{wipeIn}"/>

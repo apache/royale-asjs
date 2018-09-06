@@ -24,7 +24,7 @@
      <fx:Script>
         <![CDATA[
             import mx.controls.Alert;
-            import mx.events.CloseEvent;
+            import org.apache.royale.events.CloseEvent;
         
             // Event handler function uses a static method to show
             // a pop-up window with the title, message, and requested buttons.        
@@ -44,16 +44,20 @@
             // Button widths. If you later use an Alert with the default Buttons, 
             // you must reset these values.
             private function secondClickHandler(event:Event):void {
+                /*
                 Alert.buttonWidth = 100;
                 Alert.yesLabel = "Magenta";
                 Alert.noLabel = "Blue";
                 Alert.cancelLabel = "Green";
-
+                */
+                
                 Alert.show("Select a color:","Color Selection",1|2|8,this);
                 
+                /*
                 // Set the labels back to normal:
                 Alert.yesLabel = "Yes";
-                Alert.noLabel = "No";                
+                Alert.noLabel = "No"; 
+                */
             }
         ]]>
     </fx:Script>

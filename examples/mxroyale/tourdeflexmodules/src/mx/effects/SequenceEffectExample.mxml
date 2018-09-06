@@ -42,7 +42,7 @@
         <mx:Text width="100%" 
 		    text="Click the logo to start the Sequence effect. The effect pauses for 2 seconds between moves."/>
 
-        <mx:Image source="@Embed(source='assets/ApacheFlexLogo.png')" 
+        <mx:Image source="assets/ApacheFlexLogo.png" 
 			width="50%" height="50%"
             mouseDownEffect="{movePauseMove}"/>
 

@@ -131,6 +131,7 @@
 	</target>
 	
 	<target name="compile-mx" description="compile mx examples">
+        <!--
 		<compile-mxml example="/mx/charts/BubbleChartExample"/>
 		<compile-mxml example="/mx/charts/CandlestickChartExample"/>
 		<compile-mxml example="/mx/charts/Column_BarChartExample"/>
@@ -145,12 +146,15 @@
 		<compile-mxml example="/mx/charts/SeriesSlideExample"/>
 		<compile-mxml example="/mx/charts/SeriesZoomExample"/>
 		<compile-mxml example="/mx/containers/AccordionExample"/>
+         -->
 		<compile-mxml example="/mx/containers/DividedBoxExample"/>
 		<compile-mxml example="/mx/containers/FormExample"/>
 		<compile-mxml example="/mx/containers/GridLayoutExample"/>
 		<compile-mxml example="/mx/containers/HBoxExample"/>
 		<compile-mxml example="/mx/containers/HDividedBoxExample"/>
+        <!--
 		<compile-mxml example="/mx/containers/SimpleApplicationControlBarExample"/>
+         -->
 		<compile-mxml example="/mx/containers/SimpleBoxExample"/>
 		<compile-mxml example="/mx/containers/SimpleCanvasExample"/>
 		<compile-mxml example="/mx/containers/SimpleControlBarExample"/>
@@ -163,23 +167,31 @@
 		<compile-mxml example="/mx/containers/VDividedBoxExample"/>
 		<compile-mxml example="/mx/containers/ViewStackExample"/>
 		<compile-mxml example="/mx/controls/AdvancedDataGridExample"/>
+        <!--
 		<compile-mxml example="/mx/controls/ButtonBarExample"/>
+         -->
 		<compile-mxml example="/mx/controls/ButtonExample"/>
 		<compile-mxml example="/mx/controls/CheckBoxExample"/>
 		<compile-mxml example="/mx/controls/ColorPickerExample"/>
 		<compile-mxml example="/mx/controls/DateChooserExample"/>
 		<compile-mxml example="/mx/controls/DateFieldExample"/>
+        <!--
 		<compile-mxml example="/mx/controls/HorizontalListExample"/>
 		<compile-mxml example="/mx/controls/HScrollBarExample"/>
+         -->
 		<compile-mxml example="/mx/controls/LabelExample"/>
+        <!--
 		<compile-mxml example="/mx/controls/LinkBarExample"/>
 		<compile-mxml example="/mx/controls/LinkButtonExample"/>
+         -->
 		<compile-mxml example="/mx/controls/Local"/>
 		<compile-mxml example="/mx/controls/MenuBarExample"/>
 		<compile-mxml example="/mx/controls/NumericStepperExample"/>
+        <!--
 		<compile-mxml example="/mx/controls/OLAPDataGridExample"/>
 		<compile-mxml example="/mx/controls/PopUpButtonExample"/>
 		<compile-mxml example="/mx/controls/PopUpButtonMenuExample"/>
+         -->
 		<compile-mxml example="/mx/controls/RadioButtonExample"/>
 		<compile-mxml example="/mx/controls/RadioButtonGroupExample"/>
 		<compile-mxml example="/mx/controls/RichTextEditorExample"/>
@@ -188,25 +200,34 @@
 		<compile-mxml example="/mx/controls/SimpleDataGrid"/>
 		<compile-mxml example="/mx/controls/SimpleHRule"/>
 		<compile-mxml example="/mx/controls/SimpleImage"/>
+        <!--
 		<compile-mxml example="/mx/controls/SimpleImageHSlider"/>
 		<compile-mxml example="/mx/controls/SimpleImageVSlider"/>
+         -->
 		<compile-mxml example="/mx/controls/SimpleList"/>
+        <!--
 		<compile-mxml example="/mx/controls/SimpleLoader"/>
 		<compile-mxml example="/mx/controls/SimpleMenuExample"/>
+         -->
 		<compile-mxml example="/mx/controls/SimpleProgressBar"/>
 		<compile-mxml example="/mx/controls/SimpleVRule"/>
 		<compile-mxml example="/mx/controls/SpacerExample"/>
+        <!--
 		<compile-mxml example="/mx/controls/TabBarExample"/>
+         -->
 		<compile-mxml example="/mx/controls/TextAreaExample"/>
 		<compile-mxml example="/mx/controls/TextExample"/>
 		<compile-mxml example="/mx/controls/TextInputExample"/>
+        <!--
 		<compile-mxml example="/mx/controls/TileListExample"/>
+         -->
 		<compile-mxml example="/mx/controls/ToggleButtonBarExample"/>
 		<compile-mxml example="/mx/controls/TreeExample"/>
+        <!--
 		<compile-mxml example="/mx/controls/VideoDisplayExample"/>
 		<compile-mxml example="/mx/controls/VScrollBarExample"/>
 		<compile-mxml example="/mx/core/RepeaterExample"/>
-		<compile-mxml example="/mx/core/SimpleApplicationExample"/>
+        <compile-mxml example="/mx/core/SimpleApplicationExample"/>
 		<compile-mxml example="/mx/effects/AddItemActionEffectExample"/>
 		<compile-mxml example="/mx/effects/AnimatePropertyEffectExample"/>
 		<compile-mxml example="/mx/effects/BlurEffectExample"/>
@@ -215,25 +236,37 @@
 		<compile-mxml example="/mx/effects/DefaultTileListEffectExample"/>
 		<compile-mxml example="/mx/effects/DissolveEffectExample"/>
 		<compile-mxml example="/mx/effects/FadeEffectExample"/>
+         -->
 		<compile-mxml example="/mx/effects/GlowEffectExample"/>
+        <!--
 		<compile-mxml example="/mx/effects/IrisEffectExample"/>
+         -->
 		<compile-mxml example="/mx/effects/MoveEffectExample"/>
 		<compile-mxml example="/mx/effects/ParallelEffectExample"/>
+        <!--
 		<compile-mxml example="/mx/effects/PauseEffectExample"/>
+         -->
 		<compile-mxml example="/mx/effects/ResizeEffectExample"/>
+        <!--
 		<compile-mxml example="/mx/effects/RotateEffectExample"/>
-		<compile-mxml example="/mx/effects/SequenceEffectExample"/>
+         -->
+        <compile-mxml example="/mx/effects/SequenceEffectExample"/>
 		<compile-mxml example="/mx/effects/SimpleEffectExample"/>
 		<compile-mxml example="/mx/effects/SimpleTweenEffectExample"/>
+        <!--
 		<compile-mxml example="/mx/effects/SoundEffectExample"/>
+         -->
 		<compile-mxml example="/mx/effects/WipeDownExample"/>
 		<compile-mxml example="/mx/effects/WipeLeftExample"/>
 		<compile-mxml example="/mx/effects/WipeRightExample"/>
 		<compile-mxml example="/mx/effects/WipeUpExample"/>
+        <!--
 		<compile-mxml example="/mx/effects/ZoomEffectExample"/>
 		<compile-mxml example="/mx/formatters/CurrencyFormatterExample"/>
+         -->
 		<compile-mxml example="/mx/formatters/DateFormatterExample"/>
 		<compile-mxml example="/mx/formatters/NumberFormatterExample"/>
+        <!--
 		<compile-mxml example="/mx/formatters/PhoneFormatterExample"/>
 		<compile-mxml example="/mx/formatters/SimpleFormatterExample"/>
 		<compile-mxml example="/mx/formatters/SwitchSymbolFormatterExample"/>
@@ -243,23 +276,32 @@
 		<compile-mxml example="/mx/printing/FormPrintHeader"/>
 		<compile-mxml example="/mx/printing/FormPrintView"/>
 		<compile-mxml example="/mx/printing/PrintDataGridExample"/>
+         -->
 		<compile-mxml example="/mx/states/StatesExample"/>
 		<compile-mxml example="/mx/states/TransitionExample"/>
+        <!--
 		<compile-mxml example="/mx/validators/CreditCardValidatorExample"/>
 		<compile-mxml example="/mx/validators/CurrencyValidatorExample"/>
 		<compile-mxml example="/mx/validators/DateValidatorExample"/>
+         -->
 		<compile-mxml example="/mx/validators/EmailValidatorExample"/>
 		<compile-mxml example="/mx/validators/NumberValidatorExample"/>
 		<compile-mxml example="/mx/validators/PhoneNumberValidatorExample"/>
 		<compile-mxml example="/mx/validators/RegExValidatorExample"/>
 		<compile-mxml example="/mx/validators/SimpleValidatorExample"/>
+        <!--
 		<compile-mxml example="/mx/validators/SocialSecurityValidatorExample"/>
+         -->
 		<compile-mxml example="/mx/validators/StringValidatorExample"/>
+        <!--
 		<compile-mxml example="/mx/validators/ZipCodeValidatorExample"/>
+         -->
 	</target>
 		
 	<target name="compile-spark" description="compile first set of spark examples">
+        <!--
 		<compile-mxml example="/spark/controls/AccordionExample"/>
+         -->
 		<compile-mxml example="/spark/controls/AdvancedDatagridExample"/>
 		<compile-mxml example="/spark/controls/ColorPickerExample"/>
 		<compile-mxml example="/spark/controls/ComboBoxExample"/>
@@ -273,8 +315,10 @@
 		<compile-mxml example="/spark/controls/ImageExample"/>
 		<compile-mxml example="/spark/controls/LinkBarExample"/>
 		<compile-mxml example="/spark/controls/LinkButtonExample"/>
+        <!--
 		<compile-mxml example="/spark/controls/OLAPDataGridExample"/>
 		<compile-mxml example="/spark/controls/PopupButtonExample"/>
+         -->
 		<compile-mxml example="/spark/controls/ProgressBarExample"/>
 		<!-- Currently broken <compile-mxml example="/spark/controls/SWFLoaderExample"/> -->
 		<compile-mxml example="/spark/controls/TitleWindowExample"/>
@@ -316,6 +360,7 @@
 		<compile-mxml example="/spark/effects/Move3DExample"/>
 		<compile-mxml example="/spark/effects/WipeExample"/>
 		
+        <!--
 		<compile-mxml example="/spark/charts/AreaChartExample"/>
 		<compile-mxml example="/spark/charts/BarChartExample"/>
 		<compile-mxml example="/spark/charts/BubbleChartExample"/>
@@ -328,7 +373,8 @@
 		<compile-mxml example="/spark/charts/SeriesInterpolateExample"/>
 		<compile-mxml example="/spark/charts/SeriesSlideExample"/>
 		<compile-mxml example="/spark/charts/SeriesZoomExample"/>
-			
+        -->
+        
 		<compile-mxml example="/spark/components/SearchExample"/>
 		<compile-mxml example="/spark/components/VideoPlayerExample"/>
 		
@@ -435,7 +481,9 @@
 		<compile-mxml example="/spark/skinning/SkinningContainerExample"/>
 		<compile-mxml example="/spark/css/CSSIDSelectorExample"/>
 		<compile-mxml example="/spark/controls/ButtonExample"/>
+        <!--
 		<compile-mxml example="/spark/controls/ButtonBarExample"/>
+         -->
 		<compile-mxml example="/spark/controls/PopUpAnchor1Example"/>
 		<compile-mxml example="/spark/controls/PopUpAnchor2Example"/>
 		<compile-mxml example="/spark/controls/ToggleButtonExample"/>
@@ -477,6 +525,10 @@
 		<!-- compile-mxml example="/apache/controls/SparkRichTextEditorExample"/-->
 	</target>
 	
+    <target name="compile-one" description="compile one example">
+        <compile-mxml example="${example}" />
+    </target>
+    
     <!--- don't worry about squiggly for now -->
 		
 	<target name="package" description="package up all source files" depends="package-dir,package-tar,package-zip">

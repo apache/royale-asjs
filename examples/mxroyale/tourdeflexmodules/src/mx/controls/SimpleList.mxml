@@ -25,11 +25,23 @@
         <![CDATA[
         	[Bindable]
             public var selectedItem:Object;
+            
+            [Bindable]
+            public var mystates:Object = { states: [
+                { label: "Alabama", data: "AL"},
+                { label: "Alaska", data: "AK"},
+                { label: "Arizona", data: "AZ"},
+                { label: "Arkansas", data: "AR"},
+                { label: "California", data: "CA"},
+                { label: "Colorado", data: "CO"},
+                { label: "Connecticut", data: "CT"}
+                ]};
        ]]>
     </fx:Script>
 
 
 	<fx:Declarations>
+        <!--
 	    <fx:Model id="mystates">
 	      <states>
 	        <state label="Alabama" data="AL"/>
@@ -41,6 +53,7 @@
 	        <state label="Connecticut" data="CT"/>
 	      </states>
 	    </fx:Model>
+        -->
 	</fx:Declarations>
 	
     <mx:Panel title="List Control Example"

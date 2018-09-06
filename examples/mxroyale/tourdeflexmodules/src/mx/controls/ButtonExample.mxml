@@ -24,7 +24,7 @@
      <fx:Script>
         <![CDATA[
 
-            import flash.events.Event;
+            import org.apache.royale.events.Event;
 
             // Event handler function to print a message
             // describing the selected Button control.
@@ -45,7 +45,7 @@
 
              <!-- The button can contain an image, as in the "Button with Icon" button -->
              <!-- The button can contain an image, as in the "Button with Icon" button -->
-			 <mx:Button id="iconButton" icon="@Embed('assets/ApacheFlexIcon.png')" label="Button with Icon"
+			 <mx:Button id="iconButton" icon="assets/ApacheFlexIcon.png" label="Button with Icon"
 			     paddingLeft="12" paddingRight="18" labelPlacement="right" color="#993300" click="printMessage(event)"/>
 
              <!-- The size of the button and the label attributes can be customized -->

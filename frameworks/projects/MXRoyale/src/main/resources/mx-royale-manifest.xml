@@ -65,6 +65,7 @@
 	<component id="Module" class="mx.modules.Module"/>
 	<component id="ModuleLoader" class="mx.modules.ModuleLoader"/>
 	<component id="State" class="mx.states.State" />
+    <component id="Transition" class="mx.states.Transition" />
   <component id="PlotChart" class="mx.charts.PlotChart" />
 	<component id="PieSeries" class="mx.charts.series.PieSeries" />
 	<component id="PlotSeries" class="mx.charts.series.PlotSeries" />
@@ -152,5 +153,10 @@
         <component id="MXAdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
 
 
+    <component id="WipeLeft" class="mx.effects.WipeLeft" />
+    <component id="WipeRight" class="mx.effects.WipeRight" />
+    <component id="WipeUp" class="mx.effects.WipeUp" />
+    <component id="WipeDown" class="mx.effects.WipeDown" />
+    <component id="Pause" class="mx.effects.Pause" />
 
 </componentPackage>

@@ -1046,7 +1046,7 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the disabledRanges property.
      */
-   // private var _disabledRanges:Array = [];
+   private var _disabledRanges:Array = [];
 
     /**
      *  @private
@@ -1099,22 +1099,22 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get disabledRanges():Array
+    public function get disabledRanges():Array
     {
         return _disabledRanges;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set disabledRanges(value:Array):void
+    public function set disabledRanges(value:Array):void
     {
-        _disabledRanges = scrubTimeValues(value);
-        disabledRangesChanged = true;
-        updateDateFiller = true;
+        _disabledRanges = /*scrubTimeValues(*/value/*)*/;
+    //    disabledRangesChanged = true;
+    //    updateDateFiller = true;
 
-        invalidateProperties();
-    } */
+    //    invalidateProperties();
+    }
 
     //----------------------------------
     //  displayedMonth

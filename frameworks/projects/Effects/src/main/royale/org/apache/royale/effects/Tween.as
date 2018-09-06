@@ -26,6 +26,11 @@ import org.apache.royale.events.ValueEvent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 
+[Event(name="tweenEnd", type="org.apache.royale.events.ValueEvent")]
+[Event(name="tweenStart", type="org.apache.royale.events.ValueEvent")]
+[Event(name="tweenUpdate", type="org.apache.royale.events.ValueEvent")]
+[Event(name="effectEnd", type="org.apache.royale.events.Event")]
+
 /**
  *  Tween is the underlying animation class for the effects in Royale.
  *
@@ -580,6 +585,20 @@ public class Tween extends Effect
         return c / 2 * (Math.sin(Math.PI * (t / d - 0.5)) + 1) + b;
     }
 
+    /**
+     *  Stops the tween, ending it without dispatching an event or calling
+     *  the Tween's endFunction or <code>onTweenEnd()</code>.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 1.0.0
+     */
+    public function end():void
+    {
+        seek(duration);
+    }
+    
     /**
      *  Advances the tween effect to the specified position.
      *

@@ -123,7 +123,7 @@ public class RegExpValidator extends Validator
     /** 
      *  @private
      */     
-    //private var foundMatch:Boolean = false;
+    private var foundMatch:Boolean = false;
     
     //--------------------------------------------------------------------------
     //
@@ -390,7 +390,7 @@ public class RegExpValidator extends Validator
      *  @private 
      *  Performs validation on the validator
      */     
-    /* private function validateRegExpression(value:Object):Array
+    private function validateRegExpression(value:Object):Array
     {
         var results:Array = [];
         foundMatch = false;
@@ -417,22 +417,26 @@ public class RegExpValidator extends Validator
                 foundMatch = true;
             }   
             
+            /*
             if (results.length == 0)
             {
                 results.push(new ValidationResult(
                     true, null, "noMatch",
                     noMatchError));
             }
+            */
         }
+        /*
         else
         {
             results.push(new ValidationResult(
                 true, null, "noExpression",
                 noExpressionError));
         }
+        */
         
         return results;
-    } */
+    }
 }
 
 }

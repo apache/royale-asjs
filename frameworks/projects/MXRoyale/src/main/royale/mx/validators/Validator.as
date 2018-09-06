@@ -49,7 +49,7 @@ package mx.validators
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="valid", type="mx.events.ValidationResultEvent")]
+[Event(name="valid", type="mx.events.ValidationResultEvent")]
 
 /** 
  *  Dispatched when validation fails.
@@ -61,7 +61,7 @@ package mx.validators
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="invalid", type="mx.events.ValidationResultEvent")]
+[Event(name="invalid", type="mx.events.ValidationResultEvent")]
 
 //--------------------------------------
 //  Other metadata

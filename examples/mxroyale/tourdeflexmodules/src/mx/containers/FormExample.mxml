@@ -22,6 +22,7 @@
 				height="100%" width="100%">
 
 	<fx:Declarations>
+        <!--
 	    <fx:Model id="checkModel">
 	        <User>
 	            <FirstName>{fname.text}</FirstName>
@@ -33,15 +34,18 @@
 	            <Phone>{phone.text}</Phone>
 	        </User>
 	    </fx:Model>
-		
+		-->
+        
 	    <mx:StringValidator source="{fname}" property="text" minLength="4" maxLength="12"/>
 	    <mx:PhoneNumberValidator source="{phone}" property="text"/>
 	    <mx:DateValidator source="{dob}" property="text"/>
 	    <mx:EmailValidator source="{email}" property="text"/>
 	    <mx:NumberValidator source="{age}" property="text" integerError="Enter Integer value"
 	        minValue="18" maxValue="100" domain="int"/>
+        <!--
 	    <mx:SocialSecurityValidator source="{ssn}" property="text"/>
 	    <mx:ZipCodeValidator source="{zip}" property="text"/>
+        -->
 	</fx:Declarations>
 	
     <mx:Panel title="Form Container Example"

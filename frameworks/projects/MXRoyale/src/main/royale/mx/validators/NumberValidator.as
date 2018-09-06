@@ -272,6 +272,52 @@ public class NumberValidator extends Validator
 	//			      "validators", "numberValidatorDomain");
 	}
 	
+    //----------------------------------
+    //  integerError
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the integerError property.
+     */
+    private var _integerError:String;
+    
+    /**
+     *  @private
+     */
+    //private var integerErrorOverride:String;
+    
+    [Inspectable(category="Errors", defaultValue="null")]
+    
+    /**
+     *  Error message when the number must be an integer, as defined 
+     * by the <code>domain</code> property.
+     *
+     *  @default "The number must be an integer."
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get integerError():String
+    {
+        return _integerError;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set integerError(value:String):void
+    {
+        //integerErrorOverride = value;
+        
+        _integerError = value != null ?
+            value :
+            /*resourceManager.getString(
+                "validators", */"integerError"/*)*/;
+    }
+    
 	//----------------------------------
 	//  maxValue
 	//----------------------------------

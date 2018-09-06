@@ -25,27 +25,39 @@
 					<node label="ColorPicker" module="mx/controls/ColorPickerExample" />
 					<node label="ComboBox" module="mx/controls/SimpleComboBox" />
 					<node label="DataGrid" module="mx/controls/SimpleDataGrid" />
+                    <!--
 					<node label="HorizontalList" module="mx/controls/HorizontalListExample" />
+                     -->
 					<node label="HRule" module="mx/controls/SimpleHRule" />
+                    <!--
 					<node label="HScrollBar" module="mx/controls/HScrollBarExample" />
 					<node label="HSlider" module="mx/controls/SimpleImageHSlider" />
+                     -->
 					<node label="List" module="mx/controls/SimpleList" />
 					<node label="NumericStepper" module="mx/controls/NumericStepperExample" />
 					<node label="ProgressBar" module="mx/controls/SimpleProgressBar" />
 					<node label="Spacer" module="mx/controls/SpacerExample" />
+                    <!--
 					<node label="TabBar" module="mx/controls/TabBarExample" />
 					<node label="TileList" module="mx/controls/TileListExample" />
+                     -->
 					<node label="Tree" module="mx/controls/TreeExample" />
 					<node label="VRule" module="mx/controls/SimpleVRule" />
+                    <!--
 					<node label="VScrollBar" module="mx/controls/VScrollBarExample" />
 					<node label="VSlider" module="mx/controls/SimpleImageVSlider" />
+                     -->
 				</node>
 				<node label="Button Controls">
 					<node label="Button" module="mx/controls/ButtonExample" />
+                    <!--
 					<node label="ButtonBar" module="mx/controls/ButtonBarExample" />
+                     -->
 					<node label="CheckBox" module="mx/controls/CheckBoxExample" />
+                    <!--
 					<node label="LinkBar" module="mx/controls/LinkBarExample" />
 					<node label="LinkButton" module="mx/controls/LinkButtonExample" />
+                     -->
 					<node label="PopUpButton" module="mx/controls/PopUpButtonExample" />
 					<node label="RadioButton" module="mx/controls/RadioButtonExample" />
 					<node label="RadioButtonGroup" module="mx/controls/RadioButtonGroupExample" />
@@ -57,11 +69,15 @@
 				</node>
 				<node label="Loader Controls">
 					<node label="Image" module="mx/controls/SimpleImage" />
+                    <!--
 					<node label="SWFLoader" module="mx/controls/SimpleLoader" src="mx/controls/Local.mxml" />
 					<node label="VideoDisplay" module="mx/controls/VideoDisplayExample" />
+                     -->
 				</node>
 				<node label="Menu Controls">
+                    <!--
 					<node label="Menu" module="mx/controls/SimpleMenuExample" />
+                     ->
 					<node label="MenuBar" module="mx/controls/MenuBarExample" />
 					<node label="PopUpMenuButton" module="mx/controls/PopUpButtonMenuExample" />
 				</node>
@@ -75,9 +91,7 @@
 				<node label="Containers">
                     <!-- not needed yet
 					<node label="Application" app="mx/core/SimpleApplicationExample" />
-                     -->
 					<node label="Accordion" module="mx/containers/AccordionExample" />
-					<!-- not needed yet
                     <node label="ApplicationControlBar" app="mx/containers/SimpleApplicationControlBarExample" />
                      -->
 					<node label="Box" module="mx/containers/SimpleBoxExample" />
@@ -97,9 +111,11 @@
 					<node label="VDividedBox" module="mx/containers/VDividedBoxExample" />
 					<node label="ViewStack" module="mx/containers/ViewStackExample" />
 				</node>
+                <!--
 				<node label="Repeater Control">
 					<node label="Repeater" module="mx/core/RepeaterExample" />
 				</node>
+                 -->
 			</node>
 			<node label="Print Controls">
 				<node label="FlexPrintJob, PrintDataGrid" module="mx/printing/PrintDataGridExample"
@@ -107,30 +123,41 @@
 			</node>
 			<node label="Validators and Formatters">
 				<node label="Validators">
+                    <!--
 					<node label="CreditCardValidator" module="mx/validators/CreditCardValidatorExample" />
 					<node label="CurrencyValidator" module="mx/validators/CurrencyValidatorExample" />
 					<node label="DateValidator" module="mx/validators/DateValidatorExample" />
+                     -->
 					<node label="EmailValidator" module="mx/validators/EmailValidatorExample" />
 					<node label="NumberValidator" module="mx/validators/NumberValidatorExample" />
 					<node label="PhoneNumberValidator" module="mx/validators/PhoneNumberValidatorExample" />
 					<node label="RegExpValidator" module="mx/validators/RegExValidatorExample" />
+                    <!--
 					<node label="SocialSecurityValidator" module="mx/validators/SocialSecurityValidatorExample" />
+                     -->
 					<node label="StringValidator" module="mx/validators/StringValidatorExample" />
 					<node label="Validator" module="mx/validators/SimpleValidatorExample" />
+                    <!--
 					<node label="ZipCodeValidator" module="mx/validators/ZipCodeValidatorExample" />
+                     -->
 				</node>
 				<node label="Formatters">
+                    <!--
 					<node label="CurrencyFormatter" module="mx/formatters/CurrencyFormatterExample" />
 					<node label="DateFormatter" module="mx/formatters/DateFormatterExample" />
+                     -->
 					<node label="Formatter" module="mx/formatters/SimpleFormatterExample" />
 					<node label="NumberFormatter" module="mx/formatters/NumberFormatterExample" />
+                    <!--
 					<node label="PhoneFormatter" module="mx/formatters/PhoneFormatterExample" />
 					<node label="SwitchSymbolFormatter" module="mx/formatters/SwitchSymbolFormatterExample" />
 					<node label="ZipCodeFormatter" module="mx/formatters/ZipCodeFormatterExample" />
+                     -->
 				</node>
 			</node>
 			<node label="Effects, View States, and Transitions">
 				<node label="Effects">
+                    <!--
 					<node label="AddItemActionEffect" module="mx/effects/AddItemActionEffectExample" />
 					<node label="AnimateProperty" module="mx/effects/AnimatePropertyEffectExample" />
 					<node label="Blur" module="mx/effects/BlurEffectExample" />
@@ -139,19 +166,26 @@
 					<node label="Fade" module="mx/effects/FadeEffectExample" />
 					<node label="Glow" module="mx/effects/GlowEffectExample" />
 					<node label="Iris" module="mx/effects/IrisEffectExample" />
+                     -->
 					<node label="Move" module="mx/effects/MoveEffectExample" />
 					<node label="Parallel" module="mx/effects/ParallelEffectExample" />
+                    <!--
 					<node label="Pause" module="mx/effects/PauseEffectExample" />
 					<node label="RemoveItemActionEffect" module="mx/effects/AddItemActionEffectExample" />
+                     -->
 					<node label="Resize" module="mx/effects/ResizeEffectExample" />
+                    <!--
 					<node label="Rotate" module="mx/effects/RotateEffectExample" />
 					<node label="Sequence" module="mx/effects/SequenceEffectExample" />
 					<node label="SoundEffect" module="mx/effects/SoundEffectExample" />
+                     -->
 					<node label="WipeDown" module="mx/effects/WipeDownExample" />
 					<node label="WipeLeft" module="mx/effects/WipeLeftExample" />
 					<node label="WipeRight" module="mx/effects/WipeRightExample" />
 					<node label="WipeUp" module="mx/effects/WipeUpExample" />
+                    <!--
 					<node label="Zoom" module="mx/effects/ZoomEffectExample" />
+                     -->
 				</node>
 				<node label="View States">
 					<node label="State" module="mx/states/StatesExample" />
@@ -161,6 +195,7 @@
 				</node>
 			</node>
 			<node label="Datavisualization Components">
+                <!--
 				<node label="Charts">
 					<node label="Chart Controls">
 						<node label="AreaChart" module="mx/charts/Line_AreaChartExample" />
@@ -197,15 +232,18 @@
 						<node label="SeriesZoom" module="mx/charts/SeriesZoomExample" />
 					</node>
 				</node>
+                 -->
 				<node label="AdancedDataGrid">
 					<node label="AdvancedDataGrid" module="mx/controls/AdvancedDataGridExample" />
 				</node>
+                <!--
 				<node label="OLAPDataGrid">
 					<node label="OLAPDataGrid" module="mx/controls/OLAPDataGridExample" />
 				</node>
 				<node label="Printing">
 					<node label="ADG Printing" module="mx/printing/AdvancedPrintDataGridExample" />
 				</node>
+                 -->
 			</node>
 		</node>
 		<node label="Spark Framework Components">
@@ -285,12 +323,14 @@
 				<node label="Modules">
 					<node label="Load" module="spark/modules/ModuleExample" />
 				</node>
+                <!--
 				<node label="Repeater">
 					<node label="Repeater" module="spark/other/RepeaterExample" />
 				</node>
 				<node label="ScrollBars">
 					<node label="ScrollBars" module="spark/other/ScrollBarsExample" />
 				</node>
+                 -->
 				<node label="Skinning">
 					<node label="Button With Icon" module="spark/skinning/ButtonWithIconExample" src="spark/skinning/skins/CloseButtonSkin.mxml&amp;spark/skinning/skins/AddButtonSkin.mxml&amp;spark/skinning/skins/IconTextButtonSkin.mxml" />
 					<node label="Gradient Skin" module="spark/skinning/SkinningApplication1Example" src="spark/skinning/skins/GradientBackgroundAppSkin.mxml"/>
@@ -317,7 +357,9 @@
 			</node>
 			<node label="Visual Components">
 				<node label="Containers">
+                    <!--
 					<node label="Accordion" module="spark/controls/AccordionExample" />
+                     -->
 					<node label="Border" module="spark/containers/BorderExample"/>
 					<node label="DataGroup" module="spark/controls/DataGroupExample" />
 					<node label="Form" module="spark/controls/FormExample" />
@@ -358,9 +400,11 @@
 					<node label="OLAPDataGrid" module="spark/controls/OLAPDataGridExample" />
 					<node label="ProgressBar" module="spark/controls/ProgressBarExample" />
 					<node label="RadioButton" module="spark/controls/RadioButtonExample"/>
+                    <!--
 					<node label="ScrollBar" module="spark/controls/ScrollBarExample" />
 					<node label="Scroller" module="spark/controls/Scroller1Example"/>
 					<node label="Scroller and Tabbing" module="spark/controls/Scroller2Example"/>
+                     -->
 					<node label="Slider" module="spark/controls/SliderExample"/>
 					<node label="Spinner" module="spark/controls/SpinnerExample"/>
 					<!--  Removed to avoid putting swf in repo
@@ -376,7 +420,9 @@
 				</node>	
 				<node label="Button Controls">
 					<node label="Button" module="spark/controls/ButtonExample"/>
+                    <!--
 					<node label="ButtonBar" module="spark/controls/ButtonBarExample"/>
+                     -->
 					<node label="LinkBar" module="spark/controls/LinkBarExample" />
 					<node label="LinkButton" module="spark/controls/LinkButtonExample" />
 					<node label="PopUpButton" module="spark/controls/PopupButtonExample" />
@@ -408,6 +454,7 @@
 					<node label="Text Flow" module="spark/layouts/CustomLayoutFlowExample" />
 				</node>
 			</node>
+            <!--
 			<node label="Charts">
 				<node label="AreaChart" module="spark/charts/AreaChartExample" />
 				<node label="BarChart" module="spark/charts/BarChartExample" />
@@ -422,6 +469,7 @@
 				<node label="SeriesSlide" module="spark/charts/SeriesSlideExample" />
 				<node label="SeriesZoom" module="spark/charts/SeriesZoomExample" />
 			</node>
+             -->
 			<node label="Validators and Formatters">
 				<node label="Validators">
 					<node label="CreditCardValidator" module="spark/validators/CreditCardValidatorExample" />
