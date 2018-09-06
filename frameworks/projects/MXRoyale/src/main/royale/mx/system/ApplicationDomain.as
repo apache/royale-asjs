@@ -59,10 +59,7 @@ public class ApplicationDomain extends Object
 		return null;
 	}
 	
-    public function ApplicationDomain()
-    {
-        super();
-    }
+   
 }
 
 }
