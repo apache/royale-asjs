@@ -66,7 +66,6 @@ package org.apache.royale.jewel.beads.controls.combobox
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			trace(_strand);
 
 			setTimeout(addPrompt,  300);
 		}	
@@ -74,8 +73,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		private function addPrompt():void
         {
 			var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
-			trace(viewBead);
-
+			
 			COMPILE::JS
 			{
 				var e:HTMLInputElement = viewBead.textinput.element as HTMLInputElement;
