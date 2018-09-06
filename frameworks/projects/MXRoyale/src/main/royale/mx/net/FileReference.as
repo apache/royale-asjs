@@ -57,6 +57,12 @@ package mx.net
 	  {
 	    return null;
 	  }
+	  
+	  public function save(data:*, defaultFileName:String = null):void
+          {
+
+          }
+
       
    }
 

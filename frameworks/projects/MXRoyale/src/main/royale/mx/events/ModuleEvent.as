@@ -24,7 +24,8 @@ package mx.events
 //import flash.events.ProgressEvent;
 import mx.modules.IModuleInfo;
 import org.apache.royale.events.Event;
-import org.apache.royale.events.ProgressEvent;
+import mx.events.ProgressEvent;
+//import org.apache.royale.events.ProgressEvent;
 
 /**
  *  The ModuleEvent class represents the event object passed to the event listener
@@ -35,7 +36,7 @@ import org.apache.royale.events.ProgressEvent;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class ModuleEvent extends ProgressEvent
+public class ModuleEvent extends mx.events.ProgressEvent
 {
 //
    // include "../core/Version.as";

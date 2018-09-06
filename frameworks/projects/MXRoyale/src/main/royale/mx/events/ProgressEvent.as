@@ -16,53 +16,53 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-package mx.system
+package mx.events
 {
-
-
-/*
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
- *  @royalesuppresspublicvarwarning
- */
-public class ApplicationDomain extends Object
-{
-
-    
-    //--------------------------------------------------------------------------
-    //
-    //  Constructor
-    //
-    //--------------------------------------------------------------------------
-
+    import org.apache.royale.events.ProgressEvent;
     /**
-     *  Constructor.
-     *
+     *  The ProgressEvent
+     *  
      *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
      */
-	
-	
-    public function ApplicationDomain()
-    {
-        super();
-    }
-
-	public static function get currentDomain():ApplicationDomain
+	public class ProgressEvent extends org.apache.royale.events.ProgressEvent
 	{
-		return null;
-	}
-	
-    public function ApplicationDomain()
-    {
-        super();
-    }
-}
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		public function ProgressEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
+										 current:Number = NaN, total:Number = NaN)
+		{
+    		super(total);
+		}
+		
+      
 
+        
+		
+		 public function get bytesTotal():Number{
+		    return null;
+		 }
+		 
+         public function set bytesTotal(value:Number):void{
+	     }
+		 
+		 
+		
+		 public function get bytesLoaded():Number{
+		     return null;
+		 }
+		 
+		 public function set bytesLoaded(value:Number):void{
+		}
+	}
 }

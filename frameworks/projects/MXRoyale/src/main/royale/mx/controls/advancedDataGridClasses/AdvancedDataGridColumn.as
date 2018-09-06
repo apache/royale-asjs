@@ -344,7 +344,20 @@ public class AdvancedDataGridColumn
     //  Properties
     //
     //--------------------------------------------------------------------------
-
+    
+    
+    // ------------------------------------------------
+    //  fontWeight
+    // ------------------------------------------------
+	
+    public function get fontWeight():String
+    {
+	return "normal";
+    }
+    public function set fontWeight(value:String):void
+    {
+    }
+    
     //----------------------------------
     //  sortDescending
     //----------------------------------
