@@ -254,6 +254,18 @@ public class Button extends UIComponent implements IDataRenderer
 	}
 	
 	// ------------------------------------------------
+	//  locale
+	// ------------------------------------------------
+	
+	public function get locale():String
+	{
+		return "en";
+	}
+	public function set locale(value:String):void
+	{
+	}
+	
+	// ------------------------------------------------
 	//  textDecoration
 	// ------------------------------------------------
 	
