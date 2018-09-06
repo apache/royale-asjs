@@ -47,18 +47,6 @@ public class ApplicationDomain extends Object
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.0
      */
-	private var _currentDomain:Object;
-
-	public function get currentDomain():Object
-    {
-        return _currentDomain;
-    }
-    
-    public function set currentDomain(obj:Object):void
-    {
-		_currentDomain = obj;
-	}
-	
 	
 	
     public function ApplicationDomain()
@@ -66,6 +54,15 @@ public class ApplicationDomain extends Object
         super();
     }
 
+	public static function get currentDomain():ApplicationDomain
+	{
+		return null;
+	}
+	
+    public function ApplicationDomain()
+    {
+        super();
+    }
 }
 
 }
