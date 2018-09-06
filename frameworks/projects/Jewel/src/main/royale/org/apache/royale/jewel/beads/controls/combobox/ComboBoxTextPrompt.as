@@ -23,7 +23,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 		import flash.utils.setTimeout;
     }
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
 	
@@ -60,18 +61,29 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.jewel.beads.controls.combobox.IComboBoxView
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
-			setTimeout(addPrompt,  300);
+			IEventDispatcher(_strand).addEventListener("beadsAdded", addPrompt);
 		}	
 
-		private function addPrompt():void
+		/**
+		 *  add prompt when beads are added and we can access the view to retrieve the textinput
+		 *   
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.controls.combobox.IComboBoxView
+		 *  @royaleignorecoercion HTMLInputElement
+		 */
+		private function addPrompt(event:Event):void
         {
+			IEventDispatcher(_strand).removeEventListener("beadsAdded", addPrompt);
+
 			var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
 			
 			COMPILE::JS
