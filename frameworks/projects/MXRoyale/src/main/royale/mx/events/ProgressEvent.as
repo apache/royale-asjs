@@ -48,13 +48,15 @@ package mx.events
       
 
         
-		
+		 public static const PROGRESS:String = "progress";
+		 
+		 
 		 public function get bytesTotal():Number{
 		    return null;
 		 }
 		 
-         public function set bytesTotal(value:Number):void{
-	     }
+                 public function set bytesTotal(value:Number):void{
+	         }
 		 
 		 
 		

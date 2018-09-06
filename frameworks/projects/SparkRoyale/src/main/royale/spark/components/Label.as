@@ -409,6 +409,35 @@ public class Label extends TextBase
             trace("verticalAlign not implemented");
     }
 	
+	
+	
+    public function get digitWidth():String
+    {
+        return "";
+    }
+    public function set digitWidth(value:String):void
+    {
+        
+    }
+	
+	public function get fontStyle():String
+    {
+        return "";
+    }
+    public function set fontStyle(value:String):void
+    {
+        
+    }
+    
+    public function get textDecoration():String
+    {
+        return "";
+    }
+    public function set textDecoration(value:String):void
+    {
+        
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Variables
