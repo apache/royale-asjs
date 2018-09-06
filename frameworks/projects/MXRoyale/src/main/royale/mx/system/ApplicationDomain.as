@@ -49,20 +49,23 @@ public class ApplicationDomain extends Object
      */
 	
 	
-    public function ApplicationDomain()
+  public function ApplicationDomain()
     {
         super();
     }
-
-	public static function get currentDomain():ApplicationDomain
-	{
-		return null;
-	}
+	private var _currentDomain:Object;
 	
-    public function ApplicationDomain()
+	public function get currentDomain():Object
     {
-        super();
+        return _currentDomain;
     }
+    
+    public function set currentDomain(obj:Object):void
+    {
+	_currentDomain = obj;
+    } 
+	
+   
 }
 
 }
