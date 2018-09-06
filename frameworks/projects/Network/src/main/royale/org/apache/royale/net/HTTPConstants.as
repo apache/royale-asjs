@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net
 {
-    public final class HTTPConstants extends Object
+    public final class HTTPConstants
     {
         /**
          *

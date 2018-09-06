@@ -2074,7 +2074,7 @@ import mx.events.PropertyChangeEvent; */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-/* class PathSegment extends Object
+/* class PathSegment
 { */
 
 //--------------------------------------------------------------------------

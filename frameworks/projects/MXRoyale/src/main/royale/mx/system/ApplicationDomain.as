@@ -29,7 +29,7 @@ package mx.system
  *  @productversion Royale 0.9.3
  *  @royalesuppresspublicvarwarning
  */
-public class ApplicationDomain extends Object
+public class ApplicationDomain
 {
 
     

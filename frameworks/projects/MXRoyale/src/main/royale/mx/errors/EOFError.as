@@ -58,7 +58,7 @@ public class EOFError extends flash.errors.EOFError
 }
 
 COMPILE::JS
-public class EOFError extends Object
+public class EOFError
 {
     //--------------------------------------------------------------------------
     //

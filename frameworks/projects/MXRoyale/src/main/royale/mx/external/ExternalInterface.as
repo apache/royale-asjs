@@ -21,7 +21,7 @@ package mx.external
 	
 
 		
-	public final class ExternalInterface extends Object
+	public final class ExternalInterface
 	{
 		public function ExternalInterface()
 		{

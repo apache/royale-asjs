@@ -28,7 +28,7 @@ package mx.filters
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class BitmapFilter extends Object
+public class BitmapFilter
 {
 
     public function BitmapFilter()
