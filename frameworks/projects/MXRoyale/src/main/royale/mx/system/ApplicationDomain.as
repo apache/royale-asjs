@@ -53,7 +53,8 @@ public class ApplicationDomain extends Object
     {
         super();
     }
-	private static var _currentDomain:Object;
+	
+  private static var _currentDomain:Object;
 	
 	public static function get currentDomain():Object
     {
@@ -62,7 +63,7 @@ public class ApplicationDomain extends Object
     
     public function set currentDomain(obj:Object):void
     {
-	_currentDomain = obj;
+	      _currentDomain = obj;
     } 
 	
    
