@@ -120,7 +120,9 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 		
 		COMPILE::SWF
-		private var promptField:CSSTextField;
+		private var promptField:CSSTextField
+		
+		COMPILE::SWF
 		private var promptAdded:Boolean;
 		
 		/**
