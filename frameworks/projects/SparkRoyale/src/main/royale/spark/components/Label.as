@@ -428,6 +428,16 @@ public class Label extends TextBase
     {
         
     }
+    
+    public function get textDecoration():String
+    {
+        return "";
+    }
+    public function set textDecoration(value:String):void
+    {
+        
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Variables
