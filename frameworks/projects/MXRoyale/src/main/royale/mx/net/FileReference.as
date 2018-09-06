@@ -58,6 +58,16 @@ package mx.net
 	    return null;
 	  }
 	  
+	  public function get size():Number
+	   {
+	     return 0;
+	   }
+      
+	  public function get type():String
+	  {
+	     return null; 
+	  }
+	  
 	  public function save(data:*, defaultFileName:String = null):void
           {
 
