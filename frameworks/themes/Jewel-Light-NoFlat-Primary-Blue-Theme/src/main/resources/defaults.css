@@ -302,7 +302,6 @@ j|Card {
 }
 
 .jewel.datefield .jewel.textinput input {
-  width: 8em;
   border-radius: 0.25rem 0px 0px 0.25rem;
 }
 .jewel.datefield .jewel.button {
