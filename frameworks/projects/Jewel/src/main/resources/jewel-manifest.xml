@@ -105,6 +105,7 @@
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
     
     <component id="ComboBoxTextPrompt" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"/>
+    <component id="DateFieldTextPrompt" class="org.apache.royale.jewel.beads.controls.datefield.DateFieldTextPrompt"/>
     <component id="TextPrompt" class="org.apache.royale.jewel.beads.controls.textinput.TextPrompt"/>
     <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>
     <component id="MaxNumberCharacters" class="org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters"/>

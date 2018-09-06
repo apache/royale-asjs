@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.combobox
+package org.apache.royale.jewel.beads.controls.datefield
 {
 	COMPILE::SWF
 	{
@@ -25,12 +25,12 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+	import org.apache.royale.jewel.beads.views.DateFieldView;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
 	
 	/**
-	 *  The ComboBoxTextPrompt class is a specialty bead that can be used with
-	 *  any ComboBox control. The bead places a string into the sub TextInput component
+	 *  The DateFieldTextPrompt class is a specialty bead that can be used with
+	 *  any DateField control. The bead places a string into the sub TextInput component
 	 *  when there is no value associated with the text property.
 	 *  
 	 *  @langversion 3.0
@@ -38,7 +38,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ComboBoxTextPrompt extends TextPrompt
+	public class DateFieldTextPrompt extends TextPrompt
 	{
 		/**
 		 *  constructor.
@@ -48,7 +48,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function ComboBoxTextPrompt()
+		public function DateFieldTextPrompt()
 		{
 		}
 		
@@ -84,11 +84,11 @@ package org.apache.royale.jewel.beads.controls.combobox
         {
 			IEventDispatcher(_strand).removeEventListener("beadsAdded", addPrompt);
 
-			var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			
 			COMPILE::JS
 			{
-				var e:HTMLInputElement = viewBead.textinput.element as HTMLInputElement;
+				var e:HTMLInputElement = viewBead.textInput.element as HTMLInputElement;
 				e.placeholder = prompt;
 			}
 		}

@@ -428,6 +428,9 @@ j|DateChooser {
 .jewel.datefield {
   display: inline-flex;
 }
+.jewel.datefield .jewel.textinput input {
+  width: 9.2em;
+}
 .jewel.datefield .jewel.button::before {
   margin: 0;
   padding: 0;

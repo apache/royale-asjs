@@ -20,6 +20,7 @@
 // Jewel DateField
 
 // DateField variables
+$datefield-input-width: 9.2em
 $datefield-button-size: 22px
 $datefield-button-xoffset: calc(50% - #{$datefield-button-size/2})
 $datefield-button-yoffset: calc(50% - #{$datefield-button-size/2})
@@ -31,9 +32,10 @@ $datechooser-item-min-heigh: 34px
 .jewel.datefield
     display: inline-flex
 
-    // .jewel.textinput
-    //     input
-            
+    .jewel.textinput
+        input
+            width: $datefield-input-width
+
     .jewel.button
         
         &::before

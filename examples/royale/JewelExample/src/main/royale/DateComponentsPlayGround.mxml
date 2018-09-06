@@ -111,7 +111,11 @@ limitations under the License.
 				<html:H3 text="Jewel DateField (Default)"/>
 
 				<j:HGroup gap="3">
-					<j:DateField id="dateFieldDefault" change="dateFieldDefaultChanged()"/>
+					<j:DateField id="dateFieldDefault" change="dateFieldDefaultChanged()">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="MM/DD/YYYY"/>
+						</j:beads>
+					</j:DateField>
 					<j:Button text="Select today" click="dateFieldToToday()" emphasis="primary"/>	
 				</j:HGroup>
 				<j:Label id="dateFieldDefaultSelectedDate" multiline="true" html="&lt;strong>DateField selected date:&lt;/strong> "/>
@@ -125,7 +129,11 @@ limitations under the License.
 				<html:H3 text="Jewel DateField (Spanish)"/>
 
 				<j:HGroup gap="3">
-					<j:DateField id="dateFieldES" change="dateFieldESChanged()" beadsAdded="configDateFieldToES()"/>
+					<j:DateField id="dateFieldES" change="dateFieldESChanged()" beadsAdded="configDateFieldToES()">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="DD/MM/YYYY"/>
+						</j:beads>
+					</j:DateField>
 					<j:Button text="Selecciona Hoy" click="dateFieldESToToday()" emphasis="primary"/>	
 				</j:HGroup>
 				<j:Label id="dateFieldESSelectedDate" multiline="true" html="&lt;strong>DateField fecha seleccionada:&lt;/strong> "/>
