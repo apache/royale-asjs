@@ -204,7 +204,7 @@ public class HGroup extends Group
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function get paddingLeft():Number
+    override public function get paddingLeft():Number
     {
         return horizontalLayout.paddingLeft;
     }
@@ -212,7 +212,7 @@ public class HGroup extends Group
     /**
      *  @private
      */
-    public function set paddingLeft(value:Number):void
+    override public function set paddingLeft(value:Number):void
     {
         horizontalLayout.paddingLeft = value;
     }    
@@ -233,7 +233,7 @@ public class HGroup extends Group
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function get paddingRight():Number
+    override public function get paddingRight():Number
     {
         return horizontalLayout.paddingRight;
     }
@@ -241,7 +241,7 @@ public class HGroup extends Group
     /**
      *  @private
      */
-    public function set paddingRight(value:Number):void
+    override public function set paddingRight(value:Number):void
     {
         horizontalLayout.paddingRight = value;
     }    
