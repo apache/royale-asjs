@@ -96,6 +96,14 @@ public class Fault extends Error
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
+     
+    COMPILE::JS{
+	public function getStackTrace():String
+	{
+	   return "";;
+	}
+	}
+    
     public function get faultCode():String
     {
         return _faultCode;
