@@ -618,7 +618,7 @@ public class Label extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	public function get html():String
+	public function get htmlText():String
 	{
 		COMPILE::SWF
 		{
@@ -633,7 +633,7 @@ public class Label extends UIComponent
 	/**
 	 *  @private
 	 */
-	public function set html(value:String):void
+	public function set htmlText(value:String):void
 	{
 		COMPILE::SWF
 		{

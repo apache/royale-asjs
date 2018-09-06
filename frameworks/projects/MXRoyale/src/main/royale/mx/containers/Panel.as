@@ -67,6 +67,7 @@ use namespace mx_internal;
 import mx.containers.beads.PanelView;
 import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
+
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
 
@@ -588,6 +589,51 @@ public class Panel extends Container
         (model as PanelModel).layout = value;
     }
 
+    //----------------------------------
+    //  status
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the status property.
+     */
+    private var _status:String = "";
+    
+    /**
+     *  @private
+     */
+    //private var _statusChanged:Boolean = false;
+    
+    [Bindable("statusChanged")]
+    [Inspectable(category="General", defaultValue="")]
+    
+    /**
+     *  Text in the status area of the title bar.
+     *
+     *  @default ""
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get status():String
+    {
+        return _status;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set status(value:String):void
+    {
+        _status = value;
+        //_statusChanged = true;
+        
+        //invalidateProperties();
+        
+        dispatchEvent(new Event("statusChanged"));
+    }
 
 
     //----------------------------------

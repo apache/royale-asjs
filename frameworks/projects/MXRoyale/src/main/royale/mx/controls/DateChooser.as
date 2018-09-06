@@ -25,7 +25,7 @@ COMPILE::JS {
 	
 	import mx.core.UIComponent;
 	import mx.core.mx_internal;
-	import mx.events.CalendarLayoutChangeEvent;
+//	import mx.events.CalendarLayoutChangeEvent;
 	
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutHost;
@@ -60,7 +60,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="change", type="mx.events.CalendarLayoutChangeEvent")]
+[Event(name="change", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when the month changes due to user interaction.
@@ -983,6 +983,55 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
          return dates;
      }
 
+     //----------------------------------
+     //  yearNavigationEnabled
+     //----------------------------------
+     
+     /**
+      *  @private
+      *  Storage for the yearNavigationEnabled property.
+      */
+     private var _yearNavigationEnabled:Boolean = false;
+     
+     /**
+      *  @private
+      */
+     //private var yearNavigationEnabledChanged:Boolean = false;
+     
+     [Bindable("yearNavigationEnabledChanged")]
+     [Inspectable(defaultValue="false")]
+     
+     /**
+      *  Enables year navigation. When <code>true</code>
+      *  an up and down button appear to the right
+      *  of the displayed year. You can use these buttons
+      *  to change the current year.
+      *  These button appear to the left of the year in locales where year comes 
+      *  before the month in the date format.
+      *
+      *  @default false
+      *  
+      *  @langversion 3.0
+      *  @playerversion Flash 9
+      *  @playerversion AIR 1.1
+      *  @productversion Flex 3
+      */
+     public function get yearNavigationEnabled():Boolean
+     {
+         return _yearNavigationEnabled;
+     }
+     
+     /**
+      *  @private
+      */
+     public function set yearNavigationEnabled(value:Boolean):void
+     {
+         _yearNavigationEnabled = value;
+    //     yearNavigationEnabledChanged = true;
+         
+     //    invalidateProperties();
+     }
+     
     //--------------------------------------------------------------------------
     //
     //  Overridden event handlers: UIComponent

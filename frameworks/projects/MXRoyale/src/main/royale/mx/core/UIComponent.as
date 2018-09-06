@@ -42,8 +42,10 @@ import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 */
 
+import mx.charts.chartClasses.IAxis;
 import mx.controls.beads.ToolTipBead;
 import mx.display.Graphics;
+import mx.events.EffectEvent;
 import mx.events.FlexEvent;
 import mx.events.MoveEvent;
 import mx.events.PropertyChangeEvent;
@@ -54,7 +56,6 @@ import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
-import mx.charts.chartClasses.IAxis;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
@@ -63,8 +64,10 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.KeyboardEvent;
+import org.apache.royale.events.MouseEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
@@ -317,27 +320,6 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
-
-
-/**
- *  Played when the user rolls the mouse over the component.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Effect(name="rollOverEffect", event="rollOver")]
-
-/**
- *  Played when the user rolls the mouse so it is no longer over the component.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Effect(name="rollOutEffect", event="rollOut")]
 
 
 /**
@@ -2811,70 +2793,6 @@ COMPILE::JS
     }
 	
 	
-	//----------------------------------
-    //  horizontalScrollPolicy
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the horizontalScrollPolicy property.
-     */
-    private var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
-
-    [Bindable("horizontalScrollPolicyChanged")]
-    [Inspectable(enumeration="off,on,auto", defaultValue="off")]
-
-    /**
-     *  A property that indicates whether the horizontal scroll 
-     *  bar is always on, always off,
-     *  or automatically changes based on the parameters passed to the
-     *  <code>setScrollBarProperties()</code> method.
-     *  Allowed values are <code>ScrollPolicy.ON</code>,
-     *  <code>ScrollPolicy.OFF</code>, and <code>ScrollPolicy.AUTO</code>.
-     *  MXML values can be <code>"on"</code>, <code>"off"</code>,
-     *  and <code>"auto"</code>.
-     *
-     *  <p>Setting this property to <code>ScrollPolicy.OFF</code> for ListBase
-     *  subclasses does not affect the <code>horizontalScrollPosition</code>
-     *  property; you can still scroll the contents programmatically.</p>
-     *
-     *  <p>Note that the policy can affect the measured size of the component
-     *  If the policy is <code>ScrollPolicy.AUTO</code> the
-     *  scrollbar is not factored in the measured size.  This is done to
-     *  keep the layout from recalculating when the scrollbar appears.  If you
-     *  know that you will have enough data for scrollbars you should set
-     *  the policy to <code>ScrollPolicy.ON</code>.  If you
-     *  don't know, you may need to set an explicit width or height on
-     *  the component to allow for scrollbars to appear later.</p>
-     *
-     *  @default ScrollPolicy.OFF
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get horizontalScrollPolicy():String
-    {
-	 return _horizontalScrollPolicy;
-	     
-	}
-
-    /**
-     *  @private
-     */
-    public function set horizontalScrollPolicy(value:String):void
-    {
-         var newPolicy:String = value.toLowerCase();
-
-        if (_horizontalScrollPolicy != newPolicy)
-        {
-            _horizontalScrollPolicy = newPolicy;
-           // invalidateDisplayList();
-
-           // dispatchEvent(new Event("horizontalScrollPolicyChanged"));
-        } 
-    }
 	
     //--------------------------------------------------------------------------
     //
@@ -3938,14 +3856,11 @@ COMPILE::JS
      */
     public function get left():Object
     {
-        if (GOOG::DEBUG)
-            trace("left not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "left");
     }
     public function set left(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("left not implemented");
+        setStyle("left", value);
     }
 
     [Inspectable(category="General")]
@@ -3970,14 +3885,11 @@ COMPILE::JS
      */
     public function get right():Object
     {
-        if (GOOG::DEBUG)
-            trace("right not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "right");
     }
     public function set right(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("right not implemented");
+        setStyle("right", value);
     }
 
     [Inspectable(category="General")]
@@ -4002,14 +3914,11 @@ COMPILE::JS
      */
     public function get top():Object
     {
-        if (GOOG::DEBUG)
-            trace("top not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "top");
     }
     public function set top(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("top not implemented");
+        setStyle("top", value);
     }
 
     [Inspectable(category="General")]
@@ -4034,16 +3943,102 @@ COMPILE::JS
      */
     public function get bottom():Object
     {
-        if (GOOG::DEBUG)
-            trace("bottom not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "bottom");
     }
     public function set bottom(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("bottom not implemented");
+        setStyle("bottom", value);
     }
-	[Inspectable(category="General")]
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  Number of pixels between the container's left border
+     *  and the left of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingLeft():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "paddingLeft");
+    }
+    public function set paddingLeft(value:Object):void
+    {
+        setStyle("paddingLeft", value);
+    }
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  Number of pixels between the container's right border
+     *  and the right of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingRight():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "paddingRight");
+    }
+    public function set paddingRight(value:Object):void
+    {
+        setStyle("paddingRight", value);
+    }
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  Number of pixels between the container's top border
+     *  and the top of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingTop():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "paddingTop");
+    }
+    public function set paddingTop(value:Object):void
+    {
+        setStyle("paddingTop", value);
+    }
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  Number of pixels between the container's bottom border
+     *  and the bottom of its content area.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get paddingBottom():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "paddingBottom");
+    }
+    public function set paddingBottom(value:Object):void
+    {
+        setStyle("paddingBottom", value);
+    }
+
+    [Inspectable(category="General")]
 
     /**
      *  <p>For components, this layout constraint property is a
@@ -4754,9 +4749,148 @@ COMPILE::JS
             dispatchEvent(PropertyChangeEvent.createUpdateEvent(
                 this, prop, oldValue, value));
     }
+    
+    private var _rollOverEffect:IEffect;
+    
+    /**
+     *  Played when the user rolls the mouse over the component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get rollOverEffect():Object
+    {
+        return _rollOverEffect;
+    }
+    public function set rollOverEffect(value:Object):void
+    {
+        _rollOverEffect = value as IEffect;
+    }
+    
+    private var _rollOutEffect:IEffect;
+    
+    /**
+     *  Played when the user rolls the mouse so it is no longer over the component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get rollOutEffect():Object
+    {
+        return _rollOutEffect;
+    }
+    public function set rollOutEffect(value:Object):void
+    {
+        _rollOutEffect = value as IEffect;
+    }
+    
+    private var _mouseDownEffect:IEffect;
+    
+    /**
+     *  Played when the user presses the mouse button.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get mouseDownEffect():Object
+    {
+        return _mouseDownEffect;
+    }
+    public function set mouseDownEffect(value:Object):void
+    {
+        _mouseDownEffect = value as IEffect;
+        addEventListener(MouseEvent.MOUSE_DOWN, new EffectEventWatcher(_mouseDownEffect).listener);
+    }
+    
+    private var _mouseUpEffect:IEffect;
+    
+    /**
+     *  Played when the user releases the mouse button.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get mouseUpEffect():Object
+    {
+        return _mouseUpEffect;
+    }
+    public function set mouseUpEffect(value:Object):void
+    {
+        _mouseUpEffect = value as IEffect;
+        addEventListener(MouseEvent.MOUSE_UP, new EffectEventWatcher(_mouseUpEffect).listener);
+    }
+    
+    private var _hideEffect:IEffect;
+    
+    /**
+     *  Played when the component becomes invisible.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get hideEffect():Object
+    {
+        return _hideEffect;
+    }
+    public function set hideEffect(value:Object):void
+    {
+        _hideEffect = value as IEffect;
+        addEventListener("hide", new EffectEventWatcher(_hideEffect).listener);
+    }
+
+    private var _showEffect:IEffect;
+    
+    /**
+     *  Played when the component becomes visible.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showEffect():Object
+    {
+        return _showEffect;
+    }
+    public function set showEffect(value:Object):void
+    {
+        _showEffect = value as IEffect;
+        addEventListener("hide", new EffectEventWatcher(_showEffect).listener);
+    }
 
 }
 
+}
+import org.apache.royale.effects.IEffect;
+import org.apache.royale.events.Event;
+
+/**
+ *  @private
+ *  An element of the methodQueue array.
+ */
+class EffectEventWatcher
+{
+    private var _effect:IEffect;
+    
+    public function EffectEventWatcher(effect:IEffect)
+    {
+        _effect = effect;
+    }
+    
+    public function listener(event:Event):void
+    {
+        _effect.play();
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

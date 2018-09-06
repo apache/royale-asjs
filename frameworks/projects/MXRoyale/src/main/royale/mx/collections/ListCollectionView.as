@@ -1992,7 +1992,7 @@ use namespace mx_internal;
  */
 [Event(name="cursorUpdate", type="mx.events.FlexEvent")]
 
-[ResourceBundle("collections")]
+//[ResourceBundle("collections")]
 
 /**
  *  @private

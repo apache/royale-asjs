@@ -248,7 +248,7 @@ public class StringValidator extends Validator
      *  @private
      *  Storage for the tooLongError property.
      */
-   // private var _tooLongError:String;
+    private var _tooLongError:String;
 
     /**
      *  @private
@@ -268,23 +268,23 @@ public class StringValidator extends Validator
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get tooLongError():String 
+    public function get tooLongError():String 
     {
         return _tooLongError;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set tooLongError(value:String):void
+    public function set tooLongError(value:String):void
     {
-        tooLongErrorOverride = value;
+        //tooLongErrorOverride = value;
 
         _tooLongError = value != null ?
                         value :
-                        resourceManager.getString(
-                            "validators", "tooLongError");
-    } */
+                        /*resourceManager.getString(
+                            "validators", */"tooLongError"/*)*/;
+    }
 
     //----------------------------------
     //  tooShortError
@@ -294,7 +294,7 @@ public class StringValidator extends Validator
      *  @private
      *  Storage for the tooShortError property.
      */
-    //private var _tooShortError:String;
+    private var _tooShortError:String;
     
     /**
      *  @private
@@ -314,23 +314,23 @@ public class StringValidator extends Validator
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get tooShortError():String 
+    public function get tooShortError():String 
     {
         return _tooShortError;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set tooShortError(value:String):void
+    public function set tooShortError(value:String):void
     {
-        tooShortErrorOverride = value;
+        //tooShortErrorOverride = value;
 
         _tooShortError = value != null ?
                          value :
-                         resourceManager.getString(
-                             "validators", "tooShortError");
-    } */
+                         /*resourceManager.getString(
+                             "validators", */"tooShortError"/*)*/;
+    }
     
     //--------------------------------------------------------------------------
     //

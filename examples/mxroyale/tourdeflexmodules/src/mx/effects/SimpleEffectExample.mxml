@@ -55,7 +55,7 @@
             text="Use the Button controls to control the Resize effect."/>
 
         <mx:Image id="img" width="30" height="60"
-            source="@Embed(source='assets/ApacheFlexLogo.png')"/>
+            source="assets/ApacheFlexLogo.png"/>
      
         <mx:ControlBar>
             <mx:Button id="button1" label="Start" click="expand.play(); button1.enabled=false"/>

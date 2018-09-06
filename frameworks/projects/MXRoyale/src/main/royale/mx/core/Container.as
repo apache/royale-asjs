@@ -19,29 +19,29 @@
 
 package mx.core
 {
-    import org.apache.royale.binding.DataBindingBase;
     import org.apache.royale.binding.ContainerDataBinding;
-	import org.apache.royale.core.ContainerBaseStrandChildren;
-	import org.apache.royale.core.IBeadLayout;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IContainer;
-	import org.apache.royale.core.IContentViewHost;
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.ILayoutParent;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IMXMLDocument;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IStatesImpl;
-	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+    import org.apache.royale.binding.DataBindingBase;
+    import org.apache.royale.core.ContainerBaseStrandChildren;
+    import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IContainer;
+    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+    import org.apache.royale.core.IContentViewHost;
+    import org.apache.royale.core.ILayoutHost;
+    import org.apache.royale.core.ILayoutParent;
+    import org.apache.royale.core.ILayoutView;
+    import org.apache.royale.core.IMXMLDocument;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IStatesImpl;
+    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.core.layout.EdgeData;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.ValueChangeEvent;
-	import org.apache.royale.events.ValueEvent;
-	import org.apache.royale.states.State;
-	import org.apache.royale.utils.MXMLDataInterpreter;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.ValueChangeEvent;
+    import org.apache.royale.events.ValueEvent;
+    import org.apache.royale.states.State;
+    import org.apache.royale.utils.MXMLDataInterpreter;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 
 COMPILE::JS
 {
@@ -80,6 +80,7 @@ import mx.events.ChildExistenceChangedEvent;
 import mx.events.FlexEvent;
 import mx.events.IndexChangedEvent;
 import mx.managers.IFocusManagerContainer;
+
 COMPILE::SWF
 {
 import flash.display.DisplayObject;
@@ -317,11 +318,11 @@ use namespace mx_internal;
 public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
-					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer
+					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer,
                        //implements IContainer, IDataRenderer,
                        //IListItemRenderer,
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
-                       //INavigatorContent
+                       INavigatorContent
 
 {
 
@@ -391,30 +392,134 @@ public class Container extends UIComponent
         super();
 		typeNames = "Container";
     }
-	
+
+    //----------------------------------
+    //  horizontalScrollPolicy
+    //----------------------------------
+    
     /**
-     *  Number of pixels between the container's top border
-     *  and the top of its content area.
+     *  @private
+     *  Storage for the horizontalScrollPolicy property.
+     */
+    private var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
+    
+    [Bindable("horizontalScrollPolicyChanged")]
+    [Inspectable(enumeration="off,on,auto", defaultValue="off")]
+    
+    /**
+     *  A property that indicates whether the horizontal scroll 
+     *  bar is always on, always off,
+     *  or automatically changes based on the parameters passed to the
+     *  <code>setScrollBarProperties()</code> method.
+     *  Allowed values are <code>ScrollPolicy.ON</code>,
+     *  <code>ScrollPolicy.OFF</code>, and <code>ScrollPolicy.AUTO</code>.
+     *  MXML values can be <code>"on"</code>, <code>"off"</code>,
+     *  and <code>"auto"</code>.
      *
-     *  @default 0
+     *  <p>Setting this property to <code>ScrollPolicy.OFF</code> for ListBase
+     *  subclasses does not affect the <code>horizontalScrollPosition</code>
+     *  property; you can still scroll the contents programmatically.</p>
+     *
+     *  <p>Note that the policy can affect the measured size of the component
+     *  If the policy is <code>ScrollPolicy.AUTO</code> the
+     *  scrollbar is not factored in the measured size.  This is done to
+     *  keep the layout from recalculating when the scrollbar appears.  If you
+     *  know that you will have enough data for scrollbars you should set
+     *  the policy to <code>ScrollPolicy.ON</code>.  If you
+     *  don't know, you may need to set an explicit width or height on
+     *  the component to allow for scrollbars to appear later.</p>
+     *
+     *  @default ScrollPolicy.OFF
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    public function get paddingTop():Object
+    public function get horizontalScrollPolicy():String
     {
-        if (GOOG::DEBUG)
-            trace("paddingTop not implemented");
-        return 0;
-    }
-    public function set paddingTop(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingTop not implemented");
+        return _horizontalScrollPolicy;
     }
     
+    /**
+     *  @private
+     */
+    public function set horizontalScrollPolicy(value:String):void
+    {
+        var newPolicy:String = value.toLowerCase();
+        
+        if (_horizontalScrollPolicy != newPolicy)
+        {
+            _horizontalScrollPolicy = newPolicy;
+            //            invalidateDisplayList();
+            
+            dispatchEvent(new Event("horizontalScrollPolicyChanged"));
+        }
+    }
+    
+    //----------------------------------
+    //  verticalScrollPolicy
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the verticalScrollPolicy property.
+     */
+    private var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
+    
+    [Bindable("verticalScrollPolicyChanged")]
+    [Inspectable(enumeration="off,on,auto", defaultValue="auto")]
+    
+    /**
+     *  A property that indicates whether the vertical scroll bar is always on, always off,
+     *  or automatically changes based on the parameters passed to the
+     *  <code>setScrollBarProperties()</code> method.
+     *  Allowed values are <code>ScrollPolicy.ON</code>,
+     *  <code>ScrollPolicy.OFF</code>, and <code>ScrollPolicy.AUTO</code>.
+     *  MXML values can be <code>"on"</code>, <code>"off"</code>,
+     *  and <code>"auto"</code>.
+     * 
+     *  <p>Setting this property to <code>ScrollPolicy.OFF</code> for ListBase
+     *  subclasses does not affect the <code>verticalScrollPosition</code>
+     *  property; you can still scroll the contents programmatically.</p>
+     *
+     *  <p>Note that the policy can affect the measured size of the component
+     *  If the policy is <code>ScrollPolicy.AUTO</code> the
+     *  scrollbar is not factored in the measured size.  This is done to
+     *  keep the layout from recalculating when the scrollbar appears.  If you
+     *  know that you will have enough data for scrollbars you should set
+     *  the policy to <code>ScrollPolicy.ON</code>.  If you
+     *  don't know, you may need to set an explicit width or height on
+     *  the component to allow for scrollbars to appear later.</p>
+     *
+     *  @default ScrollPolicy.AUTO
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalScrollPolicy():String
+    {
+        return _verticalScrollPolicy;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set verticalScrollPolicy(value:String):void
+    {
+        var newPolicy:String = value.toLowerCase();
+        
+        if (_verticalScrollPolicy != newPolicy)
+        {
+            _verticalScrollPolicy = newPolicy;
+            //            invalidateDisplayList();
+            
+            dispatchEvent(new Event("verticalScrollPolicyChanged"));
+        }
+    }
+
     /**
      *  Number of pixels between the container's bottom border
      *  and the bottom of its content area.
@@ -434,65 +539,7 @@ public class Container extends UIComponent
     public function set borderVisible(value:Boolean):void
     {
     }
-
-    public function get paddingBottom():Object
-    {
-        if (GOOG::DEBUG)
-            trace("paddingBottom not implemented");
-        return 0;
-    }
-    public function set paddingBottom(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingBottom not implemented");
-    }
 	
-	/**
-     *  Number of pixels between the container's left border
-     *  and the left of its content area.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get paddingLeft():Object
-    {
-        if (GOOG::DEBUG)
-            trace("paddingLeft not implemented");
-        return 0;
-    }
-    public function set paddingLeft(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingLeft not implemented");
-    }
-	
-	/**
-     *  Number of pixels between the container's right border
-     *  and the right of its content area.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get paddingRight():Object
-    {
-        if (GOOG::DEBUG)
-            trace("paddingRight not implemented");
-        return 0;
-    }
-    public function set paddingRight(value:Object):void
-    {
-        if (GOOG::DEBUG)
-            trace("paddingRight not implemented");
-    }
-
     /**
      *  Number of pixels between children in the vertical direction.
      *  The default value depends on the component class;
@@ -515,7 +562,30 @@ public class Container extends UIComponent
             trace("verticalGap not implemented");
     }
 	
-	 public function get horizontalGap():Object
+    /**
+     *  horizontalAlign (was a style in Flex)
+     * 
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalAlign():String
+    {
+        if (GOOG::DEBUG)
+            trace("Container:horizontalAlign not implemented");
+        return null;
+    }
+    public function set horizontalAlign(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("Container:horizontalAlign not implemented");
+    }
+    
+    
+	public function get horizontalGap():Object
     {
         if (GOOG::DEBUG)
             trace("horizontalGap not implemented");
@@ -572,6 +642,59 @@ public class Container extends UIComponent
     {
         if (GOOG::DEBUG)
             trace("backgroundColor not implemented");
+    }
+    
+    //----------------------------------
+    //  icon
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the icon property.
+     */
+    private var _icon:Class = null;
+    
+    [Bindable("iconChanged")]
+    [Inspectable(category="General", defaultValue="", format="EmbeddedFile")]
+    
+    /**
+     *  The Class of the icon displayed by some navigator
+     *  containers to represent this Container.
+     *
+     *  <p>For example, if this Container is a child of a TabNavigator,
+     *  this icon appears in the corresponding tab.
+     *  If this Container is a child of an Accordion,
+     *  this icon appears in the corresponding header.</p>
+     *
+     *  <p>To embed the icon in the SWF file, use the &#64;Embed()
+     *  MXML compiler directive:</p>
+     *
+     *  <pre>
+     *    icon="&#64;Embed('filepath')"
+     *  </pre>
+     *
+     *  <p>The image can be a JPEG, GIF, PNG, SVG, or SWF file.</p>
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get icon():Class
+    {
+        return _icon;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set icon(value:Class):void
+    {
+        _icon = value;
+        
+        dispatchEvent(new Event("iconChanged"));
     }
     
     private var _label:String;

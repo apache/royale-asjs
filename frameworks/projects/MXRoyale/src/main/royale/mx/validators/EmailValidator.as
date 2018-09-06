@@ -23,7 +23,7 @@ package mx.validators
     //import mx.events.FlexEvent;
     //import org.apache.royale.events.IEventDispatcher;
     //import mx.events.ValidationResultEvent;
-	[ResourceBundle("validators")]
+	//[ResourceBundle("validators")]
     
 /**
  *  The EmailValidator class validates that a String has a single &#64; sign,
