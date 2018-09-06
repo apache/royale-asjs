@@ -91,6 +91,7 @@ DataGrid
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
+	columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
