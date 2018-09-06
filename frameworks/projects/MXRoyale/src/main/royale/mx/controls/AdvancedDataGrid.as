@@ -877,10 +877,7 @@ public class AdvancedDataGrid extends AdvancedListBase
      */
    // private var headerSelected:Boolean = true;
 
-    /**
-     *  @private
-     */
- //   private var _lockedColumnCountVal:int;
+  
 
     /**
      *  @private
@@ -1160,7 +1157,8 @@ public class AdvancedDataGrid extends AdvancedListBase
     //----------------------------------
     //  lockedColumnCount
     //----------------------------------
-
+    private var _lockedColumnCountVal:int;
+    
     /**
      *  The index of the first column in the control that scrolls. 
      *  Columns to the left of this one remain fixed in view. 
@@ -1175,13 +1173,18 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* override public function set lockedColumnCount(value:int):void
-    {
+     public function set lockedColumnCount(value:int):void
+     {
         _lockedColumnCountVal = value;
-        lockedColumnCountChanged = true;
+        /* lockedColumnCountChanged = true;
 
-        invalidateProperties();
-    } */
+        invalidateProperties(); */
+     } 
+    
+     public function get lockedColumnCount():int
+     {
+	return _lockedColumnCountVal
+     }
     
     //----------------------------------
     //  columns

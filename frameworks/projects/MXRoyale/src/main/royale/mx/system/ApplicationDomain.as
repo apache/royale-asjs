@@ -47,8 +47,14 @@ public class ApplicationDomain
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.0
      */
+	
+	
+  public function ApplicationDomain()
+    {
+        super();
+    }
 	private var _currentDomain:Object;
-
+	
 	public function get currentDomain():Object
     {
         return _currentDomain;
@@ -56,16 +62,10 @@ public class ApplicationDomain
     
     public function set currentDomain(obj:Object):void
     {
-		_currentDomain = obj;
-	}
+	_currentDomain = obj;
+    } 
 	
-	
-	
-    public function ApplicationDomain()
-    {
-        super();
-    }
-
+   
 }
 
 }
