@@ -854,8 +854,7 @@ public class TextArea extends ScrollControlBase
 //        invalidateSize();
 //        invalidateDisplayList();
 		
-		if (GOOG::DEBUG)
-			trace("displayAsPassword not implemented");
+		trace("displayAsPassword not implemented");
 
         dispatchEvent(new Event("displayAsPasswordChanged"));
     }
@@ -1459,8 +1458,7 @@ public class TextArea extends ScrollControlBase
         restrictChanged = true;
 
         //invalidateProperties();
-		if (GOOG::DEBUG)
-			trace("restrict not implemented");
+		trace("restrict not implemented");
 
         dispatchEvent(new Event("restrictChanged"));
     }

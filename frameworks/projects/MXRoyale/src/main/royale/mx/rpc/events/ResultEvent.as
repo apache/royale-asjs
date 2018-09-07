@@ -247,8 +247,7 @@ public class ResultEvent extends Event
 	override public function toString():String
     {
      //   return formatToString("ResultEvent", "messageId", "type", "bubbles", "cancelable", "eventPhase");
-    if (GOOG::DEBUG)
-			trace("toString not implemented");
+		trace("toString not implemented");
 		return "<ResultEvent>";
 	}
 

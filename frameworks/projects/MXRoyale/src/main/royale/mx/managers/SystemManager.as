@@ -1801,8 +1801,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     { override }
     public function removeChildAt(index:int):IUIComponent
     {
-        if (GOOG::DEBUG)
-            trace("removeChildAt not implemented");
+        trace("removeChildAt not implemented");
         
         return null;
     }
@@ -3627,8 +3626,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
-        if (GOOG::DEBUG)
-            trace("setChildIndex not implemented");
+        trace("setChildIndex not implemented");
     }
     
     /**
@@ -3657,8 +3655,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     { override }
     public function getChildByName(name:String):IUIComponent
     {
-        if (GOOG::DEBUG)
-            trace("getChildByName not implemented");
+        trace("getChildByName not implemented");
         return null;
     }
     
@@ -3670,8 +3667,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     { override }
     public function contains(child:IUIComponent):Boolean
     {
-        if (GOOG::DEBUG)
-            trace("contains not implemented");
+        trace("contains not implemented");
         return true;
     }
     

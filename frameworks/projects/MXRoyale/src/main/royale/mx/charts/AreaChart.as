@@ -231,8 +231,7 @@ public class AreaChart extends ChartBase
      */
     override public function setStyle(styleProp:String, newValue:*):void
     {
-        if (GOOG::DEBUG)
-            trace("setStyle not implemented");
+        trace("setStyle not implemented");
     }
 
 }

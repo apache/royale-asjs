@@ -377,14 +377,12 @@ public class AdvancedDataGridColumn
    // public var sortDescending:Boolean = false;
     public function get textAlign():Object
     {
-        if (GOOG::DEBUG)
-            trace("textAlign not implemented");
+        trace("textAlign not implemented");
         return 0;
     }
     public function set textAlign(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("textAlign not implemented");
+        trace("textAlign not implemented");
     }
     //----------------------------------
     //  itemRenderer

@@ -39,6 +39,7 @@ import mx.utils.ArrayUtil;
 import mx.utils.UIDUtil;
 */
 import org.apache.royale.utils.UIDUtil;
+import org.apache.royale.reflection.getQualifiedClassName;
 
 //--------------------------------------
 //  Events
@@ -301,8 +302,7 @@ public class ArrayList extends EventDispatcher
 //            var message:String = resourceManager.getString(
 //                "collections", "outOfBounds", [ index ]);
 //            throw new RangeError(message);
-			if( GOOG::DEBUG) 
-				trace("getItemAt throwing RangeError - not implemented");
+			trace("getItemAt throwing RangeError - not implemented");
 			return null;
         }
             
@@ -331,8 +331,7 @@ public class ArrayList extends EventDispatcher
 //            var message:String = resourceManager.getString(
 //                "collections", "outOfBounds", [ index ]);
 //            throw new RangeError(message);
-			if (GOOG::DEBUG)
-				trace("setItemAt throwing RangeError - not implemented");
+			trace("setItemAt throwing RangeError - not implemented");
 			return null;
         }
         
@@ -427,8 +426,7 @@ public class ArrayList extends EventDispatcher
 //            var message:String = resourceManager.getString(
 //                "collections", "outOfBounds", [ index ]);
 //            throw new RangeError(message);
-			if (GOOG::DEBUG)
-				trace("addItemAt throwing RangeError - not implemented");
+			trace("addItemAt throwing RangeError - not implemented");
 			return;
         }
 
@@ -559,8 +557,7 @@ public class ArrayList extends EventDispatcher
 //            var message:String = resourceManager.getString(
 //                "collections", "outOfBounds", [ index ]);
 //            throw new RangeError(message);
-			if (GOOG::DEBUG)
-				trace("removeItemAt throwing RangeError - not implemented");
+			trace("removeItemAt throwing RangeError - not implemented");
 			return null;
         }
 
@@ -694,11 +691,9 @@ public class ArrayList extends EventDispatcher
     {
         if (source)
             return source.toString();
-//        else
-//            return getQualifiedClassName(this); 
-		if (GOOG::DEBUG)
-			trace("toString using getQualifiedClassName not implemented");
-		return "<ArrayList>";
+       else
+           return getQualifiedClassName(this); 
+		// return "<ArrayList>";
     }   
     
     //--------------------------------------------------------------------------

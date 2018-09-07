@@ -418,8 +418,7 @@ public class DividedBox extends Box
 //				return dividerLayer.numChildren;
 //		else 
 //			return 0;
-		if (GOOG::DEBUG)
-			trace("numDividers not implemented");
+		trace("numDividers not implemented");
 		return 0;
 	}
 

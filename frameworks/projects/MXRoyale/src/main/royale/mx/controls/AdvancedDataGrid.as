@@ -9617,16 +9617,14 @@ public class AdvancedDataGrid extends AdvancedListBase
 	    
 	public function get HeaderStyleName():Object
     {
-        if (GOOG::DEBUG)
-            trace("HeaderStyleName not implemented");
+        trace("HeaderStyleName not implemented");
         return 0;
     }
 	
 	
     public function set HeaderStyleName(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("HeaderStyleName not implemented");
+        trace("HeaderStyleName not implemented");
     }
 
 	
