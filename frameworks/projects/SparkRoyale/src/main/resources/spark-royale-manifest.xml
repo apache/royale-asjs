@@ -72,6 +72,8 @@
     	<component id="Image" class="spark.components.Image"/>
         <component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
 
+    <component id="Module" class="mx.modules.Module" lookupOnly="true"/>
+
     <!-- Text Layout Framework (TLF) -->
     <component id="a" class="org.apache.royale.textLayout.elements.LinkElement" lookupOnly="true"/>
     <component id="br" class="org.apache.royale.textLayout.elements.BreakElement" lookupOnly="true"/>
