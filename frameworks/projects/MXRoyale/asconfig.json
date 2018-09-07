@@ -36,5 +36,6 @@
             "../../../../frameworks/libs/air/airglobal.swc"
         ],
         "output": "target/MXRoyale.swc"
-    }
+    },
+    "additionalOptions": "-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject -js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent"
 }
