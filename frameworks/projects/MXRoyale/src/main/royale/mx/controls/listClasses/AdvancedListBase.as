@@ -58,7 +58,6 @@ import mx.core.ILayoutDirectionElement;
 import mx.core.IUIComponent;
 import mx.core.IUID;
 import mx.core.IUITextField;
-import mx.core.ScrollControlBase;
 import mx.core.ScrollPolicy;
 import mx.core.SpriteAsset;
 import mx.effects.Effect;
@@ -87,6 +86,7 @@ import mx.events.ListEvent;
 import mx.collections.ICollectionView;
 import mx.core.IFactory;
 import mx.core.UIComponent; 
+import mx.core.ScrollControlBase;
 import mx.core.mx_internal;
 use namespace mx_internal;
 
@@ -487,7 +487,7 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class AdvancedListBase extends UIComponent /* extends ScrollControlBase
+public class AdvancedListBase extends ScrollControlBase /* extends UIComponent 
                       implements IDataRenderer, IFocusManagerComponent,
                       IListItemRenderer, IDropInListItemRenderer,
                       IEffectTargetHost */
