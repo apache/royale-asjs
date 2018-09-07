@@ -763,6 +763,11 @@ a:active {
   margin-right: 8px;
 }
 
+.jewel.tooltip {
+  color: #FFFFFF;
+  background: #1198e9;
+}
+
 .jewel.errorTip {
   color: #FFFFFF;
   background: #EC1C24;
