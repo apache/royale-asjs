@@ -20,7 +20,6 @@
 package mx.formatters
 {
 
-import flash.events.Event;
 import mx.formatters.IFormatter;
 import mx.core.mx_internal;
 import mx.managers.ISystemManager;
