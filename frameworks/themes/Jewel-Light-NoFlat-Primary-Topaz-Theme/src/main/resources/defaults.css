@@ -763,13 +763,16 @@ a:active {
   margin-right: 8px;
 }
 
-.jewel.errorTip {
+.jewel.tooltip {
   color: #FFFFFF;
-  background: #EC1C24;
+  background: #d64010;
   box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4);
   animation: slide-up 0.4s ease;
 }
-.jewel.errorTip::before {
+.jewel.tooltip.error {
+  background: #EC1C24;
+}
+.jewel.tooltip.error::before {
   border-top-color: #EC1C24;
   border: solid 8px transparent;
 }
