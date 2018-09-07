@@ -213,6 +213,8 @@
             <exclude>**/*.css.map</exclude>
             <!-- swfobject.js is MIT License-->
             <exclude>**/swfobject.js</exclude>
+            <!-- audio file doesn't have rat-able license-->
+            <exclude>**/ping.mp3</exclude>
             <!--
                 Exclude any eventually existing content of target directories.
                 Some times when building with a bigger maven reactor and then
