@@ -116,14 +116,14 @@ public class PhoneFormatter extends Formatter
 	 *  @private
 	 *  Storage for the areaCode property.
 	 */
-	private var _areaCode:Object;
+	//private var _areaCode:Object;
 	
     /**
 	 *  @private
 	 */
-	private var areaCodeOverride:Object;
+	//private var areaCodeOverride:Object;
 	
-    [Inspectable(category="General", defaultValue="null")]
+   // [Inspectable(category="General", defaultValue="null")]
 
     /**
      *  Area code number added to a seven-digit United States
@@ -138,23 +138,23 @@ public class PhoneFormatter extends Formatter
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	public function get areaCode():Object
+	/* public function get areaCode():Object
 	{
 		return _areaCode;
-	}
+	} */
 
 	/**
 	 *  @private
 	 */
-	public function set areaCode(value:Object):void
+	/* public function set areaCode(value:Object):void
 	{
 		areaCodeOverride = value;
 
-		/* _areaCode = value != null ?
+		 _areaCode = value != null ?
 					int(value) :
 					resourceManager.getInt(
-						"formatters", "areaCode"); */
-	}
+						"formatters", "areaCode"); 
+	} */
 
     //----------------------------------
     //  areaCodeFormat
@@ -164,14 +164,14 @@ public class PhoneFormatter extends Formatter
 	 *  @private
 	 *  Storage for the areaCodeFormat property.
 	 */
-	private var _areaCodeFormat:String;
+	//private var _areaCodeFormat:String;
 	
     /**
 	 *  @private
 	 */
-	private var areaCodeFormatOverride:String;
+	//private var areaCodeFormatOverride:String;
 	
-    [Inspectable(category="General", defaultValue="null")]
+   // [Inspectable(category="General", defaultValue="null")]
 
     /**
      *  Default format for the area code when the <code>areacode</code>
@@ -184,23 +184,23 @@ public class PhoneFormatter extends Formatter
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	public function get areaCodeFormat():String
+	/* public function get areaCodeFormat():String
 	{
 		return _areaCodeFormat;
-	}
+	} */
 
 	/**
 	 *  @private
 	 */
-	public function set areaCodeFormat(value:String):void
+	/* public function set areaCodeFormat(value:String):void
 	{
 		areaCodeFormatOverride = value;
 
-		/* _areaCodeFormat = value != null ?
+		 _areaCodeFormat = value != null ?
 						  value :
 						  resourceManager.getString(
-						      "formatters", "areaCodeFormat"); */
-	}
+						      "formatters", "areaCodeFormat"); 
+	} */
 
     //----------------------------------
     //  formatString
@@ -215,9 +215,9 @@ public class PhoneFormatter extends Formatter
     /**
 	 *  @private
 	 */
-	private var formatStringOverride:String;
+	//private var formatStringOverride:String;
 	
-    [Inspectable(category="General", defaultValue="null")]
+    //[Inspectable(category="General", defaultValue="null")]
     
     /**
      *  String that contains mask characters
@@ -240,7 +240,7 @@ public class PhoneFormatter extends Formatter
 	 */
 	public function set formatString(value:String):void
 	{
-		formatStringOverride = value;
+		//formatStringOverride = value;
 
 		/* _formatString = value != null ?
 						value :
@@ -256,14 +256,14 @@ public class PhoneFormatter extends Formatter
 	 *  @private
 	 *  Storage for the validPatternChars property.
 	 */
-	private var _validPatternChars:String;
+	//private var _validPatternChars:String;
 	
     /**
 	 *  @private
 	 */
-	private var validPatternCharsOverride:String;
+	//private var validPatternCharsOverride:String;
 	
-    [Inspectable(category="General", defaultValue="null")]
+    //[Inspectable(category="General", defaultValue="null")]
 
     /**
      *  List of valid characters that can be used
@@ -278,23 +278,23 @@ public class PhoneFormatter extends Formatter
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	public function get validPatternChars():String
+	/* public function get validPatternChars():String
 	{
 		return _validPatternChars;
-	}
+	} */
 
 	/**
 	 *  @private
 	 */
-	public function set validPatternChars(value:String):void
+	/* public function set validPatternChars(value:String):void
 	{
 		validPatternCharsOverride = value;
 
-		/* _validPatternChars = value != null ?
+		_validPatternChars = value != null ?
 							 value :
 							 resourceManager.getString(
-							     "formatters", "validPatternChars"); */
-	}
+							     "formatters", "validPatternChars"); 
+	} */
 
     //--------------------------------------------------------------------------
     //
