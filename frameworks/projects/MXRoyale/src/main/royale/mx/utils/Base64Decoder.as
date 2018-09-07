@@ -25,10 +25,6 @@ COMPILE::SWF
     import mx.utils.ByteArray;
 }
 
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 /*
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;

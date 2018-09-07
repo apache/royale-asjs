@@ -19,9 +19,6 @@
 
 package mx.collections 
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
 import mx.events.PropertyChangeEvent;

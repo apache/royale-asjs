@@ -21,7 +21,6 @@ package mx.controls
 {
 COMPILE::JS
 {
-    import goog.DEBUG;
     import window.Text;
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.supportClasses.RadioButtonIcon;

@@ -19,10 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
 import flash.display.Shape;

@@ -20,10 +20,6 @@
 package mx.controls
 {
 import org.apache.royale.html.beads.IComboBoxView;
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 COMPILE::SWF
 {
 }

@@ -19,9 +19,6 @@
 
 package mx.charts.series
 {
-	COMPILE::JS {
-		import goog.DEBUG;
-	}
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.geom.Rectangle;
 	import mx.charts.chartClasses.IAxis;

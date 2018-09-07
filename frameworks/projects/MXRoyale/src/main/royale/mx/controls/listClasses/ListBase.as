@@ -17,11 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.listClasses
-{   
-COMPILE::JS
 {
-    import goog.DEBUG;
-}
 
 import mx.core.EdgeMetrics;
 import mx.core.IFactory;

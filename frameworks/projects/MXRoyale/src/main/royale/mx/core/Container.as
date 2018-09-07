@@ -45,7 +45,6 @@ package mx.core
 
 COMPILE::JS
 {
-    import goog.DEBUG;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
 }

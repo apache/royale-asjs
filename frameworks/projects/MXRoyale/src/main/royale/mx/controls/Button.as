@@ -21,7 +21,6 @@ package mx.controls
 {
 COMPILE::JS
 {
-    import goog.DEBUG;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.events.BrowserEvent;
 	import org.apache.royale.html.util.addElementToWrapper;
@@ -631,8 +630,7 @@ public class Button extends UIComponent implements IDataRenderer
 	override public function set enabled(value:Boolean):void
 	{
 		// TBD: redirect to bead
-		if (GOOG::DEBUG)
-			trace("Button.enabled not implemented properly.");
+		trace("Button.enabled not implemented properly.");
 	}
 	
 	

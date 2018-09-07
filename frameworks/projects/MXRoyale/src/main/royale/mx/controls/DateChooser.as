@@ -19,9 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 	
 	import mx.core.UIComponent;
 	import mx.core.mx_internal;

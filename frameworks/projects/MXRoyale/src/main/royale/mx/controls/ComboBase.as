@@ -19,10 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 COMPILE::SWF
 {
     import flash.display.InteractiveObject;    
@@ -411,15 +407,13 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     override public function get enabled():Boolean
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.enabled not implemented");
+        trace("ComboBox.enabled not implemented");
         return true;
     }
     
     override public function set enabled(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.enabled not implemented");
+        trace("ComboBox.enabled not implemented");
     }
 
     //--------------------------------------------------------------------------
@@ -503,8 +497,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function get editable():Boolean
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.editable not implemented");
+        trace("ComboBox.editable not implemented");
         return true;
     }
 
@@ -513,8 +506,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set editable(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.editable not implemented");
+        trace("ComboBox.editable not implemented");
     }
 
 
@@ -534,8 +526,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      **/
     public function get imeMode():String
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.imeMode not implemented");
+        trace("ComboBox.imeMode not implemented");
         return "";
     }
 
@@ -544,8 +535,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set imeMode(value:String):void
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.imeMode not implemented");
+        trace("ComboBox.imeMode not implemented");
     }
 
     //----------------------------------
@@ -567,8 +557,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function get restrict():String
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.restrict not implemented");
+        trace("ComboBox.restrict not implemented");
         return "";
     }
 
@@ -577,8 +566,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set restrict(value:String):void
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.restrict not implemented");
+        trace("ComboBox.restrict not implemented");
     }
 
     //----------------------------------
@@ -707,8 +695,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set text(value:String):void
     {
-        if (GOOG::DEBUG)
-            trace("ComboBox.text not implemented");
+        trace("ComboBox.text not implemented");
     }
     
     //----------------------------------

@@ -42,10 +42,6 @@ import mx.core.mx_internal;
 import mx.utils.StringUtil;
 
 use namespace mx_internal;
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 //--------------------------------------
 //  Styles
 //--------------------------------------

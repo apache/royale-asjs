@@ -19,9 +19,6 @@
 
 package mx.rpc.events
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 
 //import flash.events.Event;
 import org.apache.royale.events.Event;

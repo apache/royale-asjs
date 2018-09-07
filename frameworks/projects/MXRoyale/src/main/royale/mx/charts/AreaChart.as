@@ -25,10 +25,6 @@ import mx.graphics.SolidColor;
 import mx.graphics.SolidColorStroke;
 import mx.graphics.Stroke;
 import mx.charts.chartClasses.ChartBase;
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 /*
 import flash.utils.Dictionary;
 

@@ -19,10 +19,6 @@
 
 package mx.core
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 
 /*
 import flash.display.DisplayObject;

@@ -19,9 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ProgressEvent;
 import org.apache.royale.events.IEventDispatcher;
@@ -824,8 +821,7 @@ public class ProgressBar extends UIComponent //implements IFontContextComponent
      */
     public function set source(value:Object):void
     {
-		if (GOOG::DEBUG)
-			trace("set source is not implemented");
+		trace("set source is not implemented");
 //        if (value is String)
 //        {
 //            _stringSource = String(value);

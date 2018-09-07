@@ -46,10 +46,6 @@ import mx.managers.ISystemManager;
 import mx.utils.PopUpUtil;
 
  */
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 import mx.core.IFlexDisplayObject;
 import mx.controls.listClasses.BaseListData;
 import org.apache.royale.html.supportClasses.TreeItemRenderer;

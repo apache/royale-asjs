@@ -19,10 +19,6 @@
 
 package mx.controls.listClasses
 {
-COMPILE::JS
-{
-	import goog.DEBUG;
-}
 
 import org.apache.royale.events.EventDispatcher;
 /*

@@ -21,7 +21,7 @@ package mx.controls
 {
 COMPILE::JS
 {
-	import goog.DEBUG;
+	import goog.events;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
 }

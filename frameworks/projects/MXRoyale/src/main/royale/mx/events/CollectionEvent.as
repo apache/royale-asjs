@@ -19,9 +19,6 @@
 
 package mx.events
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;

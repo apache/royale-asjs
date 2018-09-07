@@ -19,10 +19,6 @@
 
 package mx.managers
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 
 COMPILE::SWF
 {

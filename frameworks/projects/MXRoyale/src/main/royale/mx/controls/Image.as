@@ -19,10 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS
-{
-	import goog.DEBUG;
-}
 import org.apache.royale.core.IImage;
 import org.apache.royale.core.IImageModel;
 COMPILE::JS {

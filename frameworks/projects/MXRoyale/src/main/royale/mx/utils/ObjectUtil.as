@@ -19,9 +19,6 @@
 
 package mx.utils
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 /*
 import flash.utils.ByteArray;
 import flash.utils.Dictionary;

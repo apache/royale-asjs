@@ -19,10 +19,6 @@
 
 package mx.containers
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 
 /*
 import flash.display.DisplayObject;
