@@ -3367,13 +3367,10 @@ j|TitleBar {
   pointer-events: none;
   z-index: 5;
 }
-
-.jewel.errorTip {
-  padding: 6px;
-  z-index: 5;
+.jewel.tooltip.error {
   margin-top: -31px !important;
 }
-.jewel.errorTip::before {
+.jewel.tooltip.error::before {
   top: 100%;
   left: 8px;
   position: absolute;

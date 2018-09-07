@@ -67,7 +67,7 @@
     <component id="ToolTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel" />
     
     <component id="Form" class="org.apache.royale.jewel.Form"/>
-    <component id="ErrorTip" class="org.apache.royale.jewel.ErrorTip"/>
+    <component id="ErrorTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel"/>
 
     <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
     <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>
