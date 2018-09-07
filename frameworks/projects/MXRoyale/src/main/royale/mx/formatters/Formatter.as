@@ -108,12 +108,12 @@ public class Formatter implements IFormatter
 	 *  @private
 	 *  Storage for the defaultInvalidFormatError property.
 	 */
-	private static var _defaultInvalidFormatError:String
+	//private static var _defaultInvalidFormatError:String
 	
     /**
 	 *  @private
 	 */
-	private static var defaultInvalidFormatErrorOverride:String
+	//private static var defaultInvalidFormatErrorOverride:String
 
 	/**
 	 *  Error message for an invalid format string specified to the formatter.
@@ -129,26 +129,26 @@ public class Formatter implements IFormatter
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public static function get defaultInvalidFormatError():String
+	/* public static function get defaultInvalidFormatError():String
 	{
-		// initialize();
+		initialize();
 
 		return _defaultInvalidFormatError; 
-	}
+	} */
 
 	/**
 	 *  @private
 	 */
-	public static function set defaultInvalidFormatError(value:String):void
+	/* public static function set defaultInvalidFormatError(value:String):void
 	{
 		defaultInvalidFormatErrorOverride = value;
 		
-		/* _defaultInvalidFormatError = 
+		 _defaultInvalidFormatError = 
 			value != null ?
 			value :
 			static_resourceManager.getString(
-				"formatters", "defaultInvalidFormatError"); */
-	}
+				"formatters", "defaultInvalidFormatError"); 
+	} */
 
 	//----------------------------------
 	//  defaultInvalidValueError
@@ -158,12 +158,12 @@ public class Formatter implements IFormatter
 	 *  @private
 	 *  Storage for the defaultInvalidValueError property.
 	 */
-	private static var _defaultInvalidValueError:String
+	//private static var _defaultInvalidValueError:String
 	
     /**
 	 *  @private
 	 */
-	private static var defaultInvalidValueErrorOverride:String
+	//private static var defaultInvalidValueErrorOverride:String
 
 	/**
 	 *  Error messages for an invalid value specified to the formatter. The
@@ -179,26 +179,26 @@ public class Formatter implements IFormatter
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public static function get defaultInvalidValueError():String
+	/* public static function get defaultInvalidValueError():String
 	{
-		// initialize();
+		initialize();
 
 		return _defaultInvalidValueError; 
-	}
+	} */
 
 	/**
 	 *  @private
 	 */
-	public static function set defaultInvalidValueError(value:String):void
+	/* public static function set defaultInvalidValueError(value:String):void
 	{
 		defaultInvalidValueErrorOverride = value;
 
-		/* _defaultInvalidValueError =
+		 _defaultInvalidValueError =
 			value != null ?
 			value :
 			static_resourceManager.getString(
-				"formatters", "defaultInvalidValueError"); */
-	}
+				"formatters", "defaultInvalidValueError"); 
+	} */
 	
 	//--------------------------------------------------------------------------
 	//
@@ -209,10 +209,10 @@ public class Formatter implements IFormatter
     /**
 	 *  @private    
      */
-	private static function initialize():void
+	/* private static function initialize():void
 	{
-		/* if (!initialized)
-		{ */
+		 if (!initialized)
+		{ */ 
 			// Register as a weak listener for "change" events
 			// from ResourceManager.
 			/* static_resourceManager.addEventListener(
@@ -222,17 +222,17 @@ public class Formatter implements IFormatter
 			static_resourcesChanged();
 
 			initialized = true;
-		} */
-	}
+		} 
+	} */
 
     /**
 	 *  @private    
      */
-	private static function static_resourcesChanged():void
+	/* private static function static_resourcesChanged():void
 	{
-		/* defaultInvalidFormatError = defaultInvalidFormatErrorOverride;
-		defaultInvalidValueError = defaultInvalidValueErrorOverride; */
-	}
+		 defaultInvalidFormatError = defaultInvalidFormatErrorOverride;
+		defaultInvalidValueError = defaultInvalidValueErrorOverride; 
+	} */
 
 	//--------------------------------------------------------------------------
 	//
@@ -243,11 +243,11 @@ public class Formatter implements IFormatter
 	/**
 	 *  @private
 	 */
-	private static function static_resourceManager_changeHandler(
+	/* private static function static_resourceManager_changeHandler(
 								event:Event):void
 	{
-		//static_resourcesChanged();
-	}
+		static_resourcesChanged();
+	} */
 
 	//--------------------------------------------------------------------------
 	//
@@ -286,7 +286,7 @@ public class Formatter implements IFormatter
 	//  error
 	//----------------------------------
 
-    [Inspectable(category="General", defaultValue="null")]
+   // [Inspectable(category="General", defaultValue="null")]
 
 	/**
 	 *  Description saved by the formatter when an error occurs.
@@ -300,7 +300,7 @@ public class Formatter implements IFormatter
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var error:String;
+	//public var error:String;
 
     //----------------------------------
     //  resourceManager
@@ -317,7 +317,7 @@ public class Formatter implements IFormatter
 	 *  This metadata suppresses a trace() in PropertyWatcher:
 	 *  "warning: unable to bind to property 'resourceManager' ..."
 	 */
-	[Bindable("unused")]
+	//[Bindable("unused")]
 	
 	/**
 	 *  @copy mx.core.UIComponent#resourceManager
@@ -358,9 +358,9 @@ public class Formatter implements IFormatter
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	protected function resourcesChanged():void
+	/* protected function resourcesChanged():void
 	{
-	}
+	} */
 
 	/**
 	 *  Formats a value and returns a String
@@ -378,8 +378,8 @@ public class Formatter implements IFormatter
 	 */
 	public function format(value:Object):String
 	{
-		error = "This format function is abstract. " +
-			    "Subclasses must override it.";
+		/* error = "This format function is abstract. " +
+			    "Subclasses must override it."; */
 
 	    return "";
 	}
@@ -393,10 +393,10 @@ public class Formatter implements IFormatter
 	/**
 	 *  @private
 	 */
-	private function resourceManager_changeHandler(event:Event):void
+	/* private function resourceManager_changeHandler(event:Event):void
 	{
-		//resourcesChanged();
-	}
+		resourcesChanged();
+	} */
 }
 
 }
