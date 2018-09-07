@@ -24,7 +24,7 @@
             "SWF"
         ],
         "include-classes": [
-            "BasicClasses"
+            "MXRoyaleClasses"
         ],
         "include-sources": [
             "src/main/royale"
@@ -35,6 +35,6 @@
         "external-library-path": [
             "../../../../frameworks/libs/air/airglobal.swc"
         ],
-        "output": "target/Basic.swc"
+        "output": "target/MXRoyale.swc"
     }
 }
