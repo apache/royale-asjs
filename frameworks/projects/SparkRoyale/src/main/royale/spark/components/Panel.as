@@ -67,7 +67,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="borderVisible", type="Boolean", inherit="no")]
+[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark")]
 
 /**
  *  The radius of the corners for this component.
