@@ -102,8 +102,8 @@ COMPILE::JS {
 				Button(_decrement).x = 0;
 				Button(_decrement).y = Button(_increment).height;
 
-				UIBase(_strand).addChild(_decrement);
-				UIBase(_strand).addChild(_increment);
+				UIBase(_strand).$addChild(_decrement);
+				UIBase(_strand).$addChild(_increment);
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 			}
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);

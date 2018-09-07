@@ -310,6 +310,11 @@ under the License.
       <destName>basic-manifest-network.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Icons/src/main/resources/icons-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-icons.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/Storage/src/main/resources/basic-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-storage.xml</destName>

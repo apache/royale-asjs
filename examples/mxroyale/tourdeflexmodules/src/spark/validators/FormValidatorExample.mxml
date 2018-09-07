@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+        <![CDATA[
+
+			// Import necessary classes.
+            import mx.controls.Alert;
+			import mx.events.ValidationResultEvent;
+			
+			// Event listener for the valid and invalid events.
+			private function handleValid(eventObj:ValidationResultEvent):void {
+				if(eventObj.type==ValidationResultEvent.VALID)	
+				    // Enable Submit button.
+					submitButton.enabled = true;
+				else
+					submitButton.enabled = false;
+			}
+
+			// Submit form is everything is valid. 
+			private function submitForm():void {
+				Alert.show("Form Submitted!");
+			}
+
+        ]]>
+    </fx:Script>
+	
+	<fx:Declarations>
+		<!-- The Validator class defines the required property and the validator events
+         used by all validator subclasses. -->
+    <mx:Validator id="reqValid" required="true"
+        source="{fname}" property="text" 
+        valid="handleValid(event)" invalid="handleValid(event)"/>
+	</fx:Declarations>
+        
+	<s:Panel title="Validator Example" width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" 
+							  paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+         
+         <mx:Form>
+            <s:Label width="100%"
+                text="Enter a value in the Name field before you can submit. The E-mail field is optional."/>
+
+            <mx:FormItem label="Name: " required="true">
+                <s:TextInput id="fname" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem label="E-mail address: " required="false">
+                <s:TextInput id="email" width="100%"/>
+            </mx:FormItem>
+            
+            <mx:FormItem>
+                <s:Button id="submitButton" enabled="false" 
+                    label="Submit" click="submitForm()"/>
+            </mx:FormItem>
+        </mx:Form>
+        
+	</s:Panel>
+	
+</s:Module>

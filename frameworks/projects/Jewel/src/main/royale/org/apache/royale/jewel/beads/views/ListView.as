@@ -18,13 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IContentView;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.ILayoutView;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -35,7 +40,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	COMPILE::JS
 	public class ListView extends DataContainerView
@@ -44,6 +49,37 @@ package org.apache.royale.jewel.beads.views
 		{
 			super();
 		}
+
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+
+		}
+		private var _dataGroup:IItemRendererParent;
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererParent
+		 */
+		override public function get dataGroup():IItemRendererParent
+		{
+			if(!_dataGroup)
+			{
+				var c:ILayoutView = contentView;
+				if(c && c is IItemRendererParent)
+					_dataGroup = c as IItemRendererParent;
+				else
+					_dataGroup = super.dataGroup;
+			}
+			return _dataGroup;
+		}
+
 
 		protected var listModel:ISelectionModel;
 
@@ -68,14 +104,16 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.selected = false;
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.selected = true;
 
 			lastSelectedIndex = listModel.selectedIndex;
+
+			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		protected var lastRollOverIndex:int = -1;
@@ -87,10 +125,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastRollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt((listModel as IRollOverModel).rollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = true;
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
@@ -113,12 +151,25 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			super.strand = value;
+		}
+		private var _dataGroup:IItemRendererParent;
+		override public function get dataGroup():IItemRendererParent
+		{
+			if(!_dataGroup)
+			{
+				var c:ILayoutView = contentView;
+				if(c && c is IItemRendererParent)
+					_dataGroup = c as IItemRendererParent;
+				else
+					_dataGroup = super.dataGroup;
+			}
+			return _dataGroup;
 		}
 
 		/**
@@ -140,10 +191,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
             if (ir)
 				ir.selected = false;
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as ISelectableItemRenderer;
 			if (ir)
 				ir.selected = true;
             lastSelectedIndex = listModel.selectedIndex;
@@ -156,10 +207,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastRollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = true;
 			

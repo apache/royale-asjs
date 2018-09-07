@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<!-- BitmapGraphicExample.mxml -->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.apache.org/royale/spark">
+	<s:Panel title="BitmapImage Sample" width="100%" height="100%">
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		<s:VGroup>
+			<s:ComboBox id="fillModes" selectedItem="repeat">
+				<s:dataProvider>
+					<s:ArrayCollection>
+						<fx:String>scale</fx:String>
+						<fx:String>clip</fx:String>
+						<fx:String>repeat</fx:String>
+					</s:ArrayCollection>
+				</s:dataProvider>
+			</s:ComboBox>
+			<s:ComboBox id="blends" selectedItem="normal">
+				<s:dataProvider>
+					<s:ArrayCollection>
+						<fx:String>add</fx:String>
+						<fx:String>alpha</fx:String>
+						<fx:String>difference</fx:String>
+						<fx:String>erase</fx:String>
+						<fx:String>hardlight</fx:String>
+						<fx:String>invert</fx:String>
+						<fx:String>layer</fx:String>
+						<fx:String>lighten</fx:String>
+						<fx:String>multiply</fx:String>
+						<fx:String>normal</fx:String>
+						<fx:String>overlay</fx:String>
+						<fx:String>screen</fx:String>
+						<fx:String>shader</fx:String>
+						<fx:String>subtract</fx:String>
+					</s:ArrayCollection>
+				</s:dataProvider>
+				</s:ComboBox>
+			<s:CheckBox id="cbSmooth" label="Smooth?"/>
+		</s:VGroup>
+			
+        <!-- Single image, scaled to fit specified dimensions. -->
+        <s:Graphic x="150" y="0">
+            <s:BitmapImage id="bg2" source="@Embed('assets/ApacheFlexLogo.png')" width="120" height="120" fillMode="{fillModes.selectedItem}"
+						   smooth="{cbSmooth.selected}" blendMode="{blends.selectedItem}"/>
+        </s:Graphic>
+
+        
+		<s:Label width="200" text="A BitmapImage element defines a rectangular region in its parent element's coordinate space, filled with bitmap data drawn from a source file."/>
+    </s:Panel>
+
+</s:Module>

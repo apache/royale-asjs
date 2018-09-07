@@ -36,42 +36,25 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class BlendFilterElement implements IBead
+	public class BlendFilterElement extends FilterElement
 	{
 		private var _strand:IStrand;
 		private var _in2:String;
-		private var _in:String;
 
 		public function BlendFilterElement()
 		{
 		}
 		
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener('beadsAdded', onInitComplete);
-		}
-		
-		/**
 		 * @royaleignorecoercion Element
 		 */
-		protected function onInitComplete(e:Event):void
+		override public function build():void
 		{
 			COMPILE::JS 
 			{
-				var filter:Element = (_strand.getBeadByType(Filter) as Filter).filterElementWrapper;
-				var blend:Element = addSvgElementToElement(filter, "feBlend") as Element;
-				blend.setAttribute("in", in);
-				blend.setAttribute("in2", in2);
-				blend.setAttribute("mode", "normal");
+				super.build();
+				filterElement.setAttribute("in2", in2);
+				filterElement.setAttribute("mode", "normal");
 			}
 		}
 
@@ -93,14 +76,10 @@ package org.apache.royale.svg
 			_in2 = value;
 		}
 
-		public function get in():String 
+		COMPILE::JS
+		override protected function get filterElementType():String
 		{
-			return _in;
-		}
-		
-		public function set in(value:String):void 
-		{
-			_in = value;
+			return "feBlend";
 		}
 	}
 }

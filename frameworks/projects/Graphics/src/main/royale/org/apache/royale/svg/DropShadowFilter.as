@@ -19,9 +19,6 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.ValuesManager;
 	COMPILE::SWF 
 	{
 		import org.apache.royale.core.IRenderedObject;
@@ -37,8 +34,9 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class DropShadowFilter implements IBead
+	public class DropShadowFilter extends Filter implements IChainableFilter
 	{
+		private var _isNice:Boolean;
 		private var _dx:Number;
 		private var _dy:Number;
 		private var _stdDeviation:Number;
@@ -48,95 +46,96 @@ package org.apache.royale.svg
 		private var _opacity:Number = 1;
 		private var _spread:Number = 1;
 		private var _inset:Boolean;
+		private var _knockout:Boolean;
+		private var _source:String;
+		private var _result:String;
 
 		public function DropShadowFilter()
 		{
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */		
-		public function set strand(value:IStrand):void
+		public function build():void
 		{
-			COMPILE::JS 
+			children = [];
+			var doKnockout:Boolean = !inset && knockout;
+			if (inset)
 			{
-				if (!value)
-				{
-					return;
-				}
-				loadBeadFromValuesManager(Filter, "filter", value);
-				if (inset)
-				{
-					loadBeadFromValuesManager(InvertFilterElement, "invertFilterElement", value);
-				}
-				if (!isNaN(dx) && !isNaN(dy) && (dx !=0 || dy !=0))
-				{
-					var offset:OffsetFilterElement = loadBeadFromValuesManager(OffsetFilterElement, "offsetFilterElement", value) as OffsetFilterElement;
-					offset.dx = dx;
-					offset.dy = dy;
-				}
-				var blur:BlurFilterElement = loadBeadFromValuesManager(BlurFilterElement, "blurFilterElement", value) as BlurFilterElement;
-				blur.stdDeviation = stdDeviation;
-				var colorMatrix:ColorMatrixFilterElement = loadBeadFromValuesManager(ColorMatrixFilterElement, "colorMatrixFilterElement", value) as ColorMatrixFilterElement;
-				colorMatrix.red = red;
-				colorMatrix.green = green;
-				colorMatrix.blue = blue;
-				colorMatrix.opacity = opacity;
-				var spreadElement:SpreadFilterElement = loadBeadFromValuesManager(SpreadFilterElement, "spreadFilterElement", value) as SpreadFilterElement;
-				if (!inset)
-				{
-					spreadElement.result = "spreadResult";
-				}
-				spreadElement.spread = spread;
-				if (inset)
-				{
-					var composite:CompositeFilterElement = loadBeadFromValuesManager(CompositeFilterElement, "compositeFilterElement", value) as CompositeFilterElement;
-					composite.in2 = "SourceAlpha";
-					composite.operator = "in";
-					composite.result = "compositeResult";
-				}
-				var blend:BlendFilterElement = loadBeadFromValuesManager(BlendFilterElement, "blendFilterElement", value) as BlendFilterElement;
-				blend.in = inset ? "compositeResult" : "SourceGraphic";
-				blend.in2 = inset ? "SourceGraphic" : "spreadResult";
-				value.removeBead(this);
+				var insetFilterElement:FilterElement = new InvertFilterElement();
+				children.push(insetFilterElement);
 			}
-			COMPILE::SWF 
+			var offset:OffsetFilterElement;
+			if (!isNaN(dx) && !isNaN(dy) && (dx !=0 || dy !=0))
 			{
-				var distance:Number = Math.sqrt( (dx * dx) + (dy * dy) );
-				var radians:Number = Math.atan2(dy, dx);
-				var angle:Number =  (180/Math.PI) * radians;
-				var color:uint = red|green|blue;
-				var filter:flash.filters.DropShadowFilter = new flash.filters.DropShadowFilter(distance, angle, color, opacity, stdDeviation, stdDeviation, spread + 1, 1, inset);
-				(value as IRenderedObject).$displayObject.filters = [filter];
+				offset = new OffsetFilterElement();
+				children.push(offset);
+				offset.dx = dx;
+				offset.dy = dy;
+				if (doKnockout)
+				{
+					offset.in = source ? source : "SourceGraphic";
+				}
+			}
+			var blur:BlurFilterElement = new BlurFilterElement();
+			children.push(blur);
+			blur.stdDeviation = stdDeviation;
+			if (!offset)
+			{
+				blur.in = source ? source : "SourceGraphic";
+			}
+			if (doKnockout)
+			{
+				var outsetComposite:CompositeFilterElement = new CompositeFilterElement();
+				children.push(outsetComposite);
+				outsetComposite.in2 = "SourceAlpha";
+				outsetComposite.operator = "out";
+			}
+			var colorMatrix:ColorMatrixFilterElement = new ColorMatrixFilterElement();
+			children.push(colorMatrix);
+			colorMatrix.red = red;
+			colorMatrix.green = green;
+			colorMatrix.blue = blue;
+			colorMatrix.opacity = opacity;
+			var spreadElement:SpreadFilterElement = new SpreadFilterElement();
+			children.push(spreadElement);
+			if (!inset)
+			{
+				spreadElement.result = result ? result : "spreadResult";
+			}
+			spreadElement.spread = spread;
+			if (inset)
+			{
+				var composite:CompositeFilterElement = new CompositeFilterElement();
+				children.push(composite);
+				composite.in2 = "SourceAlpha";
+				composite.operator = "in";
+				composite.result = result ? result : "compositeResult";
+			}
+			if (!result)
+			{
+				var blend:BlendFilterElement = new BlendFilterElement();
+				children.push(blend);
+				blend.in = inset ? "compositeResult" : source ? source : "SourceGraphic";
+				blend.in2 = inset && !source ? "SourceGraphic" : inset && source ? source : "spreadResult";
 			}
 		}
 
-		private function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
+		COMPILE::JS
+		override protected function filter():void
 		{
-			var result:IBead;
-			var c:Class = ValuesManager.valuesImpl.getValue(this, classOrInterfaceName) as Class;
-			if (c)
-			{
-				COMPILE::JS
-				{
-				var f:Function = c as Function;
-					result = new f() as IBead;
-				}
-				COMPILE::SWF
-				{
-					result = new c() as IBead;
-				}
-				if (result)
-					strand.addBead(result);
-			}
-			return result;
+			build();
+			super.filter();
 		}
 
+		COMPILE::SWF
+		override protected function filter():void
+		{
+			var distance:Number = Math.sqrt( (dx * dx) + (dy * dy) );
+			var radians:Number = Math.atan2(dy, dx);
+			var angle:Number =  (180/Math.PI) * radians;
+			var color:uint = red|green|blue;
+			var filter:flash.filters.DropShadowFilter = new flash.filters.DropShadowFilter(distance, angle, color, opacity, stdDeviation, stdDeviation, spread + 1, 1, inset);
+			host.$displayObject.filters = [filter];
+		}
 		/**
 		 *  The drop shadow x offset
 		 *
@@ -192,7 +191,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The red component of the drop shadow
+		 *  The red component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -210,7 +209,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The green component of the drop shadow
+		 *  The green component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -228,7 +227,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The blue component of the drop shadow
+		 *  The blue component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -246,7 +245,7 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  The opacity component of the drop shadow
+		 *  The opacity component of the drop shadow. This should be a number between 0 and 1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -297,6 +296,46 @@ package org.apache.royale.svg
 		public function set inset(value:Boolean):void 
 		{
 			_inset = value;
+		}
+
+		public function get source():String 
+		{
+			return _source;
+		}
+		
+		public function set source(value:String):void 
+		{
+			_source = value;
+		}
+
+		public function get result():String 
+		{
+			return _result;
+		}
+		
+		public function set result(value:String):void 
+		{
+			_result = value;
+		}
+
+		public function get knockout():Boolean 
+		{
+			return _knockout;
+		}
+		
+		public function set knockout(value:Boolean):void 
+		{
+			_knockout = value;
+		}
+
+		public function get isNice():Boolean 
+		{
+			return _isNice;
+		}
+		
+		public function set isNice(value:Boolean):void 
+		{
+			_isNice = value;
 		}
 	}
 }

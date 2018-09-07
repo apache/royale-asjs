@@ -44,7 +44,7 @@ package org.apache.royale.jewel.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class DropDownListController implements IBead, IBeadController
 	{
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function DropDownListController()
 		{
@@ -68,7 +68,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function set strand(value:IStrand):void
 		{
@@ -90,7 +90,7 @@ package org.apache.royale.jewel.beads.controllers
             pt = DisplayObject(_strand).parent.localToGlobal(pt);
 			DisplayObject(viewBead.popUp).x = pt.x;
 			DisplayObject(viewBead.popUp).y = pt.y;
-            IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+            IEventDispatcher(viewBead.popUp).addEventListener(Event.CHANGE, changeHandler);
             IUIBase(_strand).topMostEventDispatcher.addEventListener(org.apache.royale.events.MouseEvent.CLICK, dismissHandler);
         }
         
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.controllers
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             selectionModel.selectedIndex = popUpModel.selectedIndex;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
         }
 	
 	}

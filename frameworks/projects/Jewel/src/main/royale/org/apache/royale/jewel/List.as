@@ -37,7 +37,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
@@ -47,7 +47,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
     [Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -66,7 +66,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class List extends DataContainerBase
 	{
@@ -76,7 +76,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function List()
 		{
@@ -91,7 +91,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get labelField():String
@@ -112,7 +112,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
         public function get dataProvider():Object
@@ -134,7 +134,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]
@@ -156,7 +156,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
         public function get rollOverIndex():int
@@ -177,16 +177,16 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
-		public function get rowHeight():Number
-		{
-			return presentationModel.rowHeight;
-		}
-		public function set rowHeight(value:Number):void
-		{
-			presentationModel.rowHeight = value;
-		}
+        public function get rowHeight():Number
+        {
+            return (presentationModel as IListPresentationModel).rowHeight;
+        }
+        public function set rowHeight(value:Number):void
+        {
+            (presentationModel as IListPresentationModel).rowHeight = value;
+        }
 
 		/**
 		 *  The item currently selected. Changing this value also
@@ -195,7 +195,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]
@@ -217,7 +217,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
 		public function get presentationModel():IListPresentationModel

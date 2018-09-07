@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.apache.org/royale/spark" 
+	xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import flash.events.Event;
+			
+			protected function buttonClickHandler(event:Event):void
+			{
+				repeatText.text += event.target.label + " pressed!" + "\n";
+			}
+		]]>
+	</fx:Script>
+
+	<s:Panel title="Button Sample" height="100%" width="100%">
+		
+		<s:layout>
+            <s:HorizontalLayout paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10" />
+        </s:layout>
+		
+		<s:Label width="50%" verticalAlign="justify"
+				 text="The Button component is a commonly used rectangular button. The Button
+component looks like it can be pressed. The default skin has a text label."/>
+					  	
+		<s:VGroup right="10" bottom="5" color="0x000000" horizontalAlign="center">
+			<s:Label text="Output"/>
+			<s:TextArea id="repeatText" top="5" right="50" width="180" height="100"/>
+			<s:Button id="standardBtn" label="Standard Button" 
+					  click="buttonClickHandler(event)" 
+					  fontWeight="normal"/>
+			<s:Button id="disabledBtn" label="Disabled Button" enabled="false"/>
+			<s:Button id="repeatBtn" label="Repeat Button" 
+					  buttonDown="buttonClickHandler(event)"  
+					  autoRepeat="true"/>
+			<s:Label verticalAlign="justify" 
+						  text="Hold down on repeat button to see autoRepeat behavior."/>
+			
+		</s:VGroup>
+	</s:Panel>
+	
+</s:Module>

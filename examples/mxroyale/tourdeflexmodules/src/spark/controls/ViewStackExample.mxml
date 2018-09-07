@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<s:Panel title="ViewStack Container" width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:Label width="100%" textAlign="center"
+				 text="Use the Button controls to change panels of the ViewStack container."/>
+		
+		<s:BorderContainer borderStyle="solid" width="100%">
+			
+			<s:layout>
+				<s:HorizontalLayout paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10" />
+			</s:layout>
+			
+			<s:Button id="searchButton" label="Search Panel"
+					  click="myViewStack.selectedChild=search"/>
+			<s:Button id="cInfoButton" label="Customer Info Panel"
+					  click="myViewStack.selectedChild=custInfo"/>
+			<s:Button id="aInfoButton" label="Account Panel"
+					  click="myViewStack.selectedChild=accountInfo"/>
+		</s:BorderContainer>
+		
+		<!-- Define the ViewStack and the three child containers and have it
+		resize up to the size of the container for the buttons. -->
+		<mx:ViewStack id="myViewStack" borderStyle="solid" width="100%" height="80%">
+			
+			<s:NavigatorContent id="search" label="Search" backgroundColor="0xDCDCDC" width="100%" height="100%" fontWeight="bold" >
+				
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center"  
+										paddingTop="5" paddingLeft="5" 
+										paddingRight="5" paddingBottom="5" />
+				</s:layout>
+				
+				<s:Label text="Search Panel" />
+				<s:HGroup >
+					<s:TextInput id="Searchtxt" width="200" />
+					<mx:Button label="search" click="Searchtxt.text=''" />
+				</s:HGroup>
+			</s:NavigatorContent>
+			
+			<s:NavigatorContent id="custInfo" label="Customer Info" backgroundColor="0xDCDCDC" 
+								width="100%" height="100%" fontWeight="bold" >
+				
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center"  
+										paddingTop="5" paddingLeft="5" 
+										paddingRight="5" paddingBottom="5" />
+				</s:layout>
+				
+				<s:Label text="Customer Info" />
+				<s:HGroup>
+					<s:Label text="Email Address"/>
+					<s:TextInput id="email" width="200"/>
+					<s:Button label="Submit" click="email.text=''" />
+				</s:HGroup>
+			</s:NavigatorContent>
+			
+			<s:NavigatorContent id="accountInfo" label="Account Info" backgroundColor="0xDCDCDC" width="100%" height="100%" fontWeight="bold" >
+				
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center"  
+										paddingTop="5" paddingLeft="5" 
+										paddingRight="5" paddingBottom="5" />
+				</s:layout>
+				
+				<s:Label text="Account Info" />
+				<s:HGroup>
+					<s:Button label="Purchases" />
+					<s:Button label="Sales" />
+					<s:Button label="Reports" />
+				</s:HGroup>
+			</s:NavigatorContent>
+			
+		</mx:ViewStack>
+		
+	</s:Panel>
+	
+</s:Module>

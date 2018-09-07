@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import mx.events.ValidationResultEvent;			
+			private var vResult:ValidationResultEvent;
+			
+			// Event handler to validate and format input.
+			private function Format():void {
+				
+				vResult = numVal.validate();
+				
+				if (vResult.type==ValidationResultEvent.VALID) {
+					var temp:Number=Number(priceUS.text); 
+					formattedUSPrice.text= usdFormatter.format(temp);
+				}
+					
+				else {
+					formattedUSPrice.text="";
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<mx:CurrencyFormatter id="usdFormatter" precision="2" currencySymbol="$" decimalSeparatorFrom="."  rounding="nearest"
+							  decimalSeparatorTo="." useNegativeSign="true" useThousandsSeparator="true" alignSymbol="left"/>
+		
+		<mx:NumberValidator id="numVal" source="{priceUS}" property="text" allowNegative="true" domain="real"/>
+	</fx:Declarations>
+	
+	
+	<s:Panel title="CurrencyFormatter Example" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<mx:Form>
+			<mx:FormItem label="Enter dollar amount:">
+				<s:TextInput id="priceUS" text="" width="50%"/>
+			</mx:FormItem>
+			
+			<mx:FormItem label="Formatted U.S. dollar amount: ">
+				<s:Label id="formattedUSPrice" text="" />
+			</mx:FormItem>
+			
+			<mx:FormItem>
+				<s:Button label="Validate and Format" click="Format()"/>
+			</mx:FormItem>
+		</mx:Form>
+		
+	</s:Panel>
+	
+</s:Module>

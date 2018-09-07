@@ -628,7 +628,7 @@ package org.apache.royale.textLayout.edit
 		/**
 		 * @private
 		 * findAndSplitElement - starting at the child <code>elementIdx</code> of <code>fbe</code>, iterate
-		 * through the elements untill we find the one located at the aboslute index of <code>startIdx</code>. Upon
+		 * through the elements until we find the one located at the aboslute index of <code>startIdx</code>. Upon
 		 * locating the child, split either the element itself OR its children based on the value of <code>splitSubBlockContents</code>
 		 * 
 		 * @param fbe:FlowGroupElement - the FBE into which the newSPB is being inserted.

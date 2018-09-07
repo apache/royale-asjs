@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="tour-de-flex_install" default="install" basedir=".">
+    
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+    	
+    <condition property="isMacOrLinux" value="mac">
+    	<or>
+    		<os family="mac" />
+    		<os family="unix" />
+    	</or>
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+        	
+	<property environment="env"/>
+    <condition property="FLEX_HOME" value="${env.FLEX_HOME}">
+        <isset property="env.FLEX_HOME" />
+    </condition>
+
+    <property file="${FLEX_HOME}/local.properties"/>
+    <property file="${FLEX_HOME}/build.properties"/>
+    <property file="${basedir}/${bundle}.properties"/>
+
+	<property name="download.dir" value="${FLEX_HOME}/in"/>
+	<property name="unpack.dir" value="${FLEX_HOME}/tour-de-flex"/>
+	<property name="mirror.url" value="http://flex.apache.org/single-mirror-url.cgi" />
+	
+    <property name="tour-de-flex.url.folder" value="flex/tourdeflex/1.1" />
+   
+    <target name="file-setup-win" if="isWindows">
+    	<property name="tour-de-flex.url.file" value="apache-flex-tour-de-flex-component-explorer-1.1-src.zip" />
+    	<property name="tour-de-flex.url.md5" value="95b9895120eebac1f2cd09929629ba2c" />
+    </target>
+	
+    <target name="file-setup-unix" if="isMacOrLinux">
+    	<property name="tour-de-flex.url.file" value="apache-flex-tour-de-flex-component-explorer-1.1-src.tar.gz" />
+    	<property name="tour-de-flex.url.md5" value="95b9895120eebac1f2cd09929629ba2c" />
+    </target>
+
+    <target name="install" depends="file-setup-win,file-setup-unix,tour-de-flex-download-unpack" description="Adds tour-de-flex to an Apache Flex SDK">
+        <delete dir="${download.dir}" />
+        <echo>Tour De Flex installed</echo>
+    </target>
+    
+    <target name="tour-de-flex-download-unpack" description="Downloads tour-de-flex and copies into the Apache Flex SDK">
+        <mkdir dir="${download.dir}"/>
+    	
+    	<get src="${mirror.url}" dest="${download.dir}/mirror.txt" />
+    	<replace file="${download.dir}/mirror.txt" token="&lt;p&gt;" />
+    	<replace file="${download.dir}/mirror.txt" token="&lt;/p&gt;" />
+    	<loadfile property="tour-de-flex.url.server" srcFile="${download.dir}/mirror.txt" />
+    	
+    	<echo>Downloading ${tour-de-flex.url.server}/${tour-de-flex.url.folder}/${tour-de-flex.url.file}</echo>
+        
+    	<antcall target="download-check-md5">
+            <param name="domain" value="${tour-de-flex.url.server}" />
+            <param name="folder" value="${tour-de-flex.url.folder}" />
+            <param name="file" value="${tour-de-flex.url.file}" />
+            <param name="dest" value="${download.dir}/${tour-de-flex.url.file}"/>
+			<param name="failmessage" value="Tour De Flex download failed" />
+			<param name="md5" value="${tour-de-flex.url.md5}" />
+        </antcall>
+    	
+    	<mkdir dir="${unpack.dir}"/>
+    	<antcall target="files-unzip" />
+    	<antcall target="files-untar" />
+    </target>
+			
+    <target name="files-unzip" if="isWindows">
+    	<unzip dest="${unpack.dir}">
+    		<fileset file="${download.dir}/${tour-de-flex.url.file}" />
+    	</unzip>
+    </target>
+	
+    <target name="files-untar" if="isMacOrLinux">
+    	<untar dest="${unpack.dir}" compression="gzip">
+    		<fileset file="${download.dir}/${tour-de-flex.url.file}" />
+    	</untar>
+    </target>
+
+    <target name="download-check-md5" description="Downloads file, and verifies checksum.">     
+    	<tstamp />
+    	<property name="ts" value="${DSTAMP}${TSTAMP}" />
+        <get src="${domain}/${folder}/${file}?ts=${ts}" dest="${dest}" verbose="true" />
+        <antcall target="check-md5" />
+    </target>
+
+    <target name="check-md5" description="Verifies MD5 checksum, and fails if checksum doesn't match">
+        <echo>Checking ${dest} matches ${md5}</echo>
+        <checksum file="${dest}" algorithm="MD5" verifyproperty="md5.failed" property="${md5}" />
+        <fail message="${failmessage}">
+            <condition>
+                <equals arg1="${md5.failed}" arg2="false" />
+            </condition>
+        </fail>
+    </target>
+</project>

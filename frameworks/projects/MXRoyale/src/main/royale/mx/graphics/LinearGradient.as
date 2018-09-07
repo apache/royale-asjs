@@ -22,10 +22,11 @@ package mx.graphics
 
 import org.apache.royale.svg.LinearGradient;
 import mx.core.mx_internal;
-    
+import mx.graphics.IFill;
+
 use namespace mx_internal;
 
-public class LinearGradient extends org.apache.royale.svg.LinearGradient
+public class LinearGradient extends org.apache.royale.svg.LinearGradient implements IFill
 {
 
 }

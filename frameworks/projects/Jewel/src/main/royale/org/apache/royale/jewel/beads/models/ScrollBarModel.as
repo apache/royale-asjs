@@ -29,7 +29,7 @@ package org.apache.royale.jewel.beads.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class ScrollBarModel extends RangeModel implements IScrollBarModel
 	{
@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function ScrollBarModel()
 		{
@@ -53,7 +53,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get pageSize():Number
 		{
@@ -78,7 +78,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get pageStepSize():Number
 		{

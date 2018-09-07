@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-    import org.apache.royale.core.IListWithPresentationModel;
+    import org.apache.royale.core.IList;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.IEventDispatcher;
 
@@ -30,7 +30,7 @@ package org.apache.royale.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public interface IDataGridColumnList extends IListWithPresentationModel, IStrand, IEventDispatcher
+    public interface IDataGridColumnList extends IList, IStrand, IEventDispatcher
     {
         function set className(value:String):void;
         function set labelField(value:String):void;

@@ -28,16 +28,16 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.Group;
-	import org.apache.royale.jewel.Table;
-	import org.apache.royale.jewel.TableRow;
-	import org.apache.royale.jewel.TableHeader;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
 	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
+	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	// import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController;
+	// import org.apache.royale.jewel.beads.controllers.DateChooserTableCellSelectionMouseController;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser.
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function DateChooserView()
 		{
@@ -96,7 +96,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get monthLabel():Button
 		{
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get prevMonthButton():Button
 		{
@@ -124,7 +124,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get nextMonthButton():Button
 		{
@@ -133,14 +133,14 @@ package org.apache.royale.jewel.beads.views
 		
 		private var _daysTable:DateChooserTable;
 		/**
-		 *  The Table of days to display
+		 *  The DateChooserTable of days to display
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
-		public function get daysTable():Table
+		public function get daysTable():DateChooserTable
 		{
 			return _daysTable;
 		}
@@ -152,13 +152,15 @@ package org.apache.royale.jewel.beads.views
 		{
 			// HEADER BUTTONS
 			_monthLabel = new Button();
-			_monthLabel.text = "Month Here";
+			_monthLabel.className = "monthLabel";
 			
 			_prevMonthButton = new Button();
 			_prevMonthButton.text = "<";
+			_prevMonthButton.className = "prevMonthButton";
 			
 			_nextMonthButton = new Button();
 			_nextMonthButton.text = ">";
+			_nextMonthButton.className = "nextMonthButton";
 
 			// DAYS
 			createColumns();
@@ -168,6 +170,9 @@ package org.apache.royale.jewel.beads.views
 			_daysTable.percentWidth = 100;
 			}
 			getHost().addElement(_daysTable, false);
+			// var controller:TableCellSelectionMouseController = _daysTable.getBeadByType(IBeadController) as TableCellSelectionMouseController;
+			// _daysTable.removeBead(controller);
+			// _daysTable.addBead(new DateChooserTableCellSelectionMouseController());
 			
 			IEventDispatcher(_daysTable).dispatchEvent( new Event("itemsCreated") );
 			model.addEventListener("selectedDateChanged", selectionChangeHandler);
@@ -182,18 +187,18 @@ package org.apache.royale.jewel.beads.views
 			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
 			buttonsRow = new TableRow();
 
-			var tableHeader:TableHeader = new TableHeader();
+			var tableHeader:TableHeaderCell = new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
 			tableHeader.addElement(_monthLabel);
 			tableHeader.expandColumns = 5;
 			buttonsRow.addElement(tableHeader);
 
-			tableHeader= new TableHeader();
+			tableHeader= new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
 			tableHeader.addElement(_prevMonthButton);
 			buttonsRow.addElement(tableHeader);
 			
-			tableHeader= new TableHeader();
+			tableHeader= new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
 			tableHeader.addElement(_nextMonthButton);
 			buttonsRow.addElement(tableHeader);
@@ -221,6 +226,11 @@ package org.apache.royale.jewel.beads.views
 			}
 		}
 
+		// cycle days array for offsetting when change firstDayOfWeek
+		private function cycleArray(array:Array, index:Number, n:Number):Number 
+		{
+			return ((index + n) % array.length + array.length) % array.length;
+		}
 		/**
 		 * @private
 		 */
@@ -232,12 +242,12 @@ package org.apache.royale.jewel.beads.views
 			for(var index:int = 0; index < len; index++)
 			{
 				var column:TableColumn = columns[index];
-				column.label = model.dayNames[index];
+				column.columnLabelAlign = "center";
+				column.label = model.dayNames[cycleArray(model.dayNames, index, model.firstDayOfWeek)];
 			}
 
 			_daysTable.columns = columns;
-
-
+			
 			var currrentMonth:Array = [];
 			var dayIndex:int = 0;
 			for(var i:int = 0; i < model.days.length/7; i++)
@@ -250,13 +260,11 @@ package org.apache.royale.jewel.beads.views
 				}
 			}
 			_daysTable.dataProvider = new ArrayList(currrentMonth);
-			_daysTable.dispatchEvent( new Event("tableComplete") );
-
-			_daysTable.selectedIndex = model.getIndexForSelectedDate();
 			
 			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
 			view.thead.addElementAt(buttonsRow, 0, false);
 			
+			_daysTable.selectedIndex = model.getIndexForSelectedDate();
 		}
 
 		/**
@@ -267,7 +275,7 @@ package org.apache.royale.jewel.beads.views
 			updateDisplay();
 
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
-			getHost().dispatchEvent( new Event("change") );
+			getHost().dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		/**

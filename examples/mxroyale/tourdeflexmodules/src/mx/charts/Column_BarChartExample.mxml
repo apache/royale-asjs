@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the ColumnChart and BarChart controls. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+        <![CDATA[          
+        import mx.collections.ArrayCollection;
+
+        [Bindable]
+        private var medalsAC:ArrayCollection = new ArrayCollection( [
+            { Country: "USA", Gold: 35, Silver:39, Bronze: 29 },
+            { Country: "China", Gold: 32, Silver:17, Bronze: 14 },
+            { Country: "Russia", Gold: 27, Silver:27, Bronze: 38 } ]);
+        ]]>
+    </fx:Script>
+
+	<fx:Declarations>
+	    <!-- Define custom colors for use as fills. -->
+	    <mx:SolidColor id="sc1" color="yellow" alpha=".8"/>
+	    <mx:SolidColor id="sc2" color="0xCCCCCC" alpha=".6"/>
+	    <mx:SolidColor id="sc3" color="0xFFCC66" alpha=".6"/>
+	
+	    <!-- Define custom Strokes for the columns. -->
+	    <mx:SolidColorStroke id="s1" color="yellow" weight="2"/>
+	    <mx:SolidColorStroke id="s2" color="0xCCCCCC" weight="2"/>
+	    <mx:SolidColorStroke id="s3" color="0xFFCC66" weight="2"/>
+	</fx:Declarations>
+
+    <mx:Panel title="ColumnChart and BarChart Controls Example"
+			  paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+			  layout="horizontal" height="100%" width="100%">
+        <mx:ColumnChart id="column" 
+            height="100%" 
+            width="45%" 
+            paddingLeft="5" 
+            paddingRight="5" 
+            showDataTips="true" 
+            dataProvider="{medalsAC}">                
+            <mx:horizontalAxis>
+                <mx:CategoryAxis categoryField="Country"/>
+            </mx:horizontalAxis>
+                
+            <mx:series>
+                <mx:ColumnSeries 
+                    xField="Country" 
+                    yField="Gold" 
+                    displayName="Gold"
+                    fill="{sc1}"
+                    stroke="{s1}" />
+                <mx:ColumnSeries 
+                    xField="Country" 
+                    yField="Silver" 
+                    displayName="Silver"
+                    fill="{sc2}"
+                    stroke="{s2}" />
+                <mx:ColumnSeries 
+                    xField="Country" 
+                    yField="Bronze" 
+                    displayName="Bronze"
+                    fill="{sc3}"
+                    stroke="{s3}" />
+            </mx:series>
+        </mx:ColumnChart>
+
+        <mx:Legend dataProvider="{column}"/>
+
+         <mx:BarChart id="bar" height="100%" width="45%" 
+            paddingLeft="5" paddingRight="5" 
+            showDataTips="true" dataProvider="{medalsAC}">
+                
+            <mx:verticalAxis>
+                <mx:CategoryAxis categoryField="Country"/>
+            </mx:verticalAxis>
+                
+            <mx:series>
+                <mx:BarSeries 
+                    yField="Country" 
+                    xField="Gold" 
+                    displayName="Gold"
+                    fill="{sc1}"
+                    stroke="{s1}" />
+                <mx:BarSeries 
+                    yField="Country" 
+                    xField="Silver" 
+                    displayName="Silver"
+                    fill="{sc2}"
+                    stroke="{s2}" />
+                <mx:BarSeries 
+                    yField="Country" 
+                    xField="Bronze" 
+                    displayName="Bronze"
+                    fill="{sc3}"
+                    stroke="{s3}" />
+            </mx:series>
+        </mx:BarChart>
+
+        <mx:Legend dataProvider="{bar}"/>
+
+    </mx:Panel>
+</mx:Module>

@@ -37,7 +37,7 @@ package org.apache.royale.jewel.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.4
 	 */
 	public class DateChooserMouseController implements IBeadController
 	{
@@ -47,7 +47,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function DateChooserMouseController()
 		{
@@ -61,7 +61,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -70,10 +70,10 @@ package org.apache.royale.jewel.beads.controllers
             model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			                   
             var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
-			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
-			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
+			view.prevMonthButton.addEventListener(MouseEvent.CLICK, prevMonthClickHandler);
+			view.nextMonthButton.addEventListener(MouseEvent.CLICK, nextMonthClickHandler);
 			
-            IEventDispatcher(view.daysTable).addEventListener("change", tableHandler);
+            IEventDispatcher(view.daysTable).addEventListener(Event.CHANGE, tableHandler);
 		}
 
 		private var model:DateChooserModel;
@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads.controllers
         private function tableHandler(event:Event):void
         {
             var table:DateChooserTable = event.target as DateChooserTable;
-            model.selectedDate = table.selectedItem as Date;
+            model.selectedDate = table.selectedItemProperty as Date;
         }
 
 		/**

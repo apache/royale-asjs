@@ -56,17 +56,17 @@
             private function expandButtons(event:Event = null):void {
                 var alertView:AlertView = alert.getBeadByType(IBeadView) as AlertView;
 
-                var verticalLayout:VerticalLayout = new VerticalLayout();
-                verticalLayout.gap = 9;
-                alertView.content.addBead(verticalLayout);
-
                 if(event == null)
                 {
+                    var verticalLayout:VerticalLayout = new VerticalLayout();
+                    verticalLayout.gap = 9;
+                    alertView.content.addBead(verticalLayout);
+
                     alertView.content.addElement(check);
                 }
 
                 var layout:HorizontalLayout = alertView.controlBar.getBeadByType(IBeadLayout) as HorizontalLayout;
-			    layout.itemsExpand = check.selected;
+                layout.itemsExpand = check.selected;
             }
 
             // Event handler function for displaying the selected Alert button.

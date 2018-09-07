@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<s:Panel title="Rect Graphic Sample" 
+			 width="100%" height="100%">
+		
+			 
+		<s:Group left="15" top="20">
+			<s:Graphic x="0" y="0">
+				<!-- Draw rectangle with square corners. -->
+				<s:Rect height="100" width="150">
+					<s:stroke>
+						<s:SolidColorStroke color="0x000000" weight="2"/>
+					</s:stroke>
+					<s:fill>
+						<s:SolidColor color="0x336699"/>
+					</s:fill>
+				</s:Rect>
+			</s:Graphic>
+			
+			<s:Graphic x="250" y="0">
+				<!-- Draw rectangle with rounded corners. -->
+				<s:Rect height="100" width="150" radiusX="25" radiusY="25">
+					<s:stroke>
+						<s:SolidColorStroke color="0x336699" weight="2"/>
+					</s:stroke>
+					<s:fill>
+						<s:RadialGradient>
+							<s:entries>
+								<s:GradientEntry color="0x336699"  alpha="0.5"/>
+								<s:GradientEntry color="0x323232"  alpha="0.5"/>
+								<s:GradientEntry color="0xE2E2E2"  alpha="0.5"/>
+							</s:entries>
+						</s:RadialGradient>
+					</s:fill>
+				</s:Rect>
+			</s:Graphic>
+			
+			<s:Graphic x="500" y="0">
+				<s:Rect height="100" width="150">
+					<s:stroke>
+						<s:LinearGradientStroke weight="6" rotation="90">
+							<s:GradientEntry color="0x323232" alpha="0.8"/>
+							<s:GradientEntry color="0x336699" alpha="0.8"/>
+						</s:LinearGradientStroke>
+					</s:stroke>
+					<s:fill>
+						<s:RadialGradient>
+							<s:entries>
+								<s:GradientEntry color="0x336699"/>
+								<s:GradientEntry color="0x323232"/>
+								<s:GradientEntry color="0xE2E2E2"/>
+							</s:entries>
+						</s:RadialGradient>
+					</s:fill>
+				</s:Rect>
+			</s:Graphic>
+			
+		</s:Group>
+		<s:Label top="165" horizontalCenter="0" width="40%" text="The Rect class is a filled graphic element that draws a rectangle."/>
+	</s:Panel>
+</s:Module>

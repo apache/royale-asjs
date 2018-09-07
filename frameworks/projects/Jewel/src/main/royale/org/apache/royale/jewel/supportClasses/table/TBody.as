@@ -27,14 +27,14 @@ package org.apache.royale.jewel.supportClasses.table
     }
 
 	/**
-	 *  The TBody class is a building block of Jewel Table, is used in TableView
-     *  and represents an HTML <tbody> element
+	 *  The TBody class is a building block of Jewel SimpleTable and Table components, 
+	 *  is used in TableView and represents an HTML <tbody> element
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class TBody extends Group
 	{
@@ -44,7 +44,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function TBody()
 		{
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.supportClasses.table
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'tbody');
+			return addElementToWrapper(this, 'tbody');
         }
     }
 }

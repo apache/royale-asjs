@@ -16,62 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 package org.apache.royale.net
-{
-	import org.apache.royale.events.EventDispatcher;
+{    
+    
+    COMPILE::SWF
+    {
+        import flash.events.HTTPStatusEvent;
+        import flash.events.IOErrorEvent;
+        import flash.net.URLLoader;
+        import flash.net.URLRequest;
+        import flash.net.URLRequestHeader;
+    }
+    
+    import org.apache.royale.events.DetailEvent;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.ProgressEvent;
+    import org.apache.royale.utils.BinaryData;
+    import org.apache.royale.utils.Endian;
 
-	//--------------------------------------
-	//  Events
-	//--------------------------------------
-	
+
 	/**
-	 *  Dispatched when the request is complete.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	[Event(name="complete", type="org.apache.royale.events.Event")]
-	
-	/**
-	 *  Dispatched if an error occurs in the server communication.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	[Event(name="communicationError", type="org.apache.royale.events.Event")]
-	
-	/**
-	 *  Dispatched when an httpStatus code is received from the server.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	[Event(name="httpStatus", type="org.apache.royale.events.Event")]
-	
-	/**
-	 *  The URLLoader class is a base class for the specific flavors of loaders such as binary,
-	 *  text or variables
+	 *  The URLBinaryLoader class is a relatively low-level class designed to get
+	 *  binary data over HTTP the intent is to create similar classes for text and URL vars.  
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.7.0
 	 */
-	public class URLLoader extends EventDispatcher
-	{
-		public function URLLoader()
-		{
-		}
-		
+    public class URLLoader extends URLLoaderBase
+    {
+        
 		/**
-		 *  The status of the request.
+		 *  The number of bytes loaded so far.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -80,148 +57,242 @@ package org.apache.royale.net
          * 
          *  @royalesuppresspublicvarwarning
 		 */        
-		public var requestStatus:int;
-		
-		
-		protected function cleanupCallbacks():void
-		{
-			onComplete = null;
-			onError = null;
-			onProgress = null;
-			onStatus = null;
-		}
+        public var bytesLoaded:uint = 0;
         
-        private var _onComplete:Function;
+		/**
+		 *  The total number of bytes (if available).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.7.0
+         * 
+         *  @royalesuppresspublicvarwarning
+		 */        
+        public var bytesTotal:uint = 0;
+        
+        COMPILE::JS
+        private var element:XMLHttpRequest;
+        
+        public function URLLoader()
+        {
+            super();
+            COMPILE::JS
+            {
+                element = new XMLHttpRequest();
+            }
+        }
+        
+        COMPILE::SWF
+        private var urlLoader:flash.net.URLLoader;
+        
+        /**
+         *  Makes the URL request.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.7.0
+         */        
+        public function load(request:org.apache.royale.net.URLRequest):void
+        {
+            // copied from HTTPService            
+            COMPILE::SWF
+            {
+                if (!urlLoader)
+                    urlLoader = new flash.net.URLLoader();
+                /*
+                var sawContentType:Boolean;
+                if (headers)
+                {
+                    for each (var header:HTTPHeader in headers)
+                    {
+                        var urlHeader:flash.net.URLRequestHeader = new flash.net.URLRequestHeader(header.name, header.value);
+                        request.requestHeaders.push(urlHeader);
+                        if (header.name == HTTPHeader.CONTENT_TYPE)
+                            sawContentType = true;
+                    }
+                }
+                if (method != HTTPConstants.GET && !sawContentType && contentData != null)
+                {
+                    urlHeader = new flash.net.URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
+                    request.requestHeaders.push(urlHeader);
+                }
+                if (contentData)
+                {
+                    if (method == HTTPConstants.GET)
+                    {
+                        if (url.indexOf("?") != -1)
+                            url += contentData;
+                        else
+                            url += "?" + contentData;
+                    }
+                    else
+                        request.data = contentData;
+                }
+                */
+                urlLoader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
+                urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+                if (HTTPStatusEvent.HTTP_RESPONSE_STATUS) // only on AIR
+                    urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
+                urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
+                var req:flash.net.URLRequest = new flash.net.URLRequest();
+                req.url = request.url;
+                req.data = request.data;
+                req.method = request.method;
+                req.contentType = request.contentType;
+                var n:int = request.requestHeaders.length;
+                for (var i:int; i < n; i++)
+                {
+                    var hdr:flash.net.URLRequestHeader = 
+                            new flash.net.URLRequestHeader(req[i].name, req[i].value);
+                    req.requestHeaders.push(hdr);
+                }
+                urlLoader.load(req);
+            }
+            COMPILE::JS
+            {
+                var element:XMLHttpRequest = this.element as XMLHttpRequest;
+                element.onreadystatechange = progressHandler;
+                
+                var url:String = request.url;
+                
+                /*                
+                var contentData:String = null;
+                if (_contentData != null) {
+                    if (_method == HTTPConstants.GET) {
+                        if (url.indexOf('?') != -1) {
+                            url += _contentData;
+                        } else {
+                            url += '?' + _contentData;
+                        }
+                    } else {
+                        contentData = _contentData;
+                    }
+                }
+                */
+                
+                element.open(request.method, request.url, true);
+                // element.timeout = _timeout;
+                
+                var sawContentType:Boolean = false;
+                if (request.requestHeaders) {
+                    var n:int = request.requestHeaders.length;
+                    for (var i:int = 0; i < n; i++) {
+                        var header:HTTPHeader = request.requestHeaders[i];
+                        if (header.name == HTTPHeader.CONTENT_TYPE) {
+                            sawContentType = true;
+                        }
+                        
+                        element.setRequestHeader(header.name, header.value);
+                    }
+                }
+                
+                /*
+                if (request.method != HTTPConstants.GET &&
+                    !sawContentType && contentData) {
+                    element.setRequestHeader(
+                        HTTPHeader.CONTENT_TYPE, _contentType);
+                }
+                */
+                /*
+                if (contentData) {
+                    element.send(contentData);
+                } else {*/
+                    element.send();
+                /*
+                }
+                */
+            }
+            
+            dispatchEvent(new Event("postSend"));
+        }
 
-		/**
-		 *  Callback for complete event.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-		public function get onComplete():Function
+        /**
+         *  @copy org.apache.royale.net.BinaryUploader#statusHandler()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        COMPILE::SWF
+        protected function statusHandler(event:HTTPStatusEvent):void
         {
-            return _onComplete;
+            /*
+            _status = event.status;
+            if ("responseHeaders" in event)
+                _responseHeaders = event.responseHeaders;
+            if ("responseURL" in event)
+                _responseURL = event.responseURL;
+            */
+            dispatchEvent(new Event(event.type));
         }
-        public function set onComplete(value:Function):void
-        {
-            _onComplete = value;
-        }
-		
-        private var _onError:Function;
         
-		/**
-		 *  Callback for error event.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-        public function get onError():Function
+        /**
+         *  @copy org.apache.royale.net.BinaryUploader#ioErrorHandler()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        COMPILE::SWF
+        protected function ioErrorHandler(event:IOErrorEvent):void
         {
-            return _onError;
+            dispatchEvent(new Event(event.type));
         }
-        public function set onError(value:Function):void
-        {
-            _onError = value;
-        }
-		
-        private var _onProgress:Function;
         
-		/**
-		 *  Callback for progress event.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-        public function get onProgress():Function
+        /**
+         *  @copy org.apache.royale.net.BinaryUploader#completeHandler()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        COMPILE::SWF
+        protected function completeHandler(event:flash.events.Event):void
         {
-            return _onProgress;
+            dispatchEvent(new Event(event.type));
         }
-        public function set onProgress(value:Function):void
-        {
-            _onProgress = value;
-        }
-		
-        private var _onStatus:Function;
         
-		/**
-		 *  Callback for status event.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-        public function get onStatus():Function
+        /**
+         * @royaleignorecoercion XMLHttpRequest
+         */
+        COMPILE::JS
+        protected function progressHandler():void
         {
-            return _onStatus;
+            var element:XMLHttpRequest = this.element as XMLHttpRequest;
+            if (element.readyState == 2) {
+                dispatchEvent(HTTPConstants.RESPONSE_STATUS);
+                dispatchEvent(HTTPConstants.STATUS);
+            } else if (element.readyState == 4) {
+                dispatchEvent(HTTPConstants.COMPLETE);
+            }
         }
-        public function set onStatus(value:Function):void
+        
+        /**
+         *  The text returned from the server.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion XMLHttpRequest
+         */
+        public function get data():String
         {
-            _onStatus = value;
+            COMPILE::SWF
+            {
+                return urlLoader.data;                    
+            }
+            COMPILE::JS
+            {
+                return element.responseText;
+            }
         }
-		
-		/**
-		 *  Convenience function for complete event to allow chaining.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-		public function complete(callback:Function):URLLoader
-		{
-			onComplete = callback;
-			return this;
-		}
-		
-		/**
-		 *  Convenience function for error event to allow chaining.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-		public function error(callback:Function):URLLoader
-		{
-			onError = callback;
-			return this;
-		}
-		
-		/**
-		 *  Convenience function for progress event to allow chaining.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-		public function progress(callback:Function):URLLoader
-		{
-			onProgress = callback;
-			return this;
-		}
-		
-		/**
-		 *  Convenience function for status event to allow chaining.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.7.0
-		 */		
-		public function status(callback:Function):URLLoader
-		{
-			onStatus = callback;
-			return this;
-		}
-
-	}
+        
+    }
 }
+

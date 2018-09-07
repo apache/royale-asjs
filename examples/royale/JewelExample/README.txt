@@ -19,8 +19,8 @@
 
 DESCRIPTION
 
-The JewelExample is demo app to customize styles on Royale components
+The JewelExample is demo app that showcase Jewel UI Set in Apache Royale
 
-Right now this is a starter project with only a button to start developing styles
+It now has lots of components and use cases and continue growing as new things are developed to see all is working
 
 

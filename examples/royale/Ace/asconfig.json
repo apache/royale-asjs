@@ -19,6 +19,9 @@
 {
     "config": "royale",
     "compilerOptions": {
+        "load-config": [
+            "src/main/config/compile-app-config.xml"
+        ],
         "debug": false,
         "targets": ["JSRoyale","SWF"],
         "source-map": true

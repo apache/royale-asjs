@@ -57,7 +57,7 @@ package org.apache.royale.html.beads.controllers
 			super();
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 * @copy org.apache.royale.core.IBead#strand
@@ -89,9 +89,8 @@ package org.apache.royale.html.beads.controllers
 			host.dispatchEvent(new Event("hideMenus"));
 			
 			var component:IUIBase = event.target as IUIBase;
-			var mbar:MenuBar = _strand as MenuBar;
 			
-			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", mbar) as IFactory;
+			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", _strand) as IFactory;
 			var menu:IMenu = menuFactory.newInstance() as IMenu;
 			
 			var model:MenuBarModel = _strand.getBeadByType(IBeadModel) as MenuBarModel;
@@ -100,6 +99,11 @@ package org.apache.royale.html.beads.controllers
 			menu.labelField = model.labelField;
 			menu.submenuField = model.submenuField;
 			menu.parentMenuBar = _strand as IEventDispatcher;
+            showMenu(menu, component);
+        }
+        
+        protected function showMenu(menu:IMenu, component:IUIBase):void
+        {
 			menu.show(component, 0, component.height);
 		}
 	}

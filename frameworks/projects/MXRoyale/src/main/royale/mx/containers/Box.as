@@ -149,6 +149,11 @@ public class Box extends Container
     //--------------------------------------------------------------------------
 	
 	private var _layout:BoxLayout;
+    
+    protected function get layoutObject():BoxLayout
+    {
+        return _layout;
+    }
 
     /**
      *  @private
@@ -198,7 +203,10 @@ public class Box extends Container
 		_layout.direction = value;
 		
 		dispatchEvent(new Event("directionChanged"));
-		dispatchEvent(new Event("layoutNeeded"));
+        if (parent != null &&
+            ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth))))
+    		dispatchEvent(new Event("layoutNeeded"));
 
     }
 

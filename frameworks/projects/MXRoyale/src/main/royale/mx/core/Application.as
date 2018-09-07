@@ -62,11 +62,12 @@ import flash.utils.getQualifiedClassName;
 import org.apache.royale.events.utils.MouseEventConverter;
 }
 
-import mx.managers.FocusManager;
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
+import mx.managers.FocusManager;
 
 import org.apache.royale.binding.ApplicationDataBinding;
+import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadLayout;
@@ -84,8 +85,8 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.states.State;
-import org.apache.royale.utils.MixinManager;
 import org.apache.royale.utils.MXMLDataInterpreter;
+import org.apache.royale.utils.MixinManager;
 import org.apache.royale.utils.Timer;
 import org.apache.royale.utils.loadBeadFromValuesManager;
     
@@ -304,17 +305,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 
         super();
 		
-		COMPILE::SWF {
-			if (stage)
-			{
-				stage.align = StageAlign.TOP_LEFT;
-				stage.scaleMode = StageScaleMode.NO_SCALE;
-				// should be opt-in
-				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
-			}
-			
-			loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-		}
         typeNames += " Application";
 		
 		this.valuesImpl = new AllCSSValuesImpl();
@@ -322,6 +312,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		addBead(new ApplicationLayout());
 
         instanceParent = this;
+        
     }
 	
     private var _info:Object;
@@ -360,6 +351,13 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     }
     }
         
+    COMPILE::SWF
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        initHandler(null);    
+    }
+    
 	COMPILE::SWF
 	private function initHandler(event:flash.events.Event):void
 	{
@@ -382,6 +380,49 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		}
 	}
 	
+    private var _parameters:Object;
+    
+    /**
+     *  The parameters property returns an Object containing name-value
+     *  pairs representing the parameters provided to this Application.
+     *
+     *  <p>You can use a for-in loop to extract all the names and values
+     *  from the parameters Object.</p>
+     *
+     *  <p>There are two sources of parameters: the query string of the
+     *  Application's URL, and the value of the FlashVars HTML parameter
+     *  (this affects only the main Application).</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get parameters():Object
+    {
+        COMPILE::SWF
+        {
+            return loaderInfo.parameters;
+        }
+        COMPILE::JS
+        {
+            if (!_parameters)
+            {
+                _parameters = {};
+                var query:String = location.search.substring(1);
+                if(query)
+                {
+                    var vars:Array = query.split("&");
+                    for (var i:int=0;i<vars.length;i++) {
+                        var pair:Array = vars[i].split("=");
+                        _parameters[pair[0]] = decodeURIComponent(pair[1]);
+                    }
+                }
+            }
+            return _parameters;
+        }
+    }
+
 	/**
 	 *  This method gets called when all preinitialize handlers
 	 *  no longer call preventDefault();
@@ -394,11 +435,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     COMPILE::SWF
     public function initializeApplication():void
     {
-        addBead(new MixinManager());
-        // the application is never added to the dom via addChild
-        // because the parent is the browser, not an IUIBase, but we
-        // need to run most of the code that usually runs when added.
-        addedToParent();
+        //addBead(new MixinManager());  should now be handled by SystemManager
         
 		this.initManagers();
 
@@ -487,7 +524,13 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	//  Initialization and Start-up
 	//
 	//--------------------------------------------------------------------------
-	
+
+    override protected function createChildren():void
+    {
+        super.createChildren();        
+        dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
+    }
+
 	/**
 	 *  @private
 	 */
@@ -542,17 +585,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
-		var body:HTMLElement = document.getElementsByTagName('body')[0];
-		body.appendChild(element);
-        
-        // the application is never added to the dom via addChild
-        // because the parent is the browser, not an IUIBase, but we
-        // need to run most of the code that usually runs when added.
-        addBead(new MixinManager());
         initManagers();
         
-		addedToParent();
-        		
 //		if (initialView)
 //		{
 //            initialView.applicationModel = model;

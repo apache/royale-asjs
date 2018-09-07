@@ -21,8 +21,13 @@ package org.apache.royale.jewel.supportClasses.table
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
 	
 	/**
-	 * TableColumn is a DataGridColumn used in Table component
-	 * with special table properties
+	 *  TableColumn is a DataGridColumn used in Jewel Table component
+	 *  with special table properties.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.4
 	 */
 	public class TableColumn extends DataGridColumn
 	{
@@ -38,7 +43,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get align():String
 		{
@@ -48,6 +53,25 @@ package org.apache.royale.jewel.supportClasses.table
 		public function set align(value:String):void
 		{
 			_align = value;
+		}
+
+		private var _columnLabelAlign:String = ""
+		/**
+		 *  How column label text align in the header
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get columnLabelAlign():String
+		{
+			return _columnLabelAlign;
+		}
+
+		public function set columnLabelAlign(value:String):void
+		{
+			_columnLabelAlign = value;
 		}
 	}
 }

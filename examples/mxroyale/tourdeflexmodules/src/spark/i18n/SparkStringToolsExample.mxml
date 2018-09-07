@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.apache.org/royale/spark"
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			private var _locales:ArrayCollection = new ArrayCollection(['en-US','zh-CN','ja-JP','de-DE','fr-FR','ru-RU','ar-SA']);
+			[Bindable]
+			private var _initStr:String = 'Turkish I: iI & ıİ; Greek: ΣςσβΰΐΣ; German: ß';
+			protected function localesCB_changeHandler():void
+			{
+				st.setStyle('locale',localesCB.selectedItem);
+				initStrs(localesCB.selectedItem);
+				converString();
+			}
+			
+			private function initStrs(locale:String):void 
+			{
+				switch(locale)
+				{
+					case 'en-US':
+						_initStr = 'Turkish I: iI & ıİ; Greek: ΣςσβΰΐΣ; German: ß';
+						break;
+					case 'zh-CN':
+						_initStr = '这是一个中文测试语句';
+						break;
+					case 'ja-JP':
+						_initStr = '現代の日本語では、主に以下の3種類の文字体系が用いられる。';
+						break;
+					case 'de-DE':
+						_initStr = 'Wie heißen Sie？';
+						break;
+					case 'fr-FR':
+						_initStr = 'Le français parlé aujourd’hui tire son nom de cet ancien franceis';
+						break;
+					case 'ru-RU':
+						_initStr = 'большой';
+						break;
+					case 'ar-SA':
+						_initStr = 'جامعة الدول العربية';
+						break;
+				}
+			}
+			private function converString():void
+			{
+				upperL.text = st.toUpperCase(inputTI.text);
+				lowerL.text = st.toLowerCase(inputTI.text);
+			}  
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:StringTools id="st"/>
+	</fx:Declarations>
+
+	<s:Panel title="Spark StringTools" width="100%" height="100%">
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" />
+		</s:layout>
+		
+		<s:Form height="100%" width="100%">
+			<s:Label text="Enter strings and find the case conversion result"/>
+			<s:Spacer height="15"/>
+			<s:FormItem label="Locales:">
+				<s:ComboBox id="localesCB" dataProvider="{_locales}" selectedIndex="0" change="localesCB_changeHandler()"/>
+			</s:FormItem>
+			<s:FormItem label="Please enter a string:">
+				<s:TextInput id="inputTI" width="380" text="{_initStr}" change="converString()"/>
+			</s:FormItem>
+			<s:FormItem label="ToLowerCase:">
+				<s:Label id="lowerL"/>
+			</s:FormItem>
+			<s:FormItem label="ToUpperCase:">
+				<s:Label id="upperL"/>
+			</s:FormItem>
+		</s:Form>
+	</s:Panel>
+</s:Module>
+

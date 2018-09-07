@@ -40,23 +40,23 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-		 * 	@royaleignorecoercion org.apache.royale.core.IStrandPrivate
+		 * 	@royaleignorecoercion org.apache.royale.core.IContainerBaseStrandChildrenHost
          */
 		public function ContainerBaseStrandChildren(owner:IParent)
 		{
 			super();
 			
-			this.owner = owner as IStrandPrivate;
+			this.owner = owner as IContainerBaseStrandChildrenHost;
 		}
 		
-		public var owner:IStrandPrivate;
+		public var owner:IContainerBaseStrandChildrenHost;
 		
 		/**
 		 *  @private
 		 */
 		public function get numElements():int
 		{
-			return owner.$numElements();
+			return owner.$numElements;
 		}
 		
 		/**

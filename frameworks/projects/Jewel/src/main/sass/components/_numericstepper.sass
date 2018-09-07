@@ -1,0 +1,113 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel NumericStepper
+
+// NumericStepper variables
+$numericstepper-button-width: 22px
+$numericstepper-button-height: 10px
+$numericstepper-button-xoffset: calc(50% - #{$numericstepper-button-width/2})
+$numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
+
+.jewel.numericstepper    
+    .jewel.textinput
+        display: inline-flex
+
+@media (max-width: $desktop)
+    .jewel.numericstepper
+        width: 190px
+        height: 39px 
+        .jewel.textinput
+            z-index: 1
+            position: relative
+            left: 38px
+
+j|NumericStepper
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.NumericStepperView")
+
+@media -royale-swf
+    j|NumericStepper
+        // iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead')
+        // iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
+        // padding: 0px
+        // border-style: none
+
+
+// Jewel Spinner
+
+// Spinner variables
+.jewel.spinner
+    display: inline-flex
+    flex-direction: column
+    vertical-align: top
+    .jewel.button
+        display: flex
+
+        &.up
+
+            &::after
+                content: ' '
+                position: absolute
+
+                width: $numericstepper-button-width
+                height: $numericstepper-button-height
+
+                left: $numericstepper-button-xoffset
+                top: $numericstepper-button-yoffset
+        &.down
+
+            &::after
+                content: ' '
+                position: absolute
+
+                width: $numericstepper-button-width
+                height: $numericstepper-button-height
+
+                left: $numericstepper-button-xoffset
+                top: $numericstepper-button-yoffset
+
+@media (max-width: $desktop)
+    .jewel.spinner
+        position: relative
+        left: -112px
+        flex-direction: row
+        width: auto
+        .jewel.button
+            width: 39px
+            height: 38px
+        
+            &.up
+                // position: absolute
+                // left: 20px
+            &.down
+                // position: absolute
+                left: 110px 
+
+    
+j|Spinner
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")
+    IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.SpinnerView")
+    IBeadController:  ClassReference("org.apache.royale.jewel.beads.controllers.SpinnerMouseController")
+    // width: 16px
+    // height: 32px
+
+@media -royale-swf
+    j|Spinner
+        // IBeadController: ClassReference("org.apache.royale.html.beads.controllers.SpinnerMouseController")

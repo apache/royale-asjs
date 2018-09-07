@@ -26,6 +26,7 @@
     <version>0.9.3-SNAPSHOT</version>
   </parent>
 
+  <!-- copied from light version which compiles just fine -->
   <artifactId>Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</artifactId>
   <version>0.9.3-SNAPSHOT</version>
   <packaging>swc</packaging>
@@ -44,7 +45,7 @@
           <includeFiles>
             <include-file>
               <name>assets/*</name>
-              <path>../src/main/resources/assets/*</path>
+              <path>../../JewelTheme/src/main/resources/assets/*</path>
             </include-file>
             <include-file>
               <name>defaults.css</name>

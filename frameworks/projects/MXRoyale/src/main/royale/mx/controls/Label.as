@@ -618,7 +618,7 @@ public class Label extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	public function get html():String
+	public function get htmlText():String
 	{
 		COMPILE::SWF
 		{
@@ -633,7 +633,7 @@ public class Label extends UIComponent
 	/**
 	 *  @private
 	 */
-	public function set html(value:String):void
+	public function set htmlText(value:String):void
 	{
 		COMPILE::SWF
 		{
@@ -737,15 +737,6 @@ public class Label extends UIComponent
 		return element;
 	}
 	
-	COMPILE::JS
-	override public function setActualSize(w:Number, h:Number):void
-	{
-		// For HTML/JS, we only set the size if there is an explicit
-		// size set. 
-		if (!isNaN(explicitWidth)) setWidth(w);
-		if (!isNaN(explicitHeight)) setHeight(h);
-	}
-
 
     //--------------------------------------------------------------------------
     //

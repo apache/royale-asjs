@@ -20,9 +20,15 @@
 
 package marmotinni;
 
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.StaleElementReferenceException;
 
 import org.xml.sax.Attributes;
 
@@ -90,20 +96,68 @@ public class DispatchMouseClickEvent extends TestStep {
 		script.append("for(var i=n-1;i>=0;i--) { ");
 		script.append("    var e = all[i];");
         script.append("    var bounds = e.getBoundingClientRect();");
-		script.append("     if (" + x + " >= bounds.left && " + x + " <= bounds.right && " + y + " >= bounds.top && " + y + " <= bounds.bottom)");
+		script.append("     if (" + x + " >= bounds.left && " + x + " <= bounds.right && " + y + " >= bounds.top && " + y + " <= bounds.bottom) {");
+        script.append("         marmotinni_mouse_target = e;");
 		script.append("         return e;");
+        script.append("    }");
 		script.append("};");
 		script.append("return null;");
 		if (TestStep.showScripts)
 			System.out.println(script);
-		WebElement mouseTarget = (WebElement)((JavascriptExecutor)webDriver).executeScript(script.toString());
+		RemoteWebElement mouseTarget = (RemoteWebElement)((JavascriptExecutor)webDriver).executeScript(script.toString());
         if (mouseTarget == null)
             TestOutput.logResult("DispatchMouseClickEvent: mouseTarget = null");
         else
             TestOutput.logResult("DispatchMouseClickEvent: mouseTarget = " + mouseTarget.getTagName() + " " + mouseTarget.getText());
         try
         {
-			mouseTarget.click();
+            /*  a way to halt the test in the debugger.  Pick an element and have this code
+                wait for the title of some element that doesn't have a title.  This should
+                pause the test indefinitely so you can poke around in the debugger then
+                from the browser console, set the title to "foo"
+            if (target.contains("DataGrid"))
+            {
+                WebDriverWait wait = new WebDriverWait(webDriver, 1000);
+                wait.until(ExpectedConditions.attributeToBe(mouseTarget, "title", "foo"));
+            } */
+            script = new StringBuilder();
+            script.append("var init = { bubbles: true };");
+            script.append("init.screenX = ");
+            script.append(x.toString());
+            script.append(";");
+            script.append("init.screenY = ");
+            script.append(y.toString());
+            script.append(";");
+            script.append("marmotinni_mouse_target.dispatchEvent(new MouseEvent('mousedown', init));");
+            if (TestStep.showScripts)
+                System.out.println(script);
+            ((JavascriptExecutor)webDriver).executeScript(script.toString());
+            script = new StringBuilder();
+            script.append("var init = { bubbles: true };");
+            script.append("init.screenX = ");
+            script.append(x.toString());
+            script.append(";");
+            script.append("init.screenY = ");
+            script.append(y.toString());
+            script.append(";");
+            script.append("marmotinni_mouse_target.dispatchEvent(new MouseEvent('mouseup', init));");
+            if (TestStep.showScripts)
+                System.out.println(script);
+            ((JavascriptExecutor)webDriver).executeScript(script.toString());
+            try {
+                mouseTarget.click();
+            }
+            catch (StaleElementReferenceException sere)
+            {
+                // eat this if mousedown/up caused the object to go away
+            }
+            /*
+            if (target.contains("DataGrid"))
+            {
+                WebDriverWait wait = new WebDriverWait(webDriver, 1000);
+                wait.until(ExpectedConditions.attributeToBe(mouseTarget, "title", "bar"));
+            }
+            */
         }
         catch (Exception e1)
         {

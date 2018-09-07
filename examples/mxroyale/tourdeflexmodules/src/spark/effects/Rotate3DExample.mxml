@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:mx="library://ns.apache.org/royale/mx"
+	xmlns:s="library://ns.apache.org/royale/spark">
+
+	<fx:Declarations>
+		<s:Rotate3D id="rotateEffect" target="{targetImg}"  
+				    angleXFrom="0.0" angleXTo="{Number(xVal.text)}" 
+					angleYFrom="0.0" angleYTo="{Number(yVal.text)}" 
+					angleZFrom="0.0" angleZTo="{Number(zVal.text)}"
+					duration="{duration.value}"
+					repeatCount="{repeatCnt.value}" repeatBehavior="{chkReverse.selected?'reverse':'loop'}"
+				   	effectStart="this.targetImg.alpha=.8" effectEnd="this.targetImg.alpha=1.0"/>
+	</fx:Declarations>
+	
+	<s:Panel title="Rotate3D Effect Sample" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" />
+		</s:layout>
+		
+		<s:VGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="Rotate X To" verticalAlign="bottom"/>
+				<s:TextInput id="xVal" text="0.0" widthInChars="3"/>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="Rotate Y By" verticalAlign="bottom"/>
+				<s:TextInput id="yVal" text="360.0" widthInChars="3"/>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="Rotate Z To" verticalAlign="bottom"/>
+				<s:TextInput id="zVal" text="0.0" widthInChars="3"/>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="Repeat Num" verticalAlign="bottom"/>
+				<s:NumericStepper id="repeatCnt" value="2" width="35" minimum="1"/>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="Duration" verticalAlign="bottom"/>
+				<s:NumericStepper id="duration" width="58" 
+								  minimum="100" maximum="9999"  
+								  value="1000"  
+								  snapInterval="100" />
+			</s:HGroup>
+			<s:CheckBox id="chkReverse" label="Repeat in Reverse?" selected="true"/>
+			<s:Button id="playButton"
+					  label="Rotate Image" click="rotateEffect.play()"/>
+		</s:VGroup>
+		
+		<s:BitmapImage id="targetImg" width="200" height="200" source="@Embed(source='assets/ApacheFlexLogo.png')"/>
+
+		<s:Label width="200" verticalAlign="justify"
+				 text="The Rotate3D class rotates a target object in three dimensions around the x, y, or z
+axes. The rotation occurs around the transform center of the target." textAlign="left"/>		
+	</s:Panel>
+</s:Module>

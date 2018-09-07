@@ -22,6 +22,8 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
 
 
     /**
@@ -32,7 +34,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class StyledLayoutBase extends LayoutBase implements IBeadLayout
 	{
@@ -42,7 +44,7 @@ package org.apache.royale.jewel.beads.layouts
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function StyledLayoutBase()
 		{
@@ -52,7 +54,7 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal";
+		public static const LAYOUT_TYPE_NAMES:String = "";
 
 		protected var hostComponent:UIBase;
 
@@ -65,7 +67,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
@@ -77,6 +79,58 @@ package org.apache.royale.jewel.beads.layouts
 			{
 				hostComponent = host as UIBase;
 				hostClassList = hostComponent.positioner.classList;
+
+				initStyleToLayout(hostComponent, "itemsExpand");
+				setHostClassList("itemsExpand", _itemsExpand ? "itemsExpand":"");
+
+				initStyleToLayout(hostComponent, "itemsHorizontalAlign");
+				setHostClassList(_itemsHorizontalAlign, _itemsHorizontalAlign);
+
+				initStyleToLayout(hostComponent, "itemsVerticalAlign");
+				setHostClassList(_itemsVerticalAlign, _itemsVerticalAlign);
+			}
+		}
+
+		/**
+		 *  Get the component layout style and init to if exists
+		 * 
+		 *  @param component the IUIBase component that host this layout
+		 *  @param cssProperty the style property in css set for the component to retrieve
+		 * 
+ 		 *  @langversion 3.0
+ 		 *  @playerversion Flash 10.2
+ 		 *  @playerversion AIR 2.6
+ 		 *  @productversion Royale 0.9.4
+ 		 */
+		protected function initStyleToLayout(component:IUIBase, cssProperty:String):void
+		{	
+			///-----------------------------------------
+			/// This function works as the same as 
+			/// org.apache.royale.core.layout.ILayoutStyleProperties#applyStyleToLayout(component:IUIBase, cssProperty:String):void
+			/// Because StyledLayoutBase does not implement ILayoutStyleProperties
+			/// To avoid conflict with subclass like HorizontalLayout.applyStyleToLayout
+			/// Names this function - initStyleToLayout
+			///-----------------------------------------
+			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
+			if (cssValue !== undefined)
+			{
+				switch(cssProperty)
+				{
+					case "itemsExpand":
+						if(!itemsExpandInitialized)
+							itemsExpand = "true" == cssValue;
+						break;
+					case "itemsHorizontalAlign":
+						if (!itemsHorizontalAlign)
+							itemsHorizontalAlign = String(cssValue);
+						break;
+					case "itemsVerticalAlign":
+						if (!itemsVerticalAlign)
+							itemsVerticalAlign = String(cssValue);
+						break;
+					default:
+						break;
+				}	
 			}
 		}
 
@@ -93,7 +147,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsHorizontalAlign():String
         {
@@ -106,16 +160,8 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					if(hostComponent)
-					{
-						if (hostClassList.contains(_itemsHorizontalAlign))
-							hostClassList.remove(_itemsHorizontalAlign);
-				}
-						_itemsHorizontalAlign = value;
-				COMPILE::JS
-                {
-						hostClassList.add(_itemsHorizontalAlign);
-					}
+					setHostClassList(_itemsHorizontalAlign, value);
+					_itemsHorizontalAlign = value;
 				}
 			}
         }
@@ -132,7 +178,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsVerticalAlign():String
         {
@@ -145,20 +191,13 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					if(hostComponent)
-					{
-						if (hostClassList.contains(_itemsVerticalAlign))
-							hostClassList.remove(_itemsVerticalAlign);
-				}
-						_itemsVerticalAlign = value;
-				COMPILE::JS
-                {
-						hostClassList.add(_itemsVerticalAlign);
-					}
+					setHostClassList(_itemsVerticalAlign, value);
+					_itemsVerticalAlign = value;
 				}
 			}
         }
 
+		private var itemsExpandInitialized:Boolean;
 		private var _itemsExpand:Boolean = false;
         /**
 		 *  A boolean flag to activate "itemsExpand" effect selector.
@@ -167,7 +206,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get itemsExpand():Boolean
         {
@@ -178,18 +217,26 @@ package org.apache.royale.jewel.beads.layouts
         {
             if (_itemsExpand != value)
             {
-                _itemsExpand = value;
+                
 				COMPILE::JS
                 {
-				if(_itemsExpand)
-				{
-					hostClassList.add("itemsExpand");
-				} else
-				{
-					hostClassList.remove("itemsExpand");
-				}
+				    setHostClassList("itemsExpand", value ? "itemsExpand" : "");
+					_itemsExpand = value;
+					itemsExpandInitialized = true;
 				}
             }
+        }
+
+        COMPILE::JS
+        protected function setHostClassList(oldValue:String, newValue:String):void {
+            if (!hostComponent) return;
+			
+            if (oldValue && hostClassList.contains(oldValue)) {
+				if (oldValue == newValue) return;
+                hostClassList.remove(oldValue);
+			}
+        
+            if (newValue) hostClassList.add(newValue);
         }
 	}
 }

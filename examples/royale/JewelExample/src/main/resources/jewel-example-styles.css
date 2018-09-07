@@ -68,3 +68,11 @@
     color: white;
     /* outline: 1px dashed navy; */
 }
+
+.jewel.item.string
+{
+    background: #dedede;
+    border: 1px dashed #cccccc;
+    border-radius: 3px;
+    padding: 14px;
+}

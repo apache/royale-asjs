@@ -74,7 +74,7 @@ package org.apache.royale.utils
 
 			itIs = Language.is(leftOperand, rightOperand);
 
-			if (!itIs && coercion)
+			if (!itIs && coercion && leftOperand)
 			{
 				message = 'Type Coercion failed';
 
@@ -226,13 +226,13 @@ package org.apache.royale.utils
         {
             return isClass(classDef) ? classDef : null;
         }
-        
+        /**
+		 * @debug
+		 */
 		static public function trace(...rest):void
 		{
 			var theConsole:*;
 
-			if (!goog.DEBUG) return;
-			
 			theConsole = goog.global.console;
 
 			if (theConsole === undefined)

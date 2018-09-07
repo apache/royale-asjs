@@ -58,7 +58,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class AlertView extends GroupView
 	{
@@ -68,7 +68,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function AlertView()
 		{
@@ -122,7 +122,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -197,7 +197,6 @@ package org.apache.royale.jewel.beads.views
 				
 				// var controlBarLayout:HorizontalLayout = new HorizontalLayout();
 				// controlBar.addBead(controlBarLayout);
-				// trace(controlBarLayout.hostComponent);
 				// controlBarLayout.itemsHorizontalAlign = "itemsSpaceBetween";
 			}
 
@@ -209,7 +208,7 @@ package org.apache.royale.jewel.beads.views
 				okButton.width = 100;
 				okButton.emphasis = "primary";
                 okButton.text = alertModel.okLabel;
-                okButton.addEventListener("click", handleOK);
+                okButton.addEventListener(MouseEvent.CLICK, handleOK);
 
                 controlBar.addElement(okButton);
             }
@@ -219,7 +218,7 @@ package org.apache.royale.jewel.beads.views
                 cancelButton = new Button();
 				cancelButton.width = 100;
                 cancelButton.text = alertModel.cancelLabel;
-                cancelButton.addEventListener("click", handleCancel);
+                cancelButton.addEventListener(MouseEvent.CLICK, handleCancel);
 
                 controlBar.addElement(cancelButton);
             }
@@ -230,7 +229,7 @@ package org.apache.royale.jewel.beads.views
 				yesButton.width = 100;
 				yesButton.emphasis = "primary";
                 yesButton.text = alertModel.yesLabel;
-                yesButton.addEventListener("click", handleYes);
+                yesButton.addEventListener(MouseEvent.CLICK, handleYes);
 
                 controlBar.addElement(yesButton);
             }
@@ -240,7 +239,7 @@ package org.apache.royale.jewel.beads.views
                 noButton = new Button();
 				noButton.width = 100;
                 noButton.text = alertModel.noLabel;
-                noButton.addEventListener("click", handleNo);
+                noButton.addEventListener(MouseEvent.CLICK, handleNo);
 
                 controlBar.addElement(noButton);
             }

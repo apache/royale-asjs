@@ -35,6 +35,7 @@
   <modules>
     <module>Basic</module>
     <module>MDL</module>
+	<module>MXRoyale</module>
 
     <module>JewelTheme</module>
     

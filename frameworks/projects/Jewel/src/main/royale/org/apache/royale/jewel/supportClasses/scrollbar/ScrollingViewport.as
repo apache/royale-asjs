@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.scrollbar
 {
-	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
@@ -48,7 +48,7 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	COMPILE::JS
 	public class ScrollingViewport extends Viewport implements IBead, IScrollingViewport
@@ -59,7 +59,7 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function ScrollingViewport()
 		{
@@ -97,7 +97,12 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 			} else {
 				component = contentView as UIBase;
 			}
-			component.element.style.overflow = "auto";
+			//component.element.style.overflow = "auto";
+			
+			//remove hard coded style in Viewport (overflow: hidden)
+			//contentArea.element.removeAttribute("style");
+			// contentArea.element.classList.add("viewport");
+			contentArea.element.classList.add("scroll");
 		}
 		
 		/**
@@ -126,7 +131,7 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
-	     *  @productversion Royale 0.9.3
+	     *  @productversion Royale 0.9.4
 		 */
 		public function ScrollingViewport()
 		{

@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.supportClasses.table
 {
     import org.apache.royale.jewel.Group;
+	import org.apache.royale.core.IChrome;
 
     COMPILE::JS
     {
@@ -27,16 +28,16 @@ package org.apache.royale.jewel.supportClasses.table
     }
 
 	/**
-	 *  The TFoot class is a building block of Jewel Table, is used in TableView
-     *  and represents an HTML <tfoot> element
+	 *  The TFoot class is a building block of Jewel SimpleTable and Table components, 
+	 *  is used in TableView and represents an HTML <tfoot> element
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
-	public class TFoot extends Group
+	public class TFoot extends Group implements IChrome
 	{
 		/**
 		 *  constructor.
@@ -44,7 +45,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function TFoot()
 		{
@@ -56,7 +57,7 @@ package org.apache.royale.jewel.supportClasses.table
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'tfoot');
+			return addElementToWrapper(this, 'tfoot');
         }
     }
 }

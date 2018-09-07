@@ -20,7 +20,6 @@ package org.apache.royale.graphics.utils
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.UIBase;
         import org.apache.royale.core.WrappedHTMLElement;
     }
 

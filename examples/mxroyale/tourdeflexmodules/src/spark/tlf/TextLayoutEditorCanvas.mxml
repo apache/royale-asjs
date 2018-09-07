@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+
+
+<mx:Canvas
+    xmlns="http://ns.adobe.com/mxml/2009"
+ 	xmlns:mx="library://ns.apache.org/royale/mx"
+	xmlns:flow="library://ns.adobe.com/flashx/textLayout"
+	xmlns:textEditBar="textEditBar.*"
+	xmlns:txui="flashx.textLayout.ui.*"
+	xmlns:txrulers="flashx.textLayout.ui.rulers.*"
+	xmlns:txinsp="flashx.textLayout.ui.inspectors.*"
+	explicitMinWidth="300" 
+	explicitMinHeight="200"
+	creationComplete="handleCreationComplete()"
+	resize="handleResize()">
+	
+		
+    <Script><![CDATA[
+		import flashx.textLayout.container.ContainerController;
+		import flashx.textLayout.debug.assert;
+		import flashx.textLayout.edit.EditManager;
+		import flashx.textLayout.edit.EditingMode;
+		import flashx.textLayout.edit.ElementRange;
+		import flashx.textLayout.edit.ISelectionManager;
+		import flashx.textLayout.edit.SelectionFormat;
+		import flashx.textLayout.edit.SelectionManager;
+		import flashx.textLayout.edit.SelectionState;
+		import flashx.textLayout.elements.Configuration;
+		import flashx.textLayout.elements.InlineGraphicElementStatus;
+		import flashx.textLayout.elements.ParagraphElement;
+		import flashx.textLayout.elements.SpanElement;
+		import flashx.textLayout.elements.TextFlow;
+		import flashx.textLayout.events.SelectionEvent;
+		import flashx.textLayout.events.StatusChangeEvent;
+		import flashx.textLayout.formats.TextLayoutFormat;
+		import flashx.undo.IUndoManager;
+		import flashx.undo.UndoManager;
+		
+		import textEditBar.FileIOHelper;
+		import flashx.textLayout.ui.inspectors.TextInspectorController;
+		
+		import mx.events.IndexChangedEvent;
+				
+		private var resizeOK:Boolean;
+		public var activeFlow:TextFlow;
+
+		// undo/redo manager
+		private var undoManager:IUndoManager;
+		
+		private var bottomPanels:Array = [];
+		
+		
+		public function handleCreationComplete(): void
+		{
+			initializeConfiguration();
+			FileIOHelper.parentWindow = this;
+			FileIOHelper.changeContent = changeContent;
+					
+			resizeOK = true;
+			handleResize();
+ 			 			
+ 			undoManager = new UndoManager();
+  			 			
+			hruler.creationComplete();
+ 			vruler.creationComplete();
+ 			
+ 			var numPanels:int = bottomTabs.numChildren;
+ 			for (var i:int = 0; i < numPanels; ++i)
+ 			{
+ 				var panel:Canvas = bottomTabs.getChildAt(i) as Canvas;
+ 				bottomPanels.push(panel.getChildAt(0));
+ 				if (i > 0)
+ 					panel.removeAllChildren();
+ 			}
+  			bottomTabs.addEventListener(IndexChangedEvent.CHANGE, onBottomTabChanged);
+  			
+  			this.addEventListener(Event.ACTIVATE, onFocus); 
+  			
+			changeContent(createEmptyFlow());
+			callLater(doFocus);
+		}
+		
+		private function doFocus():void
+		{
+			if (activeFlow)
+			{
+				var selMgr:ISelectionManager = activeFlow.interactionManager;
+				if (selMgr && textPanel.visible)
+					selMgr.setFocus();
+			}
+		}
+		private function createEmptyFlow():TextFlow
+		{
+			var newFlow:TextFlow = new TextFlow();
+			var para:ParagraphElement = new ParagraphElement();
+			para.addChild(new SpanElement());
+			newFlow.addChild(para);
+			return newFlow;
+		}
+ 		
+ 		private function initializeConfiguration():void
+ 		{
+ 			var config:Configuration = TextFlow.defaultConfiguration;
+			config.unfocusedSelectionFormat = new SelectionFormat(0xffffff, 1.0, BlendMode.DIFFERENCE, 0xffffff, 1.0, BlendMode.DIFFERENCE, 0);
+			config.inactiveSelectionFormat = new SelectionFormat(0xffffff, 1.0, BlendMode.DIFFERENCE, 0xffffff, 1.0, BlendMode.DIFFERENCE, 0);
+			config.manageTabKey = true;
+			var initialFormat:TextLayoutFormat = new TextLayoutFormat();
+			initialFormat.fontFamily = "Arial";
+			initialFormat.fontSize = 16;
+			initialFormat.paddingLeft = 2;
+			initialFormat.paddingTop = 2;
+			initialFormat.paddingRight = 2;
+			initialFormat.paddingBottom = 2;
+			config.textFlowInitialFormat = initialFormat;
+		}
+ 		
+ 		private function onFocus(event:Event):void
+ 		{
+ 			if (activeFlow)
+ 			{
+	 			var selMgr:ISelectionManager = activeFlow.interactionManager;
+	 			if(selMgr)
+	 				selMgr.setFocus();
+	 		}
+ 			
+ 		}
+ 		private function onBottomTabChanged(evt:IndexChangedEvent):void
+ 		{
+ 			var panel:Canvas = bottomTabs.getChildAt(evt.oldIndex) as Canvas;
+ 			panel.removeAllChildren();
+ 			panel = bottomTabs.getChildAt(evt.newIndex) as Canvas;
+ 			panel.addChild(bottomPanels[evt.newIndex]);
+ 		}
+ 		
+  		private var editingMode:String = EditingMode.READ_WRITE;
+ 		
+		private function keyListener(event:KeyboardEvent):void
+ 		{
+			if (event.keyCode == Keyboard.ESCAPE)
+				activeFlow.interactionManager.selectRange(-1,-1);
+ 		}
+ 		
+ 		private function updateEscapeKeyListener():void
+ 		{
+ 			for (var i:int = 0; i < activeFlow.flowComposer.numControllers; i++)
+ 			{
+ 				var controller:ContainerController = activeFlow.flowComposer.getControllerAt(i);
+ 				var container:DisplayObject = controller.container as DisplayObject;
+ 				if (activeFlow.interactionManager)
+ 					container.addEventListener(KeyboardEvent.KEY_DOWN, keyListener,false,0,true);
+ 				else 
+ 					container.removeEventListener(KeyboardEvent.KEY_DOWN, keyListener);
+ 			}
+ 		}		
+
+		public function setActiveFlow(newActiveFlow:TextFlow):void
+		{
+			TextInspectorController.Instance().activeFlow = newActiveFlow;
+			for (var i:int = bottomPanels.length - 1; i >= 0; --i)
+				bottomPanels[i].activeFlow = newActiveFlow;
+		}
+		
+ 		public function setInteractionManager(selectType:String):void
+ 		{
+			editingMode = selectType;
+			var uiActiveFlow:TextFlow = null;
+
+ 			if (activeFlow)	
+ 			{
+	 			switch (selectType)
+	 			{
+	 				case EditingMode.READ_ONLY:
+						if (activeFlow.interactionManager)
+							activeFlow.interactionManager = null;
+						break;
+					case EditingMode.READ_WRITE:
+						// either direction should work.
+						new EditManager(undoManager).textFlow = activeFlow;
+						activeFlow.interactionManager = new EditManager(undoManager);
+						
+						activeFlow.addEventListener(SelectionEvent.SELECTION_CHANGE,mySelectionChangeListener,false,0,true);
+						uiActiveFlow = activeFlow;
+						activeFlow.interactionManager.selectRange(0, 0);
+						break;
+					case EditingMode.READ_SELECT:
+						activeFlow.interactionManager = new SelectionManager();
+						activeFlow.addEventListener(SelectionEvent.SELECTION_CHANGE,mySelectionChangeListener,false,0,true);
+						break;
+				}
+				setActiveFlow(uiActiveFlow);
+				updateEscapeKeyListener();
+				updateForSelectedElementRange(new SelectionState( activeFlow, 0, 0));
+ 			}
+		}
+	
+	
+ 		private function mySelectionChangeListener(e:SelectionEvent):void
+ 		{
+  			updateForSelectedElementRange(e ? e.selectionState : null);
+ 		}
+ 		
+ 		/**
+ 		* Update the GUI for a particular selection range.
+ 		* @private
+ 		* @param range may be null
+ 		*/
+ 		private function updateForSelectedElementRange(selectionState:SelectionState):void
+ 		{
+ 			var range:ElementRange = selectionState ? ElementRange.createElementRange(selectionState.textFlow, selectionState.absoluteStart, selectionState.absoluteEnd) : null;
+ 			var selMgr:ISelectionManager = activeFlow.interactionManager;
+ 			
+			for (var i:int = bottomPanels.length - 1; i >= 0; --i)
+				bottomPanels[i].update(range);
+
+			if (selMgr && textPanel.visible)
+				selMgr.setFocus();
+ 		}
+ 		
+ 		/** handleResize - resize the child containers
+ 		  * @param alwaysResize - do the recalucation no matter if the size didn't change 
+ 		  */
+ 		public function handleResize():void
+		{
+			if (resizeOK && activeFlow)
+			{
+			 	vruler.RedrawRuler();
+		 		hruler.RedrawRuler();		
+			}
+		}
+		
+		public function detachActiveFlow(deleteTheComposer:Boolean):void
+		{
+			if (activeFlow && activeFlow.flowComposer != null)
+			{
+				// Detach the containers from the display list
+				for (var idx:int = 0; idx < activeFlow.flowComposer.numControllers; idx++)
+				{
+					var controller:ContainerController = activeFlow.flowComposer.getControllerAt(idx);
+					var oldContainer:DisplayObject = controller.container;
+					if (oldContainer && oldContainer.parent)
+					{
+						Canvas(oldContainer.parent).rawChildren.removeChild(oldContainer);
+					}
+				}
+				activeFlow.flowComposer.removeAllControllers();
+				
+				// also shuts down inline graphics - need another API if we want to do this another way
+				if (deleteTheComposer)
+					activeFlow.flowComposer = null;
+			}		
+		}
+		
+		private function recomposeOnLoadComplete(e:StatusChangeEvent):void
+		{
+			if (e.status == InlineGraphicElementStatus.ERROR)
+				trace("IOERROR loading inlinegraphicelement",e.errorEvent.toString());
+			if (e.element.getTextFlow() == activeFlow && e.status == InlineGraphicElementStatus.SIZE_PENDING)
+				activeFlow.flowComposer.updateAllControllers();
+		}
+		
+		public function changeContent(newFlow:TextFlow):void
+		{
+			// Remove old containers from the display list
+			if (undoManager != null) 
+				undoManager.clearAll();
+			if (activeFlow)
+			{
+				detachActiveFlow(true);
+				activeFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE,recomposeOnLoadComplete);
+			}
+			
+			// set activeFlow (note: this variable is used in the mxml code below.)
+			activeFlow = newFlow;
+			if (!activeFlow)
+				return;
+				
+			activeFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE,recomposeOnLoadComplete,false,0,true);
+			
+			textPanel.changeContainerSetup(activeFlow);
+
+			activeFlow.interactionManager = new EditManager(undoManager);
+			activeFlow.addEventListener(SelectionEvent.SELECTION_CHANGE,mySelectionChangeListener,false,0,true);
+			setActiveFlow(activeFlow);
+			activeFlow.interactionManager.selectRange(0, 0);
+			updateEscapeKeyListener();
+			activeFlow.flowComposer.updateAllControllers();
+
+ 			vruler.RedrawRuler();
+ 			hruler.RedrawRuler();
+ 		}
+ 		
+		/** visiblePanels is an array of the labels of the right-side property panels that are opened.
+		 * if you set it, the panels specified will be opened and all others will be closed.
+		 */
+		public function set visiblePanels(inPanelNames:Array):void
+		{
+			var panels:Array = inspectorBox.getChildren();
+			for each(var panel:DisplayObject in panels)
+			{
+				if (panel is MultiPanel)
+				{
+					var mp:MultiPanel = panel as MultiPanel;
+					mp.opened = (inPanelNames.indexOf(mp.label) != -1);
+				}
+			}
+		}
+		
+		public function get visiblePanels():Array
+		{
+			var result:Array = [];
+			var panels:Array = inspectorBox.getChildren();
+			for each(var panel:DisplayObject in panels)
+			{
+				if (panel is MultiPanel)
+				{
+					var mp:MultiPanel = panel as MultiPanel;
+					if (mp.opened)
+						result.push(mp.label);
+				}
+			}
+			return result;
+		}
+		
+       ]]>
+    </Script>
+	
+	<mx:VBox
+		width="100%"
+		height="100%" 
+		verticalGap="2"
+		backgroundColor="0x607D8A"
+		fontFamily="Myriad Pro"
+		fontWeight="bold">
+		<mx:HBox
+			width="100%"
+			height="100%"
+			horizontalGap="4">
+			<txui:PanelWithEdgeBars
+				id="panelWithScrollBars"
+				width="100%"
+				height="100%"
+				edgeInset="18"
+				gap="1"
+				mainPanel="{textPanel}"
+				topBar="{horizontalRulerBar}"
+				rightBar="{verticalRulerBar}">
+				
+				<textEditBar:SingleContainerView id="textPanel"/>
+
+				<mx:Canvas
+					id="verticalRulerBar"
+					verticalScrollPolicy="off"
+					horizontalScrollPolicy="off">
+					<txrulers:RulerBar
+						id="vruler"
+						orientation="vertical"
+						syncToPanel="{textPanel}"
+						tabPropertyEditor="{tabPropEditor}"
+						tabPanelActive="{tabPanel.opened}">
+					</txrulers:RulerBar>
+				</mx:Canvas>
+				<mx:Canvas
+					id="horizontalRulerBar"
+					verticalScrollPolicy="off"
+					horizontalScrollPolicy="off">
+					<txrulers:RulerBar
+						id="hruler"
+						syncToPanel="{textPanel}"
+						tabPropertyEditor="{tabPropEditor}"
+						tabPanelActive="{tabPanel.opened}">
+					</txrulers:RulerBar>
+				</mx:Canvas>
+			</txui:PanelWithEdgeBars>
+			<mx:Canvas
+				width="270"
+				height="100%"
+				horizontalScrollPolicy="off"
+				backgroundColor="#D9D9D9"
+				verticalScrollBarStyleName="scrollbarStyle">
+				<mx:VBox id="inspectorBox" verticalGap="1" width="100%" backgroundColor="#D9D9D9">
+				    <txui:MultiPanel id="charPanel" styleName="multiPanel" label="CHARACTER" width="100%">
+				    	<txinsp:CharacterPropertyEditor active="{charPanel.opened}"/>
+				    </txui:MultiPanel>	
+				    <txui:MultiPanel id="parPanel" styleName="multiPanel" label="PARAGRAPH" width="100%">
+				    	<txinsp:ParagraphPropertyEditor active="{parPanel.opened}"/>
+				    </txui:MultiPanel>
+				    <txui:MultiPanel id="tabPanel" styleName="multiPanel" label="TAB" width="100%" opened="false">
+				    	<txinsp:TabPropertyEditor id="tabPropEditor"/>
+				    </txui:MultiPanel>
+				    <txui:MultiPanel id="advancedPanel" styleName="multiPanel" label="ADVANCED CHARACTER" width="100%" opened="false">
+				    	<txinsp:AdvancedTextPropertyEditor active="{advancedPanel.opened}"/>
+				    </txui:MultiPanel>
+				    <txui:MultiPanel id="antialiasPanel" styleName="multiPanel" label="ANTIALIAS" width="100%" opened="false">
+				    	<txinsp:AntiAliasPropertyEditor active="{antialiasPanel.opened}"/>
+				    </txui:MultiPanel>
+				    <txui:MultiPanel id="containerPanel" styleName="multiPanel" label="CONTAINER" width="100%" opened="false">
+				    	<txinsp:TextContainerPropertyEditor active="{containerPanel.opened}"/>
+				    </txui:MultiPanel>
+				    <txui:MultiPanel id="flowPanel" styleName="multiPanel" label="FLOW" width="100%" opened="false">
+				    	<txinsp:TextFlowPropertyEditor active="{flowPanel.opened}"/>
+				    </txui:MultiPanel>
+				</mx:VBox>
+			</mx:Canvas>
+		</mx:HBox>
+		<mx:TabNavigator id="bottomTabs" width="100%" creationPolicy="all" paddingLeft="8" backgroundColor="#D9D9D9" color="#202020">
+			<mx:Canvas label="SOURCE" width="100%" height="28">
+	 			<textEditBar:FileServices id="fileWidget" fileChoose="FileIOHelper.fileChoose(event.fileName)" textLayoutExport="FileIOHelper.textLayoutExport(activeFlow)" htmlExport="FileIOHelper.htmlExport(activeFlow)" includeInLayout="false" width="100%"/> 
+			</mx:Canvas>
+			<mx:Canvas label="LINKS" width="100%" height="100%">
+   				<textEditBar:LinkBar id="linkElementProps" creationPolicy="all" includeInLayout="false"/>  	
+			</mx:Canvas>
+			<mx:Canvas label="GRAPHICS" width="100%" height="100%">
+				<textEditBar:GraphicBar id="foreignElementProps" creationPolicy="all" includeInLayout="false"/>
+			</mx:Canvas>
+			
+		</mx:TabNavigator>
+	</mx:VBox>
+
+</mx:Canvas>

@@ -1150,7 +1150,11 @@ public class UnitTester extends EventDispatcher
 						var n:int = doc.numChildren;
 						for (var i:int = 0; i < n; i++)
 						{
-							var child:DisplayObject = doc.getChildAt(i);
+							var child:DisplayObject;
+                            if ("$getChildAt" in doc)
+                                child = doc["$getChildAt"](i);
+                            else
+                                child = doc.getChildAt(i);
 							if (swfLoaders[doc] && child is flash.display.Loader)
 							{
 								// if sandboxed then ask it for its targets

@@ -1071,5 +1071,11 @@ package
         public static const STAR_HALF:String = 'star_half';
         
         public static const LIST_ALT:String = 'list_alt';
+        public static const UNFOLD_MORE:String = 'unfold_more';
+        public static const UNFOLD_LESS:String = 'unfold_less';
+        public static const ALL_INBOX:String = 'all_inbox';
+        public static const WORK_OUTLINE:String = 'work_outline';
+        public static const ARROW_FORWARD_IOS:String = 'arrow_forward_ios';
+        public static const ARROW_BACK_IOS:String = 'arrow_back_ios';
     }
 }

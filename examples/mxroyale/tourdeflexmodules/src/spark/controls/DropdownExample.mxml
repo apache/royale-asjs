@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var depts:ArrayCollection = new ArrayCollection([
+				{label:"Electronics", data:1}, 
+				{label:"Home Goods", data:2}, 
+				{label:"Toys", data:3} ]);
+			
+			[Bindable]
+			public var elecItems:ArrayCollection = new ArrayCollection([
+				{label:"Samsung 25in TV", data:299}, 
+				{label:"Panasonic Plasma", data:999}, 
+				{label:"Sony LCD", data:899} ]);
+			
+			[Bindable]
+			public var homeItems:ArrayCollection = new ArrayCollection([
+				{label:"Blendtec Blender", data:399}, 
+				{label:"Hoover Vaccuum", data:599}, 
+				{label:"Black & Decker Toaster", data:99} ]);
+			
+			[Bindable]
+			public var toyItems:ArrayCollection = new ArrayCollection([
+				{label:"Nintendo DS", data:120}, 
+				{label:"Lego's Star Wars Set", data:50}, 
+				{label:"Leapfrog Leapster", data:30} ]);
+			
+			private function handleDepartmentSelected(event:IndexChangeEvent):void
+			{
+				list2.prompt="Select Item";
+				list2.selectedIndex=-1; // reset so prompt shows
+				if (list1.selectedIndex==0)
+					list2.dataProvider=elecItems;
+				else if (list1.selectedIndex==1)
+					list2.dataProvider=homeItems;
+				else if (list1.selectedIndex==2)
+					list2.dataProvider=toyItems;
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="DropDownList Sample" width="100%" height="100%">
+		
+		<s:VGroup width="100%" height="100%" left="120" top="5">
+			<s:Label text="RJ's Warehouse Price Checker" fontSize="18" />
+			<s:DropDownList id="list1" width="50%" dataProvider="{depts}" labelField="label" 
+							prompt="Select Category"
+							change="handleDepartmentSelected(event)"/>
+			<s:Label id="text2"/>
+			<s:DropDownList id="list2" width="50%" labelField="label" prompt="None"/>
+			<mx:Spacer height="10"/>
+			<s:Label fontSize="14" color="0x336699" text="The price of item: {list2.selectedItem.label} is: ${list1.selectedItem.data}" verticalAlign="bottom"/>
+		</s:VGroup>
+		<s:Label top="10" right="10" width="250" verticalAlign="justify" 
+					  text="The DropDownList control contains a drop-down list from which the user can select a single value. Its functionality is very similar to that of the SELECT form element in HTML.
+The DropDownList control consists of the anchor button, prompt area, and drop-down-list, Use the anchor button to open and close the drop-down-list. The prompt area displays a prompt String, or the selected item in the drop-down-list."/>
+	</s:Panel>
+	
+</s:Module>

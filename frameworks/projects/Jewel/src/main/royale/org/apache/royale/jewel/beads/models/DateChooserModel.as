@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.models
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class DateChooserModel extends EventDispatcher implements IDateChooserModel
 	{
@@ -51,7 +51,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -73,7 +73,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get dayNames():Array
 		{
@@ -92,7 +92,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get monthNames():Array
 		{
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get displayedYear():Number
 		{
@@ -131,7 +131,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get displayedMonth():Number
 		{
@@ -152,7 +152,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get firstDayOfWeek():Number
 		{
@@ -162,6 +162,7 @@ package org.apache.royale.jewel.beads.models
 		{
 			if (value != _firstDayOfWeek) {
 				_firstDayOfWeek = value;
+				updateCalendar();
 				dispatchEvent( new Event("firstDayOfWeekChanged") );
 			}
 		}
@@ -184,7 +185,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get selectedDate():Date
 		{
@@ -225,7 +226,7 @@ package org.apache.royale.jewel.beads.models
             _days = new Array(42);
             
             // skip to the first day and renumber to the last day of the month
-			var i:int = firstDay.getDay();
+			var i:int = firstDay.getDay() - firstDayOfWeek;
             var dayNumber:int = 1;
             var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
             
@@ -273,8 +274,9 @@ package org.apache.royale.jewel.beads.models
                 var test:Date = _days[i] as Date;
 				
 				if (test && test.toDateString() == str)
+				{
 					return i;
-
+				}
             }
             return -1;
 		}

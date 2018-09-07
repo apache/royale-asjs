@@ -18,22 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
-    COMPILE::SWF
-    {
-        import flash.text.TextFieldAutoSize;
-        import flash.text.TextFieldType;
-
-        import org.apache.royale.core.CSSTextField;
-    }
-    COMPILE::JS
+	COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
     	import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.jewel.beads.controls.TextAlign;
 
 	/**
 	 *  The TableItemRenderer class displays data in string form using the data's toString()
@@ -42,9 +31,9 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
-	public class TableItemRenderer extends DataItemRenderer implements ITextItemRenderer
+	public class TableItemRenderer extends ListItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -52,143 +41,36 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function TableItemRenderer()
 		{
 			super();
 
-            typeNames = "jewel tableitem";
-
-            COMPILE::SWF
-            {
-                textField = new CSSTextField();
-                textField.type = TextFieldType.DYNAMIC;
-                textField.autoSize = TextFieldAutoSize.LEFT;
-                textField.selectable = false;
-                textField.parentDrawsBackground = true;
-            }
-
-			textAlign = new TextAlign();
-			addBead(textAlign);
+			typeNames = "jewel tableitem";
+			if(MXMLDescriptor != null)
+			{
+            	typeNames += " with-childs";
+			}
 		}
-
-		private var textAlign:TextAlign;
-
-        COMPILE::SWF
-		public var textField:CSSTextField;
-
-		/**
-		 * @private
-		 */
-        COMPILE::SWF
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
-			addChild(textField);
-
-			adjustSize();
-		}
-
-		/**
-		 * @private
-		 */
-        COMPILE::SWF
-		override public function adjustSize():void
-		{
-			var cy:Number = height/2;
-
-			textField.x = 0;
-			textField.y = cy - textField.height/2;
-			textField.width = width;
-
-			updateRenderer();
-		}
-
-		/**
-		 *  The text currently displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get text():String
-		{
-            COMPILE::SWF
-            {
-                return textField.text;
-            }
-            COMPILE::JS
-            {
-                return this.element.textContent;
-            }
-		}
-
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                textField.text = value;
-            }
-            COMPILE::JS
-            {
-                this.element.textContent = value;
-            }
-		}
-
-		/**
-		 *  How text align in the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get align():String
-		{
-			return textAlign.align;
-		}
-
-		public function set align(value:String):void
-		{
-			textAlign.align = value;
-		}
-
-		/**
-		 *  Sets the data value and uses the String version of the data for display.
-		 *
-		 *  @param Object data The object being displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion String
-		 */
-		override public function set data(value:Object):void
-		{
-			super.data = value;
-            var text:String;
-            this.text = getLabelFromData(this, value);
-		}
-
-        // COMPILE::JS
-        // private var backgroundView:WrappedHTMLElement;
-
+		
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'div');
+			addElementToWrapper(this, 'div');
+
+			if(MXMLDescriptor == null)
+			{
+				textNode = document.createTextNode('') as Text;
+				element.appendChild(textNode);
+			}
             // itemRenderers should provide something for the background to handle
             // the selection and highlight
             // backgroundView = element;
-            // return element;
+            return element;
         }
-
 	}
 }

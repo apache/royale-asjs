@@ -19,7 +19,10 @@
 package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.beads.controls.TextAlign;
+	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
     COMPILE::JS
     {
@@ -33,9 +36,9 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
-	public class ListItemRenderer extends StyledMXMLItemRenderer
+	public class ListItemRenderer extends StyledMXMLItemRenderer implements ITextItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -43,13 +46,17 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function ListItemRenderer()
 		{
 			super();
 
 			typeNames = "jewel item";
+			addClass("selectable");
+
+			textAlign = new TextAlign();
+			addBead(textAlign);
 		}
 
 		private var _text:String = "";
@@ -60,7 +67,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get text():String
 		{
@@ -69,11 +76,39 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set text(value:String):void
 		{
-             _text = value;
+            _text = value;
+			
+			COMPILE::JS
+			{
+			if(textNode != null)
+			{
+				textNode.nodeValue = _text;
+			}	
+			}
 		}
 
 		COMPILE::JS
-        private var textNode:Text;
+        protected var textNode:Text;
+
+		private var textAlign:TextAlign;
+
+		/**
+		 *  How text align in the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get align():String
+		{
+			return textAlign.align;
+		}
+
+		public function set align(value:String):void
+		{
+			textAlign.align = value;
+		}
 
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
@@ -83,26 +118,13 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-
-            var text:String;
-			if (labelField || dataField) {
-                text = String(value[labelField]);
-            } else {
-                text = String(value);
-            }
-            
-			COMPILE::JS
-			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-				}	
-			}
+            text = getLabelFromData(this, value);
+			dispatchEvent(new Event("dataChange"));
 		}
 
         /**
@@ -112,7 +134,7 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'li');
+			addElementToWrapper(this, 'li');
             
 			if(MXMLDescriptor == null)
 			{
@@ -121,6 +143,29 @@ package org.apache.royale.jewel.itemRenderers
 			}
             return element;
         }
+
+		private var _selectable:Boolean = true;
+		/**
+         *  <code>true</code> if the item renderer is can be selected
+         *  false otherwise. Use to configure a renderer to be non 
+         *  selectable.
+         *  
+         *  Defaults to true
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+		override public function get selectable():Boolean
+		{
+			return _selectable;
+		}
+		override public function set selectable(value:Boolean):void
+		{
+			_selectable = value;
+			toggleClass("selectable", _selectable);	
+		}
 
         /**
 		 * @private
@@ -137,7 +182,10 @@ package org.apache.royale.jewel.itemRenderers
 			//else
 			// 	useColor = backgroundColor;
 
-            toggleClass("selected", selected);
+			if(hoverable)
+            	toggleClass("hovered", hovered);
+			if(selectable)
+            	toggleClass("selected", selected);
 		}
 	}
 }

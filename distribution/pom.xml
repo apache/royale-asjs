@@ -37,6 +37,10 @@
     <distributionFileName>apache-royale-${project.version}</distributionFileName>
     <timestamp>${maven.build.timestamp}</timestamp>
     <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+    
+    <playerglobalHome>libs/player</playerglobalHome>
+    <targetPlayerMajorVersion>20</targetPlayerMajorVersion>
+    <targetPlayerMinorVersion>0</targetPlayerMinorVersion>
   </properties>
 
   <modules>
@@ -195,6 +199,12 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Icons</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
@@ -360,6 +370,13 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
+      <version>0.9.3-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Icons</artifactId>
       <version>0.9.3-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>

@@ -26,4 +26,5 @@
     <component id="DateFormatYYYYMMDD" class="org.apache.royale.html.accessories.DateFormatYYYYMMDD"/>
     <component id="NumberFormatter" class="org.apache.royale.html.accessories.NumberFormatter"/>
     <component id="CurrencyFormatter" class="org.apache.royale.html.accessories.CurrencyFormatter"/>
+    <component id="DateAndTimeFormatter" class="org.apache.royale.html.accessories.DateAndTimeFormatter"/>
 </componentPackage>

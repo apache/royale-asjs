@@ -19,6 +19,11 @@
 
 package mx.containers
 {
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
+
 /*
 import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -59,12 +64,12 @@ import mx.styles.StyleProxy;
 use namespace mx_internal;
 */
     
+import mx.containers.beads.PanelView;
+import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
-import mx.core.ContainerLayout;
-import mx.containers.beads.BoxLayout;
-import mx.containers.beads.CanvasLayout;
-import org.apache.royale.core.IPanelModel;
-import org.apache.royale.core.LayoutBase;
+
+import org.apache.royale.core.IChild;
+import org.apache.royale.events.Event;
 
 //--------------------------------------
 //  Styles
@@ -163,7 +168,7 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="cornerRadius", type="Number", format="Length", inherit="no", theme="halo, spark")]
+[Style(name="cornerRadius", type="Number", format="Length", inherit="no", theme="halo, spark")]
 
 /**
  *  Boolean property that controls the visibility
@@ -247,7 +252,7 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="paddingBottom", type="Number", format="Length", inherit="no")]
+[Style(name="paddingBottom", type="Number", format="Length", inherit="no")]
 
 /**
  *  Number of pixels between the container's top border
@@ -260,7 +265,7 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
+[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
 
 /**
  *  Flag to enable rounding for the bottom two corners of the container.
@@ -523,10 +528,7 @@ public class Panel extends Container
     public function Panel()
     {
         super();
-
-
-        layoutObject = new BoxLayout();
-        addBead(layoutObject);
+        typeNames += " Panel";
     }
     
     //--------------------------------------------------------------------------
@@ -534,11 +536,6 @@ public class Panel extends Container
     //  Variables
     //
     //--------------------------------------------------------------------------
-
-    /**
-     *  @private
-     */
-    private var layoutObject:LayoutBase;
 
     //--------------------------------------------------------------------------
     //
@@ -557,12 +554,6 @@ public class Panel extends Container
     //----------------------------------
     //  layout
     //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the layout property.
-     */
-    private var _layout:String = ContainerLayout.VERTICAL;
 
     [Bindable("layoutChanged")]
     [Inspectable(category="General", enumeration="vertical,horizontal,absolute", defaultValue="vertical")]
@@ -587,7 +578,7 @@ public class Panel extends Container
      */
     public function get layout():String
     {
-        return _layout;
+        return (model as PanelModel).layout;
     }
 
     /**
@@ -595,34 +586,54 @@ public class Panel extends Container
      */
     public function set layout(value:String):void
     {
-        if (_layout != value)
-        {
-            _layout = value;
-
-            if (layoutObject)
-                // Set target to null for cleanup.
-                removeBead(layoutObject);
-
-            if (_layout == ContainerLayout.ABSOLUTE)
-                layoutObject = new CanvasLayout();
-            else
-            {
-                layoutObject = new BoxLayout();
-
-                if (_layout == ContainerLayout.VERTICAL)
-                    BoxLayout(layoutObject).direction
-                        = BoxDirection.VERTICAL;
-                else
-                    BoxLayout(layoutObject).direction
-                        = BoxDirection.HORIZONTAL;
-            }
-
-            if (layoutObject)
-                addBead(layoutObject);
-
-        }
+        (model as PanelModel).layout = value;
     }
 
+    //----------------------------------
+    //  status
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the status property.
+     */
+    private var _status:String = "";
+    
+    /**
+     *  @private
+     */
+    //private var _statusChanged:Boolean = false;
+    
+    [Bindable("statusChanged")]
+    [Inspectable(category="General", defaultValue="")]
+    
+    /**
+     *  Text in the status area of the title bar.
+     *
+     *  @default ""
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get status():String
+    {
+        return _status;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set status(value:String):void
+    {
+        _status = value;
+        //_statusChanged = true;
+        
+        //invalidateProperties();
+        
+        dispatchEvent(new Event("statusChanged"));
+    }
 
 
     //----------------------------------
@@ -658,7 +669,7 @@ public class Panel extends Container
      */
     public function get title():String
     {
-        return IPanelModel(model).title;
+        return PanelModel(model).title;
     }
 
     /**
@@ -666,9 +677,96 @@ public class Panel extends Container
      */
     public function set title(value:String):void
     {
-        IPanelModel(model).title = value;
+        PanelModel(model).title = value;
     }
     
+    /**
+     *  dropShadowVisible (was a style in Flex)
+     * 
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get dropShadowVisible():String
+    {
+        if (GOOG::DEBUG)
+            trace("Panel:dropShadowVisible not implemented");
+        return null;
+    }
+    public function set dropShadowVisible(value:String):void
+    {
+        if (GOOG::DEBUG)
+            trace("Panel:dropShadowVisible not implemented");
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var panelView:PanelView = view as PanelView;
+        panelView.contentArea.addElement(c, dispatchEvent);
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            this.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        var panelView:PanelView = view as PanelView;
+        panelView.contentArea.addElementAt(c, index, dispatchEvent);
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            this.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function getElementIndex(c:IChild):int
+    {
+        var panelView:PanelView = view as PanelView;
+        return panelView.contentArea.getElementIndex(c);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var panelView:PanelView = view as PanelView;
+        panelView.contentArea.removeElement(c, dispatchEvent);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function get numElements():int
+    {
+        var panelView:PanelView = view as PanelView;
+        return panelView.contentArea.numElements;
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     */
+    override public function getElementAt(index:int):IChild
+    {
+        var panelView:PanelView = view as PanelView;
+        return panelView.contentArea.getElementAt(index);
+    }
 
 }
 

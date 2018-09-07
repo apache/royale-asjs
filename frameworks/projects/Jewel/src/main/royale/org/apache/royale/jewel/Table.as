@@ -23,6 +23,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.utils.IClassSelectorListSupport;
 
 	COMPILE::JS
     {
@@ -39,7 +41,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
@@ -49,24 +51,26 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
     [Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The Table class represents an HTML <table> element.
      *  
-     *  The able uses SimpleTable along with a data mapper and item renderers to generate
-     *  a Table from a data source.
-     *  
+     *  This Table component uses a data mapper and item renderers to generate
+     *  a Table from a data source, in opposite to SimpleTable component that is a 
+	 *  declarative mxml.
+	 * 
+	 *  As well, DataGrid is a more complex component
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
-	public class Table extends DataContainerBase
+	public class Table extends DataContainerBase implements IClassSelectorListSupport
 	{
 		/**
 		 *  constructor.
@@ -74,14 +78,23 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function Table()
 		{
 			super();
 			
 			typeNames = "jewel table";
+			classSelectorList = new ClassSelectorList(this);
 		}
+
+		protected var classSelectorList:ClassSelectorList;
+
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            classSelectorList.addNames(value);
+        }
 
 		/**
 		 *  The list of TableColumn objects displayed by this table. 
@@ -92,7 +105,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get columns():Array
 		{
@@ -113,7 +126,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get fixedHeader():Boolean
 		{
@@ -123,10 +136,10 @@ package org.apache.royale.jewel
 		{
 			_fixedHeader = value;
 
-			// toggleClass("fixedHeader", _fixedHeader);
+			toggleClass("fixedHeader", _fixedHeader);
 		}
 
-		private var _tableDataHeight:Boolean;
+		// private var _tableDataHeight:Boolean;
 		/**
 		 *  Makes the header of the table fixed so the data rows will scroll
 		 *  behind it.
@@ -136,16 +149,16 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
-		public function get tableDataHeight():Boolean
-		{
-			return _tableDataHeight;
-		}
-		public function set tableDataHeight(value:Boolean):void
-		{
-			_tableDataHeight = value;
-		}
+		// public function get tableDataHeight():Boolean
+		// {
+		// 	return _tableDataHeight;
+		// }
+		// public function set tableDataHeight(value:Boolean):void
+		// {
+		// 	_tableDataHeight = value;
+		// }
 		
 		/**
 		 *  A list of data items that correspond to the rows in the table.
@@ -156,7 +169,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get dataProvider():Object
 		{
@@ -174,7 +187,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]
@@ -197,7 +210,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		[Bindable("change")]
@@ -212,12 +225,28 @@ package org.apache.royale.jewel
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
-		
-		override public function addedToParent():void
+
+		/**
+		 *  The item property currently selected. Changing this value also
+		 *  changes the selectedIndex property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		[Bindable("change")]
+		public function get selectedItemProperty():Object
 		{
-			super.addedToParent();
-			
-			dispatchEvent( new Event("tableComplete") );
+			return TableModel(model).selectedItemProperty;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function set selectedItemProperty(value:Object):void
+		{
+			TableModel(model).selectedItemProperty = value;
 		}
 
 		/**
@@ -226,7 +255,88 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            return addElementToWrapper(this,'table');
+            return addElementToWrapper(this, 'table');
+        }
+
+		/**
+         * Add a class selector to the list.
+         * 
+         * @param name Name of selector to add.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.4
+         */
+        public function addClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.add(name);
+            }
+        }
+
+        /**
+         * Removes a class selector from the list.
+         * 
+         * @param name Name of selector to remove.
+         *
+         * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion DOMTokenList
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.4
+         */
+        public function removeClass(name:String):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.remove(name);
+            }
+        }
+
+        /**
+         * Add or remove a class selector to/from the list.
+         * 
+         * @param name Name of selector to add or remove.
+         * @param value True to add, False to remove.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.4
+         */
+        public function toggleClass(name:String, value:Boolean):void
+        {
+            COMPILE::JS
+            {
+            classSelectorList.toggle(name, value);
+            }
+        }
+
+        /**
+		 *  Search for the name in the element class list 
+		 *
+         *  @param name Name of selector to find.
+         *  @return return true if the name is found or false otherwise.
+         * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function containsClass(name:String):Boolean
+        {
+            COMPILE::JS
+            {
+            return classSelectorList.contains(name);
+            }
+            COMPILE::SWF
+            {//not implemented
+            return false;
+            }
         }
     }
 }

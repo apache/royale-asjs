@@ -43,7 +43,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
@@ -53,7 +53,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
     [Event(name="change", type="org.apache.royale.events.Event")]
 
@@ -64,7 +64,7 @@ package org.apache.royale.jewel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class ToggleButton extends IconButton implements ISelectable
 	{
@@ -74,7 +74,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function ToggleButton()
 		{
@@ -97,7 +97,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
         public function get selected():Boolean
         {
@@ -120,7 +120,7 @@ package org.apache.royale.jewel
             {
                 IToggleButtonModel(model).selected = value;
                 internalSelected();
-                dispatchEvent(new Event("change"));
+                dispatchEvent(new Event(Event.CHANGE));
             }
             COMPILE::JS
             {
@@ -128,7 +128,7 @@ package org.apache.royale.jewel
                 {
                     _selected = value;
                     internalSelected();
-                    dispatchEvent(new Event("change"));
+                    dispatchEvent(new Event(Event.CHANGE));
                 }
             }
         }
@@ -137,7 +137,7 @@ package org.apache.royale.jewel
         override protected function createElement():WrappedHTMLElement
         {
             super.createElement();
-            element.addEventListener("click", clickHandler, false);
+            element.addEventListener(MouseEvent.CLICK, clickHandler, false);
             internalSelected();
             
             return element;

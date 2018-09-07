@@ -21,13 +21,14 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IList;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.beads.IListView;
 
     /**
 	 * Handles the update of an itemRenderer once the corresponding datum has been updated
@@ -150,12 +151,14 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{
 			if (_itemRendererParent == null) {
-				var list:IList = _strand as IList;
-				_itemRendererParent = list.dataGroup;
+                var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+                _itemRendererParent = view.dataGroup;
 			}
 			return _itemRendererParent;
 		}

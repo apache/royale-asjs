@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Button;
+			import mx.managers.CursorManager;
+			import flash.events.*;
+			
+			private var cursorID:Number = 0;
+			// Embed the cursor symbol.
+			[Embed(source="assets/ApacheFlexIcon.png")]
+			private var waitCursorSymbol:Class;           
+			
+			private function setCursor(cursorType:String):void 
+			{
+				if (cursorType == "normal") {
+					CursorManager.removeAllCursors();
+					CursorManager.removeBusyCursor();
+				} else if (cursorType == "busy") {
+					CursorManager.removeAllCursors();
+					CursorManager.setBusyCursor();
+				} else if (cursorType == "custom") {
+					CursorManager.removeAllCursors();            		
+					cursorID = CursorManager.setCursor(waitCursorSymbol);
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="Cursor Management Samples" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:Button label="Normal Cursor" color="0x000000" click="setCursor('normal')"/>
+		<s:Button label="Default Busy Cursor" color="0x000000" click="setCursor('busy')"/>
+		<s:Button label="Custom Busy Cursor" color="0x000000" click="setCursor('custom')"/>
+		
+	</s:Panel>
+	
+</s:Module>

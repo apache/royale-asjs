@@ -33,16 +33,6 @@ package org.apache.royale.core
      */
 	public interface IList extends IItemRendererProvider
 	{
-        /**
-         *  Returns the component within the list (maybe even the list shell itself)
-		 *  which will be the parent of each itemRenderer.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		function get dataGroup():IItemRendererParent;
 		
 	}
 }

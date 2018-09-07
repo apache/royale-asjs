@@ -87,7 +87,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="change", type="org.apache.royale.evets.Event")]
+[Event(name="change", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when the <code>data</code> property changes.
@@ -145,6 +145,8 @@ use namespace mx_internal;
 //[Event(name="textInput", type="flash.events.TextEvent")]
 
 
+[Event(name="keyDown", type="mx.events.KeyboardEvent")]
+[Event(name="keyUp", type="mx.events.KeyboardEvent")]
 
 /**
  *  The TextArea control is a multiline text field

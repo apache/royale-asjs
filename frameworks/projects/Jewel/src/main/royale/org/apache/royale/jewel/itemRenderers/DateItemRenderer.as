@@ -45,7 +45,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
-			typeNames = "calendar item date";
+			typeNames = "jewel tableitem calendar";
 		}
 
 		/**
@@ -62,43 +62,23 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super.data = value;
 
-			COMPILE::SWF {
-				textField.autoSize = TextFieldAutoSize.CENTER;
-			}
-
 			if (value[labelField] is Date) {
-				this.text = String( (value[labelField] as Date).getDate() );
+				text = String( (value[labelField] as Date).getDate() );
 
 				COMPILE::SWF {
 					mouseEnabled = true;
 					mouseChildren = true;
 				}
-
-				// COMPILE::JS {
-				// 	element.style["pointer-events"] = "";
-				// }
 			} else {
-				this.text = "";
+				text = "";
 
 				COMPILE::SWF {
 					mouseEnabled = false;
 					mouseChildren = false;
 				}
 
-				// COMPILE::JS {
-				//   element.style["pointer-events"] = "none";
-				// }
+				className = "empty-cell";
 			}
-		}
-
-		/**
-		 * @private
-		 */
-		COMPILE::JS
-		override public function set height(value:Number):void
-		{
-			super.height = value;
-			// element.style["line-height"] = String(value)+"px";
 		}
 	}
 }

@@ -39,10 +39,10 @@
   </properties>
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/royale</sourceDirectory>
     <resources>
       <resource>
-        <directory>src/resources</directory>
+        <directory>src/main/resources</directory>
         <filtering>true</filtering>
       </resource>
     </resources>

@@ -19,16 +19,17 @@
 package org.apache.royale.svg
 {
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IRenderedObject;
-	import org.apache.royale.core.IStrand;
-
 	COMPILE::JS
 	{
 		import org.apache.royale.utils.UIDUtil;
 		import org.apache.royale.graphics.utils.addSvgElementToElement;
 		import org.apache.royale.events.IEventDispatcher;
 	}
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IStrand;
+	[DefaultProperty("children")]
+
 	/**
 	 *  The Filter bead allows you to filter an SVG element. Filter elements should be added to the strand to achieve the desired effect.
 	 *  
@@ -42,6 +43,7 @@ package org.apache.royale.svg
 		private var _strand:IStrand;
 		private var _width:String = "200%";
 		private var _height:String = "200%";
+		private var _children:Array;
 //		private var floodColor:uint;
 		COMPILE::JS 
 		{
@@ -67,7 +69,7 @@ package org.apache.royale.svg
 		}
 		
 		COMPILE::SWF
-		private function filter():void
+		protected function filter():void
 		{
 //			if (!path)
 //			{
@@ -99,29 +101,22 @@ package org.apache.royale.svg
 		 * @royaleignorecoercion Object
 		 */
 		COMPILE::JS
-		private function filter():void
+		protected function filter():void
 		{
 			var svgElement:Node = host.element as Element;
 			var defs:Element = getChildNode(svgElement, "defs") as Element;
 			_filterElementWrapper = getChildNode(defs, "filter") as Element;
-			filterElementWrapper.id = "myDropShadow" + UIDUtil.createUID();
+			filterElementWrapper.id = "myFilter" + UIDUtil.createUID();
 			filterElementWrapper.setAttribute("width", _width);
 			filterElementWrapper.setAttribute("height", _height);
 			// clean up existing filter
-			if (filterElementWrapper.hasChildNodes())
-			{
-				var childNodes:Object = filterElementWrapper.childNodes;
-				for (var i:int = 0; i < childNodes.length; i++)
-				{
-					filterElementWrapper.removeChild(childNodes[i]);
-				}
-			}
-//			var flood:Element = addSvgElementToWrapper(filterElementWrapper, "feFlood") as Element;
-//			flood.setAttribute("flood-color", floodColor);
-//			flood.setAttribute("flood-alpha", floodAlpha);
-			// create blend
-			// apply filter
 			host.element.style["filter"] = "url(#" + filterElementWrapper.id + ")";
+			for (var i:int = 0; i < children.length; i++)
+			{
+				var filterElement:FilterElement = children[i] as FilterElement;
+				filterElement.filterElementWrapper = filterElementWrapper;
+				filterElement.build();
+			}
 		}
 		
 		COMPILE::JS
@@ -144,7 +139,7 @@ package org.apache.royale.svg
 		}
 		
 		
-		private function get host():IRenderedObject
+		protected function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;
 		}
@@ -161,6 +156,16 @@ package org.apache.royale.svg
 		public function get filterElementWrapper():Element
 		{
 			return _filterElementWrapper;
+		}
+
+		public function get children():Array 
+		{
+			return _children;
+		}
+		
+		public function set children(value:Array):void 
+		{
+			_children = value;
 		}
 	}
 }

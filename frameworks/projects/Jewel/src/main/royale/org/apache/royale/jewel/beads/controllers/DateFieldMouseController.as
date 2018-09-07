@@ -21,14 +21,13 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
-    import org.apache.royale.utils.Timer;
-    import org.apache.royale.utils.UIUtils;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -38,7 +37,7 @@ package org.apache.royale.jewel.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class DateFieldMouseController implements IBeadController
 	{
@@ -48,12 +47,16 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function DateFieldMouseController()
 		{
 		}
 		
+		private var viewBead:DateFieldView;
+		private var daysTable:Table;
+		private var model:IDateChooserModel;
+
 		private var _strand:IStrand;
 		
 		/**
@@ -62,14 +65,18 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;			
-			IEventDispatcher(viewBead.menuButton).addEventListener("click", clickHandler);
+			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+
+			viewBead = _strand.getBeadByType(DateFieldView) as DateFieldView;			
+			IEventDispatcher(viewBead.menuButton).addEventListener(MouseEvent.CLICK, clickHandler);
+
+			viewBead.textInput.addEventListener(Event.CHANGE, inputSelectionChangeHandler);
 		}
 		
 		/**
@@ -79,87 +86,123 @@ package org.apache.royale.jewel.beads.controllers
 		{
             event.stopImmediatePropagation();
             
-			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;
-			IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
-            removeDismissHandler();
+			IEventDispatcher(viewBead.popUp).addEventListener(Event.CHANGE, changeHandler);
+            // removeDismissHandler();
             
             // use a timer to delay the installation of the event handler, otherwise
             // the event handler is called immediately and will dismiss the popup.
-            var t:Timer = new Timer(0.25,1);
-            t.addEventListener("timer",addDismissHandler);
-            t.start();
+            // var t:Timer = new Timer(0.25, 1);
+            // t.addEventListener("timer", addDismissHandler);
+            // t.start();
+
+			// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
+			daysTable = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
+
+			IEventDispatcher(daysTable).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
         }
-        
-        /**
-         * @private
-         */
-        private function addDismissHandler(event:Event):void
-        {
-            var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-            if (host) {
-                host.addEventListener("click", dismissHandler);
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function removeDismissHandler():void
-        {
-            var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-            if (host) {
-                host.removeEventListener("click", dismissHandler);
-            }
+
+		protected function handleControlMouseDown(event:MouseEvent):void
+		{
+			event.stopImmediatePropagation();
 		}
-		
+        
+		protected function removePopUpWhenClickOutside(event:MouseEvent = null):void
+		{
+			IEventDispatcher(daysTable).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
+			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
+			viewBead.popUpVisible = false;
+		}
+	
 		/**
 		 * @private
 		 */
 		private function changeHandler(event:Event):void
 		{
-            event.stopImmediatePropagation();
+			event.stopImmediatePropagation();
+			IEventDispatcher(daysTable).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
+			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
             
-			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
-			
-			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
 
 			viewBead.popUpVisible = false;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
-            
-            removeDismissHandler();
+			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
+
+            // removeDismissHandler();
 		}
+
+		private function isValidDate(d:*):Boolean
+		{
+			return (d is Date) && !isNaN(d);
+		}
+
+		/**
+		 * @private
+		 */
+		private function inputSelectionChangeHandler(event:Event):void
+		{
+			var len:int = viewBead.textInput.text.length;
+			if(len == 10)
+			{
+				var date:Date = new Date(viewBead.textInput.text);
+				model.selectedDate = isValidDate(date) ? date : null;
+			}
+		}
+        
+		/**
+         * @private
+         */
+        // private function addDismissHandler(event:Event):void
+        // {
+        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+        //     if (host) {
+        //         host.addEventListener(MouseEvent.CLICK, dismissHandler);
+        //     }
+        // }
         
         /**
          * @private
          */
-        private function dismissHandler(event:MouseEvent):void
-        {
-            var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
-            var popup:IUIBase = IUIBase(viewBead.popUp);
+        // private function removeDismissHandler():void
+        // {
+        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+        //     if (host) {
+        //         host.removeEventListener(MouseEvent.CLICK, dismissHandler);
+        //     }
+		// }
+
+        /**
+         * @private
+         */
+        // private function dismissHandler(event:MouseEvent):void
+        // {
+        //     var popup:IUIBase = IUIBase(viewBead.popUp);
             
-            COMPILE::SWF {
-                var before:IUIBase = event.targetBeforeBubbling["royale_wrapper"] as IUIBase;
-                if (before) {
-                    while (before != null) {
-                        if (before == popup) return;
-                        before = before.parent as IUIBase;
-                    }
-                }
-            }
-                COMPILE::JS {
-                    var before:IUIBase = event.target as IUIBase;
-                    if (before) {
-                        while (before != null) {
-                            if (before == popup) return;
-                            before = before.parent as IUIBase;
-                        }
-                    }
-                }
-                
-                viewBead.popUpVisible = false;
-            removeDismissHandler();
-        }
+        //     COMPILE::SWF {
+        //         var before:IUIBase = event.targetBeforeBubbling["royale_wrapper"] as IUIBase;
+        //         if (before) {
+        //             while (before != null) {
+        //                 if (before == popup) return;
+        //                 before = before.parent as IUIBase;
+        //             }
+        //         }
+        //     }
+
+		// 	COMPILE::JS {
+		// 		var before:IUIBase = event.target as IUIBase;
+		// 		if (before) {
+		// 			while (before != null) {
+		// 				if (before == popup) return;
+		// 				before = before.parent as IUIBase;
+		// 			}
+		// 		}
+		// 	}
+			
+		// 	viewBead.popUpVisible = false;
+        //     // removeDismissHandler();
+        // }
 	}
 }

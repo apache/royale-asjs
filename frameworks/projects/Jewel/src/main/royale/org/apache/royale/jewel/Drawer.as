@@ -40,7 +40,7 @@ package org.apache.royale.jewel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class Drawer extends DrawerBase
 	{
@@ -53,7 +53,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function Drawer()
 		{
@@ -102,7 +102,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get isOpen():Boolean
 		{
@@ -130,10 +130,10 @@ package org.apache.royale.jewel
 				//avoid scroll in html
 				if(fixed)
 				{
-					document.body.classList.remove("remove-app-scroll");
+					document.body.classList.remove("viewport");
 				} else
 				{
-					document.body.classList.toggle("remove-app-scroll", _isOpen);
+					document.body.classList.toggle("viewport", _isOpen);
 				}
 			}
 		}
@@ -158,7 +158,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
         public function get fixed():Boolean
         {

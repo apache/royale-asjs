@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   xmlns:local="*" creationComplete="init()">
+	
+	<!-- Based on original code from here and updated and enhanced for Flex 4:
+		http://www.adobe.com/devnet/flex/articles/text_layout_framework_04.html
+	-->
+	
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.container.ContainerController;
+			import flashx.textLayout.conversion.ITextImporter;
+			import flashx.textLayout.conversion.TextConverter;
+			import flashx.textLayout.edit.EditManager;
+			import flashx.textLayout.edit.ISelectionManager;
+			import flashx.textLayout.edit.SelectionState;
+			import flashx.textLayout.elements.InlineGraphicElement;
+			import flashx.textLayout.elements.ParagraphElement;
+			import flashx.textLayout.elements.TextFlow;
+			import flashx.textLayout.events.SelectionEvent;
+			import flashx.textLayout.events.StatusChangeEvent;
+			import flashx.textLayout.formats.Direction;
+			import flashx.textLayout.formats.TextLayoutFormat;
+			import flashx.undo.UndoManager;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.CheckBox;
+			import mx.events.FlexEvent;
+			import mx.events.SliderEvent;
+			
+			import spark.components.Group;
+			import spark.core.SpriteVisualElement;
+			
+			[Bindable]
+			public var directions:ArrayCollection = new ArrayCollection(
+				[
+					{label:"Left-to-Right", data:Direction.LTR},
+					{label:"Right-to-Left", data:Direction.RTL}
+				]
+			);
+			
+			[Embed(source="assets/ApacheFlexLogo.png")]
+			[Bindable]
+			static public var imgClass:Class;
+			
+			private var _textContainer:SpriteVisualElement = null;
+			
+			private static const textInput:XML = <TextFlow xmlns="http://ns.adobe.com/textLayout/2008">
+				<div>
+					<p><span>The Text Layout Framework is an extensible library, built on the new text engine in Adobe Flash Player 10, which delivers advanced, easy-to-integrate typographic and text layout features for rich, sophisticated and innovative typography on the web. 
+				Some benefits provided by this framework include: 1) rich typographical controls, including kerning, ligatures, typographic case, digit case, digit width and discretionary hyphens
+				2) cut, copy, paste, undo and standard keyboard and mouse gestures for editing 3) selection, editing and flowing text across multiple columns and linked containers 
+				4) bidirectional text, vertical text and over 30 writing scripts including Arabic, Hebrew, Chinese, Japanese, Korean, Thai, Lao, Vietnamese, and others
+				5) vertical text, Tate-Chu-Yoko (horizontal within vertical text) and justifier for East Asian typography. Try editing this text and playing with the options below! Notice an inline image is also included.</span></p>
+				</div>
+				</TextFlow>;
+			
+			private var _textFlow:TextFlow;
+			
+			private function init():void {
+				
+				_textContainer = new SpriteVisualElement();
+				
+				canvas.addElement(_textContainer);
+				var importer:ITextImporter = TextConverter.getImporter(TextConverter.TEXT_LAYOUT_FORMAT);
+				importer.throwOnError = true; // will throw exception if parsing error occurs on import
+
+				_textFlow = importer.importToFlow(textInput);
+				_textFlow.flowComposer.addController(new ContainerController(_textContainer, canvas.width-40, canvas.height));
+				
+				// add the graphic
+				var p:ParagraphElement = new ParagraphElement();
+				var inlineGraphicElement:InlineGraphicElement = new InlineGraphicElement();
+				inlineGraphicElement.source = imgClass;
+				inlineGraphicElement.width=32;
+				inlineGraphicElement.height=32;
+				p.addChild(inlineGraphicElement);
+				_textFlow.addChild(p);
+				
+				//adding Select/Edit/Copy/Paste/Undo features
+				_textFlow.interactionManager = new EditManager(new UndoManager());
+				
+				// initialize with a selection before the first character
+				_textFlow.interactionManager.selectRange(0,0);
+				_textFlow.flowComposer.updateAllControllers();
+			}
+			
+			private function changeFontSize(event:Event):void {
+				_textFlow.fontSize = fontSize.value;
+				_textFlow.direction = direction.selectedItem.data;
+				_textFlow.flowComposer.updateAllControllers();
+			}
+			
+			private function changeNoColumns(event:Event):void {
+				var tlf:TextLayoutFormat = new TextLayoutFormat();
+				tlf.columnCount = cols.value;
+				tlf.columnGap = 15;
+				tlf.direction = direction.selectedItem.data;
+				_textFlow.format = tlf;
+				_textFlow.flowComposer.updateAllControllers();
+			}
+			
+			private function changeTextDirection(event:Event):void {
+				_textFlow.direction = (event.target as DropDownList).selectedItem.data;
+				_textFlow.flowComposer.updateAllControllers();
+			}
+			
+			protected function undo_clickHandler(event:MouseEvent):void
+			{
+				var em:EditManager = _textFlow.interactionManager as EditManager;
+				trace("Can undo " + em.undoManager.canUndo() + " can redo " + em.undoManager.canRedo());
+				em.undoManager.undo();
+			}
+			protected function redo_clickHandler(event:MouseEvent):void
+			{
+				var em:EditManager = _textFlow.interactionManager as EditManager;
+				em.undoManager.redo();
+			}
+
+		]]>
+	</fx:Script>
+	<s:Panel title="Text Layout Framework Sample" width="100%" height="100%">
+		<s:layout>
+			<s:VerticalLayout paddingTop="8" paddingLeft="8"/>
+		</s:layout>
+		
+		<s:VGroup>
+			<s:Group id="canvas" width="600" height="200" />
+			<s:HGroup width="100%" verticalAlign="middle">
+				<s:Label text="Font Size:"/>
+				<s:NumericStepper id="fontSize" minimum="6" maximum="22" snapInterval="1" change="changeFontSize(event)" value="12" />
+				<s:Label text="# Columns:"/>
+				<s:NumericStepper id="cols"  minimum="1" maximum="20" snapInterval="1" change="changeNoColumns(event)" />
+				<s:Label text="Text Direction:"/>
+				<s:DropDownList id="direction" change="changeTextDirection(event)" dataProvider="{directions}" 
+								selectedItem="{directions.getItemAt(0)}"/>
+				<s:Button label="Undo" click="undo_clickHandler(event)"/>
+				<s:Button label="Redo" click="redo_clickHandler(event)"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+	
+</s:Module>

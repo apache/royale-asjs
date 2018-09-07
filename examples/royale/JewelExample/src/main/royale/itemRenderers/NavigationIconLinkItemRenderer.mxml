@@ -18,10 +18,10 @@ limitations under the License.
 
 -->
 <j:NavigationLinkItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                      xmlns:j="library://ns.apache.org/royale/jewel"
-                      xmlns:js="library://ns.apache.org/royale/basic"
-                      xmlns:html="library://ns.apache.org/royale/html"
-                      xmlns="http://www.w3.org/1999/xhtml">
+                              xmlns:j="library://ns.apache.org/royale/jewel"
+                              xmlns:js="library://ns.apache.org/royale/basic"
+                              xmlns:html="library://ns.apache.org/royale/html"
+                              xmlns="http://www.w3.org/1999/xhtml">
 
     <fx:Script>
 		<![CDATA[
@@ -35,9 +35,9 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-    <mdl:beads>
+    <j:beads>
         <js:ItemRendererDataBinding />
-    </mdl:beads>
+    </j:beads>
     
     <js:FontIcon text="{navlink.icon}" material="true" visible="{navlink.icon != null}"/>
 

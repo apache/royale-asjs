@@ -169,16 +169,18 @@ package org.apache.royale.html.beads.layouts
 				{
 					var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
 					if (child == null) continue;
-					child.royale_wrapper.setDisplayStyleForLayout('block');
-					if (child.style.display === 'none')
+					if(!child.royale_wrapper.displayStyleForLayout)
 					{
-						child.royale_wrapper.setDisplayStyleForLayout('block');
-					}
-					else
-					{
-						// block elements don't measure width correctly so set to inline for a second
-						child.style.display = 'inline-block';
-						child.style.display = 'block';
+						if (!child.royale_wrapper.visible)
+						{
+							child.royale_wrapper.setDisplayStyleForLayout('block');
+						}
+						else
+						{
+							// block elements don't measure width correctly so set to inline for a second
+							child.style.display = 'inline-block';
+							child.style.display = 'block';
+						}
 					}
 					child.royale_wrapper.dispatchEvent('sizeChanged');
 				}

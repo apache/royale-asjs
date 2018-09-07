@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-	public class Bug extends Object
+	public class Bug
 	{
 		public var bugID:String;
 		

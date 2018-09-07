@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate DateChooser control. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+        <![CDATA[
+
+            // Event handler function to write the selected
+            // date to the Label control.        
+            private function displayDate(date:Date):void {
+                if (date == null)
+                    selection.text = "Date selected: ";
+                else
+                    selection.text = "Date selected: " + date.getFullYear().toString() +
+                        '/' + (date.getMonth()+1).toString() + '/' + date.getDate();
+            }
+        ]]>
+    </fx:Script>
+
+	<fx:Declarations>
+    	<mx:DateFormatter id="df"/>
+	</fx:Declarations>
+    
+    <mx:Panel title="DateChooser Control Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Label width="100%"
+            text="Select a date in the DateChooser control."/>
+        <mx:Label width="100%"
+            text="Select it again while holding down the Control key to clear it."/>
+            
+        <mx:HBox horizontalGap="25">
+          <mx:VBox>
+              <mx:Label text="Simple DateChooser control."/>
+              <mx:DateChooser id="dateChooser1" yearNavigationEnabled="true"    
+                  change="displayDate(DateChooser(event.target).selectedDate)"/>
+              <mx:Label id="selection"  text="Date selected:"/>
+          </mx:VBox>
+
+          <mx:VBox>
+              <mx:Label text="Disable dates before June 1, 2006."/>
+              <mx:DateChooser id="dateChooser2" yearNavigationEnabled="true"
+                  disabledRanges="{[ {rangeEnd: new Date(2006, 5, 1)} ]}"/>
+              <mx:Label  text="Date selected: {df.format(dateChooser2.selectedDate)}"/>
+          </mx:VBox>
+        </mx:HBox>
+        
+    </mx:Panel>    
+</mx:Module>
+

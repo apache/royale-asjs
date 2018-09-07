@@ -27,8 +27,9 @@ package models
         private var _controlsDrawerNavigation:ArrayList = new ArrayList([            
             new NavigationLinkVO("Alert", "alert_panel", MaterialIconType.WEB_ASSET),
             new NavigationLinkVO("Button", "button_panel", MaterialIconType.CROP_7_5),
+            new NavigationLinkVO("NumericStepper", "numericstepper_panel", MaterialIconType.UNFOLD_MORE),
             new NavigationLinkVO("Date Components", "datecomponents_panel", MaterialIconType.DATE_RANGE),
-            new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
+            new NavigationLinkVO("ComboBox", "combobox_panel", MaterialIconType.CREDIT_CARD),
             new NavigationLinkVO("CheckBox", "checkbox_panel", MaterialIconType.CHECK_BOX),
             new NavigationLinkVO("Icon", "miscelanea_panel", MaterialIconType.FACE),
             new NavigationLinkVO("Label", "label_panel", MaterialIconType.LABEL),
@@ -36,7 +37,9 @@ package models
             new NavigationLinkVO("RadioButton", "radiobutton_panel", MaterialIconType.RADIO_BUTTON_CHECKED),
             new NavigationLinkVO("Slider", "slider_panel", MaterialIconType.STORAGE),
             new NavigationLinkVO("Text", "text_panel", MaterialIconType.SUBJECT),
-            new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS)
+            new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS),
+            new NavigationLinkVO("Forms & Validation", "form_validation_panel", MaterialIconType.ASSIGNMENT_TURNED_IN),
+            new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD)
 
             // new NavigationLinkVO("Menu", "menus_panel"),
             // new NavigationLinkVO("Loading", "loading_panel"),

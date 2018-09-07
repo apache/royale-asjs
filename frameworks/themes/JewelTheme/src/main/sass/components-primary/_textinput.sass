@@ -26,7 +26,7 @@ $textinput-border-radius: $border-radius
 	
 	color: $textinput-text-color
 
-	> input
+	input
 		@if $flat
 			background: $default-color
 			border: 0px solid
@@ -82,6 +82,9 @@ $textinput-border-radius: $border-radius
 		@else
 			+textinput-theme($font-light-color)
 
+		&.errorBorder
+			input
+				border: 1px $error-color solid
 
 // Jewel TextArea
 
@@ -92,7 +95,7 @@ $textarea-border-radius: $border-radius
 	
 	color: $textarea-text-color
 
-	> textarea	
+	textarea	
 		@if $flat
 			background: $default-color
 			border: 0px solid
@@ -131,16 +134,17 @@ $textarea-border-radius: $border-radius
 			&::placeholder, &:-ms-input-placeholder
 				color: $disabled-font-color
 
-.jewel.textarea
-	font:
-		weight: $font-weight-normal
-	
-	> textarea
+.jewel
+	&.textarea
 		font:
-			family: $font-stack
+			weight: $font-weight-normal
+		
+		textarea
+			font:
+				family: $font-stack
 
-	@if $dark
-		+textarea-theme($font-dark-color)
-	@else
-		+textarea-theme($font-light-color)
+		@if $dark
+			+textarea-theme($font-dark-color)
+		@else
+			+textarea-theme($font-light-color)
 

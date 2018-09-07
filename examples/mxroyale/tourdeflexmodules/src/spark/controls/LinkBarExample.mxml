@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<s:Panel title="LinkBar Control" width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:Label width="100%" textAlign="center"
+				 text="Select a link in the LinkBar control to set the active child of the ViewStack container."/>
+		
+		<mx:LinkBar color="0x0050AA" horizontalAlign="center" width="100%" fontWeight="bold" dataProvider="{myViewStack}" borderColor="0xACACAC" borderStyle="solid"/>
+		
+		<!-- Define the ViewStack and the three child containers -->
+		<mx:ViewStack id="myViewStack" borderStyle="solid" width="100%" height="80%">
+			
+			<s:NavigatorContent id="search" label="Customer Info" backgroundColor="0xDCDCDC" fontWeight="bold">
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center" />
+				</s:layout>
+				
+				<s:Label text="Search Panel" width="100%" textAlign="center" paddingTop="10" />
+				<s:HGroup>
+					<s:TextInput id="Searchtxt" width="200" />
+					<s:Button label="search" click="Searchtxt.text=''" />
+				</s:HGroup>
+			</s:NavigatorContent>
+			
+			<s:NavigatorContent id="custInfo" label="Customer Info" backgroundColor="0xDCDCDC" width="100%" height="100%">
+				
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center" />
+				</s:layout>
+				
+				<s:Label text="Customer Info" width="100%" textAlign="center" paddingTop="10" />
+				<s:HGroup>
+					<s:Label text="Email Address"/>
+					<s:TextInput id="email" width="200"/>
+					<s:Button label="Submit" click="email.text=''" />
+				</s:HGroup>
+				
+			</s:NavigatorContent>
+			
+			<s:NavigatorContent id="accountInfo" label="Account Info" backgroundColor="0xDCDCDC" width="100%" height="100%" fontWeight="bold" >
+				
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center" />
+				</s:layout>
+				
+				<s:Label text="Account Info" width="100%" textAlign="center" paddingTop="10" />
+				<s:HGroup>
+					<mx:Button label="Purchases" />
+					<mx:Button label="Sales" />
+					<mx:Button label="Reports" />
+				</s:HGroup>
+			</s:NavigatorContent>
+			
+		</mx:ViewStack>
+		
+	</s:Panel>
+</s:Module>

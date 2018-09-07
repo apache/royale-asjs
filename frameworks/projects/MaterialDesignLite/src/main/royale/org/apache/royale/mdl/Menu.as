@@ -229,5 +229,13 @@ package org.apache.royale.mdl
         {
             return _classList.compute() + super.computeFinalClassNames();
         }
+		
+		public function toggle():void
+		{
+			COMPILE::JS
+			{
+				element["MaterialMenu"]["toggle"]();
+			}
+		}
     }
 }

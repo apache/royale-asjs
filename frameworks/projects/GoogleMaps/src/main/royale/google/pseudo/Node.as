@@ -19,7 +19,7 @@
 
 // used to quiet issues with asdoc
 package google.pseudo {
-public class Node extends Object {
-}
+    public class Node{
+    }
 }
 

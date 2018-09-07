@@ -92,6 +92,7 @@ COMPILE::JS {
 				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
 				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
 				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseUp);
+                goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
 			}
 		}
 		
@@ -202,7 +203,6 @@ COMPILE::JS {
 		COMPILE::JS
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
-			event.stopImmediatePropagation();
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{

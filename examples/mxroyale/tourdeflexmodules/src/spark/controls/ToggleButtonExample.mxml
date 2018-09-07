@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx" 
+			   currentState="hide">
+	
+
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var items:ArrayCollection = new ArrayCollection([
+				{label:"Medium Pink V-Neck T", itemNum:1932823474, price:"$24.00"}, 
+				{label:"Small Red Polo", itemNum:2022144432, price:"$40.00"}, 
+				{label:"X-Large Sweatshirt", itemNum:3769034827, price:"$50.00"} ]);
+
+			protected function myBtn_clickHandler(event:MouseEvent):void
+			{
+				if (showBtn.selected) 
+					this.currentState="show";
+				else this.currentState="hide";
+			}
+		]]>
+	</fx:Script>
+
+	<s:states> 
+		<s:State name="show"/>    
+		<s:State name="hide"/> 
+	</s:states> 
+	
+	<s:Panel title="ToggleButton Sample" width="100%" height="100%">
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:HGroup>			
+			<s:VGroup>
+					<s:Label text="The Outfitters Clothing Store" fontSize="18" />
+					<s:Label text="Order Number: 904234113441-2342"/>
+					<s:VGroup width="80%"  horizontalCenter="0">
+						<s:Label text="Purchaser: Anna Thomas"/>
+						<s:Label text="Date: 7/20/2009"/>
+						<s:Label text="Order Total: $114.00"/>
+						<s:ToggleButton id="showBtn" label.hide="Show Details" label.show="Hide Details"
+										click="myBtn_clickHandler(event)"/>
+					</s:VGroup>
+			</s:VGroup>
+			<s:HGroup right="50" top="5">
+				<s:Panel title="Details" horizontalCenter="0" top="300" width="350" height="170" includeIn="show">
+					<mx:DataGrid dataProvider="{items}" width="100%" height="100%"/>
+				</s:Panel>
+			</s:HGroup>
+		</s:HGroup>
+		
+		<s:Label width="100%"
+				 text="Clicking the button toggles it between the up and down states. If you click the button while it is in the up state, it toggles to the down state. You must click
+		the button again to toggle it back to the up state."/>
+	</s:Panel>	
+</s:Module>

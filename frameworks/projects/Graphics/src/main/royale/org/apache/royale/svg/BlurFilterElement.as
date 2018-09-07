@@ -45,11 +45,11 @@ package org.apache.royale.svg
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		override protected function onInitComplete(e:Event):void
+		override public function build():void
 		{
-			super.onInitComplete(e);
 			COMPILE::JS 
 			{
+				super.build();
 				filterElement.setAttribute("stdDeviation", stdDeviation);
 			}
 		}

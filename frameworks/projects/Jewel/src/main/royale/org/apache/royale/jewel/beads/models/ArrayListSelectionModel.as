@@ -33,7 +33,7 @@ package org.apache.royale.jewel.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
+     *  @productversion Royale 0.9.4
      */
 	public class ArrayListSelectionModel extends EventDispatcher implements ISelectionModel, IRollOverModel
 	{
@@ -43,7 +43,7 @@ package org.apache.royale.jewel.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function ArrayListSelectionModel()
 		{
@@ -57,7 +57,7 @@ package org.apache.royale.jewel.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function set strand(value:IStrand):void
 		{
@@ -66,13 +66,14 @@ package org.apache.royale.jewel.beads.models
 
 		private var _dataProvider:IArrayList;
 
+		[Bindable("dataProviderChanged")]
         /**
          *  @copy org.apache.royale.core.ISelectionModel#dataProvider
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get dataProvider():Object
 		{
@@ -105,7 +106,7 @@ package org.apache.royale.jewel.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get labelField():String
 		{
@@ -129,7 +130,7 @@ package org.apache.royale.jewel.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get selectedIndex():int
 		{
@@ -154,7 +155,7 @@ package org.apache.royale.jewel.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get rollOverIndex():int
 		{
@@ -180,7 +181,7 @@ package org.apache.royale.jewel.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get selectedItem():Object
 		{
@@ -217,7 +218,7 @@ package org.apache.royale.jewel.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.4
          */
 		public function get selectedString():String
 		{

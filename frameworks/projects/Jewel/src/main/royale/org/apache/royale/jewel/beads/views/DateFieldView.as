@@ -19,26 +19,33 @@
 package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IDateChooserModel;
-	import org.apache.royale.core.IFormatBead;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IDateChooserModel;
+    import org.apache.royale.core.IFormatBead;
+    import org.apache.royale.core.IPopUpHost;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.jewel.Button;
+    import org.apache.royale.jewel.DateChooser;
+    import org.apache.royale.jewel.TextInput;
+    import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
+    import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
+    import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.jewel.DateChooser;
-	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.beads.views.DateChooserView;
+
 	COMPILE::SWF
 	{
 		//import org.apache.royale.jewel.beads.views.TextInputView;
 		import flash.text.TextFieldType;
-	}
+		import flash.utils.setTimeout;
+    }
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -49,7 +56,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class DateFieldView extends BeadViewBase implements IBeadView
 	{
@@ -59,7 +66,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function DateFieldView()
 		{
@@ -74,7 +81,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get menuButton():Button
 		{
@@ -87,7 +94,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get textInput():TextInput
 		{
@@ -97,10 +104,10 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		 protected function getHost():UIBase
-		 {
-			 return _strand as UIBase;
-		 }
+		protected function getHost():UIBase
+		{
+			return _strand as UIBase;
+		}
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -108,19 +115,23 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
 
 			_textInput = new TextInput();
+			_textInput.addBead(new DateFieldMaskedTextInput());
+			
+			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
+			maxNumberCharacters.maxlength = 10;
+			_textInput.addBead(maxNumberCharacters);
+			
 			getHost().addElement(_textInput);
-			_textInput.width = 100;
-			_textInput.height = 18;
 
 			_button = new Button();
-			_button.text = "⬇︎";
+			_button.text = "&darr;";
 			getHost().addElement(_button);
 
 			COMPILE::SWF {
@@ -143,10 +154,14 @@ package org.apache.royale.jewel.beads.views
 		{
 			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
 			formatter.addEventListener("formatChanged",handleFormatChanged);
-			_textInput.height = _button.height;
 
 			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
+		}
+		
+		private function handlePopUpInitComplete(event:Event):void
+		{
+			getHost().dispatchEvent(new Event("dateChooserInitComplete"));
 		}
 
 		private function handleFormatChanged(event:Event):void
@@ -163,7 +178,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get popUp():DateChooser
 		{
@@ -178,7 +193,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get popUpVisible():Boolean
 		{
@@ -203,37 +218,111 @@ package org.apache.royale.jewel.beads.views
 					if (!_popUp)
 					{
 						_popUp = new DateChooser();
-						// _popUp.width = 210;
-						// _popUp.height = 230;
 					}
+
+					_popUp.className = "datechooser-popup";
+					_popUp.addEventListener("initComplete", handlePopUpInitComplete);
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
+					_popUp.model.dayNames = model.dayNames;
+					_popUp.model.monthNames = model.monthNames;
+					_popUp.model.firstDayOfWeek = model.firstDayOfWeek;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
-					var point:Point = new Point(_textInput.width, _button.height);
-					var p2:Point = PointUtils.localToGlobal(point, _strand);
-					var p3:Point = PointUtils.globalToLocal(p2, host);
-					_popUp.x = p3.x;
-					_popUp.y = p3.y;
-					_popUp.className = "dateChooserPopUp";
-
 					host.popUpParent.addElement(_popUp);
+					
+					// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
+					daysTable = (popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
+
+					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
+					setTimeout(prepareForPopUp,  300);
+
+					COMPILE::JS
+					{
+					window.addEventListener('resize', autoResizeHandler, false);
+					}
+
+					autoResizeHandler();
 				}
 				else
 				{
 					UIUtils.removePopUp(_popUp);
+					COMPILE::JS
+					{
+					document.body.classList.remove("viewport");
+					window.removeEventListener('resize', autoResizeHandler, false);
+					}
+					_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
+					_popUp = null;
 				}
 			}
 			_showingPopup = false;
 		}
 
+		// COMPILE::JS
+		// private var rq:int;
+		private function prepareForPopUp():void
+        {
+			_popUp.addClass("open");
+			COMPILE::JS
+			{
+				//avoid scroll in html
+				document.body.classList.add("viewport");
+				//cancelAnimationFrame(rq);
+			}
+		}
+
 		/**
 		 * @private
 		 */
-		private function selectionChangeHandler(event:Event):void
+		private function selectionChangeHandler(event:Event = null):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
+			getHost().dispatchEvent(new Event(Event.CHANGE));
+		}
+
+		private var daysTable:Table;
+		/**
+		 *  When set to "auto" this resize handler monitors the width of the app window
+		 *  and switch between fixed and float modes.
+		 * 
+		 *  Note:This could be done with media queries, but since it handles open/close
+		 *  maybe this is the right way
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		private function autoResizeHandler(event:Event = null):void
+        {
+			COMPILE::JS
+			{
+				var outerWidth:Number = window.outerWidth;
+				
+				// Desktop width size
+				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
+				{
+					// var point:Point = new Point(_textInput.width, _button.height);
+					// var p2:Point = PointUtils.localToGlobal(point, _strand);
+					// _popUp.x = p3.x;
+					// _popUp.y = p3.y;
+					// var p3:Point = PointUtils.globalToLocal(p2, host);
+
+					var origin:Point = new Point(0, _button.y + _button.height);
+					var relocated:Point = PointUtils.localToGlobal(origin, _strand);
+					// daysTable.x = relocated.x;
+					// daysTable.y = relocated.y;
+					daysTable.positioner.style["left"] = relocated.x + "px";
+					daysTable.positioner.style["top"] = relocated.y + "px";
+				}
+				else
+				{
+					daysTable.positioner.style["left"] = "50%";
+					daysTable.positioner.style["top"] = "calc(100% - 10px)";
+				}
+			}
 		}
 	}
 }

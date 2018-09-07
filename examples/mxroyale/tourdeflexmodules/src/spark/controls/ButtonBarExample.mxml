@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.apache.org/royale/spark" 
+	xmlns:mx="library://ns.apache.org/royale/mx">
+
+	<fx:Style>
+		@namespace "library://ns.apache.org/royale/spark";
+		
+		ButtonBar ToggleButton:upAndSelected,
+		ButtonBar ToggleButton:overAndSelected,
+		ButtonBar ToggleButton:downAndSelected,
+		ButtonBar ToggleButton:disabledAndSelected {
+			baseColor: #FFFFFF;
+			color: #323232;
+		}
+		ButtonBar {
+			baseColor: #000000;
+			color: #FFFFFF;
+		}
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent;
+			
+			/**
+			 * Index change handler will be called each time a button is clicked
+			 * and the event will provide information needed such as the previous
+			 * index clicked.
+			 **/
+			protected function indexChangeHandler(event:IndexChangeEvent):void
+			{
+				myTextArea.text = "Button Bar index clicked = " + event.newIndex
+				myTextArea.text = myTextArea.text + "\nButton Bar previous index = " + event.oldIndex;
+				myTextArea.text = myTextArea.text + "\nButton Bar label clicked = " + myButtonBar.selectedItem;
+				if (myButtonBar.selectedItem=="Red") {
+					txtColor.setStyle("color","red");
+					txtColor.text="Red selected!";
+				}
+				else if (myButtonBar.selectedItem=="Green") {
+					txtColor.setStyle("color","green");
+					txtColor.text="Green selected!";
+				}
+				else if (myButtonBar.selectedItem=="Blue") {
+					txtColor.setStyle("color","blue");
+					txtColor.text="Blue selected!";
+				}
+				else {
+					txtColor.setStyle("color","yellow");
+					txtColor.text="Yellow selected!";
+				}
+			}
+			protected function resetButtonBar(event:MouseEvent):void
+			{
+				myButtonBar.selectedIndex = -1;
+				myTextArea.text = "";
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="ButtonBar Sample" width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+			
+			<s:HGroup width="100%" height="100%">
+				<s:Label width="50%" verticalAlign="justify"
+						 text="The ButtonBar component behaves like a series of toggle buttons, where one button remains selected
+and only one button in the ButtonBar control can be in the selected state. That means when you select a button in a ButtonBar
+control, the button stays in the selected state until you select a different button."/>	
+				<s:VGroup left="10" top="5" color="0x000000" horizontalAlign="center">
+					<s:ButtonBar id="myButtonBar" change="indexChangeHandler(event)"> 
+						<mx:ArrayCollection> 
+							<fx:String>Red</fx:String> 
+							<fx:String>Green</fx:String> 
+							<fx:String>Blue</fx:String> 
+							<fx:String>Yellow</fx:String> 
+						</mx:ArrayCollection> 
+					</s:ButtonBar> 
+					<s:TextArea id="myTextArea" width="{myButtonBar.width}" height="150"/>
+					<s:Button id="myButton" label="Reset Selection" click="resetButtonBar(event)"/>	
+					<s:Label id="txtColor" fontSize="16"/>	
+				</s:VGroup>
+			</s:HGroup>
+	</s:Panel>
+</s:Module>

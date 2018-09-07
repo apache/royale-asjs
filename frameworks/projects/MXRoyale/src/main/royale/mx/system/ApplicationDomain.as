@@ -29,7 +29,7 @@ package mx.system
  *  @productversion Royale 0.9.3
  *  @royalesuppresspublicvarwarning
  */
-public class ApplicationDomain extends Object
+public class ApplicationDomain
 {
 
     
@@ -47,25 +47,26 @@ public class ApplicationDomain extends Object
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.0
      */
-	private var _currentDomain:Object;
-
-	public function get currentDomain():Object
+	
+	
+  public function ApplicationDomain()
+    {
+        super();
+    }
+	
+  private static var _currentDomain:Object;
+	
+	public static function get currentDomain():Object
     {
         return _currentDomain;
     }
     
     public function set currentDomain(obj:Object):void
     {
-		_currentDomain = obj;
-	}
+	      _currentDomain = obj;
+    } 
 	
-	
-	
-    public function ApplicationDomain()
-    {
-        super();
-    }
-
+   
 }
 
 }

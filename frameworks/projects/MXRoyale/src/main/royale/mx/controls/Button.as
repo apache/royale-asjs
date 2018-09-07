@@ -254,6 +254,41 @@ public class Button extends UIComponent implements IDataRenderer
 	}
 	
 	// ------------------------------------------------
+	//  locale
+	// ------------------------------------------------
+	
+	public function get locale():String
+	{
+		return "en";
+	}
+	public function set locale(value:String):void
+	{
+	}
+	
+	// ------------------------------------------------
+	//  textDecoration
+	// ------------------------------------------------
+	
+	public function get textDecoration():String
+	{
+		return "none";
+	}
+	public function set textDecoration(value:String):void
+	{
+	}
+	
+	// ------------------------------------------------
+	//  fontStyle
+	// ------------------------------------------------
+	
+	public function get fontStyle():String
+	{
+		return "BOLD";
+	}
+	public function set fontStyle(value:String):void
+	{
+	}
+	// ------------------------------------------------
 	//  icon
 	// ------------------------------------------------
 	
@@ -280,6 +315,33 @@ public class Button extends UIComponent implements IDataRenderer
 			setInnerHTML();
 		}
 	}
+	
+	// ------------------------------------------------
+	//  disabledIcon
+	// ------------------------------------------------
+	
+	/**
+	 *  The URL of an disabledIcon to use in the button
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	public function get disabledIcon():String
+	{
+		return null;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set disabledIcon(value:String):void
+	{
+		
+	}
+	
+	
 	
 	
 	//----------------------------------
@@ -633,14 +695,6 @@ public class Button extends UIComponent implements IDataRenderer
 		dispatchEvent(newEvent);
 	}
 	
-	COMPILE::JS
-	override public function setActualSize(w:Number, h:Number):void
-	{
-		// For HTML/JS, we only set the size if there is an explicit
-		// size set. 
-		if (!isNaN(explicitWidth)) setWidth(w);
-		if (!isNaN(explicitHeight)) setHeight(h);
-	}
 }
 
 }

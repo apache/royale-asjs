@@ -38,6 +38,7 @@ import mx.utils.ArrayUtil;
 /*
 import mx.utils.UIDUtil;
 */
+import org.apache.royale.utils.UIDUtil;
 
 //--------------------------------------
 //  Events
@@ -247,9 +248,7 @@ public class ArrayList extends EventDispatcher
     public function get uid():String
     {
 		if (!_uid) {
-			//_uid = UIDUtil.createUID();
-			if (GOOG::DEBUG)
-				trace("get_uid not implemented");
+			_uid = UIDUtil.createUID();
 		}
         return _uid;
     }

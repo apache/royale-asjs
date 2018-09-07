@@ -27,11 +27,17 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
     
-    <html:H1 text="Welcome to Apache Royale Jewel"/>
+    <j:Image src="assets/apache-royale-logo.svg" height="300"/>
+    
+    <html:H1 text="Welcome to Apache Royale Jewel">
+        <html:beads>
+            <j:TextAlign align="center"/>
+        </html:beads>
+    </html:H1>
 
     <j:Label width="400" 
              multiline="true"
-             text="Jewel is a themeizable set of user interface components for Apache Royale to quickly build Front-end Applications with AS3 &amp; MXML.">
+             html="Jewel is a themeizable set of user interface components for Apache Royale to quickly build Front-end Applications with AS3 &amp; MXML.&lt;br>Check &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a>">
         <j:beads>
             <j:SizeControl size="large"/>
             <j:TextAlign align="center"/>

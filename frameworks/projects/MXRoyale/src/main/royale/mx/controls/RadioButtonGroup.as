@@ -71,7 +71,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="itemClick", type="org.apache.royale.events.ItemClickEvent")]
+[Event(name="itemClick", type="mx.events.ItemClickEvent")]
 
 /**
  *  The RadioButtonGroup control defines a group of RadioButton controls

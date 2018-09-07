@@ -18,16 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.ListView;
-	import org.apache.royale.html.beads.layouts.VerticalLayout;
-	import org.apache.royale.core.supportClasses.DataGroup;
-	import org.apache.royale.html.supportClasses.ScrollingViewport;
 
 
 	/**
@@ -50,6 +44,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -70,6 +65,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function afterLayout():void
 		{
@@ -104,6 +100,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IContainer
+
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -121,6 +119,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function afterLayout():void
 		{

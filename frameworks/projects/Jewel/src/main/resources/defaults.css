@@ -36,6 +36,10 @@ button, input, textarea {
   font-size: 100%;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 j|View {
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
@@ -70,7 +74,7 @@ j|VGroup {
 
 j|Container {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
@@ -79,14 +83,20 @@ j|Image {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ImageView");
 }
 
+j|DataGroup {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+}
+
 j|DataContainer {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DataProviderModel");
   IBeadView: ClassReference("org.apache.royale.html.beads.DataContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer");
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
@@ -135,7 +145,7 @@ j|Alert {
 
 .jewel.button {
   margin: 0;
-  padding: 0.72em 1.12em;
+  padding: 0.68em 1.12em;
   cursor: pointer;
   user-select: none;
   display: inline-flex;
@@ -152,7 +162,10 @@ j|Alert {
   text-decoration: none;
 }
 .jewel.button[disabled] {
-  cursor: unset;
+  cursor: default;
+}
+.jewel.button .fonticon {
+  cursor: inherit;
 }
 
 .jewel.card {
@@ -167,12 +180,12 @@ j|Card {
 }
 
 .jewel.checkbox {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   margin: 0;
   padding: 0;
-  width: 100%;
   height: 22px;
+  cursor: pointer;
 }
 .jewel.checkbox input {
   -webkit-appearance: none;
@@ -180,8 +193,7 @@ j|Card {
   -o-appearance: none;
   -ms-appearance: none;
   appearance: none;
-  cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   margin: 0;
   padding: 0;
   width: 22px;
@@ -219,7 +231,6 @@ j|Card {
   cursor: unset;
 }
 .jewel.checkbox span {
-  cursor: pointer;
   margin: 0;
   vertical-align: top;
   line-height: 24px;
@@ -246,11 +257,161 @@ j|ControlBar {
     IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
   }
 }
-.jewel.datechooser .jewel.table .jewel.tableheader.buttonsRow {
-  padding: 0px;
+.jewel.combobox {
+  display: inline-flex;
 }
-.jewel.datechooser .jewel.table td {
-  padding: 0px;
+.jewel.combobox .jewel.textinput {
+  width: 13.7em;
+}
+.jewel.combobox .jewel.button {
+  width: 2.8em;
+}
+.jewel.combobox .jewel.button::before {
+  margin: 0;
+  padding: 0;
+  line-height: 22px;
+}
+.jewel.combobox .jewel.button::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: calc(50% - 11px);
+  top: calc(50% - 11px);
+}
+
+j|ComboBox {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController");
+  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxList");
+}
+
+.combobox-popup {
+  position: fixed;
+  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: strict;
+  z-index: 5;
+  color: rgba(0, 0, 0, 0.8);
+}
+.combobox-popup::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  will-change: opacity;
+  transition: opacity 0.4s 0ms;
+}
+.combobox-popup .jewel.list {
+  transform: translate(-50%, 100%);
+  transition: none;
+  will-change: transform, opacity;
+  bottom: auto;
+  top: calc(100% - 10px);
+  left: 50%;
+  touch-action: none;
+  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
+  width: 16.5em;
+  opacity: 0;
+}
+.combobox-popup.open {
+  pointer-events: auto;
+}
+.combobox-popup.open::before {
+  opacity: 1;
+}
+.combobox-popup.open .jewel.list {
+  transform: translate(-50%, -100%);
+  transition: transform 0.4s 0ms, opacity 0.4s 0ms;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .combobox-popup .jewel.list {
+    width: calc(100% - 20px);
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .combobox-popup .jewel.list {
+    width: calc(100% - 300px);
+  }
+}
+@media (min-width: 992px) {
+  .combobox-popup::before {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .combobox-popup .jewel.list {
+    transform: none;
+    transition: none;
+    box-shadow: none !important;
+  }
+  .combobox-popup .jewel.list .jewel.item {
+    height: 0;
+    overflow: hidden;
+    transition: height 200ms ease-in;
+  }
+  .combobox-popup.open .jewel.list {
+    transform: none;
+    top: auto;
+    left: auto;
+  }
+  .combobox-popup.open .jewel.list .jewel.item {
+    height: 34px;
+  }
+}
+j|ComboBoxList {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
+  IContentView: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup");
+}
+
+@media -royale-swf {
+  j|ComboBoxList {
+    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+  }
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell {
+  padding: 12px 0px;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::before {
+  margin: 0;
+  padding: 0;
+  line-height: 22px;
+  content: " ";
+  position: absolute;
+  left: calc(50% - 11px);
+  top: calc(50% - 11px);
+  width: 22px;
+  height: 22px;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: calc(50% - 11px);
+  top: calc(50% - 11px);
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
+  padding: 4px;
+}
+.jewel.datechooser .jewel.table .jewel.tableitem {
+  width: 38px;
+  height: 38px;
+}
+.jewel.datechooser .jewel.table .jewel.tableitem .jewel.tableitem {
+  padding: 2px;
+  width: 38px;
+  height: 38px;
 }
 
 .calendar.item {
@@ -264,19 +425,112 @@ j|DateChooser {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateChooserMouseController");
 }
 
-j|DateChooserTable {
-  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DateItemRenderer");
+.jewel.datefield {
+  display: inline-flex;
 }
-
-.dateChooserPopUp {
+.jewel.datefield .jewel.textinput input {
+  width: 9.2em;
+}
+.jewel.datefield .jewel.button::before {
+  margin: 0;
+  padding: 0;
+  line-height: 22px;
+}
+.jewel.datefield .jewel.button::after {
+  content: " ";
   position: absolute;
+  width: 22px;
+  height: 22px;
+  left: calc(50% - 11px);
+  top: calc(50% - 11px);
 }
 
+.datechooser-popup {
+  position: fixed;
+  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: strict;
+  z-index: 5;
+  color: rgba(0, 0, 0, 0.8);
+}
+.datechooser-popup::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  will-change: opacity;
+  transition: opacity 0.4s 0ms;
+}
+.datechooser-popup .jewel.table {
+  transform: translate(-50%, 100%);
+  transition: none;
+  will-change: transform, opacity;
+  bottom: auto;
+  top: calc(100% - 10px);
+  left: 50%;
+  touch-action: none;
+  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
+  opacity: 0;
+}
+.datechooser-popup.open {
+  pointer-events: auto;
+}
+.datechooser-popup.open::before {
+  opacity: 1;
+}
+.datechooser-popup.open .jewel.table {
+  transform: translate(-50%, -100%);
+  transition: transform 0.4s 0ms, opacity 0.4s 0ms;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .datechooser-popup .jewel.table {
+    width: calc(100% - 20px);
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .datechooser-popup .jewel.table {
+    width: calc(100% - 300px);
+  }
+}
+@media (min-width: 992px) {
+  .datechooser-popup::before {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .datechooser-popup .jewel.table {
+    transform: none;
+    transition: none;
+    box-shadow: none !important;
+  }
+  .datechooser-popup .jewel.table .jewel.item {
+    height: 0;
+    overflow: hidden;
+    transition: height 200ms ease-in;
+  }
+  .datechooser-popup.open .jewel.table {
+    transform: none;
+    top: auto;
+    left: auto;
+  }
+  .datechooser-popup.open .jewel.table .jewel.item {
+    height: 34px;
+  }
+}
 j|DateField {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateFieldView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateFieldMouseController");
-  IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatDDMMYYYY");
+  IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatMMDDYYYY");
 }
 
 .jewel.divider {
@@ -345,10 +599,6 @@ j|DateField {
     max-width: 310px;
   }
 }
-.remove-app-scroll {
-  overflow: hidden;
-}
-
 .jewel.drawerheader {
   position: relative;
   display: flex;
@@ -375,18 +625,37 @@ j|DateField {
   touch-action: pan-y;
 }
 
+.jewel.dropdownlist {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0.68em 1.12em;
+  cursor: pointer;
+  display: inline-flex;
+  line-height: normal !important;
+  outline: none;
+}
+
+j|DropDownList {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer");
+}
+
 @media -royale-swf {
   j|DropDownList {
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
     IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList");
   }
-
-  j|DropDownListList {
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
-    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-  }
+}
+.fonticon {
+  cursor: default;
 }
 .fonticon.size-18 {
   font-size: 18px;
@@ -403,21 +672,27 @@ j|DateField {
 
 .jewel.item, .jewel.navigationlink {
   display: flex;
-  cursor: pointer;
   min-height: 34px;
   text-decoration: none;
   align-items: center;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
+  cursor: auto;
 }
-
-.jewel.navigationlink {
-  min-height: 48px;
+.jewel.item.selectable, .jewel.navigationlink.selectable {
+  cursor: pointer;
+}
+.jewel.item .fonticon, .jewel.navigationlink .fonticon {
+  cursor: inherit;
 }
 
 j|ListItemRenderer {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+}
+
+.jewel.navigationlink {
+  min-height: 48px;
 }
 
 j|NavigationLinkItemRenderer {
@@ -425,6 +700,7 @@ j|NavigationLinkItemRenderer {
 }
 
 .jewel.label {
+  cursor: default;
   white-space: nowrap;
 }
 
@@ -435,6 +711,13 @@ j|NavigationLinkItemRenderer {
 
 j|Label {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
+}
+
+.viewport {
+  overflow: hidden;
+}
+.viewport.scroll {
+  overflow: auto;
 }
 
 .layout.absolute {
@@ -451,28 +734,31 @@ j|Label {
   min-height: 100%;
 }
 .layout.itemsCentered {
-  align-items: center;
+  align-items: center !important;
 }
 .layout.itemsTop {
-  align-items: flex-start;
+  align-items: flex-start !important;
 }
 .layout.itemsBottom {
-  align-items: flex-end;
+  align-items: flex-end !important;
 }
 .layout.itemsLeft {
-  justify-content: flex-start;
+  justify-content: flex-start !important;
 }
 .layout.itemsCenter {
-  justify-content: center;
+  justify-content: center !important;
 }
 .layout.itemsRight {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 .layout.itemsSpaceBetween {
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 .layout.itemsSpaceAround {
-  justify-content: space-around;
+  justify-content: space-around !important;
+}
+.layout.itemsExpand {
+  width: 100%;
 }
 .layout.itemsExpand > * {
   flex: 1 0 auto !important;
@@ -2585,7 +2871,7 @@ j|Label {
 }
 
 .hidden-phone, .hidden-tablet, .hidden-desktop, .hidden-widescreen {
-  display: block !important;
+  display: flex !important;
 }
 
 .jewel.list, .jewel.navigation {
@@ -2619,16 +2905,82 @@ j|Navigation {
 
 @media -royale-swf {
   j|List {
-    IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+    IContentView: ClassReference("org.apache.royale.jewel.supportClasses.list.DataGroup");
   }
 }
+.jewel.numericstepper .jewel.textinput {
+  display: inline-flex;
+}
+
+@media (max-width: 992px) {
+  .jewel.numericstepper {
+    width: 190px;
+    height: 39px;
+  }
+  .jewel.numericstepper .jewel.textinput {
+    z-index: 1;
+    position: relative;
+    left: 38px;
+  }
+}
+j|NumericStepper {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.NumericStepperView");
+}
+
+.jewel.spinner {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: top;
+}
+.jewel.spinner .jewel.button {
+  display: flex;
+}
+.jewel.spinner .jewel.button.up::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 10px;
+  left: calc(50% - 11px);
+  top: calc(50% - 5px);
+}
+.jewel.spinner .jewel.button.down::after {
+  content: " ";
+  position: absolute;
+  width: 22px;
+  height: 10px;
+  left: calc(50% - 11px);
+  top: calc(50% - 5px);
+}
+
+@media (max-width: 992px) {
+  .jewel.spinner {
+    position: relative;
+    left: -112px;
+    flex-direction: row;
+    width: auto;
+  }
+  .jewel.spinner .jewel.button {
+    width: 39px;
+    height: 38px;
+  }
+  .jewel.spinner .jewel.button.down {
+    left: 110px;
+  }
+}
+j|Spinner {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SpinnerView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SpinnerMouseController");
+}
+
 .jewel.radiobutton {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   margin: 0;
   padding: 0;
-  width: 100%;
   height: 22px;
+  cursor: pointer;
 }
 .jewel.radiobutton input {
   -webkit-appearance: none;
@@ -2636,8 +2988,7 @@ j|Navigation {
   -o-appearance: none;
   -ms-appearance: none;
   appearance: none;
-  cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   margin: 0;
   padding: 0;
   width: 22px;
@@ -2675,7 +3026,6 @@ j|Navigation {
   cursor: unset;
 }
 .jewel.radiobutton span {
-  cursor: pointer;
   margin: 0;
   vertical-align: top;
   line-height: 24px;
@@ -2793,58 +3143,103 @@ j|Slider {
     iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }
 }
+.jewel.simpletable {
+  position: relative;
+  white-space: nowrap;
+  border-spacing: 0px;
+  overflow: hidden;
+}
+.jewel.simpletable .jewel.tableheadercell {
+  position: relative;
+  vertical-align: bottom;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+  padding: 12px;
+  text-align: left;
+}
+.jewel.simpletable .jewel.tbody .jewel.tablerow {
+  position: relative;
+  transition-duration: 0.28s;
+  transition-property: background-color;
+}
+.jewel.simpletable .jewel.tablecell {
+  position: relative;
+}
+.jewel.simpletable .jewel.tablecell > * {
+  padding: 12px;
+}
+
 .jewel.table {
   position: relative;
   white-space: nowrap;
   border-spacing: 0px;
   overflow: hidden;
 }
-.jewel.table thead {
-  padding-bottom: 3px;
-}
-.jewel.table th:first-of-type, .jewel.table td:first-of-type {
-  padding-left: 20px;
-}
-.jewel.table th {
+.jewel.table .jewel.tableheadercell {
   position: relative;
   vertical-align: bottom;
   text-overflow: ellipsis;
   letter-spacing: 0;
-  height: 48px;
-  padding-bottom: 8px;
-  padding: 0 18px 12px 18px;
+  padding: 12px;
   text-align: left;
 }
-.jewel.table tbody tr {
+.jewel.table .jewel.tbody .jewel.tablerow {
   position: relative;
-  height: 48px;
   transition-duration: 0.28s;
   transition-property: background-color;
 }
-.jewel.table td {
+.jewel.table .jewel.tablecell {
   position: relative;
-  height: 48px;
-  padding: 12px 18px;
 }
 .jewel.table.fixedHeader {
   table-layout: fixed;
 }
-.jewel.table.fixedHeader .jewel.thead tr {
-  display: block;
-}
 .jewel.table.fixedHeader .jewel.tbody {
   display: block;
   overflow: auto;
-  width: 100%;
+}
+.jewel.table.fixedHeader .jewel.tbody .jewel.tablerow {
+  display: block;
+}
+.jewel.table.fixedHeader .jewel.tablecell {
+  display: inline-block;
 }
 
 j|Table {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout");
-  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TableView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TableModel");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableMapperForArrayListData");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+  IContentView: ClassReference("org.apache.royale.jewel.supportClasses.table.TBodyContentArea");
+}
+
+.jewel.tableitem {
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  letter-spacing: 0;
+  line-height: normal !important;
+  overflow: hidden;
+}
+.jewel.tableitem.with-childs {
+  padding: 6px;
+}
+.jewel.tableitem.calendar {
+  border-radius: 10%;
+}
+
+.empty-cell {
+  pointer-events: none;
+}
+
+j|TableItemRenderer {
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
 }
 
 .alignTextLeft {
@@ -2870,7 +3265,7 @@ j|Table {
   -ms-appearance: none;
   appearance: none;
   margin: 0;
-  padding: 0.72em 1.12em;
+  padding: 0.68em 1.12em;
   max-width: 100%;
   flex: 1 0 auto;
   outline: none;
@@ -2946,7 +3341,7 @@ j|TitleBar {
 
 .jewel.togglebutton {
   margin: 0;
-  padding: 0.72em 1.12em;
+  padding: 0.68em 1.12em;
   cursor: pointer;
   user-select: none;
   display: inline-flex;
@@ -2964,6 +3359,19 @@ j|TitleBar {
 }
 .jewel.togglebutton[disabled] {
   cursor: unset;
+}
+
+.jewel.errorTip {
+  padding: 6px;
+  z-index: 5;
+  margin-top: -31px !important;
+}
+.jewel.errorTip::before {
+  top: 100%;
+  left: 8px;
+  position: absolute;
+  content: "";
+  margin-top: 0px;
 }
 
 .jewel.topappbar {
@@ -3013,7 +3421,6 @@ j|TitleBar {
   height: 48px;
   outline: none;
   text-decoration: none;
-  cursor: pointer;
   opacity: 1;
 }
 .jewel.topappbarsection button .fonticon {
@@ -3045,7 +3452,7 @@ j|TitleBar {
 
 j|ApplicationMainContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
-  IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 

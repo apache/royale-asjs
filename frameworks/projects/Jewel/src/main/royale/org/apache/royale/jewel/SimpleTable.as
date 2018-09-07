@@ -26,14 +26,37 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The SimpleTable class represents a simple HTML <table> element
-     *  
+	 *  The SimpleTable class represents a simple HTML <table> element.
+	 *  This component is designed to be declarative in MXML (or AS3),
+	 *  Check Table component for a Table that uses itemRenderers, columns
+	 *  and a data provider.
+	 *  
+	 *  This component uses the following jewel classes to generate the 
+	 *  Table structure:
+	 *  
+	 *  - Header:
+	 * 		j:THead
+	 *			j:TableRow
+	 * 				j:TableHeaderCell
+	 * 
+	 *  - Body
+	 * 		j:TBody
+	 * 			j:TableRow
+	 * 				j:TableCell
+	 * 
+	 * 	- Footer
+	 * 		j:TFoot
+	 * 			j:TableRow
+	 * 				j:TableCell
+	 *
+	 * 
+	 *  As well, DataGrid is a more complex component
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.4
 	 */
 	public class SimpleTable extends Group
 	{
@@ -43,13 +66,13 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		public function SimpleTable()
 		{
 			super();
 			
-			typeNames = "jewel table";
+			typeNames = "jewel simpletable";
 		}
 
         /**
@@ -58,7 +81,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            return addElementToWrapper(this,'table');
+            return addElementToWrapper(this, 'table');
         }
     }
 }

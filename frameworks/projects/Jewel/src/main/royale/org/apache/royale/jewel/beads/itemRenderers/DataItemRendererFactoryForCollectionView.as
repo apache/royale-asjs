@@ -34,9 +34,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.UIItemRendererBase;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	
 	/**
@@ -57,7 +56,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
@@ -72,7 +71,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
@@ -97,7 +96,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel():IDataProviderModel
@@ -119,7 +118,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
 		 */
 		public function get itemRendererFactory():IItemRendererClassFactory
@@ -145,7 +144,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.4
 		 */
 		protected var dataGroup:IItemRendererParent;
 		
@@ -164,11 +163,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (!dp)
 				return;
 			
+			// remove this and better add beads when needed
 			// listen for individual items being added in the future.
-			var dped:IEventDispatcher = dp as IEventDispatcher;
-			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+			// var dped:IEventDispatcher = dp as IEventDispatcher;
+			// dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			// dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
 			dataGroup.removeAllItemRenderers();
 			
@@ -193,37 +193,37 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function itemAddedHandler(event:CollectionEvent):void
-		{
-			if (!dataProviderModel)
-				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
-			if (!dp)
-				return;
+		// protected function itemAddedHandler(event:CollectionEvent):void
+		// {
+		// 	if (!dataProviderModel)
+		// 		return;
+		// 	var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+		// 	if (!dp)
+		// 		return;
 			
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-			labelField = dataProviderModel.labelField;
+		// 	var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+		// 	var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+		// 	labelField = dataProviderModel.labelField;
 			
-			fillRenderer(event.index, event.item, ir, presentationModel);
+		// 	fillRenderer(event.index, event.item, ir, presentationModel);
 			
-			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = dataGroup.numElements;
-			for (var i:int = event.index; i < n; i++)
-			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
-				ir.index = i;
+		// 	// update the index values in the itemRenderers to correspond to their shifted positions.
+		// 	var n:int = dataGroup.numElements;
+		// 	for (var i:int = event.index; i < n; i++)
+		// 	{
+		// 		ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+		// 		ir.index = i;
 				
-				// could let the IR know its index has been changed (eg, it might change its
-				// UI based on the index). Instead (PAYG), allow another bead to detect
-				// this event and do this as not every IR will need to be updated.
-				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
-				//if (ubase) ubase.updateRenderer()
-			}
+		// 		// could let the IR know its index has been changed (eg, it might change its
+		// 		// UI based on the index). Instead (PAYG), allow another bead to detect
+		// 		// this event and do this as not every IR will need to be updated.
+		// 		//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
+		// 		//if (ubase) ubase.updateRenderer()
+		// 	}
 			
-			(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-		}
+		// 	(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
+		// 	(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+		// }
 		
 		/**
 		 * @private
@@ -232,52 +232,52 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function itemRemovedHandler(event:CollectionEvent):void
-		{
-			if (!dataProviderModel)
-				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
-			if (!dp)
-				return;
+		// protected function itemRemovedHandler(event:CollectionEvent):void
+		// {
+		// 	if (!dataProviderModel)
+		// 		return;
+		// 	var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+		// 	if (!dp)
+		// 		return;
 			
-			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
-			dataGroup.removeItemRenderer(ir);
+		// 	var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+		// 	dataGroup.removeItemRenderer(ir);
 			
-			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = dataGroup.numElements;
-			for (var i:int = event.index; i < n; i++)
-			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
-				ir.index = i;
+		// 	// adjust the itemRenderers' index to adjust for the shift
+		// 	var n:int = dataGroup.numElements;
+		// 	for (var i:int = event.index; i < n; i++)
+		// 	{
+		// 		ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+		// 		ir.index = i;
 				
-				// could let the IR know its index has been changed (eg, it might change its
-				// UI based on the index). Instead (PAYG), allow another bead to detect
-				// this event and do this as not every IR will need to be updated.
-				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
-				//if (ubase) ubase.updateRenderer()
-			}
+		// 		// could let the IR know its index has been changed (eg, it might change its
+		// 		// UI based on the index). Instead (PAYG), allow another bead to detect
+		// 		// this event and do this as not every IR will need to be updated.
+		// 		//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
+		// 		//if (ubase) ubase.updateRenderer()
+		// 	}
 			
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-		}
+		// 	(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+		// }
 		
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
-		protected function itemUpdatedHandler(event:CollectionEvent):void
-		{
-			if (!dataProviderModel)
-				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
-			if (!dp)
-				return;
+		// protected function itemUpdatedHandler(event:CollectionEvent):void
+		// {
+		// 	if (!dataProviderModel)
+		// 		return;
+		// 	var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+		// 	if (!dp)
+		// 		return;
 
-			// update the given renderer with (possibly) new information so it can change its
-			// appearence or whatever.
-			var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
-			setData(ir, event.item, event.index);
-		}
+		// 	// update the given renderer with (possibly) new information so it can change its
+		// 	// appearence or whatever.
+		// 	var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+		// 	setData(ir, event.item, event.index);
+		// }
 		
 		/**
 		 * @private

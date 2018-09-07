@@ -18,42 +18,101 @@ limitations under the License.
 
 -->
 <j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:j="library://ns.apache.org/royale/jewel"
-				xmlns:js="library://ns.apache.org/royale/basic"
-				xmlns:html="library://ns.apache.org/royale/html">
+				  xmlns:j="library://ns.apache.org/royale/jewel"
+				  xmlns:js="library://ns.apache.org/royale/basic"
+				  xmlns:html="library://ns.apache.org/royale/html"
+				  xmlns:models="models.*">
     
 	<fx:Script>
-		<![CDATA[      
-            import org.apache.royale.collections.ArrayList;
-
-            private function changeHandler(event:Event):void {
-                trace("ddl change");
+		<![CDATA[
+            private function watchmenDropDownListHandler(event:Event):void {
+                watchmenDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem;
             }
-
-			private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
-			[Bindable("__NoChangeEvent__")]
-			public function get strings():Array
-			{
-				return _strings;
-			}
+            
+			private function avengersDropDownListHandler(event:Event):void {
+                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
+            }
 		]]>
 	</fx:Script>
 
-	<j:Card width="350">
-		<j:beads>
-			<j:HorizontalLayout gap="3"/>
-			<js:ViewDataBinding />
-		</j:beads>
-		
-		<html:H3 text="Jewel DropDownList"/>
-		
-		<j:DropDownList dataProvider="{strings}"/>
+	<j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
 
-		<!-- <j:DropDownList change="changeHandler(event)">
-			<j:dataProvider>
-				<j:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
-			</j:dataProvider>
-		</j:DropDownList> -->
-	</j:Card>
+	<j:model>
+        <models:ListsModel id="listModel"/>
+	</j:model>
 	
+	<html:H5 text="Jewel DropDownList (This component is still in development)"/>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				
+				<html:H3 text="Jewel DropDownList (String Collection)"/>
+				
+				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3"
+								tabletNumerator="1" tabletDenominator="3"
+								phoneNumerator="1" phoneDenominator="1"
+								itemsVerticalAlign="itemsCentered" width="290">
+						<j:DropDownList id="watchmenDropDownList" dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler(event)"/>
+					</j:GridCell>
+					<j:GridCell desktopNumerator="1" desktopDenominator="3"
+								tabletNumerator="1" tabletDenominator="3"
+								phoneNumerator="1" phoneDenominator="1"
+								itemsVerticalAlign="itemsCentered" width="290">
+						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+							<j:Label text="Select Index: "/>
+							<j:NumericStepper valueChange="watchmenDropDownList.selectedIndex = event.target.value" minimum="0" maximum="5"/>
+						</j:HGroup>
+					</j:GridCell>
+					<j:GridCell desktopNumerator="1" desktopDenominator="3"
+								tabletNumerator="1" tabletDenominator="3"
+								phoneNumerator="1" phoneDenominator="1"
+								itemsVerticalAlign="itemsCentered" width="290">
+						<j:Label id="watchmenDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+					</j:GridCell>
+				</j:Grid>
+			</j:Card>
+
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				
+				<html:H3 text="Jewel DropDownList (Object Collection)"/>
+				
+				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3"
+								tabletNumerator="1" tabletDenominator="3"
+								phoneNumerator="1" phoneDenominator="1"
+								itemsVerticalAlign="itemsCentered" width="290">
+						<j:DropDownList id="avengersDropDownList" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler(event)"/>
+					</j:GridCell>
+					<j:GridCell desktopNumerator="1" desktopDenominator="3"
+								tabletNumerator="1" tabletDenominator="3"
+								phoneNumerator="1" phoneDenominator="1"
+								itemsVerticalAlign="itemsCentered" width="290">
+						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+							<j:Label text="Select Index: "/>
+							<j:NumericStepper valueChange="avengersDropDownList.selectedIndex = event.target.value" minimum="0" maximum="8"/>
+						</j:HGroup>
+					</j:GridCell>
+					<j:GridCell desktopNumerator="1" desktopDenominator="3"
+								tabletNumerator="1" tabletDenominator="3"
+								phoneNumerator="1" phoneDenominator="1"
+								itemsVerticalAlign="itemsCentered" width="290">
+						<j:Label id="avengersDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+					</j:GridCell>
+				</j:Grid>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
 </j:SectionContent>

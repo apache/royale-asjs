@@ -20,7 +20,10 @@
 package mx.controls
 {
 import org.apache.royale.html.beads.IComboBoxView;
-
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 COMPILE::SWF
 {
 }
@@ -112,7 +115,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="close", type="mx.events.DropdownEvent")]
+[Event(name="close", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when the <code>data</code> property changes.
@@ -186,7 +189,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="open", type="mx.events.DropdownEvent")]
+[Event(name="open", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when the user scrolls the ComboBox control's drop-down list.
@@ -694,6 +697,7 @@ public class ComboBox extends ComboBase
         return (view as IComboBoxView).popUp;
     }
     
+
     //--------------------------------------------------------------------------
     //
     //  Overridden properties

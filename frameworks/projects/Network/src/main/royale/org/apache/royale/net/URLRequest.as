@@ -30,7 +30,7 @@ package org.apache.royale.net
      * 
      *  @royalesuppresspublicvarwarning
 	 */
-    public final class URLRequest extends Object
+    public final class URLRequest
     {
 		/**
 		 *  The URL to be requested.

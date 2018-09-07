@@ -25,20 +25,21 @@ $checkbox-button-xoffset: 0px
 $checkbox-button-yoffset: 0px
 
 .jewel.checkbox
-	display: inline-block
+	display: inline-flex
 	position: relative
 
 	margin: 0
 	padding: 0
 
-	width: 100%
+	// width: 100%
 	height: $checkbox-button-size
+	cursor: pointer
 
 	// -- INPUT
 	input
 		+appear(none)
-		cursor: pointer
-		display: inline-block
+		// cursor: pointer
+		display: inline-flex
 
 		margin: 0
 		padding: 0
@@ -85,7 +86,7 @@ $checkbox-button-yoffset: 0px
 
 	// -- LABEL
 	span
-		cursor: pointer
+		// cursor: pointer
 
 		margin: 0
 		vertical-align: top

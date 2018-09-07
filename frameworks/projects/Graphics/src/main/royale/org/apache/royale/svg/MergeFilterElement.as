@@ -19,6 +19,9 @@
 package org.apache.royale.svg
 {
 	
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	COMPILE::JS 
 	{
@@ -26,58 +29,52 @@ package org.apache.royale.svg
 	}
 
 	/**
-	 *  The BlendFilterElement filterElements several filter elements
+	 *  The MergeFilterElement merges several filter elements
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class BlendFilterElement extends FilterElement
+	public class MergeFilterElement extends FilterElement
 	{
-		private var _in2:String;
+		private var _strand:IStrand;
+		private var _results:Array;
 
-		public function BlendFilterElement()
+		public function MergeFilterElement()
 		{
 		}
-		
 		
 		/**
 		 * @royaleignorecoercion Element
 		 */
-		override protected function onInitComplete(e:Event):void
+		override public function build():void
 		{
-			super.onInitComplete(e);
 			COMPILE::JS 
 			{
-				filterElement.setAttribute("in", "SourceGraphic");
-				filterElement.setAttribute("in2", in2);
-				filterElement.setAttribute("mode", "normal");
+				super.build();
+				for (var i:int = 0; i < results.length; i++)
+				{
+					var mergeNode:Element = addSvgElementToElement(filterElement, "feMergeNode") as Element;
+					mergeNode.setAttribute("in", results[i] as String);
+				}
 			}
-		}
-
-		/**
-		 *  The filter element result which is filterElemented with the source graphic.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get in2():String
-		{
-			return _in2;
-		}
-
-		public function set in2(value:String):void
-		{
-			_in2 = value;
 		}
 
 		COMPILE::JS
 		override protected function get filterElementType():String
 		{
-			return "feBlend";
+			return "feMerge";
+		}
+
+		public function get results():Array 
+		{
+			return _results;
+		}
+		
+		public function set results(value:Array):void 
+		{
+			_results = value;
 		}
 	}
 }

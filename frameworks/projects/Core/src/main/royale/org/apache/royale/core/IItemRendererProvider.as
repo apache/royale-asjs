@@ -33,16 +33,6 @@ package org.apache.royale.core
      */
 	public interface IItemRendererProvider
 	{
-        /**
-         *  Returns whether or not the class has an itemRenderer set.
-         *  @return true if the itemRenderer has been set, false otherwise.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        function get hasItemRenderer():Boolean;
         
         /**
          * Returns the class factory that will generate instances of the itemRenderer.

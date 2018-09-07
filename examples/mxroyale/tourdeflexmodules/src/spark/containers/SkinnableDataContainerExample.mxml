@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<s:Panel title="SkinnableDataContainer" width="100%" height="100%" >
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:VGroup>
+			<s:Label text="Famous Astronauts" fontWeight="bold" fontSize="14"/>
+			<s:SkinnableDataContainer horizontalCenter="-66" verticalCenter="0" width="301">
+				<s:layout>
+					<s:VerticalLayout/>
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<s:VGroup horizontalCenter="0" verticalCenter="0">
+								<s:HGroup verticalAlign="middle">
+									<s:Label text="{data.firstName}"/>
+									<s:Label text="{data.lastName}"/>
+									<s:Label text="{data.phoneNumber}"/>
+									<mx:LinkButton label="{data.college}" color="0x3380DD" click="navigateToURL(new URLRequest(data.url), '_blank')"
+												   textDecoration="underline" fontWeight="normal" icon="@Embed('assets/arrow_icon_sm.png')" />
+								</s:HGroup>
+							</s:VGroup>
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+				
+				<s:ArrayCollection>
+					<fx:Object firstName="John" lastName="Glenn" phoneNumber="888-555-1111" college="West Point" url="http://www.usma.edu/"/>
+					<fx:Object firstName="Neil" lastName="Armstrong" phoneNumber="888-555-2222" college="Purdue" url="http://www.purdue.edu/"/>
+					<fx:Object firstName="Buzz" lastName="Aldrin" phoneNumber="888-555-3333" college="Muskingum" url="http://www.muskingum.edu/"/>
+					<fx:Object firstName="James" lastName="Lovell" phoneNumber="888-555-4444" college="US Naval Academy" url="http://www.usna.edu/"/>
+				</s:ArrayCollection>
+			</s:SkinnableDataContainer>
+		</s:VGroup>
+		<s:Label width="200" text="The SkinnableDataContainer is the skinnable version of the DataGroup and
+while it can hold visual elements, they are often used only to hold data items as children. Data items can be simple data items 
+such String and Number objects, and more complicated data items such as Object and XMLNode objects."/>
+	</s:Panel>
+	
+</s:Module>

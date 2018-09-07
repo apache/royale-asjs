@@ -20,16 +20,14 @@
 package mx.containers
 {
 
-//import flash.events.Event;
 import org.apache.royale.events.Event;
-//import flash.text.TextFieldAutoSize;
 import mx.controls.Label;
 import mx.core.EdgeMetrics;
 import mx.core.UIComponent;
-/* 
-include "../styles/metadata/LeadingStyle.as"
-include "../styles/metadata/PaddingStyles.as"
-include "../styles/metadata/TextStyles.as" */
+
+//include "../styles/metadata/LeadingStyle.as"
+//include "../styles/metadata/PaddingStyles.as"
+//include "../styles/metadata/TextStyles.as"
 
 /**
  *  Number of pixels between the label area and the heading text.
@@ -39,7 +37,7 @@ include "../styles/metadata/TextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 //[Style(name="indicatorGap", type="Number", format="Length", inherit="yes")]
 
@@ -52,7 +50,7 @@ include "../styles/metadata/TextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 //[Style(name="labelWidth", type="Number", format="Length", inherit="yes")]
 
@@ -64,13 +62,13 @@ include "../styles/metadata/TextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 //[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
 
 //[IconFile("FormHeading.png")]
 
-[Alternative(replacement="spark.components.FormHeading", since="4.5")]
+//[Alternative(replacement="spark.components.FormHeading", since="4.5")]
 
 /**
  *  The FormHeading container is used to display a heading
@@ -121,12 +119,12 @@ include "../styles/metadata/TextStyles.as" */
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 public class FormHeading extends UIComponent
 {
-	/* include "../core/Version.as";
- */
+//	include "../core/Version.as";
+
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor
@@ -139,7 +137,7 @@ public class FormHeading extends UIComponent
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public function FormHeading()
 	{
@@ -182,7 +180,7 @@ public class FormHeading extends UIComponent
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public function get label():String
 	{
@@ -201,9 +199,141 @@ public class FormHeading extends UIComponent
 		dispatchEvent(new Event("labelChanged"));
 	}
 
+	//--------------------------------------------------------------------------
+	//
+	//  Overridden methods: UIComponent
+	//
+	//--------------------------------------------------------------------------
 
+	/**
+	 *  @private
+	 */
+	override protected function commitProperties():void
+	{
+		super.commitProperties();
 
-	
+		createLabel();
+	}
+
+	/**
+	 *  @private
+	 */
+	override protected function measure():void
+	{
+		super.measure();
+
+		var preferredWidth:Number = 0;
+		var preferredHeight:Number = getStyle("paddingTop");
+
+		if (labelObj)
+		{
+			if (isNaN(labelObj.measuredWidth))
+				labelObj.validateSize();
+
+			preferredWidth = labelObj.measuredWidth;
+			preferredHeight += labelObj.measuredHeight;
+		}
+
+		preferredWidth += getLabelWidth() + getStyle("indicatorGap");
+
+		measuredMinWidth = preferredWidth;
+		measuredMinHeight = preferredHeight;
+		measuredWidth = preferredWidth;
+		measuredHeight = preferredHeight;
+	}
+
+	/**
+	 *  @private
+	 */
+	override protected function updateDisplayList(unscaledWidth:Number,
+												  unscaledHeight:Number):void
+	{
+		super.updateDisplayList(unscaledWidth, unscaledHeight);
+
+		if (labelObj)
+		{
+			var indicatorGap:Number = getStyle("indicatorGap");
+			var paddingTop:Number = getStyle("paddingTop");
+			var labelWidth:Number = width;
+			
+			labelObj.move(getLabelWidth() + indicatorGap, paddingTop);
+			
+			if (parent && parent is Form)
+			{
+				var vm:EdgeMetrics = Form(parent).viewMetricsAndPadding;
+				
+				labelWidth = (parent as Form).width - 
+					(getLabelWidth() + indicatorGap + vm.left + vm.right);
+			}
+			
+			labelObj.setActualSize(labelWidth, height);
+		}
+	}
+
+	//--------------------------------------------------------------------------
+	//
+	//  Methods
+	//
+	//--------------------------------------------------------------------------
+
+	/**
+	 *  @private
+	 */
+	private function createLabel():void
+	{
+		// See if we need to create our labelObj.
+		if (_label && _label.length > 0)
+		{
+			if (!labelObj)
+			{
+				labelObj = new Label();
+				labelObj.styleName = this;
+				addChild(labelObj);
+			}
+
+			if (labelObj.text != _label)
+			{
+				labelObj.text = _label;
+
+				labelObj.validateSize();
+
+				invalidateSize();
+				invalidateDisplayList();
+			}
+		}
+
+		// See if we need to destroy our labelObj.
+		if ((_label==null || _label.length == 0) && labelObj)
+		{
+			removeChild(labelObj);
+			labelObj = null;
+
+			invalidateSize();
+			invalidateDisplayList();
+		}
+	}
+
+	/**
+	 *  @private
+	 */
+	private function getLabelWidth():Number
+	{
+		var labelWidth:Number = getStyle("labelWidth");
+
+		// labelWidth of 0 is the same as NaN
+		if (labelWidth == 0)
+		{
+			labelWidth = NaN;
+		}
+
+		if (isNaN(labelWidth) && parent is Form)
+			labelWidth = Form(parent).calculateLabelWidth();
+
+		if (isNaN(labelWidth))
+			labelWidth = 0;
+
+		return labelWidth;
+	}
 }
 
 }

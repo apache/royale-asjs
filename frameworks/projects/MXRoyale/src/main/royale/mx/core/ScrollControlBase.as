@@ -39,8 +39,9 @@ import mx.events.ScrollEventDirection;
 import mx.managers.ToolTipManager;
 import mx.styles.ISimpleStyleClient;
 
-use namespace mx_internal;
 */
+use namespace mx_internal;
+import org.apache.royale.events.Event;
 
 /**
  *  Dispatched when the content is scrolled.
@@ -350,11 +351,11 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the horizontalScrollPosition property.
      */
-//    mx_internal var _horizontalScrollPosition:Number = 0;
-//
-//    [Bindable("scroll")]
-//    [Bindable("viewChanged")]
-//    [Inspectable(defaultValue="0")]
+    mx_internal var _horizontalScrollPosition:Number = 0;
+
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
 
     /**
      *  The offset into the content from the left edge.  This can
@@ -369,25 +370,25 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get horizontalScrollPosition():Number
-//    {
-//        return _horizontalScrollPosition;
-//    }
+    public function get horizontalScrollPosition():Number
+    {
+        return _horizontalScrollPosition;
+    }
 
     /**
      *  @private
      *  This only moves the scrollBars -- assumes the call emanated
      *  from the scrollable content.
      */
-//    public function set horizontalScrollPosition(value:Number):void
-//    {
-//        _horizontalScrollPosition = value;
-//
+    public function set horizontalScrollPosition(value:Number):void
+    {
+        _horizontalScrollPosition = value;
+
 //        if (horizontalScrollBar)
 //            horizontalScrollBar.scrollPosition = value;
-//
-//        dispatchEvent(new Event("viewChanged"));
-//    }
+
+        dispatchEvent(new Event("viewChanged"));
+    }
 
     //----------------------------------
     //  horizontalScrollPolicy
@@ -397,10 +398,10 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the horizontalScrollPolicy property.
      */
-//    mx_internal var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
+    private var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
 
-//    [Bindable("horizontalScrollPolicyChanged")]
-//    [Inspectable(enumeration="off,on,auto", defaultValue="off")]
+    [Bindable("horizontalScrollPolicyChanged")]
+    [Inspectable(enumeration="off,on,auto", defaultValue="off")]
 
     /**
      *  A property that indicates whether the horizontal scroll 
@@ -432,26 +433,26 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get horizontalScrollPolicy():String
-//    {
-//        return _horizontalScrollPolicy;
-//    }
+    public function get horizontalScrollPolicy():String
+    {
+        return _horizontalScrollPolicy;
+    }
 
     /**
      *  @private
      */
-//    public function set horizontalScrollPolicy(value:String):void
-//    {
-//        var newPolicy:String = value.toLowerCase();
-//
-//        if (_horizontalScrollPolicy != newPolicy)
-//        {
-//            _horizontalScrollPolicy = newPolicy;
+    public function set horizontalScrollPolicy(value:String):void
+    {
+        var newPolicy:String = value.toLowerCase();
+
+        if (_horizontalScrollPolicy != newPolicy)
+        {
+            _horizontalScrollPolicy = newPolicy;
 //            invalidateDisplayList();
-//
-//            dispatchEvent(new Event("horizontalScrollPolicyChanged"));
-//        }
-//    }
+
+            dispatchEvent(new Event("horizontalScrollPolicyChanged"));
+        }
+    }
 
     //----------------------------------
     //  liveScrolling
@@ -687,11 +688,11 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the verticalScrollPosition property.
      */
-//    mx_internal var _verticalScrollPosition:Number = 0;
+    mx_internal var _verticalScrollPosition:Number = 0;
 
-//    [Bindable("scroll")]
-//    [Bindable("viewChanged")]
-//    [Inspectable(defaultValue="0")]
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
 
     /**
      *  The offset into the content from the top edge.  This can
@@ -706,23 +707,23 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get verticalScrollPosition():Number
-//    {
-//        return _verticalScrollPosition;
-//    }
+    public function get verticalScrollPosition():Number
+    {
+        return _verticalScrollPosition;
+    }
 
     /**
      *  @private
      */
-//    public function set verticalScrollPosition(value:Number):void
-//    {
-//        _verticalScrollPosition = value;
-//
+    public function set verticalScrollPosition(value:Number):void
+    {
+        _verticalScrollPosition = value;
+
 //        if (verticalScrollBar)
 //            verticalScrollBar.scrollPosition = value;
-//
-//        dispatchEvent(new Event("viewChanged"));
-//    }
+
+        dispatchEvent(new Event("viewChanged"));
+    }
 
     //----------------------------------
     //  verticalScrollPolicy
@@ -732,10 +733,10 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the verticalScrollPolicy property.
      */
-//    mx_internal var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
+    private var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
 
-//    [Bindable("verticalScrollPolicyChanged")]
-//    [Inspectable(enumeration="off,on,auto", defaultValue="auto")]
+    [Bindable("verticalScrollPolicyChanged")]
+    [Inspectable(enumeration="off,on,auto", defaultValue="auto")]
 
     /**
      *  A property that indicates whether the vertical scroll bar is always on, always off,
@@ -766,26 +767,26 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get verticalScrollPolicy():String
-//    {
-//        return _verticalScrollPolicy;
-//    }
+    public function get verticalScrollPolicy():String
+    {
+        return _verticalScrollPolicy;
+    }
 
     /**
      *  @private
      */
-//    public function set verticalScrollPolicy(value:String):void
-//    {
-//        var newPolicy:String = value.toLowerCase();
-//
-//        if (_verticalScrollPolicy != newPolicy)
-//        {
-//            _verticalScrollPolicy = newPolicy;
+    public function set verticalScrollPolicy(value:String):void
+    {
+        var newPolicy:String = value.toLowerCase();
+
+        if (_verticalScrollPolicy != newPolicy)
+        {
+            _verticalScrollPolicy = newPolicy;
 //            invalidateDisplayList();
-//
-//            dispatchEvent(new Event("verticalScrollPolicyChanged"));
-//        }
-//    }
+
+            dispatchEvent(new Event("verticalScrollPolicyChanged"));
+        }
+    }
 
     //--------------------------------------------------------------------------
     //

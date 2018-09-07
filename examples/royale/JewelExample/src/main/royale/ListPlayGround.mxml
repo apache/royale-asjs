@@ -26,13 +26,15 @@ limitations under the License.
     <fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
+			import vos.IconListVO;
 
 			private function onChange(event:Event):void {
                 selected.text = "Selected: " + list.selectedItem;
             }
 
-            private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons", "1", "2", "3", "4", "5", "6", "7"]);
+            private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons", "Apples", "Cherries", "Coconuts", "Figs", "Grapes", "Kiwis", "Mangos"]);
 
+			[Bindable]
 			public function get simple():ArrayList
 			{
 				return _simple
@@ -47,6 +49,46 @@ limitations under the License.
 			{
 				list.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
 			}
+
+			private function changeListData():void
+			{
+				iconList.dataProvider = new ArrayList([
+					new IconListVO("CheckBox", "check_box"),
+					new IconListVO("Label", "label"),
+					new IconListVO("RadioButton", "radio_button_checked"),
+					new IconListVO("Text", "subject"),
+					new IconListVO("TextInput", "text_fields")            
+				]);
+			}
+
+			private function addItem():void
+			{
+				var iconListVO:IconListVO = new IconListVO("New Item", MaterialIconType.CLOSE);
+				
+				(iconList.dataProvider as ArrayList).addItem(iconListVO);
+				// listModel.iconListData.addItem(iconListVO); // to test things are adding to right place
+			}
+
+			public function removeItemAt():void
+			{
+				(iconList.dataProvider as ArrayList).removeItemAt(0);
+				// listModel.iconListData.removeItemAt(0);
+			}
+
+			public function updateFirstItem():void
+			{
+				var item:IconListVO = (iconList.dataProvider as ArrayList).getItemAt(0) as IconListVO;
+				item.label = "What??";
+				item.icon = MaterialIconType.ACCESSIBILITY;
+				(iconList.dataProvider as ArrayList).itemUpdated(item);
+				// listModel.iconListData.itemUpdated(item);
+			}
+
+			public function removeAllData():void
+			{
+				(iconList.dataProvider as ArrayList).removeAll();
+				// listModel.iconListData.removeAll();
+			}
 		]]>
 	</fx:Script>
 
@@ -58,36 +100,84 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel List"/>
+				<j:List id="list" width="200" height="300" dataProvider="{simple}" change="onChange(event)"/>
+				<j:Label id="selected"/>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:Label text="Select list by index: "/>
+					<j:NumericStepper valueChange="list.selectedIndex = event.target.value" minimum="0" maximum="11"/>
+				</j:HGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:Label text="Select list by item: "/>
+					<j:NumericStepper valueChange="list.selectedItem = list.dataProvider.getItemAt(event.target.value)" minimum="0" maximum="11"/>
+				</j:HGroup>
+				<j:Button text="Assign new data" click="assignNewData()"/>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel List With ItemRenderer"/>
+				<j:HGroup gap="3">
+					<j:List id="iconList" width="200" height="300" className="iconListItemRenderer">
+						<j:beads>
+							<js:ConstantBinding
+								sourceID="listModel"
+								sourcePropertyName="iconListData"
+								destinationPropertyName="dataProvider" />
+							<j:AddListItemRendererForArrayListData/>
+							<j:RemoveListItemRendererForArrayListData/>
+							<j:UpdateListItemRendererForArrayListData/>
+							<j:RemoveAllItemRendererForArrayListData/>
+						</j:beads>
+					</j:List>
+					<j:VGroup gap="3">
+						<j:Button text="change data" emphasis="{Button.PRIMARY}" click="changeListData()"/>
+						<j:Button text="Add item" click="addItem()"/>
+						<j:Button text="Remove first item" click="removeItemAt()"/>
+						<j:Button text="Update first item" click="updateFirstItem()"/>
+						<j:Button text="Remove all data" click="removeAllData()"/>
+					</j:VGroup>
+				</j:HGroup>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
 	<j:Grid gap="true">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
-			<j:Card width="100%">
-				<html:H3 text="Jewel List"/>
-				<j:List id="list" width="200" height="300" change="onChange(event)">
+			<j:Card>
+				<html:H3 text="Jewel DataContainer (with Flow Layout)"/>
+				<j:DataContainer>
 					<j:beads>
+						<j:HorizontalFlowLayout gap="3"/>
 						<js:ConstantBinding
 							sourcePropertyName="simple"
 							destinationPropertyName="dataProvider" />
 					</j:beads>
-				</j:List>
-				<j:Label id="selected"/>
-				<j:Button text="Assign new data" emphasis="{Button.PRIMARY}" click="assignNewData()"/>
+				</j:DataContainer>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
-			<j:Card width="100%">
-				<html:H3 text="Jewel List With ItemRenderer"/>
-				<j:List width="200" height="300" className="iconListItemRenderer">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="listModel"
-							sourcePropertyName="iconListData"
-							destinationPropertyName="dataProvider" />
-					</j:beads>
-				</j:List>
+			<j:Card>
+				<html:H3 text="Jewel List (Horizontal)"/>
+				<j:List id="alist" percentWidth="100" height="100">  
+				<j:beads>  
+					<j:HorizontalLayout itemsExpand="true" />
+				</j:beads>
+				<j:dataProvider>
+					<js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Hawkeye]" />
+				</j:dataProvider>
+			</j:List>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

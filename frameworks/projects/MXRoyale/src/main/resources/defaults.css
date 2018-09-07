@@ -16,7 +16,7 @@
 *  limitations under the License.
 *
 */
-
+@namespace Basic "library://ns.apache.org/royale/basic";
 @namespace "library://ns.apache.org/royale/mx";
 
 .royale *, . royale *:before, . royale *:after {
@@ -25,9 +25,21 @@
 	box-sizing: border-box;
 }
 
+* {
+	font-family:	Verdana;
+	font-size:		12px;
+
+}
+
 global {
     IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
 	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
+    whiteSpaceCollapse: "collapse";
+	horizontalAlign: "left";
+	horizontalGap: 8;
+	verticalAlign: "top";
+	verticalGap: 6;
+    padding : 0px;
 }
 
 /* -------------------------------------------------------
@@ -35,6 +47,11 @@ global {
  * -------------------------------------------------------
  */
 
+Basic|MenuItemRenderer
+{
+	height: 16px;
+	margin-top: 4px;
+}
 
 Button
 {
@@ -61,10 +78,25 @@ ComboBox
 
 Container
 {
-	IBeadView: ClassReference("org.apache.royale.core.beads.views.ContainerView");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+DataGrid
+{
+	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
+	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
+	columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
+	
+	background-color: #FFFFFF;
+	border: 1px solid #222222;
+	width: 200px;
+	height: 200px;
 }
 
 DateChooser 
@@ -77,24 +109,107 @@ DateChooser
 	height: 240px;
 }
 
+DateField {
+	IBeadView:   ClassReference("mx.controls.beads.DateFieldView");
+	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateFieldMouseController");
+	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
+	IPopUp: ClassReference("mx.controls.dateFieldClasses.DateFieldDateChooser");
+}
+
 Image
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
 }
 
+List
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+MenuBar {
+	IBeadModel: ClassReference("mx.controls.beads.models.MenuBarModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
+	IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.MenuBarItemRenderer");			
+	IBeadController: ClassReference("mx.controls.beads.controllers.MenuBarMouseController");
+	IMenuFactory: ClassReference("org.apache.royale.html.beads.MenuFactory");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	border-bottom: 1px solid #222222;
+}
+
+/*
+MenuBarItemRenderer {
+	margin-left: 5px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+Menu {
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.CascadingMenuModel");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.CascadingMenuItemRenderer");
+	position: absolute;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #222222;
+	box-shadow: 2px 2px 5px gray;
+}
+
+MenuItemRenderer {
+	margin-top: 4px;
+	margin-left: 2px;
+	margin-bottom: 2px;
+	margin-right: 8px;
+	cursor: pointer;
+}
+
+MenuItemRenderer
+{
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+	height: 24;
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+MenuBarItemRenderer
+{
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+	height: 24;
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+*/
+
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.NumericStepperView");
+	IBeadView: ClassReference("mx.controls.beads.NumericStepperView");
 }
 
 Panel
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.PanelModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.PanelView");
-	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
-	
+	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
+	IBeadView: ClassReference("mx.containers.beads.PanelView");
+	IPanelLayout: ClassReference("mx.containers.beads.BoxLayout");
+	IPanelContentArea: ClassReference("mx.core.Container");	
 	background-color: #FFFFFF;
 	border: 1px solid #333333
 }
@@ -109,6 +224,56 @@ Panel .TitleBar
 	background-color: #FFFFFF;
 }
 
+PanelTitleBar
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.TitleBarView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
+	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TitleBarMeasurementBead");
+	background-color: #E2E2E2;
+	padding: 2px;
+	height: 30px;
+	flex-grow: 0;
+	min-height: 30px;
+    font-weight: bold;
+	border-bottom: 1px solid #333333;
+}
+
+TabNavigator
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
+	IBeadView: ClassReference("mx.containers.beads.TabNavigatorView");
+	ITabNavigatorContentArea: ClassReference("mx.core.Container");
+	verticalGap: 0;	
+	background-color: #FFFFFF;
+	border: 1px solid #333333
+}
+
+Tree
+{
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TreeXMLItemRenderer");
+}
+
+ToggleButtonBar
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ButtonBarView");			
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TextButtonItemRenderer");
+	
+	border-style: none;
+}
+
+ViewStack
+{
+	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
+}
 
 /* -------------------------------------------------------
 * SWF specific styles
@@ -137,11 +302,43 @@ Panel .TitleBar
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
 	}
 	
+	DataGrid {
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+		font-size: 11px;
+		font-family: Arial;
+	}
+	
 	Label
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
+	}
+	
+	List
+	{
+		iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
+		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+		font-size: 11px;
+		font-family: Arial;
+	}
+	
+	/*
+	MenuItemRenderer
+	{
+		iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
+	}
+	*/
+	
+	NumericStepper
+	{
+		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
 	}
 	
 	Panel
@@ -187,4 +384,10 @@ Panel .TitleBar
 		font-size: 11px;
 		font-family: Arial;
 	}
+	
+	ToggleButtonBar
+	{
+		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+	}
+
 }

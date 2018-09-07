@@ -412,7 +412,6 @@ public class TextInput extends UIComponent implements ITextInput
     //
     //--------------------------------------------------------------------------
 
-
     //----------------------------------
     //  data
     //----------------------------------
@@ -1781,7 +1780,6 @@ public class TextInput extends UIComponent implements ITextInput
     //  Overridden event handlers: UIComponent
     //
     //--------------------------------------------------------------------------
-
 
     //--------------------------------------------------------------------------
     //
