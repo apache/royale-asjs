@@ -517,7 +517,19 @@ public class UIComponent extends UIBase
 	 {
 	    _horizontalAxis = value;
 	 }
+    private var _rotation:Number;
 
+    public function get rotation():Number
+    {
+        //TODO figure out JS side. There's a transofrm bead, but that's pretty specific to SVG (I think)
+        trace("proper rotation not yet implemented");
+    	return _rotation;
+    }
+
+    public function set rotation(value:Number):void
+    {
+    	_rotation = value;
+    }
 	//----------------------------------
     //  graphics copied from Sprite
     //----------------------------------
