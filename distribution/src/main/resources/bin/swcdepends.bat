@@ -18,14 +18,14 @@ rem limitations under the License.
 rem
 
 rem
-rem swcdepends.bat script to launch compiler-swcdepends.jar in Windows Command Prompt.
+rem swcdepends.bat script to launch royale-swcdepends.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the swcdepends shell script instead.
 rem
 
 setlocal
 
-if "x%ROYALE_COMPILER_HOME%"=="x"  (set ROYALE_COMPILER_HOME=%~dp0..) else echo Using Royale Compiler codebase: %ROYALE_COMPILER_HOME%
+if "x%ROYALE_COMPILER_HOME%"=="x"  (set ROYALE_COMPILER_HOME=%~dp0..) else echo Using Royale codebase: %ROYALE_COMPILER_HOME%
 
 if "x%ROYALE_HOME%"=="x" (set ROYALE_HOME=%~dp0..) else echo Using Royale SDK: %ROYALE_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m  -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\lib\compiler-swcdepends.jar" %*
+@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m  -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\lib\royale-swcdepends.jar" %*

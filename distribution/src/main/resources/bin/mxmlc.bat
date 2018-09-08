@@ -24,7 +24,7 @@ rem
 
 setlocal
 
-if "x%ROYALE_COMPILER_HOME%"=="x"  (set ROYALE_COMPILER_HOME=%~dp0..) else echo Using Royale Compiler codebase: %ROYALE_COMPILER_HOME%
+if "x%ROYALE_COMPILER_HOME%"=="x"  (set ROYALE_COMPILER_HOME=%~dp0..) else echo Using Royale codebase: %ROYALE_COMPILER_HOME%
 
 if "x%ROYALE_HOME%"=="x" (set ROYALE_HOME=%~dp0..) else echo Using Royale SDK: %ROYALE_HOME%
 
