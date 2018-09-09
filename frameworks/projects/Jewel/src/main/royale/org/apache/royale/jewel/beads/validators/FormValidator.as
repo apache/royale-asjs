@@ -22,8 +22,8 @@ package org.apache.royale.jewel.beads.validators
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
+    import org.apache.royale.jewel.Snackbar;
 	import org.apache.royale.core.IChild;
-	import org.apache.royale.jewel.Alert;
 
 	/**
 	 *  The FormValidator class is a specialty bead that can be used with
@@ -128,9 +128,8 @@ package org.apache.royale.jewel.beads.validators
 			_isError = false;
 			validateAll(hostComponent as Group);
 			if (isError) {
+                if (requiredFieldError) Snackbar.show(requiredFieldError);
 				hostComponent.dispatchEvent(new Event("invalid"));
-				if (requiredFieldError)
-					Alert.show(requiredFieldError);
 			} else {
 				hostComponent.dispatchEvent(new Event("valid"));
 			}

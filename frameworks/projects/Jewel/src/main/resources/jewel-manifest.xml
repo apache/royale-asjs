@@ -65,6 +65,7 @@
     
     <component id="Form" class="org.apache.royale.jewel.Form"/>
     <component id="ErrorTip" class="org.apache.royale.jewel.ErrorTip"/>
+	<component id="Snackbar" class="org.apache.royale.jewel.Snackbar"/>
 
     <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
     <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>
