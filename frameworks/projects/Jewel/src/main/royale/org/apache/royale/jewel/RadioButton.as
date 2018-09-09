@@ -389,16 +389,7 @@ package org.apache.royale.jewel
         {
             if(icon.checked == value)
                 return;
-            var instance:Object = element['MaterialRadio'];
-            if(instance)
-            {
-                if(value)
-                    instance["check"]();
-                else
-                    instance["uncheck"]();
-            }
-            else
-                icon.checked = value;
+            icon.checked = value;
             dispatchEvent(new Event(Event.CHANGE));
         }
         
