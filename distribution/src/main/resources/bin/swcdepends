@@ -1,0 +1,71 @@
+#!/bin/sh
+
+################################################################################
+##
+##  Licensed to the Apache Software Foundation (ASF) under one or more
+##  contributor license agreements.  See the NOTICE file distributed with
+##  this work for additional information regarding copyright ownership.
+##  The ASF licenses this file to You under the Apache License, Version 2.0
+##  (the "License"); you may not use this file except in compliance with
+##  the License.  You may obtain a copy of the License at
+##
+##      http://www.apache.org/licenses/LICENSE-2.0
+##
+##  Unless required by applicable law or agreed to in writing, software
+##  distributed under the License is distributed on an "AS IS" BASIS,
+##  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+##  See the License for the specific language governing permissions and
+##  limitations under the License.
+##
+################################################################################
+
+#
+# fasc shell script to launch compiler-asc.jar on OSX, Unix, or Cygwin.
+# In Windows Command Prompt, use fasc.bat instead.
+#
+
+if [ "x${ROYALE_COMPILER_HOME}" = "x" ]
+then
+    SCRIPT_HOME=`dirname "$0"`
+    ROYALE_COMPILER_HOME=${SCRIPT_HOME}/..
+else
+    echo Using Royale Compiler codebase: $ROYALE_COMPILER_HOME
+fi
+
+if [ "x${ROYALE_HOME}" = "x" ]
+then
+    SCRIPT_HOME=`dirname "$0"`
+    ROYALE_HOME=${SCRIPT_HOME}/..
+else
+    echo Using Royale SDK: $ROYALE_HOME
+fi
+
+case `uname` in
+		CYGWIN*)
+			OS="Windows"
+		;;
+		*)
+			OS=Unix
+esac
+
+D32=''
+
+if [ $OS = "Windows" ]; then
+
+	ROYALE_COMPILER_HOME=`cygpath -m $ROYALE_COMPILER_HOME`
+	ROYALE_HOME=`cygpath -m $ROYALE_HOME`
+
+elif [ $OS = "Unix" ]; then
+
+    check64="`java -version 2>&1 | grep -i 64-Bit`"
+    isOSX="`uname | grep -i Darwin`"
+    javaVersion="`java -version 2>&1 | awk -F '[ ".]+' 'NR==1 {print $3 "." $4}'`"
+    
+    if [ "$isOSX" != "" -a "$HOSTTYPE" = "x86_64" -a "$check64" != "" -a "$javaVersion" = "1.6" ]; then
+        D32='-d32'
+    fi
+fi
+
+VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
+
+java $VMARGS $D32 $SETUP_SH_VMARGS -Droyalelib="$ROYALE_HOME/frameworks" -jar "${ROYALE_COMPILER_HOME}/lib/royale-swcdepends.jar" "$@"
