@@ -18,11 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+    COMPILE::SWF
+	{
+        import flash.utils.setTimeout;
+	}
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.Snackbar;
     import org.apache.royale.jewel.beads.models.SnackbarModel;
+    import org.apache.royale.core.UIBase;
 
     /**
 	 *  The SnackbarView class creates the visual elements of the org.apache.royale.jewel.Snackbar 
@@ -91,7 +96,17 @@ package org.apache.royale.jewel.beads.views
             }
 
             if (model.action) actionChangeHandler(null);
+
+            setTimeout(prepareForPopUp,  300);
         }
+
+        private function prepareForPopUp():void
+        {
+			COMPILE::JS
+			{
+				UIBase(_strand).element.classList.add("open");
+			}
+		}
 
 
         /**

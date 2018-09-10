@@ -619,6 +619,15 @@ j|Card {
   border-radius: 3px;
 }
 
+.jewel.snackbar {
+  will-change: transform;
+  transform: translate(0, 100%);
+  transition: transform 0.4s 0ms;
+}
+.jewel.snackbar.open {
+  transform: translate(0);
+  transition: transform 0.4s 0ms;
+}
 .jewel.snackbar.primary .jewel.snackbar-content {
   background: linear-gradient(#54b7f3, #24a3ef);
   border: 1px solid #0f88d1;

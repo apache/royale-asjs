@@ -137,13 +137,20 @@ package org.apache.royale.jewel.beads.controllers
          */
         COMPILE::JS
         private function timerHandler(event:Event):void {
+			(_strand as Snackbar).removeClass("open");
             _singletonInstance = null;
             if (_timer) {
                 _timer.stop();
                 _timer.removeAllListeners();
                 _timer = null;
             }
-            (_strand as Snackbar).dismiss();
+			setTimeout(prepareForDismiss,  400);
+            
         }
+
+		private function prepareForDismiss():void
+        {
+			(_strand as Snackbar).dismiss();
+		}
     }
 }

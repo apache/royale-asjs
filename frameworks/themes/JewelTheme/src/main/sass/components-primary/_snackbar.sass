@@ -23,35 +23,45 @@
 $snackbar-border-radius: $border-radius
 $snackbar-default-color: #2C3E50
 $snackbar-action-color: $action-color
+$snackbar-popup-margin-offset: 10px
 
-.jewel.snackbar.primary
-	.jewel.snackbar-content
-		@if $flat
-			background: $primary-color
-			border: 0px solid
-		@else
-			background: linear-gradient(lighten($primary-color, 5%), darken($primary-color, 5%))
-			border: 1px solid darken($primary-color, 15%)
-			box-shadow: inset 0 1px 0 lighten($primary-color, 20%)
-			border-bottom: none
-		
-		// +jewel-bg-border("normal", $primary-color, $snackbar-border-radius) --> we want only rounded corners on top corners
-	
-	.jewel.snackbar-message
-		color: $font-theme-color
+.jewel.snackbar
+	will-change: transform
+	transform: translate(0, 100%)
+	transition: animation-standard(transform, .4s)
 
-	.jewel.snackbar-action
-		color: $yellow
-	
-		&:hover
+	&.open
+		transform: translate(0)
+		transition: animation-standard(transform, .4s)
+
+	&.primary
+		.jewel.snackbar-content
 			@if $flat
-				background: darken($primary-color, 5%)
-				border: none
+				background: $primary-color
+				border: 0px solid
 			@else
-				background: linear-gradient($primary-color, darken($primary-color, 10%))
-			// +jewel-bg-border("hover", $primary-color)
-			// @if $flat == false
-			// 	border: none
+				background: linear-gradient(lighten($primary-color, 5%), darken($primary-color, 5%))
+				border: 1px solid darken($primary-color, 15%)
+				box-shadow: inset 0 1px 0 lighten($primary-color, 20%)
+				border-bottom: none
+			
+			// +jewel-bg-border("normal", $primary-color, $snackbar-border-radius) --> we want only rounded corners on top corners
+		
+		.jewel.snackbar-message
+			color: $font-theme-color
+
+		.jewel.snackbar-action
+			color: $yellow
+		
+			&:hover
+				@if $flat
+					background: darken($primary-color, 5%)
+					border: none
+				@else
+					background: linear-gradient($primary-color, darken($primary-color, 10%))
+				// +jewel-bg-border("hover", $primary-color)
+				// @if $flat == false
+				// 	border: none
 
 .jewel.snackbar-content
 	background: $snackbar-default-color
