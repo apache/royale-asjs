@@ -206,7 +206,7 @@ package org.apache.royale.jewel.beads.views
             {
                 okButton = new Button();
 				okButton.width = 100;
-				okButton.emphasis = "primary";
+				okButton.emphasis = Button.PRIMARY;
                 okButton.text = alertModel.okLabel;
                 okButton.addEventListener(MouseEvent.CLICK, handleOK);
 
@@ -227,7 +227,7 @@ package org.apache.royale.jewel.beads.views
             {
                 yesButton = new Button();
 				yesButton.width = 100;
-				yesButton.emphasis = "primary";
+				yesButton.emphasis = Button.PRIMARY;
                 yesButton.text = alertModel.yesLabel;
                 yesButton.addEventListener(MouseEvent.CLICK, handleYes);
 

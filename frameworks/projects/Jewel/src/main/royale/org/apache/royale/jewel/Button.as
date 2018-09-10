@@ -439,11 +439,11 @@ package org.apache.royale.jewel
             {
                 if(_emphasis)
                 {
-                    toggleClass(_emphasis, false);
+                    removeClass(_emphasis);
                 }
                 _emphasis = value;
 
-                toggleClass(_emphasis, value);
+                addClass(_emphasis);
             }
         }
 
