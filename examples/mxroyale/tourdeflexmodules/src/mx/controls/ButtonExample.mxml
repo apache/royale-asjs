@@ -24,11 +24,11 @@
      <fx:Script>
         <![CDATA[
 
-            import org.apache.royale.events.Event;
+            import org.apache.royale.events.MouseEvent;
 
             // Event handler function to print a message
             // describing the selected Button control.
-            private function printMessage(event:Event):void  {
+            private function printMessage(event:MouseEvent):void  {
               message.text += event.target.label + " pressed" + "\n";
             }
 

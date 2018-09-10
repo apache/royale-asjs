@@ -26,7 +26,8 @@
        
             import mx.managers.PopUpManager;
             import mx.containers.TitleWindow;
-             import flash.geom.Point;
+             import org.apache.royale.geom.Point;
+            import org.apache.royale.utils.PointUtils;
 
             private var point1:Point = new Point();
       
@@ -41,7 +42,7 @@
                 // Position it 25 pixels down and to the right of the Button control.
                 point1.x=0;
                 point1.y=0;                
-                point1=myButton.localToGlobal(point1);
+                point1=PointUtils.localToGlobal(point1, myButton);
                 login.x=point1.x+25;
                 login.y=point1.y+25;
              

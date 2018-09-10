@@ -41,7 +41,7 @@
         <mx:Text width="100%"
             text="Click and hold the mouse on the image to see glowImage effect. Release the mouse to see unglowImage effect."/>
             
-        <mx:Image source="@Embed(source='assets/ApacheFlexLogo.png')"
+        <mx:Image source="assets/ApacheFlexLogo.png"
 			width="50%" height="50%"
             mouseDownEffect="{glowImage}" 
             mouseUpEffect="{unglowImage}"/>

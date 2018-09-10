@@ -23,9 +23,9 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
 			
-			protected function buttonClickHandler(event:Event):void
+			protected function buttonClickHandler(event:MouseEvent):void
 			{
 				repeatText.text += event.target.label + " pressed!" + "\n";
 			}

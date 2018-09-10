@@ -25,10 +25,11 @@
         <![CDATA[
             import mx.controls.Alert;
             import org.apache.royale.events.CloseEvent;
+            import org.apache.royale.events.MouseEvent;
         
             // Event handler function uses a static method to show
             // a pop-up window with the title, message, and requested buttons.        
-            private function clickHandler(event:Event):void {
+            private function clickHandler(event:MouseEvent):void {
                 Alert.show("Do you want to save your changes?", "Save Changes", 3, this, alertClickHandler);
             }
         
@@ -43,7 +44,7 @@
             // Event handler function changes the default Button labels and sets the
             // Button widths. If you later use an Alert with the default Buttons, 
             // you must reset these values.
-            private function secondClickHandler(event:Event):void {
+            private function secondClickHandler(event:MouseEvent):void {
                 /*
                 Alert.buttonWidth = 100;
                 Alert.yesLabel = "Magenta";

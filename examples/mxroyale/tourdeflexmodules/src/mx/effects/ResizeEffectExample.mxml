@@ -34,7 +34,7 @@
             text="Use the Button controls to resize the image."/>
 
         <mx:Image id="img" width="30" height="60"
-            source="@Embed(source='assets/ApacheFlexLogo.png')"/>
+            source="assets/ApacheFlexLogo.png"/>
 
         <mx:ControlBar>
             <mx:Button label="Expand" click="expand.end(); expand.play()"/>

@@ -27,7 +27,7 @@
 
         <mx:HBox width="100%" height="100%">
             <!-- Area for your catalog. -->
-            <mx:Image source="@Embed(source='assets/ApacheFlexLogo.png')" width="50%" height="100%"/>
+            <mx:Image source="assets/ApacheFlexLogo.png" width="50%" height="100%"/>
 			<mx:Text width="50%"
                 text="The ControlBar container in this example adds a Label, NumericStepper, Spacer, and Button control to the bottom of the Panel container."/>
         </mx:HBox>
