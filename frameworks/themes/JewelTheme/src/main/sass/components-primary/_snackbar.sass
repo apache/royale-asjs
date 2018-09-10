@@ -17,14 +17,25 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel Snackbar
+// Jewel SnackBar
 
-// Snackbar variables
-$snackbar-border-radius: 3px
+// SnackBar variables
+$snackbar-border-radius: $border-radius
+$snackbar-default-color: #2C3E50
+$snackbar-action-color: $action-color
 
 .jewel.snackbar.primary
 	.jewel.snackbar-content
-		+jewel-bg-border("normal", $primary-color, $snackbar-border-radius)
+		@if $flat
+			background: $primary-color
+			border: 0px solid
+		@else
+			background: linear-gradient(lighten($primary-color, 5%), darken($primary-color, 5%))
+			border: 1px solid darken($primary-color, 15%)
+			box-shadow: inset 0 1px 0 lighten($primary-color, 20%)
+			border-bottom: none
+		
+		// +jewel-bg-border("normal", $primary-color, $snackbar-border-radius) --> we want only rounded corners on top corners
 	
 	.jewel.snackbar-message
 		color: $font-theme-color
@@ -33,6 +44,28 @@ $snackbar-border-radius: 3px
 		color: $yellow
 	
 		&:hover
-			+jewel-bg-border("hover", $primary-color)
-			@if $flat == false
+			@if $flat
+				background: darken($primary-color, 5%)
 				border: none
+			@else
+				background: linear-gradient($primary-color, darken($primary-color, 10%))
+			// +jewel-bg-border("hover", $primary-color)
+			// @if $flat == false
+			// 	border: none
+
+.jewel.snackbar-content
+	background: $snackbar-default-color
+	border-radius: $snackbar-border-radius $snackbar-border-radius 0px 0px
+
+.jewel.snackbar-message
+	color: $font-theme-color
+
+.jewel.snackbar-action
+	color: $snackbar-action-color
+
+	&:hover
+		background-color: #3C4E60
+
+@media (max-width: $desktop)
+	.jewel.snackbar-content
+		border-radius: 0px

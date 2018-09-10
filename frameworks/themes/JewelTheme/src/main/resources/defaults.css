@@ -605,6 +605,43 @@ j|Card {
   border-radius: 3px;
 }
 
+.jewel.snackbar.primary .jewel.snackbar-content {
+  background: linear-gradient(#54b7f3, #24a3ef);
+  border: 1px solid #0f88d1;
+  box-shadow: inset 0 1px 0 #9bd5f8;
+  border-bottom: none;
+}
+.jewel.snackbar.primary .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.primary .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.primary .jewel.snackbar-action:hover {
+  background: linear-gradient(#3CADF1, #1198e9);
+}
+
+.jewel.snackbar-content {
+  background: #2C3E50;
+  border-radius: 0.25rem 0.25rem 0px 0px;
+}
+
+.jewel.snackbar-message {
+  color: #FFFFFF;
+}
+
+.jewel.snackbar-action {
+  color: #FFD740;
+}
+.jewel.snackbar-action:hover {
+  background-color: #3C4E60;
+}
+
+@media (max-width: 992px) {
+  .jewel.snackbar-content {
+    border-radius: 0px;
+  }
+}
 .jewel.simpletable {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
@@ -832,24 +869,6 @@ a:active {
   padding-right: 0;
 }
 
-.jewel.snackbar.primary .jewel.snackbar-content {
-  background: linear-gradient(#54b7f3, #24a3ef);
-  border: 1px solid #0f88d1;
-  box-shadow: inset 0 1px 0 #9bd5f8;
-  border-radius: 3px;
-}
-.jewel.snackbar.primary .jewel.snackbar-message {
-  color: #FFFFFF;
-}
-.jewel.snackbar.primary .jewel.snackbar-action {
-  color: #E2D70B;
-}
-.jewel.snackbar.primary .jewel.snackbar-action:hover {
-  background: linear-gradient(#3CADF1, #1198e9);
-  border: 1px solid #0d79ba;
-  border: none;
-}
-
 .jewel.button.secondary {
   background: linear-gradient(#f16c42, #ed4812);
   border: 1px solid #be390e;
@@ -878,6 +897,22 @@ a:active {
   color: silver;
 }
 
+.jewel.snackbar.secondary .jewel.snackbar-content {
+  background: linear-gradient(#f16c42, #ed4812);
+  border: 1px solid #be390e;
+  box-shadow: inset 0 1px 0 #f6a389;
+  border-bottom: none;
+}
+.jewel.snackbar.secondary .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.secondary .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.secondary .jewel.snackbar-action:hover {
+  background: linear-gradient(#EF5A2A, #d64010);
+}
+
 a:visited {
   color: #d64010;
 }
@@ -888,24 +923,6 @@ a:hover {
 
 a:active {
   color: #f37f59;
-}
-
-.jewel.snackbar.secondary .jewel.snackbar-content {
-  background: linear-gradient(#f16c42, #ed4812);
-  border: 1px solid #be390e;
-  box-shadow: inset 0 1px 0 #f6a389;
-  border-radius: 3px;
-}
-.jewel.snackbar.secondary .jewel.snackbar-message {
-  color: #FFFFFF;
-}
-.jewel.snackbar.secondary .jewel.snackbar-action {
-  color: #E2D70B;
-}
-.jewel.snackbar.secondary .jewel.snackbar-action:hover {
-  background: linear-gradient(#EF5A2A, #d64010);
-  border: 1px solid #a6320d;
-  border: none;
 }
 
 .jewel.button.emphasized {
@@ -940,7 +957,7 @@ a:active {
   background: linear-gradient(#98cc50, #7eb435);
   border: 1px solid #638c29;
   box-shadow: inset 0 1px 0 #bbdd8b;
-  border-radius: 3px;
+  border-bottom: none;
 }
 .jewel.snackbar.emphasized .jewel.snackbar-message {
   color: #FFFFFF;
@@ -950,8 +967,6 @@ a:active {
 }
 .jewel.snackbar.emphasized .jewel.snackbar-action:hover {
   background: linear-gradient(#8CC63C, #71a02f);
-  border: 1px solid #557923;
-  border: none;
 }
 
 /*# sourceMappingURL=defaults.css.map */
