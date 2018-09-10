@@ -58,7 +58,7 @@ package org.apache.royale.jewel.beads.views
 		 * The action element that parents the action
 		 */
         COMPILE::JS
-		protected var actionEl:Element;
+		protected var actionElement:Element;
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -75,18 +75,18 @@ package org.apache.royale.jewel.beads.views
             host = value as Snackbar;
             var model:SnackbarModel = host.model as SnackbarModel;
 
-			var messageEl:Element = document.createElement("div");
-			messageEl.className = "jewel snackbar-message";
-            messageEl.innerHTML = model.message;
+			var messageElement:Element = document.createElement("div");
+			messageElement.className = "jewel snackbar-message";
+            messageElement.innerHTML = model.message;
 
-			var contentEl:Element = document.createElement("div");
-			contentEl.className = "jewel snackbar-content";
-			contentEl.appendChild(messageEl);
+			var contentElement:Element = document.createElement("div");
+			contentElement.className = "jewel snackbar-content";
+			contentElement.appendChild(messageElement);
 
             model.addEventListener("messageChange", messageChangeHandler);
             model.addEventListener("actionChange", actionChangeHandler);
 
-            host.element.appendChild(contentEl);
+            host.element.appendChild(contentElement);
 
             if (model.action) actionChangeHandler(null);
         }
@@ -106,18 +106,18 @@ package org.apache.royale.jewel.beads.views
             var model:SnackbarModel = host.model as SnackbarModel;
 
             if (model.action) {
-				if (!actionEl) {
-					actionEl = document.createElement("div");
-					actionEl.className = "jewel snackbar-action";
-					actionEl.addEventListener("click", actionClickHandler);
-					host.element.firstChild.appendChild(actionEl);
+				if (!actionElement) {
+					actionElement = document.createElement("div");
+					actionElement.className = "jewel snackbar-action";
+					actionElement.addEventListener("click", actionClickHandler);
+					host.element.firstChild.appendChild(actionElement);
 				}
-				actionEl.innerText = model.action;
+				actionElement.innerText = model.action;
 			} else {
-				if (actionEl) {
-					actionEl.removeEventListener("click", actionClickHandler);
-					host.element.firstChild.removeChild(actionEl);
-					actionEl = null;
+				if (actionElement) {
+					actionElement.removeEventListener("click", actionClickHandler);
+					host.element.firstChild.removeChild(actionElement);
+					actionElement = null;
 				}
 			}
         }
@@ -126,7 +126,7 @@ package org.apache.royale.jewel.beads.views
          *  Trigger event and dismiss the host when action clicked.
          */
         private function actionClickHandler(event:Event):void {
-            actionEl.removeEventListener("click", actionClickHandler);
+            actionElement.removeEventListener("click", actionClickHandler);
             host.dispatchEvent(new Event(Snackbar.ACTION));
             SnackbarModel(host.model).duration = -1; // set -1 to dismiss
         }
