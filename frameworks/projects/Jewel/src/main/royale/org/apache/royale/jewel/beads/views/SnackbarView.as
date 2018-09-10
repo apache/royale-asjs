@@ -74,19 +74,21 @@ package org.apache.royale.jewel.beads.views
 
             host = value as Snackbar;
             var model:SnackbarModel = host.model as SnackbarModel;
-
-			var messageElement:Element = document.createElement("div");
-			messageElement.className = "jewel snackbar-message";
-            messageElement.innerHTML = model.message;
-
-			var contentElement:Element = document.createElement("div");
-			contentElement.className = "jewel snackbar-content";
-			contentElement.appendChild(messageElement);
-
             model.addEventListener("messageChange", messageChangeHandler);
             model.addEventListener("actionChange", actionChangeHandler);
 
-            host.element.appendChild(contentElement);
+            COMPILE::JS
+            {
+                var messageElement:Element = document.createElement("div");
+                messageElement.className = "jewel snackbar-message";
+                messageElement.innerHTML = model.message;
+
+                var contentElement:Element = document.createElement("div");
+                contentElement.className = "jewel snackbar-content";
+                contentElement.appendChild(messageElement);
+
+                host.element.appendChild(contentElement);
+            }
 
             if (model.action) actionChangeHandler(null);
         }
@@ -96,7 +98,10 @@ package org.apache.royale.jewel.beads.views
          *  Update the text when message changed. 
          */
         private function messageChangeHandler(event:Event):void {
-            Element(host.element.firstChild.firstChild).innerHTML = SnackbarModel(host.model).message;
+            COMPILE::JS
+            {
+                HTMLElement(host.element.firstChild.firstChild).innerHTML = SnackbarModel(host.model).message;
+            }
         }
 
         /**
@@ -105,6 +110,8 @@ package org.apache.royale.jewel.beads.views
         private function actionChangeHandler(event:Event):void {
             var model:SnackbarModel = host.model as SnackbarModel;
 
+            COMPILE::JS
+            {
             if (model.action) {
 				if (!actionElement) {
 					actionElement = document.createElement("div");
@@ -120,15 +127,19 @@ package org.apache.royale.jewel.beads.views
 					actionElement = null;
 				}
 			}
+            }
         }
 
         /**
          *  Trigger event and dismiss the host when action clicked.
          */
         private function actionClickHandler(event:Event):void {
+            COMPILE::JS
+            {
             actionElement.removeEventListener("click", actionClickHandler);
             host.dispatchEvent(new Event(Snackbar.ACTION));
             SnackbarModel(host.model).duration = -1; // set -1 to dismiss
+            }
         }
 
     }

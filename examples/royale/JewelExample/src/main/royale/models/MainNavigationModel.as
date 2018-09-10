@@ -39,7 +39,6 @@ package models
             new NavigationLinkVO("Text", "text_panel", MaterialIconType.SUBJECT),
             new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS),
             new NavigationLinkVO("Forms & Validation", "form_validation_panel", MaterialIconType.ASSIGNMENT_TURNED_IN),
-            new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD)
             new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
 
             // new NavigationLinkVO("Menu", "menus_panel"),

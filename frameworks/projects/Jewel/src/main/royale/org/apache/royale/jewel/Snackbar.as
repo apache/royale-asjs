@@ -21,6 +21,7 @@ package org.apache.royale.jewel
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.SnackbarModel;
 
     COMPILE::JS
