@@ -728,7 +728,7 @@ public class GroupBase extends UIComponent implements ILayoutParent
     //  clipAndEnableScrolling
     //----------------------------------
 
-    //private var clipAndEnableScrollingExplicitlySet:Boolean = false;
+    private var _clipAndEnableScrolling:Boolean = false;
     
     /**
      *  @copy spark.core.IViewport#clipAndEnableScrolling
@@ -740,45 +740,32 @@ public class GroupBase extends UIComponent implements ILayoutParent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get clipAndEnableScrolling():Boolean 
+    public function get clipAndEnableScrolling():Boolean 
     {
-        if (_layout)
+        COMPILE::JS
         {
-            return _layout.clipAndEnableScrolling;
+            return element.style.overflow == "auto";
         }
-        else if (_layoutProperties && 
-                _layoutProperties.clipAndEnableScrolling !== undefined)
+        COMPILE::SWF
         {
-            return _layoutProperties.clipAndEnableScrolling;
+            return _clipAndEnableScrolling;
         }
-        else
-        {
-            return false;
-        }
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set clipAndEnableScrolling(value:Boolean):void 
+    public function set clipAndEnableScrolling(value:Boolean):void 
     {
-        clipAndEnableScrollingExplicitlySet = true;
-        if (_layout)
+        COMPILE::JS
         {
-            _layout.clipAndEnableScrolling = value;
+            element.style.overflow = value ? "auto" : "none";
         }
-        else if (_layoutProperties)
+        COMPILE::SWF
         {
-            _layoutProperties.clipAndEnableScrolling = value;
+            _clipAndEnableScrolling = value;
         }
-        else
-        {
-            _layoutProperties = {clipAndEnableScrolling: value};
-        }
-
-        // clipAndEnableScrolling affects measured minimum size
-        invalidateSize();
-    } */
+    }
     
     //----------------------------------
     //  scrollRect

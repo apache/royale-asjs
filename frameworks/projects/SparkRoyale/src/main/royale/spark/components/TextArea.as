@@ -20,9 +20,9 @@
 package spark.components
 {
     
+import org.apache.royale.textLayout.elements.TextFlow;
 /* import flash.events.Event;
 
-import flashx.textLayout.elements.TextFlow;
 import flashx.textLayout.formats.TextLayoutFormat;
 
 import mx.core.ScrollPolicy;
@@ -563,10 +563,12 @@ public class TextArea extends SkinnableTextBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get textFlow():TextFlow
+    public function get textFlow():TextFlow
     {
-        return getTextFlow();
-    } */
+        trace("TextArea textFlow not implemented");
+        //return getTextFlow();
+        return null;
+    }
 
     /**
      *  @private

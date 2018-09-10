@@ -1344,7 +1344,7 @@ public class TileLayout extends LayoutBase
         _numElementsCached = count;
         for (var i:int = 0; i < count; i++)
         {
-            var el:ILayoutElement = layoutTarget.getElementAt(i);
+            var el:ILayoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
             if (!el || !el.includeInLayout)
             {
                 _numElementsCached--;
@@ -1391,7 +1391,7 @@ public class TileLayout extends LayoutBase
             
         for (var i:int = 0; i < count; i++)
         {
-            var el:ILayoutElement = layoutTarget.getElementAt(i);
+            var el:ILayoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
             if (!el || !el.includeInLayout)
                 _numElementsCached--;
         }
@@ -1484,7 +1484,7 @@ public class TileLayout extends LayoutBase
                 i = visibleEndIndex;
                 continue;
             } 
-            var el:ILayoutElement = layoutTarget.getElementAt(i);
+            var el:ILayoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
             if (!el)
                 continue;
             if (el is IVisualElement)
@@ -2009,7 +2009,7 @@ public class TileLayout extends LayoutBase
                     IVisualElement(el).visible = true; 
             }
             else
-                el = layoutTarget.getElementAt(index);
+                el = layoutTarget.getElementAt(index) as ILayoutElement;
 
             if (!el || !el.includeInLayout)
                 continue;
