@@ -104,4 +104,20 @@ div {
   color: silver;
 }
 
+.jewel.snackbar.emphasized .jewel.snackbar-content {
+  background: linear-gradient(#f4e813, #cac00a);
+  border: 1px solid #999207;
+  box-shadow: inset 0 1px 0 #f7ef5c;
+  border-bottom: none;
+}
+.jewel.snackbar.emphasized .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.emphasized .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.emphasized .jewel.snackbar-action:hover {
+  background: linear-gradient(#E2D70B, #b1a909);
+}
+
 /*# sourceMappingURL=defaults.css.map */

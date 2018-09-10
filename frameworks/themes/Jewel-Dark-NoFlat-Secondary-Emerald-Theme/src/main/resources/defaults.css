@@ -104,6 +104,22 @@ div {
   color: #737373;
 }
 
+.jewel.snackbar.secondary .jewel.snackbar-content {
+  background: linear-gradient(#98cc50, #7eb435);
+  border: 1px solid #638c29;
+  box-shadow: inset 0 1px 0 #bbdd8b;
+  border-bottom: none;
+}
+.jewel.snackbar.secondary .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.secondary .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.secondary .jewel.snackbar-action:hover {
+  background: linear-gradient(#8CC63C, #71a02f);
+}
+
 a:visited {
   color: #71a02f;
 }

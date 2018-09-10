@@ -606,6 +606,43 @@ j|Card {
   border-radius: 3px;
 }
 
+.jewel.snackbar.primary .jewel.snackbar-content {
+  background: linear-gradient(#d43bd1, #b427b1);
+  border: 1px solid #8a1e88;
+  box-shadow: inset 0 1px 0 #e279e0;
+  border-bottom: none;
+}
+.jewel.snackbar.primary .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.primary .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.primary .jewel.snackbar-action:hover {
+  background: linear-gradient(#C92CC6, #9f239d);
+}
+
+.jewel.snackbar-content {
+  background: #2C3E50;
+  border-radius: 0.25rem 0.25rem 0px 0px;
+}
+
+.jewel.snackbar-message {
+  color: #FFFFFF;
+}
+
+.jewel.snackbar-action {
+  color: #FFD740;
+}
+.jewel.snackbar-action:hover {
+  background-color: #3C4E60;
+}
+
+@media (max-width: 992px) {
+  .jewel.snackbar-content {
+    border-radius: 0px;
+  }
+}
 .jewel.simpletable {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
