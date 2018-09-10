@@ -84,18 +84,18 @@ package org.apache.royale.jewel
 		}
 
 		public function set emphasis(value:String):void
-		{
-			if (_emphasis != value)
+        {
+            if (_emphasis != value)
             {
                 if(_emphasis)
                 {
-                    classSelectorList.toggle(_emphasis, false);
+                    removeClass(_emphasis);
                 }
                 _emphasis = value;
 
-                classSelectorList.toggle(_emphasis, value);
+                addClass(_emphasis);
             }
-		}
+        }
 
 		/**
 		 *  The number of milliseconds to show the Snackbar.
