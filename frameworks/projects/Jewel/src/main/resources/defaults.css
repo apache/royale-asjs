@@ -3457,4 +3457,50 @@ j|ApplicationMainContent {
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+j|Snackbar {
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SnackbarModel");
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SnackbarController");
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SnackbarView");
+}
+
+.jewel.snackbar {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.jewel.snackbar-content {
+    background: #2C3E50;
+    border-radius: 3px;
+    max-width: 568px;
+    min-width: 288px;
+    padding: 6px; 
+    position: relative;
+}
+
+.jewel.snackbar-message {
+    color: #fff;
+    float: left;
+    margin: 10px;
+}
+
+.jewel.snackbar-action {
+    color: #FFD740;
+    cursor: pointer;
+    float: right;
+    padding: 10px;
+}
+
+.jewel.snackbar-action:hover {
+    background-color: #3C4E60;
+}
+
+@media (max-width: 992px) {
+    .jewel.snackbar-content {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0px;
+    }
+}
+
 /*# sourceMappingURL=defaults.css.map */

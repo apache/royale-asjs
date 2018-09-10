@@ -36,6 +36,7 @@ package
         import org.apache.royale.jewel.beads.models.DateChooserModel; DateChooserModel;
         import org.apache.royale.jewel.beads.models.DataProviderModel; DataProviderModel;
         import org.apache.royale.jewel.beads.models.ComboBoxModel; ComboBoxModel;
+		import org.apache.royale.jewel.beads.models.SnackbarModel; SnackbarModel;
 
         import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
@@ -46,6 +47,7 @@ package
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController; TableCellSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.ComboBoxController; ComboBoxController;
+		import org.apache.royale.jewel.beads.controllers.SnackbarController; SnackbarController;
         
         import org.apache.royale.jewel.beads.views.ImageView; ImageView;
         import org.apache.royale.jewel.beads.views.SpinnerView; SpinnerView;
@@ -60,6 +62,7 @@ package
         import org.apache.royale.jewel.beads.views.DateChooserView; DateChooserView;
         import org.apache.royale.jewel.beads.views.TableView; TableView;
         import org.apache.royale.jewel.beads.views.ComboBoxView; ComboBoxView;
+		import org.apache.royale.jewel.beads.views.SnackbarView; SnackbarView;
 
         
         COMPILE::SWF

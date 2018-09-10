@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.validators
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
+    import org.apache.royale.jewel.Snackbar;
 	import org.apache.royale.core.IChild;
 
 	/**
@@ -127,6 +128,7 @@ package org.apache.royale.jewel.beads.validators
 			_isError = false;
 			validateAll(hostComponent as Group);
 			if (isError) {
+                if (requiredFieldError) Snackbar.show(requiredFieldError);
 				hostComponent.dispatchEvent(new Event("invalid"));
 			} else {
 				hostComponent.dispatchEvent(new Event("valid"));
