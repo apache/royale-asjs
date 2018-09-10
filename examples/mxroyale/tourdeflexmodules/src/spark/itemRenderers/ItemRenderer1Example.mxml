@@ -30,8 +30,8 @@
 			[Bindable]
 			private var employees:XMLListCollection;
 			
-			[Embed(source="data/list.xml", mimeType="application/octet-stream")]
-			private var XMLData:Class;
+			[Embed(source="data/list.xml", mimeType="text/plain")]
+			private var XMLData:String;
 			
 			private function init():void
 			{

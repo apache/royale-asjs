@@ -45,7 +45,8 @@
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle">
 				<s:Label text="Specify Text Alignment:"/>
-				<s:DropDownList id="alignVal" prompt="left" change="this.changeHandler()">
+                <!--<s:DropDownList id="alignVal" prompt="left" change="this.changeHandler()">-->
+				<s:DropDownList id="alignVal" change="this.changeHandler()">
 					<s:dataProvider>
 						<mx:ArrayList>
 							<fx:String>left</fx:String>
@@ -60,7 +61,8 @@
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle">
 				<s:Label text="Direction:"/>
-				<s:DropDownList id="direction" prompt="ltr" change="this.changeHandler()">
+                <!--<s:DropDownList id="direction" prompt="ltr" change="this.changeHandler()">-->
+				<s:DropDownList id="direction" change="this.changeHandler()">
 					<s:dataProvider>
 						<mx:ArrayList>
 							<fx:String>ltr</fx:String>

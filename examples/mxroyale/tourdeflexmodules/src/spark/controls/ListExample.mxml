@@ -37,15 +37,16 @@
 			}
 			protected function buyBtn_clickHandler(event:MouseEvent):void
 			{
-				txtResponse.text="Thank you for your order totaling: " + usdFormatter.format(totalPrice) + "\nItems will ship in 3 days.";
+				txtResponse.text="Thank you for your order totaling: " + /*usdFormatter.format(totalPrice)*/totalPrice.toString() + "\nItems will ship in 3 days.";
 			}
 
 		]]>
 	</fx:Script>
 	<fx:Declarations>
+        <!--
 		<mx:CurrencyFormatter id="usdFormatter" precision="2" currencySymbol="$"
 							  decimalSeparatorFrom="." decimalSeparatorTo="." useNegativeSign="true"
-							  useThousandsSeparator="true" alignSymbol="left"/>
+							  useThousandsSeparator="true" alignSymbol="left"/>-->
 	</fx:Declarations>
 	<fx:Style>
 		@namespace "library://ns.apache.org/royale/spark";
@@ -84,7 +85,8 @@
 						color="0xAE0A0A" fontWeight="bold"/>
 			<s:VGroup>
 				<mx:Spacer height="10"/>
-				<s:Label text="Total of Items selected: {usdFormatter.format(this.totalPrice)}"/> 
+				<!--<s:Label text="Total of Items selected: {usdFormatter.format(this.totalPrice)}"/>--> 
+                <s:Label text="Total of Items selected: {totalPrice}"/> 
 				<s:Button id="buyBtn" horizontalCenter="0" bottom="30" label="Buy Now!" 
 						  fontWeight="bold" 
 						  click="buyBtn_clickHandler(event)"/>

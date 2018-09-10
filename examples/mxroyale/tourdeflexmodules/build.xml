@@ -303,31 +303,38 @@
 		<compile-mxml example="/spark/controls/AccordionExample"/>
          -->
 		<compile-mxml example="/spark/controls/AdvancedDatagridExample"/>
+        <!--
 		<compile-mxml example="/spark/controls/ColorPickerExample"/>
+         -->
 		<compile-mxml example="/spark/controls/ComboBoxExample"/>
 		<compile-mxml example="/spark/controls/DataGridExample"/>
 		<compile-mxml example="/spark/controls/DataGroupExample"/>
+        <!--
 		<compile-mxml example="/spark/controls/MenuExample"/>
+         -->
 		<compile-mxml example="/spark/controls/RichEditableTextExample"/>
+        <!--
 		<compile-mxml example="/spark/controls/DateChooserExample"/>
 		<compile-mxml example="/spark/controls/DateFieldExample"/>
 		<compile-mxml example="/spark/controls/FormExample"/>
 		<compile-mxml example="/spark/controls/ImageExample"/>
 		<compile-mxml example="/spark/controls/LinkBarExample"/>
 		<compile-mxml example="/spark/controls/LinkButtonExample"/>
-        <!--
 		<compile-mxml example="/spark/controls/OLAPDataGridExample"/>
 		<compile-mxml example="/spark/controls/PopupButtonExample"/>
-         -->
 		<compile-mxml example="/spark/controls/ProgressBarExample"/>
+         -->
 		<!-- Currently broken <compile-mxml example="/spark/controls/SWFLoaderExample"/> -->
 		<compile-mxml example="/spark/controls/TitleWindowExample"/>
 		<compile-mxml example="/spark/controls/ToggleButtonBarExample"/>
+        <!--
 		<compile-mxml example="/spark/controls/ToolTipExample"/>
 		<compile-mxml example="/spark/controls/TreeExample"/>
 		<compile-mxml example="/spark/controls/ViewStackExample"/>
+         -->
 		<compile-mxml example="/spark/controls/TextAreaExample"/>
 		<compile-mxml example="/spark/controls/TextInputExample"/>
+        <!--
 		<compile-mxml example="/spark/controls/TextLayout1Example"/>
 		<compile-mxml example="/spark/controls/TextLayout2Example"/>
 		<compile-mxml example="/spark/controls/TextLayout3Example"/>
@@ -341,26 +348,31 @@
 		<compile-mxml example="/spark/layouts/CustomLayoutFlickrWheelExample"/>
 		<compile-mxml example="/spark/layouts/CustomLayoutFlowExample"/>
 		<compile-mxml example="/spark/layouts/CustomLayoutHBaselineExample"/>
+         -->
 		
 		<compile-mxml example="/spark/itemRenderers/ItemRenderer1Example"/>
 		<compile-mxml example="/spark/itemRenderers/ItemRenderer2Example"/>
 		
+        <!--
 		<compile-mxml example="/spark/fxg/BitmapImageExample"/>
 		<compile-mxml example="/spark/fxg/EclipseExample"/>
 		<compile-mxml example="/spark/fxg/LineExample"/>
 		<compile-mxml example="/spark/fxg/RectExample"/>
 		<compile-mxml example="/spark/fxg/RichTextExample"/>
+         -->
 		
 		<compile-mxml example="/spark/containers/SampleHGroup"/>
 		<compile-mxml example="/spark/containers/SampleVGroup"/>
+        <!--
 		<compile-mxml example="/spark/containers/SampleVerticalHorizontalAlign"/>
 		<compile-mxml example="/spark/containers/SkinnableDataContainerExample"/>
+         -->
 		<compile-mxml example="/spark/containers/TileGroupExample"/>
 		
+        <!--
 		<compile-mxml example="/spark/effects/Move3DExample"/>
 		<compile-mxml example="/spark/effects/WipeExample"/>
 		
-        <!--
 		<compile-mxml example="/spark/charts/AreaChartExample"/>
 		<compile-mxml example="/spark/charts/BarChartExample"/>
 		<compile-mxml example="/spark/charts/BubbleChartExample"/>
@@ -373,7 +385,6 @@
 		<compile-mxml example="/spark/charts/SeriesInterpolateExample"/>
 		<compile-mxml example="/spark/charts/SeriesSlideExample"/>
 		<compile-mxml example="/spark/charts/SeriesZoomExample"/>
-        -->
         
 		<compile-mxml example="/spark/components/SearchExample"/>
 		<compile-mxml example="/spark/components/VideoPlayerExample"/>
@@ -414,11 +425,13 @@
 		<compile-mxml example="/spark/modules/ModuleExample"/>
 		<compile-mxml example="/spark/modules/Module1"/>
 		<compile-mxml example="/spark/modules/Module2"/>
+         -->
 
 		<!-- currently broken <compile-mxml example="/spark/tlf/TextLayoutEditorSample"/> -->
 	</target>
 	
 	<target name="compile-spark2" description="compile second set of spark examples">
+        <!--
 		<compile-mxml example="/spark/i18n/SparkCollatorExample"/>
 		<compile-mxml example="/spark/i18n/SparkCollator2Example"/>
 		<compile-mxml example="/spark/i18n/SparkCurrencyValidatorExample"/>
@@ -452,9 +465,11 @@
 		<compile-mxml example="/spark/controls/SampleStackedFormExample"/>
 		
 		<compile-mxml example="/spark/controls/OSMFExample"/>
+         -->
 	</target>
 	
 	<target name="compile-spark3" description="compile third set of spark examples">
+        <!--
 		<compile-mxml example="/spark/other/BidirectionalBinding1Example"/>
 		<compile-mxml example="/spark/other/BidirectionalBinding2Example"/>
 		<compile-mxml example="/spark/other/ControllingViewportExample"/>
@@ -480,36 +495,42 @@
 		<compile-mxml example="/spark/skinning/SkinningApplication3Example"/>
 		<compile-mxml example="/spark/skinning/SkinningContainerExample"/>
 		<compile-mxml example="/spark/css/CSSIDSelectorExample"/>
+         -->
 		<compile-mxml example="/spark/controls/ButtonExample"/>
         <!--
 		<compile-mxml example="/spark/controls/ButtonBarExample"/>
-         -->
 		<compile-mxml example="/spark/controls/PopUpAnchor1Example"/>
 		<compile-mxml example="/spark/controls/PopUpAnchor2Example"/>
+         -->
 		<compile-mxml example="/spark/controls/ToggleButtonExample"/>
 		<compile-mxml example="/spark/controls/CheckboxExample"/>
 		<compile-mxml example="/spark/controls/DropdownExample"/>
 		<compile-mxml example="/spark/controls/NumericStepperExample"/>
 		<compile-mxml example="/spark/controls/RadioButtonExample"/>
 		<compile-mxml example="/spark/controls/ToggleButton2Example"/>
+        <!--
 		<compile-mxml example="/spark/controls/ScrollBarExample"/>
 		<compile-mxml example="/spark/controls/Scroller1Example"/>
 		<compile-mxml example="/spark/controls/Scroller2Example"/>
 		<compile-mxml example="/spark/controls/SliderExample"/>
 		<compile-mxml example="/spark/controls/SpinnerExample"/>
 		<compile-mxml example="/spark/controls/VideoPlayerExample"/>
+         -->
 		<compile-mxml example="/spark/controls/ListExample"/>
 	</target>
 	
 	<target name="compile-apache" description="compile apache examples">
+        <!--
 		<compile-mxml example="/apache/ApacheFlex4_8_0"/>
 		<compile-mxml example="/apache/ApacheFlex4_9_0"/>
 		<compile-mxml example="/apache/ApacheFlex4_10_0"/>
 		<compile-mxml example="/apache/ApacheFlex4_11_0"/>
 		<compile-mxml example="/apache/ApacheFlex4_12_1"/>
 		<compile-mxml example="/apache/ApacheFlex4_13_0"/>
+         -->
 		<!-- <compile-mxml example="/apache/ApacheFlex4_13_0"/> -->
 		
+        <!--
 		<compile-mxml example="/apache/formatters/PostCodeFormatterExample"/>
 		<compile-mxml example="/apache/validators/PostCodeValidatorExample"/>
 		<compile-mxml-locales example="/apache/i18n/LocaleExample"/>
@@ -520,6 +541,7 @@
 		<compile-mxml example="/apache/i18n/NumericStepperExample"/>
 		<compile-mxml example="/apache/containers/CalloutExample"/>
 		<compile-mxml example="/apache/controls/MaskedTextInputExample"/>
+         -->
 		
 		<!-- Uncomment when Flex 4.14 is released -->
 		<!-- compile-mxml example="/apache/controls/SparkRichTextEditorExample"/-->

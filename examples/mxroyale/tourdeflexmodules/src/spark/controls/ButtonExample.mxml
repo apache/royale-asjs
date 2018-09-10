@@ -23,7 +23,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import flash.events.Event;
+			import org.apache.royale.events.Event;
 			
 			protected function buttonClickHandler(event:Event):void
 			{
@@ -49,9 +49,11 @@ component looks like it can be pressed. The default skin has a text label."/>
 					  click="buttonClickHandler(event)" 
 					  fontWeight="normal"/>
 			<s:Button id="disabledBtn" label="Disabled Button" enabled="false"/>
+            <!--
 			<s:Button id="repeatBtn" label="Repeat Button" 
 					  buttonDown="buttonClickHandler(event)"  
 					  autoRepeat="true"/>
+            -->
 			<s:Label verticalAlign="justify" 
 						  text="Hold down on repeat button to see autoRepeat behavior."/>
 			

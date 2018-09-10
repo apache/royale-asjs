@@ -60,13 +60,16 @@ for stepping through the valid values. You can use the Up Arrow and Down arrow k
 		<mx:Form>
 			<mx:FormHeading id="formHead" label="Welcome to Ticket Grabber!"/>
 			<mx:FormItem label="Name:">
-				<s:TextInput id="nameTxt" widthInChars="20"/>
+				<!--<s:TextInput id="nameTxt" widthInChars="20"/>-->
+                <s:TextInput id="nameTxt" />
 			</mx:FormItem>
 			<mx:FormItem label="Address:">
-				<s:TextArea widthInChars="20" heightInLines="2"/>
+				<!--<s:TextArea widthInChars="20" heightInLines="2"/>-->
+                <s:TextArea />
 			</mx:FormItem>
 			<mx:FormItem label="Phone:">
-				<s:TextInput id="phoneTxt" widthInChars="20"/>	
+				<!--<s:TextInput id="phoneTxt" widthInChars="20"/>-->	
+                <s:TextInput id="phoneTxt"/>	
 			</mx:FormItem>
 			<mx:FormItem label="Select # of tickets:">
 				<s:NumericStepper id="numStepper" width="55" 

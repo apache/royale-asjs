@@ -28,20 +28,20 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import flashx.textLayout.container.ContainerController;
-			import flashx.textLayout.conversion.ITextImporter;
-			import flashx.textLayout.conversion.TextConverter;
-			import flashx.textLayout.edit.EditManager;
-			import flashx.textLayout.edit.ISelectionManager;
-			import flashx.textLayout.edit.SelectionState;
-			import flashx.textLayout.elements.InlineGraphicElement;
-			import flashx.textLayout.elements.ParagraphElement;
-			import flashx.textLayout.elements.TextFlow;
-			import flashx.textLayout.events.SelectionEvent;
-			import flashx.textLayout.events.StatusChangeEvent;
-			import flashx.textLayout.formats.Direction;
-			import flashx.textLayout.formats.TextLayoutFormat;
-			import flashx.undo.UndoManager;
+			import org.apache.royale.textLayout.container.ContainerController;
+			import org.apache.royale.textLayout.conversion.ITextImporter;
+			import org.apache.royale.textLayout.conversion.TextConverter;
+			import org.apache.royale.textLayout.edit.EditManager;
+			import org.apache.royale.textLayout.edit.ISelectionManager;
+			import org.apache.royale.textLayout.edit.SelectionState;
+			import org.apache.royale.textLayout.elements.InlineGraphicElement;
+			import org.apache.royale.textLayout.elements.ParagraphElement;
+			import org.apache.royale.textLayout.elements.TextFlow;
+			import org.apache.royale.textLayout.events.SelectionEvent;
+			import org.apache.royale.textLayout.events.StatusChangeEvent;
+			import org.apache.royale.textLayout.formats.Direction;
+			import org.apache.royale.textLayout.formats.TextLayoutFormat;
+			//import flashx.undo.UndoManager;
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.CheckBox;
@@ -59,9 +59,8 @@
 				]
 			);
 			
-			[Embed(source="assets/ApacheFlexLogo.png")]
 			[Bindable]
-			static public var imgClass:Class;
+			static public var imgClass:String = "assets/ApacheFlexLogo.png";
 			
 			private var _textContainer:SpriteVisualElement = null;
 			
@@ -98,7 +97,7 @@
 				_textFlow.addChild(p);
 				
 				//adding Select/Edit/Copy/Paste/Undo features
-				_textFlow.interactionManager = new EditManager(new UndoManager());
+				_textFlow.interactionManager = new EditManager(/*new UndoManager()*/);
 				
 				// initialize with a selection before the first character
 				_textFlow.interactionManager.selectRange(0,0);

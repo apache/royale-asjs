@@ -88,6 +88,7 @@
 								]]>
 							</fx:Script>
 							
+                            <!--
 							<s:transitions>
 								<mx:Transition fromState="normal" toState="hovered">
 									<s:Animate target="{flightPlan}" duration="200">
@@ -100,7 +101,7 @@
 									</s:Animate>
 								</mx:Transition>
 							</s:transitions>
-							
+							-->
 							<s:Rect left="0" right="0" top="0" bottom="0" radiusX="5" radiusY="5">
 								<s:fill>
 									<s:SolidColor color="#E1ECF4" />

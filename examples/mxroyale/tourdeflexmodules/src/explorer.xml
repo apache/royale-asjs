@@ -248,6 +248,7 @@
 		</node>
 		<node label="Spark Framework Components">
 			<node label="Techniques and Examples">
+                <!--
 				<node label="Advanced CSS">
 					<node label="Descendant Selector" module="spark/css/CSSDescendantSelectorExample" />
 					<node label="ID Selector" module="spark/css/CSSIDSelectorExample" />
@@ -261,6 +262,7 @@
 					<node label="Busy Cursor" module="spark/other/Cursor1Example" />
 					<node label="Custom Cursor" module="spark/other/Cursor2Example" />
 				</node>
+                 -->
 				<!-- Require remote service to work
 				<node label="DataGrid">
 					<node label="DataGrid" module="spark/controls/DataGridExample2"/>
@@ -275,6 +277,7 @@
 					<node label="Data Paging" module="spark/controls/ListDataPagingExample" />
 				</node>
 				-->
+                <!--
 				<node label="Drag and Drop">
 					<node label="List to List" module="spark/other/DragAndDrop1Example" />
 					<node label="List to Panel" module="spark/other/DragAndDrop2Example" />
@@ -301,11 +304,13 @@
 					<node label="String Tools" module="spark/i18n/SparkStringToolsExample"/>
 					<node label="Formatters" module="spark/i18n/SparkFormatterExample"/>
 				</node>	
+                 -->
 				<node label="Item Renderers">
 					<node label="List" module="spark/itemRenderers/ListItemRendererExample" src="spark/itemRenderers/MyListItemRenderer.mxml"/>
 					<node label="Scale Image" module="spark/itemRenderers/ItemRenderer1Example" src="spark/itemRenderers/renderers/ImageRenderer1.mxml" />
 					<node label="3D Rotate" module="spark/itemRenderers/ItemRenderer2Example" src="spark/itemRenderers/renderers/ImageRenderer2.mxml" />
 				</node>
+                <!--
 				<node label="Events">
 					<node label="Inline property" module="spark/events/EventExample1" />
 					<node label="Inline block" module="spark/events/EventExample2" />
@@ -323,14 +328,12 @@
 				<node label="Modules">
 					<node label="Load" module="spark/modules/ModuleExample" />
 				</node>
-                <!--
 				<node label="Repeater">
 					<node label="Repeater" module="spark/other/RepeaterExample" />
 				</node>
 				<node label="ScrollBars">
 					<node label="ScrollBars" module="spark/other/ScrollBarsExample" />
 				</node>
-                 -->
 				<node label="Skinning">
 					<node label="Button With Icon" module="spark/skinning/ButtonWithIconExample" src="spark/skinning/skins/CloseButtonSkin.mxml&amp;spark/skinning/skins/AddButtonSkin.mxml&amp;spark/skinning/skins/IconTextButtonSkin.mxml" />
 					<node label="Gradient Skin" module="spark/skinning/SkinningApplication1Example" src="spark/skinning/skins/GradientBackgroundAppSkin.mxml"/>
@@ -341,7 +344,9 @@
 				<node label="Viewport">
 					<node label="Controlling Viewport" module="spark/other/ControllingViewportExample" />
 				</node>
+                 -->
 			</node>
+            <!--
 			<node label="Effects and Filters">
 				<node label="Move 3D" module="spark/effects/Move3DExample" />
 				<node label="Filter" module="spark/other/FilterExample" />
@@ -355,26 +360,34 @@
 				<node label="Rotate 3D" module="spark/effects/Rotate3DExample" />
 				<node label="Scale 3D" module="spark/effects/Scale3DExample" />
 			</node>
+            -->
 			<node label="Visual Components">
 				<node label="Containers">
                     <!--
 					<node label="Accordion" module="spark/controls/AccordionExample" />
-                     -->
 					<node label="Border" module="spark/containers/BorderExample"/>
+                     -->
 					<node label="DataGroup" module="spark/controls/DataGroupExample" />
 					<node label="Form" module="spark/controls/FormExample" />
 					<node label="HGroup" module="spark/containers/SampleHGroup" />
 					<node label="Group" module="spark/containers/GroupExample"/>
 					<node label="Panel" module="spark/containers/PanelExample"/>
+                    <!--
 					<node label="SkinnableDataContainer" module="spark/containers/SkinnableDataContainerExample" />
 					<node label="TabNavigator" module="spark/containers/TabNavigator1Example" />
 					<node label="TabNavigator" module="spark/containers/TabNavigator2Example" />
+                     -->
 					<node label="TileGroup" module="spark/containers/TileGroupExample" />
 					<node label="TitleWindow" module="spark/controls/TitleWindowExample" />
+                    <!--
 					<node label="ViewStack" module="spark/controls/ViewStackExample" />
+                     -->
 					<node label="VGroup" module="spark/containers/SampleVGroup" />
+                    <!--
 					<node label="Vertical Horizontal Align" module="spark/containers/SampleVerticalHorizontalAlign" />
+                     -->
 				</node>
+                <!--
 				<node label="Graphics and FXG">
 					<node label="Drop Shadow" module="spark/fxg/DropShadowGraphicExample" />
 					<node label="Image" module="spark/fxg/BitmapImageExample" />
@@ -386,73 +399,90 @@
 					<node label="RichText" module="spark/fxg/RichTextExample" />
 					<node label="Static FXG" module="spark/fxg/StaticFXGExample" />
 				</node>
+                 -->
 				<node label="General Controls">
+                    <!--
 					<node label="AdvancedDataGrid" module="spark/controls/AdvancedDatagridExample" />
+                     -->
 					<node label="Checkbox" module="spark/controls/CheckboxExample"/>
+                    <!--
 					<node label="ColorPicker" module="spark/controls/ColorPickerExample" />
+                     -->
 					<node label="ComboBox" module="spark/controls/ComboBoxExample" />
 					<node label="DropDown" module="spark/controls/DropdownExample"/>
 					<node label="DataGrid" module="spark/controls/DataGridExample" />
 					<node label="Image" module="spark/controls/ImageExample" />
 					<node label="List" module="spark/controls/ListExample" />
+                    <!--
 					<node label="Menu" module="spark/controls/MenuExample" />
 					<node label="NumericStepper" module="spark/controls/NumericStepperExample"/>
 					<node label="OLAPDataGrid" module="spark/controls/OLAPDataGridExample" />
 					<node label="ProgressBar" module="spark/controls/ProgressBarExample" />
+                     -->
 					<node label="RadioButton" module="spark/controls/RadioButtonExample"/>
                     <!--
 					<node label="ScrollBar" module="spark/controls/ScrollBarExample" />
 					<node label="Scroller" module="spark/controls/Scroller1Example"/>
 					<node label="Scroller and Tabbing" module="spark/controls/Scroller2Example"/>
-                     -->
 					<node label="Slider" module="spark/controls/SliderExample"/>
 					<node label="Spinner" module="spark/controls/SpinnerExample"/>
+                     -->
 					<!--  Removed to avoid putting swf in repo
 					<node label="SWFloader" module="spark/controls/SWFLoaderExample" />
 					-->
+                    <!--
 					<node label="ToolTip" module="spark/controls/ToolTipExample" />
 					<node label="Tree" module="spark/controls/TreeExample" />
 					<node label="VideoDisplay" module="spark/controls/VideoDisplayExample" />
+                     -->
 					<!-- Removed  as it's using an external asset they may not work any more
 					<node label="VideoDisplay" module="spark/controls/OSMFExample" />
 					 -->
+                    <!--
 					<node label="VideoPlayer" module="spark/controls/VideoPlayerExample" />
-				</node>	
+                     -->
+				</node>
 				<node label="Button Controls">
 					<node label="Button" module="spark/controls/ButtonExample"/>
                     <!--
 					<node label="ButtonBar" module="spark/controls/ButtonBarExample"/>
-                     -->
 					<node label="LinkBar" module="spark/controls/LinkBarExample" />
 					<node label="LinkButton" module="spark/controls/LinkButtonExample" />
 					<node label="PopUpButton" module="spark/controls/PopupButtonExample" />
 					<node label="PopUpAnchor" module="spark/controls/PopUpAnchor1Example"/>
 					<node label="PopUpAnchor" module="spark/controls/PopUpAnchor2Example"/>
 					<node label="ToggleButton" module="spark/controls/ToggleButtonExample"/>
+                     -->
 					<node label="ToggleButtonBar" module="spark/controls/ToggleButtonBarExample" />
 				</node>
+                <!--
 				<node label="Date Controls">
 					<node label="DateChooser" module="spark/controls/DateChooserExample" />
 					<node label="DateField" module="spark/controls/DateFieldExample" />
 				</node>
+                 -->
 				<node label="Text Controls">
 					<node label="RichEditableText" module="spark/controls/RichEditableTextExample" />
 					<node label="TextArea" module="spark/controls/TextAreaExample" />
 					<node label="TextInput" module="spark/controls/TextInputExample" />
+                    <!--
 					<node label="Sample Layout" module="spark/controls/TextLayout1Example" />
 					<node label="News Layout" module="spark/controls/TextLayout2Example" />
 					<node label="Text Controls" module="spark/controls/TextLayout3Example" />
 					<node label="Import Format Types" module="spark/controls/TextLayout4Example" />
+                     -->
 					<!--  Doesn't comile with current version of TLF
 					<node label="Text Layout Editor" module="spark/tlf/TextLayoutEditorSample" />
 					-->
 				</node>
+                <!--
 				<node label="Layouts">
 					<node label="Animated" module="spark/layouts/CustomLayoutAnimatedExample" />
 					<node label="Baseline" module="spark/layouts/CustomLayoutHBaselineExample" />
 					<node label="Image Wheel" module="spark/layouts/CustomLayoutFlickrWheelExample" />
 					<node label="Text Flow" module="spark/layouts/CustomLayoutFlowExample" />
 				</node>
+                 -->
 			</node>
             <!--
 			<node label="Charts">
@@ -469,7 +499,6 @@
 				<node label="SeriesSlide" module="spark/charts/SeriesSlideExample" />
 				<node label="SeriesZoom" module="spark/charts/SeriesZoomExample" />
 			</node>
-             -->
 			<node label="Validators and Formatters">
 				<node label="Validators">
 					<node label="CreditCardValidator" module="spark/validators/CreditCardValidatorExample" />
@@ -492,19 +521,18 @@
 					<node label="ZipCodeFormatter" module="spark/formatters/ZipCodeFormatterExample" />
 				</node>
 			</node>
+             -->
 		</node>
+        <!--
 		<node label="Apache Flex Components and Features">
 			<node label="Apache Flex 4.8" module="apache/ApacheFlex4_8_0">
-				<!--  Do we habe any examples here? -->
 			</node>
 			<node label="Apache Flex 4.9" module="apache/ApacheFlex4_9_0">
-				<!--  Add more examples here -->
 				<node label="PostCodeFormatter" module="apache/formatters/PostCodeFormatterExample"/>
 				<node label="PostCodeValidator" module="apache/validators/PostCodeValidatorExample"/>
 				<node label="New SDK locales" module="apache/i18n/LocaleExample"/>
 			</node>
 			<node label="Apache Flex 4.10" module="apache/ApacheFlex4_10_0">
-				<!--  Add more examples here -->
 				<node label="International Dates" module="apache/i18n/DateExample"/>
 				<node label="Millisecond Formatting" module="apache/i18n/MillisecondExample"/>
 				<node label="NumberStepper" module="apache/i18n/NumericStepperExample"/>
@@ -512,15 +540,12 @@
 				<node label="Timezone Formatting" module="apache/i18n/TimeZoneExample"/>
 			</node>
 			<node label="Apache Flex 4.11" module="apache/ApacheFlex4_11_0">
-				<!--  Add more examples here -->
 				<node label="Callout" module="apache/containers/CalloutExample"/>
 			</node>
 			<node label="Apache Flex 4.12" module="apache/ApacheFlex4_12_1">
-				<!--  Add more examples here -->
 				<node label="MaskedTextInput" module="apache/controls/MaskedTextInputExample"/>
 			</node>
 			<node label="Apache Flex 4.13" module="apache/ApacheFlex4_13_0">
-				<!--  Add examples here -->
 			</node>
 			<node label="Apache Flex 4.14" module="apache/ApacheFlex4_14_0">
 				<node label="MaskedTextInput" module="apache/controls/SparkRichTextEditorExample"/>
@@ -530,5 +555,6 @@
 				<node label="Spark Spelling Example" module="apache/squiggly/SpellingExExample"/>
 			</node>
 		</node>
+         -->
 	</node>
 </compTree>
