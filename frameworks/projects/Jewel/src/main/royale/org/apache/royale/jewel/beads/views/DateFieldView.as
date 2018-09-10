@@ -39,6 +39,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.Table;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
+	import org.apache.royale.core.ValuesManager;
 
 	COMPILE::SWF
 	{
@@ -215,11 +216,9 @@ package org.apache.royale.jewel.beads.views
 				_popUpVisible = value;
 				if (value)
 				{
-					if (!_popUp)
-					{
-						_popUp = new DateChooser();
-					}
-
+					var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+					_popUp = new popUpClass() as DateChooser;
+					
 					_popUp.className = "datechooser-popup";
 					_popUp.addEventListener("initComplete", handlePopUpInitComplete);
 
@@ -231,9 +230,8 @@ package org.apache.royale.jewel.beads.views
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
 					host.popUpParent.addElement(_popUp);
-					
 					// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-					daysTable = (popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
+					daysTable = (popUp.view as DateChooserView).daysTable;
 
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					setTimeout(prepareForPopUp,  300);

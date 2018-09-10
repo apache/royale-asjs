@@ -317,6 +317,7 @@ j|ComboBox {
   transition: opacity 0.4s 0ms;
 }
 .combobox-popup .jewel.list {
+  position: relative;
   transform: translate(-50%, 100%);
   transition: none;
   will-change: transform, opacity;
@@ -373,16 +374,6 @@ j|ComboBox {
     height: 34px;
   }
 }
-j|ComboBoxList {
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
-  IContentView: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup");
-}
-
-@media -royale-swf {
-  j|ComboBoxList {
-    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
-  }
-}
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
   padding: 12px 0px;
 }
@@ -425,7 +416,7 @@ j|ComboBoxList {
 j|DateChooser {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateChooserView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalFlowLayout");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateChooserMouseController");
 }
 
@@ -475,6 +466,7 @@ j|DateChooser {
   transition: opacity 0.4s 0ms;
 }
 .datechooser-popup .jewel.table {
+  position: relative;
   transform: translate(-50%, 100%);
   transition: none;
   will-change: transform, opacity;
@@ -535,6 +527,7 @@ j|DateField {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateFieldMouseController");
   IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatMMDDYYYY");
+  IPopUp: ClassReference("org.apache.royale.jewel.DateChooser");
 }
 
 .jewel.divider {

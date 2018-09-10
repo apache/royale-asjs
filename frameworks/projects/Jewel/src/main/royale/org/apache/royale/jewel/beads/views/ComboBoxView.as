@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup;
+	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	
 	/**
@@ -92,6 +92,7 @@ package org.apache.royale.jewel.beads.views
 			return _button;
 		}
 		
+		private var _combolist:ComboBoxList;
 		private var _list:List;
 		
 		/**
@@ -106,7 +107,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popup():Object
 		{
-			return _list;
+			return _combolist;
 		}
 		
 		/**
@@ -151,7 +152,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popUpVisible():Boolean
 		{
-			return _list == null ? false : true;
+			return _combolist == null ? false : true;
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
@@ -159,20 +160,21 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function set popUpVisible(value:Boolean):void
 		{
+			
 			if (value) {
 				var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-				_list = new popUpClass() as List;
-
-				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-				_list.model = model;
+				_combolist = new popUpClass() as ComboBoxList;
 				
-				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-				popupHost.popUpParent.addElement(_list);
+				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+				_combolist.model = model;
+				_combolist.list.model = _combolist.model;
 
-				// popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside to adjust height
-				dataGroup = popup.view.contentView.view.contentView;
-				// dataGroup = (popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
-				dataGroup.height = 250;
+				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+				popupHost.popUpParent.addElement(_combolist);
+				
+				// popup is ComboBoxList that fills 100% of browser window-> We want the internal List inside to adjust height
+				_list = _combolist.list;
+				_list.height = 250;
 				
 				setTimeout(prepareForPopUp,  300);
 
@@ -183,14 +185,14 @@ package org.apache.royale.jewel.beads.views
 
 				autoResizeHandler();
 			}
-			else if(_list != null) {
-				UIUtils.removePopUp(_list);
+			else if(_combolist != null) {
+				UIUtils.removePopUp(_combolist);
 				COMPILE::JS
 				{
 				document.body.classList.remove("viewport");
 				window.removeEventListener('resize', autoResizeHandler, false);
 				}
-				_list = null;
+				_combolist = null;
 			}
 		}
 
@@ -198,7 +200,7 @@ package org.apache.royale.jewel.beads.views
         {
 			COMPILE::JS
 			{
-				_list.element.classList.add("open");
+				_combolist.element.classList.add("open");
 				//avoid scroll in html
 				document.body.classList.add("viewport");
 			}
@@ -268,7 +270,7 @@ package org.apache.royale.jewel.beads.views
 			// }
 		}
 
-		private var dataGroup:ComboBoxListDataGroup;
+		private var comboList:ComboBoxList;
 		/**
 		 *  When set to "auto" this resize handler monitors the width of the app window
 		 *  and switch between fixed and float modes.
@@ -292,15 +294,15 @@ package org.apache.royale.jewel.beads.views
 				{
 					var origin:Point = new Point(0, button.y+button.height);
 					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-					// dataGroup.x = relocated.x;
-					// dataGroup.y = relocated.y;
-					dataGroup.positioner.style["left"] = relocated.x + "px";
-					dataGroup.positioner.style["top"] = relocated.y + "px";
+					// comboList.x = relocated.x;
+					// comboList.y = relocated.y;
+					_list.positioner.style["left"] = relocated.x + "px";
+					_list.positioner.style["top"] = relocated.y + "px";
 				}
 				else
 				{
-					dataGroup.positioner.style["left"] = "50%";
-					dataGroup.positioner.style["top"] = "calc(100% - 10px)";
+					_list.positioner.style["left"] = "50%";
+					_list.positioner.style["top"] = "calc(100% - 10px)";
 				}
 			}
 		}
