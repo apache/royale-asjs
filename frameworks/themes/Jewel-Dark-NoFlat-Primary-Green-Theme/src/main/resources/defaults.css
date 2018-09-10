@@ -77,6 +77,7 @@ div {
 }
 
 .jewel.alert {
+  transform: translate(-50%, -60%);
   margin: 0;
   padding: 0;
   min-width: 320px;
@@ -85,6 +86,17 @@ div {
   background-color: black;
   box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
   border-radius: 3px;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+.jewel.alert.open {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0ms, transform 0.4s 0ms;
+}
+.jewel.alert.open + .backdrop {
+  opacity: 1;
+  transition: opacity 0.4s 0ms;
 }
 .jewel.alert .jewel.titlebar {
   padding: 20px 20px 0px 20px;
@@ -118,6 +130,8 @@ div {
   height: 84px;
 }
 .jewel.alert + .backdrop {
+  opacity: 0;
+  will-change: opacity;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -606,6 +620,15 @@ j|Card {
   border-radius: 3px;
 }
 
+.jewel.snackbar {
+  will-change: transform;
+  transform: translate(0, 100%);
+  transition: transform 0.4s 0ms;
+}
+.jewel.snackbar.open {
+  transform: translate(0);
+  transition: transform 0.4s 0ms;
+}
 .jewel.snackbar.primary .jewel.snackbar-content {
   background: linear-gradient(#45c354, #34a241);
   border: 1px solid #277b32;
