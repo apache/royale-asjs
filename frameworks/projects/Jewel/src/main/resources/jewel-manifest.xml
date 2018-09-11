@@ -43,6 +43,7 @@
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="IconButton" class="org.apache.royale.jewel.IconButton"/>
     <component id="ToggleButton" class="org.apache.royale.jewel.ToggleButton"/>
+    <component id="ImageButton" class="org.apache.royale.jewel.ImageButton"/>
     <component id="Label" class="org.apache.royale.jewel.Label"/>
     <component id="TextInput" class="org.apache.royale.jewel.TextInput"/>
     <component id="IconTextInput" class="org.apache.royale.jewel.IconTextInput"/>

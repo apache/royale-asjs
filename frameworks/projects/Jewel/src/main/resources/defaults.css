@@ -666,6 +666,15 @@ j|DropDownList {
   font-size: 48px;
 }
 
+.jewel.imagebutton {
+  border-style: none;
+  padding: 0px;
+}
+
+j|ImageButton {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ImageModel");
+}
+
 .jewel.item, .jewel.navigationlink {
   display: flex;
   min-height: 34px;
