@@ -382,7 +382,7 @@ package org.apache.royale.jewel
          */
 		public function get text():String
 		{
-            return element.innerHTML;
+            return (element as HTMLButtonElement).innerHTML;
 		}
 
         /**
@@ -390,7 +390,7 @@ package org.apache.royale.jewel
          */
 		public function set text(value:String):void
 		{
-            this.element.innerHTML = value;
+            (element as HTMLButtonElement).innerHTML = value;
             this.dispatchEvent('textChange');
 		}
 
@@ -404,7 +404,7 @@ package org.apache.royale.jewel
          */
 		public function get html():String
 		{
-            return element.innerHTML;
+            return (element as HTMLButtonElement).innerHTML;
 		}
 
         /**
@@ -412,7 +412,7 @@ package org.apache.royale.jewel
          */
 		public function set html(value:String):void
 		{
-            this.element.innerHTML = value;
+            (element as HTMLButtonElement).innerHTML = value;
             this.dispatchEvent('textChange');
 		}
 
