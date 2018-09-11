@@ -21,6 +21,9 @@
         <optimization>skipFunctionCoercions</optimization>
     </js-output-optimization>
     <compiler>
+        <targets>
+            <target>JSRoyale</target>
+        </targets>
         <js-external-library-path append="true">
             <path-element>../../../../../../js/libs/ace-1.2.3.swc</path-element>
         </js-external-library-path>
