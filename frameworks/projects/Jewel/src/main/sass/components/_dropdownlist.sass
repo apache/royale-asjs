@@ -27,17 +27,20 @@ $dropdownlist-button-size: 22px
 $dropdownlist-button-xoffset: calc(50% - #{$combobox-button-size/2})
 $dropdownlist-button-yoffset: calc(50% - #{$combobox-button-size/2})
 
-.jewel.dropdownlist
-    +appear(none)
-    
-    margin: $dropdownlist-margin
-    padding: $dropdownlist-padding-vertical $dropdownlist-padding-horizontal 
+.jewel
+    &.dropdownlist
+        +appear(none)
 
-    cursor: pointer
-    display: inline-flex
+        width: 200px
+        height: 38px
+        
+        margin: $dropdownlist-margin
+        padding: $dropdownlist-padding-vertical $dropdownlist-padding-horizontal + 1.26em $dropdownlist-padding-vertical $dropdownlist-padding-horizontal 
+        cursor: pointer
+        display: inline-flex
 
-    line-height: normal !important
-    outline: none
+        line-height: normal !important
+        outline: none
 
 j|DropDownList
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView")

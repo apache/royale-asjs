@@ -350,6 +350,11 @@ j|ComboBox {
     width: calc(100% - 300px);
   }
 }
+@media (max-width: 992px) {
+  .jewel.item {
+    height: 48px;
+  }
+}
 @media (min-width: 992px) {
   .combobox-popup::before {
     background-color: rgba(0, 0, 0, 0);
@@ -627,8 +632,10 @@ j|DateField {
   -o-appearance: none;
   -ms-appearance: none;
   appearance: none;
+  width: 200px;
+  height: 38px;
   margin: 0;
-  padding: 0.68em 1.12em;
+  padding: 0.68em 2.38em 0.68em 1.12em;
   cursor: pointer;
   display: inline-flex;
   line-height: normal !important;
