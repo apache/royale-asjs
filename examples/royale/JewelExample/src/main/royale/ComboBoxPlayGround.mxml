@@ -93,7 +93,7 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:ComboBox id="avengersComboBox" labelField="label" dataProvider="{listModel.avengers}" change="avengersComboBoxSelectedItem(event)">
+						<j:ComboBox id="avengersComboBox" width="140" labelField="label" dataProvider="{listModel.avengers}" change="avengersComboBoxSelectedItem(event)">
 							<j:beads>
 								<j:ComboBoxTextPrompt prompt="Avengers Team..."/>
 							</j:beads>

@@ -119,15 +119,29 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.strand = value;
 			
-			var host:StyledUIBase = value as StyledUIBase;
-			
+			var host:StyledUIBase = _strand as StyledUIBase;
+
 			_textinput = new TextInput();
 			
 			_button = new Button();
 			_button.text = '\u25BC';
 			
+			_button.width = 39;
+
+			if(host.width == 0 || host.width < 89)
+			{
+				var w:Number = host.width == 0 ? 200 : 89;
+				_textinput.width = w - _button.width;
+				host.width = _textinput.width + _button.width;
+			} else
+			{
+				_textinput.width = host.width - _button.width;
+			}
+
+			
 			host.addElement(_textinput);
 			host.addElement(_button);
+			//host.width = _textinput.width + _button.width;
 			
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
@@ -160,7 +174,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function set popUpVisible(value:Boolean):void
 		{
-			
 			if (value) {
 				var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
 				_combolist = new popUpClass() as ComboBoxList;
@@ -174,7 +187,6 @@ package org.apache.royale.jewel.beads.views
 				
 				// popup is ComboBoxList that fills 100% of browser window-> We want the internal List inside to adjust height
 				_list = _combolist.list;
-				_list.height = 250;
 				
 				setTimeout(prepareForPopUp,  300);
 
@@ -242,8 +254,16 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function sizeChangeAction():void
 		{
-			//var host:StyledUIBase = StyledUIBase(_strand);
+			// var host:StyledUIBase = _strand as StyledUIBase;
+
+			// _textinput.width = host.width - _button.width;
+			// host.width = _textinput.width + _button.width;
 			
+			// textinput.width = host.width - button.width;
+			// host.width = textinput.width + button.width;
+
+			// dispatchEvent(new Event("layoutNeeded"));
+
 			// input.x = 0;
 			// input.y = 0;
 			// if (host.isWidthSizedToContent()) {
@@ -288,21 +308,24 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				var outerWidth:Number = window.outerWidth;
+				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
-					var origin:Point = new Point(0, button.y+button.height);
+					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
 					// comboList.x = relocated.x;
 					// comboList.y = relocated.y;
 					_list.positioner.style["left"] = relocated.x + "px";
 					_list.positioner.style["top"] = relocated.y + "px";
+					_list.width = _textinput.width + _button.width;
 				}
 				else
 				{
 					_list.positioner.style["left"] = "50%";
 					_list.positioner.style["top"] = "calc(100% - 10px)";
+					// _list.positioner.style["width"] = "initial"; 
 				}
 			}
 		}
