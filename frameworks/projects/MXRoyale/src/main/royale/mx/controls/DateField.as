@@ -66,7 +66,7 @@ import org.apache.royale.core.IDateChooserModel;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-///[Event(name="change", type="mx.events.CalendarLayoutChangeEvent")]
+[Event(name="change", type="mx.events.CalendarLayoutChangeEvent")]
 
 /**
  *  Dispatched when a date is selected or the user clicks
