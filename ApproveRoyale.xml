@@ -266,7 +266,7 @@
     <target name="check-sigs" description="check SHA-512 and gpg sigs">
 		<replace file="${basedir}/${package.url.name}.${package.suffix}.SHA-512"
 			token=" " />
-		<checksum file="${basedir}/${package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="SHA-512.ok" fileext="sha512"/>
+		<checksum file="${basedir}/${package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="SHA-512.ok" fileext=".sha512"/>
         <condition property="SHA-512Invalid">
 			<not>
 				<equals arg1="${SHA-512.ok}" arg2="true" />
@@ -275,7 +275,7 @@
         <fail message="SHA-512 checksum did not match" if="SHA-512Invalid" />
         <replace file="${basedir}/${bin.package.url.name}.${package.suffix}.SHA-512"
         token=" " />
-        <checksum file="${basedir}/${bin.package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="bin.SHA-512.ok" fileext="sha512"/>
+        <checksum file="${basedir}/${bin.package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="bin.SHA-512.ok" fileext=".sha512"/>
         <condition property="BinarySHA-512Invalid">
             <not>
                 <equals arg1="${bin.SHA-512.ok}" arg2="true" />
@@ -285,7 +285,7 @@
         <!-- no doc packages in 0.8.0
         <replace file="${basedir}/${doc.package.url.name}.zip.SHA-512"
         token=" " />
-        <checksum file="${basedir}/${doc.package.url.name}.zip" algorithm="SHA-512" verifyproperty="doc.SHA-512.ok" fileext="sha512"/>
+        <checksum file="${basedir}/${doc.package.url.name}.zip" algorithm="SHA-512" verifyproperty="doc.SHA-512.ok" fileext=".sha512"/>
         <condition property="DocSHA-512Invalid">
             <not>
                 <equals arg1="${doc.SHA-512.ok}" arg2="true" />
@@ -845,7 +845,7 @@
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
         <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.SHA-512"
              dest="${basedir}/${binary.jx.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext="sha512"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext=".sha512"/>
         <condition property="CompilerSHA-512Invalid">
             <not>
                 <equals arg1="${compiler.SHA-512.ok}" arg2="true" />
@@ -864,7 +864,7 @@
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
         <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip.SHA-512"
         dest="${basedir}/${binary.jx.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext="sha512"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext=".sha512"/>
         <condition property="CompilerSHA-512Invalid">
             <not>
                 <equals arg1="${compiler.SHA-512.ok}" arg2="true" />
@@ -882,7 +882,7 @@
         dest="${basedir}/${binary.flexunit.kit}.zip" verbose="true" skipexisting="true"/>
         <get src="https://archive.apache.org/dist/royale/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.SHA-512"
         dest="${basedir}/${binary.flexunit.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="SHA-512" verifyproperty="flexunit.SHA-512.ok" fileext="sha512"/>
+        <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="SHA-512" verifyproperty="flexunit.SHA-512.ok" fileext=".sha512"/>
         <condition property="FlexUnitSHA-512Invalid">
             <not>
                 <equals arg1="${flexunit.SHA-512.ok}" arg2="true" />
@@ -900,7 +900,7 @@
         dest="${basedir}/${binary.sdk.kit}.zip" verbose="true" skipexisting="true"/>
         <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip.SHA-512"
         dest="${basedir}/${binary.sdk.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
-        <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="SHA-512" verifyproperty="sdk.SHA-512.ok" fileext="sha512"/>
+        <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="SHA-512" verifyproperty="sdk.SHA-512.ok" fileext=".sha512"/>
         <condition property="SDKSHA-512Invalid">
             <not>
                 <equals arg1="${sdk.SHA-512.ok}" arg2="true" />
