@@ -428,6 +428,14 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
     //
     //--------------------------------------------------------------------------
 
+    //----------------------------------
+    //  value
+    //----------------------------------
+	
+    public function get value():Object
+	{
+      return null;	
+	}
 
     //----------------------------------
     //  dataProvider
