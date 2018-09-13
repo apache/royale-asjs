@@ -23,14 +23,14 @@ $itemrenderer-padding: 16px
 // ListItemRenderer variables
 .jewel.item
     padding: 8px
-    
-    &:hover
-        color: $font-theme-color
-        background: $primary-color
 
-    &:active, &.selected
+    &.hovered:hover
         color: $font-theme-color
-        background: darken($primary-color, 5%)
+        background: $primary-color !important
+
+    &.selected, &.selectable:active
+        color: $font-theme-color
+        background: darken($primary-color, 5%) !important
 
 .jewel.navigationlink
     margin: 0
@@ -42,10 +42,10 @@ $itemrenderer-padding: 16px
 
     color: rgba(black, 0.6)
     
-    &:hover
+    &.hovered:hover
         //color: $font-theme-color
-        background: lighten($default-color, 10%)
+        background: lighten($default-color, 10%) !important
 
-    &:active
-        //color: $font-theme-color
-        background: $default-color
+    // &.selectable:active
+    //     //color: $font-theme-color
+    //     background: $default-color !important

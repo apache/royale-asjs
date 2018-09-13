@@ -3277,6 +3277,10 @@ j|Table {
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
+  cursor: auto;
+}
+.jewel.tableitem.selectable {
+  cursor: pointer;
 }
 .jewel.tableitem.with-childs {
   padding: 6px;
