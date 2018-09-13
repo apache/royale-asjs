@@ -92,7 +92,6 @@ COMPILE::JS {
 				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
 				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
 				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseUp);
-                goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
 			}
 		}
 		
