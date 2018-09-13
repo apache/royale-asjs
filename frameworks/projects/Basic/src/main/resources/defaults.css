@@ -545,6 +545,7 @@ Panel
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.PanelModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.PanelView");
 	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IPanelContentArea: ClassReference("org.apache.royale.html.Container");
 	
 	background-color: #FFFFFF;
 	border: 1px solid #333333
