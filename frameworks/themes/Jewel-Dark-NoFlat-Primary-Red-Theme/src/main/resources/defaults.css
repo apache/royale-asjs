@@ -416,13 +416,13 @@ j|Card {
 .jewel.item {
   padding: 8px;
 }
-.jewel.item:hover {
+.jewel.item.hovered:hover {
   color: #FFFFFF;
-  background: #EC1C24;
+  background: #EC1C24 !important;
 }
-.jewel.item:active, .jewel.item.selected {
+.jewel.item.selected, .jewel.item.selectable:active {
   color: #FFFFFF;
-  background: #dc121a;
+  background: #dc121a !important;
 }
 
 .jewel.navigationlink {
@@ -433,11 +433,8 @@ j|Card {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
 }
-.jewel.navigationlink:hover {
-  background: #737373;
-}
-.jewel.navigationlink:active {
-  background: #595959;
+.jewel.navigationlink.hovered:hover {
+  background: #737373 !important;
 }
 
 .jewel.label {
@@ -732,19 +729,13 @@ j|Card {
   box-shadow: inset 0 1px 0 #a6a6a6;
 }
 
-.jewel.tableitem {
-  cursor: auto;
-}
-.jewel.tableitem.selectable {
-  cursor: pointer;
-}
 .jewel.tableitem.hovered:hover {
   color: #FFFFFF;
-  background: #EC1C24;
+  background: #EC1C24 !important;
 }
 .jewel.tableitem.selected, .jewel.tableitem.selectable:active {
   color: #FFFFFF;
-  background: #dc121a;
+  background: #dc121a !important;
 }
 
 a:link {
