@@ -20,17 +20,19 @@
 // Jewel ToolTip
 
 // ToolTip variables
-
-
 .jewel
-	&.errorTip
+	&.tooltip
 		padding: 6px
+		position: absolute
+		pointer-events: none
 		z-index: 5
-		margin-top: -31px !important
+	
+		&.error
+			margin-top: -31px !important
 
-		&::before
-			top: 100%
-			left: 8px
-			position: absolute
-			content: ""
-			margin-top: 0px
+			&::before
+				top: 100%
+				left: 8px
+				position: absolute
+				content: ""
+				margin-top: 0px

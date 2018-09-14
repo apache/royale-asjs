@@ -227,7 +227,7 @@ package org.apache.royale.utils
             return isClass(classDef) ? classDef : null;
         }
         /**
-		 * @debug
+		 * @royaledebug
 		 */
 		static public function trace(...rest):void
 		{

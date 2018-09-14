@@ -44,7 +44,7 @@ $alert-modal-opacity: .5
 
     // top: 50%
     // left: 50%
-    // transform: translate(-50%, -50%)
+    transform: translate(-50%, -60%)
     
     margin: 0
     padding: 0
@@ -59,6 +59,18 @@ $alert-modal-opacity: .5
     background-color: $background-color
     box-shadow: 0px 20px 65px 0px rgba(0,0,0,0.8)
     border-radius: $alert-border-radius
+
+    opacity: 0
+    will-change: opacity, transform
+    
+    &.open
+        opacity: 1
+        transform: translate(-50%, -50%)
+        transition: animation-standard(opacity, .4s), animation-standard(transform, .4s)
+
+        + .backdrop
+            opacity: 1
+            transition: animation-standard(opacity, .4s)
 
     .jewel.titlebar
         padding: $alert-padding $alert-padding 0px $alert-padding
@@ -102,4 +114,6 @@ $alert-modal-opacity: .5
         height: $alert-footer-height
         
     + .backdrop
+        opacity: 0
+        will-change: opacity
         background-color: rgba(0, 0, 0, $alert-modal-opacity)

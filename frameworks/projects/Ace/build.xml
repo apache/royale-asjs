@@ -29,7 +29,7 @@
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
-    <target name="main" depends="clean,check-compiler,compile,compile-js,test" description="Full build of ${ant.project.name}.swc">
+    <target name="main" depends="clean,check-compiler,compile-js,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="compile-js">

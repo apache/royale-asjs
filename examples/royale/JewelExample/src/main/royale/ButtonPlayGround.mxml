@@ -27,6 +27,13 @@ limitations under the License.
             private function clickHandler(event:MouseEvent):void {
                 button.emphasis = (button.emphasis == Button.PRIMARY) ? "" : Button.PRIMARY;
             }
+
+			private function onValueChange(event:Event):void
+			{
+				// trace("onValueChange"); // if target IE11 you must use this event handler
+				reizableButton.width = slider_w.value;
+				reizableButton.height = slider_h.value;
+			}
 		]]>
 	</fx:Script>
 	
@@ -35,8 +42,8 @@ limitations under the License.
     </j:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="1"
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel Button"/>
@@ -53,7 +60,7 @@ limitations under the License.
 				</j:Button>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
@@ -81,7 +88,9 @@ limitations under the License.
 				</j:Button>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+	</j:Grid>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
@@ -97,6 +106,21 @@ limitations under the License.
 						<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
 					</j:icon>
 				</j:IconButton>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H4 text="Button size"/>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
+					<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{Button.PRIMARY}"/>
+					<j:Button text="check layout"/>
+				</j:HGroup>
+				<j:Slider id="slider_w" width="350" value="96" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:Slider id="slider_h" width="350" value="38" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:Label text="Resize button to: '{reizableButton.width}x{reizableButton.height}'"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

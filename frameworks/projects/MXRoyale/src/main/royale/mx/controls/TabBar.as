@@ -21,7 +21,6 @@ package mx.controls
 {
 COMPILE::JS
 {
-    import goog.DEBUG;
 	import org.apache.royale.core.WrappedHTMLElement;
 }
 import mx.core.UIComponent;

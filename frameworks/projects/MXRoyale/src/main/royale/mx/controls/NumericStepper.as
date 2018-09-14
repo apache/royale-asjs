@@ -19,9 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 	
 import org.apache.royale.core.IRangeModel;
 import org.apache.royale.events.Event;

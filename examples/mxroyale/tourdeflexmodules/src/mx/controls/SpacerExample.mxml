@@ -29,9 +29,9 @@
             text="The Spacer control pushes the second image to the right edge of the HBox container." />
 
         <mx:HBox width="100%">
-            <mx:Image source="@Embed('assets/ApacheFlexLogo.png')" width="50%" height="50%" />
+            <mx:Image source="assets/ApacheFlexLogo.png" width="50%" height="50%" />
             <mx:Spacer width="100%"/>
-            <mx:Image source="@Embed('assets/ApacheFlexLogo.png')" width="50%" height="50%" />
+            <mx:Image source="assets/ApacheFlexLogo.png" width="50%" height="50%" />
         </mx:HBox>
        
     </mx:Panel>

@@ -36,15 +36,17 @@
 					totalCost -= 0.25;
 				}
 				// Format the totalCost and then display it in a label.
-				totalString.text = usdFormatter.format(totalCost);
+				totalString.text = /*usdFormatter.format(*/totalCost/*);*/.toString();
 			}
 		]]>
 	</fx:Script>
 	<fx:Declarations>
+        <!--
 		<mx:CurrencyFormatter id="usdFormatter" precision="2" currencySymbol="$"
 							  decimalSeparatorFrom="." decimalSeparatorTo="." 
 							  useNegativeSign="true"
 							  useThousandsSeparator="true" alignSymbol="left"/>
+        -->
 	</fx:Declarations>
 
 	<s:Panel title="CheckBox Sample" width="100%" height="100%">

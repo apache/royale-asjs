@@ -22,6 +22,22 @@ limitations under the License.
 		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html">
 
+	<fx:Script>
+		<![CDATA[
+            private function onValueChange(event:Event):void
+			{
+				// trace("onValueChange"); // if target IE11 you must use this event handler
+				textinput.width = slider_w.value;
+				// button.height = slider_h.value;
+			}
+
+			private function textInputChange(event:Event):void
+			{
+				textToChange.text = event.target.text;
+			}
+		]]>
+	</fx:Script>
+
 	<j:beads>
         <js:ContainerDataBinding/>
     </j:beads>
@@ -39,14 +55,14 @@ limitations under the License.
 						<j:HorizontalLayout gap="3"/>
 					</j:beads>
 					<j:Button text="Check it!" emphasis="primary"/>
-					<j:TextInput text="A TextInput"/>
+					<j:TextInput text="A TextInput" change="textInputChange(event)"/>
 				</j:Group>
 
 				<j:Group>
 					<j:beads>
 						<j:HorizontalLayout gap="3"/>
 					</j:beads>
-					<j:TextInput>
+					<j:TextInput id="textToChange">
 						<j:beads>
 							<j:TextPrompt prompt="With prompt..."/>
 						</j:beads>
@@ -61,12 +77,24 @@ limitations under the License.
 					</j:beads>
 				</j:TextInput>
 
-				<j:TextInput>
+				<j:TextInput text="{textToChange.text}">
 					<j:beads>
 						<j:TextPrompt prompt="Disabled with prompt..."/>
 						<j:Disabled/>
 					</j:beads>
 				</j:TextInput>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
+					<j:TextInput id="textinput">
+						<j:beads>
+							<j:TextPrompt prompt="Slider resize..."/>
+						</j:beads>
+					</j:TextInput>
+					<j:Label text="A label to check layout"/>
+				</j:HGroup>
+
+				<j:Slider id="slider_w" width="350" value="211" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:Label text="textinput.width='{textinput.width}'"/>
 			</j:Card>
 		</j:GridCell>
 		

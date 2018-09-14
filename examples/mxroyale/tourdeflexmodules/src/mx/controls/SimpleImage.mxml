@@ -26,7 +26,7 @@
 				height="100%" width="100%">
 
         <mx:Label text="Image embedded in the application."/>
-        <mx:Image source="@Embed('assets/ApacheFlexLogo.png')" width="50%" height="50%" />
+        <mx:Image source="assets/ApacheFlexLogo.png" width="50%" height="50%" />
 
     </mx:Panel>
 </mx:Module>          

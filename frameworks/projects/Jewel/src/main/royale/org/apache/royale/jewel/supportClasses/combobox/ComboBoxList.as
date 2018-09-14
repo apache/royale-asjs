@@ -21,6 +21,10 @@ package org.apache.royale.jewel.supportClasses.combobox
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.List;
+    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.beads.layouts.BasicLayout;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.IDataProviderModel;
     
     //--------------------------------------
     //  Events
@@ -45,7 +49,7 @@ package org.apache.royale.jewel.supportClasses.combobox
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class ComboBoxList extends List implements IPopUp
+	public class ComboBoxList extends StyledUIBase implements IPopUp
 	{
         /**
          *  Constructor.
@@ -59,6 +63,93 @@ package org.apache.royale.jewel.supportClasses.combobox
 		{
 			super();
             typeNames = "combobox-popup"
+
+            _list = new List();
         }
+
+        /**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+            super.addedToParent();
+            addElement(_list);
+        }
+
+        private var _list:List;
+
+        public function get list():List
+        {
+        	return _list;
+        }
+
+        public function set list(value:List):void
+        {
+        	_list = value;
+        }
+
+        /**
+		 *  The data for display by the ComboBox.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function get dataProvider():Object
+		{
+			return IDataProviderModel(model).dataProvider;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function set dataProvider(value:Object):void
+		{
+			IDataProviderModel(model).dataProvider = value;
+		}
+
+        [Bindable("change")]
+		/**
+		 *  The index of the currently selected item. Changing this item changes
+		 *  the selectedItem value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function get selectedIndex():int
+		{
+			return ISelectionModel(model).selectedIndex;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function set selectedIndex(value:int):void
+		{
+			ISelectionModel(model).selectedIndex = value;
+		}
+
+        [Bindable("change")]
+		/**
+		 *  The item currently selected. Changing this value also
+		 *  changes the selectedIndex property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function get selectedItem():Object
+		{
+			return ISelectionModel(model).selectedItem;
+		}
+		public function set selectedItem(value:Object):void
+		{
+			ISelectionModel(model).selectedItem = value;
+		}
 	}
 }

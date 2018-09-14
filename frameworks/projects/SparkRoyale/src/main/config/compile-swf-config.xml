@@ -34,7 +34,9 @@
             <path-element>../../../../../libs/Basic.swc</path-element>
             <path-element>../../../../../libs/Binding.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Effects.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
+            <path-element>../../../../../libs/HTML.swc</path-element>
             <path-element>../../../../../libs/MXRoyale.swc</path-element>
             <path-element>../../../../../libs/Reflection.swc</path-element>
             <path-element>../../../../../libs/Text.swc</path-element>

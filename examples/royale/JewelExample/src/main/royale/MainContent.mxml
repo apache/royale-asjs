@@ -62,7 +62,7 @@ limitations under the License.
             <j:ResponsiveDrawer auto="true"/>
         </j:beads>
         <j:DrawerHeader>
-            <j:Image src="assets/apache-royale-jewel-logo-white.svg" height="140" click="goToHome()"/>
+            <j:ImageButton src="assets/apache-royale-jewel-logo-white.svg" height="140" click="goToHome()"/>
         </j:DrawerHeader>
         <j:DrawerContent>
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
@@ -117,6 +117,7 @@ limitations under the License.
         <local:WelcomeSection id="welcome_panel" isActive="true"/>
         <local:AlertPlayGround id="alert_panel"/>
         <local:ButtonPlayGround id="button_panel"/>
+        <local:ImagePlayGround id="image_panel"/>
         <local:NumericStepperPlayGround id="numericstepper_panel"/>
         <local:DateComponentsPlayGround id="datecomponents_panel"/>
         <local:ComboBoxPlayGround id="combobox_panel"/>
@@ -133,6 +134,7 @@ limitations under the License.
         <local:TablePlayGround id="tables_panel"/>
         <local:FormsValidationPlayGround id="form_validation_panel"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>
+        <local:SnackbarPlayGround id="snackbar_panel"/>
     </j:ApplicationMainContent>
     
 </j:ApplicationResponsiveView>

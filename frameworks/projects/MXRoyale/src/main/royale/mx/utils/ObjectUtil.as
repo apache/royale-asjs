@@ -19,9 +19,6 @@
 
 package mx.utils
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 /*
 import flash.utils.ByteArray;
 import flash.utils.Dictionary;
@@ -100,8 +97,7 @@ public class ObjectUtil
      */
     public static function compare(a:Object, b:Object, depth:int = -1):int
     {
-		if (GOOG::DEBUG)
-			trace("compare not implemented");
+		trace("compare not implemented");
 		return 0;
         //return internalCompare(a, b, 0, depth, new Dictionary(true));
     }
@@ -128,8 +124,7 @@ public class ObjectUtil
      */ 
     public static function copy(value:Object):Object
     {
-		if (GOOG::DEBUG)
-			trace("copy not implemented");
+		trace("copy not implemented");
 		return null;
 //        var buffer:ByteArray = new ByteArray();
 //        buffer.writeObject(value);
@@ -162,8 +157,7 @@ public class ObjectUtil
      */ 
     public static function clone(value:Object):Object
     {
-		if (GOOG::DEBUG)
-			trace("clone not implemented");
+		trace("clone not implemented");
 		return null;
 //        var result:Object = copy(value);
 //        cloneInternal(result, value);
@@ -176,8 +170,7 @@ public class ObjectUtil
      */    
     private static function cloneInternal(result:Object, value:Object):void
     {
-		if (GOOG::DEBUG)
-			trace("cloneInternal not implemented");
+		trace("cloneInternal not implemented");
 //        if (value && value.hasOwnProperty("uid"))
 //            result.uid = value.uid;
 //
@@ -578,8 +571,7 @@ public class ObjectUtil
                                              namespaceURIs:Array = null, 
                                              exclude:Array = null):String
     {
-        if (GOOG::DEBUG)
-			trace("internalToString not implemented");
+		trace("internalToString not implemented");
         
         return "(unknown)";
     }
@@ -745,8 +737,7 @@ public class ObjectUtil
                                         excludes:Array = null,
                                         options:Object = null):Object
     {   
-		if (GOOG::DEBUG)
-			trace("getClassInfo not implemented");
+		trace("getClassInfo not implemented");
 		return null;
     }
 
@@ -773,8 +764,7 @@ public class ObjectUtil
                 excludes:Array = null,
                 options:Object = null):Boolean
     {
-		if (GOOG::DEBUG)
-			trace("hasMetadata not implemented");
+		trace("hasMetadata not implemented");
 		return false;
 //        var classInfo:Object = getClassInfo(obj, excludes, options);
 //        var metadataInfo:Object = classInfo["metadata"];
@@ -854,8 +844,7 @@ public class ObjectUtil
      */
     public static function valuesAreSubsetOfObject(values:Object, object:Object):Boolean
     {
-		if (GOOG::DEBUG)
-			trace("valuesAresubsetOfObject not implemented");
+		trace("valuesAresubsetOfObject not implemented");
 		return false;
 //        if(!object && !values)
 //            return true;
@@ -971,8 +960,7 @@ public class ObjectUtil
      */
 //    private static function recordMetadata(properties:XMLList):Object
 //    {
-//		if (GOOG::DEBUG)
-//			trace("recordMetadata not implemented");
+//		trace("recordMetadata not implemented");
 //		return null;
 //    }
 
@@ -982,8 +970,7 @@ public class ObjectUtil
      */
     private static function getCacheKey(o:Object, excludes:Array = null, options:Object = null):String
     {
-        if (GOOG::DEBUG)
-			trace("getCacheKey not implemented");
+		trace("getCacheKey not implemented");
 		return null;
     }
 

@@ -48,7 +48,7 @@
             },
             "osx": {
                 "args": [
-                    "--sdk=/Apache/royale-asjs"
+                    "--sdk=${env:ROYALE_HOME}"
                 ]
             },
             "presentation": {

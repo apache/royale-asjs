@@ -146,6 +146,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
 		}
 
+        COMPILE::SWF
         private var inSetter:Boolean;
 
         /**
@@ -158,8 +159,12 @@ package org.apache.royale.jewel.supportClasses.textinput
 		 */
 		public function textChangeHandler(event:Event):void
 		{
+            COMPILE::SWF
+            {
             if (!inSetter)
                 dispatchEvent(new Event(Event.CHANGE));
+            }
+            dispatchEvent(new Event(Event.CHANGE));
 		}
 
         COMPILE::JS

@@ -26,7 +26,7 @@ import flash.geom.Rectangle;
 import flash.utils.Dictionary;
 import flash.utils.getQualifiedClassName;
  */
-/* import mx.collections.IList;
+/*
 import mx.core.IDataRenderer;
 import mx.core.IInvalidating;
 import mx.core.ILayoutElement;
@@ -42,13 +42,14 @@ import spark.events.RendererExistenceEvent;
  */
  import mx.core.IFactory;
 import mx.core.IVisualElement;
-
+import mx.collections.IList;
  import spark.components.supportClasses.GroupBase;
  import mx.core.IUIComponent;
 
  import mx.core.mx_internal;
 use namespace mx_internal;  // for mx_internal property contentChangeDelta
 
+import org.apache.royale.core.ISelectionModel;
 
 /**
  *  Dispatched when a renderer is added to this dataGroup.
@@ -613,27 +614,20 @@ public class DataGroup extends GroupBase
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
+     *  @royaleignorecoercion mx.collections.IList
      */
-    /* public function get dataProvider():IList
+    public function get dataProvider():IList
     {
-        return _dataProvider;
+        return (model as ISelectionModel).dataProvider as IList;
     }
-     */
     /**
-     *  @private
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
      */
-    /* public function set dataProvider(value:IList):void
+    public function set dataProvider(value:IList):void
     {
-        if (_dataProvider == value)
-            return;
-        
-        removeDataProviderListener();
-        _dataProvider = value;  // listener will be added by commitProperties()
-        dataProviderChanged = true;
-        invalidateProperties();
-        dispatchEvent(new Event("dataProviderChanged"));        
+        (model as ISelectionModel).dataProvider = value;
     }
-     */
+    
     /**
      *  @private
      *  Used below for sorting the virtualRendererIndices Vector.

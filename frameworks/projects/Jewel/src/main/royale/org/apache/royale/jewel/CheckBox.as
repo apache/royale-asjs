@@ -128,6 +128,23 @@ package org.apache.royale.jewel
 			IToggleButtonModel(model).selected = value;
 		}
 
+        /**
+         *  The value associated with the CheckBox.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function get value():String
+        {
+            return IToggleButtonModel(model).html;
+        }
+        public function set value(newValue:String):void
+        {
+            IToggleButtonModel(model).html = newValue;
+        }
+        
 		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
 		{
 			selected = !selected;

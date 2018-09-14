@@ -16,42 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.combobox
-{
-	import org.apache.royale.jewel.supportClasses.list.DataGroup;
 
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
+// Jewel Snackbar
 
-	/**
-	 *  The ComboBoxListDataGroup class is the IItemRendererParent used internally
-     *  by org.apache.royale.jewel.ComboBoxList class, the list component used 
-	 *  in Jewel ComboBox
-	 *  
-     *  @toplevel
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
-	 */
-	public class ComboBoxListDataGroup extends DataGroup
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function ComboBoxListDataGroup()
-		{
-			super();
+// Snackbar variables
+$snackbar-border-radius: $border-radius
 
-			typeNames = "jewel list viewport scroll";
-		}
-    }
-}
+.jewel.snackbar.emphasized
+	.jewel.snackbar-content
+		@if $flat
+			background: $emphasized-color
+			border: 0px solid
+		@else
+			background: linear-gradient(lighten($emphasized-color, 5%), darken($emphasized-color, 5%))
+			border: 1px solid darken($emphasized-color, 15%)
+			box-shadow: inset 0 1px 0 lighten($emphasized-color, 20%)
+			border-bottom: none
+		// +jewel-bg-border("normal", $emphasized-color, $snackbar-border-radius)
+	
+	.jewel.snackbar-message
+		color: $font-theme-color
+
+	.jewel.snackbar-action
+		color: $yellow
+	
+		&:hover
+			@if $flat
+				background: darken($emphasized-color, 5%)
+				border: none
+			@else
+				background: linear-gradient($emphasized-color, darken($emphasized-color, 10%))
+			// +jewel-bg-border("hover", $emphasized-color)
+			// @if $flat == false
+			// 	border: none

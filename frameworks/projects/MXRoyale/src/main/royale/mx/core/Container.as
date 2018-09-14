@@ -45,7 +45,6 @@ package mx.core
 
 COMPILE::JS
 {
-    import goog.DEBUG;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
 }
@@ -552,14 +551,12 @@ public class Container extends UIComponent
      */
     public function get verticalGap():Object
     {
-        if (GOOG::DEBUG)
-            trace("verticalGap not implemented");
+        trace("verticalGap not implemented");
         return 0;
     }
     public function set verticalGap(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("verticalGap not implemented");
+        trace("verticalGap not implemented");
     }
 	
     /**
@@ -574,38 +571,32 @@ public class Container extends UIComponent
      */
     public function get horizontalAlign():String
     {
-        if (GOOG::DEBUG)
-            trace("Container:horizontalAlign not implemented");
+        trace("Container:horizontalAlign not implemented");
         return null;
     }
     public function set horizontalAlign(value:String):void
     {
-        if (GOOG::DEBUG)
-            trace("Container:horizontalAlign not implemented");
+        trace("Container:horizontalAlign not implemented");
     }
     
     
 	public function get horizontalGap():Object
     {
-        if (GOOG::DEBUG)
-            trace("horizontalGap not implemented");
+        trace("horizontalGap not implemented");
         return 0;
     }
     public function set horizontalGap(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("horizontalGap not implemented");
+        trace("horizontalGap not implemented");
     }
      public function get verticalAlign():Object
     {
-        if (GOOG::DEBUG)
-            trace("verticalAlign not implemented");
+        trace("verticalAlign not implemented");
         return 0;
     }
     public function set verticalAlign(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("verticalAlign not implemented");
+        trace("verticalAlign not implemented");
     }
 	/*	  
      *  @langversion 3.0
@@ -615,14 +606,12 @@ public class Container extends UIComponent
      */
     public function get borderStyle():Object
     {
-        if (GOOG::DEBUG)
-            trace("borderStyle not implemented");
+        trace("borderStyle not implemented");
         return 0;
     }
     public function set borderStyle(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("borderStyle not implemented");
+        trace("borderStyle not implemented");
     }
 	[Inspectable(category="General")]
 	
@@ -634,14 +623,12 @@ public class Container extends UIComponent
      */
     public function get backgroundColor():Object
     {
-        if (GOOG::DEBUG)
-            trace("backgroundColor not implemented");
+        trace("backgroundColor not implemented");
         return 0;
     }
     public function set backgroundColor(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("backgroundColor not implemented");
+        trace("backgroundColor not implemented");
     }
     
     //----------------------------------

@@ -30,7 +30,11 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.views.ListView;
-	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup;
+	import org.apache.royale.jewel.List;
+	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList;
+	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.core.ISelectionModel;
+	
 	
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -57,7 +61,8 @@ package org.apache.royale.jewel.beads.controllers
 		}
 		
 		protected var viewBead:IComboBoxView;
-		private var dataGroup:ComboBoxListDataGroup;
+		private var list:List;
+		private var model:IComboBoxModel;
 		
 		private var _strand:IStrand;
 		
@@ -74,6 +79,7 @@ package org.apache.royale.jewel.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
 			if (viewBead) {
 				finishSetup();
@@ -101,12 +107,12 @@ package org.apache.royale.jewel.beads.controllers
 			
 			viewBead.popUpVisible = true;
 			
-			IEventDispatcher(viewBead.popup).addEventListener(Event.CHANGE, changeHandler);
+			IEventDispatcher(viewBead.popup.list).addEventListener(Event.CHANGE, changeHandler);
 
-			// viewBead.popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside
-			dataGroup = viewBead.popup.view.contentView.view.contentView;
+			// viewBead.popup is ComboBoxList that fills 100% of browser window-> We want List inside
+			list = (viewBead.popup as ComboBoxList).list;
 
-			IEventDispatcher(dataGroup).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(list).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popup).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 		}
 
@@ -120,9 +126,9 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function removePopUpWhenClickOutside(event:MouseEvent = null):void
 		{
-			IEventDispatcher(dataGroup).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(list).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popup).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
-			IEventDispatcher(viewBead.popup).removeEventListener(Event.CHANGE, changeHandler);
+			IEventDispatcher(viewBead.popup.list).removeEventListener(Event.CHANGE, changeHandler);
 			viewBead.popUpVisible = false;
 		}
 		
@@ -133,10 +139,11 @@ package org.apache.royale.jewel.beads.controllers
 		private function changeHandler(event:Event):void
 		{
 			event.stopImmediatePropagation();
-			IEventDispatcher(dataGroup).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(list).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popup).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
-			IEventDispatcher(viewBead.popup).removeEventListener(Event.CHANGE, changeHandler);
+			IEventDispatcher(viewBead.popup.list).removeEventListener(Event.CHANGE, changeHandler);
 
+			model.selectedItem = ISelectionModel(viewBead.popup.list.getBeadByType(ISelectionModel)).selectedItem;
 			viewBead.popUpVisible = false;
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));

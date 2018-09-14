@@ -138,7 +138,10 @@ package
 						outArr[i] = "&lt;";
 						break;
 					case "&":
-						outArr[i] = "&amp;";
+						if(arr[i+1] == "#")
+							outArr[i] = "&";
+						else
+							outArr[i] = "&amp;";
 						break;
 					case '"':
 						outArr[i] = "&quot;";
@@ -176,7 +179,10 @@ package
 						outArr[i] = "&gt;";
 						break;
 					case "&":
-						outArr[i] = "&amp;";
+						if(arr[i+1] == "#")
+							outArr[i] = "&";
+						else
+							outArr[i] = "&amp;";
 						break;
 					default:
 						outArr[i] = arr[i];

@@ -26,6 +26,8 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.Menu;
 	import org.apache.royale.html.MenuBar;
@@ -71,6 +73,25 @@ package org.apache.royale.html.beads.controllers
 		{
 			_strand = value;
 			super.strand = value;
+		}
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
+		override protected function handleItemAdded(event:ItemAddedEvent):void
+		{
+			IEventDispatcher(event.item).addEventListener("itemMouseDown", selectedHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
+		}
+		
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
+		override protected function handleItemRemoved(event:ItemRemovedEvent):void
+		{
+			IEventDispatcher(event.item).removeEventListener("itemMouseDown", selectedHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
 		
 		/**

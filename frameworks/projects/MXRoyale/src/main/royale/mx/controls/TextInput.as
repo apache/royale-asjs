@@ -21,7 +21,7 @@ package mx.controls
 {
 COMPILE::JS
 {
-	import goog.DEBUG;
+	import goog.events;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
 }
@@ -1437,8 +1437,7 @@ public class TextInput extends UIComponent implements ITextInput
     {
         super.measure();
 
-        if (GOOG::DEBUG)
-        	trace("TextInput.measure not implemented");
+        trace("TextInput.measure not implemented");
 
 //         var bm:EdgeMetrics = border && border is IRectangularBorder ?
 //                              IRectangularBorder(border).borderMetrics :
@@ -1492,8 +1491,7 @@ public class TextInput extends UIComponent implements ITextInput
     {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
 
-        if (GOOG::DEBUG)
-        	trace("TextInput.updateDisplayList not implemented");
+        trace("TextInput.updateDisplayList not implemented");
 //         var bm:EdgeMetrics;
 //
 //         if (border)
@@ -1542,8 +1540,7 @@ public class TextInput extends UIComponent implements ITextInput
      */
     override public function styleChanged(styleProp:String):void
     {
-    	if (GOOG::DEBUG)
-    		trace("TextInput.styleChanged not implemented");
+    	trace("TextInput.styleChanged not implemented");
 //         var allStyles:Boolean = (styleProp == null || styleProp == "styleName");
 //
 //         super.styleChanged(styleProp);
@@ -1618,8 +1615,7 @@ public class TextInput extends UIComponent implements ITextInput
      */
     protected function createBorder():void
     {
-    	if (GOOG::DEBUG)
-    		trace("TextInput.createBorder not implemented");
+    	trace("TextInput.createBorder not implemented");
 //         if (!border)
 //         {
 //             var borderClass:Class = getStyle("borderSkin");
@@ -1688,8 +1684,7 @@ public class TextInput extends UIComponent implements ITextInput
     private function textFieldChanged(styleChangeOnly:Boolean,
                                       dispatchValueCommitEvent:Boolean):void
     {
-    	if (GOOG::DEBUG)
-    		trace("TextInput.textFieldChanged not implemented");
+    	trace("TextInput.textFieldChanged not implemented");
 //         var changed1:Boolean;
 //         var changed2:Boolean;
 //
@@ -1769,8 +1764,7 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function selectRange(anchorIndex:int, activeIndex:int):void
     {
-    	if (GOOG::DEBUG)
-    		trace("TextInput.selectRange not implemented");
+    	trace("TextInput.selectRange not implemented");
         // Do it immediately.
 //         textField.setSelection(anchorIndex, activeIndex);
     }

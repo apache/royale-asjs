@@ -19,10 +19,6 @@
 
 package mx.styles
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 
 /*
 import flash.display.DisplayObject;
@@ -118,8 +114,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	
 	public static function generateCSSStyleDeclarations(styleManager:StyleManagerImpl, factoryFunctions:Object, data:Array, newSelectors:Array = null, overrideMap:Object = null):void
 	{
-        if (GOOG::DEBUG)
-            trace("generateCSSStyleDeclarations not implemented");
+        trace("generateCSSStyleDeclarations not implemented");
         /*
 		var arr:Array = data;
 		
@@ -776,8 +771,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	 */
 	public function initProtoChainRoots():void
 	{
-        if (GOOG::DEBUG)
-            trace("initProtoChainRoots not implemented");
+        trace("initProtoChainRoots not implemented");
         /*
 		if (!stylesRoot)
 		{
@@ -878,8 +872,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	 */ 
 	public function getStyleDeclarations(subject:String):Object
 	{
-        if (GOOG::DEBUG)
-            trace("getStyleDeclarations not implemented");
+        trace("getStyleDeclarations not implemented");
 
         /*
 		// For Flex 3 and earlier, if we were passed a subject with a package
@@ -961,8 +954,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	 */
 	public function getStyleDeclaration(selector:String):CSSStyleDeclaration
 	{
-        if (GOOG::DEBUG)
-            trace("getStyleDeclaration not implemented");
+        trace("getStyleDeclaration not implemented");
         /*
 		// For Flex 3 and earlier, if we were passed a selector with a package
 		// name, such as "mx.controls.Button", strip off the package name
@@ -1027,8 +1019,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	 */     
 	public function getMergedStyleDeclaration(selector:String):CSSStyleDeclaration
 	{
-        if (GOOG::DEBUG)
-            trace("getMergedStyleDeclaration not implemented");
+        trace("getMergedStyleDeclaration not implemented");
         /*
 		var style:CSSStyleDeclaration = getStyleDeclaration(selector);
 		var parentStyle:CSSStyleDeclaration = null;
@@ -1088,8 +1079,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 										styleDeclaration:CSSStyleDeclaration,
 										update:Boolean):void
 	{
-        if (GOOG::DEBUG)
-            trace("setStyleDeclaration not implemented");
+        trace("setStyleDeclaration not implemented");
 
         /*
 		// For Flex 3 and earlier, if we were passed a selector with a package
@@ -1223,8 +1213,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	public function clearStyleDeclaration(selector:String,
 										  update:Boolean):void
 	{
-        if (GOOG::DEBUG)
-            trace("clearStyleDeclaration not implemented");
+        trace("clearStyleDeclaration not implemented");
         /*
 		var styleDeclaration:CSSStyleDeclaration =
 			getStyleDeclaration(selector);
@@ -1303,8 +1292,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	 */
 	public function styleDeclarationsChanged():void
 	{
-        if (GOOG::DEBUG)
-            trace("styleDeclarationsChanged not implemented");
+        trace("styleDeclarationsChanged not implemented");
 		//var sms:Array /* of SystemManager */ =
 		//	SystemManagerGlobals.topLevelSystemManagers;
 		//var n:int = sms.length;

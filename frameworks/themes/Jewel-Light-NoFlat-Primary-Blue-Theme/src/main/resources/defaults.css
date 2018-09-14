@@ -24,6 +24,10 @@ j|Application {
   margin: 0px;
 }
 
+j|Form {
+  gap: 3;
+}
+
 h1 {
   font-size: 2.5em;
 }
@@ -73,6 +77,7 @@ div {
 }
 
 .jewel.alert {
+  transform: translate(-50%, -60%);
   margin: 0;
   padding: 0;
   min-width: 320px;
@@ -81,6 +86,17 @@ div {
   background-color: white;
   box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
   border-radius: 3px;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+.jewel.alert.open {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0ms, transform 0.4s 0ms;
+}
+.jewel.alert.open + .backdrop {
+  opacity: 1;
+  transition: opacity 0.4s 0ms;
 }
 .jewel.alert .jewel.titlebar {
   padding: 20px 20px 0px 20px;
@@ -114,6 +130,8 @@ div {
   height: 84px;
 }
 .jewel.alert + .backdrop {
+  opacity: 0;
+  will-change: opacity;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -369,12 +387,10 @@ j|Card {
 }
 
 .jewel.dropdownlist {
-  width: 200px;
-  height: 38px;
   background-color: linear-gradient(white, #f3f3f3);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-size: 8%;
-  background-position: 170px center;
+  background-size: 1.08em;
+  background-position: right 0.7em center;
   background-repeat: no-repeat;
   border: 1px solid #b3b3b3;
   border-radius: 0.25rem;
@@ -399,13 +415,13 @@ j|Card {
 .jewel.item {
   padding: 8px;
 }
-.jewel.item:hover {
+.jewel.item.hovered:hover {
   color: #FFFFFF;
-  background: #3CADF1;
+  background: #3CADF1 !important;
 }
-.jewel.item:active, .jewel.item.selected {
+.jewel.item.selected, .jewel.item.selectable:active {
   color: #FFFFFF;
-  background: #24a3ef;
+  background: #24a3ef !important;
 }
 
 .jewel.navigationlink {
@@ -416,11 +432,8 @@ j|Card {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
 }
-.jewel.navigationlink:hover {
-  background: #f3f3f3;
-}
-.jewel.navigationlink:active {
-  background: #d9d9d9;
+.jewel.navigationlink.hovered:hover {
+  background: #f3f3f3 !important;
 }
 
 .jewel.label {
@@ -601,6 +614,52 @@ j|Card {
   border-radius: 3px;
 }
 
+.jewel.snackbar {
+  will-change: transform;
+  transform: translate(0, 100%);
+  transition: transform 0.4s 0ms;
+}
+.jewel.snackbar.open {
+  transform: translate(0);
+  transition: transform 0.4s 0ms;
+}
+.jewel.snackbar.primary .jewel.snackbar-content {
+  background: linear-gradient(#54b7f3, #24a3ef);
+  border: 1px solid #0f88d1;
+  box-shadow: inset 0 1px 0 #9bd5f8;
+  border-bottom: none;
+}
+.jewel.snackbar.primary .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.primary .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.primary .jewel.snackbar-action:hover {
+  background: linear-gradient(#3CADF1, #1198e9);
+}
+
+.jewel.snackbar-content {
+  background: #2C3E50;
+  border-radius: 0.25rem 0.25rem 0px 0px;
+}
+
+.jewel.snackbar-message {
+  color: #FFFFFF;
+}
+
+.jewel.snackbar-action {
+  color: #FFD740;
+}
+.jewel.snackbar-action:hover {
+  background-color: #3C4E60;
+}
+
+@media (max-width: 992px) {
+  .jewel.snackbar-content {
+    border-radius: 0px;
+  }
+}
 .jewel.simpletable {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
@@ -669,19 +728,13 @@ j|Card {
   box-shadow: inset 0 1px 0 white;
 }
 
-.jewel.tableitem {
-  cursor: auto;
-}
-.jewel.tableitem.selectable {
-  cursor: pointer;
-}
 .jewel.tableitem.hovered:hover {
   color: #FFFFFF;
-  background: #3CADF1;
+  background: #3CADF1 !important;
 }
 .jewel.tableitem.selected, .jewel.tableitem.selectable:active {
   color: #FFFFFF;
-  background: #24a3ef;
+  background: #24a3ef !important;
 }
 
 a:link {
@@ -763,13 +816,16 @@ a:active {
   margin-right: 8px;
 }
 
-.jewel.errorTip {
+.jewel.tooltip {
   color: #FFFFFF;
-  background: #EC1C24;
+  background: #1198e9;
   box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4);
   animation: slide-up 0.4s ease;
 }
-.jewel.errorTip::before {
+.jewel.tooltip.error {
+  background: #EC1C24;
+}
+.jewel.tooltip.error::before {
   border-top-color: #EC1C24;
   border: solid 8px transparent;
 }

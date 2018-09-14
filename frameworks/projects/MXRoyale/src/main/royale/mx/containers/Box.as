@@ -24,10 +24,6 @@ package mx.containers
 	import org.apache.royale.html.beads.layouts.HorizontalLayout;
 	import org.apache.royale.html.beads.layouts.VerticalLayout;
 
-COMPILE::JS
-{
-	import goog.DEBUG;
-}
 /*
 import flash.events.Event;
 */

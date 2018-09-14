@@ -19,10 +19,6 @@
 
 package mx.containers
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 
 import mx.containers.beads.TabNavigatorView;
 import mx.controls.Button;
@@ -417,8 +413,7 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
     public function getTabAt(index:int):Button
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("cacheAsBitmap not implemented");
+        trace("cacheAsBitmap not implemented");
         return null;
     }
 

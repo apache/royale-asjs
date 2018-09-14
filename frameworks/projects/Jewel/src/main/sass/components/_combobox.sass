@@ -31,10 +31,10 @@ $combobox-button-yoffset: calc(50% - #{$combobox-button-size/2})
     display: inline-flex
 
     .jewel.textinput
-        width: $combobox-input-width
+        // width: $combobox-input-width
             
     .jewel.button
-        width: $combobox-button-width
+        // width: $combobox-button-width
         &::before
             margin: 0
             padding: 0
@@ -100,6 +100,7 @@ $combobox-item-min-heigh: 34px
 
 
     .jewel.list
+        position: relative
         transform: translate(-50%, 100%)
         transition: none
         will-change: transform, opacity
@@ -110,7 +111,8 @@ $combobox-item-min-heigh: 34px
         touch-action: none
         box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
 
-        width: $combobox-input-width + $combobox-button-width
+        // width: $combobox-input-width + $combobox-button-width
+        max-height: $combobox-item-min-heigh * 5
         opacity: 0
 
     &.open
@@ -127,12 +129,19 @@ $combobox-item-min-heigh: 34px
 @media (max-width: $tablet)
     .combobox-popup
         .jewel.list
-            width: calc(100% - #{2*$combobox-popup-margin-offset})
+            width: 98% !important
 
 @media (min-width: $tablet) and (max-width: $desktop)
     .combobox-popup
         .jewel.list
-            width: calc(100% - #{30*$combobox-popup-margin-offset})
+            width: 70% !important
+
+@media (max-width: $desktop)
+    .combobox-popup
+        .jewel.list
+            max-height: ( $combobox-item-min-heigh + 14 ) * 5 !important
+    .jewel.item
+        height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
 
 @media (min-width: $desktop)
     .combobox-popup
@@ -159,25 +168,11 @@ $combobox-item-min-heigh: 34px
                     height: $combobox-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
 
 
-
+// this is a StyledUIBase with a List inside
 j|ComboBoxList
-    // IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ListView")
-    // IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
-    // IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
-    // IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer")
-    // IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
-    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
-    // IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListSelectionModel")
-    // IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
-    IContentView: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup")
-    // border-style: solid
-    // border-radius: 4px
-    // border-color: #000000
-    // border-width: 1px
-    // background-color: #FFFFFF
 
-@media -royale-swf
-    j|ComboBoxList
-        IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
+
+// @media -royale-swf
+//     j|ComboBoxList
+//         IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
 	

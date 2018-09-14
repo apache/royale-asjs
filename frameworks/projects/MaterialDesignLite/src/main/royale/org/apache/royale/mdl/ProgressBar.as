@@ -160,7 +160,7 @@ package org.apache.royale.mdl
         {
             if (materialProgress && !_indeterminate)
             {
-                materialProgress.setBuffer(value);
+                materialProgress["setBuffer"](value);
             }
         }
 

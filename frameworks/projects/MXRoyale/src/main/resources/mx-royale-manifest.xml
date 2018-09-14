@@ -151,6 +151,7 @@
 	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
         <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
         <component id="MXAdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
+	<component id="PhoneFormatter" class="mx.formatters.PhoneFormatter"/>
 
 
     <component id="WipeLeft" class="mx.effects.WipeLeft" />

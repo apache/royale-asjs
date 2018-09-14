@@ -55,6 +55,7 @@
     	<component id="GroupBase" class="spark.components.supportClasses.GroupBase"/>
     	<component id="HGroup" class="spark.components.HGroup"/>
 	<component id="VGroup" class="spark.components.VGroup"/>
+    <component id="TileGroup" class="spark.components.TileGroup"/>
     	<component id="ListBase" class="spark.components.supportClasses.ListBase"/>
     	<component id="ItemRenderer" class="spark.components.supportClasses.ItemRenderer"/>
  	<component id="GradientEntry" class="mx.graphics.GradientEntry" lookupOnly="true"/>
@@ -71,6 +72,10 @@
 	<component id="BitmapImage" class="spark.primitives.BitmapImage"/>
     	<component id="Image" class="spark.components.Image"/>
         <component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
+        <component id="TileLayout" class="spark.layouts.TileLayout"/>
+
+    <component id="Module" class="mx.modules.Module" lookupOnly="true"/>
+    <component id="ArrayCollection" class="mx.collections.ArrayCollection" lookupOnly="true"/>
 
     <!-- Text Layout Framework (TLF) -->
     <component id="a" class="org.apache.royale.textLayout.elements.LinkElement" lookupOnly="true"/>

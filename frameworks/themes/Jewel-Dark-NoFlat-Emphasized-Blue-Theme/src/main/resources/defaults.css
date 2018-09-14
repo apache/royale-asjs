@@ -24,6 +24,10 @@ j|Application {
   margin: 0px;
 }
 
+j|Form {
+  gap: 3;
+}
+
 h1 {
   font-size: 2.5em;
 }
@@ -98,6 +102,22 @@ div {
   border: 1px solid #0d0d0d;
   box-shadow: none;
   color: #737373;
+}
+
+.jewel.snackbar.emphasized .jewel.snackbar-content {
+  background: linear-gradient(#54b7f3, #24a3ef);
+  border: 1px solid #0f88d1;
+  box-shadow: inset 0 1px 0 #9bd5f8;
+  border-bottom: none;
+}
+.jewel.snackbar.emphasized .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.emphasized .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.emphasized .jewel.snackbar-action:hover {
+  background: linear-gradient(#3CADF1, #1198e9);
 }
 
 /*# sourceMappingURL=defaults.css.map */

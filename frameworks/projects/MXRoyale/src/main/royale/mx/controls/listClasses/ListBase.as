@@ -17,11 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.listClasses
-{   
-COMPILE::JS
 {
-    import goog.DEBUG;
-}
 
 import mx.core.EdgeMetrics;
 import mx.core.IFactory;
@@ -366,8 +362,7 @@ use namespace mx_internal;
     public function get selectedIndices():Array
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("selectedIndices not implemented");
+        trace("selectedIndices not implemented");
         return null;
     }
     
@@ -377,8 +372,7 @@ use namespace mx_internal;
     public function set selectedIndices(indices:Array):void
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("selectedIndices not implemented");
+        trace("selectedIndices not implemented");
     }
     
     //----------------------------------
@@ -429,8 +423,7 @@ use namespace mx_internal;
     public function get selectedItems():Array
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("selectedItems not implemented");
+        trace("selectedItems not implemented");
         return null;
     }
     
@@ -440,8 +433,7 @@ use namespace mx_internal;
     public function set selectedItems(items:Array):void
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("selectedItems not implemented");
+        trace("selectedItems not implemented");
     }
     
 	//----------------------------------
@@ -721,8 +713,8 @@ use namespace mx_internal;
         
         public function scrollToIndex(index):void
         {
-            if (GOOG::DEBUG)
-                trace("ListBase:scrollToIndex not implemented");
+
+            trace("ListBase:scrollToIndex not implemented");
         }
         
         /**

@@ -27,6 +27,7 @@ package models
         private var _controlsDrawerNavigation:ArrayList = new ArrayList([            
             new NavigationLinkVO("Alert", "alert_panel", MaterialIconType.WEB_ASSET),
             new NavigationLinkVO("Button", "button_panel", MaterialIconType.CROP_7_5),
+            new NavigationLinkVO("Images", "image_panel", MaterialIconType.IMAGE),
             new NavigationLinkVO("NumericStepper", "numericstepper_panel", MaterialIconType.UNFOLD_MORE),
             new NavigationLinkVO("Date Components", "datecomponents_panel", MaterialIconType.DATE_RANGE),
             new NavigationLinkVO("ComboBox", "combobox_panel", MaterialIconType.CREDIT_CARD),
@@ -39,12 +40,11 @@ package models
             new NavigationLinkVO("Text", "text_panel", MaterialIconType.SUBJECT),
             new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS),
             new NavigationLinkVO("Forms & Validation", "form_validation_panel", MaterialIconType.ASSIGNMENT_TURNED_IN),
-            new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD)
+            new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
+            new NavigationLinkVO("Snackbar", "snackbar_panel", MaterialIconType.VIDEO_LABEL)
 
             // new NavigationLinkVO("Menu", "menus_panel"),
-            // new NavigationLinkVO("Loading", "loading_panel"),
-            // new NavigationLinkVO("Snackbar", "snackbar_panel"),
-            // new NavigationLinkVO("Tables", "tables_panel"),
+            // new NavigationLinkVO("Loading", "loading_panel")
             
         ]);
         public function get controlsDrawerNavigation():ArrayList
@@ -57,8 +57,7 @@ package models
             new NavigationLinkVO("Grid", "grid_panel", "grid_on"),
             new NavigationLinkVO("Tables", "tables_panel", "view_quilt")
             
-            // new NavigationLinkVO("Tabs", "tabs_panel"),
-            // new NavigationLinkVO("Snackbar", "snackbar_panel"),
+            // new NavigationLinkVO("Tabs", "tabs_panel")
             
         ]);
 

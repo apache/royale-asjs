@@ -19,9 +19,6 @@
 
 package mx.collections
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 /*
 import flash.system.ApplicationDomain;
 import flash.utils.IDataInput;

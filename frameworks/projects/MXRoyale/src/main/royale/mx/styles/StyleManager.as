@@ -19,10 +19,6 @@
 
 package mx.styles
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 /*
 import flash.events.IEventDispatcher;
 import flash.system.ApplicationDomain;

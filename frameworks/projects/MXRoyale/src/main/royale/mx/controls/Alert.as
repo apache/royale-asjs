@@ -20,9 +20,6 @@
 package mx.controls
 {
 
-	COMPILE::JS {
-		import goog.DEBUG;
-	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.CloseEvent;
 	import mx.containers.Panel;

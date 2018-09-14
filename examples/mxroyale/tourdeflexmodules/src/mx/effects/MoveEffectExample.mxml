@@ -45,7 +45,7 @@
 
         <mx:Canvas id="canvas" width="100%" height="100%" mouseDown="moveImage()">
 
-            <mx:Image id="img" source="@Embed(source='assets/ApacheFlexLogo.png')"
+            <mx:Image id="img" source="assets/ApacheFlexLogo.png"
 				width="50%" height="50%"/>
 
         </mx:Canvas>

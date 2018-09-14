@@ -19,10 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
     /* import flash.display.DisplayObject;
     import flash.display.Graphics;
     import flash.display.Shape;
@@ -9617,16 +9613,14 @@ public class AdvancedDataGrid extends AdvancedListBase
 	    
 	public function get HeaderStyleName():Object
     {
-        if (GOOG::DEBUG)
-            trace("HeaderStyleName not implemented");
+        trace("HeaderStyleName not implemented");
         return 0;
     }
 	
 	
     public function set HeaderStyleName(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("HeaderStyleName not implemented");
+        trace("HeaderStyleName not implemented");
     }
 
 	

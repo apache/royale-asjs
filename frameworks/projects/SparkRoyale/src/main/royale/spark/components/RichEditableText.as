@@ -80,7 +80,6 @@ package spark.components
     import mx.core.IIMESupport;
     import mx.core.ISystemCursorClient;
 	import mx.core.mx_internal;
-    import mx.events.FlexEvent;
     import mx.managers.IFocusManager;
     import mx.utils.StringUtil;
     
@@ -94,6 +93,7 @@ package spark.components
     
     use namespace mx_internal;
     use namespace tlf_internal; */
+    import mx.events.FlexEvent;
 	import mx.core.UIComponent;
 	import mx.managers.IFocusManagerComponent;
 
@@ -140,7 +140,7 @@ package spark.components
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   // [Event(name="change", type="spark.events.TextOperationEvent")]
+    [Event(name="change", type="spark.events.TextOperationEvent")]
     
     /**
      *  Dispatched when the user presses the Enter key,
@@ -1247,7 +1247,7 @@ package spark.components
         /**
          *  @private
          */
-        //private var _content:Object;
+        private var _content:Object;
         
         /**
          *  @private
@@ -1269,7 +1269,7 @@ package spark.components
          *  Similar metadata on TLF classes causes the same rules to apply
          *  within <p>, <span>, etc.
          */
-        //[RichTextContent]
+        [RichTextContent]
                 
         /**
          *  This property is intended for use in MXML at compile time;
@@ -1307,15 +1307,15 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get content():Object
+        public function get content():Object
         {
-            return textFlow;
-        } */
+            return _content; //return textFlow;
+        }
         
         /**
          *  @private
          */   
-        /* public function set content(value:Object):void
+        public function set content(value:Object):void
         {
             // Treat setting the 'content' to null
             // as if 'text' were being set to the empty String
@@ -1330,23 +1330,25 @@ package spark.components
                 return;
             
             _content = value;
-            contentChanged = true;
-            source = "content";
+            //contentChanged = true;
+            //source = "content";
             
             // Of 'text', 'textFlow', and 'content', the last one set wins.
-            textChanged = false;
-            textFlowChanged = false;
+            //textChanged = false;
+            //textFlowChanged = false;
             
             // The other two are now invalid and must be recalculated when needed.
             _text = null;
-            _textFlow = null;
-            
+            //_textFlow = null;
+         
+            /*
             invalidateProperties();
             invalidateSize();
             invalidateDisplayList();
+            */
             
             dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));                                   
-        } */
+        }
         
         //----------------------------------
         //  displayAsPassword
@@ -1400,7 +1402,7 @@ package spark.components
         /**
          *  @private
          */
-        //private var _editable:Boolean = true;
+        private var _editable:Boolean = true;
         
         /**
          *  @private
@@ -1429,25 +1431,27 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get editable():Boolean
+        public function get editable():Boolean
         {
             return _editable;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set editable(value:Boolean):void
+        public function set editable(value:Boolean):void
         {
             if (value == _editable)
                 return;
             
             _editable = value;
+            /*
             editableChanged = true;
             
             invalidateProperties();
             invalidateDisplayList();
-        } */
+            */
+        }
         
         //----------------------------------
         //  editingMode

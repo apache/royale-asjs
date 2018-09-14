@@ -19,9 +19,6 @@
 
 package mx.events
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
@@ -294,8 +291,7 @@ public class CollectionEvent extends Event
 //        return formatToString("CollectionEvent", "kind", "location",
 //							  "oldLocation", "type", "bubbles",
 //							  "cancelable", "eventPhase");
-		if (GOOG::DEBUG)
-			trace("toString not implemented");
+		trace("toString not implemented");
 		return "<CollectionEvent>";
     }
 

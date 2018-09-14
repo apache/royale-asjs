@@ -28,7 +28,7 @@ package org.apache.royale.jewel
     }
 
 	  /**
-	   *  Load Images.
+	   *  Load Images. For button images use ImageButton
 	   *
 	   *  @toplevel
 	   *  @langversion 3.0
@@ -77,33 +77,5 @@ package org.apache.royale.jewel
 		{
 			(element as HTMLImageElement).src = binaryDataAsString;
 		}
-
-
-		COMPILE::JS
-		override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
-        {
-            super.addEventListener(type, handler, opt_capture, opt_handlerScope);
-			if(type == MouseEvent.CLICK || type == MouseEvent.MOUSE_DOWN || type == MouseEvent.ROLL_OVER ||
-					type == MouseEvent.MOUSE_UP || type == MouseEvent.MOUSE_MOVE || type == MouseEvent.MOUSE_OVER || 
-					type == MouseEvent.ROLL_OUT || type == MouseEvent.MOUSE_OUT ||
-					type == MouseEvent.DOUBLE_CLICK || type == MouseEvent.WHEEL)
-			{
-				addClass("cursor-pointer");
-			}
-        }
-        
-		COMPILE::JS
-        override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
-        {
-            super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
-			if(type == MouseEvent.CLICK || type == MouseEvent.MOUSE_DOWN || type == MouseEvent.ROLL_OVER ||
-					type == MouseEvent.MOUSE_UP || type == MouseEvent.MOUSE_MOVE || type == MouseEvent.MOUSE_OVER || 
-					type == MouseEvent.ROLL_OUT || type == MouseEvent.MOUSE_OUT ||
-					type == MouseEvent.DOUBLE_CLICK || type == MouseEvent.WHEEL)
-			{
-				removeClass("cursor-pointer");
-			}
-
-        }
 	}
 }

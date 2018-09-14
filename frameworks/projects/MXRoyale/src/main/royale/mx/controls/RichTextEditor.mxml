@@ -209,6 +209,9 @@
 
     <fx:Metadata>
         <![CDATA[
+
+        import mx.controls.TextArea;
+		    import mx.containers.Panel;
         /**
         * Dispatched when the user changes the contents or format of the text in the
         * TextArea control.

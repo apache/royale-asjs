@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxListDataGroup;
+	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	
 	/**
@@ -92,6 +92,7 @@ package org.apache.royale.jewel.beads.views
 			return _button;
 		}
 		
+		private var _combolist:ComboBoxList;
 		private var _list:List;
 		
 		/**
@@ -106,7 +107,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popup():Object
 		{
-			return _list;
+			return _combolist;
 		}
 		
 		/**
@@ -118,15 +119,29 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.strand = value;
 			
-			var host:StyledUIBase = value as StyledUIBase;
-			
+			var host:StyledUIBase = _strand as StyledUIBase;
+
 			_textinput = new TextInput();
 			
 			_button = new Button();
 			_button.text = '\u25BC';
 			
+			_button.width = 39;
+
+			if(host.width == 0 || host.width < 89)
+			{
+				var w:Number = host.width == 0 ? 200 : 89;
+				_textinput.width = w - _button.width;
+				host.width = _textinput.width + _button.width;
+			} else
+			{
+				_textinput.width = host.width - _button.width;
+			}
+
+			
 			host.addElement(_textinput);
 			host.addElement(_button);
+			//host.width = _textinput.width + _button.width;
 			
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
@@ -151,7 +166,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popUpVisible():Boolean
 		{
-			return _list == null ? false : true;
+			return _combolist == null ? false : true;
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
@@ -161,18 +176,17 @@ package org.apache.royale.jewel.beads.views
 		{
 			if (value) {
 				var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-				_list = new popUpClass() as List;
-
-				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-				_list.model = model;
+				_combolist = new popUpClass() as ComboBoxList;
 				
-				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-				popupHost.popUpParent.addElement(_list);
+				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+				_combolist.model = model;
+				_combolist.list.model = _combolist.model;
 
-				// popup is ComboBoxList that fills 100% of browser window-> We want ComboBoxListDataGroup inside to adjust height
-				dataGroup = popup.view.contentView.view.contentView;
-				// dataGroup = (popup.getBeadByType(ListView) as ListView).dataGroup as ComboBoxListDataGroup;
-				dataGroup.height = 250;
+				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+				popupHost.popUpParent.addElement(_combolist);
+				
+				// popup is ComboBoxList that fills 100% of browser window-> We want the internal List inside to adjust height
+				_list = _combolist.list;
 				
 				setTimeout(prepareForPopUp,  300);
 
@@ -183,14 +197,14 @@ package org.apache.royale.jewel.beads.views
 
 				autoResizeHandler();
 			}
-			else if(_list != null) {
-				UIUtils.removePopUp(_list);
+			else if(_combolist != null) {
+				UIUtils.removePopUp(_combolist);
 				COMPILE::JS
 				{
 				document.body.classList.remove("viewport");
 				window.removeEventListener('resize', autoResizeHandler, false);
 				}
-				_list = null;
+				_combolist = null;
 			}
 		}
 
@@ -198,7 +212,7 @@ package org.apache.royale.jewel.beads.views
         {
 			COMPILE::JS
 			{
-				_list.element.classList.add("open");
+				_combolist.element.classList.add("open");
 				//avoid scroll in html
 				document.body.classList.add("viewport");
 			}
@@ -240,8 +254,16 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function sizeChangeAction():void
 		{
-			//var host:StyledUIBase = StyledUIBase(_strand);
+			// var host:StyledUIBase = _strand as StyledUIBase;
+
+			// _textinput.width = host.width - _button.width;
+			// host.width = _textinput.width + _button.width;
 			
+			// textinput.width = host.width - button.width;
+			// host.width = textinput.width + button.width;
+
+			// dispatchEvent(new Event("layoutNeeded"));
+
 			// input.x = 0;
 			// input.y = 0;
 			// if (host.isWidthSizedToContent()) {
@@ -268,7 +290,7 @@ package org.apache.royale.jewel.beads.views
 			// }
 		}
 
-		private var dataGroup:ComboBoxListDataGroup;
+		private var comboList:ComboBoxList;
 		/**
 		 *  When set to "auto" this resize handler monitors the width of the app window
 		 *  and switch between fixed and float modes.
@@ -286,21 +308,24 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				var outerWidth:Number = window.outerWidth;
+				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
-					var origin:Point = new Point(0, button.y+button.height);
+					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-					// dataGroup.x = relocated.x;
-					// dataGroup.y = relocated.y;
-					dataGroup.positioner.style["left"] = relocated.x + "px";
-					dataGroup.positioner.style["top"] = relocated.y + "px";
+					// comboList.x = relocated.x;
+					// comboList.y = relocated.y;
+					_list.positioner.style["left"] = relocated.x + "px";
+					_list.positioner.style["top"] = relocated.y + "px";
+					_list.width = _textinput.width + _button.width;
 				}
 				else
 				{
-					dataGroup.positioner.style["left"] = "50%";
-					dataGroup.positioner.style["top"] = "calc(100% - 10px)";
+					_list.positioner.style["left"] = "50%";
+					_list.positioner.style["top"] = "calc(100% - 10px)";
+					// _list.positioner.style["width"] = "initial"; 
 				}
 			}
 		}

@@ -20,15 +20,15 @@
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.apache.org/royale/spark" 
 			   xmlns:mx="library://ns.apache.org/royale/mx" 
-			   preinitialize="init()">
+			   initialize="init()">
 	
 	<!-- Based on samples from Peter DeHaan's blog: http://blog.flexexamples.com/ --> 
 	
 	<fx:Script>
-		import flashx.textLayout.elements.Configuration;
-		import flashx.textLayout.elements.TextFlow;
-		import flashx.textLayout.formats.TextDecoration;
-		import flashx.textLayout.formats.TextLayoutFormat;
+		import org.apache.royale.textLayout.elements.Configuration;
+		import org.apache.royale.textLayout.elements.TextFlow;
+		import org.apache.royale.textLayout.formats.TextDecoration;
+		import org.apache.royale.textLayout.formats.TextLayoutFormat;
 		
 		import spark.events.TextOperationEvent;
 		
@@ -36,11 +36,14 @@
 		protected static var lineCount:uint = 0;
 		
 		protected function richEdTxt_changeHandler(evt:TextOperationEvent):void {
+            /*
 			lineCount = richEdTxt.mx_internal::textContainerManager.numLines;
 			lineCnt.text = lineCount.toString();
+            */
 		}
 		
 		protected function init():void {
+            /*
 			var cfg:Configuration = TextFlow.defaultConfiguration;
 			
 			var normalTLF:TextLayoutFormat = new TextLayoutFormat(cfg.defaultLinkNormalFormat);
@@ -57,6 +60,7 @@
 			cfg.defaultLinkHoverFormat = hoverTLF;
 			cfg.defaultLinkActiveFormat = activeTLF;
 			TextFlow.defaultConfiguration = cfg;
+            */
 		}
 	</fx:Script>
 	

@@ -36,8 +36,10 @@
 			{
 				txt.maxChars = this.maxChars.value;
 				txt.restrict = this.restrictStr.text;
+                /*
 				RichEditableText(txt.textDisplay).textFlow.textAlign = alignVal.selectedItem;
 				RichEditableText(txt.textDisplay).textFlow.direction = direction.selectedItem;
+                */
 			}
 
 		]]>
@@ -55,7 +57,8 @@
 		</s:HGroup>
 		<s:HGroup verticalAlign="middle">
 			<s:Label text="Specify Text Alignment:"/>
-			<s:DropDownList id="alignVal" prompt="left" change="this.changeHandler(null)">
+            <!--<s:DropDownList id="alignVal" prompt="left" change="this.changeHandler(null)">-->
+			<s:DropDownList id="alignVal" change="this.changeHandler(null)">
 				<s:dataProvider>
 					<mx:ArrayList>
 						<fx:String>left</fx:String>
@@ -70,7 +73,8 @@
 		</s:HGroup>
 		<s:HGroup verticalAlign="middle">
 			<s:Label text="Direction:"/>
-			<s:DropDownList id="direction" prompt="ltr" change="this.changeHandler(null)">
+            <!--<s:DropDownList id="direction" prompt="ltr" change="this.changeHandler(null)">-->
+			<s:DropDownList id="direction" change="this.changeHandler(null)">
 				<s:dataProvider>
 					<mx:ArrayList>
 						<fx:String>rtl</fx:String>

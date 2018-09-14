@@ -18,11 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package mx.core
-{ 
-COMPILE::JS
 {
-    import goog.DEBUG;
-}
 /*
 import flash.accessibility.Accessibility;
 import flash.accessibility.AccessibilityProperties;
@@ -77,6 +73,57 @@ import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
+
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType = mx.events.FocusEvent.FOCUS_IN
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="focusIn", type="= mx.events.FocusEvent")]
+
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType = mx.events.FlexEvent.VALID
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="valid", type="= mx.events.FlexEvent")]
+
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType mx.events.FlexEvent.INITIALIZE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+ 
 /**
  *  Dispatched when the component has finished its construction
  *  and has all initialization properties set.
@@ -521,7 +568,6 @@ public class UIComponent extends UIBase
 	 {
 	    _horizontalAxis = value;
 	 }
-
 	//----------------------------------
     //  graphics copied from Sprite
     //----------------------------------
@@ -554,7 +600,9 @@ public class UIComponent extends UIBase
 	 
 	 	public function get rotation():Number
 	 	{
-	    		return _rotation;
+            //TODO figure out JS side. There's a transofrm bead, but that's pretty specific to SVG (I think)
+            trace("proper rotation not yet implemented");
+	    	return _rotation;
 	 	}
      		public function set rotation(value:Number):void
 		{
@@ -739,15 +787,13 @@ public class UIComponent extends UIBase
     
     public function get accessibilityEnabled():Boolean
     {
-        if (GOOG::DEBUG)
-            trace("accessibilityEnabled not implemented");
+        trace("accessibilityEnabled not implemented");
         return false;
     }
     
     public function set accessibilityEnabled(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-            trace("accessibilityEnabled not implemented");
+        trace("accessibilityEnabled not implemented");
     }
     
     /**
@@ -762,8 +808,7 @@ public class UIComponent extends UIBase
     { override }
     public function get useHandCursor():Boolean
     {
-        if (GOOG::DEBUG)
-            trace("useHandCursor not implemented");
+        trace("useHandCursor not implemented");
         return false;
     }
     
@@ -771,8 +816,7 @@ public class UIComponent extends UIBase
     { override }
     public function set useHandCursor(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-            trace("useHandCursor not implemented");
+        trace("useHandCursor not implemented");
     }
 	
 	 /**
@@ -786,16 +830,14 @@ public class UIComponent extends UIBase
     COMPILE::JS
     public function get mouseEnabled():Boolean
     {
-        if (GOOG::DEBUG)
-            trace("mouseEnabled not implemented");
+        trace("mouseEnabled not implemented");
         return false;
     }
     
     COMPILE::JS
     public function set mouseEnabled(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-            trace("mouseEnabled not implemented");
+        trace("mouseEnabled not implemented");
     }
 	
 	 /**
@@ -809,16 +851,14 @@ public class UIComponent extends UIBase
     COMPILE::JS
     public function get mouseChildren():Boolean
     {
-        if (GOOG::DEBUG)
-            trace("mouseChildren not implemented");
+        trace("mouseChildren not implemented");
         return false;
     }
     
     COMPILE::JS
     public function set mouseChildren(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-            trace("mouseChildren not implemented");
+        trace("mouseChildren not implemented");
     }
 	
 	
@@ -834,8 +874,7 @@ public class UIComponent extends UIBase
     { override }
     public function get buttonMode():Boolean
     {
-        if (GOOG::DEBUG)
-            trace("buttonMode not implemented");
+        trace("buttonMode not implemented");
         return false;
     }
     
@@ -843,8 +882,7 @@ public class UIComponent extends UIBase
     { override }
     public function set buttonMode(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-            trace("buttonMode not implemented");
+        trace("buttonMode not implemented");
     }
     
     [Bindable("errorStringChanged")]
@@ -874,8 +912,7 @@ public class UIComponent extends UIBase
      */
     public function get errorString():String
     {
-        if (GOOG::DEBUG)
-            trace("errorString not implemented");
+        trace("errorString not implemented");
         return "";
     }
     
@@ -884,8 +921,7 @@ public class UIComponent extends UIBase
      */
     public function set errorString(value:String):void
     {
-        if (GOOG::DEBUG)
-            trace("errorString not implemented");
+        trace("errorString not implemented");
     }
     
     //----------------------------------
@@ -941,8 +977,7 @@ public class UIComponent extends UIBase
     public function get doubleClickEnabled():Boolean
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("doubleClickEnabled not implemented");
+        trace("doubleClickEnabled not implemented");
         return false;
     }
 
@@ -957,8 +992,7 @@ public class UIComponent extends UIBase
     public function set doubleClickEnabled(value:Boolean):void
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("doubleClickEnabled not implemented");
+        trace("doubleClickEnabled not implemented");
     }
 
     //----------------------------------
@@ -1207,8 +1241,7 @@ public class UIComponent extends UIBase
     public function get cacheAsBitmap():Boolean
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("cacheAsBitmap not implemented");
+        trace("cacheAsBitmap not implemented");
         return false;
     }
     
@@ -1222,8 +1255,7 @@ public class UIComponent extends UIBase
     public function set cacheAsBitmap(value:Boolean):void
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("cacheAsBitmap not implemented");
+        trace("cacheAsBitmap not implemented");
     }
 
     //----------------------------------
@@ -1258,8 +1290,7 @@ public class UIComponent extends UIBase
     public function set filters(value:Array):void
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("filters not implemented");
+        trace("filters not implemented");
     }
 
        
@@ -1287,8 +1318,7 @@ public class UIComponent extends UIBase
     public function get cursorManager():ICursorManager
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("cursorManager not implemented");
+        trace("cursorManager not implemented");
 
         return null;
         //return CursorManager.getInstance();
@@ -1395,8 +1425,7 @@ public class UIComponent extends UIBase
     public function get systemManager():ISystemManager
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("systemManager not implemented");
+        trace("systemManager not implemented");
         return _systemManager;
     }
 
@@ -1406,8 +1435,7 @@ public class UIComponent extends UIBase
     public function set systemManager(value:ISystemManager):void
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("systemManager not implemented");
+        trace("systemManager not implemented");
         _systemManager = value;
     }
     
@@ -1416,8 +1444,7 @@ COMPILE::JS
     public function get stage():Object
     {
         // TODO
-        if (GOOG::DEBUG)
-            trace("stage not implemented");
+        trace("stage not implemented");
         return null;
     }
 }
@@ -2848,8 +2875,7 @@ COMPILE::JS
         _styleName = value;
 
         // TODO
-        if (GOOG::DEBUG)
-            trace("styleName not implemented");
+        trace("styleName not implemented");
     }
 
     //----------------------------------
@@ -3033,8 +3059,7 @@ COMPILE::JS
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
-        if (GOOG::DEBUG)
-            trace("setChildIndex not implemented");
+        trace("setChildIndex not implemented");
     }
 
     /**
@@ -3056,8 +3081,7 @@ COMPILE::JS
     { override }
     public function getChildByName(name:String):IUIComponent
     {
-        if (GOOG::DEBUG)
-            trace("getChildByName not implemented");
+        trace("getChildByName not implemented");
         return null;
     }
 
@@ -3069,8 +3093,7 @@ COMPILE::JS
     { override }
     public function contains(child:IUIComponent):Boolean
     {
-        if (GOOG::DEBUG)
-            trace("contains not implemented");
+        trace("contains not implemented");
         return true;
     }
     
@@ -3082,8 +3105,7 @@ COMPILE::JS
     { override }
     public function startDrag(lockCenter:Boolean = false, bounds:Rectangle = null):void
     {
-        if (GOOG::DEBUG)
-            trace("startDrag not implemented");
+        trace("startDrag not implemented");
     }
 
     /**
@@ -3095,8 +3117,7 @@ COMPILE::JS
     }
     public function stopDrag():void
     {
-        if (GOOG::DEBUG)
-            trace("stopDrag not implemented");
+        trace("stopDrag not implemented");
     }
     
     /**
@@ -3261,8 +3282,7 @@ COMPILE::JS
      */
     public function invalidateProperties():void
     {
-        if (GOOG::DEBUG)
-            trace("invalidateProperties not implemented");
+        trace("invalidateProperties not implemented");
     }
 
     /**
@@ -3289,8 +3309,7 @@ COMPILE::JS
      */
     public function invalidateSize():void
     {
-        if (GOOG::DEBUG)
-            trace("invalidateSize not implemented");
+        trace("invalidateSize not implemented");
     }
 
     /**
@@ -3304,8 +3323,7 @@ COMPILE::JS
      */
     protected function invalidateParentSizeAndDisplayList():void
     {
-        if (GOOG::DEBUG)
-            trace("invalidateParentSizeAndDisplayList not implemented");
+        trace("invalidateParentSizeAndDisplayList not implemented");
     }
 
     /**
@@ -3332,8 +3350,7 @@ COMPILE::JS
      */
     public function invalidateDisplayList():void
     {
-        if (GOOG::DEBUG)
-            trace("invalidateDisplayList not implemented");
+        trace("invalidateDisplayList not implemented");
     }
 
     /**
@@ -3375,8 +3392,7 @@ COMPILE::JS
     COMPILE::JS
     public function get mouseX():Number
     {
-        if (GOOG::DEBUG)
-            trace("mouseX not implemented");
+        trace("mouseX not implemented");
         return 0;
     }
     
@@ -3391,8 +3407,7 @@ COMPILE::JS
     COMPILE::JS
     public function get mouseY():Number
     {
-        if (GOOG::DEBUG)
-            trace("mouseX not implemented");
+        trace("mouseX not implemented");
         return 0;
     }
     
@@ -3423,8 +3438,7 @@ COMPILE::JS
      */
     public function styleChanged(styleProp:String):void
     {
-        if (GOOG::DEBUG)
-            trace("styleChanged not implemented");
+        trace("styleChanged not implemented");
     }
 
     /**
@@ -3502,8 +3516,7 @@ COMPILE::JS
      */
     public function validateProperties():void
     {
-        if (GOOG::DEBUG)
-            trace("validateProperties not implemented");
+        trace("validateProperties not implemented");
     }
 
     /**
@@ -3533,8 +3546,7 @@ COMPILE::JS
      */
     protected function commitProperties():void
     {
-        if (GOOG::DEBUG)
-            trace("commitProperties not implemented");
+        trace("commitProperties not implemented");
     }
 
     //--------------------------------------------------------------------------
@@ -3553,8 +3565,7 @@ COMPILE::JS
      */
     public function validateSize(recursive:Boolean = false):void
     {
-        if (GOOG::DEBUG)
-            trace("validateSize not implemented");
+        trace("validateSize not implemented");
     }
 
     /**
@@ -3726,8 +3737,7 @@ COMPILE::JS
      */
     public function measureText(text:String):TextLineMetrics
     {
-        if (GOOG::DEBUG)
-            trace("measureText not implemented");
+        trace("measureText not implemented");
         return null;
     }
 	
@@ -3781,8 +3791,7 @@ COMPILE::JS
      */
     public function validateDisplayList():void
     {
-        if (GOOG::DEBUG)
-            trace("validateDisplayList not implemented");                    
+        trace("validateDisplayList not implemented");                    
     }
 
     /**
@@ -3829,8 +3838,7 @@ COMPILE::JS
     protected function updateDisplayList(unscaledWidth:Number,
                                         unscaledHeight:Number):void
     {
-        if (GOOG::DEBUG)
-            trace("updateDisplayList not implemented");                    
+        trace("updateDisplayList not implemented");                    
     }
 
     
@@ -4065,8 +4073,7 @@ COMPILE::JS
     }
     public function set horizontalCenter(value:Object):void
     {
-         if (GOOG::DEBUG)
-            trace("horizontalCenter not implemented");
+        trace("horizontalCenter not implemented");
     }
 
     [Inspectable(category="General")]
@@ -4095,8 +4102,7 @@ COMPILE::JS
     }
     public function set verticalCenter(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("verticalCenter not implemented");
+        trace("verticalCenter not implemented");
     }
 	
     [Inspectable(category="General")]
@@ -4126,14 +4132,12 @@ COMPILE::JS
      */
     public function get cornerRadius():Object
     {
-        if (GOOG::DEBUG)
-            trace("cornerRadius not implemented");
+        trace("cornerRadius not implemented");
         return 0;
     }
     public function set cornerRadius(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("cornerRadius not implemented");
+        trace("cornerRadius not implemented");
     }
 	[Inspectable(category="General")]
 	
@@ -4145,14 +4149,12 @@ COMPILE::JS
      */
     public function get fontFamily():Object
     {
-        if (GOOG::DEBUG)
-            trace("fontFamily not implemented");
+        trace("fontFamily not implemented");
         return 0;
     }
     public function set fontFamily(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("fontFamily not implemented");
+        trace("fontFamily not implemented");
     }
 	[Inspectable(category="General")]
 	
@@ -4164,14 +4166,12 @@ COMPILE::JS
      */
     public function get uid():Object
     {
-        if (GOOG::DEBUG)
-            trace("uid not implemented");
+        trace("uid not implemented");
         return 0;
     }
     public function set uid(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("uid not implemented");
+        trace("uid not implemented");
     }
 	[Inspectable(category="General")]
 	
@@ -4199,14 +4199,12 @@ COMPILE::JS
      */
     public function get textAlign():Object
     {
-        if (GOOG::DEBUG)
-            trace("textAlign not implemented");
+        trace("textAlign not implemented");
         return 0;
     }
     public function set textAlign(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("textAlign not implemented");
+        trace("textAlign not implemented");
     }
 	[Inspectable(category="General")]
 	
@@ -4219,14 +4217,12 @@ COMPILE::JS
      */
     public function get color():Object
     {
-        if (GOOG::DEBUG)
-            trace("color not implemented");
+        trace("color not implemented");
         return 0;
     }
     public function set color(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("color not implemented");
+        trace("color not implemented");
     }
 	[Inspectable(category="General")]
 
@@ -4238,14 +4234,12 @@ COMPILE::JS
      */
     public function get selectedField():Object
     {
-        if (GOOG::DEBUG)
-            trace("selectedField not implemented");
+        trace("selectedField not implemented");
         return 0;
     }
     public function set selectedField(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("selectedField not implemented");
+        trace("selectedField not implemented");
     }
 	[Inspectable(category="General")]
 
@@ -4307,8 +4301,8 @@ COMPILE::JS
      */
     public function setActualSize(w:Number, h:Number):void
     {
-        //if (GOOG::DEBUG)
-        //    trace("setActualSize not implemented");
+    
+    //    trace("setActualSize not implemented");
 		this.setWidthAndHeight(w, h);
     }
 
@@ -4397,9 +4391,7 @@ COMPILE::JS
      *  @productversion Flex 3
      */
     public function getStyle(styleProp:String):*
-    {
-//        if (GOOG::DEBUG)
-//            trace("getStyle not implemented");
+    {//            trace("getStyle not implemented");
 //        return 0;
 		var value:* = ValuesManager.valuesImpl.getValue(this,styleProp);
 //		if (!value) value = 0;
@@ -4497,8 +4489,7 @@ COMPILE::JS
      */
     public function owns(child:IUIComponent):Boolean
     {
-        if (GOOG::DEBUG)
-            trace("owns not implemented");
+        trace("owns not implemented");
         return true;
     }
     

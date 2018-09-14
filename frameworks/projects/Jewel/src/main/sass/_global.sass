@@ -32,6 +32,9 @@ html, body
 ::-moz-focus-inner, ::-moz-focus-outer
 	border: 0
 
+select::-ms-expand
+	display: none
+
 button::-moz-focus-inner
 	padding: 0
 	
@@ -107,6 +110,9 @@ j|DataContainer
 	IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer")
 	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+
+j|Form
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
 
 @media -royale-swf
 	j|View

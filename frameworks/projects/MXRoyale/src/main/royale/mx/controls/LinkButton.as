@@ -19,9 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 
 /**
  *  The LinkButton control is a borderless Button control

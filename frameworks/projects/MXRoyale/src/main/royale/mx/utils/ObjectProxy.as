@@ -19,9 +19,6 @@
 
 package mx.utils
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 /*
 import flash.events.Event;
 import flash.events.EventDispatcher;
@@ -151,8 +148,7 @@ public dynamic class ObjectProxy //extends Proxy
     public function ObjectProxy(item:Object = null, uid:String = null,
                                 proxyDepth:int = -1)
     {
-		if (GOOG::DEBUG)
-			trace("ObjectProxy not implemented");
+		trace("ObjectProxy not implemented");
 //        super();
 //
 //        if (!item)

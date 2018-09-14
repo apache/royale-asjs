@@ -19,9 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS {
-	import goog.DEBUG;
-}
 	
 	import mx.core.UIComponent;
 	import mx.core.mx_internal;
@@ -249,8 +246,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     override public function get enabled():Boolean
     {
-		if (GOOG::DEBUG)
-			trace("get enabled not implemented");
+		trace("get enabled not implemented");
         return true;
     }
 
@@ -259,8 +255,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     override public function set enabled(value:Boolean):void
     {
-        if (GOOG::DEBUG)
-			trace("set enabled not implemented");
+		trace("set enabled not implemented");
     }
 
     //--------------------------------------------------------------------------
@@ -342,8 +337,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     public function get disabledDays():Array
     {
-		if (GOOG::DEBUG)
-			trace("get disabledDays not implemented.");
+		trace("get disabledDays not implemented.");
         return null;
     }
 
@@ -352,8 +346,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     public function set disabledDays(value:Array):void
     {
-		if (GOOG::DEBUG)
-			trace("set disabledDays not implemented");
+		trace("set disabledDays not implemented");
 //        _disabledDays = value;
 //        disabledDaysChanged = true;
 //
@@ -408,8 +401,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     public function get disabledRanges():Array
     {
-		if (GOOG::DEBUG)
-			trace("get disabledRanged not implemented");
+		trace("get disabledRanged not implemented");
         return null;
     }
 
@@ -418,8 +410,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     public function set disabledRanges(value:Array):void
     {
-		if (GOOG::DEBUG)
-			trace("set disabledRanges not implemented");
+		trace("set disabledRanges not implemented");
 //        _disabledRanges = scrubTimeValues(value);
 //        disabledRangesChanged = true;
 //
@@ -855,8 +846,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     public function get selectedRanges():Array
     {
-		if (GOOG::DEBUG)
-			trace("get selectedRanges not implemented.");
+		trace("get selectedRanges not implemented.");
 		return null;
 //        _selectedRanges = dateGrid.selectedRanges;
 //        return _selectedRanges;
@@ -867,8 +857,7 @@ public class DateChooser extends UIComponent implements ILayoutParent, ILayoutVi
      */
     public function set selectedRanges(value:Array):void
     {
-		if (GOOG::DEBUG)
-			trace("set selectedRanges not implemented.");
+		trace("set selectedRanges not implemented.");
 //        _selectedRanges = scrubTimeValues(value);
 //        selectedRangesChanged = true;
 //

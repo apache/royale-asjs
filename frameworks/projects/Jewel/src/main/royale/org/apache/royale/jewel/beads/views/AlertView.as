@@ -48,6 +48,7 @@ package org.apache.royale.jewel.beads.views
         import org.apache.royale.core.IMeasurementBead;
         import org.apache.royale.core.ValuesManager;
         import org.apache.royale.utils.loadBeadFromValuesManager;
+		import flash.utils.setTimeout;
 	}
 	
 	/**
@@ -182,6 +183,18 @@ package org.apache.royale.jewel.beads.views
             {
                 refreshSize();
             }
+
+			setTimeout(prepareForPopUp,  300);
+		}
+
+		private function prepareForPopUp():void
+        {
+			COMPILE::JS
+			{
+				UIBase(_strand).element.classList.add("open");
+				//avoid scroll in html
+				document.body.classList.add("viewport");
+			}
 		}
 
 		private function createButtons():void
@@ -206,7 +219,7 @@ package org.apache.royale.jewel.beads.views
             {
                 okButton = new Button();
 				okButton.width = 100;
-				okButton.emphasis = "primary";
+				okButton.emphasis = Button.PRIMARY;
                 okButton.text = alertModel.okLabel;
                 okButton.addEventListener(MouseEvent.CLICK, handleOK);
 
@@ -227,7 +240,7 @@ package org.apache.royale.jewel.beads.views
             {
                 yesButton = new Button();
 				yesButton.width = 100;
-				yesButton.emphasis = "primary";
+				yesButton.emphasis = Button.PRIMARY;
                 yesButton.text = alertModel.yesLabel;
                 yesButton.addEventListener(MouseEvent.CLICK, handleYes);
 

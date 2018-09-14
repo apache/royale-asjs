@@ -19,10 +19,6 @@
 
 package mx.controls
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
 import flash.display.Shape;
@@ -531,14 +527,12 @@ public class Tree extends List
      */
     public function get borderStyle():String
     {
-        if (GOOG::DEBUG)
-            trace("Tree:borderStyle not implemented");
+        trace("Tree:borderStyle not implemented");
         return "none";
     }
     public function set borderStyle(value:String):void
     {
-        if (GOOG::DEBUG)
-            trace("Tree:borderStyle not implemented");
+        trace("Tree:borderStyle not implemented");
     }
     
     //--------------------------------------------------------------------------
@@ -1700,8 +1694,7 @@ public class Tree extends List
      */
     public function isItemOpen(item:Object):Boolean
     {
-        if (GOOG::DEBUG)
-            trace("Tree:isItemOpen not implemented");
+        trace("Tree:isItemOpen not implemented");
         /*
         var uid:String = itemToUID(item);
         return _openItems[uid] != null;
@@ -1764,8 +1757,7 @@ public class Tree extends List
                               dispatchEvent:Boolean = false,    
                               cause:Event = null):void
     {
-        if (GOOG::DEBUG)
-            trace("Tree:getItemIndex not implemented");
+        trace("Tree:getItemIndex not implemented");
     /*
         //if the iterator is null, that indicates we have not been 
         //validated yet, so we will not continue. 
@@ -2557,8 +2549,7 @@ public class Tree extends List
     */
     public function getItemIndex(item:Object):int
     {
-        if (GOOG::DEBUG)
-            trace("Tree:getItemIndex not implemented");
+        trace("Tree:getItemIndex not implemented");
         /*
         var cursor:IViewCursor = collection.createCursor();
         var i:int = 0;

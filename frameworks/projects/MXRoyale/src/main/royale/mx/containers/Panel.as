@@ -19,10 +19,6 @@
 
 package mx.containers
 {
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 
 /*
 import flash.display.DisplayObject;
@@ -692,14 +688,12 @@ public class Panel extends Container
      */
     public function get dropShadowVisible():String
     {
-        if (GOOG::DEBUG)
-            trace("Panel:dropShadowVisible not implemented");
+        trace("Panel:dropShadowVisible not implemented");
         return null;
     }
     public function set dropShadowVisible(value:String):void
     {
-        if (GOOG::DEBUG)
-            trace("Panel:dropShadowVisible not implemented");
+        trace("Panel:dropShadowVisible not implemented");
     }
     
     /**

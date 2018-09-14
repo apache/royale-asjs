@@ -24,7 +24,7 @@ package org.apache.royale.jewel.beads.validators
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.jewel.ErrorTip;
+	import org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
 
@@ -58,7 +58,7 @@ package org.apache.royale.jewel.beads.validators
 		public static const RIGHT:int = 10003;
 		public static const MIDDLE:int = 10004;
 		
-		private var _errorTip:ErrorTip;
+		private var _errorTip:ErrorTipLabel;
 		private var _host:IPopUpHost;
 		private var _xPos:int = LEFT;
 		private var _yPos:int = TOP;
@@ -231,7 +231,7 @@ package org.apache.royale.jewel.beads.validators
 
 
 			if (_errorTip == null) {
-				_errorTip = new ErrorTip();
+				_errorTip = new ErrorTipLabel();
 
 				_host = UIUtils.findPopUpHost(hostComponent);
 				_host.popUpParent.addElement(_errorTip, false);

@@ -58,7 +58,7 @@ limitations under the License.
 			private function otherPushMe():void
 			{
 				trace("The other button was pushed");
-				text1.html = "The Button with an icon was pushed.";
+				text1.htmlText = "The Button with an icon was pushed.";
 				dispatchEvent(new Event("layoutNeeded"));
 			}
 		]]>
@@ -74,10 +74,10 @@ limitations under the License.
 		<mx:NumericStepper minimum="50" maximum="100" value="75" />
 		<mx:Spacer height="30" />
 		<mx:Text id="text1" toolTip="More than meets the eye.">
-			<mx:html><![CDATA[
+			<mx:htmlText><![CDATA[
 				This is <b>Text!</b> This more than a few words in it to show how
 				it works and <b>wraps</b>.
-			]]></mx:html>
+			]]></mx:htmlText>
 		</mx:Text>
 	</mx:VBox>
 	<mx:HBox id="hbox1">

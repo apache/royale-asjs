@@ -65,7 +65,8 @@
 		<s:VGroup top="10" left="10">
 			<s:HGroup verticalAlign="middle">
 				<s:Label text="Orientation:"/>
-				<s:DropDownList id="orientation" dataProvider="{new ArrayList(orientArray)}" prompt="columns"/>
+                <!--<s:DropDownList id="orientation" dataProvider="{new ArrayList(orientArray)}" prompt="columns"/>-->
+				<s:DropDownList id="orientation" dataProvider="{new ArrayList(orientArray)}"/>
 			</s:HGroup>
 			
 			<s:HGroup verticalAlign="middle">

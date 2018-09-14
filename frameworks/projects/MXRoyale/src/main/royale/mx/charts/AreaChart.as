@@ -25,10 +25,6 @@ import mx.graphics.SolidColor;
 import mx.graphics.SolidColorStroke;
 import mx.graphics.Stroke;
 import mx.charts.chartClasses.ChartBase;
-COMPILE::JS
-{
-    import goog.DEBUG;
-}
 /*
 import flash.utils.Dictionary;
 
@@ -231,8 +227,7 @@ public class AreaChart extends ChartBase
      */
     override public function setStyle(styleProp:String, newValue:*):void
     {
-        if (GOOG::DEBUG)
-            trace("setStyle not implemented");
+        trace("setStyle not implemented");
     }
 
 }

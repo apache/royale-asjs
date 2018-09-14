@@ -42,7 +42,7 @@
 
         <mx:Canvas id="canvas" width="100%" height="100%">
             <mx:Image id="img" x="20" y="20" width="30" height="60"
-                source="@Embed(source='assets/ApacheFlexLogo.png')"/>
+                source="assets/ApacheFlexLogo.png"/>
         </mx:Canvas>
 
         <mx:ControlBar>
