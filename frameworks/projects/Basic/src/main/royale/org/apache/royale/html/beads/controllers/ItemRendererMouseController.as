@@ -91,7 +91,8 @@ COMPILE::JS {
 				goog.events.listen(element, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
 				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
 				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
-				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseUp);
+				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseClick);
+                goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
 			}
 		}
 		
@@ -172,6 +173,13 @@ COMPILE::JS {
 			{
 				target.down = true;
 				target.hovered = false;
+
+				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
+				newEvent.data = target.data;
+				newEvent.multipleSelection = event.shiftKey;
+				newEvent.index = target.index;
+
+				target.dispatchEvent(newEvent);
 			}
 		}
 		
@@ -200,7 +208,7 @@ COMPILE::JS {
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		COMPILE::JS
-		protected function handleMouseUp(event:BrowserEvent):void
+		protected function handleMouseClick(event:BrowserEvent):void
 		{
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
@@ -213,6 +221,25 @@ COMPILE::JS {
 				target.dispatchEvent(newEvent);
 			}
 		}
-	
+
+		/**
+		 * @private
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
+		COMPILE::JS
+		protected function handleMouseUp(event:BrowserEvent):void
+		{
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			if (target)
+			{
+				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseUp");
+				newEvent.data = target.data;
+				newEvent.multipleSelection = event.shiftKey;
+				newEvent.index = target.index;
+
+				target.dispatchEvent(newEvent);
+			}
+		}
+
 	}
 }
