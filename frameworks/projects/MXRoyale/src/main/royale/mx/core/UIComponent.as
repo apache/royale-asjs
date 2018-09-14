@@ -524,7 +524,14 @@ public class UIComponent extends UIBase
     //  Variables: Creation
     //
     //--------------------------------------------------------------------------
-
+    public function get maintainAspectRatio():Boolean
+	{
+	   return true;
+	}
+    public function set maintainAspectRatio(value:Boolean):void
+	{
+	
+	}
     //----------------------------------
     //  initialized
     //----------------------------------
