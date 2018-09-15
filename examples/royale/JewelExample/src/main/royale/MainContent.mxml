@@ -135,6 +135,7 @@ limitations under the License.
         <local:FormsValidationPlayGround id="form_validation_panel"/>
         <local:DropDownListPlayGround id="dropdownlist_panel"/>
         <local:SnackbarPlayGround id="snackbar_panel"/>
+        <local:TabBarPlayGround id="tabbar_panel"/>
     </j:ApplicationMainContent>
     
 </j:ApplicationResponsiveView>

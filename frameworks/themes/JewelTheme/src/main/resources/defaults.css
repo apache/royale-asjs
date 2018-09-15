@@ -424,18 +424,6 @@ j|Card {
   background: #24a3ef !important;
 }
 
-.jewel.navigationlink {
-  margin: 0;
-  padding: 0 16px;
-  font-family: "Lato", sans-serif;
-  font-size: 1em;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.6);
-}
-.jewel.navigationlink.hovered:hover {
-  background: #f3f3f3 !important;
-}
-
 .jewel.label {
   font-family: "Lato", sans-serif;
   font-size: 1em;
@@ -450,6 +438,18 @@ j|Card {
 
 .jewel.navigation {
   background-color: #ffffff;
+}
+
+.jewel.navigationlink {
+  margin: 0;
+  padding: 0 16px;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+.jewel.navigationlink.hovered:hover {
+  background: #f3f3f3 !important;
 }
 
 .jewel.numericstepper .jewel.textinput input {
@@ -660,6 +660,22 @@ j|Card {
     border-radius: 0px;
   }
 }
+.jewel.tabbarbutton {
+  margin: 0;
+  padding: 0 16px;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+.jewel.tabbarbutton.hovered:hover {
+  background: #f3f3f3 !important;
+}
+.jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
+  color: #FFFFFF;
+  background: #54b7f3 !important;
+}
+
 .jewel.simpletable {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
