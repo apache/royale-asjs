@@ -54,7 +54,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
-    <scmVersion>1.10.0</scmVersion>
 
     <royale.compiler.version>0.9.3-SNAPSHOT</royale.compiler.version>
     <royale.typedefs.version>0.9.3-SNAPSHOT</royale.typedefs.version>
