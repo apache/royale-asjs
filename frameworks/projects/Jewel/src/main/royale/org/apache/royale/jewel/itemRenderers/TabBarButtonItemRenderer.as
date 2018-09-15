@@ -20,6 +20,8 @@ package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
+	import org.apache.royale.events.Event;
     
     COMPILE::JS
     {
@@ -124,6 +126,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				text = String(value);
 			}
+			// text = getLabelFromData(this, value);
 			
             if(value.href !== undefined)
 			{
@@ -132,12 +135,14 @@ package org.apache.royale.jewel.itemRenderers
 
 			COMPILE::JS
 			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-                    (element as HTMLElement).setAttribute('href', href);
-				}	
+			if(textNode != null)
+			{
+				textNode.nodeValue = text;
+				(element as HTMLElement).setAttribute('href', href);
+			}	
 			}
+
+			dispatchEvent(new Event("dataChange"));
 		}
 
         /**
