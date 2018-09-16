@@ -124,7 +124,10 @@ package org.apache.royale.jewel.beads.views
 
 			lastSelectedIndex = listModel.selectedIndex;
 
-			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
+			// avoid throw change event as part of select proper item at initialization time
+			if(event != null) {
+				IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
+			}
 		}
 
 		protected var lastRollOverIndex:int = -1;
