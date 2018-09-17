@@ -17,35 +17,34 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel List
-// List variables
+// Jewel TabBar
 
-.jewel.list, .jewel.navigation
-    align-items: stretch
-    align-content: flex-start
-    
-j|List
-    IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ListView")
+// TabBar variables
+
+
+.jewel.tabbar
+
+
+j|TabBar
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
-    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer")
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
-    //IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel")
-    //IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData")
 
-j|ListItemRenderer
+// Jewel TabBarButtonItemRenderer
+$tabbarbutton-margin: 0 !default
+$tabbarbutton-padding: 0.68em 1.12em !default
+
+// TabBarButtonItemRenderer variables
+.jewel.tabbarbutton
+    min-height: 48px
+    margin: $tabbarbutton-margin
+    padding: $tabbarbutton-padding
+
+j|TabBarButtonItemRenderer
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
-
-    
-@media -royale-swf	
-    j|List
-        //---iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
-        //---iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead')
-        //---iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel')
-        IContentView: ClassReference("org.apache.royale.jewel.supportClasses.list.DataGroup")
-        //font-size: 11px
-        //font-family: Arial

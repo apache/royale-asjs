@@ -383,7 +383,14 @@ public class SkinnableContainer extends SkinnableComponent
     {
         super();
     }
-    
+        public function get blockProgression():String 
+	{
+		return "";
+	}
+	public function set blockProgression(val:String):void
+	{
+	
+	}
     
      public function get backgroundColor():uint {
 		return 0;

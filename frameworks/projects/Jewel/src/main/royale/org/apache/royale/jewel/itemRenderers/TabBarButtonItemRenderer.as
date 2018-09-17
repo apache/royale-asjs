@@ -31,8 +31,8 @@ package org.apache.royale.jewel.itemRenderers
 
     
 	/**
-	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 
-     *  Navigation List Component. It handles Objects with "label" and "href" data.
+	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 
+     *  TabBar List Component. It handles Objects with "label" and "href" data.
 	 *  Extend this (you can do it in MXML) to support more data like for example: icon data.
 	 *  
 	 *  @langversion 3.0
@@ -40,7 +40,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class NavigationLinkItemRenderer extends StyledMXMLItemRenderer implements INavigationRenderer
+	public class TabBarButtonItemRenderer extends StyledMXMLItemRenderer implements INavigationRenderer
 	{
 		/**
 		 *  constructor.
@@ -50,11 +50,11 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function NavigationLinkItemRenderer()
+		public function TabBarButtonItemRenderer()
 		{
 			super();
 
-			typeNames = "jewel navigationlink";
+			typeNames = "jewel tabbarbutton";
 		}
 
 		private var _href:String = "#";
@@ -175,6 +175,8 @@ package org.apache.royale.jewel.itemRenderers
 			// there's no selection only hover state
 			if(hoverable)
             	toggleClass("hovered", hovered);
+			if(selectable)
+            	toggleClass("selected", selected);
 		}
 	}
 }

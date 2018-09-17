@@ -277,7 +277,6 @@ package org.apache.royale.jewel.beads.views
 		private function selectionChangeHandler(event:Event = null):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
-			getHost().dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		private var daysTable:Table;
@@ -298,6 +297,7 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				var outerWidth:Number = window.outerWidth;
+				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
@@ -308,7 +308,7 @@ package org.apache.royale.jewel.beads.views
 					// _popUp.y = p3.y;
 					// var p3:Point = PointUtils.globalToLocal(p2, host);
 
-					var origin:Point = new Point(0, _button.y + _button.height);
+					var origin:Point = new Point(0, _button.y + _button.height - top);
 					var relocated:Point = PointUtils.localToGlobal(origin, _strand);
 					// daysTable.x = relocated.x;
 					// daysTable.y = relocated.y;

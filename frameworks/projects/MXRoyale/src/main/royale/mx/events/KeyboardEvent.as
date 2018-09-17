@@ -66,7 +66,11 @@ public class KeyboardEvent extends flash.events.KeyboardEvent
     private static function platformConstant1(s:String):String
         {
             return s;
-        }	
+        }
+    public static function get capsLock():Boolean
+	{
+	    return true;
+	}
 }
 
 /**
@@ -108,7 +112,11 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 		 private static function platformConstant1(s:String):String
         	{
             	return s;
-        	}		
+        	}
+		public static function get capsLock():Boolean
+	        {
+	        return true;
+	        }
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants

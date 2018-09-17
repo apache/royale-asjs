@@ -16,33 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package vos
+{
+    [Bindable]
+    public class TabBarButtonVO
+    {
+        public var label:String;
+        public var href:String;
+        public var icon:String;
 
-
-
-// Jewel Navigation
-
-// Navigation variables
-.jewel.navigation
-    background-color: #ffffff
-
-
-// Jewel NavigationLinkItemRenderer
-
-// NavigationLinkItemRenderer variables
-.jewel.navigationlink
-    margin: 0
-    padding: 0 $itemrenderer-padding
-    font:
-        family: $font-stack
-        size: $font-size
-        weight: $font-weight-normal + 100
-
-    color: rgba(black, 0.6)
-    
-    &.hovered:hover
-        //color: $font-theme-color
-        background: lighten($default-color, 10%) !important
-
-    // &.selectable:active
-    //     //color: $font-theme-color
-    //     background: $default-color !important
+        public function TabBarButtonVO(label:String, href:String, icon:String = null)
+        {
+            this.label = label;
+            this.href = href;
+            this.icon = icon;
+        }
+    }
+}

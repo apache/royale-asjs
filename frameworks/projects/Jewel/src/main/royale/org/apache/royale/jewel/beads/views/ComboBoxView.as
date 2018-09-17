@@ -232,8 +232,6 @@ package org.apache.royale.jewel.beads.views
 		protected function handleItemChange(event:Event):void
 		{
 			itemChangeAction();
-
-			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
 		
 		/**

@@ -77,6 +77,8 @@
     <component id="CheckBoxValidator" class="org.apache.royale.jewel.beads.validators.CheckBoxValidator"/>
     <component id="RadioButtonValidator" class="org.apache.royale.jewel.beads.validators.RadioButtonValidator"/>
 
+    <component id="TabBar" class="org.apache.royale.jewel.TabBar"/>
+    <component id="TabBarButtonItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer"/>
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer"/>
     

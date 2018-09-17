@@ -34,7 +34,7 @@
   <description>Maven archetypes for creating royale maven projects</description>
 
   <properties>
-    <royale.framework.version>0.9.3-SNAPSHOT</royale.framework.version>
+    <royale.framework.version>0.9.4-SNAPSHOT</royale.framework.version>
   </properties>
   
   <modules>
@@ -69,6 +69,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
         <configuration>
           <escapeString>\</escapeString>
           <nonFilteredFileExtensions>

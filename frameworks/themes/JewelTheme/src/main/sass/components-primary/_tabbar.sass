@@ -17,19 +17,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// Jewel TabBar
+
+// TabBar variables
 
 
-// Jewel Navigation
+.jewel.tabbar
 
-// Navigation variables
-.jewel.navigation
-    background-color: #ffffff
+// Jewel TabBarButtonItemRenderer
 
-
+// TabBarButtonItemRenderer variables
 // Jewel NavigationLinkItemRenderer
 
 // NavigationLinkItemRenderer variables
-.jewel.navigationlink
+.jewel.tabbarbutton
     margin: 0
     padding: 0 $itemrenderer-padding
     font:
@@ -43,6 +44,6 @@
         //color: $font-theme-color
         background: lighten($default-color, 10%) !important
 
-    // &.selectable:active
-    //     //color: $font-theme-color
-    //     background: $default-color !important
+    &.selected, &.selectable:active
+        color: $font-theme-color
+        background: lighten($primary-color, 5%) !important
