@@ -336,7 +336,38 @@ public class Image extends UIComponent
 		typeNames = 'Image';
 		return element;
 	}
+        
+    //----------------------------------------
+    //
+    //  Properties OF SWFLoader to Image
+    //
+    //---------------------------------------
+	
+    //----------------------------------
+    //  verticalAlign
+    //----------------------------------
 
+    public function get verticalAlign():String
+    {
+	 return "top";
+    }
+    public function set verticalAlign(value:String):void
+    {
+	
+    } 
+	
+    //----------------------------------
+    //  horizontalAlign
+    //----------------------------------
+	
+    public function get horizontalAlign():String
+    {
+	 return "left";
+    }
+    public function set horizontalAlign(value:String):void
+    {
+	
+    } 
 
 }
 
