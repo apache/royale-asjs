@@ -239,7 +239,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function initSize():void
 		{
-			trace("init size");
 			_button.width = 39;
 
 			if(host.width == 0 || host.width < 89)
