@@ -313,10 +313,8 @@ package org.apache.royale.jewel.beads.views
 				{
 					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-					// comboList.x = relocated.x;
-					// comboList.y = relocated.y;
-					_list.positioner.style["left"] = relocated.x + "px";
-					_list.positioner.style["top"] = relocated.y + "px";
+					_list.x = relocated.x;
+					_list.y = relocated.y;
 					_list.width = _textinput.width + _button.width;
 				}
 				else
