@@ -18,15 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IParentIUIBase;
-
 	COMPILE::JS {
+		import org.apache.royale.core.UIBase;
 		import org.apache.royale.core.WrappedHTMLElement;
-    	import org.apache.royale.core.UIBase;
     }
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 
     /**
      *  The GridLayout class sets its childrens in a grid with cells filling all
@@ -37,7 +34,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class GridLayout extends StyledLayoutBase implements IBeadLayout
+	public class GridLayout extends StyledLayoutBase
 	{
         /**
          *  Constructor.
@@ -58,18 +55,18 @@ package org.apache.royale.jewel.beads.layouts
 		public static const LAYOUT_TYPE_NAMES:String = "layout grid";
 
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
-		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 */
-		override public function set strand(value:IStrand):void
+		 *  Add class selectors when the component is addedToParent
+		 *  Otherwise component will not get the class selectors when 
+		 *  perform "removeElement" and then "addElement"
+		 * 
+ 		 *  @langversion 3.0
+ 		 *  @playerversion Flash 10.2
+ 		 *  @playerversion AIR 2.6
+ 		 *  @productversion Royale 0.9.4
+ 		 */
+		override public function beadsAddedHandler(event:Event = null):void
 		{
-			super.strand = value;
+			super.beadsAddedHandler();
 
 			COMPILE::JS
 			{
