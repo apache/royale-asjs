@@ -33,12 +33,10 @@ limitations under the License.
 				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.label;
             }
 
-			// private function onValueChange(event:Event):void
-			// {
-			// 	// trace("onValueChange"); // if target IE11 you must use this event handler
-			// 	cmb.width = slider_w.value;
-			// 	// button.height = slider_h.value;
-			// }
+			private function onValueChange(event:Event):void
+			{
+				cmb.width = slider_w.value;
+			}
 		]]>
 	</fx:Script>
 
@@ -126,14 +124,27 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<!-- <j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500" valueChange="onValueChange(event)"/>
-	<j:Label text="combo.width='{watchmenComboBox.width}'"/>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
 
-	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-		<j:ComboBox id="cmb" labelField="label" dataProvider="{listModel.avengers}"/>
-		<j:Label text="Some text 1"/>
-	</j:HGroup>
-	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+			<j:Card>
+				<html:H3 text="Jewel ComboBox Resize"/>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:ComboBox id="cmb" labelField="label" dataProvider="{listModel.avengers}"/>
+					<j:Label text="Width: {cmb.width}px"/>
+				</j:HGroup>
+				
+				<j:Slider id="slider_w" width="250" value="200" minimum="100" maximum="400" valueChange="onValueChange(event)"/>
+
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+	<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 		<j:ComboBox width="10" labelField="label" dataProvider="{listModel.avengers}"/>
 		<j:Label text="Some text 2"/>
 	</j:HGroup>

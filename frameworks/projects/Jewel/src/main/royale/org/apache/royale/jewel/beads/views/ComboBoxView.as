@@ -27,20 +27,20 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.List;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.core.IComboBoxModel;
-	import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.PointUtils;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox 
@@ -126,22 +126,10 @@ package org.apache.royale.jewel.beads.views
 			_button = new Button();
 			_button.text = '\u25BC';
 			
-			_button.width = 39;
-
-			if(host.width == 0 || host.width < 89)
-			{
-				var w:Number = host.width == 0 ? 200 : 89;
-				_textinput.width = w - _button.width;
-				host.width = _textinput.width + _button.width;
-			} else
-			{
-				_textinput.width = host.width - _button.width;
-			}
-
+			initSize();
 			
 			host.addElement(_textinput);
 			host.addElement(_button);
-			//host.width = _textinput.width + _button.width;
 			
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
@@ -151,7 +139,7 @@ package org.apache.royale.jewel.beads.views
 			
 			// set initial value and positions using default sizes
 			itemChangeAction();
-			sizeChangeAction();
+			//sizeChangeAction();
 		}
 		
 		/**
@@ -245,47 +233,36 @@ package org.apache.royale.jewel.beads.views
 		}
 		
 		/**
-		 * reposition list dataGroup in desktop and widescreen screens
+		 * Size the component at start up
 		 * 
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.StyledUIBase
+		 */
+		protected function initSize():void
+		{
+			trace("init size");
+			_button.width = 39;
+
+			if(host.width == 0 || host.width < 89)
+			{
+				var w:Number = host.width == 0 ? 200 : 89;
+				_textinput.width = w - _button.width;
+				host.width = _textinput.width + _button.width;
+			} else
+			{
+				_textinput.width = host.width - _button.width;
+			}
+
+			_textinput.percentWidth = 100;
+		}
+
+		/**
+		 * Manages the resize of the component
+		 * 
+		 * @private
 		 */
 		protected function sizeChangeAction():void
 		{
-			// var host:StyledUIBase = _strand as StyledUIBase;
-
-			// _textinput.width = host.width - _button.width;
-			// host.width = _textinput.width + _button.width;
-			
-			// textinput.width = host.width - button.width;
-			// host.width = textinput.width + button.width;
-
-			// dispatchEvent(new Event("layoutNeeded"));
-
-			// input.x = 0;
-			// input.y = 0;
-			// if (host.isWidthSizedToContent()) {
-			// 	input.width = 100;
-			// } else {
-			// 	input.width = host.width - 20;
-			// }
-			
-			// button.x = input.width;
-			// button.y = 0;
-			// button.width = 20;
-			// button.height = input.height;
-			
-			// COMPILE::JS {
-			// 	input.element.style.position = "absolute";
-			// 	button.element.style.position = "absolute";
-			// }
-				
-			// if (host.isHeightSizedToContent()) {
-			// 	host.height = input.height;
-			// }
-			// if (host.isWidthSizedToContent()) {
-			// 	host.width = input.width + button.width;
-			// }
+			host.width = _textinput.width + _button.width;
 		}
 
 		private var comboList:ComboBoxList;
