@@ -106,6 +106,9 @@ package org.apache.royale.utils
 		public var swfLoader:Loader;
 		
 		COMPILE::JS
+        /**
+         * @royalesuppresspublicvarwarning
+         */
 		public var jsLoader:WrappedHTMLElement;
 
         COMPILE::JS
