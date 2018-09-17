@@ -20,78 +20,27 @@ limitations under the License.
 <j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:j="library://ns.apache.org/royale/jewel"
 				xmlns:html="library://ns.apache.org/royale/html"
-				xmlns:js="library://ns.apache.org/royale/basic">
-
-	
-	
-	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
-
+				xmlns:js="library://ns.apache.org/royale/basic"
+                xmlns:components="components.*">
+    
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
 					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1"
-					id="cellIncludeIn">
-			<j:states>
-                <js:State name="login"/>
-                <js:State name="loggedIn"/>
-            </j:states>
-            
-            <j:beads>
-                <js:SimpleStatesImpl/>
-            </j:beads>
+					phoneNumerator="1" phoneDenominator="1">
 
-            <j:Card includeIn="login">
-                <html:H1 text="View States with includeIn"/>
-                <j:TextInput text="someuser"/>
-                <j:TextInput text="somepass">
-                    <j:beads>
-                        <j:PasswordInput/>
-                    </j:beads>
-                </j:TextInput>
-                <j:Button text="Login" emphasis="primary" click="cellIncludeIn.currentState = 'loggedIn'"/>
-            </j:Card>
+			<components:ViewStatesIncludeIn/>
 
-            <j:Card includeIn="loggedIn">
-                <html:H1 text="You are logged in!! :)"/>
-                <j:Button text="Logout" click="cellIncludeIn.currentState = 'login'"/>
-            </j:Card>
 		</j:GridCell>
 	</j:Grid>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
 					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1"
-					id="cellDotNotation">
-			<j:states>
-                <js:State name="login_dot"/>
-                <js:State name="loggedIn_dot"/>   
-            </j:states>
-            
-            <j:beads>
-                <js:SimpleStatesImpl/>
-            </j:beads>
+					phoneNumerator="1" phoneDenominator="1">
 
-            <j:Card visible="true" visible.loggedIn_dot="false">
-                <html:H1 text="View States with dot notation"/>
-                <j:TextInput text="someuser"/>
-                <j:TextInput text="somepass">
-                    <j:beads>
-                        <j:PasswordInput/>
-                    </j:beads>
-                </j:TextInput>
-                <j:Button text="Login" emphasis="primary" click="cellDotNotation.currentState = 'loggedIn_dot'" />
-            </j:Card>
+			<components:ViewStatesDotNotation/>
 
-            <j:Card visible="false" visible.loggedIn_dot="true">
-                <html:H1 text="You are logged in!! :)"/>
-                <j:Button text="Logout" click="cellDotNotation.currentState = 'login_dot'"/>
-            </j:Card>
-		</j:GridCell>
-		
+		</j:GridCell>	
 	</j:Grid>
-	
 
 </j:SectionContent>
