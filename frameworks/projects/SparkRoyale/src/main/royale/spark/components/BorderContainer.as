@@ -275,6 +275,15 @@ public class BorderContainer extends SkinnableContainer
 	if (GOOG::DEBUG)
 	    trace("BorderContainer:borderStyle not implemented");
 	}
+	
+	public function get backgroundImage():Object
+	{
+	return "undefined";
+	}
+	public function set backgroundImage(value:Object):void
+	{
+	
+	
    // private var _backgroundFill:IFill;
     
     /**
