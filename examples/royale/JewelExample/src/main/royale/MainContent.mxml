@@ -99,12 +99,18 @@ limitations under the License.
                 <j:TopAppBarTitle text="Apache Royale Jewel UI Set Theme Showcase"/>
             </j:TopAppBarSection>
             <j:TopAppBarSection alignRight="true">
-                <j:IconButton click="drawer.fixed = !drawer.fixed">
+                <!-- <j:IconButton click="drawer.fixed = !drawer.fixed">
+                    <j:beads>
+                        <j:ToolTip toolTip="Lock(fix) or Unlock the TopBar"/>
+                    </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.VISIBILITY}" material="true"/>
                     </j:icon>
-                </j:IconButton>
+                </j:IconButton> -->
                 <j:ToggleButton click="toggleTopAppBarFixed()">
+                    <j:beads>
+                        <j:ToolTip toolTip="Lock(fix) or Unlock the TopBar"/>
+                    </j:beads>
                     <j:icon>
                         <js:ToggleFontIcon text="{MaterialIconType.LOCK}" selectedText="{MaterialIconType.LOCK_OPEN}" material="true"/>
                     </j:icon>
