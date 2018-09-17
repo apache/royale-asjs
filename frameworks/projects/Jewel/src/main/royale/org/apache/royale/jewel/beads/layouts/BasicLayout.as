@@ -18,16 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IStrand;
-
 	COMPILE::JS {
     	import org.apache.royale.core.UIBase;
     }
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
 
     /**
      *  The BasicLayout class is a simple layout
@@ -40,7 +37,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class BasicLayout extends LayoutBase implements IBeadLayout
+	public class BasicLayout extends StyledLayoutBase
 	{
         /**
          *  Constructor.
@@ -60,28 +57,22 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public static const LAYOUT_TYPE_NAMES:String = "layout absolute";
 
-		COMPILE::JS
-		private var hostComponent:UIBase;
-
-		COMPILE::JS
-		protected var hostClassList:DOMTokenList;
-
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		override public function set strand(value:IStrand):void
+		 *  Add class selectors when the component is addedToParent
+		 *  Otherwise component will not get the class selectors when 
+		 *  perform "removeElement" and then "addElement"
+		 * 
+ 		 *  @langversion 3.0
+ 		 *  @playerversion Flash 10.2
+ 		 *  @playerversion AIR 2.6
+ 		 *  @productversion Royale 0.9.4
+ 		 */
+		override public function beadsAddedHandler(event:Event = null):void
 		{
-			super.strand = value;
-
+			super.beadsAddedHandler();
+			
 			COMPILE::JS
 			{
-				hostComponent = host as UIBase;
-				hostClassList = hostComponent.positioner.classList;
 				if (hostClassList.contains("layout"))
 					hostClassList.remove("layout");
 				hostClassList.add("layout");

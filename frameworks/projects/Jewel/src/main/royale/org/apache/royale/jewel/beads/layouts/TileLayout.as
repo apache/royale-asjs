@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IUIBase;
@@ -44,7 +43,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TileLayout extends LayoutBase implements IBeadLayout, ILayoutStyleProperties
+	public class TileLayout extends LayoutBase implements ILayoutStyleProperties
 	{
 		/**
 		 *  constructor.
