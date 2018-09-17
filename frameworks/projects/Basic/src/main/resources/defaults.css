@@ -698,6 +698,8 @@ TitleBar
 ToolTip
 {
 	background-color: #FFFFCC;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 View
