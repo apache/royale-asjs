@@ -136,6 +136,7 @@ limitations under the License.
         <local:DropDownListPlayGround id="dropdownlist_panel"/>
         <local:SnackbarPlayGround id="snackbar_panel"/>
         <local:TabBarPlayGround id="tabbar_panel"/>
+        <local:ViewStatesPlayGround id="viewstates_panel"/>
     </j:ApplicationMainContent>
     
 </j:ApplicationResponsiveView>
