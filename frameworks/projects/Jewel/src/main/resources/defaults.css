@@ -2978,8 +2978,11 @@ j|NumericStepper {
     width: 39px;
     height: 38px;
   }
+  .jewel.spinner .jewel.button.up {
+    left: 149px;
+  }
   .jewel.spinner .jewel.button.down {
-    left: 110px;
+    left: -39px;
   }
 }
 j|Spinner {

@@ -491,11 +491,11 @@ j|Card {
 @media (max-width: 992px) {
   .jewel.spinner .jewel.button.up {
     border: 1px solid #b3b3b3;
-    border-radius: 0.25rem 0 0 0.25rem;
+    border-radius: 0 0.25rem 0.25rem 0;
   }
   .jewel.spinner .jewel.button.down {
     border: 1px solid #b3b3b3;
-    border-radius: 0 0.25rem 0.25rem 0;
+    border-radius: 0.25rem 0 0 0.25rem;
     border-top-style: solid;
   }
 }

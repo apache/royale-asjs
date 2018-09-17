@@ -425,18 +425,6 @@ j|Card {
   background: #24a3ef !important;
 }
 
-.jewel.navigationlink {
-  margin: 0;
-  padding: 0 16px;
-  font-family: "Lato", sans-serif;
-  font-size: 1em;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.6);
-}
-.jewel.navigationlink.hovered:hover {
-  background: #737373 !important;
-}
-
 .jewel.label {
   font-family: "Lato", sans-serif;
   font-size: 1em;
@@ -451,6 +439,18 @@ j|Card {
 
 .jewel.navigation {
   background-color: #ffffff;
+}
+
+.jewel.navigationlink {
+  margin: 0;
+  padding: 0 16px;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+.jewel.navigationlink.hovered:hover {
+  background: #737373 !important;
 }
 
 .jewel.numericstepper .jewel.textinput input {
@@ -492,11 +492,11 @@ j|Card {
 @media (max-width: 992px) {
   .jewel.spinner .jewel.button.up {
     border: 1px solid #333333;
-    border-radius: 0.25rem 0 0 0.25rem;
+    border-radius: 0 0.25rem 0.25rem 0;
   }
   .jewel.spinner .jewel.button.down {
     border: 1px solid #333333;
-    border-radius: 0 0.25rem 0.25rem 0;
+    border-radius: 0.25rem 0 0 0.25rem;
     border-top-style: solid;
   }
 }
