@@ -257,6 +257,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 		import org.apache.royale.utils.object.defineSimpleGetter; defineSimpleGetter;
 		import org.apache.royale.utils.object.defineProperty; defineProperty;
 		import org.apache.royale.utils.object.defineSimpleProperty; defineSimpleProperty;
+		import org.apache.royale.utils.js.loadJavascript; loadJavascript;
 	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
