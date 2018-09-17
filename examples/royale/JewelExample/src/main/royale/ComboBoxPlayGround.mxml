@@ -32,6 +32,13 @@ limitations under the License.
             private function avengersComboBoxSelectedItem(event:Event):void {
 				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.label;
             }
+
+			// private function onValueChange(event:Event):void
+			// {
+			// 	// trace("onValueChange"); // if target IE11 you must use this event handler
+			// 	cmb.width = slider_w.value;
+			// 	// button.height = slider_h.value;
+			// }
 		]]>
 	</fx:Script>
 
@@ -118,5 +125,45 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
+
+	<!-- <j:Slider id="slider_w" width="250" value="250" minimum="100" maximum="500" valueChange="onValueChange(event)"/>
+	<j:Label text="combo.width='{watchmenComboBox.width}'"/>
+
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox id="cmb" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 1"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="10" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 2"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="50" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 3"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="150" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 4"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="200" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 5"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="250" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 6"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="300" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 7"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="350" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 8"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="400" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 9"/>
+	</j:HGroup> -->
 
 </j:SectionContent>

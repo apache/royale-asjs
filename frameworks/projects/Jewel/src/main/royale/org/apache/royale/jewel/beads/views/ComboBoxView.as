@@ -290,11 +290,8 @@ package org.apache.royale.jewel.beads.views
 
 		private var comboList:ComboBoxList;
 		/**
-		 *  When set to "auto" this resize handler monitors the width of the app window
-		 *  and switch between fixed and float modes.
-		 * 
-		 *  Note:This could be done with media queries, but since it handles open/close
-		 *  maybe this is the right way
+		 *  Adapt the popup list to the right position taking into account
+		 *  if we are in DESKTOP screen size or in PHONE/TABLET screen size
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

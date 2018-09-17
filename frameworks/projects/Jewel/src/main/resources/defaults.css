@@ -267,6 +267,9 @@ j|ControlBar {
 .jewel.combobox {
   display: inline-flex;
 }
+.jewel.combobox .jewel.textinput {
+  display: block;
+}
 .jewel.combobox .jewel.button::before {
   margin: 0;
   padding: 0;
@@ -3346,6 +3349,7 @@ j|TableItemRenderer {
   appearance: none;
   margin: 0;
   padding: 0.68em 1.12em;
+  width: 100%;
   max-width: 100%;
   flex: 1 0 auto;
   outline: none;
