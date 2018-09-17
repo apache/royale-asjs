@@ -133,7 +133,7 @@ package org.apache.royale.jewel
 					document.body.classList.remove("viewport");
 				} else
 				{
-					document.body.classList.toggle("viewport", _isOpen);
+					_isOpen ? document.body.classList.add("viewport") : document.body.classList.remove("viewport")
 				}
 			}
 		}

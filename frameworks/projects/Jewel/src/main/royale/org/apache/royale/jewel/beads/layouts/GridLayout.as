@@ -117,7 +117,7 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setGap(value:Boolean):void
 		{
-			hostClassList.toggle("gap", value);
+			value ? hostClassList.add("gap") : hostClassList.remove("gap");
 		}
 
 		// protected var _gap:Number = 0;
