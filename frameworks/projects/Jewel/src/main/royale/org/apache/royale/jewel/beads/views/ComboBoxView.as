@@ -134,11 +134,12 @@ package org.apache.royale.jewel.beads.views
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
+			model.addEventListener("dataProviderChanged", itemChangeAction);
 			
 			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
 			
 			// set initial value and positions using default sizes
-			itemChangeAction();
+			//itemChangeAction();
 			//sizeChangeAction();
 		}
 		
@@ -226,7 +227,7 @@ package org.apache.royale.jewel.beads.views
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 */
-		protected function itemChangeAction():void
+		protected function itemChangeAction(event:Event = null):void
 		{
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			_textinput.text = getLabelFromData(model, model.selectedItem);
