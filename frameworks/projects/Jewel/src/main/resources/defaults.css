@@ -2882,6 +2882,7 @@ j|Label {
 .jewel.list, .jewel.navigation {
   align-items: stretch;
   align-content: flex-start;
+  -webkit-overflow-scrolling: touch;
 }
 
 j|List {
