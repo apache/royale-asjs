@@ -113,6 +113,19 @@ j|Form {
     IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
   }
 }
+.responsiveSizeMonitor {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 250px;
+}
+.responsiveSizeMonitor strong {
+  color: yellow;
+}
+
 .jewel.alert {
   position: fixed;
   top: 50%;

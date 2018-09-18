@@ -144,5 +144,6 @@ limitations under the License.
         <local:TabBarPlayGround id="tabbar_panel"/>
         <local:ViewStatesPlayGround id="viewstates_panel"/>
     </j:ApplicationMainContent>
-    
+
+    <!-- <j:ResposiveSizeMonitor/> -->
 </j:ApplicationResponsiveView>
