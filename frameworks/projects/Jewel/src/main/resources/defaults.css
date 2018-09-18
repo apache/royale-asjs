@@ -3351,6 +3351,7 @@ j|TableItemRenderer {
   margin: 0;
   padding: 0.68em 1.12em;
   width: 100%;
+  height: 100%;
   max-width: 100%;
   flex: 1 0 auto;
   outline: none;
