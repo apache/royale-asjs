@@ -135,19 +135,15 @@ package org.apache.royale.utils
 				
                 if (goog.DEBUG)
                 {
-                    if (jsDepsLoader == null) {
-                        jsDepsLoader = document.createElement('script') as WrappedHTMLElement;
-                        jsDepsLoader.onload = loadDepsHandler;
-                        document.body.appendChild(jsDepsLoader);
-                    }                    
+                    jsDepsLoader = document.createElement('script') as WrappedHTMLElement;
+                    jsDepsLoader.onload = loadDepsHandler;
+                    document.body.appendChild(jsDepsLoader);
                 }
                 else
                 {
-    				if (jsLoader == null) {
-    					jsLoader = document.createElement('script') as WrappedHTMLElement;
-                        jsLoader.onload = loadHandler;
-    					document.body.appendChild(jsLoader);
-    				}
+					jsLoader = document.createElement('script') as WrappedHTMLElement;
+                    jsLoader.onload = loadHandler;
+					document.body.appendChild(jsLoader);
                 }
 			}
 		}
