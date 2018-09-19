@@ -84,6 +84,7 @@ limitations under the License.
 
             import org.apache.royale.collections.ArrayList;
             import vos.TabBarButtonVO;
+            import org.apache.royale.jewel.supportClasses.util.HighlightCode;
             
             private function changeHandler(event:Event):void
             {
@@ -104,6 +105,12 @@ limitations under the License.
 			public function dataReadyHandler(event:Event):void
 			{
                 sourceCodeTextHolder.text = event.target.data;
+                
+                COMPILE::JS
+                {
+                    var highlightCode:HighlightCode = new HighlightCode();
+                    highlightCode.highlightBlock(sourceCodeTextHolder.element);
+                }
 			}
 		]]>
 	</fx:Script>
@@ -145,7 +152,10 @@ limitations under the License.
         </j:SectionContent>
 
         <j:SectionContent id="sourceCodeTab">
-            <html:Pre id="sourceCodeTextHolder"/>
+            <html:Pre>
+                <html:Code id="sourceCodeTextHolder" className="xml codeExample">
+                </html:Code>
+            </html:Pre>
         </j:SectionContent>
 
     </j:TabBarContent>

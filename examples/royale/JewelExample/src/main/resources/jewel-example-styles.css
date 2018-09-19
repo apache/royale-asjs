@@ -79,3 +79,11 @@
     border-radius: 3px;
     padding: 14px;
 }
+
+.codeExample
+{
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 0px solid;
+}

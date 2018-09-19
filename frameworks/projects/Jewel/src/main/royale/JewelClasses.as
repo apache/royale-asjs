@@ -93,6 +93,8 @@ package
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList; ComboBoxList;
         import org.apache.royale.jewel.supportClasses.list.DataGroup; DataGroup;
 
+        import org.apache.royale.jewel.supportClasses.util.HighlightCode; HighlightCode;
+
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
     }
 
