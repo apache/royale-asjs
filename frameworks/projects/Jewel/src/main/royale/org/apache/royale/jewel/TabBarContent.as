@@ -36,7 +36,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ApplicationMainContent extends Container
+	public class TabBarContent extends Container
 	{
 		/**
 		 *  constructor.
@@ -46,40 +46,11 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function ApplicationMainContent()
+		public function TabBarContent()
 		{
 			super();
 
-            typeNames = "jewel main";
-		}
-		
-		private var _hasTopAppBar:Boolean;
-
-        /**
-         *  a boolean flag to indicate if the container needs to make some room
-		 *  for a TopAppBar so content doesn't be hide
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get hasTopAppBar():Boolean
-		{
-            return _hasTopAppBar;
-		}
-
-		public function set hasTopAppBar(value:Boolean):void
-		{
-            if (_hasTopAppBar != value)
-            {
-                _hasTopAppBar = value;
-
-                COMPILE::JS
-                {
-                    toggleClass("has-topappbar", _hasTopAppBar);
-                }
-            }
+            typeNames = "jewel tabbarcontent";
 		}
 
 		/**
@@ -94,6 +65,7 @@ package org.apache.royale.jewel
 		 */
         public function showContent(id:String):void
         {
+			trace("TabBarContent.showContent: " + id)
 			try
 			{
 				for (var i:int = 0; i < numElements; i++)
@@ -112,7 +84,7 @@ package org.apache.royale.jewel
 			}
 			catch (error:Error)
 			{
-				throw new Error ("One or more content in ApplicationMainContent is not implementing IActivable interface.");	
+				throw new Error ("One or more content in TabBarContent is not implementing IActivable interface.");	
 			}
         }
 
@@ -122,7 +94,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this, 'main');
+			return addElementToWrapper(this, 'div');
         }
 	}
 }

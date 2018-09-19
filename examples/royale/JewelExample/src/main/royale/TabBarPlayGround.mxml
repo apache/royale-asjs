@@ -29,15 +29,15 @@ limitations under the License.
             
             private function changeHandler(event:Event):void
             {
-                // var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
-                //main.showContent(item.href);
+                var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
+                tabcontent.showContent(item.href);
             }
 
             private var _tabBarNavigation:ArrayList = new ArrayList([
-				new TabBarButtonVO("Tab1", "#", null),
-				new TabBarButtonVO("Tab2", "#", null),
-				new TabBarButtonVO("Tab3", "#", null),
-				new TabBarButtonVO("Tab4", "#", null)		
+				new TabBarButtonVO("Tab1", "tab1", null),
+				new TabBarButtonVO("Tab2", "tab2", null),
+				new TabBarButtonVO("Tab3", "tab3", null),
+				new TabBarButtonVO("Tab4", "tab4", null)		
 			]);
 
 			public function get tabBarNavigation():ArrayList
@@ -58,13 +58,28 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel TabBar"/>
 				
-				<j:TabBar id="tabbar">
+				<j:TabBar id="tabbar" className="tabBarIconItemRenderer" change="changeHandler(event)">
 					<j:beads>
 						<js:ConstantBinding
 							sourcePropertyName="tabBarNavigation"
 							destinationPropertyName="dataProvider"/>
 					</j:beads>
 				</j:TabBar>
+				<j:TabBarContent id="tabcontent">
+					<j:SectionContent id="tab1" isActive="true">
+						<j:Label text="Tab 1"/>
+					</j:SectionContent>
+					<j:SectionContent id="tab2">
+						<j:Label text="Tab 2"/>
+					</j:SectionContent>
+					<j:SectionContent id="tab3">
+						<j:Label text="Tab 3"/>
+					</j:SectionContent>
+					<j:SectionContent id="tab4">
+						<j:Label text="Tab 4"/>
+					</j:SectionContent>
+				</j:TabBarContent>
+
 			</j:Card>
 		</j:GridCell>
 		

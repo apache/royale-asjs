@@ -45,6 +45,10 @@
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
 }
+.tabBarIconItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.TabBarIconItemRenderer");
+}
 
 .navIconLinkItemRenderer .fonticon
 {
