@@ -65,7 +65,6 @@ package org.apache.royale.jewel
 		 */
         public function showContent(id:String):void
         {
-			trace("TabBarContent.showContent: " + id)
 			try
 			{
 				for (var i:int = 0; i < numElements; i++)

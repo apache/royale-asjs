@@ -153,8 +153,7 @@ limitations under the License.
 
         <j:SectionContent id="sourceCodeTab">
             <html:Pre>
-                <html:Code id="sourceCodeTextHolder" className="xml codeExample">
-                </html:Code>
+                <html:Code id="sourceCodeTextHolder" className="xml codeExample"/>
             </html:Pre>
         </j:SectionContent>
 
