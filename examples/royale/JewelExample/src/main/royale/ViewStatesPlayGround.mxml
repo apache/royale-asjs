@@ -23,24 +23,15 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/royale/basic"
                 xmlns:components="components.*">
     
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+	<j:Grid gap="true">
+		
 
 			<components:ViewStatesIncludeIn/>
 
-		</j:GridCell>
-	</j:Grid>
-
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
-
+		
 			<components:ViewStatesDotNotation/>
 
-		</j:GridCell>	
+		
 	</j:Grid>
 
 </j:SectionContent>

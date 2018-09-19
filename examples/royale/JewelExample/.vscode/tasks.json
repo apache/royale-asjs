@@ -23,8 +23,10 @@
             ],
             "group": "build",
             "presentation": {
+                "echo": true,
                 "reveal": "always",
-                "panel": "new"
+                "focus": true,
+                "panel": "dedicated"
             },
             "problemMatcher": [
                 "$nextgenas_nomatch"

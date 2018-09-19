@@ -52,8 +52,9 @@ package models
         
         private var _containerDrawerNavigation:ArrayList = new ArrayList([
             new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.FLIP_TO_FRONT),
+            new NavigationLinkVO("Layouts", "layouts_panel", MaterialIconType.VIEW_QUILT),
             new NavigationLinkVO("Grid", "grid_panel", MaterialIconType.GRID_ON),
-            new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_QUILT),
+            new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_LIST),
             new NavigationLinkVO("TabBar", "tabbar_panel", MaterialIconType.TAB),
             new NavigationLinkVO("Card", "card_panel", MaterialIconType.WEB_ASSET)
             // new NavigationLinkVO("Tabs", "tabs_panel")

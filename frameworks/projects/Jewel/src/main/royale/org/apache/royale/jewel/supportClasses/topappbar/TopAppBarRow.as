@@ -16,24 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses.topappbar
 {
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The DrawerHeader class is a Container component to hold Drawer Header
-	 *  content, for example a title or an Image icon logo
+	 *  The TopAppBarRow class is a container component used with TopAppBar
+	 *  It represent a row. TopAppBar supports more than one row
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DrawerHeader extends Group
+	public class TopAppBarRow extends Group
 	{
 		/**
 		 *  constructor.
@@ -43,20 +44,11 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function DrawerHeader()
+		public function TopAppBarRow()
 		{
 			super();
 
-            typeNames = "jewel drawerheader"
+            typeNames = "jewel topappbarrow"
 		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this,'header');
-        }
 	}
 }

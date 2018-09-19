@@ -17,10 +17,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:GridCell xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:j="library://ns.apache.org/royale/jewel"
 		xmlns:js="library://ns.apache.org/royale/basic"
-		xmlns:html="library://ns.apache.org/royale/html">
+		xmlns:html="library://ns.apache.org/royale/html"
+        desktopNumerator="1" desktopDenominator="2"
+		tabletNumerator="1" tabletDenominator="2"
+		phoneNumerator="1" phoneDenominator="1">
 
     <j:states>
         <js:State name="login"/>
@@ -46,4 +49,4 @@ limitations under the License.
         <html:H1 text="You are logged in!! :)"/>
         <j:Button text="Logout" click="currentState = 'login'"/>
     </j:Card>
-</j:Group>
+</j:GridCell>

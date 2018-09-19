@@ -85,15 +85,19 @@
     <component id="DateChooserModel" class="org.apache.royale.jewel.beads.models.DateChooserModel"/>
 
     <component id="ApplicationResponsiveView" class="org.apache.royale.jewel.ApplicationResponsiveView"/>
+    
     <component id="TopAppBar" class="org.apache.royale.jewel.TopAppBar"/>
-    <component id="TopAppBarRow" class="org.apache.royale.jewel.TopAppBarRow"/>
-    <component id="TopAppBarSection" class="org.apache.royale.jewel.TopAppBarSection"/>
-    <component id="TopAppBarTitle" class="org.apache.royale.jewel.TopAppBarTitle"/>
+    <component id="TopAppBarRow" class="org.apache.royale.jewel.supportClasses.topappbar.TopAppBarRow"/>
+    <component id="TopAppBarSection" class="org.apache.royale.jewel.supportClasses.topappbar.TopAppBarSection"/>
+    <component id="TopAppBarTitle" class="org.apache.royale.jewel.supportClasses.topappbar.TopAppBarTitle"/>
+
     <component id="ApplicationMainContent" class="org.apache.royale.jewel.ApplicationMainContent"/>
     <component id="SectionContent" class="org.apache.royale.jewel.SectionContent"/>
+    
     <component id="Drawer" class="org.apache.royale.jewel.Drawer"/>
-    <component id="DrawerHeader" class="org.apache.royale.jewel.DrawerHeader"/>
-    <component id="DrawerContent" class="org.apache.royale.jewel.DrawerContent"/>
+    <component id="DrawerHeader" class="org.apache.royale.jewel.supportClasses.drawer.DrawerHeader"/>
+    <component id="DrawerContent" class="org.apache.royale.jewel.supportClasses.drawer.DrawerContent"/>
+
     <component id="Divider" class="org.apache.royale.jewel.Divider"/>
 
     <component id="Image" class="org.apache.royale.jewel.Image"/>
