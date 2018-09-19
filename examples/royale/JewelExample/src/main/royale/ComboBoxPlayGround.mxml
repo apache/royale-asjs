@@ -25,6 +25,8 @@ limitations under the License.
     
 	<fx:Script>
 		<![CDATA[
+			import vos.IconListVO;
+
             private function watchmenComboBoxSelectedItem(event:Event):void {
 				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem;
             }
@@ -144,19 +146,32 @@ limitations under the License.
 		</j:GridCell>
 	
 	</j:Grid>
+
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
 					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
-
 			<j:Card>
 				<html:H3 text="Jewel ComboBox selectedIndex: {cmb1.selectedIndex}"/>
 
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 					<j:ComboBox id="cmb1" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2"/>
 				</j:HGroup>
-				
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+	
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel ComboBox selectedItem"/>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:ComboBox id="cmb2" labelField="label" dataProvider="{listModel.avengers}" selectedItem="{listModel.avengers.getItemAt(3)}" />
+				</j:HGroup>
+				<j:Label text="selectedItem: {(cmb2.selectedItem as IconListVO).label}"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
