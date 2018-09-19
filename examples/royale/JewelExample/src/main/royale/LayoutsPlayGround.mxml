@@ -40,12 +40,13 @@ limitations under the License.
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel Group"/>
+				<html:H3 text="Jewel BasicLayout (width200, height:200px)"/>
 				
-				<j:Group>
-					<j:Button text="X" emphasis="primary"/>
-					<j:Button text="Y" emphasis="secondary"/>
-					<j:Button text="Z" emphasis="emphasized"/>
+				<j:Group width="200" height="200" className="wrapper">
+					<j:Button text="Origin" emphasis="primary"/>
+					<j:Button text="x:30,y:30" emphasis="secondary" x="30" y="30"/>
+					<j:Button text="x:60,y:60" emphasis="emphasized" x="60" y="60"/>
+					<j:Button text="bottom/right" style="bottom:0;right:0"/>
 				</j:Group>
 
 			</j:Card>
@@ -54,29 +55,155 @@ limitations under the License.
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H4 text="Jewel HGroup"/>
+				<html:H4 text="Jewel HorizontalLayout"/>
 
-				<j:HGroup>
+				<j:HGroup id="hg" gap="3" className="wrapper">
 					<j:Button text="X" emphasis="primary"/>
 					<j:Button text="Y" emphasis="secondary"/>
 					<j:Button text="Z" emphasis="emphasized"/>
+					<j:Button text="0" />
 				</j:HGroup>
 				
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H4 text="Jewel VGroup"/>
+				<html:H4 text="Jewel VerticalLayout"/>
 		
-				<j:VGroup>
+				<j:VGroup id="vg" gap="3" className="wrapper">
 					<j:Button text="X" emphasis="primary"/>
 					<j:Button text="Y" emphasis="secondary"/>
 					<j:Button text="Z" emphasis="emphasized"/>
+					<j:Button text="0"/>
 				</j:VGroup>
+
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell>
+	</j:Grid>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HorizontalCenteredLayout (width200, height:200px)"/>
+				
+				<j:Group width="200" height="200" className="wrapper">
+					<j:beads>
+						<j:HorizontalCenteredLayout id="hcl" gap="3"/>
+					</j:beads>
+					<j:Button text="X" emphasis="primary"/>
+					<j:Button text="Y" emphasis="secondary"/>
+					<j:Button text="Z" emphasis="emphasized"/>
+					<j:Button text="0" />
+				</j:Group>
+
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hcl.gap = event.target.value"/>
+
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VerticalCenteredLayout (width200, height:200px)"/>
+				
+				<j:Group width="200" height="200" className="wrapper">
+					<j:beads>
+						<j:VerticalCenteredLayout id="vcl" gap="3"/>
+					</j:beads>
+					<j:Button text="X" emphasis="primary"/>
+					<j:Button text="Y" emphasis="secondary"/>
+					<j:Button text="Z" emphasis="emphasized"/>
+					<j:Button text="0" />
+				</j:Group>
+
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vcl.gap = event.target.value"/>
+
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HorizontalFlowLayout"/>
+				
+				<j:Group className="wrapper">
+					<j:beads>
+						<j:HorizontalFlowLayout id="hfl" gap="3"/>
+					</j:beads>
+					<j:Button text="X" emphasis="primary" width="60"/>
+					<j:Button text="Y" emphasis="secondary" width="60"/>
+					<j:Button text="Z" emphasis="emphasized" width="60"/>
+					<j:Button text="0" width="60"/>
+				</j:Group>
+
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hfl.gap = event.target.value"/>
+
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VerticalFlowLayout"/>
+				
+				<j:Group className="wrapper" height="200">
+					<j:beads>
+						<j:VerticalFlowLayout id="vfl" gap="3"/>
+					</j:beads>
+					<j:Button text="X" emphasis="primary" width="60"/>
+					<j:Button text="Y" emphasis="secondary" width="60"/>
+					<j:Button text="Z" emphasis="emphasized" width="60"/>
+					<j:Button text="0" width="60"/>
+				</j:Group>
+
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vfl.gap = event.target.value"/>
+
+			</j:Card>
+		</j:GridCell>
+
+		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H4 text="Jewel HGroup"/>
+
+				<j:HGroup id="hg" gap="3">
+					<j:Button text="X" emphasis="primary"/>
+					<j:Button text="Y" emphasis="secondary"/>
+					<j:Button text="Z" emphasis="emphasized"/>
+					<j:Button text="0" />
+				</j:HGroup>
+				
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
+			</j:Card>
+		</j:GridCell> -->
+		
+		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3"
+					tabletNumerator="1" tabletDenominator="3"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H4 text="Jewel VGroup"/>
+		
+				<j:VGroup id="vg" gap="3">
+					<j:Button text="X" emphasis="primary"/>
+					<j:Button text="Y" emphasis="secondary"/>
+					<j:Button text="Z" emphasis="emphasized"/>
+					<j:Button text="0"/>
+				</j:VGroup>
+
+				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
+			</j:Card>
+		</j:GridCell> -->
 	</j:Grid>
 
 </j:SectionContent>

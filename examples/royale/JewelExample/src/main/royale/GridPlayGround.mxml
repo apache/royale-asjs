@@ -37,7 +37,7 @@ limitations under the License.
 	<html:H3 text="Grids"/>
 	<j:CheckBox text="Turn Gap on/off" change="useGap = !useGap;" selected="true"/>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
 					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
@@ -45,7 +45,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="2">
@@ -58,7 +58,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
@@ -76,7 +76,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="4"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
@@ -98,7 +98,7 @@ limitations under the License.
 			<html:Div className="box" text="4"/>
 		</j:GridCell>
 	</j:Grid>
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="5"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="2">
@@ -126,7 +126,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="6"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="2">
@@ -160,7 +160,7 @@ limitations under the License.
 		
 	</j:Grid>
 	
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="7"
 					tabletNumerator="1" tabletDenominator="4"
 					phoneNumerator="1" phoneDenominator="3">
@@ -199,7 +199,7 @@ limitations under the License.
 		
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="8"
 					tabletNumerator="1" tabletDenominator="4"
 					phoneNumerator="1" phoneDenominator="2">
@@ -242,7 +242,7 @@ limitations under the License.
 		</j:GridCell>      
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="9"
 					tabletNumerator="1" tabletDenominator="4"
 					phoneNumerator="1" phoneDenominator="2">
@@ -290,7 +290,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="10"
 					tabletNumerator="1" tabletDenominator="5"
 					phoneNumerator="1" phoneDenominator="4">
@@ -343,7 +343,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="{useGap}">
+	<j:Grid gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="11"
 					tabletNumerator="1" tabletDenominator="5"
 					phoneNumerator="1" phoneDenominator="4">
@@ -401,7 +401,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid  id="g" className="wrapper" gap="{useGap}">
+	<j:Grid  id="g" gap="{useGap}">
 		<j:GridCell desktopNumerator="1" desktopDenominator="12"
 					tabletNumerator="1" tabletDenominator="6"
 					phoneNumerator="1" phoneDenominator="4">
@@ -466,7 +466,7 @@ limitations under the License.
 
 	<html:H3 text="Grids Responsive Visibility"/>
 
-	<j:Grid className="wrapper" gap="true">
+	<j:Grid gap="true">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="2">
@@ -480,7 +480,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="true">
+	<j:Grid gap="true">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3"
@@ -500,7 +500,7 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-	<j:Grid className="wrapper" gap="true">
+	<j:Grid gap="true">
 		<j:GridCell desktopNumerator="1" desktopDenominator="4"
 					tabletNumerator="1" tabletDenominator="2"
 					phoneNumerator="1" phoneDenominator="1">
@@ -528,7 +528,7 @@ limitations under the License.
 	
 	<html:H4 text=" itemsTop"/>
 
-	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsTop">
+	<j:Grid gap="true" itemsVerticalAlign="itemsTop">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
@@ -548,7 +548,7 @@ limitations under the License.
 
 	<html:H4 text=" itemsBottom"/>
 
-	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsBottom">
+	<j:Grid gap="true" itemsVerticalAlign="itemsBottom">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
@@ -568,7 +568,7 @@ limitations under the License.
 	
 	<html:H4 text=" itemsCentered"/>
 
-	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsCentered">
+	<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">
@@ -588,7 +588,7 @@ limitations under the License.
 	
 	<html:H4 text=" itemsSameHeight"/>
 
-	<j:Grid className="wrapper" gap="true" itemsVerticalAlign="itemsSameHeight" height="200">
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight" height="200">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3"
 					tabletNumerator="1" tabletDenominator="3"
 					phoneNumerator="1" phoneDenominator="3">

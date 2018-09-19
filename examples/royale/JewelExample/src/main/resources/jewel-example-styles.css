@@ -58,7 +58,7 @@
 }
 
 .wrapper {
-    /* outline: 0px dashed navy; */
+    outline: 1px dashed navy;
 }
 
 .box {
@@ -66,7 +66,6 @@
     border-radius: 3px;
     padding: 12px;
     color: white;
-    /* outline: 1px dashed navy; */
 }
 
 .jewel.item.string

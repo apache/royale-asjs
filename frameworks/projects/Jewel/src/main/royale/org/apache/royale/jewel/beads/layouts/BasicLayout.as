@@ -55,7 +55,7 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-		public static const LAYOUT_TYPE_NAMES:String = "layout absolute";
+		public static const LAYOUT_TYPE_NAMES:String = "layout basic";
 
 		/**
 		 *  Add class selectors when the component is addedToParent
@@ -76,9 +76,9 @@ package org.apache.royale.jewel.beads.layouts
 				if (hostClassList.contains("layout"))
 					hostClassList.remove("layout");
 				hostClassList.add("layout");
-				if(hostClassList.contains("absolute"))
-					hostClassList.remove("absolute");
-				hostClassList.add("absolute");
+				if(hostClassList.contains("basic"))
+					hostClassList.remove("basic");
+				hostClassList.add("basic");
 			}
 		}
 
@@ -211,11 +211,11 @@ package org.apache.royale.jewel.beads.layouts
 				 *		display: flex;
 				 *	}
 				 *
-				 *	.layout.absolute {
+				 *	.layout.basic {
 				 *		position: relative;
 				 *	}
 				 *  
-				 *	.layout.absolute > * {
+				 *	.layout.basic > * {
 		         *      position: absolute  
 				 *  }
 				 */

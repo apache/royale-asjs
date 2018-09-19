@@ -148,6 +148,7 @@ j|Form {
   height: 50px;
 }
 .jewel.alert .content {
+  position: absolute;
   top: 50px;
   bottom: 50px;
   width: 100%;
@@ -157,7 +158,6 @@ j|Form {
   white-space: normal;
 }
 .jewel.alert .jewel.controlbar {
-  position: absolute;
   bottom: 0;
   height: 50px;
 }
@@ -168,6 +168,7 @@ j|Form {
   }
 }
 j|Alert {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
@@ -768,7 +769,10 @@ j|Label {
   overflow: auto;
 }
 
-.layout.absolute > * {
+.layout.basic {
+  position: relative;
+}
+.layout.basic > * {
   position: absolute;
 }
 

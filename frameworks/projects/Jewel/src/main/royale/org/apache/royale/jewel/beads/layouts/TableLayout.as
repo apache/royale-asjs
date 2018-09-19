@@ -202,23 +202,7 @@ package org.apache.royale.jewel.beads.layouts
 
             COMPILE::JS
             {
-				/** 
-				 *  This Layout uses the following CSS rules
-				 *  no code needed in JS for layout
-				 * 
-				 *  .layout {
-				 *		display: flex;
-				 *	}
-				 *
-				 *	.layout.absolute {
-				 *		position: relative;
-				 *	}
-				 *  
-				 *	.layout.absolute > * {
-		         *      position: absolute  
-				 *  }
-				 */
-
+				
                 return true;
             }
 		}
