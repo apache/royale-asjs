@@ -28,10 +28,13 @@ package org.apache.royale.utils.js
    * @royaleignorecoercion HTMLScriptElement
    */
   COMPILE::JS
-  public function loadJavascript(url:String,callback:Function=null)
+  public function loadJavascript(url:String,callback:Function=null):void
   {
     var script:HTMLScriptElement = document.createElement('script') as HTMLScriptElement;
-    script.onload = callback;
+	if (callback)
+	{
+		    script.onload = callback;
+	}
     script.src = url;
     document.head.appendChild(script);
   }
