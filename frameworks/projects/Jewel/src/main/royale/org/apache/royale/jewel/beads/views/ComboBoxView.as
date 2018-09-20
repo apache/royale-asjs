@@ -39,8 +39,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.utils.PointUtils;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox 
@@ -280,16 +280,19 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				var outerWidth:Number = document.body.getBoundingClientRect().width;
-				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+				// handle potential scrolls offsets
+				var top:Number = top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
+					//poopup width needs to be set before position inside bounding client to work ok
+					_list.width = _textinput.width + _button.width;
+
 					var origin:Point = new Point(0, button.y + button.height - top);
-					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
+					var relocated:Point = positionInsideBoundingClientRect(_strand, _list, origin);
 					_list.x = relocated.x;
 					_list.y = relocated.y;
-					_list.width = _textinput.width + _button.width;
 				}
 				else
 				{

@@ -42,11 +42,10 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
     import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	import org.apache.royale.jewel.Table;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
-	import org.apache.royale.jewel.Alert;
     import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.utils.PointUtils;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -297,19 +296,14 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				var outerWidth:Number = document.body.getBoundingClientRect().width;
-				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+				// handle potential scrolls offsets
+				var top:Number = top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
-					// var point:Point = new Point(_textInput.width, _button.height);
-					// var p2:Point = PointUtils.localToGlobal(point, _strand);
-					// _popUp.x = p3.x;
-					// _popUp.y = p3.y;
-					// var p3:Point = PointUtils.globalToLocal(p2, host);
-
 					var origin:Point = new Point(0, _button.y + _button.height - top);
-					var relocated:Point = PointUtils.localToGlobal(origin, _strand);
+					var relocated:Point = positionInsideBoundingClientRect(_strand, daysTable, origin);
 					daysTable.x = relocated.x;
 					daysTable.y = relocated.y;
 				}
