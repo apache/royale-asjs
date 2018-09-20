@@ -279,7 +279,7 @@ package org.apache.royale.jewel.beads.views
         {
 			COMPILE::JS
 			{
-				var outerWidth:Number = window.outerWidth;
+				var outerWidth:Number = document.body.getBoundingClientRect().width;
 				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size

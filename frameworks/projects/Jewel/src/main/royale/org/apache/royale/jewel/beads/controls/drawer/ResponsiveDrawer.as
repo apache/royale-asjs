@@ -136,7 +136,7 @@ package org.apache.royale.jewel.beads.controls.drawer
         {
 			COMPILE::JS
 			{
-				var outerWidth:Number = window.outerWidth;
+				var outerWidth:Number = document.body.getBoundingClientRect().width;
 				var tmpFixed:Boolean = drawer.fixed;
 
 				// Desktop width size

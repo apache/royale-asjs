@@ -89,7 +89,7 @@ package org.apache.royale.jewel.debugger
 			{
 				// Desktop width size
 				//if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
-				html = "<strong>window.outerWidth:</strong> " + window.outerWidth + "x" + window.outerHeight + "</br>";
+				html = "<strong>Screen size (px):</strong> " + document.body.getBoundingClientRect().width + "x" + document.body.getBoundingClientRect().height + "</br>";
 				html += "<strong>PHONE_BREAKPOINT: </strong> " + ResponsiveSizes.PHONE_BREAKPOINT + "</br>";
 				html += "<strong>TABLET_BREAKPOINT:</strong> " + ResponsiveSizes.TABLET_BREAKPOINT + "</br>";
 				html += "<strong>DESKTOP_BREAKPOINT:</strong> " + ResponsiveSizes.DESKTOP_BREAKPOINT + "</br>";
