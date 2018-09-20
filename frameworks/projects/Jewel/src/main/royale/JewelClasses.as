@@ -95,8 +95,6 @@ package
         
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 
-        import org.apache.royale.jewel.supportClasses.util.HighlightCode; HighlightCode;
-
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
     }
 

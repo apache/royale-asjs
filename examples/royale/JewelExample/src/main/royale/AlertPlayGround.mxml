@@ -84,7 +84,7 @@ limitations under the License.
 
             import org.apache.royale.collections.ArrayList;
             import vos.TabBarButtonVO;
-            import org.apache.royale.jewel.supportClasses.util.HighlightCode;
+            import utils.HighlightCode;
             
             private function changeHandler(event:Event):void
             {
