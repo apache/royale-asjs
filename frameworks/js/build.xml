@@ -101,6 +101,9 @@
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
         <antcall target="Icons" />
+        <antcall target="Jewel"/>
+        <antcall target="MXRoyale"/>
+        <antcall target="SparkRoyale"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -151,6 +154,9 @@
         <ant dir="${basedir}/projects/TLFJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
         <ant dir="${basedir}/projects/IconsJS" target="clean"/>
+        <ant dir="${basedir}/projects/JewelJS" target="clean"/>
+        <ant dir="${basedir}/projects/MXRoyaleJS" target="clean"/>
+        <ant dir="${basedir}/projects/SparkRoyaleJS" target="clean"/>
 
         <delete dir="${basedir}/libs"/>
         <delete dir="${basedir}/generated-sources"/>
@@ -259,4 +265,17 @@
     <target name="Icons" description="Clean build of IconsJS.swc">
         <ant dir="${basedir}/projects/IconsJS"/>
     </target>
+
+    <target name="Icons" description="Clean build of JewelJS.swc">
+        <ant dir="${basedir}/projects/JewelJS"/>
+    </target>
+
+    <target name="Icons" description="Clean build of MXRoyaleJS.swc">
+        <ant dir="${basedir}/projects/MXRoyaleJS"/>
+    </target>
+
+    <target name="Icons" description="Clean build of SparkRoyaleJS.swc">
+        <ant dir="${basedir}/projects/SparkRoyaleJS"/>
+    </target>
+
 </project>
