@@ -104,6 +104,8 @@
         <antcall target="Jewel"/>
         <antcall target="MXRoyale"/>
         <antcall target="SparkRoyale"/>
+        <antcall target="Ace"/>
+        <antcall target="RoyaleSite"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -157,6 +159,8 @@
         <ant dir="${basedir}/projects/JewelJS" target="clean"/>
         <ant dir="${basedir}/projects/MXRoyaleJS" target="clean"/>
         <ant dir="${basedir}/projects/SparkRoyaleJS" target="clean"/>
+        <ant dir="${basedir}/projects/AceJS" target="clean"/>
+        <ant dir="${basedir}/projects/RoyaleSiteJS" target="clean"/>
 
         <delete dir="${basedir}/libs"/>
         <delete dir="${basedir}/generated-sources"/>
@@ -276,6 +280,14 @@
 
     <target name="SparkRoyale" description="Clean build of SparkRoyaleJS.swc">
         <ant dir="${basedir}/projects/SparkRoyaleJS"/>
+    </target>
+    
+    <target name="Ace" description="Clean build of AceJS.swc">
+        <ant dir="${basedir}/projects/AceJS"/>
+    </target>
+    
+    <target name="RoyaleSite" description="Clean build of RoyaleSiteJS.swc">
+        <ant dir="${basedir}/projects/RoyaleSiteJS"/>
     </target>
 
 </project>
