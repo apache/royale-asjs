@@ -266,15 +266,15 @@
         <ant dir="${basedir}/projects/IconsJS"/>
     </target>
 
-    <target name="Icons" description="Clean build of JewelJS.swc">
+    <target name="Jewel" description="Clean build of JewelJS.swc">
         <ant dir="${basedir}/projects/JewelJS"/>
     </target>
 
-    <target name="Icons" description="Clean build of MXRoyaleJS.swc">
+    <target name="MXRoyale" description="Clean build of MXRoyaleJS.swc">
         <ant dir="${basedir}/projects/MXRoyaleJS"/>
     </target>
 
-    <target name="Icons" description="Clean build of SparkRoyaleJS.swc">
+    <target name="SparkRoyale" description="Clean build of SparkRoyaleJS.swc">
         <ant dir="${basedir}/projects/SparkRoyaleJS"/>
     </target>
 
