@@ -26,7 +26,7 @@
     <version>0.9.4-SNAPSHOT</version>
   </parent>
 
-  <artifactId>HelloWorld</artifactId>
+  <artifactId>HelloWorld-MXRoyale</artifactId>
   <version>0.9.4-SNAPSHOT</version>
   <packaging>swf</packaging>
 
