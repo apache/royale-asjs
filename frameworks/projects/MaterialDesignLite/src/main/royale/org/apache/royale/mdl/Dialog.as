@@ -29,7 +29,7 @@ package org.apache.royale.mdl
 			import org.apache.royale.html.util.addElementToWrapper;
     }
 
-    [Event(name="onClose", type="org.apache.royale.events.Event")]
+     [Event(name="close", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The MDL Dialog class creates modal windows for dedicated user input.
@@ -174,7 +174,7 @@ package org.apache.royale.mdl
 			{
 				dialog.close();
 			}
-			dispatchEvent(new Event("onClose"));
+			dispatchEvent(new Event("close"));
 		}
 		
 		private var _open:Boolean;
