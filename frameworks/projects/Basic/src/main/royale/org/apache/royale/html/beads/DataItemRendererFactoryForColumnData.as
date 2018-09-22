@@ -132,9 +132,9 @@ package org.apache.royale.html.beads
 				return;
 			
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
-			var dataGroup:IItemRendererParent = view.dataGroup;
 			if (view == null) return;
 
+			var dataGroup:IItemRendererParent = view.dataGroup;
 			dataGroup.removeAllItemRenderers();
 
 			var n:int = dp.length; 
