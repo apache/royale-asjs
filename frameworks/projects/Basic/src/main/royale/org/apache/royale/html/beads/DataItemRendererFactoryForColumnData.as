@@ -131,14 +131,12 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
-			
-			dataGroup.removeAllItemRenderers();
-						
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
+			var dataGroup:IItemRendererParent = view.dataGroup;
 			if (view == null) return;
-						
+
+			dataGroup.removeAllItemRenderers();
+
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
