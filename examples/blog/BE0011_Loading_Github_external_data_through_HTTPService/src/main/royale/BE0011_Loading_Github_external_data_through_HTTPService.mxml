@@ -60,7 +60,7 @@
                 
                 <j:Label text="This example loads its source code in the text code panel:"/>
 
-                <html:Pre height="400" percentWidth="100" style="background-color: white">
+                <html:Pre height="300" percentWidth="100" style="background-color: white">
                     <js:beads>
                         <j:ScrollingViewport/>
                     </js:beads>
@@ -73,5 +73,4 @@
              </j:Card>
         </j:View>
     </j:initialView>
-
 </j:Application>
