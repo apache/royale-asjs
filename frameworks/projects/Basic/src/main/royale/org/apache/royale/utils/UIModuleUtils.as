@@ -114,6 +114,9 @@ package org.apache.royale.utils
         COMPILE::JS
         private var jsDepsLoader:WrappedHTMLElement;
                 
+        COMPILE::JS
+        private var jsCSSLoader:HTMLLinkElement;
+        
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -145,6 +148,10 @@ package org.apache.royale.utils
                     jsLoader.onload = loadHandler;
 					document.body.appendChild(jsLoader);
                 }
+                
+                jsCSSLoader = document.createElement('link') as HTMLLinkElement;
+                jsCSSLoader.onload = actuallyLoadModule;
+                document.head.appendChild(jsCSSLoader);
 			}
 		}
         
@@ -177,22 +184,38 @@ package org.apache.royale.utils
 					(host as DisplayObjectContainer).addChild(swfLoader);
 				}
 			}
-				
 			COMPILE::JS {
-                if (!goog.DEBUG)
-    	   			jsLoader.setAttribute("src", modulePath ? modulePath + "/" + moduleName + ".js" :
-                        moduleName + ".js");
-                else
-                {
-                    // js-debug module loading requires that the __deps.js file has been tweaked
-                    // so that the path to the module class is correct and that any
-                    // framework js files have been copied into the same tree structure as
-                    // the main apps framework js files
-                    window["goog"]["ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING"] = true;
-                    jsDepsLoader.setAttribute("src", modulePath ? modulePath + "/" + moduleName + "__deps.js" :
-                        moduleName + "__deps.js");
-                }
-			}
+                loadCSS(modulePath ? modulePath + "/" + moduleName + ".css" :
+                    moduleName + ".css");
+            }
+        }
+        
+        COMPILE::JS
+        protected function loadCSS(href:String):void
+        {
+            jsCSSLoader.id = href;
+            jsCSSLoader.rel = "stylesheet";
+            jsCSSLoader.type = "text/css";
+            jsCSSLoader.media = "all";
+            jsCSSLoader.href = href;
+        }
+        
+        COMPILE::JS
+        protected function actuallyLoadModule():void
+        {
+            if (!goog.DEBUG)
+	   			jsLoader.setAttribute("src", modulePath ? modulePath + "/" + moduleName + ".js" :
+                    moduleName + ".js");
+            else
+            {
+                // js-debug module loading requires that the __deps.js file has been tweaked
+                // so that the path to the module class is correct and that any
+                // framework js files have been copied into the same tree structure as
+                // the main apps framework js files
+                window["goog"]["ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING"] = true;
+                jsDepsLoader.setAttribute("src", modulePath ? modulePath + "/" + moduleName + "__deps.js" :
+                    moduleName + "__deps.js");
+            }
 		}
         
         private var moduleInstance:IUIBase;
