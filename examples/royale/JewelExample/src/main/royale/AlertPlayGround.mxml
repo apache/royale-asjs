@@ -85,11 +85,15 @@ limitations under the License.
             import org.apache.royale.collections.ArrayList;
             import vos.TabBarButtonVO;
             import utils.HighlightCode;
-            
+
             private function changeHandler(event:Event):void
             {
                 var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
                 tabcontent.showContent(item.href);
+                if(sourceCodeTab.isActive && sourceCodeMXMLText.text == "")
+                {
+                    service.getContent();
+                }
             }
 
             private var _tabBarNavigation:ArrayList = new ArrayList([
@@ -104,18 +108,18 @@ limitations under the License.
 
 			public function dataReadyHandler(event:Event):void
 			{
-                sourceCodeTextHolder.text = event.target.data;
+                sourceCodeMXMLText.text = event.target.sourceCode;
                 
                 COMPILE::JS
                 {
                     var highlightCode:HighlightCode = new HighlightCode();
-                    highlightCode.highlightBlock(sourceCodeTextHolder.element);
+                    highlightCode.highlightBlock(sourceCodeMXMLText.element);
                 }
 			}
 		]]>
 	</fx:Script>
 
-    <services:GitHubService 
+    <services:GitHubService id="service"
             sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/JewelExample/src/main/royale/AlertPlayGround.mxml"
             dataReady="dataReadyHandler(event)"/>
 
@@ -153,7 +157,7 @@ limitations under the License.
 
         <j:SectionContent id="sourceCodeTab">
             <html:Pre>
-                <html:Code id="sourceCodeTextHolder" className="xml codeExample"/>
+                <html:Code id="sourceCodeMXMLText" className="xml codeExample"/>
             </html:Pre>
         </j:SectionContent>
 

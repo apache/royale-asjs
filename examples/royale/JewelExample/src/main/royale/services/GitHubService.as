@@ -22,6 +22,8 @@ package services
 	import org.apache.royale.net.HTTPHeader;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.Event;
+    import org.apache.royale.utils.string.Base64;
+    import org.apache.royale.net.HTTPConstants;
 
     [Event(name="dataReady", type="org.apache.royale.events.Event")]
     /**
@@ -34,13 +36,9 @@ package services
          * constructor
          */
         public function GitHubService():void
-        {
-            // this header makes gihub serve the raw code instead of base64 encoded data
-            var header:HTTPHeader = new HTTPHeader('accept', 'application/vnd.github.VERSION.raw');
-            
+        {    
             service = new HTTPService();
-			service.headers.push(header);
-			service.addEventListener("complete", completeHandler);
+            service.addEventListener(HTTPConstants.COMPLETE, completeHandler);
         }
 
         /**
@@ -56,7 +54,6 @@ package services
             dispatchEvent(new Event("dataReady"));
         }
 
-        //example = "https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/JewelExample/src/main/royale/AlertPlayGround.mxml";
         private var _sourceCodeUrl:String = null;
         /**
          * The source code url we want to retrieve
@@ -67,17 +64,40 @@ package services
         }
         public function set sourceCodeUrl(value:String):void
         {
-        	_sourceCodeUrl = value;
+            _sourceCodeUrl = value;
             service.url = sourceCodeUrl;
-            service.send();
         }
 
         /**
-         * data holds the resulting text code to show
+         * json return the retrieved GitHub JSON Object
          */
-        public function get data():String
+        public function get json():Object
         {
-        	return service.data;
+            return service.json;
+        }
+
+        /**
+         * jsonToString return the retrieved GitHub JSON Object as String
+         */
+        public function get jsonToString():String
+        {
+            return service.data;
+        }
+
+        /**
+         * decode and return the base 64 content (real source code)
+         */
+        public function get sourceCode():String
+        {
+            return Base64.decode(service.json.content);
+        }
+        
+        /**
+         * trigger the HTTPService to retrieve the GitHub data
+         */
+        public function getContent():void
+        {
+        	service.send();
         }
 	}
 }
