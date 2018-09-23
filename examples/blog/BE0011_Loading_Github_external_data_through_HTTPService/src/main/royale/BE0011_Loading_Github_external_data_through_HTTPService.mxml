@@ -25,16 +25,29 @@
 
     <fx:Script>
 		<![CDATA[
-            public var github_url:String = "https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/JewelExample/src/main/royale/AlertPlayGround.mxml";
+            import org.apache.royale.events.Event;
+            import org.apache.royale.events.MouseEvent;
+            import org.apache.royale.jewel.Alert;
 
+            public function getGithubContent(event:MouseEvent):void
+            {
+                service.getContent();
+            }
+            
             public function dataReadyHandler(event:Event):void
 			{
-                sourceCodeTextHolder.text = event.target.data;
+                Alert.show(event.target.jsonToString, "JSON data retrieved");
+                jsonData.html = "Some JSON Data: <br><strong> - service.json.name:</strong> " + service.json.name + 
+                                "<br><strong> - service.json.sha:</strong> " + service.json.sha +
+                                "<br><strong> - service.json._links.html</strong> " + service.json._links.html;
+                sourceCodeMXMLText.text =  service.sourceCode;
 			}
 		]]>
 	</fx:Script>
-
-    <services:GitHubService id="service" dataReady="dataReadyHandler(event)"/>
+    
+    <services:GitHubService id="service" 
+                            sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/blog/BE0011_Loading_Github_external_data_through_HTTPService/src/main/royale/BE0011_Loading_Github_external_data_through_HTTPService.mxml"
+                            dataReady="dataReadyHandler(event)"/>
 
     <j:initialView>
         <j:View>
@@ -45,14 +58,18 @@
             <j:Card percentWidth="90">
                 <html:H3 text="Loading Github external data through HTTPService"/>
                 
+                <j:Label text="This example loads its source code in the text code panel:"/>
+
                 <html:Pre height="400" percentWidth="100" style="background-color: white">
                     <js:beads>
                         <j:ScrollingViewport/>
                     </js:beads>
-                    <html:Code id="sourceCodeTextHolder"/>
+                    <html:Code id="sourceCodeMXMLText"/>
                 </html:Pre>
                 
-                <j:Button text="Retrieve source code from github" click="service.sourceCodeUrl = github_url"/>
+                <j:Label id="jsonData" multiline="true" html="This label show JSON data when loaded."/>
+
+                <j:Button text="Retrieve source code from github" emphasis="primary" click="getGithubContent(event)"/>
              </j:Card>
         </j:View>
     </j:initialView>

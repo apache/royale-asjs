@@ -19,9 +19,10 @@
 
 DESCRIPTION
 
-Customization through the Royale API
+Loading Github external data through HTTPService
 
-Learn how to use the powerful Royale APIs to get access to internals and customize to your needs in a Royale application.
+Learn how to use the HTTPService to load external data from a server. In this case we load the source code of
+this example using the Github API in a Royale panel to browse it.
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
