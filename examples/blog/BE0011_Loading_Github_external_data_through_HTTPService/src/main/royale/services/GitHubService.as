@@ -22,6 +22,7 @@ package services
 	import org.apache.royale.net.HTTPHeader;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.Event;
+    import org.apache.royale.utils.string.Base64;
 
     [Event(name="dataReady", type="org.apache.royale.events.Event")]
     /**
@@ -87,14 +88,7 @@ package services
          */
         public function get sourceCode():String
         {
-            COMPILE::JS
-            {
-                return atob(service.json.content);
-            }
-            COMPILE::SWF
-            {
-                return "";// to implement for SWF
-            }
+            return Base64.decode(service.json.content);
         }
         
         /**

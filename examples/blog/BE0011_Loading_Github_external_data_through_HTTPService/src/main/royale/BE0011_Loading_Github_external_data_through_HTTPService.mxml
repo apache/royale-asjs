@@ -36,7 +36,7 @@
             
             public function dataReadyHandler(event:Event):void
 			{
-                Alert.show(event.target.jsonToString, "JSON data retrieved");
+                Alert.show(service.jsonToString, "JSON data retrieved");
                 jsonData.html = "Some JSON Data: <br><strong> - service.json.name:</strong> " + service.json.name + 
                                 "<br><strong> - service.json.sha:</strong> " + service.json.sha +
                                 "<br><strong> - service.json._links.html</strong> " + service.json._links.html;
