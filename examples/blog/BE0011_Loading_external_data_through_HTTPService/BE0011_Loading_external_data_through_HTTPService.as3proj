@@ -20,7 +20,7 @@
 <project>
   <output>
     <movie disabled="False"/>
-    <movie path="bin-debug/BE0011_Loading_Github_external_data_through_HTTPService.swf"/>
+    <movie path="bin-debug/BE0011_Loading_external_data_through_HTTPService.swf"/>
     <movie version="11"/>
     <movie input=""/>
     <movie width="800"/>
@@ -69,7 +69,7 @@
   </intrinsics>
   <library></library>
   <compileTargets>
-    <compile path="src/main/royale/BE0011_Loading_Github_external_data_through_HTTPService.mxml"/>
+    <compile path="src/main/royale/BE0011_Loading_external_data_through_HTTPService.mxml"/>
   </compileTargets>
   <hiddenPaths></hiddenPaths>
   <preBuildCommand>null</preBuildCommand>

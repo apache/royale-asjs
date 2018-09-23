@@ -16,19 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-{
-    "config": "royale",
-    "compilerOptions": {
-        "debug": false,
-        "targets": ["JSRoyale"],
-        "source-map": true,
-        "html-template": "src/main/resources/jewel-example-index-template.html",
-        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
-    },
-    "copySourcePathAssets": true,
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
-    "files":
-    [
-        "src/main/royale/BE0011_Loading_Github_external_data_through_HTTPService.mxml"
-    ]
-}
+
+DESCRIPTION
+
+Loading external data through HTTPService
+
+Learn how to use the HTTPService to load external data from a server. In this case we load the source code of
+this example using the Github API in a Royale panel to browse it.
+
+Source code of the code exposed in the following Apache Royale Blog Example post:
+
+https://royale.apache.org//customization-through-the-royale-api/

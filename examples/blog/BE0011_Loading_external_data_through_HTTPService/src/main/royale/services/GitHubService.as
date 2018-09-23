@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package services
 {
-	import org.apache.royale.net.HTTPService;
-	import org.apache.royale.net.HTTPHeader;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.utils.string.Base64;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.net.HTTPConstants;
+	import org.apache.royale.net.HTTPService;
+	import org.apache.royale.utils.string.Base64;
 
     [Event(name="dataReady", type="org.apache.royale.events.Event")]
     /**
@@ -37,7 +37,7 @@ package services
         public function GitHubService():void
         {    
             service = new HTTPService();
-            service.addEventListener("complete", completeHandler);
+            service.addEventListener(HTTPConstants.COMPLETE, completeHandler);
         }
 
         /**
@@ -46,7 +46,7 @@ package services
 		private var service:HTTPService;
 
         /**
-         * we dispatch an event once we have the source code from gihub
+         * we dispatch an event once we have the source code from github
          */
         private function completeHandler(event:Event):void
         {
@@ -66,9 +66,9 @@ package services
             _sourceCodeUrl = value;
             service.url = sourceCodeUrl;
         }
-
+        
         /**
-         * json return the retrieved GitHub JSON Object
+         * json returns the retrieved GitHub JSON Object
          */
         public function get json():Object
         {
@@ -76,7 +76,7 @@ package services
         }
 
         /**
-         * jsonToString return the retrieved GitHub JSON Object as String
+         * jsonToString returns the retrieved GitHub JSON Object as String
          */
         public function get jsonToString():String
         {
