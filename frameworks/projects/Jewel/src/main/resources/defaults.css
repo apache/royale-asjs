@@ -754,7 +754,8 @@ j|ImageButton {
 }
 
 .jewel.label.multiline {
-  white-space: normal;
+  white-space: pre-wrap;
+  word-wrap: break-word;
   width: 100%;
 }
 
