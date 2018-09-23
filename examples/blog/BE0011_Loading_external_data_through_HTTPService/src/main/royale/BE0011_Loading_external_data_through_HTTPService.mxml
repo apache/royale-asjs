@@ -56,7 +56,7 @@
             </js:beads>
 
             <j:Card percentWidth="90">
-                <html:H3 text="Loading external data through HTTPService"/>
+                <html:H3 text="Loading Github external data through HTTPService"/>
                 
                 <j:Label text="This example loads its source code in the text code panel:"/>
 
