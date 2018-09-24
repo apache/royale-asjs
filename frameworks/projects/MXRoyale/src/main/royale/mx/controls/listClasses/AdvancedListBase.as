@@ -1795,7 +1795,7 @@ public class AdvancedListBase extends ScrollControlBase /* extends UIComponent
      *  @private
      *  Storage for the columnCount property.
      */
-   // private var _columnCount:int = -1;
+    private var _columnCount:int = -1;
 
     /**
      *  The number of columns to be displayed in a TileList control or items 
@@ -1813,17 +1813,17 @@ public class AdvancedListBase extends ScrollControlBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get columnCount():int
+     public function get columnCount():int
     {
         return _columnCount;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set columnCount(value:int):void
+     public function set columnCount(value:int):void
     {
-        explicitColumnCount = value;
+       /* explicitColumnCount = value;
 
         if (_columnCount != value)
         {
@@ -1836,8 +1836,8 @@ public class AdvancedListBase extends ScrollControlBase /* extends UIComponent
             invalidateDisplayList();
 
             dispatchEvent(new Event("columnCountChanged"));
-        }
-    } */
+        } */
+    } 
 
     /**
      *  Internal version for setting columnCount
