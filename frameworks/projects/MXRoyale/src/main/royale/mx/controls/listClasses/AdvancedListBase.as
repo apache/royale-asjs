@@ -1786,7 +1786,23 @@ public class AdvancedListBase extends ScrollControlBase /* extends UIComponent
     {
         _allowMultipleSelection = value;
     } 
-
+    
+    //----------------------------------
+    //  styleFunction
+    //----------------------------------
+	
+     private var _styleFunction:Function;
+	 
+     public function get styleFunction():Function
+     {
+	 return _styleFunction;
+     }
+     public function set styleFunction(value:Function):void
+     {
+	 _styleFunction = value;
+     }
+	 
+	 
     //----------------------------------
     //  columnCount
     //----------------------------------
