@@ -93,6 +93,7 @@ package org.apache.royale.jewel.beads.controllers
 
 			COMPILE::JS
 			{
+				document.body.classList.remove("viewport");
 				var host:UIBase = strand as UIBase;
                 var htmlElement:HTMLElement = host.element as HTMLElement;
                 htmlElement.parentElement.removeChild(host.element);
