@@ -23,6 +23,7 @@ COMPILE::JS {
 	import goog.events;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.utils.CSSUtils;
 }
 COMPILE::SWF
 {
@@ -1750,6 +1751,9 @@ public class TextArea extends ScrollControlBase
 		COMPILE::JS
 		{
 			(element as HTMLTextAreaElement).value = value;
+            verticalScrollSize = CSSUtils.toNumber(getComputedStyle(element).lineHeight.toString(), width);
+            if (verticalScrollPosition)
+                element.scrollTop = verticalScrollPosition * verticalScrollSize;
 			dispatchEvent(new Event('textChange'));
 		}
 //        textSet = true;

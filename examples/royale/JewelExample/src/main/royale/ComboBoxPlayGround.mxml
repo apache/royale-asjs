@@ -25,6 +25,8 @@ limitations under the License.
     
 	<fx:Script>
 		<![CDATA[
+			import vos.IconListVO;
+
             private function watchmenComboBoxSelectedItem(event:Event):void {
 				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem;
             }
@@ -32,6 +34,11 @@ limitations under the License.
             private function avengersComboBoxSelectedItem(event:Event):void {
 				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.label;
             }
+
+			private function onValueChange(event:Event):void
+			{
+				cmb.width = slider_w.value;
+			}
 		]]>
 	</fx:Script>
 
@@ -118,5 +125,88 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+
+			<j:Card>
+				<html:H3 text="Jewel ComboBox Resize"/>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:ComboBox id="cmb" labelField="label" dataProvider="{listModel.avengers}"/>
+					<j:Label text="Width: {cmb.width}px"/>
+				</j:HGroup>
+				
+				<j:Slider id="slider_w" width="250" value="200" minimum="100" maximum="400" valueChange="onValueChange(event)"/>
+
+			</j:Card>
+		</j:GridCell>
+	
+	</j:Grid>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel ComboBox selectedIndex: {cmb1.selectedIndex}"/>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:ComboBox id="cmb1" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2"/>
+				</j:HGroup>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+	
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1"
+					tabletNumerator="1" tabletDenominator="1"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel ComboBox selectedItem"/>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:ComboBox id="cmb2" labelField="label" dataProvider="{listModel.avengers}" selectedItem="{listModel.avengers.getItemAt(3)}" />
+				</j:HGroup>
+				<j:Label text="selectedItem: {(cmb2.selectedItem as IconListVO).label}"/>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+	<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="10" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 2"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="50" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 3"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="150" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 4"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="200" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 5"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="250" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 6"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="300" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 7"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="350" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 8"/>
+	</j:HGroup>
+	<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+		<j:ComboBox width="400" labelField="label" dataProvider="{listModel.avengers}"/>
+		<j:Label text="Some text 9"/>
+	</j:HGroup> -->
 
 </j:SectionContent>

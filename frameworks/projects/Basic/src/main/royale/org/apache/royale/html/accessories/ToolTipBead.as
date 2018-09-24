@@ -60,8 +60,8 @@ package org.apache.royale.html.accessories
 		public static const MIDDLE:int = 10004;
 
 		private var _toolTip:String;
-		private var tt:ToolTip;
-		private var host:IPopUpHost;
+		protected var tt:ToolTip;
+		protected var host:IPopUpHost;
 		private var _xPos:int = RIGHT;
 		private var _yPos:int = BOTTOM;
 
@@ -95,7 +95,10 @@ package org.apache.royale.html.accessories
 		{
 			_xPos = pos;
 		}
-
+		public function get xPos():int
+		{
+			return _xPos;
+		}
 		/**
 		 *  Sets the tooltip y relative position to one of
 		 *  TOP, MIDDLE or BOTTOM.
@@ -109,8 +112,12 @@ package org.apache.royale.html.accessories
 		{
 			_yPos = pos;
 		}
+		public function get yPos():int
+		{
+			return _yPos;
+		}
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 
 		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -138,18 +145,19 @@ package org.apache.royale.html.accessories
 			if (!toolTip || tt)
 				return;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 
-            var comp:IUIBase = _strand as IUIBase
-            host = UIUtils.findPopUpHost(comp);
-			if (tt) host.popUpParent.removeElement(tt);
+			var comp:IUIBase = _strand as IUIBase
+			host = UIUtils.findPopUpHost(comp);
+			if (tt)
+				host.popUpParent.removeElement(tt);
 
-            tt = new ToolTip();
-            tt.text = toolTip;
-            var pt:Point = determinePosition(event, event.target);
-            tt.x = pt.x;
-            tt.y = pt.y;
-            host.popUpParent.addElement(tt, false); // don't trigger a layout
+			tt = new ToolTip();
+			tt.text = toolTip;
+			var pt:Point = determinePosition(event, event.target);
+			tt.x = pt.x;
+			tt.y = pt.y;
+			host.popUpParent.addElement(tt, false); // don't trigger a layout
 		}
 
 		/**

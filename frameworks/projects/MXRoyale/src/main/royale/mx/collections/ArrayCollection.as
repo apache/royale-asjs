@@ -97,9 +97,9 @@ public class ArrayCollection extends ListCollectionView //implements IExternaliz
      */
     public function ArrayCollection(source:Array = null)
     {
-        /*super();
+        super();
 
-        this.source = source;*/
+        this.source = source;
     }
 
     //--------------------------------------------------------------------------

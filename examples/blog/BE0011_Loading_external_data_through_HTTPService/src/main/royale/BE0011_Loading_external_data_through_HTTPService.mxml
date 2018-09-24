@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:services="services.*">
+
+    <fx:Script>
+		<![CDATA[
+            import org.apache.royale.events.Event;
+            import org.apache.royale.events.MouseEvent;
+            import org.apache.royale.jewel.Alert;
+
+            public function getGithubContent(event:MouseEvent):void
+            {
+                service.getContent();
+            }
+            
+            public function dataReadyHandler(event:Event):void
+			{
+                Alert.show(service.jsonToString, "JSON data retrieved");
+                jsonData.html = "Some JSON Data: <br><strong> - service.json.name:</strong> " + service.json.name + 
+                                "<br><strong> - service.json.sha:</strong> " + service.json.sha +
+                                "<br><strong> - service.json._links.html</strong> " + service.json._links.html;
+                sourceCodeMXMLText.text =  service.sourceCode;
+			}
+		]]>
+	</fx:Script>
+    
+    <services:GitHubService id="service" 
+                            sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/blog/BE0011_Loading_external_data_through_HTTPService/src/main/royale/BE0011_Loading_external_data_through_HTTPService.mxml"
+                            dataReady="dataReadyHandler(event)"/>
+
+    <j:initialView>
+        <j:View>
+            <js:beads>
+                <j:HorizontalCenteredLayout/>
+            </js:beads>
+
+            <j:Card percentWidth="90">
+                <html:H3 text="Loading Github external data through HTTPService"/>
+                
+                <j:Label text="This example loads its source code in the text code panel:"/>
+
+                <html:Pre height="300" percentWidth="100" style="background-color: white">
+                    <js:beads>
+                        <j:ScrollingViewport/>
+                    </js:beads>
+                    <html:Code id="sourceCodeMXMLText"/>
+                </html:Pre>
+                
+                <j:Label id="jsonData" multiline="true" html="This label shows JSON data when loaded."/>
+
+                <j:Button text="Retrieve source code from Github" emphasis="primary" click="getGithubContent(event)"/>
+             </j:Card>
+        </j:View>
+    </j:initialView>
+</j:Application>

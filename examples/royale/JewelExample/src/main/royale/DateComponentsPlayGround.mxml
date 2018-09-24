@@ -77,8 +77,15 @@ limitations under the License.
 				dateFieldES.model.monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Deciembre"];
 				dateFieldES.model.firstDayOfWeek = 1;
 			}
+
+			[Bindable]
+			public var someDate:Date = new Date (1973,3,5);
 		]]>
 	</fx:Script>
+
+	<j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
 
 	<j:Grid gap="true">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2"
@@ -139,6 +146,19 @@ limitations under the License.
 				<j:Label id="dateFieldESSelectedDate" multiline="true" html="&lt;strong>DateField fecha seleccionada:&lt;/strong> "/>
 			</j:Card>
 		</j:GridCell>
+	</j:Grid>
+
+	<j:Grid gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2"
+					tabletNumerator="1" tabletDenominator="2"
+					phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateChooser - selectedDate: {someDate}"/>
+				<j:DateChooser id="dateChooserSelectedDate" change="dateChooserDefaultChanged()" selectedDate="{someDate}"/>
+				<j:Label multiline="true" html="&lt;strong>DateChooser selected date:&lt;/strong> {dateChooserSelectedDate.selectedDate}"  width="275"/>
+			</j:Card>
+		</j:GridCell>
+
 	</j:Grid>
 	
 </j:SectionContent>

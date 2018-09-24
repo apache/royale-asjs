@@ -16,24 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses.topappbar
 {
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The DrawerHeader class is a Container component to hold Drawer Header
-	 *  content, for example a title or an Image icon logo
+	 *  The TopAppBarSection class is a container component for items in
+	 *  an TopAppBar row.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DrawerHeader extends Group
+	public class TopAppBarSection extends Group
 	{
 		/**
 		 *  constructor.
@@ -43,20 +44,45 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function DrawerHeader()
+		public function TopAppBarSection()
 		{
 			super();
 
-            typeNames = "jewel drawerheader"
+            typeNames = "jewel topappbarsection"
 		}
 
+		protected var _alignRight:Boolean;
         /**
+		 *  A boolean flag to activate "alignRight" effect selector.
+		 *  It aligns all items inside the section to the right.
+		 *  Optional.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+        public function get alignRight():Boolean
+        {
+            return _alignRight;
+        }
+        public function set alignRight(value:Boolean):void
+        {
+            if (_alignRight != value)
+            {
+                _alignRight = value;
+
+                toggleClass("alignRight", _alignRight);
+            }
+        }
+
+		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'header');
+			return addElementToWrapper(this, 'section');
         }
 	}
 }

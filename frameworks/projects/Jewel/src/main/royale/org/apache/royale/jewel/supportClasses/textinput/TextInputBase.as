@@ -244,28 +244,26 @@ package org.apache.royale.jewel.supportClasses.textinput
 		 */
         public var div:HTMLDivElement;
 
-        private var _isInvalid:Boolean = false;
-        /**
-		 *  A boolean flag to activate "is-invalid" effect selector.
-         *  Defines the textinput as invalid on initial load.
-         *  Optional
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get isInvalid():Boolean
-        {
-            return _isInvalid;
-        }
-        public function set isInvalid(value:Boolean):void
-        {
-            _isInvalid = value;
+        // private var _isInvalid:Boolean = false;
+        // /**
+		//  *  A boolean flag to activate "is-invalid" effect selector.
+        //  *  Defines the textinput as invalid on initial load.
+        //  *  Optional
+		//  *
+		//  *  @langversion 3.0
+		//  *  @playerversion Flash 10.2
+		//  *  @playerversion AIR 2.6
+		//  *  @productversion Royale 0.9.4
+		//  */
+        // public function get isInvalid():Boolean
+        // {
+        //     return _isInvalid;
+        // }
+        // public function set isInvalid(value:Boolean):void
+        // {
+        //     _isInvalid = value;
 
-            toggleClass("is-invalid", _isInvalid);
-            //positioner.classList.toggle("is-invalid", _isInvalid);
-            //typeNames = positioner.className;
-        }
+        //     toggleClass("is-invalid", _isInvalid);
+        // }
 	}
 }

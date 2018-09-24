@@ -27,20 +27,20 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.List;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.core.IComboBoxModel;
-	import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
+	import org.apache.royale.utils.UIUtils;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox 
@@ -126,32 +126,21 @@ package org.apache.royale.jewel.beads.views
 			_button = new Button();
 			_button.text = '\u25BC';
 			
-			_button.width = 39;
-
-			if(host.width == 0 || host.width < 89)
-			{
-				var w:Number = host.width == 0 ? 200 : 89;
-				_textinput.width = w - _button.width;
-				host.width = _textinput.width + _button.width;
-			} else
-			{
-				_textinput.width = host.width - _button.width;
-			}
-
+			initSize();
 			
 			host.addElement(_textinput);
 			host.addElement(_button);
-			//host.width = _textinput.width + _button.width;
 			
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
+			model.addEventListener("dataProviderChanged", itemChangeAction);
 			
 			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
 			
 			// set initial value and positions using default sizes
-			itemChangeAction();
-			sizeChangeAction();
+			//itemChangeAction();
+			//sizeChangeAction();
 		}
 		
 		/**
@@ -238,63 +227,48 @@ package org.apache.royale.jewel.beads.views
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 */
-		protected function itemChangeAction():void
+		protected function itemChangeAction(event:Event = null):void
 		{
 			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			_textinput.text = getLabelFromData(model, model.selectedItem);
 		}
 		
 		/**
-		 * reposition list dataGroup in desktop and widescreen screens
+		 * Size the component at start up
 		 * 
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.StyledUIBase
+		 */
+		protected function initSize():void
+		{
+			_button.width = 39;
+
+			if(host.width == 0 || host.width < 89)
+			{
+				var w:Number = host.width == 0 ? 200 : 89;
+				_textinput.width = w - _button.width;
+				host.width = _textinput.width + _button.width;
+			} else
+			{
+				_textinput.width = host.width - _button.width;
+			}
+
+			_textinput.percentWidth = 100;
+		}
+
+		/**
+		 * Manages the resize of the component
+		 * 
+		 * @private
 		 */
 		protected function sizeChangeAction():void
 		{
-			// var host:StyledUIBase = _strand as StyledUIBase;
-
-			// _textinput.width = host.width - _button.width;
-			// host.width = _textinput.width + _button.width;
-			
-			// textinput.width = host.width - button.width;
-			// host.width = textinput.width + button.width;
-
-			// dispatchEvent(new Event("layoutNeeded"));
-
-			// input.x = 0;
-			// input.y = 0;
-			// if (host.isWidthSizedToContent()) {
-			// 	input.width = 100;
-			// } else {
-			// 	input.width = host.width - 20;
-			// }
-			
-			// button.x = input.width;
-			// button.y = 0;
-			// button.width = 20;
-			// button.height = input.height;
-			
-			// COMPILE::JS {
-			// 	input.element.style.position = "absolute";
-			// 	button.element.style.position = "absolute";
-			// }
-				
-			// if (host.isHeightSizedToContent()) {
-			// 	host.height = input.height;
-			// }
-			// if (host.isWidthSizedToContent()) {
-			// 	host.width = input.width + button.width;
-			// }
+			host.width = _textinput.width + _button.width;
 		}
 
 		private var comboList:ComboBoxList;
 		/**
-		 *  When set to "auto" this resize handler monitors the width of the app window
-		 *  and switch between fixed and float modes.
-		 * 
-		 *  Note:This could be done with media queries, but since it handles open/close
-		 *  maybe this is the right way
+		 *  Adapt the popup list to the right position taking into account
+		 *  if we are in DESKTOP screen size or in PHONE/TABLET screen size
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -305,19 +279,20 @@ package org.apache.royale.jewel.beads.views
         {
 			COMPILE::JS
 			{
-				var outerWidth:Number = window.outerWidth;
-				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+				var outerWidth:Number = document.body.getBoundingClientRect().width;
+				// handle potential scrolls offsets
+				var top:Number = top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
-					var origin:Point = new Point(0, button.y + button.height - top);
-					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-					// comboList.x = relocated.x;
-					// comboList.y = relocated.y;
-					_list.positioner.style["left"] = relocated.x + "px";
-					_list.positioner.style["top"] = relocated.y + "px";
+					//poopup width needs to be set before position inside bounding client to work ok
 					_list.width = _textinput.width + _button.width;
+
+					var origin:Point = new Point(0, button.y + button.height - top);
+					var relocated:Point = positionInsideBoundingClientRect(_strand, _list, origin);
+					_list.x = relocated.x;
+					_list.y = relocated.y;
 				}
 				else
 				{

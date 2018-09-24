@@ -208,6 +208,7 @@
     <component id="VerticalColumnLayout" class="org.apache.royale.html.beads.layouts.VerticalColumnLayout" />
 
     <component id="ToolTipBead" class="org.apache.royale.html.accessories.ToolTipBead" />
+    <component id="AdaptiveToolTipBead" class="org.apache.royale.html.accessories.AdaptiveToolTipBead" />
     
     <component id="LayoutOnShow" class="org.apache.royale.html.beads.layouts.LayoutOnShow"/>
     <component id="ImageButton" class="org.apache.royale.html.ImageButton"/>

@@ -122,7 +122,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'main');
+			return addElementToWrapper(this, 'main');
         }
 	}
 }

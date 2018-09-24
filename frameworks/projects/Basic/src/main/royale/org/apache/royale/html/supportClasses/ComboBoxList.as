@@ -57,6 +57,7 @@ package org.apache.royale.html.supportClasses
 		public function ComboBoxList()
 		{
 			super();
+            typeNames += " ComboBoxList";
 		}
 	}
 }

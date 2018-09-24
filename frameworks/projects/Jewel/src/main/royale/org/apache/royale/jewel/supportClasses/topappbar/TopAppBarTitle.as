@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses.topappbar
 {
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The DrawerContent class is a Container component mainly used in Drawer to hold 
-     *  content like navigation, icons, or text.
+	 *  The TopAppBarTitle class is the application title
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DrawerContent extends Group
+	public class TopAppBarTitle extends Group
 	{
 		/**
 		 *  constructor.
@@ -43,20 +43,52 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function DrawerContent()
+		public function TopAppBarTitle()
 		{
 			super();
 
-            typeNames = "jewel drawercontent"
+            typeNames = "jewel topappbartitle"
 		}
 
+		COMPILE::JS
+        protected var textNode:Text;
+
+		private var _text:String = "";
         /**
+         *  The text of the element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+		public function get text():String
+		{
+            return _text;
+		}
+		public function set text(value:String):void
+		{
+            _text = value;
+
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
+		}
+
+		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'nav');
+			return addElementToWrapper(this, 'span');
         }
 	}
 }

@@ -121,13 +121,19 @@ $drawer-float-max-width: 310px
     margin: 0
     overflow-x: hidden
     overflow-y: auto
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
     touch-action: pan-y
 
 
 
+j|DrawerBase
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+
 j|Drawer
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 j|DrawerHeader
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 j|DrawerContent
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")

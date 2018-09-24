@@ -53,6 +53,11 @@ Basic|MenuItemRenderer
 	margin-top: 4px;
 }
 
+Basic|ComboBoxList
+{
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+}
+
 Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");

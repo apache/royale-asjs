@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.core.IParentIUIBase;
 
 	/**
 	 *  The ToolTip class is a specialty bead that can be used with
@@ -146,10 +147,12 @@ package org.apache.royale.jewel.beads.controls
 
             tt = new ToolTipLabel();
             tt.text = toolTip;
+
+			// add this before measuring or measurement is not accurate.
+            host.popUpParent.addElement(tt, false); // don't trigger a layout
             var pt:Point = determinePosition(event, event.target);
             tt.x = pt.x;
             tt.y = pt.y;
-            host.popUpParent.addElement(tt, false); // don't trigger a layout
 		}
 
 		/**
@@ -159,34 +162,52 @@ package org.apache.royale.jewel.beads.controls
 		 */
 		protected function determinePosition(event:MouseEvent, base:Object):Point
 		{
+			var ttWidth:Number = tt.width;
+			var ttHeight:Number = tt.height;
 			var comp:IUIBase = _strand as IUIBase;
-			var xFactor:Number = 1;
-			var yFactor:Number = 1;
-			var pt:Point;
-			var relative:Boolean = _xPos > TOP &&  _yPos > TOP;
+			var x:Number;
+			var y:Number;
+			switch(_xPos){
+				case LEFT:
+					x = -ttWidth;
+					break;
+				case MIDDLE:
+					x = (comp.width - ttWidth) / 2;
+					break;
+				case RIGHT:
+					x = comp.width;
+					break;
+			}
+			switch(_yPos){
+				case TOP:
+					y = -ttHeight;
+					break;
+				case MIDDLE:
+					y = (comp.height - ttHeight) / 2;
+					break;
+				case BOTTOM:
+					y = comp.height;
+					break;
+			}
 
-			if (_xPos == LEFT) {
-				xFactor = Number.POSITIVE_INFINITY;
-			}
-			else if (_xPos == MIDDLE) {
-				xFactor = 2;
-			}
-			else if (_xPos == RIGHT) {
-				xFactor = 1;
-			}
-			if (_yPos == TOP) {
-				yFactor = Number.POSITIVE_INFINITY;
-			}
-			else if (_yPos == MIDDLE) {
-				yFactor = 2;
-			}
-			else if (_yPos == BOTTOM) {
-				yFactor = 1;
-			}
-
-			pt = new Point(comp.width/xFactor, comp.height/yFactor);
+			var pt:Point = new Point(x,y);
 			pt = PointUtils.localToGlobal(pt, comp);
-			
+
+			//make sure it's not too high or to the left.
+			pt.x = Math.max(pt.x,0);
+			pt.y = Math.max(pt.y,0);
+
+			var screenHeight:Number = (host.popUpParent as IParentIUIBase).height;
+			// add an extra pixel for rounding errors
+			var extraHeight:Number = 1 + pt.y + ttHeight - screenHeight;
+			if(extraHeight > 0){
+				pt.y -= extraHeight;
+			}
+			var screenWidth:Number = (host.popUpParent as IParentIUIBase).width;
+			var extraWidth:Number = 1 + pt.x + ttWidth - screenWidth;
+			if(extraWidth > 0){
+				pt.x -= extraWidth;
+			}
 			return pt;
 		}
 

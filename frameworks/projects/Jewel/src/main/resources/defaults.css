@@ -46,11 +46,12 @@ button, input, textarea {
 
 j|View {
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
 j|ApplicationResponsiveView {
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
 .applicationResponsiveView {
@@ -61,10 +62,11 @@ j|ApplicationResponsiveView {
 
 j|ApplicationView {
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
 j|Group {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
 }
 
@@ -76,8 +78,17 @@ j|VGroup {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
 }
 
+j|Grid {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridLayout");
+}
+
+j|GridCell {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridCellLayout");
+}
+
 j|Container {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
@@ -113,6 +124,19 @@ j|Form {
     IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
   }
 }
+.responsiveSizeMonitor {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 250px;
+}
+.responsiveSizeMonitor strong {
+  color: yellow;
+}
+
 .jewel.alert {
   position: fixed;
   top: 50%;
@@ -134,7 +158,6 @@ j|Form {
   white-space: normal;
 }
 .jewel.alert .jewel.controlbar {
-  position: absolute;
   bottom: 0;
   height: 50px;
 }
@@ -145,6 +168,7 @@ j|Form {
   }
 }
 j|Alert {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
@@ -266,6 +290,9 @@ j|ControlBar {
 }
 .jewel.combobox {
   display: inline-flex;
+}
+.jewel.combobox .jewel.textinput {
+  display: block;
 }
 .jewel.combobox .jewel.button::before {
   margin: 0;
@@ -542,6 +569,10 @@ j|DateField {
   border: none;
 }
 
+j|Divider {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
 .jewel.drawer.float {
   position: fixed;
   pointer-events: none;
@@ -628,6 +659,22 @@ j|DateField {
   touch-action: pan-y;
 }
 
+j|DrawerBase {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|Drawer {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|DrawerHeader {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|DrawerContent {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
 .jewel.dropdownlist {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -707,7 +754,8 @@ j|ImageButton {
 }
 
 .jewel.label.multiline {
-  white-space: normal;
+  white-space: pre-wrap;
+  word-wrap: break-word;
   width: 100%;
 }
 
@@ -722,10 +770,10 @@ j|Label {
   overflow: auto;
 }
 
-.layout.absolute {
-  position: absolute;
+.layout.basic {
+  position: relative;
 }
-.layout.absolute > * {
+.layout.basic > * {
   position: absolute;
 }
 
@@ -2879,6 +2927,7 @@ j|Label {
 .jewel.list, .jewel.navigation {
   align-items: stretch;
   align-content: flex-start;
+  -webkit-overflow-scrolling: touch;
 }
 
 j|List {
@@ -2978,8 +3027,11 @@ j|NumericStepper {
     width: 39px;
     height: 38px;
   }
+  .jewel.spinner .jewel.button.up {
+    left: 149px;
+  }
   .jewel.spinner .jewel.button.down {
-    left: 110px;
+    left: -39px;
   }
 }
 j|Spinner {
@@ -3056,6 +3108,10 @@ j|Spinner {
 }
 .jewel.section.is-active {
   display: flex;
+}
+
+j|SectionContent {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
 .jewel.slider {
@@ -3216,6 +3272,13 @@ j|TabBarButtonItemRenderer {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
 }
 
+j|TabBarContent {
+  IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
 .jewel.simpletable {
   position: relative;
   white-space: nowrap;
@@ -3240,6 +3303,10 @@ j|TabBarButtonItemRenderer {
 }
 .jewel.simpletable .jewel.tablecell > * {
   padding: 12px;
+}
+
+j|SimpleTable {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
 .jewel.table {
@@ -3319,6 +3386,26 @@ j|TableItemRenderer {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
 }
 
+j|TBody {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|THead {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|TFoot {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|TableCell {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|TableRow {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
 .alignTextLeft {
   text-align: left;
 }
@@ -3343,6 +3430,8 @@ j|TableItemRenderer {
   appearance: none;
   margin: 0;
   padding: 0.68em 1.12em;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   flex: 1 0 auto;
   outline: none;
@@ -3522,6 +3611,22 @@ j|TitleBar {
   text-overflow: ellipsis;
 }
 
+j|TopAppBar {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|TopAppBarRow {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|TopAppBarSection {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|TopAppBarTitle {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
 .jewel.main {
   width: 100%;
   min-height: 100%;
@@ -3533,6 +3638,7 @@ j|TitleBar {
 
 j|ApplicationMainContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
