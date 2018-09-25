@@ -223,6 +223,9 @@ package org.apache.royale.jewel
 					{
 						window["dialogPolyfill"]["registerDialog"](dialog);
 					}
+
+					//avoid scroll in html
+					document.body.classList.add("viewport");
 				}
 			}
 		}
@@ -320,6 +323,7 @@ package org.apache.royale.jewel
 		{
 			COMPILE::JS
 			{
+				document.body.classList.remove("viewport");
 				dialog.close();
 			}
 		}

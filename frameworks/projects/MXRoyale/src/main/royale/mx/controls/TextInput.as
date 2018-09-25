@@ -411,7 +411,21 @@ public class TextInput extends UIComponent implements ITextInput
     //  Properties
     //
     //--------------------------------------------------------------------------
-
+    
+    //----------------------------------
+    //  borderVisible
+    //----------------------------------
+	
+    public function get borderVisible():Boolean
+    {
+        return true;
+    }
+	
+    public function set borderVisible(value:Boolean) :void
+    {
+        
+    }
+    
     //----------------------------------
     //  data
     //----------------------------------

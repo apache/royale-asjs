@@ -194,8 +194,6 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				UIBase(_strand).element.classList.add("open");
-				//avoid scroll in html
-				document.body.classList.add("viewport");
 			}
 		}
 
