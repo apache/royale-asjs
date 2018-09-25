@@ -49,7 +49,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class Line extends EventDispatcher
+public class Line extends UIComponent
 { //extends StrokedElement
   //  include "../core/Version.as";
 
