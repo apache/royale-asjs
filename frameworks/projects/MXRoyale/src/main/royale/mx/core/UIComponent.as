@@ -532,6 +532,21 @@ public class UIComponent extends UIBase
 	{
 	
 	}
+	
+    //----------------------------------
+    //  mouseFocusEnabled
+    //----------------------------------
+	
+    public function get mouseFocusEnabled():Boolean
+       {
+	  return false;
+       }
+    public function set mouseFocusEnabled(value:Boolean):void
+       {
+	
+       }
+	
+	
     //----------------------------------
     //  initialized
     //----------------------------------

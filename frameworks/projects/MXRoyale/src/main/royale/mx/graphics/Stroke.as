@@ -71,7 +71,7 @@ import org.apache.royale.graphics.SolidColorStroke;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class Stroke extends  org.apache.royale.graphics.SolidColorStroke 
+public class Stroke extends  org.apache.royale.graphics.SolidColorStroke implements IStroke
 {
 /*     include "../core/Version.as";
  */
