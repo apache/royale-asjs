@@ -107,7 +107,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="contentBackgroundAlpha", type="Number", inherit="yes", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
+//[Style(name="contentBackgroundAlpha", type="Number", inherit="yes", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
 
 /**
  *  @copy spark.components.supportClasses.GroupBase#style:contentBackgroundColor
@@ -439,6 +439,14 @@ public class SkinnableTextBase extends SkinnableComponent
 	return 0;
     }
     public function set contentBackgroundColor(val:uint):void
+    {
+    }
+    
+    public function get contentBackgroundAlpha():Number
+    {
+	return 0;
+    }
+    public function set contentBackgroundAlpha(val:Number):void
     {
     }
     
