@@ -97,7 +97,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
+//[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
 
 /**
  *  The alpha of the content background for this component.
@@ -447,6 +447,14 @@ public class SkinnableTextBase extends SkinnableComponent
 	return 0;
     }
     public function set contentBackgroundAlpha(val:Number):void
+    {
+    }
+    
+    public function get borderVisible():Boolean
+    {
+	return true;
+    }
+    public function set borderVisible(val:Boolean):void
     {
     }
     
