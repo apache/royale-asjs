@@ -55,7 +55,17 @@ Basic|MenuItemRenderer
 
 Basic|ComboBoxList
 {
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
+}
+
+Basic|DataGridColumnList {
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
+}
+
+Basic|DataGridButtonBar {
+	IItemRenderer: ClassReference("mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer");
 }
 
 Button
@@ -75,7 +85,7 @@ CheckBox
 
 ComboBox
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ComboBoxModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.ComboBoxModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.ComboBoxView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
 	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ComboBoxList");
@@ -130,11 +140,11 @@ Image
 
 List
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
@@ -216,7 +226,9 @@ Panel
 	IPanelLayout: ClassReference("mx.containers.beads.BoxLayout");
 	IPanelContentArea: ClassReference("mx.core.Container");	
 	background-color: #FFFFFF;
-	border: 1px solid #333333
+	border-width: 1px;
+	border: 1px solid #333333;
+	verticalGap: 0px;
 }
 
 Panel .TitleBar
