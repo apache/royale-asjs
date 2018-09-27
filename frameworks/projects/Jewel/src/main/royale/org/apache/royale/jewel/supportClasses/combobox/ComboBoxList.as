@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.combobox
 {
-    import org.apache.royale.core.IPopUp;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.List;
-    import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.jewel.beads.layouts.BasicLayout;
-    import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IPopUp;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.List;
     
     //--------------------------------------
     //  Events

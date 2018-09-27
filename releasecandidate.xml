@@ -253,6 +253,20 @@
         classpathref="anttask.classpath"/>
     </target>
 
+    <target name="maven-release-plugin" description="build maven release plugin from sources in order to get it to use maven scm 1.10.0">
+        <mkdir dir="${basedir}/maven-release-plugin" />
+        <mkdir dir="${basedir}/temp" />
+        <get src="https://github.com/apache/maven-release/archive/master.zip" dest="${basedir}/temp/master.zip" />
+        <unzip src="${basedir}/temp/master.zip"
+            dest="${basedir}/maven-release-plugin">
+          <cutdirsmapper dirs="1"/>
+        </unzip>
+        <exec executable="${mvn}" dir="${basedir}/maven-release-plugin" failonerror="true" >
+            <arg value="clean" />
+            <arg value="install" />
+        </exec>
+    </target>
+
     <target name="check-royale-asjs">
         <available file="${basedir}/royale-asjs"
         type="dir"

@@ -45,6 +45,10 @@
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
 }
+.tabBarIconItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.TabBarIconItemRenderer");
+}
 
 .navIconLinkItemRenderer .fonticon
 {
@@ -58,7 +62,7 @@
 }
 
 .wrapper {
-    /* outline: 0px dashed navy; */
+    outline: 1px dashed navy;
 }
 
 .box {
@@ -66,7 +70,6 @@
     border-radius: 3px;
     padding: 12px;
     color: white;
-    /* outline: 1px dashed navy; */
 }
 
 .jewel.item.string
@@ -75,4 +78,12 @@
     border: 1px dashed #cccccc;
     border-radius: 3px;
     padding: 14px;
+}
+
+.codeExample
+{
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 0px solid;
 }

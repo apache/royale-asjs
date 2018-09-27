@@ -18,16 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IStrand;
-
 	COMPILE::JS {
-    	import org.apache.royale.core.UIBase;
-    }
+	    import org.apache.royale.core.UIBase;
+	}
+	import org.apache.royale.core.LayoutBase;
 
     /**
      *  The NullLayout class is a layout class used to override other layout classes
@@ -39,7 +33,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class NullLayout extends LayoutBase implements IBeadLayout
+	public class NullLayout extends LayoutBase
 	{
         /**
          *  Constructor.
@@ -49,9 +43,9 @@ package org.apache.royale.jewel.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function NullLayout()
-		{
-			super();
-		}        
+        public function NullLayout()
+        {
+            super();
+        }        
 	}
 }

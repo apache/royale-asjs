@@ -18,14 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
-
-
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	
     /**
      *  The StyledLayoutBase class is an extension of LayoutBase
 	 *  to define various common layout features for the rest of
@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class StyledLayoutBase extends LayoutBase implements IBeadLayout
+	public class StyledLayoutBase extends LayoutBase
 	{
         /**
          *  Constructor.
@@ -79,7 +79,26 @@ package org.apache.royale.jewel.beads.layouts
 			{
 				hostComponent = host as UIBase;
 				hostClassList = hostComponent.positioner.classList;
+			}
 
+			IEventDispatcher(value).addEventListener("beadsAdded", beadsAddedHandler);
+			beadsAddedHandler();
+		}
+
+		/**
+		 *  Add class selectors when the component is addedToParent
+		 *  Otherwise component will not get the class selectors when 
+		 *  perform "removeElement" and then "addElement"
+		 * 
+ 		 *  @langversion 3.0
+ 		 *  @playerversion Flash 10.2
+ 		 *  @playerversion AIR 2.6
+ 		 *  @productversion Royale 0.9.4
+ 		 */
+		public function beadsAddedHandler(event:Event = null):void
+		{
+			COMPILE::JS
+			{
 				initStyleToLayout(hostComponent, "itemsExpand");
 				setHostClassList("itemsExpand", _itemsExpand ? "itemsExpand":"");
 

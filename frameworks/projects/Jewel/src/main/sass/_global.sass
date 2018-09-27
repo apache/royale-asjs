@@ -46,11 +46,11 @@ button, input, textarea
 	
 j|View
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 j|ApplicationResponsiveView
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
-	//IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 .applicationResponsiveView
 	display: inline-flex
@@ -59,8 +59,7 @@ j|ApplicationResponsiveView
 
 j|ApplicationView
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
-	// IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 // .responsive
 // 	width: 100%
@@ -73,6 +72,7 @@ j|ApplicationView
 // 	-webkit-overflow-scrolling: touch
 
 j|Group
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
 
 j|HGroup
@@ -81,9 +81,15 @@ j|HGroup
 j|VGroup
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
 
+j|Grid
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridLayout")
+
+j|GridCell
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridCellLayout")
+
 j|Container
 	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
-	//IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 	//align-items: flex-start
@@ -92,9 +98,6 @@ j|Image
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ImageModel")
 	IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ImageView")
 //vertical-align: top
-
-//j|Grid
-//	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridLayout")
 
 j|DataGroup
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
@@ -123,3 +126,16 @@ j|Form
 		// --- IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead")
 		// --- IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea")
+
+
+.responsiveSizeMonitor
+	background: rgba(0,0,0,0.8)
+	color: white
+	padding: 10px
+	position: fixed
+	bottom: 0
+	right: 0
+	width: 250px
+	
+	strong
+		color: yellow

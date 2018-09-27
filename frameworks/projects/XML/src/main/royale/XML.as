@@ -523,6 +523,10 @@ package
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 				getAttributes().push(child);
+            else if (child.nodeKind() == "comment" && XML.ignoreComments)
+            {
+                // don't add child
+            }
 			else				
 				getChildren().push(child);
 			

@@ -43,7 +43,7 @@
         {
             srv.url = src;
             srv.send();
-			ta.verticalScrollPosition = 19; // at end of header
+			ta.verticalScrollPosition = 18; // at end of header
         }
 
         private function resultHandler(event:ResultEvent):void

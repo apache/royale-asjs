@@ -81,6 +81,73 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  is measured, laid out, and drawn, after which the
  *  <code>creationComplete</code> event is dispatched.</p>
  * 
+ *  @eventType = mx.events.FlexEvent.SHOW
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="show", type="= mx.events.FlexEvent")]
+
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType = mx.events.FocusEvent.FOCUS_IN
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="focusIn", type="= mx.events.FocusEvent")]
+
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType = mx.events.FlexEvent.VALID
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="valid", type="= mx.events.FlexEvent")]
+
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType mx.events.FlexEvent.INITIALIZE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+ 
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
  *  @eventType mx.events.FlexEvent.INITIALIZE
  *  
  *  @langversion 3.0
@@ -457,7 +524,29 @@ public class UIComponent extends UIBase
     //  Variables: Creation
     //
     //--------------------------------------------------------------------------
-
+    public function get maintainAspectRatio():Boolean
+	{
+	   return true;
+	}
+    public function set maintainAspectRatio(value:Boolean):void
+	{
+	
+	}
+	
+    //----------------------------------
+    //  mouseFocusEnabled
+    //----------------------------------
+	
+    public function get mouseFocusEnabled():Boolean
+       {
+	  return false;
+       }
+    public function set mouseFocusEnabled(value:Boolean):void
+       {
+	
+       }
+	
+	
     //----------------------------------
     //  initialized
     //----------------------------------

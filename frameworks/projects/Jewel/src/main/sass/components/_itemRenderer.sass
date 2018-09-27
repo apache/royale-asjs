@@ -22,7 +22,7 @@
 // ListItemRenderer variables
 $item-min-height: 34px
 
-.jewel.item, .jewel.navigationlink
+.jewel.item, .jewel.navigationlink, .jewel.tabbarbutton
     display: flex
     min-height: $item-min-height
     text-decoration: none
@@ -38,11 +38,4 @@ $item-min-height: 34px
     .fonticon
         cursor: inherit
     
-j|ListItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
 
-.jewel.navigationlink
-    min-height: 48px
-
-j|NavigationLinkItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")

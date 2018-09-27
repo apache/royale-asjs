@@ -18,13 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    import org.apache.royale.html.beads.GroupView;
+    COMPILE::SWF
+	{
+        import flash.utils.setTimeout;
+
+        import org.apache.royale.core.IMeasurementBead;
+        import org.apache.royale.core.ValuesManager;
+        import org.apache.royale.html.beads.IBackgroundBead;
+        import org.apache.royale.html.beads.IBorderBead;
+        import org.apache.royale.utils.loadBeadFromValuesManager;
+	}
     import org.apache.royale.core.IAlertModel;
-    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.core.layout.EdgeData;
@@ -32,24 +40,17 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
-    import org.apache.royale.jewel.Group;
+    import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.jewel.Alert;
-    import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Button;
-    import org.apache.royale.jewel.TitleBar;
     import org.apache.royale.jewel.ControlBar;
-	import org.apache.royale.jewel.beads.views.AlertTitleBarView;
-	import org.apache.royale.jewel.beads.layouts.HorizontalLayout;
+    import org.apache.royale.jewel.Group;
+    import org.apache.royale.jewel.Label;
+    import org.apache.royale.jewel.TitleBar;
+    import org.apache.royale.jewel.VGroup;
+    import org.apache.royale.jewel.beads.layouts.HorizontalLayout;
+    import org.apache.royale.jewel.beads.views.AlertTitleBarView;
 
-    COMPILE::SWF
-	{
-        import org.apache.royale.html.beads.IBackgroundBead;
-        import org.apache.royale.html.beads.IBorderBead;
-        import org.apache.royale.core.IMeasurementBead;
-        import org.apache.royale.core.ValuesManager;
-        import org.apache.royale.utils.loadBeadFromValuesManager;
-		import flash.utils.setTimeout;
-	}
 	
 	/**
 	 *  The AlertView class creates the visual elements of the org.apache.royale.jewel.Alert
@@ -163,11 +164,12 @@ package org.apache.royale.jewel.beads.views
 			IParent(_strand).addElement(titleBar);
 
 			// Text
-			content = new Group();
-			content.typeNames = "content";
 			label = new Label();
 			label.multiline = true;
 			label.text = alertModel.message;
+			
+			content = new VGroup();
+			content.addClass("content");
 			content.addElement(label);
 			IParent(_strand).addElement(content);
 			
@@ -192,8 +194,6 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS
 			{
 				UIBase(_strand).element.classList.add("open");
-				//avoid scroll in html
-				document.body.classList.add("viewport");
 			}
 		}
 

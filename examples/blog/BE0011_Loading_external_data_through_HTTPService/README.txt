@@ -16,38 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
-{
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
 
-	/**
-	 *  The TopAppBarRow class is a container component used with TopAppBar
-	 *  It represent a row. TopAppBar supports more than one row
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
-	 */
-	public class TopAppBarRow extends Group
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function TopAppBarRow()
-		{
-			super();
+DESCRIPTION
 
-            typeNames = "jewel topappbarrow"
-		}
-	}
-}
+Loading external data through HTTPService
+
+Learn how to use the HTTPService to load external data from a server. In this case we load the source code of
+this example using the Github API in a Royale panel to browse it.
+
+Source code of the code exposed in the following Apache Royale Blog Example post:
+
+https://royale.apache.org//customization-through-the-royale-api/

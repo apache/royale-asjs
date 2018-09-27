@@ -77,7 +77,7 @@
 				<node label="Menu Controls">
                     <!--
 					<node label="Menu" module="mx/controls/SimpleMenuExample" />
-                     ->
+                     -->
 					<node label="MenuBar" module="mx/controls/MenuBarExample" />
 					<node label="PopUpMenuButton" module="mx/controls/PopUpButtonMenuExample" />
 				</node>
@@ -353,9 +353,9 @@
 				<node label="Wipe" module="spark/effects/WipeExample" />
 				<node label="Animate Property" module="spark/effects/AnimatePropertiesExample" />
 				<node label="Animate Transform" module="spark/effects/AnimateTransformExample" />
-				<!-- not working
+				<!== not working
 				<node label="Cross Fade" module="spark/effects/CrossFadeExample" />
-				 -->
+				 ==>
 				<node label="Fade" module="spark/effects/FadeExample" />
 				<node label="Rotate 3D" module="spark/effects/Rotate3DExample" />
 				<node label="Scale 3D" module="spark/effects/Scale3DExample" />

@@ -209,7 +209,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="scroll", type="mx.events.ScrollEvent")]
+[Event(name="scroll", type="mx.events.ScrollEvent")]
 
 /**
  * The default property uses when additional MXML content appears within an element's

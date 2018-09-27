@@ -869,6 +869,20 @@ public class SkinnableTextBase extends SkinnableComponent
     } */
     
     //----------------------------------
+    //  fontStyle
+    //----------------------------------
+	
+	public function get fontStyle():String
+    {
+        return "";
+    } 
+  
+     public function set fontStyle(value:String):void
+    {
+    
+    }
+    
+    //----------------------------------
     //  typicalText
     //----------------------------------
     

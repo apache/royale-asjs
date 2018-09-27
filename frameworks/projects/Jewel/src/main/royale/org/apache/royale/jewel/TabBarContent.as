@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.jewel.supportClasses.IActivable;
+
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -25,15 +27,16 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The DrawerHeader class is a Container component to hold Drawer Header
-	 *  content, for example a title or an Image icon logo
+	 *  The ApplicationMainContent class is a Container component capable of parenting
+	 *  the other organized content that implements IActivable interface
+	 *  (i.e, a SectionContent)
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DrawerHeader extends Group
+	public class TabBarContent extends Container
 	{
 		/**
 		 *  constructor.
@@ -43,12 +46,46 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function DrawerHeader()
+		public function TabBarContent()
 		{
 			super();
 
-            typeNames = "jewel drawerheader"
+            typeNames = "jewel tabbarcontent";
 		}
+
+		/**
+		 *  shows a concrete content and hides the rest
+		 * 
+		 *  @param id, the id of the container to show
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+        public function showContent(id:String):void
+        {
+			try
+			{
+				for (var i:int = 0; i < numElements; i++)
+				{
+					var content:IActivable = getElementAt(i) as IActivable;
+					
+					if(content.id == id)
+					{
+						content.isActive = true;
+					}
+					else
+					{
+						content.isActive = false;
+					}
+				}
+			}
+			catch (error:Error)
+			{
+				throw new Error ("One or more content in TabBarContent is not implementing IActivable interface.");	
+			}
+        }
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -56,7 +93,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'header');
+			return addElementToWrapper(this, 'div');
         }
 	}
 }

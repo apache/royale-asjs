@@ -20,6 +20,8 @@ package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
+	import org.apache.royale.events.Event;
     
     COMPILE::JS
     {
@@ -124,6 +126,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				text = String(value);
 			}
+			// text = getLabelFromData(this, value);
 			
             if(value.href !== undefined)
 			{
@@ -132,12 +135,14 @@ package org.apache.royale.jewel.itemRenderers
 
 			COMPILE::JS
 			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-                    (element as HTMLElement).setAttribute('href', href);
-				}	
+			if(textNode != null)
+			{
+				textNode.nodeValue = text;
+				(element as HTMLElement).setAttribute('href', href);
+			}	
 			}
+
+			dispatchEvent(new Event("dataChange"));
 		}
 
         /**
@@ -147,7 +152,7 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var a:WrappedHTMLElement = addElementToWrapper(this,'a');
+            var a:WrappedHTMLElement = addElementToWrapper(this, 'a');
             a.setAttribute('href', href);
 
 			if(MXMLDescriptor == null)
@@ -167,8 +172,9 @@ package org.apache.royale.jewel.itemRenderers
 		 */
 		override public function updateRenderer():void
 		{
-			// override all and do nothing, all is managed in CSS
 			// there's no selection only hover state
+			if(hoverable)
+            	toggleClass("hovered", hovered);
 		}
 	}
 }

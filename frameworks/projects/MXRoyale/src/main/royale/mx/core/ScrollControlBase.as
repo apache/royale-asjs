@@ -387,6 +387,10 @@ public class ScrollControlBase extends UIComponent
 //        if (horizontalScrollBar)
 //            horizontalScrollBar.scrollPosition = value;
 
+        COMPILE::JS
+        {
+            element.scrollLeft = value;
+        }
         dispatchEvent(new Event("viewChanged"));
     }
 
@@ -690,6 +694,14 @@ public class ScrollControlBase extends UIComponent
      */
     mx_internal var _verticalScrollPosition:Number = 0;
 
+    /**
+     *  @private
+     *  Storage for the verticalScrollSize property.
+     *  Flex scrolls by step sizes other than pixels.  TextArea
+     *  scrolls by lines of text, Lists scroll by itemRendererIndex
+     */
+    protected var verticalScrollSize:Number = 1;
+    
     [Bindable("scroll")]
     [Bindable("viewChanged")]
     [Inspectable(defaultValue="0")]
@@ -722,6 +734,10 @@ public class ScrollControlBase extends UIComponent
 //        if (verticalScrollBar)
 //            verticalScrollBar.scrollPosition = value;
 
+        COMPILE::JS
+        {
+            element.scrollTop = value * verticalScrollSize;
+        }
         dispatchEvent(new Event("viewChanged"));
     }
 
@@ -1422,5 +1438,14 @@ public class ScrollControlBase extends UIComponent
 //	{
 //		return horizontalScrollBar;
 //	}
+
+	public function get textDecoration():String
+	{
+		return "none";
+	}
+	public function set textDecoration(value:String):void
+	{
+
+	}
 }
 }

@@ -24,7 +24,7 @@ package org.apache.royale.jewel.beads.layouts
 	
 	/**
 	 *  The ResponsiveVisibility bead class is a specialty bead that 
-	 *  can be used to show or hide a Jewel control depending on responsive
+	 *  can be used to show or hide a Jewel component depending on responsive
 	 *  rules.
 	 *  
 	 *  @langversion 3.0

@@ -18,6 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	COMPILE::SWF
+	{
+		//import org.apache.royale.jewel.beads.views.TextInputView;
+		import flash.text.TextFieldType;
+		import flash.utils.setTimeout;
+    }
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IBeadView;
@@ -26,27 +32,20 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.IPopUpHost;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Point;
     import org.apache.royale.jewel.Button;
     import org.apache.royale.jewel.DateChooser;
     import org.apache.royale.jewel.TextInput;
     import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
     import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
-    import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	import org.apache.royale.jewel.Table;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
-	import org.apache.royale.core.ValuesManager;
-
-	COMPILE::SWF
-	{
-		//import org.apache.royale.jewel.beads.views.TextInputView;
-		import flash.text.TextFieldType;
-		import flash.utils.setTimeout;
-    }
+    import org.apache.royale.utils.UIUtils;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -277,7 +276,6 @@ package org.apache.royale.jewel.beads.views
 		private function selectionChangeHandler(event:Event = null):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
-			getHost().dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		private var daysTable:Table;
@@ -297,28 +295,22 @@ package org.apache.royale.jewel.beads.views
         {
 			COMPILE::JS
 			{
-				var outerWidth:Number = window.outerWidth;
+				var outerWidth:Number = document.body.getBoundingClientRect().width;
+				// handle potential scrolls offsets
+				var top:Number = top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
-					// var point:Point = new Point(_textInput.width, _button.height);
-					// var p2:Point = PointUtils.localToGlobal(point, _strand);
-					// _popUp.x = p3.x;
-					// _popUp.y = p3.y;
-					// var p3:Point = PointUtils.globalToLocal(p2, host);
-
-					var origin:Point = new Point(0, _button.y + _button.height);
-					var relocated:Point = PointUtils.localToGlobal(origin, _strand);
-					// daysTable.x = relocated.x;
-					// daysTable.y = relocated.y;
-					daysTable.positioner.style["left"] = relocated.x + "px";
-					daysTable.positioner.style["top"] = relocated.y + "px";
+					var origin:Point = new Point(0, _button.y + _button.height - top);
+					var relocated:Point = positionInsideBoundingClientRect(_strand, daysTable, origin);
+					daysTable.x = relocated.x;
+					daysTable.y = relocated.y;
 				}
 				else
 				{
-					daysTable.positioner.style["left"] = "50%";
-					daysTable.positioner.style["top"] = "calc(100% - 10px)";
+					daysTable.positioner.style.left = '50%';
+					daysTable.positioner.style.top = 'calc(100% - 10px)';
 				}
 			}
 		}

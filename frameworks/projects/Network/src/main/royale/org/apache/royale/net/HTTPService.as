@@ -741,7 +741,17 @@ package org.apache.royale.net
         {
             assert(data,"data must exist before calling json getter!");
             if (!_json)
-                _json = JSON.parse(data);
+            {
+                try
+                {
+                    _json = JSON.parse(data);
+                }
+                catch (error:Error)
+                {
+                    throw new Error ("JSON is not valid: " + data);
+                }
+                
+            }
             return _json;
         }
 

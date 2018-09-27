@@ -41,6 +41,14 @@ package mx.display
 		public function lineStyle(thickness:Number = NaN, color:uint = 0, alpha:Number = 1.0, pixelHinting:Boolean = false, scaleMode:String = "normal", caps:String = null, joints:String = null, miterLimit:Number = 3):void
 		{
 		}
+		
+		public function moveTo(x:Number, y:Number):void
+		{
+		}
+		
+		public function curveTo(controlX:Number, controlY:Number, anchorX:Number, anchorY:Number):void
+		{
+		}
 	}
 	
 }

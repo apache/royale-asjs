@@ -94,8 +94,19 @@ package org.apache.royale.jewel.beads.views
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+			IEventDispatcher(_strand).addEventListener("itemsCreated", itemsCreatedHandler);
 
 			super.handleInitComplete(event);
+		}
+
+		/**
+		 * @private
+		 * Ensure the list selects the selectedItem if someone is set by the user at creation time
+		 */
+		private function itemsCreatedHandler(event:Event):void
+		{
+			if(listModel.selectedIndex != -1)
+				selectionChangeHandler(null);
 		}
 
 		/**
@@ -112,8 +123,6 @@ package org.apache.royale.jewel.beads.views
 				ir.selected = true;
 
 			lastSelectedIndex = listModel.selectedIndex;
-
-			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		protected var lastRollOverIndex:int = -1;

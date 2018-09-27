@@ -23,10 +23,14 @@
             ],
             "group": "build",
             "presentation": {
+                "echo": true,
                 "reveal": "always",
-                "panel": "new"
+                "focus": true,
+                "panel": "dedicated"
             },
-            "problemMatcher": []
+            "problemMatcher": [
+                "$nextgenas_nomatch"
+            ]
         },
         {
             "label": "Build Release with AS3 Extension",

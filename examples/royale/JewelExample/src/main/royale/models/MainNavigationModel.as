@@ -42,10 +42,8 @@ package models
             new NavigationLinkVO("Forms & Validation", "form_validation_panel", MaterialIconType.ASSIGNMENT_TURNED_IN),
             new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
             new NavigationLinkVO("Snackbar", "snackbar_panel", MaterialIconType.VIDEO_LABEL)
-
             // new NavigationLinkVO("Menu", "menus_panel"),
             // new NavigationLinkVO("Loading", "loading_panel")
-            
         ]);
         public function get controlsDrawerNavigation():ArrayList
         {
@@ -53,12 +51,13 @@ package models
         }
         
         private var _containerDrawerNavigation:ArrayList = new ArrayList([
-            new NavigationLinkVO("Card", "card_panel", "web_asset"),
-            new NavigationLinkVO("Grid", "grid_panel", "grid_on"),
-            new NavigationLinkVO("Tables", "tables_panel", "view_quilt")
-            
+            new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.FLIP_TO_FRONT),
+            new NavigationLinkVO("Layouts", "layouts_panel", MaterialIconType.VIEW_QUILT),
+            new NavigationLinkVO("Grid", "grid_panel", MaterialIconType.GRID_ON),
+            new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_LIST),
+            new NavigationLinkVO("TabBar", "tabbar_panel", MaterialIconType.TAB),
+            new NavigationLinkVO("Card", "card_panel", MaterialIconType.WEB_ASSET)
             // new NavigationLinkVO("Tabs", "tabs_panel")
-            
         ]);
 
         public function get containerDrawerNavigation():ArrayList

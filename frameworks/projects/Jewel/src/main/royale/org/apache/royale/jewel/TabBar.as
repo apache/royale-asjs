@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.events.MouseEvent;
+
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -25,14 +27,17 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The TopAppBarTitle class is the application title
+	 *  The Navigation class is a List used for navigate other organized content
+	 *  in a Royale Application. In HTML is represented by a <nav> tag in HTML and
+	 *  It parents a list of links.
+	 *  By default it uses TabBarButtonItemRenderer class to define each item.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TopAppBarTitle extends Group
+	public class TabBar extends List
 	{
 		/**
 		 *  constructor.
@@ -42,52 +47,22 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function TopAppBarTitle()
+		public function TabBar()
 		{
 			super();
 
-            typeNames = "jewel topappbartitle"
+            typeNames = "jewel tabbar";
+
+			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 
-		COMPILE::JS
-        protected var textNode:Text;
-
-		private var _text:String = "";
-        /**
-         *  The text of the element
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get text():String
+		private function internalMouseHandler(event:MouseEvent):void
 		{
-            return _text;
-		}
-		public function set text(value:String):void
-		{
-            _text = value;
-
 			COMPILE::JS
 			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-                
-                textNode.nodeValue = value;	
+				// avoid a link tries to open a new page 
+				event.preventDefault();
 			}
 		}
-
-		/**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this, 'span');
-        }
 	}
 }

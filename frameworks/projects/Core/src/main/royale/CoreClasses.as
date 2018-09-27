@@ -257,6 +257,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 		import org.apache.royale.utils.object.defineSimpleGetter; defineSimpleGetter;
 		import org.apache.royale.utils.object.defineProperty; defineProperty;
 		import org.apache.royale.utils.object.defineSimpleProperty; defineSimpleProperty;
+		import org.apache.royale.utils.js.loadJavascript; loadJavascript;
 	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
@@ -271,6 +272,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 
+	import org.apache.royale.utils.string.Base64; Base64;
 	import org.apache.royale.utils.string.contains; contains;
 	import org.apache.royale.utils.string.isWhitespace; isWhitespace;
 	import org.apache.royale.utils.string.trim; trim;

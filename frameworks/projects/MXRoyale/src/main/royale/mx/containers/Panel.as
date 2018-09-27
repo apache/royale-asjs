@@ -63,6 +63,7 @@ use namespace mx_internal;
 import mx.containers.beads.PanelView;
 import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
+import mx.core.UIComponent;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
@@ -760,6 +761,67 @@ public class Panel extends Container
     {
         var panelView:PanelView = view as PanelView;
         return panelView.contentArea.getElementAt(index);
+    }
+
+    // override and proxy to content area.  Otherwise Panel's TitleBar and other chrome will
+    // have this padding between the border and chrome
+    
+    
+    override public function get paddingLeft():Object
+    {
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        return contentView.paddingLeft;
+    }
+    override public function set paddingLeft(value:Object):void
+    {
+        if (typeof(value) !== "string")
+            value = value.toString() + "px";
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.paddingLeft = value;
+    }
+    override public function get paddingRight():Object
+    {
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        return contentView.paddingRight;
+    }
+    override public function set paddingRight(value:Object):void
+    {
+        if (typeof(value) !== "string")
+            value = value.toString() + "px";
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.paddingRight = value;
+    }
+    override public function get paddingTop():Object
+    {
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        return contentView.paddingTop;
+    }
+    override public function set paddingTop(value:Object):void
+    {
+        if (typeof(value) !== "string")
+            value = value.toString() + "px";
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.paddingTop = value;
+    }
+    override public function get paddingBottom():Object
+    {
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        return contentView.paddingBottom;
+    }
+    override public function set paddingBottom(value:Object):void
+    {
+        if (typeof(value) !== "string")
+            value = value.toString() + "px";
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.paddingBottom = value;
     }
 
 }

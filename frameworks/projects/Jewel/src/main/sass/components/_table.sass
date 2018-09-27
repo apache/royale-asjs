@@ -49,7 +49,7 @@
             padding: 12px
 
 j|SimpleTable
-
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 
 // Jewel Table
@@ -122,6 +122,10 @@ j|Table
     letter-spacing: 0
     line-height: normal !important
     overflow: hidden
+    cursor: auto
+    
+    &.selectable
+        cursor: pointer
 
     &.with-childs
         padding: 6px
@@ -137,12 +141,17 @@ j|TableItemRenderer
 
 
 j|TBody
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 j|THead
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 j|TFoot
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 j|TableCell
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 j|TableHeaderCell
 j|TableRow
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 j|TableColumn
 
 
