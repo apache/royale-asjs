@@ -184,9 +184,10 @@ package org.apache.royale.jewel.beads.views
 			var newValue:Number = Number(input.text);
 
 			if( !isNaN(newValue) ) {
-				if (spinner.value != newValue) {
-					var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", spinner.value, newValue);
-					spinner.value = newValue;
+				var oldValue:Number = spinner.value;
+				spinner.value = newValue;
+				if (oldValue != spinner.value) {
+					var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, spinner.value);
 					IEventDispatcher(_strand).dispatchEvent(newEvent);
 				}
 			}
