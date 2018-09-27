@@ -19,10 +19,10 @@
 
 package mx.controls.listClasses
 {
-import org.apache.royale.html.supportClasses.StringItemRenderer;
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-import org.apache.royale.core.layout.EdgeData;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.core.layout.EdgeData;
+import org.apache.royale.html.supportClasses.StringItemRenderer;
 
 /**
  *  The ListItemRenderer is the default renderer for mx.controls.List
@@ -45,6 +45,16 @@ public class ListItemRenderer extends StringItemRenderer
             textField.autoSize = "none";
             textField.height = h;
         }
+    }
+    
+    override protected function dataToString(value:Object):String
+    {
+        if (value is XML)
+        {
+            var xml:XML = value as XML;
+            return xml[labelField];
+        }
+        return super.dataToString(value);
     }
 
 }
