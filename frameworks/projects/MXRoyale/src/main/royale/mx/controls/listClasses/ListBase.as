@@ -19,12 +19,18 @@
 package mx.controls.listClasses
 {
 
+import mx.collections.ArrayCollection;
+import mx.collections.ICollectionView;
+import mx.collections.IList;
+import mx.collections.ListCollectionView;
+import mx.collections.XMLListCollection;
 import mx.core.EdgeMetrics;
 import mx.core.IFactory;
 import mx.core.IUIComponent;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
+import mx.events.CollectionEvent;
 import mx.utils.UIDUtil;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
@@ -208,6 +214,36 @@ use namespace mx_internal;
          */
         public function set dataProvider(value:Object):void
         {
+            if (value is Array)
+            {
+                value = new ArrayCollection(value as Array);
+            }
+            else if (value is ICollectionView)
+            {
+                value = ICollectionView(value);
+            }
+            else if (value is IList)
+            {
+                value = new ListCollectionView(IList(value));
+            }
+            else if (value is XMLList)
+            {
+                value = new XMLListCollection(value as XMLList);
+            }
+            else if (value is XML)
+            {
+                var xl:XMLList = new XMLList();
+                xl += value;
+                value = new XMLListCollection(xl);
+            }
+            else
+            {
+                // convert it to an array containing this one item
+                var tmp:Array = [];
+                if (value != null)
+                    tmp.push(value);
+                value = new ArrayCollection(tmp);
+            }
             (model as ISelectionModel).dataProvider = value;
         }
         

@@ -65,6 +65,11 @@ import org.apache.royale.html.beads.IComboBoxView;
 import org.apache.royale.core.IComboBoxModel;
 import org.apache.royale.core.IUIBase;
 import mx.events.FlexEvent;
+import mx.collections.IList;
+import mx.collections.XMLListCollection;
+import mx.collections.ArrayCollection;
+import mx.collections.ICollectionView;
+import mx.collections.ListCollectionView;
     
 /**
  *  The alpha of the content background for this component.
@@ -472,6 +477,36 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set dataProvider(value:Object):void
     {
+        if (value is Array)
+        {
+            value = new ArrayCollection(value as Array);
+        }
+        else if (value is ICollectionView)
+        {
+            value = ICollectionView(value);
+        }
+        else if (value is IList)
+        {
+            value = new ListCollectionView(IList(value));
+        }
+        else if (value is XMLList)
+        {
+            value = new XMLListCollection(value as XMLList);
+        }
+        else if (value is XML)
+        {
+            var xl:XMLList = new XMLList();
+            xl += value;
+            value = new XMLListCollection(xl);
+        }
+        else
+        {
+            // convert it to an array containing this one item
+            var tmp:Array = [];
+            if (value != null)
+                tmp.push(value);
+            value = new ArrayCollection(tmp);
+        }
         IComboBoxModel(model).dataProvider = value;
         if (value && IComboBoxModel(model).selectedIndex == -1)
             IComboBoxModel(model).selectedIndex = 0;
