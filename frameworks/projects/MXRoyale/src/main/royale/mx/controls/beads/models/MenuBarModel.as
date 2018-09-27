@@ -21,8 +21,10 @@ package mx.controls.beads.models
     import mx.controls.MenuBar;
     
     import org.apache.royale.core.IMenu;
+    import org.apache.royale.core.IMenuBarModel;
     import org.apache.royale.core.IUIBase;
-    import org.apache.royale.html.beads.models.MenuBarModel;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.html.beads.models.ArraySelectionModel;
 	
     /**
      *  MenuBar Mouse Controller
@@ -32,7 +34,7 @@ package mx.controls.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class MenuBarModel extends org.apache.royale.html.beads.models.MenuBarModel
+	public class MenuBarModel extends ArraySelectionModel implements IMenuBarModel
 	{
         /**
          *  Constructor.
@@ -48,6 +50,27 @@ package mx.controls.beads.models
             submenuField = "children";
 		}
 		
+        private var _submenuField:String = "menu";
+        
+        /**
+         * The field in the data object that identifies sub-menus. The default is "menu". This
+         * value is transferred to the CascadingMenu opened for each menu item.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         */
+        public function get submenuField():String
+        {
+            return _submenuField;
+        }
+        public function set submenuField(value:String):void
+        {
+            _submenuField = value;
+            dispatchEvent(new Event("submenuFieldChanged"));
+        }
+
         private var _showRoot:Boolean;
 		
         /**

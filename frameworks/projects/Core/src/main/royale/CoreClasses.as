@@ -233,6 +233,8 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.states.SetProperty; SetProperty;
     import org.apache.royale.states.State; State;
 
+    import org.apache.royale.core.IMenuBarModel; IMenuBarModel;
+    
     import org.apache.royale.core.IDataGridModel; IDataGridModel;
     import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.royale.core.IDateChooserModel; IDateChooserModel;
