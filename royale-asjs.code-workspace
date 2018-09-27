@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "frameworks/themes/JewelTheme"
+		},
+		{
+			"path": "examples/royale/JewelExample"
 		}
 	]
 }

@@ -17,6 +17,7 @@
 
 # VSCode conf files
 **/.vscode/**
+*.code-workspace
 
 
 # building
