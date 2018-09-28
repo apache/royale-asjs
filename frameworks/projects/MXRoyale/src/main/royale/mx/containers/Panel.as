@@ -767,7 +767,6 @@ public class Panel extends Container
     // override and proxy to content area.  Otherwise Panel's TitleBar and other chrome will
     // have this padding between the border and chrome
     
-    
     override public function get paddingLeft():Object
     {
         var panelView:PanelView = view as PanelView;
@@ -825,6 +824,39 @@ public class Panel extends Container
         contentView.paddingBottom = value;
     }
     
+    // because padding creates the view early, the setuplayout logic
+    // may get run before percentWidth/Height are set, so we have
+    // to make sure the contentArea gets set up correctly
+    override public function set percentWidth(value:Number):void
+    {
+        super.percentWidth = value;
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.percentWidth = 100;
+    }
+    override public function set explicitWidth(value:Number):void
+    {
+        super.explicitWidth = value;
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.percentWidth = 100;
+    }
+    override public function set percentHeight(value:Number):void
+    {
+        super.percentHeight = value;
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.percentHeight = 100;
+    }
+    override public function set explicitHeight(value:Number):void
+    {
+        super.explicitHeight = value;
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        contentView.percentHeight = 100;
+    }
+    
+
     /**
      *  @private
      */
