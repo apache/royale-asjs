@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IApplicationView;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.events.Event;
 	// import org.apache.royale.jewel.beads.layouts.VerticalLayout;
@@ -40,7 +41,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ApplicationResponsiveView extends Group implements IPopUpHost, IApplicationView
+	public class ApplicationResponsiveView extends Group implements IPopUpHost, IPopUpHostParent, IApplicationView
 	{
 		/**
 		 *  constructor.
@@ -92,9 +93,17 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public function get popUpParent():IParent
+        public function get popUpParent():IPopUpHostParent
         {
             return this;
         }
+
+		/**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
+        }
+
 	}
 }

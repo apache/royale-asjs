@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.core.ApplicationBase;
     import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IPopUpHostParent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.utils.MXMLDataInterpreter;
@@ -123,7 +124,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IRenderedObject
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IPopUpHostParent, IRenderedObject
     {
         /**
          *  Constructor.
@@ -349,7 +350,7 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        public function get popUpParent():IParent
+        public function get popUpParent():IPopUpHostParent
         {
             return this;
         }
@@ -743,5 +744,11 @@ package org.apache.royale.jewel
             // Setting this directly doesn't do anything
         }
 
+                /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
+        }
     }
 }
