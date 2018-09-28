@@ -67,6 +67,7 @@ import mx.core.UIComponent;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.ValueEvent;
 
 //--------------------------------------
 //  Styles
@@ -823,6 +824,19 @@ public class Panel extends Container
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         contentView.paddingBottom = value;
     }
+    
+    /**
+     *  @private
+     */
+    override public function childrenAdded():void
+    {
+        var panelView:PanelView = view as PanelView;
+        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        panelView.contentArea.dispatchEvent(new ValueEvent("childrenAdded"));
+        super.childrenAdded();
+    }
+    
+
 
 }
 

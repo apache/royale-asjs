@@ -105,7 +105,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IRenderedObject
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IPopUpHostParent, IRenderedObject
     {
         /**
          *  Constructor.
@@ -329,7 +329,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public function get popUpParent():IParent
+        public function get popUpParent():IPopUpHostParent
         {
             return this;
         }
@@ -723,5 +723,11 @@ package org.apache.royale.core
             // Setting this directly doesn't do anything
         }
 
+        /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
+        }
     }
 }

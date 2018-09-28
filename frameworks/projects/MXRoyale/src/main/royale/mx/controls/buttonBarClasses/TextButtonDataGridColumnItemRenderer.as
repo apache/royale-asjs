@@ -17,15 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package mx.controls.listClasses
+package mx.controls.buttonBarClasses
 {
-import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-import org.apache.royale.core.ValuesManager;
-import org.apache.royale.core.layout.EdgeData;
-import org.apache.royale.html.supportClasses.StringItemRenderer;
+import mx.controls.dataGridClasses.DataGridColumn;
+
+import org.apache.royale.html.supportClasses.TextButtonItemRenderer;
 
 /**
- *  The ListItemRenderer is the default renderer for mx.controls.List
+ *  The TextButtonDataGridColumnItemRenderer is the default renderer for mx.controls.DataGrid's columns
  *
  *  @langversion 3.0
  *  @playerversion Flash 9
@@ -33,28 +32,11 @@ import org.apache.royale.html.supportClasses.StringItemRenderer;
  *  @productversion Flex 3
  */
 
-public class ListItemRenderer extends StringItemRenderer
+public class TextButtonDataGridColumnItemRenderer extends TextButtonItemRenderer
 {
-    override public function set text(value:String):void
+    override protected function updateButtonLabelFromData():void
     {
-        super.text = value;
-        COMPILE::SWF
-        {
-            var edge:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this);
-            var h:Number = textField.textHeight + edge.top + edge.bottom;
-            textField.autoSize = "none";
-            textField.height = h;
-        }
-    }
-    
-    override protected function dataToString(value:Object):String
-    {
-        if (value is XML)
-        {
-            var xml:XML = value as XML;
-            return xml[labelField];
-        }
-        return super.dataToString(value);
+        text = data ? (data as DataGridColumn).headerText : "";
     }
 
 }

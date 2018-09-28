@@ -71,6 +71,7 @@ internal class MXRoyaleClasses
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
+    import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
     import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
@@ -172,9 +173,11 @@ internal class MXRoyaleClasses
     import mx.containers.beads.models.PanelModel; PanelModel;
     import mx.containers.beads.TabNavigatorView; TabNavigatorView;
     import mx.controls.TabBar; TabBar;
+    import mx.controls.beads.models.ComboBoxModel; ComboBoxModel;
     
     import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
     import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
+    import mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer; TextButtonDataGridColumnItemRenderer;
     
 }
 

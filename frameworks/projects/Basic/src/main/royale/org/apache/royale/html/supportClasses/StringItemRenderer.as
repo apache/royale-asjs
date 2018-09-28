@@ -147,10 +147,14 @@ package org.apache.royale.html.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-            var text:String;
-            this.text = getLabelFromData(this,value);
+            text = dataToString(value);
 		}
 
+        protected function dataToString(value:Object):String
+        {
+            return getLabelFromData(this,value);
+        }
+        
         // COMPILE::JS
         // private var backgroundView:WrappedHTMLElement;
 

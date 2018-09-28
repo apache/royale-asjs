@@ -39,7 +39,6 @@ import mx.effects.EffectManager;
 import mx.events.FlexEvent;
 import mx.managers.IActiveWindowManager;
 import mx.managers.ILayoutManager;
-import mx.managers.ISystemManager;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
 import mx.utils.LoaderUtil;
@@ -61,6 +60,7 @@ import org.apache.royale.events.utils.MouseEventConverter;
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
 import mx.managers.FocusManager;
+import mx.managers.ISystemManager;
 
 import org.apache.royale.binding.ApplicationDataBinding;
 import org.apache.royale.binding.ContainerDataBinding;
@@ -72,6 +72,7 @@ import org.apache.royale.core.IInitialViewApplication;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IPopUpHostParent;
 import org.apache.royale.core.IRenderedObject;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStrand;
@@ -231,7 +232,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class Application extends Container implements IStrand, IParent, IEventDispatcher, IPopUpHost, IRenderedObject, IFlexInfo
+public class Application extends Container implements IStrand, IParent, IEventDispatcher, IPopUpHost, IPopUpHostParent, IRenderedObject, IFlexInfo
 {
 
     //--------------------------------------------------------------------------
@@ -642,10 +643,30 @@ public class Application extends Container implements IStrand, IParent, IEventDi
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get popUpParent():IParent
+    public function get popUpParent():IPopUpHostParent
     {
-        return strandChildren;
+        COMPILE::JS
+        {
+            return systemManager as IPopUpHostParent;
+        }
+        COMPILE::SWF
+        {
+            return strandChildren as IPopUpHostParent;
+        }
     }
+    
+    override public function get systemManager():ISystemManager
+    {
+        return parent as ISystemManager;
+    }
+    
+    /**
+     */
+    public function get popUpHost():IPopUpHost
+    {
+        return this;
+    }
+
 }
 
 }

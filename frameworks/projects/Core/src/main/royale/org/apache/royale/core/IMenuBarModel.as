@@ -18,17 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	import org.apache.royale.events.IEventDispatcher;
+	
     /**
-     *  The IPopUpHost interface is a "marker" interface for a component that
-     *  parents components that implement IPopUp.
-     * 
+     *  The IComboBoxModel interface describes the minimum set of properties
+     *  available to a ComboBox control.  More sophisticated ComboBox controls
+     *  could have models that extend IComboBoxModel.
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public interface IPopUpHost
+	public interface IMenuBarModel extends IEventDispatcher, ISelectionModel, IBeadModel
 	{
-        function get popUpParent():IPopUpHostParent;
+        // TODO: should extend ITextModel
+        /**
+         *  The text displayed in the ComboBox.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		function get submenuField():String;
+		function set submenuField(value:String):void;
+		
 	}
 }

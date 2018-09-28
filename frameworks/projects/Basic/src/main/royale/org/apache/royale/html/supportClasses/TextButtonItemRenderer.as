@@ -80,7 +80,7 @@ package org.apache.royale.html.supportClasses
 		/**
 		 * @royaleignorecoercion String
 		 */
-		private function updateButtonLabelFromData():void
+		protected function updateButtonLabelFromData():void
 		{
 			var valueAsString:String;
 

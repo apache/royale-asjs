@@ -29,6 +29,7 @@ import mx.containers.beads.models.PanelModel;
 import mx.core.ContainerLayout;
 
 import org.apache.royale.core.IBead;
+import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.html.beads.PanelView;
@@ -97,8 +98,11 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
     {
         titleBar.percentWidth = 100;
             
-        contentArea.percentWidth = 100;
-        contentArea.percentHeight = 100;
+        var panel:ILayoutChild = host as ILayoutChild;
+        if (!panel.isWidthSizedToContent())
+            contentArea.percentWidth = 100;
+        if (!panel.isHeightSizedToContent())
+            contentArea.percentHeight = 100;
         
         // Now give the Panel its own layout
         var boxLayout:BoxLayout = new BoxLayout();

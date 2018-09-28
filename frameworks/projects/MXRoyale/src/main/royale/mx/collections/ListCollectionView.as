@@ -1153,6 +1153,7 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+    [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event"))]
     COMPILE::SWF
     public function dispatchEvent(event:Event):Boolean
     {

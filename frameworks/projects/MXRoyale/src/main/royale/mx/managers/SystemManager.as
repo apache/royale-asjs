@@ -87,14 +87,16 @@ import mx.utils.LoaderUtil;
 use namespace mx_internal;
 */
 
-import org.apache.royale.geom.Rectangle;
-
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
 
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IPopUpHostParent;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.geom.Rectangle;
 
 //--------------------------------------
 //  Events
@@ -189,7 +191,7 @@ import org.apache.royale.events.IEventDispatcher;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class SystemManager extends SystemManagerBase implements ISystemManager, IEventDispatcher, IChildList
+public class SystemManager extends SystemManagerBase implements ISystemManager, IEventDispatcher, IPopUpHostParent, IChildList
 { //extends MovieClip implements IFlexDisplayObject,IFlexModuleFactory, ISystemManager
    // include "../core/Version.as";
 
@@ -1821,7 +1823,43 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             return ret as IUIComponent;
         }
     }
-            
+    
+    COMPILE::SWF
+    public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        trace("SystemManager:addElement should not be called");   
+    }
+    COMPILE::SWF
+    public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        trace("SystemManager:addElementAt should not be called");   
+        
+    }
+    COMPILE::SWF
+    public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        trace("SystemManager:removeElement should not be called");   
+        
+    }
+    COMPILE::SWF
+    public function getElementIndex(c:IChild):int
+    {
+        trace("SystemManager:getElementIndex should not be called");   
+        return 0;
+    }
+    COMPILE::SWF
+    public function get numElements():int
+    {
+        trace("SystemManager:numElements should not be called");   
+        return 0;    
+    }
+    COMPILE::SWF
+    public function getElementAt(index:int):IChild
+    {
+        trace("SystemManager:getElementAt should not be called");   
+        return null;            
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Methods: IFlexModuleFactory
@@ -3667,6 +3705,13 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         return true;
     }
     
+    /**
+     * @royaleignorecoercion org.apache.royale.core.IPopUpHost; 
+     */
+    public function get popUpHost():IPopUpHost
+    {
+        return component as IPopUpHost;
+    }
 
 }
 

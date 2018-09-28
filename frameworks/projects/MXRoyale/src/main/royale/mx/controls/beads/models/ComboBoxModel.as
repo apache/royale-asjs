@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads.models
 {
-    import mx.controls.MenuBar;
     
-    import org.apache.royale.core.IMenu;
-    import org.apache.royale.core.IMenuBarModel;
+    import org.apache.royale.core.IComboBoxModel;
     import org.apache.royale.core.IUIBase;
+    import mx.controls.beads.models.SingleSelectionICollectionViewModel;
     import org.apache.royale.events.Event;
-    import org.apache.royale.html.beads.models.ArraySelectionModel;
 	
     /**
      *  MenuBar Mouse Controller
@@ -34,7 +32,7 @@ package mx.controls.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class MenuBarModel extends ArraySelectionModel implements IMenuBarModel
+	public class ComboBoxModel extends SingleSelectionICollectionViewModel implements IComboBoxModel
 	{
         /**
          *  Constructor.
@@ -44,58 +42,60 @@ package mx.controls.beads.models
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function MenuBarModel()
+		public function ComboBoxModel()
 		{
-            labelField = "label";
-            submenuField = "children";
 		}
 		
-        private var _submenuField:String = "menu";
+        private var _text:String;
         
         /**
-         * The field in the data object that identifies sub-menus. The default is "menu". This
-         * value is transferred to the CascadingMenu opened for each menu item.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-        public function get submenuField():String
-        {
-            return _submenuField;
-        }
-        public function set submenuField(value:String):void
-        {
-            _submenuField = value;
-            dispatchEvent(new Event("submenuFieldChanged"));
-        }
-
-        private var _showRoot:Boolean;
-		
-        /**
-         *  showRoot
+         *  The string to display in the org.apache.royale.html.ComboBox input field.
+         * 
+         *  @copy org.apache.royale.core.IComboBoxModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function get showRoot():Boolean
-		{
-            return _showRoot;
-		}
-        public function set showRoot(value:Boolean):void
+        public function get text():String
         {
-            _showRoot = value;
+            return _text;
         }
         
-        override public function get dataProvider():Object
+        public function set text(value:String):void
         {
-            if (!showRoot)
-                return super.dataProvider.children; // TODO: needs to use descriptor
-            
-            return super.dataProvider;
+            if (value != _text)
+            {
+                _text = value;
+                dispatchEvent(new Event("textChange"));
+            }
+        }
+        
+        private var _html:String;
+        
+        /**
+         *  The HTML string to display in the org.apache.royale.html.ComboBox input field.
+         * 
+         *  @copy org.apache.royale.core.IComboBoxModel#html
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get html():String
+        {
+            return _html;
+        }
+        
+        public function set html(value:String):void
+        {
+            if (value != _html)
+            {
+                _html = value;
+                dispatchEvent(new Event("htmlChange"));
+            }
         }
 	}
 }

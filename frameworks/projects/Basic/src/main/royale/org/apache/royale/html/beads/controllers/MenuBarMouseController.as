@@ -31,7 +31,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.Menu;
 	import org.apache.royale.html.MenuBar;
-	import org.apache.royale.html.beads.models.MenuBarModel;
+	import org.apache.royale.core.IMenuBarModel;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -114,7 +114,7 @@ package org.apache.royale.html.beads.controllers
 			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", _strand) as IFactory;
 			var menu:IMenu = menuFactory.newInstance() as IMenu;
 			
-			var model:MenuBarModel = _strand.getBeadByType(IBeadModel) as MenuBarModel;
+			var model:IMenuBarModel = _strand.getBeadByType(IBeadModel) as IMenuBarModel;
 			
 			menu.dataProvider = event.data[model.submenuField];
 			menu.labelField = model.labelField;

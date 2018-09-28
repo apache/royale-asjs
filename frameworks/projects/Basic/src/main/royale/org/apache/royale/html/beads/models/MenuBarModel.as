@@ -14,13 +14,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
+    import org.apache.royale.core.IMenuBarModel;
 	import org.apache.royale.html.beads.models.ArraySelectionModel;
 	import org.apache.royale.events.Event;
 
 	/**
 	 * The model used by the MenuBar.
 	 */
-	public class MenuBarModel extends ArraySelectionModel
+	public class MenuBarModel extends ArraySelectionModel implements IMenuBarModel
 	{
 		public function MenuBarModel()
 		{

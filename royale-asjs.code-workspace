@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "frameworks/projects/Jewel"
+		},
+		{
+			"path": "frameworks/themes/JewelTheme"
+		},
+		{
+			"path": "examples/royale/JewelExample"
+		}
+	]
+}
