@@ -19,16 +19,18 @@
 package org.apache.royale.core
 {
     /**
-     *  The IPopUpHost interface is a "marker" interface for a component that
-     *  parents components that implement IPopUp.
+     *  The IPopUpHostParent is the effective parent of popups.
+     *  The actual parent may not be the effective parent in some
+     *  implementations, so the effective parent provides a reference
+     *  back to the IPopUpHost for removing
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public interface IPopUpHost
+    public interface IPopUpHostParent extends IParent
 	{
-        function get popUpParent():IPopUpHostParent;
+        function get popUpHost():IPopUpHost;
 	}
 }

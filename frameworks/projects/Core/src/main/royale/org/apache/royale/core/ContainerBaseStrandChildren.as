@@ -30,7 +30,7 @@ package org.apache.royale.core
      * 
      *  @royalesuppresspublicvarwarning
      */
-	public class ContainerBaseStrandChildren implements IParent
+	public class ContainerBaseStrandChildren implements IPopUpHostParent
 	{
         /**
          *  Constructor.
@@ -98,5 +98,13 @@ package org.apache.royale.core
 		{
 			return owner.$getElementAt(index);
 		}
+        
+        /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return owner as IPopUpHost;
+        }
+
     }
 }
