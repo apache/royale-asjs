@@ -458,6 +458,14 @@ public class SkinnableTextBase extends SkinnableComponent
     {
     }
     
+    public function get lineThrough():Boolean
+    {
+	return true;
+    }
+    public function set lineThrough(val:Boolean):void
+    {
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Variables
