@@ -354,6 +354,18 @@ public class AdvancedDataGridColumn
     {
     }
     
+    // ------------------------------------------------
+    //  fontSize
+    // ------------------------------------------------
+	
+    public function get fontSize():Number
+    {
+	return 11;
+    }
+    public function set fontSize(value:Number):void
+    {
+    }
+    
     //----------------------------------
     //  sortDescending
     //----------------------------------
