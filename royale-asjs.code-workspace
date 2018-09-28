@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "examples/royale/JewelExample"
+		},
+		{
+			"path": "frameworks/projects/Core"
+		},
+		{
+			"path": "frameworks/projects/Basic"
 		}
 	]
 }
