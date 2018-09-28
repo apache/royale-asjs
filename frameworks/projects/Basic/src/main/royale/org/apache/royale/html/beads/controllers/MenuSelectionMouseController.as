@@ -122,6 +122,7 @@ package org.apache.royale.html.beads.controllers
 			
 			list.model.selectedItem = node;
 			menuDispatcher.dispatchEvent(new Event("change"));
+            hideOpenMenus();
 		}
 		
 		/**
