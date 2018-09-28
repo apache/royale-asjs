@@ -366,6 +366,18 @@ public class AdvancedDataGridColumn
     {
     }
     
+    // ------------------------------------------------
+    //  color
+    // ------------------------------------------------
+	
+    public function get color():uint
+    {
+	return 0x0B333C;
+    }
+    public function set color(value:uint):void
+    {
+    }
+    
     //----------------------------------
     //  sortDescending
     //----------------------------------
