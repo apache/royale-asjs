@@ -83,6 +83,27 @@
           </overlays>
         </configuration>
       </plugin>
+
+      <!-- Test create javadocs -->
+      <!-- <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+              <noqualifier>all</noqualifier>
+              <reportOutputDirectory>${basedir}/javadoc</reportOutputDirectory>
+              <destDir>javadoc</destDir>
+          </configuration>
+          <executions>
+            <execution>
+                <id>attach-javadocs</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+              </execution>
+          </executions>
+      </plugin>  -->
     </plugins>
   </build>
 
