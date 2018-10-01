@@ -1,4 +1,4 @@
-Apache Royale 0.9.3
+Apache Royale 0.9.4
 ===================
 
 - [Better way to style components: ClassSelectorList](https://github.com/apache/royale-asjs/issues/205)
