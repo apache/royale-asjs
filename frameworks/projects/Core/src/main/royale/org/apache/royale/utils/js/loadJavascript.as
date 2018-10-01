@@ -24,7 +24,7 @@ package org.apache.royale.utils.js
    * @param url The url of the js file.
    * @param callback (optional) the function to be called when the code is laoded.
    * @langversion 3.0
-   * @productversion Royale 0.9.5
+   * @productversion Royale 0.9.4
    * @royaleignorecoercion HTMLScriptElement
    */
   COMPILE::JS
