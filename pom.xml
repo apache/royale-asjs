@@ -30,7 +30,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.6-SNAPSHOT</version>
+  <version>0.9.5-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -46,7 +46,7 @@
     <connection>scm:git:git@github.com:apache/royale-asjs.git</connection>
     <developerConnection>scm:git:git@github.com:apache/royale-asjs.git</developerConnection>
     <url>scm:git:git@github.com:apache/royale-asjs.git</url>
-    <tag>release/0.9.3</tag>
+    <tag>release/0.9.4</tag>
   </scm>
 
   <properties>
@@ -55,8 +55,8 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
-    <royale.compiler.version>0.9.6-SNAPSHOT</royale.compiler.version>
-    <royale.typedefs.version>0.9.6-SNAPSHOT</royale.typedefs.version>
+    <royale.compiler.version>0.9.5-SNAPSHOT</royale.compiler.version>
+    <royale.typedefs.version>0.9.5-SNAPSHOT</royale.typedefs.version>
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
     <royale.debug>true</royale.debug>
