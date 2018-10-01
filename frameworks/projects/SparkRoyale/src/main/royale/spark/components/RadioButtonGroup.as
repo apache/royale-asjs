@@ -214,7 +214,7 @@ public class RadioButtonGroup extends EventDispatcher
      *  Whether the group is enabled.  This can be different than the individual
      *  radio buttons in the group.
      */
-    //private var _enabled:Boolean = true;
+    private var _enabled:Boolean = true;
 
     //--------------------------------------------------------------------------
     //
@@ -241,15 +241,15 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get enabled():Boolean
+     public function get enabled():Boolean
     {
         return _enabled;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set enabled(value:Boolean):void
+    public function set enabled(value:Boolean):void
     {
         if (_enabled == value)
             return;
@@ -258,9 +258,9 @@ public class RadioButtonGroup extends EventDispatcher
 
         // The group state changed.  Invalidate all the radio buttons.  The
         // radio button skin most likely will change.
-        for (var i:int = 0; i < numRadioButtons; i++)
-            getRadioButtonAt(i).invalidateSkinState();
-    } */
+       // for (var i:int = 0; i < numRadioButtons; i++)
+         //   getRadioButtonAt(i).invalidateSkinState();
+    } 
 
     //----------------------------------
     //  numRadioButtons
