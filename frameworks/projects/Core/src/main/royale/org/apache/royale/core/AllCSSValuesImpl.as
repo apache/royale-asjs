@@ -201,8 +201,10 @@ package org.apache.royale.core
 						conditionCombiners = {};
 						conditionCombiners["class"] = ".";
 						conditionCombiners["id"] = "#";
-						conditionCombiners["pseudo"] = ':';    
-					}
+						conditionCombiners["pseudo"] = ':';
+                        conditionCombiners["pseudo_element"] = '::';
+                        conditionCombiners["attribute"] = '[';
+                    }
 					var conditionType:String = arr[++i];
 					var conditionName:String = arr[++i];
 					segmentName = segmentName + conditionCombiners[conditionType] + conditionName;

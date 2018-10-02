@@ -108,6 +108,7 @@
         </antcall>
         
         <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${ROYALE_HOME}/in/flexunit" />
+        <delete file="${ROYALE_HOME}/in/flexunit/flexunit/flexunit-4.2.0-20140410-flex_4.12.0.swc"/>
     </target>
 
     <target name="flexunit-clean" description="Deletes flexunit files.">

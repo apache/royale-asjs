@@ -62,8 +62,9 @@
     
     <target name="compile-js">
         <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" >
+            <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
             <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
-            <property name="FLEX_HOME" value="${FLEX_HOME}"/>
+            <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
         </ant>
     </target>
     
@@ -103,7 +104,8 @@
     
     <target name="compile" description="Compiles .as files into .swc" if="env.AIR_HOME">
         <echo message="Compiling libs/${ant.project.name}.swc"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="FLEXUNIT_HOME: ${FLEXUNIT_HOME}"/>
         

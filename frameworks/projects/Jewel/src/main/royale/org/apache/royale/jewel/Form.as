@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IPopUpHost;
+    import org.apache.royale.core.IPopUpHostParent;
 
     /**
      *  Dispatched when the form validation succeeds.
@@ -51,7 +52,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-    public class Form extends Group implements IPopUpHost {
+    public class Form extends Group implements IPopUpHost, IPopUpHostParent {
         
         /**
 		 *  constructor.
@@ -74,9 +75,16 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        public function get popUpParent():IParent
+        public function get popUpParent():IPopUpHostParent
         {
-            return this as IParent;
+            return this;
+        }
+
+        /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
         }
     }
 }

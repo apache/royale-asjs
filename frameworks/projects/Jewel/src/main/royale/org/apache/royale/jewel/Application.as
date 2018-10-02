@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.core.ApplicationBase;
     import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IPopUpHostParent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.utils.MXMLDataInterpreter;
@@ -28,7 +29,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IInitialViewApplication;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IRenderedObject;
-    import org.apache.royale.core.SimpleCSSValuesImpl;
+    import org.apache.royale.core.AllCSSValuesImpl;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.ValuesManager;
@@ -108,7 +109,7 @@ package org.apache.royale.jewel
      *  Jewel Application holds specific Jewel need in a Royale Application.
 	 *
 	 *  This class extends the standard Application and sets up the
-	 *  SimpleCSSValuesImpl (implementation) for convenience.
+	 *  AllCSSValuesImpl (implementation) for convenience.
 	 * 
 	 *  The Application class is the main class and entry point for a Royale
      *  application.  This Application class is different than the
@@ -123,7 +124,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IRenderedObject
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IPopUpHostParent, IRenderedObject
     {
         /**
          *  Constructor.
@@ -153,7 +154,7 @@ package org.apache.royale.jewel
 				element.className = 'Application';			
 			}
 
-			this.valuesImpl = new SimpleCSSValuesImpl();
+			this.valuesImpl = new AllCSSValuesImpl();
         }
         
         protected var instanceParent:IParent = null;
@@ -240,9 +241,9 @@ package org.apache.royale.jewel
          *  The org.apache.royale.core.IValuesImpl that will
          *  determine the default values and other values
          *  for the application.  The most common choice
-         *  is org.apache.royale.core.SimpleCSSValuesImpl.
+         *  is org.apache.royale.core.AllCSSValuesImpl.
          *
-         *  @see org.apache.royale.core.SimpleCSSValuesImpl
+         *  @see org.apache.royale.core.AllCSSValuesImpl
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -251,8 +252,11 @@ package org.apache.royale.jewel
          */
         public function set valuesImpl(value:IValuesImpl):void
         {
-            ValuesManager.valuesImpl = value;
-            ValuesManager.valuesImpl.init(this);
+            if (!ValuesManager.valuesImpl)
+            {
+                ValuesManager.valuesImpl = value;
+                ValuesManager.valuesImpl.init(this);
+            }
         }
 
         private var _initialView:IApplicationView;
@@ -349,7 +353,7 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        public function get popUpParent():IParent
+        public function get popUpParent():IPopUpHostParent
         {
             return this;
         }
@@ -743,5 +747,11 @@ package org.apache.royale.jewel
             // Setting this directly doesn't do anything
         }
 
+                /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
+        }
     }
 }

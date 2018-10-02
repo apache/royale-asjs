@@ -1,4 +1,4 @@
-Apache Royale 0.9.3
+Apache Royale 0.9.4
 ===================
 
 - [Better way to style components: ClassSelectorList](https://github.com/apache/royale-asjs/issues/205)
@@ -8,6 +8,8 @@ Apache Royale 0.9.3
 - [Added IEEventAdapterBead](https://github.com/apache/royale-asjs/issues/131)
 - [Added Object getter/setter utility functions](https://github.com/apache/royale-asjs/issues/132)
 - [Added InfiniteVScroller Bead](https://github.com/apache/royale-asjs/issues/134)
+- Initial release of the migration component sets (MXRoyale and SparkRoyale) that have a goal of reducing migration effort for those moving existing Flex applications to Royale.
+- Initial release of the Tour de Flex example migrated to Royale via the migration component sets.  This is a work in progress.  You can see latest progress on our [CI server](http://apacheroyaleci.westus2.cloudapp.azure.com:8080/job/TourDeFlexMigration/lastSuccessfulBuild/artifact/examples/mxroyale/tourdeflexmodules/bin/js-debug/index.html)
 
 Apache Royale 0.9.2
 ===================
