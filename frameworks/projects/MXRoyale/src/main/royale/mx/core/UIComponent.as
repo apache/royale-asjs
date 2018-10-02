@@ -50,6 +50,8 @@ import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
 import mx.managers.ISystemManager;
+import mx.resources.IResourceManager;
+import mx.resources.ResourceManager;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 
@@ -1411,6 +1413,39 @@ public class UIComponent extends UIBase
     public function set focusManager(value:IFocusManager):void
     {
         _focusManager = value;
+    }
+    
+    //----------------------------------
+    //  resourceManager
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the resourceManager property.
+     */
+    private var _resourceManager:IResourceManager = ResourceManager.getInstance();
+    
+    /**
+     *  @private
+     *  This metadata suppresses a trace() in PropertyWatcher:
+     *  "warning: unable to bind to property 'resourceManager' ..."
+     */
+    [Bindable("unused")]
+    
+    /**
+     *  A reference to the object which manages
+     *  all of the application's localized resources.
+     *  This is a singleton instance which implements
+     *  the IResourceManager interface.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function get resourceManager():IResourceManager
+    {
+        return _resourceManager;
     }
     
     //----------------------------------
