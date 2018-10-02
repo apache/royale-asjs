@@ -22,18 +22,12 @@ package mx.rpc.events
 
 /* import flash.events.Event;
  */
+ import mx.core.mx_internal;
+ import mx.messaging.messages.IMessage;
+ import mx.rpc.Fault;
+ 
  import org.apache.royale.events.Event;
 
-import mx.core.mx_internal;
-//import mx.messaging.events.MessageFaultEvent;
-/* import mx.messaging.messages.AbstractMessage;
-import mx.messaging.messages.IMessage;
-
- */
-
-//import mx.rpc.AsyncToken;
-
-import mx.rpc.Fault;
 use namespace mx_internal;
 
 /**
@@ -120,6 +114,22 @@ public class FaultEvent extends Event
         _fault = fault;
     }
 
+    //--------------------------------------------------------------------------
+    //
+    // Variables
+    // 
+    //--------------------------------------------------------------------------    
+    
+    /**
+     *  The Message associated with this event.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion BlazeDS 4
+     *  @productversion LCDS 3 
+     */
+    public var message:IMessage;
 
     //--------------------------------------------------------------------------
     //
