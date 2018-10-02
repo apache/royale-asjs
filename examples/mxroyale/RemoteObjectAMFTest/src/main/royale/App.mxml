@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:mx="library://ns.apache.org/royale/mx"
+               xmlns:local="*">
+
+    <fx:Style source="../../main/resources/styles.css"/>
+
+    <fx:Script>
+		<![CDATA[
+            import valueObjects.ClientValueObject;
+            import valueObjects.Product;
+            import valueObjects.Zone;
+            import mx.rpc.events.FaultEvent;
+            
+			private function onFault(evt:FaultEvent):void
+			{
+                trace("Fault= " + evt.message);
+				for(var key:String in evt["message"])
+				{
+					var element:Object = evt["message"][key];
+					trace(key + ", " + element);					
+				}
+				//trace("Fault = " + evt.message);
+			}
+		]]>
+	</fx:Script>
+
+    <fx:Declarations>
+        <mx:RemoteObject id="service" fault="onFault(event)"
+                         endpoint="http://localhost:8080/messagebroker/websocket-amf"
+                         destination="exampleService">
+            <mx:method name="echo">
+                <mx:arguments>
+                    <symbol>{name_txt.text}</symbol>
+                </mx:arguments>
+            </mx:method>
+            <mx:method name="getObjectArray1">
+            </mx:method>
+            <mx:method name="getSomeProduct">
+            </mx:method>
+        </mx:RemoteObject>        
+    </fx:Declarations>
+    
+    <mx:beads>
+        <js:ClassAliasBead />
+    </mx:beads>
+
+    <mx:Label text="RemoteObject AMF Test"/>
+
+    <mx:VBox width="400">
+        <mx:HBox>
+            <mx:VBox>
+                <mx:Label text="Name to send via AMF}"/>
+                <mx:TextInput id="name_txt"/>                
+            </mx:VBox>
+            <mx:Button label="Send to Name" click="service.echo.send()"/>        
+        </mx:HBox>        
+        <mx:Label text="{service.echo.lastResult.echoResult}"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="Get Array Of Objects" click="service.getObjectArray1.send()"/>
+        <mx:List id="list" labelField="id" width="100%" height="200" 
+                 dataProvider="{service.getObjectArray1.lastResult.getObjectArray1Result}" />
+        <mx:Label text="{list.selectedItem}"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="Get Some Product" click="service.getSomeProduct.send()"/>
+        <mx:Label text="{service.getSomeProduct.lastResult.getSomeProductResult.name}"/>
+    </mx:VBox>
+</mx:Application>
