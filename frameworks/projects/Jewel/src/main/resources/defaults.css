@@ -120,12 +120,6 @@ j|Form {
 }
 
 @media -royale-swf {
-  j|Button
-  {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.CSSTextButtonView");
-  }
-	
   j|Container {
     IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
   }
@@ -203,6 +197,11 @@ j|Alert {
 }
 .jewel.button .fonticon {
   cursor: inherit;
+}
+
+j|Button {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+  IBeadView: ClassReference("org.apache.royale.html.beads.CSSTextButtonView");
 }
 
 .jewel.card {
@@ -3472,15 +3471,15 @@ j|TableRow {
 j|TextInput {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
+
 @media -royale-swf {
   j|TextInput {
-	IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
-	IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
-	IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+    IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
+    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
   }
 }
-
 .jewel.textarea {
   position: relative;
   display: inline-flex;
