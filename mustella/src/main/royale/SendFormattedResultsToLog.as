@@ -103,6 +103,7 @@ public class SendFormattedResultsToLog
 			var u:URLLoader = new URLLoader ();
 			u.addEventListener("complete", httpEvents);
 			u.addEventListener("ioError", httpEvents);
+            u.addEventListener("securityError", httpEvents);
 			u.load(new URLRequest ("http://localhost:" + UnitTester.runnerPort + "/ScriptComplete"));
 		}
 	
