@@ -152,7 +152,19 @@ public class SkinnableComponent extends UIComponent
     {
     }
 	
+    //--------------------------------------------------------------------------
+    //  Properties
+    //--------------------------------------------------------------------------
 	
+    public function get chromeColor():uint
+    {
+       return null;
+    }
+        
+    public function set chromeColor(value:uint):void
+    {
+      
+    }
 	
 	
     
