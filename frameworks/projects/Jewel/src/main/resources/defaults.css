@@ -199,11 +199,12 @@ j|Alert {
   cursor: inherit;
 }
 
-j|Button {
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
-  IBeadView: ClassReference("org.apache.royale.html.beads.CSSTextButtonView");
+@media -royale-swf {
+  j|Button {
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView");
+  }
 }
-
 .jewel.card {
   min-width: 240px;
   min-height: 52px;
