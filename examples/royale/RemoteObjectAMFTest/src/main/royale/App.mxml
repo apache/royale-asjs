@@ -25,10 +25,6 @@ limitations under the License.
 
     <fx:Style source="../../main/resources/styles.css"/>
 
-    <j:valuesImpl>
-        <js:SimpleCSSValuesImpl />
-    </j:valuesImpl>
-
     <fx:Script>
 		<![CDATA[
 			import org.apache.royale.net.events.FaultEvent;
