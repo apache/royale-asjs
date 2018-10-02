@@ -3472,6 +3472,14 @@ j|TableRow {
 j|TextInput {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
 }
+@media -royale-swf {
+  j|TextInput {
+	IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController");
+	IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+	IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
+  }
+}
 
 .jewel.textarea {
   position: relative;
