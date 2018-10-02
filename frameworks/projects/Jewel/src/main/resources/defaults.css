@@ -120,6 +120,12 @@ j|Form {
 }
 
 @media -royale-swf {
+  j|Button
+  {
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.CSSTextButtonView");
+  }
+	
   j|Container {
     IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
   }

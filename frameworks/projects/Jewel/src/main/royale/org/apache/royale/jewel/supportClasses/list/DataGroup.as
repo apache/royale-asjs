@@ -20,6 +20,8 @@ package org.apache.royale.jewel.supportClasses.list
 {
 	import org.apache.royale.html.supportClasses.DataGroup;
 	import org.apache.royale.html.DataContainer;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IStrand;
 
     COMPILE::JS
     {
@@ -38,7 +40,7 @@ package org.apache.royale.jewel.supportClasses.list
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DataGroup extends DataContainer
+	public class DataGroup extends DataContainer implements IBead
 	{
 		/**
 		 *  constructor.
@@ -54,6 +56,13 @@ package org.apache.royale.jewel.supportClasses.list
 
 			typeNames = "jewel datagroup";
 		}
+
+        protected var host:IStrand;
+        
+        public function set strand(value:IStrand):void
+        {
+            host = value;
+        }
 
 		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
