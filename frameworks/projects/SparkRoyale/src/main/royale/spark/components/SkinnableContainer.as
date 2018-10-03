@@ -524,45 +524,18 @@ public class SkinnableContainer extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get creationPolicy():String
+     public function get creationPolicy():String
     {
-        // Use an inheriting style as the backing storage for this property.
-        // This allows the property to be inherited by either mx or spark
-        // containers, and also to correctly cascade through containers that
-        // don't have this property (ie Group).
-        // This style is an implementation detail and should be considered
-        // private. Do not set it from CSS.
-        var result:String = getStyle("_creationPolicy");
-        
-        if (result == null)
-            result = ContainerCreationPolicy.AUTO;
-        
-        if (creationPolicyNone)
-            result = ContainerCreationPolicy.NONE;
-        
-        return result;
+       return "";
     }
-     */
+     
     /**
      *  @private
      */
-    /* public function set creationPolicy(value:String):void
+     public function set creationPolicy(value:String):void
     {
-        if (value == ContainerCreationPolicy.NONE)
-        {
-            // creationPolicy of none is not inherited by descendants.
-            // In this case, set the style to "auto" and set a local
-            // flag for subsequent access to the creationPolicy property.
-            creationPolicyNone = true;
-            value = ContainerCreationPolicy.AUTO;
-        }
-        else
-        {
-            creationPolicyNone = false;
-        }
         
-        setStyle("_creationPolicy", value);
-    } */
+    } 
 
     //--------------------------------------------------------------------------
     //
