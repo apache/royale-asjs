@@ -495,6 +495,7 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
     
+	
     //--------------------------------------------------------------------------
     //
     //  Class methods
@@ -3484,6 +3485,18 @@ COMPILE::JS
         return 0;
     }
     
+    
+    
+    //--------------------------------------------------------------------------
+    //  Method: getFocus
+    //--------------------------------------------------------------------------
+    
+     public function getFocus():UIComponent
+     {
+	  return null;
+     }
+     
+     
     /**
      *  Detects changes to style properties. When any style property is set,
      *  Flex calls the <code>styleChanged()</code> method,

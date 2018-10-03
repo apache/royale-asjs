@@ -317,7 +317,35 @@ public class ScrollControlBase extends UIComponent
     //  Properties
     //
     //--------------------------------------------------------------------------
+    
+    //----------------------------------
+    //  contentBackgroundColor
+    //----------------------------------
+	
+	public function get contentBackgroundColor():uint
+    {
+      return null;
+    }
 
+    public function set contentBackgroundColor(value:uint):void
+    {
+        
+    }
+	
+    //----------------------------------
+    //  borderVisible
+    //----------------------------------
+	
+	public function get borderVisible():Boolean
+    {
+      return 0;
+    }
+
+    public function set borderVisible(value:Boolean):void
+    {
+        
+    } 
+    
     //----------------------------------
     //  borderMetrics
     //----------------------------------

@@ -32,6 +32,7 @@ import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.utils.UIDUtil;
+import mx.core.ScrollControlBase;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
 import org.apache.royale.core.IBeadLayout;
@@ -86,8 +87,8 @@ use namespace mx_internal;
      *  @productversion Royale 0.0
      *  @royalesuppresspublicvarwarning
 	*/
-	public class ListBase extends UIComponent implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
-	{
+	public class ListBase extends ScrollControlBase implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
+	{  //extends UIComponent
 	
         //----------------------------------
         //  dragEnabled
