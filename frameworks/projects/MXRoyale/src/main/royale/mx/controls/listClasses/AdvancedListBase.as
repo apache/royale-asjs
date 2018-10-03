@@ -1598,7 +1598,7 @@ public class AdvancedListBase extends ScrollControlBase /* extends UIComponent
     } */
     
     
-    //----------------------------------
+   /* //----------------------------------
     //  borderVisible
     //----------------------------------
     public function get borderVisible():Boolean
@@ -1607,7 +1607,7 @@ public class AdvancedListBase extends ScrollControlBase /* extends UIComponent
     }
     public function set borderVisible(value:Boolean):void
     {
-    }
+    } */
 
     //----------------------------------
     //  verticalScrollPolicy
