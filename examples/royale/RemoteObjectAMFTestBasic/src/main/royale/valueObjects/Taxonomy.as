@@ -16,46 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package valueObjects
+{
+    [RemoteClass(alias="org.apache.royale.amfsamples.valueobjects.Taxonomy")]
+	public class Taxonomy
+	{
+		public function Taxonomy()
+		{
+		}
 
-// Jewel Button
+		private var _type:String;
 
-// Button variables
-$button-margin: 0 !default
-$button-padding: 0.68em 1.12em !default
+        public function get type():String
+        {
+            return _type;
+        }
+        
+        public function set type(value:String):void
+        {
+            _type = value;
+        }
 
-.jewel.button
-    margin: $button-margin
-    padding: $button-padding
+        private var _description:String;
 
-    cursor: pointer
-    user-select: none
-
-    display: inline-flex
-    position: relative
-    align-items: center
-    justify-content: center
-    zoom: 1
-    vertical-align: middle
-    overflow: hidden
-    outline: none
-
-    // -- BUTTON LABEL
-    white-space: nowrap
-    line-height: normal !important
-
-    text:
-        align: center
-        decoration: none
-
-    // &:focus
-
-    &[disabled]
-        cursor: default
-
-    .fonticon
-        cursor: inherit
-
-@media -royale-swf
-    j|Button
-        IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-        IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView")
+        public function get description():String
+        {
+            return _description;
+        }
+        
+        public function set description(value:String):void
+        {
+            _description = value;
+        }
+	}
+}

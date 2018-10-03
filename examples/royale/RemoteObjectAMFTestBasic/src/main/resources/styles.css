@@ -1,3 +1,4 @@
+/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -16,46 +17,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+*/
 
-// Jewel Button
+@namespace "http://www.w3.org/1999/xhtml";
 
-// Button variables
-$button-margin: 0 !default
-$button-padding: 0.68em 1.12em !default
+.Application
+{
+    padding: 10px;
+	margin: 10px;
+}
 
-.jewel.button
-    margin: $button-margin
-    padding: $button-padding
-
-    cursor: pointer
-    user-select: none
-
-    display: inline-flex
-    position: relative
-    align-items: center
-    justify-content: center
-    zoom: 1
-    vertical-align: middle
-    overflow: hidden
-    outline: none
-
-    // -- BUTTON LABEL
-    white-space: nowrap
-    line-height: normal !important
-
-    text:
-        align: center
-        decoration: none
-
-    // &:focus
-
-    &[disabled]
-        cursor: default
-
-    .fonticon
-        cursor: inherit
-
-@media -royale-swf
-    j|Button
-        IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-        IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView")
+	

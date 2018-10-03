@@ -174,6 +174,45 @@ public dynamic class RemoteObject
     }
 	
     //----------------------------------
+    //  endpoint
+    //----------------------------------
+    
+    private var _endpoint:String;
+    
+    [Inspectable(category="General")]
+    /**
+     * This property allows the developer to quickly specify an endpoint for a RemoteObject
+     * destination without referring to a services configuration file at compile time or programmatically creating 
+     * a ChannelSet. It also overrides an existing ChannelSet if one has been set for the RemoteObject service.
+     *
+     * <p>If the endpoint url starts with "https" a SecureAMFChannel will be used, otherwise an AMFChannel will 
+     * be used. Two special tokens, {server.name} and {server.port}, can be used in the endpoint url to specify
+     * that the channel should use the server name and port that was used to load the SWF. </p>
+     *
+     * <p><b>Note:</b> This property is required when creating AIR applications.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get endpoint():String
+    {
+        return _endpoint;
+    }
+    
+    public function set endpoint(url:String):void
+    {
+        // If endpoint has changed, null out channelSet to force it
+        // to be re-initialized on the next Operation send
+        if (_endpoint != url || url == null)
+        {
+            _endpoint = url;
+            channelSet = null;
+        }
+    }
+    
+    //----------------------------------
 	//  makeObjectsBindable
 	//----------------------------------
 

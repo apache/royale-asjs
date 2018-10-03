@@ -240,14 +240,17 @@ package org.apache.royale.html.beads.layouts
 						else useHeight = Math.floor(adjustedHeight / numRows);
 					}
 				}
-
+				
 				for (i = 0; i < n; i++)
 				{
 					child = children[i].royale_wrapper;
 					if (!child.visible) continue;
 					child.setDisplayStyleForLayout('inline-block');
-					child.width = useWidth;
-					child.height = useHeight;
+					//if the parent width/height not explicitly set, we can't calculate the child width/height
+					if(useWidth > 0)
+						child.width = useWidth;
+					if(useHeight > 0)
+						child.height = useHeight;
 				}
 				return true;
 			}

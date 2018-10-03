@@ -76,8 +76,13 @@ $textinput-padding-horizontal: 1.12em !default
 
 j|TextInput
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
-	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
+
+@media -royale-swf
+	j|TextInput
+		IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
+		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
+		IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead')
+		IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
 
 
 // Jewel TextArea

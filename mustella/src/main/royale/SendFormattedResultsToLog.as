@@ -99,11 +99,17 @@ public class SendFormattedResultsToLog
 		if (s.indexOf ("ScriptComplete") != -1 ) 
 		{
 
-			trace ("Send ScriptComplete to runner block");
-			var u:URLLoader = new URLLoader ();
-			u.addEventListener("complete", httpEvents);
-			u.addEventListener("ioError", httpEvents);
-			u.load(new URLRequest ("http://localhost:" + UnitTester.runnerPort + "/ScriptComplete"));
+            try {
+                trace ("Send ScriptComplete to runner block just in case");
+                var u:URLLoader = new URLLoader ();
+                u.addEventListener("complete", httpEvents);
+                u.addEventListener("ioError", httpEvents);
+                u.addEventListener("securityError", httpEvents);
+                u.load(new URLRequest ("http://localhost:" + UnitTester.runnerPort + "/ScriptComplete"));                
+            } catch (e:Error)
+            {
+                
+            }
 		}
 	
 		

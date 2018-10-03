@@ -474,6 +474,14 @@ public class SkinnableTextBase extends SkinnableComponent
     {
     }
     
+    public function get textAlignLast():String
+    {
+	return "";
+    }
+    public function set textAlignLast(val:String):void
+    {
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Variables
