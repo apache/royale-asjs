@@ -458,6 +458,22 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
     {
         return "NORMAL";
     }
+    
+    public function get lineThrough():Boolean
+    {
+	return true;
+    }
+    public function set lineThrough(val:Boolean):void
+    {
+    }
+    
+    public function get textDecoration():String
+    {
+	return null;
+    }
+    public function set textDecoration(val:String):void
+    {
+    }
 
 }
 
