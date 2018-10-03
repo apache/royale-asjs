@@ -152,6 +152,7 @@ internal class MXRoyaleClasses
         import mx.formatters.IFormatter; IFormatter;
 	import mx.events.CalendarLayoutChangeEvent; CalendarLayoutChangeEvent;
 	import mx.net.SharedObject; SharedObject;
+	import mx.modules.ModuleManager; ModuleManager;
 	
 	COMPILE::JS
     	{
