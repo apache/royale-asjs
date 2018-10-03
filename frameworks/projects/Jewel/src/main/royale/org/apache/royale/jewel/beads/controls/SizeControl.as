@@ -88,8 +88,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.IStrand;
 		 */
 		public function set strand(value:IStrand):void
 		{

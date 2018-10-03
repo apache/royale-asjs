@@ -449,6 +449,7 @@ package org.apache.royale.jewel
 
         /**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.html.util.addElementToWrapper
          */
         override protected function createElement():WrappedHTMLElement
         {

@@ -297,7 +297,7 @@ package org.apache.royale.jewel.beads.views
 			{
 				var outerWidth:Number = document.body.getBoundingClientRect().width;
 				// handle potential scrolls offsets
-				var top:Number = top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 				
 				// Desktop width size
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
