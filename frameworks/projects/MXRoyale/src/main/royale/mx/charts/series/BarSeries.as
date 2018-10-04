@@ -130,6 +130,25 @@ public class BarSeries extends org.apache.royale.charts.supportClasses.BarSeries
     } 
     
     
+     override public function get xField():String
+     {
+	 return null;
+     }
+     override public function set xField(value:String):void
+     {
+	  
+     }
+	
+	
+     override public function get yField():String
+     {
+	 return null;
+     }
+     override public function set yField(value:String):void
+     {
+		
+     }
+    
 	
 }
 
