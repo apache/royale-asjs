@@ -207,7 +207,7 @@ public class RadioButtonGroup extends EventDispatcher
      *  @private
      *  An Array of the RadioButtons that belong to this group.
      */
-    //private var radioButtons:Array /* of RadioButton */ = [];
+    private var radioButtons:Array /* of RadioButton */ = [];
 
     /**
      *  @private
@@ -278,10 +278,10 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get numRadioButtons():int
+     public function get numRadioButtons():int
     {
         return radioButtons.length;
-    } */
+    } 
 
 
     //----------------------------------
@@ -510,13 +510,13 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function getRadioButtonAt(index:int):RadioButton
+     public function getRadioButtonAt(index:int):RadioButton
     {
         if (index >= 0 && index < numRadioButtons)
             return radioButtons[index];
             
         return null;
-    } */
+    } 
 
     /**
      *  @private
