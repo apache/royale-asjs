@@ -99,6 +99,11 @@ public class SendFormattedResultsToLog
 		if (s.indexOf ("ScriptComplete") != -1 ) 
 		{
 
+            if (UnitTester.noScriptComplete)
+            {
+                //trace("Did not send ScriptComplete to runner");
+                return;
+            }
             try {
                 trace ("Send ScriptComplete to runner block just in case");
                 var u:URLLoader = new URLLoader ();

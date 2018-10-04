@@ -113,6 +113,7 @@
         <class>DispatchKeyEvent</class>
         <class>DispatchMouseClickEvent</class>
         <class>DispatchMouseEvent</class>
+        <class>DontSendScriptComplete</class>
         <!--
         <class>ExcludeFileLocation</class>
         <class>ExcludeFileLocationApollo</class>

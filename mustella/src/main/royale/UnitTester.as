@@ -1530,6 +1530,12 @@ public class UnitTester extends EventDispatcher
 	 */
 	public static var runnerPort:int = 9999;
 
+    /**
+     *  Which port to talk to the Runner on
+     *  
+     */
+    public static var noScriptComplete:Boolean = false;
+    
 
 	/**
 	 *  Whether to close the Standalone player when done
