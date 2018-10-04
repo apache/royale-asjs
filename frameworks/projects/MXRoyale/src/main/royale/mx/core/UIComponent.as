@@ -4327,6 +4327,19 @@ COMPILE::JS
     {
         trace("selectedField not implemented");
     }
+    
+     private var contentMouseX:Number;
+     public function get contentMouseX():Number
+     {
+	return 0;
+     }
+     
+     private var contentMouseY:Number;
+     public function get contentMouseY():Number
+     {
+	return 0;
+     }
+	
 	[Inspectable(category="General")]
 
 	
