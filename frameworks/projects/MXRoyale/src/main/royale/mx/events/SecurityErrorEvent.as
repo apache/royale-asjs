@@ -58,7 +58,7 @@ public class SecurityErrorEvent extends flash.events.SecurityErrorEvent
  *  @royalesuppresspublicvarwarning
  */
 COMPILE::JS
-public class SecurityErrorEvent extends org.apache.royale.events.Event
+public class SecurityErrorEvent extends ErrorEvent
 {
    /*  include "../core/Version.as"; */
 	public static const SECURITY_ERROR:String = "securityError";

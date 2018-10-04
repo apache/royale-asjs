@@ -20,16 +20,13 @@
 package mx.messaging
 {
 
-/* import flash.errors.IllegalOperationError;
-import flash.events.EventDispatcher;
-import flash.events.TimerEvent;
-import flash.utils.Dictionary;
-import flash.utils.Timer;
- */
- import org.apache.royale.events.EventDispatcher;
+import mx.errors.IllegalOperationError;
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.events.Event;
+import org.apache.royale.utils.Timer;
 
 import mx.core.mx_internal;
-/* import mx.events.PropertyChangeEvent;
+import mx.events.PropertyChangeEvent;
 import mx.messaging.channels.NetConnectionChannel;
 import mx.messaging.channels.PollingChannel;
 import mx.messaging.config.ServerConfig;
@@ -50,10 +47,10 @@ import mx.rpc.events.AbstractEvent;
 import mx.rpc.events.FaultEvent;
 import mx.rpc.events.ResultEvent;
 import mx.utils.Base64Encoder;
- */
+
 use namespace mx_internal;
 
-//[DefaultProperty("channels")]
+[DefaultProperty("channels")]
 
 /**
  *  Dispatched after a Channel in the ChannelSet has connected to its endpoint.
@@ -66,7 +63,7 @@ use namespace mx_internal;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3
  */
-//[Event(name="channelConnect", type="mx.messaging.events.ChannelEvent")]
+[Event(name="channelConnect", type="mx.messaging.events.ChannelEvent")]
 
 /**
  *  Dispatched after a Channel in the ChannelSet has disconnected from its
@@ -80,7 +77,7 @@ use namespace mx_internal;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3
  */
-//[Event(name="channelDisconnect", type="mx.messaging.events.ChannelEvent")]
+[Event(name="channelDisconnect", type="mx.messaging.events.ChannelEvent")]
 
 /**
  *  Dispatched after a Channel in the ChannelSet has faulted.
@@ -93,7 +90,7 @@ use namespace mx_internal;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3
  */
-//[Event(name="channelFault", type="mx.messaging.events.ChannelFaultEvent")]
+[Event(name="channelFault", type="mx.messaging.events.ChannelFaultEvent")]
 
 /**
  * The result event is dispatched when a login or logout call successfully returns.
@@ -105,7 +102,7 @@ use namespace mx_internal;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3
  */
-//[Event(name="result", type="mx.rpc.events.ResultEvent")]
+[Event(name="result", type="mx.rpc.events.ResultEvent")]
 
 /**
  * The fault event is dispatched when a login or logout call fails.
@@ -117,7 +114,7 @@ use namespace mx_internal;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3
  */
-//[Event(name="fault", type="mx.rpc.events.FaultEvent")]
+[Event(name="fault", type="mx.rpc.events.FaultEvent")]
 
 /**
  *  Dispatched when a property of the ChannelSet changes.
@@ -130,7 +127,7 @@ use namespace mx_internal;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3
  */
-//[Event(name="propertyChange", type="mx.events.PropertyChangeEvent")]
+[Event(name="propertyChange", type="mx.events.PropertyChangeEvent")]
 
 //[ResourceBundle("messaging")]
 
@@ -198,7 +195,7 @@ public class ChannelSet extends EventDispatcher
     public function ChannelSet(channelIds:Array = null, clusteredWithURLLoadBalancing:Boolean = false)
     {
         super();
-       /*  _clustered = clusteredWithURLLoadBalancing;
+        _clustered = clusteredWithURLLoadBalancing;
         _connected = false;
         _connecting = false;
         _currentChannelIndex = -1;
@@ -216,10 +213,10 @@ public class ChannelSet extends EventDispatcher
         _hasRequestedClusterEndpoints = false;
         _hunting = false;
         _messageAgents = [];
-        _pendingMessages = new Dictionary();
+        _pendingMessages = {};
         _pendingSends = [];
         _shouldBeConnected = false;
-        _shouldHunt = true; */
+        _shouldHunt = true;
     }
 
     //--------------------------------------------------------------------------
@@ -232,46 +229,46 @@ public class ChannelSet extends EventDispatcher
      *  @private
      *  Helper MessageAgent used for direct authentication.
      */
-  //  private var _authAgent:AuthenticationAgent;
+    private var _authAgent:AuthenticationAgent;
 
     /**
      *  @private
      *  Flag indicating whether the ChannelSet is in the process of connecting
      *  over the current Channel.
      */
-   // private var _connecting:Boolean;
+    private var _connecting:Boolean;
 
     /**
      *  @private
      *  Stored credentials to be set on the member channels.
      */
-   // private var _credentials:String;
+    private var _credentials:String;
 
     /**
      *  @private
      *  The character-set encoding used to create the credentials String.
      */
-  //  private var _credentialsCharset:String;
+    private var _credentialsCharset:String;
 
     /**
      *  @private
      *  Current index into the _channels/_channelIds arrays.
      */
-  //  private var _currentChannelIndex:int;
+    private var _currentChannelIndex:int;
 
     /**
      *  @private
      *  This flag restricts our cluster request to only happen upon initial
      *  connect to the cluster.
      */
-  //  private var _hasRequestedClusterEndpoints:Boolean;
+    private var _hasRequestedClusterEndpoints:Boolean;
 
     /**
      *  @private
      *  Timer used to issue periodic heartbeats to the remote host if the
      *  client is idle, and not actively sending messages.
      */
- //   private var _heartbeatTimer:Timer;
+    private var _heartbeatTimer:Timer;
 
     /**
      *  @private
@@ -282,7 +279,7 @@ public class ChannelSet extends EventDispatcher
      *  in a reconnect attempt when it makes its initial connect attempt so this lets
      *  us set "reconnecting" to true on the CONNECT event if it succeeds.
      */
- //   private var _hunting:Boolean;
+    private var _hunting:Boolean;
 
     /**
      *  @private
@@ -292,20 +289,21 @@ public class ChannelSet extends EventDispatcher
      *  attempts) without worrying about duplicate messages queuing up and being sent to
      *  the server once a connection is established.
      */
-  //  private var _pendingMessages:Dictionary;
+    private var _pendingMessages:Object;
+    // this was a Dictionary.  We'll try Object and see if the toString is a unique key
 
     /**
      *  @private
      *  An array of PendingSend instances to pass into send() when a connection
      *  is (re)established.
      */
-   // private var _pendingSends:Array;
+    private var _pendingSends:Array;
 
     /**
      *  @private
      *  A timer used to do a delayed reconnect for NetConnection channels.
      */
-   // private var _reconnectTimer:Timer = null;
+    private var _reconnectTimer:Timer = null;
 
     /**
      *  @private
@@ -314,7 +312,7 @@ public class ChannelSet extends EventDispatcher
      *  Channel when a disconnect or fault occurs. If false, hunting is not
      *  performed.
      */
-  //  private var _shouldBeConnected:Boolean;
+    private var _shouldBeConnected:Boolean;
 
     /**
      *  @private
@@ -322,13 +320,13 @@ public class ChannelSet extends EventDispatcher
      *  used when connected Channels are removed from the ChannelSet which should not trigger
      *  hunting.
      */
-  //  private var _shouldHunt:Boolean;
+    private var _shouldHunt:Boolean;
 
     /**
      *  @private
      */
-  //  private var resourceManager:IResourceManager =
-   //                                 ResourceManager.getInstance();
+    private var resourceManager:IResourceManager =
+                                    ResourceManager.getInstance();
 
     //--------------------------------------------------------------------------
     //
@@ -343,9 +341,9 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-   // private var _authenticated:Boolean;
+    private var _authenticated:Boolean;
 
-  //  [Bindable(event="propertyChange")]
+    [Bindable(event="propertyChange")]
     /**
      *  Indicates whether the ChannelSet has an underlying Channel that successfully
      *  authenticated with its endpoint.
@@ -356,15 +354,15 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-   /*  public function get authenticated():Boolean
+    public function get authenticated():Boolean
     {
         return _authenticated;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* mx_internal function setAuthenticated(value:Boolean, creds:String, notifyAgents:Boolean=true):void
+    mx_internal function setAuthenticated(value:Boolean, creds:String, notifyAgents:Boolean=true):void
     {
         if (_authenticated != value)
         {
@@ -386,7 +384,7 @@ public class ChannelSet extends EventDispatcher
 
             dispatchEvent(event);
         }
-    } */
+    }
 
     //----------------------------------
     //  channels
@@ -395,7 +393,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-   // private var _channels:Array;
+    private var _channels:Array;
 
     /**
      *  Provides access to the Channels in the ChannelSet.
@@ -413,16 +411,16 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function get channels():Array
+    public function get channels():Array
     {
         return _channels;
-    } 
+    }
 
-    [ArrayElementType("mx.messaging.Channel")]*/
+    [ArrayElementType("mx.messaging.Channel")]
     /**
      *  @private
      */
-   /*  public function set channels(values:Array):void
+    public function set channels(values:Array):void
     {
         if (configured)
         {
@@ -449,7 +447,7 @@ public class ChannelSet extends EventDispatcher
             }
         }
     }
- */
+
     //----------------------------------
     //  channelIds
     //----------------------------------
@@ -457,7 +455,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _channelIds:Array;
+    private var _channelIds:Array;
 
     /**
      *  The ids of the Channels used by the ChannelSet.
@@ -468,7 +466,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function get channelIds():Array
+    public function get channelIds():Array
     {
         if (_channelIds != null)
         {
@@ -487,7 +485,7 @@ public class ChannelSet extends EventDispatcher
             }
             return ids;
         }
-    } */
+    }
 
     //----------------------------------
     //  currentChannel
@@ -496,7 +494,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _currentChannel:Channel;
+    private var _currentChannel:Channel;
 
     /**
      *  Returns the current Channel for the ChannelSet.
@@ -507,10 +505,10 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function get currentChannel():Channel
+    public function get currentChannel():Channel
     {
         return _currentChannel;
-    } */
+    }
 
     //----------------------------------
     //  channelFailoverURIs
@@ -519,7 +517,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _channelFailoverURIs:Object;
+    private var _channelFailoverURIs:Object;
 
     /**
      *  @private
@@ -527,15 +525,15 @@ public class ChannelSet extends EventDispatcher
      *  This property is assigned to by the ClusterMessageResponder in order to update the
      *  member Channels with their failoverURIs.
      */
-    /* mx_internal function get channelFailoverURIs():Object
+    mx_internal function get channelFailoverURIs():Object
     {
         return _channelFailoverURIs;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* mx_internal function set channelFailoverURIs(value:Object):void
+    mx_internal function set channelFailoverURIs(value:Object):void
     {
         _channelFailoverURIs = value;
         // Update any existing Channels in the set with their current failover endpoint URIs.
@@ -552,7 +550,7 @@ public class ChannelSet extends EventDispatcher
                 channel.failoverURIs = _channelFailoverURIs[channel.id];
             }
         }
-    } */
+    }
 
     //----------------------------------
     //  configured
@@ -561,7 +559,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _configured:Boolean;
+    private var _configured:Boolean;
 
     /**
      *  Indicates whether the ChannelSet is using automatically configured
@@ -573,10 +571,10 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* mx_internal function get configured():Boolean
+    mx_internal function get configured():Boolean
     {
         return _configured;
-    } */
+    }
 
     //----------------------------------
     //  connected
@@ -585,38 +583,38 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-   /*  private var _connected:Boolean;
+    private var _connected:Boolean;
 
-    [Bindable(event="propertyChange")] */
+    [Bindable(event="propertyChange")]
     /**
      *  Indicates whether the ChannelSet is connected.
      */
-    /* public function get connected():Boolean
+    public function get connected():Boolean
     {
         return _connected;
-    } */
+    }
 
     /**
      *  @private
      */
-     // protected function setConnected(value:Boolean):void
-    // {
-        // if (_connected != value)
-        // {
-            // var event:PropertyChangeEvent = PropertyChangeEvent.createUpdateEvent(this, "connected", _connected, value)
-            // _connected = value;
-            // dispatchEvent(event);
-            // setAuthenticated(value && currentChannel && currentChannel.authenticated, _credentials, false /* Agents also listen for channel disconnects */);
-            // if (!connected)
-            // {
-                // unscheduleHeartbeat();
-            // }
-            // else if (heartbeatInterval > 0)
-            // {
-                // scheduleHeartbeat();
-            // }
-        // }
-    // } 
+    protected function setConnected(value:Boolean):void
+    {
+        if (_connected != value)
+        {
+            var event:PropertyChangeEvent = PropertyChangeEvent.createUpdateEvent(this, "connected", _connected, value)
+            _connected = value;
+            dispatchEvent(event);
+            setAuthenticated(value && currentChannel && currentChannel.authenticated, _credentials, false /* Agents also listen for channel disconnects */);
+            if (!connected)
+            {
+                unscheduleHeartbeat();
+            }
+            else if (heartbeatInterval > 0)
+            {
+                scheduleHeartbeat();
+            }
+        }
+    }
 
     //----------------------------------
     //  clustered
@@ -625,7 +623,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _clustered:Boolean;
+    private var _clustered:Boolean;
 
     /**
      *  Indicates whether the ChannelSet targets a clustered destination.
@@ -644,15 +642,15 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function get clustered():Boolean
+    public function get clustered():Boolean
     {
         return _clustered;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set clustered(value:Boolean):void
+    public function set clustered(value:Boolean):void
     {
         if (_clustered != value)
         {
@@ -673,7 +671,7 @@ public class ChannelSet extends EventDispatcher
             }
             _clustered = value;
         }
-    } */
+    }
 
     //----------------------------------
     //  heartbeatInterval
@@ -682,7 +680,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _heartbeatInterval:int = 0;
+    private var _heartbeatInterval:int = 0;
 
     /**
      *  The number of milliseconds between heartbeats sent to the remote
@@ -715,15 +713,15 @@ public class ChannelSet extends EventDispatcher
      *  the remote host, heartbeats are suppressed because the periodic poll
      *  requests effectively take their place.</p>
      */
-    /* public function get heartbeatInterval():int
+    public function get heartbeatInterval():int
     {
         return _heartbeatInterval;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set heartbeatInterval(value:int):void
+    public function set heartbeatInterval(value:int):void
     {
         if (_heartbeatInterval != value)
         {
@@ -735,7 +733,7 @@ public class ChannelSet extends EventDispatcher
                 scheduleHeartbeat();
             }
         }
-    } */
+    }
 
     //----------------------------------
     //  initialDestinationId
@@ -744,7 +742,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _initialDestinationId:String;
+    private var _initialDestinationId:String;
 
     /**
      *  Provides access to the initial destination this ChannelSet is used to access.
@@ -757,18 +755,18 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function get initialDestinationId():String
+    public function get initialDestinationId():String
     {
         return _initialDestinationId;
     }
-	*/
+
     /**
      *  @private
      */
-    /* public function set initialDestinationId(value:String):void
+    public function set initialDestinationId(value:String):void
     {
         _initialDestinationId = value;
-    } */
+    }
 
     //----------------------------------
     //  messageAgents
@@ -777,7 +775,7 @@ public class ChannelSet extends EventDispatcher
     /**
      *  @private
      */
-    //private var _messageAgents:Array;
+    private var _messageAgents:Array;
 
     /**
      *  Provides access to the set of MessageAgents that use this ChannelSet.
@@ -788,10 +786,10 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function get messageAgents():Array
+    public function get messageAgents():Array
     {
         return _messageAgents;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -810,7 +808,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* override public function toString():String
+    override public function toString():String
     {
         var s:String = "[ChannelSet ";
         for (var i:uint = 0; i < _channels.length; i++)
@@ -820,7 +818,7 @@ public class ChannelSet extends EventDispatcher
         }
         s += "]";
         return s;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -845,9 +843,9 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    public function addChannel(channel:Object):void //channel:Channel
+    public function addChannel(channel:Channel):void
     {
-        /* if (channel == null)
+        if (channel == null)
             return;
 
         var message:String;
@@ -871,7 +869,7 @@ public class ChannelSet extends EventDispatcher
 
         _channels.push(channel);
         if (_credentials)
-            channel.setCredentials(_credentials, null, _credentialsCharset); */
+            channel.setCredentials(_credentials, null, _credentialsCharset);
     }
 
     /**
@@ -890,7 +888,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function removeChannel(channel:Channel):void
+    public function removeChannel(channel:Channel):void
     {
         if (configured)
         {
@@ -916,7 +914,7 @@ public class ChannelSet extends EventDispatcher
                 _currentChannelIndex = -1;
             }
         }
-    } */
+    }
 
     /**
      *  Connects a MessageAgent to the ChannelSet. Once connected, the agent
@@ -930,7 +928,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function connect(agent:MessageAgent):void
+    public function connect(agent:MessageAgent):void
     {
         if ((agent != null) && (_messageAgents.indexOf(agent) == -1))
         {
@@ -950,7 +948,7 @@ public class ChannelSet extends EventDispatcher
                                                                      false,
                                                                      connected));
         }
-    } */
+    }
 
     /**
      *  Disconnects a specific MessageAgent from the ChannelSet. If this is the
@@ -965,7 +963,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function disconnect(agent:MessageAgent):void
+    public function disconnect(agent:MessageAgent):void
     {
         if (agent == null) // Disconnect the ChannelSet completely.
         {
@@ -1027,7 +1025,7 @@ public class ChannelSet extends EventDispatcher
                     agent.internalSetChannelSet(null);
             }
         }
-    } */
+    }
 
     /**
      *  Disconnects all associated MessageAgents and disconnects any underlying Channel that
@@ -1042,10 +1040,10 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function disconnectAll():void
+    public function disconnectAll():void
     {
         disconnect(null);
-    } */
+    }
 
     /**
      *  Handles a CONNECT ChannelEvent and redispatches the event.
@@ -1058,7 +1056,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function channelConnectHandler(event:ChannelEvent):void
+    public function channelConnectHandler(event:ChannelEvent):void
     {
         _connecting = false;
         _connected = true; // Set internally to allow us to send pending messages before dispatching the connect event.
@@ -1105,7 +1103,7 @@ public class ChannelSet extends EventDispatcher
         // Dispatch delayed "connected" property change event.
         var connectedChangeEvent:PropertyChangeEvent = PropertyChangeEvent.createUpdateEvent(this, "connected", false, true)
         dispatchEvent(connectedChangeEvent);
-    } */
+    }
 
     /**
      *  Handles a DISCONNECT ChannelEvent and redispatches the event.
@@ -1118,7 +1116,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function channelDisconnectHandler(event:ChannelEvent):void
+    public function channelDisconnectHandler(event:ChannelEvent):void
     {
         _connecting = false;
         setConnected(false);
@@ -1139,7 +1137,7 @@ public class ChannelSet extends EventDispatcher
                     if (_reconnectTimer == null)
                     {
                         _reconnectTimer = new Timer(1, 1);
-                        _reconnectTimer.addEventListener(TimerEvent.TIMER, reconnectChannel);
+                        _reconnectTimer.addEventListener(Timer.TIMER, reconnectChannel);
                         _reconnectTimer.start();
                     }
                 }
@@ -1164,7 +1162,7 @@ public class ChannelSet extends EventDispatcher
         // Flip this back to true in case it was turned off by an explicit Channel removal
         // that triggered the current disconnect event.
         _shouldHunt = true;
-    } */
+    }
 
     /**
      *  Handles a ChannelFaultEvent and redispatches the event.
@@ -1177,7 +1175,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function channelFaultHandler(event:ChannelFaultEvent):void
+    public function channelFaultHandler(event:ChannelFaultEvent):void
     {
         if (event.channel.connected)
         {
@@ -1204,7 +1202,7 @@ public class ChannelSet extends EventDispatcher
                         if (_reconnectTimer == null)
                         {
                             _reconnectTimer = new Timer(1, 1);
-                            _reconnectTimer.addEventListener(TimerEvent.TIMER, reconnectChannel);
+                            _reconnectTimer.addEventListener(Timer.TIMER, reconnectChannel);
                             _reconnectTimer.start();
                         }
                     }
@@ -1227,7 +1225,7 @@ public class ChannelSet extends EventDispatcher
                     faultPendingSends(event);
             }
         }
-    } */
+    }
 
     /**
      *  Authenticates the ChannelSet with the server using the provided credentials.
@@ -1259,7 +1257,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function login(username:String, password:String, charset:String=null):AsyncToken
+    public function login(username:String, password:String, charset:String=null):AsyncToken
     {
         if (authenticated)
             throw new IllegalOperationError("ChannelSet is already authenticated.");
@@ -1299,7 +1297,7 @@ public class ChannelSet extends EventDispatcher
         _authAgent.state = AuthenticationAgent.LOGGING_IN_STATE;
         send(_authAgent, msg);
         return token;
-    } */
+    }
 
     /**
      *  Logs the ChannelSet out from the server. Unlike other operations on Channels
@@ -1331,7 +1329,7 @@ public class ChannelSet extends EventDispatcher
      *
      *  @throws flash.errors.IllegalOperationError if a login or logout operation is currently in progress.
      */
-    /* public function logout(agent:MessageAgent=null):AsyncToken
+    public function logout(agent:MessageAgent=null):AsyncToken
     {
         _credentials = null;
         if (agent == null)
@@ -1383,7 +1381,7 @@ public class ChannelSet extends EventDispatcher
             }
             return null; // Legacy service logout() impls don't expect a token.
         }
-    } */
+    }
 
     /**
      *  Sends a message from a MessageAgent over the currently connected Channel.
@@ -1401,7 +1399,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function send(agent:MessageAgent, message:IMessage):void
+    public function send(agent:MessageAgent, message:IMessage):void
     {
         if (_currentChannel != null && _currentChannel.connected)
         {
@@ -1461,7 +1459,7 @@ public class ChannelSet extends EventDispatcher
                     if (_reconnectTimer == null)
                     {
                         _reconnectTimer = new Timer(1, 1);
-                        _reconnectTimer.addEventListener(TimerEvent.TIMER, reconnectChannel);
+                        _reconnectTimer.addEventListener(Timer.TIMER, reconnectChannel);
                         _reconnectTimer.start();
                     }
                 }
@@ -1471,7 +1469,7 @@ public class ChannelSet extends EventDispatcher
                 }
             }
         }
-    } */
+    }
 
     /**
      *  Stores the credentials and passes them through to every connected channel.
@@ -1493,7 +1491,7 @@ public class ChannelSet extends EventDispatcher
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function setCredentials(credentials:String, agent:MessageAgent, charset:String=null):void
+    public function setCredentials(credentials:String, agent:MessageAgent, charset:String=null):void
     {
         _credentials = credentials;
         var n:int = _channels.length;
@@ -1502,7 +1500,7 @@ public class ChannelSet extends EventDispatcher
             if (_channels[i] != null)
                 _channels[i].setCredentials(_credentials, agent, charset);
         }
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1514,7 +1512,7 @@ public class ChannelSet extends EventDispatcher
      *  @private
      *  Handles a successful login or logout operation for the ChannelSet.
      */
-    /* mx_internal function authenticationSuccess(agent:AuthenticationAgent, token:AsyncToken, ackMessage:AcknowledgeMessage):void
+    mx_internal function authenticationSuccess(agent:AuthenticationAgent, token:AsyncToken, ackMessage:AcknowledgeMessage):void
     {
         // Reset authentication state depending on whether a login or logout was successful.
         var command:CommandMessage = CommandMessage(token.message);
@@ -1566,13 +1564,13 @@ public class ChannelSet extends EventDispatcher
             new AsyncDispatcher(dispatchRPCEvent, [resultEvent], delay);
         else
             dispatchRPCEvent(resultEvent);
-    } */
+    }
 
     /**
      *  @private
      *  Handles a failed login or logout operation for the ChannelSet.
      */
-    /* mx_internal function authenticationFailure(agent:AuthenticationAgent, token:AsyncToken, faultMessage:ErrorMessage):void
+    mx_internal function authenticationFailure(agent:AuthenticationAgent, token:AsyncToken, faultMessage:ErrorMessage):void
     {
         var messageFaultEvent:MessageFaultEvent = MessageFaultEvent.createEvent(faultMessage);
         var faultEvent:FaultEvent = FaultEvent.createEventFromMessageFault(messageFaultEvent, token);
@@ -1582,7 +1580,7 @@ public class ChannelSet extends EventDispatcher
         disconnect(agent);
         // And notify.
         dispatchRPCEvent(faultEvent);
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1600,7 +1598,7 @@ public class ChannelSet extends EventDispatcher
      *  @param event A ChannelEvent.DISCONNECT or a ChannelFaultEvent that is the root cause
      *               for faulting these pending sends.
      */
-    /* protected function faultPendingSends(event:ChannelEvent):void
+    protected function faultPendingSends(event:ChannelEvent):void
     {
         while (_pendingSends.length > 0)
         {
@@ -1636,38 +1634,38 @@ public class ChannelSet extends EventDispatcher
             errorMsg.rootCause = event;
             ps.agent.fault(errorMsg, pendingMsg);
         }
-    } */
+    }
 
     /**
      *  Redispatches message events from the currently connected Channel.
      *
      *  @param event The MessageEvent from the Channel.
      */
-    /* protected function messageHandler(event:MessageEvent):void
+    protected function messageHandler(event:MessageEvent):void
     {
         dispatchEvent(event);
-    } */
+    }
 
     /**
      *  @private
      *  Schedules a heartbeat to be sent in heartbeatInterval milliseconds.
      */
-    /* protected function scheduleHeartbeat():void
+    protected function scheduleHeartbeat():void
     {
         if (_heartbeatTimer == null && heartbeatInterval > 0)
         {
             _heartbeatTimer = new Timer(heartbeatInterval, 1);
-            _heartbeatTimer.addEventListener(TimerEvent.TIMER, sendHeartbeatHandler);
+            _heartbeatTimer.addEventListener(Timer.TIMER, sendHeartbeatHandler);
             _heartbeatTimer.start();
         }
-    } */
+    }
 
     /**
      *  @private
      *  Handles a heartbeat timer event by conditionally sending a heartbeat
      *  and scheduling the next.
      */
-    /* protected function sendHeartbeatHandler(event:TimerEvent):void
+    protected function sendHeartbeatHandler(event:Event):void
     {
         unscheduleHeartbeat();
         if (currentChannel != null)
@@ -1675,37 +1673,37 @@ public class ChannelSet extends EventDispatcher
             sendHeartbeat();
             scheduleHeartbeat();
         }
-    } */
+    }
 
     /**
      *  @private
      *  Sends a heartbeat request.
      */
-    // protected function sendHeartbeat():void
-    // {
-        // //Current channel may be actively polling, which suppresses explicit heartbeats.
-        // var pollingChannel:PollingChannel = currentChannel as PollingChannel;
-        // if (pollingChannel != null && pollingChannel._shouldPoll) return;
-        // //Issue an explicit heartbeat and schedule the next.
-        // var heartbeat:CommandMessage = new CommandMessage();
-        // heartbeat.operation = CommandMessage.CLIENT_PING_OPERATION;
-        // heartbeat.headers[CommandMessage.HEARTBEAT_HEADER] = true;
-        // currentChannel.sendInternalMessage(new MessageResponder(null /* no agent */, heartbeat));
-    // }
+    protected function sendHeartbeat():void
+    {
+        // Current channel may be actively polling, which suppresses explicit heartbeats.
+        var pollingChannel:PollingChannel = currentChannel as PollingChannel;
+        if (pollingChannel != null && pollingChannel._shouldPoll) return;
+        // Issue an explicit heartbeat and schedule the next.
+        var heartbeat:CommandMessage = new CommandMessage();
+        heartbeat.operation = CommandMessage.CLIENT_PING_OPERATION;
+        heartbeat.headers[CommandMessage.HEARTBEAT_HEADER] = true;
+        currentChannel.sendInternalMessage(new MessageResponder(null /* no agent */, heartbeat));
+    }
 
     /**
      *  @private
      *  Unschedules any currently scheduled pending heartbeat.
      */
-    /* protected function unscheduleHeartbeat():void
+    protected function unscheduleHeartbeat():void
     {
         if (_heartbeatTimer != null)
         {
             _heartbeatTimer.stop();
-            _heartbeatTimer.removeEventListener(TimerEvent.TIMER, sendHeartbeatHandler);
+            _heartbeatTimer.removeEventListener(Timer.TIMER, sendHeartbeatHandler);
             _heartbeatTimer = null;
         }
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1717,25 +1715,25 @@ public class ChannelSet extends EventDispatcher
      *  @private
      *  Helper method to connect the current internal Channel.
      */
-    /* private function connectChannel():void
+    private function connectChannel():void
     {
         _connecting = true;
         _currentChannel.connect(this);
         // Listen for any server pushed messages on the Channel.
         _currentChannel.addEventListener(MessageEvent.MESSAGE, messageHandler);
-    } */
+    }
 
     /**
      *  @private
      *  Helper method to disconnect the current internal Channel.
      */
-    /* private function disconnectChannel():void
+    private function disconnectChannel():void
     {
         _connecting = false;
         // Stop listening for server pushed messages on the Channel.
         _currentChannel.removeEventListener(MessageEvent.MESSAGE, messageHandler);
         _currentChannel.disconnect(this);
-    } */
+    }
 
     /**
      *  @private
@@ -1743,11 +1741,11 @@ public class ChannelSet extends EventDispatcher
      *
      *  @param event The event to dispatch.
      */
-    /* private function dispatchRPCEvent(event:AbstractEvent):void
+    private function dispatchRPCEvent(event:AbstractEvent):void
     {
         event.callTokenResponders();
         dispatchEvent(event);
-    } */
+    }
 
     /**
      *  @private
@@ -1760,7 +1758,7 @@ public class ChannelSet extends EventDispatcher
      *  @throws mx.messaging.errors.NoChannelAvailableError If the ChannelSet has no internal
      *                                  Channels to use.
      */
-    /* private function hunt():Boolean
+    private function hunt():Boolean
     {
         if (_channels.length == 0)
         {
@@ -1810,20 +1808,20 @@ public class ChannelSet extends EventDispatcher
             _currentChannel.failoverURIs = _channelFailoverURIs[_currentChannel.id];
 
         return true;
-    } */
+    }
 
     /**
      *  @private
      *  This method is invoked by a timer and it works around a reconnect issue
      *  with NetConnection based channels within a single frame by reconnecting after a slight delay.
      */
-    /* private function reconnectChannel(event:TimerEvent):void
+    private function reconnectChannel(event:Event):void
     {
         _reconnectTimer.stop();
-        _reconnectTimer.removeEventListener(TimerEvent.TIMER, reconnectChannel);
+        _reconnectTimer.removeEventListener(Timer.TIMER, reconnectChannel);
         _reconnectTimer = null;
         connectChannel();
-    } */
+    }
 }
 
 }
@@ -1834,7 +1832,7 @@ public class ChannelSet extends EventDispatcher
 //
 //------------------------------------------------------------------------------
 
-/* import mx.core.mx_internal;
+import mx.core.mx_internal;
 import mx.logging.Log;
 import mx.messaging.ChannelSet;
 import mx.messaging.MessageAgent;
@@ -1847,7 +1845,7 @@ import mx.messaging.messages.ErrorMessage;
 import mx.rpc.AsyncToken;
 import mx.collections.ArrayCollection;
 
-use namespace mx_internal; */
+use namespace mx_internal;
 
 /**
  *  @private
@@ -1861,8 +1859,8 @@ use namespace mx_internal; */
  *
  *  This is the custom responder.
  */
-/* class ClusterMessageResponder extends MessageResponder
-{ */
+class ClusterMessageResponder extends MessageResponder
+{
     //--------------------------------------------------------------------------
     //
     // Constructor
@@ -1878,11 +1876,11 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function ClusterMessageResponder(message:IMessage, channelSet:ChannelSet)
+    public function ClusterMessageResponder(message:IMessage, channelSet:ChannelSet)
     {
         super(null, message);
         _channelSet = channelSet;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1895,7 +1893,7 @@ use namespace mx_internal; */
      *  Gives the responder access to this ChannelSet, to pass it failover URIs for
      *  its channels.
      */
-   // private var _channelSet:ChannelSet;
+    private var _channelSet:ChannelSet;
 
     //--------------------------------------------------------------------------
     //
@@ -1914,7 +1912,7 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* override protected function resultHandler(message:IMessage):void
+    override protected function resultHandler(message:IMessage):void
     {
         if ((message.body != null) && (message.body is Array || message.body is ArrayCollection))
         {
@@ -1935,15 +1933,15 @@ use namespace mx_internal; */
             _channelSet.channelFailoverURIs = channelFailoverURIs;
         }
     }
-} */
+}
 
 /**
  *  @private
  *  Stores a pending message to send when the ChannelSet does not have a
  *  connected Channel to use immediately.
  */
-/* class PendingSend
-{ */
+class PendingSend
+{
     //--------------------------------------------------------------------------
     //
     // Constructor
@@ -1958,12 +1956,12 @@ use namespace mx_internal; */
      *
      *  @param msg The Message to send.
      */
-   /*  public function PendingSend(agent:MessageAgent, message:IMessage)
+    public function PendingSend(agent:MessageAgent, message:IMessage)
     {
         super();
         this.agent = agent;
         this.message = message;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1975,34 +1973,34 @@ use namespace mx_internal; */
      *  @private
      *  The MessageAgent.
      */
-   // public var agent:MessageAgent;
+    public var agent:MessageAgent;
 
     /**
      *  @private
      *  The Message to send.
      */
-    /* public var message:IMessage;
+    public var message:IMessage;
 
-} */
+}
 
 /**
  *  @private
  *  Helper class for handling and redispatching login and logout results or faults.
  */
-/* class AuthenticationAgent extends MessageAgent
+class AuthenticationAgent extends MessageAgent
 {
-   */  //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     //
     // Public Static Constants
     //
     //--------------------------------------------------------------------------
 
     // State constants.
-   /*  public static const LOGGED_OUT_STATE:int = 0;
+    public static const LOGGED_OUT_STATE:int = 0;
     public static const LOGGING_IN_STATE:int = 1;
     public static const LOGGED_IN_STATE:int = 2;
     public static const LOGGING_OUT_STATE:int = 3;
-    public static const SHUTDOWN_STATE:int = 4; */
+    public static const SHUTDOWN_STATE:int = 4;
 
     //--------------------------------------------------------------------------
     //
@@ -2019,13 +2017,13 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function AuthenticationAgent(channelSet:ChannelSet)
+    public function AuthenticationAgent(channelSet:ChannelSet)
     {
         _log = Log.getLogger("ChannelSet.AuthenticationAgent");
         _agentType = "authentication agent";
         // Must set log and agent type before assigning channelSet.
         this.channelSet = channelSet;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -2042,7 +2040,7 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-   // private var tokens:Object = {};
+    private var tokens:Object = {};
 
     //--------------------------------------------------------------------------
     //
@@ -2050,7 +2048,7 @@ use namespace mx_internal; */
     //
     //--------------------------------------------------------------------------
 
-  //  private var _state:int = LOGGED_OUT_STATE;
+    private var _state:int = LOGGED_OUT_STATE;
 
     /**
      * Returns the current state for the agent.
@@ -2062,7 +2060,7 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-   /*  public function get state():int
+    public function get state():int
     {
         return _state;
     }
@@ -2072,7 +2070,7 @@ use namespace mx_internal; */
         _state = value;
         if (value == SHUTDOWN_STATE)
             tokens = null;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -2089,11 +2087,11 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* public function registerToken(token:AsyncToken):void
+    public function registerToken(token:AsyncToken):void
     {
         tokens[token.message.messageId] = token;
     }
- */
+
     /**
      * Acknowledge message callback.
      *
@@ -2103,7 +2101,7 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-   /*  override public function acknowledge(ackMsg:AcknowledgeMessage, msg:IMessage):void
+    override public function acknowledge(ackMsg:AcknowledgeMessage, msg:IMessage):void
     {
         if (state == SHUTDOWN_STATE)
             return;
@@ -2119,7 +2117,7 @@ use namespace mx_internal; */
             delete tokens[msg.messageId];
             channelSet.authenticationSuccess(this, token, ackMsg as AcknowledgeMessage);
         }
-    } */
+    }
 
     /**
      * Fault callback.
@@ -2130,7 +2128,7 @@ use namespace mx_internal; */
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-   /*  override public function fault(errMsg:ErrorMessage, msg:IMessage):void
+    override public function fault(errMsg:ErrorMessage, msg:IMessage):void
     {
         if (state == SHUTDOWN_STATE)
             return;
@@ -2154,4 +2152,4 @@ use namespace mx_internal; */
         delete tokens[msg.messageId];
         channelSet.authenticationFailure(this, token, errMsg as ErrorMessage);
     }
-} */
+}

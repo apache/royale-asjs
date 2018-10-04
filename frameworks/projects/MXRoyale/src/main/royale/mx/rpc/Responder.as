@@ -27,11 +27,10 @@ package mx.rpc
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-public class Responder 
-{ 
-//implements IResponder
+public class Responder implements IResponder
+{
     /**
      *  Constructs an instance of the responder with the specified handlers.
      *  
@@ -43,13 +42,13 @@ public class Responder
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function Responder(result:Function, fault:Function)
     {
-        /* super();
+        super();
         _resultHandler = result;
-        _faultHandler = fault; */
+        _faultHandler = fault;
     }
     
     /**
@@ -60,10 +59,10 @@ public class Responder
      *  While <code>data</code> is typed as Object, it is often (but not always) 
      *  an mx.rpc.events.ResultEvent.
      */
-    /* public function result(data:Object):void
+    public function result(data:Object):void
     {
         _resultHandler(data);
-    } */
+    }
     
     /**
      *  This method is called by a service when an error has been received.
@@ -72,20 +71,20 @@ public class Responder
      *  While <code>info</code> is typed as Object, it is often (but not always) 
      *  an mx.rpc.events.FaultEvent.
      */
-   /*  public function fault(info:Object):void
+    public function fault(info:Object):void
     {
         _faultHandler(info);
-    } */
+    }
     
     /**
      *  @private
      */
-    //private var _resultHandler:Function;
+    private var _resultHandler:Function;
     
     /**
      *  @private
      */
-   // private var _faultHandler:Function;
+    private var _faultHandler:Function;
 }
 
 

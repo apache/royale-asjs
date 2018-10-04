@@ -27,7 +27,7 @@ package mx.rpc
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 public class Fault extends Error
 {
@@ -42,7 +42,7 @@ public class Fault extends Error
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function Fault(faultCode:String, faultString:String, faultDetail:String = null)
     {
@@ -67,9 +67,9 @@ public class Fault extends Error
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    //public var content:Object;
+    public var content:Object;
 
     /**
      * The cause of the fault. The value will be null if the cause is
@@ -78,9 +78,9 @@ public class Fault extends Error
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   //public var rootCause:Object;
+    public var rootCause:Object;
 
     //--------------------------------------------------------------------------
     //
@@ -94,16 +94,8 @@ public class Fault extends Error
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-     
-    COMPILE::JS{
-	public function getStackTrace():String
-	{
-	   return "";;
-	}
-	}
-    
     public function get faultCode():String
     {
         return _faultCode;
@@ -115,7 +107,7 @@ public class Fault extends Error
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function get faultDetail():String
     {
@@ -128,7 +120,7 @@ public class Fault extends Error
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function get faultString():String
     {
@@ -149,7 +141,7 @@ public class Fault extends Error
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function toString():String
     {

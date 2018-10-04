@@ -20,13 +20,11 @@
 package mx.rpc.events
 {
 
-//import flash.events.Event;
 import org.apache.royale.events.Event;
 
 import mx.core.mx_internal;
-import org.apache.royale.net.remoting.messages.IMessage;
-/* import mx.messaging.messages.IMessage;
-import mx.messaging.messages.AbstractMessage; */
+import mx.messaging.messages.IMessage;
+import mx.messaging.messages.AbstractMessage;
 import mx.rpc.AsyncToken;
 
 use namespace mx_internal;
@@ -39,10 +37,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ResultEvent extends Event
+public class ResultEvent extends AbstractEvent
 {
-   
- /* extends AbstractEvent */
     //--------------------------------------------------------------------------
     //
     //  Class constants
@@ -104,14 +100,12 @@ public class ResultEvent extends Event
      *  @productversion Flex 3
      */
     public function ResultEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = true,
-                                result:Object = null, token:AsyncToken = null, message:Object = null)
+                                result:Object = null, token:AsyncToken = null, message:IMessage = null)
     {
-		super(type, bubbles, cancelable);
+        super(type, bubbles, cancelable, token, message);
 
-      // super(type, bubbles, cancelable, token, message);
-
-      //  if (message != null && message.headers != null)
-           // _statusCode = message.headers[AbstractMessage.STATUS_CODE_HEADER] as int;
+        if (message != null && message.headers != null)
+            _statusCode = message.headers[AbstractMessage.STATUS_CODE_HEADER] as int;
 
         _result = result;
     }
@@ -122,18 +116,6 @@ public class ResultEvent extends Event
     //  Properties
     //
     //--------------------------------------------------------------------------
-    
-    public function get message():IMessage
-      {
-          return null;
-      }
-      
-    public function set message(value:IMessage):void
-      { 
-      }
-
-
-
 
     /**
      * In certain circumstances, headers may also be returned with a result to
@@ -144,40 +126,19 @@ public class ResultEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get headers():Object
+    public function get headers():Object
     {
         return _headers;
-    } */
+    }
 
     /**
      * @private
      */
-   /*  public function set headers(value:Object):void
+    public function set headers(value:Object):void
     {
         _headers = value;
-    } */
-
-	
-	//_token copied from AbstractEvent
-	 private var _token:AsyncToken;
-	/**
-     * The token that represents the call to the method. Used in the asynchronous completion token pattern.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get token():AsyncToken
-    {
-        return _token;
     }
 
-    mx_internal function setToken(t:AsyncToken):void
-    {
-        _token = t;
-    }
-    
     /**
      * Result that the RPC call returns.
      *  
@@ -201,10 +162,10 @@ public class ResultEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */ 
-    /* public function get statusCode():int
+    public function get statusCode():int
     {
         return _statusCode;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -215,21 +176,21 @@ public class ResultEvent extends Event
     /**
      * @private
      */
-   /*  public static function createEvent(result:Object = null, token:AsyncToken = null, message:IMessage = null):ResultEvent
+    public static function createEvent(result:Object = null, token:AsyncToken = null, message:IMessage = null):ResultEvent
     {
         return new ResultEvent(ResultEvent.RESULT, false, true, result, token, message);
     }
-	*/
+
     /**
      * Because this event can be re-dispatched we have to implement clone to
      * return the appropriate type, otherwise we will get just the standard
      * event type.
      * @private
      */
-    /* override public function clone():Event
+    override public function clone():Event
     {
         return new ResultEvent(type, bubbles, cancelable, result, token, message);
-    } */
+    }
    /**
      * Returns a string representation of the ResultEvent.
      *
@@ -240,23 +201,20 @@ public class ResultEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::SWF
-	override public function toString():String
+    override public function toString():String
     {
-     //   return formatToString("ResultEvent", "messageId", "type", "bubbles", "cancelable", "eventPhase");
-		trace("toString not implemented");
-		return "<ResultEvent>";
-	}
+        return formatToString("ResultEvent", "messageId", "type", "bubbles", "cancelable", "eventPhase");
+    }
 
     /*
      * Have the token apply the result.
      */
-    /* override mx_internal function callTokenResponders():void
+    override mx_internal function callTokenResponders():void
     {
         if (token != null)
             token.applyResult(this);
     }
-	*/
+
     mx_internal function setResult(r:Object):void
     {
         _result = r;
@@ -270,8 +228,8 @@ public class ResultEvent extends Event
     //--------------------------------------------------------------------------
 
     private var _result:Object;
-  /*private var _headers:Object;
-    private var _statusCode:int; */
+    private var _headers:Object;
+    private var _statusCode:int;
 }
 
 }

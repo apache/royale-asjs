@@ -20,7 +20,7 @@
 package mx.utils
 {
     
-   // import mx.messaging.config.LoaderConfig;
+    import mx.messaging.config.LoaderConfig;
     
     /**
      *  The URLUtil class is a static class with methods for working with
@@ -44,10 +44,10 @@ package mx.utils
         /**
          *  @private 
          */
-        /* private static const SQUARE_BRACKET_LEFT:String = "]";
+        private static const SQUARE_BRACKET_LEFT:String = "]";
         private static const SQUARE_BRACKET_RIGHT:String = "[";
         private static const SQUARE_BRACKET_LEFT_ENCODED:String = encodeURIComponent(SQUARE_BRACKET_LEFT);
-        private static const SQUARE_BRACKET_RIGHT_ENCODED:String = encodeURIComponent(SQUARE_BRACKET_RIGHT); */
+        private static const SQUARE_BRACKET_RIGHT_ENCODED:String = encodeURIComponent(SQUARE_BRACKET_RIGHT);
         
         //--------------------------------------------------------------------------
         //
@@ -98,7 +98,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function getServerName(url:String):String
+        public static function getServerName(url:String):String
         {
             var sp:String = getServerNameWithPort(url);
             
@@ -109,7 +109,7 @@ package mx.utils
             if (delim > 0)
                 sp = sp.substring(0, delim);
             return sp;
-        } */
+        }
         
         /**
          *  Returns the port number from the specified URL.
@@ -122,7 +122,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function getPort(url:String):uint
+        public static function getPort(url:String):uint
         {
             var sp:String = getServerNameWithPort(url);
             // If IPv6 is in use, start looking after the square bracket.
@@ -137,7 +137,7 @@ package mx.utils
             }
             
             return port;
-        } */
+        }
         
         /**
          *  Converts a potentially relative URL to a fully-qualified URL.
@@ -156,7 +156,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function getFullURL(rootURL:String, url:String):String
+        public static function getFullURL(rootURL:String, url:String):String
         {
             if (url != null && !URLUtil.isHttpURL(url))
             {
@@ -192,7 +192,7 @@ package mx.utils
             }
             
             return url;
-        } */
+        }
         
         // Note: The following code was copied from Flash Remoting's
         // NetServices client components.
@@ -212,12 +212,12 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function isHttpURL(url:String):Boolean
+        public static function isHttpURL(url:String):Boolean
         {
             return url != null &&
                 (url.indexOf("http://") == 0 ||
                     url.indexOf("https://") == 0);
-        } */
+        }
         
         /**
          *  Determines if the URL uses the secure HTTPS protocol. 
@@ -231,10 +231,10 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function isHttpsURL(url:String):Boolean
+        public static function isHttpsURL(url:String):Boolean
         {
             return url != null && url.indexOf("https://") == 0;
-        } */
+        }
         
         /**
          *  Returns the protocol section of the specified URL.
@@ -291,11 +291,11 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function replaceProtocol(uri:String,
+        public static function replaceProtocol(uri:String,
                                                newProtocol:String):String
         {
             return uri.replace(getProtocol(uri), newProtocol);
-        } */
+        }
         
         /**
          *  Returns a new String with the port replaced with the specified port.
@@ -312,7 +312,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function replacePort(uri:String, newPort:uint):String
+        public static function replacePort(uri:String, newPort:uint):String
         {
             var result:String = "";
             
@@ -365,7 +365,7 @@ package mx.utils
             }
             
             return result;
-        } */
+        }
         
         /**
          *  Returns a new String with the port and server tokens replaced with
@@ -381,7 +381,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function replaceTokens(url:String):String
+        public static function replaceTokens(url:String):String
         {             
             var loaderURL:String = LoaderConfig.url == null ? "" : LoaderConfig.url;
             
@@ -424,7 +424,7 @@ package mx.utils
             }
             
             return url;
-        } */
+        }
         
         /**
          * Tests whether two URI Strings are equivalent, ignoring case and
@@ -440,7 +440,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function urisEqual(uri1:String, uri2:String):Boolean
+        public static function urisEqual(uri1:String, uri2:String):Boolean
         {
             if (uri1 != null && uri2 != null)
             {
@@ -455,7 +455,7 @@ package mx.utils
             }
             
             return uri1 == uri2;
-        } */
+        }
         
         /**
          *  Given a url, determines whether the url contains the server.name and
@@ -470,7 +470,7 @@ package mx.utils
          *  @playerversion AIR 1.5
          *  @productversion Flex 4
          */ 
-        /* public static function hasTokens(url:String):Boolean
+        public static function hasTokens(url:String):Boolean
         {
             if (url == null || url == "")
                 return false;
@@ -479,7 +479,7 @@ package mx.utils
             if (url.indexOf(SERVER_PORT_TOKEN) > 0)
                 return true;
             return false;
-        } */
+        }
         
         /**
          * If the <code>LoaderConfig.url</code> property is not available, the <code>replaceTokens()</code> method will not 
@@ -492,10 +492,10 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */  
-        /* public static function hasUnresolvableTokens():Boolean
+        public static function hasUnresolvableTokens():Boolean
         {
             return LoaderConfig.url != null;
-        } */
+        }
         
         /**
          *  The pattern in the String that is passed to the <code>replaceTokens()</code> method that 
@@ -506,7 +506,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        //public static const SERVER_NAME_TOKEN:String = "{server.name}";
+        public static const SERVER_NAME_TOKEN:String = "{server.name}";
         
         /**
          *  The pattern in the String that is passed to the <code>replaceTokens()</code> method that 
@@ -517,7 +517,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        //public static const SERVER_PORT_TOKEN:String = "{server.port}";
+        public static const SERVER_PORT_TOKEN:String = "{server.port}";
         
         /**
          *  Enumerates an object's dynamic properties (by using a <code>for..in</code> loop)
@@ -544,12 +544,12 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function objectToString(object:Object, separator:String=';',
+        public static function objectToString(object:Object, separator:String=';',
                                               encodeURL:Boolean = true):String
         {
             var s:String = internalObjectToString(object, separator, null, encodeURL);
             return s;
-        } 
+        }
         
         private static function indexOfLeftSquareBracket(value:String):int
         {
@@ -671,7 +671,7 @@ package mx.utils
                 }
             }
             return s;
-        }*/
+        }
         
         /**
          *  Returns an object from a String. The String contains <code>name=value</code> pairs, which become dynamic properties
@@ -700,7 +700,7 @@ package mx.utils
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        /* public static function stringToObject(string:String, separator:String = ";",
+        public static function stringToObject(string:String, separator:String = ";",
                                               decodeURL:Boolean = true):Object
         {
             var o:Object = {};
@@ -762,12 +762,12 @@ package mx.utils
             }
             
             return o;
-        } */
+        }
         
         // Reusable reg-exp for token replacement. The . means any char, so this means
         // we should handle server.name and server-name, etc...
-       /*  private static const SERVER_NAME_REGEX:RegExp = new RegExp("\\{server.name\\}", "g");
-        private static const SERVER_PORT_REGEX:RegExp = new RegExp("\\{server.port\\}", "g");  */   
+        private static const SERVER_NAME_REGEX:RegExp = new RegExp("\\{server.name\\}", "g");
+        private static const SERVER_PORT_REGEX:RegExp = new RegExp("\\{server.port\\}", "g");    
     }
     
 }

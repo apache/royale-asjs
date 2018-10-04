@@ -140,8 +140,10 @@
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
 	<component id="LineSeries" class="mx.charts.series.LineSeries" />
 	<component id="Tree" class="mx.controls.Tree"/>
+    
 	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
 	<component id="ChannelSet" class="mx.messaging.ChannelSet" />
+    
 	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
 	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
 	<component id="Alert" class="mx.controls.Alert" />
