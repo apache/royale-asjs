@@ -1366,6 +1366,46 @@ public class Container extends UIComponent
 
         return results;
     }
+    
+    //----------------------------------
+    //  contentMouseX
+    //----------------------------------
+
+    /**
+     *  @copy mx.core.UIComponent#contentMouseX
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    override public function get contentMouseX():Number
+    {
+       /*  if (contentPane)
+            return contentPane.mouseX;*/
+        
+        return super.contentMouseX; 
+    }
+    
+    //----------------------------------
+    //  contentMouseY
+    //----------------------------------
+
+    /**
+     *  @copy mx.core.UIComponent#contentMouseY
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    override public function get contentMouseY():Number
+    {
+       /*  if (contentPane)
+            return contentPane.mouseY;
+        */
+        return super.contentMouseY; 
+    }
 
 }
 
