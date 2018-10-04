@@ -371,6 +371,7 @@ public dynamic class AbstractService extends Proxy implements IEventDispatcher
     /**
      * @private
      */
+    [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event")]
     COMPILE::SWF
     public function dispatchEvent(event:Event):Boolean
     {
