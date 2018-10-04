@@ -90,6 +90,12 @@ use namespace mx_internal;
 	public class ListBase extends ScrollControlBase implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
 	{  //extends UIComponent
 	
+	
+	
+	public function get value():Object
+	{
+	   return null;
+	}
         //----------------------------------
         //  dragEnabled
         //----------------------------------
