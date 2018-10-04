@@ -44,7 +44,7 @@ import mx.netmon.NetworkMonitor;
 
 use namespace mx_internal;
 
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 /**
  * An invoker is an object that actually executes a remote procedure call (RPC).
