@@ -153,7 +153,8 @@ internal class MXRoyaleClasses
 	import mx.events.CalendarLayoutChangeEvent; CalendarLayoutChangeEvent;
 	import mx.net.SharedObject; SharedObject;
 	import mx.modules.ModuleManager; ModuleManager;
-	
+	import mx.events.DragEvent; DragEvent;
+
 	COMPILE::JS
     	{
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
