@@ -24,7 +24,6 @@ package mx.charts
 
 import mx.charts.chartClasses.AxisBase;
 import mx.charts.chartClasses.AxisLabelSet;
-import mx.charts.chartClasses.IAxis;
 import mx.collections.ArrayCollection;
 import mx.collections.CursorBookmark;
 import mx.collections.IViewCursor;
@@ -34,6 +33,8 @@ import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
 use namespace mx_internal; */
 import mx.collections.ICollectionView;
+import mx.core.UIComponent;
+import mx.charts.chartClasses.IAxis;
 
 /**
  *  The CategoryAxis class lets charts represent data
@@ -85,7 +86,7 @@ import mx.collections.ICollectionView;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class CategoryAxis 
+public class CategoryAxis extends UIComponent implements IAxis
 {
 //extends AxisBase implements IAxis
    
