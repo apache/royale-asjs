@@ -1337,6 +1337,35 @@ public class Container extends UIComponent
 
         //setActualCreationPolicies(value);
     }
+    /**
+     *  Returns an Array of DisplayObject objects consisting of the content children 
+     *  of the container.
+     *  This array does <b>not</b> include the DisplayObjects that implement 
+     *  the container's display elements, such as its border and 
+     *  the background image.
+     *
+     *  @return Array of DisplayObject objects consisting of the content children 
+     *  of the container.
+     * 
+     *  @see #rawChildren
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function getChildren():Array
+    {
+        var results:Array = [];
+        
+        var n:int = numChildren;
+        for (var i:int = 0; i < n; i++)
+        {
+            results.push(getChildAt(i));
+        }
+
+        return results;
+    }
 
 }
 
