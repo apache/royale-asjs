@@ -19,10 +19,6 @@
 package org.apache.royale.core
 {
     import org.apache.royale.events.IEventDispatcher;
-    COMPILE::SWF
-    {
-        import flash.display.DisplayObject;
-    }
 
     /**
      *  The IUIBase interface is the basic interface for user interface components.

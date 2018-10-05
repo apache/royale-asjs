@@ -18,12 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils
 {
-
-COMPILE::SWF
-{
-    import flash.display.DisplayObject;
-}
-
+    
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IDocument;
