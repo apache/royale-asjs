@@ -1970,9 +1970,16 @@ limitations under the License.
     </target>
 
     <target name="check-royale-compiler">
+        <available file="${ROYALE_COMPILER_REPO}"
+        type="dir"
+        property="royale-compiler-exists"/>
         <available file="${base.folder.name}/royale-compiler"
         type="dir"
         property="royale-compiler-exists"/>
+        <available file="${base.folder.name}/royale-compiler"
+        type="dir"
+        property="ROYALE_COMPILER_REPO"
+        value="${base.folder.name}/royale-compiler"/>
     </target>
 
     <target name="clone-royale-compiler" depends="check-royale-compiler" unless="royale-compiler-exists">
@@ -1982,6 +1989,7 @@ limitations under the License.
             <arg value="https://github.com/apache/royale-compiler.git" />
             <arg value="royale-compiler" />
         </exec>
+        <property name="ROYALE_COMPILER_REPO" value="${base.folder.name}/royale-compiler" />
         <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-compiler">
             <arg value="checkout" />
             <arg value="develop" />
@@ -1989,9 +1997,16 @@ limitations under the License.
     </target>
 
     <target name="check-royale-typedefs">
+        <available file="${ROYALE_TYPEDEFS_HOME}"
+        type="dir"
+        property="royale-typedefs-exists"/>
         <available file="${base.folder.name}/royale-typedefs"
         type="dir"
         property="royale-typedefs-exists"/>
+        <available file="${base.folder.name}/royale-typedefs"
+        type="dir"
+        property="ROYALE_TYPEDEFS_HOME"
+        value="${base.folder.name}/royale-typedefs"/>
     </target>
 
     <target name="clone-royale-typedefs" depends="check-royale-typedefs" unless="royale-typedefs-exists">
@@ -2001,18 +2016,19 @@ limitations under the License.
             <arg value="https://github.com/apache/royale-typedefs.git" />
             <arg value="royale-typedefs" />
         </exec>
+        <property name="ROYALE_TYPEDEFS_HOME" value="${base.folder.name}/royale-typedefs" />
         <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-typedefs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
     </target>
 
-    <target name="build-all" depends="check-playerglobal-home,check-air-home">
+    <target name="build-all" depends="check-playerglobal-home,check-air-home,check-royale-compiler,check-royale-typedefs">
         <property name="font.donot.ask" value="set" />
         <antcall target="ask-before-build-all" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/royale-compiler" />
-        <ant dir="${base.folder.name}/royale-typedefs" />
+        <ant dir="${ROYALE_COMPILER_REPO}" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" />
     </target>
     <target name="ask-before-build-all" unless="release.target">
         <input
