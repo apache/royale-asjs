@@ -150,7 +150,7 @@
     </target>
     
     <target name="release"
-        depends="block-flat-fonts,source-release,binary-release,rat-check"
+        depends="block-flat-fonts,check-compiler-home,check-typedefs-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache Royale."/>
         
     <target name="release-jenkins" 
@@ -780,20 +780,20 @@ limitations under the License.
     </target>
 
     <target name="stage-compiler" >
-        <echo file="${basedir}/../royale-compiler/env.properties">env.ASJS_HOME=${basedir}</echo>
+        <echo file="${ROYALE_COMPILER_REPO}/env.properties">env.ASJS_HOME=${basedir}</echo>
         <!-- windows needs backslashes escaped -->
-        <replaceregexp file="${basedir}/../royale-compiler/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
-        <ant dir="${basedir}/../royale-compiler" target="wipe-all" />
-        <ant dir="${basedir}/../royale-compiler" target="stage-all" >
+        <replaceregexp file="${ROYALE_COMPILER_REPO}/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="wipe-all" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="stage-all" >
             <property name="staging-dir" value="${basedir}/temp/royale-compiler" />
         </ant>
     </target>
     
     <target name="stage-typedefs" >
-        <ant dir="${basedir}/../royale-typedefs" target="wipe" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" target="wipe" />
         <mkdir dir="${staging-dir}/../royale-typedefs"/>
         <copy todir="${staging-dir}/../royale-typedefs" includeEmptyDirs="false" >
-            <fileset dir="${basedir}/../royale-typedefs" includes="**" />
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}" includes="**" />
         </copy>
     </target>
     
