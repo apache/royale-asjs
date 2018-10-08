@@ -26,6 +26,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import vos.IconListVO;
+			import org.apache.royale.collections.ArrayList;
 
             private function watchmenComboBoxSelectedItem(event:Event):void {
 				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem;
@@ -38,6 +39,11 @@ limitations under the License.
 			private function onValueChange(event:Event):void
 			{
 				cmb.width = slider_w.value;
+			}
+
+			public function assignNewData():void
+			{
+				watchmenComboBox.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
 			}
 		]]>
 	</fx:Script>
@@ -69,6 +75,7 @@ limitations under the License.
 								<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
 							</j:beads>
 						</j:ComboBox>
+						<j:Button text="Assign new data" click="assignNewData()"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
 								tabletNumerator="1" tabletDenominator="3"

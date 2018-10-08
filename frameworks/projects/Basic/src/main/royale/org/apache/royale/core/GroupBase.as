@@ -28,7 +28,6 @@ package org.apache.royale.core
 	import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.states.State;
-	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     COMPILE::JS
