@@ -70,7 +70,9 @@ import mx.collections.XMLListCollection;
 import mx.collections.ArrayCollection;
 import mx.collections.ICollectionView;
 import mx.collections.ListCollectionView;
-    
+import org.apache.royale.html.beads.DisableBead;
+import org.apache.royale.events.Event;
+
 /**
  *  The alpha of the content background for this component.
  * 
@@ -398,6 +400,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      *  @private
      *  Storage for enabled property.
      */
+    private var _disableBead:DisableBead;
     private var _enabled:Boolean = false;
 
     /**
@@ -412,13 +415,20 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     override public function get enabled():Boolean
     {
-        trace("ComboBox.enabled not implemented");
-        return true;
+        return _enabled;
     }
     
     override public function set enabled(value:Boolean):void
     {
-        trace("ComboBox.enabled not implemented");
+        _enabled = value;
+	if (_disableBead == null) {
+		_disableBead = new DisableBead();
+		addBead(_disableBead);
+	}
+
+	_disableBead.disabled = !value;
+
+	dispatchEvent(new org.apache.royale.events.Event("enabledChanged"));
     }
 
     //--------------------------------------------------------------------------
