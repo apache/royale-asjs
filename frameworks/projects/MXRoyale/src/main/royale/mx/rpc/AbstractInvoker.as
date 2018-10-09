@@ -20,10 +20,6 @@
 package mx.rpc
 {
 
-import org.apache.royale.events.EventDispatcher;
-import org.apache.royale.reflection.getQualifiedClassName;
-import org.apache.royale.events.Event;
-
 import mx.core.mx_internal;
 import mx.logging.ILogger;
 import mx.logging.Log;
@@ -32,6 +28,7 @@ import mx.messaging.events.MessageEvent;
 import mx.messaging.events.MessageFaultEvent;
 import mx.messaging.messages.AsyncMessage;
 import mx.messaging.messages.IMessage;
+import mx.netmon.NetworkMonitor;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 import mx.rpc.events.AbstractEvent;
@@ -40,7 +37,10 @@ import mx.rpc.events.InvokeEvent;
 import mx.rpc.events.ResultEvent;
 import mx.utils.ObjectProxy;
 import mx.utils.StringUtil;
-import mx.netmon.NetworkMonitor;
+
+import org.apache.royale.events.Event;
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.reflection.getQualifiedClassName;
 
 use namespace mx_internal;
 
@@ -430,20 +430,23 @@ public class AbstractInvoker extends EventDispatcher
             asyncRequest.invoke(message, new Responder(resultHandler, faultHandler));
             dispatchRpcEvent(InvokeEvent.createEvent(token, message));
         }
-        catch(e:MessagingError)
+        catch(e:Error)
         {
-            _log.warn(e.toString());
-            var errorText:String = resourceManager.getString(
-                "rpc", "cannotConnectToDestination",
-                [ asyncRequest.destination ]);
-            fault = new Fault("InvokeFailed", e.toString(), errorText);
-            new AsyncDispatcher(dispatchRpcEvent, [FaultEvent.createEvent(fault, token, message)], 10);
-        }
-        catch(e2:Error)
-        {
-            _log.warn(e2.toString());
-            fault = new Fault("InvokeFailed", e2.message);
-            new AsyncDispatcher(dispatchRpcEvent, [FaultEvent.createEvent(fault, token, message)], 10);
+            if (e is MessagingError)
+            {
+                _log.warn(e.toString());
+                var errorText:String = resourceManager.getString(
+                    "rpc", "cannotConnectToDestination",
+                    [ asyncRequest.destination ]);
+                fault = new Fault("InvokeFailed", e.toString(), errorText);
+                new AsyncDispatcher(dispatchRpcEvent, [FaultEvent.createEvent(fault, token, message)], 10);
+            }
+            else
+            {
+                _log.warn(e.toString());
+                fault = new Fault("InvokeFailed", e.message);
+                new AsyncDispatcher(dispatchRpcEvent, [FaultEvent.createEvent(fault, token, message)], 10);
+            }
         }
        
         return token;
