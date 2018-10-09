@@ -32,7 +32,7 @@ package spark.collections
 	
 	// import spark.globalization.SortingCollator;
 	
-	[ResourceBundle("collections")]
+	// [ResourceBundle("collections")]
 	
 	//--------------------------------------
 	//  Styles
