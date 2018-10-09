@@ -1258,10 +1258,13 @@ public class TextInput extends UIComponent implements ITextInput
      */
     private var textChanged:Boolean = false;
 
-    [Bindable("textChanged")]
+    //[Bindable("textChanged")]
+    [Bindable("change")]
     [CollapseWhiteSpace]
     [Inspectable(category="General", defaultValue="")]
-    [NonCommittingChangeEvent("change")]
+    //[NonCommittingChangeEvent("change")]  Not sure what this did
+    // since TextField sends change on every keystroke and other
+    // code looked like it would dispatch a textChanged
 
     /**
      *  @inheritDoc
@@ -1299,9 +1302,9 @@ public class TextInput extends UIComponent implements ITextInput
 		COMPILE::JS
 		{
 			(element as HTMLInputElement).value = value;
-			dispatchEvent(new Event('textChange'));
 		}
 
+        dispatchEvent(new Event('textChanged'));
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
 
