@@ -295,7 +295,7 @@ public class Alert extends Panel
      *  @private
      *  Storage for the cancelLabel property.
      */
-    //private static var _cancelLabel:String;
+    private static var _cancelLabel:String;
     
     /**
      *  @private
@@ -304,6 +304,26 @@ public class Alert extends Panel
 
     //[Inspectable(category="General")]
 
+	public static function get cancelLabel():String
+	{
+		// initialize();
+		
+		return _cancelLabel;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public static function set cancelLabel(value:String):void
+	{
+		/*cancelLabelOverride = value;
+		
+		_cancelLabel = value != null ?
+			value :
+			resourceManager.getString(
+				"controls", "cancelLabel");
+		*/
+	}
     //----------------------------------
     //  noLabel
     //----------------------------------
@@ -325,7 +345,7 @@ public class Alert extends Panel
      *  @private
      *  Storage for the okLabel property.
      */
-    //private static var _okLabel:String;
+    private static var _okLabel:String;
     
     /**
      *  @private
@@ -333,7 +353,29 @@ public class Alert extends Panel
     //private static var okLabelOverride:String;
 
     //[Inspectable(category="General")]
-
+	
+	public static function get okLabel():String
+	{
+		// initialize();
+		
+		return _okLabel;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public static function set okLabel(value:String):void
+	{
+		/*
+		okLabelOverride = value;
+		
+		_okLabel = value != null ?
+			value :
+			resourceManager.getString(
+				"controls", "okLabel");
+		*/
+	}
+	
     /**
      *  @private
      *  Storage for the yesLabel property.
