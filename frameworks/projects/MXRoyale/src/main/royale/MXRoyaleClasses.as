@@ -148,14 +148,21 @@ internal class MXRoyaleClasses
 	import mx.events.ProgressEvent; ProgressEvent;
 	import mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
 	import mx.formatters.Formatter; Formatter;
-        import mx.formatters.IFormatter; IFormatter;
+	import mx.formatters.IFormatter; IFormatter;
 	import mx.events.CalendarLayoutChangeEvent; CalendarLayoutChangeEvent;
 	import mx.net.SharedObject; SharedObject;
 	import mx.modules.ModuleManager; ModuleManager;
 	import mx.events.DragEvent; DragEvent;
+	import mx.formatters.DateBase; DateBase;
+	import mx.core.Keyboard; Keyboard;
+	import mx.core.UIComponentGlobals; UIComponentGlobals;
+	import mx.managers.ILayoutManagerClient; ILayoutManagerClient;
+	import mx.core.LayoutDirection; LayoutDirection;
+	import mx.styles.IAdvancedStyleClient; IAdvancedStyleClient;
+	import mx.collections.IComplexSortField; IComplexSortField;
 
 	COMPILE::JS
-    	{
+    {
 		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
 		import mx.utils.Base64JSWrapper; Base64JSWrapper;
 	}
