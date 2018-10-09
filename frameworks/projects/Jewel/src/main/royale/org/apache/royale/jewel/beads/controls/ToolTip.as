@@ -74,6 +74,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+        [Bindable("toolTipChanged")]
 		public function get toolTip():String
 		{
 			return _toolTip;
