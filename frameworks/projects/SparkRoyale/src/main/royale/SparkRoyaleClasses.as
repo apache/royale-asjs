@@ -46,7 +46,6 @@ internal class SparkRoyaleClasses
 	import spark.components.gridClasses.GridSelectionMode; GridSelectionMode;
 	import spark.components.gridClasses.GridDoubleClickMode; GridDoubleClickMode;
 	import spark.components.gridClasses.GridSortFieldComplex; GridSortFieldComplex;
-	import spark.components.gridClasses.ComplexSortField; ComplexSortField;
 	import spark.components.gridClasses.GridSortFieldSimple; GridSortFieldSimple;
 	
 	import spark.components.gridClasses.IDataGridElement; IDataGridElement;
@@ -63,6 +62,7 @@ internal class SparkRoyaleClasses
 	import spark.events.GridSelectionEvent; GridSelectionEvent;
 	import spark.collections.SubListView; SubListView;
 	import spark.collections.SortField; SortField;
+	import spark.collections.ComplexSortField; ComplexSortField;
 	import spark.components.supportClasses.GroupBase; GroupBase;
 	import spark.components.supportClasses.IDataProviderEnhance; IDataProviderEnhance;
 	import spark.components.Grid; Grid;
