@@ -349,7 +349,7 @@ public class AbstractInvoker extends EventDispatcher
      *
      *  @private
      */
-    mx_internal function resultHandler(event:MessageEvent):void
+    protected function resultHandler(event:MessageEvent):void
     {
         var token:AsyncToken = preHandle(event);
 

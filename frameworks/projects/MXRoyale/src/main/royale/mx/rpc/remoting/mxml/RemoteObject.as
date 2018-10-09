@@ -21,6 +21,8 @@ package mx.rpc.remoting.mxml
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.core.IDocument;
+
 COMPILE::SWF
 {
     import flash.events.ErrorEvent;        
@@ -98,7 +100,7 @@ use namespace mx_internal;
  *  @productversion Flex 3
  *
  */
-public dynamic class RemoteObject extends mx.rpc.remoting.RemoteObject implements IMXMLSupport, IMXMLObject
+public dynamic class RemoteObject extends mx.rpc.remoting.RemoteObject implements IMXMLSupport, IMXMLObject, IDocument
 {
     //--------------------------------------------------------------------------
     //
@@ -240,18 +242,35 @@ public dynamic class RemoteObject extends mx.rpc.remoting.RemoteObject implement
 
         initialize();
     }
+    
+    public function setDocument(document:Object, id:String = null):void
+    {
+        this.document = document;
+        this.id = id;
+        
+        initialize();
+    }
 
 
-
+    public function getDocument():Object
+    {
+        return document;
+    }
+    
+    public function getID():String
+    {
+        return id;
+    }
+    
     //--------------------------------------------------------------------------
     //
     // Variables
     // 
     //--------------------------------------------------------------------------
 
-    mx_internal var document:Object;
+    private var document:Object;
     
-    mx_internal var id:String;
+    private var id:String;
     
 }
 

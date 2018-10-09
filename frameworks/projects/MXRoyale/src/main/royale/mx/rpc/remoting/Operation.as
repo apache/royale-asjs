@@ -19,9 +19,7 @@
 
 package mx.rpc.remoting
 {
-
 import mx.core.mx_internal;
-//import mx.managers.CursorManager;
 import mx.messaging.events.MessageEvent;
 import mx.messaging.messages.AsyncMessage;
 import mx.messaging.messages.IMessage;
@@ -35,7 +33,11 @@ import mx.rpc.AsyncToken;
 import mx.rpc.Fault;
 import mx.rpc.events.FaultEvent;
 import mx.rpc.mxml.Concurrency;
+import mx.rpc.remoting.mxml.RemoteObject;
 import mx.utils.ObjectUtil;
+
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.ValueChangeEvent;
 
 use namespace mx_internal;
 
@@ -131,7 +133,7 @@ public class Operation extends AbstractOperation
             return _makeObjectsBindable;
         }
 
-        return RemoteObject(service).makeObjectsBindable;    
+        return (service as mx.rpc.remoting.RemoteObject).makeObjectsBindable;    
     }
 
     override public function set makeObjectsBindable(b:Boolean):void
@@ -257,7 +259,7 @@ public class Operation extends AbstractOperation
         var message:RemotingMessage = new RemotingMessage();
         message.operation = name;
         message.body = args;
-        message.source = RemoteObject(service).source;
+        message.source = (service as mx.rpc.remoting.RemoteObject).source;
 
         return invoke(message);
     }
@@ -327,6 +329,21 @@ public class Operation extends AbstractOperation
         return false;
     }
 
+    override protected function resultHandler(event:MessageEvent):void
+    {
+        super.resultHandler(event);
+        // fake an event that the service changed to force bindings to evaluate.
+        // The binding subsystem has trouble tracking the dynamically added
+        // operations.
+        if (remoteObject is mx.rpc.remoting.mxml.RemoteObject)
+        {
+            var document:Object = (remoteObject as mx.rpc.remoting.mxml.RemoteObject).getDocument();
+            (document as IEventDispatcher).dispatchEvent(ValueChangeEvent.createUpdateEvent(document, 
+                (remoteObject as mx.rpc.remoting.mxml.RemoteObject).getID(),
+                remoteObject, remoteObject));
+        }
+    }
+    
     //--------------------------------------------------------------------------
     //
     // Variables
