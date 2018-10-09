@@ -33,6 +33,8 @@ package spark.components.supportClasses
 //import flash.geom.Rectangle;
 
 //import mx.core.ILayoutElement;
+import org.apache.royale.geom.Point;
+	
 import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
@@ -1464,8 +1466,9 @@ public class GroupBase extends UIComponent implements ILayoutParent
     /**
      *  @private 
      */ 
-    /* override public function globalToLocal(point:Point):Point
+    override public function globalToLocal(point:Point):Point
     {
+		/*
         if (resizeMode == ResizeMode.SCALE && _layoutFeatures != null)
         {
             // If resize mode is scale, then globalToLocal shouldn't account for 
@@ -1474,14 +1477,14 @@ public class GroupBase extends UIComponent implements ILayoutParent
             var sY:Number = _layoutFeatures.stretchY;
             _layoutFeatures.stretchX = 1;
             _layoutFeatures.stretchY = 1;
-            applyComputedMatrix();
+            //applyComputedMatrix();
             
             var p:Point = super.globalToLocal(point);
             
             // Restore stretch
             _layoutFeatures.stretchX = sX;
             _layoutFeatures.stretchY = sY;
-            applyComputedMatrix();
+            //applyComputedMatrix();
             
             return p;
         }
@@ -1489,7 +1492,9 @@ public class GroupBase extends UIComponent implements ILayoutParent
         {
             return super.globalToLocal(point);    
         }
-    } */
+		*/
+		return null;
+    }
     
     /**
      *  @private 
