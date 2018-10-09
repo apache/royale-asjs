@@ -694,7 +694,8 @@ public class AbstractMessage implements IMessage
         {
             var name:String = String(propertyNames[i]);
             //var value:String = RPCObjectUtil.toString(attributes[name]);
-            var value:String = attributes[name].toString();
+            var attrValue:Object = attributes[name];
+            var value:String = attrValue == null ? "null" : attrValue.toString();
             result += RPCStringUtil.substitute("\n  {0}={1}", name, value);
         }
 
