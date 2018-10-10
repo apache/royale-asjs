@@ -70,7 +70,6 @@
       <plugin>
         <groupId>nl.geodienstencentrum.maven</groupId>
         <artifactId>sass-maven-plugin</artifactId>
-        <version>3.5.4</version>
         <configuration>
           <!-- <sassOptions>
             <style>:compressed</style>
