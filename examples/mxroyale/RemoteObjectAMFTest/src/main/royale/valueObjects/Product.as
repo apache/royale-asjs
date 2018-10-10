@@ -27,6 +27,7 @@ package valueObjects
 
 		private var _name:String;
 
+        [Bindable("__NoChangeEvent__")]
         public function get name():String
         {
             return _name;
@@ -39,6 +40,7 @@ package valueObjects
 
         private var _description:String;
 
+        [Bindable("__NoChangeEvent__")]
         public function get description():String
         {
             return _description;
@@ -51,6 +53,7 @@ package valueObjects
 
         private var _taxonomy:Taxonomy;
 
+        [Bindable("__NoChangeEvent__")]
         public function get taxonomy():Taxonomy
         {
             return _taxonomy;
@@ -64,6 +67,7 @@ package valueObjects
         // collection of zones (Zone), we can use Array and ArrayList
         private var _zones:Array;
 
+        [Bindable("__NoChangeEvent__")]
         public function get zones():Array
         {
             return _zones;
@@ -76,6 +80,7 @@ package valueObjects
 
         private var _flavors:Array = null;
 
+        [Bindable("__NoChangeEvent__")]
         public function get flavors():Array
         {
             return _flavors;
