@@ -20,9 +20,12 @@
 package mx.net
 {
     import mx.messaging.messages.IMessage;
+    import mx.messaging.messages.ErrorMessage;
     
+    import org.apache.royale.net.Responder;
+    import org.apache.royale.net.remoting.amf.AMFNetConnection;
     import org.apache.royale.events.EventDispatcher;
-
+    
 /**
  *  The NetConnection class mimics the Flash NetConnection.
  *  
@@ -33,6 +36,13 @@ package mx.net
  */
 public class NetConnection extends EventDispatcher
 {
+    
+    private var nc:AMFNetConnection = new AMFNetConnection();
+    
+    public function NetConnection()
+    {
+        nc.errorClass = ErrorMessage;    
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -54,6 +64,8 @@ public class NetConnection extends EventDispatcher
         
     }
 
+    private var _connected:Boolean;
+    
     /**
      *  connected
      * 
@@ -63,7 +75,10 @@ public class NetConnection extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion ApacheFlex 4.10
      */
-    public var connected:Boolean;
+    public function get connected():Boolean
+    {
+        return _connected;
+    }
     
     /**
      *  client
@@ -87,6 +102,7 @@ public class NetConnection extends EventDispatcher
      */
     public var objectEncoding:uint;
     
+    private var _uri:String;
     /**
      *  uri
      * 
@@ -96,7 +112,10 @@ public class NetConnection extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion ApacheFlex 4.10
      */
-    public var uri:String;
+    public function get uri():String
+    {
+        return _uri;
+    }
     
     /**
      *  connect
@@ -109,7 +128,8 @@ public class NetConnection extends EventDispatcher
      */
     public function connect(url:String):void
     {
-        
+        _uri = url;
+        nc.connect(url);
     }
 
     /**
@@ -121,9 +141,14 @@ public class NetConnection extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion ApacheFlex 4.10
      */
-    public function call(thisObject:Object, responder:Responder, message:IMessage):void
+    public function call(thisObject:Object, responder:mx.net.Responder, message:IMessage):void
     {
+        client = thisObject;
         
+        var ncResponder:org.apache.royale.net.Responder = 
+                        new org.apache.royale.net.Responder(responder.resultFunction,
+                                                              responder.faultFunction);
+        nc.call(null, ncResponder, message);
     }
 }
 

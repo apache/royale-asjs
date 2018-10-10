@@ -33,7 +33,6 @@ import flash.net.ObjectEncoding;
     
 import org.apache.royale.net.Responder;
 import org.apache.royale.net.remoting.messages.ActionMessage;
-import org.apache.royale.net.remoting.messages.ErrorMessage;
 import org.apache.royale.net.remoting.messages.MessageBody;
 import org.apache.royale.net.remoting.messages.MessageHeader;
     
@@ -73,6 +72,16 @@ public class AMFNetConnection
             nc.client = this;
         }
     }
+    
+    /**
+     *  The class to use to test if success or failure
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.5 
+     */
+    public var errorClass:Class;
     
     private var url:String;
     
@@ -273,7 +282,7 @@ public class AMFNetConnection
                     for (var i:int in message.bodies)
                     {
                         body = message.bodies[i];
-                        if (!(body.data is ErrorMessage))
+                        if (!(body.data is errorClass))
                             responder.onSuccess(body.data);
                         else
                             responder.onFailure(body.data);
