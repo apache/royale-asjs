@@ -278,7 +278,6 @@ package org.apache.royale.binding
         }
 
         /**
-         * @royaleignorecoercion org.apache.royale.core.IStrand
          */
         private function deferredBindingsHandler(event:Event):void
         {
