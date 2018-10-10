@@ -161,7 +161,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public static function validateAll(validators:Array):Array
+    public static function validateAll(validators:Array):Array
     {   
         var result:Array = [];
 
@@ -179,7 +179,7 @@ public class Validator extends EventDispatcher
         }   
         
         return result;
-    } */
+    }
     
 
     /**
