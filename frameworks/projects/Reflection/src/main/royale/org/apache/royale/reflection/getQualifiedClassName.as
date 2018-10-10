@@ -39,10 +39,18 @@ COMPILE::SWF
         }
         COMPILE::JS
         {
+            var defName:String = typeof(value);
+            if (defName === "string") return "String";
+            if (defName === "number") return "Number";
+            if (defName === "boolean") return "Boolean";
+            if (defName === "undefined") return null;
+            if (value === null) return null;
+            if (Array.isArray(value)) return "Array";
+            
             if (value.ROYALE_CLASS_INFO == null)
             {
                 if (value.prototype.ROYALE_CLASS_INFO == null)
-                    return null;
+                    return "Object";
                 value = value.prototype;
             }
             return value.ROYALE_CLASS_INFO.names[0].qName;
