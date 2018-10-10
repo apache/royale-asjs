@@ -198,7 +198,7 @@ public class ServerConfig
      *  as is done in getChannelSet(String).
      *  Default factory is the base ChannelSet class.
      */
-    public static var channelSetFactory:Class = ChannelSet;
+    public static var channelSetFactory:Class; // = ChannelSet; don't make this static
 
     //--------------------------------------------------------------------------
     //
@@ -754,6 +754,8 @@ public class ServerConfig
         }
         else
         {
+            if (channelSetFactory == null)
+                channelSetFactory = ChannelSet;
             var channelSet:ChannelSet = new channelSetFactory(channelIds, clustered);
             var heartbeatMillis:int = serverConfigData["flex-client"]["heartbeat-interval-millis"];
             if (heartbeatMillis > 0) channelSet.heartbeatInterval = heartbeatMillis;
