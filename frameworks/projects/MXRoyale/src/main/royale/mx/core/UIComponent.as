@@ -64,6 +64,7 @@ import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.events.ValueChangeEvent;
@@ -3380,10 +3381,13 @@ COMPILE::JS
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
      */
     public function invalidateSize():void
     {
-        trace("invalidateSize not implemented");
+        if (parent)
+            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded")); // might cause too many layouts
     }
 
     /**
