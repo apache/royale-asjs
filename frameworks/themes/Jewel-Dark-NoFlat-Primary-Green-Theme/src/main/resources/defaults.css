@@ -819,7 +819,7 @@ a:active {
 
 .jewel.tooltip {
   color: #FFFFFF;
-  background: #2e8e39;
+  background: #404040;
   box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4);
   animation: slide-up 0.4s ease;
 }
