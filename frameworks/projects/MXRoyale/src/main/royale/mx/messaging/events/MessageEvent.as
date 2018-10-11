@@ -244,9 +244,9 @@ public class MessageEvent extends Event
     }
     
     COMPILE::JS
-    public function formatToString(className:String, ... arguments):String
+    public function formatToString(className:String, ... args):String
     {
-        for each (var s:String in arguments)
+        for each (var s:String in args)
           className += " " + s;
           
         return className;
