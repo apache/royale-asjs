@@ -2548,13 +2548,11 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         */
         root.loaderInfo.removeEventListener(Event.INIT, initHandler);
 
-        /*
         if (!SystemManagerGlobals.info)
             SystemManagerGlobals.info = info();
         if (!SystemManagerGlobals.parameters)
             SystemManagerGlobals.parameters = loaderInfo.parameters;
 
-        */
         var docFrame:int = (totalFrames == 1)? 0 : 1;
         addEventListener(Event.ENTER_FRAME, docFrameListener);
         addFrameScript(docFrame, docFrameHandler);
