@@ -35,6 +35,7 @@
   <modules>
     <module>ControlsExample</module>
     <module>HelloWorld</module>
+    <module>RemoteObjectAMFTest</module>
   </modules>
 
   <build>
