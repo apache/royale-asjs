@@ -41,6 +41,12 @@
         <configuration>
           <mainClass>RoyaleStore.mxml</mainClass>
           <removeCirculars>true</removeCirculars>
+          <namespaces>
+              <namespace>
+                  <uri>http://ns.adobe.com/mxml/2009</uri>
+                  <manifest>${project.basedir}/../../../frameworks/mxml-2009-manifest.xml</manifest>
+              </namespace>
+          </namespaces>
         </configuration>
       </plugin>
     </plugins>

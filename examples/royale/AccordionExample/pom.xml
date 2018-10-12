@@ -46,6 +46,12 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>AccordionExample.mxml</mainClass>
+          <namespaces>
+            <namespace>
+              <uri>http://ns.adobe.com/mxml/2009</uri>
+              <manifest>${project.basedir}/../../../frameworks/mxml-2009-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
         </configuration>
       </plugin>
     </plugins>
