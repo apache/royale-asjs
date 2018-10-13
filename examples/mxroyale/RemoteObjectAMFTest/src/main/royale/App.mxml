@@ -30,7 +30,10 @@ limitations under the License.
             import valueObjects.Product;
             import valueObjects.Zone;
             import mx.rpc.events.FaultEvent;
+            import mx.rpc.events.ResultEvent;
             import mx.rpc.remoting.Operation;
+            import mx.rpc.AsyncToken;
+            import mx.rpc.Responder;
             
 			private function onFault(evt:FaultEvent):void
 			{
@@ -42,6 +45,23 @@ limitations under the License.
 				}
 				//trace("Fault = " + evt.message);
 			}
+
+            // Test AsyncToken - Responder
+            private var token:AsyncToken;
+            private var responder:Responder;
+            private function sendEcho(evt:MouseEvent):void
+			{
+                responder = new Responder(onEchoResult, onFault);
+                token = serviceResp.echo.send(nameResp_txt.text);
+                token.addResponder(responder);
+                trace(token);
+            }
+
+            private function onEchoResult(event:ResultEvent):void
+			{
+                trace("[onEchoResult]", event);
+                result_txt.text = event.result as String;
+            }
 		]]>
 	</fx:Script>
 
@@ -58,7 +78,10 @@ limitations under the License.
             </mx:method>
             <mx:method name="getSomeProduct">
             </mx:method>
-        </mx:RemoteObject>        
+        </mx:RemoteObject>
+        <mx:RemoteObject id="serviceResp" fault="onFault(event)"
+                         endpoint="http://localhost:8080/messagebroker/websocket-amf"
+                         destination="exampleService"/>
     </fx:Declarations>
     
     <mx:beads>
@@ -70,12 +93,22 @@ limitations under the License.
     <mx:VBox width="400">
         <mx:HBox>
             <mx:VBox>
-                <mx:Label text="Name to send via AMF}"/>
+                <mx:Label text="Name to send via AMF"/>
                 <mx:TextInput id="name_txt"/>                
             </mx:VBox>
             <mx:Button label="Send to Name" click="service.echo.send()"/>        
         </mx:HBox>        
         <mx:Label text="{(service.echo as Operation).lastResult}"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:HBox>
+            <mx:VBox>
+                <mx:Label text="Name to send via AMF (With Responder)"/>
+                <mx:TextInput id="nameResp_txt"/>                
+            </mx:VBox>
+            <mx:Button label="Send to Name (With Responder)" click="sendEcho(event)"/>        
+        </mx:HBox>        
+        <mx:Label id="result_txt"/>
     </mx:VBox>
     <mx:VBox width="400">
         <mx:Button label="Get Array Of Objects" click="service.getObjectArray1.send()"/>

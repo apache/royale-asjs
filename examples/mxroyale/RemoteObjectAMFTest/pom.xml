@@ -32,12 +32,6 @@
 
   <name>Apache Royale: Examples: Royale: RemoteObjectAMFTest-MXRoyale</name>
 
-  <properties>
-    <!-- Customize MDL colors using this the tool at : https://getmdl.io/customize/index.html -->
-    <primary>indigo</primary>
-    <accent>pink</accent>
-  </properties>
-
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
     <resources>
@@ -55,7 +49,6 @@
           <mainClass>App.mxml</mainClass>
           <targets>SWF,JSRoyale</targets>
           <!-- <debug>false</debug> -->
-          <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>
       </plugin>
       <plugin>
