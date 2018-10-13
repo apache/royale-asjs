@@ -168,7 +168,8 @@ public class DropDownList extends DropDownListBase
     //
     //--------------------------------------------------------------------------
 
-    /* private var labelChanged:Boolean = false;
+	private var labelChanged:Boolean = false;
+    /* 
     private var labelDisplayExplicitWidth:Number; 
     private var labelDisplayExplicitHeight:Number; 
     private var sizeSetByTypicalItem:Boolean;
@@ -204,10 +205,10 @@ public class DropDownList extends DropDownListBase
     /**
      *  @private
      */
-    /* private var _prompt:String = "";
+    private var _prompt:String = "";
 
     [Inspectable(category="General", defaultValue="")]
-     */
+    
     /**
      *  The prompt for the DropDownList control. 
      *  The prompt is a String that is displayed in the
@@ -223,15 +224,15 @@ public class DropDownList extends DropDownListBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get prompt():String
+    public function get prompt():String
     {
         return _prompt;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set prompt(value:String):void
+    public function set prompt(value:String):void
     {
         if (_prompt == value)
             return;
@@ -239,7 +240,7 @@ public class DropDownList extends DropDownListBase
         _prompt = value;
         labelChanged = true;
         invalidateProperties();
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //

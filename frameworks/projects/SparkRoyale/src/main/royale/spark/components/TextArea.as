@@ -573,12 +573,12 @@ public class TextArea extends SkinnableTextBase
     /**
      *  @private
      */
-    /* public function set textFlow(value:TextFlow):void
+    public function set textFlow(value:TextFlow):void
     {
         // Of 'text', 'textFlow', and 'content', the last one set wins.
 
-        setTextFlow(value);
-    } */
+        // setTextFlow(value);
+    } 
 
     //----------------------------------
     //  widthInChars

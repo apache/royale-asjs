@@ -66,6 +66,9 @@ internal class SparkRoyaleClasses
 	import spark.components.supportClasses.GroupBase; GroupBase;
 	import spark.components.supportClasses.IDataProviderEnhance; IDataProviderEnhance;
 	import spark.components.Grid; Grid;
+	import spark.components.DataGrid; DataGrid;
+	import spark.components.Form; Form;
+	import spark.core.IDisplayText; IDisplayText;
 	
 }
 

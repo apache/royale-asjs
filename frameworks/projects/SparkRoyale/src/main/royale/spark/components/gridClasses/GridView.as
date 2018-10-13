@@ -72,12 +72,12 @@ public class GridView extends Group
     /**
      *  Return this GridView's GridViewLayout.
      */
-	/*
+	
     public function get gridViewLayout():GridViewLayout
     {
         return layout as GridViewLayout;
     }    
-    */
+    
     /**
      *  True if this GridView's bounds contain the event.
      * 
