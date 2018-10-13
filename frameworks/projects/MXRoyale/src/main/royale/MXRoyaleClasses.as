@@ -160,6 +160,22 @@ internal class MXRoyaleClasses
 	import mx.core.LayoutDirection; LayoutDirection;
 	import mx.styles.IAdvancedStyleClient; IAdvancedStyleClient;
 	import mx.collections.IComplexSortField; IComplexSortField;
+	import mx.core.IIMESupport; IIMESupport;
+	import mx.core.InteractionMode; InteractionMode;
+	import mx.events.TouchInteractionEvent; TouchInteractionEvent;
+	import mx.collections.ComplexFieldChangeWatcher; ComplexFieldChangeWatcher;
+	import mx.binding.BindabilityInfo; BindabilityInfo;
+	import mx.binding.utils.ChangeWatcher; ChangeWatcher;
+	import mx.validators.IValidatorListener; IValidatorListener;
+	import mx.managers.IToolTipManagerClient; IToolTipManagerClient;
+	import mx.events.ToolTipEvent; ToolTipEvent;
+	import mx.core.Singleton; Singleton;
+	import mx.effects.IAbstractEffect; IAbstractEffect;
+	import mx.managers.ToolTipManager; ToolTipManager;
+	import mx.managers.IToolTipManager2; IToolTipManager2;
+	import mx.utils.PopUpUtil; PopUpUtil;
+	import mx.preloaders.DownloadProgressBar; DownloadProgressBar;
+	
 
 	COMPILE::JS
     {
