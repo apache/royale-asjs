@@ -27,10 +27,10 @@ import mx.events.PropertyChangeEventKind;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.events.IEventDispatcher;
-/*
+
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
-*/
+
 import mx.utils.ArrayUtil;
 /*
 import mx.utils.UIDUtil;
@@ -53,6 +53,14 @@ import org.apache.royale.reflection.getQualifiedClassName;
  *  @productversion Flex 3
  */
 [Event(name="collectionChange", type="mx.events.CollectionEvent")]
+
+//--------------------------------------
+//  Other metadata
+//--------------------------------------
+
+[RemoteClass(alias="flex.messaging.io.ArrayList")]
+
+//[ResourceBundle("collections")]
 
 [DefaultProperty("source")]
 
@@ -121,8 +129,8 @@ public class ArrayList extends EventDispatcher
      *  @private
      *  Used for accessing localized Error messages.
      */
-//    private var resourceManager:IResourceManager =
-//        ResourceManager.getInstance();
+    private var resourceManager:IResourceManager =
+        ResourceManager.getInstance();
                                     
     /**
      *  @private 
@@ -296,10 +304,9 @@ public class ArrayList extends EventDispatcher
     {
         if (index < 0 || index >= length)
         {
-//            var message:String = resourceManager.getString(
-//                "collections", "outOfBounds", [ index ]);
-//            throw new RangeError(message);
-			trace("getItemAt throwing RangeError - not implemented");
+            var message:String = resourceManager.getString(
+                "collections", "outOfBounds", [ index ]);
+            throw new RangeError(message);
 			return null;
         }
             
@@ -325,10 +332,9 @@ public class ArrayList extends EventDispatcher
     {
         if (index < 0 || index >= length) 
         {
-//            var message:String = resourceManager.getString(
-//                "collections", "outOfBounds", [ index ]);
-//            throw new RangeError(message);
-			trace("setItemAt throwing RangeError - not implemented");
+            var message:String = resourceManager.getString(
+                "collections", "outOfBounds", [ index ]);
+            throw new RangeError(message);
 			return null;
         }
         
@@ -420,10 +426,9 @@ public class ArrayList extends EventDispatcher
         }
         else
         {
-//            var message:String = resourceManager.getString(
-//                "collections", "outOfBounds", [ index ]);
-//            throw new RangeError(message);
-			trace("addItemAt throwing RangeError - not implemented");
+            var message:String = resourceManager.getString(
+                "collections", "outOfBounds", [ index ]);
+            throw new RangeError(message);
 			return;
         }
 
@@ -551,10 +556,9 @@ public class ArrayList extends EventDispatcher
         }
         else
         {
-//            var message:String = resourceManager.getString(
-//                "collections", "outOfBounds", [ index ]);
-//            throw new RangeError(message);
-			trace("removeItemAt throwing RangeError - not implemented");
+            var message:String = resourceManager.getString(
+                "collections", "outOfBounds", [ index ]);
+            throw new RangeError(message);
 			return null;
         }
 
