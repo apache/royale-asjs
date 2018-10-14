@@ -2944,6 +2944,8 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         var body:HTMLElement = document.getElementsByTagName('body')[0];
         body.appendChild(element);
         
+        SystemManagerGlobals.info = info();
+        
         var mixinList:Array = info()["mixins"];
         if (mixinList && mixinList.length > 0)
         {
