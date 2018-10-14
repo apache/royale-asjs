@@ -62,7 +62,7 @@ package spark.components
     import mx.events.DragEvent;
     import mx.events.FlexEvent;
     import mx.events.SandboxMouseEvent;
-    import mx.events.TouchInteractionEvent;
+    // import mx.events.TouchInteractionEvent;
     import mx.managers.CursorManager;
     import mx.managers.CursorManagerPriority;
     import mx.managers.DragManager;
