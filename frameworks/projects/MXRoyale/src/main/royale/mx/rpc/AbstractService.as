@@ -488,7 +488,8 @@ public dynamic class AbstractService extends Proxy implements IEventDispatcher
     COMPILE::JS
     override public function callProperty(name:*, ... args:Array):*
     {
-        return getOperation(getLocalName(name)).send.apply(null, args);
+        var op:AbstractOperation = getOperation(getLocalName(name))
+        return op.send.apply(op, args);
     }
     
     //used to store the nextName values
