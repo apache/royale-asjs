@@ -56,6 +56,7 @@
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
+	<component id="CompressedRemoteObject" class="mx.rpc.remoting.CompressedRemoteObject" />
 	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
     <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation"/>
 	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
