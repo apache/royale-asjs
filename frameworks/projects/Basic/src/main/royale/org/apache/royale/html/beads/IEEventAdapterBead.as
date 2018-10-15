@@ -26,9 +26,8 @@ package org.apache.royale.html.beads
 	}
 
 	/**
-	 *  The IEEventAdapterBead is used to get URL parameter values specified
-     *  when loading an application. It's different than the ApplicationParametersBead
-     *  in that URL parameter keys are case insensitive.
+	 *  The IEEventAdapterBead is used to enable correct handling of MouseEvents and KeyboardEvents in IE.
+	 *  This is needed because IE does not support the <code>name</code> property.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -54,10 +53,10 @@ package org.apache.royale.html.beads
 		{
 			COMPILE::JS
 			{
-				if(typeof window["KeyboardEvent"].prototype["name"] == "undefined")
+				if(typeof window["KeyboardEvent"]["name"] == "undefined")
 				{// IE does not have a prototype name property
-					defineSimpleGetter(window["KeyboardEvent"].prototype,"name","KeyboardEvent");
-					defineSimpleGetter(window["MouseEvent"].prototype,"name","MouseEvent");
+					defineSimpleGetter(window["KeyboardEvent"],"name","KeyboardEvent");
+					defineSimpleGetter(window["MouseEvent"],"name","MouseEvent");
 				}
 			}
 		}
