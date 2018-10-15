@@ -3,7 +3,7 @@
     "compilerOptions": {
         "debug": true,
         "targets": ["SWF","JSRoyale"],
-        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/styles.css",
+        // "theme": "${royalelib}/themes/JewelTheme/src/main/resources/styles.css",
         "source-map": true
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
