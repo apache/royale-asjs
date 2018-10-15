@@ -162,7 +162,6 @@ internal class MXRoyaleClasses
 	import mx.collections.IComplexSortField; IComplexSortField;
 	import mx.core.IIMESupport; IIMESupport;
 	import mx.core.InteractionMode; InteractionMode;
-	import mx.events.TouchInteractionEvent; TouchInteractionEvent;
 	import mx.collections.ComplexFieldChangeWatcher; ComplexFieldChangeWatcher;
 	import mx.binding.BindabilityInfo; BindabilityInfo;
 	import mx.binding.utils.ChangeWatcher; ChangeWatcher;
