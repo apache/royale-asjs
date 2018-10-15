@@ -38,7 +38,7 @@ internal class MXRoyaleClasses
 	import mx.graphics.IFill; IFill;
 	import mx.core.EventPriority; EventPriority;
 	import mx.core.IFactory; IFactory;
-    import mx.core.ILayoutElement; ILayoutElement;
+	import mx.core.ILayoutElement; ILayoutElement;
 	import mx.collections.CursorBookmark; CursorBookmark;
 	import mx.collections.ICollectionView; ICollectionView;
 	import mx.collections.IViewCursor; IViewCursor;
@@ -70,8 +70,8 @@ internal class MXRoyaleClasses
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
-    import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
-    import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
+	import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
+	import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
@@ -96,7 +96,7 @@ internal class MXRoyaleClasses
 	import mx.charts.chartClasses.Series; Series;
 	import mx.charts.chartClasses.GraphicsUtilities; GraphicsUtilities; 
 	import mx.effects.easing.Bounce; Bounce;
-    import mx.effects.easing.Exponential; Exponential;
+	import mx.effects.easing.Exponential; Exponential;
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
 	import mx.effects.TweenEffect; TweenEffect; 
 	import mx.rpc.Fault; Fault;
@@ -107,9 +107,9 @@ internal class MXRoyaleClasses
 	import mx.printing.FlexPrintJobScaleType; FlexPrintJobScaleType; 
 	import mx.skins.RectangularBorder; RectangularBorder;
 	import mx.styles.IStyleClient; IStyleClient; 
-    import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
+	import mx.styles.ISimpleStyleClient; ISimpleStyleClient; 
 	import mx.styles.StyleProxy; StyleProxy;
-    import mx.styles.StyleManagerImpl; StyleManagerImpl;
+	import mx.styles.StyleManagerImpl; StyleManagerImpl;
 	import mx.modules.IModuleInfo; IModuleInfo;
 	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
 	import mx.printing.FlexPrintJob; FlexPrintJob; 
@@ -174,7 +174,6 @@ internal class MXRoyaleClasses
 	import mx.managers.ToolTipManager; ToolTipManager;
 	import mx.managers.IToolTipManager2; IToolTipManager2;
 	import mx.utils.PopUpUtil; PopUpUtil;
-	import mx.preloaders.DownloadProgressBar; DownloadProgressBar;
 	
 
 	COMPILE::JS
