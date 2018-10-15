@@ -23,8 +23,7 @@ import mx.core.IInvalidating;
 import mx.core.IVisualElement;
 import mx.managers.ILayoutManagerClient;
 
-// import spark.components.DataGrid;
-import mx.controls.DataGrid;
+import spark.components.DataGrid;
 
 /**
  *  Visual elements of the Spark DataGrid control that must 

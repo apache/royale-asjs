@@ -31,7 +31,7 @@ package spark.components
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.geom.Rectangle;
 	
-	import mx.controls.DataGrid;
+	//import mx.controls.DataGrid;
 	
 	import mx.collections.ArrayList;
 	import mx.collections.IList;
