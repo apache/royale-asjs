@@ -130,6 +130,11 @@ public dynamic class Proxy extends EventDispatcher
         valueMap[propName] = value;
     }
     
+    public function callProperty(propName:*, ... args:Array):*
+    {
+        return valueMap[propName].apply(this, args);
+    }
+    
     public function hasProperty(propName:String):Boolean
     {
 		return valueMap.hasOwnProperty(propName);
