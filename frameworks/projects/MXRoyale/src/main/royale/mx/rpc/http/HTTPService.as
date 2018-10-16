@@ -124,6 +124,25 @@ public class HTTPService extends EventDispatcher
     // 
     //--------------------------------------------------------------------------
       
+	/**
+	 *  Indicates that the HTTPService object uses the DefaultHTTP destination.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const DEFAULT_DESTINATION_HTTP:String = "DefaultHTTP";
+	
+	/**
+	 *  Indicates that the HTTPService object uses the DefaultHTTPS destination.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const DEFAULT_DESTINATION_HTTPS:String = "DefaultHTTPS";
 
     /**
      * @private
