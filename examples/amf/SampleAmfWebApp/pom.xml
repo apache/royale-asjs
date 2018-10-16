@@ -77,7 +77,8 @@
           <overlays>
             <overlay>
               <groupId>org.apache.royale.examples</groupId>
-              <artifactId>RemoteObjectAMFTest</artifactId>
+              <!-- <artifactId>RemoteObjectAMFTest</artifactId> -->
+              <artifactId>RemoteObjectAMFTest-MXRoyale</artifactId>
               <targetPath>public</targetPath>
             </overlay>
           </overlays>
@@ -124,9 +125,16 @@
       <version>4.7.3</version>
     </dependency>
 
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RemoteObjectAMFTest</artifactId>
+      <version>0.9.5-SNAPSHOT</version>
+      <type>war</type>
+    </dependency> -->
+    
+    <dependency>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RemoteObjectAMFTest-MXRoyale</artifactId>
       <version>0.9.5-SNAPSHOT</version>
       <type>war</type>
     </dependency>
