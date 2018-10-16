@@ -157,17 +157,12 @@ package mx.messaging.channels
 		 *  Because this channel is always "connected", we ignore any connect timeout
 		 *  that is reported.
 		 */
-		/*COMPILE::SWF
+		/*
 		override protected function connectTimeoutHandler(event:TimerEvent):void
 		{
 			// Ignore.
 		}
-		
-		COMPILE::JS
-		override protected function connectTimeoutHandler(event:EventDispatcher):void
-		{
-			// Ignore.
-		}*/
+		*/
 
 		/**
 		 *  Returns the appropriate MessageResponder for the Channel.
@@ -184,19 +179,13 @@ package mx.messaging.channels
 		 *  @productversion BlazeDS 4
 		 *  @productversion LCDS 3 
 		 */
-		COMPILE::SWF
-		override protected function getMessageResponder(agent:MessageAgent, 
-														message:IMessage):MessageResponder
-		{
-			return new DirectHTTPMessageResponder(agent, message, this, new flash.net.URLLoader());
-		}
 		
-		COMPILE::JS
 		override protected function getMessageResponder(agent:MessageAgent, 
 														message:IMessage):MessageResponder
 		{
-			return new DirectHTTPMessageResponder(agent, message, this, new org.apache.royale.net.URLLoader());
+			return new DirectHTTPMessageResponder(agent, message, this, new URLLoader());
 		}
+
 		/**
 		 *  Because this channel doesn't participate in hunting we will always assume
 		 *  that we have connected.
@@ -208,36 +197,10 @@ package mx.messaging.channels
 			connectSuccess();
 		}
 		
-		COMPILE::SWF
 		override protected function internalSend(msgResp:MessageResponder):void
 		{
 			var httpMsgResp:DirectHTTPMessageResponder = DirectHTTPMessageResponder(msgResp);
 			var urlRequest:URLRequest;
-			
-			try
-			{
-				urlRequest = createURLRequest(httpMsgResp.message);
-			}
-			catch(e: MessageSerializationError)
-			{
-				httpMsgResp.agent.fault(e.fault, httpMsgResp.message);
-				return;
-			}
-			
-			var urlLoader:flash.net.URLLoader = httpMsgResp.urlLoader;
-			urlLoader.addEventListener(ErrorEvent.ERROR, httpMsgResp.errorHandler);
-			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, httpMsgResp.errorHandler);
-			urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, httpMsgResp.securityErrorHandler);
-			urlLoader.addEventListener(Event.COMPLETE, httpMsgResp.completeHandler);
-			urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpMsgResp.httpStatusHandler);
-			urlLoader.load(urlRequest);
-		}
-		
-		COMPILE::JS
-		override protected function internalSend(msgResp:MessageResponder):void
-		{
-			var httpMsgResp:DirectHTTPMessageResponder = DirectHTTPMessageResponder(msgResp);
-			var urlRequest:org.apache.royale.net.URLRequest;
 			
 			try
 			{
@@ -257,12 +220,12 @@ package mx.messaging.channels
 			urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpMsgResp.httpStatusHandler);
 			urlLoader.load(urlRequest);
 		}
+
 		/**
 		 * @private
 		 */
 		
 		/*override */
-		COMPILE::SWF
 		mx_internal function createURLRequest(message:IMessage):URLRequest
 		{
 			var httpMsg:HTTPRequestMessage = HTTPRequestMessage(message);
@@ -296,7 +259,12 @@ package mx.messaging.channels
 			
 			if (!contentTypeIsXML)
 			{
-				var urlVariables:flash.net.URLVariables = new flash.net.URLVariables();
+				COMPILE::SWF {
+					var urlVariables:flash.net.URLVariables = new flash.net.URLVariables();
+				}
+				COMPILE::JS {
+					var urlVariables:URLVariables = new URLVariables();
+				}
 				var body:Object = httpMsg.body;
 				for (var p:String in body)
 					urlVariables[p] = httpMsg.body[p];
@@ -338,82 +306,6 @@ package mx.messaging.channels
 			return result;
 		}
 		
-		COMPILE::JS
-		mx_internal function createURLRequest(message:IMessage):URLRequest
-		{
-			var httpMsg:HTTPRequestMessage = HTTPRequestMessage(message);
-			var result:URLRequest = new URLRequest();
-			var url:String = httpMsg.url;
-			var params:String = null;
-			
-			// Propagate our requestTimeout for those platforms
-			// supporting the idleTimeout property on URLRequest.
-			if ("idleTimeout" in result && requestTimeout > 0)
-				result["idleTimeout"] = requestTimeout * 1000;
-			
-			result.contentType = httpMsg.contentType;
-			
-			var contentTypeIsXML:Boolean = 
-				result.contentType == HTTPRequestMessage.CONTENT_TYPE_XML 
-				|| result.contentType == HTTPRequestMessage.CONTENT_TYPE_SOAP_XML;
-			
-			var headers:Object = httpMsg.httpHeaders;
-			if (headers)
-			{
-				var requestHeaders:Array = [];
-				var header:URLRequestHeader;
-				for (var h:String in headers)
-				{
-					header = new URLRequestHeader(h, headers[h]);
-					requestHeaders.push(header);
-				}
-				result.requestHeaders = requestHeaders;
-			}
-			
-			if (!contentTypeIsXML)
-			{
-				var urlVariables:URLVariables = new URLVariables();
-				var body:Object = httpMsg.body;
-				for (var p:String in body)
-					urlVariables[p] = httpMsg.body[p];
-				
-				params = urlVariables.toString();
-			}
-			
-			if (httpMsg.method == HTTPRequestMessage.POST_METHOD || contentTypeIsXML)
-			{
-				result.method = "POST";
-				if (result.contentType == HTTPRequestMessage.CONTENT_TYPE_FORM)
-					result.data = params;
-				else
-				{
-					// For XML content, work around bug 196450 by calling 
-					// XML.toXMLString() ourselves as URLRequest.data uses
-					// XML.toString() hence bug 184950.
-					if (httpMsg.body != null && httpMsg.body is XML)
-						result.data = XML(httpMsg.body).toXMLString();
-					else
-						result.data = httpMsg.body;
-				}
-			}
-			else
-			{
-				if (params && params != "")
-				{
-					url += (url.indexOf("?") > -1) ? '&' : '?';
-					url += params;
-				}
-			}
-			result.url = url;
-			
-			if (NetworkMonitor.isMonitoring())
-			{
-				NetworkMonitor.adjustURLRequest(result, LoaderConfig.url, message.messageId);
-			}
-			
-			return result;
-		}
-		
 		override public function setCredentials(credentials:String, agent:MessageAgent=null, charset:String=null):void
 		{
 			var message:String = resourceManager.getString(
@@ -428,6 +320,7 @@ package mx.messaging.channels
 		private static var clientCounter:uint;
 	}
 }
+
 COMPILE::SWF
 {
 	import flash.events.Event;
@@ -608,16 +501,12 @@ class DirectHTTPMessageResponder extends MessageResponder
 	/**
 	 *  @private
 	 */
-	COMPILE::SWF
+	
 	public function httpStatusHandler(event:HTTPStatusEvent):void
-	{
-		lastStatus = event.status;
-	}
-
-	COMPILE::JS
-	public function httpStatusHandler(event:HTTPStatusEvent):void
-	{
-		// lastStatus = event.status;
+	{	
+		COMPILE::SWF {
+			lastStatus = event.status;
+		}
 	}
 
 	/**
@@ -630,28 +519,7 @@ class DirectHTTPMessageResponder extends MessageResponder
 	 *  @productversion BlazeDS 4
 	 *  @productversion LCDS 3 
 	 */
-	COMPILE::SWF
-	override protected function requestTimedOut():void
-	{
-		urlLoader.removeEventListener(ErrorEvent.ERROR, errorHandler);
-		urlLoader.removeEventListener(IOErrorEvent.IO_ERROR, errorHandler);
-		urlLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-		urlLoader.removeEventListener(Event.COMPLETE, completeHandler);
-		urlLoader.removeEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
-		urlLoader.close();
-		
-		status(null);
-		// send the ack
-		var ack:AcknowledgeMessage = new AcknowledgeMessage();
-		ack.clientId = clientId;
-		ack.correlationId = message.messageId;
-		ack.headers[AcknowledgeMessage.ERROR_HINT_HEADER] = true; // hint there was an error
-		agent.acknowledge(ack, message);
-		// send the fault
-		agent.fault(createRequestTimeoutErrorMessage(), message);
-	}
 
-	COMPILE::JS
 	override protected function requestTimedOut():void
 	{
 		urlLoader.removeEventListener(ErrorEvent.ERROR, errorHandler);
