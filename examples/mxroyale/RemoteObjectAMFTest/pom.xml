@@ -49,6 +49,7 @@
           <mainClass>App.mxml</mainClass>
           <targets>SWF,JSRoyale</targets>
           <debug>false</debug>
+          <additionalCompilerOptions>-source-map=true;-js-dynamic-access-unknown-members=true</additionalCompilerOptions>
         </configuration>
       </plugin>
       <plugin>
