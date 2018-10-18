@@ -60,7 +60,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Event(name="change", type="flash.events.Event")]
+[Event(name="change", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when a user selects a RadioButton component in the group.
