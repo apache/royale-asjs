@@ -27,6 +27,7 @@ package
  */
 internal class CollectionsClasses
 {
+    import org.apache.royale.collections.CollectionUtils; CollectionUtils;
     import org.apache.royale.collections.ArrayList; ArrayList;
 	import org.apache.royale.collections.FlattenedList; FlattenedList;
 	import org.apache.royale.collections.HierarchicalData; HierarchicalData;
