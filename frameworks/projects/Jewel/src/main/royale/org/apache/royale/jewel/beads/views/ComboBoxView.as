@@ -23,21 +23,21 @@ package org.apache.royale.jewel.beads.views
 		import flash.utils.setTimeout;
     }
 	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.core.IComboBoxModel;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.List;
-	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList;
+	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	import org.apache.royale.utils.UIUtils;
@@ -64,7 +64,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 *  The TextInput component of the ComboBox.
 		 * 
-		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.jewel.beads.controls.combobox.IComboBoxView#textinput
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -80,7 +80,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 *  The Button component of the ComboBox.
 		 * 
-		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.jewel.beads.controls.combobox.IComboBoxView#button
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -92,13 +92,13 @@ package org.apache.royale.jewel.beads.views
 			return _button;
 		}
 		
-		private var _combolist:ComboBoxList;
+		private var _comboPopUp:ComboBoxPopUp;
 		private var _list:List;
 		
 		/**
 		 *  The pop-up list component of the ComboBox.
 		 * 
-		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.jewel.beads.controls.combobox.IComboBoxView#popup
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -107,7 +107,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popup():Object
 		{
-			return _combolist;
+			return _comboPopUp;
 		}
 		
 		/**
@@ -131,22 +131,21 @@ package org.apache.royale.jewel.beads.views
 			host.addElement(_textinput);
 			host.addElement(_button);
 			
-			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			model.addEventListener("dataProviderChanged", itemChangeAction);
 			
 			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
-			
-			// set initial value and positions using default sizes
-			//itemChangeAction();
-			//sizeChangeAction();
 		}
+
+		private var model:IComboBoxModel;
 		
+		private var _popUpClass:Class;
 		/**
 		 *  Returns whether or not the pop-up is visible.
 		 * 
-		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.jewel.beads.controls.combobox.IComboBoxView#popUpVisible
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -155,7 +154,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get popUpVisible():Boolean
 		{
-			return _combolist == null ? false : true;
+			return _comboPopUp == null ? false : true;
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
@@ -164,18 +163,19 @@ package org.apache.royale.jewel.beads.views
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value) {
-				var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-				_combolist = new popUpClass() as ComboBoxList;
-				
-				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-				_combolist.model = model;
-				_combolist.list.model = _combolist.model;
+				if(!_popUpClass)
+				{
+					_popUpClass = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+				}
+				_comboPopUp = new _popUpClass() as ComboBoxPopUp;
+				_comboPopUp.model = model;
 
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-				popupHost.popUpParent.addElement(_combolist);
+				popupHost.popUpParent.addElement(_comboPopUp);
 				
-				// popup is ComboBoxList that fills 100% of browser window-> We want the internal List inside to adjust height
-				_list = _combolist.list;
+				// popup is ComboBoxPopUp that fills 100% of browser window-> We want the internal List inside its view to adjust height
+				_list = (_comboPopUp.view as ComboBoxPopUpView).list;
+				// _list.model = _comboPopUp.model;
 				
 				setTimeout(prepareForPopUp,  300);
 
@@ -186,14 +186,14 @@ package org.apache.royale.jewel.beads.views
 
 				autoResizeHandler();
 			}
-			else if(_combolist != null) {
-				UIUtils.removePopUp(_combolist);
+			else if(_comboPopUp != null) {
+				UIUtils.removePopUp(_comboPopUp);
 				COMPILE::JS
 				{
 				document.body.classList.remove("viewport");
 				window.removeEventListener('resize', autoResizeHandler, false);
 				}
-				_combolist = null;
+				_comboPopUp = null;
 			}
 		}
 
@@ -201,7 +201,7 @@ package org.apache.royale.jewel.beads.views
         {
 			COMPILE::JS
 			{
-				_combolist.element.classList.add("open");
+				_comboPopUp.element.classList.add("open");
 				//avoid scroll in html
 				document.body.classList.add("viewport");
 			}
@@ -265,7 +265,7 @@ package org.apache.royale.jewel.beads.views
 			host.width = _textinput.width + _button.width;
 		}
 
-		private var comboList:ComboBoxList;
+		protected var comboList:ComboBoxPopUp;
 		/**
 		 *  Adapt the popup list to the right position taking into account
 		 *  if we are in DESKTOP screen size or in PHONE/TABLET screen size

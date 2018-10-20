@@ -22,7 +22,6 @@ package org.apache.royale.jewel.supportClasses.combobox
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.jewel.List;
     
     //--------------------------------------
     //  Events
@@ -39,7 +38,7 @@ package org.apache.royale.jewel.supportClasses.combobox
     [Event(name="change", type="org.apache.royale.events.Event")]
     
     /**
-     *  The ComboBoxList class is the List class used internally
+     *  The ComboBoxPopUp class is the popup that holds the List used internally
      *  by ComboBox as the dropdown/popup.
      *  
      *  @langversion 3.0
@@ -47,7 +46,7 @@ package org.apache.royale.jewel.supportClasses.combobox
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class ComboBoxList extends StyledUIBase implements IPopUp
+	public class ComboBoxPopUp extends StyledUIBase implements IPopUp
 	{
         /**
          *  Constructor.
@@ -57,35 +56,12 @@ package org.apache.royale.jewel.supportClasses.combobox
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function ComboBoxList()
+		public function ComboBoxPopUp()
 		{
 			super();
-            typeNames = "combobox-popup"
-
-            _list = new List();
+            typeNames = "combobox-popup";
         }
-
-        /**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-            super.addedToParent();
-            addElement(_list);
-        }
-
-        private var _list:List;
-
-        public function get list():List
-        {
-        	return _list;
-        }
-
-        public function set list(value:List):void
-        {
-        	_list = value;
-        }
-
+		
         /**
 		 *  The data for display by the ComboBox.
 		 *
