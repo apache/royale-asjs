@@ -122,21 +122,21 @@ package mx.rpc.remoting
                 if (included && excludeClasses && excludeClasses.length > 0) {
                     included = excludeClasses.indexOf(parameterClassName) == -1;
                 }
-                if (included) {
-                    COMPILE::SWF{
-                    var byteArray:ByteArray = new ByteArray();
-                    byteArray.writeObject(parameters[i]);
-                    byteArray.compress();
-                    parameters[i] = byteArray;
-                    }
-                    COMPILE::JS
-                    {
+                // if (included) {
+                //     COMPILE::SWF{
+                //     var byteArray:ByteArray = new ByteArray();
+                //     byteArray.writeObject(parameters[i]);
+                //     byteArray.compress();
+                //     parameters[i] = byteArray;
+                //     }
+                //     COMPILE::JS
+                //     {
                     // var bytearray:AMFBinaryData = new AMFBinaryData();
                     // bytearray.writeObject(parameter[i]);
                     // window["pako"].deflate(bytearray)
                     // parameter[i] = bytearray;
-                    }
-                }
+                //     }
+                // }
             }
             return parameters;
         }

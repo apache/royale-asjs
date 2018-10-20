@@ -203,7 +203,7 @@ public class Operation extends AbstractOperation
     //---------------------------------
 
     /**
-     * @inheritDoc
+     * inheritDoc
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
@@ -265,7 +265,7 @@ public class Operation extends AbstractOperation
     }
 
     /**
-     * @inheritDoc
+     * inheritDoc
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
@@ -274,10 +274,10 @@ public class Operation extends AbstractOperation
      */
     override public function cancel(id:String = null):AsyncToken
     {
-        if (showBusyCursor)
-        {
+        // if (showBusyCursor)
+        // {
 //            CursorManager.removeBusyCursor();
-        }
+        // }
         return super.cancel(id);
     }
 
@@ -289,10 +289,10 @@ public class Operation extends AbstractOperation
 
     override mx_internal function invoke(message:IMessage, token:AsyncToken = null):AsyncToken
     {
-        if (showBusyCursor)
-        {
+        // if (showBusyCursor)
+        // {
 //            CursorManager.setBusyCursor();
-        }
+        // }
 
         return super.invoke(message, token);
     }
@@ -302,10 +302,10 @@ public class Operation extends AbstractOperation
      */
     override mx_internal function preHandle(event:MessageEvent):AsyncToken
     {
-        if (showBusyCursor)
-        {
+        // if (showBusyCursor)
+        // {
 //            CursorManager.removeBusyCursor();
-        }
+        // }
 
         var wasLastCall:Boolean = activeCalls.wasLastCall(AsyncMessage(event.message).correlationId);
         var token:AsyncToken = super.preHandle(event);
