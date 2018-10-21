@@ -68,6 +68,7 @@ internal class MXRoyaleClasses
 	import mx.effects.Tween; Tween;
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
+	import mx.rpc.http.mxml.HTTPService; mx.rpc.http.HTTPService;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
@@ -180,6 +181,12 @@ internal class MXRoyaleClasses
 	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
 	import mx.rpc.http.SerializationFilter; SerializationFilter;
 	import mx.rpc.http.AbstractOperation; AbstractOperation;
+	import mx.utils.NameUtil; NameUtil;
+	import mx.core.IRepeaterClient; IRepeaterClient;
+	import mx.events.MenuEvent; MenuEvent;
+	import mx.rpc.CallResponder; CallResponder;
+	import mx.rpc.http.Operation; Operation;
+	
 
 	COMPILE::JS
     {
