@@ -790,7 +790,7 @@ public class ObjectUtil
             // this test for checking whether an object is dynamic or not is 
             // pretty hacky, but it assumes that no-one actually has a 
             // property defined called "wootHackwoot"
-            object["wootHackwoot"];
+            var o:* = object["wootHackwoot"];
         }
         catch (e:Error)
         {

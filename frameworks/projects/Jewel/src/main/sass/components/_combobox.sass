@@ -56,10 +56,10 @@ j|ComboBox
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel")
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController")
-    IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxList")
+    IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp")
 
 
-// ComboBoxList variables
+// ComboBoxPopUp variables
 $combobox-popup-margin-offset: 10px
 $combobox-popup-overlay-color: #000 !default
 $combobox-popup-overlay-opacity: .65 !default
@@ -170,10 +170,11 @@ $combobox-item-min-heigh: 34px
 
 
 // this is a StyledUIBase with a List inside
-j|ComboBoxList
+j|ComboBoxPopUp
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView")
 
 
 // @media -royale-swf
-//     j|ComboBoxList
+//     j|ComboBoxPopUp
 //         IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
 	

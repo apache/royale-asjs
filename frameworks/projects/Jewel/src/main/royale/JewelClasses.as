@@ -62,6 +62,7 @@ package
         import org.apache.royale.jewel.beads.views.DateChooserView; DateChooserView;
         import org.apache.royale.jewel.beads.views.TableView; TableView;
         import org.apache.royale.jewel.beads.views.ComboBoxView; ComboBoxView;
+        import org.apache.royale.jewel.beads.views.ComboBoxPopUpView; ComboBoxPopUpView;
 		import org.apache.royale.jewel.beads.views.SnackbarView; SnackbarView;
 
         
@@ -91,7 +92,7 @@ package
         import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
-        import org.apache.royale.jewel.supportClasses.combobox.ComboBoxList; ComboBoxList;
+        import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;
         import org.apache.royale.jewel.supportClasses.list.DataGroup; DataGroup;
         
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;

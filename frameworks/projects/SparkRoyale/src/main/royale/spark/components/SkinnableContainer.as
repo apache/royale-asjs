@@ -383,6 +383,23 @@ public class SkinnableContainer extends SkinnableComponent
     {
         super();
     }
+    
+    
+    //----------------------------------
+    //  textDecoration
+    //----------------------------------
+	
+    public function get textDecoration():String 
+     {
+	return "";
+     }
+     
+    public function set textDecoration(val:String):void
+     {
+	
+     }
+	
+	
         public function get blockProgression():String 
 	{
 		return "";
