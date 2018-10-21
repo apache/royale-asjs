@@ -73,7 +73,6 @@
 	<component id="Image" class="spark.components.Image"/>
 	<component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
 	<component id="TileLayout" class="spark.layouts.TileLayout"/>
-	<component id="DataGrid" class="spark.components.DataGrid"/>
 
     <component id="Module" class="mx.modules.Module" lookupOnly="true"/>
     <component id="ArrayCollection" class="mx.collections.ArrayCollection" lookupOnly="true"/>
@@ -95,5 +94,12 @@
     <component id="TextLayoutFormat" class="org.apache.royale.textLayout.formats.TextLayoutFormat" lookupOnly="true"/>
     
     <component id="Form" class="spark.components.Form"/>
+	<component id="FormItem" class="spark.components.FormItem"/>
+	<component id="Spacer" class="mx.controls.Spacer" lookupOnly="true"/>
+	<component id="CallResponder" class="mx.rpc.CallResponder" lookupOnly="true"/>
+	<component id="DataGrid" class="spark.components.DataGrid"/>
+	<component id="GridColumn" class="spark.components.gridClasses.GridColumn"/>
+	<component id="ArrayList" class="mx.collections.ArrayList" lookupOnly="true"/>
+	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" lookupOnly="true"/>
     
 </componentPackage>
