@@ -79,9 +79,9 @@ package org.apache.royale.jewel.beads.validators
 		 */
 		public function set strand(value:IStrand):void
 		{
+			hostComponent = value as UIBase;
 			COMPILE::JS
 			{
-				hostComponent = value as UIBase;
 				hostClassList = hostComponent.positioner.classList;
 			}
 		}

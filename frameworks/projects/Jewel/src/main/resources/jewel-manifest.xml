@@ -74,6 +74,7 @@
     <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
     <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>
     <component id="StringValidator" class="org.apache.royale.jewel.beads.validators.StringValidator"/>
+    <component id="DateValidator" class="org.apache.royale.jewel.beads.validators.DateValidator"/>
     <component id="CheckBoxValidator" class="org.apache.royale.jewel.beads.validators.CheckBoxValidator"/>
     <component id="RadioButtonValidator" class="org.apache.royale.jewel.beads.validators.RadioButtonValidator"/>
 

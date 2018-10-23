@@ -22,8 +22,7 @@ package org.apache.royale.jewel.beads.validators
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
-    import org.apache.royale.jewel.Snackbar;
-	import org.apache.royale.core.IChild;
+	import org.apache.royale.jewel.Snackbar;
 
 	/**
 	 *  The FormValidator class is a specialty bead that can be used with
