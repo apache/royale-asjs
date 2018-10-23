@@ -180,8 +180,6 @@ internal class MXRoyaleClasses
 	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
 	import mx.rpc.http.SerializationFilter; SerializationFilter;
 	import mx.rpc.http.AbstractOperation; AbstractOperation;
-	import mx.utils.NameUtil; NameUtil;
-	import mx.core.IRepeaterClient; IRepeaterClient;
 	import mx.events.MenuEvent; MenuEvent;
 	import mx.rpc.CallResponder; CallResponder;
 	import mx.rpc.http.Operation; Operation;
