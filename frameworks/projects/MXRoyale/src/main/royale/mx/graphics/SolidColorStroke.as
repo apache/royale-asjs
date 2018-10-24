@@ -59,6 +59,17 @@ package mx.graphics
         _color = value;
     }
 
+    private var _alpha:Number;
+        
+    public function get alpha():Number
+    {
+        return _alpha;
+    }
+    public function set alpha(value:Number):void
+    {
+        _alpha = value;
+    }
+
 	//----------------------------------
     //  caps
     //----------------------------------

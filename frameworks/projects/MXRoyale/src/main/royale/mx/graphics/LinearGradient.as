@@ -40,6 +40,17 @@ public class LinearGradient implements IFill
     {
     }
 
+    private var _rotation:Number;
+    
+    public function get rotation():Number
+    {
+        return _rotation;
+    }
+    public function set rotation(value:Number):void
+    {
+        _rotation = value;
+    }
+    
     private var _entries:Array;
     
     public function get entries():Array

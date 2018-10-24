@@ -38,6 +38,17 @@ package mx.graphics
         {
         }
 
+        private var _alpha:Number;
+        
+        public function get alpha():Number
+        {
+            return _alpha;
+        }
+        public function set alpha(value:Number):void
+        {
+            _alpha = value;
+        }
+
         private var _color:Number;
         
         public function get color():Number
@@ -48,6 +59,6 @@ package mx.graphics
         {
             _color = value;
         }
-
+        
 	}
 }
