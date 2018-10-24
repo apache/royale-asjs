@@ -32,7 +32,7 @@ package mx.collections
 
     //import mx.binding.utils.ChangeWatcher;
     //import mx.collections.errors.CollectionViewError;
-    import mx.collections.errors.ItemPendingError;
+    //import mx.collections.errors.ItemPendingError;
     import mx.collections.errors.SortError;
     //import mx.core.IMXMLObject;
     import mx.core.mx_internal;
@@ -1673,12 +1673,12 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
     {
         if (sort || filterFunction != null)
         {
-            
+            /*
             try
             {
-            
+            */
                 populateLocalIndex();
-            
+            /*
             }
             catch(pending:ItemPendingError)
             {
@@ -1693,7 +1693,7 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
                     }));
                 return false;
             }
-            
+            */
 
             if (filterFunction != null)
             {

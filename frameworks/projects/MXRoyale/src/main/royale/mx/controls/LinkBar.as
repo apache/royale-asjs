@@ -27,7 +27,7 @@ import mx.core.ClassFactory;
 import mx.core.EdgeMetrics;
 import mx.core.IFlexDisplayObject;
 import mx.core.mx_internal;
-// import mx.events.ChildExistenceChangedEvent;
+import mx.events.ChildExistenceChangedEvent;
 import mx.events.FlexEvent;
 import mx.events.ItemClickEvent;
 import mx.styles.ISimpleStyleClient;
