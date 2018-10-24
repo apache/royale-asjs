@@ -178,6 +178,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.events.utils.SpecialKeys; SpecialKeys;
 	import org.apache.royale.events.utils.WhitespaceKeys; WhitespaceKeys;
 	import org.apache.royale.events.utils.UIKeys; UIKeys;
+	import org.apache.royale.external.ExternalInterface; ExternalInterface;
 	import org.apache.royale.geom.Matrix; Matrix;
     import org.apache.royale.geom.Point; Point;
     import org.apache.royale.geom.Rectangle; Rectangle;
