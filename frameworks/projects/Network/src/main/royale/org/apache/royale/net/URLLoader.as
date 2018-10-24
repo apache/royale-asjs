@@ -74,6 +74,8 @@ package org.apache.royale.net
         COMPILE::JS
         private var element:XMLHttpRequest;
         
+        private var _statusCode:int = 0;
+        
         public function URLLoader()
         {
             super();
@@ -226,6 +228,7 @@ package org.apache.royale.net
             if ("responseURL" in event)
                 _responseURL = event.responseURL;
             */
+            _statusCode = event.status;
             dispatchEvent(new Event(event.type));
         }
         
@@ -264,6 +267,7 @@ package org.apache.royale.net
         protected function progressHandler():void
         {
             var element:XMLHttpRequest = this.element as XMLHttpRequest;
+            _statusCode = element.status;
             if (element.readyState == 2) {
                 dispatchEvent(HTTPConstants.RESPONSE_STATUS);
                 dispatchEvent(HTTPConstants.STATUS);
@@ -293,6 +297,13 @@ package org.apache.royale.net
             }
         }
         
+        /**
+         *  HTTP Status code. 0 means no status code has been received.
+         */
+        public function get statusCode():int
+        {
+            return _statusCode;
+        }
     }
 }
 
