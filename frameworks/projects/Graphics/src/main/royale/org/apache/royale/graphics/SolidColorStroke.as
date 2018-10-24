@@ -18,6 +18,8 @@
 
 package org.apache.royale.graphics
 {
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.geom.Rectangle;
     import org.apache.royale.utils.CSSUtils;
 
     COMPILE::SWF
@@ -128,7 +130,7 @@ package org.apache.royale.graphics
         }
         
         COMPILE::SWF
-        public function apply(g:Graphics):void
+        public function apply(g:Graphics, targetBounds:Rectangle = null, targetOrigin:Point = null):void
         {
             g.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
         }

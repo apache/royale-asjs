@@ -32,7 +32,7 @@ package mx.core
      * 
      *  @royalesuppresspublicvarwarning
      */
-	public class ClassFactory extends org.apache.royale.core.ClassFactory
+	public class ClassFactory extends org.apache.royale.core.ClassFactory implements IFactory
 	{
 	
 

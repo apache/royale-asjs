@@ -19,11 +19,10 @@
 
 package mx.charts.chartClasses
 {
-	import org.apache.royale.events.IEventDispatcher;
-/*	
-import flash.events.IEventDispatcher;
+
+import org.apache.royale.events.IEventDispatcher;
 import mx.charts.AxisLabel;
-*/
+
 /**
  *  The IAxis class is an abstract interface for defining label,
  *  tick mark, and data positioning properties for a chart axis.
@@ -41,8 +40,6 @@ import mx.charts.AxisLabel;
  */
 public interface IAxis extends IEventDispatcher
 {
-
-    
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -63,7 +60,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   // function get baseline():Number;
+    function get baseline():Number;
     
     //----------------------------------
     //  chartDataProvider
@@ -83,7 +80,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   // function set chartDataProvider(value:Object):void;
+    function set chartDataProvider(value:Object):void;
     
     //----------------------------------
     //  name
@@ -112,7 +109,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   // function get title():String;
+    function get title():String;
 
     //----------------------------------
     //  unitSize
@@ -137,7 +134,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // function get unitSize():Number
+    function get unitSize():Number
     
     //--------------------------------------------------------------------------
     //
@@ -166,8 +163,8 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /* function mapCache(cache:Array , field:String, convertedField:String,
-                      indexValues:Boolean = false):void */ /* cache:Array comment on of Object */
+    function mapCache(cache:Array /* of Object */, field:String, convertedField:String,
+                      indexValues:Boolean = false):void
     
     /**
      *  Filters a set of values of arbitrary type
@@ -187,9 +184,9 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /* function filterCache(cache:Array , field:String,
-                         filteredString:String):void; */ /* cache:Array comment on of Object */
-						 
+    function filterCache(cache:Array /* of Object */, field:String,
+                         filteredString:String):void;
+    
     /**
      *  Maps a set of values from data space to screen space.
      *
@@ -207,8 +204,8 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* function transformCache(cache:Array , field:String,
-                            convertedField:String):void; */  /* cache:Array comment on of Object */
+    function transformCache(cache:Array /* of Object */, field:String,
+                            convertedField:String):void;
 
     //--------------------------------------------------------------------------
     //
@@ -230,7 +227,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // function invertTransform(value:Number):Object;
+    function invertTransform(value:Number):Object;
 
     /**
      *  Formats values for display in DataTips.
@@ -275,7 +272,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // function getLabelEstimate():AxisLabelSet;
+    function getLabelEstimate():AxisLabelSet;
 
     /** 
      *  Determines how the axis handles overlapping labels. 
@@ -291,7 +288,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // function preferDropLabels():Boolean;
+    function preferDropLabels():Boolean;
     
     /**
      *  Gets the labels text that is rendered.
@@ -308,7 +305,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // function getLabels(minimumAxisLength:Number):AxisLabelSet;
+    function getLabels(minimumAxisLength:Number):AxisLabelSet;
 
     /**
      *  Invoked when an AxisRenderer is unable to cleanly render
@@ -328,8 +325,8 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* function reduceLabels(intervalStart:AxisLabel,
-    //                      intervalEnd:AxisLabel):AxisLabelSet; */
+    function reduceLabels(intervalStart:AxisLabel,
+                          intervalEnd:AxisLabel):AxisLabelSet;
 
     //--------------------------------------------------------------------------
     //
@@ -354,8 +351,8 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /*function registerDataTransform(transform:DataTransform,
-                                   dimensionName:String):void;*/
+    function registerDataTransform(transform:DataTransform,
+                                   dimensionName:String):void;
     
     /**
      *  Each DataTransform that makes use of an axis
@@ -372,7 +369,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   // function unregisterDataTransform(transform:DataTransform):void;
+    function unregisterDataTransform(transform:DataTransform):void;
 
     /** 
      *  Triggers events that inform the range object
@@ -383,7 +380,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   // function dataChanged():void;
+    function dataChanged():void;
 
     /**
      *  Updates the chart.
@@ -394,7 +391,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   // function update():void;
+    function update():void;
 }
 
 }

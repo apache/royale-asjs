@@ -40,7 +40,7 @@ import flash.system.SecurityDomain;
  *  @productversion Flex 3
  *
  */
-public interface IStyleManager2 // extends IStyleManager
+public interface IStyleManager2 extends IStyleManager
 {
 }
 

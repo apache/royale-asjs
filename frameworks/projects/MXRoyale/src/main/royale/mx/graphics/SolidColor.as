@@ -18,13 +18,36 @@
 
 package mx.graphics
 {
+    import mx.display.Graphics;
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.geom.Rectangle;
 	import mx.graphics.IFill;
-	import org.apache.royale.graphics.SolidColor;
-	public class SolidColor extends org.apache.royale.graphics.SolidColor implements IFill
+	public class SolidColor implements IFill
 	{
 		public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
 	 	{
-			super(color,alpha);
+			super();
 		}
+        
+        public function begin(g:Graphics,targetBounds:Rectangle,targetOrigin:Point):void
+        {
+            trace("SolidColor begin not implemented");
+        }
+        
+        public function end(g:Graphics):void
+        {
+        }
+
+        private var _color:Number;
+        
+        public function get color():Number
+        {
+            return _color;
+        }
+        public function set color(value:Number):void
+        {
+            _color = value;
+        }
+
 	}
 }

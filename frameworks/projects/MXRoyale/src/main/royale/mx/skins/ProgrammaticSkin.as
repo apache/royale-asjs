@@ -39,6 +39,7 @@ import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.GraphicsUtil;
 import mx.utils.NameUtil; */
+import mx.core.UIComponent;
 import mx.core.mx_internal;
 
 use namespace mx_internal;
@@ -52,7 +53,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class ProgrammaticSkin
+public class ProgrammaticSkin extends UIComponent
 {
  /* extends FlexShape
 							  implements IFlexDisplayObject, IInvalidating,
@@ -372,7 +373,7 @@ public class ProgrammaticSkin
      *  Storage for the styleName property.
 	 *  For skins, it is always a UIComponent.
      */
-    private var _styleName:Object; //IStyleClient;
+    //private var _styleName:Object; //IStyleClient;
 
     /**
      *  A parent component used to obtain style values. This is typically set to the
@@ -382,15 +383,14 @@ public class ProgrammaticSkin
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
      public function get styleName():Object
     {
         return _styleName;
     } 
+     */
 
     /**
      *  @private
-     */
     public function set styleName(value:Object):void
     {
         if (_styleName != value)
@@ -399,6 +399,7 @@ public class ProgrammaticSkin
 			invalidateDisplayList();
 		}
     } 
+     */
 
 	//--------------------------------------------------------------------------
 	//
@@ -549,18 +550,18 @@ public class ProgrammaticSkin
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
-	 */
 	public function invalidateDisplayList():void
 	{
 		// Don't try to add the object to the display list queue until we've
 		// been assigned a nestLevel, or we'll get added at the wrong place in
 		// the LayoutManager's priority queue.
-		/* if (!invalidateDisplayListFlag && nestLevel > 0)
+		if (!invalidateDisplayListFlag && nestLevel > 0)
 		{
 			invalidateDisplayListFlag = true;
 			UIComponentGlobals.layoutManager.invalidateDisplayList(this);
-		} */
+		}
 	}
+    */
 
 	/**
 	 *  Programmatically draws the graphics for this skin.
@@ -583,11 +584,11 @@ public class ProgrammaticSkin
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
-	 */
 	protected function updateDisplayList(unscaledWidth:Number,
 									     unscaledHeight:Number):void
 	{
 	}
+	 */
 
 	/**
 	 *  @inheritDoc
@@ -642,11 +643,11 @@ public class ProgrammaticSkin
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
     public function getStyle(styleProp:String):*
     {
         return _styleName ? _styleName.getStyle(styleProp) : null;
     }
+     */
 		
     /**
      *  @private

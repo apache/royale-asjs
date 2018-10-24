@@ -20,14 +20,19 @@ package mx.display
 {
 	import org.apache.royale.svg.CompoundGraphic;
 	import mx.geom.Matrix;
+    import mx.core.UIComponent;
 
 	public class Graphics extends org.apache.royale.svg.CompoundGraphic
 	{
-		public function Graphics()
+		private var displayObject:UIComponent;
+
+		public function Graphics(displayObject:UIComponent)
 		{
 			super();
+			this.displayObject = displayObject;
 		}
-		public function  endFill(): void
+
+		public function endFill(): void
 		{
 		}
 		public function beginFill(color:uint, alpha:Number = 1.0):void
@@ -43,6 +48,10 @@ package mx.display
 		}
 		
 		public function moveTo(x:Number, y:Number):void
+		{
+		}
+		
+		public function lineTo(x:Number, y:Number):void
 		{
 		}
 		

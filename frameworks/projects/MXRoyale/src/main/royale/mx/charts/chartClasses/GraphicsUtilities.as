@@ -20,7 +20,7 @@
 package mx.charts.chartClasses
 {
 
-//import flash.display.Graphics;
+import mx.display.Graphics;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
 import mx.graphics.IFill;
@@ -36,12 +36,12 @@ import mx.graphics.SolidColor;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 public class GraphicsUtilities
 {
-   /*  include "../../core/Version.as";
- */
+//    include "../../core/Version.as";
+
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
@@ -51,7 +51,7 @@ public class GraphicsUtilities
 	/**
 	 *  @private
 	 */
-	/* private static var LINE_FORM:Object =
+	private static var LINE_FORM:Object =
 	{
 		segment: 0,
 		step: 1,
@@ -59,7 +59,7 @@ public class GraphicsUtilities
 		horizontal: 3,
 		reverseStep: 4,
 		curve: 5
-	} */
+	}
 	
 	//--------------------------------------------------------------------------
 	//
@@ -78,14 +78,14 @@ public class GraphicsUtilities
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
-	public static function setLineStyle(g:Object, ls:IStroke):void //g:Graphics is replaced with g:Object
+	public static function setLineStyle(g:Graphics, ls:IStroke):void
 	{
-		/* if (!ls)
+		if (!ls)
 			g.lineStyle(0, 0, 0);
 		else
-			ls.apply(g,null,null); */
+			ls.apply(g,null,null);
 	}
 	
 	/**
@@ -105,9 +105,9 @@ public class GraphicsUtilities
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
-	/* public static function fillRect(g:Graphics, left:Number, top:Number,
+	public static function fillRect(g:Graphics, left:Number, top:Number,
 									right:Number, bottom:Number,
 									fill:Object = null, ls:Object = null):void
 	{
@@ -140,12 +140,12 @@ public class GraphicsUtilities
 
 		if (fill != null)
 			g.endFill();
-	} */
+	}
 
 	/**
 	 *  @private
 	 */
-	/* private static function convertForm(v:Object):Number
+	private static function convertForm(v:Object):Number
 	{
 		if (typeof(v) == "number")
 		{
@@ -188,7 +188,7 @@ public class GraphicsUtilities
 			}
 		}
 		return NaN;			
-	} */
+	}
 
 	/**
 	 *  Draws a line connecting the datapoints using one of various forms.  
@@ -205,14 +205,14 @@ public class GraphicsUtilities
  	 *  @langversion 3.0
  	 *  @playerversion Flash 9
  	 *  @playerversion AIR 1.1
- 	 *  @productversion Royale 0.9.3
+ 	 *  @productversion Flex 3
  	 */
-	// public static function drawPolyLine(g:Graphics, pts:Array /* of Object */,
-										 // start:int, end:int,
-										 // hProp:String, vProp:String,
-										 // stroke:IStroke, form:Object,
-										 // moveToStart:Boolean = true):void
-	/*  {
+	public static function drawPolyLine(g:Graphics, pts:Array /* of Object */,
+										 start:int, end:int,
+										 hProp:String, vProp:String,
+										 stroke:IStroke, form:Object,
+										 moveToStart:Boolean = true):void
+	{
 		if (start == end)
 			return;
 
@@ -501,7 +501,7 @@ public class GraphicsUtilities
 					  pts[j][hProp], pts[j][vProp]);
 
 		}
-	} */
+	}
 	
 
 	/**
@@ -519,15 +519,15 @@ public class GraphicsUtilities
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
-	public static function drawArc(g:Object, x:Number, y:Number,
+	public static function drawArc(g:Graphics, x:Number, y:Number,
 								  startAngle:Number, arc:Number,
 								  radius:Number, yRadius:Number = NaN,
-								  continueFlag:Boolean = false):void //g:Graphics is replaced with g:Object
+								  continueFlag:Boolean = false):void
 	{
 		
-		/* if (isNaN(yRadius))
+		if (isNaN(yRadius))
 			yRadius = radius;
 
 		var segAngle:Number
@@ -572,7 +572,7 @@ public class GraphicsUtilities
 				
 				g.curveTo(cx, cy, bx, by);
 			}
-		} */
+		}
 	}
 	
 	/**
@@ -584,9 +584,9 @@ public class GraphicsUtilities
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
-	/* public static function fillFromStyle(v:Object):IFill
+	public static function fillFromStyle(v:Object):IFill
 	{		
 		if (v is IFill)
 			return IFill(v);
@@ -596,7 +596,7 @@ public class GraphicsUtilities
 
 		else
 			return null;		
-	} */
+	}
 
 	/**
 	 *  Converts a fill value into a solid color. This convenience method pulls a color value out of a Fill
@@ -607,9 +607,9 @@ public class GraphicsUtilities
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
-	/* public static function colorFromFill(f:Object):uint
+	public static function colorFromFill(f:Object):uint
 	{
 		var color:uint;
 
@@ -625,18 +625,20 @@ public class GraphicsUtilities
 		{
 			color = LinearGradient(f).entries[0].color;
 		}
+        /*
 		else if (f is RadialGradient &&
 				 RadialGradient(f).entries.length > 0)
 		{
 			color = RadialGradient(f).entries[0].color;
 		}
+        */
 		else if (f is Number || f is uint || f is int)
 		{
 			color = uint(f);
 		}
 
 		return color;
-	} */
+	}
 }
 
 }

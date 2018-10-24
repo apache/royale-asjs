@@ -210,6 +210,80 @@ public class CSSStyleDeclaration extends EventDispatcher
     {
         _defaultFactory = f;
     }
+ 
+    private var o:Object;
+    
+    /**
+     *  Gets the value for a specified style property,
+     *  as determined solely by this CSSStyleDeclaration.
+     *
+     *  <p>The returned value may be of any type.</p>
+     *
+     *  <p>The values <code>null</code>, <code>""</code>, <code>false</code>,
+     *  <code>NaN</code>, and <code>0</code> are all valid style values,
+     *  but the value <code>undefined</code> is not; it indicates that
+     *  the specified style is not set on this CSSStyleDeclaration.
+     *  You can use the method <code>StyleManager.isValidStyleValue()</code>
+     *  to test the value that is returned.</p>
+     *
+     *  @param styleProp The name of the style property.
+     *
+     *  @return The value of the specified style property if set,
+     *  or <code>undefined</code> if not.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function getStyle(styleProp:String):*
+    {
+        var v:*;
+        
+        if (o == null)
+        {
+            if (defaultFactory != null)
+            {
+                defaultFactory.prototype = {};
+                o = new defaultFactory();
+            }
+        }
+        v = o[styleProp];
+        return v;
+    }
+    
+    /**
+     *  Sets a style property on this CSSStyleDeclaration.
+     *
+     *  @param styleProp The name of the style property.
+     *
+     *  @param newValue The value of the style property.
+     *  The value may be of any type.
+     *  The values <code>null</code>, <code>""</code>, <code>false</code>,
+     *  <code>NaN</code>, and <code>0</code> are all valid style values,
+     *  but the value <code>undefined</code> is not.
+     *  Setting a style property to the value <code>undefined</code>
+     *  is the same as calling the <code>clearStyle()</code> method.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function setStyle(styleProp:String, newValue:*):void
+    {
+        if (o == null)
+        {
+            if (defaultFactory != null)
+            {
+                defaultFactory.prototype = {};
+                o = new defaultFactory();
+            }
+            else
+                o = {};            
+        }
+        o[styleProp] = newValue;
+    }
     
 }
 

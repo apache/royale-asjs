@@ -65,12 +65,12 @@ public interface ISimpleStyleClient
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  function get styleName():Object
-	*/
+    function get styleName():Object
+	
     /**
      *  @private
      */
-    // function set styleName(value:Object):void
+    function set styleName(value:Object):void
     
     //--------------------------------------------------------------------------
     //

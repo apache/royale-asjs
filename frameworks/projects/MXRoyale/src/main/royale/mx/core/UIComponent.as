@@ -38,11 +38,11 @@ import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 */
 
-import mx.charts.chartClasses.IAxis;
 import mx.controls.beads.ToolTipBead;
 import mx.display.Graphics;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
+import mx.events.KeyboardEvent;
 import mx.events.MoveEvent;
 import mx.events.PropertyChangeEvent;
 import mx.events.ResizeEvent;
@@ -54,6 +54,7 @@ import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
+import mx.utils.StringUtil;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IStatesImpl;
@@ -65,7 +66,6 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
@@ -592,38 +592,22 @@ public class UIComponent extends UIBase
         }
     }
     
-    private var _VerticalAxis:IAxis;
-    public function get verticalAxis():IAxis
-	 {
-	    return _VerticalAxis;
-	 }
-    public function set verticalAxis(value:IAxis):void
-	 {
-	    _VerticalAxis = value;
-	 }
-    private var _horizontalAxis:IAxis;
-    public function get horizontalAxis():IAxis
-	 {
-	    return _horizontalAxis;
-	 }
-    public function set horizontalAxis(value:IAxis):void
-	 {
-	    _horizontalAxis = value;
-	 }
 	//----------------------------------
     //  graphics copied from Sprite
     //----------------------------------
 		private var _graphics:Graphics;
 
-	COMPILE::JS
-	{
+        [SWFOverride(returns="flash.display.Graphics"))]
+        COMPILE::SWF 
+        { override }
 		public function get graphics():Graphics
 		{
+            if (_graphics == null)
+                _graphics = new mx.display.Graphics(this);
 			return _graphics;
-		} 
-	}
-	
-    	COMPILE::JS{
+		}
+        
+    COMPILE::JS{
 	private var _mask:UIComponent;
 		 public function set mask(value:UIComponent):void
 		{
@@ -3059,6 +3043,12 @@ COMPILE::JS
     { override }
     public function addChild(child:IUIComponent):IUIComponent
     {
+        // this should probably call addingChild/childAdded
+        return addElement(child) as IUIComponent;
+    }
+    
+    mx_internal function $addChild(child:IUIComponent):IUIComponent
+    {
         return addElement(child) as IUIComponent;
     }
 
@@ -3072,6 +3062,13 @@ COMPILE::JS
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
+        // this should probably call addingChild/childAdded
+        return addElementAt(child, index) as IUIComponent;
+    }
+    
+    mx_internal function $addChildAt(child:IUIComponent,
+                               index:int):IUIComponent
+    {
         return addElementAt(child, index) as IUIComponent;
     }
 
@@ -3084,6 +3081,12 @@ COMPILE::JS
     { override }
     public function removeChild(child:IUIComponent):IUIComponent
     {
+        return removeElement(child) as IUIComponent;
+    }
+    
+    mx_internal function $removeChild(child:IUIComponent):IUIComponent
+    {
+        // this should probably call the removingChild/childRemoved
         return removeElement(child) as IUIComponent;
     }
 
@@ -3100,6 +3103,12 @@ COMPILE::JS
     COMPILE::SWF 
     { override }
     public function removeChildAt(index:int):IUIComponent
+    {
+        // this should probably call the removingChild/childRemoved
+        return removeElement(getElementAt(index)) as IUIComponent;
+    }
+    
+    mx_internal function $removeChildAt(index:int):IUIComponent
     {
         return removeElement(getElementAt(index)) as IUIComponent;
     }
@@ -3439,7 +3448,9 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    COMPILE::SWF 
+    { override }
     public function localToGlobal(value:Point):Point
     {
         return PointUtils.localToGlobal(value, this);
@@ -3453,7 +3464,9 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    COMPILE::SWF 
+    { override }
     public function globalToLocal(value:Point):Point
     {
         return PointUtils.globalToLocal(value, this);
@@ -4962,9 +4975,135 @@ COMPILE::JS
         addEventListener("hide", new EffectEventWatcher(_showEffect).listener);
     }
 
+    /**
+     *  Creates a new object using a context
+     *  based on the embedded font being used.
+     *
+     *  <p>This method is used to solve a problem
+     *  with access to fonts embedded  in an application SWF
+     *  when the framework is loaded as an RSL
+     *  (the RSL has its own SWF context).
+     *  Embedded fonts can only be accessed from the SWF file context
+     *  in which they were created.
+     *  By using the context of the application SWF,
+     *  the RSL can create objects in the application SWF context
+     *  that has access to the application's  embedded fonts.</p>
+     *
+     *  <p>Call this method only after the font styles
+     *  for this object are set.</p>
+     *
+     *  @param class The class to create.
+     *
+     *  @return The instance of the class created in the context
+     *  of the SWF owning the embedded font.
+     *  If this object is not using an embedded font,
+     *  the class is created in the context of this object.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function createInFontContext(classObj:Class):Object
+    {
+        return new classObj();
+    }
+    
+    /**
+     *  Flex calls the <code>stylesInitialized()</code> method when
+     *  the styles for a component are first initialized.
+     *
+     *  <p>This is an advanced method that you might override
+     *  when creating a subclass of UIComponent. Flex guarantees that
+     *  your component's styles are fully initialized before
+     *  the first time your component's <code>measure</code> and
+     *  <code>updateDisplayList</code> methods are called.  For most
+     *  components, that is sufficient. But if you need early access to
+     *  your style values, you can override the stylesInitialized() function
+     *  to access style properties as soon as they are initialized the first time.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function stylesInitialized():void
+    {
+    }
+    
+    /**
+     *  Returns a UITextFormat object corresponding to the text styles
+     *  for this UIComponent.
+     *
+     *  @return UITextFormat object corresponding to the text styles
+     *  for this UIComponent.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    public function determineTextFormatFromStyles():UITextFormat
+    {
+        var textFormat:UITextFormat// = cachedTextFormat;
+        
+        /*
+        if (!textFormat)
+        {
+            var font:String =
+                StringUtil.trimArrayElements(_inheritingStyles.fontFamily, ",");
+            textFormat = new UITextFormat(getNonNullSystemManager(), font);
+            textFormat.moduleFactory = moduleFactory;
+            
+            // Not all flex4 textAlign values are valid so convert to a valid one.
+            var align:String = _inheritingStyles.textAlign;
+            if (align == "start") 
+                align = TextFormatAlign.LEFT;
+            else if (align == "end")
+                align = TextFormatAlign.RIGHT;
+            textFormat.align = align; 
+            textFormat.bold = _inheritingStyles.fontWeight == "bold";
+            textFormat.color = enabled ?
+                _inheritingStyles.color :
+                _inheritingStyles.disabledColor;
+            textFormat.font = font;
+            textFormat.indent = _inheritingStyles.textIndent;
+            textFormat.italic = _inheritingStyles.fontStyle == "italic";
+            textFormat.kerning = _inheritingStyles.kerning;
+            textFormat.leading = _nonInheritingStyles.leading;
+            textFormat.leftMargin = _nonInheritingStyles.paddingLeft;
+            textFormat.letterSpacing = _inheritingStyles.letterSpacing;
+            textFormat.rightMargin = _nonInheritingStyles.paddingRight;
+            textFormat.size = _inheritingStyles.fontSize;
+            textFormat.underline =
+                _nonInheritingStyles.textDecoration == "underline";
+            
+            textFormat.antiAliasType = _inheritingStyles.fontAntiAliasType;
+            textFormat.gridFitType = _inheritingStyles.fontGridFitType;
+            textFormat.sharpness = _inheritingStyles.fontSharpness;
+            textFormat.thickness = _inheritingStyles.fontThickness;
+            
+            textFormat.useFTE =
+                getTextFieldClassName() == "mx.core::UIFTETextField" ||
+                getTextInputClassName() == "mx.controls::MXFTETextInput";
+            
+            if (textFormat.useFTE)
+            {
+                textFormat.direction = _inheritingStyles.direction;
+                textFormat.locale = _inheritingStyles.locale;
+            }
+            
+            cachedTextFormat = textFormat;
+        }*/
+        
+        return textFormat;
+    }
+
 }
 
 }
+
 import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
 
