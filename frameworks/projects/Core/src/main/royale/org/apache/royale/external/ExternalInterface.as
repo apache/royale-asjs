@@ -17,6 +17,10 @@ package org.apache.royale.external
     public class ExternalInterface
     {
 
+        /**
+         * Indicates whether this player is in a container that offers an external interface.
+         * If the external interface is available, this property is true; otherwise, it is false.
+         */
         public static function get available():Boolean
         {
             COMPILE::SWF
@@ -29,6 +33,13 @@ package org.apache.royale.external
             }
         }
         
+        /**
+         * Indicates whether the external interface should attempt to pass ActionScript exceptions
+         * to the current browser and JavaScript exceptions to the player.
+         * When running as a SWF: default is false. You must explicitly set this property to true
+         * to catch JavaScript exceptions in ActionScript and to catch ActionScript exceptions in JavaScript.
+         * When running as HTML, this is always true and cannot be changed.
+         */
         public static function get marshallExceptions():Boolean
         {
             COMPILE::SWF
@@ -40,6 +51,9 @@ package org.apache.royale.external
                 return true;
             }
         }
+        /**
+         * @private
+         */
         public static function set marshallExceptions(val:Boolean):void
         {
             COMPILE::SWF
@@ -52,6 +66,9 @@ package org.apache.royale.external
             }
         }
         
+        /** Returns the id attribute of the Flash Player object if running as a SWF,
+         *  or <code>"ExternalInterface"</code> if running in HTML.
+         */
         public static function get objectID():String
         {
             COMPILE::SWF
@@ -60,11 +77,23 @@ package org.apache.royale.external
             }
             COMPILE::JS
             {
-                trace("TODO: ExternalInterface.objectID");
-                return "TODO: ExternalInterface.objectID";
+                return "ExternalInterface";
             }
         }
 
+        /** Registers an ActionScript method as callable from the container.
+         *  After a successful invocation of addCallBack(), the registered
+         *  function in the player can be called by JavaScript.
+         *
+         *  The JavaScript needs to obtain the ExternalInterface element and
+         *  then call the function as a property of this element. For example
+         *  if <code>addCallback</code> has been called with <code>functionName>/code>
+         *  set to "myFunction", the call can be made by:
+         *  <code>document.getElementById("ExternalInterface").myFunction(args);</code>
+         *
+         * @param functionName The name by which the browser can invoke the function.
+         * @param closure The function closure to invoke.
+         */
         public static function addCallback(functionName:String, closure:Function):void
         {
             COMPILE::SWF
@@ -73,20 +102,41 @@ package org.apache.royale.external
             }
             COMPILE::JS
             {
-                trace("TODO: ExternalInterface.addCallback");
+                // use a special div object to hang our callback properties off..
+                var extInt = document.getElementById("ExternalInterface");
+                if (!extInt)
+                {
+                    extInt = document.createElement("DIV");
+                    extInt.id = "ExternalInterface";
+                    extInt.style.display = "none";
+                    document.body.appendChild(extInt);
+                }
+                extInt[functionName] = closure;
             }
         }
         
-        public static function call(functionName:String, ... arguments):*
+        /** Calls a function exposed by the browser, passing zero or more arguments.
+         *  If the function is not available, the call returns <code>null</code>,
+         *  otherwise it returns the value provided by the function.
+         *
+         * @param functionName The name of the JavaScript function to call.
+         * @param ... args The arguments to pass to the JavaScript function in the browser.
+         */
+        public static function call(functionName:String, ... args):*
         {
             COMPILE::SWF
             {
-                arguments.unshift(functionName);
-                return flash.external.ExternalInterface.call.apply(null, arguments);
+                args.unshift(functionName);
+                return flash.external.ExternalInterface.call.apply(null, args);
             }
             COMPILE::JS
             {
-                trace("TODO: ExternalInterface.call");
+                // find a function with the name...
+                var fnc : Function = window[functionName];
+                if (fnc)
+                {
+                    return fnc.apply(null, args);
+                }
                 return null;
             }
         }
