@@ -16,63 +16,78 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.combobox
+package org.apache.royale.jewel.beads.validators
 {
-    import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IStrand;
-    
-	/**
-	 *  The IComboBoxView interface provides the protocol for any bead that
-	 *  creates the visual parts for a org.apache.royale.jewel.ComboBox control.
-	 *  
+    import org.apache.royale.events.Event;
+    import org.apache.royale.jewel.DateField;
+
+    /**
+	 *  The DateValidator class is a specialty bead that can be used with
+	 *  Group control.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public interface IComboBoxView extends IBeadView
+	public class DateValidator extends Validator
 	{
 		/**
-		 *  The sub-component used for the input area of the ComboBox.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function get textinput():Object;
-		
-		/**
-		 *  The sub-component used for the button to activate the pop-up.
+		public function DateValidator()
+		{
+			super()
+		}
+
+        /**                         	
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		function get button():Object;
-		
-		/**
-		 *  The component housing the selection list. The main component must be a placeholder
-		 *  that support responsiveness and holds a subcomponent that parents the list or other possible
-		 *  components needed in other implementations.
-		 *
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			hostComponent.addEventListener(Event.CHANGE, validate, false);
+		}
+
+		private function isValidDate(d:*):Boolean
+		{
+			return (d is Date) && !isNaN(d);
+		}
+
+        /**
+		 *  Override of the base class validate() method to validate if selected.
+		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function get popup():Object;
-		
-		/**
-		 *  Determines whether or not the pop-up with the selection list is visible or not.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function get popUpVisible():Boolean;
-		function set popUpVisible(value:Boolean):void;
-	}
+		override public function validate(event:Event = null):Boolean {
+			var df:DateField = hostComponent as DateField;
+			if (super.validate(event))
+            {
+				trace("this is true no validation func");
+				if (!isValidDate(df.selectedDate)) {
+			trace("is not a valid date");
+					createErrorTip(requiredFieldError);
+				} else {
+			trace("is valid date");
+					destroyErrorTip();
+				}	
+			}
+			return !isError;
+		}
+    }
 }

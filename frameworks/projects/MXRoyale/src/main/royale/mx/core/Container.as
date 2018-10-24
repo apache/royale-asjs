@@ -391,7 +391,23 @@ public class Container extends UIComponent
         super();
 		typeNames = "Container";
     }
-
+    
+    
+    //----------------------------------
+    //  textDecoration
+    //----------------------------------
+    
+	
+	
+    public function get textDecoration():String 
+	{
+		return "none";
+	}
+   public function set textDecoration(val:String):void
+	{
+	
+	}
+	
     //----------------------------------
     //  horizontalScrollPolicy
     //----------------------------------

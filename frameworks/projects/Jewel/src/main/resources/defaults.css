@@ -318,7 +318,7 @@ j|ComboBox {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController");
-  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxList");
+  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp");
 }
 
 .combobox-popup {
@@ -413,6 +413,10 @@ j|ComboBox {
     height: 34px;
   }
 }
+j|ComboBoxPopUp {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
+}
+
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
   padding: 12px 0px;
 }

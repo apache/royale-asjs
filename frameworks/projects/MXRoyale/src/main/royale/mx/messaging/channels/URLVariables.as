@@ -16,25 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+
+package mx.messaging.channels
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class CollectionsClasses
-{
-    import org.apache.royale.collections.CollectionUtils; CollectionUtils;
-    import org.apache.royale.collections.ArrayList; ArrayList;
-	import org.apache.royale.collections.FlattenedList; FlattenedList;
-	import org.apache.royale.collections.HierarchicalData; HierarchicalData;
-	import org.apache.royale.collections.LazyCollection; LazyCollection;
-	import org.apache.royale.collections.Collection; Collection;
-	import org.apache.royale.collections.TreeData; TreeData;
+	public class URLVariables 
+	{
+		public function URLVariables(source:String = null)
+		{
+		}
+		
+		public function decode(source:String):void
+		{
+		}
+		
+		public function toString():String
+		{
+			return "";
+		}	
+	}
 }
-
-}
-

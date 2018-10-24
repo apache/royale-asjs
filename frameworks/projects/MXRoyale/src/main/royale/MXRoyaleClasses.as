@@ -84,8 +84,6 @@ internal class MXRoyaleClasses
 	import mx.charts.chartClasses.DataTransform; DataTransform;
 	import mx.skins.Border; Border;
 	import mx.effects.CompositeEffect; CompositeEffect;
-	import mx.logging.LogEventLevel; LogEventLevel;
-	import mx.logging.ILogger; ILogger;
 	import mx.core.FlexVersion; FlexVersion;
 	import mx.charts.chartClasses.CartesianTransform; CartesianTransform;
 	import mx.charts.events.ChartItemEvent; ChartItemEvent;
@@ -93,6 +91,15 @@ internal class MXRoyaleClasses
   	import mx.controls.textClasses.TextRange; TextRange;
 	import mx.managers.CursorManagerPriority; CursorManagerPriority;
 	import mx.logging.Log; Log;
+	import mx.logging.LogLogger; LogLogger;
+	import mx.logging.LogEvent; LogEvent;
+	import mx.logging.LogEventLevel; LogEventLevel;
+	import mx.logging.AbstractTarget; AbstractTarget;
+	import mx.logging.ILogger; ILogger;
+	import mx.logging.ILoggingTarget; ILoggingTarget;
+	import mx.logging.errors.InvalidFilterError; InvalidFilterError;
+	import mx.logging.targets.LineFormattedTarget; LineFormattedTarget;
+	import mx.logging.targets.TraceTarget; TraceTarget;
 	import mx.charts.chartClasses.Series; Series;
 	import mx.charts.chartClasses.GraphicsUtilities; GraphicsUtilities; 
 	import mx.effects.easing.Bounce; Bounce;
@@ -173,6 +180,16 @@ internal class MXRoyaleClasses
 	import mx.managers.ToolTipManager; ToolTipManager;
 	import mx.managers.IToolTipManager2; IToolTipManager2;
 	import mx.utils.PopUpUtil; PopUpUtil;
+	import mx.rpc.http.HTTPMultiService; HTTPMultiService;
+	import mx.rpc.http.HTTPServiceWrapper; HTTPServiceWrapper;
+	import mx.messaging.messages.HTTPRequestMessage; HTTPRequestMessage;
+	import mx.messaging.channels.DirectHTTPChannel; DirectHTTPChannel;
+	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
+	import mx.rpc.http.SerializationFilter; SerializationFilter;
+	import mx.rpc.http.AbstractOperation; AbstractOperation;
+	import mx.events.MenuEvent; MenuEvent;
+	import mx.rpc.CallResponder; CallResponder;
+	import mx.rpc.http.Operation; Operation;
 	
 
 	COMPILE::JS

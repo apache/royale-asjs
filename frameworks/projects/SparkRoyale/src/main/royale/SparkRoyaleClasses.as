@@ -68,6 +68,7 @@ internal class SparkRoyaleClasses
 	import spark.components.Grid; Grid;
 	import spark.components.DataGrid; DataGrid;
 	import spark.components.Form; Form;
+	import spark.components.FormItem; FormItem;
 	import spark.core.IDisplayText; IDisplayText;
 	
 }

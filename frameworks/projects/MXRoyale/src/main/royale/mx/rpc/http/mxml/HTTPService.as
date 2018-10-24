@@ -150,14 +150,14 @@ public class HTTPService extends mx.rpc.http.HTTPService //implements IMXMLSuppo
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public function get method():String
+    /*public function get method():String
     {
         return _method;
     }
     public function set method(m:String):void
     {
         _method = m;
-    } 
+    }*/ 
     //----------------------------------
     //  showBusyCursor
     //----------------------------------
@@ -172,7 +172,7 @@ public class HTTPService extends mx.rpc.http.HTTPService //implements IMXMLSuppo
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
     */
-    public function get showBusyCursor():Boolean
+    /*public function get showBusyCursor():Boolean
     {
         return _showBusyCursor;
     }
@@ -180,7 +180,7 @@ public class HTTPService extends mx.rpc.http.HTTPService //implements IMXMLSuppo
     public function set showBusyCursor(sbc:Boolean):void
     {
         _showBusyCursor = sbc;
-    } 
+    }*/ 
     
 }
 

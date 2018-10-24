@@ -927,10 +927,12 @@ package org.apache.royale.core
 			return _model;
 		}
 
-        /**
-         *  @private
-         */
         COMPILE::SWF
+        /**
+         * @private
+         * @royaleignorecoercion org.apache.royale.core.IBead
+         */
+        [Bindable("modelChanged")]
 		public function set model(value:Object):void
 		{
 			if (_model != value)

@@ -238,7 +238,7 @@ public class SortField extends EventDispatcher implements ISortField
      *  @deprecated A future release of Apache Flex SDK will remove this function. Please use the constructor
      *  argument instead.
      */
-    mx_internal function setCaseInsensitive(value:Boolean):void
+    public function set caseInsensitive(value:Boolean):void
     {
         if (value != _caseInsensitive)
         {

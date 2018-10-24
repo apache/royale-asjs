@@ -59,6 +59,13 @@ limitations under the License.
 					<j:StringValidator required="3" autoTrim="true" requiredFieldError="Need more than 3 characters"/>
 				</j:beads>
 			</j:TextInput>
+			
+			<html:H4 text="Your born date"/>
+			<j:DateField>
+				<j:beads>
+					<j:DateValidator requiredFieldError="The value is not a valid date"/>
+				</j:beads>
+			</j:DateField>
 
 			<html:H4 text="Favorite movies (at least 2)"/>
 			<j:VGroup gap="3">

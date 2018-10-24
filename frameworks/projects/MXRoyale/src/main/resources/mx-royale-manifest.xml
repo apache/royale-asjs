@@ -126,6 +126,7 @@
 	<component id="Parallel" class="mx.effects.Parallel"/>
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
 	<component id="Tree" class="mx.controls.Tree"/>
+	<component id="LinkBar" class="mx.controls.LinkBar"/>
     
 	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
 	<component id="ChannelSet" class="mx.messaging.ChannelSet" />

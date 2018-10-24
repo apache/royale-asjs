@@ -16,25 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+
+package mx.rpc.http
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class CollectionsClasses
-{
-    import org.apache.royale.collections.CollectionUtils; CollectionUtils;
-    import org.apache.royale.collections.ArrayList; ArrayList;
-	import org.apache.royale.collections.FlattenedList; FlattenedList;
-	import org.apache.royale.collections.HierarchicalData; HierarchicalData;
-	import org.apache.royale.collections.LazyCollection; LazyCollection;
-	import org.apache.royale.collections.Collection; Collection;
-	import org.apache.royale.collections.TreeData; TreeData;
+	// Ref : https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/com/adobe/fiber/services/wrapper/HTTPServiceWrapper.html#methodSummary
+	public class HTTPServiceWrapper extends HTTPMultiService
+	{
+		
+		public var _serviceControl:mx.rpc.http.HTTPMultiService;
+		
+		
+	}
 }
-
-}
-

@@ -59,7 +59,7 @@
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     <component id="ComboBox" class="org.apache.royale.jewel.ComboBox"/>
-    <component id="ComboBoxList" class="org.apache.royale.jewel.supportClasses.combobox.ComboBoxList"/>
+    <component id="ComboBoxPopUp" class="org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp"/>
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
@@ -74,6 +74,7 @@
     <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
     <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>
     <component id="StringValidator" class="org.apache.royale.jewel.beads.validators.StringValidator"/>
+    <component id="DateValidator" class="org.apache.royale.jewel.beads.validators.DateValidator"/>
     <component id="CheckBoxValidator" class="org.apache.royale.jewel.beads.validators.CheckBoxValidator"/>
     <component id="RadioButtonValidator" class="org.apache.royale.jewel.beads.validators.RadioButtonValidator"/>
 

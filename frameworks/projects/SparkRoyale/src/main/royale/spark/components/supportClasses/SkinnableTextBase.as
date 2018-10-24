@@ -1332,10 +1332,10 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get selectionActivePosition():int
+    public function get selectionActivePosition():int
     {
-        return textDisplay ? textDisplay.selectionActivePosition : -1;
-    } */
+        return 0; //textDisplay ? textDisplay.selectionActivePosition : -1;
+    }
 
     //----------------------------------
     //  selectionAnchorPosition
@@ -2021,16 +2021,16 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function selectRange(anchorIndex:int, activeIndex:int):void
+    public function selectRange(anchorIndex:int, activeIndex:int):void
     {
-        if (!textDisplay)
-            return;
+        //if (!textDisplay)
+        //    return;
 
-        textDisplay.selectRange(anchorIndex, activeIndex);
+        // textDisplay.selectRange(anchorIndex, activeIndex);
 
         // This changes the selection so generate an UPDATE_COMPLETE event.
-        invalidateProperties();
-    } */
+        // invalidateProperties();
+    }
 
     /**
      *  @copy spark.core.IEditableText#selectAll()
