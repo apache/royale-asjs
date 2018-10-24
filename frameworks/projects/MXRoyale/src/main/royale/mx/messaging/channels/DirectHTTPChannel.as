@@ -64,7 +64,7 @@ package mx.messaging.channels
 	
 	use namespace mx_internal;
 	
-	[ResourceBundle("messaging")]
+	//[ResourceBundle("messaging")]
 	
 	[ExcludeClass]
 	

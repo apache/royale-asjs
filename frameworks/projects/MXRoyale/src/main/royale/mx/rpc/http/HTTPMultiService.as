@@ -72,7 +72,7 @@ use namespace mx_internal;
  */
 [Event(name="invoke", type="mx.rpc.events.InvokeEvent")]
 
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 [DefaultProperty("operationList")]
 /**
