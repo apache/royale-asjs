@@ -2,22 +2,36 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Chrome against debug.html, with sourcemaps",
+            "name": "Launch Chrome (Debug version)",
             "type": "chrome",
             "request": "launch",
             "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            //"preLaunchTask": "mvn",
             "sourceMaps": true
-            // ,
-            // "preLaunchTask": "mvn"
         },
         {
-            "name": "Launch Firefox against debug.html, with sourcemaps",
+            "name": "Launch Chrome (Release version)",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${workspaceRoot}/target/javascript/bin/js-release/index.html",
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Firefox (Debug version)",
             "type": "firefox",
             "request": "launch",
             "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            //"preLaunchTask": "mvn",
             "sourceMaps": true
-            // ,
-            // "preLaunchTask": "mvn"
+        },
+        {
+            "name": "Launch Firefox (Release version)",
+            "type": "firefox",
+            "request": "launch",
+            "file": "${workspaceRoot}/target/javascript/bin/js-release/index.html",
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
         }
     ]
 }
