@@ -121,6 +121,8 @@
     <component id="TextPrompt" class="org.apache.royale.jewel.beads.controls.textinput.TextPrompt"/>
     <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>
     <component id="MaxNumberCharacters" class="org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters"/>
+    <component id="UpperCase" class="org.apache.royale.jewel.beads.controls.textinput.UpperCase"/>
+    <component id="LowerCase" class="org.apache.royale.jewel.beads.controls.textinput.LowerCase"/>
 
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
     <component id="NullLayout" class="org.apache.royale.jewel.beads.layouts.NullLayout"/>
