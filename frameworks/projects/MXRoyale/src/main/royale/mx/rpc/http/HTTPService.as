@@ -66,7 +66,7 @@ package mx.rpc.http
 	 */
 	[Event(name="invoke", type="mx.rpc.events.InvokeEvent")]
 	
-	[ResourceBundle("rpc")]
+	//[ResourceBundle("rpc")]
 	
 	/**
 	 *  You use the HTTPService class to represent an
