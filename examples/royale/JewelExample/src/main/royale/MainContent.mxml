@@ -146,5 +146,5 @@ limitations under the License.
         <local:LayoutsPlayGround id="layouts_panel"/>
     </j:ApplicationMainContent>
 
-    <!-- <j:ResposiveSizeMonitor/> -->
+    <!-- <j:ResponsiveSizeMonitor/> -->
 </j:ApplicationResponsiveView>

@@ -49,7 +49,7 @@ COMPILE::SWF
             
             if (value.ROYALE_CLASS_INFO == null)
             {
-                if (value.prototype.ROYALE_CLASS_INFO == null)
+                if (value.prototype == null || value.prototype.ROYALE_CLASS_INFO == null)
                     return "Object";
                 value = value.prototype;
             }

@@ -49,7 +49,7 @@ COMPILE::SWF
         COMPILE::JS
         {
             var qname:String = getQualifiedClassName(value);
-            return TypeDefinition.getDefinition(qname, value.ROYALE_CLASS_INFO || value.prototype.ROYALE_CLASS_INFO);
+            return TypeDefinition.getDefinition(qname, value.ROYALE_CLASS_INFO || (value.prototype != null) ? value.prototype.ROYALE_CLASS_INFO : null);
         }
     }
 }

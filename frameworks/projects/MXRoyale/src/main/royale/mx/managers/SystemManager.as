@@ -2939,7 +2939,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  The JavaScript entry point.
      */
     COMPILE::JS
-    public function start():void
+    public function start(parameters:Object = null):void
     {
         var body:HTMLElement = document.getElementsByTagName('body')[0];
         body.appendChild(element);
@@ -2955,6 +2955,10 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
                 mixinList[i].init(this);
             }
         }
+        if (!SystemManagerGlobals.info)
+            SystemManagerGlobals.info = info();
+        if (!SystemManagerGlobals.parameters)
+            SystemManagerGlobals.parameters = parameters;
         initializeTopLevelWindow(null);
     }
     
@@ -2966,6 +2970,9 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     private function initializeTopLevelWindow(event:Event):void
     {
         component = IUIComponent(create());
+        if (SystemManagerGlobals.parameters)
+            component["parameters"] = SystemManagerGlobals.parameters;
+        
         // until preloader?
         component.addEventListener("applicationComplete", applicationCompleteHandler);
         addChild(component as IUIComponent);

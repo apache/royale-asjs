@@ -482,7 +482,7 @@
             <arg value="status" />
         </exec>
         <condition property="utils.modification.exists">
-            <contains string="${git.status.utils}" substring="modified:" />
+		<matches string="${git.status.utils}" pattern="modified:\s*(compiler-jburg-types/pom.xml|compiler-build-tools/pom.xml|pom.xml)" />
         </condition>
         <antcall target="git-commit-and-push-utils-if-modified" />
     </target>
