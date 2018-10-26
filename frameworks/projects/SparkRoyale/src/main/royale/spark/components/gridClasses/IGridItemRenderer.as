@@ -192,8 +192,8 @@ public interface IGridItemRenderer extends IDataRenderer, IVisualElement
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5 
      */
-    // function get column():GridColumn;
-    // function set column(value:GridColumn):void;
+    function get column():GridColumn;
+    function set column(value:GridColumn):void;
     
     /**
      *  The column index for this item renderer's cell.  
