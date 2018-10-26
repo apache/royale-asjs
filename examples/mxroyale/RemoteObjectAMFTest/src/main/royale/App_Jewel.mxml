@@ -53,7 +53,7 @@ limitations under the License.
             private function sendEcho(evt:MouseEvent):void
 			{
                 responder = new Responder(onEchoResult, onFault);
-                token = serviceResp.echo.send(nameResp_txt.text);
+                token = serviceResp.echo(nameResp_txt.text);
                 token.addResponder(responder);
                 trace(token);
             }
