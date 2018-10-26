@@ -109,6 +109,7 @@ COMPILE::SWF {
          * @return a TypeDefinition representing the class or interface represented by the parameters
          */
         public static function getDefinition(name:String, rawData:Object = null):TypeDefinition {
+            if (rawData == null) return null;
             return _cache ? (_cache[name] || new TypeDefinition(name, rawData)) : new TypeDefinition(name, rawData);
         }
 
