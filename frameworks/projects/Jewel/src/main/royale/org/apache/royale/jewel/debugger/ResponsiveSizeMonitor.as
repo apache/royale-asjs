@@ -34,7 +34,7 @@ package org.apache.royale.jewel.debugger
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ResposiveSizeMonitor extends Label
+	public class ResponsiveSizeMonitor extends Label
 	{
 		/**
 		 *  constructor.
@@ -44,12 +44,12 @@ package org.apache.royale.jewel.debugger
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function ResposiveSizeMonitor()
+		public function ResponsiveSizeMonitor()
 		{
             typeNames="responsiveSizeMonitor";
             multiline = true;
 
-            text="ResposiveSizeMonitor";
+            text="ResponsiveSizeMonitor";
 
             //style= "background:rgba(0,0,0,0.8);color:white;padding:10px;position:fixed;bottom:0;width:250px";
 		}

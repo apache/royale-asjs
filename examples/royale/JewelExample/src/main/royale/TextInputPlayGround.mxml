@@ -95,6 +95,19 @@ limitations under the License.
 
 				<j:Slider id="slider_w" width="350" value="211" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
 				<j:Label text="textinput.width='{textinput.width}'"/>
+
+				<j:VGroup gap="3">
+					<j:TextInput text="Bead for text UPPER case">
+						<js:beads>
+							<j:UpperCase/>
+						</js:beads>
+					</j:TextInput>
+					<j:TextInput text="Bead for text LOWER case">
+						<js:beads>
+							<j:LowerCase/>
+						</js:beads>
+					</j:TextInput>
+				</j:VGroup>
 			</j:Card>
 		</j:GridCell>
 		

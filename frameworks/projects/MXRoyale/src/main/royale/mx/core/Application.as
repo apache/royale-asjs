@@ -524,7 +524,30 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 			}
 		}
 	}
-		
+	
+	//----------------------------------
+    //  url
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the url property.
+     *  This variable is set in the initialize() method.
+     */
+    /* mx_internal */ private var _url:String;
+
+    /**
+     *  The URL from which this Application's SWF file was loaded.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get url():String
+    {
+        return _url;
+    }		
 	//--------------------------------------------------------------------------
 	//
 	//  Initialization and Start-up
