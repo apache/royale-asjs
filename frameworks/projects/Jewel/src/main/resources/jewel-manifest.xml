@@ -162,6 +162,6 @@
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
     
 
-     <component id="ResposiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResposiveSizeMonitor"/>
+     <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
 
 </componentPackage>
