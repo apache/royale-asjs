@@ -420,6 +420,15 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         }
     }
 
+    public function set parameters(value:Object):void
+    {
+        // do nothing in SWF.  It is determined by loaderInfo.
+        COMPILE::JS
+        {
+            _parameters = value;
+        }
+    }
+    
 	/**
 	 *  This method gets called when all preinitialize handlers
 	 *  no longer call preventDefault();
