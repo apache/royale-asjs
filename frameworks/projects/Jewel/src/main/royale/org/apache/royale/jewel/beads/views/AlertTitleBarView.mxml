@@ -40,6 +40,6 @@ limitations under the License.
         <js:LayoutChangeNotifier watchedProperty="{titleLabel.text}" />
     </js:beads>
 
-    <j:Label id="titleLabel" text="{ITitleBarModel(model).title}"/>
+    <j:Label localId="titleLabel" text="{ITitleBarModel(model).title}"/>
 
 </js:MXMLBeadView>

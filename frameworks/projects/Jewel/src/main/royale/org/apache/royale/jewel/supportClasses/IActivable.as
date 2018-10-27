@@ -32,7 +32,7 @@ package org.apache.royale.jewel.supportClasses
     public interface IActivable extends IId
     {
         /**
-         *  An id property for MXML documents.
+         *  isActive checks if this object is the active one
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
