@@ -307,7 +307,7 @@ public class ArrayList extends EventDispatcher
             var message:String = resourceManager.getString(
                 "collections", "outOfBounds", [ index ]);
             throw new RangeError(message);
-			return null;
+			// return null;
         }
             
         return source[index];
@@ -335,7 +335,7 @@ public class ArrayList extends EventDispatcher
             var message:String = resourceManager.getString(
                 "collections", "outOfBounds", [ index ]);
             throw new RangeError(message);
-			return null;
+			// return null;
         }
         
         var oldItem:Object = source[index];
@@ -429,7 +429,7 @@ public class ArrayList extends EventDispatcher
             var message:String = resourceManager.getString(
                 "collections", "outOfBounds", [ index ]);
             throw new RangeError(message);
-			return;
+			// return;
         }
 
         startTrackUpdates(item);
@@ -559,7 +559,7 @@ public class ArrayList extends EventDispatcher
             var message:String = resourceManager.getString(
                 "collections", "outOfBounds", [ index ]);
             throw new RangeError(message);
-			return null;
+			// return null;
         }
 
         stopTrackUpdates(removed);
