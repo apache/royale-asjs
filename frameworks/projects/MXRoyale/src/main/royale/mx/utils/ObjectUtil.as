@@ -1012,7 +1012,7 @@ public class ObjectUtil
                 var classInfo:TypeDefinition = describeType(obj);
                 if (classInfo == null) // probably not a Royale class
                 {
-                    className == "Object";
+                    className = "Object";
                     //classAlias = null;
                     isDynamic = true;
                 }
