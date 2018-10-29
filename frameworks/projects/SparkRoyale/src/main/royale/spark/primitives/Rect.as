@@ -899,10 +899,10 @@ public class Rect  extends EventDispatcher
      *  Storage for the width property.
      */
      /* mx_internal */ private var _width:Number = 0;
-
-    [Bindable("propertyChange")]
-    [Inspectable(category="General")]
-    [PercentProxy("percentWidth")]
+	 
+	 [Bindable("propertyChange")]
+	 [Inspectable(category="General")]
+	 [PercentProxy("percentWidth")]
 
     /**
      *  The width of the graphic element.
@@ -1275,6 +1275,48 @@ public class Rect  extends EventDispatcher
         dispatchPropertyChangeEvent("fill", oldValue, _fill);    
         invalidateDisplayList(); */
     }
+	
+	//----------------------------------
+	//  percentWidth
+	//----------------------------------
+	
+	/**
+	 *  @private
+	 *  Storage for the percentWidth property.
+	 */
+	private var _percentWidth:Number;
+	
+	[Inspectable(category="General")]
+	
+	/**
+	 *  @copy mx.core.UIComponent#percentWidth
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10
+	 *  @playerversion AIR 1.5
+	 *  @productversion Flex 4
+	 */
+	public function get percentWidth():Number
+	{
+		return _percentWidth;
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set percentWidth(value:Number):void
+	{
+		if (_percentWidth == value)
+			return;
+		
+		/*if (!isNaN(value))
+			explicitWidth = NaN;*/
+		
+		_percentWidth = value;
+		
+		// invalidateParentSizeAndDisplayList();
+	}
+
 }
 
 }

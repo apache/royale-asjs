@@ -20,6 +20,7 @@ package org.apache.royale.jewel.itemRenderers
 {
     import org.apache.royale.html.elements.Option;
     import org.apache.royale.html.supportClasses.MXMLItemRenderer;
+    import org.apache.royale.jewel.beads.views.DropDownListView;
 
     COMPILE::JS
     {
@@ -36,6 +37,8 @@ package org.apache.royale.jewel.itemRenderers
      */    
 	public class DropDownListItemRenderer extends MXMLItemRenderer
 	{
+        public static const OPTION_DISABLED:String = "DropDownList.Select.Default.Prompt";
+
         /**
          *  Constructor.
          *  
@@ -66,24 +69,37 @@ package org.apache.royale.jewel.itemRenderers
         {
             super.data = value;
 
-            if (labelField)
+            if(value == OPTION_DISABLED)
             {
-                item.text = String(value[labelField]);
-            }
-            else
-            {
-                item.text = String(value);
-            }
-
-            COMPILE::JS
-            {
-                if (dataField)
+                COMPILE::JS
                 {
-                    item.element["value"] = String(value[dataField]);
+                var view:DropDownListView = DropDownListView(itemRendererParent);
+                // item.element.setAttribute("disabled", "");
+                item.element.setAttribute("selected", "");
+                item.element.setAttribute("hidden", "");
+                item.text = view.prompt;
+                }
+            } else
+            {
+                if (labelField)
+                {
+                    item.text = String(value[labelField]);
                 }
                 else
                 {
-                    item.element["value"] = String(value);
+                    item.text = String(value);
+                }
+
+                COMPILE::JS
+                {
+                    if (dataField)
+                    {
+                        item.element["value"] = String(value[dataField]);
+                    }
+                    else
+                    {
+                        item.element["value"] = String(value);
+                    }
                 }
             }
         }
