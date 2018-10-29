@@ -43,6 +43,25 @@ package org.apache.royale.jewel.beads.views
             super();
         }
 
+        private var dropDownList:DropDownList; 
+        
+        /**
+         *  The prompt in the main dropDownList class
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get prompt():String
+        {
+        	return dropDownList.prompt;
+        }
+        public function set prompt(value:String):void
+        {
+        	dropDownList.prompt = value;
+        }
+
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *
@@ -59,82 +78,60 @@ package org.apache.royale.jewel.beads.views
 
             COMPILE::JS
             {
-                var dropDownList:DropDownList = (value as DropDownList);
-
-                // dropDownList.labelDisplay = document.createElement('label') as HTMLLabelElement;
-                // dropDownList.labelDisplay.innerText = dropDownList.prompt;
-                // dropDownList.labelDisplay.classList.add("mdl-textfield__label");
-
+                dropDownList = value as DropDownList;
                 dropDownList.dropDown = new Select();
-                // dropDownList.dropDown.className = "mdl-textfield__input";
-
-                var emptyOption:Option = new Option();
-                // emptyOption.element.style.display = "none";
-
-                dropDownList.dropDown.addElement(emptyOption);
                 
-                setNameForDropDownList();
+                var name:String = "dropDownList" + Math.random();
+                dropDownList.dropDown.element.name = name;
 
-                // dropDownList.element.appendChild(dropDownList.labelDisplay);
                 dropDownList.addElement(dropDownList.dropDown);
             }
+        }
+        
+        override protected function handleInitComplete(event:Event):void
+        {
+            super.handleInitComplete(event);
+            
+            //dataModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
         }
 
         override protected function dataProviderChangeHandler(event:Event):void
         {
             super.dataProviderChangeHandler(event);
 
-            COMPILE::JS
-            {
-                setProgrammaticallyChangedSelection();
-            }
+            setProgrammaticallyChangedSelection();
         }
 
         override protected function itemsCreatedHandler(event:org.apache.royale.events.Event):void
         {
             super.itemsCreatedHandler(event);
 
-            COMPILE::JS
-            {
-                setProgrammaticallyChangedSelection();
-            }
+            setProgrammaticallyChangedSelection();
         }
 
-        private function selectionChangeHandler(event:Event):void
-        {
-            COMPILE::JS
-            {
-                setProgrammaticallyChangedSelection();
-            }
-        }
+        private var model:ISelectionModel;
 
-        override protected function handleInitComplete(event:Event):void
-        {
-            super.handleInitComplete(event);
-            
-            dataModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-        }
+        // private function selectionChangeHandler(event:Event):void
+        // {
+        //     model = dataModel as ISelectionModel;
+        //     if(model.selectedIndex != -1)
+		// 		setProgrammaticallyChangedSelection();
+        // }
 
-        COMPILE::JS
-        private function setNameForDropDownList():void
-        {
-            var dropDownList:DropDownList = (_strand as DropDownList);
-
-            var name:String = "dropDownList" + Math.random();
-            // dropDownList.labelDisplay.htmlFor = name;
-            dropDownList.dropDown.element.name = name;
-        }
-
-        COMPILE::JS
         private function setProgrammaticallyChangedSelection():void
         {
-            var dropDownList:DropDownList = (_strand as DropDownList);
-            var selectedIndex:int = dropDownList.dropDown.element["selectedIndex"] - 1;
-            var model:ISelectionModel = dataModel as ISelectionModel;
-
-            if (model.selectedIndex > -1 && model.dataProvider && model.selectedIndex != selectedIndex)
+            COMPILE::JS
             {
-                dropDownList.dropDown.element["selectedIndex"] = model.selectedIndex + 1;
+            model = dataModel as ISelectionModel;
+            var selectedIndex:int = dropDownList.selectedIndex;//dropDownList.dropDown.element["selectedIndex"];
+            
+            if (model.selectedIndex > -1 && model.dataProvider)// && model.selectedIndex != selectedIndex)
+            {
+                trace( model.selectedIndex + " != " + selectedIndex )
+                // trace("set selectedIndex", model.selectedIndex);
+                // dropDownList.dropDown.element["selectedIndex"] = model.selectedIndex;
+                dropDownList.selectedIndex = model.selectedIndex;
+            }
             }
         }
     }

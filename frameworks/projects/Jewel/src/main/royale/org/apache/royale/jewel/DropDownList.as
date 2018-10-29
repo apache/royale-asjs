@@ -83,7 +83,6 @@ package org.apache.royale.jewel
 		}
 
         private var _prompt:String = "";
-
         /**
          *  The prompt for the DropDownList control.
          *
@@ -222,10 +221,10 @@ package org.apache.royale.jewel
         public function set selectedIndex(value:int):void
         {
             ISelectionModel(model).selectedIndex = value;
-            // COMPILE::JS
-            // {
-            //     (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
-            // }
+            COMPILE::JS
+            {
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            }
         }
 
         [Bindable("change")]
@@ -254,10 +253,10 @@ package org.apache.royale.jewel
         public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
-            // COMPILE::JS
-            // {
-            //     (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
-            // }
+            COMPILE::JS
+            {
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            }
         }
 
         /**

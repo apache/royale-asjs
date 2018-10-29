@@ -44,14 +44,14 @@ $dropdownlist-button-yoffset: calc(50% - #{$combobox-button-size/2})
 
 j|DropDownList
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView")
-    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+    // IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DropDownListModel")
+    // IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer")
     // IBeadController: ClassReference("org.apache.royale.mdl.beads.controllers.DropDownListController")
 
-    // IBeadModel: ClassReference("org.apache.royale.mdl.beads.models.DropDownListModel")
-    // IBeadLayout: ClassReference(null)
     // IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData")
 
 @media -royale-swf	
