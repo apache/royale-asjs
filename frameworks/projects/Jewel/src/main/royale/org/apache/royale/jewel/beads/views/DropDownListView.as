@@ -18,17 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+    COMPILE::JS
+    {
+        import org.apache.royale.html.elements.Select;
+    }
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.html.elements.Option;
-    import org.apache.royale.html.elements.Select;
+    import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.DataContainerView;
     import org.apache.royale.jewel.DropDownList;
-    import org.apache.royale.events.Event;
 
     /**
      *  The DropDownListView class creates the visual elements of the org.apache.royale.jewel.DropDownList
-     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Select and Label
+     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Select
      *
      *  @viewbead
      *  @langversion 3.0
@@ -87,51 +89,31 @@ package org.apache.royale.jewel.beads.views
                 dropDownList.addElement(dropDownList.dropDown);
             }
         }
-        
-        override protected function handleInitComplete(event:Event):void
-        {
-            super.handleInitComplete(event);
-            
-            //dataModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-        }
 
         override protected function dataProviderChangeHandler(event:Event):void
         {
             super.dataProviderChangeHandler(event);
 
-            setProgrammaticallyChangedSelection();
+            changedSelection();
         }
 
         override protected function itemsCreatedHandler(event:org.apache.royale.events.Event):void
         {
             super.itemsCreatedHandler(event);
 
-            setProgrammaticallyChangedSelection();
+            changedSelection();
         }
 
         private var model:ISelectionModel;
 
-        // private function selectionChangeHandler(event:Event):void
-        // {
-        //     model = dataModel as ISelectionModel;
-        //     if(model.selectedIndex != -1)
-		// 		setProgrammaticallyChangedSelection();
-        // }
-
-        private function setProgrammaticallyChangedSelection():void
+        private function changedSelection():void
         {
-            COMPILE::JS
-            {
             model = dataModel as ISelectionModel;
-            var selectedIndex:int = dropDownList.selectedIndex;//dropDownList.dropDown.element["selectedIndex"];
+            var selectedIndex:int = dropDownList.selectedIndex;
             
-            if (model.selectedIndex > -1 && model.dataProvider)// && model.selectedIndex != selectedIndex)
+            if (model.selectedIndex > -1 && model.dataProvider)
             {
-                trace( model.selectedIndex + " != " + selectedIndex )
-                // trace("set selectedIndex", model.selectedIndex);
-                // dropDownList.dropDown.element["selectedIndex"] = model.selectedIndex;
                 dropDownList.selectedIndex = model.selectedIndex;
-            }
             }
         }
     }
