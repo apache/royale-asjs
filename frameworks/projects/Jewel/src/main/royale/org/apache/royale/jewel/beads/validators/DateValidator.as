@@ -78,12 +78,9 @@ package org.apache.royale.jewel.beads.validators
 			var df:DateField = hostComponent as DateField;
 			if (super.validate(event))
             {
-				trace("this is true no validation func");
 				if (!isValidDate(df.selectedDate)) {
-			trace("is not a valid date");
 					createErrorTip(requiredFieldError);
 				} else {
-			trace("is valid date");
 					destroyErrorTip();
 				}	
 			}
