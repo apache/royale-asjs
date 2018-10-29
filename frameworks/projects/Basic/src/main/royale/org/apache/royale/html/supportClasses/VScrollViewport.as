@@ -110,56 +110,11 @@ package org.apache.royale.html.supportClasses
 			super();
 		}
 
-		private var _verticalScroller:ScrollBar;
-
-		override public function get verticalScroller():IViewportScroller
-		{
-			return _verticalScroller;
-		}
-
-		private var _horizontalScroller:ScrollBar
-
-		override public function get horizontalScroller():IViewportScroller
-		{
-			return _horizontalScroller;
-		}
-
-        private var _verticalScrollPosition:Number = 0;
-
-        override public function get verticalScrollPosition():Number
-        {
-			return _verticalScrollPosition;
-        }
-        override public function set verticalScrollPosition(value:Number):void
-        {
-			_verticalScrollPosition = value;
-			handleVerticalScrollChange();
-        }
-
-        private var _horizontalScrollPosition:Number = 0;
-
-        override public function get horizontalScrollPosition():Number
-        {
-			return _horizontalScrollPosition;
-        }
         override public function set horizontalScrollPosition(value:Number):void
         {
 			// Do nothing
 			// _horizontalScrollPosition = value;
 			// handleHorizontalScrollChange();
-        }
-
-        private var viewportWidth:Number;
-        private var viewportHeight:Number;
-
-        /**
-         * @copy org.apache.royale.core.IViewport
-         */
-        override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
-        {
-           	super.layoutViewportBeforeContentLayout(width, height);
-           	viewportWidth = width;
-           	viewportHeight = height;
         }
 
         /**
@@ -219,41 +174,6 @@ package org.apache.royale.html.supportClasses
 				hostHeight);
 			
 			contentArea.scrollRect = rect;
-		}
-
-		private function createVerticalScrollBar():ScrollBar
-		{
-			var vsbm:ScrollBarModel = new ScrollBarModel();
-			vsbm.minimum = 0;
-			vsbm.snapInterval = 1;
-			vsbm.stepSize = 1;
-			vsbm.value = 0;
-
-			var vsb:VScrollBar;
-			vsb = new VScrollBar();
-			vsb.model = vsbm;
-			vsb.visible = false;
-
-			vsb.addEventListener("scroll",handleVerticalScroll);
-			return vsb;
-		}
-
-		private function handleVerticalScroll(event:Event):void
-		{
-			var host:UIBase = UIBase(_strand);
-			var vpos:Number = ScrollBarModel(_verticalScroller.model).value;
-			var rect:flash.geom.Rectangle = contentArea.scrollRect;
-			rect.y = vpos;
-			contentArea.scrollRect = rect;
-
-			_verticalScrollPosition = vpos;
-		}
-
-		private function handleVerticalScrollChange():void
-		{
-			if (_verticalScroller) {
-				ScrollBarModel(_verticalScroller.model).value = verticalScrollPosition;
-			}
 		}
 
 	}

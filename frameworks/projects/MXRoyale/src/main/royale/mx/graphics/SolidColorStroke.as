@@ -18,15 +18,58 @@
 
 package mx.graphics
 {
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.geom.Rectangle;
+    import mx.display.Graphics;
 	import mx.graphics.IStroke;
-	import org.apache.royale.graphics.SolidColorStroke;
-    public class SolidColorStroke extends org.apache.royale.graphics.SolidColorStroke implements IStroke
+	
+    public class SolidColorStroke implements IStroke
     {
-		public function SolidColorStroke(color:uint = 0x000000,weight:Number = 1, alpha:Number = 1.0)
+		public function SolidColorStroke(color:uint = 0x000000,weight:Number = 1, alpha:Number = 1.0,
+                                     pixelHinting:Boolean = false,
+                                     scaleMode:String = "normal",
+                                     caps:String = "round",
+                                     joints:String = "round",
+                                     miterLimit:Number = 3)
         {
-			super(color,weight,alpha);
+			super();
+            this.weight = weight;
+            this.color = color;
 		}
 		
+	private var _weight:Number;
+
+    public function get weight():Number
+    {
+        return _weight;
+    }
+    public function set weight(value:Number):void
+    {
+        _weight = value;
+    }
+
+	private var _color:Number;
+
+    public function get color():Number
+    {
+        return _color;
+    }
+    public function set color(value:Number):void
+    {
+        _color = value;
+    }
+
+    private var _alpha:Number;
+        
+    public function get alpha():Number
+    {
+        return _alpha;
+    }
+    public function set alpha(value:Number):void
+    {
+        _alpha = value;
+    }
+
 	//----------------------------------
     //  caps
     //----------------------------------
@@ -62,5 +105,11 @@ package mx.graphics
             //dispatchStrokeChangedEvent("caps", oldValue, value);
         }
     }
+    
+    public function apply(g:Graphics, targetBounds:Rectangle = null, targetOrigin:Point = null):void
+    {
+        trace("SolidColorStroke.apply not implemented");
+    }
+
     }
 }

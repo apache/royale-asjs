@@ -74,6 +74,10 @@ public class Effect extends org.apache.royale.effects.Effect
     {
     }
     
+    public function createInstance(effect:mx.effects.Effect):IEffectInstance
+    {
+        return null;
+    }
 
     
    //--------------------------------------------------------------------------

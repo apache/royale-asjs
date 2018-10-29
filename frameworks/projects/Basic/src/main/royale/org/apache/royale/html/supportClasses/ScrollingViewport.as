@@ -138,21 +138,21 @@ package org.apache.royale.html.supportClasses
 			super();
 		}
 
-		private var _verticalScroller:ScrollBar;
+		protected var _verticalScroller:ScrollBar;
 
 		public function get verticalScroller():IViewportScroller
 		{
 			return _verticalScroller;
 		}
 
-		private var _horizontalScroller:ScrollBar
+		protected var _horizontalScroller:ScrollBar
 
 		public function get horizontalScroller():IViewportScroller
 		{
 			return _horizontalScroller;
 		}
 
-        private var _verticalScrollPosition:Number = 0;
+        protected var _verticalScrollPosition:Number = 0;
 
         public function get verticalScrollPosition():Number
         {
@@ -165,7 +165,7 @@ package org.apache.royale.html.supportClasses
 			handleVerticalScrollChange();
         }
 
-        private var _horizontalScrollPosition:Number = 0;
+        protected var _horizontalScrollPosition:Number = 0;
 
         public function get horizontalScrollPosition():Number
         {
@@ -178,8 +178,8 @@ package org.apache.royale.html.supportClasses
 			handleHorizontalScrollChange();
         }
 
-        private var viewportWidth:Number;
-        private var viewportHeight:Number;
+        protected var viewportWidth:Number;
+        protected var viewportHeight:Number;
 
         /**
          * @copy org.apache.royale.core.IViewport
@@ -281,7 +281,7 @@ package org.apache.royale.html.supportClasses
 			contentArea.scrollRect = rect;
 		}
 
-		private function createVerticalScrollBar():ScrollBar
+		protected function createVerticalScrollBar():ScrollBar
 		{
 			var vsbm:ScrollBarModel = new ScrollBarModel();
 			vsbm.minimum = 0;
@@ -298,7 +298,7 @@ package org.apache.royale.html.supportClasses
 			return vsb;
 		}
 
-		private function createHorizontalScrollBar():ScrollBar
+		protected function createHorizontalScrollBar():ScrollBar
 		{
 			var hsbm:ScrollBarModel = new ScrollBarModel();
 			hsbm.minimum = 0;
@@ -315,7 +315,7 @@ package org.apache.royale.html.supportClasses
 			return hsb;
 		}
 
-		private function handleVerticalScroll(event:Event):void
+		protected function handleVerticalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
 			var vpos:Number = ScrollBarModel(_verticalScroller.model).value;
@@ -327,7 +327,7 @@ package org.apache.royale.html.supportClasses
             dispatchEvent(new Event("verticalScrollPositionChanged"));
 		}
 
-		private function handleHorizontalScroll(event:Event):void
+		protected function handleHorizontalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
 			var hpos:Number = ScrollBarModel(_horizontalScroller.model).value;
@@ -339,14 +339,14 @@ package org.apache.royale.html.supportClasses
             dispatchEvent(new Event("horizontalScrollPositionChanged"));
 		}
 
-		private function handleVerticalScrollChange():void
+		protected function handleVerticalScrollChange():void
 		{
 			if (_verticalScroller) {
 				ScrollBarModel(_verticalScroller.model).value = verticalScrollPosition;
 			}
 		}
 
-		private function handleHorizontalScrollChange():void
+		protected function handleHorizontalScrollChange():void
 		{
 			if (_horizontalScroller) {
 				ScrollBarModel(_horizontalScroller.model).value = horizontalScrollPosition;

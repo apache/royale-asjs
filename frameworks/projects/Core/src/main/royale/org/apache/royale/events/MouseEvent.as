@@ -421,11 +421,11 @@ package org.apache.royale.events
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
 		 */
-		public function get target():Object
+        override public function get target():Object
 		{
 			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : _target;
 		}
-		public function set target(value:Object):void
+        override public function set target(value:Object):void
 		{
 			_target = value;
 		}
@@ -438,11 +438,11 @@ package org.apache.royale.events
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
 		 */
-		public function get currentTarget():Object
+        override public function get currentTarget():Object
 		{
 			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : _target;
 		}
-		public function set currentTarget(value:Object):void
+        override public function set currentTarget(value:Object):void
 		{
 			_target = value;
 		}
@@ -575,11 +575,11 @@ package org.apache.royale.events
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
 		 */
-		public function get defaultPrevented():Boolean
+        override public function get defaultPrevented():Boolean
 		{
 			return wrappedEvent ? wrappedEvent.defaultPrevented : _defaultPrevented;
 		}
-		public function set defaultPrevented(value:Boolean):void
+        override public function set defaultPrevented(value:Boolean):void
 		{
 			_defaultPrevented = value;
 		}

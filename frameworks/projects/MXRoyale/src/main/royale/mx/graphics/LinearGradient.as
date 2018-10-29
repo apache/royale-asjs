@@ -20,14 +20,47 @@
 package mx.graphics
 {
 
-import org.apache.royale.svg.LinearGradient;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 import mx.core.mx_internal;
+import mx.display.Graphics;
 import mx.graphics.IFill;
+
 
 use namespace mx_internal;
 
-public class LinearGradient extends org.apache.royale.svg.LinearGradient implements IFill
+public class LinearGradient implements IFill
 {
+    public function begin(g:Graphics,targetBounds:Rectangle,targetOrigin:Point):void
+    {
+        trace("LinearGradient begin not implemented");
+    }
+    
+    public function end(g:Graphics):void
+    {
+    }
+
+    private var _rotation:Number;
+    
+    public function get rotation():Number
+    {
+        return _rotation;
+    }
+    public function set rotation(value:Number):void
+    {
+        _rotation = value;
+    }
+    
+    private var _entries:Array;
+    
+    public function get entries():Array
+    {
+        return _entries;
+    }
+    public function set entries(value:Array):void
+    {
+        _entries = value;
+    }
 
 }
 

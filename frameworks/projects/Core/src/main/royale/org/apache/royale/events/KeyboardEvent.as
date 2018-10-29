@@ -94,13 +94,13 @@ package org.apache.royale.events
          * @productversion Royale 0.9
 		 */
         COMPILE::JS
-		public function get target():Object
+        override public function get target():Object
 		{
 			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : _target;
 		}
 
         COMPILE::JS
-		public function set target(value:Object):void
+        override public function set target(value:Object):void
 		{
 			_target = value;
 		}
@@ -114,13 +114,13 @@ package org.apache.royale.events
          * @productversion Royale 0.9
 		 */
         COMPILE::JS
-		public function get currentTarget():Object
+        override public function get currentTarget():Object
 		{
 			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : _target;
 		}
 
         COMPILE::JS
-		public function set currentTarget(value:Object):void
+        override public function set currentTarget(value:Object):void
 		{
 			_target = value;
 		}
@@ -258,12 +258,12 @@ package org.apache.royale.events
          * @productversion Royale 0.0
 		 */
         COMPILE::JS
-		public function get defaultPrevented():Boolean
+		override public function get defaultPrevented():Boolean
 		{
 			return wrappedEvent ? wrappedEvent.defaultPrevented : _defaultPrevented;
 		}
         COMPILE::JS
-		public function set defaultPrevented(value:Boolean):void
+        override public function set defaultPrevented(value:Boolean):void
 		{
 			_defaultPrevented = value;
 		}

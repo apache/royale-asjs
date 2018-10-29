@@ -38,24 +38,32 @@ import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 */
 
-import mx.charts.chartClasses.IAxis;
 import mx.controls.beads.ToolTipBead;
 import mx.display.Graphics;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
+import mx.events.KeyboardEvent;
 import mx.events.MoveEvent;
 import mx.events.PropertyChangeEvent;
 import mx.events.ResizeEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
+import mx.managers.ILayoutManagerClient;
 import mx.managers.ISystemManager;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
+import mx.styles.ISimpleStyleClient;
+import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
+import mx.utils.StringUtil;
+
+import mx.core.mx_internal;
+use namespace mx_internal;
 
 import org.apache.royale.core.CallLaterBead;
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
 import org.apache.royale.core.IUIBase;
@@ -65,7 +73,6 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.events.KeyboardEvent;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
@@ -592,38 +599,22 @@ public class UIComponent extends UIBase
         }
     }
     
-    private var _VerticalAxis:IAxis;
-    public function get verticalAxis():IAxis
-	 {
-	    return _VerticalAxis;
-	 }
-    public function set verticalAxis(value:IAxis):void
-	 {
-	    _VerticalAxis = value;
-	 }
-    private var _horizontalAxis:IAxis;
-    public function get horizontalAxis():IAxis
-	 {
-	    return _horizontalAxis;
-	 }
-    public function set horizontalAxis(value:IAxis):void
-	 {
-	    _horizontalAxis = value;
-	 }
 	//----------------------------------
     //  graphics copied from Sprite
     //----------------------------------
 		private var _graphics:Graphics;
 
-	COMPILE::JS
-	{
+        [SWFOverride(returns="flash.display.Graphics"))]
+        COMPILE::SWF 
+        { override }
 		public function get graphics():Graphics
 		{
+            if (_graphics == null)
+                _graphics = new mx.display.Graphics(this);
 			return _graphics;
-		} 
-	}
-	
-    	COMPILE::JS{
+		}
+        
+    COMPILE::JS{
 	private var _mask:UIComponent;
 		 public function set mask(value:UIComponent):void
 		{
@@ -3061,6 +3052,14 @@ COMPILE::JS
     {
         return addElement(child) as IUIComponent;
     }
+    
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $addChild(child:IUIComponent):IUIComponent
+    {
+        return addElement(child) as IUIComponent;
+    }
 
     /**
      *  @private
@@ -3071,6 +3070,16 @@ COMPILE::JS
     { override }
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
+    {
+        // this should probably call addingChild/childAdded
+        return addElementAt(child, index) as IUIComponent;
+    }
+    
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $addChildAt(child:IUIComponent,
+                               index:int):IUIComponent
     {
         return addElementAt(child, index) as IUIComponent;
     }
@@ -3086,7 +3095,16 @@ COMPILE::JS
     {
         return removeElement(child) as IUIComponent;
     }
-
+    
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $removeChild(child:IUIComponent):IUIComponent
+    {
+        // this should probably call the removingChild/childRemoved
+        return removeElement(child) as IUIComponent;
+    }
+    
     COMPILE::JS
 	public function swapChildren(child1:IUIComponent, child2:IUIComponent):void
 	{
@@ -3100,6 +3118,15 @@ COMPILE::JS
     COMPILE::SWF 
     { override }
     public function removeChildAt(index:int):IUIComponent
+    {
+        // this should probably call the removingChild/childRemoved
+        return removeElement(getElementAt(index)) as IUIComponent;
+    }
+    
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $removeChildAt(index:int):IUIComponent
     {
         return removeElement(getElementAt(index)) as IUIComponent;
     }
@@ -3439,7 +3466,9 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    COMPILE::SWF 
+    { override }
     public function localToGlobal(value:Point):Point
     {
         return PointUtils.localToGlobal(value, this);
@@ -3453,7 +3482,9 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::JS 
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    COMPILE::SWF 
+    { override }
     public function globalToLocal(value:Point):Point
     {
         return PointUtils.globalToLocal(value, this);
@@ -4962,9 +4993,300 @@ COMPILE::JS
         addEventListener("hide", new EffectEventWatcher(_showEffect).listener);
     }
 
+    /**
+     *  Creates a new object using a context
+     *  based on the embedded font being used.
+     *
+     *  <p>This method is used to solve a problem
+     *  with access to fonts embedded  in an application SWF
+     *  when the framework is loaded as an RSL
+     *  (the RSL has its own SWF context).
+     *  Embedded fonts can only be accessed from the SWF file context
+     *  in which they were created.
+     *  By using the context of the application SWF,
+     *  the RSL can create objects in the application SWF context
+     *  that has access to the application's  embedded fonts.</p>
+     *
+     *  <p>Call this method only after the font styles
+     *  for this object are set.</p>
+     *
+     *  @param class The class to create.
+     *
+     *  @return The instance of the class created in the context
+     *  of the SWF owning the embedded font.
+     *  If this object is not using an embedded font,
+     *  the class is created in the context of this object.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function createInFontContext(classObj:Class):Object
+    {
+        return new classObj();
+    }
+    
+    /**
+     *  Flex calls the <code>stylesInitialized()</code> method when
+     *  the styles for a component are first initialized.
+     *
+     *  <p>This is an advanced method that you might override
+     *  when creating a subclass of UIComponent. Flex guarantees that
+     *  your component's styles are fully initialized before
+     *  the first time your component's <code>measure</code> and
+     *  <code>updateDisplayList</code> methods are called.  For most
+     *  components, that is sufficient. But if you need early access to
+     *  your style values, you can override the stylesInitialized() function
+     *  to access style properties as soon as they are initialized the first time.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function stylesInitialized():void
+    {
+    }
+    
+    /**
+     *  Returns a UITextFormat object corresponding to the text styles
+     *  for this UIComponent.
+     *
+     *  @return UITextFormat object corresponding to the text styles
+     *  for this UIComponent.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::SWF
+    public function determineTextFormatFromStyles():UITextFormat
+    {
+        var textFormat:UITextFormat// = cachedTextFormat;
+        
+        /*
+        if (!textFormat)
+        {
+            var font:String =
+                StringUtil.trimArrayElements(_inheritingStyles.fontFamily, ",");
+            textFormat = new UITextFormat(getNonNullSystemManager(), font);
+            textFormat.moduleFactory = moduleFactory;
+            
+            // Not all flex4 textAlign values are valid so convert to a valid one.
+            var align:String = _inheritingStyles.textAlign;
+            if (align == "start") 
+                align = TextFormatAlign.LEFT;
+            else if (align == "end")
+                align = TextFormatAlign.RIGHT;
+            textFormat.align = align; 
+            textFormat.bold = _inheritingStyles.fontWeight == "bold";
+            textFormat.color = enabled ?
+                _inheritingStyles.color :
+                _inheritingStyles.disabledColor;
+            textFormat.font = font;
+            textFormat.indent = _inheritingStyles.textIndent;
+            textFormat.italic = _inheritingStyles.fontStyle == "italic";
+            textFormat.kerning = _inheritingStyles.kerning;
+            textFormat.leading = _nonInheritingStyles.leading;
+            textFormat.leftMargin = _nonInheritingStyles.paddingLeft;
+            textFormat.letterSpacing = _inheritingStyles.letterSpacing;
+            textFormat.rightMargin = _nonInheritingStyles.paddingRight;
+            textFormat.size = _inheritingStyles.fontSize;
+            textFormat.underline =
+                _nonInheritingStyles.textDecoration == "underline";
+            
+            textFormat.antiAliasType = _inheritingStyles.fontAntiAliasType;
+            textFormat.gridFitType = _inheritingStyles.fontGridFitType;
+            textFormat.sharpness = _inheritingStyles.fontSharpness;
+            textFormat.thickness = _inheritingStyles.fontThickness;
+            
+            textFormat.useFTE =
+                getTextFieldClassName() == "mx.core::UIFTETextField" ||
+                getTextInputClassName() == "mx.controls::MXFTETextInput";
+            
+            if (textFormat.useFTE)
+            {
+                textFormat.direction = _inheritingStyles.direction;
+                textFormat.locale = _inheritingStyles.locale;
+            }
+            
+            cachedTextFormat = textFormat;
+        }*/
+        
+        return textFormat;
+    }
+
+    /**
+     *  @private
+     */
+    mx_internal function addingChild(child:IUIBase):void
+    {
+        // If the document property isn't already set on the child,
+        // set it to be the same as this component's document.
+        // The document setter will recursively set it on any
+        // descendants of the child that exist.
+        if (child is IUIComponent &&
+            !IUIComponent(child).component)
+        {
+            IUIComponent(child).component = component ?
+                component :
+                FlexGlobals.topLevelApplication;
+        }
+        
+        // Propagate moduleFactory to the child, but don't overwrite an existing moduleFactory.
+        if (child is IFlexModule && IFlexModule(child).moduleFactory == null)
+        {
+            if (moduleFactory != null)
+                IFlexModule(child).moduleFactory = moduleFactory;
+                
+            else if (component is IFlexModule && component.moduleFactory != null)
+                IFlexModule(child).moduleFactory = component.moduleFactory;
+                
+            else if (parent is IFlexModule && IFlexModule(parent).moduleFactory != null)
+                IFlexModule(child).moduleFactory = IFlexModule(parent).moduleFactory;
+        }
+        /*
+        
+        // Set the font context in non-UIComponent children.
+        // UIComponent children use moduleFactory.
+        if (child is IFontContextComponent && !(child is UIComponent) &&
+            IFontContextComponent(child).fontContext == null)
+            IFontContextComponent(child).fontContext = moduleFactory;
+        
+        if (child is IUIComponent)
+            IUIComponent(child).parentChanged(this);
+        
+        // Set the nestLevel of the child to be one greater
+        // than the nestLevel of this component.
+        // The nestLevel setter will recursively set it on any
+        // descendants of the child that exist.
+        if (child is ILayoutManagerClient)
+            ILayoutManagerClient(child).nestLevel = nestLevel + 1;
+        else if (child is IUITextField)
+            IUITextField(child).nestLevel = nestLevel + 1;
+        
+        if (child is InteractiveObject)
+            if (doubleClickEnabled)
+                InteractiveObject(child).doubleClickEnabled = true;
+        
+        // Sets up the inheritingStyles and nonInheritingStyles objects
+        // and their proto chains so that getStyle() works.
+        // If this object already has some children,
+        // then reinitialize the children's proto chains.
+        if (child is IStyleClient)
+            IStyleClient(child).regenerateStyleCache(true);
+        else if (child is IUITextField && IUITextField(child).inheritingStyles)
+            StyleProtoChain.initTextField(IUITextField(child));
+        
+        if (child is ISimpleStyleClient)
+            ISimpleStyleClient(child).styleChanged(null);
+        
+        if (child is IStyleClient)
+            IStyleClient(child).notifyStyleChangeInChildren(null, true);
+        
+        if (child is UIComponent)
+            UIComponent(child).initThemeColor();
+        
+        // Inform the component that it's style properties
+        // have been fully initialized. Most components won't care,
+        // but some need to react to even this early change.
+        if (child is UIComponent)
+            UIComponent(child).stylesInitialized();
+        */
+    }
+    
+    /**
+     *  @private
+     */
+    mx_internal function childAdded(child:IUIBase):void
+    {
+        /*
+        if (!UIComponentGlobals.designMode)
+        {
+            if (child is UIComponent)
+            {
+                if (!UIComponent(child).initialized)
+                    UIComponent(child).initialize();
+            }
+            else if (child is IUIComponent)
+            {
+                IUIComponent(child).initialize();
+            }
+        }
+        else
+        {
+            try
+            {
+                if (child is UIComponent)
+                {
+                    if (!UIComponent(child).initialized)
+                        UIComponent(child).initialize();
+                }
+                else if (child is IUIComponent)
+                {
+                    IUIComponent(child).initialize();
+                }               
+            }
+            catch (e:Error)
+            {
+                // Dispatch a initializeError dynamic event for tooling. 
+                var initializeErrorEvent:DynamicEvent = new DynamicEvent("initializeError");
+                initializeErrorEvent.error = e;
+                initializeErrorEvent.source = child; 
+                systemManager.dispatchEvent(initializeErrorEvent);
+            }
+        }
+        */
+    }
+    
+    /**
+     *  @private
+     */
+    mx_internal function removingChild(child:IUIBase):void
+    {
+    }
+    
+    /**
+     *  @private
+     */
+    mx_internal function childRemoved(child:IUIBase):void
+    {
+        if (child is IUIComponent)
+        {
+            // only reset document if the child isn't
+            // a document itself
+            if (IUIComponent(child).component != child)
+                IUIComponent(child).component = null;
+            //IUIComponent(child).parentChanged(null);
+        }
+    }
+    
+    override public function addElement(c:IChild, dispatchEvent:Boolean=true):void
+    {
+        addingChild(c as IUIBase);
+        super.addElement(c, dispatchEvent);
+        childAdded(c as IUIBase);
+    }
+
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean=true):void
+    {
+        addingChild(c as IUIBase);
+        super.addElementAt(c, index, dispatchEvent);
+        childAdded(c as IUIBase);
+    }
+    
+    override public function removeElement(c:IChild, dispatchEvent:Boolean=true):void
+    {
+        removingChild(c as IUIBase);
+        super.removeElement(c, dispatchEvent);
+        childRemoved(c as IUIBase);
+    }
 }
 
 }
+
 import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
 

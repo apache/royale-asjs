@@ -19,7 +19,9 @@
 
 package mx.graphics
 {
-import org.apache.royale.graphics.SolidColorStroke;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
+import mx.display.Graphics;
 /* [Deprecated(replacement="SolidColorStroke", since="4.0")] 
  *//**
  *  The Stroke class defines the properties for a line. 
@@ -71,7 +73,7 @@ import org.apache.royale.graphics.SolidColorStroke;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class Stroke extends  org.apache.royale.graphics.SolidColorStroke implements IStroke
+public class Stroke implements IStroke
 {
 /*     include "../core/Version.as";
  */
@@ -134,11 +136,39 @@ public class Stroke extends  org.apache.royale.graphics.SolidColorStroke impleme
                            joints:String = null,
                            miterLimit:Number = 1)
     {
-        super(color, weight, alpha);
+        super();
 		/* ,pixelHinting,
               scaleMode, caps, joints, miterLimit); */
+        this.weight = weight;
+        this.color = color;
+    }
+    
+    public function apply(g:Graphics, targetBounds:Rectangle = null, targetOrigin:Point = null):void
+    {
+        trace("Stroke.apply not implemented");
     }
 
+    private var _weight:Number;
+    
+    public function get weight():Number
+    {
+        return _weight;
+    }
+    public function set weight(value:Number):void
+    {
+        _weight = value;
+    }
+    
+    private var _color:Number;
+    
+    public function get color():Number
+    {
+        return _color;
+    }
+    public function set color(value:Number):void
+    {
+        _color = value;
+    }
 }
 
 }

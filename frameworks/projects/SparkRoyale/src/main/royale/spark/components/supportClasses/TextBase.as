@@ -21,10 +21,6 @@ package spark.components.supportClasses
 {
 
 import org.apache.royale.geom.Rectangle;
-COMPILE::SWF
-{
-    import flash.display.DisplayObject;      
-}
 /*
 import flash.display.Graphics;
 import flash.display.Shape;
@@ -40,6 +36,7 @@ import spark.core.IDisplayText;
 import spark.utils.TextUtil;
 
 */
+import mx.core.IUIComponent;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
@@ -973,7 +970,7 @@ public class TextBase extends UIComponent
             // Add new TextLine accounting for our background Shape.
             COMPILE::SWF
             {
-                $addChildAt(textLine as DisplayObject, 1);
+                $addChildAt(textLine as IUIComponent, 1);
             }
             COMPILE::JS
             {
@@ -1003,7 +1000,7 @@ public class TextBase extends UIComponent
             {
                 COMPILE::SWF
                 {
-                    UIComponent(textLine.parent).$removeChild(textLine as DisplayObject);                        
+                    UIComponent(textLine.parent).$removeChild(textLine as IUIComponent);                        
                 }
                 COMPILE::JS
                 {

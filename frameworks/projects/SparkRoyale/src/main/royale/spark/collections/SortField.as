@@ -166,7 +166,14 @@ package spark.collections
 	{
 		// include "../core/Version.as";
 		// include "AdvancedStyleClientImplementation.as";
-		
+        public function get styleName():Object
+        {
+            return null;
+        }
+        public function set styleName(value:Object):void
+        {
+        }
+
 		//--------------------------------------------------------------------------
 		//
 		//  Constructor

@@ -30,18 +30,20 @@ import flash.utils.getTimer;
 import mx.effects.effectClasses.PropertyChanges;
 
 */
-import org.apache.royale.events.Event;
-import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.events.EventDispatcher;
-import org.apache.royale.utils.Timer;	
-import org.apache.royale.core.IEffectTimer;
-import org.apache.royale.core.ValuesManager;
-import org.apache.royale.events.ValueEvent;	
 
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
+
+import org.apache.royale.core.IEffectTimer;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.ValueEvent;
+import org.apache.royale.utils.Timer;
+
 /* import mx.utils.NameUtil;
  */
 use namespace mx_internal;
@@ -198,7 +200,51 @@ public class EffectInstance extends EventDispatcher implements IEffectInstance
 		}
     }
     
-   
+    /**
+     *  @copy mx.effects.IEffectInstance#end()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function end():void
+    {
+        //if (delayTimer)
+        //    delayTimer.reset();
+        //stopRepeat = true;
+        finishEffect();
+    }
+    
+    /**
+     *  @copy mx.effects.IEffectInstance#finishEffect()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function finishEffect():void
+    {
+        //playCount = 0;
+        
+        dispatchEvent(new EffectEvent(EffectEvent.EFFECT_END,
+            false, false, this));
+        
+        if (target && (target is IEventDispatcher))
+        {
+            target.dispatchEvent(new EffectEvent(EffectEvent.EFFECT_END,
+                false, false, this));
+        }
+        
+        //if (target is UIComponent)
+        //{
+        //    UIComponent(target).effectFinished(this);
+        //}
+        
+        //EffectManager.effectFinished(this);
+    }
+
 }
 
 }

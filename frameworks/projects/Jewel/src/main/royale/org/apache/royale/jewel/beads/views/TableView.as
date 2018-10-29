@@ -85,8 +85,9 @@ package org.apache.royale.jewel.beads.views
 		 * @private
 		 * Ensure the list selects the selectedItem if someone is set by the user at creation time
 		 */
-		private function itemsCreatedHandler(event:Event):void
+		override protected function itemsCreatedHandler(event:Event):void
 		{
+            super.itemsCreatedHandler(event);
 			if(listModel.selectedIndex != -1)
 				selectionChangeHandler(null);
 		}

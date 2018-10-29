@@ -428,21 +428,22 @@ public class TweenEffectInstance extends EffectInstance
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
 	 */
-	/* public function onTweenEnd(value:Object):void 
+	public function onTweenEnd(value:Object):void 
 	{
 		// Update to the final frame of the animation
 		onTweenUpdate(value);
 
 		tween = null;
 
-		if (needToLayout)
-			UIComponentGlobals.layoutManager.validateNow();
+		//if (needToLayout)
+		//	UIComponentGlobals.layoutManager.validateNow();
 		
 		// Notify the object that created this effect (either the
 		// effect manager or a composite effect) that the effect is
 		// finished executing.
-		finishRepeat();
-	} */
+		//finishRepeat();
+        finishEffect(); // AJH use this for now
+	}
 
 }
 

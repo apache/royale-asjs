@@ -195,7 +195,6 @@
 				</node>
 			</node>
 			<node label="Datavisualization Components">
-                <!--
 				<node label="Charts">
 					<node label="Chart Controls">
 						<node label="AreaChart" module="mx/charts/Line_AreaChartExample" />
@@ -232,7 +231,6 @@
 						<node label="SeriesZoom" module="mx/charts/SeriesZoomExample" />
 					</node>
 				</node>
-                 -->
 				<node label="AdancedDataGrid">
 					<node label="AdvancedDataGrid" module="mx/controls/AdvancedDataGridExample" />
 				</node>

@@ -773,13 +773,23 @@ public class Panel extends Container
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingLeft;
     }
+    
+    /**
+     * @royaleignorecoercion mx.core.UIComponent 
+     * @royaleignorecoercion String
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     */
     override public function set paddingLeft(value:Object):void
     {
         if (typeof(value) !== "string")
             value = value.toString() + "px";
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.paddingLeft = value;
+        (model as PanelModel).paddingLeft = value as String;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.paddingLeft = value;
+        }
     }
     override public function get paddingRight():Object
     {
@@ -787,13 +797,23 @@ public class Panel extends Container
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingRight;
     }
+    
+    /**
+     * @royaleignorecoercion mx.core.UIComponent 
+     * @royaleignorecoercion String
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     */
     override public function set paddingRight(value:Object):void
     {
         if (typeof(value) !== "string")
             value = value.toString() + "px";
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.paddingRight = value;
+        (model as PanelModel).paddingRight = value as String;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.paddingRight = value;
+        }
     }
     override public function get paddingTop():Object
     {
@@ -801,13 +821,23 @@ public class Panel extends Container
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingTop;
     }
+    
+    /**
+     * @royaleignorecoercion mx.core.UIComponent 
+     * @royaleignorecoercion String
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     */
     override public function set paddingTop(value:Object):void
     {
         if (typeof(value) !== "string")
             value = value.toString() + "px";
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.paddingTop = value;
+        (model as PanelModel).paddingTop = value as String;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.paddingTop = value;
+        }
     }
     override public function get paddingBottom():Object
     {
@@ -815,13 +845,24 @@ public class Panel extends Container
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingBottom;
     }
+    
+    /**
+     * @royaleignorecoercion mx.core.UIComponent 
+     * @royaleignorecoercion String
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     */
     override public function set paddingBottom(value:Object):void
     {
+        
         if (typeof(value) !== "string")
             value = value.toString() + "px";
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.paddingBottom = value;
+        (model as PanelModel).paddingBottom = value as String;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.paddingBottom = value;
+        }
     }
     
     // because padding creates the view early, the setuplayout logic
@@ -830,30 +871,42 @@ public class Panel extends Container
     override public function set percentWidth(value:Number):void
     {
         super.percentWidth = value;
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.percentWidth = 100;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.percentWidth = 100;
+        }
     }
     override public function set explicitWidth(value:Number):void
     {
         super.explicitWidth = value;
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.percentWidth = 100;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.percentWidth = 100;
+        }
     }
     override public function set percentHeight(value:Number):void
     {
         super.percentHeight = value;
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.percentHeight = 100;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.percentHeight = 100;
+        }
     }
     override public function set explicitHeight(value:Number):void
     {
         super.explicitHeight = value;
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        contentView.percentHeight = 100;
+        if (parent)
+        {
+            var panelView:PanelView = view as PanelView;
+            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            contentView.percentHeight = 100;
+        }
     }
     
 

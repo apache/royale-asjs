@@ -20,11 +20,9 @@
 package mx.charts.series
 {
 
-/* import flash.display.DisplayObject;
-import flash.display.Graphics;
-import flash.geom.Point;
-import flash.geom.Rectangle;
-import flash.utils.Dictionary;
+import mx.display.Graphics;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 
 import mx.charts.DateTimeAxis;
 import mx.charts.HitData;
@@ -50,6 +48,7 @@ import mx.core.IFactory;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
+import mx.core.UIComponent;
 import mx.graphics.IFill;
 import mx.graphics.IStroke;
 import mx.graphics.LinearGradientStroke;
@@ -63,9 +62,7 @@ use namespace mx_internal;
 
 include "../styles/metadata/FillStrokeStyles.as"
 include "../styles/metadata/ItemRendererStyles.as"
- */
- import org.apache.royale.charts.supportClasses.LineSeries;
- 
+
 /**
  *  Specifies the number of pixels by which radius of the chart item is to be 
  *  increased when highlighted or selected.
@@ -77,7 +74,7 @@ include "../styles/metadata/ItemRendererStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="adjustedRadius", type="Number", format="Length", inherit="yes")]
+[Style(name="adjustedRadius", type="Number", format="Length", inherit="yes")]
 
 /**
  *  Specifies an Array of fill objects that define the fill for
@@ -117,7 +114,7 @@ include "../styles/metadata/ItemRendererStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="fills", type="Array", arrayType="mx.graphics.IFill", inherit="no")]
+[Style(name="fills", type="Array", arrayType="mx.graphics.IFill", inherit="no")]
 
 /**
  *  Specifies the line type for the chart.
@@ -161,7 +158,7 @@ include "../styles/metadata/ItemRendererStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="form", type="String", enumeration="segment,step,reverseStep,vertical,horizontal,curve", inherit="no")]
+[Style(name="form", type="String", enumeration="segment,step,reverseStep,vertical,horizontal,curve", inherit="no")]
 
 /**
  *  A factory that represents the class the series uses
@@ -207,7 +204,7 @@ include "../styles/metadata/ItemRendererStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="radius", type="Number", format="Length", inherit="no")]
+[Style(name="radius", type="Number", format="Length", inherit="no")]
 
 /**
  *  Defines a data series for a LineChart control.
@@ -255,9 +252,9 @@ include "../styles/metadata/ItemRendererStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeries
-{     //extends Series
-    //include "../../core/Version.as";
+public class LineSeries extends Series
+{
+//    include "../../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -284,7 +281,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
     {
         super();
 
-      /*   _pointInstanceCache = new InstanceCache(null, this, 1000);
+        _pointInstanceCache = new InstanceCache(null, this, 1000);
         _pointInstanceCache.creationCallback = applyItemRendererProperties;
         
         _segmentInstanceCache = new InstanceCache(null, this, 0);
@@ -293,7 +290,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         dataTransform = new CartesianTransform();
 
         // our style settings
-        initStyles(); */
+        initStyles();
     }
 
     //--------------------------------------------------------------------------
@@ -302,145 +299,42 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
     //
     //--------------------------------------------------------------------------
     
-	 //----------------------------------
-    //  displayName copied from Series
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the displayName property.
-     */
-    private var _displayName:String;
-
-    [Inspectable(category="Display")]
-
-    /**
-     *  The name of the series, for display to the user.
-     *  This property is used to represent the series in user-visible labels,
-     *  such as data tips.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get displayName():String
-    {
-        return _displayName;
-    }
-    
     /**
      *  @private
      */
-    public function set displayName(value:String):void
-    {
-        _displayName = value;
-
-      /*   var c:ChartBase = chart;
-        if (c)
-            c.legendDataChanged(); */
-    }
-	
-	
-	//----------------------------------
-    //  styleName copied from UIComponent
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the styleName property.
-     */
-    private var _styleName:Object /* String, CSSStyleDeclaration, or UIComponent */;
-
-    [Inspectable(category="General")]
-
-    /**
-     *  The class style used by this component. This can be a String, CSSStyleDeclaration
-     *  or an IStyleClient.
-     *
-     *  <p>If this is a String, it is the name of one or more whitespace delimited class
-     *  declarations in an <code>&lt;fx:Style&gt;</code> tag or CSS file. You do not include the period
-     *  in the <code>styleName</code>. For example, if you have a class style named <code>".bigText"</code>,
-     *  set the <code>styleName</code> property to <code>"bigText"</code> (no period).</p>
-     *
-     *  <p>If this is an IStyleClient (typically a UIComponent), all styles in the
-     *  <code>styleName</code> object are used by this component.</p>
-     *
-     *  @default null
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get styleName():Object /* String, CSSStyleDeclaration, or UIComponent */
-    {
-        return _styleName;
-    }
-
-    /**
-     *  @private
-     */
-    public function set styleName(value:Object /* String, CSSStyleDeclaration, or UIComponent */):void
-    {
-        if (_styleName === value)
-            return;
-
-        _styleName = value;
-
-        // If inheritingStyles is undefined, then this object is being
-        // initialized and we haven't yet generated the proto chain.
-        // To avoid redundant work, don't bother to create
-        // the proto chain here.
-       /*  if (inheritingStyles == StyleProtoChain.STYLE_UNINITIALIZED)
-            return;
-
-        regenerateStyleCache(true);
-
-        initThemeColor();
-
-        styleChanged("styleName");
-
-        notifyStyleChangeInChildren("styleName", true); */
-    }
-	
-	
-    /**
-     *  @private
-     */
-    //private static var _moduleFactoryInitialized:Dictionary = new Dictionary(true);
+//    private static var _moduleFactoryInitialized:Dictionary = new Dictionary(true);
 
     
     /**
      *  @private
      */
-    //private var _pointInstanceCache:InstanceCache;
+    private var _pointInstanceCache:InstanceCache;
     
     /**
      *  @private
      */
-    //private var _renderData:LineSeriesRenderData;   
+    private var _renderData:LineSeriesRenderData;   
 
     /**
      *  @private
      */
-    //private var _segmentInstanceCache:InstanceCache;
+    private var _segmentInstanceCache:InstanceCache;
     
     /**
      *  @private
      */
-    //private var _localFills:Array /* of IFill */;
+    private var _localFills:Array /* of IFill */;
     
         
     /**
      *  @private
      */
-    //private var _fillCount:int;
+    private var _fillCount:int;
      
     /**
      * @private
      */
-   // private var _bAxesDirty:Boolean = false;
+    private var _bAxesDirty:Boolean = false;
      
     //--------------------------------------------------------------------------
     //
@@ -455,51 +349,51 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
     /**
      *  @private
      */
-    // override public function get legendData():Array /* of LegendData */
-    // {
-        // if (fillFunction!=defaultFillFunction || _fillCount!=0)
-        // {
-            // var keyItems:Array /* of LegendData */ = [];
-            // return keyItems;
-        // }
-        // var radius:Number = getStyle("radius")
-        // var itemRenderer:IFactory = getStyle("itemRenderer");
+    override public function get legendData():Array /* of LegendData */
+    {
+        if (fillFunction!=defaultFillFunction || _fillCount!=0)
+        {
+            var keyItems:Array /* of LegendData */ = [];
+            return keyItems;
+        }
+        var radius:Number = getStyle("radius")
+        var itemRenderer:IFactory = getStyle("itemRenderer");
 
-        // var markerAspectRatio:Number;
-        // var color:int = 0;
-        // var marker:IFlexDisplayObject;
+        var markerAspectRatio:Number;
+        var color:int = 0;
+        var marker:IFlexDisplayObject;
         
-        // var ld:LegendData = new LegendData();
-        // ld.element = this;
-        // ld.label = displayName; 
+        var ld:LegendData = new LegendData();
+        ld.element = this;
+        ld.label = displayName; 
         
         
-        // var markerFactory:IFactory = getStyle("legendMarkerRenderer");
-        // if (markerFactory)
-        // {
-            // marker = markerFactory.newInstance();
-            // if (marker is ISimpleStyleClient)
-                // (marker as ISimpleStyleClient).styleName = this;
-            // ld.aspectRatio = 1;
-        // }
-        // else if (!itemRenderer || radius == 0 || isNaN(radius))
-        // {
-            // marker = new LineSeriesLegendMarker(this);          
-        // }
-        // else
-        // {
-            // markerFactory = getStyle("itemRenderer");
-            // marker = markerFactory.newInstance();
-            // ld.aspectRatio = 1;
-            // if (marker as ISimpleStyleClient)
-                // (marker as ISimpleStyleClient).styleName = this;
-        // }
+        var markerFactory:IFactory = getStyle("legendMarkerRenderer");
+        if (markerFactory)
+        {
+            marker = markerFactory.newInstance();
+            if (marker is ISimpleStyleClient)
+                (marker as ISimpleStyleClient).styleName = this;
+            ld.aspectRatio = 1;
+        }
+        else if (!itemRenderer || radius == 0 || isNaN(radius))
+        {
+            marker = new LineSeriesLegendMarker(this);          
+        }
+        else
+        {
+            markerFactory = getStyle("itemRenderer");
+            marker = markerFactory.newInstance();
+            ld.aspectRatio = 1;
+            if (marker as ISimpleStyleClient)
+                (marker as ISimpleStyleClient).styleName = this;
+        }
 
-        // ld.marker = marker;
+        ld.marker = marker;
         
-        // return [ld];
-    // }
- 
+        return [ld];
+    }
+
     //----------------------------------
     //  renderData
     //----------------------------------
@@ -507,7 +401,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
     /**
      *  @private
      */
-    /* override protected function get renderData():Object
+    override protected function get renderData():Object
     {
         if (!_renderData||
             !(_renderData.cache) ||
@@ -524,7 +418,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         _renderData.radius = getStyle("radius");
 
         return _renderData;
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -536,15 +430,15 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
     // fillFunction
     //-----------------------------------
     
-    /* [Bindable]
-    [Inspectable(category="General")] */
+    [Bindable]
+    [Inspectable(category="General")]
     
     /**
      * @private
      * Storage for fillFunction property
      */
-   /*  private var _fillFunction:Function=defaultFillFunction;
-     */
+    private var _fillFunction:Function=defaultFillFunction;
+    
     /**
      * Specifies a method that returns the fill for the current chart item in the series.
      * If this property is set, the return value of the custom fill function takes precedence over the 
@@ -590,15 +484,15 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get fillFunction():Function
+    public function get fillFunction():Function
     {
         return _fillFunction;
-    } */
+    }
    
     /**
      * @private
      */
-   /*  public function set fillFunction(value:Function):void
+    public function set fillFunction(value:Function):void
     {
         if (value ==_fillFunction)
             return;
@@ -611,7 +505,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         
         invalidateDisplayList();
         legendDataChanged();        
-    } */
+    }
     
     //----------------------------------
     //  horizontalAxis
@@ -621,10 +515,10 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @private
      *  Storage for the horizontalAxis property.
      */
-   /*  private var _horizontalAxis:IAxis;
+    private var _horizontalAxis:IAxis;
     
     [Inspectable(category="Data")]
- */
+
     /**
      *  Defines the labels, tick marks, and data position
      *  for items on the x-axis.
@@ -637,22 +531,22 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get horizontalAxis():IAxis
+    public function get horizontalAxis():IAxis
     {
         return _horizontalAxis;
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  public function set horizontalAxis(value:IAxis):void
+    public function set horizontalAxis(value:IAxis):void
     {
         _horizontalAxis = value;
         _bAxesDirty = true;
 
         invalidateData();
         invalidateProperties();
-    } */
+    }
     
     //----------------------------------
     //  interpolateValues
@@ -662,9 +556,9 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @private
      *  Storage for the interpolateValues property.
      */
-    /* private var _interpolateValues:Boolean = false; 
+    private var _interpolateValues:Boolean = false; 
 
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
 
     /** 
      *  Specifies how to represent missing data.
@@ -679,15 +573,15 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
     *  @playerversion AIR 1.1
     *  @productversion Flex 3
     */
-    /* public function get interpolateValues():Boolean
+    public function get interpolateValues():Boolean
     {
         return _interpolateValues;
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  public function set interpolateValues(value:Boolean):void
+    public function set interpolateValues(value:Boolean):void
     {
         if (_interpolateValues != value)
         {
@@ -695,7 +589,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
 
             invalidateData();
         }       
-    } */
+    }
 
     //----------------------------------
     //  items
@@ -709,18 +603,18 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // override public function get items():Array /* of LineSeriesItem */
-    // {
-        // return _renderData ?
-               // _renderData.filteredCache :
-               // null;
-    // }
+    override public function get items():Array /* of LineSeriesItem */
+    {
+        return _renderData ?
+               _renderData.filteredCache :
+               null;
+    }
 
     //----------------------------------
     //  itemType
     //----------------------------------
 
-   // [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The subtype of ChartItem used by this series
@@ -733,16 +627,16 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  protected function get itemType():Class
+    protected function get itemType():Class
     {
         return LineSeriesItem;
-    } */
+    }
     
     //----------------------------------
     //  lineSegmentType
     //----------------------------------
 
-    //[Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The class used by this series to store all data
@@ -755,16 +649,16 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* protected function get lineSegmentType():Class
+    protected function get lineSegmentType():Class
     {
         return LineSeriesSegment;
     }
- */
+
     //----------------------------------
     //  radius
     //----------------------------------
 
-    //[Inspectable(category="Styles")]
+    [Inspectable(category="Styles")]
 
     /** 
      *  Specifies the radius, in pixels, of the chart elements
@@ -780,24 +674,24 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get radius():Number
+    public function get radius():Number
     {
         return getStyle("radius");
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  public function set radius(value:Number):void
+    public function set radius(value:Number):void
     {
         setStyle("radius", value);
-    } */
+    }
 
     //----------------------------------
     //  renderDataType
     //----------------------------------
 
-    //[Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The subtype of ChartRenderData used by this series
@@ -810,10 +704,10 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  protected function get renderDataType():Class
+    protected function get renderDataType():Class
     {
         return LineSeriesRenderData;
-    }  */   
+    }    
     
     //----------------------------------
     //  sortOnXField
@@ -823,9 +717,9 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @private
      *  Storage for the sortOnXField property.
      */
-   /*  private var _sortOnXField:Boolean = true;
+    private var _sortOnXField:Boolean = true;
 
-    [Inspectable] */
+    [Inspectable]
 
     /** 
      *  Requests the line datapoints be sorted from left to right
@@ -842,22 +736,22 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get sortOnXField():Boolean
+    public function get sortOnXField():Boolean
     {
         return _sortOnXField;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set sortOnXField(value:Boolean):void 
+    public function set sortOnXField(value:Boolean):void 
     {
         if (_sortOnXField == value)
             return;
         _sortOnXField = value;
 
         invalidateMapping();
-    } */
+    }
 
     //----------------------------------
     //  verticalAxis
@@ -867,9 +761,9 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @private
      *  Storage for the verticalAxis property.
      */
-   /*  private var _verticalAxis:IAxis;
+    private var _verticalAxis:IAxis;
 
-    [Inspectable(category="Data")] */
+    [Inspectable(category="Data")]
 
     /**
      *  Defines the labels, tick marks, and data position
@@ -883,15 +777,15 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get verticalAxis():IAxis
+    public function get verticalAxis():IAxis
     {
         return _verticalAxis;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set verticalAxis(value:IAxis):void
+    public function set verticalAxis(value:IAxis):void
     {
         _verticalAxis = value;
         _bAxesDirty = true;
@@ -899,7 +793,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         invalidateData();
         //invalidateChildOrder();
         invalidateProperties();
-    } */
+    }
     
     //----------------------------------
     //  xField
@@ -909,10 +803,10 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @private
      *  Storage for the xField property.
      */
-    /* private var _xField:String = "";
+    private var _xField:String = "";
     
     [Inspectable(category="General")]
- */
+
     /**
      *  Specifies the field of the data provider
      *  that determines the x-axis location of each data point. 
@@ -926,20 +820,20 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get xField():String
+    public function get xField():String
     {
         return _xField;
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  public function set xField(value:String):void
+    public function set xField(value:String):void
     {
         _xField = value;
 
         dataChanged();
-    } */
+    }
 
     //----------------------------------
     //  yField
@@ -949,9 +843,9 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @private
      *  Storage for the yField property.
      */
-    /* private var _yField:String = "";    
+    private var _yField:String = "";    
     
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
 
     /**
      *  Specifies the field of the data provider
@@ -966,20 +860,20 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get yField():String
+    public function get yField():String
     {
         return _yField;
     }
-     */
+    
     /**
      *  @private
      */
-    /* public function set yField(value:String):void
+    public function set yField(value:String):void
     {
         _yField = value;
 
         dataChanged();
-    } */
+    }
     
     
     //--------------------------------------------------------------------------
@@ -991,7 +885,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
 	/**
      *  @private
      */
-    /* private function initStyles():void
+    private function initStyles():void
     {
         HaloDefaults.init(styleManager);
 
@@ -1013,7 +907,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
 			setStyle("fills", []);
 			setStyle("lineStroke", new SolidColorStroke(0,3));
         }
-    } */
+    }
 
 
     /**
@@ -1024,15 +918,17 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* override public function set moduleFactory(factory:IFlexModuleFactory):void
+    override public function set moduleFactory(factory:IFlexModuleFactory):void
     {
         super.moduleFactory = factory;
         
+        /*
         if (_moduleFactoryInitialized[factory])
             return;
         
         _moduleFactoryInitialized[factory] = true;
-    } */
+        */
+    }
     
     /**
      *  @inheritDoc
@@ -1042,7 +938,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* override protected function commitProperties():void
+    override protected function commitProperties():void
     {
         super.commitProperties();
         
@@ -1081,145 +977,145 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
             }
         }
         dataTransform.elements = [this];
-    } */
+    }
     
     /**
      *  @private
      */
-    // override protected function updateDisplayList(unscaledWidth:Number,
-                                                  // unscaledHeight:Number):void
-    // {
-        // super.updateDisplayList(unscaledWidth, unscaledHeight);
+    override protected function updateDisplayList(unscaledWidth:Number,
+                                                  unscaledHeight:Number):void
+    {
+        super.updateDisplayList(unscaledWidth, unscaledHeight);
         
-        // var renderData:LineSeriesRenderData = (transitionRenderData)? LineSeriesRenderData(transitionRenderData) :_renderData; 
-        // if (!renderData || !(renderData.filteredCache))
-            // return;
+        var renderData:LineSeriesRenderData = (transitionRenderData)? LineSeriesRenderData(transitionRenderData) :_renderData; 
+        if (!renderData || !(renderData.filteredCache))
+            return;
         
-        // var g:Graphics = graphics;
+        var g:Graphics = graphics;
         
-        // g.clear();
+        g.clear();
 
-        // var radius:Number = getStyle("radius");     
-        // var sampleCount:int = renderData.filteredCache.length;
-        // var i:int;
+        var radius:Number = getStyle("radius");     
+        var sampleCount:int = renderData.filteredCache.length;
+        var i:int;
             
         
-        // var segCount:int = renderData.segments.length;
+        var segCount:int = renderData.segments.length;
 
     
-        // var activeRenderCache:Array /* of LineSeriesItem */;
+        var activeRenderCache:Array /* of LineSeriesItem */;
         
-        ////figure out what cache we're rendering from. If there's a bounds based transtion underway, we need
-        ////to rebuild our cache from the bounds
-        // if (renderData == transitionRenderData && renderData.elementBounds)
-        // {
-            // var elementBounds:Array /* of Rectangle */ = renderData.elementBounds;
-            // sampleCount= elementBounds.length;
-            // activeRenderCache = renderData.filteredCache;
+        // figure out what cache we're rendering from. If there's a bounds based transtion underway, we need
+        // to rebuild our cache from the bounds
+        if (renderData == transitionRenderData && renderData.elementBounds)
+        {
+            var elementBounds:Array /* of Rectangle */ = renderData.elementBounds;
+            sampleCount= elementBounds.length;
+            activeRenderCache = renderData.filteredCache;
 
 
-            // for (i = 0; i < sampleCount; i++)
-            // {
-                // var rcBounds:Object = elementBounds[i];
-                // var localData:LineSeriesItem = activeRenderCache[i];
-                // localData.x = (rcBounds.left + rcBounds.right)/2;
-                // localData.y = (rcBounds.bottom + rcBounds.top)/2;
-            // }
-        // }
-        // else
-        // {
-            // activeRenderCache = renderData.filteredCache;
-        // }
+            for (i = 0; i < sampleCount; i++)
+            {
+                var rcBounds:Object = elementBounds[i];
+                var localData:LineSeriesItem = activeRenderCache[i];
+                localData.x = (rcBounds.left + rcBounds.right)/2;
+                localData.y = (rcBounds.bottom + rcBounds.top)/2;
+            }
+        }
+        else
+        {
+            activeRenderCache = renderData.filteredCache;
+        }
 
-        ////now position each segment
+        // now position each segment
         
-        // _segmentInstanceCache.factory = getStyle("lineSegmentRenderer");
-        // _segmentInstanceCache.count = segCount;
-        // var instances:Array /* of IFlexDisplayObject */ = _segmentInstanceCache.instances;
-        // var v:LineSeriesItem;
+        _segmentInstanceCache.factory = getStyle("lineSegmentRenderer");
+        _segmentInstanceCache.count = segCount;
+        var instances:Array /* of IFlexDisplayObject */ = _segmentInstanceCache.instances;
+        var v:LineSeriesItem;
         
-        // for (i = 0; i < segCount; i++)
-        // {
-            // var segment:IFlexDisplayObject = instances[i];
-            // if (segment is IDataRenderer)
-                // IDataRenderer(segment).data = renderData.segments[i];
-            // segment.setActualSize(unscaledWidth,unscaledHeight);
-        // }       
+        for (i = 0; i < segCount; i++)
+        {
+            var segment:IFlexDisplayObject = instances[i];
+            if (segment is IDataRenderer)
+                IDataRenderer(segment).data = renderData.segments[i];
+            segment.setActualSize(unscaledWidth,unscaledHeight);
+        }       
         
         
-        ////if the user has asked for markers at each datapoint, position those as well
-        // if (radius > 0)
-        // {
-            // _pointInstanceCache.factory = getStyle("itemRenderer");
-            // _pointInstanceCache.count = renderData.validPoints;         
+        // if the user has asked for markers at each datapoint, position those as well
+        if (radius > 0)
+        {
+            _pointInstanceCache.factory = getStyle("itemRenderer");
+            _pointInstanceCache.count = renderData.validPoints;         
 
-            // instances = _pointInstanceCache.instances;
-            // var nextInstanceIdx:int = 0;
+            instances = _pointInstanceCache.instances;
+            var nextInstanceIdx:int = 0;
 
-            // var bSetData:Boolean = (sampleCount > 0 && (instances[0] is IDataRenderer))
+            var bSetData:Boolean = (sampleCount > 0 && (instances[0] is IDataRenderer))
 
-            // var rc:Rectangle;
-            // var inst:IFlexDisplayObject;
+            var rc:Rectangle;
+            var inst:IFlexDisplayObject;
             
-            // if (renderData == transitionRenderData && renderData.elementBounds)
-            // {
-                // for (i = 0; i < sampleCount; i++)
-                // {
-                    // v = activeRenderCache[i];
-                    // inst = instances[nextInstanceIdx++];
-                    // v.itemRenderer = inst;
-                    // v.fill = fillFunction(v,i);
-                    // if (!(v.fill))
-                        // v.fill = defaultFillFunction(v,i);
-                    // if (v.itemRenderer && (v.itemRenderer as Object).hasOwnProperty('invalidateDisplayList'))
-                        // (v.itemRenderer as Object).invalidateDisplayList();
-                    // if (inst)
-                    // {
-                        // if (bSetData)
-                            // IDataRenderer(inst).data = v;
-                        // rc = elementBounds[i];
-                        // inst.move(rc.left,rc.top);
-                        // inst.setActualSize(rc.width,rc.height);
-                    // }
-                // }
-            // }
-            // else
-            // {
-                // for (i = 0; i < sampleCount; i++)
-                // {
-                    // v  = activeRenderCache[i];
-                    // var e:Object = renderData.filteredCache[i];
-                   //// if (filterData && (isNaN(e.xFilter) || isNaN(e.yFilter)))
-                    // if(filterFunction == defaultFilterFunction && 
-                            // ((filterDataValues == "outsideRange" && (isNaN(e.xFilter) || isNaN(e.yFilter))) ||
-                             // (filterDataValues == "nulls" && (isNaN(e.xNumber) || isNaN(e.yNumber)))))
-                        // continue;
+            if (renderData == transitionRenderData && renderData.elementBounds)
+            {
+                for (i = 0; i < sampleCount; i++)
+                {
+                    v = activeRenderCache[i];
+                    inst = instances[nextInstanceIdx++];
+                    v.itemRenderer = inst;
+                    v.fill = fillFunction(v,i);
+                    if (!(v.fill))
+                        v.fill = defaultFillFunction(v,i);
+                    if (v.itemRenderer && (v.itemRenderer as Object).hasOwnProperty('invalidateDisplayList'))
+                        (v.itemRenderer as Object).invalidateDisplayList();
+                    if (inst)
+                    {
+                        if (bSetData)
+                            IDataRenderer(inst).data = v;
+                        rc = elementBounds[i];
+                        inst.move(rc.left,rc.top);
+                        inst.setActualSize(rc.width,rc.height);
+                    }
+                }
+            }
+            else
+            {
+                for (i = 0; i < sampleCount; i++)
+                {
+                    v  = activeRenderCache[i];
+                    var e:Object = renderData.filteredCache[i];
+                    //if (filterData && (isNaN(e.xFilter) || isNaN(e.yFilter)))
+                    if(filterFunction == defaultFilterFunction && 
+                            ((filterDataValues == "outsideRange" && (isNaN(e.xFilter) || isNaN(e.yFilter))) ||
+                             (filterDataValues == "nulls" && (isNaN(e.xNumber) || isNaN(e.yNumber)))))
+                        continue;
 
-                    // inst = instances[nextInstanceIdx++];
-                    // v.itemRenderer = inst;
-                    // v.fill = fillFunction(v,i);
-                    // if (!(v.fill))
-                        // v.fill = defaultFillFunction(v,i);
-                    // if (v.itemRenderer && (v.itemRenderer as Object).hasOwnProperty('invalidateDisplayList'))
-                        // (v.itemRenderer as Object).invalidateDisplayList();
-                    // if (inst)
-                    // {
-                        // if (bSetData)
-                            // IDataRenderer(inst).data = v;
-                        // inst.move(v.x-radius,v.y - radius);
-                        // inst.setActualSize(2*radius,2*radius);
-                    // }
-                // }
-                // if (chart && allSeriesTransform && chart.chartState == 0)
-                    // chart.updateAllDataTips();
-            // }               
-        // }
-    // }
+                    inst = instances[nextInstanceIdx++];
+                    v.itemRenderer = inst;
+                    v.fill = fillFunction(v,i);
+                    if (!(v.fill))
+                        v.fill = defaultFillFunction(v,i);
+                    if (v.itemRenderer && (v.itemRenderer as Object).hasOwnProperty('invalidateDisplayList'))
+                        (v.itemRenderer as Object).invalidateDisplayList();
+                    if (inst)
+                    {
+                        if (bSetData)
+                            IDataRenderer(inst).data = v;
+                        inst.move(v.x-radius,v.y - radius);
+                        inst.setActualSize(2*radius,2*radius);
+                    }
+                }
+                if (chart && allSeriesTransform && chart.chartState == 0)
+                    chart.updateAllDataTips();
+            }               
+        }
+    }
     
     /**
      *  @private
      */
-    /* override public function stylesInitialized():void
+    override public function stylesInitialized():void
     {
         _localFills = getStyle('fills');
         if (_localFills != null)
@@ -1227,12 +1123,12 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         else
             _fillCount = 0;
         super.stylesInitialized();
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override public function styleChanged(styleProp:String):void
+    override public function styleChanged(styleProp:String):void
     {
         super.styleChanged(styleProp);
         var styles:String = "fills"
@@ -1264,7 +1160,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         invalidateDisplayList();
 
         legendDataChanged();
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1275,7 +1171,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
     /**
      *  @private
      */
-    /* override protected function updateData():void
+    override protected function updateData():void
     {
         var renderDataType:Class = this.renderDataType;
         _renderData= new renderDataType();
@@ -1307,12 +1203,12 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
             _renderData.cache = reverseXValues(_renderData.cache);  
         _renderData.validPoints = _renderData.cache.length;
         super.updateData();
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function updateMapping():void
+    override protected function updateMapping():void
     {
         dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).mapCache(_renderData.cache,"xValue","xNumber", (_xField == ""));
         dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).mapCache(_renderData.cache,"yValue","yNumber");
@@ -1322,12 +1218,12 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
 
         super.updateMapping();
 
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function updateFilter():void
+    override protected function updateFilter():void
     {
         _renderData.segments = [];
         var lineSegmentType:Class = this.lineSegmentType;
@@ -1340,12 +1236,12 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
             createLineSegments(_renderData.filteredCache);
         }
         super.updateFilter();
-    } */
+    }
     
     /**
      *  @private
      */
-    /* override protected function updateTransform():void
+    override protected function updateTransform():void
     {
         dataTransform.transformCache(_renderData.filteredCache,"xNumber","x","yNumber","y");
         super.updateTransform();
@@ -1365,631 +1261,635 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
                 cChart.measureLabels();
         }   
     }
- */
+
     /**
      *  @private
      */
-    // override public function describeData(dimension:String,
-                                          // requiredFields:uint):Array /* of DataDescription */
-    // {
-        // validateData();
+    override public function describeData(dimension:String,
+                                          requiredFields:uint):Array /* of DataDescription */
+    {
+        validateData();
 
-        // if (_renderData.cache.length == 0)
-            // return [];
+        if (_renderData.cache.length == 0)
+            return [];
             
-        // var description:DataDescription = new DataDescription();
-        // description.boundedValues = null;
+        var description:DataDescription = new DataDescription();
+        description.boundedValues = null;
 
-        // var dataMargin:Number;
-        // var stroke:IStroke;
-        // var radius:Number;
-        // var renderer:Object;
+        var dataMargin:Number;
+        var stroke:IStroke;
+        var radius:Number;
+        var renderer:Object;
 
-        // if (dimension == CartesianTransform.VERTICAL_AXIS)
-        // {
-            // extractMinMax(_renderData.cache,"yNumber",description);
-            // if ((requiredFields & DataDescription.REQUIRED_BOUNDED_VALUES) != 0)
-            // {
-                // dataMargin = 0;
+        if (dimension == CartesianTransform.VERTICAL_AXIS)
+        {
+            extractMinMax(_renderData.cache,"yNumber",description);
+            if ((requiredFields & DataDescription.REQUIRED_BOUNDED_VALUES) != 0)
+            {
+                dataMargin = 0;
                 
-                // stroke = getStyle("lineStroke");
-                // if (stroke)
-                    // dataMargin = stroke.weight/2;
+                stroke = getStyle("lineStroke");
+                if (stroke)
+                    dataMargin = stroke.weight/2;
                 
-                // radius = getStyle("radius");
-                // renderer = getStyle("itemRenderer");
-                // if (radius > 0 && renderer)
-                // {
-                    // stroke = getStyle("stroke");
-                    // if (stroke)
-                        // radius += stroke.weight/2;
+                radius = getStyle("radius");
+                renderer = getStyle("itemRenderer");
+                if (radius > 0 && renderer)
+                {
+                    stroke = getStyle("stroke");
+                    if (stroke)
+                        radius += stroke.weight/2;
                         
-                    // dataMargin = Math.max(radius,dataMargin);
-                // }
+                    dataMargin = Math.max(radius,dataMargin);
+                }
 
-                // if (dataMargin > 0)
-                // {
-                    // description.boundedValues= [];
-                    // description.boundedValues.push(new BoundedValue(description.max,0,dataMargin));
-                    // description.boundedValues.push(new BoundedValue(description.min,dataMargin,0));
-                // }
-            // }
-        // }
-        // else if (dimension == CartesianTransform.HORIZONTAL_AXIS)
-        // {
-            // if (_xField != "")
-            // {
-                // if ((requiredFields & DataDescription.REQUIRED_MIN_INTERVAL) != 0)
-                // {
-                  ////  if we need to know the min interval, then we rely on the cache being in order. So we need to sort it if it
-                  ////  hasn't already been sorted
-                    // var cache:Array /* of LineSeriesItem */ = _renderData.cache;
-                    // if (_sortOnXField == false)
-                    // {
-                        // cache = _renderData.cache.concat();
-                        // cache.sortOn("xNumber",Array.NUMERIC);      
-                    // }
-                    // extractMinMax(cache,"xNumber",description,(0 != (requiredFields & DataDescription.REQUIRED_MIN_INTERVAL)));
-                // }
-                // else
-                // {
-                    // extractMinMax(_renderData.cache,"xNumber",description, (requiredFields & DataDescription.REQUIRED_MIN_INTERVAL) != 0);
-                // }
-            // }
-            // else 
-            // {
-                // description.min = _renderData.cache[0].xNumber;
-                // description.max = _renderData.cache[_renderData.cache.length-1].xNumber;
-                // if ((requiredFields & DataDescription.REQUIRED_MIN_INTERVAL) != 0)
-                // {
-                    // extractMinInterval(_renderData.cache,"xNumber",description);
-                // }
-            // }
+                if (dataMargin > 0)
+                {
+                    description.boundedValues= [];
+                    description.boundedValues.push(new BoundedValue(description.max,0,dataMargin));
+                    description.boundedValues.push(new BoundedValue(description.min,dataMargin,0));
+                }
+            }
+        }
+        else if (dimension == CartesianTransform.HORIZONTAL_AXIS)
+        {
+            if (_xField != "")
+            {
+                if ((requiredFields & DataDescription.REQUIRED_MIN_INTERVAL) != 0)
+                {
+                    // if we need to know the min interval, then we rely on the cache being in order. So we need to sort it if it
+                    // hasn't already been sorted
+                    var cache:Array /* of LineSeriesItem */ = _renderData.cache;
+                    if (_sortOnXField == false)
+                    {
+                        cache = _renderData.cache.concat();
+                        cache.sortOn("xNumber",Array.NUMERIC);      
+                    }
+                    extractMinMax(cache,"xNumber",description,(0 != (requiredFields & DataDescription.REQUIRED_MIN_INTERVAL)));
+                }
+                else
+                {
+                    extractMinMax(_renderData.cache,"xNumber",description, (requiredFields & DataDescription.REQUIRED_MIN_INTERVAL) != 0);
+                }
+            }
+            else 
+            {
+                description.min = _renderData.cache[0].xNumber;
+                description.max = _renderData.cache[_renderData.cache.length-1].xNumber;
+                if ((requiredFields & DataDescription.REQUIRED_MIN_INTERVAL) != 0)
+                {
+                    extractMinInterval(_renderData.cache,"xNumber",description);
+                }
+            }
 
-            // if ((requiredFields & DataDescription.REQUIRED_BOUNDED_VALUES) != 0)
-            // {
-                // dataMargin = 0;
+            if ((requiredFields & DataDescription.REQUIRED_BOUNDED_VALUES) != 0)
+            {
+                dataMargin = 0;
                 
-                // stroke = getStyle("lineStroke");
-                // if (stroke)
-                    // dataMargin = stroke.weight/2;
+                stroke = getStyle("lineStroke");
+                if (stroke)
+                    dataMargin = stroke.weight/2;
                 
-                // radius = getStyle("radius");
-                // renderer = getStyle("itemRenderer");
-                // if (radius > 0 && renderer)
-                // {
-                    // stroke = getStyle("stroke");
-                    // if (stroke)
-                        // radius += stroke.weight/2;
+                radius = getStyle("radius");
+                renderer = getStyle("itemRenderer");
+                if (radius > 0 && renderer)
+                {
+                    stroke = getStyle("stroke");
+                    if (stroke)
+                        radius += stroke.weight/2;
                         
-                    // dataMargin = Math.max(radius,dataMargin);
-                // }
+                    dataMargin = Math.max(radius,dataMargin);
+                }
 
-                // if (dataMargin > 0)
-                // {
-                    // description.boundedValues= [];
-                    // description.boundedValues.push(new BoundedValue(description.max,0,dataMargin));
-                    // description.boundedValues.push(new BoundedValue(description.min,dataMargin,0));
-                // }
-            // }
-        // }
-        // else
-        // {
-            // return [];
-        // }
+                if (dataMargin > 0)
+                {
+                    description.boundedValues= [];
+                    description.boundedValues.push(new BoundedValue(description.max,0,dataMargin));
+                    description.boundedValues.push(new BoundedValue(description.min,dataMargin,0));
+                }
+            }
+        }
+        else
+        {
+            return [];
+        }
             
-        // return [ description ];
-    // }
+        return [ description ];
+    }
     
     /**
      *  @private
      */
-    // override public function getAllDataPoints():Array /* of HitData */
-    // {
-        // if (!_renderData)
-            // return [];
-        // if (!(_renderData.filteredCache))
-            // return [];
+    override public function getAllDataPoints():Array /* of HitData */
+    {
+        if (!_renderData)
+            return [];
+        if (!(_renderData.filteredCache))
+            return [];
         
-        // var itemArr:Array /* of LineSeriesItem */ = [];
-        // if (chart && chart.dataTipItemsSet && dataTipItems)
-            // itemArr = dataTipItems;
-        // else if (chart && chart.showAllDataTips && _renderData.filteredCache)
-            // itemArr = _renderData.filteredCache;
-        // else
-            // itemArr = [];
+        var itemArr:Array /* of LineSeriesItem */ = [];
+        if (chart && chart.dataTipItemsSet && dataTipItems)
+            itemArr = dataTipItems;
+        else if (chart && chart.showAllDataTips && _renderData.filteredCache)
+            itemArr = _renderData.filteredCache;
+        else
+            itemArr = [];
         
-        // var n:uint = itemArr.length;
-        // var i:uint;
-        // var result:Array /* of HitData */ = [];
+        var n:uint = itemArr.length;
+        var i:uint;
+        var result:Array /* of HitData */ = [];
         
-        // for (i = 0; i < n; i++)
-        // {
-            // var v:LineSeriesItem = itemArr[i];
-            // if (_renderData.filteredCache.indexOf(v) == -1)
-            // {
-                // var itemExists:Boolean = false;
-                // var m:int  = _renderData.filteredCache.length;
-                // for (var j:int = 0; j < m; j++)
-                // {
-                    // if (v.item == _renderData.filteredCache[j].item)
-                    // {   
-                        // v = _renderData.filteredCache[j];
-                        // itemExists = true;
-                        // break;
-                    // }
-                // }
-                // if (!itemExists)
-                    // continue;
-            // }
-            // if (v)
-            // {
-                // var hd:HitData = new HitData(createDataID(v.index),Math.sqrt(0),v.x,v.y,v);
+        for (i = 0; i < n; i++)
+        {
+            var v:LineSeriesItem = itemArr[i];
+            if (_renderData.filteredCache.indexOf(v) == -1)
+            {
+                var itemExists:Boolean = false;
+                var m:int  = _renderData.filteredCache.length;
+                for (var j:int = 0; j < m; j++)
+                {
+                    if (v.item == _renderData.filteredCache[j].item)
+                    {   
+                        v = _renderData.filteredCache[j];
+                        itemExists = true;
+                        break;
+                    }
+                }
+                if (!itemExists)
+                    continue;
+            }
+            if (v)
+            {
+                var hd:HitData = new HitData(createDataID(v.index),Math.sqrt(0),v.x,v.y,v);
 
-                // var istroke:IStroke = getStyle("lineStroke");
-                // if (istroke is SolidColorStroke)
-                    // hd.contextColor = SolidColorStroke(istroke).color;
-                // else if (istroke is LinearGradientStroke)
-                // {
-                    // var gb:LinearGradientStroke = LinearGradientStroke(istroke);
-                    // if (gb.entries.length > 0)
-                        // hd.contextColor = gb.entries[0].color;
-                // }
-                // hd.dataTipFunction = formatDataTip;
-                // result.push(hd);
-            // }
-        // }
-        // return result;
-    // }
+                var istroke:IStroke = getStyle("lineStroke");
+                if (istroke is SolidColorStroke)
+                    hd.contextColor = SolidColorStroke(istroke).color;
+                /*
+                else if (istroke is LinearGradientStroke)
+                {
+                    var gb:LinearGradientStroke = LinearGradientStroke(istroke);
+                    if (gb.entries.length > 0)
+                        hd.contextColor = gb.entries[0].color;
+                }
+                */
+                hd.dataTipFunction = formatDataTip;
+                result.push(hd);
+            }
+        }
+        return result;
+    }
 
     /**
      *  @private
      */
-    // override public function findDataPoints(x:Number,y:Number,sensitivity:Number):Array /* of HitData */
-    // {
-       // // esg, 8/7/06: if your mouse is over a series when it gets added and displayed for the first time, this can get called
-       // // before updateData, and before and render data is constructed. The right long term fix is to make sure a stubbed out 
-       // // render data is _always_ present, but that's a little disruptive right now.
-       // // if (interactive == false || !_renderData)
-            // return [];
+    override public function findDataPoints(x:Number,y:Number,sensitivity:Number):Array /* of HitData */
+    {
+        // esg, 8/7/06: if your mouse is over a series when it gets added and displayed for the first time, this can get called
+        // before updateData, and before and render data is constructed. The right long term fix is to make sure a stubbed out 
+        // render data is _always_ present, but that's a little disruptive right now.
+        if (interactive == false || !_renderData)
+            return [];
 
-        // var pr:Number = getStyle("radius");
-        // var minDist2:Number  = pr + sensitivity;
-        // minDist2 *= minDist2;
-        // var minItem:LineSeriesItem = null;     
-        // var pr2:Number = pr * pr;
+        var pr:Number = getStyle("radius");
+        var minDist2:Number  = pr + sensitivity;
+        minDist2 *= minDist2;
+        var minItem:LineSeriesItem = null;     
+        var pr2:Number = pr * pr;
         
-        // var n:int = _renderData.filteredCache.length;
+        var n:int = _renderData.filteredCache.length;
 
-        // if (n == 0)
-            // return [];
+        if (n == 0)
+            return [];
 
-        // if (sortOnXField == true)
-        // {            
-            // var low:Number = 0;
-            // var high:Number = n;
-            // var cur:Number = Math.floor((low+high)/2);
+        if (sortOnXField == true)
+        {            
+            var low:Number = 0;
+            var high:Number = n;
+            var cur:Number = Math.floor((low+high)/2);
     
-            // var bFirstIsNaN:Boolean = isNaN(_renderData.filteredCache[0]);
+            var bFirstIsNaN:Boolean = isNaN(_renderData.filteredCache[0]);
     
-            // while (true)
-            // {
-                // var v:LineSeriesItem = _renderData.filteredCache[cur];          
-                // if (!isNaN(v.yNumber) && !isNaN(v.xNumber))
-                // {
-                    // var dist:Number = (v.x  - x)*(v.x  - x) + (v.y - y)*(v.y -y);
-                    // if (dist <= minDist2)
-                    // {
-                        // minDist2 = dist;
-                        // minItem = v;                
-                    // }
-                // }
-                // var a:Number;
-                // var b:Number;
-                // if(dataTransform && dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS) is NumericAxis &&
-                // (dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS) as NumericAxis).direction == "inverted")
-                // {
-                    // a = x;
-                    // b = v.x;
-                // }
-                // else
-                // {
-                    // a = v.x;
-                    // b = x;
-                // }
-               //// if there are NaNs in this array, it's for one of a couple of reasons:
-               //// 1) there were NaNs in the data, which menas an xField was provided, which means they got sorted to the end
-               //// 2) some values got filtered out, in which case we can (sort of) safely assumed that the got filtered from one side, the other, or the entire thing.
-               //// we'll assume that an axis hasn't filtered a middle portion of the array.
-               //// since we can assume that any NaNs are at the beginning or the end, we'll rely on that in our binary search.  If there was a NaN in the first slot,
-               //// then we'll assume it's safe to move up the array if we encounter a NaN.  It's possible the entire array is NaN, but then nothing will match, so that's ok.
-                // if (a < b || (isNaN(v.x) && bFirstIsNaN))
-                // {
-                    // low = cur;
-                    // cur = Math.floor((low + high)/2);
-                    // if (cur == low)
-                        // break;
-                // }
-                // else
-                // {
-                    // high = cur;
-                    // cur = Math.floor((low + high)/2);
-                    // if (cur == high)
-                        // break;
-                // }
-            // }
-        // }
-        // else
-        // {
-            // var i:uint;
-            // for (i = 0; i < n; i++)
-            // {
-               // v = _renderData.filteredCache[i];          
-               // if (!isNaN(v.yNumber) && !isNaN(v.xNumber))
-                // {
-                   // dist = (v.x  - x)*(v.x  - x) + (v.y - y)*(v.y -y);
-                   // if (dist <= minDist2)
-                   // {
-                       // minDist2 = dist;
-                       // minItem = v;               
-                   // }
-                // }
-           // }
-        // }
+            while (true)
+            {
+                var v:LineSeriesItem = _renderData.filteredCache[cur];          
+                if (!isNaN(v.yNumber) && !isNaN(v.xNumber))
+                {
+                    var dist:Number = (v.x  - x)*(v.x  - x) + (v.y - y)*(v.y -y);
+                    if (dist <= minDist2)
+                    {
+                        minDist2 = dist;
+                        minItem = v;                
+                    }
+                }
+                var a:Number;
+                var b:Number;
+                if(dataTransform && dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS) is NumericAxis &&
+                (dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS) as NumericAxis).direction == "inverted")
+                {
+                    a = x;
+                    b = v.x;
+                }
+                else
+                {
+                    a = v.x;
+                    b = x;
+                }
+                // if there are NaNs in this array, it's for one of a couple of reasons:
+                // 1) there were NaNs in the data, which menas an xField was provided, which means they got sorted to the end
+                // 2) some values got filtered out, in which case we can (sort of) safely assumed that the got filtered from one side, the other, or the entire thing.
+                // we'll assume that an axis hasn't filtered a middle portion of the array.
+                // since we can assume that any NaNs are at the beginning or the end, we'll rely on that in our binary search.  If there was a NaN in the first slot,
+                // then we'll assume it's safe to move up the array if we encounter a NaN.  It's possible the entire array is NaN, but then nothing will match, so that's ok.
+                if (a < b || (isNaN(v.x) && bFirstIsNaN))
+                {
+                    low = cur;
+                    cur = Math.floor((low + high)/2);
+                    if (cur == low)
+                        break;
+                }
+                else
+                {
+                    high = cur;
+                    cur = Math.floor((low + high)/2);
+                    if (cur == high)
+                        break;
+                }
+            }
+        }
+        else
+        {
+            var i:uint;
+            for (i = 0; i < n; i++)
+            {
+               v = _renderData.filteredCache[i];          
+               if (!isNaN(v.yNumber) && !isNaN(v.xNumber))
+                {
+                   dist = (v.x  - x)*(v.x  - x) + (v.y - y)*(v.y -y);
+                   if (dist <= minDist2)
+                   {
+                       minDist2 = dist;
+                       minItem = v;               
+                   }
+                }
+           }
+        }
         
-        // if (minItem)
-        // {
-            // var hd:HitData = new HitData(createDataID(minItem.index),Math.sqrt(minDist2),minItem.x,minItem.y,minItem);
+        if (minItem)
+        {
+            var hd:HitData = new HitData(createDataID(minItem.index),Math.sqrt(minDist2),minItem.x,minItem.y,minItem);
 
-            // var istroke:IStroke = getStyle("lineStroke");
-            // if (istroke is SolidColorStroke)
-                // hd.contextColor = SolidColorStroke(istroke).color;
-            // else if (istroke is LinearGradientStroke)
-            // {
-                // var gb:LinearGradientStroke = LinearGradientStroke(istroke);
-                // if (gb.entries.length > 0)
-                    // hd.contextColor = gb.entries[0].color;
-            // }
-            // hd.dataTipFunction = formatDataTip;
-            // return [ hd ];
-        // }
+            var istroke:IStroke = getStyle("lineStroke");
+            if (istroke is SolidColorStroke)
+                hd.contextColor = SolidColorStroke(istroke).color;
+            /*
+            else if (istroke is LinearGradientStroke)
+            {
+                var gb:LinearGradientStroke = LinearGradientStroke(istroke);
+                if (gb.entries.length > 0)
+                    hd.contextColor = gb.entries[0].color;
+            }
+            */
+            hd.dataTipFunction = formatDataTip;
+            return [ hd ];
+        }
 
-        // return [];
-    // }
+        return [];
+    }
 
 
     /**
      *  @private
      */
-    // override public function getElementBounds(renderData:Object):void
-    // {
-        // var cache :Array /* of LineSeriesItem */ = renderData.cache;
-        // var segments:Array /* of LineSeriesSegment */ = renderData.segments;
+    override public function getElementBounds(renderData:Object):void
+    {
+        var cache :Array /* of LineSeriesItem */ = renderData.cache;
+        var segments:Array /* of LineSeriesSegment */ = renderData.segments;
         
-        // var rb :Array /* of Rectangle */ = [];
-        // var sampleCount:int = cache.length;     
+        var rb :Array /* of Rectangle */ = [];
+        var sampleCount:int = cache.length;     
 
-        // if (sampleCount == 0)
-            // maxBounds  = new Rectangle();
-        // else
-        // {
-            // var radius:Number = renderData.radius;
+        if (sampleCount == 0)
+            maxBounds  = new Rectangle();
+        else
+        {
+            var radius:Number = renderData.radius;
 
-            // if (radius == 0 || isNaN(radius))
-                // radius = 1;
+            if (radius == 0 || isNaN(radius))
+                radius = 1;
 
-            // var segCount:int = segments.length;
-            // if (segCount)
-            // {
-                // var v:Object = cache[renderData.segments[0].start];
-                // var maxBounds:Rectangle = new Rectangle(v.x,v.y,0,0);
-            // }
+            var segCount:int = segments.length;
+            if (segCount)
+            {
+                var v:Object = cache[renderData.segments[0].start];
+                var maxBounds:Rectangle = new Rectangle(v.x,v.y,0,0);
+            }
 
 
-            // for (var i:int = 0; i < segCount; i++)
-            // {       
-                // var j:int;    
-                // var seg:Object = renderData.segments[i];
-                // if (i > 0){
-                    // var prevSeg:Object = renderData.segments[i-1];
-                    // if (seg.start > prevSeg.end + 1){
-                        // for (j = prevSeg.end + 1; j < seg.start ; j++){
-                            // var rect:Rectangle = new Rectangle(0, 0, 0, 0);
-                            // rb[j] = rect; 
-                        // }
-                    // }
-                // }
-                // for (j = seg.start; j <= seg.end; j++)
-                // {
-                    // v = cache[j];
-                    // var b:Rectangle = new Rectangle(v.x-radius,v.y-radius,2*radius,2*radius);
+            for (var i:int = 0; i < segCount; i++)
+            {       
+                var j:int;    
+                var seg:Object = renderData.segments[i];
+                if (i > 0){
+                    var prevSeg:Object = renderData.segments[i-1];
+                    if (seg.start > prevSeg.end + 1){
+                        for (j = prevSeg.end + 1; j < seg.start ; j++){
+                            var rect:Rectangle = new Rectangle(0, 0, 0, 0);
+                            rb[j] = rect; 
+                        }
+                    }
+                }
+                for (j = seg.start; j <= seg.end; j++)
+                {
+                    v = cache[j];
+                    var b:Rectangle = new Rectangle(v.x-radius,v.y-radius,2*radius,2*radius);
 
-                    // maxBounds.left = Math.min(maxBounds.left,b.left);
-                    // maxBounds.top = Math.min(maxBounds.top,b.top);
-                    // maxBounds.right = Math.max(maxBounds.right,b.right);
-                    // maxBounds.bottom = Math.max(maxBounds.bottom,b.bottom);
-                    // rb[j] = b;
-                // }
-            // }
-        // }
+                    maxBounds.left = Math.min(maxBounds.left,b.left);
+                    maxBounds.top = Math.min(maxBounds.top,b.top);
+                    maxBounds.right = Math.max(maxBounds.right,b.right);
+                    maxBounds.bottom = Math.max(maxBounds.bottom,b.bottom);
+                    rb[j] = b;
+                }
+            }
+        }
         
 
-        // renderData.elementBounds = rb;
-        // renderData.bounds =  maxBounds;
-    // }
+        renderData.elementBounds = rb;
+        renderData.bounds =  maxBounds;
+    }
 
     /**
      *  @private
      */
-    // override public function beginInterpolation(sourceRenderData:Object,
-                                                // destRenderData:Object):Object
-    // {
-        // var idata:Object = initializeInterpolationData(
-            // sourceRenderData.cache, destRenderData.cache,
-            // { x: true, y: true }, itemType,
-            // { sourceRenderData: sourceRenderData,
-              // destRenderData: destRenderData });
+    override public function beginInterpolation(sourceRenderData:Object,
+                                                destRenderData:Object):Object
+    {
+        var idata:Object = initializeInterpolationData(
+            sourceRenderData.cache, destRenderData.cache,
+            { x: true, y: true }, itemType,
+            { sourceRenderData: sourceRenderData,
+              destRenderData: destRenderData });
 
-        // var interpolationRenderData:LineSeriesRenderData = LineSeriesRenderData(destRenderData.clone());
+        var interpolationRenderData:LineSeriesRenderData = LineSeriesRenderData(destRenderData.clone());
 
-        // interpolationRenderData.cache = idata.cache;    
-        // interpolationRenderData.filteredCache = idata.cache;    
+        interpolationRenderData.cache = idata.cache;    
+        interpolationRenderData.filteredCache = idata.cache;    
 
-        // /* the segments in the renderdata have pointers back to the filetered cache.  since we just replaced the filtered cache, we need to iterate through and 
-        // /  update those */
-        // var segs:Array /* of LineSeriesSegment */ = interpolationRenderData.segments;
-        // var n:int = segs.length;
-        // for (var i:int = 0; i < n; i++)
-        // {
-            // segs[i].items = idata.cache;
-        // }
+        /* the segments in the renderdata have pointers back to the filetered cache.  since we just replaced the filtered cache, we need to iterate through and 
+        /  update those */
+        var segs:Array /* of LineSeriesSegment */ = interpolationRenderData.segments;
+        var n:int = segs.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            segs[i].items = idata.cache;
+        }
         
-        // transitionRenderData = interpolationRenderData;
-        // return idata;
-    // }
+        transitionRenderData = interpolationRenderData;
+        return idata;
+    }
 
     /**
      *  @private
      */
-    // override protected function getMissingInterpolationValues(
-                                    // sourceProps:Object, srcCache:Array /* of LineSeriesItem */,
-                                    // destProps:Object, destCache:Array /* of LineSeriesItem */,
-                                    // index:Number, customData:Object):void
-    // {
-        // var cache:Array /* of LineSeriesItem */ = customData.sourceRenderData.cache;
-        // var dstCache:Array /* of LineSeriesItem */ = customData.destRenderData.cache;
+    override protected function getMissingInterpolationValues(
+                                    sourceProps:Object, srcCache:Array /* of LineSeriesItem */,
+                                    destProps:Object, destCache:Array /* of LineSeriesItem */,
+                                    index:Number, customData:Object):void
+    {
+        var cache:Array /* of LineSeriesItem */ = customData.sourceRenderData.cache;
+        var dstCache:Array /* of LineSeriesItem */ = customData.destRenderData.cache;
         
-        // for (var p:String in sourceProps)
-        // {
-            // var src:Number = sourceProps[p];
-            // var dst:Number = destProps[p];
+        for (var p:String in sourceProps)
+        {
+            var src:Number = sourceProps[p];
+            var dst:Number = destProps[p];
 
 
-            // var lastValidIndex:int = index;
-            // if (isNaN(src))
-            // {
-                // if (cache.length == 0)
-                // {
-                    // src = (p == "x")? dstCache[index].x : unscaledHeight;
-                // }
-                // else
-                // {
-                    // if (lastValidIndex >= cache.length)
-                        // lastValidIndex = cache.length-1;
-                    // while (lastValidIndex >= 0 && isNaN(cache[lastValidIndex][p]))
-                    // {
-                        // lastValidIndex--;
-                    // }
-                    // if (lastValidIndex >= 0)
-                        // src =   cache[lastValidIndex][p] + .01 * (lastValidIndex - index);
-                    // if (isNaN(src))
-                    // {
-                        // lastValidIndex = index+1;
-                        // var cachelen:int = cache.length;
-                        // while (lastValidIndex < cachelen && isNaN(cache[lastValidIndex][p]))
-                        // {
-                            // lastValidIndex++;
-                        // }
-                        // if (lastValidIndex < cachelen)
-                        // {
-                            // src = cache[lastValidIndex][p] + .01 * (lastValidIndex - index);
-                        // }
-                    // }           
-                // }
-            // }
+            var lastValidIndex:int = index;
+            if (isNaN(src))
+            {
+                if (cache.length == 0)
+                {
+                    src = (p == "x")? dstCache[index].x : unscaledHeight;
+                }
+                else
+                {
+                    if (lastValidIndex >= cache.length)
+                        lastValidIndex = cache.length-1;
+                    while (lastValidIndex >= 0 && isNaN(cache[lastValidIndex][p]))
+                    {
+                        lastValidIndex--;
+                    }
+                    if (lastValidIndex >= 0)
+                        src =   cache[lastValidIndex][p] + .01 * (lastValidIndex - index);
+                    if (isNaN(src))
+                    {
+                        lastValidIndex = index+1;
+                        var cachelen:int = cache.length;
+                        while (lastValidIndex < cachelen && isNaN(cache[lastValidIndex][p]))
+                        {
+                            lastValidIndex++;
+                        }
+                        if (lastValidIndex < cachelen)
+                        {
+                            src = cache[lastValidIndex][p] + .01 * (lastValidIndex - index);
+                        }
+                    }           
+                }
+            }
             
-            // sourceProps[p] = src;
-            // destProps[p] = dst;
-        // }
-    // }
+            sourceProps[p] = src;
+            destProps[p] = dst;
+        }
+    }
 
     /**
      *  @private
      */
-    // override public function dataToLocal(... dataValues):Point
-    // {
-        // var data:Object = {};
-        // var da:Array /* of Object */ = [ data ];
-        // var n:int = dataValues.length;
+    override public function dataToLocal(... dataValues):Point
+    {
+        var data:Object = {};
+        var da:Array /* of Object */ = [ data ];
+        var n:int = dataValues.length;
         
-        // if (n > 0)
-        // {
-            // data["d0"] = dataValues[0];
-            // dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).
-                // mapCache(da, "d0", "v0");
-        // }
+        if (n > 0)
+        {
+            data["d0"] = dataValues[0];
+            dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).
+                mapCache(da, "d0", "v0");
+        }
         
-        // if (n > 1)
-        // {
-            // data["d1"] = dataValues[1];
-            // dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).
-                // mapCache(da, "d1", "v1");           
-        // }
+        if (n > 1)
+        {
+            data["d1"] = dataValues[1];
+            dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).
+                mapCache(da, "d1", "v1");           
+        }
 
-        // dataTransform.transformCache(da,"v0","s0","v1","s1");
+        dataTransform.transformCache(da,"v0","s0","v1","s1");
         
-        // return new Point(data.s0 + this.x,
-                         // data.s1 + this.y);
-    // }
-
-    /**
-     *  @private
-     */
-    // override public function localToData(v:Point):Array /* of Object */
-    // {
-        // var values:Array /* of Object */ = dataTransform.invertTransform(
-                                            // v.x - this.x,
-                                            // v.y - this.y);
-        // return values;
-    // }
+        return new Point(data.s0 + this.x,
+                         data.s1 + this.y);
+    }
 
     /**
      *  @private
      */
-    // override public function getItemsInRegion(r:Rectangle):Array /* of LineSeriesItem */
-    // {
-        // if (interactive == false || !_renderData)
-            // return [];
+    override public function localToData(v:Point):Array /* of Object */
+    {
+        var values:Array /* of Object */ = dataTransform.invertTransform(
+                                            v.x - this.x,
+                                            v.y - this.y);
+        return values;
+    }
+
+    /**
+     *  @private
+     */
+    override public function getItemsInRegion(r:Rectangle):Array /* of LineSeriesItem */
+    {
+        if (interactive == false || !_renderData)
+            return [];
         
-        // var arrItems:Array /* of LineSeriesItem */ = [];    
-        // var rc:Rectangle = new Rectangle();
-        // var localRectangle:Rectangle = new Rectangle();
-        // var n:uint = _renderData.filteredCache.length;
+        var arrItems:Array /* of LineSeriesItem */ = [];    
+        var rc:Rectangle = new Rectangle();
+        var localRectangle:Rectangle = new Rectangle();
+        var n:uint = _renderData.filteredCache.length;
         
-        // localRectangle.topLeft = globalToLocal(r.topLeft);
-        // localRectangle.bottomRight = globalToLocal(r.bottomRight);
+        localRectangle.topLeft = globalToLocal(r.topLeft);
+        localRectangle.bottomRight = globalToLocal(r.bottomRight);
 
         
-        // for (var i:int = 0; i < n; i++)
-        // {
-            // var v:LineSeriesItem = _renderData.filteredCache[i];
+        for (var i:int = 0; i < n; i++)
+        {
+            var v:LineSeriesItem = _renderData.filteredCache[i];
                 
-            // if (localRectangle.contains(v.x,v.y))
-                // arrItems.push(v);
-        // }
-        // return arrItems;
-    // }
+            if (localRectangle.contains(v.x,v.y))
+                arrItems.push(v);
+        }
+        return arrItems;
+    }
     
      /**
      * @private
      */ 
-    // override protected function defaultFilterFunction(cache:Array /*of LineSeriesItem */ ):Array /*of LineeriesItem*/
-    // {
-        // var filteredCache:Array /*of LineSeriesItem*/ = [];
-        // var start:int;
-        // var end:int = -1;
-        // var n:int;
-        // var i:int;
-        // var v:LineSeriesItem;
+    override protected function defaultFilterFunction(cache:Array /*of LineSeriesItem */ ):Array /*of LineeriesItem*/
+    {
+        var filteredCache:Array /*of LineSeriesItem*/ = [];
+        var start:int;
+        var end:int = -1;
+        var n:int;
+        var i:int;
+        var v:LineSeriesItem;
         
-        // if (filterDataValues == "outsideRange")
-        // {
-            // filteredCache = cache.concat();
+        if (filterDataValues == "outsideRange")
+        {
+            filteredCache = cache.concat();
             
-            // dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).filterCache(filteredCache,"xNumber","xFilter")
-            // dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).filterCache(filteredCache,"yNumber","yFilter");
+            dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).filterCache(filteredCache,"xNumber","xFilter")
+            dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).filterCache(filteredCache,"yNumber","yFilter");
 
-          ////  since all nulls will end up out at the edges, we can safely strip this early
+            // since all nulls will end up out at the edges, we can safely strip this early
 
-           // if (xField != "" && sortOnXField)
-                // stripNaNs(filteredCache,"xFilter");
+           if (xField != "" && sortOnXField)
+                stripNaNs(filteredCache,"xFilter");
                 
-            // _renderData.validPoints = filteredCache.length;
+            _renderData.validPoints = filteredCache.length;
 
-            // if (_interpolateValues == false)
-            // {
-                // n = filteredCache.length;
+            if (_interpolateValues == false)
+            {
+                n = filteredCache.length;
                 
-                // while (end<n)
-                // {
-                    // for (i = end + 1; i < n; i++)
-                    // {
-                        // v = LineSeriesItem(filteredCache[i]);
-                        // if (!isNaN(v.xFilter) && !isNaN(v.yFilter))
-                            // break;
-                        // _renderData.validPoints--;
-                    // }
-                    // if (i == n)
-                        // break;              
+                while (end<n)
+                {
+                    for (i = end + 1; i < n; i++)
+                    {
+                        v = LineSeriesItem(filteredCache[i]);
+                        if (!isNaN(v.xFilter) && !isNaN(v.yFilter))
+                            break;
+                        _renderData.validPoints--;
+                    }
+                    if (i == n)
+                        break;              
 
-                    // start = i;
+                    start = i;
 
-                    // for (i = start + 1; i < n; i++)
-                    // {
-                        // v = LineSeriesItem(filteredCache[i]);
-                        // if (isNaN(v.xFilter) || isNaN(v.yFilter))
-                            // break;                  
-                    // }
-                    // end = i-1;
-                    // if (end != start)
-                    // {
-                        // _renderData.segments.push(new lineSegmentType(this,_renderData.segments.length,filteredCache,start,end));
-                    // }
-                // }
-            // }
-            // else
-            // {
-                // stripNaNs(filteredCache,"yFilter");
-                // _renderData.validPoints = filteredCache.length;
-                // if (filteredCache.length > 1)
-                    // _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
-            // }
-        // }
-        // else if (filterDataValues == "nulls")
-        // {
-            // filteredCache = cache.concat();
-             ////since all nulls will end up out at the edges, we can safely strip this early
-            // if (xField != "" && sortOnXField)
-                // stripNaNs(filteredCache,"xNumber");
+                    for (i = start + 1; i < n; i++)
+                    {
+                        v = LineSeriesItem(filteredCache[i]);
+                        if (isNaN(v.xFilter) || isNaN(v.yFilter))
+                            break;                  
+                    }
+                    end = i-1;
+                    if (end != start)
+                    {
+                        _renderData.segments.push(new lineSegmentType(this,_renderData.segments.length,filteredCache,start,end));
+                    }
+                }
+            }
+            else
+            {
+                stripNaNs(filteredCache,"yFilter");
+                _renderData.validPoints = filteredCache.length;
+                if (filteredCache.length > 1)
+                    _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
+            }
+        }
+        else if (filterDataValues == "nulls")
+        {
+            filteredCache = cache.concat();
+             // since all nulls will end up out at the edges, we can safely strip this early
+            if (xField != "" && sortOnXField)
+                stripNaNs(filteredCache,"xNumber");
                 
-            // _renderData.validPoints = filteredCache.length;
+            _renderData.validPoints = filteredCache.length;
 
-            // if (_interpolateValues == false)
-            // {
-                // n = filteredCache.length;
-                // while (end<n)
-                // {
-                    // for (i = end + 1; i < n; i++)
-                    // {
-                        // v = LineSeriesItem(filteredCache[i]);
-                        // if (!isNaN(v.xNumber) && !isNaN(v.yNumber))
-                            // break;
-                        // _renderData.validPoints--;
-                    // }
-                    // if (i == n)
-                        // break;              
+            if (_interpolateValues == false)
+            {
+                n = filteredCache.length;
+                while (end<n)
+                {
+                    for (i = end + 1; i < n; i++)
+                    {
+                        v = LineSeriesItem(filteredCache[i]);
+                        if (!isNaN(v.xNumber) && !isNaN(v.yNumber))
+                            break;
+                        _renderData.validPoints--;
+                    }
+                    if (i == n)
+                        break;              
 
-                    // start = i;
+                    start = i;
 
-                    // for (i = start + 1; i < n; i++)
-                    // {
-                        // v = LineSeriesItem(filteredCache[i]);
-                        // if (isNaN(v.xNumber) || isNaN(v.yNumber))
-                            // break;                  
-                    // }
-                    // end = i-1;
-                    // if (end != start)
-                    // {
-                        // _renderData.segments.push(new lineSegmentType(this,_renderData.segments.length,filteredCache,start,end));
-                    // }
-                // }
-            // }
+                    for (i = start + 1; i < n; i++)
+                    {
+                        v = LineSeriesItem(filteredCache[i]);
+                        if (isNaN(v.xNumber) || isNaN(v.yNumber))
+                            break;                  
+                    }
+                    end = i-1;
+                    if (end != start)
+                    {
+                        _renderData.segments.push(new lineSegmentType(this,_renderData.segments.length,filteredCache,start,end));
+                    }
+                }
+            }
             
-            // else
-            // {
-                // stripNaNs(filteredCache,"yNumber");
-                // _renderData.validPoints = filteredCache.length;
-                // if (filteredCache.length > 1)
-                    // _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
-            // }
-        // }
-        // else if (filterDataValues == "none")
-        // {
-            // filteredCache = cache;
-            // _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
-        // }
-        // return filteredCache;
-    // }
+            else
+            {
+                stripNaNs(filteredCache,"yNumber");
+                _renderData.validPoints = filteredCache.length;
+                if (filteredCache.length > 1)
+                    _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
+            }
+        }
+        else if (filterDataValues == "none")
+        {
+            filteredCache = cache;
+            _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
+        }
+        return filteredCache;
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -2002,53 +1902,53 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  This method is to create line segments for the cache returned
      *  by custom filter function
      */
-    // private function createLineSegments(filteredCache:Array /* of LineSeriesItem */):void
-    // {
-            // _renderData.validPoints = filteredCache.length;
+    private function createLineSegments(filteredCache:Array /* of LineSeriesItem */):void
+    {
+            _renderData.validPoints = filteredCache.length;
 
-            // if (_interpolateValues == false)
-            // {
-                // var start:int;
-                // var end:int = -1;
-                // var n:int = filteredCache.length;
-                // var i:int;
-                // var v:LineSeriesItem;
+            if (_interpolateValues == false)
+            {
+                var start:int;
+                var end:int = -1;
+                var n:int = filteredCache.length;
+                var i:int;
+                var v:LineSeriesItem;
                 
-                // while (end<n)
-                // {
-                    // for (i = end + 1; i < n; i++)
-                    // {
-                        // v = LineSeriesItem(filteredCache[i]);
-                        // if (!isNaN(v.xNumber) && !isNaN(v.yNumber))
-                            // break;
-                        // _renderData.validPoints--;
-                    // }
-                    // if (i == n)
-                        // break;              
+                while (end<n)
+                {
+                    for (i = end + 1; i < n; i++)
+                    {
+                        v = LineSeriesItem(filteredCache[i]);
+                        if (!isNaN(v.xNumber) && !isNaN(v.yNumber))
+                            break;
+                        _renderData.validPoints--;
+                    }
+                    if (i == n)
+                        break;              
 
-                    // start = i;
+                    start = i;
 
-                    // for (i = start + 1; i < n; i++)
-                    // {
-                        // v = LineSeriesItem(filteredCache[i]);
-                        // if (isNaN(v.xNumber) || isNaN(v.yNumber))
-                            // break;                  
-                    // }
-                    // end = i-1;
-                    // if (end != start)
-                    // {
-                        // _renderData.segments.push(new lineSegmentType(this,_renderData.segments.length,filteredCache,start,end));
-                    // }
-                // }
-            // }
+                    for (i = start + 1; i < n; i++)
+                    {
+                        v = LineSeriesItem(filteredCache[i]);
+                        if (isNaN(v.xNumber) || isNaN(v.yNumber))
+                            break;                  
+                    }
+                    end = i-1;
+                    if (end != start)
+                    {
+                        _renderData.segments.push(new lineSegmentType(this,_renderData.segments.length,filteredCache,start,end));
+                    }
+                }
+            }
             
-            // else
-            // {
-                // _renderData.validPoints = filteredCache.length;
-                // if (filteredCache.length > 1)
-                    // _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
-            // }
-    // }  
+            else
+            {
+                _renderData.validPoints = filteredCache.length;
+                if (filteredCache.length > 1)
+                    _renderData.segments.push(new lineSegmentType(this,0,filteredCache,start,filteredCache.length-1));
+            }
+    }  
 
     /**
      *  Customizes the item renderer instances that are used to represent the chart. This method is called automatically
@@ -2061,43 +1961,43 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // protected function applyItemRendererProperties(instance:DisplayObject,
-                                                   // cache:InstanceCache):void
-    // {
-        // if (instance is ISimpleStyleClient)
-            // ISimpleStyleClient(instance).styleName = this;
-    // }
+    protected function applyItemRendererProperties(instance:UIComponent,
+                                                   cache:InstanceCache):void
+    {
+        if (instance is ISimpleStyleClient)
+            ISimpleStyleClient(instance).styleName = this;
+    }
 
     /**
      *  @private
      */
-    // private function formatDataTip(hd:HitData):String
-    // {
-        // var dt:String = "";
+    private function formatDataTip(hd:HitData):String
+    {
+        var dt:String = "";
         
-        // var n:String = displayName;
-        // if (n && n != "")
-            // dt += "<b>" + n + "</b><BR/>";
+        var n:String = displayName;
+        if (n && n != "")
+            dt += "<b>" + n + "</b><BR/>";
 
-        // var xName:String = dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).displayName;
-        // if (xName != "")
-            // dt += "<i>" + xName+ ":</i> ";
-        // dt += dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).formatForScreen(
-            // LineSeriesItem(hd.chartItem).xValue) + "\n";
+        var xName:String = dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).displayName;
+        if (xName != "")
+            dt += "<i>" + xName+ ":</i> ";
+        dt += dataTransform.getAxis(CartesianTransform.HORIZONTAL_AXIS).formatForScreen(
+            LineSeriesItem(hd.chartItem).xValue) + "\n";
         
-        // var yName:String = dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).displayName;
-        // if (yName != "")
-            // dt += "<i>" + yName + ":</i> ";
-        // dt += dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).formatForScreen(
-            // LineSeriesItem(hd.chartItem).yValue) + "\n";
+        var yName:String = dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).displayName;
+        if (yName != "")
+            dt += "<i>" + yName + ":</i> ";
+        dt += dataTransform.getAxis(CartesianTransform.VERTICAL_AXIS).formatForScreen(
+            LineSeriesItem(hd.chartItem).yValue) + "\n";
         
-        // return dt;
-    // }
+        return dt;
+    }
     
     /**
      * @private
      */
-    /* private function defaultFillFunction(element:LineSeriesItem,i:Number):IFill
+    private function defaultFillFunction(element:LineSeriesItem,i:Number):IFill
     {
         if (_fillCount!=0)
         {
@@ -2105,10 +2005,10 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         }
         else
           return(GraphicsUtilities.fillFromStyle(getStyle("fill")));
-    } */
+    }
     
     
-    /* private function reverseYValues(cache:Array):Array
+    private function reverseYValues(cache:Array):Array
     {
         var i:int = 0;
         var n:int = cache.length;
@@ -2118,8 +2018,8 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
         }  
         return cache;
     }
-     */
-    /* private function reverseXValues(cache:Array):Array
+    
+    private function reverseXValues(cache:Array):Array
     {
         var i:int = 0;
         var n:int = cache.length;
@@ -2128,7 +2028,7 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
             cache[i]["xValue"] = -(cache[i]["xValue"]);
         }  
         return cache;
-    } */
+    }
 }
 
 }
@@ -2139,20 +2039,20 @@ public class LineSeries extends org.apache.royale.charts.supportClasses.LineSeri
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/* 
-import flash.display.Graphics;
+
+import mx.display.Graphics;
 
 import mx.charts.series.LineSeries;
 import mx.graphics.IStroke;
 import mx.graphics.LinearGradientStroke;
 import mx.graphics.SolidColorStroke;
 import mx.skins.ProgrammaticSkin;
- */
+
 /**
  *  @private
  */
-//class LineSeriesLegendMarker extends ProgrammaticSkin
-//{
+class LineSeriesLegendMarker extends ProgrammaticSkin
+{
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -2163,13 +2063,13 @@ import mx.skins.ProgrammaticSkin;
      *  @private
      *  Constructor.
      */
-   /*  public function LineSeriesLegendMarker(element:LineSeries)
+    public function LineSeriesLegendMarker(element:LineSeries)
     {
         super();
 
         _element = element;
         styleName = _element;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -2180,7 +2080,7 @@ import mx.skins.ProgrammaticSkin;
     /**
      *  @private
      */
-    //private var _element:LineSeries;
+    private var _element:LineSeries;
     
 
     //--------------------------------------------------------------------------
@@ -2192,7 +2092,7 @@ import mx.skins.ProgrammaticSkin;
     /**
      *  @private
      */
-    /* override protected function updateDisplayList(unscaledWidth:Number,
+    override protected function updateDisplayList(unscaledWidth:Number,
                                                   unscaledHeight:Number):void
     {
         super.updateDisplayList(unscaledWidth,unscaledHeight);
@@ -2204,12 +2104,14 @@ import mx.skins.ProgrammaticSkin;
         {
             color = SolidColorStroke(fillStroke).color;
         }
+        /*
         else if (fillStroke is LinearGradientStroke)
         {
             var gb:LinearGradientStroke = LinearGradientStroke(fillStroke);
             if (gb.entries.length > 0)
                 color = gb.entries[0].color;
         }
+        */
 
         var g:Graphics = graphics;
         g.clear();
@@ -2221,5 +2123,5 @@ import mx.skins.ProgrammaticSkin;
         g.lineTo(0, height);
         g.lineTo(0, 0);
         g.endFill();
-    } */
-//}
+    }
+}

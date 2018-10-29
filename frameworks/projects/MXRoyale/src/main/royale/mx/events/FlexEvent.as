@@ -1248,7 +1248,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const TRANSFORM_CHANGE:String = "transformChange";
+    public static const TRANSFORM_CHANGE:String = "transformChange";
 
     /**
      *  The <code>FlexEvent.TRANSITION_START</code> constant defines the value of the

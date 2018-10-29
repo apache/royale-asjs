@@ -18,16 +18,25 @@
 
 package mx.display
 {
-	import org.apache.royale.svg.CompoundGraphic;
+	//import org.apache.royale.svg.CompoundGraphic;
 	import mx.geom.Matrix;
+    import mx.core.UIComponent;
 
-	public class Graphics extends org.apache.royale.svg.CompoundGraphic
+	public class Graphics// extends org.apache.royale.svg.CompoundGraphic
 	{
-		public function Graphics()
+		private var displayObject:UIComponent;
+
+		public function Graphics(displayObject:UIComponent)
 		{
 			super();
+			this.displayObject = displayObject;
 		}
-		public function  endFill(): void
+
+        public function clear():void
+        {
+        }
+        
+		public function endFill(): void
 		{
 		}
 		public function beginFill(color:uint, alpha:Number = 1.0):void
@@ -46,9 +55,30 @@ package mx.display
 		{
 		}
 		
+		public function lineTo(x:Number, y:Number):void
+		{
+		}
+		
 		public function curveTo(controlX:Number, controlY:Number, anchorX:Number, anchorY:Number):void
 		{
 		}
+        
+        public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
+        {
+        }
+        
+        public function drawRoundRect(x:Number, y:Number, width:Number, height:Number, radiusX:Number, radiusY:Number = NaN):void
+        {
+        }
+        
+        public function drawRect(x:Number, y:Number, width:Number, height:Number):void
+        {
+        }
+        
+        public function drawCircle(x:Number, y:Number, radius:Number):void
+        {
+        }
+
 	}
 	
 }
