@@ -20,12 +20,9 @@ limitations under the License.
 <j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
 				  xmlns:j="library://ns.apache.org/royale/jewel"
 				  xmlns:js="library://ns.apache.org/royale/basic"
-				  xmlns:html="library://ns.apache.org/royale/html">
-
-	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
-
+				  xmlns:html="library://ns.apache.org/royale/html"
+				  xmlns:models="models.*">
+				  
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.utils.StringPadder;
@@ -43,6 +40,14 @@ limitations under the License.
             }
 		]]>
 	</fx:Script>
+
+	<j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+	<j:model>
+        <models:ListsModel id="listModel"/>
+	</j:model>
 
 	<j:Card width="600">
 		<html:H3 text="Jewel Form And Validators"/>
@@ -66,6 +71,13 @@ limitations under the License.
 					<j:DateValidator requiredFieldError="The value is not a valid date"/>
 				</j:beads>
 			</j:DateField>
+
+			<html:H4 text="Your Favorite Avenger"/>
+			<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+				<j:beads>
+					<j:SelectedItemNullValidator requiredFieldError="You must to select one value from the list"/>
+				</j:beads>
+			</j:ComboBox>
 
 			<html:H4 text="Favorite movies (at least 2)"/>
 			<j:VGroup gap="3">
