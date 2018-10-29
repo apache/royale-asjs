@@ -110,53 +110,9 @@ package org.apache.royale.html.supportClasses
 			super();
 		}
 
-		private var _verticalScroller:ScrollBar;
-
-		override public function get verticalScroller():IViewportScroller
-		{
-			return _verticalScroller;
-		}
-
-		private var _horizontalScroller:ScrollBar
-
-		override public function get horizontalScroller():IViewportScroller
-		{
-			return _horizontalScroller;
-		}
-
-        override public function get verticalScrollPosition():Number
-        {
-			return 0;
-        }
         override public function set verticalScrollPosition(value:Number):void
         {
 			//do nothing
-        }
-
-        private var _horizontalScrollPosition:Number = 0;
-
-        override public function get horizontalScrollPosition():Number
-        {
-			return _horizontalScrollPosition;
-        }
-        override public function set horizontalScrollPosition(value:Number):void
-        {
-			_horizontalScrollPosition = value;
-            dispatchEvent(new Event("horizontalScrollPositionChanged"));
-			handleHorizontalScrollChange();
-        }
-
-        private var viewportWidth:Number;
-        private var viewportHeight:Number;
-
-        /**
-         * @copy org.apache.royale.core.IViewport
-         */
-        override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
-        {
-           	super.layoutViewportBeforeContentLayout(width, height);
-           	viewportWidth = width;
-           	viewportHeight = height;
         }
 
         /**
@@ -215,42 +171,6 @@ package org.apache.royale.html.supportClasses
 				(_horizontalScroller != null && _horizontalScroller.visible) ? _horizontalScroller.y : hostHeight);
 			
 			contentArea.scrollRect = rect;
-		}
-
-		private function createHorizontalScrollBar():ScrollBar
-		{
-			var hsbm:ScrollBarModel = new ScrollBarModel();
-			hsbm.minimum = 0;
-			hsbm.snapInterval = 1;
-			hsbm.stepSize = 1;
-			hsbm.value = 0;
-
-			var hsb:HScrollBar;
-			hsb = new HScrollBar();
-			hsb.model = hsbm;
-			hsb.visible = false;
-
-			hsb.addEventListener("scroll",handleHorizontalScroll);
-			return hsb;
-		}
-
-		private function handleHorizontalScroll(event:Event):void
-		{
-			var host:UIBase = UIBase(_strand);
-			var hpos:Number = ScrollBarModel(_horizontalScroller.model).value;
-			var rect:flash.geom.Rectangle = contentArea.scrollRect;
-			rect.x = hpos;
-			contentArea.scrollRect = rect;
-
-			_horizontalScrollPosition = hpos;
-            dispatchEvent(new Event("horizontalScrollPositionChanged"));
-		}
-
-		private function handleHorizontalScrollChange():void
-		{
-			if (_horizontalScroller) {
-				ScrollBarModel(_horizontalScroller.model).value = horizontalScrollPosition;
-			}
 		}
 
 	}

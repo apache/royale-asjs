@@ -176,7 +176,7 @@ public class AreaSet extends StackedSeries
 
 		if (yName != "")
 			dt += "<i>" + yName + ":</i> ";
-		dt += vAxis..formatForScreen(Number(item.yValue) - Number(item.minValue)) + " (" +  percent + "%)\n";
+		dt += vAxis.formatForScreen(Number(item.yValue) - Number(item.minValue)) + " (" +  percent + "%)\n";
 		if (yName != "")
 			dt += "<i>" + yName + " (total):</i> ";
 		else

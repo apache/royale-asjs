@@ -567,16 +567,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	{
 		focusManager = new FocusManager(this);
 	}
-	
-	/**
-	 * @return {Object} The array of children.
-	 */
-	COMPILE::JS
-	protected function internalChildren():NodeList
-	{
-		return element.childNodes;
-	};
-	
+		
 	COMPILE::JS
 	protected var startupTimer:Timer;
 	

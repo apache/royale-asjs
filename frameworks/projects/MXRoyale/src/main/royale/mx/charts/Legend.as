@@ -1320,6 +1320,7 @@ package mx.charts
          *  Note that this "base property" is final and cannot be overridden,
          *  so you can count on it to reflect what is happening at the player level.
          */
+        COMPILE::JS
         mx_internal final function get $numChildren():int
         {
             return super.numChildren;
@@ -4266,7 +4267,7 @@ package mx.charts
         /**
          *  @private
          */
-        /*override*/ mx_internal function addingChild(child:IUIComponent):void
+        override mx_internal function addingChild(child:IUIComponent):void
         {
             // Throw an RTE if child is not an IUIComponent.
             var uiChild:IUIComponent = IUIComponent(child);
@@ -4303,7 +4304,7 @@ package mx.charts
         /**
          *  @private
          */
-        /*override*/ mx_internal function childAdded(child:IUIComponent):void
+        override mx_internal function childAdded(child:IUIComponent):void
         {
             /*
             if (hasEventListener("childrenChanged"))
@@ -4328,7 +4329,7 @@ package mx.charts
         /**
          *  @private
          */
-        /*override*/ mx_internal function removingChild(child:IUIComponent):void
+        override mx_internal function removingChild(child:IUIComponent):void
         {
             /*
             super.removingChild(child);
@@ -4350,7 +4351,7 @@ package mx.charts
         /**
          *  @private
          */
-        /*override*/ mx_internal function childRemoved(child:IUIComponent):void
+        override mx_internal function childRemoved(child:IUIComponent):void
         {
             super.childRemoved(child);
             

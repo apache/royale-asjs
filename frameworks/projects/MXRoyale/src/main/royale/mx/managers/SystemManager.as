@@ -63,7 +63,6 @@ import flash.utils.getQualifiedClassName;
 import mx.core.FlexSprite;
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
-import mx.core.IFlexModuleFactory;
 import mx.core.IInvalidating;
 import mx.core.IRawChildrenContainer;
 import mx.core.IUIComponent;
@@ -89,6 +88,7 @@ use namespace mx_internal;
 
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
+import mx.core.IFlexModuleFactory;
 import mx.core.IUIComponent;
 
 import org.apache.royale.core.IChild;
@@ -191,7 +191,7 @@ import org.apache.royale.geom.Rectangle;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class SystemManager extends SystemManagerBase implements ISystemManager, IEventDispatcher, IPopUpHostParent, IChildList
+public class SystemManager extends SystemManagerBase implements ISystemManager, IFlexModuleFactory, IEventDispatcher, IPopUpHostParent, IChildList
 { //extends MovieClip implements IFlexDisplayObject,IFlexModuleFactory, ISystemManager
    // include "../core/Version.as";
 
@@ -2975,6 +2975,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         
         // until preloader?
         component.addEventListener("applicationComplete", applicationCompleteHandler);
+        component.moduleFactory = this;
         addChild(component as IUIComponent);
         var screen:Rectangle = this.screen;
         component.setActualSize(screen.width, screen.height);            

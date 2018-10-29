@@ -2003,6 +2003,7 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
             cancelEffect();
         
         super.setActualSize(w, h);
+        updateDisplayList(w, h);
     }
 
     /**

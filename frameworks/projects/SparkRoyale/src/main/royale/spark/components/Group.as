@@ -456,10 +456,9 @@ public class Group extends GroupBase /*implements IVisualElementContainer,
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
-     */
     public function set mxmlContent(value:Array):void
     {
-        /*if (createChildrenCalled)
+        if (createChildrenCalled)
         {
             setMXMLContent(value);
         }
@@ -468,8 +467,10 @@ public class Group extends GroupBase /*implements IVisualElementContainer,
             mxmlContentChanged = true;
             _mxmlContent = value;
             // we will validate this in createChildren();
-        }*/
+        }
     }
+     */
+    
     /**
      *  @private
      */

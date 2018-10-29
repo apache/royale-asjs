@@ -49,14 +49,21 @@ import mx.events.ResizeEvent;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
+import mx.managers.ILayoutManagerClient;
 import mx.managers.ISystemManager;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
+import mx.styles.ISimpleStyleClient;
+import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
 
+import mx.core.mx_internal;
+use namespace mx_internal;
+
 import org.apache.royale.core.CallLaterBead;
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
 import org.apache.royale.core.IUIBase;
@@ -3043,11 +3050,13 @@ COMPILE::JS
     { override }
     public function addChild(child:IUIComponent):IUIComponent
     {
-        // this should probably call addingChild/childAdded
         return addElement(child) as IUIComponent;
     }
     
-    mx_internal function $addChild(child:IUIComponent):IUIComponent
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $addChild(child:IUIComponent):IUIComponent
     {
         return addElement(child) as IUIComponent;
     }
@@ -3066,7 +3075,10 @@ COMPILE::JS
         return addElementAt(child, index) as IUIComponent;
     }
     
-    mx_internal function $addChildAt(child:IUIComponent,
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $addChildAt(child:IUIComponent,
                                index:int):IUIComponent
     {
         return addElementAt(child, index) as IUIComponent;
@@ -3084,12 +3096,15 @@ COMPILE::JS
         return removeElement(child) as IUIComponent;
     }
     
-    mx_internal function $removeChild(child:IUIComponent):IUIComponent
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $removeChild(child:IUIComponent):IUIComponent
     {
         // this should probably call the removingChild/childRemoved
         return removeElement(child) as IUIComponent;
     }
-
+    
     COMPILE::JS
 	public function swapChildren(child1:IUIComponent, child2:IUIComponent):void
 	{
@@ -3108,7 +3123,10 @@ COMPILE::JS
         return removeElement(getElementAt(index)) as IUIComponent;
     }
     
-    mx_internal function $removeChildAt(index:int):IUIComponent
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    COMPILE::SWF 
+    { override }
+    public function $removeChildAt(index:int):IUIComponent
     {
         return removeElement(getElementAt(index)) as IUIComponent;
     }
@@ -5100,6 +5118,171 @@ COMPILE::JS
         return textFormat;
     }
 
+    /**
+     *  @private
+     */
+    mx_internal function addingChild(child:IUIBase):void
+    {
+        // If the document property isn't already set on the child,
+        // set it to be the same as this component's document.
+        // The document setter will recursively set it on any
+        // descendants of the child that exist.
+        if (child is IUIComponent &&
+            !IUIComponent(child).component)
+        {
+            IUIComponent(child).component = component ?
+                component :
+                FlexGlobals.topLevelApplication;
+        }
+        
+        // Propagate moduleFactory to the child, but don't overwrite an existing moduleFactory.
+        if (child is IFlexModule && IFlexModule(child).moduleFactory == null)
+        {
+            if (moduleFactory != null)
+                IFlexModule(child).moduleFactory = moduleFactory;
+                
+            else if (component is IFlexModule && component.moduleFactory != null)
+                IFlexModule(child).moduleFactory = component.moduleFactory;
+                
+            else if (parent is IFlexModule && IFlexModule(parent).moduleFactory != null)
+                IFlexModule(child).moduleFactory = IFlexModule(parent).moduleFactory;
+        }
+        /*
+        
+        // Set the font context in non-UIComponent children.
+        // UIComponent children use moduleFactory.
+        if (child is IFontContextComponent && !(child is UIComponent) &&
+            IFontContextComponent(child).fontContext == null)
+            IFontContextComponent(child).fontContext = moduleFactory;
+        
+        if (child is IUIComponent)
+            IUIComponent(child).parentChanged(this);
+        
+        // Set the nestLevel of the child to be one greater
+        // than the nestLevel of this component.
+        // The nestLevel setter will recursively set it on any
+        // descendants of the child that exist.
+        if (child is ILayoutManagerClient)
+            ILayoutManagerClient(child).nestLevel = nestLevel + 1;
+        else if (child is IUITextField)
+            IUITextField(child).nestLevel = nestLevel + 1;
+        
+        if (child is InteractiveObject)
+            if (doubleClickEnabled)
+                InteractiveObject(child).doubleClickEnabled = true;
+        
+        // Sets up the inheritingStyles and nonInheritingStyles objects
+        // and their proto chains so that getStyle() works.
+        // If this object already has some children,
+        // then reinitialize the children's proto chains.
+        if (child is IStyleClient)
+            IStyleClient(child).regenerateStyleCache(true);
+        else if (child is IUITextField && IUITextField(child).inheritingStyles)
+            StyleProtoChain.initTextField(IUITextField(child));
+        
+        if (child is ISimpleStyleClient)
+            ISimpleStyleClient(child).styleChanged(null);
+        
+        if (child is IStyleClient)
+            IStyleClient(child).notifyStyleChangeInChildren(null, true);
+        
+        if (child is UIComponent)
+            UIComponent(child).initThemeColor();
+        
+        // Inform the component that it's style properties
+        // have been fully initialized. Most components won't care,
+        // but some need to react to even this early change.
+        if (child is UIComponent)
+            UIComponent(child).stylesInitialized();
+        */
+    }
+    
+    /**
+     *  @private
+     */
+    mx_internal function childAdded(child:IUIBase):void
+    {
+        /*
+        if (!UIComponentGlobals.designMode)
+        {
+            if (child is UIComponent)
+            {
+                if (!UIComponent(child).initialized)
+                    UIComponent(child).initialize();
+            }
+            else if (child is IUIComponent)
+            {
+                IUIComponent(child).initialize();
+            }
+        }
+        else
+        {
+            try
+            {
+                if (child is UIComponent)
+                {
+                    if (!UIComponent(child).initialized)
+                        UIComponent(child).initialize();
+                }
+                else if (child is IUIComponent)
+                {
+                    IUIComponent(child).initialize();
+                }               
+            }
+            catch (e:Error)
+            {
+                // Dispatch a initializeError dynamic event for tooling. 
+                var initializeErrorEvent:DynamicEvent = new DynamicEvent("initializeError");
+                initializeErrorEvent.error = e;
+                initializeErrorEvent.source = child; 
+                systemManager.dispatchEvent(initializeErrorEvent);
+            }
+        }
+        */
+    }
+    
+    /**
+     *  @private
+     */
+    mx_internal function removingChild(child:IUIBase):void
+    {
+    }
+    
+    /**
+     *  @private
+     */
+    mx_internal function childRemoved(child:IUIBase):void
+    {
+        if (child is IUIComponent)
+        {
+            // only reset document if the child isn't
+            // a document itself
+            if (IUIComponent(child).component != child)
+                IUIComponent(child).component = null;
+            //IUIComponent(child).parentChanged(null);
+        }
+    }
+    
+    override public function addElement(c:IChild, dispatchEvent:Boolean=true):void
+    {
+        addingChild(c as IUIBase);
+        super.addElement(c, dispatchEvent);
+        childAdded(c as IUIBase);
+    }
+
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean=true):void
+    {
+        addingChild(c as IUIBase);
+        super.addElementAt(c, index, dispatchEvent);
+        childAdded(c as IUIBase);
+    }
+    
+    override public function removeElement(c:IChild, dispatchEvent:Boolean=true):void
+    {
+        removingChild(c as IUIBase);
+        super.removeElement(c, dispatchEvent);
+        childRemoved(c as IUIBase);
+    }
 }
 
 }
