@@ -32,7 +32,8 @@ limitations under the License.
             }
             
 			private function avengersDropDownListHandler_noPrompt(event:Event):void {
-                avengersDropDownListResult_noPrompt.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
+				if(event.target.selectedItem != null)
+                	avengersDropDownListResult_noPrompt.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
             }
 
             private function watchmenDropDownListHandler(event:Event):void {
@@ -48,11 +49,13 @@ limitations under the License.
             }
             
 			private function avengersDropDownListHandler_withSelectedIndex(event:Event):void {
-                avengersDropDownListResult_withSelectedIndex.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
+				if(event.target.selectedItem != null)
+                	avengersDropDownListResult_withSelectedIndex.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
             }
             
 			private function avengersDropDownListHandler_withSelectedItem(event:Event):void {
-                avengersDropDownListResult_withSelectedItem.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
+				if(event.target.selectedItem != null)
+                	avengersDropDownListResult_withSelectedItem.html = "<strong>DropDownList selectedItem:</strong> " + event.target.selectedItem.label;
             }
 		]]>
 	</fx:Script>
@@ -204,7 +207,7 @@ limitations under the License.
 					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DropDownList (String Collection) with SelectedIndex"/>
+				<html:H3 text="Jewel DropDownList (String Collection) with SelectedIndex: {watchmenDropDownList_withSelectedIndex.selectedIndex}"/>
 				
 				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
@@ -238,7 +241,7 @@ limitations under the License.
 					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DropDownList (Object Collection) with SelectedIndex"/>
+				<html:H3 text="Jewel DropDownList (Object Collection) with SelectedIndex: {avengersDropDownList_withSelectedIndex.selectedIndex}"/>
 				
 				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
