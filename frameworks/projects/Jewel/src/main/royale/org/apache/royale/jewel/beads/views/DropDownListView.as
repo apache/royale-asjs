@@ -18,17 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+    COMPILE::JS
+    {
+        import org.apache.royale.html.elements.Select;
+    }
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.html.elements.Option;
-    import org.apache.royale.html.elements.Select;
+    import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.DataContainerView;
     import org.apache.royale.jewel.DropDownList;
-    import org.apache.royale.events.Event;
 
     /**
      *  The DropDownListView class creates the visual elements of the org.apache.royale.jewel.DropDownList
-     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Select and Label
+     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Select
      *
      *  @viewbead
      *  @langversion 3.0
@@ -41,6 +43,25 @@ package org.apache.royale.jewel.beads.views
         public function DropDownListView()
         {
             super();
+        }
+
+        private var dropDownList:DropDownList; 
+        
+        /**
+         *  The prompt in the main dropDownList class
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get prompt():String
+        {
+        	return dropDownList.prompt;
+        }
+        public function set prompt(value:String):void
+        {
+        	dropDownList.prompt = value;
         }
 
         /**
@@ -59,23 +80,12 @@ package org.apache.royale.jewel.beads.views
 
             COMPILE::JS
             {
-                var dropDownList:DropDownList = (value as DropDownList);
-
-                // dropDownList.labelDisplay = document.createElement('label') as HTMLLabelElement;
-                // dropDownList.labelDisplay.innerText = dropDownList.prompt;
-                // dropDownList.labelDisplay.classList.add("mdl-textfield__label");
-
+                dropDownList = value as DropDownList;
                 dropDownList.dropDown = new Select();
-                // dropDownList.dropDown.className = "mdl-textfield__input";
-
-                var emptyOption:Option = new Option();
-                // emptyOption.element.style.display = "none";
-
-                dropDownList.dropDown.addElement(emptyOption);
                 
-                setNameForDropDownList();
+                var name:String = "dropDownList" + Math.random();
+                dropDownList.dropDown.element.name = name;
 
-                // dropDownList.element.appendChild(dropDownList.labelDisplay);
                 dropDownList.addElement(dropDownList.dropDown);
             }
         }
@@ -84,57 +94,26 @@ package org.apache.royale.jewel.beads.views
         {
             super.dataProviderChangeHandler(event);
 
-            COMPILE::JS
-            {
-                setProgrammaticallyChangedSelection();
-            }
+            changedSelection();
         }
 
         override protected function itemsCreatedHandler(event:org.apache.royale.events.Event):void
         {
             super.itemsCreatedHandler(event);
 
-            COMPILE::JS
-            {
-                setProgrammaticallyChangedSelection();
-            }
+            changedSelection();
         }
 
-        private function selectionChangeHandler(event:Event):void
-        {
-            COMPILE::JS
-            {
-                setProgrammaticallyChangedSelection();
-            }
-        }
+        private var model:ISelectionModel;
 
-        override protected function handleInitComplete(event:Event):void
+        private function changedSelection():void
         {
-            super.handleInitComplete(event);
+            model = dataModel as ISelectionModel;
+            var selectedIndex:int = dropDownList.selectedIndex;
             
-            dataModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-        }
-
-        COMPILE::JS
-        private function setNameForDropDownList():void
-        {
-            var dropDownList:DropDownList = (_strand as DropDownList);
-
-            var name:String = "dropDownList" + Math.random();
-            // dropDownList.labelDisplay.htmlFor = name;
-            dropDownList.dropDown.element.name = name;
-        }
-
-        COMPILE::JS
-        private function setProgrammaticallyChangedSelection():void
-        {
-            var dropDownList:DropDownList = (_strand as DropDownList);
-            var selectedIndex:int = dropDownList.dropDown.element["selectedIndex"] - 1;
-            var model:ISelectionModel = dataModel as ISelectionModel;
-
-            if (model.selectedIndex > -1 && model.dataProvider && model.selectedIndex != selectedIndex)
+            if (model.selectedIndex > -1 && model.dataProvider)
             {
-                dropDownList.dropDown.element["selectedIndex"] = model.selectedIndex + 1;
+                dropDownList.selectedIndex = model.selectedIndex;
             }
         }
     }

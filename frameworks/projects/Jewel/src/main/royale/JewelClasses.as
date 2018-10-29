@@ -37,6 +37,7 @@ package
         import org.apache.royale.jewel.beads.models.DataProviderModel; DataProviderModel;
         import org.apache.royale.jewel.beads.models.ComboBoxModel; ComboBoxModel;
 		import org.apache.royale.jewel.beads.models.SnackbarModel; SnackbarModel;
+		import org.apache.royale.jewel.beads.models.DropDownListModel; DropDownListModel;
 
         import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;

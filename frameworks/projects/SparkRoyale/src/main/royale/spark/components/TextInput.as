@@ -369,18 +369,18 @@ public class TextInput extends SkinnableTextBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get widthInChars():Number
+    public function get widthInChars():Number
     {
-        return getWidthInChars();
-    } */
+        return 0; //getWidthInChars();
+    }
 
     /**
      *  @private
      */
-    /* public function set widthInChars(value:Number):void
+    public function set widthInChars(value:Number):void
     {
-        setWidthInChars(value);
-    } */
+        // setWidthInChars(value);
+    }
     
     //--------------------------------------------------------------------------
     //

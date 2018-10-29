@@ -234,9 +234,9 @@ package spark.components.gridClasses
 				renderer.getLayoutBoundsWidth(),
 				renderer.getLayoutBoundsHeight());
 			
-			const scrollR:Rectangle = renderer.grid.scrollRect;
+			/*const scrollR:Rectangle = renderer.grid.scrollRect;
 			if (scrollR)
-				rendererR = rendererR.intersection(scrollR);  // exposed renderer b
+				rendererR = rendererR.intersection(scrollR);  // exposed renderer b*/
 			
 			if ((rendererR.height == 0) || (rendererR.width == 0))
 				return;

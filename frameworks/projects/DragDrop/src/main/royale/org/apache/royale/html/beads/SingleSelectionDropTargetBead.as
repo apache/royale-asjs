@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -298,7 +299,7 @@ package org.apache.royale.html.beads
 			}
 
 			var targetIndex:int = -1; // indicates drop beyond length of items
-			var itemRendererParent:UIBase;
+			var itemRendererParent:IParent;
 
 			var startHere:Object = event.relatedObject;
 			while( !(startHere is IItemRenderer) && startHere != null) {
@@ -309,12 +310,8 @@ package org.apache.royale.html.beads
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				//trace("-- dropping onto an existing object: "+ir.data.toString());
 
-				itemRendererParent = ir.itemRendererParent as UIBase;
+				itemRendererParent = (ir.itemRendererParent as ILayoutHost).contentView as IParent;
 				targetIndex = itemRendererParent.getElementIndex(ir);
-			}
-			else if (startHere != null)  {
-				itemRendererParent = startHere.itemRendererParent as UIBase;
-				//trace("-- dropping after the last item");
 			}
 
 			var downPoint:Point = new Point(event.clientX, event.clientY);
