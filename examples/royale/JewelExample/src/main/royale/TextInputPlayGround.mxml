@@ -107,6 +107,18 @@ limitations under the License.
 							<j:LowerCase/>
 						</js:beads>
 					</j:TextInput>
+					<j:TextInput>
+						<js:beads>
+							<j:TextPrompt prompt="Only characters"/>
+							<j:Restrict pattern="[^a-zA-Z]"/>
+						</js:beads>
+					</j:TextInput>
+					<j:TextInput>
+						<js:beads>
+							<j:TextPrompt prompt="Only Numbers"/>
+							<j:Restrict pattern="[^0-9]"/>
+						</js:beads>
+					</j:TextInput>
 				</j:VGroup>
 			</j:Card>
 		</j:GridCell>
