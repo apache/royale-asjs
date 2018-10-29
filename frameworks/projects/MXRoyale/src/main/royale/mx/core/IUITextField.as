@@ -161,6 +161,34 @@ package mx.core
         function truncateToFit(truncationIndicator:String = null):Boolean;
         
         function setTextFormat(format:UITextFormat):void;
+		
+				// These methods should have been defined in UIComponent.as 
+		 
+		//-------------------------------------------------------------------------- 
+		// 
+		//  Properties 
+		// 
+		//-------------------------------------------------------------------------- 
+		 
+		//---------------------------------- 
+		//  baselinePosition 
+		//---------------------------------- 
+		 
+		/** 
+		 *  The y-coordinate of the baseline 
+		 *  of the first line of text of the component. 
+		 *  
+		 *  <p>This property is used to implement 
+		 *  the <code>baseline</code> constraint style. 
+		 *  It is also used to align the label of a FormItem 
+		 *  with the controls in the FormItem.</p> 
+		 *   
+		 *  @langversion 3.0 
+		 *  @playerversion Flash 9 
+		 *  @playerversion AIR 1.1 
+		 *  @productversion Flex 3 
+		 */ 
+		function get baselinePosition():Number; 
         
     }
     
