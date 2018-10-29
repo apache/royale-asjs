@@ -1999,16 +1999,16 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function appendText(text:String):void
-    {
+    public function appendText(text:String):void
+    {/*
         if (!textDisplay)
             return;
 
         textDisplay.appendText(text);
         
         // This changes text so generate an UPDATE_COMPLETE event.
-        invalidateProperties();
-    } */
+        invalidateProperties();*/
+    } 
     
     /**
      *  @copy spark.core.IEditableText#selectRange()
