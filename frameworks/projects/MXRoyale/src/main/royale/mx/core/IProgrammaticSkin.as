@@ -39,7 +39,7 @@ public interface IProgrammaticSkin
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function validateNow():void;
+    //function validateNow():void;
 
     /**
      *  @copy mx.skins.ProgrammaticSkin#validateDisplayList()
@@ -49,7 +49,7 @@ public interface IProgrammaticSkin
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function validateDisplayList():void;
+    //function validateDisplayList():void;
 }
 
 }

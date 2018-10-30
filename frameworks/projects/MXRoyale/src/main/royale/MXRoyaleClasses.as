@@ -190,7 +190,6 @@ internal class MXRoyaleClasses
 	import mx.events.MenuEvent; MenuEvent;
 	import mx.rpc.CallResponder; CallResponder;
 	import mx.rpc.http.Operation; Operation;
-	import mx.controls.menuClasses.MenuBarItem; MenuBarItem;
 	import mx.events.TreeEvent; TreeEvent;
 	
 
