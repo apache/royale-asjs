@@ -115,8 +115,14 @@ limitations under the License.
 					</j:TextInput>
 					<j:TextInput>
 						<js:beads>
-							<j:TextPrompt prompt="Only Numbers"/>
+							<j:TextPrompt prompt="Only numbers"/>
 							<j:Restrict pattern="[^0-9]"/>
+						</js:beads>
+					</j:TextInput>
+					<j:TextInput>
+						<js:beads>
+							<j:TextPrompt prompt="Only letters and numbers"/>
+							<j:Restrict pattern="[^0-9a-zA-Z]"/>
 						</js:beads>
 					</j:TextInput>
 				</j:VGroup>

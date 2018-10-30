@@ -41,15 +41,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  any Jewel TextInputBase control. The bead uses a reg exp pattern to validate
 	 *  input from user. A text property allows to configure error text.
 	 *  
-	 *  use examples:
-	 *  Numeric pattern = -?[0-9]*(\.[0-9]+)?
-	 *  error text = "Input is not a number!"
-	 *
-	 *  Letters and spaces only pattern = [A-Z,a-z, ]*
-	 *  error text = "Letters and spaces only";
-	 *
-	 *  Digits only = [0-9]*
-	 *  error text = "Digits only";
+	 *  pattern examples:
+	 *  Numeric ony pattern = [^0-9]
+	 *  Letters only pattern = [^a-zA-Z]
+	 *  Numeric and letters only pattern = [^0-9a-zA-Z]
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
