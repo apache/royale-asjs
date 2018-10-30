@@ -19,14 +19,9 @@
 
 package mx.events
 {
-	COMPILE::SWF {
-		import flash.events.Event;
-	}
+	// import flash.events.Event;
 		
-	COMPILE::JS {
-		import org.apache.royale.events.Event;
-	}
-	
+	import org.apache.royale.events.Event;
 	import mx.controls.listClasses.IListItemRenderer;
 	
 	/**
