@@ -47,10 +47,10 @@ package mx.core
         function set text(value:String):void;
         
         function get textWidth():Number;
-        function set textWidth(value:Number):void;
+        //function set textWidth(value:Number):void;
         
         function get textHeight():Number;
-        function set textHeight(value:Number):void;
+        //function set textHeight(value:Number):void;
 
         function get wordWrap():Boolean;
         function set wordWrap(value:Boolean):void;
@@ -64,8 +64,8 @@ package mx.core
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        function get ignorePadding():Boolean;
-        function set ignorePadding(value:Boolean):void;
+        //function get ignorePadding():Boolean;
+        //function set ignorePadding(value:Boolean):void;
         
         /**
          *  @copy mx.core.UITextField#inheritingStyles
@@ -75,8 +75,8 @@ package mx.core
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        function get inheritingStyles():Object;
-        function set inheritingStyles(value:Object):void;
+        //function get inheritingStyles():Object;
+        //function set inheritingStyles(value:Object):void;
         
         /**
          *  @copy mx.core.UITextField#nestLevel
@@ -86,8 +86,8 @@ package mx.core
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        function get nestLevel():int;
-        function set nestLevel(value:int):void;
+        //function get nestLevel():int;
+        //function set nestLevel(value:int):void;
         
         /**
          *  @copy mx.core.UITextField#nonInheritingStyles
@@ -97,8 +97,8 @@ package mx.core
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        function get nonInheritingStyles():Object;
-        function set nonInheritingStyles(value:Object):void;
+        //function get nonInheritingStyles():Object;
+        //function set nonInheritingStyles(value:Object):void;
         
         /**
          *  @copy mx.core.UITextField#nonZeroTextHeight
@@ -108,7 +108,7 @@ package mx.core
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        function get nonZeroTextHeight():Number;
+        //function get nonZeroTextHeight():Number;
         
         /**
          *  @copy mx.core.UITextField#getStyle()
@@ -160,7 +160,9 @@ package mx.core
          */
         function truncateToFit(truncationIndicator:String = null):Boolean;
         
-        function setTextFormat(format:UITextFormat):void;
+        function setTextFormat(format:UITextFormat,
+                               beginIndex:int = -1,
+                               endIndex:int = -1):void;
         
     }
     
