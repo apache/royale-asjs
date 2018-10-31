@@ -36,16 +36,11 @@ import flash.utils.describeType;
 import mx.core.FlexVersion;
 import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
-//import mx.events.FlexChangeEvent;
 import mx.events.ModuleEvent;
-//import mx.events.Request;
-//import mx.events.StyleEvent;
 import mx.managers.ISystemManager;
 import mx.managers.SystemManagerGlobals;
 import mx.modules.IModuleInfo;
 import mx.modules.ModuleManager;
-//import mx.resources.IResourceManager;
-//import mx.resources.ResourceManager;
 import mx.styles.IStyleManager2;
 //import mx.styles.IStyleModule;
 //import mx.utils.MediaQueryParser;
@@ -954,7 +949,6 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 	 */
 	public function getStyleDeclaration(selector:String):CSSStyleDeclaration
 	{
-        trace("getStyleDeclaration not implemented");
         /*
 		// For Flex 3 and earlier, if we were passed a selector with a package
 		// name, such as "mx.controls.Button", strip off the package name
@@ -971,7 +965,13 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 		
 		return _selectors[selector];
         */
-        return null;
+        if (_selectors[selector] == null)
+        {
+            var styles:CSSStyleDeclaration = new CSSStyleDeclaration();
+            styles.name = selector;
+            _selectors[selector] = styles;
+        }
+        return _selectors[selector];
 	}
 	
 	/** 
@@ -1079,8 +1079,6 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 										styleDeclaration:CSSStyleDeclaration,
 										update:Boolean):void
 	{
-        trace("setStyleDeclaration not implemented");
-
         /*
 		// For Flex 3 and earlier, if we were passed a selector with a package
 		// name, such as "mx.controls.Button", strip off the package name
@@ -1183,6 +1181,7 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 		if (update)
 			styleDeclarationsChanged();
         */
+        _selectors[selector] = styleDeclaration;
 	}
 	
 	/**
