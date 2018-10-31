@@ -103,5 +103,6 @@
 	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" lookupOnly="true"/>
 	<component id="GridItemRenderer" class="spark.components.gridClasses.GridItemRenderer"/>
 	<component id="Parallel" class="mx.effects.Parallel" lookupOnly="true"/>
+	<component id="BasicLayout" class="spark.layouts.BasicLayout"/>
     
 </componentPackage>

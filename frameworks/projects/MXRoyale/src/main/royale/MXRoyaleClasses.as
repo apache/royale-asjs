@@ -181,7 +181,6 @@ internal class MXRoyaleClasses
 	import mx.managers.IToolTipManager2; IToolTipManager2;
 	import mx.utils.PopUpUtil; PopUpUtil;
 	import mx.rpc.http.HTTPMultiService; HTTPMultiService;
-	import mx.rpc.http.HTTPServiceWrapper; HTTPServiceWrapper;
 	import mx.messaging.messages.HTTPRequestMessage; HTTPRequestMessage;
 	import mx.messaging.channels.DirectHTTPChannel; DirectHTTPChannel;
 	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
