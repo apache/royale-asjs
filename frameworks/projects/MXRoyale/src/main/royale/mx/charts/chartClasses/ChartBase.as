@@ -3187,7 +3187,7 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
      
     mx_internal function getSeriesTransformState(seriesObject:Object):Boolean
     {
-        return seriesObject.getTransformState();
+        return (seriesObject as Series).getTransformState();
     }
 
     /**
@@ -4179,6 +4179,8 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
     {
     }
 
+    private var doingValidation:Boolean;
+    
     /**
      *  Triggers a redraw of the chart.
      *  Call this method when you add or change
@@ -4193,6 +4195,14 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
     {
         _bDataDirty=true;
         invalidateProperties();
+        if (parent && !doingValidation)
+        {
+            doingValidation = true;
+            commitProperties();
+            measure();
+            updateDisplayList(width, height);
+            doingValidation = false;
+        }
     }
 
     /**

@@ -449,6 +449,12 @@ public class ChartElement extends DualStyleObject implements IChartElement2
         invalidateDisplayList();
         if (_dataTransform)
             _dataTransform.dataChanged();
+        if (parent)
+        {
+            commitProperties();
+            // I think setActualSize is called first
+            updateDisplayList(width, height);
+        }
     }
 
     /** 
@@ -657,6 +663,14 @@ public class ChartElement extends DualStyleObject implements IChartElement2
             cursor = _dataProvider.createCursor();
     
         dataChanged();
+    }
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        measure();
+        updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
     }
 }
 

@@ -437,25 +437,27 @@ public class ProgrammaticSkin extends UIComponent
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
 	 */
-	/* public function setActualSize(newWidth:Number, newHeight:Number):void
+	override public function setActualSize(newWidth:Number, newHeight:Number):void
 	{
 		var changed:Boolean = false;
 		
-		if (_width != newWidth)
+		if (width != newWidth)
 		{
-			_width = newWidth;
+			//width = newWidth;
 			changed = true;
 		}
 
-		if (_height != newHeight)
+		if (height != newHeight)
 		{
-			_height = newHeight;
+			//height = newHeight;
 			changed = true;
 		}
 		
+        super.setActualSize(newWidth, newHeight);
+        
 		if (changed)
-			invalidateDisplayList();
-	} */
+			updateDisplayList(width, height); // was invalidateDisplayList
+	}
 
 	//--------------------------------------------------------------------------
 	//
