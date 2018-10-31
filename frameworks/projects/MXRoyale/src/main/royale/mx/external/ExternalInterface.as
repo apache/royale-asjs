@@ -84,8 +84,19 @@ package mx.external
             }
         }
         
+        /**
+         * @private
+         * If we're using an HTML element to hang our callbacks off,
+         * the ID of this can be adjusted via this attribute
+         */
+         COMPILE::JS
+         private static var _objectID : String = "ExternalInterface";
+        
         /** Returns the id attribute of the Flash Player object if running as a SWF,
-         *  or <code>"ExternalInterface"</code> if running in HTML.
+         *  or of the HTML element that is used for hooking up callback objects if
+         *  running in HTML (default then is <code>ExternalInterface</code>).
+         *  Read-only in SWF mode; read-write in JS mode. This needs to be set prior
+         *  to any calls to <code>addCallback</code>.
          */
         public static function get objectID():String
         {
@@ -95,16 +106,22 @@ package mx.external
             }
             COMPILE::JS
             {
-                return "ExternalInterface";
+                return _objectID;
             }
+        }
+        
+        COMPILE::JS
+        public static function set objectID(value:String):void
+        {
+            _objectID = value;
         }
 
         /** Registers an ActionScript method as callable from the container.
          *  After a successful invocation of addCallBack(), the registered
          *  function in the player can be called by JavaScript.
          *
-         *  The JavaScript needs to obtain the ExternalInterface element and
-         *  then call the function as a property of this element. For example
+         *  The JavaScript needs to obtain the appopriate element (set via <code>objectID</code>
+         *  and then call the function as a property of this element. For example
          *  if <code>addCallback</code> has been called with <code>functionName>/code>
          *  set to "myFunction", the call can be made by:
          *  <code>document.getElementById("ExternalInterface").myFunction(args);</code>
@@ -120,13 +137,12 @@ package mx.external
             }
             COMPILE::JS
             {
-                // use a special div object to hang our callback properties off..
-                var extInt = document.getElementById("ExternalInterface");
+                // use a simple script object to hang our callback properties off..
+                var extInt = document.getElementById(_objectID);
                 if (!extInt)
                 {
-                    extInt = document.createElement("DIV");
-                    extInt.id = "ExternalInterface";
-                    extInt.style.display = "none";
+                    extInt = document.createElement("script");
+                    extInt.id = _objectID;
                     document.body.appendChild(extInt);
                 }
                 extInt[functionName] = closure;
