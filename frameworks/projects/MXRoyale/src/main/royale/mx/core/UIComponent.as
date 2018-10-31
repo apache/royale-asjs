@@ -4528,6 +4528,9 @@ COMPILE::JS
     {//            trace("getStyle not implemented");
 //        return 0;
 		var value:* = ValuesManager.valuesImpl.getValue(this,styleProp);
+        if (value === undefined && typeof(_styleName) === "object")
+            value = styleName.getStyle(styleProp);
+            
 //		if (!value) value = 0;
 		return value;
     }
