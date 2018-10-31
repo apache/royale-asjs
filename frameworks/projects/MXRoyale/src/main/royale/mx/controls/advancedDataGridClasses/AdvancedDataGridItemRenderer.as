@@ -189,21 +189,21 @@ public class AdvancedDataGridItemRenderer extends UITextField
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
     public function get data():Object
     {
         return _data;
     }
+     */
     
     /**
      *  @private
-     */
     public function set data(value:Object):void
     {
         _data = value;
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
     }
+     */
 
     //----------------------------------
     //  listData
