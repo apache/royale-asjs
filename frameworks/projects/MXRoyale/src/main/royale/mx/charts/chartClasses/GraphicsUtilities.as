@@ -237,6 +237,10 @@ public class GraphicsUtilities
 		else
 			incr = 1;
 		
+        COMPILE::JS
+        {
+            g.beginStroke();
+        }
 		if (moveToStart)
 			g.moveTo(pts[start][hProp], pts[start][vProp]);
 		else
@@ -501,6 +505,10 @@ public class GraphicsUtilities
 					  pts[j][hProp], pts[j][vProp]);
 
 		}
+        COMPILE::JS
+        {
+            g.endStroke();
+        }
 	}
 	
 
