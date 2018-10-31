@@ -55,7 +55,7 @@ package org.apache.royale.net
                 var bytearray:Uint8Array = new Uint8Array(param.body);
 
                 // --- uncompress the bytearray to get the real object (tree) and create the AMFBinaryData with it
-                var data:AMFBinaryData = new AMFBinaryData(window["pako"].inflate(bytearray));
+                var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray));
                 param.body = data.readObject();
                 // --- dispatch the ResultEvent like in the standard RemoteObject with the inflated result object
     		    dispatchEvent(new ResultEvent(ResultEvent.RESULT, param.body));

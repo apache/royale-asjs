@@ -28,7 +28,7 @@ package mx.rpc.remoting
 
     import org.apache.royale.net.remoting.amf.AMFBinaryData;
     import org.apache.royale.reflection.getQualifiedClassName;
-    
+
     /**
      * A RemoteObject that performs automatic serialization/deserialization of results.
      *
@@ -114,7 +114,7 @@ package mx.rpc.remoting
 							included = true;
 							break;
 						}
-					}                    
+					}
                 }
                 if (!included && includeClasses && includeClasses.length > 0) {
                     included = includeClasses.indexOf(parameterClassName) != -1;
@@ -141,7 +141,7 @@ package mx.rpc.remoting
             return parameters;
         }
 
-        private function deserializeResult(result:*, operation:AbstractOperation):* // NO PMD 
+        private function deserializeResult(result:*, operation:AbstractOperation):* // NO PMD
         {
             COMPILE::SWF{
             if (result is ByteArray) {
@@ -160,11 +160,11 @@ package mx.rpc.remoting
                 // --- Transform the number array into a bytearray
                 var bytearray:Uint8Array = new Uint8Array(result);
                 // --- uncompress the bytearray to get the real object (tree) and create the AMFBinaryData with it
-                var data:AMFBinaryData = new AMFBinaryData(window["pako"].inflate(bytearray));
+                var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray));
                 // --- store the inflated data object in result
                 result = data.readObject();
                 return result;
-            } 
+            }
             else
             {
                 return result;
