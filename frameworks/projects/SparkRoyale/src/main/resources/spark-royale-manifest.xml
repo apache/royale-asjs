@@ -104,5 +104,6 @@
 	<component id="GridItemRenderer" class="spark.components.gridClasses.GridItemRenderer"/>
 	<component id="Parallel" class="mx.effects.Parallel" lookupOnly="true"/>
 	<component id="BasicLayout" class="spark.layouts.BasicLayout"/>
+	<component id="FormLayout" class="spark.layouts.FormLayout"/>
     
 </componentPackage>
