@@ -20,10 +20,6 @@
 package mx.charts.series
 {
 
-import mx.core.UIComponent;
-import org.apache.royale.geom.Point;
-import org.apache.royale.geom.Rectangle;
-
 import mx.charts.DateTimeAxis;
 import mx.charts.HitData;
 import mx.charts.chartClasses.BoundedValue;
@@ -49,11 +45,18 @@ import mx.core.IDataRenderer;
 import mx.core.IFactory;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
+import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.graphics.IFill;
 import mx.graphics.IStroke;
 import mx.graphics.SolidColor;
 import mx.graphics.SolidColorStroke;
+import mx.skins.ProgrammaticSkin;
+
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
+
+import mx.skins.ProgrammaticSkin;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.ISimpleStyleClient;
 
@@ -76,17 +79,6 @@ include "../styles/metadata/ItemRendererStyles.as"
 [Style(name="adjustedRadius", type="Number", format="Length", inherit="yes")]  
 
 
-/** 
- *  Sets the fill for the area. You can specify either an object implementing the 
- *  IFill interface, or a number representing a solid color value. You can also specify a solid fill using CSS.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="areaFill", type="mx.graphics.IFill", inherit="no")]
-
 /**
  *  The class that the series uses to represent the filled area on the chart. This class is instantiated once per series.
  *  Classes used as areaRenderers should implement the IFlexDisplayObject, ISimpleStyleClient, and IDataRenderer 
@@ -100,17 +92,6 @@ include "../styles/metadata/ItemRendererStyles.as"
  */
 [Style(name="areaRenderer", type="mx.core.IFactory", inherit="no")]
 
-/** 
- *  Sets the line style for the area.
- *  You use a Stroke object to define the stroke.
- *  You can specify the itemRenderer in MXML or using styles.  
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Style(name="areaStroke", type="mx.graphics.IStroke", inherit="no")]
 
 /**
  *  Specifies an Array of fill objects that define the fill for
@@ -422,6 +403,56 @@ public class AreaSeries extends Series implements IStackable2
     //  Properties
     //
     //--------------------------------------------------------------------------
+    
+    //-----------------------------------
+    // areaFill
+    //-----------------------------------
+        
+    /** 
+     *  Sets the fill for the area. You can specify either an object implementing the 
+     *  IFill interface, or a number representing a solid color value. You can also specify a solid fill using CSS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get areaFill():mx.graphics.IFill
+    {
+        return getStyle("areaFill");
+    }
+    public function set areaFill(value:mx.graphics.IFill):void
+    {
+        setStyle("areaFill", value);
+        if (parent && areaStroke)
+            updateDisplayList(width, height);
+    }
+        
+    //-----------------------------------
+    // areaStroke
+    //-----------------------------------
+    
+    /** 
+     *  Sets the line style for the area.
+     *  You use a Stroke object to define the stroke.
+     *  You can specify the itemRenderer in MXML or using styles.  
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    [Style(name="areaStroke", type="mx.graphics.IStroke", inherit="no")]
+    public function get areaStroke():mx.graphics.IStroke
+    {
+        return getStyle("areaStroke");
+    }
+    public function set areaStroke(value:mx.graphics.IStroke):void
+    {
+        setStyle("areaStroke", value);
+        if (parent && areaFill)
+            updateDisplayList(width, height);
+    }
     
     //-----------------------------------
     // fillFunction
@@ -1026,6 +1057,8 @@ public class AreaSeries extends Series implements IStackable2
             _transition = false;
         }
 
+        if (_areaRenderer is ProgrammaticSkin)
+           (_areaRenderer as ProgrammaticSkin).invalidateDisplayList(); // some visual changes don't change the size
         _areaRenderer.setActualSize(unscaledWidth, unscaledHeight);
         
         (_areaRenderer as IDataRenderer).data = renderData;     

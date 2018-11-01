@@ -179,19 +179,6 @@ include "../styles/metadata/ItemRendererStyles.as"
 [Style(name="lineSegmentRenderer", type="mx.core.IFactory", inherit="no")]
 
 /** 
-  *  Sets the stroke for the actual line segments. 
-  *  The default value for a LineChart control is orange (<code>0xE48701</code>). 
-  *  The default color for a LineSeries used in a CartesianChart control is black (<code>0x000000</code>). 
-  *  The default value for the width is 3.
-  *  
-  *  @langversion 3.0
-  *  @playerversion Flash 9
-  *  @playerversion AIR 1.1
-  *  @productversion Flex 3
-  */
-[Style(name="lineStroke", type="mx.graphics.IStroke", inherit="no")]
-
-/** 
  *  Specifies the radius, in pixels, of the chart elements for the data points.
  *  This property applies only if you specify an item renderer
  *  using the <code>itemRenderer</code> property.  
@@ -654,10 +641,37 @@ public class LineSeries extends Series
         return LineSeriesSegment;
     }
 
+    
+    //----------------------------------
+    //  lineStroke
+    //----------------------------------
+    
+    /** 
+     *  Sets the stroke for the actual line segments. 
+     *  The default value for a LineChart control is orange (<code>0xE48701</code>). 
+     *  The default color for a LineSeries used in a CartesianChart control is black (<code>0x000000</code>). 
+     *  The default value for the width is 3.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get lineStroke():IStroke
+    {
+        return getStyle("lineStroke");
+    }
+    public function set lineStroke(value:IStroke):void
+    {
+        setStyle("lineStroke", value);
+        if (parent)
+            updateDisplayList(width, height);
+    }
+    
     //----------------------------------
     //  radius
     //----------------------------------
-
+    
     [Inspectable(category="Styles")]
 
     /** 
