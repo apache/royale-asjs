@@ -19,6 +19,10 @@
 
 package mx.charts.chartClasses
 {
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 
 import org.apache.royale.events.Event;
 import mx.events.KeyboardEvent;
@@ -853,10 +857,34 @@ public class CartesianChart extends ChartBase
             var addIndex:int = dataTipLayerIndex - 1;
             
             if (_horizontalAxisRenderer)
+            {
+                COMPILE::JS
+                {
+                    if (goog.DEBUG)
+                        if (id)
+                            UIComponent(_horizontalAxisRenderer).id = id + "_horizontalAxisRenderer";
+                }
                 addChild(UIComponent(_horizontalAxisRenderer));
+                COMPILE::JS
+                {
+                    UIComponent(_horizontalAxisRenderer).element.style.position = "absolute";                        
+                }
+            }
             
             if (_verticalAxisRenderer)
+            {
+                COMPILE::JS
+                {
+                    if (goog.DEBUG)
+                        if (id)
+                            UIComponent(_verticalAxisRenderer).id = id + "_verticalAxisRenderer";
+                }
                 addChild(UIComponent(_verticalAxisRenderer));
+                COMPILE::JS
+                {
+                    UIComponent(_verticalAxisRenderer).element.style.position = "absolute";
+                }
+            }
 
             invalidateDisplayList();
 
@@ -1970,13 +1998,33 @@ public class CartesianChart extends ChartBase
         var n:uint = _horizontalAxisRenderers.length;                    
         for (var i:int = 0; i < n; i++)
         {
+            COMPILE::JS
+            {
+                if (goog.DEBUG)
+                    if (id)
+                        UIComponent(_horizontalAxisRenderers[i]).id = id + "_horizontalAxisRenderers" + i.toString();
+            }
             addChild(UIComponent(_horizontalAxisRenderers[i]));
-        }
+            COMPILE::JS
+            {
+                UIComponent(_horizontalAxisRenderers[i]).element.style.position = "absolute";
+            }
+       }
         
         n = _verticalAxisRenderers.length;
         for (i = 0; i < n; i++)
         {
+            COMPILE::JS
+            {
+                if (goog.DEBUG)
+                    if (id)
+                        UIComponent(_verticalAxisRenderers[i]).id = id + "_verticalAxisRenderer" + i.toString();
+            }
             addChild(UIComponent(_verticalAxisRenderers[i]));
+            COMPILE::JS
+            {
+                UIComponent(_verticalAxisRenderer[i]).element.style.position = "absolute";
+            }
         }
         adjustAxesPlacements();
                                 
