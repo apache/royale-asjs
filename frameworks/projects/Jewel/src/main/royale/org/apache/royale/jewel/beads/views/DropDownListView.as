@@ -48,21 +48,15 @@ package org.apache.royale.jewel.beads.views
         private var dropDownList:DropDownList; 
         
         /**
-         *  The prompt in the main dropDownList class
+         *  The prompt
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
+         *  @royalesuppresspublicvarwarning
          */
-        public function get prompt():String
-        {
-        	return dropDownList.prompt;
-        }
-        public function set prompt(value:String):void
-        {
-        	dropDownList.prompt = value;
-        }
+        public var prompt:String = "";
 
         /**
          *  @copy org.apache.royale.core.IBead#strand

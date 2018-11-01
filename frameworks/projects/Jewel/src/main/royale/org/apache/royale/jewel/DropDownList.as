@@ -82,25 +82,6 @@ package org.apache.royale.jewel
             typeNames = "jewel dropdownlist";
 		}
 
-        private var _prompt:String = "";
-        /**
-         *  The prompt for the DropDownList control.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        public function get prompt():String
-        {
-            return _prompt;
-        }
-
-        public function set prompt(value:String):void
-        {
-            _prompt = value;
-        }
-
         protected var _dropDown:Select;
 
         public function get dropDown():Select
