@@ -45,11 +45,14 @@ package mx.display
         COMPILE::JS
         private var svg:HTMLElement;
         
+        private var fillInProgress:Boolean;
+        
         /**
          * @royaleignorecoercion HTMLElement
          */
         public function clear():void
         {
+            fillInProgress = false;
             COMPILE::SWF
             {
                 displayObject.graphics.clear();
@@ -59,6 +62,8 @@ package mx.display
                 if (svg)
                     element.removeChild(svg);
                 svg = document.createElementNS("http://www.w3.org/2000/svg", "svg") as HTMLElement;
+                svg.setAttribute("width", displayObject.width.toString() + "px");
+                svg.setAttribute("height", displayObject.height.toString() + "px");
                 element.appendChild(svg);
             }
         }
@@ -80,6 +85,7 @@ package mx.display
                 fillColor = color;
                 fillAlpha = alpha;
             }
+            fillInProgress = true;
         }
         
         /**
@@ -113,6 +119,7 @@ package mx.display
                     pathParts = null;
                 }
             }
+            fillInProgress = false;
 		}
 		
         /**
@@ -132,11 +139,15 @@ package mx.display
          */
         public function endStroke(): void
         {
+            // sometimes GraphicsUtilities.PolyLine is called to set a path for a fill
+            // and not just draw a line
+            if (fillInProgress) return;
+            
             COMPILE::JS
             {
                 if (pathParts && pathParts.length)
                 {
-                    var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "path") as SVGElement;
+                    var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "polyline") as SVGElement;
                     var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
                     path.setAttribute("stroke", colorString);
                     var widthString:String = thickness.toString();
@@ -144,11 +155,21 @@ package mx.display
                     if (alpha != 1)
                         path.setAttribute("stroke-opacity", alpha.toString());
                     //colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
-                    //path.setAttribute("fill", colorString);
+                    path.setAttribute("fill", "none");
                     //if (fillAlpha != 1)
                     //    path.setAttribute("fill-opacity", fillAlpha.toString());
-                    var pathString:String = pathParts.join(" ");
-                    path.setAttribute("d", pathString);
+                    var pathString:String = "";
+                    var firstOne:Boolean = true;
+                    var n:int = pathParts.length;
+                    for (var i:int = 0;i < n; i++)
+                    {
+                        var part:String = pathParts[i];
+                        if (!firstOne)
+                            pathString += ",";
+                        firstOne = false;
+                        pathString += part.substring(1);
+                    }
+                    path.setAttribute("points", pathString);
                     path.setAttribute("pointer-events", "none");
                     svg.appendChild(path);
                     pathParts = null;
