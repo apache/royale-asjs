@@ -31,27 +31,14 @@ import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.text.TextLineMetrics;
  */
+ import mx.controls.Label;
+ import mx.core.UIComponent;
+ import mx.managers.ISystemManager;
+ import mx.styles.ISimpleStyleClient;
+ import mx.styles.IStyleManager2;
+ import mx.utils.StringUtil;
+ 
  import org.apache.royale.events.Event;
-
-//import mx.automation.IAutomationObject;
-//import mx.core.LayoutDirection;
-import mx.managers.ISystemManager;
-//import mx.managers.IToolTipManagerClient;
-//import mx.managers.SystemManager;
-//import mx.managers.ToolTipManager;
-//import mx.resources.IResourceManager;
-//import mx.resources.ResourceManager;
-import mx.styles.ISimpleStyleClient;
-//import mx.styles.IStyleClient;
-import mx.styles.IStyleManager2;
-//import mx.styles.StyleManager;
-//import mx.styles.StyleProtoChain;
-//import mx.utils.MatrixUtil;
-//import mx.utils.NameUtil;
-import mx.utils.StringUtil;
-
-
-import mx.core.UIComponent;
 
 use namespace mx_internal;
 
@@ -95,7 +82,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class UITextField  extends UIComponent
+public class UITextField  extends Label implements IUITextField
        
 {
 
@@ -469,10 +456,10 @@ public class UITextField  extends UIComponent
     /**
      *  @private
      */
-    /* override */ public function set htmlText(value:String):void
+    /* override public function set htmlText(value:String):void
     {
         // TextField's htmlText property can't be set to null.
-       /*  if (!value)
+       if (!value)
             value = "";
 
         // Performance optimization: if the htmlText hasn't changed,
@@ -494,8 +481,8 @@ public class UITextField  extends UIComponent
         explicitHTMLText = value;
 
         if (invalidateDisplayListFlag)
-            validateNow(); */
-    }
+            validateNow();
+    }*/
 
     //----------------------------------
     //  parent
@@ -538,10 +525,10 @@ public class UITextField  extends UIComponent
     /**
      *  @private
      */
-    /* override */ public function set text(value:String):void
+    /* override public function set text(value:String):void
     {
         // TextField's text property can't be set to null.
-       /*  if (!value)
+       if (!value)
             value = "";
         
         // Performance optimization: if the text hasn't changed,
@@ -554,12 +541,12 @@ public class UITextField  extends UIComponent
         explicitHTMLText = null;
 
         if (invalidateDisplayListFlag)
-            validateNow(); */
+            validateNow();
     }
 	public function get text():String
     {
         // TextField's text property can't be set to null.
-       /*  if (!value)
+       if (!value)
             value = "";
         
         // Performance optimization: if the text hasn't changed,
@@ -572,9 +559,10 @@ public class UITextField  extends UIComponent
         explicitHTMLText = null;
 
         if (invalidateDisplayListFlag)
-            validateNow(); */
+            validateNow();
 			return "";
     }
+    */
 
 	//----------------------------------
 	//  textColor
@@ -1909,7 +1897,7 @@ public class UITextField  extends UIComponent
     /**
      *  @private
      */
-    /* override */ public function setTextFormat(format:Object,
+    /* override */ public function setTextFormat(format:UITextFormat,
                                            beginIndex:int = -1,
                                            endIndex:int = -1):void
     {
@@ -2702,7 +2690,6 @@ public class UITextField  extends UIComponent
     
     /**
      *  @private
-     */
      public function set selectable(value:Boolean):void
 		{
 		}
@@ -2711,6 +2698,7 @@ public class UITextField  extends UIComponent
 		{
 			return true;
 		} 
+     */
 	public function set getCharIndexAtPoint(value:int):void
 		{
 		}
@@ -2735,6 +2723,33 @@ public class UITextField  extends UIComponent
         return null;
     } */
 
+     public function getUITextFormat():UITextFormat
+     {
+        return new UITextFormat(systemManager);    
+     }
+
+     public function truncateToFit(truncationIndicator:String = null):Boolean
+     {
+         return true;
+     }
+     
+     public function get textWidth():Number
+     {
+         return width;
+     }
+     
+     public function get textHeight():Number
+     {
+         return height;
+     }
+     
+     public function get wordWrap():Boolean
+     {
+         return true;
+     }
+     public function set wordWrap(value:Boolean):void
+     {
+     }
 }
 
 }

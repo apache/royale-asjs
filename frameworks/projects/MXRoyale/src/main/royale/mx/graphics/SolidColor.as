@@ -27,15 +27,18 @@ package mx.graphics
 		public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
 	 	{
 			super();
+            this.color = color;
+            this.alpha = alpha;
 		}
         
         public function begin(g:Graphics,targetBounds:Rectangle,targetOrigin:Point):void
         {
-            trace("SolidColor begin not implemented");
+            g.beginFill(color, alpha);
         }
         
         public function end(g:Graphics):void
         {
+            g.endFill();
         }
 
         private var _alpha:Number;

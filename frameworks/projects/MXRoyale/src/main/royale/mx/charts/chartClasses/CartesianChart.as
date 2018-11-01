@@ -1211,7 +1211,7 @@ public class CartesianChart extends ChartBase
         }
         else
         {
-            return seriesObject.getTransformState();
+            return (seriesObject as Series).getTransformState();
         }
     }
     

@@ -20,7 +20,6 @@ package org.apache.royale.jewel.beads.models
 {
     import org.apache.royale.collections.IArrayList;
     import org.apache.royale.events.Event;
-    import org.apache.royale.html.beads.models.ArraySelectionModel;
 
     /**
      *  The DropDownListModel class defines the data associated with an org.apache.royale.jewel.DropDownListModel
@@ -31,7 +30,7 @@ package org.apache.royale.jewel.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class DropDownListModel extends ArraySelectionModel implements IDropDownListModel
+    public class DropDownListModel extends ArrayListSelectionModel implements IDropDownListModel
     {
         public function DropDownListModel()
         {

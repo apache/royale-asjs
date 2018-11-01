@@ -34,6 +34,7 @@ import mx.utils.ObjectUtil;
 use namespace mx_internal;
 */
 import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.core.ValuesManager;
 
 /**
  *  The CSSStyleDeclaration class represents a set of CSS style rules.
@@ -248,7 +249,14 @@ public class CSSStyleDeclaration extends EventDispatcher
                 o = new defaultFactory();
             }
         }
-        v = o[styleProp];
+        if (o != null)
+        {
+            v = o[styleProp];
+            if (v !== undefined)
+                return v;
+        }
+        var values:Object = ValuesManager.valuesImpl["values"]; // assume AllCSSValuesImpl
+        
         return v;
     }
     
@@ -285,6 +293,26 @@ public class CSSStyleDeclaration extends EventDispatcher
         o[styleProp] = newValue;
     }
 
+    
+    private var _name:String;
+    
+    public function set name(value:String):void
+    {
+        _name = value;
+        o = ValuesManager.valuesImpl["values"][value]; // assume AllCSSValuesImpl
+        if (o == null)
+        {
+            if (defaultFactory != null)
+            {
+                defaultFactory.prototype = {};
+                o = new defaultFactory();
+            }
+            else
+                o = {};            
+            
+            ValuesManager.valuesImpl["values"][value] = o;
+        }
+    }
     
 }
 

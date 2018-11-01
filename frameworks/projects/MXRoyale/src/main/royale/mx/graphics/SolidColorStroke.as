@@ -35,6 +35,7 @@ package mx.graphics
 			super();
             this.weight = weight;
             this.color = color;
+            this.alpha = alpha;
 		}
 		
 	private var _weight:Number;
@@ -108,7 +109,7 @@ package mx.graphics
     
     public function apply(g:Graphics, targetBounds:Rectangle = null, targetOrigin:Point = null):void
     {
-        trace("SolidColorStroke.apply not implemented");
+        g.lineStyle(weight, color, alpha);
     }
 
     }

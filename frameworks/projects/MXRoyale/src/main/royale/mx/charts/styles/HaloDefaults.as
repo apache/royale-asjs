@@ -163,6 +163,7 @@ public class HaloDefaults
 		if (!selector)
 		{
 			selector = new CSSStyleDeclaration();
+            selector.name = selectorName;
 			styleManager.setStyleDeclaration(selectorName, selector, false);
 		}
 
