@@ -461,6 +461,7 @@ public class UIComponent extends UIBase
     IFlexDisplayObject,
     IInvalidating,
     IStatesObject,
+    ISimpleStyleClient,
     IUIComponent, IVisualElement, IFlexModule
 {
     //--------------------------------------------------------------------------
@@ -3431,6 +3432,8 @@ COMPILE::JS
         trace("invalidateParentSizeAndDisplayList not implemented");
     }
 
+    protected var invalidateDisplayListFlag:Boolean = false;
+    
     /**
      *  Marks a component so that its <code>updateDisplayList()</code>
      *  method gets called during a later screen update.
@@ -3456,6 +3459,7 @@ COMPILE::JS
     public function invalidateDisplayList():void
     {
         trace("invalidateDisplayList not implemented");
+        invalidateDisplayListFlag = true;
     }
 
     /**
@@ -3959,7 +3963,8 @@ COMPILE::JS
     protected function updateDisplayList(unscaledWidth:Number,
                                         unscaledHeight:Number):void
     {
-        trace("updateDisplayList not implemented");                    
+        trace("updateDisplayList not implemented");  
+        invalidateDisplayListFlag = false;
     }
 
     
