@@ -147,7 +147,11 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="watchmenDropDownList" prompt="Select Watchmen..." dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler(event)"/>
+						<j:DropDownList id="watchmenDropDownList" dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler(event)">
+							<j:beads>
+								<j:DropDownListTextPrompt prompt="Select Watchmen..."/>
+							</j:beads>
+						</j:DropDownList>
 						<j:Button text="deselect" click="watchmenDropDownList.selectedIndex = -1"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
@@ -181,7 +185,11 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="avengersDropDownList" prompt="Select Avengers..." labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler(event)"/>
+						<j:DropDownList id="avengersDropDownList" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler(event)">
+							<j:beads>
+								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
+							</j:beads>
+						</j:DropDownList>
 						<j:Button text="deselect" click="avengersDropDownList.selectedIndex = -1"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
@@ -214,7 +222,11 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="watchmenDropDownList_withSelectedIndex" selectedIndex="3" prompt="Select Watchmen..." dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler_withSelectedIndex(event)"/>
+						<j:DropDownList id="watchmenDropDownList_withSelectedIndex" selectedIndex="3" dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler_withSelectedIndex(event)">
+							<j:beads>
+								<j:DropDownListTextPrompt prompt="Select Watchmen..."/>
+							</j:beads>
+						</j:DropDownList>
 						<j:Button text="deselect" click="watchmenDropDownList_withSelectedIndex.selectedIndex = -1"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
@@ -248,7 +260,11 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="avengersDropDownList_withSelectedIndex" selectedIndex="4" prompt="Select Avengers..." labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler_withSelectedIndex(event)"/>
+						<j:DropDownList id="avengersDropDownList_withSelectedIndex" selectedIndex="4" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler_withSelectedIndex(event)">
+							<j:beads>
+								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
+							</j:beads>
+						</j:DropDownList>
 						<j:Button text="deselect" click="avengersDropDownList_withSelectedIndex.selectedIndex = -1"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
@@ -281,7 +297,11 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="avengersDropDownList_withSelectedItem" selectedItem="{listModel.avengers.getItemAt(4)}"  prompt="Select Avengers..." labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler_withSelectedItem(event)"/>
+						<j:DropDownList id="avengersDropDownList_withSelectedItem" selectedItem="{listModel.avengers.getItemAt(4)}" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler_withSelectedItem(event)">
+							<j:beads>
+								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
+							</j:beads>
+						</j:DropDownList>
 						<j:Button text="deselect" click="avengersDropDownList_withSelectedItem.selectedIndex = -1"/>
 						<j:Label text="selectedItem: {(avengersDropDownList_withSelectedItem.selectedItem as IconListVO).label}"/>
 					</j:GridCell>
