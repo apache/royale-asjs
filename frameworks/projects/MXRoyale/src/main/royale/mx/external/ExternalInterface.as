@@ -128,6 +128,8 @@ package mx.external
          *
          * @param functionName The name by which the browser can invoke the function.
          * @param closure The function closure to invoke.
+         * 
+         * @royaleignorecoercion HTMLElement
          */
         public static function addCallback(functionName:String, closure:Function):void
         {
@@ -138,10 +140,10 @@ package mx.external
             COMPILE::JS
             {
                 // use a simple script object to hang our callback properties off..
-                var extInt = document.getElementById(_objectID);
+                var extInt:HTMLElement = document.getElementById(_objectID) as HTMLElement;
                 if (!extInt)
                 {
-                    extInt = document.createElement("script");
+                    extInt = document.createElement("script") as HTMLElement;
                     extInt.id = _objectID;
                     document.body.appendChild(extInt);
                 }

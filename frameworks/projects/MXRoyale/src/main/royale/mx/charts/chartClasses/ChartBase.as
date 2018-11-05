@@ -20,6 +20,10 @@
 package mx.charts.chartClasses
 {
 
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 import mx.charts.ChartItem;
 import mx.charts.HitData;
 import mx.charts.events.ChartEvent;
@@ -572,23 +576,65 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
         tabEnabled = false;
 
         _seriesHolder = new UIComponent();
+        COMPILE::JS
+        {
+            if (goog.DEBUG)
+                _seriesHolder.name = "_seriesHolder";
+        }
         _seriesFilterer = new UIComponent();
+        
+        COMPILE::JS
+        {
+            if (goog.DEBUG)
+                _seriesFilterer.name = "_seriesHolder";
+        }
         _seriesHolder.addChild(_seriesFilterer);
         addChild(_seriesHolder);
+        COMPILE::JS
+        {
+            _seriesHolder.element.style.position = "absolute";
+            _seriesFilterer.element.style.position = "absolute";
+        }
 
         _backgroundElementHolder = new UIComponent();
+        COMPILE::JS
+        {
+            if (goog.DEBUG)
+                _backgroundElementHolder.name = "_backgroundElementHolder";
+        }
         addChild(_backgroundElementHolder);
+        COMPILE::JS
+        {
+            _backgroundElementHolder.element.style.position = "absolute";            
+        }
 
         _annotationElementHolder = new UIComponent();
+        COMPILE::JS
+        {
+            if (goog.DEBUG)
+                _annotationElementHolder.name = "_annotationElementHolder";
+        }
         addChild(_annotationElementHolder);
+        COMPILE::JS
+        {
+            _annotationElementHolder.element.style.position = "absolute";
+        }
         
         _dataTipOverlay = new UIComponent();
         _dataTipOverlay.name = "dataTipOverlay";
         addChild(_dataTipOverlay);
+        COMPILE::JS
+        {
+            _dataTipOverlay.element.style.position = "absolute";
+        }
         
         _allDataTipOverlay = new UIComponent();
         _allDataTipOverlay.name = "allDataTipOverlay";
         addChild(_allDataTipOverlay);
+        COMPILE::JS
+        {
+            _allDataTipOverlay.element.style.position = "absolute";
+        }
 
         var g:Graphics;
         

@@ -455,7 +455,7 @@ public class ProgrammaticSkin extends UIComponent
 		
         super.setActualSize(newWidth, newHeight);
         
-		if (changed)
+		if (changed || invalidateDisplayListFlag)
 			updateDisplayList(width, height); // was invalidateDisplayList
 	}
 

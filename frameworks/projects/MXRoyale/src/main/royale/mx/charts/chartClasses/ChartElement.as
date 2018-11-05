@@ -668,6 +668,10 @@ public class ChartElement extends DualStyleObject implements IChartElement2
     override public function addedToParent():void
     {
         super.addedToParent();
+        COMPILE::JS
+        {
+            element.style.position = "absolute";
+        }
         commitProperties();
         measure();
         updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());

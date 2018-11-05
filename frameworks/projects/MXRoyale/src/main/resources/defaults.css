@@ -19,6 +19,7 @@
 @namespace Basic "library://ns.apache.org/royale/basic";
 @namespace "library://ns.apache.org/royale/mx";
 @namespace charts "mx.charts.chartClasses.*";
+@namespace core "mx.core.*";
 
 .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
@@ -734,6 +735,13 @@ charts|DataTip
 	ToggleButtonBar
 	{
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
+	}
+	
+	core|UITextField
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
+		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
 	}
 
 }

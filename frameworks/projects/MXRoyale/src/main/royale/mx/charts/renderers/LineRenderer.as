@@ -24,6 +24,10 @@ import mx.charts.chartClasses.GraphicsUtilities;
 import mx.core.IDataRenderer;
 import mx.graphics.IStroke;
 import mx.skins.ProgrammaticSkin;
+COMPILE::JS
+{
+    import org.apache.royale.core.WrappedHTMLElement;
+}
 
 /**
  *  A simple implementation of a line segment renderer
@@ -59,6 +63,15 @@ public class LineRenderer extends ProgrammaticSkin implements IDataRenderer
 	{
 		super();
 	}
+    
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        var element:WrappedHTMLElement = super.createElement();
+        positioner.style.left = "0px";
+        positioner.style.top = "0px";
+        return element;
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -127,6 +140,15 @@ public class LineRenderer extends ProgrammaticSkin implements IDataRenderer
 									   stroke,form);
 
 	}
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        COMPILE::JS
+        {
+            element.style.position = "absolute";
+        }
+    }
 }
 
 }

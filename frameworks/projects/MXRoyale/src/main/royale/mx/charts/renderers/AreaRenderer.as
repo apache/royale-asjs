@@ -29,6 +29,10 @@ import mx.graphics.IFill;
 import mx.graphics.IStroke;
 import mx.graphics.SolidColorStroke;
 import mx.skins.ProgrammaticSkin;
+COMPILE::JS
+{
+    import org.apache.royale.core.WrappedHTMLElement;
+}
 
 /**
  *  The default class used to render the area
@@ -76,6 +80,15 @@ public class AreaRenderer extends ProgrammaticSkin implements IDataRenderer
 		super();
 	}
 	
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        var element:WrappedHTMLElement = super.createElement();
+        positioner.style.left = "0px";
+        positioner.style.top = "0px";
+        return element;
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -197,6 +210,15 @@ public class AreaRenderer extends ProgrammaticSkin implements IDataRenderer
 
 		g.endFill();
 	}
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        COMPILE::JS
+            {
+                element.style.position = "absolute";
+            }
+    }
 }
 
 }

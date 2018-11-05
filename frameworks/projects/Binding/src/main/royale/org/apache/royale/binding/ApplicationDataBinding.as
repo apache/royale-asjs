@@ -28,7 +28,7 @@ package org.apache.royale.binding
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
-    
+
     /**
      *  The ApplicationDataBinding class implements databinding for
      *  Application instances. When you want to use databinding within
@@ -40,7 +40,7 @@ package org.apache.royale.binding
      *  the different lifecycles.  For example, an item renderer
      *  databinding implementation can wait to execute databindings
      *  until the data property is set.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -50,7 +50,7 @@ package org.apache.royale.binding
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -96,7 +96,7 @@ package org.apache.royale.binding
             {
                 binding = {};
                 binding.source = bindingData[index++];
-				binding.destFunc = bindingData[index++];
+                binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
                 bindings.push(binding);
             }
@@ -104,44 +104,8 @@ package org.apache.royale.binding
             for (i = 0; i < n; i++)
             {
                 binding = bindings[i];
-                if (binding.source is Array)
-                {
-                    if (binding.source[0] in _strand)
-                    {
-                        if (binding.source.length == 2 && binding.destination.length == 2)
-                        {
-                            // can be simplebinding or constantbinding
-                            var compWatcher:Object = watchers.watcherMap[binding.source[0]];
-                            if (compWatcher)
-                            {
-                                fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];
-                            }
-
-                            if (fieldWatcher && fieldWatcher.eventNames is String)
-                            {
-                                sb = new SimpleBinding();
-                                sb.destinationPropertyName = binding.destination[1];
-                                sb.eventName = fieldWatcher.eventNames as String;
-                                sb.sourceID = binding.source[0];
-                                sb.sourcePropertyName = binding.source[1];
-                                sb.setDocument(_strand);
-
-                                prepareCreatedBinding(sb as IBinding, binding);
-                            }
-                            else if (fieldWatcher && fieldWatcher.eventNames == null)
-                            {
-                                var cb:ConstantBinding = new ConstantBinding();
-                                cb.destinationPropertyName = binding.destination[1];
-                                cb.sourceID = binding.source[0];
-                                cb.sourcePropertyName = binding.source[1];
-                                cb.setDocument(_strand);
-
-                                prepareCreatedBinding(cb as IBinding, binding);
-                            }
-                        }
-                    }
-                }
-                else if (binding.source is String)
+                var compWatcher:Object = null;
+                if (binding.source is String)
                 {
                     fieldWatcher = watchers.watcherMap[binding.source];
                     if (fieldWatcher.eventNames is String)
@@ -155,11 +119,42 @@ package org.apache.royale.binding
                         prepareCreatedBinding(sb as IBinding, binding);
                     }
                 }
+                else if (binding.source is Array
+                        && binding.source[0] in _strand
+                        && binding.source.length == 2 && binding.destination.length == 2)
+                {
+                    // can be simplebinding or constantbinding
+                    compWatcher = watchers.watcherMap[binding.source[0]];
+                    if (compWatcher)
+                    {
+                        fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];
+                    }
+                    if (fieldWatcher && fieldWatcher.eventNames is String)
+                    {
+                        sb = new SimpleBinding();
+                        sb.destinationPropertyName = binding.destination[1];
+                        sb.eventName = fieldWatcher.eventNames as String;
+                        sb.sourceID = binding.source[0];
+                        sb.sourcePropertyName = binding.source[1];
+                        sb.setDocument(_strand);
+
+                        prepareCreatedBinding(sb as IBinding, binding);
+                    }
+                    else if (fieldWatcher && fieldWatcher.eventNames == null)
+                    {
+                        var cb:ConstantBinding = new ConstantBinding();
+                        cb.destinationPropertyName = binding.destination[1];
+                        cb.sourceID = binding.source[0];
+                        cb.sourcePropertyName = binding.source[1];
+                        cb.setDocument(_strand);
+
+                        prepareCreatedBinding(cb as IBinding, binding);
+                    }
+                }
                 else
                 {
                     makeGenericBinding(binding, i, watchers);
                 }
-
                 fieldWatcher = null;
             }
         }

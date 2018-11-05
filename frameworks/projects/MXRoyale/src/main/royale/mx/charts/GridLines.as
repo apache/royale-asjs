@@ -522,9 +522,11 @@ public class GridLines extends ChartElement
 					if (addedLastLine && idx == (spacing.length-1))
 						continue;
 
+                    g.beginStroke();
 					stroke.apply(g,null,null);
 					g.moveTo(rc.left, rc.bottom);
 					g.lineTo(rc.right, rc.bottom);
+                    g.endStroke();
 
 				}
 			}
@@ -610,9 +612,11 @@ public class GridLines extends ChartElement
 					if (addedLastLine && i == spacing.length-1)
 						continue;
 						
+                    g.beginStroke();
 					stroke.apply(g,null,null);
 					g.moveTo(rc.left, rc.top);
 					g.lineTo(rc.left, rc.bottom);
+                    g.endStroke();
 				}
 			}
 		}
@@ -631,18 +635,22 @@ public class GridLines extends ChartElement
 				cache[0].y > 0 && cache[0].y < unscaledHeight)
 			{
 				originStroke = getStyle("horizontalOriginStroke");
+                g.beginStroke();
 				originStroke.apply(g,null,null);
 				g.moveTo(0, cache[0].y - sWidth / 2);
 				g.lineTo(unscaledWidth/*$width*/, cache[0].y - sWidth / 2);
+                g.endStroke();
 			}
 
 			if (verticalShowOrigin &&
 				cache[0].x > 0 && cache[0].x < unscaledWidth)
 			{
 				originStroke = getStyle("verticalOriginStroke");
+                g.beginStroke();
 				originStroke.apply(g,null,null);
 				g.moveTo(cache[0].x - sWidth / 2, 0);
 				g.lineTo(cache[0].x - sWidth / 2, unscaledHeight/*$height*/);
+                g.endStroke();
 			}
 		}
 	}	

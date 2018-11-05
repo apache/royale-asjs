@@ -1349,7 +1349,8 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
             var oldX:Number = x - unscaledHeight;
             super.setActualSize(h, w);
             move(oldX + w, y);
-        }       
+        }
+        updateDisplayList(w, h);
     }
 
     /**
@@ -3346,6 +3347,7 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
                 }
             }
             
+            graphics.beginStroke();
             graphics.moveTo(_gutters.left - leftJoin,
                             baseline + w / 2);
 
@@ -3353,6 +3355,7 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
 			
             graphics.lineTo(unscaledWidth - _gutters.right + rightJoin,
                             baseline + w / 2);
+            graphics.endStroke();
         }
     }
     
@@ -3443,8 +3446,10 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
             for (var i:int = 0; i < n; i++)
             {
                 left = axisStart + axisLength * _ticks[i];
+                g.beginStroke();
                 g.moveTo(left, tickStart);
                 g.lineTo(left, tickEnd);
+                g.endStroke();
             }
 
         }   
@@ -3509,8 +3514,10 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
             for (i = 0; i < n; i++)
             {
                 left = axisStart + axisLength * minorTicks[i];
+                g.beginStroke();
                 g.moveTo(left, tickStart);
                 g.lineTo(left, tickEnd);
+                g.endStroke();
             }
         }
 
@@ -3606,6 +3613,17 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
             {
                 measuringField = IUITextField(/*createInFontContext(UITextField)*/ new UITextField);
                 _measuringField = UIComponent(measuringField);
+                COMPILE::JS
+                {
+                    document.body.appendChild(_measuringField.element);
+                    _measuringField.element.style.width="auto";
+                    _measuringField.element.style.height="auto";
+                    _measuringField.element.style.position="absolute";
+                }
+            }
+            COMPILE::JS
+            {
+                _measuringField.element.style.display="block";
             }
             
             COMPILE::SWF
@@ -3748,6 +3766,10 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
 
         _supressInvalidations--;
 
+        COMPILE::JS
+        {
+            _measuringField.element.style.display="none";                
+        }
         return newLabelData.accurate == true;
     }
     
@@ -3882,6 +3904,18 @@ public class AxisRenderer extends DualStyleObject implements IAxisRenderer
     private function mouseOverHandler(event:MouseEvent):void
     {
         AxisBase(_axis).highlightElements(true);
+    }
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        COMPILE::JS
+        {
+            element.style.position = "absolute";
+        }
+        commitProperties();
+        measure();
+        updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
     }
 
 }

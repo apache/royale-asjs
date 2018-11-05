@@ -39,6 +39,7 @@ import flash.events.IEventDispatcher;
 */
 
 import mx.controls.beads.ToolTipBead;
+import mx.core.mx_internal;
 import mx.display.Graphics;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
@@ -58,8 +59,6 @@ import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
-
-import mx.core.mx_internal;
 use namespace mx_internal;
 
 import org.apache.royale.core.CallLaterBead;
@@ -461,6 +460,7 @@ public class UIComponent extends UIBase
     IFlexDisplayObject,
     IInvalidating,
     IStatesObject,
+    ISimpleStyleClient,
     IUIComponent, IVisualElement, IFlexModule
 {
     //--------------------------------------------------------------------------
@@ -628,21 +628,49 @@ public class UIComponent extends UIBase
 	 
 	 }
 
-	COMPILE::JS{
-	 private var _rotation:Number;
+    COMPILE::JS
+	private var _rotation:Number = 0;
 	 
-	 	public function get rotation():Number
-	 	{
-            //TODO figure out JS side. There's a transofrm bead, but that's pretty specific to SVG (I think)
-            trace("proper rotation not yet implemented");
-	    	return _rotation;
-	 	}
-     		public function set rotation(value:Number):void
-		{
-	   		_rotation = value;
-		}
+    COMPILE::JS
+	public function get rotation():Number
+	{
+	    return _rotation;
+	}
+    
+    COMPILE::JS
+    public function set rotation(value:Number):void
+	{
+	   	_rotation = value;
+        element.style.transform = computeTransformString();
+        element.style["transform-origin-x"] = "0px";
+        element.style["transform-origin-y"] = "0px";
 	}
 	
+    COMPILE::JS
+	private function computeTransformString():String
+    {
+        var s:String = "";
+        var value:Number = _rotation;
+        if (_rotation != 0)
+        {
+            if (value < 0)
+                value += 360;
+            s += "rotate(" + value.toString() + "deg)";
+        }
+        if (_scaleX != 1.0)
+        {
+            if (s.length)
+                s += " ";
+            s += "scaleX(" + _scaleX.toString() + ")";
+        }
+        if (_scaleY != 1.0)
+        {
+            if (s.length)
+                s += " ";
+            s += "scaleY(" + _scaleY.toString() + ")";
+        }
+        return s;
+    }
     //----------------------------------
     //  name
     //----------------------------------
@@ -1666,10 +1694,8 @@ COMPILE::JS
         COMPILE::JS
         {
             // Flex layouts don't use percentages the way the browser
-            // does, so we have to absolute position everything.  Before
-            // layout runs, we want to establish the parent as the
-            // offsetParent.  Other code may set position="absolute" later.
-            element.style.position = "relative";
+            // does, so we have to absolute position everything.
+            element.style.position = "absolute";
         }
         super.addedToParent();
         
@@ -2607,28 +2633,36 @@ COMPILE::JS
         dispatchEvent(new Event("explicitMaxHeightChanged"));
     }
 	
+    COMPILE::JS
+    private var _scaleX:Number = 1.0;
+    
 	COMPILE::JS
 	public function get scaleX():Number
 	{
-		return 1.0;
+		return _scaleX;
 	}
 	
 	COMPILE::JS
 	public function set scaleX(value:Number):void
 	{
-		// always 1.0
+        _scaleX = value;
+        element.style.transform = computeTransformString();
 	}
 	
+    COMPILE::JS
+    private var _scaleY:Number = 1.0;
+    
 	COMPILE::JS
 	public function get scaleY():Number
 	{
-		return 1.0;
+		return _scaleY;
 	}
 	
 	COMPILE::JS
 	public function set scaleY(value:Number):void
 	{
-		// always 1.0
+        _scaleY = value;
+        element.style.transform = computeTransformString();
 	}
 
     //----------------------------------
@@ -3431,6 +3465,8 @@ COMPILE::JS
         trace("invalidateParentSizeAndDisplayList not implemented");
     }
 
+    protected var invalidateDisplayListFlag:Boolean = false;
+    
     /**
      *  Marks a component so that its <code>updateDisplayList()</code>
      *  method gets called during a later screen update.
@@ -3456,6 +3492,7 @@ COMPILE::JS
     public function invalidateDisplayList():void
     {
         trace("invalidateDisplayList not implemented");
+        invalidateDisplayListFlag = true;
     }
 
     /**
@@ -3959,7 +3996,8 @@ COMPILE::JS
     protected function updateDisplayList(unscaledWidth:Number,
                                         unscaledHeight:Number):void
     {
-        trace("updateDisplayList not implemented");                    
+        trace("updateDisplayList not implemented");  
+        invalidateDisplayListFlag = false;
     }
 
     
