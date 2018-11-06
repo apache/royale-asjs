@@ -58,12 +58,12 @@ public class MouseEvent extends org.apache.royale.events.MouseEvent
     {
 		override public function get stageX():Number
 		{
-			return super.stageX();
+			return super.stageX;
 		}
 		
 		override public function get stageY():Number
 		{
-			return super.stageY();
+			return super.stageY;
 		}
 		override public function updateAfterEvent():void
 		{
@@ -75,12 +75,12 @@ public class MouseEvent extends org.apache.royale.events.MouseEvent
     {
 		public function get stageX():Number
 		{
-			return super.stageX();
+			return screenX;
 		}
 		
 		public function get stageY():Number
 		{
-			return super.stageY();
+			return screenY;
 		}
 		public function updateAfterEvent():void
 		{
