@@ -59,7 +59,7 @@ package org.apache.royale.collections
 				var n:int = collection.length;
 				for (i = 0; i < n; i++)
                 {
-					if (collection.getItemAt(i)[key] == value || (isNaN(value) && isNaN(collection.getItemAt(i)[key])))
+					if (collection.getItemAt(i)[key] == value) // || (isNaN(value) && isNaN(collection.getItemAt(i)[key])))
                     {
 						index = i;
 						break;
