@@ -234,6 +234,10 @@ package org.apache.royale.jewel
         public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
+            COMPILE::JS
+            {
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex + 1;
+            }
         }
 
         /**

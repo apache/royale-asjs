@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -26,10 +27,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.DataContainerView;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IContentView;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.core.ILayoutView;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List

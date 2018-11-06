@@ -49,6 +49,7 @@ package
         import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController; TableCellSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.ComboBoxController; ComboBoxController;
 		import org.apache.royale.jewel.beads.controllers.SnackbarController; SnackbarController;
+		import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
         
         import org.apache.royale.jewel.beads.views.ImageView; ImageView;
         import org.apache.royale.jewel.beads.views.SpinnerView; SpinnerView;

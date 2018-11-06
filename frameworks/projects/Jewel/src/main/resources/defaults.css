@@ -707,6 +707,7 @@ j|DropDownList {
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
 }
 
 @media -royale-swf {

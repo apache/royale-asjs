@@ -121,12 +121,12 @@ package org.apache.royale.jewel.beads.models
             if (value == _selectedItem) return;
 
 			_selectedItem = value;
-			var n:int = _dataProvider.length + offset;
-			for (var i:int = 1; i < n; i++)
+			var n:int = _dataProvider.length;
+			for (var i:int = 0; i < n; i++)
 			{
 				if (_dataProvider.getItemAt(i) == value)
 				{
-					_selectedIndex = i - offset;
+					_selectedIndex = i;
 					break;
 				}
 			}

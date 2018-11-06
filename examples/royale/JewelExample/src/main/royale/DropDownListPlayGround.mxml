@@ -297,7 +297,11 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="avengersDropDownList_withSelectedItem" selectedItem="{listModel.avengers.getItemAt(4)}" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler_withSelectedItem(event)">
+						<j:DropDownList id="avengersDropDownList_withSelectedItem" 
+										labelField="label"
+										dataProvider="{listModel.avengers}" 
+										selectedItem="{listModel.avengers.getItemAt(4)}"  
+										change="avengersDropDownListHandler_withSelectedItem(event)">
 							<j:beads>
 								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
 							</j:beads>

@@ -27,6 +27,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.DataContainerView;
     import org.apache.royale.jewel.DropDownList;
+    import org.apache.royale.core.ISelectableItemRenderer;
 
     /**
      *  The DropDownListView class creates the visual elements of the org.apache.royale.jewel.DropDownList
@@ -91,6 +92,36 @@ package org.apache.royale.jewel.beads.views
             changedSelection();
         }
 
+        /**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		override protected function handleInitComplete(event:Event):void
+		{
+			model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			
+			super.handleInitComplete(event);
+		}
+
+
+        protected var lastSelectedIndex:int = -1;
+        /**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
+		protected function selectionChangeHandler(event:Event):void
+		{
+            var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
+			if(ir)
+				ir.selected = false;
+			ir = dataGroup.getItemRendererAt(model.selectedIndex) as ISelectableItemRenderer;
+			if(ir)
+				ir.selected = true;
+
+			lastSelectedIndex = model.selectedIndex;
+        }
+
         override protected function itemsCreatedHandler(event:org.apache.royale.events.Event):void
         {
             super.itemsCreatedHandler(event);
@@ -108,6 +139,7 @@ package org.apache.royale.jewel.beads.views
             if (model.selectedIndex > -1 && model.dataProvider)
             {
                 dropDownList.selectedIndex = model.selectedIndex;
+                dropDownList.selectedItem = model.selectedItem;
             }
         }
     }
