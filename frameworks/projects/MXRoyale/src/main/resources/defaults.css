@@ -590,6 +590,10 @@ LegendItem
 	fill: #000000;
 	fontWeight: "bold";
 	fontSize: 10;
+	paddingLeft: 0;
+	paddingRight: 0;
+	paddingTop: 0;
+	paddingBottom: 0;
 }
 
 /*

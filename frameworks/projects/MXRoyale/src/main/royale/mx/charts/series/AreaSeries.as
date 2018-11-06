@@ -426,6 +426,7 @@ public class AreaSeries extends Series implements IStackable2
         setStyle("areaFill", value);
         if (parent && areaStroke)
             updateDisplayList(width, height);
+        legendDataChanged();
     }
         
     //-----------------------------------
@@ -452,6 +453,7 @@ public class AreaSeries extends Series implements IStackable2
         setStyle("areaStroke", value);
         if (parent && areaFill)
             updateDisplayList(width, height);
+        legendDataChanged();
     }
     
     //-----------------------------------
