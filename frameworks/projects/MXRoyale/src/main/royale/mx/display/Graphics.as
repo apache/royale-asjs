@@ -182,8 +182,8 @@ package mx.display
 		} 
 		
         private var thickness:int;
-        private var color:uint;
-        private var alpha:Number;
+        private var color:uint = 0;
+        private var alpha:Number = 1.0;
         
 		public function lineStyle(thickness:Number = NaN, color:uint = 0, alpha:Number = 1.0, pixelHinting:Boolean = false, scaleMode:String = "normal", caps:String = null, joints:String = null, miterLimit:Number = 3):void
 		{
