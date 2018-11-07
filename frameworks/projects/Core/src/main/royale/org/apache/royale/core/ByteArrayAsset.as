@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	COMPILE::JS
+	COMPILE::SWF
     {
         import flash.utils.ByteArray;
     }
@@ -32,6 +32,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
+    COMPILE::SWF
 	public class ByteArrayAsset extends ByteArray
 	{
 		
