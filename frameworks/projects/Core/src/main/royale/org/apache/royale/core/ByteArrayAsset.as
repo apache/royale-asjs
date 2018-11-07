@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import flash.utils.ByteArray;
+	COMPILE::JS
+    {
+        import flash.utils.ByteArray;
+    }
 	
     /**
      *  The ByteArrayAsset represents an arbitrary sequence of byte data
