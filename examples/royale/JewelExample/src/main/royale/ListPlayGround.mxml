@@ -89,6 +89,26 @@ limitations under the License.
 				(iconList.dataProvider as ArrayList).removeAll();
 				// listModel.iconListData.removeAll();
 			}
+
+			private function describeItem(item:*):String {
+				const intro:String = "<strong>DropDownList selectedItem:</strong> ";
+				var evaluated:String;
+				if (item is String) {
+					evaluated = 'String value: \'' + item + '\'';
+				} else {
+					if (item === null || item === undefined) {
+						evaluated = '[Nothing Selected]'
+					}
+					else {
+						if (item is IconListVO) {
+							evaluated = 'Object\'s label field: \'' + IconListVO(item).label + '\'';
+						} else {
+							evaluated = 'Object : ' + item;
+						}
+					}
+				}
+				return intro + evaluated;
+			}
 		]]>
 	</fx:Script>
 
@@ -107,7 +127,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel List"/>
 				<j:List id="list" width="200" height="300" dataProvider="{simple}" change="onChange(event)"/>
-				<j:Label id="selected"/>
+				<j:Label id="selected" html="{describeItem(list.selectedItem)}"/>
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 					<j:Label text="Select list by index: "/>
 					<j:NumericStepper valueChange="list.selectedIndex = event.target.value" minimum="0" maximum="11"/>
@@ -117,6 +137,7 @@ limitations under the License.
 					<j:NumericStepper valueChange="list.selectedItem = list.dataProvider.getItemAt(event.target.value)" minimum="0" maximum="11"/>
 				</j:HGroup>
 				<j:Button text="Assign new data" click="assignNewData()"/>
+				<j:Button text="Deselect" click="list.selectedIndex = -1"/>
 			</j:Card>
 		</j:GridCell>
 

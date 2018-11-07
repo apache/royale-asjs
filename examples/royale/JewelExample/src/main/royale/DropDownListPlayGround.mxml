@@ -28,7 +28,7 @@ limitations under the License.
 		import vos.IconListVO;
 
 
-		private function describeItem(item:Object):String {
+		private function describeItem(item:*):String {
 			const intro:String = "<strong>DropDownList selectedItem:</strong> ";
 			var evaluated:String;
 			if (item is String) {

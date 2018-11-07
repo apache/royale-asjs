@@ -45,6 +45,26 @@ limitations under the License.
 			{
 				watchmenComboBox.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
 			}
+
+			private function describeItem(item:*):String {
+				const intro:String = "<strong>DropDownList selectedItem:</strong> ";
+				var evaluated:String;
+				if (item is String) {
+					evaluated = 'String value: \'' + item + '\'';
+				} else {
+					if (item === null || item === undefined) {
+						evaluated = '[Nothing Selected]'
+					}
+					else {
+						if (item is IconListVO) {
+							evaluated = 'Object\'s label field: \'' + IconListVO(item).label + '\'';
+						} else {
+							evaluated = 'Object : ' + item;
+						}
+					}
+				}
+				return intro + evaluated;
+			}
 		]]>
 	</fx:Script>
 
@@ -178,7 +198,8 @@ limitations under the License.
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 					<j:ComboBox id="cmb2" labelField="label" dataProvider="{listModel.avengers}" selectedItem="{listModel.avengers.getItemAt(3)}" />
 				</j:HGroup>
-				<j:Label text="selectedItem: {(cmb2.selectedItem as IconListVO).label}"/>
+				<j:Label html="{describeItem(cmb2.selectedItem)}"/>
+				<j:Button text="Deselect" click="cmb2.selectedIndex = -1"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
