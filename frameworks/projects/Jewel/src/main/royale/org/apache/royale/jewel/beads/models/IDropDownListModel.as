@@ -28,5 +28,8 @@ package org.apache.royale.jewel.beads.models
      */
     public interface IDropDownListModel
     {
+
+        function get offset():int;
+        function set processingInteractiveChange(value:Boolean):void;
     }
 }

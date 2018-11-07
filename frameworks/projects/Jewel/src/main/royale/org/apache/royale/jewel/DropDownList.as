@@ -22,8 +22,11 @@ package org.apache.royale.jewel
     import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.DataContainerBase;
     import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.jewel.beads.models.IDropDownListModel;
     import org.apache.royale.jewel.beads.models.ListPresentationModel;
     import org.apache.royale.html.elements.Select;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
@@ -80,6 +83,7 @@ package org.apache.royale.jewel
 		{
             super();
             typeNames = "jewel dropdownlist";
+            addEventListener('initComplete', setupModelChangeListener);
 		}
 
         protected var _dropDown:Select;
@@ -161,7 +165,7 @@ package org.apache.royale.jewel
         //         }
         //         // The value could be undefined if data binding is used and the variable is not initialized.
         //         if(!value)return;
-                
+
         //         var lf:String = labelField;
         //         n = value.length;
         //         for (i = 0; i < n; i++) {
@@ -180,7 +184,7 @@ package org.apache.royale.jewel
         /**
          *  The index of the currently selected item. Changing this value
 		 *  also changes the selectedItem property.
-         *  
+         *
          *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *
          *  @langversion 3.0
@@ -198,13 +202,18 @@ package org.apache.royale.jewel
          *  @private
          *  @royaleignorecoercion HTMLSelectElement
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         *  @royaleignorecoercion org.apache.royale.jewel.beads.models.IDropDownListModel
          */
         public function set selectedIndex(value:int):void
         {
             ISelectionModel(model).selectedIndex = value;
             COMPILE::JS
             {
-                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex + 1;
+                value = ISelectionModel(model).selectedIndex;
+                if (model is IDropDownListModel) {
+                    value += IDropDownListModel(model).offset;
+                }
+                (element as HTMLSelectElement).selectedIndex = value;
             }
         }
 
@@ -212,7 +221,7 @@ package org.apache.royale.jewel
         /**
          *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
-         * 
+         *
          *  @copy org.apache.royale.core.ISelectionModel#selectedItem
          *
          *  @langversion 3.0
@@ -230,13 +239,15 @@ package org.apache.royale.jewel
          *  @private
          *  @royaleignorecoercion HTMLSelectElement
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
             COMPILE::JS
             {
-                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex + 1;
+                const offset:int = model is IDropDownListModel ? IDropDownListModel(model).offset : 0;
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex + offset;
             }
         }
 
@@ -258,7 +269,7 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
-        
+
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -269,11 +280,28 @@ package org.apache.royale.jewel
         {
 			addElementToWrapper(this, 'select');
             (element as HTMLSelectElement).size = 1;
-            
+
             goog.events.listen(element, 'change', changeHandler);
-            
+
             positioner = element;
             return element;
+        }
+
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
+         */
+        private function setupModelChangeListener(event:Event):void{
+            removeEventListener('initComplete', setupModelChangeListener);
+            IEventDispatcher(model).addEventListener('change', modelChangeDispatcher);
+        }
+
+        private var respondingToProgrammaticChange:Boolean;
+
+        private function modelChangeDispatcher(event:Event):void{
+            //handles re-dispatching for programmatic changes
+            respondingToProgrammaticChange = true;
+            dispatchEvent(new Event("change"));
+            respondingToProgrammaticChange = false;
         }
 
         /**
@@ -282,8 +310,19 @@ package org.apache.royale.jewel
         COMPILE::JS
         protected function changeHandler(event:Event):void
         {
+            if (respondingToProgrammaticChange) return;
             var index:int = (element as HTMLSelectElement).selectedIndex;
-            model.selectedIndex = (index == 0) ? -1 : index;
+
+            var ddModel:IDropDownListModel = model as IDropDownListModel;
+            if (ddModel) {
+                index -= ddModel.offset;
+                ddModel.processingInteractiveChange = true;
+            }
+
+            model.selectedIndex = index;
+
+            if (ddModel)
+                ddModel.processingInteractiveChange = false;
         }
     }
 }

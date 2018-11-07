@@ -37,7 +37,17 @@ package org.apache.royale.jewel.beads.models
             super();
         }
 
-        private var offset:int = 1;
+
+        private var _offset:int = 1;
+        public function get offset():int{
+            return _offset;
+        }
+
+        private var _processingInteractiveChange:Boolean = false;
+        public function set processingInteractiveChange(value:Boolean):void{
+            _processingInteractiveChange = value;
+        }
+
 
         private var _dataProvider:IArrayList;
 
@@ -63,12 +73,30 @@ package org.apache.royale.jewel.beads.models
             if (value == _dataProvider) return;
 
             _dataProvider = value as IArrayList;
-			if(!_dataProvider || _selectedIndex >= _dataProvider.length + offset)
+            var itemChanged:Boolean;
+            const oldIndex:int = _selectedIndex;
+            if (_dataProvider) {
+                if (_selectedItem) {
+                    _selectedIndex = _dataProvider.getItemIndex(_selectedItem);
+
+                    if (_selectedIndex == -1) {
+                        _selectedItem = null;
+                        itemChanged = true;
+                    }
+                } else {
+                    _selectedIndex = -1;
+				}
+            } else {
+				itemChanged = _selectedItem != null;
+                _selectedItem = null;
 				_selectedIndex = -1;
-            
-			_selectedItem = _selectedIndex == -1 ? null : _dataProvider.getItemAt(_selectedIndex - offset);
-			
-			dispatchEvent(new Event("dataProviderChanged"));
+			}
+
+            dispatchEvent(new Event("dataProviderChanged"));
+            if (itemChanged)
+                dispatchEvent(new Event("selectedItemChanged"));
+            if (oldIndex != _selectedIndex)
+                dispatchEvent(new Event("selectedIndexChanged"));
 		}
 
 		private var _selectedIndex:int = -1;
@@ -91,11 +119,23 @@ package org.apache.royale.jewel.beads.models
          */
 		override public function set selectedIndex(value:int):void
 		{
+            if (!_dataProvider) _selectedIndex = value = -1;
             if (value == _selectedIndex) return;
 
-			_selectedIndex = value;
-			_selectedItem = (value == -1 || _dataProvider == null) ? null : (value < _dataProvider.length + offset) ? _dataProvider.getItemAt(value - offset) : null;
-			dispatchEvent(new Event("selectedIndexChanged"));
+            const oldItem:Object = _selectedItem;
+            _selectedIndex = value < _dataProvider.length ? value : _dataProvider.length - 1;
+            if (_selectedIndex != -1) {
+                _selectedItem = _dataProvider.getItemAt(_selectedIndex);
+            } else {
+                _selectedItem = null;
+            }
+
+			if ( oldItem != _selectedItem)
+                dispatchEvent(new Event("selectedItemChanged"));
+            dispatchEvent(new Event("selectedIndexChanged"));
+            if (!_processingInteractiveChange) {
+                dispatchEvent(new Event("change"));
+            }
 		}
 
         private var _selectedItem:Object;
@@ -119,19 +159,17 @@ package org.apache.royale.jewel.beads.models
 		override public function set selectedItem(value:Object):void
 		{
             if (value == _selectedItem) return;
+            _selectedItem = value;
+            if (_dataProvider) {
+                const indexChanged:Boolean = _selectedIndex != (_selectedIndex = _dataProvider.getItemIndex(value));
 
-			_selectedItem = value;
-			var n:int = _dataProvider.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				if (_dataProvider.getItemAt(i) == value)
-				{
-					_selectedIndex = i;
-					break;
-				}
-			}
-			dispatchEvent(new Event("selectedItemChanged"));
-			dispatchEvent(new Event("selectedIndexChanged"));
+                dispatchEvent(new Event("selectedItemChanged"));
+                if (indexChanged)
+                    dispatchEvent(new Event("selectedIndexChanged"));
+                if (!_processingInteractiveChange) {
+                    dispatchEvent(new Event("change"));
+                }
+            }
 		}
     }
 }

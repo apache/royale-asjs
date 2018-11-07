@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    COMPILE::JS
+import org.apache.royale.jewel.beads.models.IDropDownListModel;
+
+COMPILE::JS
     {
         import org.apache.royale.html.elements.Select;
     }
@@ -46,11 +48,11 @@ package org.apache.royale.jewel.beads.views
             super();
         }
 
-        private var dropDownList:DropDownList; 
-        
+        private var dropDownList:DropDownList;
+
         /**
          *  The prompt
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -77,7 +79,7 @@ package org.apache.royale.jewel.beads.views
             {
                 dropDownList = value as DropDownList;
                 dropDownList.dropDown = new Select();
-                
+
                 var name:String = "dropDownList" + Math.random();
                 dropDownList.dropDown.element.name = name;
 
@@ -100,7 +102,7 @@ package org.apache.royale.jewel.beads.views
 		{
 			model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
-			
+
 			super.handleInitComplete(event);
 		}
 
@@ -109,17 +111,27 @@ package org.apache.royale.jewel.beads.views
         /**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+         * @royaleignorecoercion org.apache.royale.jewel.beads.models.IDropDownListModel
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-            var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
+            var ir:ISelectableItemRenderer;
+            if (lastSelectedIndex != -1) {
+                ir = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
+            }
+
 			if(ir)
 				ir.selected = false;
-			ir = dataGroup.getItemRendererAt(model.selectedIndex) as ISelectableItemRenderer;
+            var newIndex:int = model.selectedIndex;
+            if (model is IDropDownListModel) {
+                newIndex += IDropDownListModel(model).offset;
+            }
+
+			ir = dataGroup.getItemRendererAt(newIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.selected = true;
 
-			lastSelectedIndex = model.selectedIndex;
+			lastSelectedIndex = newIndex;
         }
 
         override protected function itemsCreatedHandler(event:org.apache.royale.events.Event):void
@@ -134,13 +146,13 @@ package org.apache.royale.jewel.beads.views
         private function changedSelection():void
         {
             model = dataModel as ISelectionModel;
-            var selectedIndex:int = dropDownList.selectedIndex;
-            
-            if (model.selectedIndex > -1 && model.dataProvider)
-            {
+            //var selectedIndex:int = dropDownList.selectedIndex;
+
+          /*  if (model.selectedIndex > -1 && model.dataProvider)
+            {*/
                 dropDownList.selectedIndex = model.selectedIndex;
                 dropDownList.selectedItem = model.selectedItem;
-            }
+           /* }*/
         }
     }
 }
