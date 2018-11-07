@@ -71,7 +71,6 @@ package org.apache.royale.jewel.beads.models
 		override public function set dataProvider(value:Object):void
 		{
             if (value == _dataProvider) return;
-
             _dataProvider = value as IArrayList;
             var itemChanged:Boolean;
             const oldIndex:int = _selectedIndex;
@@ -84,8 +83,15 @@ package org.apache.royale.jewel.beads.models
                         itemChanged = true;
                     }
                 } else {
-                    _selectedIndex = -1;
-				}
+                    if (_selectedIndex != -1) {
+                        if (_selectedIndex < _dataProvider.length) {
+                            _selectedItem = _dataProvider.getItemAt(_selectedIndex);
+                            itemChanged = true;
+                        } else {
+                            _selectedIndex = -1;
+                        }
+                    }
+                }
             } else {
 				itemChanged = _selectedItem != null;
                 _selectedItem = null;
@@ -119,7 +125,11 @@ package org.apache.royale.jewel.beads.models
          */
 		override public function set selectedIndex(value:int):void
 		{
-            if (!_dataProvider) _selectedIndex = value = -1;
+
+            if (!_dataProvider) {
+                _selectedIndex = value;
+                return;
+            }
             if (value == _selectedIndex) return;
 
             const oldItem:Object = _selectedItem;
