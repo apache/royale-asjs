@@ -19,10 +19,10 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.html.Group;
-    import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
-    import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
-    import org.apache.royale.utils.StringUtil;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
+	import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.utils.IClassSelectorListSupport;
+	import org.apache.royale.utils.StringUtil;
 
     /**
      *  The Group class provides a light-weight container for visual elements. By default

@@ -20,14 +20,12 @@ package org.apache.royale.utils
 {
     
 import org.apache.royale.core.IBead;
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IDocument;
 import org.apache.royale.core.IMXMLDocument;
 import org.apache.royale.core.IParent;
-import org.apache.royale.core.IStrand;
-import org.apache.royale.events.Event;
-import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.core.IChild;        
+import org.apache.royale.core.IStrand;        
 
 COMPILE::JS
 {

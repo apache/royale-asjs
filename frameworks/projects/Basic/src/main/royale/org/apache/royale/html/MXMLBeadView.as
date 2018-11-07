@@ -18,17 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	import org.apache.royale.states.State;
-
 	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.ILayoutHost;
-    import org.apache.royale.core.IParent;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.states.State;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
