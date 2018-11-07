@@ -26,13 +26,13 @@ package spark.components.gridClasses
 		import flash.geom.Rectangle;
 	}
 		
-		COMPILE::JS {
-			import org.apache.royale.events.Event;
-			import org.apache.royale.geom.Point;
-			import org.apache.royale.geom.Rectangle;
-		}	
-		
-		import mx.core.IToolTip;
+	COMPILE::JS {
+		import org.apache.royale.events.Event;
+		import org.apache.royale.geom.Point;
+		import org.apache.royale.geom.Rectangle;
+	}	
+	
+	import mx.core.IToolTip;
 	import mx.core.IUIComponent;
 	import mx.core.LayoutDirection;
 	import mx.core.mx_internal;
@@ -175,7 +175,7 @@ package spark.components.gridClasses
 		 */    
 		static mx_internal function initializeRendererToolTip(renderer:IGridItemRenderer):void
 		{
-			const toolTipClient:IToolTipManagerClient = renderer as IToolTipManagerClient;
+			/*const toolTipClient:IToolTipManagerClient = renderer as IToolTipManagerClient;
 			if (!toolTipClient)
 				return;
 			
@@ -185,7 +185,7 @@ package spark.components.gridClasses
 			if (!dataTip && showDataTips)
 				toolTipClient.toolTip = "<dataTip>";
 			else if (dataTip && !showDataTips)
-				toolTipClient.toolTip = null;
+				toolTipClient.toolTip = null;*/
 		}
 		
 		/**
@@ -210,7 +210,7 @@ package spark.components.gridClasses
 		 *  IUIComponent.
 		 */ 
 		static mx_internal function toolTipShowHandler(event:ToolTipEvent):void
-		{
+		{/*
 			var toolTip:IToolTip = event.toolTip;
 			
 			const renderer:IGridItemRenderer = event.currentTarget as IGridItemRenderer;
@@ -234,18 +234,18 @@ package spark.components.gridClasses
 				renderer.getLayoutBoundsWidth(),
 				renderer.getLayoutBoundsHeight());
 			
-			/*const scrollR:Rectangle = renderer.grid.scrollRect;
+			const scrollR:Rectangle = renderer.grid.scrollRect;
 			if (scrollR)
-				rendererR = rendererR.intersection(scrollR);  // exposed renderer b*/
+				rendererR = rendererR.intersection(scrollR);  // exposed renderer b
 			
 			if ((rendererR.height == 0) || (rendererR.width == 0))
 				return;
 			
 			// Determine if the toolTip needs to be adjusted for RTL layout.
-			const mirror:Boolean = false; /*renderer.layoutDirection == LayoutDirection.RTL;*/
+			const mirror:Boolean = false; *//*renderer.layoutDirection == LayoutDirection.RTL;*/
 			
 			// Lazily compute the tooltip text and recalculate its width.
-			toolTip.text = renderer.column.itemToDataTip(renderer.data);
+			/*toolTip.text = renderer.column.itemToDataTip(renderer.data);
 			ToolTipManager.sizeTip(toolTip);
 			
 			// We need to position the tooltip at same x coordinate, 
@@ -255,7 +255,7 @@ package spark.components.gridClasses
 			// x,y: tooltip's location relative to the renderer's layout bounds
 			// Assume there's no scaling in the coordinate space between renderer.width and toolTip.width 
 			const x:int =  mirror ? (renderer.width - toolTip.width) : (rendererR.x - renderer.getLayoutBoundsX());
-			const y:int = rendererR.y - renderer.getLayoutBoundsY() + ((rendererR.height - toolTip.height) / 2);
+			const y:int = rendererR.y - renderer.getLayoutBoundsY() + ((rendererR.height - toolTip.height) / 2);*/
 			
 			/*var pt:Point = PopUpUtil.positionOverComponent(DisplayObject(uiComp),
 			uiComp.systemManager,

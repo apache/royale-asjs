@@ -70,6 +70,7 @@ internal class SparkRoyaleClasses
 	import spark.components.Form; Form;
 	import spark.components.FormItem; FormItem;
 	import spark.core.IDisplayText; IDisplayText;
+	import spark.events.PopUpEvent; PopUpEvent;
 	
 }
 

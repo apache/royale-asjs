@@ -181,7 +181,6 @@ internal class MXRoyaleClasses
 	import mx.managers.IToolTipManager2; IToolTipManager2;
 	import mx.utils.PopUpUtil; PopUpUtil;
 	import mx.rpc.http.HTTPMultiService; HTTPMultiService;
-	import mx.rpc.http.HTTPServiceWrapper; HTTPServiceWrapper;
 	import mx.messaging.messages.HTTPRequestMessage; HTTPRequestMessage;
 	import mx.messaging.channels.DirectHTTPChannel; DirectHTTPChannel;
 	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
@@ -190,6 +189,7 @@ internal class MXRoyaleClasses
 	import mx.events.MenuEvent; MenuEvent;
 	import mx.rpc.CallResponder; CallResponder;
 	import mx.rpc.http.Operation; Operation;
+	import mx.events.TreeEvent; TreeEvent;
 	
 
 	COMPILE::JS
