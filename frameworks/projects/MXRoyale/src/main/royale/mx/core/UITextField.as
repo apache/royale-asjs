@@ -1579,7 +1579,7 @@ public class UITextField  extends UIComponent implements IUITextField
      */
     override public function get measuredHeight():Number
     {
-	return super.measuredHeight();
+    	return super.measuredHeight;
        /*  validateNow();
         
         // If we use device fonts, then the unscaled height is 
@@ -1655,7 +1655,7 @@ public class UITextField  extends UIComponent implements IUITextField
      */
     override public function get measuredWidth():Number
     {
-	return super.measuredWidth();
+	    return super.measuredWidth;
        /*  validateNow();
         
         // If we use device fonts, then the unscaled width is 
@@ -1944,7 +1944,7 @@ public class UITextField  extends UIComponent implements IUITextField
      */
      override public function get styleName():Object /* String, CSSStyleDeclaration, or UIComponent */
      {
-         return super.styleName();
+         return super.styleName;
      } 
 
     /**
@@ -1957,7 +1957,7 @@ public class UITextField  extends UIComponent implements IUITextField
 
          _styleName = value;
 
-		 super.styleName(value);
+		 super.styleName = value;
         // if (parent)
         // {
             // StyleProtoChain.initTextField(this);

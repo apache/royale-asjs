@@ -666,6 +666,7 @@ public class LineSeries extends Series
         setStyle("lineStroke", value);
         if (parent)
             updateDisplayList(width, height);
+        legendDataChanged();
     }
     
     //----------------------------------

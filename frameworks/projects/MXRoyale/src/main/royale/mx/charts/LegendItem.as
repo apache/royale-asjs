@@ -676,6 +676,28 @@ public class LegendItem extends UIComponent
 			out = 15;
 		return out;
 	}
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        measure();
+    }
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function setActualSize(w:Number, h:Number):void
+    {        
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+
 }
 
 }

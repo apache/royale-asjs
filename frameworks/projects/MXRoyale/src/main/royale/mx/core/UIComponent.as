@@ -3092,7 +3092,8 @@ COMPILE::JS
     { override }
     public function $addChild(child:IUIComponent):IUIComponent
     {
-        return addElement(child) as IUIComponent;
+        // this should avoid calls to addingChild/childAdded
+        return super.addElement(child) as IUIComponent;
     }
 
     /**
@@ -3105,7 +3106,6 @@ COMPILE::JS
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
-        // this should probably call addingChild/childAdded
         return addElementAt(child, index) as IUIComponent;
     }
     
@@ -3115,7 +3115,10 @@ COMPILE::JS
     public function $addChildAt(child:IUIComponent,
                                index:int):IUIComponent
     {
-        return addElementAt(child, index) as IUIComponent;
+        // this should avoid calls to addingChild/childAdded
+        if (index >= super.numElements)
+            return super.addElement(child) as IUIComponent;
+        return super.addElementAt(child, index) as IUIComponent;
     }
 
     /**
@@ -3136,7 +3139,7 @@ COMPILE::JS
     public function $removeChild(child:IUIComponent):IUIComponent
     {
         // this should probably call the removingChild/childRemoved
-        return removeElement(child) as IUIComponent;
+        return super.removeElement(child) as IUIComponent;
     }
     
     COMPILE::JS
@@ -3162,7 +3165,7 @@ COMPILE::JS
     { override }
     public function $removeChildAt(index:int):IUIComponent
     {
-        return removeElement(getElementAt(index)) as IUIComponent;
+        return super.removeElement(getElementAt(index)) as IUIComponent;
     }
 
     /**

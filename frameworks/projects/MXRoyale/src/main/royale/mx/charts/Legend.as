@@ -1432,7 +1432,16 @@ package mx.charts
             invalidateProperties();
             invalidateSize();
             _childrenDirty = true;
-            
+
+            if (parent)
+            {
+                commitProperties();
+                measure();
+                // layoutVertical cares about width/height (via UIComponent unscaledWidth/Height)
+                setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+                updateDisplayList(width, height);
+            }
+
             dispatchEvent(new Event("collectionChange"));
         }
         
@@ -5716,7 +5725,7 @@ package mx.charts
             
             // Determine the width and height necessary to display the tiles
             // in an N-by-N grid (with number of rows equal to number of columns).
-            var n:int = numChildren;
+            var n:int = this.numChildren;
             
             // Don't count children that don't need their own layout space.
             var temp:int = n;
@@ -6535,6 +6544,13 @@ package mx.charts
             invalidateProperties();
             invalidateSize();
             _childrenDirty = true;;
+            
+            if (parent)
+            {
+                commitProperties();
+                measure();
+                updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+            }            
         }
         
         /**
