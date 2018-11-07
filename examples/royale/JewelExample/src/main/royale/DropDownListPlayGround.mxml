@@ -25,51 +25,29 @@ limitations under the License.
 
 	<fx:Script>
 		<![CDATA[
-			import vos.IconListVO;
+		import vos.IconListVO;
 
 
-			private function translateItem(item:Object):String{
-				if (item === null) {
-					return '[Nothing Selected]'
-				} else {
-					if (item is String) {
-						return 'String value: \''+ item +'\'';
+		private function describeItem(item:Object):String {
+			const intro:String = "<strong>DropDownList selectedItem:</strong> ";
+			var evaluated:String;
+			if (item is String) {
+				evaluated = 'String value: \'' + item + '\'';
+			} else {
+				if (item === null || item === undefined) {
+					evaluated = '[Nothing Selected]'
+				}
+				else {
+					if (item is IconListVO) {
+						evaluated = 'Object\'s label field: \'' + IconListVO(item).label + '\'';
 					} else {
-						if (item is IconListVO) {
-							return 'Object\'s label field: \'' + IconListVO(item).label + '\'';
-						}
+						evaluated = 'Object : ' + item;
 					}
 				}
-				return 'Object : ' + item;
 			}
+			return intro + evaluated;
+		}
 
-            private function watchmenDropDownListHandler_noPrompt(event:Event):void {
-                watchmenDropDownListResult_noPrompt.html = "<strong>DropDownList selectedItem:</strong> " + translateItem(event.target.selectedItem);
-            }
-
-			private function avengersDropDownListHandler_noPrompt(event:Event):void {
-				avengersDropDownListResult_noPrompt.html = "<strong>DropDownList selectedItem:</strong> " +translateItem(event.target.selectedItem);
-            }
-
-            private function watchmenDropDownListHandler(event:Event):void {
-                watchmenDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + translateItem(event.target.selectedItem);
-            }
-
-			private function avengersDropDownListHandler(event:Event):void {
-                avengersDropDownListResult.html = "<strong>DropDownList selectedItem:</strong> " + translateItem(event.target.selectedItem);
-            }
-
-            private function watchmenDropDownListHandler_withSelectedIndex(event:Event):void {
-                watchmenDropDownListResult_withSelectedIndex.html = "<strong>DropDownList selectedItem:</strong> " + translateItem(event.target.selectedItem);
-            }
-
-			private function avengersDropDownListHandler_withSelectedIndex(event:Event):void {
-				avengersDropDownListResult_withSelectedIndex.html = "<strong>DropDownList selectedItem:</strong> " + translateItem(event.target.selectedItem);
-            }
-
-			private function avengersDropDownListHandler_withSelectedItem(event:Event):void {
-				avengersDropDownListResult_withSelectedItem.html = "<strong>DropDownList selectedItem:</strong> " + translateItem(event.target.selectedItem);
-            }
 		]]>
 	</fx:Script>
 
@@ -94,7 +72,7 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="watchmenDropDownList_noPrompt" dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler_noPrompt(event)"/>
+						<j:DropDownList id="watchmenDropDownList_noPrompt" dataProvider="{listModel.watchmen}"/>
 						<j:Button text="deselect" click="watchmenDropDownList_noPrompt.selectedIndex = -1"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
@@ -110,7 +88,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="watchmenDropDownListResult_noPrompt" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+						<j:Label id="watchmenDropDownListResult_noPrompt"
+								 html="{describeItem(watchmenDropDownList_noPrompt.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -128,7 +107,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="avengersDropDownList_noPrompt" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler_noPrompt(event)"/>
+						<j:DropDownList id="avengersDropDownList_noPrompt" labelField="label"
+										dataProvider="{listModel.avengers}" />
 						<j:Button text="deselect" click="avengersDropDownList_noPrompt.selectedIndex = -1"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
@@ -144,7 +124,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="avengersDropDownListResult_noPrompt" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+						<j:Label id="avengersDropDownListResult_noPrompt"
+								 html="{describeItem(avengersDropDownList_noPrompt.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -160,7 +141,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="watchmenDropDownList" dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler(event)">
+						<j:DropDownList id="watchmenDropDownList"
+										dataProvider="{listModel.watchmen}">
 							<j:beads>
 								<j:DropDownListTextPrompt prompt="Select Watchmen..."/>
 							</j:beads>
@@ -180,7 +162,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="watchmenDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+						<j:Label id="watchmenDropDownListResult"
+								 html="{describeItem(watchmenDropDownList.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -198,7 +181,9 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="avengersDropDownList" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler(event)">
+						<j:DropDownList id="avengersDropDownList"
+										labelField="label"
+										dataProvider="{listModel.avengers}">
 							<j:beads>
 								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
 							</j:beads>
@@ -218,7 +203,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="avengersDropDownListResult" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+						<j:Label id="avengersDropDownListResult"
+								 html="{describeItem(avengersDropDownList.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -235,7 +221,9 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="watchmenDropDownList_withSelectedIndex" selectedIndex="3" dataProvider="{listModel.watchmen}" change="watchmenDropDownListHandler_withSelectedIndex(event)">
+						<j:DropDownList id="watchmenDropDownList_withSelectedIndex"
+										selectedIndex="3"
+										dataProvider="{listModel.watchmen}" >
 							<j:beads>
 								<j:DropDownListTextPrompt prompt="Select Watchmen..."/>
 							</j:beads>
@@ -255,7 +243,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="watchmenDropDownListResult_withSelectedIndex" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+						<j:Label id="watchmenDropDownListResult_withSelectedIndex"
+								 html="{describeItem(watchmenDropDownList_withSelectedIndex.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -273,7 +262,10 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:DropDownList id="avengersDropDownList_withSelectedIndex" selectedIndex="4" labelField="label" dataProvider="{listModel.avengers}" change="avengersDropDownListHandler_withSelectedIndex(event)">
+						<j:DropDownList id="avengersDropDownList_withSelectedIndex"
+										selectedIndex="4"
+										labelField="label"
+										dataProvider="{listModel.avengers}" >
 							<j:beads>
 								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
 							</j:beads>
@@ -293,7 +285,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="avengersDropDownListResult_withSelectedIndex" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+						<j:Label id="avengersDropDownListResult_withSelectedIndex"
+								 html="{describeItem(avengersDropDownList_withSelectedIndex.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -313,14 +306,12 @@ limitations under the License.
 						<j:DropDownList id="avengersDropDownList_withSelectedItem"
 										labelField="label"
 										dataProvider="{listModel.avengers}"
-										selectedItem="{listModel.avengers.getItemAt(4)}"
-										change="avengersDropDownListHandler_withSelectedItem(event)">
+										selectedItem="{listModel.avengers.getItemAt(4)}">
 							<j:beads>
 								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
 							</j:beads>
 						</j:DropDownList>
 						<j:Button text="deselect" click="avengersDropDownList_withSelectedItem.selectedIndex = -1"/>
-						<j:Label text="selectedItem: {(avengersDropDownList_withSelectedItem.selectedItem as IconListVO).label}"/>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3"
 								tabletNumerator="1" tabletDenominator="3"
@@ -335,7 +326,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="avengersDropDownListResult_withSelectedItem" html="&lt;strong>DropDownList selectedItem:&lt;/strong> "/>
+						<j:Label id="avengersDropDownListResult_withSelectedItem"
+								 html="{describeItem(avengersDropDownList_withSelectedItem.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
