@@ -36,7 +36,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    [Event("valid", type="org.apache.royale.events.Event")]
+    [Event(name="valid", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched when the form validation fails.
@@ -46,7 +46,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    [Event("invalid", type="org.apache.royale.events.Event")]
+    [Event(name="invalid", type="org.apache.royale.events.Event")]
 
     /**
 	 *  The Form class works with all validators,
